@@ -1,0 +1,115 @@
+/*
+* Copyright (c) 2021 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+.item {
+    width: 100%;
+    height: 70px;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fdfdfd;
+}
+
+.preference {
+    width: 100%;
+    height: 70px;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.text-style-summary {
+    weights: 1;
+    font-size: 18px;
+    color: #999999;
+    align-items: center;
+}
+
+.title-text-style {
+    weights: 1;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.title-style {
+    font-family: Courier;
+    font-size: 22px;
+    color: #333333;
+}
+
+.preference-title {
+    width: 60%;
+    flex-direction: column;
+    weights: 1;
+    justify-content: center;
+}
+
+.head-image-pin {
+    width: 43px;
+    height: 38px;
+    justify-content: center;
+    margin-right: 15px;
+    align-items: center;
+}
+
+.div_head-image{
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+}
+
+.head-image {
+    width: 45px;
+    height: 45px;
+    justify-content: center;
+    align-items: center;
+}
+
+.switch-on-off{
+    width: 85px;
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-line{
+    width: 100%;
+    height: 1px;
+    background-color: #E3E3E3;
+    flex-shrink:0;
+}
+
+.text-container-style-right {
+    color: #666666;
+    width: 40%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.text-style-right {
+    font-size: 18px;
+    color: #666666;
+}
+
+.preference-title-width100{
+    width:100%;
+    flex-direction: column;
+    weights: 1;
+    justify-content: center;
+}
+
+.text-container-style-right-width0{
+    width:0%;
+}
