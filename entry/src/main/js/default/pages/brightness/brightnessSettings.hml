@@ -1,0 +1,41 @@
+<!--/*
+* Copyright (c) 2021 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/-->
+<element name = "head-component" src = "../component/headComponent/headComponent.hml"></element>
+<element name = "entry-component" src = "../component/entryComponent/entryComponent.hml"></element>
+<div class = "container">
+    <head-component title-name = "{{ $t('strings.brightnessTab') }}" back-icon = "{{ $t('png.info.back') }}"
+        @back-type = "back">
+    </head-component>
+    <div class = "container-first">
+        <image class = "bright-image" src = "{{ before }}"></image>
+        <slider min = "0" max = "255" class = "bright-slider" value = "{{ bright }}" onchange = "getValue('{{ 10 }}')"
+            ontouchend = "clickBrightnessSet({{ touchEndValue }})"/>
+        <image class = "bright-image-after" src = "{{ after }}"></image>
+    </div>
+    <list scrollpage = "true">
+        <list-item id = "item" for = "{{ brightnessSettingList }}" clickeffect = "false">
+            <entry-component title = "{{ $item.settingTitle }}" icon-show = "{{ $item.settingIcon == '' ? false : true }}"
+                is-summary-show = "{{ $item.settingSummaryShow == '' ? false : true }}"
+                entrance-to-item-show = "{{ $item.settingType == 1 }}"
+                switches-is-show = "{{ $item.settingType == 2 }}"
+                divider-show = "{{ $item.settingShowDivider }}"
+                state-description-show = "{{ $item.settingValue == '' ? false : true }}"
+                switch-default-value = "{{ $item.settingDefaultValue }}"
+                switch-on-change-value = "{{ $item.settingSwitchValue }}"
+                @switch-on-change-type = "switchTouch">
+            </entry-component>
+        </list-item>
+    </list>
+</div>

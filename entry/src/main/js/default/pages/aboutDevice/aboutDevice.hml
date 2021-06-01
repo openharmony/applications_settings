@@ -1,0 +1,32 @@
+<!--/*
+* Copyright (c) 2021 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/-->
+<element name='head-component' src='../component/headComponent/headComponent.hml'  ></element>
+<element name = "entry-component" src = "../component/entryComponent/entryComponent.hml"></element>
+<div class="container">
+    <head-component title-name="{{$t('strings.aboutTab')}}" back-icon="{{$t('png.info.back')}}" @back-type="aboutDeviceBack"></head-component>
+    <!--List item-->
+    <list >
+        <list-item id="item" class="list-item-background-color" for="{{aboutDeviceList}}"  clickeffect="false" >
+            <entry-component item="{{$item.settingType==1?$item:''}}" icon="{{$item.settingIcon}}"
+                    icon-show="{{$item.settingIcon==''?false:true}}" summary="{{$item.settingSummary}}"
+                    title="{{$item.settingTitle}}" is-summary-show="{{$item.settingSummary==''?false:true}}"
+                    model-state-describe="{{$item.settingValue}}" divider-show="{{$item.settingShowDivider}}"
+                    state-description-show="{{$item.settingValue==''?false:true}}"
+                    entrance-to-item-icon="{{$item.settingArrow}}" entrance-to-item-show="{{$item.settingType==1}}"
+                    switches-is-show="{{$item.settingType==2}}" switch-default-value="{{$item.settingDefaultValue}}"
+                    switch-on-change-value="{{switchChangeValue}}"></entry-component>
+        </list-item>
+    </list>
+</div>
