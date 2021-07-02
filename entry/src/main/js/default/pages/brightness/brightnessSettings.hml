@@ -16,25 +16,25 @@
 <element name = "entry-component" src = "../component/entryComponent/entryComponent.hml"></element>
 <div class = "container">
     <head-component title-name = "{{ $t('strings.brightnessTab') }}" back-icon = "{{ $t('png.info.back') }}"
-        @back-type = "back">
+            @back-type = "back">
     </head-component>
     <div class = "container-first">
         <image class = "bright-image" src = "{{ before }}"></image>
         <slider min = "0" max = "255" class = "bright-slider" value = "{{ bright }}" onchange = "getValue('{{ 10 }}')"
-            ontouchend = "clickBrightnessSet({{ touchEndValue }})"/>
+                ontouchend = "clickBrightnessSet({{ touchEndValue }})"/>
         <image class = "bright-image-after" src = "{{ after }}"></image>
     </div>
-    <list scrollpage = "true">
+    <list scrollpage = "true" show="false">
         <list-item id = "item" for = "{{ brightnessSettingList }}" clickeffect = "false">
             <entry-component title = "{{ $item.settingTitle }}" icon-show = "{{ $item.settingIcon == '' ? false : true }}"
-                is-summary-show = "{{ $item.settingSummaryShow == '' ? false : true }}"
-                entrance-to-item-show = "{{ $item.settingType == 1 }}"
-                switches-is-show = "{{ $item.settingType == 2 }}"
-                divider-show = "{{ $item.settingShowDivider }}"
-                state-description-show = "{{ $item.settingValue == '' ? false : true }}"
-                switch-default-value = "{{ $item.settingDefaultValue }}"
-                switch-on-change-value = "{{ $item.settingSwitchValue }}"
-                @switch-on-change-type = "switchTouch">
+                             is-summary-show = "{{ $item.settingSummary == '' ? false : true }}"
+                             entrance-to-item-show = "{{ $item.settingType == 1 }}"
+                             switches-is-show = "{{ $item.settingType == 2 }}"
+                             divider-show = "{{ $item.settingShowDivider }}"
+                             state-description-show = "{{ $item.settingValue == '' ? false : true }}"
+                             switch-default-value = "{{ $item.settingDefaultValue }}"
+                             switch-on-change-value = "{{ $item.settingSwitchValue }}"
+                             @switch-on-change-type = "switchTouch">
             </entry-component>
         </list-item>
     </list>

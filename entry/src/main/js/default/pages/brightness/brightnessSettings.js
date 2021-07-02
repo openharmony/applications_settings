@@ -34,19 +34,11 @@ export default {
     onInit() {
         logUtil.info('setting brightnessSettings onInit start')
         this.bright = brightnessSettingModel.getStorageValue();
-        logUtil.info('setting brightnessSettings onInit start this.bright:' + this.bright)
-        /**
-         * Get the current screen brightness value of the device
-         */
-        this.brightnessSettingList = baseParseConfModel.getJsonData('/data/accounts/account_0/applications/com.ohos.settings/com.ohos.settings/assets/entry/resources/rawfile/brightness.json');
-        for (let key in this.brightnessSettingList) {
-            var settingAlias = this.brightnessSettingList[key].settingAlias
-            this.brightnessSettingList[key].settingTitle = this.$t('strings.'.concat(settingAlias))
-        }
+        logUtil.info('setting brightnessSettings onInit this.bright:' + this.bright)
         logUtil.info('setting brightnessSettings onInit end')
     },
 
-    /**
+/**
      * Acquisition mode
      * @param data
      * @return
@@ -65,7 +57,7 @@ export default {
         logUtil.info('setting brightnessSettings getMode end:' + JSON.stringify(this.brightnessSettingList));
     },
 
-    /**
+/**
      * Get the current screen brightness value of the device
      * @param data
      * @return
@@ -76,7 +68,7 @@ export default {
         logUtil.info('setting brightnessSettings getBrightnessValue end')
     },
 
-    /**
+/**
      * Brightness setting
      */
     getValue: function (name, data) {
@@ -86,7 +78,7 @@ export default {
         brightnessSettingModel.setStorageValue(this.bright);
         logUtil.info('setting brightnessSettings getValue end this.bright：' + this.bright);
     },
-    /**
+/**
      * Set the current screen brightness value of the device
      * @param e
      * @return
@@ -97,7 +89,7 @@ export default {
         brightnessSettingModel.setStorageValue(brightnessValue);
         logUtil.info('setting brightnessSettings clickBrightnessSet end')
     },
-    /**
+/**
      * Brightness mode setting
      */
     switchTouch() {
@@ -118,7 +110,7 @@ export default {
         }
         logUtil.info('setting brightnessSettings onBackPress end')
     },
-    /**
+/**
      * Set the current screen brightness mode of the device.
      * @param e
      * @return
