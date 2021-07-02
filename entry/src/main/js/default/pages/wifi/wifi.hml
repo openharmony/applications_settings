@@ -1,0 +1,57 @@
+<!--/*
+* Copyright (c) 2021 Huawei Device Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/-->
+<element name = 'head-component' src = '../component/headComponent/headComponent.hml'></element>
+<element name = 'entry-component' src = '../component/entryComponent/entryComponent.hml'></element>
+<div class="container">
+    <head-component title-name="{{$t('strings.wifiTab')}}" back-icon="{{$t('png.info.back')}}"
+            @back-type="back"></head-component>
+    <list class="wifi-list-info">
+        <list-item id="item" for="{{wifiListInfo}}" clickeffect="false">
+            <entry-component title="{{$item.settingTitle}}" icon-show="{{$item.settingIcon == ''?false:true}}"
+                    entrance-to-item-icon="{{$item.settingArrow}}" summary="{{$item.settingSummary}}"
+                    is-summary-show="{{$item.settingSummary==''?false:true}}"
+                    model-state-describe="{{$item.settingValue}}"
+                    state-description-show="{{$item.settingValue==''?false:true}}"
+                    switch-default-value="{{$item.settingDefaultValue}}"
+                    entrance-to-item-show="{{$item.settingType==1}}" switches-is-show="{{$item.settingType==2}}"
+                    switch-on-change-value="{{$item.switchChangeValue}}"
+                    @switch-on-change-type="switchClick"></entry-component>
+        </list-item>
+    </list>
+    <div class="wifi-list-div">
+        <div class="wifi-tips" show="{{!switch_on}}">
+            <text class="tips">{{$t('strings.tips-content')}}
+            </text>
+        </div>
+        <list scrollpage="true" show="{{switch_on}}">
+            <list-item class="wifi-body">
+                <text class="used-wifi">{{$t('strings.wifi-list')}}
+                </text>
+                <div show="{{animator_on}}" class="animator_div">
+                    <image-animator class="animator" ref="animator" images="{{frames}}" duration="1s" />
+                </div>
+            </list-item>
+            <list-item class="wifi-body" id="item" for="{{wifiList}}" ontouchstart="clickToSecret({{$idx}}})">
+                <entry-component title="{{$item.settingTitle}}" icon-show="{{$item.settingIcon==''?false:true}}"
+                        entrance-to-item-icon="{{$item.settingArrow}}" summary="{{$item.settingSummary}}"
+                        is-summary-show="{{$item.settingSummary==''?false:true}}"
+                        entrance-to-item-show="{{$item.settingType==1}}" switches-is-show="{{$item.settingType==2}}"
+                        model-state-describe="{{$item.settingValue}}"
+                        state-description-show="{{$item.settingValue==''?false:true}}"
+                        switch-default-value="{{$item.settingDefaultValue}}"></entry-component>
+            </list-item>
+        </list>
+    </div>
+</div>

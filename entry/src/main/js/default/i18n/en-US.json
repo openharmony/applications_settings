@@ -54,7 +54,8 @@
     "month": "month",
     "day": "date",
     "morning": "morning",
-    "afternoon": "afternoon"
+    "afternoon": "afternoon",
+    "connected": "connected"
   },
   "png": {
     "info": {
