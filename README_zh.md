@@ -33,5 +33,5 @@
 
 系统应用
 
-**applications\_standard\_settings**
+**applications\_settings**
 
