@@ -33,5 +33,5 @@ Settings is a system app preinstalled in OpenHarmony to provide an interactive U
 
 System apps
 
-**applications\_standard\_settings**
+**applications\_settings**
 
