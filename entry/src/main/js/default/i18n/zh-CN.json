@@ -60,7 +60,8 @@
     "month": "月",
     "day": "日",
     "morning": "上午",
-    "afternoon": "下午"
+    "afternoon": "下午",
+    "connected": "已连接"
   },
   "png": {
     "info": {

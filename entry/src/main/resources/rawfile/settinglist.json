@@ -1,5 +1,16 @@
 [
   {
+    "settingIcon": "/res/image/ic_settings_wifi.png",
+    "settingTitle": "WIFI",
+    "settingAlias": "wifiTab",
+    "settingValue": "",
+    "settingArrow": "/res/image/ic_settings_arrow.png",
+    "settingDefaultValue": false,
+    "settingSummary": "",
+    "settingShowDivider": true,
+    "settingType": 1,
+    "settingUri": "pages/wifi/wifi"
+  },{
     "settingIcon": "/res/image/ic_settings_display.png",
     "settingTitle": "",
     "settingAlias": "brightnessTab",
