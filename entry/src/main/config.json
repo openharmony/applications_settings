@@ -47,6 +47,7 @@
       {
         "pages": [
           "pages/settingList/settingList",
+          "pages/wifi/wifi",
           "pages/dateAndTime/dateAndTime",
           "pages/brightness/brightnessSettings",
           "pages/searchInfo/searchInfo",
