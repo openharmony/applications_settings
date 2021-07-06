@@ -14,7 +14,7 @@
  */
 import BaseModel from '../BaseModel.js';
 import LogUtil from '../../common/baseUtil/LogUtil.js';
-import deviceInfo from '@ohos.deviceinfo';
+import deviceInfo from '@ohos.deviceInfo';
 
 let logUtil = new LogUtil();
 /**
