@@ -20,8 +20,7 @@
     </head-component>
     <div class = "container-first">
         <image class = "bright-image" src = "{{ before }}"></image>
-        <slider min = "0" max = "255" class = "bright-slider" value = "{{ bright }}" onchange = "getValue('{{ 10 }}')"
-                ontouchend = "clickBrightnessSet({{ touchEndValue }})"/>
+        <slider min = "0" max = "255" class = "bright-slider" value = "{{ bright }}" onchange = "getValue('{{ 10 }}')"/>
         <image class = "bright-image-after" src = "{{ after }}"></image>
     </div>
     <list scrollpage = "true" show="false">
