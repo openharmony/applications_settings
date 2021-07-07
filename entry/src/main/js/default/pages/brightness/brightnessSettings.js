@@ -56,18 +56,6 @@ export default {
         }
         logUtil.info('setting brightnessSettings getMode end:' + JSON.stringify(this.brightnessSettingList));
     },
-
-/**
-     * Get the current screen brightness value of the device
-     * @param data
-     * @return
-     */
-    getBrightnessValue(brightValue) {
-        logUtil.info('setting brightnessSettings getBrightnessValue start brightValue:' + brightValue);
-        this.bright = brightValue;
-        logUtil.info('setting brightnessSettings getBrightnessValue end')
-    },
-
 /**
      * Brightness setting
      */
