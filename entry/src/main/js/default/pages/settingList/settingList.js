@@ -15,10 +15,12 @@
 import router from '@system.router';
 import SettingListModel from '../../model/settingListImpl/SettingListModel.js';
 import LogUtil from '../../common/baseUtil/LogUtil.js';
+import WifiModel from '../../model/wifiImpl/WifiModel.js'
 
 const DATA_PAGE_SOURCE_HOME_PAGE = 'homePage';
 let mSettingListModel = new SettingListModel();
 let logUtil = new LogUtil();
+let mWifiModel = new WifiModel();
 
 export default {
     data: {
@@ -29,20 +31,28 @@ export default {
     onInit() {
         logUtil.info('settings settingList onInit start:');
         mSettingListModel.setSettingListener(this.settingsListData);
-        for (let key in this.settingsList) {
-            var settingAlias = this.settingsList[key].settingAlias
-            if (settingAlias == 'wifiTab') {
-                this.settingsList[key].settingValue = this.$t('strings.enabled')
-            }
-            this.settingsList[key].settingTitle = this.$t('strings.'.concat(settingAlias))
-        }
         logUtil.info('settings settingList onInit end:');
     },
     settingsListData(data) {
         logUtil.info('settingList settingsListData data:' + JSON.stringify(data));
         this.settingsList = data
     },
-
+    onShow(){
+        logUtil.info('settingList onShow start');
+        logUtil.info('settingList onShow start mWifiModel.getWifiStatus():'+ mWifiModel.getWifiStatus());
+        for (let key in this.settingsList) {
+            var settingAlias = this.settingsList[key].settingAlias
+            if (settingAlias == 'wifiTab') {
+                if(mWifiModel.getWifiStatus()){
+                    this.settingsList[key].settingValue = this.$t('strings.enabled')
+                }else{
+                    this.settingsList[key].settingValue = this.$t('strings.disabled')
+                }
+            }
+            this.settingsList[key].settingTitle = this.$t('strings.'.concat(settingAlias))
+        }
+        logUtil.info('settingList onShow end');
+    },
     /**
      * Click the search box to jump to the search page
      */
