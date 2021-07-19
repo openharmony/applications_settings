@@ -19,6 +19,7 @@ import Subscriber from '@ohos.commonevent';
 
 let logUtil = new LogUtil();
 let mWifiList = [];
+let remdupWifiList = [];
 var wifiCode = null;
 let mCommonEventSubscriber = null;
 let mCommonEventSubscribeInfo = {
@@ -45,10 +46,12 @@ export default class WifiModel extends BaseModel {
         logUtil.info('get to wifi information start---->');
         logUtil.info('[wifi_js_test] Wifi get scan infos callback');
         mWifiList = [];
+        remdupWifiList = [];
         wifi_native_js.getScanInfos(result => {
+            logUtil.info("[wifi_js_test] wifi received scan info call back results: " + JSON.stringify(result));
             let clen = Object.keys(result).length;
             let image;
-            logUtil.info("[wifi_js_test] wifi received scan info call back: " + clen);
+            logUtil.info("[wifi_js_test] wifi received scan info call back length: " + clen);
             for (let j = 0; j < clen; j++) {
                 logUtil.info("result[0].ssid :" + result[j].ssid);
                 logUtil.info("securityType: " + result[j].securityType);
@@ -58,79 +61,95 @@ export default class WifiModel extends BaseModel {
                 logUtil.info("frequency: " + result[j].frequency);
                 logUtil.info("timestamp: " + result[j].timestamp);
                 logUtil.info(("wifi_native_js.getSignalLevel: " + wifi_native_js.getSignalLevel(result[j].rssi, result[j].band)));
+
                 if (result[j].securityType == 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 4) {
                     image = '/res/image/ic_wifi_signal_4_dark.png';
                     logUtil.info("securityType 1 and signal level 4:");
-                }
-                ;
+                };
                 if (result[j].securityType == 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 3) {
                     image = '/res/image/ic_wifi_signal_3_dark.png';
                     logUtil.info("securityType 1 and signal level 3 :");
-                }
-                ;
+                };
                 if (result[j].securityType == 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 2) {
                     image = '/res/image/ic_wifi_signal_2_dark.png';
                     logUtil.info("securityType 1 and signal level 2 :");
-                }
-                ;
+                };
                 if (result[j].securityType == 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 1) {
                     image = '/res/image/ic_wifi_signal_1_dark.png';
                     logUtil.info("securityType 1 and signal level 1 :");
-                }
-                ;
+                };
                 if (result[j].securityType == 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 0) {
                     image = '/res/image/ic_wifi_signal_1_dark.png';
                     logUtil.info("securityType 1 and signal level 1 :");
-                }
-                ;
+                };
                 if (result[j].securityType != 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 4) {
                     image = '/res/image/ic_wifi_lock_signal_4_dark.png';
                     logUtil.info("securityType lock and level 4 :");
-                }
-                ;
+                };
                 if (result[j].securityType != 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 3) {
                     image = '/res/image/ic_wifi_lock_signal_3_dark.png';
                     logUtil.info("securityType lock and level 3 :");
-                }
-                ;
+                };
                 if (result[j].securityType != 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 2) {
                     image = '/res/image/ic_wifi_lock_signal_2_dark.png';
                     logUtil.info("securityType lock and level 2 :");
-                }
-                ;
+                };
                 if (result[j].securityType != 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 1) {
                     image = '/res/image/ic_wifi_lock_signal_1_dark.png';
                     logUtil.info("securityType lock and level 1 :");
-                }
-                ;
+                };
                 if (result[j].securityType != 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 0) {
                     image = '/res/image/ic_wifi_lock_signal_1_dark.png';
                     logUtil.info("securityType lock and level 1 :");
+                };
+
+                if(result[j].ssid == ''||result[j] == null){
+                    logUtil.info("result ssid empty :");
+                }else{
+                    mWifiList.push({
+                        settingIcon: '',
+                        settingSummary: '',
+                        settingTitle: result[j].ssid,
+                        settingValue: '',
+                        settingArrow: image,
+                        settingDefaultValue: '',
+                        dividerIsShow: true,
+                        settingType: 1,
+                        bssid: result[j].bssid,
+                        securityType: result[j].securityType,
+                        signalLevel: wifi_native_js.getSignalLevel(result[j].rssi, result[j].band),
+                    });
                 }
-                ;
-                mWifiList.push({
-                    settingIcon: '',
-                    settingSummary: '',
-                    settingTitle: result[j].ssid,
-                    settingValue: '',
-                    settingArrow: image,
-                    settingDefaultValue: '',
-                    dividerIsShow: true,
-                    settingType: 1,
-                    bssid: result[j].bssid,
-                    securityType: result[j].securityType,
-                });
-                logUtil.info("result[j] come in :");
-            }
-            ;
-            for (let j = 0; j < mWifiList.length; j++) {
-                logUtil.info("result[0].settingTitle :" + result[j].ssid);
-            }
-            ;
-            logUtil.info("[wifiList.length: " + mWifiList.length);
+            };
+            logUtil.info("original mWifiList :" + JSON.stringify(mWifiList));
+            for (let i = 0; i < mWifiList.length; i++) {
+                let position = this.getItemPosition(remdupWifiList, mWifiList[i].settingTitle);
+                if (position != -1) {
+                    // the same SSID，Take the strong signal
+                    if (remdupWifiList[position].signalLevel < mWifiList[i].signalLevel) {
+                        remdupWifiList.splice(position, 1);
+                        remdupWifiList.splice(position, 0, mWifiList[i]);
+                    }
+                } else {
+                    remdupWifiList.push(mWifiList[i])
+                }
+            };
+            logUtil.info("remove duplicate ssid remdupWifiList: " + JSON.stringify(remdupWifiList));
         });
         logUtil.info('get to wifi information end---->');
-        return mWifiList;
+        return remdupWifiList;
+    };
+
+    /**
+     * Get the next value corresponding to SSID
+     */
+    getItemPosition(list, ssid) {
+        for (let i = 0; i < list.length; i++) {
+            if (ssid == list[i].settingTitle) {
+                return i;
+            }
+        }
+        return -1;
     };
     connectToDevice(obj) {
         logUtil.info("[wifi_js_test] connect to wifi ");
