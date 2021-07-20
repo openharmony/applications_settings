@@ -45,23 +45,22 @@ export default class WifiModel extends BaseModel {
     };
     getScanInfoCallBack() {
         logUtil.info('get to wifi information start---->');
-        logUtil.info('Wifi get scan information callback');
         mWifiList = [];
         remdupWifiList = [];
         wifi_native_js.getScanInfos(result => {
-            logUtil.info("[wifi_js_test] wifi received scan info call back results: " + JSON.stringify(result));
+            logUtil.info('[wifi_js_test] wifi received scan info call back results:' + JSON.stringify(result));
             let clen = Object.keys(result).length;
             let image;
-            logUtil.info("[wifi_js_test] wifi received scan info call back length: " + clen);
+            logUtil.info('[wifi_js_test] wifi received scan info call back length:' + clen);
             for (let j = 0; j < clen; j++) {
-                logUtil.info("result[0].ssid: " + result[j].ssid);
-                logUtil.info("securityType: " + result[j].securityType);
-                logUtil.info("rssi: " + result[j].rssi);
-                logUtil.info("bssid: " + result[j].bssid);
-                logUtil.info("band: " + result[j].band);
-                logUtil.info("frequency: " + result[j].frequency);
-                logUtil.info("timestamp: " + result[j].timestamp);
-                logUtil.info(("wifi_native_js.getSignalLevel: " + wifi_native_js.getSignalLevel(result[j].rssi, result[j].band)));
+                logUtil.info('result[0].ssid: ' + result[j].ssid);
+                logUtil.info('securityType: ' + result[j].securityType);
+                logUtil.info('rssi: ' + result[j].rssi);
+                logUtil.info('bssid: ' + result[j].bssid);
+                logUtil.info('band: ' + result[j].band);
+                logUtil.info('frequency: ' + result[j].frequency);
+                logUtil.info('timestamp: ' + result[j].timestamp);
+                logUtil.info('wifi_native_js.getSignalLevel: ' + wifi_native_js.getSignalLevel(result[j].rssi, result[j].band));
 
                 if (result[j].securityType == 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 4) {
                     image = '/res/image/ic_wifi_signal_4_dark.png';
@@ -135,7 +134,7 @@ export default class WifiModel extends BaseModel {
                     remdupWifiList.push(mWifiList[i])
                 }
             };
-            logUtil.info("remove duplicate ssid remdupWifiList: " + JSON.stringify(remdupWifiList));
+            logUtil.info('remove duplicate ssid remdupWifiList: ' + JSON.stringify(remdupWifiList));
         });
         logUtil.info('get to wifi information end---->');
         return remdupWifiList;
@@ -174,17 +173,17 @@ export default class WifiModel extends BaseModel {
 
     SubscriberCallBack(err, data) {
         logUtil.info('subscriber call back')
-        logUtil.info("==========================>SubscriberCallBack  event = " + data.event);
-        logUtil.info("==========================>SubscriberCallBack  data = " + JSON.stringify(data));
-        logUtil.info("==========================>SubscriberCallBack  data code = " + data.code);
+        logUtil.info('==========================>SubscriberCallBack  event = ' + data.event);
+        logUtil.info('==========================>SubscriberCallBack  data = ' + JSON.stringify(data));
+        logUtil.info('==========================>SubscriberCallBack  data code = ' + data.code);
         wifiCode = data.code;
-        logUtil.info("wifi data code value" + wifiCode);
+        logUtil.info('wifi data code value' + wifiCode);
     };
     /**
      * get wifi code value
      */
     getWifiCode() {
-        logUtil.info("wifi code value" + wifiCode);
+        logUtil.info('wifi code value' + wifiCode);
         return wifiCode;
     };
 
