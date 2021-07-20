@@ -27,24 +27,25 @@ let mCommonEventSubscribeInfo = {
 };
 export default class WifiModel extends BaseModel {
     getWifiStatus() {
-        logUtil.info("wifi_native_js  isWifiActive");
+        logUtil.info('wifi_native_js isWifiActive');
         return wifi_native_js.isWifiActive();
     };
+
     getEnableWifi() {
-        logUtil.info("wifi_native_js  enableWifi");
+        logUtil.info('wifi_native_js enableWifi');
         return wifi_native_js.enableWifi();
     };
     disableWifi() {
-        logUtil.info("wifi_native_js  enableWifi");
+        logUtil.info('wifi_native_js enableWifi');
         return wifi_native_js.disableWifi();
     };
     getScanWifi() {
-        logUtil.info("wifi_native_js  scan");
+        logUtil.info('wifi_native_js scan');
         return wifi_native_js.scan();
     };
     getScanInfoCallBack() {
         logUtil.info('get to wifi information start---->');
-        logUtil.info('[wifi_js_test] Wifi get scan infos callback');
+        logUtil.info('Wifi get scan information callback');
         mWifiList = [];
         remdupWifiList = [];
         wifi_native_js.getScanInfos(result => {
@@ -53,7 +54,7 @@ export default class WifiModel extends BaseModel {
             let image;
             logUtil.info("[wifi_js_test] wifi received scan info call back length: " + clen);
             for (let j = 0; j < clen; j++) {
-                logUtil.info("result[0].ssid :" + result[j].ssid);
+                logUtil.info("result[0].ssid: " + result[j].ssid);
                 logUtil.info("securityType: " + result[j].securityType);
                 logUtil.info("rssi: " + result[j].rssi);
                 logUtil.info("bssid: " + result[j].bssid);
@@ -64,48 +65,48 @@ export default class WifiModel extends BaseModel {
 
                 if (result[j].securityType == 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 4) {
                     image = '/res/image/ic_wifi_signal_4_dark.png';
-                    logUtil.info("securityType 1 and signal level 4:");
+                    logUtil.info('securityType 1 and signal level 4');
                 };
                 if (result[j].securityType == 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 3) {
                     image = '/res/image/ic_wifi_signal_3_dark.png';
-                    logUtil.info("securityType 1 and signal level 3 :");
+                    logUtil.info('securityType 1 and signal level 3');
                 };
                 if (result[j].securityType == 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 2) {
                     image = '/res/image/ic_wifi_signal_2_dark.png';
-                    logUtil.info("securityType 1 and signal level 2 :");
+                    logUtil.info('securityType 1 and signal level 2');
                 };
                 if (result[j].securityType == 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 1) {
                     image = '/res/image/ic_wifi_signal_1_dark.png';
-                    logUtil.info("securityType 1 and signal level 1 :");
+                    logUtil.info('securityType 1 and signal level 1');
                 };
                 if (result[j].securityType == 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 0) {
                     image = '/res/image/ic_wifi_signal_1_dark.png';
-                    logUtil.info("securityType 1 and signal level 1 :");
+                    logUtil.info('securityType 1 and signal level 1');
                 };
                 if (result[j].securityType != 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 4) {
                     image = '/res/image/ic_wifi_lock_signal_4_dark.png';
-                    logUtil.info("securityType lock and level 4 :");
+                    logUtil.info('securityType lock and level 4');
                 };
                 if (result[j].securityType != 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 3) {
                     image = '/res/image/ic_wifi_lock_signal_3_dark.png';
-                    logUtil.info("securityType lock and level 3 :");
+                    logUtil.info('securityType lock and level 3');
                 };
                 if (result[j].securityType != 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 2) {
                     image = '/res/image/ic_wifi_lock_signal_2_dark.png';
-                    logUtil.info("securityType lock and level 2 :");
+                    logUtil.info('securityType lock and level 2');
                 };
                 if (result[j].securityType != 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 1) {
                     image = '/res/image/ic_wifi_lock_signal_1_dark.png';
-                    logUtil.info("securityType lock and level 1 :");
+                    logUtil.info('securityType lock and level 1');
                 };
                 if (result[j].securityType != 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 0) {
                     image = '/res/image/ic_wifi_lock_signal_1_dark.png';
-                    logUtil.info("securityType lock and level 1 :");
+                    logUtil.info('securityType lock and level 1');
                 };
 
-                if(result[j].ssid == ''||result[j] == null){
-                    logUtil.info("result ssid empty :");
-                }else{
+                if (result[j].ssid == '' || result[j] == null) {
+                    logUtil.info('result ssid empty');
+                } else {
                     mWifiList.push({
                         settingIcon: '',
                         settingSummary: '',
@@ -151,25 +152,28 @@ export default class WifiModel extends BaseModel {
         }
         return -1;
     };
+
     connectToDevice(obj) {
-        logUtil.info("[wifi_js_test] connect to wifi ");
+        logUtil.info('[wifi_js_test] connect to wifi');
         return wifi_native_js.connectToDevice(obj);
     };
     /**
      * wifi monitoring events
      */
     wifiStatusListener() {
-        logUtil.info("wifi status listener")
+        logUtil.info('wifi status listener')
         Subscriber.createSubscriber(mCommonEventSubscribeInfo,
-        this.CreateSubscriberCallBack.bind(this));
+            this.CreateSubscriberCallBack.bind(this));
     };
+
     CreateSubscriberCallBack(err, data) {
-        logUtil.info("subscriber subscribe");
+        logUtil.info('subscriber subscribe');
         mCommonEventSubscriber = data;
         Subscriber.subscribe(mCommonEventSubscriber, this.SubscriberCallBack.bind(this));
     };
+
     SubscriberCallBack(err, data) {
-        logUtil.info(" subscriber call back")
+        logUtil.info('subscriber call back')
         logUtil.info("==========================>SubscriberCallBack  event = " + data.event);
         logUtil.info("==========================>SubscriberCallBack  data = " + JSON.stringify(data));
         logUtil.info("==========================>SubscriberCallBack  data code = " + data.code);
@@ -183,13 +187,15 @@ export default class WifiModel extends BaseModel {
         logUtil.info("wifi code value" + wifiCode);
         return wifiCode;
     };
+
     unSubscriberListener() {
         Subscriber.unsubscribe(mCommonEventSubscriber, () => {
-            logUtil.info("wifi unsubscribe");
+            logUtil.info('wifi unsubscribe');
         });
     };
+
     disConnect() {
-        logUtil.info("netWork disconnect");
+        logUtil.info('netWork disconnect');
         return wifi_native_js.disConnect();
     };
 }
