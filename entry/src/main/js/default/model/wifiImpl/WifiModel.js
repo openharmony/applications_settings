@@ -44,7 +44,7 @@ export default class WifiModel extends BaseModel {
         return wifi_native_js.scan();
     };
     getScanInfoCallBack() {
-        logUtil.info('get to wifi information start---->');
+        logUtil.info('get to wifi information start');
         mWifiList = [];
         remdupWifiList = [];
         wifi_native_js.getScanInfos(result => {
@@ -60,7 +60,7 @@ export default class WifiModel extends BaseModel {
                 logUtil.info('band: ' + result[j].band);
                 logUtil.info('frequency: ' + result[j].frequency);
                 logUtil.info('timestamp: ' + result[j].timestamp);
-                logUtil.info('wifi_native_js.getSignalLevel: ' + wifi_native_js.getSignalLevel(result[j].rssi, result[j].band));
+                logUtil.info('SignalLevel: ' + wifi_native_js.getSignalLevel(result[j].rssi, result[j].band));
 
                 if (result[j].securityType == 1 && wifi_native_js.getSignalLevel(result[j].rssi, result[j].band) == 4) {
                     image = '/res/image/ic_wifi_signal_4_dark.png';
@@ -121,7 +121,7 @@ export default class WifiModel extends BaseModel {
                     });
                 }
             };
-            logUtil.info("original mWifiList :" + JSON.stringify(mWifiList));
+            logUtil.info('original mWifiList :' + JSON.stringify(mWifiList));
             for (let i = 0; i < mWifiList.length; i++) {
                 let position = this.getItemPosition(remdupWifiList, mWifiList[i].settingTitle);
                 if (position != -1) {
