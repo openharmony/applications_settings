@@ -20,7 +20,7 @@ export default class BaseParseConfModel extends BaseModel {
         console.info('settings dateAndTime BaseParseConfModel getJsonData start')
         try {
             console.info('settings dateAndTime BaseParseConfModel getJsonDat start try');
-            var ss = fileio.Stream.createStreamSync(fileName, "r")
+            var ss = fileio.createStreamSync(fileName, "r")
             var buf = new ArrayBuffer(4096)
             var len = ss.readSync(buf)
             console.info('settings dateAndTime BaseParseConfModel getJsonData len' + JSON.stringify(len) + len);
