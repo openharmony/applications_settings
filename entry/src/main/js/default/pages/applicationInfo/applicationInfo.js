@@ -27,14 +27,14 @@ export default {
         settingSummary: ''
     },
     onInit() {
-        logUtil.info('setting applicationInfo onInit start：');
+        logUtil.info('setting applicationInfo onInit start：' );
         this.appInfo = this.dataParam;
         logUtil.info('setting applicationInfo onInit appInfo：' + JSON.stringify(this.appInfo))
-        this.bundleName = this.appInfo.item.bundleName;
-        this.settingSummary = this.appInfo.settingSummary;
-        this.getMediaResources(this.bundleName, this.appInfo.item.iconId);
-        this.getStringResources(this.bundleName, this.appInfo.item.labelId);
-        logUtil.info('setting applicationInfo onInit end：');
+        this.bundleName=this.appInfo.item.name;
+        this.settingSummary=this.appInfo.settingSummary;
+        this.getMediaResources(this.bundleName,this.appInfo.item.appInfo.iconId);
+        this.getStringResources(this.bundleName,this.appInfo.item.appInfo.labelId);
+        logUtil.info('setting applicationInfo onInit end：' );
     },
 
     /**
@@ -44,25 +44,25 @@ export default {
      * @return
      */
     getMediaResources(bundleName, iconId) {
-        logUtil.info('setting applicationInfo getMediaResources start bundleName labelId' + bundleName + '|' + iconId)
+        logUtil.info('setting applicationInfo getMediaResources start bundleName labelId'+bundleName+"---"+iconId)
         let that = this;
         try {
             resmgr.getResourceManager(bundleName).then(data => {
-                logUtil.info('setting applicationInfo getMediaResources getResourceManager start data:' + JSON.stringify(data))
-                data.getMediaBase64(iconId, (error, value) => {
-                    logUtil.info('setting applicationInfo getMediaResources getResourceManager getMediaBase64 value:' + value)
+                logUtil.info('setting applicationInfo getMediaResources getResourceManager start data:'+JSON.stringify(data))
+                data.getMediaBase64(iconId,(error, value) => {
+                    logUtil.info('setting applicationInfo getMediaResources getResourceManager getMediaBase64 value:'+value)
                     if (value != null) {
-                        logUtil.info('setting applicationInfo getMediaResources getResourceManager getMediaBase64 if 1 value :' + value)
+                        logUtil.info('setting applicationInfo getMediaResources getResourceManager getMediaBase64 if 1 value :'+value)
                         that.icon = value;
-                        logUtil.info('setting applicationInfo getMediaResources getResourceManager getMediaBase64 if 2 that.icon :' + that.icon)
+                        logUtil.info('setting applicationInfo getMediaResources getResourceManager getMediaBase64 if 2 that.icon :'+that.icon)
                     } else {
-                        logUtil.info('setting applicationInfo getMediaResources getResourceManager getMediaBase64 else error:' + error)
+                        logUtil.info('setting applicationInfo getMediaResources getResourceManager getMediaBase64 else error:'+error)
                     }
                 });
                 logUtil.info('setting applicationInfo getMediaResources getResourceManager end')
             });
         } catch (err) {
-            logUtil.info('setting applicationInfo getStringResources getMediaBase64 else error:' + err)
+            logUtil.info('setting applicationInfo getStringResources getMediaBase64 else error:'+ err)
         }
         logUtil.info('setting applicationInfo getStringResources end')
     },
@@ -74,29 +74,29 @@ export default {
      * @return
      */
     getStringResources(bundleName, labelId) {
-        logUtil.info('setting applicationInfo getStringResources start bundleName labelId' + bundleName + '---' + labelId)
+        logUtil.info('setting applicationInfo getStringResources start bundleName labelId'+bundleName+"---"+labelId)
         let that = this;
         try {
             resmgr.getResourceManager(bundleName).then(data => {
-                logUtil.info('setting applicationInfo getStringResources start data:' + data)
-                if (labelId > 0) {
-                    data.getString(labelId, (error, value) => {
-                        logUtil.info('setting applicationInfo getStringResources getString value:' + value)
+                logUtil.info('setting applicationInfo getStringResources start data:'+data)
+                if(labelId>0){
+                    data.getString(labelId,(error, value)=>{
+                        logUtil.info('setting applicationInfo getStringResources getString value:'+value)
                         if (value != null) {
-                            logUtil.info('setting applicationInfo getStringResources getString if value:' + value)
+                            logUtil.info('setting applicationInfo getStringResources getString if value:'+value)
                             that.label = value;
-                            logUtil.info('setting applicationInfo getStringResources getString if that.label:' + that.label)
+                            logUtil.info('setting applicationInfo getStringResources getString if that.label:'+ that.label)
                         } else {
-                            logUtil.info('setting applicationInfo getStringResources getString else error:' + error)
+                            logUtil.info('setting applicationInfo getStringResources getString else error:'+ error)
                         }
                     });
-                } else {
-                    logUtil.info('setting applicationInfo getStringResources getString else this.appInfo.item.label:' + this.appInfo.item.label)
-                    that.label = this.appInfo.item.label;
+                }else{
+                    logUtil.info('setting applicationInfo getStringResources getString else this.appInfo.item.label:'+ this.appInfo.item.label)
+                    that.label =this.appInfo.item.appInfo.label;
                 }
             });
-        } catch (err) {
-            logUtil.info('setting applicationInfo getStringResources catch err:' + err)
+        }catch(err) {
+            logUtil.info('setting applicationInfo getStringResources catch err:'+err)
         }
         logUtil.info('setting applicationInfo getStringResources end')
     },
@@ -110,19 +110,19 @@ export default {
         router.back();
         logUtil.info('setting applicationInfo onBackPress end')
     },
-    onCreate() {
+    onCreate(){
         logUtil.info('setting applicationInfo onCreate')
     },
-    onReady() {
+    onReady(){
         logUtil.info('setting applicationInfo onReady')
     },
-    onShow() {
+    onShow(){
         logUtil.info('setting applicationInfo onShow')
     },
-    onHide() {
+    onHide(){
         logUtil.info('setting applicationInfo onHide')
     },
-    onDestroy() {
+    onDestroy(){
         logUtil.info('setting applicationInfo onDestroy')
     }
 }
