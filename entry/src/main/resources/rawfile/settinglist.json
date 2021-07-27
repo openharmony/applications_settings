@@ -1,7 +1,7 @@
 [
   {
     "settingIcon": "/res/image/ic_settings_wifi.png",
-    "settingTitle": "WIFI",
+    "settingTitle": "WLAN",
     "settingAlias": "wifiTab",
     "settingValue": "",
     "settingArrow": "/res/image/ic_settings_arrow.png",
