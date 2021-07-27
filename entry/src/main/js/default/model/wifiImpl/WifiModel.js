@@ -15,16 +15,11 @@
 import BaseModel from '../BaseModel.js';
 import LogUtil from '../../common/baseUtil/LogUtil.js';
 import WifiNativeJs from '@ohos.wifi_native_js';
-import Subscriber from '@ohos.commonevent';
 
 let logUtil = new LogUtil();
 let mWifiList = [];
 let remdupWifiList = [];
-var wifiCode = null;
-let mCommonEventSubscriber = null;
-let mCommonEventSubscribeInfo = {
-    events: ["usual.event.wifi.CONN_STATE"]
-};
+
 export default class WifiModel extends BaseModel {
     getWifiStatus() {
         logUtil.info('WifiNativeJs isWifiActive');
@@ -48,6 +43,9 @@ export default class WifiModel extends BaseModel {
         mWifiList = [];
         remdupWifiList = [];
         WifiNativeJs.getScanInfos(result => {
+            if (result == null) {
+                return;
+            }
             logUtil.info('[wifi_js_test] wifi received scan info call back results:' + JSON.stringify(result));
             let clen = Object.keys(result).length;
             let image;
@@ -62,43 +60,43 @@ export default class WifiModel extends BaseModel {
                 logUtil.info('timestamp: ' + result[j].timestamp);
                 logUtil.info('SignalLevel: ' + WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band));
 
-                if (result[j].securityType == 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) == 4) {
+                if (result[j].securityType === 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 4) {
                     image = '/res/image/ic_wifi_signal_4_dark.png';
                     logUtil.info('securityType 1 and signal level 4');
                 };
-                if (result[j].securityType == 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) == 3) {
+                if (result[j].securityType === 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 3) {
                     image = '/res/image/ic_wifi_signal_3_dark.png';
                     logUtil.info('securityType 1 and signal level 3');
                 };
-                if (result[j].securityType == 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) == 2) {
+                if (result[j].securityType === 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 2) {
                     image = '/res/image/ic_wifi_signal_2_dark.png';
                     logUtil.info('securityType 1 and signal level 2');
                 };
-                if (result[j].securityType == 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) == 1) {
+                if (result[j].securityType === 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 1) {
                     image = '/res/image/ic_wifi_signal_1_dark.png';
                     logUtil.info('securityType 1 and signal level 1');
                 };
-                if (result[j].securityType == 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) == 0) {
+                if (result[j].securityType === 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 0) {
                     image = '/res/image/ic_wifi_signal_1_dark.png';
                     logUtil.info('securityType 1 and signal level 1');
                 };
-                if (result[j].securityType != 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) == 4) {
+                if (result[j].securityType !== 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 4) {
                     image = '/res/image/ic_wifi_lock_signal_4_dark.png';
                     logUtil.info('securityType lock and level 4');
                 };
-                if (result[j].securityType != 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) == 3) {
+                if (result[j].securityType !== 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 3) {
                     image = '/res/image/ic_wifi_lock_signal_3_dark.png';
                     logUtil.info('securityType lock and level 3');
                 };
-                if (result[j].securityType != 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) == 2) {
+                if (result[j].securityType !== 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 2) {
                     image = '/res/image/ic_wifi_lock_signal_2_dark.png';
                     logUtil.info('securityType lock and level 2');
                 };
-                if (result[j].securityType != 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) == 1) {
+                if (result[j].securityType !== 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 1) {
                     image = '/res/image/ic_wifi_lock_signal_1_dark.png';
                     logUtil.info('securityType lock and level 1');
                 };
-                if (result[j].securityType != 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) == 0) {
+                if (result[j].securityType !== 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 0) {
                     image = '/res/image/ic_wifi_lock_signal_1_dark.png';
                     logUtil.info('securityType lock and level 1');
                 };
@@ -113,6 +111,7 @@ export default class WifiModel extends BaseModel {
                         settingValue: '',
                         settingArrow: image,
                         settingDefaultValue: '',
+                        settingArrowStyle:'commonHeadImage',
                         dividerIsShow: true,
                         settingType: 1,
                         bssid: result[j].bssid,
@@ -124,7 +123,7 @@ export default class WifiModel extends BaseModel {
             logUtil.info('original mWifiList :' + JSON.stringify(mWifiList));
             for (let i = 0; i < mWifiList.length; i++) {
                 let position = this.getItemPosition(remdupWifiList, mWifiList[i].settingTitle);
-                if (position != -1) {
+                if (position !== -1) {
                     // the same SSID，Take the strong signal
                     if (remdupWifiList[position].signalLevel < mWifiList[i].signalLevel) {
                         remdupWifiList.splice(position, 1);
@@ -136,13 +135,10 @@ export default class WifiModel extends BaseModel {
             };
             logUtil.info('remove duplicate ssid remdupWifiList: ' + JSON.stringify(remdupWifiList));
         });
-        logUtil.info('get to wifi information end---->');
+        logUtil.info('get to wifi information end ---->');
         return remdupWifiList;
     };
 
-    /**
-     * Get the next value corresponding to SSID
-     */
     getItemPosition(list, ssid) {
         for (let i = 0; i < list.length; i++) {
             if (ssid == list[i].settingTitle) {
@@ -155,42 +151,6 @@ export default class WifiModel extends BaseModel {
     connectToDevice(obj) {
         logUtil.info('[wifi_js_test] connect to wifi');
         return WifiNativeJs.connectToDevice(obj);
-    };
-    /**
-     * wifi monitoring events
-     */
-    wifiStatusListener() {
-        logUtil.info('wifi status listener')
-        Subscriber.createSubscriber(mCommonEventSubscribeInfo,
-            this.CreateSubscriberCallBack.bind(this));
-    };
-
-    CreateSubscriberCallBack(err, data) {
-        logUtil.info('subscriber subscribe');
-        mCommonEventSubscriber = data;
-        Subscriber.subscribe(mCommonEventSubscriber, this.SubscriberCallBack.bind(this));
-    };
-
-    SubscriberCallBack(err, data) {
-        logUtil.info('subscriber call back')
-        logUtil.info('==========================>SubscriberCallBack  event = ' + data.event);
-        logUtil.info('==========================>SubscriberCallBack  data = ' + JSON.stringify(data));
-        logUtil.info('==========================>SubscriberCallBack  data code = ' + data.code);
-        wifiCode = data.code;
-        logUtil.info('wifi data code value' + wifiCode);
-    };
-    /**
-     * get wifi code value
-     */
-    getWifiCode() {
-        logUtil.info('wifi code value' + wifiCode);
-        return wifiCode;
-    };
-
-    unSubscriberListener() {
-        Subscriber.unsubscribe(mCommonEventSubscriber, () => {
-            logUtil.info('wifi unsubscribe');
-        });
     };
 
     disConnect() {
