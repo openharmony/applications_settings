@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,10 +17,23 @@ import router from '@system.router';
 import BaseParseConfModel from '../../model/baseParseConfImpl/BaseParseConfModel.js';
 import LogUtil from '../../common/baseUtil/LogUtil.js';
 import WifiModel from '../../model/wifiImpl/WifiModel.js';
+import Subscriber from '@ohos.commonevent';
 
 let baseParseConfModel = new BaseParseConfModel();
 let logUtil = new LogUtil();
 let wifiModel = new WifiModel();
+let beginTime;
+let endTime;
+let mCommonEventSubscriber = null;
+let mCommonEventSubscribeInfo = {
+    events: ["usual.event.wifi.CONN_STATE"]
+};
+let index;
+let connectImage;
+let connectName;
+let connectBssid;
+let connectSecurityType;
+
 
 globalThis.$globalT = null;
 
@@ -70,9 +84,11 @@ export default {
 
     onInit() {
         logUtil.info('wifiListInfo onInit start--->');
-        wifiModel.wifiStatusListener();
+        beginTime = new Date();
+        this.wifiStatusListener();
         globalThis.$globalT = this.$t.bind(this);
-        this.wifiListInfo = baseParseConfModel.getJsonData('/data/accounts/account_0/applications/com.ohos.settings/com.ohos.settings/assets/entry/resources/rawfile/wifi.json');
+        this.wifiListInfo = baseParseConfModel.getJsonData('/data/accounts/account_0/applications'
+            + '/com.ohos.settings/com.ohos.settings/assets/entry/resources/rawfile/wifi.json');
         for (let key in this.wifiListInfo) {
             let settingAlias = this.wifiListInfo[key].settingAlias;
             this.wifiListInfo[key].settingTitle = this.$t('strings.'.concat(settingAlias));
@@ -107,17 +123,15 @@ export default {
                 this.switch_on = false;
             };
         };
+        endTime = new Date();
+        console.log("setting wifi onInit:"+(endTime-beginTime)+"ms");
         logUtil.info('wifiListInfo onInit end--->');
     },
-    /**
-     * back
-     */
+
     back() {
         router.back();
     },
-    /**
-     * wifi switch button
-     */
+
     switchClick() {
         logUtil.info('switchClick start ---->');
         for (let key in this.wifiListInfo) {
@@ -169,20 +183,15 @@ export default {
         };
         logUtil.info('switchClick end ---->');
     },
-    /**
-     * clear scan wifi list
-     */
+
     clearScanInfo() {
         logUtil.info('clear scan wifiList start---->');
         this.wifiList = [];
         logUtil.info('clear scan wifiList end---->');
     },
-    /**
-     * Select WiFi to enter the details page
-     * @param idx
-     * @return
-     */
+
     clickToSecret(idx) {
+        this.sleep(2000);
         logUtil.info('wifi clickToSecret start index:' + idx + ' settingTitle:' + this.wifiList[idx].settingTitle);
         let title = this.wifiList[idx].settingTitle;
         let image = this.wifiList[idx].settingArrow;
@@ -193,13 +202,13 @@ export default {
             this.connected = globalThis.$globalT('strings.connected');
             logUtil.info('wifi constructor this.connected:' + this.connected);
         };
-        if (this.wifiList[0].settingSummary == this.connected) {
-            if (wifiModel.disConnect() == true) {
-                logUtil.info("click disconnect success get wifi code" + wifiModel.getWifiCode());
-            } else {
-                logUtil.info("disconnect failed : " + wifiModel.disConnect())
-            }
+        if (this.wifiList[idx].settingSummary == this.connected) {
+            return;
         };
+        if (securityType !== 1) {
+            return;
+        };
+
         let obj = {
             "ssid": title,
             "bssid": bssid,
@@ -211,39 +220,88 @@ export default {
             logUtil.info("[wifi_js_test] connect to wifi failed");
             return;
         };
-        logUtil.info('before wifi connectToDevice status code---->' + wifiModel.getWifiCode());
+
+        this.sleep(2000);
+
         if (wifiModel.connectToDevice(obj)) {
+            this.wifiList[0].settingSummary = '';
             logUtil.info("[wifi_js_test] connect to wifi " + JSON.stringify(obj));
-            let that = this
-            this.listenerMark = setTimeout(function () {
-                if (wifiModel.getWifiCode() == 3) {
-                    that.wifiList.unshift({
-                        settingIcon: '',
-                        settingSummary: that.connected,
-                        settingTitle: title,
-                        settingValue: '',
-                        settingArrow: image,
-                        settingDefaultValue: '',
-                        dividerIsShow: true,
-                        settingType: 1,
-                        bssid: bssid,
-                        securityType: securityType,
-                    });
-                    for (let key in that.wifiList) {
-                        if (key == (idx + 1)) {
-                            that.wifiList.splice(key,1)
-                        };
-                        if (key != 0) {
-                            that.wifiList[key].settingSummary = '';
-                        };
-                    };
-                };
-                clearTimeout(this.listenerMark);
-            }, 1000);
+            connectBssid = bssid;
+            connectImage = image;
+            connectName = title;
+            index = idx;
+            connectSecurityType = securityType
+
         };
         logUtil.info('clickToSecret end:');
     },
-     onCreate() {
+
+    /**
+     * wifi monitoring events
+     */
+    wifiStatusListener() {
+        logUtil.info('wifi status listener')
+        Subscriber.createSubscriber(mCommonEventSubscribeInfo,
+            this.CreateSubscriberCallBack.bind(this));
+    },
+
+    CreateSubscriberCallBack(err, data) {
+        logUtil.info('subscriber subscribe');
+        mCommonEventSubscriber = data;
+        Subscriber.subscribe(mCommonEventSubscriber, this.SubscriberCallBack.bind(this));
+    },
+
+    SubscriberCallBack(err, data) {
+        logUtil.info('subscriber call back')
+        logUtil.info('==========================>SubscriberCallBack  event = ' + data.event);
+        logUtil.info('==========================>SubscriberCallBack  data = ' + JSON.stringify(data));
+        logUtil.info('==========================>SubscriberCallBack  data code = ' + data.code);
+        if (globalThis.$globalT) {
+            this.connected = globalThis.$globalT('strings.connected');
+            logUtil.info('wifi constructor this.connected:' + this.connected);
+        };
+
+        if (data.code === 3) {
+            logUtil.info('wifi code into');
+            this.wifiList.unshift({
+                settingIcon: '',
+                settingSummary: this.connected,
+                settingTitle: connectName,
+                settingValue: '',
+                settingArrow: connectImage,
+                settingArrowStyle: 'commonHeadImage',
+                settingDefaultValue: '',
+                dividerIsShow: true,
+                settingType: 1,
+                bssid: connectBssid,
+                securityType: connectSecurityType,
+            });
+            for (let key in this.wifiList) {
+                if (key == (index + 1)) {
+                    this.wifiList.splice(key,1)
+                };
+                if (key != 0) {
+                    this.wifiList[key].settingSummary = '';
+                };
+            };
+
+        }
+    },
+
+    unSubscriberListener() {
+        Subscriber.unsubscribe(mCommonEventSubscriber, () => {
+            logUtil.info('wifi unsubscribe');
+        });
+    },
+
+     sleep(delay) {
+     let  start = (new Date()).getTime();
+       while ((new Date()).getTime() - start < delay) {
+         continue;
+       }
+     },
+
+    onCreate() {
         logUtil.info('setting wifi onCreate')
     },
     onReady() {
@@ -257,7 +315,7 @@ export default {
     },
     onDestroy() {
         logUtil.info("setting wifi onDestroy start");
-        wifiModel.unSubscriberListener();
+        this.unSubscriberListener();
         logUtil.info('setting wifi onDestroy end')
     },
 }
