@@ -48,26 +48,7 @@ export default {
         timeoutFlag: '',
         timeoutMark: '',
         listenerMark: '',
-        frames: [
-            {
-                src: "/res/image/ic_loading01.png",
-            },
-            {
-                src: "/res/image/ic_loading02.png",
-            },
-            {
-                src: "/res/image/ic_loading03.png",
-            },
-            {
-                src: "/res/image/ic_loading04.png",
-            },
-            {
-                src: "/res/image/ic_loading05.png",
-            },
-            {
-                src: "/res/image/ic_loading06.png",
-            }
-        ],
+        frames: null,
     },
     handleStart() {
         this.$refs.animator.start();
@@ -85,6 +66,7 @@ export default {
     onInit() {
         logUtil.info('wifiListInfo onInit start--->');
         beginTime = new Date();
+        this.initFrames();
         this.wifiStatusListener();
         globalThis.$globalT = this.$t.bind(this);
         this.wifiListInfo = baseParseConfModel.getJsonData('/data/accounts/account_0/applications'
@@ -313,6 +295,31 @@ export default {
     onHide() {
         logUtil.info('setting wifi onHide')
     },
+
+    initFrames() {
+        logUtil.info('setting appManagement initFrames Start')
+        this.frames = [
+            {
+                src: this.$r('image.icLoading01'),
+            },
+            {
+                src: this.$r('image.icLoading02'),
+            },
+            {
+                src: this.$r('image.icLoading03'),
+            },
+            {
+                src: this.$r('image.icLoading04'),
+            },
+            {
+                src: this.$r('image.icLoading05'),
+            },
+            {
+                src: this.$r('image.icLoading06'),
+            }
+        ]
+    },
+
     onDestroy() {
         logUtil.info("setting wifi onDestroy start");
         this.unSubscriberListener();

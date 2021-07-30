@@ -61,43 +61,43 @@ export default class WifiModel extends BaseModel {
                 logUtil.info('SignalLevel: ' + WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band));
 
                 if (result[j].securityType === 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 4) {
-                    image = '/res/image/ic_wifi_signal_4_dark.png';
+                    image = '/res/image/ic_wifi_signal_4_dark.svg';
                     logUtil.info('securityType 1 and signal level 4');
                 };
                 if (result[j].securityType === 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 3) {
-                    image = '/res/image/ic_wifi_signal_3_dark.png';
+                    image = '/res/image/ic_wifi_signal_3_dark.svg';
                     logUtil.info('securityType 1 and signal level 3');
                 };
                 if (result[j].securityType === 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 2) {
-                    image = '/res/image/ic_wifi_signal_2_dark.png';
+                    image = '/res/image/ic_wifi_signal_2_dark.svg';
                     logUtil.info('securityType 1 and signal level 2');
                 };
                 if (result[j].securityType === 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 1) {
-                    image = '/res/image/ic_wifi_signal_1_dark.png';
+                    image = '/res/image/ic_wifi_signal_1_dark.svg';
                     logUtil.info('securityType 1 and signal level 1');
                 };
                 if (result[j].securityType === 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 0) {
-                    image = '/res/image/ic_wifi_signal_1_dark.png';
+                    image = '/res/image/ic_wifi_signal_1_dark.svg';
                     logUtil.info('securityType 1 and signal level 1');
                 };
                 if (result[j].securityType !== 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 4) {
-                    image = '/res/image/ic_wifi_lock_signal_4_dark.png';
+                    image = '/res/image/ic_wifi_lock_signal_4_dark.svg';
                     logUtil.info('securityType lock and level 4');
                 };
                 if (result[j].securityType !== 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 3) {
-                    image = '/res/image/ic_wifi_lock_signal_3_dark.png';
+                    image = '/res/image/ic_wifi_lock_signal_3_dark.svg';
                     logUtil.info('securityType lock and level 3');
                 };
                 if (result[j].securityType !== 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 2) {
-                    image = '/res/image/ic_wifi_lock_signal_2_dark.png';
+                    image = '/res/image/ic_wifi_lock_signal_2_dark.svg';
                     logUtil.info('securityType lock and level 2');
                 };
                 if (result[j].securityType !== 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 1) {
-                    image = '/res/image/ic_wifi_lock_signal_1_dark.png';
+                    image = '/res/image/ic_wifi_lock_signal_1_dark.svg';
                     logUtil.info('securityType lock and level 1');
                 };
                 if (result[j].securityType !== 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 0) {
-                    image = '/res/image/ic_wifi_lock_signal_1_dark.png';
+                    image = '/res/image/ic_wifi_lock_signal_1_dark.svg';
                     logUtil.info('securityType lock and level 1');
                 };
 
