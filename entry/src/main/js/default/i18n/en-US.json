@@ -55,11 +55,12 @@
     "day": "date",
     "morning": "morning",
     "afternoon": "afternoon",
-    "connected": "connected"
+    "connected": "connected",
+    "loading": "Loading..."
   },
   "png": {
     "info": {
-      "back": "/res/image/ic_back.png"
+      "back": "/res/image/ic_back.svg"
     },
     "new": {
     }

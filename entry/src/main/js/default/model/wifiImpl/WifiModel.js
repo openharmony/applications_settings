@@ -24,20 +24,20 @@ export default class WifiModel extends BaseModel {
     getWifiStatus() {
         logUtil.info('WifiNativeJs isWifiActive');
         return WifiNativeJs.isWifiActive();
-    };
+    }
 
     getEnableWifi() {
         logUtil.info('WifiNativeJs enableWifi');
         return WifiNativeJs.enableWifi();
-    };
+    }
     disableWifi() {
         logUtil.info('WifiNativeJs enableWifi');
         return WifiNativeJs.disableWifi();
-    };
+    }
     getScanWifi() {
         logUtil.info('WifiNativeJs scan');
         return WifiNativeJs.scan();
-    };
+    }
     getScanInfoCallBack() {
         logUtil.info('get to wifi info start');
         mWifiList = [];
@@ -63,45 +63,45 @@ export default class WifiModel extends BaseModel {
                 if (result[j].securityType === 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 4) {
                     image = '/res/image/ic_wifi_signal_4_dark.svg';
                     logUtil.info('securityType 1 and signal level 4');
-                };
+                }
                 if (result[j].securityType === 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 3) {
                     image = '/res/image/ic_wifi_signal_3_dark.svg';
                     logUtil.info('securityType 1 and signal level 3');
-                };
+                }
                 if (result[j].securityType === 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 2) {
                     image = '/res/image/ic_wifi_signal_2_dark.svg';
                     logUtil.info('securityType 1 and signal level 2');
-                };
+                }
                 if (result[j].securityType === 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 1) {
                     image = '/res/image/ic_wifi_signal_1_dark.svg';
                     logUtil.info('securityType 1 and signal level 1');
-                };
+                }
                 if (result[j].securityType === 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 0) {
                     image = '/res/image/ic_wifi_signal_1_dark.svg';
                     logUtil.info('securityType 1 and signal level 1');
-                };
+                }
                 if (result[j].securityType !== 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 4) {
                     image = '/res/image/ic_wifi_lock_signal_4_dark.svg';
                     logUtil.info('securityType lock and level 4');
-                };
+                }
                 if (result[j].securityType !== 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 3) {
                     image = '/res/image/ic_wifi_lock_signal_3_dark.svg';
                     logUtil.info('securityType lock and level 3');
-                };
+                }
                 if (result[j].securityType !== 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 2) {
                     image = '/res/image/ic_wifi_lock_signal_2_dark.svg';
                     logUtil.info('securityType lock and level 2');
-                };
+                }
                 if (result[j].securityType !== 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 1) {
                     image = '/res/image/ic_wifi_lock_signal_1_dark.svg';
                     logUtil.info('securityType lock and level 1');
-                };
+                }
                 if (result[j].securityType !== 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 0) {
                     image = '/res/image/ic_wifi_lock_signal_1_dark.svg';
                     logUtil.info('securityType lock and level 1');
-                };
+                }
 
-                if (result[j].ssid == '' || result[j] == null) {
+                if (result[j].ssid === '' || result[j] === null) {
                     logUtil.info('result ssid empty');
                 } else {
                     mWifiList.push({
@@ -111,7 +111,7 @@ export default class WifiModel extends BaseModel {
                         settingValue: '',
                         settingArrow: image,
                         settingDefaultValue: '',
-                        settingArrowStyle:'commonHeadImage',
+                        settingArrowStyle: 'commonHeadImage',
                         dividerIsShow: true,
                         settingType: 1,
                         bssid: result[j].bssid,
@@ -119,7 +119,7 @@ export default class WifiModel extends BaseModel {
                         signalLevel: WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band),
                     });
                 }
-            };
+            }
             logUtil.info('original mWifiList :' + JSON.stringify(mWifiList));
             for (let i = 0; i < mWifiList.length; i++) {
                 let position = this.getItemPosition(remdupWifiList, mWifiList[i].settingTitle);
@@ -130,31 +130,31 @@ export default class WifiModel extends BaseModel {
                         remdupWifiList.splice(position, 0, mWifiList[i]);
                     }
                 } else {
-                    remdupWifiList.push(mWifiList[i])
+                    remdupWifiList.push(mWifiList[i]);
                 }
-            };
+            }
             logUtil.info('remove duplicate ssid remdupWifiList: ' + JSON.stringify(remdupWifiList));
         });
         logUtil.info('get to wifi information end ---->');
         return remdupWifiList;
-    };
+    }
 
     getItemPosition(list, ssid) {
         for (let i = 0; i < list.length; i++) {
-            if (ssid == list[i].settingTitle) {
+            if (ssid === list[i].settingTitle) {
                 return i;
             }
         }
         return -1;
-    };
+    }
 
     connectToDevice(obj) {
         logUtil.info('[wifi_js_test] connect to wifi');
         return WifiNativeJs.connectToDevice(obj);
-    };
+    }
 
     disConnect() {
         logUtil.info('netWork disconnect');
         return WifiNativeJs.disConnect();
-    };
+    }
 }

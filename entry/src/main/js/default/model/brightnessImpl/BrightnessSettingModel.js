@@ -32,7 +32,7 @@ export default class BrightnessSettingModel extends BaseModel {
     }
 
     setStorageValue(brightnessValue) {
-        logUtil.log('setting setBrightnessListener setStorageListener start brightnessValue£º' + brightnessValue);
+        logUtil.log('setting setBrightnessListener setStorageListener start brightnessValue:' + brightnessValue);
         brightnessPreferences.putSync(BRIGHTNESS_SAVE_VALUE, brightnessValue);
         brightnessPreferences.flushSync();
         logUtil.log('setting setBrightnessListener setStorageListener end');

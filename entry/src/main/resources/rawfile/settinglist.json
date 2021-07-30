@@ -1,21 +1,21 @@
 [
   {
-    "settingIcon": "/res/image/ic_settings_wifi.png",
+    "settingIcon": "/res/image/ic_settings_wifi.svg",
     "settingTitle": "WLAN",
     "settingAlias": "wifiTab",
     "settingValue": "",
-    "settingArrow": "/res/image/ic_settings_arrow.png",
+    "settingArrow": "/res/image/ic_settings_arrow.svg",
     "settingDefaultValue": false,
     "settingSummary": "",
     "settingShowDivider": true,
     "settingType": 1,
     "settingUri": "pages/wifi/wifi"
   },{
-    "settingIcon": "/res/image/ic_settings_display.png",
+    "settingIcon": "/res/image/ic_settings_display.svg",
     "settingTitle": "",
     "settingAlias": "brightnessTab",
     "settingValue": "",
-    "settingArrow": "/res/image/ic_settings_arrow.png",
+    "settingArrow": "/res/image/ic_settings_arrow.svg",
     "settingDefaultValue": false,
     "settingSummary": "",
     "settingShowDivider": true,
@@ -23,11 +23,11 @@
     "settingUri": "pages/brightness/brightnessSettings"
   },
   {
-    "settingIcon": "/res/image/ic_settings_applications.png",
+    "settingIcon": "/res/image/ic_settings_applications.svg",
     "settingTitle": "",
     "settingAlias": "applyTab",
     "settingValue": "",
-    "settingArrow": "/res/image/ic_settings_arrow.png",
+    "settingArrow": "/res/image/ic_settings_arrow.svg",
     "settingDefaultValue": true,
     "settingSummary": "",
     "settingShowDivider": true,
@@ -35,11 +35,11 @@
     "settingUri": "pages/appManagement/appManagement"
   },
   {
-    "settingIcon": "/res/image/ic_settings_advanced.png",
+    "settingIcon": "/res/image/ic_settings_advanced.svg",
     "settingTitle": "",
     "settingAlias": "dateAndTimeTab",
     "settingValue": "",
-    "settingArrow": "/res/image/ic_settings_arrow.png",
+    "settingArrow": "/res/image/ic_settings_arrow.svg",
     "settingDefaultValue": true,
     "settingSummary": "",
     "settingShowDivider": true,
@@ -47,11 +47,11 @@
     "settingUri": "pages/dateAndTime/dateAndTime"
   },
   {
-    "settingIcon": "/res/image/ic_settings_about.png",
+    "settingIcon": "/res/image/ic_settings_about.svg",
     "settingTitle": "",
     "settingAlias": "aboutTab",
     "settingValue": "",
-    "settingArrow": "/res/image/ic_settings_arrow.png",
+    "settingArrow": "/res/image/ic_settings_arrow.svg",
     "settingDefaultValue": true,
     "settingSummary": "",
     "settingShowDivider": false,

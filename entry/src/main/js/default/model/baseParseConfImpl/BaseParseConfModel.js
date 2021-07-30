@@ -28,8 +28,8 @@ export default class BaseParseConfModel extends BaseModel {
             console.info('settings dateAndTime BaseParseConfModel getJsonData content:' + content);
             ss.closeSync();
             return JSON.parse(content);
-        } catch (e) {
-            console.info("settings dateAndTime BaseParseConfModel getJsonData catch e:" + e);
+        } catch (jsonError) {
+            console.info('settings dateAndTime BaseParseConfModel getJsonData catch jsonError:' + jsonError);
         }
     }
 }

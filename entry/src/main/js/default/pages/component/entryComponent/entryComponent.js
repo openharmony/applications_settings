@@ -95,7 +95,7 @@ export default {
          * The icon at the end of a single model item
          */
         entranceToItemIcon: {
-            default: '/res/image/ic_settings_arrow.png'
+            default: ''
         },
         /**
          * Whether to display the switch item
@@ -125,14 +125,17 @@ export default {
          * Icon behind title
          */
         headIcon: {
-            default: '/res/image/head_icon.png'
+            default: ''
         },
         isHeadIconShow: {
             default: false
         },
-        dividerShow:{
+        dividerShow: {
             default: true
-        }
+        },
+        entranceToItemStyles: {
+            default: 'default'
+        },
     },
     data() {
         return {

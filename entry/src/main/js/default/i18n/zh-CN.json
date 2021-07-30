@@ -61,11 +61,12 @@
     "day": "日",
     "morning": "上午",
     "afternoon": "下午",
-    "connected": "已连接"
+    "connected": "已连接",
+    "loading": "正在加载..."
   },
   "png": {
     "info": {
-      "back": "/res/image/ic_back.png"
+      "back": "/res/image/ic_back.svg"
     },
     "new": {
     }
