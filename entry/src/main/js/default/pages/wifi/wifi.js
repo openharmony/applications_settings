@@ -34,7 +34,6 @@ let connectName;
 let connectBssid;
 let connectSecurityType;
 
-
 globalThis.$globalT = null;
 
 export default {
@@ -49,6 +48,7 @@ export default {
         timeoutMark: '',
         listenerMark: '',
         frames: null,
+
     },
     handleStart() {
         this.$refs.animator.start();
@@ -96,15 +96,15 @@ export default {
                     }
                     else {
                         logUtil.info("init wifi scan failed: ");
-                    };
+                    }
                 }, 3000);
             } else {
                 this.wifiListInfo[key].switchOnChangeValue = false;
                 this.wifiListInfo[key].settingDefaultValue = false;
                 logUtil.info("init get wifi status" + wifiModel.getWifiStatus());
                 this.switch_on = false;
-            };
-        };
+            }
+        }
         endTime = new Date();
         console.log("setting wifi onInit:"+(endTime-beginTime)+"ms");
         logUtil.info('wifiListInfo onInit end--->');
@@ -117,7 +117,8 @@ export default {
     switchClick() {
         logUtil.info('switchClick start ---->');
         for (let key in this.wifiListInfo) {
-            logUtil.info('wifiListInfo switchOnChangeValue this.switchOnChangeValue：' + this.wifiListInfo[key].switchOnChangeValue);
+            logUtil.info('wifiListInfo switchOnChangeValue this.switchOnChangeValue：'
+                + this.wifiListInfo[key].switchOnChangeValue);
             if (this.wifiListInfo[key].switchOnChangeValue === false) {
                 logUtil.info('switchClick Wifi enter ');
                 this.switch_on = true;
@@ -161,8 +162,8 @@ export default {
                 }
                 this.wifiListInfo[key].switchOnChangeValue = false;
                 this.wifiListInfo[key].settingDefaultValue = false;
-            };
-        };
+            }
+        }
         logUtil.info('switchClick end ---->');
     },
 
@@ -183,13 +184,13 @@ export default {
         if (globalThis.$globalT) {
             this.connected = globalThis.$globalT('strings.connected');
             logUtil.info('wifi constructor this.connected:' + this.connected);
-        };
+        }
         if (this.wifiList[idx].settingSummary == this.connected) {
             return;
-        };
+        }
         if (securityType !== 1) {
             return;
-        };
+        }
 
         let obj = {
             "ssid": title,
@@ -197,11 +198,11 @@ export default {
             "preSharedKey": '',
             "isHiddenSsid": false,
             "securityType": securityType,
-        };
+        }
         if (!wifiModel.connectToDevice(obj)) {
             logUtil.info("[wifi_js_test] connect to wifi failed");
             return;
-        };
+        }
 
         this.sleep(2000);
 
@@ -213,14 +214,10 @@ export default {
             connectName = title;
             index = idx;
             connectSecurityType = securityType
-
-        };
+        }
         logUtil.info('clickToSecret end:');
     },
 
-    /**
-     * wifi monitoring events
-     */
     wifiStatusListener() {
         logUtil.info('wifi status listener')
         Subscriber.createSubscriber(mCommonEventSubscribeInfo,
@@ -242,7 +239,6 @@ export default {
             this.connected = globalThis.$globalT('strings.connected');
             logUtil.info('wifi constructor this.connected:' + this.connected);
         };
-
         if (data.code === 3) {
             logUtil.info('wifi code into');
             this.wifiList.unshift({
@@ -266,7 +262,6 @@ export default {
                     this.wifiList[key].settingSummary = '';
                 };
             };
-
         }
     },
 
@@ -276,12 +271,12 @@ export default {
         });
     },
 
-     sleep(delay) {
-     let  start = (new Date()).getTime();
-       while ((new Date()).getTime() - start < delay) {
-         continue;
-       }
-     },
+    sleep(delay) {
+        let  start = (new Date()).getTime();
+        while ((new Date()).getTime() - start < delay) {
+            continue;
+        }
+    },
 
     onCreate() {
         logUtil.info('setting wifi onCreate')
@@ -295,7 +290,11 @@ export default {
     onHide() {
         logUtil.info('setting wifi onHide')
     },
-
+    onDestroy() {
+        logUtil.info("setting wifi onDestroy start");
+        this.unSubscriberListener();
+        logUtil.info('setting wifi onDestroy end')
+    },
     initFrames() {
         logUtil.info('setting appManagement initFrames Start')
         this.frames = [
@@ -317,12 +316,6 @@ export default {
             {
                 src: this.$r('image.icLoading06'),
             }
-        ]
-    },
-
-    onDestroy() {
-        logUtil.info("setting wifi onDestroy start");
-        this.unSubscriberListener();
-        logUtil.info('setting wifi onDestroy end')
+        ];
     },
 }

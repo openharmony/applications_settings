@@ -50,7 +50,7 @@
                         entrance-to-item-show="{{$item.settingType==1}}" switches-is-show="{{$item.settingType==2}}"
                         model-state-describe="{{$item.settingValue}}"
                         state-description-show="{{$item.settingValue==''?false:true}}"
-                        switch-default-value="{{$item.settingDefaultValue}}"></entry-component>
+                        switch-default-value="{{$item.settingDefaultValue}}" entrance-to-item-styles = "{{ $item.settingArrowStyle }}"></entry-component>
             </list-item>
         </list>
     </div>

@@ -39,7 +39,6 @@ export default {
     },
     onShow(){
         logUtil.info('settingList onShow start');
-        logUtil.info('settingList onShow start mWifiModel.getWifiStatus():'+ mWifiModel.getWifiStatus());
         for (let key in this.settingsList) {
             var settingAlias = this.settingsList[key].settingAlias
             if (settingAlias == 'wifiTab') {
