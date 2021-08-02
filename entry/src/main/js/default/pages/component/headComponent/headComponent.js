@@ -12,11 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import router from '@system.router';
+import Router from '@system.router';
+import LogUtil from '../../../common/baseUtil/LogUtil.js';
+
+let mLogUtil = null;
 
 export default {
     props: {
-        //Title name
         titleName: {
             default: '',
         },
@@ -28,20 +30,27 @@ export default {
             default: 'app-bar-image'
         },
     },
+
+    onInit() {
+        mLogUtil = new LogUtil();
+    },
+
     back() {
-        console.info('setting headComponent back start');
+        mLogUtil.info('setting headComponent back start');
         this.$emit('backType', {});
-        console.info('setting headComponent back end');
+        mLogUtil.info('setting headComponent back end');
     },
+
     backChangeBackground() {
-        console.info('setting headComponent backChangeBackground start');
-        this.buttonStyles = 'app-bar-image-change-background'
-        console.info('setting headComponent backChangeBackground end');
+        mLogUtil.info('setting headComponent backChangeBackground start');
+        this.buttonStyles = 'app-bar-image-change-background';
+        mLogUtil.info('setting headComponent backChangeBackground end');
     },
+
     backRouter() {
-        console.info('setting headComponent backRouter start');
-        router.back();
-        console.info('setting headComponent backRouter end');
+        mLogUtil.info('setting headComponent backRouter start');
+        Router.back();
+        mLogUtil.info('setting headComponent backRouter end');
     }
-}
+};
 

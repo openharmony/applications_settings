@@ -14,11 +14,12 @@
  */
 import AppManagementModel from '../../model/appManagementImpl/AppManagementModel.js';
 import LogUtil from '../../common/baseUtil/LogUtil.js';
-import router from '@system.router';
+import Router from '@system.router';
 
 const DATA_PAGE_SOURCE_APP_PAGE = 'appPage';
-let appManagementModel = new AppManagementModel();
-let logUtil = new LogUtil();
+
+let mAppManagementModel = null;
+let mLogUtil = null;
 globalThis.$globalR = null;
 
 export default {
@@ -29,70 +30,72 @@ export default {
         frames: null,
     },
     onInit() {
-        logUtil.info('setting appManagement init start:');
-        globalThis.$globalR = this.$r.bind(this);
+        mLogUtil = new LogUtil();
+        mLogUtil.info('setting appManagement init start');
         this.initFrames();
-        appManagementModel.setAppManagementListener(this.appListData);
-        logUtil.info('setting appManagement init end:');
+        mAppManagementModel = new AppManagementModel();
+        globalThis.$globalR = this.$r.bind(this);
+        mAppManagementModel.setAppManagementListener(this.appListData);
+        mLogUtil.info('setting appManagement init end');
     },
     appListData(appListData) {
         if (null === appListData) {
-            logUtil.info('setting appManagement appListData is null');
+            mLogUtil.info('setting appManagement appListData is null');
             return;
         }
         this.handleStop();
         this.animatorOn = false;
         this.contentViewIsShow = true;
-        logUtil.info('setting appManagement appListData start:' + JSON.stringify(appListData.length));
-        for (var i = 0; i < appListData.length; i++) {
-            var settingSummary = appListData[i].settingSummary;
+        mLogUtil.info('setting appManagement appListData start:' + JSON.stringify(appListData.length));
+        for (let i = 0; i < appListData.length; i++) {
+            let settingSummary = appListData[i].settingSummary;
             appListData[i].settingSummary = this.$t('strings.version').concat(settingSummary);
         }
         this.appList = appListData;
-        logUtil.info('setting appManagement appListData end');
+        mLogUtil.info('setting appManagement appListData end');
     },
 
     /**
      * Jump to search page
      */
     onClick() {
-        logUtil.info('setting appManagement onClick start pages/searchInfo/searchInfo ');
-        router.push({
+        mLogUtil.info('setting appManagement onClick start pages/searchInfo/searchInfo ');
+        Router.push({
             uri: 'pages/searchInfo/searchInfo',
             params: {
                 appData: this.appList,
                 type: DATA_PAGE_SOURCE_APP_PAGE
             }
         });
-        logUtil.info('setting appManagement onClick end');
+        mLogUtil.info('setting appManagement onClick end');
     },
     appInfoBack() {
-        logUtil.info('setting appManagement appInfoBack start');
-        router.back();
-        logUtil.info('setting appManagement appInfoBack end');
+        mLogUtil.info('setting appManagement appInfoBack start');
+        Router.back();
+        mLogUtil.info('setting appManagement appInfoBack end');
     },
     onBackPress() {
-        logUtil.info('setting appManagement onBackPress start');
-        router.back();
-        logUtil.info('setting appManagement onBackPress end');
+        mLogUtil.info('setting appManagement onBackPress start');
+        Router.back();
+        mLogUtil.info('setting appManagement onBackPress end');
     },
     onCreate() {
-        logUtil.info('setting appManagement onCreate');
+        mLogUtil.info('setting appManagement onCreate');
     },
     onReady() {
-        logUtil.info('setting appManagement onReady');
+        mLogUtil.info('setting appManagement onReady');
     },
     onShow() {
-        logUtil.info('setting appManagement onShow');
+        mLogUtil.info('setting appManagement onShow');
     },
     onHide() {
-        logUtil.info('setting appManagement onHide');
+        mLogUtil.info('setting appManagement onHide');
     },
     onDestroy() {
-        logUtil.info('setting appManagement onDestroy');
+        mLogUtil.info('setting appManagement onDestroy');
     },
     initFrames() {
-        logUtil.info('setting appManagement initFrames Start');
+        mLogUtil.info('setting appManagement initFrames Start');
         this.frames = [
             {
                 src: this.$r('image.icLoading01'),
@@ -115,27 +118,27 @@ export default {
         ];
     },
     handleStart() {
-        logUtil.info('setting appManagement handleStart');
+        mLogUtil.info('setting appManagement handleStart');
         this.$refs.animator.start();
     },
     handlePause() {
-        logUtil.info('setting appManagement handlePause');
+        mLogUtil.info('setting appManagement handlePause');
         this.$refs.animator.pause();
     },
     handleResume() {
-        logUtil.info('setting appManagement handleResume');
+        mLogUtil.info('setting appManagement handleResume');
         this.$refs.animator.resume();
     },
     handleStop() {
-        logUtil.info('setting appManagement handleStop');
+        mLogUtil.info('setting appManagement handleStop');
         this.$refs.animator.stop();
     },
     handleClose() {
-        logUtil.info('setting appManagement handleClose');
+        mLogUtil.info('setting appManagement handleClose');
         this.$refs.animator.close();
     },
     handleFinish() {
-        logUtil.info('setting appManagement handleFinish');
+        mLogUtil.info('setting appManagement handleFinish');
         this.$refs.animator.finish();
     },
 };

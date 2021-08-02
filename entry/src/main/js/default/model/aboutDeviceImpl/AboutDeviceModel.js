@@ -14,17 +14,23 @@
  */
 import BaseModel from '../BaseModel.js';
 import LogUtil from '../../common/baseUtil/LogUtil.js';
-import deviceInfo from '@ohos.deviceInfo';
+import DeviceInfo from '@ohos.deviceInfo';
 
-let logUtil = new LogUtil();
+let mLogUtil = null;
+
 /**
  * about device service class
  */
 export default class AboutDeviceModel extends BaseModel {
+    constructor() {
+        super();
+        mLogUtil = new LogUtil();
+    }
+
     setOnAboutDeviceListener(callback) {
-        logUtil.info('settings aboutDevice get deviceInfo start:');
-        this.text = deviceInfo.productModel;
-        logUtil.info('settings aboutDevice get deviceInfo:' + JSON.stringify(deviceInfo));
-        callback(deviceInfo);
+        mLogUtil.info('settings aboutDevice get deviceInfo start');
+        this.text = DeviceInfo.productModel;
+        mLogUtil.info('settings aboutDevice get deviceInfo:' + JSON.stringify(DeviceInfo));
+        callback(DeviceInfo);
     }
 }
