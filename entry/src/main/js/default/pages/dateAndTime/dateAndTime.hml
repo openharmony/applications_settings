@@ -35,7 +35,7 @@
     <dialog id="dateDialog" class="dialog-main" oncancel="cancelDialog">
         <div class="dialog-div" @swipe="handleSwipe">
             <div class="inner-title">
-                <text>{{inner_title}}</text>
+                <text>{{innerTitle}}</text>
             </div>
             <div class="inner-txt">
                 <picker-view type="date" start="2008-1-1"

@@ -13,33 +13,40 @@
  * limitations under the License.
  */
 import BaseModel from '../BaseModel.js';
-import brightness from '@ohos.brightness';
-import storage from '@ohos.data.storage';
+import Brightness from '@ohos.brightness';
+import Storage from '@ohos.data.storage';
 import LogUtil from '../../common/baseUtil/LogUtil.js';
 
-const PREFERENCES_PATH = '/data/accounts/account_0/appdata/com.ohos.settings/sharedPreference/SettingPreferences';
-var brightnessPreferences = storage.getStorageSync(PREFERENCES_PATH);
-let logUtil = new LogUtil();
 const BRIGHTNESS_SAVE_VALUE = 'BrightnessSaveValue';
+const PREFERENCES_PATH = '/data/accounts/account_0/appdata/com.ohos.settings/sharedPreference/SettingPreferences';
+
+let mBrightnessPreferences = Storage.getStorageSync(PREFERENCES_PATH);
+let mLogUtil = null;
+
 /**
  * brightness service class
  */
 export default class BrightnessSettingModel extends BaseModel {
+    constructor() {
+        super();
+        mLogUtil = new LogUtil();
+    }
+
     setBrightnessListener(brightnessValue) {
-        logUtil.log('setting setBrightnessListener BrightnessSettingModel start');
-        brightness.setValue(brightnessValue);
-        logUtil.log('setting setBrightnessListener BrightnessSettingModel end');
+        mLogUtil.log('setting setBrightnessListener BrightnessSettingModel start');
+        Brightness.setValue(brightnessValue);
+        mLogUtil.log('setting setBrightnessListener BrightnessSettingModel end');
     }
 
     setStorageValue(brightnessValue) {
-        logUtil.log('setting setBrightnessListener setStorageListener start brightnessValue:' + brightnessValue);
-        brightnessPreferences.putSync(BRIGHTNESS_SAVE_VALUE, brightnessValue);
-        brightnessPreferences.flushSync();
-        logUtil.log('setting setBrightnessListener setStorageListener end');
+        mLogUtil.log('setting setBrightnessListener setStorageListener start brightnessValue:' + brightnessValue);
+        mBrightnessPreferences.putSync(BRIGHTNESS_SAVE_VALUE, brightnessValue);
+        mBrightnessPreferences.flushSync();
+        mLogUtil.log('setting setBrightnessListener setStorageListener end');
     }
 
     getStorageValue() {
-        logUtil.log('setting setBrightnessListener getStorageValue start');
-        return brightnessPreferences.getSync(BRIGHTNESS_SAVE_VALUE, 0);
+        mLogUtil.log('setting setBrightnessListener getStorageValue start');
+        return mBrightnessPreferences.getSync(BRIGHTNESS_SAVE_VALUE, 0);
     }
 }

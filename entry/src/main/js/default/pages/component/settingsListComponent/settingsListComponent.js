@@ -15,11 +15,10 @@
 import router from '@system.router';
 import LogUtil from '../../../common/baseUtil/LogUtil.js';
 
-let logUtil = new LogUtil();
+let mLogUtil = null;
 
 export default {
     props: {
-        //Receive the value passed by the parent component
         parentData: {
             default: '',
         },
@@ -29,29 +28,26 @@ export default {
     },
     data: {},
 
-    /**
-     * Jump to the corresponding lower menu
-     */
-    onclick(e) {
-        logUtil.info('setting settingsListComponent onclick start: ' + JSON.stringify(e.detail.text));
+    onInit() {
+        mLogUtil = new LogUtil();
+    },
+
+    onclick(data) {
+        mLogUtil.info('setting settingsListComponent onclick start: ' + JSON.stringify(data.detail.text));
         router.push({
-            uri: e.detail.text.settingUri,
+            uri: data.detail.text.settingUri,
             params: {
-                dataParam: e.detail.text,
+                dataParam: data.detail.text,
             }
         });
-        logUtil.info('setting settingsListComponent onclick end: ');
+        mLogUtil.info('setting settingsListComponent onclick end: ');
     },
-    /**
-     * switch Onchange get the value
-     * @param e
-     * @return
-     */
+
     switchClick(e) {
-        logUtil.info('setting settingsListComponent switchClick start: ');
-        this.switchChangeValue = e.detail.text,
-        this.switchDefaultChangeValue = e.detail.defaultText
-        logUtil.info('setting settingsListComponent switchClick end:' + this.switchChangeValue + '|' + this.switchDefaultChangeValue);
+        mLogUtil.info('setting settingsListComponent switchClick start: ');
+        this.switchChangeValue = e.detail.text;
+        this.switchDefaultChangeValue = e.detail.defaultText;
+        mLogUtil.info('ListComponent switchClick end:' + this.switchChangeValue + '|' + this.switchDefaultChangeValue);
     }
-}
+};
 
