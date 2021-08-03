@@ -26,12 +26,12 @@ globalThis.$globalT = null;
 
 export default {
     data: {
-        date: '', //The date displayed on the current page
-        time: '', //The time displayed on the current page
+        date: '',
+        time: '',
         currentDate: '',
         currentTime: '',
-        innerTitle: '', //Title information on the time frame
-        intervalFlag: '', //Timer flag
+        innerTitle: '',
+        intervalFlag: '',
         dateAndTimeList: [],
         dateAndTimeListData: 'dateAndTimeList',
     },
