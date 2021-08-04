@@ -29,8 +29,8 @@
                 <text class="text-style-right" show="{{stateDescriptionShow}}">{{modelStateDescribe}}
                 </text>
             </div>
-            <div class="div_head-image" show="{{ entranceToItemShow }}">
-                <image class="head-image" src="{{ entranceToItemIcon }}" show="{{ entranceToItemShow }}"></image>
+            <div class = "div_head-image" show = "{{ entranceToItemShow }}">
+                <image class = "{{ entranceToItemStyles == 'commonHeadImage' ? 'wifi-head-image' : 'head-image' }}" src = "{{ entranceToItemIcon }}"></image>
             </div>
             <switch class = "switch-on-off" show="{{switchesIsShow}}" checked="{{switchDefaultValue}}" onchange="{{switchOnChange}}"></switch>
         </div>

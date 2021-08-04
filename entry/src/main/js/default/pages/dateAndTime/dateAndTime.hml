@@ -28,14 +28,14 @@
                     state-description-show="{{$item.settingValue==''?false:true}}"
                     switch-default-value="{{$item.settingDefaultValue}}" entrance-to-item-show="{{$item.settingType==1}}"
                     switches-is-show="{{$item.settingType==2}}" switch-on-change-value="{{$item.settingSwitchOnChangeValue}}"
-                    @switch-on-change-type="onclick"></entry-component>
+                    @switch-on-change-type="onclick" divider-show = "{{ $item.settingShowDivider }}"></entry-component>
         </list-item>
     </list>
     <!-- Manual date setting  -->
     <dialog id="dateDialog" class="dialog-main" oncancel="cancelDialog">
         <div class="dialog-div" @swipe="handleSwipe">
             <div class="inner-title">
-                <text>{{inner_title}}</text>
+                <text>{{innerTitle}}</text>
             </div>
             <div class="inner-txt">
                 <picker-view type="date" start="2008-1-1"

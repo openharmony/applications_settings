@@ -17,7 +17,7 @@ import BaseModel from '../../model/BaseModel.js';
 /**
  * Log level
  */
-var LOG_LEVEL = {
+let LOG_LEVEL = {
     /**
      * debug
      */

@@ -6,7 +6,7 @@
     "settingTitle": "",
     "settingSummary": "",
     "settingValue": "",
-    "settingArrow": "/res/image/ic_settings_arrow.png",
+    "settingArrow": "/res/image/ic_settings_arrow.svg",
     "settingDefaultValue": false,
     "settingShowDivider": true,
     "settingType": 1
@@ -18,9 +18,9 @@
     "settingTitle": "",
     "settingSummary": "",
     "settingValue": "",
-    "settingArrow": "/res/image/ic_settings_arrow.png",
+    "settingArrow": "/res/image/ic_settings_arrow.svg",
     "settingDefaultValue": false,
-    "settingShowDivider": true,
+    "settingShowDivider": false,
     "settingType": 1
   }
 ]

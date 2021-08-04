@@ -12,15 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import router from '@system.router';
+import Router from '@system.router';
 import SettingListModel from '../../model/settingListImpl/SettingListModel.js';
 import LogUtil from '../../common/baseUtil/LogUtil.js';
-import WifiModel from '../../model/wifiImpl/WifiModel.js'
+import WifiModel from '../../model/wifiImpl/WifiModel.js';
+
+let mSettingListModel = null;
+let mWifiModel = null;
+let mLogUtil = null;
 
 const DATA_PAGE_SOURCE_HOME_PAGE = 'homePage';
-let mSettingListModel = new SettingListModel();
-let logUtil = new LogUtil();
-let mWifiModel = new WifiModel();
 
 export default {
     data: {
@@ -28,43 +29,46 @@ export default {
         switchChangeValue: false,
         switchDefaultChangeValue: false
     },
+
     onInit() {
-        logUtil.info('settings settingList onInit start:');
+        mLogUtil = new LogUtil();
+        mLogUtil.info('settings settingList onInit start:');
+        mSettingListModel = new SettingListModel();
+        mWifiModel = new WifiModel();
         mSettingListModel.setSettingListener(this.settingsListData);
-        logUtil.info('settings settingList onInit end:');
+        mLogUtil.info('settings settingList onInit end:');
     },
+
     settingsListData(data) {
-        logUtil.info('settingList settingsListData data:' + JSON.stringify(data));
-        this.settingsList = data
+        mLogUtil.info('settingList settingsListData data:' + JSON.stringify(data));
+        this.settingsList = data;
     },
-    onShow(){
-        logUtil.info('settingList onShow start');
-        logUtil.info('settingList onShow start mWifiModel.getWifiStatus():'+ mWifiModel.getWifiStatus());
+
+    onShow() {
+        mLogUtil.info('settingList onShow start');
         for (let key in this.settingsList) {
-            var settingAlias = this.settingsList[key].settingAlias
-            if (settingAlias == 'wifiTab') {
-                if(mWifiModel.getWifiStatus()){
-                    this.settingsList[key].settingValue = this.$t('strings.enabled')
-                }else{
-                    this.settingsList[key].settingValue = this.$t('strings.disabled')
+            let settingAlias = this.settingsList[key].settingAlias;
+            if (settingAlias === 'wifiTab') {
+                if (mWifiModel.getWifiStatus()) {
+                    this.settingsList[key].settingValue = this.$t('strings.enabled');
+                } else {
+                    this.settingsList[key].settingValue = this.$t('strings.disabled');
                 }
             }
-            this.settingsList[key].settingTitle = this.$t('strings.'.concat(settingAlias))
+            this.settingsList[key].settingTitle = this.$t('strings.'.concat(settingAlias));
         }
-        logUtil.info('settingList onShow end');
+        mLogUtil.info('settingList onShow end');
     },
-    /**
-     * Click the search box to jump to the search page
-     */
+
     onClick() {
-        logUtil.info('settings settingList onClick start:');
-        router.push({
+        mLogUtil.info('settings settingList onClick start');
+        Router.push({
             uri: 'pages/searchInfo/searchInfo',
             params: {
                 data: this.settingsList,
                 type: DATA_PAGE_SOURCE_HOME_PAGE
             }
         });
-        logUtil.info('settings settingList onClick end:');
+        mLogUtil.info('settings settingList onClick end');
     },
-}
+};
