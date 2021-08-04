@@ -12,68 +12,65 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import router from '@system.router';
+import Router from '@system.router';
 import BaseParseConfModel from '../../model/baseParseConfImpl/BaseParseConfModel.js';
 import LogUtil from '../../common/baseUtil/LogUtil.js';
 import DateAndTimeUtil from '../../common/baseUtil/DateAndTimeUtil.js';
 import DateAndTimeModel from '../../model/dateAndTimeImpl/DateAndTimeModel.js';
 
-let logUtil = new LogUtil();
-let dateAndTimeUtil = null;
-let baseParseConfModel = new BaseParseConfModel();
-let dateAndTimeModel = new DateAndTimeModel();
-
+let mLogUtil = null;
+let mDateAndTimeUtil = null;
+let mBaseParseConfModel = null;
+let mDateAndTimeModel = null;
 globalThis.$globalT = null;
 
 export default {
     data: {
-        date: '', //The date displayed on the current page
-        time: '', //The time displayed on the current page
+        date: '',
+        time: '',
         currentDate: '',
         currentTime: '',
-        inner_title: '', //Title information on the time frame
-        intervalFlag: '', //Timer flag
+        innerTitle: '',
+        intervalFlag: '',
         dateAndTimeList: [],
         dateAndTimeListData: 'dateAndTimeList',
     },
-    /**
-     * init
-     */
+
     onInit() {
-        logUtil.info('settings dateAndTime onInit start');
+        mLogUtil = new LogUtil();
+        mLogUtil.info('settings dateAndTime onInit start');
         globalThis.$globalT = this.$t.bind(this);
-        dateAndTimeUtil = new DateAndTimeUtil();
-        this.dateAndTimeList = baseParseConfModel.getJsonData('/data/accounts/account_0/applications/com.ohos.settings/com.ohos.settings/assets/entry/resources/rawfile/dateAndTime.json');
+        mDateAndTimeUtil = new DateAndTimeUtil();
+        mBaseParseConfModel = new BaseParseConfModel();
+        mDateAndTimeModel = new DateAndTimeModel();
+        this.dateAndTimeList = mBaseParseConfModel.getJsonData('/data/accounts/account_0/applications'
+            + '/com.ohos.settings/com.ohos.settings/assets/entry/resources/rawfile/dateAndTime.json');
         for (let key in this.dateAndTimeList) {
             let settingAlias = this.dateAndTimeList[key].settingAlias;
             this.dateAndTimeList[key].settingTitle = this.$t('strings.'.concat(settingAlias));
-        };
-        logUtil.info('settings dateAndTime onInit dateAndTimeList：' + JSON.stringify(this.dateAndTimeList));
+        }
+        mLogUtil.info('settings dateAndTime onInit dateAndTimeList：' + JSON.stringify(this.dateAndTimeList));
         const dateTime = new Date();
         const year = dateTime.getFullYear();
         const month = dateTime.getMonth() + 1;
         const day = dateTime.getDate();
-        this.date = dateAndTimeUtil.concatDate(year, month, day);
-        this.time = dateAndTimeUtil.now();
+        this.date = mDateAndTimeUtil.concatDate(year, month, day);
+        this.time = mDateAndTimeUtil.now();
         this.changeValue();
         let that = this;
         this.intervalFlag = setInterval(function () {
-            that.time = dateAndTimeUtil.now();
+            that.time = mDateAndTimeUtil.now();
             that.changeValue();
         }, 1000);
-        logUtil.info('settings dateAndTime onInit  end：' + JSON.stringify(this.dateAndTimeList));
+        mLogUtil.info('settings dateAndTime onInit  end：' + JSON.stringify(this.dateAndTimeList));
     },
-    /**
-     * Stop refresh
-     */
+
     onDestroy() {
-        logUtil.info('setting dateAndTime onDestroy start');
+        mLogUtil.info('setting dateAndTime onDestroy start');
         clearInterval(this.intervalFlag);
-        logUtil.info('setting dateAndTime onDestroy end');
+        mLogUtil.info('setting dateAndTime onDestroy end');
     },
-    /**
-     * Assignment conversion
-     */
+
     changeValue() {
 
         for (let key in this.dateAndTimeList) {
@@ -82,16 +79,12 @@ export default {
                 this.dateAndTimeList[key].settingValue = this.date;
             } else if (settingAlias === 'time') {
                 this.dateAndTimeList[key].settingValue = this.time;
-            };
-        };
+            }
+        }
     },
-    /**
-     * Enter to select sub-page details
-     * @param index
-     * @return
-     */
+
     clickToDetail(index) {
-        logUtil.info('setting dateAndTime clickToDetail start');
+        mLogUtil.info('setting dateAndTime clickToDetail start');
         let settingAlias = this.dateAndTimeList[index].settingAlias;
         if (settingAlias === 'date') {
             const datetime = new Date();
@@ -99,103 +92,84 @@ export default {
             const m = datetime.getMonth() + 1;
             const d = datetime.getDate();
             this.currentDate = this.date;
-            this.inner_title = this.currentDate + dateAndTimeUtil.convert(y, m, d);
+            this.innerTitle = this.currentDate + mDateAndTimeUtil.convert(y, m, d);
             this.$element('dateDialog').show();
         } else if (settingAlias === 'time') {
             this.currentTime = this.time;
             this.$element('timeDialog').show();
-        } else {
-        };
-        logUtil.info('setting dateAndTime clickToDetail end');
+        }
+        mLogUtil.info('setting dateAndTime clickToDetail end');
     },
-    /**
-     * Cancel the bullet box
-     * @return
-     */
+
     cancelSchedule() {
-        logUtil.info('setting dateAndTime cancelSchedule start');
+        mLogUtil.info('setting dateAndTime cancelSchedule start');
         this.$element('dateDialog').close();
         this.$element('timeDialog').close();
-        logUtil.info('setting dateAndTime cancelSchedule end');
+        mLogUtil.info('setting dateAndTime cancelSchedule end');
     },
-    /**
-     * Modify date
-     * @return
-     */
+
     setDateSchedule() {
-        logUtil.info('setting dateAndTime setDateSchedule start');
+        mLogUtil.info('setting dateAndTime setDateSchedule start');
         this.$element('dateDialog').close();
         if (this.currentDate !== this.date) {
-            logUtil.info('dateDialog init start:: current date is' + this.currentDate);
+            mLogUtil.info('dateDialog init start:: current date is' + this.currentDate);
             this.date = this.currentDate;
-            this.inner_title = this.date + this.week;
+            this.innerTitle = this.date + this.week;
             this.changeValue();
-        };
-        logUtil.info('setting dateAndTime setDateSchedule end');
+        }
+        mLogUtil.info('setting dateAndTime setDateSchedule end');
     },
-    /**
-     * Modify time
-     * @return
-     */
+
     setTimeSchedule() {
-        logUtil.info('setting dateAndTime setTimeSchedule start');
+        mLogUtil.info('setting dateAndTime setTimeSchedule start');
         this.$element('timeDialog').close();
         if (this.currentTime !== this.time) {
-            logUtil.info('timeDialog init start:: current time is' + this.currentTime);
+            mLogUtil.info('timeDialog init start:: current time is' + this.currentTime);
             const datetime = new Date();
             const y = datetime.getFullYear();
             const m = datetime.getMonth() + 1;
             const d = datetime.getDate();
-            const str = y + "/" + dateAndTimeUtil.fill(m) + "/" + dateAndTimeUtil.fill(d) + " " + this.currentTime + ":" + "00";
-            logUtil.info('timeDialog init start::' + str);
+            const str = y + '/' + mDateAndTimeUtil.fill(m) + '/' + mDateAndTimeUtil.fill(d)
+                + ' ' + this.currentTime + ':' + '00';
+            mLogUtil.info('timeDialog init start::' + str);
             const s = (new Date(str)).getTime();
-            logUtil.info('timeDialog time::' + s);
-            dateAndTimeModel.setTime(s);
+            mLogUtil.info('timeDialog time::' + s);
+            mDateAndTimeModel.setTime(s);
             this.time = this.currentTime;
-            logUtil.info('timeDialog time::' + this.time);
+            mLogUtil.info('timeDialog time::' + this.time);
             this.changeValue();
-        };
-        logUtil.info('setting dateAndTime setTimeSchedule end');
+        }
+        mLogUtil.info('setting dateAndTime setTimeSchedule end');
     },
-    /**
-     * Date drag
-     * @param data
-     * @return
-     */
+
     handleDateChange(data) {
-        logUtil.info('setting dateAndTime handleDateChange start');
-        this.currentDate = dateAndTimeUtil.concatDate(data.year, data.month + 1, data.day);
-        this.inner_title = this.currentDate + dateAndTimeUtil.convert(data.year, data.month + 1, data.day);
-        logUtil.info('setting dateAndTime handleDateChange end');
+        mLogUtil.info('setting dateAndTime handleDateChange start');
+        this.currentDate = mDateAndTimeUtil.concatDate(data.year, data.month + 1, data.day);
+        this.innerTitle = this.currentDate + mDateAndTimeUtil.convert(data.year, data.month + 1, data.day);
+        mLogUtil.info('setting dateAndTime handleDateChange end');
     },
-    /**
-     * Time drag
-     * @param data
-     * @return
-     */
+
     handleTimeChange(data) {
-        logUtil.info('setting dateAndTime handleTimeChange start');
-        this.currentTime = dateAndTimeUtil.concatTime(data.hour, data.minute);
-        logUtil.info('setting dateAndTime handleTimeChange end');
+        mLogUtil.info('setting dateAndTime handleTimeChange start');
+        this.currentTime = mDateAndTimeUtil.concatTime(data.hour, data.minute);
+        mLogUtil.info('setting dateAndTime handleTimeChange end');
     },
-    /**
-     * Return to the previous menu
-     */
+
     back() {
-        logUtil.info('settings dateAndTime back start:');
-        router.back();
-        logUtil.info('settings dateAndTime back end:');
+        mLogUtil.info('settings dateAndTime back start');
+        Router.back();
+        mLogUtil.info('settings dateAndTime back end');
     },
     onCreate() {
-        logUtil.info('settings dateAndTime onCreate');
+        mLogUtil.info('settings dateAndTime onCreate');
     },
     onReady() {
-        logUtil.info('settings dateAndTime onReady');
+        mLogUtil.info('settings dateAndTime onReady');
     },
     onHide() {
-        logUtil.info('settings dateAndTime onHide');
+        mLogUtil.info('settings dateAndTime onHide');
     },
-}
+};
 
 
 

@@ -13,23 +13,31 @@
  * limitations under the License.
  */
 import BaseModel from '../BaseModel.js';
-import fileio from '@ohos.fileio';
+import LogUtil from '../../common/baseUtil/LogUtil.js';
+import Fileio from '@ohos.fileio';
+
+let mLogUtil = null;
 
 export default class BaseParseConfModel extends BaseModel {
+    constructor() {
+        super();
+        mLogUtil = new LogUtil();
+    }
+
     getJsonData(fileName) {
-        console.info('settings dateAndTime BaseParseConfModel getJsonData start')
+        mLogUtil.info('settings dateAndTime BaseParseConfModel getJsonData start');
         try {
-            console.info('settings dateAndTime BaseParseConfModel getJsonDat start try');
-            var ss = fileio.createStreamSync(fileName, "r")
-            var buf = new ArrayBuffer(4096)
-            var len = ss.readSync(buf)
-            console.info('settings dateAndTime BaseParseConfModel getJsonData len' + JSON.stringify(len) + len);
-            var content = String.fromCharCode.apply(null, new Uint8Array(buf));
-            console.info('settings dateAndTime BaseParseConfModel getJsonData content:' + content);
+            mLogUtil.info('settings dateAndTime BaseParseConfModel getJsonDat start try');
+            let ss = Fileio.createStreamSync(fileName, 'r');
+            let buf = new ArrayBuffer(4096);
+            let len = ss.readSync(buf);
+            mLogUtil.info('settings dateAndTime BaseParseConfModel getJsonData len' + JSON.stringify(len) + len);
+            let content = String.fromCharCode.apply(null, new Uint8Array(buf));
+            mLogUtil.info('settings dateAndTime BaseParseConfModel getJsonData content:' + content);
             ss.closeSync();
             return JSON.parse(content);
-        } catch (e) {
-            console.info("settings dateAndTime BaseParseConfModel getJsonData catch e:" + e);
+        } catch (jsonError) {
+            mLogUtil.info('settings dateAndTime BaseParseConfModel getJsonData catch jsonError:' + jsonError);
         }
     }
 }

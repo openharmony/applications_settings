@@ -13,15 +13,26 @@
  * limitations under the License.
  */
 import BaseModel from '../BaseModel.js';
-import systemTime from '@ohos.systemTime';
+import LogUtil from '../../common/baseUtil/LogUtil.js';
+import SystemTime from '@ohos.systemTime';
+
+let mLogUtil = null;
 
 export default class DateAndTimeModel extends BaseModel {
-   setTime(time) {
-        console.log('setting dateAndTime setTime start');
-        systemTime.setTime(time).then(data =>
-        console.log('setting dateAndTime AceApplication promise1::then ' + data))
-            .catch(error =>
-        console.log('setting dateAndTime AceApplication promise1::catch ' + error));
-        console.log('setting dateAndTime setTime end');
+    constructor() {
+        super();
+        mLogUtil = new LogUtil();
+    }
+
+    setTime(time) {
+        mLogUtil.info('setting dateAndTime setTime start');
+        SystemTime.setTime(time).then(data => {
+            mLogUtil.info('setting dateAndTime AceApplication promise1::then ' + data);
+        })
+            .catch(error => {
+                mLogUtil.info('setting dateAndTime AceApplication promise1::catch ' + error);
+            }
+        );
+        mLogUtil.info('setting dateAndTime setTime end');
     }
 }

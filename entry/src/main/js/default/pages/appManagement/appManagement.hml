@@ -12,15 +12,23 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */-->
-<element name='head-component' src='../component/headComponent/headComponent.hml'></element>
-<element name='settings-list-component' src='../component/settingsListComponent/settingsListComponent.hml'></element>
-<div class="container">
-    <head-component title-name="{{$t('strings.appManagement')}}" back-icon="{{$t('png.info.back')}}" @back-type="appInfoBack"></head-component>
+<element name = 'head-component' src = '../component/headComponent/headComponent.hml'></element>
+<element name='settings-list-component' src = '../component/settingsListComponent/settingsListComponent.hml'></element>
+<div class = "container">
+    <head-component title-name = "{{ $t('strings.appManagement') }}" back-icon = "{{ $t('png.info.back') }}"
+                    @back-type = "appInfoBack"></head-component>
+
     <!-- search bar-->
-    <div class="search" show="false">
-        <search id="search" style="height: 60px;" hint="{{$t('strings.search')}}" focusable="false" value="{{inputSearchValue}}" ontouchstart="onClick"></search>
+    <div class = "search" show = "false">
+        <search id = "search" style = "height : 60px;" hint = "{{ $t('strings.search') }}" focusable = "false"
+                value = "{{ inputSearchValue }}" ontouchstart = "onClick"></search>
     </div>
+    <div show = "{{ animatorOn }}" class = "animator-div">
+        <image-animator class = "animator" ref = "animator" images = "{{ frames }}" duration="1s"/>
+        <text class = "loading-text">{{ $t('strings.loading') }}</text>
+    </div>
+
     <!--List item-->
-    <settings-list-component parent-data="{{appList}}"></settings-list-component>
+    <settings-list-component list-show = "{{ contentViewIsShow }}" parent-data = "{{ appList }}"></settings-list-component>
 </div>
 

@@ -19,14 +19,21 @@ import LogUtil from '../../common/baseUtil/LogUtil.js';
 /**
  * app setting homepage service class
  */
-let baseParseConfModel = new BaseParseConfModel();
-let logUtil = new LogUtil();
-var settingList;
+let mBaseParseConfModel = null;
+let mLogUtil = null;
+let mSettingList = null;
 
 export default class SettingListModel extends BaseModel {
+    constructor() {
+        super();
+        mBaseParseConfModel = new BaseParseConfModel();
+        mLogUtil = new LogUtil();
+    }
+
     setSettingListener(callback) {
-        settingList = baseParseConfModel.getJsonData('/data/accounts/account_0/applications/com.ohos.settings/com.ohos.settings/assets/entry/resources/rawfile/settinglist.json');
-        logUtil.info('settings settingList get by json:' + JSON.stringify(settingList));
-        callback(settingList);
+        mSettingList = mBaseParseConfModel.getJsonData('/data/accounts/account_0/applications/com.ohos.settings'
+            + '/com.ohos.settings/assets/entry/resources/rawfile/settinglist.json');
+        mLogUtil.info('settings settingList get by json:' + JSON.stringify(mSettingList));
+        callback(mSettingList);
     }
 }
