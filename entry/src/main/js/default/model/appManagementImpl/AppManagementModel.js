@@ -15,7 +15,7 @@
 import BaseModel from '../BaseModel.js';
 import LogUtil from '../../common/baseUtil/LogUtil.js';
 import Bundle from '@ohos.bundle';
-import Resmgr from '@ohos.resmgr';
+import Resmgr from '@ohos.resourceManager';
 
 let mLogUtil = null;
 
