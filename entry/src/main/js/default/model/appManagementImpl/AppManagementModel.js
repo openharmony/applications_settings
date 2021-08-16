@@ -14,7 +14,7 @@
  */
 import BaseModel from '../BaseModel.js';
 import bundle from '@ohos.bundle';
-import resmgr from '@ohos.resmgr';
+import resmgr from '@ohos.resourceManager';
 const index =0;
 const isIncludeAbilityInfos=0;
 /**
