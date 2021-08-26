@@ -129,8 +129,8 @@ export default {
             const y = datetime.getFullYear();
             const m = datetime.getMonth() + 1;
             const d = datetime.getDate();
-            const str = y + '/' + mDateAndTimeUtil.fill(m) + '/' + mDateAndTimeUtil.fill(d)
-                + ' ' + this.currentTime + ':' + '00';
+            const str = y + '-' + mDateAndTimeUtil.fill(m) + '-' + mDateAndTimeUtil.fill(d)
+                + 'T' + this.currentTime + ':' + '00';
             mLogUtil.info('timeDialog init start::' + str);
             const s = (new Date(str)).getTime();
             mLogUtil.info('timeDialog time::' + s);

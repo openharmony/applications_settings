@@ -14,7 +14,7 @@
  */
 import Router from '@system.router';
 import LogUtil from '../../common/baseUtil/LogUtil.js';
-import Resmgr from '@ohos.resmgr';
+import Resmgr from '@ohos.resourceManager';
 
 let mLogUtil = null;
 
