@@ -32,9 +32,9 @@ export default class BaseParseConfModel extends BaseModel {
             let buf = new ArrayBuffer(4096);
             let len = ss.readSync(buf);
             mLogUtil.info('settings dateAndTime BaseParseConfModel getJsonData len' + JSON.stringify(len) + len);
-            let arr = new Uint8Array(buf)
+            let arr = new Uint8Array(buf);
             let charAt = ' '.charCodeAt(0);
-            for (let i = len;i < 4096; i++) {
+            for (let i = len; i < 4096; i++) {
                 arr[i] = charAt;
             }
             let content = String.fromCharCode.apply(null, arr);
