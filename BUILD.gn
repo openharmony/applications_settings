@@ -14,26 +14,24 @@
 import("//build/ohos.gni")
 
 ohos_hap("ark_settings") {
-    hap_profile = "entry/src/main/config.json"
-    deps = [
-        ":settings_js_assets",
-        ":settings_resources",
-    ]
-    js2abc = true
-    shared_libraries = [
-        "//third_party/libpng:libpng",
-    ]
-    certificate_profile = "signature/settings.p7b"
-    hap_name = "ark_settings"
-    part_name = "prebuilt_hap"
-    subsystem_name = "applications"
+  hap_profile = "entry/src/main/config.json"
+  deps = [
+    ":settings_js_assets",
+    ":settings_resources",
+  ]
+  js2abc = true
+  shared_libraries = [ "//third_party/libpng:libpng" ]
+  certificate_profile = "signature/settings.p7b"
+  hap_name = "ark_settings"
+  part_name = "prebuilt_hap"
+  subsystem_name = "applications"
 }
 
 ohos_js_assets("settings_js_assets") {
-    source_dir = "entry/src/main/js/default"
+  source_dir = "entry/src/main/js/default"
 }
 
 ohos_resources("settings_resources") {
-    sources = ["entry/src/main/resources"]
-    hap_profile = "entry/src/main/config.json"
+  sources = [ "entry/src/main/resources" ]
+  hap_profile = "entry/src/main/config.json"
 }
