@@ -5,34 +5,25 @@
     "settingAlias": "wifiTab",
     "settingValue": "",
     "settingArrow": "/res/image/ic_settings_arrow.svg",
-    "settingDefaultValue": false,
     "settingSummary": "",
-    "settingShowDivider": true,
-    "settingType": 1,
-    "settingUri": "pages/wifi/wifi"
+    "settingUri": "pages/wifi"
   },{
     "settingIcon": "/res/image/ic_settings_display.svg",
     "settingTitle": "",
     "settingAlias": "brightnessTab",
     "settingValue": "",
     "settingArrow": "/res/image/ic_settings_arrow.svg",
-    "settingDefaultValue": false,
     "settingSummary": "",
-    "settingShowDivider": true,
-    "settingType": 1,
-    "settingUri": "pages/brightness/brightnessSettings"
+    "settingUri": "pages/brightnessSettings"
   },
   {
-    "settingIcon": "/res/image/ic_settings_applications.svg",
+    "settingIcon": "res/image/ic_settings_applications.svg",
     "settingTitle": "",
     "settingAlias": "applyTab",
     "settingValue": "",
-    "settingArrow": "/res/image/ic_settings_arrow.svg",
-    "settingDefaultValue": true,
+    "settingArrow": "res/image/ic_settings_arrow.svg",
     "settingSummary": "",
-    "settingShowDivider": true,
-    "settingType": 1,
-    "settingUri": "pages/appManagement/appManagement"
+    "settingUri": "pages/appManagement"
   },
   {
     "settingIcon": "/res/image/ic_settings_advanced.svg",
@@ -40,11 +31,8 @@
     "settingAlias": "dateAndTimeTab",
     "settingValue": "",
     "settingArrow": "/res/image/ic_settings_arrow.svg",
-    "settingDefaultValue": true,
     "settingSummary": "",
-    "settingShowDivider": true,
-    "settingType": 1,
-    "settingUri": "pages/dateAndTime/dateAndTime"
+    "settingUri": "pages/dateAndTime"
   },
   {
     "settingIcon": "/res/image/ic_settings_about.svg",
@@ -52,10 +40,7 @@
     "settingAlias": "aboutTab",
     "settingValue": "",
     "settingArrow": "/res/image/ic_settings_arrow.svg",
-    "settingDefaultValue": true,
     "settingSummary": "",
-    "settingShowDivider": false,
-    "settingType": 1,
-    "settingUri": "pages/aboutDevice/aboutDevice"
+    "settingUri": "pages/aboutDevice"
   }
 ]

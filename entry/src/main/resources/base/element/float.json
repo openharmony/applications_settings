@@ -1,0 +1,28 @@
+{
+  "float": [
+    {
+      "name": "font_35vp",
+      "value": "35.0vp"
+    },
+    {
+      "name": "font_18",
+      "value": "18.0fp"
+    },
+    {
+      "name": "font_20",
+      "value": "20.0fp"
+    },
+    {
+      "name": "font_21",
+      "value": "21.0fp"
+    },
+    {
+      "name": "font_22",
+      "value": "22.0fp"
+    },
+    {
+      "name": "font_50",
+      "value": "50.0fp"
+    }
+  ]
+}
