@@ -1,0 +1,65 @@
+/**
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * date package tool class
+ */
+export class DateAndTimeUtil{
+    /**
+     *
+     * Get the current time
+     */
+    getSystemTime() {
+        let datetime = new Date();
+        let hours = datetime.getHours();
+        let minutes = datetime.getMinutes();
+        let time = this.concatTime(hours, minutes)
+        return time;
+    }
+    /**
+     *
+     * Get the current date
+     */
+    getSystemDate() {
+        let dateTime = new Date();
+        let year = dateTime.getFullYear();
+        let month = dateTime.getMonth() + 1;
+        let day = dateTime.getDate();
+        let date = this.concatDate(year,month,day)
+        return date
+    }
+    /**
+     * format
+     * @param value
+     * @return
+     */
+    fill(value) {
+        return (value > 9 ? "" : "0") + value;
+    };
+    /**
+     * concat date
+     * @param year m d
+     * @return
+     */
+    concatDate(year, month, date) {
+        return year + '年' + month + '月' + date + '日';
+    };
+
+    concatTime(hours, minutes) {
+        return `${this.fill(hours)}:${this.fill(minutes)}`;
+    };
+}
+
+let dateAndTimeUtil = new DateAndTimeUtil();
+export default dateAndTimeUtil as DateAndTimeUtil
