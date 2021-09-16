@@ -1,42 +1,27 @@
 [
   {
-    "settingIcon": "",
-    "settingType": 0,
     "settingAlias": "systemName",
     "settingTitle": "",
-    "settingValue": "OpenHarmony",
-    "settingShowDivider": true
+    "settingValue": "OpenHarmony"
   },
   {
-    "settingIcon": "",
-    "settingType": 0,
     "settingAlias": "model",
     "settingTitle": "",
-    "settingValue": "",
-    "settingShowDivider": true
+    "settingValue": ""
   },
   {
-    "settingIcon": "",
-    "settingType": 0,
     "settingAlias": "companyInfo",
     "settingTitle": "",
-    "settingValue": "",
-    "settingShowDivider": true
+    "settingValue": ""
   },
   {
-    "settingIcon": "",
-    "settingType": 0,
     "settingAlias": "deviceId",
     "settingTitle": "",
-    "settingValue": "00000000000000",
-    "settingShowDivider": true
+    "settingValue": "00000000000000"
   },
   {
-    "settingIcon": "",
-    "settingType": 0,
     "settingAlias": "softwareVersion",
     "settingTitle": "",
-    "settingValue": "",
-    "settingShowDivider": true
+    "settingValue": ""
   }
 ]
