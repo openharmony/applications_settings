@@ -1,28 +1,84 @@
 {
   "float": [
     {
-      "name": "font_35vp",
-      "value": "35.0vp"
+      "name": "wh_value_1",
+      "value": "1"
+    },
+    {
+      "name": "wh_value_5",
+      "value": "5"
+    },
+    {
+      "name": "wh_value_10",
+      "value": "10"
+    },
+    {
+      "name": "wh_value_15",
+      "value": "15"
+    },
+    {
+      "name": "wh_value_20",
+      "value": "20"
+    },
+    {
+      "name": "wh_value_40",
+      "value": "40"
+    },
+    {
+      "name": "wh_value_50",
+      "value": "50"
+    },
+    {
+      "name": "wh_value_60",
+      "value": "60"
+    },
+    {
+      "name": "wh_value_65",
+      "value": "65"
+    },
+    {
+      "name": "wh_value_70",
+      "value": "70"
+    },
+    {
+      "name": "wh_value_80",
+      "value": "80"
+    },
+    {
+      "name": "wh_value_130",
+      "value": "1300"
+    },
+    {
+      "name": "wh_value_160",
+      "value": "160"
+    },
+    {
+      "name": "font_35",
+      "value": "35"
     },
     {
       "name": "font_18",
-      "value": "18.0fp"
+      "value": "18"
     },
     {
       "name": "font_20",
-      "value": "20.0fp"
+      "value": "20"
     },
     {
       "name": "font_21",
-      "value": "21.0fp"
+      "value": "21"
     },
     {
       "name": "font_22",
-      "value": "22.0fp"
+      "value": "22"
+    },
+    {
+      "name": "font_24",
+      "value": "24"
     },
     {
       "name": "font_50",
-      "value": "50.0fp"
+      "value": "50"
     }
   ]
 }
