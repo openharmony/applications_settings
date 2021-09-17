@@ -32,7 +32,7 @@ export class WifiModel extends BaseModel {
   }
 
   disableWifi() {
-    LogUtil.info('WifiNativeJs enableWifi');
+    LogUtil.info('WifiNativeJs disableWifi');
     return WifiNativeJs.disableWifi();
   }
 

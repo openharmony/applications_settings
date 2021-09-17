@@ -25,6 +25,7 @@ struct EntryComponent {
   @Prop settingValue: string;
   @Prop settingArrow: string;
   @Prop settingArrowStyle: string;
+  @Prop settingUri: string;
 
   build() {
     Flex({ justifyContent: FlexAlign.SpaceBetween }) {
@@ -43,14 +44,24 @@ struct EntryComponent {
             .maxLines(ConfigData.MAX_LINES_3)
             .textOverflow({ overflow: TextOverflow.Ellipsis })
             .margin({ top: $r('app.float.wh_value_10'), bottom: $r('app.float.wh_value_5') });
-          Text(this.settingSummary)
-            .fontColor($r('app.color.color_999999_grey'))
-            .fontSize($r('app.float.font_18'))
-            .textAlign(TextAlign.Start)
-            .maxLines(ConfigData.MAX_LINES_1)
-            .textOverflow({ overflow: TextOverflow.Ellipsis })
-            .visibility('' === this.settingSummary ? Visibility.None : Visibility.Visible)
-            .margin({ bottom: $r('app.float.wh_value_10') });
+          Row() {
+            Text($r('app.string.version'))
+              .fontColor($r('app.color.color_999999_grey'))
+              .fontSize($r('app.float.font_18'))
+              .textAlign(TextAlign.Start)
+              .maxLines(ConfigData.MAX_LINES_1)
+              .textOverflow({ overflow: TextOverflow.Ellipsis })
+              .visibility('pages/applicationInfo' === this.settingUri ? Visibility.Visible : Visibility.None)
+              .margin({ bottom: $r('app.float.wh_value_10') });
+            Text(this.settingSummary)
+              .fontColor($r('app.color.color_999999_grey'))
+              .fontSize($r('app.float.font_18'))
+              .textAlign(TextAlign.Start)
+              .maxLines(ConfigData.MAX_LINES_1)
+              .textOverflow({ overflow: TextOverflow.Ellipsis })
+              .visibility('' === this.settingSummary ? Visibility.None : Visibility.Visible)
+              .margin({ bottom: $r('app.float.wh_value_10') });
+          }
         }
         .alignItems(HorizontalAlign.Start);
       }
