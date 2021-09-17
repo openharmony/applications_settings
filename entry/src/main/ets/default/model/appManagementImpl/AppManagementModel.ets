@@ -76,7 +76,7 @@ export class AppManagementModel extends BaseModel {
             settingTitle: label,
             settingValue: '',
             settingArrow: $r('app.media.ic_settings_arrow'),
-            settingSummary: '版本：' + data[index].versionName,
+            settingSummary: data[index].versionName,
             settingBundleName: data[index].name,
             settingIconId: appInfo.iconId,
             settingUri: 'pages/applicationInfo'

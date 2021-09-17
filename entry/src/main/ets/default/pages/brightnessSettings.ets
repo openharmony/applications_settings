@@ -20,13 +20,14 @@ import SubscriberUtils from '../common/baseUtil/SubscriberUtil.ets';
 import Router from '@system.router';
 
 const BRIGHTNESS_MIN_VALUE = 0;
-const BRIGHTNESS_MAX_VALUE = 100;
+const BRIGHTNESS_MAX_VALUE = 255;
 const BRIGHTNESS_STEP_VALUE = 10;
+const SENT_EVENT_IN_BRIGHTNESS_PAGES = '-1';
 
 @Entry
 @Component
 struct BrightnessSettings {
-  @State bright: number= 50;
+  @State bright: number= 150;
 
   build() {
     Column() {
@@ -46,7 +47,8 @@ struct BrightnessSettings {
           .blockColor(Color.Blue)
           .width(ConfigData.WH_83_100)
           .onChange((number, SliderChangeMode) => {
-          BrightnessSettingModel.setBrightnessListener(number);
+          this.bright = Math.round(number);
+          BrightnessSettingModel.setBrightnessListener(this.bright);
           BrightnessSettingModel.setStorageValue(this.bright);
           SubscriberUtils.sendEvent(this.bright + '', ConfigData.SENT_EVENT_BROADCAST_BRIGHTNESS_VALUE);
         });
@@ -64,6 +66,7 @@ struct BrightnessSettings {
   private aboutToAppear(): void{
     LogUtil.info('settings BrightnessSettings aboutToDisappear in');
     this.bright = BrightnessSettingModel.getStorageValue();
+    SubscriberUtils.sendEvent(SENT_EVENT_IN_BRIGHTNESS_PAGES, ConfigData.SENT_EVENT_BROADCAST_BRIGHTNESS_VALUE);
     SubscriberUtils.registerStatusListener();
     LogUtil.info('settings BrightnessSettings aboutToDisappear out');
   }
