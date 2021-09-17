@@ -99,7 +99,8 @@ struct Index {
                 settingSummary: item.settingSummary,
                 settingValue: '',
                 settingArrow: item.settingArrow,
-                settingArrowStyle: 'wifi'
+                settingArrowStyle: 'wifi',
+                settingUri: ''
               });
             }.onClick(() => {
               this.connectName = item.settingTitle
