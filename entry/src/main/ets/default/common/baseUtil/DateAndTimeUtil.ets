@@ -55,9 +55,60 @@ export class DateAndTimeUtil{
     concatDate(year, month, date) {
         return year + '年' + month + '月' + date + '日';
     };
-
+    /**
+     * concat time
+     * @param hours minutes
+     * @return
+     */
     concatTime(hours, minutes) {
         return `${this.fill(hours)}:${this.fill(minutes)}`;
+    };
+
+    /**
+     * Calculate the week base on date
+     * @param y
+     * @param m
+     * @param d
+     * @return
+     */
+    convert(y, m, d) {
+        console.info('DateAndTimeUtil come in')
+        if (m == 1||m == 2) {
+            m += 12;
+            y--;
+        }
+        let a = 3 * (m + 1) / 5;
+        let b = y / 4
+        let c = y / 100
+        let e = y / 400
+        const week = (d + 2 * m + Math.floor(a) + y + Math.floor(b)
+        - Math.floor(c) + Math.floor(e) + 1) % 7;
+        console.info('DateAndTimeUtil get week ' + week);
+        switch (week) {
+            case 0:
+                return '星期日';
+                break;
+            case 1:
+                return '星期一';
+                break;
+            case 2:
+                return '星期二';
+                break;
+            case 3:
+                return '星期三';
+                break;
+            case 4:
+                return '星期四';
+                break;
+            case 5:
+                return '星期五';
+                break;
+            case 6:
+                return '星期六';
+                break;
+            default:
+                break;
+        }
     };
 }
 

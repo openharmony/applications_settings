@@ -21,6 +21,10 @@
       "value": "20"
     },
     {
+      "name": "wh_value_30",
+      "value": "30"
+    },
+    {
       "name": "wh_value_40",
       "value": "40"
     },
@@ -53,6 +57,22 @@
       "value": "160"
     },
     {
+      "name": "wh_value_230",
+      "value": "230"
+    },
+    {
+      "name": "wh_value_280",
+      "value": "280"
+    },
+    {
+      "name": "wh_value_390",
+      "value": "390"
+    },
+    {
+      "name": "wh_value_400",
+      "value": "400"
+    },
+    {
       "name": "font_35",
       "value": "35"
     },
@@ -75,6 +95,10 @@
     {
       "name": "font_24",
       "value": "24"
+    },
+    {
+      "name": "font_28",
+      "value": "28"
     },
     {
       "name": "font_50",
