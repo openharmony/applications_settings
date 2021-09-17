@@ -49,13 +49,13 @@ struct Index {
       HeadComponent({ headName: $r('app.string.wifiTab'), isActive: true });
       Row() {
         Text($r('app.string.wifiTab'))
-          .fontSize(ConfigData.font_22)
+          .fontSize($r('app.float.font_22'))
           .fontColor(Color.Black)
           .textAlign(TextAlign.Start)
         Toggle({ type: ToggleType.Switch, isOn: this.isOn })
-          .width(390)
-          .margin({ left: 280 })
-          .height(ConfigData.value_40)
+          .width($r('app.float.wh_value_390'))
+          .margin({ left: $r('app.float.wh_value_280') })
+          .height($r('app.float.wh_value_40'))
           .onChange((isOn: boolean) => {
           this.isOn = !this.isOn;
           if (this.isOn) {
@@ -66,29 +66,29 @@ struct Index {
         });
       }
       .width(ConfigData.WH_100_100)
-      .height(ConfigData.value_70)
-      .margin({ left: ConfigData.value_15, right: ConfigData.value_15 });
+      .height($r('app.float.wh_value_70'))
+      .margin({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') });
 
       Text($r('app.string.tipsContent'))
         .visibility(this.isOn ? Visibility.None : Visibility.Visible)
-        .fontSize(ConfigData.font_20)
+        .fontSize($r('app.float.font_20'))
         .align(Alignment.Start)
-        .margin({ left: ConfigData.value_15, right: ConfigData.value_15 });
+        .margin({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') });
       Column() {
         Row() {
           Text($r('app.string.wifiList'))
-            .fontSize(ConfigData.font_24)
+            .fontSize($r('app.float.font_24'))
             .align(Alignment.Start);
           Row() {
-            ImageAnimatorComponent({ imageWidth: ConfigData.value_40,
-              imageHeight: ConfigData.value_40 })
+            ImageAnimatorComponent({ imageWidth: $r('app.float.wh_value_40'),
+              imageHeight: $r('app.float.wh_value_40') })
           }
-          .width(280)
-          .margin({ left: 230 })
+          .width($r('app.float.wh_value_280'))
+          .margin({ left: $r('app.float.wh_value_230') })
           .visibility(this.isShow ? Visibility.Visible : Visibility.None);
         }
-        .width('100%')
-        .margin({ left: ConfigData.value_15, right: ConfigData.value_15 });
+        .width(ConfigData.WH_100_100)
+        .margin({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') });
 
         List() {
           ForEach(this.wifiList, (item) => {
@@ -99,8 +99,7 @@ struct Index {
                 settingSummary: item.settingSummary,
                 settingValue: '',
                 settingArrow: item.settingArrow,
-                settingArrowStyle: 'wifi',
-                settingUri: ''
+                settingArrowStyle: 'wifi'
               });
             }.onClick(() => {
               this.connectName = item.settingTitle
@@ -110,19 +109,19 @@ struct Index {
               this.connectRssi = item.settingRssi
               this.connectWifi();
             })
-            .height(ConfigData.value_60)
+            .height($r('app.float.wh_value_60'))
           }, item => JSON.stringify(item));
         }
         .divider({
-          strokeWidth: ConfigData.value_1,
-          color: ConfigData.color_E3E3E3,
-          startMargin: ConfigData.value_15,
-          endMargin: ConfigData.value_15
+          strokeWidth: $r('app.float.wh_value_1'),
+          color: $r('app.color.color_E3E3E3_grey'),
+          startMargin: $r('app.float.wh_value_15'),
+          endMargin: $r('app.float.wh_value_15')
         })
         .width(ConfigData.WH_100_100)
         .height(ConfigData.WH_100_100)
         .align(Alignment.Top)
-        .margin({ bottom: ConfigData.value_70, top: ConfigData.value_20 });
+        .margin({ bottom: $r('app.float.wh_value_70'), top: $r('app.float.wh_value_20') });
       }
       .width(ConfigData.WH_100_100)
       .height(ConfigData.WH_100_100)
