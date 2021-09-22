@@ -35,6 +35,7 @@ struct Index {
   private timeoutFlag;
   private timeoutMark;
   @State connectRssi: number = -1;
+  @State connectBand: number = -1;
   @State connectImage: string = '';
   @State connectName: string = '';
   @State connectBssid: string = '';
@@ -108,6 +109,7 @@ struct Index {
               this.connectBssid = item.bssid
               this.connectSecurityType = item.securityType
               this.connectRssi = item.settingRssi
+              this.connectBand = item.settingBand
               this.connectWifi();
             })
             .height($r('app.float.wh_value_60'))
@@ -207,10 +209,18 @@ struct Index {
     }
   }
 
+  private sleep(delay) {
+    let start = (new Date()).getTime();
+    while ((new Date()).getTime() - start < delay) {
+      continue;
+    }
+  }
+
   private switchOn() {
     LogUtil.info('switchClick wifi start ---->');
     this.clearScanInfo();
     this.isShow = true;
+    this.sleep(1000);
     if (WifiModel.getEnableWifi()) {
       LogUtil.info('switchClick wifi enableWifi enter ---->');
       let that = this;
@@ -260,10 +270,11 @@ struct Index {
     LogUtil.info('==========================>SubscriberCallBack  data = ' + JSON.stringify(data));
     LogUtil.info('==========================>SubscriberCallBack  data code = ' + data.code);
 
-    if (data.code === 3) {
-      let wifi = { 'name': '', 'rssi': 0 };
+    if (data.code === 1) {
+      let wifi = { 'name': '', 'rssi': -1 ,'band': -1 };
       wifi.name = this.connectName;
       wifi.rssi = this.connectRssi;
+      wifi.band = this.connectBand;
       SubscriberUtils.sendEvent(JSON.stringify(wifi), ConfigData.SENT_EVENT_WIFI_CONNECT_NAME);
       let index = WifiModel.getItemPosition(this.wifiList, this.connectName);
       this.wifiList.splice(index, 1);
@@ -274,6 +285,7 @@ struct Index {
         settingArrow: this.connectImage,
         settingArrowStyle: 'wifi',
         settingRssi: this.connectRssi,
+        settingBand: this.connectBand,
         bssid: this.connectBssid,
         securityType: this.connectSecurityType,
       });
