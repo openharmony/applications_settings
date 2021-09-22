@@ -24,56 +24,55 @@ import Router from '@system.router';
 @Component
 struct AppManagement {
   @StorageLink('appManagementList') appList: any[]= [];
-  @State animatorIsShow: boolean= [] === this.appList ? true : false;
+  @State animatorIsShow: boolean= true;
+  @State whtl: number= 160;
 
   build() {
     Column() {
       HeadComponent({ headName: $r('app.string.appManagement'), isActive: true });
-      Stack() {
-        Column() {
-          ImageAnimatorComponent({ imageWidth: $r('app.float.wh_value_160'),
-            imageHeight: $r('app.float.wh_value_160') });
-        }
-        .zIndex(1)
-        .visibility(this.animatorIsShow ? Visibility.Visible : Visibility.None)
-        .width(ConfigData.WH_100_100)
-        .height(ConfigData.WH_100_100);
-
-        List() {
-          ForEach(this.appList, (item) => {
-            ListItem() {
-              EntryComponent({
-                settingIcon: item.settingIcon,
-                settingTitle: item.settingTitle + '',
-                settingSummary: item.settingSummary,
-                settingValue: item.settingValue,
-                settingArrow: item.settingArrow,
-                settingArrowStyle: '',
-                settingUri: item.settingUri,
-              });
-            }
-            .onClick(() => {
-              Router.push({ uri: item.settingUri, params: item });
-            })
-            .height($r('app.float.wh_value_70'));
-          }, item => JSON.stringify(item));
-        }
-        .divider({
-          strokeWidth: 1,
-          color: $r('app.color.color_E3E3E3_grey'),
-          startMargin: $r('app.float.wh_value_65'),
-          endMargin: $r('app.float.wh_value_15')
-        })
-        .width(ConfigData.WH_100_100)
-        .height(ConfigData.WH_100_100)
-        .margin({ bottom: $r('app.float.wh_value_70') })
-        .visibility(this.animatorIsShow ? Visibility.None : Visibility.Visible)
-        .zIndex(0);
+      Column() {
+        ImageAnimatorComponent({ imageWidth: $r('app.float.wh_value_160'),
+          imageHeight: $r('app.float.wh_value_160'), whtl: $r('app.float.wh_value_160') });
       }
+      .zIndex(1)
+      .visibility(this.animatorIsShow ? Visibility.Visible : Visibility.None)
+      .align(Alignment.Center)
+      .padding({ top: ConfigData.WH_35_100 })
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100);
+
+      List() {
+        ForEach(this.appList, (item) => {
+          ListItem() {
+            EntryComponent({
+              settingIcon: item.settingIcon,
+              settingTitle: item.settingTitle + '',
+              settingSummary: item.settingSummary,
+              settingValue: item.settingValue,
+              settingArrow: item.settingArrow,
+              settingArrowStyle: '',
+              settingUri: item.settingUri,
+            });
+          }
+          .onClick(() => {
+            Router.push({ uri: item.settingUri, params: item });
+          })
+          .height($r('app.float.wh_value_70'));
+        }, item => JSON.stringify(item));
+      }
+      .divider({
+        strokeWidth: 1,
+        color: $r('app.color.color_E3E3E3_grey'),
+        startMargin: $r('app.float.wh_value_65'),
+        endMargin: $r('app.float.wh_value_15')
+      })
       .width(ConfigData.WH_100_100)
       .height(ConfigData.WH_100_100)
-      .alignContent(Alignment.Center);
+      .margin({ bottom: $r('app.float.wh_value_70') })
+      .visibility(this.animatorIsShow ? Visibility.None : Visibility.Visible)
+      .zIndex(0);
     }
+    .align(Alignment.Center)
     .width(ConfigData.WH_100_100)
     .height(ConfigData.WH_100_100);
   }
@@ -82,6 +81,12 @@ struct AppManagement {
     LogUtil.info('settings AppManagement aboutToAppear in');
     AppManagementModel.setAppManagementListener();
     LogUtil.info('settings AppManagement aboutToAppear  appList:' + JSON.stringify(this.appList));
+  }
+
+  onPageShow(): void{
+    LogUtil.info('settings AppManagement onPageShow in');
+    this.animatorIsShow = [] === this.appList ? true : false;
+    LogUtil.info('settings AppManagement onPageShow out');
   }
 
   onBackPress() {

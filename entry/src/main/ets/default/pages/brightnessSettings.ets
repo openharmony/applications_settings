@@ -27,7 +27,8 @@ const SENT_EVENT_IN_BRIGHTNESS_PAGES = '-1';
 @Entry
 @Component
 struct BrightnessSettings {
-  @State bright: number= 150;
+//  @State getStorageValueBright: number= 150;
+  @StorageLink('BrightnessSetValue') bright: number= 150;
 
   build() {
     Column() {
