@@ -19,6 +19,7 @@ export default
 struct ImageAnimatorComponent {
   @State imageWidth: number = 0
   @State imageHeight: number = 0
+  @State whtl: number = ConfigData.value_20;
 
   build() {
     Column() {
@@ -27,50 +28,50 @@ struct ImageAnimatorComponent {
         {
           src: 'res/image/xxxhdpi/ic_loading01.png',
           duration: ConfigData.DURATION_TIME,
-          width: ConfigData.value_20,
-          height: ConfigData.value_20,
-          top: ConfigData.value_20,
-          left: ConfigData.value_20
+          width: this.whtl,
+          height: this.whtl,
+          top: this.whtl,
+          left: this.whtl
         },
         {
           src: 'res/image/xxxhdpi/ic_loading02.png',
           duration: ConfigData.DURATION_TIME,
-          width: ConfigData.value_20,
-          height: ConfigData.value_20,
-          top: ConfigData.value_20,
-          left: ConfigData.value_20
+          width: this.whtl,
+          height: this.whtl,
+          top: this.whtl,
+          left: this.whtl
         },
         {
           src: 'res/image/xxxhdpi/ic_loading03.png',
           duration: ConfigData.DURATION_TIME,
-          width: ConfigData.value_20,
-          height: ConfigData.value_20,
-          top: ConfigData.value_20,
-          left: ConfigData.value_20
+          width: this.whtl,
+          height: this.whtl,
+          top: this.whtl,
+          left: this.whtl
         },
         {
           src: 'res/image/xxxhdpi/ic_loading04.png',
           duration: ConfigData.DURATION_TIME,
-          width: ConfigData.value_20,
-          height: ConfigData.value_20,
-          top: ConfigData.value_20,
-          left: ConfigData.value_20
+          width: this.whtl,
+          height: this.whtl,
+          top: this.whtl,
+          left: this.whtl
         },
         {
           src: 'res/image/xxxhdpi/ic_loading05.png',
           duration: ConfigData.DURATION_TIME,
-          width: ConfigData.value_20,
-          height: ConfigData.value_20,
-          top: ConfigData.value_20,
-          left: ConfigData.value_20
+          width: this.whtl,
+          height: this.whtl,
+          top: this.whtl,
+          left: this.whtl
         },
         {
           src: 'res/image/hdpi/ic_loading06.png',
           duration: ConfigData.DURATION_TIME,
-          width: ConfigData.value_20,
-          height: ConfigData.value_20,
-          top: ConfigData.value_20,
-          left: ConfigData.value_20
+          width: this.whtl,
+          height: this.whtl,
+          top: this.whtl,
+          left: this.whtl
         }])
         .width(this.imageWidth)
         .height(this.imageHeight)
