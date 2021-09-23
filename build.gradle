@@ -1,5 +1,5 @@
 ohos {
-    compileSdkVersion 6
+    compileSdkVersion 7
     defaultConfig {
         compatibleSdkVersion 6
     }
