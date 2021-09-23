@@ -52,12 +52,15 @@ export class SubscriberUtils {
   }
 
   statusSubscriberCallBack(err, data) {
-    console.info(`settings settingList statusSubscriberCallBack data ets : ${JSON.stringify(data)}` );
+    console.info(`settings settingList statusSubscriberCallBack data ets : ${JSON.stringify(data)}`);
     console.info(`settings settingList statusSubscriberCallBack err ets : ${JSON.stringify(err)}`);
     console.log(`settings settingList statusSubscriberCallBack data.event ets : ${data.event} `);
     if ("BRIGHTNESS_VALUE_SYSTEM_UI" === data.event) {
-      BrightnessSettingModel.setBrightnessListener(data.data + '');
-      BrightnessSettingModel.setStorageValue(data.data);
+      console.log(`settings settingList statusSubscriberCallBack data.data ets : ${data.data} `);
+      let mBrightnessSetValue = AppStorage.SetAndLink('BrightnessSetValue', 150);
+      mBrightnessSetValue.set(parseInt(data.data));
+      BrightnessSettingModel.setBrightnessListener(parseInt(data.data));
+      BrightnessSettingModel.setStorageValue(parseInt(data.data));
     }
     if (err) {
       console.info(`settings settingList statusSubscriberCallBack error : ${err}`)
