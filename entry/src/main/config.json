@@ -39,7 +39,16 @@
         "description": "$string:mainability_description",
         "label": "$string:entry_MainAbility",
         "type": "page",
-        "launchType": "standard"
+        "launchType": "standard",
+        "srcPath": "default",
+        "srcLanguage": "ets",
+        "metaData": {
+          "customizeData": [
+            {
+              "name": "hwc-theme"
+            }
+          ]
+        }
       }
     ],
     "js": [
