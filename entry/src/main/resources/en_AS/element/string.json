@@ -106,11 +106,43 @@
     },
     {
       "name": "version",
-      "value": "version"
+      "value": "version "
     },
     {
       "name": "password",
       "value": "password"
+    },
+    {
+      "name": "connected",
+      "value": "connected"
+    },
+    {
+      "name": "monday",
+      "value": "monday"
+    },
+    {
+      "name": "tuesday",
+      "value": "tuesday"
+    },
+    {
+      "name": "wednesday",
+      "value": "wednesday"
+    },
+    {
+      "name": "thursday",
+      "value": "thursday"
+    },
+    {
+      "name": "friday",
+      "value": "friday"
+    },
+    {
+      "name": "saturday",
+      "value": "saturday"
+    },
+    {
+      "name": "sunday",
+      "value": "sunday"
     }
   ]
 }

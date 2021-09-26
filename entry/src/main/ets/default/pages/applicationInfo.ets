@@ -33,7 +33,8 @@ struct ApplicationInfo {
           settingSummary: appInfo.settingSummary,
           settingValue: '',
           settingArrow: '',
-          settingArrowStyle: ''
+          settingArrowStyle: '',
+          settingUri: appInfo.settingUri
         });
       }
     }

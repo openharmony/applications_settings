@@ -43,7 +43,8 @@ struct SettingList {
                 settingSummary: item.settingSummary,
                 settingValue: item.settingValue,
                 settingArrow: item.settingArrow,
-                settingArrowStyle: ''
+                settingArrowStyle: '',
+                settingUri: item.settingUri
               });
             }
           }
