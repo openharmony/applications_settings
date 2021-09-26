@@ -110,11 +110,43 @@
     },
     {
       "name": "version",
-      "value": "版本"
+      "value": "版本 "
     },
     {
       "name": "password",
       "value": "密码"
+    },
+    {
+      "name": "connected",
+      "value": "已连接"
+    },
+    {
+      "name": "monday",
+      "value": "星期一"
+    },
+    {
+      "name": "tuesday",
+      "value": "星期二"
+    },
+    {
+      "name": "wednesday",
+      "value": "星期三"
+    },
+    {
+      "name": "thursday",
+      "value": "星期四"
+    },
+    {
+      "name": "friday",
+      "value": "星期五"
+    },
+    {
+      "name": "saturday",
+      "value": "星期六"
+    },
+    {
+      "name": "sunday",
+      "value": "星期日"
     }
   ]
 }
