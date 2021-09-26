@@ -37,10 +37,11 @@ struct WifiPsd {
 
       TextInput({ placeholder: '密码', text: this.text })
         .placeholderColor(Color.Blue)
-        .placeholderFont({ size: ConfigData.font_20, weight: 2, fontFamily: "sans-serif", style: FontStyle.Normal })
+        .placeholderFont({ size: ConfigData.font_20, weight: 2, family: "sans-serif", style: FontStyle.Normal })
         .caretColor(Color.Blue)
         .height($r('app.float.wh_value_70'))
         .backgroundColor(Color.White)
+        .type(InputType.Password)
         .width(ConfigData.WH_100_100)
         .margin({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') })
         .onChange((value: string) => {

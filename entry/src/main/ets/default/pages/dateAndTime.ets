@@ -30,13 +30,13 @@ struct dateAndTime {
   private timeMark: string = 'time';
   private intervalFlag;
   @State dateAndTimeList: any[] = [];
-  timeDialogController : CustomDialogController = new CustomDialogController({
-    builder: TimeDialog({action: this.onAccept}),
+  timeDialogController: CustomDialogController = new CustomDialogController({
+    builder: TimeDialog({ action: this.onAccept }),
     cancel: this.existApp,
     autoCancel: true
   });
-  dateDialogController : CustomDialogController = new CustomDialogController({
-    builder: DateDialog({action: this.onAccept}),
+  dateDialogController: CustomDialogController = new CustomDialogController({
+    builder: DateDialog({ action: this.onAccept }),
     cancel: this.existApp,
     autoCancel: true
   });
@@ -79,7 +79,7 @@ struct dateAndTime {
           })
           .width(ConfigData.WH_100_100)
           .height($r('app.float.wh_value_70'));
-        },item => JSON.stringify(item))
+        }, item => JSON.stringify(item))
       }
       .divider({ strokeWidth: $r('app.float.wh_value_1'), color: $r('app.color.color_E3E3E3_grey'),
         startMargin: $r('app.float.wh_value_15'), endMargin: $r('app.float.wh_value_15') })
@@ -93,6 +93,7 @@ struct dateAndTime {
   onAccept() {
     console.log("onAccept");
   }
+
   existApp() {
     console.log("Cancel dialog!");
   }
@@ -134,9 +135,8 @@ struct dateAndTime {
       this.date = DateAndTime.getSystemDate();
       console.log('get time end in' + this.time);
       this.changeValue();
-    },1000);
+    }, 1000);
   }
-
 
   private aboutToDisappear(): void {
     clearInterval(this.intervalFlag);
@@ -160,27 +160,32 @@ struct TimeDialog {
       Column() {
         Text($r('app.string.time'))
           .height($r('app.float.wh_value_60'))
-          .margin({left:$r('app.float.wh_value_30')})
+          .margin({ left: $r('app.float.wh_value_30') })
           .width(ConfigData.WH_100_100)
           .fontSize($r('app.float.font_28'));
-        DatePicker({selected: this.currentTime,type: DatePickerType.Time })
+        DatePicker({ selected: this.currentTime, type: DatePickerType.Time })
           .useMilitaryTime(true)
-          .onChange((date: DatePickerResult)=>{
-          this.currentTime = DateAndTime.concatTime(date.hour,date.minute);
+          .onChange((date: DatePickerResult) => {
+          this.currentTime = DateAndTime.concatTime(date.hour, date.minute);
           console.info("onchange currentTime" + this.currentTime);
         })
           .width(ConfigData.WH_100_100)
           .height($r('app.float.wh_value_280'))
       }
+
       Row() {
-        Button('取消')
-          .margin({left:$r('app.float.wh_value_80')})
+        Text($r('app.string.cancel'))
+          .fontSize($r('app.float.font_24'))
+          .fontColor(Color.Blue)
+          .margin({ left: $r('app.float.wh_value_80') })
           .onClick(() => {
           this.controller.close();
           this.action();
         })
-        Button('确定')
-          .margin({left: $r('app.float.wh_value_160')})
+        Text($r('app.string.confirm'))
+          .fontSize($r('app.float.font_24'))
+          .fontColor(Color.Blue)
+          .margin({ left: $r('app.float.wh_value_160') })
           .onClick(() => {
           LogUtil.info("button confirm");
           let datetime = new Date();
@@ -212,43 +217,55 @@ struct DateDialog {
   action: () => void;
   private currentDate;
   private formatDate;
-  private intervalDialog;
-  @State title:string = '';
+  @State date: string = '';
+  private day;
+  @StorageLink('Title') title: string= '';
 
   build() {
     Column() {
       Column() {
-        Text(this.title)
-          .height($r('app.float.wh_value_60'))
-          .margin({left:$r('app.float.wh_value_15')})
-          .width(ConfigData.WH_100_100)
-          .fontSize($r('app.float.font_28'))
+        Row() {
+          Text(this.date)
+            .fontSize($r('app.float.font_28'))
+          Text(this.day)
+            .fontSize($r('app.float.font_28'))
+        }
+        .height($r('app.float.wh_value_60'))
+        .margin({ left: $r('app.float.wh_value_15') })
+        .width(ConfigData.WH_100_100)
+
         DatePicker({ start: new Date('2008-12-21'), end: new Date('2030-12-12'),
-          selected: this.currentDate,type:  DatePickerType.Date})
-          .onChange((date: DatePickerResult)=>{
+          selected: this.currentDate, type: DatePickerType.Date })
+          .onChange((date: DatePickerResult) => {
           let datetime = new Date();
           let h = datetime.getHours();
           let min = datetime.getMinutes();
           let s = datetime.getSeconds();
-          this.formatDate = date.year + '-' + DateAndTime.fill(date.month+1) + '-' + DateAndTime.fill(date.day) + 'T' +
+          this.formatDate = date.year + '-' + DateAndTime.fill(date.month + 1) + '-' + DateAndTime.fill(date.day) + 'T' +
           DateAndTime.fill(h) + ':' + DateAndTime.fill(min) + ':' + DateAndTime.fill(s);
-          this.title = DateAndTime.concatDate(date.year,date.month+1,date.day) + DateAndTime.convert(date.year,date.month+1,date.day);
+          this.date = DateAndTime.concatDate(date.year, date.month + 1, date.day);
+          this.day = DateAndTime.convert(date.year, date.month + 1, date.day);
           LogUtil.info("onchange formatDate" + this.formatDate);
           LogUtil.info("onchange currentDate" + this.currentDate);
-          LogUtil.info("onchange title" + this.title);
+          LogUtil.info("onchange date" + this.date);
         })
           .width(ConfigData.WH_100_100)
           .height($r('app.float.wh_value_280'));
       }
+
       Row() {
-        Button('取消')
-          .margin({left:$r('app.float.wh_value_80')})
+        Text($r('app.string.cancel'))
+          .fontSize($r('app.float.font_24'))
+          .fontColor(Color.Blue)
+          .margin({ left: $r('app.float.wh_value_80') })
           .onClick(() => {
           this.controller.close();
           this.action();
         })
-        Button('确定')
-          .margin({left: $r('app.float.wh_value_160')})
+        Text($r('app.string.confirm'))
+          .fontSize($r('app.float.font_24'))
+          .fontColor(Color.Blue)
+          .margin({ left: $r('app.float.wh_value_160') })
           .onClick(() => {
           let s = (new Date(this.formatDate)).getTime();
           DateAndTimeModel.setTime(s);
@@ -262,12 +279,14 @@ struct DateDialog {
     .height($r('app.float.wh_value_400'))
     .width(ConfigData.WH_100_100);
   }
+
   private aboutToAppear() {
     let datetime = new Date();
     let y = datetime.getFullYear();
     let m = datetime.getMonth() + 1;
     let d = datetime.getDate();
-    this.title = DateAndTime.getSystemDate() + DateAndTime.convert(y,m,d);
+    this.date = DateAndTime.getSystemDate();
+    this.day = DateAndTime.convert(y, m, d);
   }
 }
 

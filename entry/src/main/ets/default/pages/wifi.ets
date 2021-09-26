@@ -279,7 +279,7 @@ struct Index {
       let index = WifiModel.getItemPosition(this.wifiList, this.connectName);
       this.wifiList.splice(index, 1);
       this.wifiList.unshift({
-        settingSummary: '已连接',
+        settingSummary: $r('app.string.connected'),
         settingTitle: this.connectName,
         settingValue: '',
         settingArrow: this.connectImage,
