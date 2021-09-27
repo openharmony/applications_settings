@@ -49,7 +49,7 @@ struct BrightnessSettings {
           .onChange((number, SliderChangeMode) => {
           this.bright = Math.round(number);
           BrightnessSettingModel.setBrightnessListener(this.bright);
-          BrightnessSettingModel.setStorageValue(this.bright);
+          BrightnessSettingModel.setStorageValue(ConfigData.BRIGHTNESS_SAVE_VALUE_KEY,this.bright);
           SubscriberUtils.sendEvent(this.bright + '', ConfigData.SENT_EVENT_BROADCAST_BRIGHTNESS_VALUE);
         });
         Image($r('app.media.ic_settings_brightness_maximum'))
@@ -65,7 +65,8 @@ struct BrightnessSettings {
 
   private aboutToAppear(): void{
     LogUtil.info('settings BrightnessSettings aboutToDisappear in');
-    this.bright = BrightnessSettingModel.getStorageValue();
+    this.bright = BrightnessSettingModel.getStorageValue(ConfigData.BRIGHTNESS_SAVE_VALUE_KEY,
+      ConfigData.BRIGHTNESS_DEFAULT_VALUE);
     SubscriberUtils.sendEvent(SENT_EVENT_IN_BRIGHTNESS_PAGES, ConfigData.SENT_EVENT_BROADCAST_BRIGHTNESS_VALUE);
     SubscriberUtils.registerStatusListener();
     LogUtil.info('settings BrightnessSettings aboutToDisappear out');
