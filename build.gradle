@@ -1,3 +1,6 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply plugin: 'com.huawei.ohos.app'
+
 ohos {
     compileSdkVersion 7
     defaultConfig {
