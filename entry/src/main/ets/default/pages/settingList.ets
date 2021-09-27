@@ -19,6 +19,8 @@ import HeadComponent from './component/headComponent.ets';
 import SettingListModel from '../model/settingListImpl/SettingListModel.ets';
 import WifiModel from '../model/wifiImpl/WifiModel.ets';
 import SubscriberUtils from '../common/baseUtil/SubscriberUtil.ets';
+import GlobalResourceManager from '../common/baseUtil/GlobalResourceManager.ets';
+import BrightnessSettingModel from '../model/brightnessImpl/BrightnessSettingModel.ets';
 import Router from '@system.router';
 
 const SETTING_LIST_INDEX = 0;
@@ -77,6 +79,16 @@ struct SettingList {
     LogUtil.info('settings SettingList aboutToAppear startPage');
     SettingListModel.startPage(this.pageValue);
     this.setTitleValue();
+    let nYear = GlobalResourceManager.getStringByResource($r('app.string.year'));
+    nYear.then(resp=> BrightnessSettingModel.setStorageValue(ConfigData.DATE_AND_TIME_YEAR,resp) );
+    let nMonth = GlobalResourceManager.getStringByResource($r('app.string.month'));
+    nMonth.then(resp=> BrightnessSettingModel.setStorageValue(ConfigData.DATE_AND_TIME_MONTH,resp) );
+    let nDay = GlobalResourceManager.getStringByResource($r('app.string.day'));
+    nDay.then(resp=> {
+      BrightnessSettingModel.setStorageValue(ConfigData.DATE_AND_TIME_DAY,resp);
+      LogUtil.info('SettingList day:'+ BrightnessSettingModel.getStorageValue(ConfigData.DATE_AND_TIME_DAY,''));
+    }
+    )
     LogUtil.info('settings SettingList aboutToAppear end');
   }
 
