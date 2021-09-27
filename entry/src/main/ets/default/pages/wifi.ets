@@ -48,14 +48,15 @@ struct Index {
   build() {
     Column() {
       HeadComponent({ headName: $r('app.string.wifiTab'), isActive: true });
-      Row() {
-        Text($r('app.string.wifiTab'))
-          .fontSize($r('app.float.font_22'))
-          .fontColor(Color.Black)
-          .textAlign(TextAlign.Start)
+      Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+        Row() {
+          Text($r('app.string.wifiTab'))
+            .fontSize($r('app.float.font_22'))
+            .fontColor(Color.Black)
+            .textAlign(TextAlign.Start);
+        }.alignItems(VerticalAlign.Center);
         Toggle({ type: ToggleType.Switch, isOn: this.isOn })
-          .width($r('app.float.wh_value_390'))
-          .margin({ left: $r('app.float.wh_value_280') })
+          .width($r('app.float.wh_value_50'))
           .height($r('app.float.wh_value_40'))
           .onChange((isOn: boolean) => {
           this.isOn = !this.isOn;
@@ -66,17 +67,16 @@ struct Index {
           }
         });
       }
-      .width(ConfigData.WH_100_100)
       .height($r('app.float.wh_value_70'))
       .margin({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') });
-
-      Text($r('app.string.tipsContent'))
+      Flex({ alignItems: ItemAlign.Start}) {
+        Text($r('app.string.tipsContent'))
+          .fontSize($r('app.float.font_20'));
+      }
         .visibility(this.isOn ? Visibility.None : Visibility.Visible)
-        .fontSize($r('app.float.font_20'))
-        .align(Alignment.Start)
         .margin({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') });
       Column() {
-        Row() {
+        Flex({ justifyContent: FlexAlign.SpaceBetween }) {
           Text($r('app.string.wifiList'))
             .fontSize($r('app.float.font_24'))
             .align(Alignment.Start);
@@ -84,8 +84,7 @@ struct Index {
             ImageAnimatorComponent({ imageWidth: $r('app.float.wh_value_40'),
               imageHeight: $r('app.float.wh_value_40') })
           }
-          .width($r('app.float.wh_value_280'))
-          .margin({ left: $r('app.float.wh_value_230') })
+          .width($r('app.float.wh_value_40'))
           .visibility(this.isShow ? Visibility.Visible : Visibility.None);
         }
         .width(ConfigData.WH_100_100)
@@ -271,7 +270,7 @@ struct Index {
     LogUtil.info('==========================>SubscriberCallBack  data code = ' + data.code);
 
     if (data.code === 1) {
-      let wifi = { 'name': '', 'rssi': -1 ,'band': -1 };
+      let wifi = { 'name': '', 'rssi': -1, 'band': -1 };
       wifi.name = this.connectName;
       wifi.rssi = this.connectRssi;
       wifi.band = this.connectBand;
