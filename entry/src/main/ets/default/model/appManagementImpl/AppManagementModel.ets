@@ -29,7 +29,7 @@ export class AppManagementModel extends BaseModel {
 
   setAppManagementListener() {
     LogUtil.info('settings AppManagementModel getIconItem ResMgr:' + JSON.stringify(ResMgr));
-    Bundle.getBundleInfos(IS_INCLUDE_ABILITY_INFO)
+    Bundle.getAllBundleInfo(IS_INCLUDE_ABILITY_INFO)
       .then((data) => {
       LogUtil.info('settings AppManagementModel setAppManagementListener getBundleInfos() start ');
       LogUtil.info('settings AppManagementModel data.length: ' + data.length + ' data: ' + JSON.stringify(data));

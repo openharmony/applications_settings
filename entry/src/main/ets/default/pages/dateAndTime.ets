@@ -174,33 +174,39 @@ struct TimeDialog {
       }
 
       Row() {
-        Text($r('app.string.cancel'))
-          .fontSize($r('app.float.font_24'))
-          .fontColor(Color.Blue)
-          .margin({ left: $r('app.float.wh_value_80') })
-          .onClick(() => {
-          this.controller.close();
-          this.action();
-        })
-        Text($r('app.string.confirm'))
-          .fontSize($r('app.float.font_24'))
-          .fontColor(Color.Blue)
-          .margin({ left: $r('app.float.wh_value_160') })
-          .onClick(() => {
-          LogUtil.info("button confirm");
-          let datetime = new Date();
-          let y = datetime.getFullYear();
-          let m = datetime.getMonth() + 1;
-          let d = datetime.getDate();
-          this.formatTime = y + '-' + DateAndTime.fill(m) + '-' + DateAndTime.fill(d)
-          + 'T' + this.currentTime + ':' + '00';
-          LogUtil.info("onchange format time" + this.formatTime);
-          let s = (new Date(this.formatTime)).getTime();
-          LogUtil.info("onchange time second" + s);
-          DateAndTimeModel.setTime(s);
-          this.controller.close();
-          this.action();
-        })
+        Column() {
+          Text($r('app.string.cancel'))
+            .fontSize($r('app.float.font_24'))
+            .fontColor(Color.Blue)
+            .onClick(() => {
+            this.controller.close();
+            this.action();
+          })
+        }
+        .alignItems(HorizontalAlign.Center)
+        .width(ConfigData.WH_50_100);
+        Column() {
+          Text($r('app.string.confirm'))
+            .fontSize($r('app.float.font_24'))
+            .fontColor(Color.Blue)
+            .onClick(() => {
+            LogUtil.info("button confirm");
+            let datetime = new Date();
+            let y = datetime.getFullYear();
+            let m = datetime.getMonth() + 1;
+            let d = datetime.getDate();
+            this.formatTime = y + '-' + DateAndTime.fill(m) + '-' + DateAndTime.fill(d)
+            + 'T' + this.currentTime + ':' + '00';
+            LogUtil.info("onchange format time" + this.formatTime);
+            let s = (new Date(this.formatTime)).getTime();
+            LogUtil.info("onchange time second" + s);
+            DateAndTimeModel.setTime(s);
+            this.controller.close();
+            this.action();
+          })
+        }
+        .alignItems(HorizontalAlign.Center)
+        .width(ConfigData.WH_50_100)
       }
       .width(ConfigData.WH_100_100)
       .height($r('app.float.wh_value_60'))
@@ -254,24 +260,30 @@ struct DateDialog {
       }
 
       Row() {
-        Text($r('app.string.cancel'))
-          .fontSize($r('app.float.font_24'))
-          .fontColor(Color.Blue)
-          .margin({ left: $r('app.float.wh_value_80') })
-          .onClick(() => {
-          this.controller.close();
-          this.action();
-        })
-        Text($r('app.string.confirm'))
-          .fontSize($r('app.float.font_24'))
-          .fontColor(Color.Blue)
-          .margin({ left: $r('app.float.wh_value_160') })
-          .onClick(() => {
-          let s = (new Date(this.formatDate)).getTime();
-          DateAndTimeModel.setTime(s);
-          this.controller.close();
-          this.action();
-        })
+        Column() {
+          Text($r('app.string.cancel'))
+            .fontSize($r('app.float.font_24'))
+            .fontColor(Color.Blue)
+            .onClick(() => {
+            this.controller.close();
+            this.action();
+          });
+        }
+        .alignItems(HorizontalAlign.Center)
+        .width(ConfigData.WH_50_100);
+        Column() {
+          Text($r('app.string.confirm'))
+            .fontSize($r('app.float.font_24'))
+            .fontColor(Color.Blue)
+            .onClick(() => {
+            let s = (new Date(this.formatDate)).getTime();
+            DateAndTimeModel.setTime(s);
+            this.controller.close();
+            this.action();
+          });
+        }
+        .alignItems(HorizontalAlign.Center)
+        .width(ConfigData.WH_50_100);
       }
       .width(ConfigData.WH_100_100)
       .height($r('app.float.wh_value_60'));

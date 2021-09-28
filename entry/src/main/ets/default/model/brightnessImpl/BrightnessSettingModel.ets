@@ -28,16 +28,17 @@ export class BrightnessSettingModel extends BaseModel {
     LogUtil.info('settings settingList BrightnessSettingModel end');
   }
 
-  setStorageValue(brightnessValue) {
+  setStorageValue(key,brightnessValue) {
     LogUtil.info('settings BrightnessSettingModel setStorageValue Storage:' + brightnessValue);
-    mBrightnessPreferences.putSync(ConfigData.BRIGHTNESS_SAVE_VALUE_KEY, brightnessValue);
+    ConfigData.BRIGHTNESS_SAVE_VALUE_KEY
+    mBrightnessPreferences.putSync(key, brightnessValue);
     mBrightnessPreferences.flushSync();
   }
 
-  getStorageValue(): any {
+  getStorageValue(key,defaultValue): any {
     LogUtil.info('settings BrightnessSettingModel getStorageValue in' +
-    mBrightnessPreferences.getSync(ConfigData.BRIGHTNESS_SAVE_VALUE_KEY, ConfigData.BRIGHTNESS_DEFAULT_VALUE));
-    return mBrightnessPreferences.getSync(ConfigData.BRIGHTNESS_SAVE_VALUE_KEY, ConfigData.BRIGHTNESS_DEFAULT_VALUE);
+    mBrightnessPreferences.getSync(key, defaultValue));
+    return mBrightnessPreferences.getSync(key, defaultValue);
   }
 }
 

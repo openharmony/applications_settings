@@ -25,14 +25,14 @@ import Router from '@system.router';
 struct AppManagement {
   @StorageLink('appManagementList') appList: any[]= [];
   @State animatorIsShow: boolean= true;
-  @State whtl: number= 160;
+  @State whtl: number= 80;
 
   build() {
     Column() {
       HeadComponent({ headName: $r('app.string.appManagement'), isActive: true });
       Column() {
-        ImageAnimatorComponent({ imageWidth: $r('app.float.wh_value_160'),
-          imageHeight: $r('app.float.wh_value_160'), whtl: $r('app.float.wh_value_160') });
+        ImageAnimatorComponent({ imageWidth: $r('app.float.wh_value_80'),
+          imageHeight: $r('app.float.wh_value_80'), whtl: $r('app.float.wh_value_80') });
       }
       .zIndex(1)
       .visibility(this.animatorIsShow ? Visibility.Visible : Visibility.None)

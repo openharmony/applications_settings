@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import BrightnessSettingModel from '../../model/brightnessImpl/BrightnessSettingModel.ets';
+import ConfigData from './ConfigData.ets';
 import CommonEvent from '@ohos.commonevent';
 
 let mCommonEventSubscribeInfo = {
@@ -60,7 +61,7 @@ export class SubscriberUtils {
       let mBrightnessSetValue = AppStorage.SetAndLink('BrightnessSetValue', 150);
       mBrightnessSetValue.set(parseInt(data.data));
       BrightnessSettingModel.setBrightnessListener(parseInt(data.data));
-      BrightnessSettingModel.setStorageValue(parseInt(data.data));
+      BrightnessSettingModel.setStorageValue(ConfigData.BRIGHTNESS_SAVE_VALUE_KEY,parseInt(data.data));
     }
     if (err) {
       console.info(`settings settingList statusSubscriberCallBack error : ${err}`)

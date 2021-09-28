@@ -15,11 +15,10 @@
 /**
  * date package tool class
  */
+import  GlobalResourceManager  from './GlobalResourceManager.ets';
+import ConfigData from './ConfigData.ets';
+import BrightnessSettingModel from '../../model/brightnessImpl/BrightnessSettingModel.ets';
 export class DateAndTimeUtil {
-  /**
-     *
-     * Get the current time
-     */
   getSystemTime() {
     let datetime = new Date();
     let hours = datetime.getHours();
@@ -27,10 +26,7 @@ export class DateAndTimeUtil {
     let time = this.concatTime(hours, minutes)
     return time;
   }
-  /**
-     *
-     * Get the current date
-     */
+
   getSystemDate() {
     let dateTime = new Date();
     let year = dateTime.getFullYear();
@@ -39,27 +35,19 @@ export class DateAndTimeUtil {
     let date = this.concatDate(year, month, day)
     return date
   }
-  /**
-     * format
-     * @param value
-     * @return
-     */
+
   fill(value) {
     return (value > 9 ? "" : "0") + value;
   };
-  /**
-     * concat date
-     * @param year m d
-     * @return
-     */
+
   concatDate(year, month, date) {
-    return '' + year + '年' + month + '月' + date + '日';
+    let nYear = BrightnessSettingModel.getStorageValue(ConfigData.DATE_AND_TIME_YEAR,'');
+    let nMonth = BrightnessSettingModel.getStorageValue(ConfigData.DATE_AND_TIME_MONTH,'');
+    let nDay = BrightnessSettingModel.getStorageValue(ConfigData.DATE_AND_TIME_DAY,'');
+    console.info('SettingList concatDate day:'+ nDay)
+    return year + nYear + month + nMonth + date + nDay;
   };
-  /**
-     * concat time
-     * @param hours minutes
-     * @return
-     */
+
   concatTime(hours, minutes) {
     return `${this.fill(hours)}:${this.fill(minutes)}`;
   };
