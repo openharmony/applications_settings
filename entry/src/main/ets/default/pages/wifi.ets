@@ -174,10 +174,6 @@ struct Index {
       "isHiddenSsid": false,
       "securityType": this.connectSecurityType
     }
-    if (!WifiModel.connectToDevice(obj)) {
-      LogUtil.info("[wifi_js_test] connect to wifi failed");
-      return;
-    }
 
     LogUtil.info('[wifi_js_test] connectSecurityType' + this.connectSecurityType);
     LogUtil.info('[wifi_js_test] connectPsd' + this.connectPsd);
