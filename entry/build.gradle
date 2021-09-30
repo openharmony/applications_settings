@@ -4,7 +4,7 @@ ohos {
     defaultConfig {
         compatibleSdkVersion 6
     }
-    supportSystem "standard"
+    arkEnabled false
 }
 
 dependencies {
