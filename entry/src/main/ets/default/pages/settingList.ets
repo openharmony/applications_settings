@@ -50,7 +50,7 @@ struct SettingList {
               });
             }
           }
-          .onTouch(() => {
+          .onClick(() => {
             Router.push({
               uri: item.settingUri,
             });
