@@ -19,6 +19,7 @@ import EntryComponent from './component/entryComponent.ets';
 import ImageAnimatorComponent from './component/imageAnimatorComponent.ets';
 import ConfigData from '../common/baseUtil/ConfigData.ets';
 import LogUtil from '../common/baseUtil/LogUtil.ets';
+import BrightnessSettingModel from '../model/brightnessImpl/BrightnessSettingModel.ets';
 import Subscriber from '@ohos.commonevent';
 import router from '@system.router';
 
@@ -28,23 +29,36 @@ import router from '@system.router';
 struct Index {
   @StorageLink('WifiList') wifiList: any[] = [];
   @StorageLink('wifiPsd') password: string = '';
-  @State isOn: boolean = true;
+  private isOn: boolean = true;
   @State isShow: boolean = true;
   private connectPsd: string = '';
   private mIndex: number = -1;
   private timeoutFlag;
   private timeoutMark;
+  private intervalFlag;
   @State connectRssi: number = -1;
   @State connectBand: number = -1;
   @State connectImage: string = '';
   @State connectName: string = '';
   @State connectBssid: string = '';
   @State connectSecurityType: number = -1;
+
+  @State settingTitle: string = '';
+  @State settingArrow: string = '';
+  @State settingRssi: number = -1;
+  @State settingBand: number = -1;
+  @State bssid: string = '';
+  @State securityType: number = -1;
+
   private mCommonEventSubscriber = null;
+  private wifiIsFirstConnect: boolean = false;
   private mCommonEventSubscribeInfo = {
     events: ["usual.event.wifi.CONN_STATE"]
   };
-
+  private testLog(item) {
+    LogUtil.info('init testLog' + JSON.stringify(item));
+    return true;
+  }
   build() {
     Column() {
       HeadComponent({ headName: $r('app.string.wifiTab'), isActive: true });
@@ -60,6 +74,7 @@ struct Index {
           .height($r('app.float.wh_value_40'))
           .onChange((isOn: boolean) => {
           this.isOn = !this.isOn;
+          LogUtil.info('Toggle onChange this.isOn:' + this.isOn);
           if (this.isOn) {
             this.switchOn();
           } else {
@@ -69,12 +84,12 @@ struct Index {
       }
       .height($r('app.float.wh_value_70'))
       .margin({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') });
-      Flex({ alignItems: ItemAlign.Start}) {
+      Flex({ alignItems: ItemAlign.Start }) {
         Text($r('app.string.tipsContent'))
           .fontSize($r('app.float.font_20'));
       }
-        .visibility(this.isOn ? Visibility.None : Visibility.Visible)
-        .margin({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') });
+      .visibility(this.isOn ? Visibility.None : Visibility.Visible)
+      .margin({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') });
       Column() {
         Flex({ justifyContent: FlexAlign.SpaceBetween }) {
           Text($r('app.string.wifiList'))
@@ -89,7 +104,9 @@ struct Index {
         }
         .width(ConfigData.WH_100_100)
         .margin({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') });
+        if (this.testLog(this.wifiList)) {
 
+        }
         List() {
           ForEach(this.wifiList, (item) => {
             ListItem() {
@@ -109,6 +126,7 @@ struct Index {
               this.connectSecurityType = item.securityType
               this.connectRssi = item.settingRssi
               this.connectBand = item.settingBand
+              //              this.wifiIsFirstConnect = true;
               this.connectWifi();
             })
             .height($r('app.float.wh_value_60'))
@@ -133,8 +151,9 @@ struct Index {
     .height(ConfigData.WH_100_100);
   }
 
-  private aboutToAppear(): void {
-    this.wifiStatusListener();
+   aboutToAppear(): void {
+     LogUtil.info('init wifi get in');
+     this.wifiStatusListener();
     this.getSwitchStatus();
     this.clearScanInfo();
     LogUtil.info('init wifi get switch status');
@@ -147,6 +166,7 @@ struct Index {
           that.timeoutMark = setTimeout(() => {
             WifiModel.getScanInfoCallBack();
             that.isShow = false;
+            AppStorage.SetOrCreate('WifiList', []);
             clearTimeout(this.timeoutFlag);
             clearTimeout(that.timeoutMark);
             LogUtil.info('init wifi wifiList' + this.wifiList);
@@ -154,7 +174,7 @@ struct Index {
         } else {
           LogUtil.info('init scan wifiList fail');
         }
-      }, 3000);
+      }, 5000);
     } else {
       LogUtil.info('init wifi isOn is false');
     }
@@ -213,6 +233,11 @@ struct Index {
 
   private switchOn() {
     LogUtil.info('switchClick wifi start ---->');
+    if(this.wifiList.length > 0){
+      console.info('come on one');
+      return;
+    }
+    LogUtil.info('switchClick wifi start 1---->');
     this.clearScanInfo();
     this.isShow = true;
     this.sleep(1000);
@@ -231,7 +256,7 @@ struct Index {
         } else {
           LogUtil.info('switchClick wifi fail to scan ---->');
         }
-      }, 3000);
+      }, 5000);
     } else {
       LogUtil.info('switchClick wifi fail to enableWifi ---->');
     }
@@ -241,6 +266,8 @@ struct Index {
     LogUtil.info('switchClick wifi off start ---->');
     if (WifiModel.disableWifi()) {
       LogUtil.info('switchClick wifi enter to disableWifi ---->');
+      AppStorage.SetOrCreate('WifiList', []);
+      BrightnessSettingModel.setStorageValue('wifiConnectName', '');
       this.clearScanInfo();
     } else {
       LogUtil.info('switchClick wifi off end ---->');
@@ -264,30 +291,35 @@ struct Index {
     LogUtil.info('==========================>SubscriberCallBack  event = ' + data.event);
     LogUtil.info('==========================>SubscriberCallBack  data = ' + JSON.stringify(data));
     LogUtil.info('==========================>SubscriberCallBack  data code = ' + data.code);
-
-    if (data.code === 1) {
+    LogUtil.info('SubscriberCallBack  this.wifiList：' + JSON.stringify(this.wifiList));
+    if (this.wifiList.length>0&&(data.code === 1 || data.code === 4)) {
       let wifi = { 'name': '', 'rssi': -1, 'band': -1 };
       wifi.name = this.connectName;
       wifi.rssi = this.connectRssi;
       wifi.band = this.connectBand;
       SubscriberUtils.sendEvent(JSON.stringify(wifi), ConfigData.SENT_EVENT_WIFI_CONNECT_NAME);
-      let index = WifiModel.getItemPosition(this.wifiList, this.connectName);
-      this.wifiList.splice(index, 1);
-      this.wifiList.unshift({
-        settingSummary: $r('app.string.connected'),
-        settingTitle: this.connectName,
-        settingValue: '',
-        settingArrow: this.connectImage,
-        settingArrowStyle: 'wifi',
-        settingRssi: this.connectRssi,
-        settingBand: this.connectBand,
-        bssid: this.connectBssid,
-        securityType: this.connectSecurityType,
-      });
-      this.wifiList[1].settingSummary = '';
-      LogUtil.info('subscriber connected' + JSON.stringify(this.wifiList));
+        BrightnessSettingModel.setStorageValue('wifiConnectName', this.connectName);
+        let index = WifiModel.getItemPosition(this.wifiList, this.connectName);
+        this.wifiList.splice(index, 1);
+        this.wifiList.unshift({
+          settingSummary: $r('app.string.connected'),
+          settingTitle: this.connectName,
+          settingValue: '',
+          settingArrow: this.connectImage,
+          settingArrowStyle: 'wifi',
+          settingRssi: this.connectRssi,
+          settingBand: this.connectBand,
+          bssid: this.connectBssid,
+          securityType: this.connectSecurityType,
+        });
+        LogUtil.info('subscriber connected:' + JSON.stringify(this.wifiList));
+        this.wifiList[1].settingSummary = '';
+        LogUtil.info('subscriber connected' + JSON.stringify(this.wifiList));
     }
-    ;
+
+    if (data.code === 7) {
+      BrightnessSettingModel.setStorageValue('wifiConnectName', '');
+    }
     if (data.code === 9) {
       LogUtil.info("subscriber code nine disconnected");
       this.wifiList.unshift({
@@ -317,19 +349,23 @@ struct Index {
   }
 
   private aboutToDisappear(): void {
-    this.unSubscriberListener();
+    AppStorage.SetOrCreate('wifiPsd', '');
+
+    this.unSubscriberListener;
     this.connectPsd = '';
   }
 
   onPageShow() {
     LogUtil.info('wifi onPageShow this.password:' + this.password);
     this.connectPsd = this.password;
+    //&& this.wifiIsFirstConnect
     if (this.connectPsd !== '') {
       this.connectWifi();
     }
   }
 
   onBackPress() {
+    AppStorage.SetOrCreate('wifiPsd', '');
     Navigator().active(true);
   }
 }

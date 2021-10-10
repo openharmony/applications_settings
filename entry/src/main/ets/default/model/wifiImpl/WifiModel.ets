@@ -16,6 +16,7 @@ import LogUtil from '../../common/baseUtil/LogUtil.ets';
 import WifiNativeJs from '@ohos.wifi_native_js';
 import BaseParseConfModel from '../baseParseConfImpl/BaseParseConfModel.ets';
 import BaseModel from '../BaseModel.ets';
+import BrightnessSettingModel from '../brightnessImpl/BrightnessSettingModel.ets';
 
 export class WifiModel extends BaseModel {
   private mWifiList: any[] = [];
@@ -46,10 +47,11 @@ export class WifiModel extends BaseModel {
     this.mWifiList = [];
     this.remdupWifiList = [];
     WifiNativeJs.getScanInfos(result => {
+      LogUtil.info('[wifi_js_test] wifi received scan info call back results1:' + JSON.stringify(result));
       if (result === null) {
         return;
       }
-      LogUtil.info('[wifi_js_test] wifi received scan info call back results:' + JSON.stringify(result));
+      LogUtil.info('[wifi_js_test] wifi received scan info call back results2:' + JSON.stringify(result));
       let clen = Object.keys(result)
         .length;
       let image;
@@ -132,6 +134,31 @@ export class WifiModel extends BaseModel {
           this.remdupWifiList.push(this.mWifiList[i]);
         }
       }
+      let lastConnectName = BrightnessSettingModel.getStorageValue('wifiConnectName', '');
+      if (lastConnectName !== '') {
+        LogUtil.info('last connect name come in ：' + lastConnectName);
+        let connectIndex = this.getItemPosition(this.remdupWifiList, lastConnectName);
+        LogUtil.info('last connect name come in settingTitle ：' + this.remdupWifiList[connectIndex].settingTitle);
+        let settingTitle = this.remdupWifiList[connectIndex].settingTitle;
+        let settingArrow = this.remdupWifiList[connectIndex].settingArrow;
+        let settingRssi = this.remdupWifiList[connectIndex].settingRssi;
+        let settingBand = this.remdupWifiList[connectIndex].settingBand;
+        let bssid = this.remdupWifiList[connectIndex].bssid;
+        let securityType = this.remdupWifiList[connectIndex].securityType;
+        this.remdupWifiList.splice(connectIndex , 1);
+        this.remdupWifiList.unshift({
+          settingSummary: '已连接',
+          settingTitle: settingTitle,
+          settingValue: '',
+          settingArrow: settingArrow,
+          settingArrowStyle: 'wifi',
+          settingRssi: settingRssi,
+          settingBand: settingBand,
+          bssid: bssid,
+          securityType: securityType,
+        });
+        LogUtil.info('last connect name end in1 ：' + JSON.stringify(this.remdupWifiList));
+      };
       AppStorage.SetOrCreate('WifiList', this.remdupWifiList);
       LogUtil.info('remove duplicate ssid remdupWifiList: ' + JSON.stringify(this.remdupWifiList));
     });
