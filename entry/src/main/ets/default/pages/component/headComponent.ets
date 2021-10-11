@@ -39,6 +39,7 @@ struct HeadComponent {
         .visibility(this.icBackIsVisibility ? Visibility.Visible : Visibility.None)
         .onTouch(() => {
         this.isTouch = true;
+        AppStorage.SetOrCreate('wifiPsd', '');
         Router.back();
       })
       Text(this.headName)
