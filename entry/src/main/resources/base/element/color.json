@@ -19,6 +19,10 @@
     {
       "name": "color_00000000_transparent",
       "value": "#00000000"
+    },
+    {
+      "name": "volume_bg_color",
+      "value": "#CCFFFFFF"
     }
   ]
 }

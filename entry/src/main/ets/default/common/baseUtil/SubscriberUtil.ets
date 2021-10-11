@@ -17,7 +17,7 @@ import ConfigData from './ConfigData.ets';
 import CommonEvent from '@ohos.commonevent';
 
 let mCommonEventSubscribeInfo = {
-  events: ['usual.event.wifi.CONN_STATE', 'BRIGHTNESS_VALUE_SYSTEM_UI']
+  events: ['usual.event.wifi.CONN_STATE', 'BRIGHTNESS_VALUE_SYSTEM_UI','VOLUME_VALUE_SYSTEM_UI']
 };
 
 let mCommonEventSubscriber = null;
@@ -62,6 +62,10 @@ export class SubscriberUtils {
       mBrightnessSetValue.set(parseInt(data.data));
       BrightnessSettingModel.setBrightnessListener(parseInt(data.data));
       BrightnessSettingModel.setStorageValue(ConfigData.BRIGHTNESS_SAVE_VALUE_KEY,parseInt(data.data));
+    } else if ("VOLUME_VALUE_SYSTEM_UI" === data.event) {
+      console.log(`settings settingList statusSubscriberCallBack data.data volume : ${data.data} `);
+      let mVolumeSetValue = AppStorage.SetAndLink('VolumeSetValue', 50);
+      mVolumeSetValue.set(data.data);
     }
     if (err) {
       console.info(`settings settingList statusSubscriberCallBack error : ${err}`)
@@ -78,5 +82,4 @@ export class SubscriberUtils {
 }
 
 let subscriberUtils = new SubscriberUtils();
-export default subscriberUtils as SubscriberUtils
-;
+export default subscriberUtils as SubscriberUtils;

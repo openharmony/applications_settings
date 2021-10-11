@@ -50,7 +50,7 @@ struct SettingList {
               });
             }
           }
-          .onClick(() => {
+          .onTouch(() => {
             Router.push({
               uri: item.settingUri,
             });
@@ -124,6 +124,8 @@ struct SettingList {
         value = $r('app.string.dateAndTimeTab');
       } else if ('aboutTab' === settingAlias) {
         value = $r('app.string.aboutTab');
+      } else if ('volumeControlTab' === settingAlias) {
+        value = $r('app.string.volumeControlTab');
       }
       this.settingsList[key].settingTitle = value;
     }
