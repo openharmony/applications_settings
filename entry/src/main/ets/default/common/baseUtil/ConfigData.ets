@@ -18,7 +18,9 @@ export class ConfigData {
   + '/com.ohos.settings/assets/entry/resources/rawfile/';
   PREFERENCES_PATH = '/data/accounts/account_0/appdata/com.ohos.settings/sharedPreference/SettingPreferences';
   BRIGHTNESS_SAVE_VALUE_KEY = 'BrightnessSaveValue';
+  VOLUME_SAVE_VALUE_KEY = 'VolumeSaveValue';
   SENT_EVENT_BROADCAST_BRIGHTNESS_VALUE = 'BRIGHTNESS_VALUE';
+  SENT_EVENT_BROADCAST_VOLUME_VALUE = 'VOLUME_VALUE';
   SENT_EVENT_WIFI_CONNECT_NAME = 'WIFI_CONNECT_NAME';
   BRIGHTNESS_DEFAULT_VALUE = 50;
   DEFAULT_BUNDLE_NAME = 'com.ohos.settings';

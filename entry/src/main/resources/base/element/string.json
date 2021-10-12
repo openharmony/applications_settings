@@ -41,6 +41,14 @@
       "value": "关于手机"
     },
     {
+      "name": "volumeControlTab",
+      "value": "音量调节"
+    },
+    {
+      "name": "volumeControl",
+      "value": "音量"
+    },
+    {
       "name": "applicationInfo",
       "value": "应用信息"
     },
