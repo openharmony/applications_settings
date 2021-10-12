@@ -65,7 +65,8 @@
           "pages/aboutDevice",
           "pages/appManagement",
           "pages/wifi",
-          "pages/wifiPsd"
+          "pages/wifiPsd",
+          "pages/volumeControl"
         ],
         "name": "default",
         "window": {

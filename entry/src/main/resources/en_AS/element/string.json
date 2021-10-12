@@ -29,6 +29,14 @@
       "value": "brightnessTab"
     },
     {
+      "name": "volumeControl",
+      "value": "volumeControl"
+    },
+    {
+      "name": "volumeControlTab",
+      "value": "volumeControlTab"
+    },
+    {
       "name": "applyTab",
       "value": "applyTab"
     },
