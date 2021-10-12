@@ -107,6 +107,18 @@
     {
       "name": "font_50",
       "value": "50"
+    },
+    {
+      "name": "control_common_font_size",
+      "value": "20"
+    },
+    {
+      "name": "slider_text_padding_left",
+      "value": "5"
+    },
+    {
+      "name": "volume_border_radius",
+      "value": "15"
     }
   ]
 }
