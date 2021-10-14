@@ -22,7 +22,6 @@ struct HeadComponent {
   private icBackIsVisibility: boolean= true;
   private headName: string= '';
   @State isTouch: boolean= false;
-  @StorageLink('wifiPsd') wifiPsd: string= ''
 
   build() {
     Row() {
