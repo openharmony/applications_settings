@@ -147,7 +147,7 @@ export class WifiModel extends BaseModel {
         let securityType = this.remdupWifiList[connectIndex].securityType;
         this.remdupWifiList.splice(connectIndex , 1);
         this.remdupWifiList.unshift({
-          settingSummary: '已连接',
+          settingSummary: $r('app.string.connected'),
           settingTitle: settingTitle,
           settingValue: '',
           settingArrow: settingArrow,

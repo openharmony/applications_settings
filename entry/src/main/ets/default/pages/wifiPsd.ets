@@ -17,7 +17,7 @@ import HeadComponent from './component/headComponent.ets';
 import ConfigData from '../common/baseUtil/ConfigData.ets';
 import Router from '@system.router'
 
-const WIFI_DEFAULT_PSD = '12345678';
+const WIFI_DEFAULT_PSD = '';
 
 let name;
 let title;
