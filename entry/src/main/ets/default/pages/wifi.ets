@@ -42,23 +42,11 @@ struct Index {
   @State connectName: string = '';
   @State connectBssid: string = '';
   @State connectSecurityType: number = -1;
-
-  @State settingTitle: string = '';
-  @State settingArrow: string = '';
-  @State settingRssi: number = -1;
-  @State settingBand: number = -1;
-  @State bssid: string = '';
-  @State securityType: number = -1;
-
   private mCommonEventSubscriber = null;
   private wifiIsFirstConnect: boolean = false;
   private mCommonEventSubscribeInfo = {
     events: ["usual.event.wifi.CONN_STATE"]
   };
-  private testLog(item) {
-    LogUtil.info('init testLog' + JSON.stringify(item));
-    return true;
-  }
   build() {
     Column() {
       HeadComponent({ headName: $r('app.string.wifiTab'), isActive: true });
@@ -104,9 +92,6 @@ struct Index {
         }
         .width(ConfigData.WH_100_100)
         .margin({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') });
-        if (this.testLog(this.wifiList)) {
-
-        }
         List() {
           ForEach(this.wifiList, (item) => {
             ListItem() {
@@ -126,7 +111,6 @@ struct Index {
               this.connectSecurityType = item.securityType
               this.connectRssi = item.settingRssi
               this.connectBand = item.settingBand
-              //              this.wifiIsFirstConnect = true;
               this.connectWifi();
             })
             .height($r('app.float.wh_value_60'))
@@ -139,16 +123,12 @@ struct Index {
           endMargin: $r('app.float.wh_value_15')
         })
         .width(ConfigData.WH_100_100)
-        .height(ConfigData.WH_100_100)
-        .align(Alignment.Top)
         .margin({ bottom: $r('app.float.wh_value_70'), top: $r('app.float.wh_value_20') });
       }
       .width(ConfigData.WH_100_100)
-      .height(ConfigData.WH_100_100)
       .visibility(this.isOn ? Visibility.Visible : Visibility.None);
     }
     .width(ConfigData.WH_100_100)
-    .height(ConfigData.WH_100_100);
   }
 
    aboutToAppear(): void {
@@ -240,7 +220,7 @@ struct Index {
     LogUtil.info('switchClick wifi start 1---->');
     this.clearScanInfo();
     this.isShow = true;
-    this.sleep(1000);
+    this.sleep(2000);
     if (WifiModel.getEnableWifi()) {
       LogUtil.info('switchClick wifi enableWifi enter ---->');
       let that = this;
@@ -358,7 +338,6 @@ struct Index {
   onPageShow() {
     LogUtil.info('wifi onPageShow this.password:' + this.password);
     this.connectPsd = this.password;
-    //&& this.wifiIsFirstConnect
     if (this.connectPsd !== '') {
       this.connectWifi();
     }
