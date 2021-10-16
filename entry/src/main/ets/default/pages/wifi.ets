@@ -187,6 +187,7 @@ struct Index {
         params: name,
       });
       LogUtil.info('jump to detail end');
+      return;
     }
     if (WifiModel.connectToDevice(obj)) {
       LogUtil.info('[wifi_js_test] connect to come in');
