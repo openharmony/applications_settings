@@ -123,9 +123,11 @@ struct Index {
           endMargin: $r('app.float.wh_value_15')
         })
         .width(ConfigData.WH_100_100)
-        .margin({ bottom: $r('app.float.wh_value_70'), top: $r('app.float.wh_value_20') });
+        .margin({top:$r('app.float.wh_value_20')});
       }
       .width(ConfigData.WH_100_100)
+      .margin({bottom:$r('app.float.wh_value_20')})
+      .layoutWeight(1)
       .visibility(this.isOn ? Visibility.Visible : Visibility.None);
     }
     .width(ConfigData.WH_100_100)
@@ -273,29 +275,30 @@ struct Index {
     LogUtil.info('==========================>SubscriberCallBack  data = ' + JSON.stringify(data));
     LogUtil.info('==========================>SubscriberCallBack  data code = ' + data.code);
     LogUtil.info('SubscriberCallBack  this.wifiList：' + JSON.stringify(this.wifiList));
-    if (this.wifiList.length>0&&(data.code === 1 || data.code === 4)) {
+    if (this.wifiList.length > 0 && (data.code === 1 || data.code === 4)) {
       let wifi = { 'name': '', 'rssi': -1, 'band': -1 };
       wifi.name = this.connectName;
       wifi.rssi = this.connectRssi;
       wifi.band = this.connectBand;
       SubscriberUtils.sendEvent(JSON.stringify(wifi), ConfigData.SENT_EVENT_WIFI_CONNECT_NAME);
-        BrightnessSettingModel.setStorageValue('wifiConnectName', this.connectName);
-        let index = WifiModel.getItemPosition(this.wifiList, this.connectName);
-        this.wifiList.splice(index, 1);
-        this.wifiList.unshift({
-          settingSummary: $r('app.string.connected'),
-          settingTitle: this.connectName,
-          settingValue: '',
-          settingArrow: this.connectImage,
-          settingArrowStyle: 'wifi',
-          settingRssi: this.connectRssi,
-          settingBand: this.connectBand,
-          bssid: this.connectBssid,
-          securityType: this.connectSecurityType,
-        });
-        LogUtil.info('subscriber connected:' + JSON.stringify(this.wifiList));
-        this.wifiList[1].settingSummary = '';
-        LogUtil.info('subscriber connected' + JSON.stringify(this.wifiList));
+      BrightnessSettingModel.setStorageValue('wifiConnectName', this.connectName);
+      let index = WifiModel.getItemPosition(this.wifiList, this.connectName);
+      this.wifiList.splice(index, 1);
+      LogUtil.info('subscriber connected 0:' + JSON.stringify(this.wifiList));
+      this.wifiList.unshift({
+        settingSummary: $r('app.string.connected'),
+        settingTitle: this.connectName,
+        settingValue: '',
+        settingArrow: this.connectImage,
+        settingArrowStyle: 'wifi',
+        settingRssi: this.connectRssi,
+        settingBand: this.connectBand,
+        bssid: this.connectBssid,
+        securityType: this.connectSecurityType,
+      });
+      LogUtil.info('subscriber connected 1:' + JSON.stringify(this.wifiList));
+      this.wifiList[1].settingSummary = '';
+      LogUtil.info('subscriber connected 2' + JSON.stringify(this.wifiList));
     }
 
     if (data.code === 7) {
