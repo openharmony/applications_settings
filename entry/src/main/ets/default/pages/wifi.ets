@@ -131,6 +131,7 @@ struct Index {
       .visibility(this.isOn ? Visibility.Visible : Visibility.None);
     }
     .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100)
   }
 
    aboutToAppear(): void {
@@ -275,7 +276,7 @@ struct Index {
     LogUtil.info('==========================>SubscriberCallBack  data = ' + JSON.stringify(data));
     LogUtil.info('==========================>SubscriberCallBack  data code = ' + data.code);
     LogUtil.info('SubscriberCallBack  this.wifiList：' + JSON.stringify(this.wifiList));
-    if (this.wifiList.length > 0 && (data.code === 1 || data.code === 4)) {
+    if (this.connectName !== '' && (data.code === 1 || data.code === 3 || data.code === 4)) {
       let wifi = { 'name': '', 'rssi': -1, 'band': -1 };
       wifi.name = this.connectName;
       wifi.rssi = this.connectRssi;
@@ -283,6 +284,7 @@ struct Index {
       SubscriberUtils.sendEvent(JSON.stringify(wifi), ConfigData.SENT_EVENT_WIFI_CONNECT_NAME);
       BrightnessSettingModel.setStorageValue('wifiConnectName', this.connectName);
       let index = WifiModel.getItemPosition(this.wifiList, this.connectName);
+      LogUtil.info('subscriber connected -1:' + JSON.stringify(this.wifiList));
       this.wifiList.splice(index, 1);
       LogUtil.info('subscriber connected 0:' + JSON.stringify(this.wifiList));
       this.wifiList.unshift({
@@ -303,6 +305,10 @@ struct Index {
 
     if (data.code === 7) {
       BrightnessSettingModel.setStorageValue('wifiConnectName', '');
+    }
+    if (data.code === 8) {
+      this.connectPsd = '';
+      AppStorage.SetOrCreate('wifiPsd', '');
     }
     if (data.code === 9) {
       LogUtil.info("subscriber code nine disconnected");
