@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ConfigData from '../../common/baseUtil/ConfigData.ets';
 import BaseModel from '../BaseModel.ets';
 import LogUtil from '../../common/baseUtil/LogUtil.ets';
 import Bundle from '@ohos.bundle';
@@ -48,6 +47,8 @@ export class AppManagementModel extends BaseModel {
       ResMgr.getResourceManager(data[index].name, (error, item) => {
         LogUtil.info('settings AppManagementModel getResourceManager item' + JSON.stringify(item) + "|error:" + error);
         let appInfo = data[index].appInfo;
+        LogUtil.info('settings AppManagementModel getResourceManager appInfo.labelId:' + JSON.stringify(appInfo));
+        LogUtil.info('settings AppManagementModel labelId:' + appInfo.labelId + "|iconId:" + appInfo.iconId);
         if (appInfo.labelId > 0) {
           item.getString(appInfo.labelId, (error, value) => {
             LogUtil.info('settings AppManagementModel getResourceManager  value.length:' + value.length);
@@ -64,33 +65,45 @@ export class AppManagementModel extends BaseModel {
           label = appInfo.label;
         }
         LogUtil.info('settings AppManagementModel getResourceManager getString() finish label:' + label);
-        item.getMediaBase64(appInfo.iconId, (error, value) => {
-          LogUtil.info('settings AppManagementModel getResourceManager getMediaBase64() :' + value.length);
-          if (value.length > 0) {
-            imageValue = value;
-            LogUtil.info('settings AppManagementModel getResourceManager getMediaBase64() imageValue:' + imageValue);
-          }
-          LogUtil.info('settings AppManagementModel getResourceManager getMediaBase64() end');
-          this.mBundleInfoList.push({
-            settingIcon: imageValue,
-            settingTitle: label,
-            settingValue: '',
-            settingArrow: $r('app.media.ic_settings_arrow'),
-            settingSummary: data[index].versionName,
-            settingBundleName: data[index].name,
-            settingIconId: appInfo.iconId,
-            settingUri: 'pages/applicationInfo'
+        if (appInfo.iconId > 0) {
+          item.getMediaBase64(appInfo.iconId, (error, value) => {
+            LogUtil.info('settings AppManagementModel getResourceManager getMediaBase64() :' + value.length);
+            if (value.length > 0) {
+              imageValue = value;
+              LogUtil.info('settings AppManagementModel getResourceManager getMediaBase64() imageValue:' + imageValue);
+            }
+            LogUtil.info('settings AppManagementModel getResourceManager getMediaBase64() end');
+            this.mBundleInfoList.push({
+              settingIcon: imageValue,
+              settingTitle: label,
+              settingValue: '',
+              settingArrow: $r('app.media.ic_settings_arrow'),
+              settingSummary: data[index].versionName,
+              settingBundleName: data[index].name,
+              settingIconId: appInfo.iconId,
+              settingUri: 'pages/applicationInfo'
+            });
+            if (count - 1 > index) {
+              LogUtil.info('settings AppManagementModel getMediaBase64() if index:' + index + ' | count:' + count);
+              index = index + 1;
+              that.getIconItem(index, count, data);
+            } else {
+              LogUtil.info('settings AppManagementModel getMediaBase64() else index:' + index + ' | count:' + count);
+              LogUtil.info('settings AppManagementModel mBundleInfoList[i]: ' + JSON.stringify(this.mBundleInfoList));
+              AppStorage.SetOrCreate('appManagementList', this.mBundleInfoList);
+            }
           });
+        } else {
           if (count - 1 > index) {
-            LogUtil.info('settings AppManagementModel getMediaBase64() if index:' + index + ' | count:' + count);
+            LogUtil.info('settings AppManagementModel getMediaBase64() id=0:' + index + ' | count:' + count);
             index = index + 1;
             that.getIconItem(index, count, data);
           } else {
-            LogUtil.info('settings AppManagementModel getMediaBase64() else index:' + index + ' | count:' + count);
+            LogUtil.info('settings AppManagementModel getMediaBase64() id=0:' + index + ' | count:' + count);
             LogUtil.info('settings AppManagementModel mBundleInfoList[i]: ' + JSON.stringify(this.mBundleInfoList));
             AppStorage.SetOrCreate('appManagementList', this.mBundleInfoList);
           }
-        });
+        }
       });
     } catch (error) {
       LogUtil.info('settings AppManagementModel catch error:' + error);
@@ -100,5 +113,6 @@ export class AppManagementModel extends BaseModel {
 }
 
 let appManagementModel = new AppManagementModel();
+
 export default appManagementModel as AppManagementModel
 ;
