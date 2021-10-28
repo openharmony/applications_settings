@@ -59,7 +59,7 @@ struct EntryComponent {
               .textAlign(TextAlign.Start)
               .maxLines(ConfigData.MAX_LINES_1)
               .textOverflow({ overflow: TextOverflow.Ellipsis })
-              .visibility('' === this.settingSummary ? Visibility.None : Visibility.Visible)
+              .visibility('' === this.settingSummary || undefined === this.settingSummary ? Visibility.None : Visibility.Visible)
               .margin({ bottom: $r('app.float.wh_value_10') });
           }
         }

@@ -67,6 +67,29 @@ export class AppManagementModel extends BaseModel {
         LogUtil.info('settings AppManagementModel getResourceManager getString() finish label:' + label);
         if (appInfo.iconId > 0) {
           item.getMediaBase64(appInfo.iconId, (error, value) => {
+            console.info('settings AppManagementModel getMediaBase64 error:' + error);
+            if (error != null) {
+              console.info('settings AppManagementModel getMediaBase64 error!=null:' + error);
+              this.mBundleInfoList.push({
+                settingIcon: $r('app.media.icon_default'),
+                settingTitle: label,
+                settingValue: '',
+                settingArrow: $r('app.media.ic_settings_arrow'),
+                settingSummary: data[index].versionName,
+                settingBundleName: data[index].name,
+                settingIconId: appInfo.iconId,
+                settingUri: 'pages/applicationInfo'
+              });
+              if (count - 1 > index) {
+                LogUtil.info('settings AppManagementModel getMediaBase64() id=0:' + index + ' | count:' + count);
+                index = index + 1;
+                that.getIconItem(index, count, data);
+              } else {
+                LogUtil.info('settings AppManagementModel getMediaBase64() id=0:' + index + ' | count:' + count);
+                LogUtil.info('settings AppManagementModel mBundleInfoList[i]: ' + JSON.stringify(this.mBundleInfoList));
+                AppStorage.SetOrCreate('appManagementList', this.mBundleInfoList);
+              }
+            }
             LogUtil.info('settings AppManagementModel getResourceManager getMediaBase64() :' + value.length);
             if (value.length > 0) {
               imageValue = value;
