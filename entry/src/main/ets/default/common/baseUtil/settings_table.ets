@@ -13,11 +13,24 @@
  * limitations under the License.
  */
 export default {
-  onCreate() {
-    console.info('Application onCreate')
+  tableName: {
+    aboutDevice: "about_device"
   },
-  onDestroy() {
-    AppStorage.SetOrCreate('settingsList', []);
-    console.info('Application onDestroy')
+  table: {
+    aboutDevice: "CREATE TABLE IF NOT EXISTS about_device (" +
+    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+    "settingAlias TEXT," +
+    "settingTitle TEXT," +
+    "settingValue TEXT" +
+    ");"
   },
+  aboutDevice: {
+    id: "id",
+    settingAlias: "settingAlias",
+    settingTitle: "settingTitle",
+    settingValue: "settingValue"
+  }
 }
+
+
+

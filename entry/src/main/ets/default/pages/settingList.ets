@@ -21,6 +21,10 @@ import WifiModel from '../model/wifiImpl/WifiModel.ets';
 import SubscriberUtils from '../common/baseUtil/SubscriberUtil.ets';
 import GlobalResourceManager from '../common/baseUtil/GlobalResourceManager.ets';
 import BrightnessSettingModel from '../model/brightnessImpl/BrightnessSettingModel.ets';
+import DataRdbService from '../model/dataRdbImpl/DataRdbService.ets';
+import DataRdbModel from '../model/dataRdbImpl/DataRdbModel.ets';
+import Stable from '../common/baseUtil/settings_table.ets';
+import RdbStoreUtil from '../common/baseUtil/RdbStoreUtil.ets';
 import Router from '@system.router';
 
 const SETTING_LIST_INDEX = 0;
@@ -28,7 +32,7 @@ const SETTING_LIST_INDEX = 0;
 @Entry
 @Component
 struct SettingList {
-  @State settingsList: any[]= [];
+  @StorageLink('settingsList') settingsList: any[]= [];
   @State wifiStatus: boolean= false;
   @State status: any= '';
 
@@ -72,21 +76,20 @@ struct SettingList {
     .height(ConfigData.WH_100_100);
   }
 
-  aboutToAppear(): void{
+  async aboutToAppear() {
     LogUtil.info('settings SettingList aboutToAppear enter');
-    this.settingsList = SettingListModel.setSettingListener();
+    await SettingListModel.setSettingListener();
     SubscriberUtils.registerStatusListener();
     LogUtil.info('settings SettingList aboutToAppear startPage');
     SettingListModel.startPage(this.pageValue);
-    this.setTitleValue();
     let nYear = GlobalResourceManager.getStringByResource($r('app.string.year'));
-    nYear.then(resp=> BrightnessSettingModel.setStorageValue(ConfigData.DATE_AND_TIME_YEAR,resp) );
+    nYear.then(resp => BrightnessSettingModel.setStorageValue(ConfigData.DATE_AND_TIME_YEAR, resp));
     let nMonth = GlobalResourceManager.getStringByResource($r('app.string.month'));
-    nMonth.then(resp=> BrightnessSettingModel.setStorageValue(ConfigData.DATE_AND_TIME_MONTH,resp) );
+    nMonth.then(resp => BrightnessSettingModel.setStorageValue(ConfigData.DATE_AND_TIME_MONTH, resp));
     let nDay = GlobalResourceManager.getStringByResource($r('app.string.day'));
-    nDay.then(resp=> {
-      BrightnessSettingModel.setStorageValue(ConfigData.DATE_AND_TIME_DAY,resp);
-      LogUtil.info('SettingList day:'+ BrightnessSettingModel.getStorageValue(ConfigData.DATE_AND_TIME_DAY,''));
+    nDay.then(resp => {
+      BrightnessSettingModel.setStorageValue(ConfigData.DATE_AND_TIME_DAY, resp);
+      LogUtil.info('SettingList day:' + BrightnessSettingModel.getStorageValue(ConfigData.DATE_AND_TIME_DAY, ''));
     }
     )
     LogUtil.info('settings SettingList aboutToAppear end');
@@ -102,40 +105,32 @@ struct SettingList {
     LogUtil.info('settings settingList pageValue end');
   }
 
-  setTitleValue() {
-    LogUtil.info('SettingList setTitleValue this.settingsList:' + JSON.stringify(this.settingsList));
-    for (let key in this.settingsList) {
-      let settingAlias = this.settingsList[key].settingAlias;
-      let value;
-      this.wifiStatus = WifiModel.getWifiStatus();
-      if ('wifiTab' === settingAlias) {
-        value = $r('app.string.wifiTab');
-        if (this.wifiStatus) {
-          this.settingsList[key].settingValue = $r('app.string.enabled');
-        } else {
-          this.settingsList[key].settingValue = $r('app.string.disabled');
-        }
-      }
-      else if ('brightnessTab' === settingAlias) {
-        value = $r('app.string.brightnessTab');
-      } else if ('applyTab' === settingAlias) {
-        value = $r('app.string.applyTab');
-      } else if ('dateAndTimeTab' === settingAlias) {
-        value = $r('app.string.dateAndTimeTab');
-      } else if ('aboutTab' === settingAlias) {
-        value = $r('app.string.aboutTab');
-      } else if ('volumeControlTab' === settingAlias) {
-        value = $r('app.string.volumeControlTab');
-      }
-      this.settingsList[key].settingTitle = value;
-    }
-    LogUtil.info('SettingList setTitleValue this.settingsList:' + JSON.stringify(this.settingsList));
-  }
-
   onPageShow(): void{
-    LogUtil.info('SettingList onPageShow in:' + JSON.stringify(this.settingsList));
+    this.initRdb();
+    setTimeout(() => {
+      LogUtil.info('get data insert start')
+      this.insertData();
+      LogUtil.info('get data insert end')
+    }, 3000)
+    setTimeout(() => {
+      LogUtil.info('get data delete start')
+      DataRdbService.deleteSpecifyNumber(['systemName'])
+      LogUtil.info('get data delete end')
+    }, 5000)
+    setTimeout(() => {
+      LogUtil.info('get data update start')
+      let tel = { "id": 1, "settingAlias": "systemName", "settingTitle": "title", "settingValue": "OpenHarmony" }
+      DataRdbService.updateSpecifyNumber(['systemName'], tel)
+      LogUtil.info('get data update end')
+    }, 7000)
+    setTimeout(() => {
+      DataRdbService.querySpecifyNumber(numbers => {
+        console.info("get data query numbers" + JSON.stringify(numbers))
+      })
+    }, 9000)
+    LogUtil.info('settings SettingList onPageShow in:' + JSON.stringify(this.settingsList));
     this.wifiStatus = WifiModel.getWifiStatus();
-    LogUtil.info('SettingList onPageShow this.wifiStatus:' + this.wifiStatus);
+    LogUtil.info('settings SettingList onPageShow this.wifiStatus:' + this.wifiStatus);
     for (let key in this.settingsList) {
       let settingAlias = this.settingsList[key].settingAlias;
       if ('wifiTab' === settingAlias) {
@@ -144,7 +139,7 @@ struct SettingList {
         } else {
           this.status = $r('app.string.disabled');
         }
-        LogUtil.info('SettingList onPageShow settingValue:' + this.settingsList[key].settingValue);
+        LogUtil.info('settings SettingList onPageShow settingValue:' + this.settingsList[key].settingValue);
       }
     }
     this.settingsList.unshift({
@@ -157,12 +152,39 @@ struct SettingList {
       settingUri: this.settingsList[SETTING_LIST_INDEX].settingUri,
     });
     this.settingsList.splice(1, 1);
-    LogUtil.info('SettingList onPageShow out:' + +JSON.stringify(this.settingsList));
+    LogUtil.info('settings SettingList onPageShow out:' + +JSON.stringify(this.settingsList));
   }
 
   aboutToDisappear(): void{
-    LogUtil.info('settingList aboutToDisappear in');
+    LogUtil.info('settings settingList aboutToDisappear in');
     SubscriberUtils.unSubscriberListener();
-    LogUtil.info('settingList aboutToDisappear out');
+    LogUtil.info('settings settingList aboutToDisappear out');
+  }
+
+  initRdb() {
+    RdbStoreUtil.createRdbStore((ret) => {
+      if (ret) {
+        console.log(" get data first done start");
+        RdbStoreUtil.createTable(Stable.table.aboutDevice);
+        console.log(" get data createRdbStore first done end");
+      } else {
+        return;
+      }
+    });
+  }
+
+  insertData() {
+    LogUtil.info('get data insertData start')
+    let numbers = DataRdbModel.specifyNumbers
+    numbers.forEach((num) => {
+      LogUtil.info('get data for each' + num)
+      let tel = {
+        'settingAlias': num.settingAlias,
+        'settingTitle': num.settingTitle,
+        'settingValue': num.settingValue
+      }
+      DataRdbService.insertDataService(tel)
+      LogUtil.info('get data insertData end')
+    })
   }
 }
