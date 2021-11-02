@@ -15,6 +15,7 @@
 import BaseModel from '../../model/BaseModel.ets';
 import  LogUtil  from './LogUtil.ets';
 import ohosDataRdb from '@ohos.data.rdb';
+
 const TAG = "RdbStoreUtil.js->";
 // Database name
 const STORE_CONFIG = {
@@ -31,19 +32,22 @@ var getRdbStore = async function () {
   }
   return rdbStore;
 }
+
 export default {
   /**
      * create data
      */
   createRdbStore(callback) {
-    console.info(TAG + "get data")
+    console.info(TAG + 'get data')
     if (!rdbStore) {
-      ohosDataRdb.getRdbStore(STORE_CONFIG, 1).then((store) => {
-        console.info(TAG + "get data create  success" + JSON.stringify(store))
+      ohosDataRdb.getRdbStore(STORE_CONFIG, 1)
+        .then((store) => {
+        console.info(TAG + 'get data create  success' + JSON.stringify(store))
         rdbStore = store
         callback(true)
-      }).catch((err) => {
-        console.info(TAG + "get data createRdbStore err" + err)
+      })
+        .catch((err) => {
+        console.info(TAG + 'get data createRdbStore err' + err)
         callback(false)
       })
     }
@@ -51,17 +55,17 @@ export default {
   /**
      * create data table
      */
-     async createTable(table) {
-     LogUtil.info(TAG + 'create table start')
-        await rdbStore.executeSql(table, null);
-        LogUtil.info(TAG + 'create table end')
-    },
+  async createTable(table) {
+    LogUtil.info(TAG + 'create table start');
+    await rdbStore.executeSql(table, null);
+    LogUtil.info(TAG + 'create table end');
+  },
   /**
      * insert
      */
   insert(tableName, valueBucket) {
-    console.info("get data start: " + tableName)
-    return rdbStore.insert(tableName, valueBucket)
+    console.info('get data start: ' + tableName);
+    return rdbStore.insert(tableName, valueBucket);
   },
   /**
      * update
@@ -70,9 +74,9 @@ export default {
      * @return
      */
   async update(predicates, valueBucket) {
-    LogUtil.info(TAG + 'update start')
+    LogUtil.info(TAG + 'update start');
     let changedRows = await rdbStore.update(valueBucket, predicates);
-    console.info(TAG + "update row count: " + changedRows);
+    console.info(TAG + 'update row count: ' + changedRows);
   },
   /**
      * delete
@@ -80,16 +84,16 @@ export default {
      * @return
      */
   async deleteItem(predicates) {
-    LogUtil.info(TAG + "get data delete item");
+    LogUtil.info(TAG + 'get data delete item');
     let deletedRows = await rdbStore.delete(predicates);
-    LogUtil.info(TAG + "get data delete deletedRows" + deletedRows);
+    LogUtil.info(TAG + 'get data delete deletedRows' + deletedRows);
   },
   /**
      * query
      * @param tableName
      * @return
      */
-  getRdbPredicates(tableName){
+  getRdbPredicates(tableName) {
     LogUtil.info(TAG + 'get data query table start')
     let predicates = new ohosDataRdb.RdbPredicates(tableName);
     LogUtil.info(TAG + 'get data query table end' + JSON.stringify(predicates))

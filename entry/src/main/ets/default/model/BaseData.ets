@@ -16,7 +16,6 @@
 export class BaseData {
   constructor() {
   }
-
   settingIcon: string;
   settingTitle: string;
   settingAlias: string;
@@ -24,4 +23,5 @@ export class BaseData {
   settingArrow: string;
   settingSummary: string;
   settingUri: string;
+  settingPriority: string;
 }

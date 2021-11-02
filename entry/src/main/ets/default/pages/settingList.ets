@@ -28,6 +28,7 @@ import RdbStoreUtil from '../common/baseUtil/RdbStoreUtil.ets';
 import Router from '@system.router';
 
 const SETTING_LIST_INDEX = 0;
+const PAGE_WIFI = 'pages/wifi';
 
 @Entry
 @Component
@@ -78,6 +79,7 @@ struct SettingList {
 
   async aboutToAppear() {
     LogUtil.info('settings SettingList aboutToAppear enter');
+    this.initRdb();
     await SettingListModel.setSettingListener();
     SubscriberUtils.registerStatusListener();
     LogUtil.info('settings SettingList aboutToAppear startPage');
@@ -90,44 +92,51 @@ struct SettingList {
     nDay.then(resp => {
       BrightnessSettingModel.setStorageValue(ConfigData.DATE_AND_TIME_DAY, resp);
       LogUtil.info('SettingList day:' + BrightnessSettingModel.getStorageValue(ConfigData.DATE_AND_TIME_DAY, ''));
-    }
-    )
+    })
     LogUtil.info('settings SettingList aboutToAppear end');
   }
 
   pageValue(pagePath): void{
     LogUtil.info('settings settingList pageValue pagePath:' + pagePath);
-    if ('pages/wifi' === pagePath) {
+    if (PAGE_WIFI === pagePath) {
       Router.push({
-        uri: 'pages/wifi',
+        uri: PAGE_WIFI,
       });
     }
     LogUtil.info('settings settingList pageValue end');
   }
 
   onPageShow(): void{
-    this.initRdb();
     setTimeout(() => {
-      LogUtil.info('get data insert start')
+      LogUtil.info(ConfigData.TAG + 'get data insert start');
       this.insertData();
-      LogUtil.info('get data insert end')
-    }, 3000)
+      LogUtil.info(ConfigData.TAG + 'get data insert end');
+    }, 2000);
     setTimeout(() => {
-      LogUtil.info('get data delete start')
-      DataRdbService.deleteSpecifyNumber(['systemName'])
-      LogUtil.info('get data delete end')
-    }, 5000)
-    setTimeout(() => {
-      LogUtil.info('get data update start')
-      let tel = { "id": 1, "settingAlias": "systemName", "settingTitle": "title", "settingValue": "OpenHarmony" }
-      DataRdbService.updateSpecifyNumber(['systemName'], tel)
-      LogUtil.info('get data update end')
-    }, 7000)
-    setTimeout(() => {
-      DataRdbService.querySpecifyNumber(numbers => {
-        console.info("get data query numbers" + JSON.stringify(numbers))
-      })
-    }, 9000)
+      LogUtil.info(ConfigData.TAG + 'get data delete start');
+      let key = ["systemName"];
+      DataRdbService.deleteData(key);
+      LogUtil.info(ConfigData.TAG + 'get data delete end');
+    }, 5000);
+    //    setTimeout(() => {
+    //      LogUtil.info(ConfigData.TAG + 'get data update start');
+    //      let tel = { "key": "companyInfo", "value": "OpenHarmony111" };
+    //      let key = ["companyInfo"];
+    //      DataRdbService.updateData(key, tel);
+    //      LogUtil.info(ConfigData.TAG + 'get data update end');
+    //    }, 5000);
+    //    setTimeout(() => {
+    //      let key = "model";
+    //      DataRdbService.querySingleData(key, value => {
+    //        console.info(ConfigData.TAG + 'get data query  querySingleData:' + JSON.stringify(value));
+    //      });
+    //    }, 6000);
+    //    setTimeout(() => {
+    //      DataRdbService.queryAllData(values => {
+    //        console.info(ConfigData.TAG + 'get data query values' + JSON.stringify(values));
+    //      });
+    //    }, 7000);
+
     LogUtil.info('settings SettingList onPageShow in:' + JSON.stringify(this.settingsList));
     this.wifiStatus = WifiModel.getWifiStatus();
     LogUtil.info('settings SettingList onPageShow this.wifiStatus:' + this.wifiStatus);
@@ -164,9 +173,9 @@ struct SettingList {
   initRdb() {
     RdbStoreUtil.createRdbStore((ret) => {
       if (ret) {
-        console.log(" get data first done start");
+        console.log(ConfigData.TAG + 'get data first done start');
         RdbStoreUtil.createTable(Stable.table.aboutDevice);
-        console.log(" get data createRdbStore first done end");
+        console.log(ConfigData.TAG + 'get data createRdbStore first done end');
       } else {
         return;
       }
@@ -174,17 +183,35 @@ struct SettingList {
   }
 
   insertData() {
-    LogUtil.info('get data insertData start')
-    let numbers = DataRdbModel.specifyNumbers
+    LogUtil.info(ConfigData.TAG + 'get data insertData start');
+    let numbers = DataRdbModel.specifyNumbers;
     numbers.forEach((num) => {
-      LogUtil.info('get data for each' + num)
+      LogUtil.info(ConfigData.TAG + 'get data for each:' + num);
       let tel = {
-        'settingAlias': num.settingAlias,
-        'settingTitle': num.settingTitle,
-        'settingValue': num.settingValue
+        "key": num.settingTitle,
+        "value": num.settingValue
       }
-      DataRdbService.insertDataService(tel)
-      LogUtil.info('get data insertData end')
+      DataRdbService.querySingleData(num.settingTitle, value => {
+        console.info(ConfigData.TAG + 'get data insertData querySingleData:' + JSON.stringify(value));
+        if ([].toString() === value.toString()) {
+          console.info(ConfigData.TAG + 'get data insertData insert:' + JSON.stringify(tel));
+          DataRdbService.insertDataService(tel);
+        } else {
+          console.info(ConfigData.TAG + 'get data insertData update');
+          let key = [num.settingTitle];
+          let tel = {
+            "key": num.settingTitle,
+            "value": '12345457878'
+          }
+          DataRdbService.updateData(key, tel);
+        }
+      });
+      LogUtil.info(ConfigData.TAG + 'get data insertData end');
     })
+    setTimeout(() => {
+      DataRdbService.queryAllData(values => {
+        console.info(ConfigData.TAG + 'get data insertData values：' + JSON.stringify(values));
+      });
+    }, 2000);
   }
 }

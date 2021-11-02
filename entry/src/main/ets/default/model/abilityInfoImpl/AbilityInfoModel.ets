@@ -17,6 +17,7 @@ import Bundle from '@ohos.bundle';
 import ResMgr from '@ohos.resourceManager';
 import LogUtil from '../../common/baseUtil/LogUtil.ets';
 import {BaseData} from '../BaseData.ets';
+import {MetaDataModel} from './MetaDataModel.ets';
 
 export class AbilityInfoModel extends BaseModel {
   public mAbilityInfoList: any[]= [];
@@ -36,7 +37,7 @@ export class AbilityInfoModel extends BaseModel {
           },
         }
       }, 1, 0, (err, ability) => {
-      LogUtil.info('setting getAbilityInfoListener ability:' + JSON.stringify(ability));
+      LogUtil.info('settings getAbilityInfoListener ability:' + JSON.stringify(ability));
       let abilityMetaData;
       for (let i = 0, len = ability.length; i < len; i++) {
         abilityMetaData = ability[i].metaData;
@@ -51,10 +52,9 @@ export class AbilityInfoModel extends BaseModel {
           JSON.stringify(abilityMetaData.customizeDatas[i].extra));
           extra = abilityMetaData.customizeDatas[i].extra;
         }
-        LogUtil.info('settings getAbilityInfoListener ability { + extra + }:' + '{' + extra + '}');
-        let extraJson = JSON.parse('{' + extra + '}');
-        LogUtil.info('settings getAbilityInfoListener ability BaseData:' + JSON.stringify(extraJson));
-        this.getIconItem(callback, extraJson, bundleName, $r('app.media.icon_default'));
+        let metaDataModel = new MetaDataModel('{' + extra + '}');
+        LogUtil.info('settings getAbilityInfoListener ability BaseData:' + JSON.stringify(metaDataModel));
+        this.getIconItem(callback, metaDataModel, bundleName, $r('app.media.icon_default'));
       }
     });
     LogUtil.info('settings getAbilityInfoListener mAbilityInfoList end: ' + JSON.stringify(this.mAbilityInfoList));
@@ -66,8 +66,8 @@ export class AbilityInfoModel extends BaseModel {
     let label = '';
     try {
       ResMgr.getResourceManager(bundleName, (error, item) => {
-        LogUtil.info('settings getAbilityInfoListener getResourceManager item' + JSON.stringify(item) + "|error:" + error);
-        LogUtil.info('settings getAbilityInfoListener labelId:' + metaBase.labelId + "|iconId:" + metaBase.iconId);
+        LogUtil.info('settings getAbilityInfoListener getResourceManager item:' + JSON.stringify(item) + '|error:' + error);
+        LogUtil.info('settings getAbilityInfoListener labelId:' + metaBase.labelId + '|iconId:' + metaBase.iconId);
         if (null !== metaBase.labelName && '' !== metaBase.labelName) {
           LogUtil.info('settings getAbilityInfoListener getResourceManager getString() label:' + label);
           label = metaBase.labelName;
@@ -126,6 +126,7 @@ export class AbilityInfoModel extends BaseModel {
     baseData.settingArrow = 'res/image/ic_settings_arrow.svg';
     baseData.settingSummary = metaBase.summary,
     baseData.settingUri = metaBase.action;
+    baseData.settingPriority = metaBase.priority;
     this.mAbilityInfoList.push(baseData);
     LogUtil.info('settings getAbilityInfoListener mAbilityInfoList in: ' + JSON.stringify(this.mAbilityInfoList));
     callback(this.mAbilityInfoList);

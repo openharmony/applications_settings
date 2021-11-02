@@ -15,50 +15,61 @@
 import DataRdbModel from './DataRdbModel.ets';
 import Stable from '../../common/baseUtil/settings_table.ets';
 import LogUtil from '../../common/baseUtil/LogUtil.ets';
+import ConfigData from '../../common/baseUtil/ConfigData.ets';
+
 class DataRdbService {
-/**
+  /**
    * query
    */
-  querySpecifyNumber(callback) {
-    DataRdbModel.querySpecifyNumber(Stable.tableName.aboutDevice, res => {
-      console.info("get data query model result: " + JSON.stringify(res))
-      callback(res)
-    })
+  queryAllData(callback) {
+    DataRdbModel.queryAllData(Stable.tableName.aboutDevice, res => {
+      console.info(ConfigData.TAG + 'get data query model result: ' + JSON.stringify(res));
+      callback(res);
+    });
   }
-/**
+  /**
+   * query
+   */
+  querySingleData(key, callback) {
+    DataRdbModel.querySingleData(Stable.tableName.aboutDevice, key, res => {
+      console.info(ConfigData.TAG + 'get data query model querySpecifyKey result: ' + JSON.stringify(res));
+      callback(res);
+    });
+  }
+  /**
    * insert
    */
   insertDataService(valueBucket) {
-    LogUtil.info('get data insert service start')
+    LogUtil.info(ConfigData.TAG + 'get data insert service start');
     DataRdbModel.insertDataModel(Stable.tableName.aboutDevice, valueBucket, res => {
-      LogUtil.info("get data insert service result: " + JSON.stringify(res))
-    })
-    LogUtil.info('get data insert service end')
+      LogUtil.info(ConfigData.TAG + 'get data insert service result: ' + JSON.stringify(res));
+    });
+    LogUtil.info(ConfigData.TAG + 'get data insert service end');
   }
 
-/**
+  /**
    * delete
    */
-  async deleteSpecifyNumber(numbers) {
-    LogUtil.info('get data delete service start'+ numbers)
-    for (let number of numbers) {
-      LogUtil.info('get data delete number' + number)
-      await DataRdbModel.deleteSpecifyNumber(Stable.tableName.aboutDevice, number)
-      LogUtil.info('get data delete service end')
+  async deleteData(keys) {
+    LogUtil.info(ConfigData.TAG + 'get data delete service start' + keys);
+    for (let key of keys) {
+      LogUtil.info(ConfigData.TAG + 'get data delete key:' + key);
+      await DataRdbModel.deleteData(Stable.tableName.aboutDevice, key);
+      LogUtil.info(ConfigData.TAG + 'get data delete service end');
     }
   }
-/**
+  /**
    * update
    */
-  async updateSpecifyNumber(numbers,valueBucket) {
-    LogUtil.info('get data update service start'+ numbers)
-    for (let number of numbers) {
-      LogUtil.info('get data update number' + number)
-      await DataRdbModel.updateSpecifyNumber(Stable.tableName.aboutDevice,number,valueBucket)
-      LogUtil.info('get data update service end')
+  async updateData(keys, valueBucket) {
+    LogUtil.info(ConfigData.TAG + 'get data update service start' + keys);
+    for (let key of keys) {
+      LogUtil.info('get data update key:' + key);
+      await DataRdbModel.updateData(Stable.tableName.aboutDevice, key, valueBucket);
+      LogUtil.info(ConfigData.TAG + 'get data update service end');
     }
   }
 }
 
-let service = new DataRdbService()
-export default service
+let service = new DataRdbService();
+export default service;

@@ -12,23 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-export default {
-  tableName: {
-    aboutDevice: "about_device"
-  },
-  table: {
-    aboutDevice: "CREATE TABLE IF NOT EXISTS about_device (" +
-    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-    "key TEXT," +
-    "value TEXT" +
-    ");"
-  },
-  aboutDevice: {
-    id: "id",
-    key: "key",
-    value: "value"
+
+import LogUtil from '../../common/baseUtil/LogUtil.ets';
+
+export class MetaDataModel {
+  constructor(jsonData: string) {
+    LogUtil.info('settings getAbilityInfoListener MetaDataModel jsonData: ' + JSON.stringify(JSON.parse(jsonData)));
+    return JSON.parse(jsonData);
   }
 }
-
-
-
