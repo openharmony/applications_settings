@@ -27,7 +27,7 @@ export class ConfigData {
   DATE_AND_TIME_YEAR='DATE_AND_TIME_YEAR'
   DATE_AND_TIME_MONTH='DATE_AND_TIME_MONTH'
   DATE_AND_TIME_DAY='DATE_AND_TIME_DAY'
-  DateAndTime
+  TAG='Settings '
 
   WH_100_100 = '100%';
   WH_30_100 = '30%';

@@ -59,6 +59,10 @@ export class SettingListModel extends BaseModel {
         AbilityInfoModel.getAbilityInfo(BUNDEL_NAME, ABILITY_NAME, metaData => {
           LogUtil.info('settings SettingListModel getAbilityInfoListener getAbilityInfo:' + JSON.stringify(metaData))
           LogUtil.info('settings SettingListModel getAbilityInfoListener getAbilityInfo summary:' + metaData.summary)
+          metaData.sort(function (dataFirst, dataSecond) {
+            return dataFirst.priority - dataSecond.priority
+          })
+          LogUtil.info('settings SettingListModel getAbilityInfoListener metaData:' + JSON.stringify(metaData))
           settingsList.push.apply(settingsList, metaData);
           metaData = [];
           LogUtil.info('settings SettingListModel getAbilityInfoListener settingsList:' + settingsList.length)
@@ -101,10 +105,11 @@ export class SettingListModel extends BaseModel {
 
   startPage(callback): void{
     LogUtil.info('settings SettingList startPage start');
-    FeatureAbility.getWant().then((Want) => {
-      LogUtil.info(`settings SettingList startWifiPage successful. Data: ${ JSON.stringify(Want) }`);
-      LogUtil.info(`settings SettingList startWifiPage successful. Want.uri: ${ Want.uri }`);
-      callback( Want.uri);
+    FeatureAbility.getWant()
+      .then((Want) => {
+      LogUtil.info(`settings SettingList startWifiPage successful. Data: ${JSON.stringify(Want)}`);
+      LogUtil.info(`settings SettingList startWifiPage successful. Want.uri: ${Want.uri}`);
+      callback(Want.uri);
     })
       .catch((error) => {
       LogUtil.error('settings SettingList startWifiPage failed. Cause: ' + JSON.stringify(error));
@@ -113,5 +118,6 @@ export class SettingListModel extends BaseModel {
 }
 
 let settingListModel = new SettingListModel();
+
 export default settingListModel as SettingListModel
 ;
