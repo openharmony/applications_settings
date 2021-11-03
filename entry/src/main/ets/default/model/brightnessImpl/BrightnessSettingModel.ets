@@ -15,7 +15,6 @@
 import BaseModel from '../BaseModel.ets';
 import LogUtil from '../../common/baseUtil/LogUtil.ets';
 import ConfigData from '../../common/baseUtil/ConfigData.ets';
-import SubscriberUtils from '../../common/baseUtil/SubscriberUtil.ets';
 import Brightness from '@ohos.brightness';
 import Storage from '@ohos.data.storage';
 

@@ -13,11 +13,22 @@
  * limitations under the License.
  */
 export default {
-  onCreate() {
-    console.info('Application onCreate')
+  tableName: {
+    Global: "Global"
   },
-  onDestroy() {
-    AppStorage.SetOrCreate('settingsList', []);
-    console.info('Application onDestroy')
+  table: {
+    Global: "CREATE TABLE IF NOT EXISTS Global (" +
+    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+    "key TEXT," +
+    "value TEXT" +
+    ");"
   },
+  Global: {
+    id: "id",
+    key: "key",
+    value: "value"
+  }
 }
+
+
+

@@ -21,6 +21,7 @@ import BrightnessSettingModel from '../brightnessImpl/BrightnessSettingModel.ets
 export class WifiModel extends BaseModel {
   private mWifiList: any[] = [];
   private remdupWifiList: any[] = [];
+  private linkedInfoList: any[] = [];
 
   getWifiStatus() {
     LogUtil.info('WifiNativeJs isWifiActive');
@@ -33,6 +34,7 @@ export class WifiModel extends BaseModel {
   }
 
   disableWifi() {
+    this.linkedInfoList = [];
     LogUtil.info('WifiNativeJs disableWifi');
     return WifiNativeJs.disableWifi();
   }
@@ -134,31 +136,36 @@ export class WifiModel extends BaseModel {
           this.remdupWifiList.push(this.mWifiList[i]);
         }
       }
-      let lastConnectName = BrightnessSettingModel.getStorageValue('wifiConnectName', '');
-      if (lastConnectName !== '') {
-        LogUtil.info('last connect name come in ：' + lastConnectName);
-        let connectIndex = this.getItemPosition(this.remdupWifiList, lastConnectName);
-        LogUtil.info('last connect name come in settingTitle ：' + this.remdupWifiList[connectIndex].settingTitle);
-        let settingTitle = this.remdupWifiList[connectIndex].settingTitle;
-        let settingArrow = this.remdupWifiList[connectIndex].settingArrow;
-        let settingRssi = this.remdupWifiList[connectIndex].settingRssi;
-        let settingBand = this.remdupWifiList[connectIndex].settingBand;
-        let bssid = this.remdupWifiList[connectIndex].bssid;
-        let securityType = this.remdupWifiList[connectIndex].securityType;
-        this.remdupWifiList.splice(connectIndex , 1);
-        this.remdupWifiList.unshift({
-          settingSummary: $r('app.string.connected'),
-          settingTitle: settingTitle,
-          settingValue: '',
-          settingArrow: settingArrow,
-          settingArrowStyle: 'wifi',
-          settingRssi: settingRssi,
-          settingBand: settingBand,
-          bssid: bssid,
-          securityType: securityType,
-        });
-        LogUtil.info('last connect name end in1 ：' + JSON.stringify(this.remdupWifiList));
-      };
+      LogUtil.info('get linkedList info before0 ：' + JSON.stringify(this.linkedInfoList));
+      LogUtil.info('get linkedList info before1 ：' + this.linkedInfoList.length);
+      if (this.linkedInfoList.length === 0) {
+        LogUtil.info('get linkedList info linkedInfoList empty ：');
+      } else {
+        if (this.linkedInfoList[0].settingTitle !== '' && clen > 0) {
+          LogUtil.info('get linkedList info start ：');
+          let index = this.getItemPosition(this.remdupWifiList, this.linkedInfoList[0].settingTitle)
+          let settingTitle = this.linkedInfoList[0].settingTitle;
+          let settingArrow = this.remdupWifiList[index].settingArrow;
+          let settingRssi = this.linkedInfoList[0].settingRssi;
+          let settingBand = this.linkedInfoList[0].settingBand;
+          let bssid = this.linkedInfoList[0].bssid;
+          let securityType = this.remdupWifiList[index].securityType;
+          this.remdupWifiList.splice(index, 1);
+          this.remdupWifiList.unshift({
+            settingSummary: $r('app.string.connected'),
+            settingTitle: settingTitle,
+            settingValue: '',
+            settingArrow: settingArrow,
+            settingArrowStyle: 'wifi',
+            settingRssi: settingRssi,
+            settingBand: settingBand,
+            bssid: bssid,
+            securityType: securityType,
+          });
+        } else {
+          LogUtil.info('get linkedList info linkedInfoList settingTitle is empty ：');
+        }
+      }
       AppStorage.SetOrCreate('WifiList', this.remdupWifiList);
       LogUtil.info('remove duplicate ssid remdupWifiList: ' + JSON.stringify(this.remdupWifiList));
     });
@@ -182,6 +189,38 @@ export class WifiModel extends BaseModel {
   disConnect() {
     LogUtil.info('netWork disconnect');
     return WifiNativeJs.disConnect();
+  }
+
+  getLinkedInfo() {
+    this.linkedInfoList = [];
+    LogUtil.info('[wifi_js] get wifi linked info start');
+    WifiNativeJs.getLinkedInfo()
+      .then(data => {
+      LogUtil.info("[wifi_js] get wifi linked info [promise] -> " + JSON.stringify(data));
+      LogUtil.info("[wifi_js] get wifi linked info [promise] -> " + JSON.stringify(data.ssid));
+      LogUtil.info('data result[0].ssid: ' + data.ssid);
+      LogUtil.info('data rssi: ' + data.rssi);
+      LogUtil.info('data bssid: ' + data.bssid);
+      LogUtil.info('data band: ' + data.band);
+      this.linkedInfoList.push({
+        settingSummary: '',
+        settingTitle: data.ssid,
+        settingValue: '',
+        settingArrow: '',
+        settingRssi: data.rssi,
+        settingBand: data.band,
+        bssid: data.bssid,
+        securityType: '',
+        signalLevel: WifiNativeJs.getSignalLevel(data.rssi, data.band),
+      });
+      LogUtil.info("[wifi_js] get wifi linked info linkedInfoList 1" + JSON.stringify(this.linkedInfoList))
+      AppStorage.SetOrCreate('linkedInfoList', this.linkedInfoList);
+      LogUtil.info("[wifi_js] get wifi linked info linkedInfoList 2" + JSON.stringify(this.linkedInfoList))
+    })
+      .catch(error => {
+      LogUtil.info("[wifi_js] linked info promise then error" + error);
+    })
+    LogUtil.info('[wifi_js] get wifi linked info end');
   }
 }
 

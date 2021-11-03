@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-export default {
-  onCreate() {
-    console.info('Application onCreate')
-  },
-  onDestroy() {
-    AppStorage.SetOrCreate('settingsList', []);
-    console.info('Application onDestroy')
-  },
+
+import LogUtil from '../../common/baseUtil/LogUtil.ets';
+
+export class MetaDataModel {
+  constructor(jsonData: string) {
+    LogUtil.info('settings getAbilityInfoListener MetaDataModel jsonData: ' + JSON.stringify(JSON.parse(jsonData)));
+    return JSON.parse(jsonData);
+  }
 }

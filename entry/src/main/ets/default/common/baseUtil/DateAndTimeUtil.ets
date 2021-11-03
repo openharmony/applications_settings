@@ -15,7 +15,7 @@
 /**
  * date package tool class
  */
-import  GlobalResourceManager  from './GlobalResourceManager.ets';
+
 import ConfigData from './ConfigData.ets';
 import BrightnessSettingModel from '../../model/brightnessImpl/BrightnessSettingModel.ets';
 export class DateAndTimeUtil {

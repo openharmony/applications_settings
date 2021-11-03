@@ -13,11 +13,22 @@
  * limitations under the License.
  */
 export default {
-  onCreate() {
-    console.info('Application onCreate')
+  tableName: {
+    Secure: " Secure"
   },
-  onDestroy() {
-    AppStorage.SetOrCreate('settingsList', []);
-    console.info('Application onDestroy')
+  table: {
+    Secure: "CREATE TABLE IF NOT EXISTS Secure (" +
+    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+    "key TEXT," +
+    "value TEXT" +
+    ");"
   },
+  Secure: {
+    id: "id",
+    key: "key",
+    value: "value"
+  }
 }
+
+
+
