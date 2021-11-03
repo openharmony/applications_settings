@@ -17,11 +17,10 @@ import ConfigData from './ConfigData.ets';
 import CommonEvent from '@ohos.commonevent';
 
 let mCommonEventSubscribeInfo = {
-  events: ['usual.event.wifi.CONN_STATE', 'BRIGHTNESS_VALUE_SYSTEM_UI','VOLUME_VALUE_SYSTEM_UI']
+  events: ['BRIGHTNESS_VALUE_SYSTEM_UI','VOLUME_VALUE_SYSTEM_UI']
 };
 
 let mCommonEventSubscriber = null;
-let eventSubscriber = null;
 
 export class SubscriberUtils {
   sendEvent(value, broadcastName) {
@@ -75,7 +74,7 @@ export class SubscriberUtils {
   }
 
   unSubscriberListener() {
-    CommonEvent.unsubscribe(eventSubscriber, () => {
+    CommonEvent.unsubscribe(mCommonEventSubscriber, () => {
       console.info('settings settingList unSubscriberListener');
     });
   }
