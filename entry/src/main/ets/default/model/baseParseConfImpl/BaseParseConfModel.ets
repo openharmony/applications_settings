@@ -41,6 +41,28 @@ export class BaseParseConfModel extends BaseModel {
       LogUtil.info('settings BaseParseConfModel getJsonData catch jsonError:' + jsonError);
     }
   }
+
+  public getJsonDataBase(fileName, callback) {
+    LogUtil.info('settings BaseParseConfModel in');
+    try {
+      let stream = FileIo.createStreamSync(fileName, 'r');
+      LogUtil.info('settings BaseParseConfModel getJsonData try stream:' + stream);
+      let buf = new ArrayBuffer(DFAULT_SIZE);
+      let len = stream.readSync(buf);
+      LogUtil.info('settings BaseParseConfModel getJsonData try len:' + len);
+      let arr = new Uint8Array(buf);
+      let charAt = ' '.charCodeAt(CHAR_CODE_AT_INDEX);
+      for (let i = len;i < DFAULT_SIZE; i++) {
+        arr[i] = charAt;
+      }
+      let content = String.fromCharCode.apply(null, arr);
+      stream.closeSync();
+      LogUtil.info('settings BaseParseConfModel getJsonData try content:' + JSON.stringify(content));
+      callback(JSON.parse(content));
+    } catch (jsonError) {
+      LogUtil.info('settings BaseParseConfModel getJsonData catch jsonError:' + jsonError);
+    }
+  }
 }
 
 let baseParseConfModel = new BaseParseConfModel();

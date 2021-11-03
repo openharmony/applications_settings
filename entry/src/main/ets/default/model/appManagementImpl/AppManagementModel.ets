@@ -17,9 +17,12 @@ import LogUtil from '../../common/baseUtil/LogUtil.ets';
 import Bundle from '@ohos.bundle';
 import ResMgr from '@ohos.resourceManager';
 
-
 const INDEX = 0;
 const IS_INCLUDE_ABILITY_INFO = 0;
+const ICON_ARROW = $r('app.media.ic_settings_arrow');
+const ICON_DEFAULT = $r('app.media.icon_default');
+const URI_PAGE = 'pages/applicationInfo';
+
 /**
  * app management service class
  */
@@ -67,6 +70,29 @@ export class AppManagementModel extends BaseModel {
         LogUtil.info('settings AppManagementModel getResourceManager getString() finish label:' + label);
         if (appInfo.iconId > 0) {
           item.getMediaBase64(appInfo.iconId, (error, value) => {
+            console.info('settings AppManagementModel getMediaBase64 error:' + error);
+            if (error != null) {
+              console.info('settings AppManagementModel getMediaBase64 error!=null:' + error);
+              this.mBundleInfoList.push({
+                settingIcon: ICON_DEFAULT,
+                settingTitle: label,
+                settingValue: '',
+                settingArrow: ICON_ARROW,
+                settingSummary: data[index].versionName,
+                settingBundleName: data[index].name,
+                settingIconId: appInfo.iconId,
+                settingUri: URI_PAGE
+              });
+              if (count - 1 > index) {
+                LogUtil.info('settings AppManagementModel getMediaBase64() id=0:' + index + ' | count:' + count);
+                index = index + 1;
+                that.getIconItem(index, count, data);
+              } else {
+                LogUtil.info('settings AppManagementModel getMediaBase64() id=0:' + index + ' | count:' + count);
+                LogUtil.info('settings AppManagementModel mBundleInfoList[i]: ' + JSON.stringify(this.mBundleInfoList));
+                AppStorage.SetOrCreate('appManagementList', this.mBundleInfoList);
+              }
+            }
             LogUtil.info('settings AppManagementModel getResourceManager getMediaBase64() :' + value.length);
             if (value.length > 0) {
               imageValue = value;
@@ -77,11 +103,11 @@ export class AppManagementModel extends BaseModel {
               settingIcon: imageValue,
               settingTitle: label,
               settingValue: '',
-              settingArrow: $r('app.media.ic_settings_arrow'),
+              settingArrow: ICON_ARROW,
               settingSummary: data[index].versionName,
               settingBundleName: data[index].name,
               settingIconId: appInfo.iconId,
-              settingUri: 'pages/applicationInfo'
+              settingUri: URI_PAGE
             });
             if (count - 1 > index) {
               LogUtil.info('settings AppManagementModel getMediaBase64() if index:' + index + ' | count:' + count);

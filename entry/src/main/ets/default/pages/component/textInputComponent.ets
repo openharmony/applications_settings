@@ -15,27 +15,22 @@
 import ConfigData from '../../common/baseUtil/ConfigData.ets';
 
 @Component
-export default
-struct SwitchComponent {
-  private isOn: boolean= false;
-  private title: '';
+export default struct textInputComponent {
+  private hintText: string= '';
+  private contextText: string= '';
 
   build() {
-    Row() {
-      Text(this.title)
-        .fontSize($r('app.float.font_20'))
-        .fontColor(Color.Black)
-        .align(Alignment.Start)
-
-      Toggle({ type: ToggleType.Switch, isOn: false })
-        .align(Alignment.End)
-        .width($r('app.float.wh_value_60'))
-        .height($r('app.float.wh_value_40'))
-
-    }
-    .width(ConfigData.WH_100_100)
-    .height($r('app.float.wh_value_70'))
-    .alignItems(VerticalAlign.Center)
-    .padding({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') })
+    TextInput({ placeholder: this.hintText, text: this.contextText })
+      .placeholderColor(Color.Blue)
+      .placeholderFont({ size: ConfigData.font_20, weight: 2, family: "sans-serif", style: FontStyle.Normal })
+      .caretColor(Color.Blue)
+      .height($r('app.float.wh_value_70'))
+      .backgroundColor(Color.White)
+      .type(InputType.Password)
+      .width(ConfigData.WH_100_100)
+      .margin({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') })
+      .onChange((value: string) => {
+      this.contextText = value;
+    });
   }
 }
