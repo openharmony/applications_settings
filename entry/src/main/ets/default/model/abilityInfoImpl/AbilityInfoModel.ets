@@ -19,6 +19,9 @@ import LogUtil from '../../common/baseUtil/LogUtil.ets';
 import {BaseData} from '../BaseData.ets';
 import {MetaDataModel} from './MetaDataModel.ets';
 
+const ICON_ARROW = $r('app.media.ic_settings_arrow');
+const ICON_DEFAULT=$r('app.media.icon_default');
+
 export class AbilityInfoModel extends BaseModel {
   public mAbilityInfoList: any[]= [];
   private metaDatas: string[]= [];
@@ -54,7 +57,7 @@ export class AbilityInfoModel extends BaseModel {
         }
         let metaDataModel = new MetaDataModel('{' + extra + '}');
         LogUtil.info('settings getAbilityInfoListener ability BaseData:' + JSON.stringify(metaDataModel));
-        this.getIconItem(callback, metaDataModel, bundleName, $r('app.media.icon_default'));
+        this.getIconItem(callback, metaDataModel, bundleName, ICON_DEFAULT);
       }
     });
     LogUtil.info('settings getAbilityInfoListener mAbilityInfoList end: ' + JSON.stringify(this.mAbilityInfoList));
@@ -123,7 +126,7 @@ export class AbilityInfoModel extends BaseModel {
     baseData.settingTitle = label;
     baseData.settingAlias = '';
     baseData.settingValue = ''
-    baseData.settingArrow = 'res/image/ic_settings_arrow.svg';
+    baseData.settingArrow = ICON_ARROW;
     baseData.settingSummary = metaBase.summary,
     baseData.settingUri = metaBase.action;
     baseData.settingPriority = metaBase.priority;
@@ -170,7 +173,7 @@ export class AbilityInfoModel extends BaseModel {
               baseData.settingTitle = label;
               baseData.settingAlias = '';
               baseData.settingValue = '';
-              baseData.settingArrow = 'res/image/ic_settings_arrow.svg';
+              baseData.settingArrow = ICON_ARROW;
               baseData.settingSummary = data.summary,
               baseData.settingUri = data.action;
               this.mAbilityInfoList.push(baseData);
@@ -195,7 +198,7 @@ export class AbilityInfoModel extends BaseModel {
             baseData.settingTitle = label;
             baseData.settingAlias = '';
             baseData.settingValue = '';
-            baseData.settingArrow = 'res/image/ic_settings_arrow.svg';
+            baseData.settingArrow = ICON_ARROW;
             baseData.settingSummary = data.summary,
             baseData.settingUri = data.action;
             this.mAbilityInfoList.push(baseData);
@@ -229,5 +232,6 @@ export class AbilityInfoModel extends BaseModel {
 }
 
 let abilityInfoModel = new AbilityInfoModel();
+
 export default abilityInfoModel as AbilityInfoModel
 ;

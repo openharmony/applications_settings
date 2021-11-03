@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Stable from '../../common/baseUtil/settings_table.ets'
+import Stable from '../../common/baseUtil/Global.ets'
 import rdbStore from '../../common/baseUtil/RdbStoreUtil.ets'
 import LogUtil from '../../common/baseUtil/LogUtil.ets';
 import ConfigData from '../../common/baseUtil/ConfigData.ets';
 
 class DataRdbModel {
-  specifyNumbers: any[] = [
+  insertValues: any[] = [
     {
       "settingTitle": "systemName",
       "settingValue": "OpenHarmony"
@@ -45,38 +45,36 @@ class DataRdbModel {
    * query
    */
   async queryAllData(tableName, callback) {
-    LogUtil.info(ConfigData.TAG + 'get data query data start')
+    LogUtil.info(ConfigData.TAG + 'get data queryAllData start')
     let predicates = rdbStore.getRdbPredicates(tableName)
     let results = []
-    LogUtil.info(ConfigData.TAG + 'get data query data predicates:' + JSON.stringify(predicates))
+    LogUtil.info(ConfigData.TAG + 'get data queryAllData predicates:' + JSON.stringify(predicates))
     let resultSet = await rdbStore.getRdbStore().query(predicates)
     while (resultSet.goToNextRow()) {
       let result = {
-        id: '',
         key: '',
         value: ''
       };
-      result.id = resultSet.getString(resultSet.getColumnIndex(Stable.aboutDevice.id))
-      result.value = resultSet.getString(resultSet.getColumnIndex(Stable.aboutDevice.value))
-      result.key = resultSet.getString(resultSet.getColumnIndex(Stable.aboutDevice.key))
+      result.value = resultSet.getString(resultSet.getColumnIndex(Stable.Global.value))
+      result.key = resultSet.getString(resultSet.getColumnIndex(Stable.Global.key))
       results.push(result)
     }
-    LogUtil.info(ConfigData.TAG + 'get data query data end' + JSON.stringify(results))
+    LogUtil.info(ConfigData.TAG + 'get data queryAllData end' + JSON.stringify(results))
     callback(results)
   }
 
 /**
    * insert
    */
-  async insertDataModel(tableName, valueBucket, callback) {
-    LogUtil.info(ConfigData.TAG + 'get data insert model start valueBucket:' + JSON.stringify(valueBucket));
+  async insertDataModel(tableName, rowValue, callback) {
+    LogUtil.info(ConfigData.TAG + 'get data insert model start rowValue:' + JSON.stringify(rowValue));
     let result = {
       rowId: -1
     }
-    let insertPromise = rdbStore.insert(tableName, valueBucket);
-    insertPromise.then(number => {
-      LogUtil.info(ConfigData.TAG + 'get data insert model num' + number);
-      result.rowId = number;
+    let insertPromise = rdbStore.insert(tableName, rowValue);
+    insertPromise.then(rowId => {
+      LogUtil.info(ConfigData.TAG + 'get data insert model num' + rowId);
+      result.rowId = rowId;
       callback(result);
     })
       .catch((err) => {
@@ -91,18 +89,18 @@ class DataRdbModel {
   async deleteData(tableName, key) {
     LogUtil.info(ConfigData.TAG + 'get data delete model start: ' + key);
     let predicates = rdbStore.getRdbPredicates(tableName);
-    await predicates.equalTo(Stable.aboutDevice.key, key);
+    await predicates.equalTo(Stable.Global.key, key);
     rdbStore.deleteItem(predicates);
     LogUtil.info(ConfigData.TAG + 'get data delete model end ');
   }
 /**
    * update
    */
-  async updateData(tableName, key, valueBucket) {
+  async updateData(tableName, key, rowValue) {
     LogUtil.info(ConfigData.TAG + 'get data update model start: ' + key);
     let predicates = rdbStore.getRdbPredicates(tableName);
-    await predicates.equalTo(Stable.aboutDevice.key, key);
-    rdbStore.update(predicates, valueBucket);
+    await predicates.equalTo(Stable.Global.key, key);
+    rdbStore.update(predicates, rowValue);
     LogUtil.info(ConfigData.TAG + 'get data update model end ');
   }
 
@@ -110,26 +108,26 @@ class DataRdbModel {
    * query
    */
   async querySingleData(tableName, key, callback) {
-    LogUtil.info(ConfigData.TAG + 'get data query data start key:' + key);
+    LogUtil.info(ConfigData.TAG + 'get data querySingleData start key:' + key);
     let predicates = rdbStore.getRdbPredicates(tableName);
     let results = [];
-    LogUtil.info(ConfigData.TAG + 'get data query data key predicates1:' + JSON.stringify(predicates));
+    LogUtil.info(ConfigData.TAG + 'get data querySingleData predicates:' + JSON.stringify(predicates));
     if (null !== key) {
-      LogUtil.info(ConfigData.TAG + 'get data query data null !== key:' + JSON.stringify(predicates));
-      await predicates.equalTo(Stable.aboutDevice.key, key);
+      LogUtil.info(ConfigData.TAG + 'get data querySingleData equalTo predicates:' + JSON.stringify(predicates));
+      await predicates.equalTo(Stable.Global.key, key);
     }
     let resultSet = await rdbStore.getRdbStore().query(predicates);
-    LogUtil.info(ConfigData.TAG + 'get data query data key resultSet:' + JSON.stringify(resultSet));
+    LogUtil.info(ConfigData.TAG + 'get data querySingleData resultSet:' + JSON.stringify(resultSet));
     while (resultSet.goToNextRow()) {
       let result = {
         key: '',
         value: ''
       };
-      result.value = resultSet.getString(resultSet.getColumnIndex(Stable.aboutDevice.value));
-      result.key = resultSet.getString(resultSet.getColumnIndex(Stable.aboutDevice.key));
+      result.value = resultSet.getString(resultSet.getColumnIndex(Stable.Global.value));
+      result.key = resultSet.getString(resultSet.getColumnIndex(Stable.Global.key));
       results.push(result);
     }
-    LogUtil.info(ConfigData.TAG + 'get data query data results ' + JSON.stringify(results));
+    LogUtil.info(ConfigData.TAG + 'get data querySingleData results ' + JSON.stringify(results));
     callback(results);
   }
 }

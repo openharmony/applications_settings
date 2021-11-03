@@ -12,17 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-export class BaseData {
-  constructor() {
+export default {
+  tableName: {
+    Global: "Global"
+  },
+  table: {
+    Global: "CREATE TABLE IF NOT EXISTS Global (" +
+    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+    "key TEXT," +
+    "value TEXT" +
+    ");"
+  },
+  Global: {
+    id: "id",
+    key: "key",
+    value: "value"
   }
-
-  settingIcon: string;
-  settingTitle: string;
-  settingAlias: string;
-  settingValue: string;
-  settingArrow: string | Resource ;
-  settingSummary: string;
-  settingUri: string;
-  settingPriority: string;
 }
+
+
+
