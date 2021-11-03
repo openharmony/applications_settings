@@ -57,15 +57,15 @@ export class SettingListModel extends BaseModel {
           ABILITY_NAME = ABILITY_NAME5;
         }
         AbilityInfoModel.getAbilityInfo(BUNDEL_NAME, ABILITY_NAME, metaData => {
-          LogUtil.info('settings SettingListModel getAbilityInfoListener getAbilityInfo:' + JSON.stringify(metaData))
-          LogUtil.info('settings SettingListModel getAbilityInfoListener getAbilityInfo summary:' + metaData.summary)
+          LogUtil.info('settings SettingListModel getAbilityInfoListener getAbilityInfo:' + JSON.stringify(metaData));
+          LogUtil.info('settings SettingListModel getAbilityInfoListener getAbilityInfo summary:' + metaData.summary);
           metaData.sort(function (dataFirst, dataSecond) {
-            return dataFirst.priority - dataSecond.priority
+            return dataFirst.priority - dataSecond.priority;
           })
-          LogUtil.info('settings SettingListModel getAbilityInfoListener metaData:' + JSON.stringify(metaData))
+          LogUtil.info('settings SettingListModel getAbilityInfoListener metaData:' + JSON.stringify(metaData));
           settingsList.push.apply(settingsList, metaData);
           metaData = [];
-          LogUtil.info('settings SettingListModel getAbilityInfoListener settingsList:' + settingsList.length)
+          LogUtil.info('settings SettingListModel getAbilityInfoListener settingsList:' + settingsList.length);
           AppStorage.SetOrCreate('settingsList', settingsList);
         });
       }

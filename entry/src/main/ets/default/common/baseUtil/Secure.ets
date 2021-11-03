@@ -12,17 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-export class BaseData {
-  constructor() {
+export default {
+  tableName: {
+    Secure: " Secure"
+  },
+  table: {
+    Secure: "CREATE TABLE IF NOT EXISTS Secure (" +
+    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+    "key TEXT," +
+    "value TEXT" +
+    ");"
+  },
+  Secure: {
+    id: "id",
+    key: "key",
+    value: "value"
   }
-
-  settingIcon: string;
-  settingTitle: string;
-  settingAlias: string;
-  settingValue: string;
-  settingArrow: string | Resource ;
-  settingSummary: string;
-  settingUri: string;
-  settingPriority: string;
 }
+
+
+

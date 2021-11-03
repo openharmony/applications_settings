@@ -20,7 +20,7 @@ import SystemTime from '@ohos.systemTime';
 
 export class DateAndTimeModel extends BaseModel {
   setTime(time) {
-    LogUtil.info('DateAndTimeModel setTime  in');
+    LogUtil.info('DateAndTimeModel setTime  in ：' + time);
     SystemTime.setTime(time).then(data => {
       LogUtil.info(`DateAndTimeModel setTime promise then : ${data}`);
     })

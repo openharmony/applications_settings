@@ -17,9 +17,12 @@ import LogUtil from '../../common/baseUtil/LogUtil.ets';
 import Bundle from '@ohos.bundle';
 import ResMgr from '@ohos.resourceManager';
 
-
 const INDEX = 0;
 const IS_INCLUDE_ABILITY_INFO = 0;
+const ICON_ARROW = $r('app.media.ic_settings_arrow');
+const ICON_DEFAULT = $r('app.media.icon_default');
+const URI_PAGE = 'pages/applicationInfo';
+
 /**
  * app management service class
  */
@@ -71,14 +74,14 @@ export class AppManagementModel extends BaseModel {
             if (error != null) {
               console.info('settings AppManagementModel getMediaBase64 error!=null:' + error);
               this.mBundleInfoList.push({
-                settingIcon: $r('app.media.icon_default'),
+                settingIcon: ICON_DEFAULT,
                 settingTitle: label,
                 settingValue: '',
-                settingArrow: $r('app.media.ic_settings_arrow'),
+                settingArrow: ICON_ARROW,
                 settingSummary: data[index].versionName,
                 settingBundleName: data[index].name,
                 settingIconId: appInfo.iconId,
-                settingUri: 'pages/applicationInfo'
+                settingUri: URI_PAGE
               });
               if (count - 1 > index) {
                 LogUtil.info('settings AppManagementModel getMediaBase64() id=0:' + index + ' | count:' + count);
@@ -100,11 +103,11 @@ export class AppManagementModel extends BaseModel {
               settingIcon: imageValue,
               settingTitle: label,
               settingValue: '',
-              settingArrow: $r('app.media.ic_settings_arrow'),
+              settingArrow: ICON_ARROW,
               settingSummary: data[index].versionName,
               settingBundleName: data[index].name,
               settingIconId: appInfo.iconId,
-              settingUri: 'pages/applicationInfo'
+              settingUri: URI_PAGE
             });
             if (count - 1 > index) {
               LogUtil.info('settings AppManagementModel getMediaBase64() if index:' + index + ' | count:' + count);

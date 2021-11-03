@@ -14,16 +14,16 @@
  */
 export default {
   tableName: {
-    aboutDevice: "about_device"
+    System: "System"
   },
   table: {
-    aboutDevice: "CREATE TABLE IF NOT EXISTS about_device (" +
+    System: "CREATE TABLE IF NOT EXISTS System (" +
     "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
     "key TEXT," +
     "value TEXT" +
     ");"
   },
-  aboutDevice: {
+  System: {
     id: "id",
     key: "key",
     value: "value"

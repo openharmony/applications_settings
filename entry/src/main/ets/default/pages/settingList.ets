@@ -23,7 +23,7 @@ import GlobalResourceManager from '../common/baseUtil/GlobalResourceManager.ets'
 import BrightnessSettingModel from '../model/brightnessImpl/BrightnessSettingModel.ets';
 import DataRdbService from '../model/dataRdbImpl/DataRdbService.ets';
 import DataRdbModel from '../model/dataRdbImpl/DataRdbModel.ets';
-import Stable from '../common/baseUtil/settings_table.ets';
+import Stable from '../common/baseUtil/Global.ets';
 import RdbStoreUtil from '../common/baseUtil/RdbStoreUtil.ets';
 import Router from '@system.router';
 
@@ -118,24 +118,24 @@ struct SettingList {
       DataRdbService.deleteData(key);
       LogUtil.info(ConfigData.TAG + 'get data delete end');
     }, 5000);
-    //    setTimeout(() => {
-    //      LogUtil.info(ConfigData.TAG + 'get data update start');
-    //      let tel = { "key": "companyInfo", "value": "OpenHarmony111" };
-    //      let key = ["companyInfo"];
-    //      DataRdbService.updateData(key, tel);
-    //      LogUtil.info(ConfigData.TAG + 'get data update end');
-    //    }, 5000);
-    //    setTimeout(() => {
-    //      let key = "model";
-    //      DataRdbService.querySingleData(key, value => {
-    //        console.info(ConfigData.TAG + 'get data query  querySingleData:' + JSON.stringify(value));
-    //      });
-    //    }, 6000);
-    //    setTimeout(() => {
-    //      DataRdbService.queryAllData(values => {
-    //        console.info(ConfigData.TAG + 'get data query values' + JSON.stringify(values));
-    //      });
-    //    }, 7000);
+    setTimeout(() => {
+      LogUtil.info(ConfigData.TAG + 'get data update start');
+      let rowValue = { "key": "companyInfo", "value": "OpenHarmony111" };
+      let key = ["companyInfo"];
+      DataRdbService.updateData(key, rowValue);
+      LogUtil.info(ConfigData.TAG + 'get data update end');
+    }, 5000);
+    setTimeout(() => {
+      let key = "model";
+      DataRdbService.querySingleData(key, value => {
+        console.info(ConfigData.TAG + 'get data query  querySingleData:' + JSON.stringify(value));
+      });
+    }, 6000);
+    setTimeout(() => {
+      DataRdbService.queryAllData(values => {
+        console.info(ConfigData.TAG + 'get data query values' + JSON.stringify(values));
+      });
+    }, 7000);
 
     LogUtil.info('settings SettingList onPageShow in:' + JSON.stringify(this.settingsList));
     this.wifiStatus = WifiModel.getWifiStatus();
@@ -174,7 +174,7 @@ struct SettingList {
     RdbStoreUtil.createRdbStore((ret) => {
       if (ret) {
         console.log(ConfigData.TAG + 'get data first done start');
-        RdbStoreUtil.createTable(Stable.table.aboutDevice);
+        RdbStoreUtil.createTable(Stable.table.Global);
         console.log(ConfigData.TAG + 'get data createRdbStore first done end');
       } else {
         return;
@@ -184,33 +184,33 @@ struct SettingList {
 
   insertData() {
     LogUtil.info(ConfigData.TAG + 'get data insertData start');
-    let numbers = DataRdbModel.specifyNumbers;
-    numbers.forEach((num) => {
-      LogUtil.info(ConfigData.TAG + 'get data for each:' + num);
-      let tel = {
-        "key": num.settingTitle,
-        "value": num.settingValue
+    let insertValues = DataRdbModel.insertValues;
+    insertValues.forEach((insertValue) => {
+      LogUtil.info(ConfigData.TAG + 'get data for each:' + insertValue);
+      let rowValue = {
+        "key": insertValue.settingTitle,
+        "value": insertValue.settingValue
       }
-      DataRdbService.querySingleData(num.settingTitle, value => {
+      DataRdbService.querySingleData(insertValue.settingTitle, value => {
         console.info(ConfigData.TAG + 'get data insertData querySingleData:' + JSON.stringify(value));
         if ([].toString() === value.toString()) {
-          console.info(ConfigData.TAG + 'get data insertData insert:' + JSON.stringify(tel));
-          DataRdbService.insertDataService(tel);
+          console.info(ConfigData.TAG + 'get data insertData insert:' + JSON.stringify(rowValue));
+          DataRdbService.insertDataService(rowValue);
         } else {
           console.info(ConfigData.TAG + 'get data insertData update');
-          let key = [num.settingTitle];
-          let tel = {
-            "key": num.settingTitle,
+          let key = [insertValue.settingTitle];
+          let rowValue = {
+            "key": insertValue.settingTitle,
             "value": '12345457878'
           }
-          DataRdbService.updateData(key, tel);
+          DataRdbService.updateData(key, rowValue);
         }
       });
       LogUtil.info(ConfigData.TAG + 'get data insertData end');
     })
     setTimeout(() => {
-      DataRdbService.queryAllData(values => {
-        console.info(ConfigData.TAG + 'get data insertData values：' + JSON.stringify(values));
+      DataRdbService.queryAllData(tableAllData => {
+        console.info(ConfigData.TAG + 'get data insertData values：' + JSON.stringify(tableAllData));
       });
     }, 2000);
   }

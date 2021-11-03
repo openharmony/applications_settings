@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import DataRdbModel from './DataRdbModel.ets';
-import Stable from '../../common/baseUtil/settings_table.ets';
+import Stable from '../../common/baseUtil/Global.ets';
 import LogUtil from '../../common/baseUtil/LogUtil.ets';
 import ConfigData from '../../common/baseUtil/ConfigData.ets';
 
@@ -22,7 +22,7 @@ class DataRdbService {
    * query
    */
   queryAllData(callback) {
-    DataRdbModel.queryAllData(Stable.tableName.aboutDevice, res => {
+    DataRdbModel.queryAllData(Stable.tableName.Global, res => {
       console.info(ConfigData.TAG + 'get data query model result: ' + JSON.stringify(res));
       callback(res);
     });
@@ -31,8 +31,8 @@ class DataRdbService {
    * query
    */
   querySingleData(key, callback) {
-    DataRdbModel.querySingleData(Stable.tableName.aboutDevice, key, res => {
-      console.info(ConfigData.TAG + 'get data query model querySpecifyKey result: ' + JSON.stringify(res));
+    DataRdbModel.querySingleData(Stable.tableName.Global, key, res => {
+      console.info(ConfigData.TAG + 'get data query model querySingleData result: ' + JSON.stringify(res));
       callback(res);
     });
   }
@@ -41,7 +41,7 @@ class DataRdbService {
    */
   insertDataService(valueBucket) {
     LogUtil.info(ConfigData.TAG + 'get data insert service start');
-    DataRdbModel.insertDataModel(Stable.tableName.aboutDevice, valueBucket, res => {
+    DataRdbModel.insertDataModel(Stable.tableName.Global, valueBucket, res => {
       LogUtil.info(ConfigData.TAG + 'get data insert service result: ' + JSON.stringify(res));
     });
     LogUtil.info(ConfigData.TAG + 'get data insert service end');
@@ -54,7 +54,7 @@ class DataRdbService {
     LogUtil.info(ConfigData.TAG + 'get data delete service start' + keys);
     for (let key of keys) {
       LogUtil.info(ConfigData.TAG + 'get data delete key:' + key);
-      await DataRdbModel.deleteData(Stable.tableName.aboutDevice, key);
+      await DataRdbModel.deleteData(Stable.tableName.Global, key);
       LogUtil.info(ConfigData.TAG + 'get data delete service end');
     }
   }
@@ -65,7 +65,7 @@ class DataRdbService {
     LogUtil.info(ConfigData.TAG + 'get data update service start' + keys);
     for (let key of keys) {
       LogUtil.info('get data update key:' + key);
-      await DataRdbModel.updateData(Stable.tableName.aboutDevice, key, valueBucket);
+      await DataRdbModel.updateData(Stable.tableName.Global, key, valueBucket);
       LogUtil.info(ConfigData.TAG + 'get data update service end');
     }
   }

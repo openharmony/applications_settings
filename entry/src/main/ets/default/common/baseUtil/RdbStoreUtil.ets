@@ -63,9 +63,9 @@ export default {
   /**
      * insert
      */
-  insert(tableName, valueBucket) {
+  insert(tableName, rowValue) {
     console.info('get data start: ' + tableName);
-    return rdbStore.insert(tableName, valueBucket);
+    return rdbStore.insert(tableName, rowValue);
   },
   /**
      * update
@@ -73,9 +73,9 @@ export default {
      * @param valueBucket
      * @return
      */
-  async update(predicates, valueBucket) {
+  async update(predicates, rowValue) {
     LogUtil.info(TAG + 'update start');
-    let changedRows = await rdbStore.update(valueBucket, predicates);
+    let changedRows = await rdbStore.update(rowValue, predicates);
     console.info(TAG + 'update row count: ' + changedRows);
   },
   /**
