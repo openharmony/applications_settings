@@ -15,6 +15,9 @@
 import ConfigData from '../../common/baseUtil/ConfigData.ets';
 import Router from '@system.router';
 
+/**
+ * head custom component
+ */
 @Component
 export default
 struct HeadComponent {
