@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.ohos.settings4",
+    "bundleName": "com.ohos.settings",
     "vendor": "ohos",
     "version": {
       "code": 1000000,
@@ -9,9 +9,9 @@
   },
   "deviceConfig": {},
   "module": {
-    "package": "com.ohos.settings4",
+    "package": "com.ohos.settings",
     "name": ".MyApplication",
-    "mainAbility": "com.ohos.settings4.MainAbility",
+    "mainAbility": "com.ohos.settings.MainAbility",
     "deviceType": [
       "phone"
     ],
@@ -34,7 +34,7 @@
           }
         ],
         "visible": true,
-        "name": "com.ohos.settings4.MainAbility",
+        "name": "com.ohos.settings.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
         "label": "$string:entry_MainAbility",
