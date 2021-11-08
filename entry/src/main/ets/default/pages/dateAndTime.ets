@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 import HeadComponent from './component/headComponent.ets';
-import EntryComponent from './component/entryComponent.ets';
-import AboutDeviceModel from '../model/dateAndTimeImpl/DateAndTimeModel.ets'
 import ConfigData from '../common/baseUtil/ConfigData.ets';
 import DateAndTime from '../common/baseUtil/DateAndTimeUtil.ets';
 import DateAndTimeModel from '../model/dateAndTimeImpl/DateAndTimeModel.ets'
@@ -92,11 +90,15 @@ struct dateAndTime {
       .align(Alignment.TopStart);
     }
   }
-
+  /**
+   * Successfully built Dialog
+   */
   onAccept() {
     console.log("onAccept");
   }
-
+  /**
+   * Cancel Dialog
+   */
   existApp() {
     console.log("Cancel dialog!");
   }
@@ -126,7 +128,7 @@ struct dateAndTime {
   }
 
   private aboutToAppear(): void {
-    this.dateAndTimeList = AboutDeviceModel.dateAndTimeListener();
+    this.dateAndTimeList = DateAndTimeModel.dateAndTimeListener();
     this.image = this.dateAndTimeList[0].settingArrow;
     this.time = DateAndTime.getSystemTime();
     this.date = DateAndTime.getSystemDate();

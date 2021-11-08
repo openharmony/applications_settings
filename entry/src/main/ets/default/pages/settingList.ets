@@ -31,7 +31,7 @@ const SETTING_LIST_INDEX = 0;
 const PAGE_WIFI = 'pages/wifi';
 
 /**
- * Set home page
+ * setting home page
  */
 @Entry
 @Component

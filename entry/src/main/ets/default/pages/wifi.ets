@@ -162,7 +162,9 @@ struct Index {
       LogUtil.info('init wifi isOn is false');
     }
   }
-
+  /**
+   * Connect WiFi
+   */
   connectWifi() {
     LogUtil.info('[wifi_js_test] connect to wifi come in');
     let index = WifiModel.getItemPosition(this.wifiList, this.connectName);
@@ -199,7 +201,9 @@ struct Index {
     }
     LogUtil.info('clickToSecret end:');
   }
-
+  /**
+   * Get switch status
+   */
   getSwitchStatus() {
     if (WifiModel.getWifiStatus()) {
       this.isOn = true;
@@ -207,14 +211,19 @@ struct Index {
       this.isOn = false;
     }
   }
-
+  /**
+   * delay time
+   * @param delay
+   */
   private sleep(delay) {
     let start = (new Date()).getTime();
     while ((new Date()).getTime() - start < delay) {
       continue;
     }
   }
-
+  /**
+   * The switch is on
+   */
   private switchOn() {
     LogUtil.info('switchClick wifi start ---->');
     if(this.wifiList.length > 0){
@@ -245,7 +254,9 @@ struct Index {
       LogUtil.info('switchClick wifi fail to enableWifi ---->');
     }
   }
-
+  /**
+   * The switch is off
+   */
   private switchOff() {
     LogUtil.info('switchClick wifi off start ---->');
     if (WifiModel.disableWifi()) {
@@ -257,7 +268,9 @@ struct Index {
       LogUtil.info('switchClick wifi off end ---->');
     }
   }
-
+  /**
+   * WiFi status monitoring
+   */
   wifiStatusListener() {
     LogUtil.info('wifi status listener');
     Subscriber.createSubscriber(this.mCommonEventSubscribeInfo,
@@ -325,13 +338,17 @@ struct Index {
       this.wifiList.splice(1, 1);
     }
   }
-
+  /**
+   * Cancel WiFi status listening
+   */
   unSubscriberListener() {
     Subscriber.unsubscribe(this.mCommonEventSubscriber, () => {
       LogUtil.info('wifi unsubscribe');
     });
   }
-
+  /**
+   * Clear scan information
+   */
   clearScanInfo() {
     LogUtil.info('clear scan wifiList start---->');
     this.wifiList = [];
