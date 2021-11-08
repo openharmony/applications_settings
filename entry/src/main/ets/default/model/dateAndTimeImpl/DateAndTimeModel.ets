@@ -17,7 +17,9 @@ import BaseParseConfModel from '../baseParseConfImpl/BaseParseConfModel.ets';
 import ConfigData from '../../common/baseUtil/ConfigData.ets';
 import LogUtil from '../../common/baseUtil/LogUtil.ets';
 import SystemTime from '@ohos.systemTime';
-
+/**
+ * Set date and time
+ */
 export class DateAndTimeModel extends BaseModel {
   setTime(time) {
     LogUtil.info('DateAndTimeModel setTime  in ：' + time);

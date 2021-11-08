@@ -22,28 +22,38 @@ export class WifiModel extends BaseModel {
   private mWifiList: any[] = [];
   private remdupWifiList: any[] = [];
   private linkedInfoList: any[] = [];
-
+  /**
+   * Get WiFi switch status
+   */
   getWifiStatus() {
     LogUtil.info('WifiNativeJs isWifiActive');
     return WifiNativeJs.isWifiActive();
   }
-
+  /**
+   * WiFi enable
+   */
   getEnableWifi() {
     LogUtil.info('WifiNativeJs enableWifi');
     return WifiNativeJs.enableWifi();
   }
-
+  /**
+   *  WiFi disable
+   */
   disableWifi() {
     this.linkedInfoList = [];
     LogUtil.info('WifiNativeJs disableWifi');
     return WifiNativeJs.disableWifi();
   }
-
+  /**
+   * Scan WiFi
+   */
   getScanWifi() {
     LogUtil.info('WifiNativeJs scan');
     return WifiNativeJs.scan();
   }
-
+  /**
+   * Get WiFi scan information
+   */
   getScanInfoCallBack() {
     LogUtil.info('get to wifi info start');
     this.mWifiList = [];
@@ -171,7 +181,11 @@ export class WifiModel extends BaseModel {
     });
     LogUtil.info('get to wifi information end ---->');
   }
-
+  /**
+   * Gets the subscript of the specified WiFi
+   * @param list
+   * @param ssid
+   */
   getItemPosition(list, ssid) {
     for (let i = 0; i < list.length; i++) {
       if (ssid === list[i].settingTitle) {
@@ -180,17 +194,24 @@ export class WifiModel extends BaseModel {
     }
     return -1;
   }
-
+  /**
+   * Connecting equipment
+   * @param obj
+   */
   connectToDevice(obj) {
     LogUtil.info('[wifi_js_test] connect to wifi');
     return WifiNativeJs.connectToDevice(obj);
   }
-
+  /**
+   * Disconnect wifi
+   */
   disConnect() {
     LogUtil.info('netWork disconnect');
     return WifiNativeJs.disConnect();
   }
-
+  /**
+   * Get connected WiFi information
+   */
   getLinkedInfo() {
     this.linkedInfoList = [];
     LogUtil.info('[wifi_js] get wifi linked info start');

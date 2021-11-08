@@ -12,6 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+/**
+ * Secure table
+ */
 export default {
   tableName: {
     Global: "Global"
