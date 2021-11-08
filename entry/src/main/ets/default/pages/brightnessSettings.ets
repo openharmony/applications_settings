@@ -24,6 +24,9 @@ const BRIGHTNESS_MAX_VALUE = 255;
 const BRIGHTNESS_STEP_VALUE = 10;
 const SENT_EVENT_IN_BRIGHTNESS_PAGES = '-1';
 
+/**
+ * brightness setting
+ */
 @Entry
 @Component
 struct BrightnessSettings {
@@ -49,7 +52,7 @@ struct BrightnessSettings {
           .onChange((number, SliderChangeMode) => {
           this.bright = Math.round(number);
           BrightnessSettingModel.setBrightnessListener(this.bright);
-          BrightnessSettingModel.setStorageValue(ConfigData.BRIGHTNESS_SAVE_VALUE_KEY,this.bright);
+          BrightnessSettingModel.setStorageValue(ConfigData.BRIGHTNESS_SAVE_VALUE_KEY, this.bright);
           SubscriberUtils.sendEvent(this.bright + '', ConfigData.SENT_EVENT_BROADCAST_BRIGHTNESS_VALUE);
         });
         Image($r('app.media.ic_settings_brightness_maximum'))
