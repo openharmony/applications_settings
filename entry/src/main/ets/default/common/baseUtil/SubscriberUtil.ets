@@ -22,7 +22,16 @@ let mCommonEventSubscribeInfo = {
 
 let mCommonEventSubscriber = null;
 
+/**
+ * broadcast
+ */
 export class SubscriberUtils {
+  /**
+   * Send broadcast
+   *
+   * @param value - value
+   * @param broadcastName - broadcastName
+   */
   sendEvent(value, broadcastName) {
     console.log(`settings settingList sendEvent ets in value:` + value + "|broadcastName:" + broadcastName);
     let commonEventPublishData = {
@@ -35,6 +44,9 @@ export class SubscriberUtils {
     console.log(`settings settingList sendEvent ets out`);
   }
 
+  /**
+   * Register to broadcast
+   */
   registerStatusListener() {
     console.info(`settings settingList Subscriberregister status listener in`);
     CommonEvent.createSubscriber(
@@ -73,6 +85,9 @@ export class SubscriberUtils {
     console.log(`settings settingList statusSubscriberCallBack out`);
   }
 
+  /**
+   * unRegister to broadcast
+   */
   unSubscriberListener() {
     CommonEvent.unsubscribe(mCommonEventSubscriber, () => {
       console.info('settings settingList unSubscriberListener');

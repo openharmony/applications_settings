@@ -14,6 +14,9 @@
  */
 import ConfigData from '../../common/baseUtil/ConfigData.ets';
 
+/**
+ * ImageAnimator component
+ */
 @Component
 export default
 struct ImageAnimatorComponent {

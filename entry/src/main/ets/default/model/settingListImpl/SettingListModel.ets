@@ -28,6 +28,7 @@ const BUNDEL_NAME3 = 'com.ohos.settings3';
 const ABILITY_NAME3 = 'com.ohos.settings3.MainAbility';
 const BUNDEL_NAME5 = 'com.ohos.settings5';
 const ABILITY_NAME5 = 'com.ohos.settings5.MainAbility';
+
 /**
  * app setting homepage service class
  */
@@ -72,6 +73,10 @@ export class SettingListModel extends BaseModel {
     });
   }
 
+  /**
+   * get WiFi status and read $r data
+   * @param settingsList - home page data
+   */
   setTitleValue(settingsList) {
     LogUtil.info('settings setTitleValue getAbilityInfoListener this.settingsList in:' + JSON.stringify(settingsList));
     for (let key in settingsList) {
@@ -103,6 +108,10 @@ export class SettingListModel extends BaseModel {
     return settingsList;
   }
 
+  /**
+   * get the parameters when Ability is started
+   * @param callback - page uri
+   */
   startPage(callback): void{
     LogUtil.info('settings SettingList startPage start');
     FeatureAbility.getWant()

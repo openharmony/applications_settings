@@ -13,13 +13,14 @@
  * limitations under the License.
  */
 import HeadComponent from './component/headComponent.ets';
-import EntryComponent from './component/entryComponent.ets';
-import AboutDeviceModel from '../model/dateAndTimeImpl/DateAndTimeModel.ets'
 import ConfigData from '../common/baseUtil/ConfigData.ets';
 import DateAndTime from '../common/baseUtil/DateAndTimeUtil.ets';
 import DateAndTimeModel from '../model/dateAndTimeImpl/DateAndTimeModel.ets'
 import LogUtil from '../common/baseUtil/LogUtil.ets';
 
+/**
+ * date and time
+ */
 @Entry
 @Component
 struct dateAndTime {
@@ -89,15 +90,22 @@ struct dateAndTime {
       .align(Alignment.TopStart);
     }
   }
-
+  /**
+   * Successfully built Dialog
+   */
   onAccept() {
     console.log("onAccept");
   }
-
+  /**
+   * Cancel Dialog
+   */
   existApp() {
     console.log("Cancel dialog!");
   }
 
+  /**
+   * modify date and time
+   */
   changeValue() {
     this.dateAndTimeList = [];
     this.dateAndTimeList.push(
@@ -120,7 +128,7 @@ struct dateAndTime {
   }
 
   private aboutToAppear(): void {
-    this.dateAndTimeList = AboutDeviceModel.dateAndTimeListener();
+    this.dateAndTimeList = DateAndTimeModel.dateAndTimeListener();
     this.image = this.dateAndTimeList[0].settingArrow;
     this.time = DateAndTime.getSystemTime();
     this.date = DateAndTime.getSystemDate();
@@ -128,6 +136,9 @@ struct dateAndTime {
     this.getNowTime();
   }
 
+  /**
+   * get current system time
+   */
   private getNowTime(): void {
     this.intervalFlag = setInterval(() => {
       console.log('get time come in');
@@ -147,6 +158,9 @@ struct dateAndTime {
   }
 }
 
+/**
+ * set time dialog
+ */
 @CustomDialog
 @Component
 struct TimeDialog {
@@ -216,6 +230,9 @@ struct TimeDialog {
   }
 }
 
+/**
+ * set date dialog
+ */
 @CustomDialog
 @Component
 struct DateDialog {

@@ -20,6 +20,9 @@ import HeadComponent from './component/headComponent.ets';
 import LogUtil from '../common/baseUtil/LogUtil.ets';
 import Router from '@system.router';
 
+/**
+ * application list
+ */
 @Entry
 @Component
 struct AppManagement {
