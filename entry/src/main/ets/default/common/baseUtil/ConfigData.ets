@@ -41,12 +41,6 @@ export class ConfigData {
 
   value_20 = 20;
   font_20 = 20;
-  ONE_HUNDRED_PERCENT = '100%';
-  THIRTY_PERCENT = '30%';
-  FORTY_PERCENT = '40%';
-  FIFTY_PERCENT = '50%';
-  FORTY_FIVE_PERCENT  = '45%';
-  FIFTY_FIVE_PERCENT = '55%';
 
   MAX_LINES_1 = 1;
   MAX_LINES_2 = 2;

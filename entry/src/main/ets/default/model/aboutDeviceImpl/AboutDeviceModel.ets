@@ -22,12 +22,19 @@ import deviceInfo from '@ohos.deviceInfo';
  * about device service class
  */
 export class AboutDeviceModel extends BaseModel {
+
+  /**
+   * Get phone information
+   */
   setOnAboutDeviceListener(): any {
     LogUtil.info('settings setOnAboutDeviceListener in');
     LogUtil.info('settings setOnAboutDeviceListener deviceInfo ' + JSON.stringify(deviceInfo));
     return deviceInfo;
   }
 
+  /**
+  * read local file
+  */
   public getAboutDeviceInfoListener(): any[] {
     LogUtil.info('settings getAboutDeviceInfoListener come in');
     return BaseParseConfModel.getJsonData(ConfigData.FILE_URI.concat('aboutDevice.json'));

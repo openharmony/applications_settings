@@ -19,13 +19,22 @@ import LogUtil from '../../common/baseUtil/LogUtil.ets';
 import {BaseData} from '../BaseData.ets';
 import {MetaDataModel} from './MetaDataModel.ets';
 
-const ICON_ARROW = $r('app.media.ic_settings_arrow');
-const ICON_DEFAULT=$r('app.media.icon_default');
+let icon_arrow = $r('app.media.ic_settings_arrow');
+let icon_default = $r('app.media.icon_default');
+let metaName = 'meta-app';
 
+/**
+ * Obtain meta-data Information
+ */
 export class AbilityInfoModel extends BaseModel {
   public mAbilityInfoList: any[]= [];
   private metaDatas: string[]= [];
-
+  /**
+   * Obtain meta-data Information
+   * @param bundleName - bundleName
+   * @param abilityName - abilityName
+   * @param callback - Return meta-data
+   */
   getAbilityInfo(bundleName, abilityName, callback) {
     LogUtil.info('settings getAbilityInfoListener in');
     Bundle.queryAbilityByWant(
@@ -53,17 +62,22 @@ export class AbilityInfoModel extends BaseModel {
         for (let i = 0, len = abilityMetaData.customizeDatas.length; i < len; i++) {
           LogUtil.info('settings getAbilityInfoListener ability Extra:' +
           JSON.stringify(abilityMetaData.customizeDatas[i].extra));
-          extra = abilityMetaData.customizeDatas[i].extra;
+          let metaApp = abilityMetaData.customizeDatas[i].name;
+          if (metaName === metaApp) {
+            extra = abilityMetaData.customizeDatas[i].extra;
+          }
         }
-        let metaDataModel = new MetaDataModel('{' + extra + '}');
-        LogUtil.info('settings getAbilityInfoListener ability BaseData:' + JSON.stringify(metaDataModel));
-        this.getIconItem(callback, metaDataModel, bundleName, ICON_DEFAULT);
+        if ('' !== extra && undefined !== extra) {
+          let metaDataModel = new MetaDataModel('{' + extra + '}');
+          LogUtil.info('settings getAbilityInfoListener ability BaseData:' + JSON.stringify(metaDataModel));
+          this.getResource(callback, metaDataModel, bundleName, icon_default);
+        }
       }
     });
     LogUtil.info('settings getAbilityInfoListener mAbilityInfoList end: ' + JSON.stringify(this.mAbilityInfoList));
   }
 
-  getIconItem(callback, metaBase, bundleName, deaultAppIcon) {
+  getResource(callback, metaBase, bundleName, deaultAppIcon) {
     LogUtil.info('settings getAbilityInfoListener getIconItem start');
     let imageValue = '';
     let label = '';
@@ -119,6 +133,12 @@ export class AbilityInfoModel extends BaseModel {
     LogUtil.info('settings getAbilityInfoListener getIconItem end');
   }
 
+  /**
+   * @param label - title
+   * @param imageValue - image
+   * @param metaBase -
+   * @param callback -
+   */
   getMetaDataList(label, imageValue, metaBase, callback) {
     this.mAbilityInfoList = [];
     let baseData = new BaseData();
@@ -126,108 +146,13 @@ export class AbilityInfoModel extends BaseModel {
     baseData.settingTitle = label;
     baseData.settingAlias = '';
     baseData.settingValue = ''
-    baseData.settingArrow = ICON_ARROW;
+    baseData.settingArrow = icon_arrow;
     baseData.settingSummary = metaBase.summary,
     baseData.settingUri = metaBase.action;
     baseData.settingPriority = metaBase.priority;
     this.mAbilityInfoList.push(baseData);
     LogUtil.info('settings getAbilityInfoListener mAbilityInfoList in: ' + JSON.stringify(this.mAbilityInfoList));
     callback(this.mAbilityInfoList);
-  }
-
-  getIconListItem(index, count, data, deaultAppIcon) {
-    LogUtil.info('settings AppManagementModel getIconItem start data.length' + data.length);
-    let imageValue = '';
-    let label = '';
-    let that = this;
-    LogUtil.info('settings AppManagementModel data[index].name :' + data[index].name);
-    try {
-      ResMgr.getResourceManager(data[index].name, (error, item) => {
-        LogUtil.info('settings AppManagementModel getResourceManager item' + JSON.stringify(item) + "|error:" + error);
-        let appInfo = data[index].appInfo;
-        LogUtil.info('settings AppManagementModel getResourceManager appInfo.labelId:' + JSON.stringify(appInfo));
-        LogUtil.info('settings AppManagementModel labelId:' + appInfo.labelId + "|iconId:" + appInfo.iconId);
-        if (appInfo.labelId > 0) {
-          item.getString(appInfo.labelId, (error, value) => {
-            LogUtil.info('settings AppManagementModel getResourceManager  value.length:' + value.length);
-            if (value != null) {
-              LogUtil.info('settings AppManagementModel getResourceManager getString() value:' + value);
-              label = value;
-              LogUtil.info('settings AppManagementModel getResourceManager getString() label:' + label);
-            } else {
-              LogUtil.info('settings AppManagementModel getResourceManager getString() error:' + error);
-            }
-          });
-        } else {
-          LogUtil.info('settings AppManagementModel getResourceManager getString() label:' + appInfo.label);
-          label = appInfo.label;
-        }
-        LogUtil.info('settings AppManagementModel getResourceManager getString() finish label:' + label);
-        if (appInfo.iconId > 0) {
-          item.getMediaBase64(appInfo.iconId, (error, value) => {
-            console.info('settings AppManagementModel getMediaBase64 error:' + error);
-            if (error != null) {
-              console.info('settings AppManagementModel getMediaBase64 error!=null:' + error);
-              let baseData = new BaseData();
-              baseData.settingIcon = deaultAppIcon;
-              baseData.settingTitle = label;
-              baseData.settingAlias = '';
-              baseData.settingValue = '';
-              baseData.settingArrow = ICON_ARROW;
-              baseData.settingSummary = data.summary,
-              baseData.settingUri = data.action;
-              this.mAbilityInfoList.push(baseData);
-              if (count - 1 > index) {
-                LogUtil.info('settings AppManagementModel getMediaBase64() id=0:' + index + ' | count:' + count);
-                index = index + 1;
-                that.getIconListItem(index, count, data, deaultAppIcon);
-              } else {
-                LogUtil.info('settings AppManagementModel getMediaBase64() id=0:' + index + ' | count:' + count);
-                LogUtil.info('settings AppManagementModel mBundleInfoList[i]: ' + JSON.stringify(this.mAbilityInfoList));
-                AppStorage.SetOrCreate('appManagementList', this.mAbilityInfoList);
-              }
-            }
-            LogUtil.info('settings AppManagementModel getResourceManager getMediaBase64() :' + value.length);
-            if (value.length > 0) {
-              imageValue = value;
-              LogUtil.info('settings AppManagementModel getResourceManager getMediaBase64() imageValue:' + imageValue);
-            }
-            LogUtil.info('settings AppManagementModel getResourceManager getMediaBase64() end');
-            let baseData = new BaseData();
-            baseData.settingIcon = imageValue;
-            baseData.settingTitle = label;
-            baseData.settingAlias = '';
-            baseData.settingValue = '';
-            baseData.settingArrow = ICON_ARROW;
-            baseData.settingSummary = data.summary,
-            baseData.settingUri = data.action;
-            this.mAbilityInfoList.push(baseData);
-            if (count - 1 > index) {
-              LogUtil.info('settings AppManagementModel getMediaBase64() if index:' + index + ' | count:' + count);
-              index = index + 1;
-              that.getIconListItem(index, count, data, deaultAppIcon);
-            } else {
-              LogUtil.info('settings AppManagementModel getMediaBase64() else index:' + index + ' | count:' + count);
-              LogUtil.info('settings AppManagementModel mBundleInfoList[i]: ' + JSON.stringify(this.mAbilityInfoList));
-              AppStorage.SetOrCreate('appManagementList', this.mAbilityInfoList);
-            }
-          });
-        } else {
-          if (count - 1 > index) {
-            LogUtil.info('settings AppManagementModel getMediaBase64() id=0:' + index + ' | count:' + count);
-            index = index + 1;
-            that.getIconListItem(index, count, data, deaultAppIcon);
-          } else {
-            LogUtil.info('settings AppManagementModel getMediaBase64() id=0:' + index + ' | count:' + count);
-            LogUtil.info('settings AppManagementModel mBundleInfoList[i]: ' + JSON.stringify(this.mAbilityInfoList));
-            AppStorage.SetOrCreate('appManagementList', this.mAbilityInfoList);
-          }
-        }
-      });
-    } catch (error) {
-      LogUtil.info('settings AppManagementModel catch error:' + error);
-    }
-    LogUtil.info('settings appManagement AppManagementModel getIconItem end');
   }
 }
 
