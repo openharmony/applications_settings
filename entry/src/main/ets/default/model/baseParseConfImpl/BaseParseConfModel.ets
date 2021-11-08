@@ -19,9 +19,26 @@ import FileIo from '@ohos.fileio';
 const DFAULT_SIZE = 4096;
 const CHAR_CODE_AT_INDEX = 0;
 
+/**
+  * read local file
+  */
 export class BaseParseConfModel extends BaseModel {
   public getJsonData(fileName: string): any[]{
-    LogUtil.info('settings BaseParseConfModel in');
+    LogUtil.info('settings BaseParseConfModel getJsonData in');
+    return this.readLocalFile(fileName);
+    LogUtil.info('settings BaseParseConfModel getJsonData end');
+  }
+
+  public getJsonDataBase(fileName, callback) {
+    LogUtil.info('settings BaseParseConfModel getJsonDataBase in');
+    callback(this.readLocalFile(fileName));
+    LogUtil.info('settings BaseParseConfModel getJsonDataBase end');
+  }
+  /**
+   * read local file
+   * @param fileName - file name
+   */
+  readLocalFile(fileName): any[]{
     try {
       let stream = FileIo.createStreamSync(fileName, 'r');
       LogUtil.info('settings BaseParseConfModel getJsonData try stream:' + stream);
@@ -41,30 +58,9 @@ export class BaseParseConfModel extends BaseModel {
       LogUtil.info('settings BaseParseConfModel getJsonData catch jsonError:' + jsonError);
     }
   }
-
-  public getJsonDataBase(fileName, callback) {
-    LogUtil.info('settings BaseParseConfModel in');
-    try {
-      let stream = FileIo.createStreamSync(fileName, 'r');
-      LogUtil.info('settings BaseParseConfModel getJsonData try stream:' + stream);
-      let buf = new ArrayBuffer(DFAULT_SIZE);
-      let len = stream.readSync(buf);
-      LogUtil.info('settings BaseParseConfModel getJsonData try len:' + len);
-      let arr = new Uint8Array(buf);
-      let charAt = ' '.charCodeAt(CHAR_CODE_AT_INDEX);
-      for (let i = len;i < DFAULT_SIZE; i++) {
-        arr[i] = charAt;
-      }
-      let content = String.fromCharCode.apply(null, arr);
-      stream.closeSync();
-      LogUtil.info('settings BaseParseConfModel getJsonData try content:' + JSON.stringify(content));
-      callback(JSON.parse(content));
-    } catch (jsonError) {
-      LogUtil.info('settings BaseParseConfModel getJsonData catch jsonError:' + jsonError);
-    }
-  }
 }
 
 let baseParseConfModel = new BaseParseConfModel();
+
 export default baseParseConfModel as BaseParseConfModel
 ;

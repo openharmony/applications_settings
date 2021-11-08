@@ -15,11 +15,13 @@
 import LogUtil from '../common/baseUtil/LogUtil.ets';
 import EntryComponent from './component/entryComponent.ets';
 import HeadComponent from './component/headComponent.ets';
-import ConfigData from '../common/baseUtil/ConfigData.ets';
 import Router from '@system.router'
 
 let appInfo;
 
+/**
+ * application details
+ */
 @Entry
 @Component
 struct ApplicationInfo {

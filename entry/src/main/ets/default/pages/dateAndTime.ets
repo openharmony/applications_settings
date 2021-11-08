@@ -20,6 +20,9 @@ import DateAndTime from '../common/baseUtil/DateAndTimeUtil.ets';
 import DateAndTimeModel from '../model/dateAndTimeImpl/DateAndTimeModel.ets'
 import LogUtil from '../common/baseUtil/LogUtil.ets';
 
+/**
+ * date and time
+ */
 @Entry
 @Component
 struct dateAndTime {
@@ -98,6 +101,9 @@ struct dateAndTime {
     console.log("Cancel dialog!");
   }
 
+  /**
+   * modify date and time
+   */
   changeValue() {
     this.dateAndTimeList = [];
     this.dateAndTimeList.push(
@@ -128,6 +134,9 @@ struct dateAndTime {
     this.getNowTime();
   }
 
+  /**
+   * get current system time
+   */
   private getNowTime(): void {
     this.intervalFlag = setInterval(() => {
       console.log('get time come in');
@@ -147,6 +156,9 @@ struct dateAndTime {
   }
 }
 
+/**
+ * set time dialog
+ */
 @CustomDialog
 @Component
 struct TimeDialog {
@@ -216,6 +228,9 @@ struct TimeDialog {
   }
 }
 
+/**
+ * set date dialog
+ */
 @CustomDialog
 @Component
 struct DateDialog {

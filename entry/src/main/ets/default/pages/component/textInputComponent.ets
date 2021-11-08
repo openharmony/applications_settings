@@ -14,6 +14,9 @@
  */
 import ConfigData from '../../common/baseUtil/ConfigData.ets';
 
+/**
+ * TextInput component
+ */
 @Component
 export default struct textInputComponent {
   private hintText: string= '';

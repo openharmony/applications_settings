@@ -16,6 +16,9 @@ import ConfigData from '../common/baseUtil/ConfigData.ets';
 import HeadComponent from './component/headComponent.ets';
 import AboutDeviceModel from '../model/aboutDeviceImpl/AboutDeviceModel.ets'
 
+/**
+ * about phone
+ */
 @Entry
 @Component
 struct Index {
