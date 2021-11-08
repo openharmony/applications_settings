@@ -22,6 +22,9 @@ const WIFI_DEFAULT_PSD = '';
 let name;
 let title;
 
+/**
+ * wifi password setting page
+ */
 @Entry
 @Component
 struct WifiPsd {

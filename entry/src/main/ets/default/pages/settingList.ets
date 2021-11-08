@@ -30,6 +30,9 @@ import Router from '@system.router';
 const SETTING_LIST_INDEX = 0;
 const PAGE_WIFI = 'pages/wifi';
 
+/**
+ * setting home page
+ */
 @Entry
 @Component
 struct SettingList {
@@ -83,7 +86,7 @@ struct SettingList {
     await SettingListModel.setSettingListener();
     SubscriberUtils.registerStatusListener();
     LogUtil.info('settings SettingList aboutToAppear startPage');
-    SettingListModel.startPage(this.pageValue);
+    SettingListModel.startPage(this.jumpPage);
     let nYear = GlobalResourceManager.getStringByResource($r('app.string.year'));
     nYear.then(resp => BrightnessSettingModel.setStorageValue(ConfigData.DATE_AND_TIME_YEAR, resp));
     let nMonth = GlobalResourceManager.getStringByResource($r('app.string.month'));
@@ -96,17 +99,24 @@ struct SettingList {
     LogUtil.info('settings SettingList aboutToAppear end');
   }
 
-  pageValue(pagePath): void{
-    LogUtil.info('settings settingList pageValue pagePath:' + pagePath);
+  /**
+   * Other applications jump to the specified page
+   * @param pagePath page uri
+   */
+  jumpPage(pagePath): void{
+    LogUtil.info('settings settingList jumpPage pagePath:' + pagePath);
     if (PAGE_WIFI === pagePath) {
       Router.push({
         uri: PAGE_WIFI,
       });
     }
-    LogUtil.info('settings settingList pageValue end');
+    LogUtil.info('settings settingList jumpPage end');
   }
 
   onPageShow(): void{
+    /**
+     * 117 to 145 Database insert, delete, update and query example
+     */
     setTimeout(() => {
       LogUtil.info(ConfigData.TAG + 'get data insert start');
       this.insertData();
@@ -120,7 +130,7 @@ struct SettingList {
     }, 5000);
     setTimeout(() => {
       LogUtil.info(ConfigData.TAG + 'get data update start');
-      let rowValue = { "key": "companyInfo", "value": "OpenHarmony111" };
+      let rowValue = { "key": "companyInfo", "value": "OpenHarmonyTest" };
       let key = ["companyInfo"];
       DataRdbService.updateData(key, rowValue);
       LogUtil.info(ConfigData.TAG + 'get data update end');
@@ -170,6 +180,9 @@ struct SettingList {
     LogUtil.info('settings settingList aboutToDisappear out');
   }
 
+  /**
+   * create database and table
+   */
   initRdb() {
     RdbStoreUtil.createRdbStore((ret) => {
       if (ret) {
@@ -182,6 +195,9 @@ struct SettingList {
     });
   }
 
+  /**
+   * insert data
+   */
   insertData() {
     LogUtil.info(ConfigData.TAG + 'get data insertData start');
     let insertValues = DataRdbModel.insertValues;

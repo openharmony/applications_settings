@@ -19,28 +19,37 @@ import ResMgr from '@ohos.resourceManager';
 
 const INDEX = 0;
 const IS_INCLUDE_ABILITY_INFO = 0;
-const ICON_ARROW = $r('app.media.ic_settings_arrow');
-const ICON_DEFAULT = $r('app.media.icon_default');
 const URI_PAGE = 'pages/applicationInfo';
+let icon_arrow = $r('app.media.ic_settings_arrow');
+let icon_default = $r('app.media.icon_default');
 
 /**
  * app management service class
  */
 export class AppManagementModel extends BaseModel {
   private mBundleInfoList: any[]= [];
-
+ /**
+  * get application data
+  */
   setAppManagementListener() {
     LogUtil.info('settings AppManagementModel getIconItem ResMgr:' + JSON.stringify(ResMgr));
     Bundle.getAllBundleInfo(IS_INCLUDE_ABILITY_INFO)
       .then((data) => {
       LogUtil.info('settings AppManagementModel setAppManagementListener getBundleInfos() start ');
       LogUtil.info('settings AppManagementModel data.length: ' + data.length + ' data: ' + JSON.stringify(data));
-      this.getIconItem(INDEX, data.length, data);
+      this.getResourceItem(INDEX, data.length, data);
     });
     LogUtil.info('settings appManagement init AppManagementModel setAppManagementListener end');
   }
 
-  getIconItem(index, count, data) {
+  /**
+   * get resource information according to resource id
+   *
+   * @param index - array position
+   * @param count - array length
+   * @param data - data
+   */
+  getResourceItem(index, count, data) {
     LogUtil.info('settings AppManagementModel getIconItem start data.length' + data.length);
     let imageValue = '';
     let label = '';
@@ -74,10 +83,10 @@ export class AppManagementModel extends BaseModel {
             if (error != null) {
               console.info('settings AppManagementModel getMediaBase64 error!=null:' + error);
               this.mBundleInfoList.push({
-                settingIcon: ICON_DEFAULT,
+                settingIcon: icon_default,
                 settingTitle: label,
                 settingValue: '',
-                settingArrow: ICON_ARROW,
+                settingArrow: icon_arrow,
                 settingSummary: data[index].versionName,
                 settingBundleName: data[index].name,
                 settingIconId: appInfo.iconId,
@@ -86,7 +95,7 @@ export class AppManagementModel extends BaseModel {
               if (count - 1 > index) {
                 LogUtil.info('settings AppManagementModel getMediaBase64() id=0:' + index + ' | count:' + count);
                 index = index + 1;
-                that.getIconItem(index, count, data);
+                that.getResourceItem(index, count, data);
               } else {
                 LogUtil.info('settings AppManagementModel getMediaBase64() id=0:' + index + ' | count:' + count);
                 LogUtil.info('settings AppManagementModel mBundleInfoList[i]: ' + JSON.stringify(this.mBundleInfoList));
@@ -103,7 +112,7 @@ export class AppManagementModel extends BaseModel {
               settingIcon: imageValue,
               settingTitle: label,
               settingValue: '',
-              settingArrow: ICON_ARROW,
+              settingArrow: icon_arrow,
               settingSummary: data[index].versionName,
               settingBundleName: data[index].name,
               settingIconId: appInfo.iconId,
@@ -112,7 +121,7 @@ export class AppManagementModel extends BaseModel {
             if (count - 1 > index) {
               LogUtil.info('settings AppManagementModel getMediaBase64() if index:' + index + ' | count:' + count);
               index = index + 1;
-              that.getIconItem(index, count, data);
+              that.getResourceItem(index, count, data);
             } else {
               LogUtil.info('settings AppManagementModel getMediaBase64() else index:' + index + ' | count:' + count);
               LogUtil.info('settings AppManagementModel mBundleInfoList[i]: ' + JSON.stringify(this.mBundleInfoList));
@@ -123,7 +132,7 @@ export class AppManagementModel extends BaseModel {
           if (count - 1 > index) {
             LogUtil.info('settings AppManagementModel getMediaBase64() id=0:' + index + ' | count:' + count);
             index = index + 1;
-            that.getIconItem(index, count, data);
+            that.getResourceItem(index, count, data);
           } else {
             LogUtil.info('settings AppManagementModel getMediaBase64() id=0:' + index + ' | count:' + count);
             LogUtil.info('settings AppManagementModel mBundleInfoList[i]: ' + JSON.stringify(this.mBundleInfoList));

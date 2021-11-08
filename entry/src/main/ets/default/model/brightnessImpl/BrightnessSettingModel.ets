@@ -20,6 +20,11 @@ import Storage from '@ohos.data.storage';
 
 let mBrightnessPreferences = Storage.getStorageSync(ConfigData.PREFERENCES_PATH);
 
+/**
+ * Brightness setting
+ *
+ * @param brightnessValue - Brightness value
+ */
 export class BrightnessSettingModel extends BaseModel {
   setBrightnessListener(brightnessValue) {
     LogUtil.info('settings settingList BrightnessSettingModel Brightness:' + brightnessValue);
@@ -27,13 +32,25 @@ export class BrightnessSettingModel extends BaseModel {
     LogUtil.info('settings settingList BrightnessSettingModel end');
   }
 
-  setStorageValue(key,brightnessValue) {
-    LogUtil.info('settings BrightnessSettingModel setStorageValue Storage:' + brightnessValue);
+  /**
+   * Set up storage data
+   *
+   * @param key - key
+   * @param brightnessValue - value
+   */
+  setStorageValue(key,value) {
+    LogUtil.info('settings BrightnessSettingModel setStorageValue Storage:' + value);
     ConfigData.BRIGHTNESS_SAVE_VALUE_KEY
-    mBrightnessPreferences.putSync(key, brightnessValue);
+    mBrightnessPreferences.putSync(key, value);
     mBrightnessPreferences.flushSync();
   }
 
+  /**
+   * Get stored data
+   *
+   * @param key - key
+   * @param defaultValue - defaultValue
+   */
   getStorageValue(key,defaultValue): any {
     LogUtil.info('settings BrightnessSettingModel getStorageValue in' +
     mBrightnessPreferences.getSync(key, defaultValue));

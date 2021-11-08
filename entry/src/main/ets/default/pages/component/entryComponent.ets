@@ -14,6 +14,9 @@
  */
 import ConfigData from '../../common/baseUtil/ConfigData.ets';
 
+/**
+ * item custom component
+ */
 @Component
 export default
 struct EntryComponent {

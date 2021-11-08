@@ -14,6 +14,9 @@
  */
 import ConfigData from '../../common/baseUtil/ConfigData.ets';
 
+/**
+ * Toggle component
+ */
 @Component
 export default
 struct SwitchComponent {
