@@ -8,7 +8,7 @@
 
 ## 简介<a name="section11660541593"></a>
 
-设置应用是OpenHarmony系统中预置的系统应用，为用户提供设置系统属性的交互界面，例如设置系统时间，屏幕亮度等系统属性。
+设置应用是 OpenHarmony 系统中预置的系统应用，为用户提供设置系统属性的交互界面，例如设置系统时间，屏幕亮度等系统属性。
 
 ### 架构图<a name="section48896451454"></a>
 
@@ -18,13 +18,23 @@
 
 ```
 /applications/standard/settings
-├── figures                # 架构图目录
-├── entry                  # 主entry模块目录
-│    ├── src
-│      ├── main
-│        └── js            # js代码目录
-│        └── resources     # 资源存放目录
-│        └── config.json   # 全局配置文件
+├── entry             # 主entry模块目录
+│   └── src
+│       ├── main
+│           ├── ets               # ets模块目录
+│               ├── default
+│                   ├── common    # 公共工具存放目录
+│                   ├── model     # 数据管理和决策逻辑存放目录
+│                   ├── pages     # 组件页面存放目录
+│                   ├── res       # 部分图片资源
+│                   ├── resources # 其它共用资源
+│                   ├── app.ets   # 全局ets逻辑和应用生命周期管理文件
+│           ├── resources         # 资源配置文件存放目录
+│               ├── base          # 默认语言场景，图片资源，字体大小，颜色资源内容存放目录
+│               ├── en_AS.element # 英文语言场景资源内容存放目录
+│               ├── rawfile       # 本地配置文件存放目录
+│               ├── zh_CN.element # 中文语言场景资源内容存放目录
+│           └── config.json       # 全局配置文件
 ├── signature              # 证书文件目录
 ├── LICENSE                # 许可文件
 ```
