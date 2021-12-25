@@ -28,8 +28,8 @@ ohos_shared_library("settingsnapi") {
   ]
 
   sources = [
-    "//base/base_apps/interfaces/kits/js/napi/settings/napi_settings.cpp",
-    "//base/base_apps/interfaces/kits/js/napi/settings/native_module.cpp",
+    "./napi_settings.cpp",
+    "./native_module.cpp",
   ]
 
   deps = [
