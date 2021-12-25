@@ -1,0 +1,3 @@
+group("apps_napi") {
+  deps = [ "//applications/standard/settings/napi/settings:settingsnapi" ]
+}
