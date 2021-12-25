@@ -1,0 +1,66 @@
+# Copyright (c) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos.gni")
+
+ohos_shared_library("settingsnapi") {
+  include_dirs = [
+    "//foundation/aafwk/standard/services/common/include",
+    "//foundation/ace/napi/interfaces/kits",
+    "//foundation/distributeddatamgr/appdatamgr/interfaces/innerkits/native_rdb/include",
+    "//foundation/distributeddatamgr/appdatamgr/frameworks/innerkitsimpl/native_rdb/include",
+    "//foundation/distributeddatamgr/appdatamgr/interfaces/innerkits/native_dataability/include",
+    "//foundation/distributeddatamgr/appdatamgr/frameworks/jskitsimpl/common",
+    "//foundation/distributeddatamgr/appdatamgr/frameworks/jskitsimpl/native_dataability",
+    "//foundation/distributeddatamgr/appdatamgr/frameworks/jskitsimpl/native_rdb",
+    "//third_party/node/src",
+    "//utils/system/safwk/native/include",
+  ]
+
+  sources = [
+    "//base/base_apps/interfaces/kits/js/napi/settings/napi_settings.cpp",
+    "//base/base_apps/interfaces/kits/js/napi/settings/native_module.cpp",
+  ]
+
+  deps = [
+    "//foundation/aafwk/standard/frameworks/kits/ability/native:abilitykit_native",
+    "//foundation/aafwk/standard/interfaces/innerkits/ability_manager:ability_manager",
+    "//foundation/aafwk/standard/interfaces/innerkits/base:base",
+    "//foundation/ace/napi:ace_napi",
+    "//foundation/appexecfwk/standard/common:libappexecfwk_common",
+    "//foundation/appexecfwk/standard/interfaces/innerkits/appexecfwk_base:appexecfwk_base",
+    "//foundation/appexecfwk/standard/interfaces/innerkits/appexecfwk_core:appexecfwk_core",
+    "//foundation/appexecfwk/standard/interfaces/innerkits/libeventhandler:libeventhandler",
+    "//foundation/appexecfwk/standard/kits:appkit_native",
+    "//foundation/appexecfwk/standard/libs/libeventhandler:libeventhandler_target",
+    "//foundation/appexecfwk/standard/services/appmgr:libams",
+    "//foundation/distributeddatamgr/appdatamgr/interfaces/innerkits/native_rdb:native_rdb",
+    "//foundation/distributedschedule/dmsfwk/interfaces/innerkits/uri:zuri",
+    "//foundation/distributedschedule/safwk/interfaces/innerkits/safwk:system_ability_fwk",
+    "//foundation/distributedschedule/samgr/interfaces/innerkits/samgr_proxy:samgr_proxy",
+    "//utils/native/base:utils",
+  ]
+
+  external_deps = [
+    "hiviewdfx_hilog_native:libhilog",
+    "ipc:ipc_core",
+    "native_appdatamgr:native_appdatafwk",
+    "native_appdatamgr:native_dataability",
+    "native_appdatamgr:native_rdb",
+  ]
+
+  relative_install_dir = "module"
+
+  subsystem_name = "settingsnapi"
+  part_name = "settings_standard"
+}
