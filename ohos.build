@@ -1,0 +1,12 @@
+{
+  "parts": {
+    "settings_standard": {
+      "module_list": [
+        "//applications/standard/settings/napi/settings:settingsnapi"
+      ],
+      "inner_kits": [],
+      "test_list": []
+    }
+  },
+  "subsystem": "settingsnapi"
+}
