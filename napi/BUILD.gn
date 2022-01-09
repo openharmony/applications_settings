@@ -12,5 +12,5 @@
 # limitations under the License.
 
 group("apps_napi") {
-  deps = [ "//applications/standard/settings/napi/settings:settingsnapi" ]
+  deps = [ "//applications/standard/settings/napi/settings:settings" ]
 }
