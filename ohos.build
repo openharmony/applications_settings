@@ -2,7 +2,7 @@
   "parts": {
     "settings_standard": {
       "module_list": [
-        "//applications/standard/settings/napi/settings:settingsnapi"
+        "//applications/standard/settings/napi/settings:settings"
       ],
       "inner_kits": [],
       "test_list": []
