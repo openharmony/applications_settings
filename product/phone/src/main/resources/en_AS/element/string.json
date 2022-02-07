@@ -1,0 +1,660 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "设置"
+    },
+    {
+      "name": "mainability_description",
+      "value": "ETS_Empty Feature Ability"
+    },
+    {
+      "name": "enabled",
+      "value": "Enabled"
+    },
+    {
+      "name": "disable_",
+      "value": "Disable"
+    },
+    {
+      "name": "disabled",
+      "value": "Disabled"
+    },
+    {
+      "name": "settings",
+      "value": "Settings"
+    },
+    {
+      "name": "searchHint",
+      "value": "Search"
+    },
+    {
+      "name": "searchNoResult",
+      "value": "No search result "
+    },
+    {
+      "name": "wifiTab",
+      "value": "WLAN"
+    },
+    {
+      "name": "brightnessTab",
+      "value": "brightness"
+    },
+    {
+      "name": "volumeControl",
+      "value": "volumeControl"
+    },
+    {
+      "name": "volumeAndVibrationControl",
+      "value": "volumeAndVibration"
+    },
+    {
+      "name": "volumeControlTab",
+      "value": "volumeControl"
+    },
+    {
+      "name": "volumeControlRing",
+      "value": "Ringer, Messages, Notifications"
+    },
+    {
+      "name": "volumeControlMedia",
+      "value": "Music, Videos, games"
+    },
+    {
+      "name": "volumeControlCall",
+      "value": "Calls"
+    },
+    {
+      "name": "soundMode",
+      "value": "Sound Mode"
+    },
+    {
+      "name": "soundModeSound",
+      "value": "Sound"
+    },
+    {
+      "name": "soundModeVibration",
+      "value": "Vibration"
+    },
+    {
+      "name": "soundModeSilent",
+      "value": "Silent"
+    },
+    {
+      "name": "applyTab",
+      "value": "apply"
+    },
+    {
+      "name": "dateAndTimeTab",
+      "value": "dateAndTime"
+    },
+    {
+      "name": "aboutTab",
+      "value": "about"
+    },
+    {
+      "name": "applicationInfo",
+      "value": "App info"
+    },
+    {
+      "name": "appManagement",
+      "value": "Apps"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "continue_",
+      "value": "continue"
+    },
+    {
+      "name": "confirm",
+      "value": "Confirm"
+    },
+    {
+      "name": "ok",
+      "value": "ok"
+    },
+    {
+      "name": "next",
+      "value": "next"
+    },
+    {
+      "name": "clear",
+      "value": "Clear"
+    },
+    {
+      "name": "wifiPassword",
+      "value": "Password"
+    },
+    {
+      "name": "wifiMAC",
+      "value": "BSSID"
+    },
+    {
+      "name": "signalLevel",
+      "value": "RSSI"
+    },
+    {
+      "name": "signalBand",
+      "value": "BAND"
+    },
+    {
+      "name": "encryptMethod",
+      "value": "EncryptType"
+    },
+    {
+      "name": "disconnect",
+      "value": "disconnect"
+    },
+    {
+      "name": "timeMorning",
+      "value": "AM"
+    },
+    {
+      "name": "timeAfternoon",
+      "value": "PM"
+    },
+    {
+      "name": "settingTime",
+      "value": "settingTime"
+    },
+    {
+      "name": "timeFormat",
+      "value": "militaryTime"
+    },
+    {
+      "name": "timeZone",
+      "value": "TimeZone"
+    },
+    {
+      "name": "date",
+      "value": "Date"
+    },
+    {
+      "name": "time",
+      "value": "Time"
+    },
+    {
+      "name": "year",
+      "value": "year"
+    },
+    {
+      "name": "month",
+      "value": "month"
+    },
+    {
+      "name": "day",
+      "value": "date"
+    },
+    {
+      "name": "wifiSynonym",
+      "value": "net,network,connect,www,http"
+    },
+    {
+      "name": "wifiList",
+      "value": "WLAN-List which can be used"
+    },
+    {
+      "name": "wifiListSynonym",
+      "value": "wifi,liebiao"
+    },
+    {
+      "name": "systemName",
+      "value": "SystemName"
+    },
+    {
+      "name": "model",
+      "value": "Model"
+    },
+    {
+      "name": "companyInfo",
+      "value": "CompanyInfo"
+    },
+    {
+      "name": "deviceId",
+      "value": "DeviceId"
+    },
+    {
+      "name": "softwareVersion",
+      "value": "SoftwareVersion"
+    },
+    {
+      "name": "version",
+      "value": "version "
+    },
+    {
+      "name": "password",
+      "value": "password"
+    },
+    {
+      "name": "connected",
+      "value": "connected"
+    },
+    {
+      "name": "monday",
+      "value": "monday"
+    },
+    {
+      "name": "tuesday",
+      "value": "tuesday"
+    },
+    {
+      "name": "wednesday",
+      "value": "wednesday"
+    },
+    {
+      "name": "thursday",
+      "value": "thursday"
+    },
+    {
+      "name": "friday",
+      "value": "friday"
+    },
+    {
+      "name": "saturday",
+      "value": "saturday"
+    },
+    {
+      "name": "sunday",
+      "value": "sunday"
+    },
+    {
+      "name": "restoreFactoryTab",
+      "value": "restoreFactorySettings"
+    },
+    {
+      "name": "restoreFactory",
+      "value": "Do you want to restore factory settings"
+    },
+    {
+      "name": "developerOptionsTab",
+      "value": "developerOptions"
+    },
+    {
+      "name": "usbDebugging",
+      "value": "USB Debugging"
+    },
+    {
+      "name": "usersAccountsTab",
+      "value": "Users & Accounts"
+    },
+    {
+      "name": "user",
+      "value": "User"
+    },
+    {
+      "name": "administrator",
+      "value": "Administrator"
+    },
+    {
+      "name": "quest",
+      "value": "Quest"
+    },
+    {
+      "name": "you",
+      "value": "You"
+    },
+    {
+      "name": "currentLogin",
+      "value": "Current Login"
+    },
+    {
+      "name": "addUser",
+      "value": "Add user"
+    },
+    {
+      "name": "addGuest",
+      "value": "Add guest"
+    },
+    {
+      "name": "removeUser",
+      "value": "Remove user"
+    },
+    {
+      "name": "addUserImage",
+      "value": "Touch icon to set a profile picture"
+    },
+    {
+      "name": "switchUser",
+      "value": "Switch user"
+    },
+    {
+      "name": "askAddGuest",
+      "value": "Add guest user？"
+    },
+    {
+      "name": "addNewUser",
+      "value": "Add New User"
+    },
+    {
+      "name": "addUserDescription",
+      "value": "When you add a new user, that person needs to set up their space."
+    },
+    {
+      "name": "askSwitchUser",
+      "value": "Switch to new user？"
+    },
+    {
+      "name": "switchButton",
+      "value": "SWITCH"
+    },
+    {
+      "name": "deleteUserWarn",
+      "value": "Delete this user and all related data?"
+    },
+    {
+      "name": "deleteButton",
+      "value": "DELETE"
+    },
+    {
+      "name": "takePhoto",
+      "value": "Take photo"
+    },
+    {
+      "name": "chooseFromShop",
+      "value": "Choose from photoshop"
+    },
+    {
+      "name": "systemTab",
+      "value": "system"
+    },
+    {
+      "name": "languageTab",
+      "value": "language"
+    },
+    {
+      "name": "setlanguage",
+      "value": "Set Language"
+    },
+    {
+      "name": "languageAndRegion",
+      "value": "LANGUAGE"
+    },
+    {
+      "name": "editLanguage",
+      "value": "Edit Language"
+    },
+    {
+      "name": "addLanguage",
+      "value": "Add Language"
+    },
+    {
+      "name": "edit",
+      "value": "EDIT"
+    },
+    {
+      "name": "delete",
+      "value": "DELETE"
+    },
+    {
+      "name": "region",
+      "value": "REGION"
+    },
+    {
+      "name": "currentRegion",
+      "value": "Current Region"
+    },
+    {
+      "name": "addedLanguage",
+      "value": "ADDED"
+    },
+    {
+      "name": "hasAdded",
+      "value": "Added to preferred languages."
+    },
+    {
+      "name": "allLanguage",
+      "value": "ALL LANGUAGES"
+    },
+    {
+      "name": "saveLanguage",
+      "value": "Please keep at least one language"
+    },
+    {
+      "name": "changeLanguage",
+      "value": "Are you sure you want to change your system language to %s?"
+    },
+    {
+      "name": "change",
+      "value": "CHANGE"
+    },
+    {
+      "name": "keepCurrent",
+      "value": "CANCEL"
+    },
+    {
+      "name": "selectRegion",
+      "value": "Select Region"
+    },
+    {
+      "name": "allRegion",
+      "value": "ALL REGION"
+    },
+    {
+      "name": "faceRecognition",
+      "value": "Face Recognition"
+    },
+    {
+      "name": "faceauthFailed",
+      "value": "Face recognition failed to start, please make sure the function is available."
+    },
+    {
+      "name": "privacy",
+      "value": "Privacy"
+    },
+    {
+      "name": "permissionManager",
+      "value": "Permission Manager"
+    },
+    {
+      "name": "permissionFailed",
+      "value": "Permission management failed to start, please make sure the function is available."
+    },
+    {
+      "name": "storageTab",
+      "value": "storageTab"
+    },
+    {
+      "name": "totalSpace",
+      "value": "totalSpace"
+    },
+    {
+      "name": "usedSpace",
+      "value": "usedSpace"
+    },
+    {
+      "name": "remainingSpace",
+      "value": "remainingSpaceInformation"
+    },
+    {
+      "name": "authorityManagement",
+      "value": "authorityManagement"
+    },
+    {
+      "name": "deleteDataTab",
+      "value": "deleteData"
+    },
+    {
+      "name": "delete_data_prompt_title",
+      "value": "Delete the selected application data"
+    },
+    {
+      "name": "delete_data_prompt",
+      "value": "This will permanently delete all of this app's data,including files,settings and accounts"
+    },
+    {
+      "name": "clearCacheTab",
+      "value": "clearCache"
+    },
+    {
+      "name": "totalTab",
+      "value": "total"
+    },
+    {
+      "name": "dataTab",
+      "value": "data"
+    },
+    {
+      "name": "cacheTab",
+      "value": "cache"
+    },
+    {
+      "name": "uninstall",
+      "value": "uninstall"
+    },
+    {
+      "name": "uninstall_prompt",
+      "value": "Do you want to uninstall this app?"
+    },
+    {
+      "name": "forcedStop",
+      "value": "forcedStop"
+    },
+    {
+      "name": "Stop_exception_prompt",
+      "value": "This app may stop working properly if you force stop it."
+    },
+    {
+      "name": "privacyTab",
+      "value": "privacyTab"
+    },
+    {
+      "name": "locationServicesTab",
+      "value": "locationServicesTab"
+    },
+    {
+      "name": "positionInformation",
+      "value": "positionInformation"
+    },
+    {
+      "name": "positionContent",
+      "value": "\"Location service\" is provided based on GNSS, network information (WLAN / cellular network / Bluetooth / IP), etc. When enabled, your location may be shared with services authorized to locate. We may collect network information from your device to improve positioning accuracy. These information can not be identified or located to you personally. You can further select in \"improve accuracy\" to improve positioning accuracy or turn off some functions. For more information, see"
+    },
+    {
+      "name": "statement",
+      "value": "Statement on location services and privacy。"
+    },
+    {
+      "name": "biometrics",
+      "value": "biometrics"
+    },
+    {
+      "name":"face_recognition",
+      "value":"Face Recognition"
+    },
+    {
+      "name":"password_lock_screen",
+      "value":"Lock screen password"
+    },
+    {
+      "name":"password_change_password",
+      "value":"Change lock screen password"
+    },
+    {
+      "name":"password_disable_password",
+      "value":"Disable lock screen password"
+    },
+    {
+      "name":"password_enter_password",
+      "value":"Enter lock screen password"
+    },
+    {
+      "name":"password_change_unlock_method",
+      "value":"change unlock method"
+    },
+    {
+      "name":"password_select_unlock_method",
+      "value":"Select unlock method"
+    },
+    {
+      "name":"password_title_number",
+      "value":"Set new password"
+    },
+    {
+      "name":"password_title_character",
+      "value":"Set new password"
+    },
+    {
+      "name":"password_message_number_6",
+      "value":"Set a 6-digit PIN"
+    },
+    {
+      "name":"password_message_custom",
+      "value":"Enter a 4 to 32-digit PIN"
+    },
+    {
+      "name":"password_message_character",
+      "value":"Set a 4 to 32-character password (including at least 1 letter)"
+    },
+    {
+      "name":"password_message_repeat",
+      "value":"Enter the PIN again"
+    },
+    {
+      "name":"password_set_prompt",
+      "value":"Try not to forget your password. There is no way to recover it if you do."
+    },
+    {
+      "name":"password_message_repeat_error",
+      "value":"PINs do not match, Please try again."
+    },
+    {
+      "name":"password_item_text_number_4",
+      "value":"4-digit PIN"
+    },
+    {
+      "name":"password_item_text_number_6",
+      "value":"6-digit PIN"
+    },
+    {
+      "name":"password_item_text_custom",
+      "value":"Custom PIN"
+    },
+    {
+      "name":"password_item_text_character",
+      "value":"Password"
+    },
+    {
+      "name":"password_disable_prompt",
+      "value":"Your personal data can be used by anyone who has access to your phone if you disable your lock screen password."
+    },
+    {
+      "name":"password_message_incorrect",
+      "value":"Incorrect password. %d attempts remaining."
+    },
+    {
+      "name":"password_remain_times",
+      "value":"PLEASE TRY AGAIN AFTER %dS."
+    },
+    {
+      "name":"password_PIN_6_error",
+      "value":"PIN must be 6 digits numbers."
+    },
+    {
+      "name":"password_PIN_check_min_error",
+      "value":"PIN must be at least 4 digits."
+    },
+    {
+      "name":"password_PIN_check_max_error",
+      "value":"PIN must be fewer than 33 digits."
+    },
+    {
+      "name":"password_check_min_error",
+      "value":"password must be at least 4 characters."
+    },
+    {
+      "name":"password_check_max_error",
+      "value":"password must be fewer than 33 characters."
+    },
+    {
+      "name":"password_check_char_error",
+      "value":"Must include at least 1 letter."
+    },
+    {
+      "name": "biometricsAndPassword",
+      "value": "Biometrics & Password"
+    }
+  ]
+}

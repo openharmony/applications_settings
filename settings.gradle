@@ -13,4 +13,7 @@
  * limitations under the License.
  */
 
-include ':entry'
+include ':phone', ':wearable', 'common:settingsBase', ':common:utils', ':common:component', ':common:search'
+
+project(':phone').projectDir = new File('./product/phone')
+project(':wearable').projectDir = new File('./product/wearable')
