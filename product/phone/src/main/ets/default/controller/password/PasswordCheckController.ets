@@ -1,0 +1,259 @@
+/**
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import BaseSettingsController from '../../../../../../../../common/component/src/main/ets/default/controller/BaseSettingsController.ets';
+import ConfigData from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
+import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
+import {LogAll} from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
+import ISettingsController from '../../../../../../../../common/component/src/main/ets/default/controller/ISettingsController';
+import PasswordModel, {ResultCode, PinSubType} from '../../model/passwordImpl/PasswordModel.ets';
+import Router from '@system.router';
+import prompt from '@system.prompt';
+
+@LogAll
+export default class PasswordCheckController extends BaseSettingsController {
+  private TAG = ConfigData.TAG + 'PasswordCheckController ';
+  private pageRequestCode: number = -1
+  private prevPageUri: string = undefined
+  private pinChallenge: string = undefined
+  private pinToken: string = undefined
+  private passwordType: number = -1
+  private freezingTime: number = 0
+  private remainTimes: number = 0;
+  private lockUi: boolean = false
+  private authOk = false;
+
+// private Properties
+  private password: string = ''
+
+  initData(): ISettingsController {
+    this.loadData()
+    return this
+  }
+
+  subscribe(): ISettingsController {
+    PasswordModel.registerInputer();
+    return this;
+  };
+
+  unsubscribe(): ISettingsController {
+    PasswordModel.unregisterInputer();
+    return this;
+  };
+
+//------------------------------ Handler ---------------------------
+/**
+   * change password type.
+   *
+   * @param value : inputting password
+   */
+  passwordOnChange(value: string) {
+    if (this.lockUi) {
+      return
+    }
+    this.password = value;
+    LogUtil.info(this.TAG + 'passwordOnChange : passwordType = ' + this.passwordType + ', password = ' + this.password)
+    this.checkInputDigits(value)
+  }
+
+/**
+   * Check input password digits.
+   * When password type is PIN_SIX, password should be 6 digit numbers.
+   * When password type is number or mixed, password should be fewer than 33 digits.
+   *
+   * @param value : inputting password
+   */
+  checkInputDigits(value: string) {
+    if (this.passwordType == PinSubType.PIN_SIX) {
+      if (value.length >= 6) {
+        this.inputFinish();
+      }
+    }
+  }
+
+//------------------------------ check ---------------------------
+/**
+   * Input finish. Start simple check.
+   */
+  inputFinish(event?: ClickEvent) {
+    if (this.lockUi) {
+      return
+    }
+    this.lockUi = true
+    LogUtil.info(this.TAG + 'inputFinish : password = ' + this.password)
+
+    if (!this.password) {
+      LogUtil.info(this.TAG + 'inputFinish return : password is none.')
+      this.lockUi = false
+      return;
+    }
+
+    // clear page data
+    this.freezingTime = -1
+    this.remainTimes = -1;
+
+    this.checkInputSuccess()
+  }
+
+/**
+   * Input check success.
+   */
+  checkInputSuccess() {
+    this.checkPasswordCorrect((result, extraInfo) => {
+      LogUtil.info(this.TAG + 'checkInputSuccess : checkPasswordCorrect callback : result = ' + result + ', extraInfo = ' + JSON.stringify(extraInfo));
+
+      if (result === ResultCode.SUCCESS) {
+        if (extraInfo) {
+          if (this.pinChallenge) {
+            this.pinToken = extraInfo.token;
+          }
+        }
+        LogUtil.info(this.TAG + 'checkInputSuccess : callback success. pinChallenge = ' + this.pinChallenge + ', pinToken = ' + this.pinToken);
+        this.authSuccess()
+        return;
+      } else {
+        if (extraInfo) {
+          this.freezingTime = extraInfo.freezingTime;
+          this.remainTimes = extraInfo.remainTimes;
+        }
+        this.lockUi = false
+      }
+    });
+  }
+
+/**
+   * Check password result changed.
+   */
+  authSuccess() {
+    LogUtil.info(`${this.TAG}resultChanged: pageRequestCode = ${this.pageRequestCode}`);
+    if (this.pinToken && this.pageRequestCode == ConfigData.PAGE_REQUEST_CODE_PASSWORD_CHANGE) {
+      prompt.showToast({ message: "auth success!!", duration: 3500 })
+      this.authOk = true;
+
+    } else if (this.pinToken && this.pageRequestCode == ConfigData.PAGE_REQUEST_CODE_PASSWORD_DISABLE) {
+      this.delCredential(() => {
+        this.goBackCorrect();
+      });
+
+    } else {
+      this.goBackCorrect();
+    }
+  }
+
+//------------------------------ Router -----------------------------
+/**
+   * Go to password create page
+   */
+  gotoPasswordCreatePage() {
+    if (!this.authOk) {
+      prompt.showToast({ message: "auth not succeed", duration: 3500 })
+      return
+    }
+    LogUtil.info(`${this.TAG}gotoPasswordCreatePage : pageRequestCode: ${this.pageRequestCode}, prevPageUri = ${this.prevPageUri}, pageRequestCode: ${this.pageRequestCode}, pinChallenge: ${this.pinChallenge}, pinToken: ${this.pinToken}`);
+    Router.replace({
+      uri: 'pages/passwordInput',
+      params: {
+        'pageRequestCode': this.pageRequestCode,
+        'prevPageUri': this.prevPageUri,
+        'pinChallenge': this.pinChallenge,
+        'pinToken': this.pinToken
+      },
+    })
+  }
+
+/**
+   * Auth check ok, return OK result.
+   */
+  goBackCorrect() {
+    Router.back()
+  }
+
+//------------------------------ api ---------------------------
+/**
+   * Call api to check if has the password
+   */
+  loadData() {
+    PasswordModel.hasPinPassword((havePassword) => {
+      LogUtil.info(this.TAG + 'hasPinPassword : havePassword = ' + havePassword);
+      if (havePassword) {
+        this.getAuthProperty();
+      } else {
+        this.goBackCorrect();
+      }
+    });
+  }
+
+/**
+   * Call api to check the password
+   *
+   * @param value : password type
+   */
+  checkPasswordCorrect(successCallback: (result: number, extraInfo: any) => void): void {
+    PasswordModel.authPin(this.pinChallenge, this.password, (result, extraInfo) => {
+      LogUtil.info(this.TAG + 'checkPasswordCorrect : result = ' + JSON.stringify(result) + ', extraInfo = ' + JSON.stringify(extraInfo));
+      if (result === ResultCode.SUCCESS) {
+        LogUtil.info(`${this.TAG}checkPasswordCorrect success`);
+      } else {
+        LogUtil.info(`${this.TAG}checkPasswordCorrect failed`);
+      }
+      successCallback(result, extraInfo)
+    });
+  }
+
+/**
+   * Call api to get passwordType, freezingTime and remainTimes
+   *
+   * @param successCallback: api success callback
+   */
+  getAuthProperty() {
+    // todo for debug
+    let data = JSON.parse('{"result":0,"authSubType":10001,"remainTimes":0,"freezingTime":0}');
+    LogUtil.info(this.TAG + `getAuthProperty dummy data:${JSON.stringify(data)}`);
+    this.passwordType = data.authSubType;
+    this.freezingTime = data.freezingTime;
+    this.remainTimes = data.remainTimes;
+    // todo for debug
+
+    //    //todo 调用该api之后，回调log能打出来，但是app崩溃
+    //    PasswordModel.getAuthProperty((data: any) => {
+    //      LogUtil.info(this.TAG + `getAuthProperty data:${JSON.stringify(data)}`);
+    //      this.passwordType = data.authSubType;
+    //      this.freezingTime = data.freezingTime;
+    //      this.remainTimes = data.remainTimes;
+    //      if (data.result === ResultCode.SUCCESS) {
+    //        LogUtil.info(`${this.TAG}getAuthProperty success`);
+    //      } else {
+    //        LogUtil.info(`${this.TAG}getAuthProperty failed`);
+    //      }
+    //    });
+  }
+
+/**
+   * Call api to delete the credential
+   *
+   * @param successCallback: api success callback
+   */
+  delCredential(successCallback) {
+    PasswordModel.delAllCredential(this.pinToken, (result, extraInfo) => {
+      LogUtil.info(`${this.TAG}delAllCredential->result:${result}, extraInfo:${JSON.stringify(extraInfo)}`);
+      if (result === ResultCode.SUCCESS) {
+        LogUtil.info(`${this.TAG}delAllCredential success`);
+        this.pinToken = '';
+        successCallback();
+      } else {
+        LogUtil.info(`${this.TAG}delAllCredential failed`);
+      }
+    })
+  }
+}
