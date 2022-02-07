@@ -1,0 +1,65 @@
+[
+  {
+    "settingButtonFlag": true,
+    "settingTitle": "",
+    "settingSummary": "",
+    "settingValue": "",
+    "settingArrow": "",
+    "settingArrowStyle": "",
+    "settingAlias": "storageTab"
+  },
+  {
+    "settingButtonFlag": true,
+    "settingTitle": "",
+    "settingSummary": "",
+    "settingValue": "",
+    "settingArrow": "",
+    "settingArrowStyle": "",
+    "settingAlias": "totalTab"
+  },
+  {
+    "settingButtonFlag": true,
+    "settingTitle": "",
+    "settingSummary": "",
+    "settingValue": "",
+    "settingArrow": "",
+    "settingArrowStyle": "",
+    "settingAlias": "applyTab"
+  },
+  {
+    "settingButtonFlag": true,
+    "settingTitle": "",
+    "settingSummary": "",
+    "settingValue": "",
+    "settingArrow": "",
+    "settingArrowStyle": "",
+    "settingAlias": "dataTab"
+  },
+  {
+    "settingButtonFlag": false,
+    "settingTitle": "",
+    "settingSummary": "",
+    "settingValue": "",
+    "settingArrow": "",
+    "settingArrowStyle": "",
+    "settingAlias": "deleteDataTab"
+  },
+  {
+    "settingButtonFlag": true,
+    "settingTitle": "",
+    "settingSummary": "",
+    "settingValue": "",
+    "settingArrow": "",
+    "settingArrowStyle": "",
+    "settingAlias": "cacheTab"
+  },
+  {
+    "settingButtonFlag": false,
+    "settingTitle": "",
+    "settingSummary": "",
+    "settingValue": "",
+    "settingArrow": "",
+    "settingArrowStyle": "",
+    "settingAlias": "clearCacheTab"
+  }
+]
