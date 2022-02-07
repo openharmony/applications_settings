@@ -1,0 +1,664 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "设置"
+    },
+    {
+      "name": "mainability_description",
+      "value": "ETS_Empty Feature Ability"
+    },
+    {
+      "name": "enabled",
+      "value": "已开启"
+    },
+    {
+      "name": "disable_",
+      "value": "关闭"
+    },
+    {
+      "name": "disabled",
+      "value": "已关闭"
+    },
+    {
+      "name": "settings",
+      "value": "设置"
+    },
+    {
+      "name": "searchHint",
+      "value": "搜索设置项"
+    },
+    {
+      "name": "searchNoResult",
+      "value": "没有匹配的结果"
+    },
+    {
+      "name": "wifiTab",
+      "value": "WLAN"
+    },
+    {
+      "name": "brightnessTab",
+      "value": "亮度"
+    },
+    {
+      "name": "applyTab",
+      "value": "应用"
+    },
+    {
+      "name": "dateAndTimeTab",
+      "value": "日期和时间"
+    },
+    {
+      "name": "aboutTab",
+      "value": "关于手机"
+    },
+    {
+      "name": "volumeControlTab",
+      "value": "音量调节"
+    },
+    {
+      "name": "volumeControl",
+      "value": "音量"
+    },
+    {
+      "name": "volumeAndVibrationControl",
+      "value": "声音和振动"
+    },
+    {
+      "name": "volumeControlRing",
+      "value": "来电、信息、通知"
+    },
+    {
+      "name": "volumeControlMedia",
+      "value": "音乐、视频、游戏"
+    },
+    {
+      "name": "volumeControlCall",
+      "value": "通话"
+    },
+    {
+      "name": "soundMode",
+      "value": "声音模式"
+    },
+    {
+      "name": "soundModeSound",
+      "value": "响铃"
+    },
+    {
+      "name": "soundModeVibration",
+      "value": "振动"
+    },
+    {
+      "name": "soundModeSilent",
+      "value": "静音"
+    },
+    {
+      "name": "applicationInfo",
+      "value": "应用信息"
+    },
+    {
+      "name": "appManagement",
+      "value": "应用管理"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "continue_",
+      "value": "继续"
+    },
+    {
+      "name": "confirm",
+      "value": "确定"
+    },
+    {
+      "name": "ok",
+      "value": "确定"
+    },
+    {
+      "name": "next",
+      "value": "下一步"
+    },
+    {
+      "name": "clear",
+      "value": "清空"
+    },
+    {
+      "name": "wifiPassword",
+      "value": "密码"
+    },
+    {
+      "name": "wifiMAC",
+      "value": "MAC地址"
+    },
+    {
+      "name": "signalLevel",
+      "value": "信号强度"
+    },
+    {
+      "name": "signalBand",
+      "value": "信号带宽"
+    },
+    {
+      "name": "encryptMethod",
+      "value": "加密方式"
+    },
+    {
+      "name": "disconnect",
+      "value": "断开连接"
+    },
+    {
+      "name": "timeMorning",
+      "value": "上午"
+    },
+    {
+      "name": "timeAfternoon",
+      "value": "下午"
+    },
+    {
+      "name": "settingTime",
+      "value": "设置时间"
+    },
+    {
+      "name": "timeFormat",
+      "value": "24小时制"
+    },
+    {
+      "name": "timeZone",
+      "value": "时区"
+    },
+    {
+      "name": "date",
+      "value": "日期"
+    },
+    {
+      "name": "time",
+      "value": "时间"
+    },
+    {
+      "name": "year",
+      "value": "年"
+    },
+    {
+      "name": "month",
+      "value": "月"
+    },
+    {
+      "name": "day",
+      "value": "日"
+    },
+    {
+      "name": "tipsContent",
+      "value": "为提高位置信息的精确度，应用和服务仍然会扫描WLAN网络.您可以在提高精确度中更改此设置"
+    },
+    {
+      "name": "wifiSynonym",
+      "value": "网络,上网,连接,www,http"
+    },
+    {
+      "name": "wifiList",
+      "value": "可用WLAN列表"
+    },
+    {
+      "name": "wifiListSynonym",
+      "value": "wifi,liebiao"
+    },
+    {
+      "name": "systemName",
+      "value": "系统名称"
+    },
+    {
+      "name": "model",
+      "value": "型号"
+    },
+    {
+      "name": "companyInfo",
+      "value": "厂家信息"
+    },
+    {
+      "name": "deviceId",
+      "value": "设备"
+    },
+    {
+      "name": "softwareVersion",
+      "value": "软件版本"
+    },
+    {
+      "name": "version",
+      "value": "版本 "
+    },
+    {
+      "name": "password",
+      "value": "密码"
+    },
+    {
+      "name": "connected",
+      "value": "已连接"
+    },
+    {
+      "name": "monday",
+      "value": "星期一"
+    },
+    {
+      "name": "tuesday",
+      "value": "星期二"
+    },
+    {
+      "name": "wednesday",
+      "value": "星期三"
+    },
+    {
+      "name": "thursday",
+      "value": "星期四"
+    },
+    {
+      "name": "friday",
+      "value": "星期五"
+    },
+    {
+      "name": "saturday",
+      "value": "星期六"
+    },
+    {
+      "name": "sunday",
+      "value": "星期日"
+    },
+    {
+      "name": "restoreFactoryTab",
+      "value": "恢复出厂设置"
+    },
+    {
+      "name": "restoreFactory",
+      "value": "是否要恢复出厂设置"
+    },
+    {
+      "name": "developerOptionsTab",
+      "value": "开发者选项"
+    },
+    {
+      "name": "usbDebugging",
+      "value": "USB调试"
+    },
+    {
+      "name": "usersAccountsTab",
+      "value": "用户和账号"
+    },
+    {
+      "name": "user",
+      "value": "用户"
+    },
+    {
+      "name": "administrator",
+      "value": "管理员"
+    },
+    {
+      "name": "quest",
+      "value": "访客"
+    },
+    {
+      "name": "you",
+      "value": "您"
+    },
+    {
+      "name": "currentLogin",
+      "value": "当前登录"
+    },
+    {
+      "name": "addUser",
+      "value": "添加用户"
+    },
+    {
+      "name": "addGuest",
+      "value": "添加访客"
+    },
+    {
+      "name": "removeUser",
+      "value": "删除用户"
+    },
+    {
+      "name": "addUserImage",
+      "value": "点击图标更换用户图象"
+    },
+    {
+      "name": "switchUser",
+      "value": "切换用户"
+    },
+    {
+      "name": "askAddGuest",
+      "value": "是否添加访客？"
+    },
+    {
+      "name": "addNewUser",
+      "value": "添加新用户"
+    },
+    {
+      "name": "addUserDescription",
+      "value": "新用户添加后，该用户需设置自己的空间。"
+    },
+    {
+      "name": "askSwitchUser",
+      "value": "切换到新用户吗？"
+    },
+    {
+      "name": "switchButton",
+      "value": "切换"
+    },
+    {
+      "name": "deleteUserWarn",
+      "value": "删除该用户并移除所有用户数据?"
+    },
+    {
+      "name": "deleteButton",
+      "value": "删除"
+    },
+    {
+      "name": "takePhoto",
+      "value": "拍照"
+    },
+    {
+      "name": "chooseFromShop",
+      "value": "从图库中选择"
+    },
+    {
+      "name": "systemTab",
+      "value": "系统"
+    },
+    {
+      "name": "languageTab",
+      "value": "语言"
+    },
+    {
+      "name": "setlanguage",
+      "value": "语言设置"
+    },
+    {
+      "name": "languageAndRegion",
+      "value": "语言与地区"
+    },
+    {
+      "name": "editLanguage",
+      "value": "编辑语言"
+    },
+    {
+      "name": "addLanguage",
+      "value": "添加语言"
+    },
+    {
+      "name": "edit",
+      "value": "编辑"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "region",
+      "value": "地区"
+    },
+    {
+      "name": "currentRegion",
+      "value": "当前地区"
+    },
+    {
+      "name": "addedLanguage",
+      "value": "已添加语言"
+    },
+    {
+      "name": "hasAdded",
+      "value": "已添加为偏好语言"
+    },
+    {
+      "name": "allLanguage",
+      "value": "所有语言"
+    },
+    {
+      "name": "saveLanguage",
+      "value": "请保留至少一种语言"
+    },
+    {
+      "name": "changeLanguage",
+      "value": "是否将系统语言更改为%s?"
+    },
+    {
+      "name": "change",
+      "value": "更改"
+    },
+    {
+      "name": "keepCurrent",
+      "value": "保留当前"
+    },
+    {
+      "name": "selectRegion",
+      "value": "选取地区"
+    },
+    {
+      "name": "allRegion",
+      "value": "所有地区"
+    },
+    {
+      "name": "faceRecognition",
+      "value": "人脸识别"
+    },
+    {
+      "name": "faceauthFailed",
+      "value": "人脸识别启动失败，请确定该功能是否可用"
+    },
+    {
+      "name": "privacy",
+      "value": "隐私"
+    },
+    {
+      "name": "permissionManager",
+      "value": "权限管理"
+    },
+    {
+      "name": "permissionFailed",
+      "value": "权限管理启动失败，请确定该功能是否可用"
+    },
+    {
+      "name": "storageTab",
+      "value": "存储"
+    },
+    {
+      "name": "totalSpace",
+      "value": "总空间"
+    },
+    {
+      "name": "usedSpace",
+      "value": "已使用空间"
+    },
+    {
+      "name": "remainingSpace",
+      "value": "剩余空间信息"
+    },
+    {
+      "name": "authorityManagement",
+      "value": "权限管理"
+    },
+    {
+      "name": "deleteDataTab",
+      "value": "删除数据"
+    },
+    {
+      "name": "delete_data_prompt_title",
+      "value": "是否删除所选应用数据？"
+    },
+    {
+      "name": "delete_data_prompt",
+      "value": "应用的全部数据删除后不可恢复，包括所有文件、设置、账户、数据库等。"
+    },
+    {
+      "name": "clearCacheTab",
+      "value": "清空缓存"
+    },
+    {
+      "name": "totalTab",
+      "value": "总计"
+    },
+    {
+      "name": "dataTab",
+      "value": "数据"
+    },
+    {
+      "name": "cacheTab",
+      "value": "缓存"
+    },
+    {
+      "name": "uninstall",
+      "value": "卸载"
+    },
+    {
+      "name": "uninstall_prompt",
+      "value": "是否卸载此应用？"
+    },
+    {
+      "name": "forcedStop",
+      "value": "强行停止"
+    },
+    {
+      "name": "Stop_exception_prompt",
+      "value": "可能导致异常。是否强行停止该应用？"
+    },
+    {
+      "name": "privacyTab",
+      "value": "隐私"
+    },
+    {
+      "name": "locationServicesTab",
+      "value": "定位服务"
+    },
+    {
+      "name": "positionInformation",
+      "value": "访问我的位置信息"
+    },
+    {
+      "name": "positionContent",
+      "value": "“定位服务”基于GNSS、网络信息（WLAN/蜂窝网络/蓝牙/IP）等来提供。启用后，您的位置可能会分享给已授权定位权限的服务。我们可能会从您的设备收集网络信息，以提高定位精度。这些信息无法识别或定位到您个人。您可以在“提高精确度”中进一步选择，以提高定位精度或关闭某些功能。更多信息，请阅读"
+    },
+    {
+      "name": "statement",
+      "value": "关于定位服务和隐私的声明。"
+    },
+    {
+      "name": "biometrics",
+      "value": "生物识别"
+    },
+    {
+      "name":"face_recognition",
+      "value":"人脸识别"
+    },
+    {
+      "name":"password_lock_screen",
+      "value":"锁屏密码"
+    },
+    {
+      "name":"password_change_password",
+      "value":"更改锁屏密码"
+    },
+    {
+      "name":"password_disable_password",
+      "value":"关闭锁屏密码"
+    },
+    {
+      "name":"password_enter_password",
+      "value":"输入锁屏密码"
+    },
+    {
+      "name":"password_change_unlock_method",
+      "value":"其他密码类型"
+    },
+    {
+      "name":"password_select_unlock_method",
+      "value":"其他密码类型"
+    },
+    {
+      "name":"password_title_number",
+      "value":"设置锁屏数字密码"
+    },
+    {
+      "name":"password_title_character",
+      "value":"设置锁屏密码"
+    },
+    {
+      "name":"password_message_number_6",
+      "value":"密码由6位数字组成"
+    },
+    {
+      "name":"password_message_custom",
+      "value":"密码由4-32位数字组成"
+    },
+    {
+      "name":"password_message_character",
+      "value":"密码由4-32字符字组成，需至少包含1个字母"
+    },
+    {
+      "name":"password_message_repeat",
+      "value":"请再次输入密码"
+    },
+    {
+      "name":"password_set_prompt",
+      "value":"请牢记您的锁屏密码，忘记后无法找回"
+    },
+    {
+      "name":"password_message_repeat_error",
+      "value":"密码不一致，请重新输入"
+    },
+    {
+      "name":"password_item_text_number_4",
+      "value":"4位数字密码"
+    },
+    {
+      "name":"password_item_text_number_6",
+      "value":"6位数字密码"
+    },
+    {
+      "name":"password_item_text_custom",
+      "value":"自定义数字密码"
+    },
+    {
+      "name":"password_item_text_character",
+      "value":"混合密码"
+    },
+    {
+      "name":"password_disable_prompt",
+      "value":"关闭密码后，任何拿到此设备的人都能够查看您的数据，设备无法收到保护。是否关闭？"
+    },
+    {
+      "name":"password_message_incorrect",
+      "value":"密码错误，还可尝试 %d 次"
+    },
+    {
+      "name":"password_remain_times",
+      "value":"请 %d秒 后重试"
+    },
+    {
+      "name":"password_PIN_6_error",
+      "value":"PIN 应为 6 位数字"
+    },
+    {
+      "name":"password_PIN_check_min_error",
+      "value":"PIN 至少应为 4 位"
+    },
+    {
+      "name":"password_PIN_check_max_error",
+      "value":"PIN 必须少于 33 位数"
+    },
+    {
+      "name":"password_check_min_error",
+      "value":"混合密码必须至少包含 4 个字符"
+    },
+    {
+      "name":"password_check_max_error",
+      "value":"密码必须少于 33 个字符"
+    },
+    {
+      "name":"password_check_char_error",
+      "value":"请至少包含 1 个字母"
+    },
+    {
+      "name": "biometricsAndPassword",
+      "value": "生物识别和密码"
+    }
+  ]
+}

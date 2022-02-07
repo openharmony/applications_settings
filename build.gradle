@@ -12,7 +12,7 @@ ohos {
 buildscript {
     repositories {
         maven {
-            url 'http://repo.ark.tools.huawei.com/artifactory/maven-public/'
+            url 'https://repo.ark.tools.huawei.com/artifactory/maven-public/'
         }
         maven {
             url 'https://mirrors.huaweicloud.com/repository/maven/'
@@ -30,7 +30,7 @@ buildscript {
 allprojects {
     repositories {
         maven {
-            url 'http://repo.ark.tools.huawei.com/artifactory/maven-public/'
+            url 'https://repo.ark.tools.huawei.com/artifactory/maven-public/'
         }
         maven {
             url 'https://mirrors.huaweicloud.com/repository/maven/'
