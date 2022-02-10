@@ -19,7 +19,7 @@ import ConfigData from '../../../../../../../common/utils/src/main/ets/default/b
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
 import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
 import PasswordListController from '../controller/password/PasswordSettingController.ets';
-import EntryComponent from '../../../../../../../common/component/src/main/ets/default/entryComponent.ets';
+import EntryComponent from '../../../../../../../common/component/src/main/ets/default/EntryComponent.ets';
 import Router from '@system.router';
 
 @Entry
@@ -64,6 +64,7 @@ struct PasswordSetting {
 
   @Log
   onPageShow(): void {
+    this.lockUi = false;
     this.mController.loadData();
   }
 
@@ -158,7 +159,6 @@ struct PasswordSetting {
                 this.lockUi = true
                 LogUtil.info(this.TAG_PAGE + ' item onclick : item = ' + JSON.stringify(item))
                 this.gotoNextPage(item)
-
               });
             }
           }

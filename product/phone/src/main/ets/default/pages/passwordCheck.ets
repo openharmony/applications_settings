@@ -21,6 +21,7 @@ import PasswordCheckController from '../controller/password/PasswordCheckControl
 import Router from '@system.router';
 
 let param;
+const DEFAULT_TIMES = 5;
 
 @Entry
 @Component
@@ -31,8 +32,7 @@ struct PasswordCheck {
 // bind Properties
   private pinToken: string = undefined
   @State @Watch("freezeView") private freezingTime: number = 0
-  @State @Watch("getPromptMessage") private remainTimes: number = -1
-
+  @State @Watch("updateView") private remainTimes: number = -1
 
 // handler
   private passwordOnChangeHandler: (value: string) => void;
@@ -98,7 +98,7 @@ struct PasswordCheck {
       HeadComponent({ headName: $r('app.string.password_enter_password'), isActive: true })
 
       // freeze view
-      if (this.freezingTime > 0) {
+      if (this.freezingTimeForView > 0) {
 
         Row() {
           // attempt seconds
@@ -151,15 +151,6 @@ struct PasswordCheck {
             .dialogBtn()
             .onClick(this.okOnClickHandler);
 
-
-            Button() {
-              Text($r('app.string.password_title_character')).dialogBtnName()
-            }
-            .dialogBtn()
-            .onClick(() => {
-              this.mController.gotoPasswordCreatePage()
-            })
-
           }
           .margin({ top: $r('app.float.password_input_button_space') })
           .visibility(this.buttonVisibility)
@@ -192,7 +183,7 @@ struct PasswordCheck {
    */
   @Log
   getPromptMessage(): string | Resource {
-    return this.remainTimes > 0 ? $r('app.string.password_message_incorrect', this.remainTimes) : '';
+    return (this.remainTimes > 0 && this.remainTimes < DEFAULT_TIMES) ? $r('app.string.password_message_incorrect', this.remainTimes) : '';
   }
 
 /**
@@ -216,7 +207,7 @@ struct PasswordCheck {
       this.stopCountDown()
       return;
     }
-    this.freezingTimeForView = this.freezingTime
+    this.freezingTimeForView = this.freezingTime / 1000;
     LogUtil.info(this.TAG_PAGE + `freezeView freezingTimeForView = ${this.freezingTimeForView}`);
     this.timerId = setInterval(() => {
       if (this.freezingTimeForView <= 0) {

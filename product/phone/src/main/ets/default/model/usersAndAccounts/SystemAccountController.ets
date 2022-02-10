@@ -18,6 +18,7 @@ import account_osAccount from '@ohos.account.osAccount';
 import featureAbility from '@ohos.ability.featureAbility';
 import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
 import GlobalResourceManager from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalResourceManager.ets';
+import {TYPE_ADMIN, TYPE_NORMAL, TYPE_GUEST} from './systemAccountModel.ets'
 import SystemAccountModel from './systemAccountModel.ets'
 
 export class SystemAccountController {
@@ -51,7 +52,7 @@ export class SystemAccountController {
    * @return true if current account is administrator.
    */
   isShowIdentity(accountInfo) {
-    return accountInfo.type.ADMIN == 0;
+    return accountInfo.type.ADMIN == TYPE_ADMIN;
   }
 
   /**
@@ -60,7 +61,7 @@ export class SystemAccountController {
    * @return true if current user is administrator.
    */
   isShowAddUser() {
-    return this.currentAccount.type.ADMIN == 0;
+    return this.currentAccount.type.ADMIN == TYPE_ADMIN;
   }
 
   /**
@@ -71,7 +72,7 @@ export class SystemAccountController {
   isShowAddQuest() {
     for (let index = 0; index < this.accountList.length; index++) {
       LogUtil.info("Is show add quest, system account type: " + this.accountList[index].type);
-      if (this.accountList[index].type.GUEST == 2) {
+      if (this.accountList[index].type.GUEST == TYPE_GUEST) {
         return false;
       }
     }
@@ -95,7 +96,7 @@ export class SystemAccountController {
    */
   isCurrentAdministrator() {
     LogUtil.info("Is current user administrator.")
-    return this.currentAccount.type.ADMIN == 0;
+    return this.currentAccount.type.ADMIN == TYPE_ADMIN;
   }
 
   /**
@@ -104,7 +105,7 @@ export class SystemAccountController {
    * @return true when current account type is quest.
    */
   isCurrentQuest() {
-    return this.currentAccount.type.GUEST == 2;
+    return this.currentAccount.type.GUEST == TYPE_GUEST;
   }
 
   /**
@@ -113,7 +114,7 @@ export class SystemAccountController {
    * @param account input system account.
    */
   isGuestAccount(account: account_osAccount.OsAccountInfo) {
-    return account.type.GUEST == 2;
+    return account.type.GUEST == TYPE_GUEST;
   }
 
   /**
@@ -137,7 +138,7 @@ export class SystemAccountController {
     LogUtil.info("Create quest account.");
     let localName = GlobalResourceManager.getStringByResource($r("app.string.quest"));
     localName.then(name => {
-      account_osAccount.getAccountManager().createOsAccount(name, 2).then(() => {
+      account_osAccount.getAccountManager().createOsAccount(name, TYPE_GUEST).then(() => {
         LogUtil.info("Create quest system account.");
         this.refreshSystemAccountList();
       });
@@ -151,7 +152,7 @@ export class SystemAccountController {
    */
   async createSystemAccount(localName: string) {
     LogUtil.info("Create system account.");
-    account_osAccount.getAccountManager().createOsAccount(localName, 1).then(accountInfo => {
+    account_osAccount.getAccountManager().createOsAccount(localName, TYPE_NORMAL).then(accountInfo => {
       this.refreshSystemAccountList();
     });
   }
@@ -191,8 +192,9 @@ export class SystemAccountController {
   async removeAccount(localId?: number) {
     let removeId = localId ? localId : this.currentAccount.localId;
     LogUtil.info("Remove system account, local Id: " + removeId);
-    account_osAccount.getAccountManager().removeOsAccount(removeId);
-    this.refreshSystemAccountList();
+    account_osAccount.getAccountManager().removeOsAccount(removeId).then(() => {
+      this.refreshSystemAccountList();
+    });
   }
 
   private startLockScreenAbility() {

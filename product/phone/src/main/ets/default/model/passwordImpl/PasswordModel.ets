@@ -138,6 +138,9 @@ export class PasswordModel extends BaseModel {
   }
 
   u8AToStr(val: Uint8Array): any{
+    if (!val) {
+      return ''
+    }
     var dataString = "";
     var arrNumber = [];
     for (var i = 0; i < val.length; i++) {
@@ -153,6 +156,9 @@ export class PasswordModel extends BaseModel {
    * @return Uint8Array
    */
   strToU8A(val: string): Uint8Array{
+    if (!val) {
+      return new Uint8Array([])
+    }
     var arr = JSON.parse(val);
     var tmpUint8Array = new Uint8Array(arr);
     return tmpUint8Array
@@ -164,6 +170,9 @@ export class PasswordModel extends BaseModel {
    * @return Uint8Array
    */
   encodeToU8A(val: string): Uint8Array{
+    if (!val) {
+      return new Uint8Array([])
+    }
     var textEncoder = new util.TextEncoder();
     return textEncoder.encode(val);
   }
@@ -414,17 +423,17 @@ export class PasswordModel extends BaseModel {
         onResult: (result, extraInfo) => {
           try{
             LogUtil.info(`${this.TAG}userAuth.auth onResult: challenge = ${challenge}, result:${result}, extraInfo:${extraInfo}`);
-            let info
             if (result === ResultCode.SUCCESS) {
               LogUtil.info(`${this.TAG}userAuth.auth onResult: result = success`);
-              info = {
-                'token': this.u8AToStr(extraInfo?.token),
-                'remainTimes': extraInfo?.remainTimes,
-                'freezingTime': extraInfo?.freezingTime
-              }
             } else {
               LogUtil.info(`${this.TAG}userAuth.auth onResult: result =  failed`);
             }
+            let info = {
+              'token':  this.u8AToStr(extraInfo?.token),
+              'remainTimes': extraInfo.remainTimes,
+              'freezingTime': extraInfo.freezingTime
+            }
+            LogUtil.info(`${this.TAG}userAuth.auth onResult: before callback: info = ${JSON.stringify(info)}`);
             onResult(result, info)
           }
           catch(e) {
@@ -454,7 +463,7 @@ export class PasswordModel extends BaseModel {
    *
    * @param callback Return results through callback.
    */
-  getAuthProperty(callback: (data: {
+   getAuthProperty(callback: (data: {
     result: number;
     authSubType: number;
     remainTimes ?: number;

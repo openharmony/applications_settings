@@ -17,16 +17,18 @@ import BaseSettingsController from '../../../../../../../../common/component/src
 import ConfigData from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
 import ISettingsController from '../../../../../../../../common/component/src/main/ets/default/controller/ISettingsController';
-import { LogAll } from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
-import { PinSubType } from '../../model/passwordImpl/PasswordModel.ets';
+import {LogAll} from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
+import {PinSubType} from '../../model/passwordImpl/PasswordModel.ets';
+import {Checker} from './Checker.ets';
 import Router from '@system.router';
 
-let PASSWORD_MAX_LENGTH = 32
-let AUTH_SUB_TYPE_DEFAULT = PinSubType.PIN_SIX
+const PASSWORD_SIX_LENGTH = 6
+const AUTH_SUB_TYPE_DEFAULT = PinSubType.PIN_SIX
 
 @LogAll
 export default class PasswordInputController extends BaseSettingsController {
   private TAG = ConfigData.TAG + 'PasswordInputController ';
+  private checker = new Checker();
   private pageRequestCode: number = -1
   private prevPageUri: string = undefined
   private pinChallenge: string = undefined
@@ -69,50 +71,14 @@ export default class PasswordInputController extends BaseSettingsController {
   passwordOnChange(value: string) {
     this.password = value;
     LogUtil.info(this.TAG + 'passwordOnChange : passwordType = ' + this.passwordType + ', password = ' + this.password)
-    this.checkMessage = ''
-    this.checkInputDigits(value)
-  }
+    this.checkMessage = this.checkInputDigits(value)
+    LogUtil.info(this.TAG + 'passwordOnChange : checkInputDigits over : checkMessage = ' + JSON.stringify(this.checkMessage));
 
-/**
-   * Check input password digits.
-   * When password type is PIN_SIX, password should be 6 digit numbers.
-   * When password type is number or mixed, password should be fewer than 33 digits.
-   *
-   * @param value : inputting password
-   */
-  checkInputDigits(value: string) {
-
-    // When password type is PIN_SIX, check number 6 digits
-    if (this.passwordType == PinSubType.PIN_SIX) {
-      this.checkMessage = ''
-      if (value.length == 6) {
-        this.inputFinish();
-      }
+    if (this.passwordType == PinSubType.PIN_SIX && !this.checkMessage && this.checker.isNumber6(this.password)) {
+      // When password is 6 numbers, finish input
+      this.inputFinish();
     }
 
-    // Other type, check PIN fewer than 33 digits
-    else if (this.checkMaxDigits(value)) {
-      this.checkMessage = ''
-    }
-
-    // 33 digits check error, show message
-    else if (this.passwordType == PinSubType.PIN_NUMBER) {
-      this.checkMessage = $r('app.string.password_PIN_check_max_error')
-    } else if (this.passwordType == PinSubType.PIN_MIXED) {
-      this.checkMessage = $r('app.string.password_check_max_error')
-    }
-
-    LogUtil.info(this.TAG + 'checkInputDigits : checkMessage = ' + JSON.stringify(this.checkMessage));
-  }
-
-//------------------------------ check ---------------------------
-/**
-   * check if the password less than 33 digits
-   *
-   * @param value : inputting password
-   */
-  checkMaxDigits(value: string): boolean {
-    return value.length <= PASSWORD_MAX_LENGTH;
   }
 
 /**
@@ -126,12 +92,83 @@ export default class PasswordInputController extends BaseSettingsController {
       return;
     }
 
+    if (!this.checkMessage) {
+      this.checkMessage = this.checkInputDigits(this.password)
+
+      // PIN must more than 4 digits
+      if (!this.checker.checkMinDigits(this.password)) {
+        if (this.passwordType == PinSubType.PIN_NUMBER) {
+          this.checkMessage = $r('app.string.password_PIN_check_min_error')
+        } else if (this.passwordType == PinSubType.PIN_MIXED) {
+          this.checkMessage = $r('app.string.password_check_min_error')
+        }
+      }
+    }
+
+    LogUtil.info(this.TAG + 'inputFinish ：check over : checkMessage = ' + JSON.stringify(this.checkMessage));
     if (this.checkMessage) {
       LogUtil.info(this.TAG + 'inputFinish return : has error yet.')
       return;
     }
 
     this.checkInputSuccess()
+  }
+
+//------------------------------ check ---------------------------
+/**
+   * Check input password digits.
+   * When password type is SIX, password should be 6 digit numbers.
+   * When password type is NUMBER, password should be 4 ~ 33 digits numbers.
+   * When password type is MIXED, password should be 4 ~ 33 digits and .
+   *
+   * @param value inputting password
+   * @return error message
+   */
+  checkInputDigits(pwd: string): string | Resource {
+
+    switch (this.passwordType) {
+
+      case PinSubType.PIN_SIX:
+
+      // PIN must be 6 numbers
+        if (!this.checker.isOnlyNumber(pwd) || pwd?.length > PASSWORD_SIX_LENGTH) {
+          return $r('app.string.password_PIN_must_be_6_numbers')
+        }
+        break;
+
+      case PinSubType.PIN_NUMBER:
+
+      // PIN must less than 33 digits
+        if (!this.checker.checkMaxDigits(pwd)) {
+          return $r('app.string.password_PIN_check_max_error')
+        }
+
+      // PIN must be numbers
+        if (!this.checker.isOnlyNumber(pwd)) {
+          return $r('app.string.password_PIN_must_be_numbers')
+        }
+        break;
+
+      case PinSubType.PIN_MIXED:
+
+      // Password must less than 33 digits
+        if (!this.checker.checkMaxDigits(pwd)) {
+          return $r('app.string.password_check_max_error')
+        }
+
+      // Check illegal character
+        if (!this.checker.isContainIllegalCharacter(pwd)) {
+          return $r('app.string.password_illegal_character')
+        }
+
+      // When password is more than 4 digits, check password must contains letter.
+        if (this.checker.checkMinDigits(pwd) && !this.checker.isContainLetters(pwd)) {
+          return $r('app.string.password_check_char_error')
+        }
+        break;
+    }
+
+    return '';
   }
 
 /**
