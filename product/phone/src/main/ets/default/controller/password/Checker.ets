@@ -1,0 +1,104 @@
+/**
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { LogAll } from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
+
+const PASSWORD_MIN_LENGTH = 4
+const PASSWORD_MAX_LENGTH = 32
+
+/**
+ * Check whether the string is legal.
+ */
+@LogAll
+export class Checker {
+
+/**
+   * check if the character string more than 4 digits
+   *
+   * @param str : character string
+   */
+  checkMinDigits(str: string): boolean {
+    return str.length >= PASSWORD_MIN_LENGTH;
+  }
+
+/**
+   * check if the character string less than 33 digits
+   *
+   * @param str : character string
+   */
+  checkMaxDigits(str: string): boolean {
+    return str.length <= PASSWORD_MAX_LENGTH;
+  }
+
+/**
+   * check if character string is 6 digits number
+   *
+   * @param str : character string
+   */
+  isNumber6(str: string): boolean {
+    var reg = /^[0-9]{6}$/;
+    return reg.test(str);
+  }
+
+/**
+   * Check whether the string is a 4 to 32 digits number
+   *
+   * @param str : character string
+   */
+  containsOnlyNumbers(str: string): boolean {
+    var reg = /^[0-9]{4,32}$/;
+    return reg.test(str);
+  }
+
+/**
+   * check if the character string is only numbers
+   *
+   * @param str : character string
+   */
+  isOnlyNumber(str: string): boolean {
+    var reg = /^[0-9]+$/;
+    return reg.test(str);
+  }
+
+/**
+   * Check for 4 to 32 digits mixed characters
+   *
+   * @param str : character string
+   */
+  containCharacter(str: string): boolean {
+    var reg = /^(?=.*[a-zA-Z])[\x20-\x7E]{4,32}$/;
+    return reg.test(str);
+  }
+
+/**
+   * check if the character string contain letters
+   *
+   * @param str : character string
+   */
+  isContainLetters(str: string): boolean {
+    var reg = /^(?=.*[a-zA-Z])/;
+    return reg.test(str);
+  }
+
+/**
+   * check if the character string is containIllegal character
+   *
+   * @param str : character string
+   */
+  isContainIllegalCharacter(str: string): boolean {
+    var reg = /[^\x20-\x7E]/;
+    return reg.test(str);
+  }
+}

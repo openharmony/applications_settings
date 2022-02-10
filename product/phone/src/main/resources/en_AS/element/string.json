@@ -629,12 +629,20 @@
       "value":"PLEASE TRY AGAIN AFTER %dS."
     },
     {
-      "name":"password_PIN_6_error",
+      "name":"password_PIN_must_be_6_numbers",
       "value":"PIN must be 6 digits numbers."
     },
     {
       "name":"password_PIN_check_min_error",
       "value":"PIN must be at least 4 digits."
+    },
+	{
+      "name":"password_PIN_must_be_numbers",
+      "value":"PIN must be number"
+    },
+	{
+      "name":"password_illegal_character",
+      "value":"Password contains an illegal character"
     },
     {
       "name":"password_PIN_check_max_error",

@@ -101,7 +101,7 @@ struct MultipleUsers {
             })
           })
       }
-      .height(ConfigData.WH_100_100)
+      .height(ConfigData.WH_90_100)
       .alignItems(HorizontalAlign.Start)
 
       if (this.isShowDelete) {
@@ -109,14 +109,14 @@ struct MultipleUsers {
           Image($r("app.media.ic_delete"))
             .height($r("app.float.wh_value_40"))
             .width($r("app.float.wh_value_40"))
-            .margin({ top: $r("app.float.wh_value_20"), bottom: $r("app.float.wh_value_20") })
+            .margin({ top: $r("app.float.wh_value_20"), bottom: $r("app.float.wh_value_10") })
           Text($r("app.string.deleteButton"))
             .fontSize($r("app.float.font_20"))
             .fontColor(Color.Black)
+            .margin({ bottom: $r("app.float.wh_value_10") })
         }
         .width(ConfigData.WH_100_100)
         .alignItems(HorizontalAlign.Center)
-        .margin({top: $r("app.float.wh_value_20"), bottom: $r("app.float.wh_value_20")})
         .onClick(() => {
           AlertDialog.show({
             message: $r("app.string.deleteUserWarn"),
@@ -389,11 +389,7 @@ struct AddUserDialog {
       })
         .placeholderFont({ size: $r("app.float.font_24") })
         .placeholderColor(Color.Brown)
-        .margin({
-          bottom: $r("app.float.wh_value_20"),
-          left: $r("app.float.wh_value_20"),
-          right: $r("app.float.wh_value_20")
-        })
+        .margin({ bottom: $r("app.float.wh_value_20") })
         .borderRadius($r("app.float.search_input_border_radius"))
         .onChange((value: string) => {
           LogUtil.info("Set the user name: " + value);
@@ -449,11 +445,13 @@ struct AddUserDialog {
       }
       .margin({
         bottom: $r("app.float.wh_value_40"),
-        top: $r("app.float.wh_value_20"),
-        left: $r("app.float.wh_value_20"),
-        right: $r("app.float.wh_value_20")
+        top: $r("app.float.wh_value_20")
       })
     }
+    .margin({
+      left: $r("app.float.wh_value_20"),
+      right: $r("app.float.wh_value_20")
+    })
   }
 }
 
