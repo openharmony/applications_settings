@@ -34,6 +34,21 @@ const ABILITY_NAME5 = 'com.ohos.settings5.MainAbility';
  */
 export class SettingListModel extends BaseModel {
   private appList: any[]= [];
+  private titleResources: any = {
+      wifiTab: $r('app.string.wifiTab'),
+      brightnessTab: $r('app.string.brightnessTab'),
+      biometricsAndPasswordTab: $r('app.string.biometricsAndPassword'),
+      applyTab: $r('app.string.applyTab'),
+      dateAndTimeTab: $r('app.string.dateAndTimeTab'),
+      aboutTab: $r('app.string.aboutTab'),
+      volumeControlTab: $r('app.string.volumeControlTab'),
+      developerOptionsTab: $r('app.string.developerOptionsTab'),
+      restoreFactoryTab: $r('app.string.restoreFactoryTab'),
+      usersAccountsTab: $r("app.string.usersAccountsTab"),
+      systemTab: $r('app.string.systemTab'),
+      privacyTab: $r('app.string.privacy'),
+      storageTab: $r('app.string.storageTab')
+    }
 
   async setSettingListener() {
     LogUtil.info('settings SettingListModel getAbilityInfoListener in');
@@ -81,41 +96,16 @@ export class SettingListModel extends BaseModel {
     LogUtil.info('settings setTitleValue getAbilityInfoListener this.settingsList in:' + JSON.stringify(settingsList));
     for (let key in settingsList) {
       let settingAlias = settingsList[key].settingAlias;
-      let value;
       let wifiStatus = WifiModel.isWiFiActive();
+      settingsList[key].settingTitle = this.titleResources[settingAlias];
+      LogUtil.info("settingAlias: " + settingAlias + ", title: " + this.titleResources[settingAlias]);
       if ('wifiTab' === settingAlias) {
-        value = $r('app.string.wifiTab');
         if (wifiStatus) {
           settingsList[key].settingValue = $r('app.string.enabled');
         } else {
           settingsList[key].settingValue = $r('app.string.disabled');
         }
-      } else if ('brightnessTab' === settingAlias) {
-        value = $r('app.string.brightnessTab');
-      } else if ('biometricsAndPasswordTab' === settingAlias) {
-        value = $r('app.string.biometricsAndPassword');
-      } else if ('applyTab' === settingAlias) {
-        value = $r('app.string.applyTab');
-      } else if ('dateAndTimeTab' === settingAlias) {
-        value = $r('app.string.dateAndTimeTab');
-      } else if ('aboutTab' === settingAlias) {
-        value = $r('app.string.aboutTab');
-      } else if ('volumeControlTab' === settingAlias) {
-        value = $r('app.string.volumeControlTab');
-      } else if ('developerOptionsTab' === settingAlias) {
-        value = $r('app.string.developerOptionsTab');
-      } else if ('restoreFactoryTab' === settingAlias) {
-        value = $r('app.string.restoreFactoryTab');
-      } else if('usersAccountsTab' == settingAlias) {
-        value = $r("app.string.usersAccountsTab");
-      } else if ('systemTab' === settingAlias) {
-        value = $r('app.string.systemTab');
-      } else if ('privacyTab' === settingAlias) {
-        value = $r('app.string.privacy');
-      } else if ('storageTab' === settingAlias) {
-        value = $r('app.string.storageTab');
       }
-      settingsList[key].settingTitle = value;
     }
     LogUtil.info('settings setTitleValue getAbilityInfoListener end this.settingsList:' + JSON.stringify(settingsList));
     return settingsList;

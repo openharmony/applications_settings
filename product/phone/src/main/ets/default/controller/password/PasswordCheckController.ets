@@ -19,20 +19,18 @@ import {LogAll} from '../../../../../../../../common/utils/src/main/ets/default/
 import ISettingsController from '../../../../../../../../common/component/src/main/ets/default/controller/ISettingsController';
 import PasswordModel, {ResultCode, PinSubType} from '../../model/passwordImpl/PasswordModel.ets';
 import Router from '@system.router';
-import prompt from '@system.prompt';
+import Prompt from '@system.prompt';
 
 @LogAll
 export default class PasswordCheckController extends BaseSettingsController {
   private TAG = ConfigData.TAG + 'PasswordCheckController ';
-  private pageRequestCode: number = -1
-  private prevPageUri: string = undefined
-  private pinChallenge: string = undefined
-  private pinToken: string = undefined
-  private passwordType: number = -1
-  private freezingTime: number = 0
-  private remainTimes: number = 0;
-  private lockUi: boolean = false
-  private authOk = false;
+  private pageRequestCode: number = -1;
+  private prevPageUri: string = undefined;
+  private pinChallenge: string = undefined;
+  private pinToken: string = undefined;
+  private passwordType: number = -1;
+  private freezingTime: number = 0;
+  private remainTimes: number = -1;
 
 // private Properties
   private password: string = ''
@@ -59,27 +57,8 @@ export default class PasswordCheckController extends BaseSettingsController {
    * @param value : inputting password
    */
   passwordOnChange(value: string) {
-    if (this.lockUi) {
-      return
-    }
     this.password = value;
     LogUtil.info(this.TAG + 'passwordOnChange : passwordType = ' + this.passwordType + ', password = ' + this.password)
-    this.checkInputDigits(value)
-  }
-
-/**
-   * Check input password digits.
-   * When password type is PIN_SIX, password should be 6 digit numbers.
-   * When password type is number or mixed, password should be fewer than 33 digits.
-   *
-   * @param value : inputting password
-   */
-  checkInputDigits(value: string) {
-    if (this.passwordType == PinSubType.PIN_SIX) {
-      if (value.length >= 6) {
-        this.inputFinish();
-      }
-    }
   }
 
 //------------------------------ check ---------------------------
@@ -87,20 +66,15 @@ export default class PasswordCheckController extends BaseSettingsController {
    * Input finish. Start simple check.
    */
   inputFinish(event?: ClickEvent) {
-    if (this.lockUi) {
-      return
-    }
-    this.lockUi = true
     LogUtil.info(this.TAG + 'inputFinish : password = ' + this.password)
 
     if (!this.password) {
       LogUtil.info(this.TAG + 'inputFinish return : password is none.')
-      this.lockUi = false
       return;
     }
 
     // clear page data
-    this.freezingTime = -1
+    this.freezingTime = 0
     this.remainTimes = -1;
 
     this.checkInputSuccess()
@@ -121,13 +95,18 @@ export default class PasswordCheckController extends BaseSettingsController {
         }
         LogUtil.info(this.TAG + 'checkInputSuccess : callback success. pinChallenge = ' + this.pinChallenge + ', pinToken = ' + this.pinToken);
         this.authSuccess()
-        return;
+
       } else {
         if (extraInfo) {
           this.freezingTime = extraInfo.freezingTime;
           this.remainTimes = extraInfo.remainTimes;
+        } else {
+          LogUtil.info(this.TAG + 'checkInputSuccess : callback not success. extraInfo? == false.');
+          Prompt.showToast({
+            message: 'Pin auth is not success.\nAnd extraInfo has no data.\nresult = ' + result,
+            duration: 3500
+          })
         }
-        this.lockUi = false
       }
     });
   }
@@ -138,14 +117,11 @@ export default class PasswordCheckController extends BaseSettingsController {
   authSuccess() {
     LogUtil.info(`${this.TAG}resultChanged: pageRequestCode = ${this.pageRequestCode}`);
     if (this.pinToken && this.pageRequestCode == ConfigData.PAGE_REQUEST_CODE_PASSWORD_CHANGE) {
-      prompt.showToast({ message: "auth success!!", duration: 3500 })
-      this.authOk = true;
-
+      this.gotoPasswordCreatePage();
     } else if (this.pinToken && this.pageRequestCode == ConfigData.PAGE_REQUEST_CODE_PASSWORD_DISABLE) {
       this.delCredential(() => {
         this.goBackCorrect();
       });
-
     } else {
       this.goBackCorrect();
     }
@@ -156,10 +132,6 @@ export default class PasswordCheckController extends BaseSettingsController {
    * Go to password create page
    */
   gotoPasswordCreatePage() {
-    if (!this.authOk) {
-      prompt.showToast({ message: "auth not succeed", duration: 3500 })
-      return
-    }
     LogUtil.info(`${this.TAG}gotoPasswordCreatePage : pageRequestCode: ${this.pageRequestCode}, prevPageUri = ${this.prevPageUri}, pageRequestCode: ${this.pageRequestCode}, pinChallenge: ${this.pinChallenge}, pinToken: ${this.pinToken}`);
     Router.replace({
       uri: 'pages/passwordInput',
@@ -217,26 +189,17 @@ export default class PasswordCheckController extends BaseSettingsController {
    * @param successCallback: api success callback
    */
   getAuthProperty() {
-    // todo for debug
-    let data = JSON.parse('{"result":0,"authSubType":10001,"remainTimes":0,"freezingTime":0}');
-    LogUtil.info(this.TAG + `getAuthProperty dummy data:${JSON.stringify(data)}`);
-    this.passwordType = data.authSubType;
-    this.freezingTime = data.freezingTime;
-    this.remainTimes = data.remainTimes;
-    // todo for debug
-
-    //    //todo 调用该api之后，回调log能打出来，但是app崩溃
-    //    PasswordModel.getAuthProperty((data: any) => {
-    //      LogUtil.info(this.TAG + `getAuthProperty data:${JSON.stringify(data)}`);
-    //      this.passwordType = data.authSubType;
-    //      this.freezingTime = data.freezingTime;
-    //      this.remainTimes = data.remainTimes;
-    //      if (data.result === ResultCode.SUCCESS) {
-    //        LogUtil.info(`${this.TAG}getAuthProperty success`);
-    //      } else {
-    //        LogUtil.info(`${this.TAG}getAuthProperty failed`);
-    //      }
-    //    });
+    PasswordModel.getAuthProperty((data: any) => {
+      LogUtil.info(this.TAG + `getAuthProperty data:${JSON.stringify(data)}`);
+      if (data.result === ResultCode.SUCCESS) {
+        this.passwordType = data.authSubType ? data.authSubType : -1;
+        this.freezingTime = data.freezingTime ? data.freezingTime : 0;
+        this.remainTimes = data.remainTimes ? data.remainTimes : -1;
+        LogUtil.info(`${this.TAG}getAuthProperty success`);
+      } else {
+        LogUtil.info(`${this.TAG}getAuthProperty failed`);
+      }
+    });
   }
 
 /**

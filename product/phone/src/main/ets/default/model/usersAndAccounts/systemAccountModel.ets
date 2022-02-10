@@ -16,6 +16,10 @@
 import account_osAccount from '@ohos.account.osAccount';
 import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
 
+export const TYPE_ADMIN: number = 0;
+export const TYPE_NORMAL: number = 1;
+export const TYPE_GUEST: number = 2;
+
 export class SystemAccoutModel {
   /**
    * Get current account name and do callback.
@@ -59,12 +63,12 @@ export class SystemAccoutModel {
     if (info1.localId == this.currentAccount.localId || info2.localId == this.currentAccount.localId) {
       LogUtil.info("Sort current account, info: " + info1.localName);
       return info1.localId == this.currentAccount.localId ? -1 : 1;
-    } else if (info1.type.ADMIN == 0 || info2.type.ADMIN == 0) {
+    } else if (info1.type.ADMIN == TYPE_ADMIN || info2.type.ADMIN == TYPE_ADMIN) {
       LogUtil.info("Sort administrator account, info: " + info1.localName);
-      return info1.type.ADMIN == 0 ? -1 : 1;
-    } else if ( info1.type.GUEST == 2 || info2.type.GUEST == 2) {
+      return info1.type.ADMIN == TYPE_ADMIN ? -1 : 1;
+    } else if ( info1.type.GUEST == TYPE_GUEST || info2.type.GUEST == TYPE_GUEST) {
       LogUtil.info("Sort quest account, info: " + info1.localName);
-      return info1.type.GUEST == 2 ? 1 : -1;
+      return info1.type.GUEST == TYPE_GUEST ? 1 : -1;
     } else {
       return info2.localId - info1.localId;
     }
@@ -78,11 +82,11 @@ export class SystemAccoutModel {
    */
   getIdentityFromMap(accountType: account_osAccount.OsAccountType): string | Resource {
     LogUtil.info("Get identity from map, type: " + JSON.stringify(accountType));
-    if (accountType.ADMIN == 0) {
+    if (accountType.ADMIN == TYPE_ADMIN) {
       return $r("app.string.administrator");
-    } else if (accountType.NORMAL == 1) {
+    } else if (accountType.NORMAL == TYPE_NORMAL) {
       return "";
-    } else if (accountType.GUEST == 2) {
+    } else if (accountType.GUEST == TYPE_GUEST) {
       return $r("app.string.quest");
     } else {
       LogUtil.info("Unknown system account type.")
