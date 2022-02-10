@@ -633,16 +633,24 @@
       "value":"请 %d秒 后重试"
     },
     {
-      "name":"password_PIN_6_error",
+      "name":"password_PIN_must_be_6_numbers",
       "value":"PIN 应为 6 位数字"
     },
     {
       "name":"password_PIN_check_min_error",
-      "value":"PIN 至少应为 4 位"
+      "value":"数字密码至少应为 4 位"
     },
     {
       "name":"password_PIN_check_max_error",
       "value":"PIN 必须少于 33 位数"
+    },
+	{
+      "name":"password_PIN_must_be_numbers",
+      "value":"PIN 应为数字"
+    },
+	{
+      "name":"password_illegal_character",
+      "value":"混合密码包含非法字符"
     },
     {
       "name":"password_check_min_error",

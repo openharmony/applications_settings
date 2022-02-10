@@ -19,13 +19,15 @@ import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/b
 import ISettingsController from '../../../../../../../../common/component/src/main/ets/default/controller/ISettingsController';
 import {LogAll} from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
 import PasswordModel, {PinSubType, ResultCode} from '../../model/passwordImpl/PasswordModel.ets';
+import {Checker} from './Checker.ets';
 import Router from '@system.router';
 
-let PASSWORD_MAX_LENGTH = 32
+const PASSWORD_SIX_LENGTH = 6
 
 @LogAll
 export default class PasswordRepeatController extends BaseSettingsController {
   private TAG = ConfigData.TAG + 'PasswordRepeatController ';
+  private checker = new Checker();
   private pinToken: string = undefined
   private passwordType: number = -1
   private inputPassword: string = undefined
@@ -51,50 +53,13 @@ export default class PasswordRepeatController extends BaseSettingsController {
   passwordOnChange(value: string) {
     this.password = value;
     LogUtil.info(this.TAG + 'passwordOnChange : passwordType = ' + this.passwordType + ', password = ' + this.password)
-    this.checkMessage = ''
-    this.checkInputDigits(value)
-  }
+    this.checkMessage = this.checkInputDigits(value)
+    LogUtil.info(this.TAG + 'passwordOnChange : checkInputDigits over : checkMessage = ' + JSON.stringify(this.checkMessage));
 
-/**
-   * Check input password digits.
-   * When password type is PIN_SIX, password should be 6 digit numbers.
-   * When password type is number or mixed, password should be fewer than 33 digits.
-   *
-   * @param value : inputting password
-   */
-  checkInputDigits(value: string) {
-
-    // When password type is PIN_SIX, check number 6 digits
-    if (this.passwordType == PinSubType.PIN_SIX) {
-      this.checkMessage = ''
-      if (value.length == 6) {
-        this.inputFinish();
-      }
+    if (this.passwordType == PinSubType.PIN_SIX && !this.checkMessage && this.checker.isNumber6(this.password)) {
+      // When password is 6 numbers, finish input
+      this.inputFinish();
     }
-
-    // Other type, check PIN fewer than 33 digits
-    else if (this.checkMaxDigits(value)) {
-      this.checkMessage = ''
-    }
-
-    // 33 digits check error, show message
-    else if (this.passwordType == PinSubType.PIN_NUMBER) {
-      this.checkMessage = $r('app.string.password_PIN_check_max_error')
-    } else if (this.passwordType == PinSubType.PIN_MIXED) {
-      this.checkMessage = $r('app.string.password_check_max_error')
-    }
-
-    LogUtil.info(this.TAG + 'checkInputDigits : checkMessage = ' + JSON.stringify(this.checkMessage));
-  }
-
-//------------------------------ check ---------------------------
-/**
-   * check if the password less than 33 digits
-   *
-   * @param value : inputting password
-   */
-  checkMaxDigits(value: string): boolean {
-    return value.length <= PASSWORD_MAX_LENGTH;
   }
 
 /**
@@ -108,22 +73,49 @@ export default class PasswordRepeatController extends BaseSettingsController {
       return;
     }
 
+    // check match
+    if (!this.checkMessage && this.password != this.inputPassword) {
+      // not match
+      LogUtil.info(this.TAG + 'inputFinish : not match')
+      this.checkMessage = $r('app.string.password_message_repeat_error')
+    }
+
+    LogUtil.info(this.TAG + 'inputFinish ：check over : checkMessage = ' + JSON.stringify(this.checkMessage));
     if (this.checkMessage) {
       LogUtil.info(this.TAG + 'inputFinish return : has error yet.')
       return;
     }
 
-    if (this.password == this.inputPassword) {
-      if (this.pinToken) {
-        this.updatePassword()
-      } else {
-        this.createPassword()
-      }
+    if (this.pinToken) {
+      this.updatePassword()
     } else {
-      // not match
-      LogUtil.info(this.TAG + 'inputFinish : not match')
-      this.checkMessage = $r('app.string.password_message_repeat_error')
+      this.createPassword()
     }
+  }
+
+//------------------------------ check ---------------------------
+/**
+   * Check input password digits.
+   * When password type is PIN_SIX, password should be 6 digit numbers.
+   * When password type is number or mixed, password should be fewer than 33 digits.
+   *
+   * @param value inputting password
+   * @return error message
+   */
+  checkInputDigits(value: string): string | Resource {
+
+    // Check PIN fewer than 33 digits
+    if (this.checker.checkMaxDigits(value)) {
+      return ''
+    }
+
+    // 33 digits check error, show message
+    if (this.passwordType == PinSubType.PIN_NUMBER) {
+      return $r('app.string.password_PIN_check_max_error')
+    } else if (this.passwordType == PinSubType.PIN_MIXED) {
+      return $r('app.string.password_check_max_error')
+    }
+
   }
 
 //------------------------------ Router -----------------------------
