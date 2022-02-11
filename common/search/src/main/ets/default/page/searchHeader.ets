@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -41,7 +42,7 @@ export default struct SearchHeader {
 
       // text input
       Stack({ alignContent: Alignment.End }) {
-        TextInput({ placeholder: this.placeholder, text: this.inputKeyword })
+        TextInput({ placeholder: this.placeholder })
           .margin({
             left: $r('app.float.search_input_horizontal_margin'),
             right: $r('app.float.search_input_horizontal_margin')
