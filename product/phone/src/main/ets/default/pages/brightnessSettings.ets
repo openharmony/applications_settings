@@ -19,7 +19,7 @@ import HeadComponent from '../../../../../../../common/component/src/main/ets/de
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 
 
-const BRIGHTNESS_MIN_VALUE = 0;
+const BRIGHTNESS_MIN_VALUE = 4;
 const BRIGHTNESS_MAX_VALUE = 100;
 const BRIGHTNESS_STEP_VALUE = 1;
 
