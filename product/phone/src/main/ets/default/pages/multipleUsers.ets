@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent.ets';
+import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil.ets';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 import SystemAccountController from '../model/usersAndAccounts/systemAccountController.ets';
@@ -271,7 +272,7 @@ struct CurrentDialogBuilder {
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button($r("app.string.cancel"))
           .backgroundColor(Color.White)
-          .fontSize($r("app.float.font_35"))
+          .fontSize($r("app.float.font_24"))
           .fontColor(Color.Blue)
           .fontWeight(FontWeight.Medium)
           .width(ConfigData.WH_50_100)
@@ -281,7 +282,7 @@ struct CurrentDialogBuilder {
           })
         Button($r("app.string.confirm"))
           .backgroundColor(Color.White)
-          .fontSize($r("app.float.font_35"))
+          .fontSize($r("app.float.font_24"))
           .fontColor(Color.Blue)
           .fontWeight(FontWeight.Medium)
           .width(ConfigData.WH_50_100)
@@ -370,6 +371,7 @@ struct UserDialogBuilder {
 @CustomDialog
 struct AddUserDialog {
   @State buttonState: boolean = false;
+  @State hintText: string = '';
   private controller: CustomDialogController;
   private account;
 
@@ -385,7 +387,7 @@ struct AddUserDialog {
         .height($r("app.float.wh_value_60"))
         .margin({ top: $r("app.float.wh_value_20"), bottom: $r("app.float.wh_value_40") })
       TextInput({
-        placeholder: '昵称'
+        placeholder: this.hintText
       })
         .placeholderFont({ size: $r("app.float.font_24") })
         .placeholderColor(Color.Brown)
@@ -401,7 +403,7 @@ struct AddUserDialog {
       Flex({ direction: FlexDirection.Row, alignItems: Alignment.Center }) {
         Button($r("app.string.cancel"))
           .backgroundColor(Color.White)
-          .fontSize($r("app.float.font_35"))
+          .fontSize($r("app.float.font_24"))
           .fontColor(Color.Blue)
           .fontWeight(FontWeight.Medium)
           .width(ConfigData.WH_50_100)
@@ -412,7 +414,7 @@ struct AddUserDialog {
 
         Button($r("app.string.confirm"))
           .backgroundColor(Color.White)
-          .fontSize($r("app.float.font_35"))
+          .fontSize($r("app.float.font_24"))
           .fontColor(Color.Blue)
           .fontWeight(FontWeight.Medium)
           .width(ConfigData.WH_50_100)
@@ -452,6 +454,10 @@ struct AddUserDialog {
       left: $r("app.float.wh_value_20"),
       right: $r("app.float.wh_value_20")
     })
+  }
+
+  aboutToAppear() {
+    ResourceUtil.getString($r("app.string.nickname")).then(value => this.hintText = value);
   }
 }
 
