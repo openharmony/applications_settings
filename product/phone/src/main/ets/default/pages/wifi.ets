@@ -12,14 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import SubscriberUtils from '../../../../../../../common/utils/src/main/ets/default/baseUtil/SubscriberUtil.ets';
-import PreferenceUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/PreferenceUtil.ets';
 import WifiModel from '../model/wifiImpl/WifiModel.ets';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent.ets';
 import EntryComponent from '../../../../../../../common/component/src/main/ets/default/entryComponent.ets';
 import ImageAnimatorComponent from '../../../../../../../common/component/src/main/ets/default/imageAnimatorComponent.ets';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
+import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil.ets';
 import Subscriber from '@ohos.commonevent';
 import router from '@system.router';
 
@@ -124,10 +123,18 @@ struct Index {
   jumpToApDetails(apInfo: any) {
     LogUtil.info(MODULE_TAG + 'start to connect WiFi');
     WifiModel.setUserSelectedAp(apInfo);
-    LogUtil.info(MODULE_TAG + 'start to jump to wifiPsd page : ' + JSON.stringify(apInfo));
+    let isConnected = false;
+    if (WifiModel.getConnectedAp().getApInfo().ssid === apInfo.ssid) {
+      isConnected = true;
+    }
+    let params = {
+      apInfo: apInfo,
+      isConnected: isConnected
+    };
+    LogUtil.info(MODULE_TAG + 'start to jump to wifiPsd page : ' + JSON.stringify(params));
     router.push({
       uri: 'pages/wifiPsd',
-      params: apInfo,
+      params: params,
     });
   }
 
@@ -172,16 +179,13 @@ struct Index {
     // connected
     if (data.code === WifiModel.wiFiStatusEnum.ApConnected) {
       LogUtil.info(MODULE_TAG + 'code 4 : connected');
-      WifiModel.updatePrimaryApInfo($r('app.string.connected'));
-      WifiModel.refreshApScanResults();
     }
     // disconnected
     if (data.code === WifiModel.wiFiStatusEnum.Disconnecting ||
         data.code === WifiModel.wiFiStatusEnum.Disconnected) {
       LogUtil.info(MODULE_TAG + 'code 5, 6 : disconnected');
-      WifiModel.removePrimaryApInfo();
-      WifiModel.refreshApScanResults();
     }
+    WifiModel.refreshApScanResults();
     // refresh the page contents
     this.refreshFlag = !this.refreshFlag;
   }
@@ -211,6 +215,7 @@ struct Index {
 
   aboutToAppear(): void {
     LogUtil.info(MODULE_TAG + 'about to appear wifi page');
+    ResourceUtil.getString($r("app.string.connected")).then(value => WifiModel.setConnectedSummary(value));
     this.createWiFiStatusListener();
     if (WifiModel.isWiFiActive()) {
       this.isWlanEnable = true;
@@ -233,7 +238,7 @@ struct Index {
 
     let params = router.getParams();
     if (params !== null && typeof params !== 'undefined') {
-      LogUtil.info(MODULE_TAG + 'settings wifiPsd page params is : ' + JSON.stringify(params));
+      LogUtil.info(MODULE_TAG + 'settings wifiPsd page params is : ' + JSON.stringify(params.opType));
       let opType = params.opType;
       if (opType === 'disconnect') {
         WifiModel.disconnectWiFi();
