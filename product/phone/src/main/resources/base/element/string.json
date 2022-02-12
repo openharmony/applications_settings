@@ -667,6 +667,10 @@
     {
       "name": "biometricsAndPassword",
       "value": "生物识别和密码"
+    },
+    {
+      "name": "nickname",
+      "value": "昵称"
     }
   ]
 }

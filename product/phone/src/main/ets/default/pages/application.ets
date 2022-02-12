@@ -35,17 +35,6 @@ struct Application {
           settingUri: ''
         });
       }
-      Navigator({ target: '' }) {
-        EntryComponent({
-          settingIcon: '',
-          settingTitle: $r("app.string.authorityManagement"),
-          settingSummary: '',
-          settingValue: '',
-          settingArrow: '/res/image/ic_settings_arrow.svg',
-          settingArrowStyle: '',
-          settingUri: ''
-        });
-      }
     }
   }
 
