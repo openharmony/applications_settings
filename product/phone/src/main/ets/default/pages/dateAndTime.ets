@@ -243,8 +243,7 @@ struct TimeDialog24H {
         .width(ConfigData.WH_50_100);
         Column() {
           Text($r('app.string.confirm'))
-
- .fontSize($r('app.float.font_24'))
+            .fontSize($r('app.float.font_24'))
             .fontColor(Color.Blue)
             .onClick(() => {
             LogUtil.info("button confirm");
@@ -290,8 +289,8 @@ struct TimeDialog24H {
 struct DateDialog {
   controller: CustomDialogController;
   action: () => void;
-  private currentDate;
-  private formatDate;
+  private currentDate: Date = new Date();
+  private formatDate: string = '';
   @State date: string = '';
   private day;
   @StorageLink('Title') title: string= '';
@@ -345,10 +344,12 @@ struct DateDialog {
             .fontSize($r('app.float.font_24'))
             .fontColor(Color.Blue)
             .onClick(() => {
-            let s = (new Date(this.formatDate)).getTime();
-            DateAndTimeModel.setTime(s);
-            this.controller.close();
-            this.action();
+              if (this.formatDate !== '') {
+                let s = (new Date(this.formatDate)).getTime();
+                DateAndTimeModel.setTime(s);
+              }
+              this.controller.close();
+              this.action();
           });
         }
         .alignItems(HorizontalAlign.Center)
