@@ -17,6 +17,9 @@ import ConfigData from '../../../../../../../common/utils/src/main/ets/default/b
 import DateAndTime from '../../../../../../../common/utils/src/main/ets/default/baseUtil/DateAndTimeUtil.ets';
 import DateAndTimeModel from '../model/dateAndTimeImpl/DateAndTimeModel.ets'
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
+import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil.ets';
+
+const MODULE_TAG = ConfigData.TAG + '.dateAndTime -> ';
 
 /**
  * date and time
@@ -93,13 +96,13 @@ struct dateAndTime {
             .width(ConfigData.WH_100_100)
             .height($r('app.float.wh_value_80'))
             .onClick(() => {
-              LogUtil.info('dialog come in' + JSON.stringify(item))
+              LogUtil.info(MODULE_TAG + 'dialog come in' + JSON.stringify(item))
               if (item.settingAlias === 'date') {
-                LogUtil.info('date dialog come in')
+                LogUtil.info(MODULE_TAG + 'date dialog come in')
                 this.dateDialogController.open()
               }
               if (item.settingAlias === 'time') {
-                LogUtil.info('time dialog come in')
+                LogUtil.info(MODULE_TAG + 'time dialog come in')
                 this.timeDialogController.open()
               }
             })
@@ -118,13 +121,13 @@ struct dateAndTime {
    * Successfully built Dialog
    */
   onAccept() {
-    console.log("onAccept");
+    LogUtil.info(MODULE_TAG + 'onAccept');
   }
   /**
    * Cancel Dialog
    */
   existApp() {
-    console.log("Cancel dialog!");
+    LogUtil.info(MODULE_TAG + 'Cancel dialog!');
   }
 
   /**
@@ -165,11 +168,11 @@ struct dateAndTime {
    */
   private getNowTime(): void {
     this.intervalFlag = setInterval(() => {
-      console.log('get time come in');
+      LogUtil.info(MODULE_TAG + 'get time come in');
       this.time = DateAndTime.getSystemTime(this.is24hTimeFormat());
       this.date = DateAndTime.getSystemDate();
-      console.log('get time end in date=' + this.date);
-      console.log('get time end in time=' + this.time);
+      LogUtil.info(MODULE_TAG + 'get time end in date=' + this.date);
+      LogUtil.info(MODULE_TAG + 'get time end in time=' + this.time);
       this.changeValue();
     }, 1000);
   }
@@ -223,7 +226,7 @@ struct TimeDialog24H {
           .useMilitaryTime(this.isNeedMilitaryTime())
           .onChange((date: DatePickerResult) => {
           this.currentTime = DateAndTime.concatTime(date.hour, date.minute);
-          console.info("onchange currentTime" + this.currentTime);
+          LogUtil.info(MODULE_TAG + 'onchange currentTime' + this.currentTime);
         })
           .width(ConfigData.WH_100_100)
           .height($r('app.float.wh_value_280'))
@@ -246,16 +249,16 @@ struct TimeDialog24H {
             .fontSize($r('app.float.font_24'))
             .fontColor(Color.Blue)
             .onClick(() => {
-            LogUtil.info("button confirm");
+            LogUtil.info(MODULE_TAG + 'button confirm');
             let datetime = new Date();
             let y = datetime.getFullYear();
             let m = datetime.getMonth() + 1;
             let d = datetime.getDate();
             this.formatTime = y + '-' + DateAndTime.fill(m) + '-' + DateAndTime.fill(d)
             + 'T' + this.currentTime + ':' + '00';
-            LogUtil.info("onchange format time" + this.formatTime);
+            LogUtil.info(MODULE_TAG + 'onchange format time' + this.formatTime);
             let s = (new Date(this.formatTime)).getTime();
-            LogUtil.info("onchange time second" + s);
+            LogUtil.info('onchange time second' + s);
             DateAndTimeModel.setTime(s);
             this.controller.close();
             this.action();
@@ -289,11 +292,11 @@ struct TimeDialog24H {
 struct DateDialog {
   controller: CustomDialogController;
   action: () => void;
-  private currentDate: Date = new Date();
-  private formatDate: string = '';
+  private minDate: Date = new Date('2008-01-01');
+  private maxDate: Date = new Date('2037-12-31');
+  private selectedDate: Date = this.initValidDate();
   @State date: string = '';
-  private day;
-  @StorageLink('Title') title: string= '';
+  @State day: string = '';
 
   build() {
     Column() {
@@ -308,20 +311,19 @@ struct DateDialog {
         .margin({ left: $r('app.float.wh_value_15') })
         .width(ConfigData.WH_100_100)
 
-        DatePicker({ start: new Date('2008-12-21'), end: new Date('2030-12-12'),
-          selected: this.currentDate, type: DatePickerType.Date })
-          .onChange((date: DatePickerResult) => {
-          let datetime = new Date();
-          let h = datetime.getHours();
-          let min = datetime.getMinutes();
-          let s = datetime.getSeconds();
-          this.formatDate = date.year + '-' + DateAndTime.fill(date.month + 1) + '-' + DateAndTime.fill(date.day) + 'T' +
-          DateAndTime.fill(h) + ':' + DateAndTime.fill(min) + ':' + DateAndTime.fill(s);
-          this.date = DateAndTime.concatDate(date.year, date.month + 1, date.day);
-          this.day = DateAndTime.convert(date.year, date.month + 1, date.day);
-          LogUtil.info("onchange formatDate" + this.formatDate);
-          LogUtil.info("onchange currentDate" + this.currentDate);
-          LogUtil.info("onchange date" + this.date);
+        DatePicker({ start: this.minDate, end: this.maxDate, selected: this.selectedDate, type: DatePickerType.Date })
+          .onChange((result: DatePickerResult) => {
+            let fmt = result.year + '-' + DateAndTime.fill(result.month + 1) + '-' + DateAndTime.fill(result.day);
+            this.selectedDate = new Date(fmt);
+            LogUtil.info(MODULE_TAG + 'onchange user select date fmt is : ' + fmt);
+            LogUtil.info(MODULE_TAG + 'onchange user select date is :' + this.selectedDate);
+            this.date = DateAndTime.concatDate(result.year, result.month + 1, result.day);
+            let resource = DateAndTime.convert(result.year, result.month + 1, result.day);
+            ResourceUtil.getString(resource).then(value => {
+              this.day = value;
+              LogUtil.info(MODULE_TAG + 'onchange refresh the show date is : ' + this.date);
+              LogUtil.info(MODULE_TAG + 'onchange refresh the show day is : ' + this.day);
+            });
         })
           .width(ConfigData.WH_100_100)
           .height($r('app.float.wh_value_280'));
@@ -333,9 +335,9 @@ struct DateDialog {
             .fontSize($r('app.float.font_24'))
             .fontColor(Color.Blue)
             .onClick(() => {
-            this.controller.close();
-            this.action();
-          });
+              this.controller.close();
+              this.action();
+            });
         }
         .alignItems(HorizontalAlign.Center)
         .width(ConfigData.WH_50_100);
@@ -344,10 +346,17 @@ struct DateDialog {
             .fontSize($r('app.float.font_24'))
             .fontColor(Color.Blue)
             .onClick(() => {
-              if (this.formatDate !== '') {
-                let s = (new Date(this.formatDate)).getTime();
-                DateAndTimeModel.setTime(s);
-              }
+              LogUtil.info(MODULE_TAG + 'start set date to : ' + this.selectedDate);
+              let sysTime = new Date();
+              let fmt = this.selectedDate.getFullYear() + '-' +
+                DateAndTime.fill(this.selectedDate.getMonth() + 1) + '-' +
+                DateAndTime.fill(this.selectedDate.getDate()) + 'T' +
+                DateAndTime.fill(sysTime.getHours()) + ':' +
+                DateAndTime.fill(sysTime.getMinutes()) + ':' +
+                DateAndTime.fill(sysTime.getSeconds());
+              LogUtil.info(MODULE_TAG + 'set date fmt is : ' + fmt);
+              let s = (new Date(fmt)).getTime();
+              DateAndTimeModel.setTime(s);
               this.controller.close();
               this.action();
           });
@@ -368,12 +377,21 @@ struct DateDialog {
     let m = datetime.getMonth() + 1;
     let d = datetime.getDate();
     this.date = DateAndTime.getSystemDate();
-    this.day = DateAndTime.convert(y, m, d);
+    ResourceUtil.getString(DateAndTime.convert(y, m, d)).then(value => {
+      this.day = value;
+    });
+  }
+
+  private initValidDate() {
+    let sysDate = new Date();
+    let sysDateTime = sysDate.getTime();
+    LogUtil.info(MODULE_TAG + 'init sysDate is :' + sysDateTime);
+    if (sysDateTime < this.minDate.getTime()) {
+      return this.minDate;
+    }
+    if (sysDateTime > this.maxDate.getTime()) {
+      return this.maxDate;
+    }
+    return sysDate;
   }
 }
-
-
-
-
-
-
