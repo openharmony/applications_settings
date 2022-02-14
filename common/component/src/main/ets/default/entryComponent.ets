@@ -32,9 +32,11 @@ struct EntryComponent {
   @State titleFontColor: Color | number | string | Resource = $r('app.color.color_333333_grey');
   private enabled : boolean = true;
   private onArrowClick?: () => void;
+  @State isTouched: boolean = false;
+  private height ?= $r('app.float.wh_value_70');
 
   build() {
-    Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
       Row() {
         Image(this.settingIcon)
           .width($r('app.float.wh_value_50'))
@@ -88,10 +90,20 @@ struct EntryComponent {
           .height($r('app.float.wh_value_40'))
           .visibility('' === this.settingArrow ? Visibility.None : Visibility.Visible);
       }
-      .margin({ right: $r('app.float.wh_value_15') })
       .align(Alignment.End);
     }
-    .margin({ left: $r('app.float.wh_value_15') })
-    .enabled(this.enabled);
+    .padding({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') })
+    .height($r('app.float.wh_value_70'))
+    .width(ComponentConfig.WH_100_100)
+    .borderRadius($r('app.float.radius_24'))
+    .backgroundColor(this.isTouched ? $r("app.color.color_D8D8D8_grey"):$r("app.color.white_bg_color"))
+    .onTouch((event: TouchEvent) => {
+      if (event.type === TouchType.Down) {
+        this.isTouched = true;
+      }
+      if (event.type === TouchType.Up) {
+        this.isTouched = false;
+      }
+    })
   }
 }

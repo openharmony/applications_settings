@@ -64,7 +64,7 @@
           "pages/application",
           "pages/applicationInfo",
           "pages/applicationStorage",
-          "pages/brightnessSettings",
+          "pages/screenAndBrightness",
           "pages/aboutDevice",
           "pages/appManagement",
           "pages/wifi",
@@ -86,7 +86,9 @@
           "pages/passwordSetting",
           "pages/passwordCheck",
           "pages/passwordInput",
-          "pages/passwordRepeat"
+          "pages/passwordRepeat",
+          "pages/passwordRepeat",
+          "pages/screenMode"
         ],
         "name": "default",
         "window": {

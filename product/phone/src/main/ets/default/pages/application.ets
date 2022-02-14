@@ -12,8 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import EntryComponent from '../../../../../../../common/component/src/main/ets/default/entryComponent.ets';
+import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
+import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent.ets';
+import {SubEntryComponent} from '../../../../../../../common/component/src/main/ets/default/subEntryComponent.ets';
+import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil.ets';
 
 /**
  * Application
@@ -21,21 +24,26 @@ import HeadComponent from '../../../../../../../common/component/src/main/ets/de
 @Entry
 @Component
 struct Application {
+  @State columnMargin: string = '24vp';
+  private TAG = `${ConfigData.TAG} Application`;
+
   build() {
     Column() {
-      HeadComponent({ headName: $r('app.string.applyTab'), isActive: true });
-      Navigator({ target: 'pages/appManagement' }) {
-        EntryComponent({
-          settingIcon: '',
-          settingTitle: $r('app.string.appManagement'),
-          settingSummary: '',
-          settingValue: '',
-          settingArrow: '/res/image/ic_settings_arrow.svg',
-          settingArrowStyle: '',
-          settingUri: ''
-        });
+      HeadComponent({ headName: $r('app.string.applyTab'), isActive: true })
+      Column({space: this.columnMargin}){
+        SubEntryComponent({targetPage:'pages/appManagement', title:$r('app.string.appManagement')})
       }
+      .width(ConfigData.WH_100_100)
     }
+    .padding({left:$r('app.float.distance_24'), right:$r('app.float.distance_24')})
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100)
+    .backgroundColor($r("app.color.color_E3E3E3_grey"));
   }
 
+  aboutToAppear(){
+    LogUtil.info(`${this.TAG} aboutToAppear in`);
+    ResourceUtil.getString($r('app.float.distance_24')).then(value => this.columnMargin = value);
+    LogUtil.info(`${this.TAG} aboutToAppear out`);
+  }
 }

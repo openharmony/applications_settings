@@ -15,6 +15,8 @@
 import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
 import ConfigData from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 import HeadComponent from '../../../../../../../../common/component/src/main/ets/default/headComponent.ets';
+import {SubEntryComponent} from '../../../../../../../../common/component/src/main/ets/default/subEntryComponent.ets';
+import ResourceUtil from '../../../../../../../../common/search/src/main/ets/default/common/ResourceUtil.ets';
 
 /**
  * Home Page Of System Settings
@@ -23,38 +25,24 @@ import HeadComponent from '../../../../../../../../common/component/src/main/ets
 @Component
 struct SystemSettings {
   @State touchedItem:boolean = false;
+  @State columnMargin: string = '24vp';
   private TAG = `${ConfigData.TAG} SystemSettings`;
 
   build() {
     Column() {
       HeadComponent({ headName: $r('app.string.systemTab'), isActive: true })
-      Navigator({target: 'pages/system/languageSettings/homePage'}) {
-        Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
-          Row() {
-            Text($r("app.string.setlanguage"))
-              .fontSize($r('app.float.font_22'))
-              .fontColor($r('app.color.font_color_182431'))
-              .margin({left:$r('app.float.distance_24'), top:$r('app.float.distance_8'), bottom:$r('app.float.distance_8'), right:0})
-              .textAlign(TextAlign.Start);
-          }
-          Image('/res/image/ic_settings_arrow.svg')
-            .width($r('app.float.wh_value_40'))
-            .height($r('app.float.wh_value_40'));
-        }
-        .backgroundColor(this.touchedItem? $r("app.color.color_D8D8D8_grey"):$r("app.color.white_bg_color"))
-        .height($r('app.float.wh_value_56'))
-        .margin({left:$r('app.float.distance_24'), right:$r('app.float.distance_24'), top:$r('app.float.distance_16')})
-        .borderRadius($r('app.float.radius_24'))
-        .onTouch((event: TouchEvent) => {
-          if (event.type === TouchType.Down) {
-            this.touchedItem = true;
-          }
-          if (event.type === TouchType.Up) {
-            this.touchedItem = false;
-          }
-        });
+      Column({space: this.columnMargin}){
+        SubEntryComponent({targetPage:"pages/restoreFactorySettings", title:$r("app.string.restoreFactoryTab")})
+
+        SubEntryComponent({targetPage:'pages/system/languageSettings/homePage', title:$r("app.string.setlanguage")})
+
+        SubEntryComponent({targetPage:"pages/dateAndTime", title:$r("app.string.dateAndTimeTab")})
+
+        SubEntryComponent({targetPage:"pages/developerOptions", title:$r("app.string.developerOptionsTab")})
       }
+      .width(ConfigData.WH_100_100)
     }
+    .padding({left:$r('app.float.distance_24'), right:$r('app.float.distance_24')})
     .width(ConfigData.WH_100_100)
     .height(ConfigData.WH_100_100)
     .backgroundColor($r("app.color.color_E3E3E3_grey"));
@@ -62,6 +50,7 @@ struct SystemSettings {
 
   aboutToAppear(){
     LogUtil.info(`${this.TAG} aboutToAppear in`);
+    ResourceUtil.getString($r('app.float.distance_24')).then(value => this.columnMargin = value);
     LogUtil.info(`${this.TAG} aboutToAppear out`);
   }
 
