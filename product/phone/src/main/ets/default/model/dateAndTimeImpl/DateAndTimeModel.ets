@@ -27,7 +27,7 @@ export class DateAndTimeModel extends BaseModel {
   timeFormat = null;
 
   setTime(time) {
-    LogUtil.info('DateAndTimeModel setTime  in ：' + time);
+    LogUtil.info('DateAndTimeModel setTime in ：' + time);
     SystemTime.setTime(time).then(data => {
       LogUtil.info(`DateAndTimeModel setTime promise then : ${data}`);
     })
