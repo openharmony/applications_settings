@@ -38,7 +38,7 @@
     },
     {
       "name": "brightnessTab",
-      "value": "亮度"
+      "value": "显示与亮度"
     },
     {
       "name": "applyTab",
@@ -674,7 +674,7 @@
     },
     {
       "name": "brightness",
-      "value": "显示与亮度"
+      "value": "亮度"
     },
     {
       "name": "screen",

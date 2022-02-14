@@ -32,7 +32,7 @@ export class BrightnessSettingModel extends BaseModel{
   private settingsDataKey:string = ConfigData.SETTINGSDATA_BRIGHTNESS;
   private brightness:number = 5;
   private defaultBrightnessStr = '5';
-  private TAG = ConfigData.TAG + 'BrightnessSettingModel ';
+  private TAG = `${ConfigData.TAG} BrightnessSettingModel `;
 
   constructor() {
     super();
@@ -55,7 +55,7 @@ export class BrightnessSettingModel extends BaseModel{
   @Log
   public setValue(brightness:number, sliderChangeMode:number){
     if(sliderChangeMode === ConfigData.SLIDER_CHANG_MODE_END){
-      LogUtil.info(this.TAG + `setValue [brightness:${brightness}, sliderChangeMode:${sliderChangeMode}]`);
+      LogUtil.info(`${this.TAG} setValue [brightness:${brightness}, sliderChangeMode:${sliderChangeMode}]`);
       this.setSettingsData(brightness);
     }else{
       this.setSystemBrightness(brightness);
@@ -68,10 +68,10 @@ export class BrightnessSettingModel extends BaseModel{
    */
   @Log
   private setSettingsData(brightness:number){
-    LogUtil.info(this.TAG + `setSettingsData [brightness:${brightness}]`);
+    LogUtil.info(`${this.TAG} setSettingsData [brightness:${brightness}]`);
     this.brightness = brightness;
     settings.setValue(this.dataAbilityHelper, this.settingsDataKey, brightness.toString());
-    LogUtil.info(this.TAG + `setSettingsData success`);
+    LogUtil.info(`${this.TAG} setSettingsData success`);
   }
 
   /**
@@ -89,9 +89,9 @@ export class BrightnessSettingModel extends BaseModel{
    */
   @Log
   private updateValue(){
-    LogUtil.info(this.TAG + 'updateValue');
+    LogUtil.info(`${this.TAG} updateValue`);
     this.brightness = parseInt(settings.getValue(this.dataAbilityHelper, this.settingsDataKey, this.defaultBrightnessStr));
-    LogUtil.info(this.TAG + `updateValue success, [brightness:${this.brightness}]`);
+    LogUtil.info(`${this.TAG} updateValue success, [brightness:${this.brightness}]`);
     return;
   }
 
@@ -100,11 +100,11 @@ export class BrightnessSettingModel extends BaseModel{
    */
   @Log
   public registerObserver(){
-    LogUtil.info(this.TAG + 'registerObserver');
+    LogUtil.info(`${this.TAG} registerObserver`);
     this.dataAbilityHelper.on("dataChange", this.urivar, (err)=>{
       this.updateValue();
     })
-    LogUtil.info(this.TAG + 'registerObserver success');
+    LogUtil.info(`${this.TAG} registerObserver success`);
     return;
   }
 
@@ -113,9 +113,9 @@ export class BrightnessSettingModel extends BaseModel{
    */
   @Log
   public unregisterObserver() {
-    LogUtil.info(this.TAG + 'unregisterObserver');
+    LogUtil.info(`${this.TAG} unregisterObserver`);
     this.dataAbilityHelper.off("dataChange", this.urivar, (err)=>{
-      LogUtil.info(this.TAG + 'unregisterObserver success');
+      LogUtil.info(`${this.TAG} unregisterObserver success`);
     })
     return;
   }
