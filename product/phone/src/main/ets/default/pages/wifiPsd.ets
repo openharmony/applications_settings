@@ -12,7 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// @ts-nocheck
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
+import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil.ets';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent.ets';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 import router from '@system.router'
@@ -26,7 +28,9 @@ const MODULE_TAG = ConfigData.TAG + '.WifiPasswd -> ';
 @Component
 struct WifiPsd {
   @State text: string= '';
+  @State passwdPlaceholder: string = '';
   apInfo: any = null;
+  isConnected: boolean = false;
 
   build() {
     Column() {
@@ -122,7 +126,7 @@ struct WifiPsd {
       .width(ConfigData.WH_100_100)
       .margin({ top: $r('app.float.wh_value_20') });
 
-      TextInput({ placeholder: '密码', text: this.text })
+      TextInput({ placeholder: this.passwdPlaceholder })
         .type(InputType.Password)
         .placeholderColor(Color.Blue)
         .placeholderFont({ size: ConfigData.font_20, weight: 2, family: "sans-serif", style: FontStyle.Normal })
@@ -135,6 +139,7 @@ struct WifiPsd {
           right: $r('app.float.wh_value_15')
         })
         .borderRadius($r('app.float.wh_value_15'))
+        .visibility(this.isConnected === true ? Visibility.None : Visibility.Visible)
         .onChange((inputs: string) => {
           this.text = inputs;
         });
@@ -161,6 +166,7 @@ struct WifiPsd {
         .width($r('app.float.wh_value_160'))
         .align(Alignment.Center)
         .margin({left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15')})
+        .visibility(this.isConnected === true ? Visibility.None : Visibility.Visible)
         .onClick(() => {
           router.back({
             uri: 'pages/wifi',
@@ -179,6 +185,7 @@ struct WifiPsd {
         .width($r('app.float.wh_value_160'))
         .align(Alignment.Center)
         .margin({left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15')})
+        .visibility(this.isConnected === false ? Visibility.None : Visibility.Visible)
         .onClick(() => {
           router.back({
             uri: 'pages/wifi',
@@ -195,8 +202,13 @@ struct WifiPsd {
   }
 
   aboutToAppear(): void {
-    this.apInfo = router.getParams();
-    LogUtil.info(MODULE_TAG + 'settings wifiPsd aboutToAppear apInfo : ' + JSON.stringify(this.apInfo));
+    let params = router.getParams();
+    LogUtil.info(MODULE_TAG + 'settings wifiPsd aboutToAppear params : ' + JSON.stringify(params));
+    this.apInfo = params.apInfo;
+    this.isConnected = params.isConnected;
+    ResourceUtil.getString($r("app.string.wifiPassword")).then(value => {
+      this.passwdPlaceholder = value;
+    });
   }
 
   onBackPress() {
