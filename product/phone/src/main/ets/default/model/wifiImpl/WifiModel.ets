@@ -15,9 +15,8 @@
 import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
 import ConfigData from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 import WifiNativeJs from '@ohos.wifi_native_js';
+import wifi from '@ohos.wifi';
 import BaseModel from '../../../../../../../../common/utils/src/main/ets/default/model/BaseModel.ets';
-import settings from '@ohos.settings';
-import featureAbility from '@ohos.ability.featureAbility'
 
 const MODULE_TAG = ConfigData.TAG + '.WifiModel -> ';
 
@@ -144,9 +143,11 @@ export class WifiModel extends BaseModel {
     'Disconnected': 6,
   };
   private userSelectedAp: ApScanResult = new ApScanResult();
+  private connectedAp: ApScanResult = new ApScanResult();
   private apScanResults: ApScanResult[] = [];
   private scanIntervalId: number = -1;
   private scanStatus: boolean = false;
+  private summary: string = '';
 
   setUserSelectedAp(apInfo?: any) {
     if (apInfo === null || typeof apInfo === 'undefined') {
@@ -154,10 +155,6 @@ export class WifiModel extends BaseModel {
     }
     LogUtil.info(MODULE_TAG + "set user selected apInfo is : " + JSON.stringify(apInfo));
     this.userSelectedAp = new ApScanResult(apInfo);
-  }
-
-  getUserSelectedAp(): ApScanResult {
-    return this.userSelectedAp;
   }
 
   isWiFiActive(): boolean {
@@ -186,7 +183,7 @@ export class WifiModel extends BaseModel {
   }
 
   connectWiFi(password: string) {
-    let apInfo = this.getPrimaryApInfo().getApInfo();
+    let apInfo = this.userSelectedAp.getApInfo();
     let obj: any = {
       "ssid": apInfo.ssid,
       "bssid": apInfo.bssid,
@@ -212,19 +209,47 @@ export class WifiModel extends BaseModel {
     return ret;
   }
 
+  getConnectedAp() {
+    return this.connectedAp;
+  }
+
   /**
-   * Get connected WiFi information
+   * update connected WiFi information
    */
-  getWiFiLinkedInfo() {
-    WifiNativeJs.getWiFiLinkedInfo(results => {
-      LogUtil.info(MODULE_TAG + ' get linked info is : ' + results);
+  updateConnectedAp() {
+    wifi.getLinkedInfo((err, result) => {
+      this.connectedAp = new ApScanResult();
+      if (err) {
+        LogUtil.info(MODULE_TAG + 'get linked info failed');
+        return;
+      }
+      LogUtil.info(MODULE_TAG + 'get linked info err is : ' + JSON.stringify(err));
+      LogUtil.info(MODULE_TAG + 'get linked info result is : ' + JSON.stringify(result));
+      // result.connState need as CONNECTED
+      if (result.connState !== 4) {
+        LogUtil.info(MODULE_TAG + 'result connState is not CONNECTED');
+        return;
+      }
+      this.connectedAp = new ApScanResult({
+        ssid: result.ssid,
+        bssid: result.bssid,
+        rssi: result.rssi,
+        band: result.band,
+        frequency: result.frequency,
+        timestamp: 0,
+        securityType: 1,
+      });
+      this.connectedAp.updateSummary(this.summary);
+      this.connectedAp.setConnectStatus(true);
     });
   }
 
   refreshApScanResults() {
+    this.updateConnectedAp();
+
     WifiNativeJs.getScanInfos((err, results) => {
       if (err) {
-        LogUtil.info(MODULE_TAG + "get scan info error : " + JSON.stringify(err));
+        LogUtil.info(MODULE_TAG + "get scan info failed");
         return;
       }
 
@@ -243,115 +268,30 @@ export class WifiModel extends BaseModel {
 
       // make the connected wifi item at the head of the array as
       // the connected wifi need to be shown at top of list-view
-      function unshiftPrimaryApScanResult(newResults: any[], oldResults: any[],
-                                         primaryApInfo: ApScanResult): ApScanResult[] {
+      function unshiftConnectedAp(newResults: any[], primaryApInfo: ApScanResult): ApScanResult[] {
+        LogUtil.info(MODULE_TAG + 'primaryApInfo is : ' + primaryApInfo.toString());
+        if (primaryApInfo.isValidAp() !== true) {
+          return newResults;
+        }
         let idxInNew = ApScanResult.index(newResults, primaryApInfo);
-        let idxInOld = ApScanResult.index(oldResults, primaryApInfo);
-        // direct return the scan results
-        if (idxInNew === -1 && idxInOld === -1) {
-          return newResults;
-        }
-        // new scan results not contains the primary ap info,
-        // but old results had it, using old one
-        if (idxInNew === -1 && idxInOld !== -1) {
-          newResults.unshift(oldResults[idxInOld]);
-          return newResults;
-        }
-        // new scan results contains the primary ap info,
-        // and the old results is not, using new one
-        if (idxInNew !== -1 && idxInOld === -1) {
+        if (idxInNew !== -1) {
           newResults.splice(idxInNew, 1);
-          newResults.unshift(primaryApInfo);
         }
-        // new scan results and old results both had primary ap info,
-        // update new one's summary and connected status by old one
-        if (idxInNew !== -1 && idxInOld !== -1) {
-          let temp = newResults[idxInNew];
-          temp.setConnectStatus(oldResults[idxInOld].isConnected());
-          temp.updateSummary(oldResults[idxInOld].getSummary());
-          newResults.splice(idxInNew, 1);
-          newResults.unshift(temp);
-        }
+        newResults.unshift(primaryApInfo);
         return newResults;
       }
 
       let scanResults: ApScanResult[] = removeDuplicateResults(results);
-      scanResults = unshiftPrimaryApScanResult(scanResults, this.apScanResults, this.getPrimaryApInfo());
-      this.apScanResults = scanResults;
-      let listModelRestuls = this.apScanResults.map((item) => {
+      this.apScanResults = unshiftConnectedAp(scanResults, this.connectedAp);
+      let listModelResults = this.apScanResults.map((item) => {
         return item.renderToListModel();
       });
-      AppStorage.SetOrCreate('slWiFiLists', listModelRestuls);
+      AppStorage.SetOrCreate('slWiFiLists', listModelResults);
     });
   }
 
-  private getPrimaryApInfo(): ApScanResult {
-    function loadPrimaryApInfo(): ApScanResult {
-      let urivar = settings.getUri('settings.wifi.lastConnected');
-      let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(urivar);
-      let apInfoStr: string = settings.getValue(dataAbilityHelper, 'settings.wifi.lastConnected', '');
-      let result = new ApScanResult();
-      if (apInfoStr !== '') {
-        result = new ApScanResult(JSON.parse(apInfoStr));
-      }
-      LogUtil.info(MODULE_TAG + 'get stored primary ap info str is : ' + apInfoStr
-      + ' and it to string is :' + result.toString());
-      return result;
-    }
-
-    if (this.userSelectedAp.isValidAp()) {
-      return this.userSelectedAp;
-    }
-    let primary = new ApScanResult();
-    let loadedApInfo = loadPrimaryApInfo();
-    if (loadedApInfo.isValidAp()) {
-      primary = loadedApInfo;
-    }
-    return primary;
-  }
-
-  removePrimaryApInfo() {
-    let primaryApInfo = this.getPrimaryApInfo();
-    if (primaryApInfo.isValidAp() !== true) {
-      return;
-    }
-    let index = ApScanResult.index(this.apScanResults, primaryApInfo);
-    LogUtil.info(MODULE_TAG + 'find primary ap info in scan result is' + index);
-    if (index !== -1) {
-      this.apScanResults[index].setConnectStatus(false);
-      this.apScanResults[index].updateSummary('');
-    }
-  }
-
-  updatePrimaryApInfo(summary: any) {
-    function storePrimaryApInfo(primary: ApScanResult) {
-      LogUtil.info(MODULE_TAG + 'start to store primary ap info : ' + primary.toString());
-      if (!primary.isValidAp()) {
-        LogUtil.info(MODULE_TAG + 'we do not save the invalid ap info');
-        return;
-      }
-      let urivar = settings.getUri('settings.wifi.lastConnected');
-      let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(urivar);
-      let ret = settings.setValue(dataAbilityHelper, 'settings.wifi.lastConnected', primary.toString());
-      LogUtil.info(MODULE_TAG + 'ret of store primary ap info is : ' + ret);
-    };
-
-    let primary = this.getPrimaryApInfo();
-    if (primary.isValidAp() !== true) {
-      LogUtil.info(MODULE_TAG + 'unknown status, disconnect and break');
-      this.disconnectWiFi();
-      return;
-    }
-    let index = ApScanResult.index(this.apScanResults, primary);
-    if (index !== -1) {
-      this.apScanResults[index].updateSummary(summary);
-      this.apScanResults[index].setConnectStatus(true);
-      let temp = this.apScanResults[index];
-      this.apScanResults.splice(index, 1);
-      this.apScanResults.unshift(temp);
-    }
-    // store primary ap info into settings data
-    storePrimaryApInfo(primary);
+  setConnectedSummary(summary: string) {
+    this.summary = summary;
   }
 
   setIntervalScanTask() {
