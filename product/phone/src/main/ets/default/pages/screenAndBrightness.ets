@@ -14,9 +14,10 @@
  */
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
 import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
-import {BrightnessSettingModel} from '../model/brightnessImpl/BrightnessSettingModel.ets';
+import {BrightnessSettingModel} from '../model/displayAndBrightnessImpl/brightness/BrightnessSettingModel.ets';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent.ets';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
+import {SubEntryComponentWithEndText} from '../../../../../../../common/component/src/main/ets/default/subEntryComponent.ets';
 
 
 const BRIGHTNESS_MIN_VALUE = 4;
@@ -35,7 +36,14 @@ struct BrightnessSettings {
   build() {
     Column() {
       HeadComponent({ headName: $r('app.string.brightnessTab'), isActive: true });
-      Row() {
+      Text($r('app.string.brightness'))
+        .fontSize($r('app.float.font_18'))
+        .textAlign(TextAlign.Start)
+        .margin({top:$r('app.float.distance_24'), bottom:$r('app.float.distance_24')})
+        .padding({left:$r('app.float.distance_24'), right:$r('app.float.distance_24'),})
+        .width(ConfigData.WH_100_100)
+
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         Image($r('app.media.ic_settings_brightness_minimum'))
           .width($r('app.float.wh_value_40'))
           .height($r('app.float.wh_value_40'))
@@ -44,7 +52,8 @@ struct BrightnessSettings {
           value: this.brightnessSettingModel.getValue(),
           min: BRIGHTNESS_MIN_VALUE,
           max: BRIGHTNESS_MAX_VALUE,
-          step: BRIGHTNESS_STEP_VALUE
+          step: BRIGHTNESS_STEP_VALUE,
+          style: SliderStyle.INSET
         })
           .selectedColor(Color.Blue)
           .blockColor(Color.Blue)
@@ -56,11 +65,28 @@ struct BrightnessSettings {
           .width($r('app.float.wh_value_40'))
           .height($r('app.float.wh_value_40'))
           .objectFit(ImageFit.Contain);
-      }.padding({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') });
+      }
+      .padding({ left: $r('app.float.wh_value_24'), right: $r('app.float.wh_value_24') })
+      .height($r('app.float.wh_value_56'))
+      .width(ConfigData.WH_100_100)
+      .borderRadius($r('app.float.radius_24'))
+      .backgroundColor($r("app.color.white_bg_color"))
+
+      Text($r('app.string.screen'))
+        .fontSize($r('app.float.font_18'))
+        .textAlign(TextAlign.Start)
+        .margin({top:$r('app.float.distance_24'), bottom:$r('app.float.distance_24')})
+        .padding({left:$r('app.float.distance_24'), right:$r('app.float.distance_24'),})
+        .width(ConfigData.WH_100_100)
+
+      SubEntryComponentWithEndText({targetPage: "pages/screenMode", title: $r("app.string.screenResolution"), endText: $r('app.string.high')})
+
     }
+    .padding({left:$r('app.float.distance_24'), right:$r('app.float.distance_24')})
     .align(Alignment.Center)
+    .height(ConfigData.WH_100_100)
     .width(ConfigData.WH_100_100)
-    .height(ConfigData.WH_100_100);
+    .backgroundColor($r("app.color.color_E3E3E3_grey"));
   }
 
   @Log
