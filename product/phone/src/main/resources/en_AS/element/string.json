@@ -38,7 +38,7 @@
     },
     {
       "name": "brightnessTab",
-      "value": "brightness"
+      "value": "Display and Brightness"
     },
     {
       "name": "volumeControl",
@@ -667,6 +667,30 @@
     {
       "name": "nickname",
       "value": "Nickname"
+    },
+    {
+      "name": "brightness",
+      "value": "Brightness"
+    },
+    {
+      "name": "Screen",
+      "value": "Screen"
+    },
+    {
+      "name": "screenResolution",
+      "value": "Screen Resolution"
+    },
+    {
+      "name": "screenResolutionWarning",
+      "value": "Changing the screen resolution will change the screen clarity and may close some applications running in the background."
+    },
+    {
+      "name": "high",
+      "value": "High"
+    },
+    {
+      "name": "highText",
+      "value": "%s, clearer screen"
     }
   ]
 }

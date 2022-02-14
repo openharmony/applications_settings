@@ -2,195 +2,211 @@
   "float": [
     {
       "name": "wh_value_1",
-      "value": "1"
+      "value": "1vp"
     },
     {
       "name": "wh_value_5",
-      "value": "5"
+      "value": "5vp"
     },
     {
       "name": "wh_value_8",
-      "value": "8"
+      "value": "8vp"
     },
     {
       "name": "wh_value_10",
-      "value": "10"
+      "value": "10vp"
     },
     {
       "name": "wh_value_12",
-      "value": "12"
+      "value": "12vp"
     },
     {
       "name": "wh_value_15",
-      "value": "15"
+      "value": "15vp"
     },
     {
       "name": "wh_value_20",
-      "value": "20"
+      "value": "20vp"
+    },
+    {
+      "name": "wh_value_24",
+      "value": "24vp"
     },
     {
       "name": "wh_value_26",
-      "value": "26"
+      "value": "26vp"
     },
     {
       "name": "wh_value_30",
-      "value": "30"
+      "value": "30vp"
     },
     {
       "name": "wh_value_32",
-      "value": "32"
+      "value": "32vp"
     },
     {
       "name": "wh_value_40",
-      "value": "40"
+      "value": "40vp"
     },
     {
       "name": "wh_value_44",
-      "value": "44"
+      "value": "44vp"
     },
     {
       "name": "wh_value_50",
-      "value": "50"
+      "value": "50vp"
     },
     {
       "name": "wh_value_56",
-      "value": "56"
+      "value": "56vp"
     },
     {
       "name": "wh_value_60",
-      "value": "60"
+      "value": "60vp"
     },
     {
       "name": "wh_value_65",
-      "value": "65"
+      "value": "65vp"
     },
     {
       "name": "wh_value_70",
-      "value": "70"
+      "value": "70vp"
     },
     {
       "name": "wh_value_80",
-      "value": "80"
+      "value": "80vp"
     },
     {
       "name": "wh_value_100",
-      "value": "100"
+      "value": "100vp"
     },
     {
       "name": "wh_value_130",
-      "value": "1300"
+      "value": "1300vp"
     },
     {
       "name": "wh_value_160",
-      "value": "160"
+      "value": "160vp"
     },
     {
       "name": "wh_value_210",
-      "value": "210"
+      "value": "210vp"
     },
     {
       "name": "wh_value_230",
-      "value": "230"
+      "value": "230vp"
     },
     {
       "name": "wh_value_280",
-      "value": "280"
+      "value": "280vp"
     },
     {
       "name": "wh_value_390",
-      "value": "390"
+      "value": "390vp"
     },
     {
       "name": "wh_value_400",
-      "value": "400"
+      "value": "400vp"
     },
     {
       "name": "font_35",
-      "value": "35"
+      "value": "35fp"
     },
     {
       "name": "font_10",
-      "value": "10"
+      "value": "10fp"
     },
     {
       "name": "font_18",
-      "value": "18"
+      "value": "18fp"
     },
     {
       "name": "font_20",
-      "value": "20"
+      "value": "20fp"
     },
     {
       "name": "font_21",
-      "value": "21"
+      "value": "21fp"
     },
     {
       "name": "font_22",
-      "value": "22"
+      "value": "22fp"
     },
     {
       "name": "font_24",
-      "value": "24"
+      "value": "24fp"
     },
     {
       "name": "font_28",
-      "value": "28"
+      "value": "28fp"
     },
     {
       "name": "font_50",
-      "value": "50"
+      "value": "50fp"
+    },
+    {
+      "name": "distance_4",
+      "value": "4vp"
     },
     {
       "name": "distance_8",
-      "value": "8"
+      "value": "8vp"
     },
     {
       "name": "distance_16",
-      "value": "16"
+      "value": "16vp"
     },
     {
       "name": "distance_20",
-      "value": "20"
+      "value": "20vp"
     },
     {
       "name": "distance_24",
-      "value": "24"
+      "value": "24vp"
     },
     {
       "name": "distance_80",
-      "value": "80"
+      "value": "80vp"
     },
     {
       "name": "item_common_vertical_margin",
-      "value": "20"
+      "value": "20vp"
     },
     {
       "name": "control_common_font_size",
-      "value": "20"
+      "value": "20fp"
     },
     {
       "name": "item_common_horizontal_margin",
-      "value": "16"
+      "value": "16vp"
     },
     {
       "name": "slider_text_padding_left",
-      "value": "5"
+      "value": "5vp"
     },
     {
       "name": "page_header_height",
-      "value": "70"
+      "value": "70vp"
     },
     {
       "name": "volume_border_radius",
-      "value": "15"
+      "value": "15vp"
+    },
+    {
+      "name": "radius_12",
+      "value": "12vp"
     },
     {
       "name": "radius_24",
-      "value": "24"
+      "value": "24vp"
     },
     {
       "name": "radius_40",
-      "value": "40"
+      "value": "40vp"
+    },
+    {
+      "name": "search_placeholder_font",
+      "value": "22fp"
     },
     {
       "name": "search_input_height",
@@ -214,219 +230,219 @@
     },
     {
       "name": "search_result_item_summary_font_size",
-      "value": "18vp"
+      "value": "18fp"
     },
     {
       "name": "slider_image_width",
-      "value": "40"
+      "value": "40vp"
     },
     {
       "name": "slider_image_height",
-      "value": "40"
+      "value": "40vp"
     },
     {
       "name": "slider_image_margin",
-      "value": "15"
+      "value": "15vp"
     },
     {
       "name": "audio_subtitle_font",
-      "value": "18"
+      "value": "18fp"
     },
     {
       "name": "audio_subtitle_margin_left",
-      "value": "10"
+      "value": "10vp"
     },
     {
       "name": "audio_subtitle_margin_bottom",
-      "value": "5"
+      "value": "5vp"
     },
     {
       "name": "audio_title_summary_margin_left",
-      "value": "15"
+      "value": "15vp"
     },
     {
       "name": "audio_summary_subtitle_margin_bottom",
-      "value": "10"
+      "value": "10vp"
     },
     {
       "name": "audio_subtitle_margin_top",
-      "value": "10"
+      "value": "10vp"
     },
     {
       "name": "audio_sound_mode_outer_height",
-      "value": "280"
+      "value": "280vp"
     },
     {
       "name": "audio_sound_mode_inner_padding_top",
-      "value": "15"
+      "value": "15vp"
     },
     {
       "name": "audio_sound_mode_inner_padding_bottom",
-      "value": "15"
+      "value": "15vp"
     },
     {
       "name": "audio_sound_mode_outer_padding",
-      "value": "16"
+      "value": "16vp"
     },
     {
       "name": "audio_sound_mode_item_inner_padding_top",
-      "value": "5"
+      "value": "5vp"
     },
     {
       "name": "audio_sound_mode_border_width",
-      "value": "1"
+      "value": "1vp"
     },
     {
       "name": "audio_sound_mode_border_radius",
-      "value": "15"
+      "value": "15vp"
     },
     {
       "name": "audio_sound_mode_image_size",
-      "value": "40"
+      "value": "40vp"
     },
     {
       "name": "audio_sound_mode_text_margin_top",
-      "value": "16"
+      "value": "16vp"
     },
     {
       "name": "audio_sound_mode_font_size",
-      "value": "20"
+      "value": "20fp"
     },
     {
       "name": "audio_sound_mode_radio_size",
-      "value": "36"
+      "value": "36vp"
     },
     {
       "name": "audio_image_common_size",
-      "value": "50"
+      "value": "50vp"
     },
     {
       "name": "audio_image_margin_right",
-      "value": "10"
+      "value": "10vp"
     },
     {
       "name": "audio_subtitle_font_size",
-      "value": "18"
+      "value": "18fp"
     },
     {
       "name": "audio_margin_left",
-      "value": "15"
+      "value": "15vp"
     },
     {
       "name": "audio_start_end_margin_left",
-      "value": "15"
+      "value": "15vp"
     },
     {
       "name": "audio_icon_height",
-      "value": "60"
+      "value": "60vp"
     },
     {
       "name": "audio_no_icon_height",
-      "value": "70"
+      "value": "70vp"
     },
     {
       "name": "audio_slider_height",
-      "value": "250"
+      "value": "250vp"
     },
     {
       "name": "audio_volume_height",
-      "value": "280"
+      "value": "280vp"
     },
     {
       "name": "audio_border_width",
-      "value": "1"
+      "value": "1vp"
     },
     {
       "name": "audio_border_radius",
-      "value": "15"
+      "value": "15vp"
     },
     {
       "name": "audio_volume_component_padding",
-      "value": "16"
+      "value": "16vp"
     },
     {
       "name": "restore_factory_font_size",
-      "value": "20"
+      "value": "20fp"
     },
     {
       "name": "restore_factory_button_width",
-      "value": "160"
+      "value": "160vp"
     },
     {
       "name": "restore_factory_button_height",
-      "value": "40"
+      "value": "40vp"
     },
     {
       "name": "switch_title_subtitle_size",
-      "value": "20"
+      "value": "20fp"
     },
     {
       "name": "switch_component_margin",
-      "value": "15"
+      "value": "15vp"
     },
     {
       "name": "switch_toggle_width",
-      "value": "60"
+      "value": "60vp"
     },
     {
       "name": "switch_toggle_height",
-      "value": "40"
+      "value": "40vp"
     },
     {
       "name": "switch_component_height",
-      "value": "70"
+      "value": "70vp"
     },
     {
       "name": "application_common_size",
-      "value": "45"
+      "value": "45vp"
     },
     {
       "name": "application_button_subtitle_size",
-      "value": "20"
+      "value": "20fp"
     },
     {
       "name": "application_button_height",
-      "value": "40"
+      "value": "40vp"
     },
     {
       "name": "storage_common_margin",
-      "value": "15"
+      "value": "15vp"
     },
     {
       "name": "location_font_size",
-      "value": "18"
+      "value": "18fp"
     },
     {
       "name": "location_common_margin",
-      "value": "15"
+      "value": "15vp"
     },
     {
       "name": "storage_data_panel_height",
-      "value": "230"
+      "value": "230vp"
     },
     {
       "name": "password_input_message_vertical_margin",
-      "value": "20"
+      "value": "20vp"
     },
     {
       "name": "password_count_down_view_vertical_margin",
-      "value": "20"
+      "value": "20vp"
     },
     {
       "name": "password_input_button_space",
-      "value": "10"
+      "value": "10vp"
     },
     {
       "name": "password_input_button_margin_top",
-      "value": "40"
+      "value": "40vp"
     },
     {
       "name": "radio_component_height",
-      "value": "30"
+      "value": "30vp"
     },
     {
       "name": "radio_component_margin_bottom_right",
-      "value": "15"
+      "value": "15vp"
     }
   ]
 }

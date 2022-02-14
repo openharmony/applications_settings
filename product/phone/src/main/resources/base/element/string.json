@@ -38,7 +38,7 @@
     },
     {
       "name": "brightnessTab",
-      "value": "亮度"
+      "value": "显示与亮度"
     },
     {
       "name": "applyTab",
@@ -671,6 +671,31 @@
     {
       "name": "nickname",
       "value": "昵称"
+    }
+  ,
+    {
+      "name": "brightness",
+      "value": "亮度"
+    },
+    {
+      "name": "screen",
+      "value": "屏幕"
+    },
+    {
+      "name": "screenResolution",
+      "value": "屏幕分辨率"
+    },
+    {
+      "name": "screenResolutionWarning",
+      "value": "更改屏幕分辨率会改变屏幕清晰度，可能会关闭在后台运行的部分应用。"
+    },
+    {
+      "name": "high",
+      "value": "高"
+    },
+    {
+      "name": "highText",
+      "value": "%s, 屏幕更清晰"
     }
   ]
 }
