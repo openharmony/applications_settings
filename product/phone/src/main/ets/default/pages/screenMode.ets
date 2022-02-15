@@ -14,18 +14,18 @@
  */
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
 import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
-//import {ScreenModeModel} from '../model/displayAndBrightnessImpl/display/ScreenMode.ets';
+import {ScreenModeModel} from '../model/displayAndBrightnessImpl/display/ScreenMode.ets';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent.ets';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 
 
 /**
- * brightness setting
+ * ScreenMode setting
  */
 @Entry
 @Component
 struct ScreenMode {
-  //@State screenModeModel:ScreenModeModel = new ScreenModeModel();
+  @State screenModeModel:ScreenModeModel = new ScreenModeModel();
   private TAG = ConfigData.TAG + 'ScreenMode ';
 
   build() {
@@ -39,7 +39,7 @@ struct ScreenMode {
         .width(ConfigData.WH_100_100)
 
       List(){
-        ForEach([0], (item) => {
+        ForEach(this.screenModeModel.getSupportedScreenModes(), (item) => {
           ListItem(){
             Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }){
               Column(){
@@ -48,7 +48,7 @@ struct ScreenMode {
                   .margin({top:$r('app.float.distance_16'), bottom:$r('app.float.distance_4')})
                   .textAlign(TextAlign.Start);
 
-                Text($r('app.string.highText', '3120 x 1440'))
+                Text($r('app.string.highText', `${this.screenModeModel.getScreenModeWidth(item)} x ${this.screenModeModel.getScreenModeHeight(item)}`))
                   .fontSize($r('app.float.font_18'))
                   .margin({bottom:$r('app.float.distance_16')})
                   .textAlign(TextAlign.Start);
@@ -61,10 +61,10 @@ struct ScreenMode {
                 .margin({ right: $r('app.float.radio_component_margin_bottom_right') })
                 .align(Alignment.End)
                 .enabled(false)
-                .checked(true)
-                .onChange(() => {
+                .checked(this.screenModeModel.isSysScreenMode(item))
+                .onClick(() => {
                   LogUtil.info('settings RadioListComponent : onChange: settingValue = ' + item.settingValue)
-                  //this.screenModeModel.setSysScreenMode(0);
+                  this.screenModeModel.setSysScreenMode(0);
                 })
             }
           }
@@ -89,14 +89,14 @@ struct ScreenMode {
   @Log
   private aboutToAppear(): void{
     LogUtil.info(this.TAG + 'aboutToAppear in');
-    //this.screenModeModel.registerObserver();
+    this.screenModeModel.registerObserver();
     LogUtil.info(this.TAG + 'aboutToAppear out');
   }
 
   @Log
   private aboutToDisappear(): void{
     LogUtil.info(this.TAG + 'aboutToDisappear in');
-    //this.screenModeModel.unregisterObserver();
+    this.screenModeModel.unregisterObserver();
     LogUtil.info(this.TAG + 'aboutToDisappear out');
   }
 }
