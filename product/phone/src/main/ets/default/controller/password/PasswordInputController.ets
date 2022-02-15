@@ -157,7 +157,7 @@ export default class PasswordInputController extends BaseSettingsController {
         }
 
       // Check illegal character
-        if (!this.checker.isContainIllegalCharacter(pwd)) {
+        if (this.checker.isContainIllegalCharacter(pwd)) {
           return $r('app.string.password_illegal_character')
         }
 
