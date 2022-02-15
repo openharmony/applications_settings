@@ -1,3 +1,4 @@
+//@ts-nocheck
 /**
  * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,14 +18,14 @@ import BaseModel from '../../../../../../../../../common/utils/src/main/ets/defa
 import ConfigData from '../../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 import LogUtil from '../../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
 import Log from '../../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
-import Screen from "@ohos.screen";
+import ScreenManager from '@ohos.screen';
 
 /**
  * Screen Mode setting
  */
 export class ScreenModeModel extends BaseModel{
-  private supportedScreenModes: Array<Screen.ScreenModeInfo> = [{width:3120, height:1440}];
-  private sysScreenMode: Screen.ScreenModeInfo;
+  private supportedScreenModes;
+  private sysScreenMode;
   private TAG = ConfigData.TAG + ' ScreenModeModel ';
   private screenLevel: string;
 
@@ -38,7 +39,14 @@ export class ScreenModeModel extends BaseModel{
    */
   @Log
   public init(): void{
-    this.sysScreenMode = this.supportedScreenModes[0]//Screen.supportedModeInfo[0];//because the array only has one element
+    ScreenManager.getAllScreen().then((screens) => {
+      LogUtil.info(`${this.TAG} sysScreenMode AllScreen: ${JSON.stringify(screens)}.`)
+      this.supportedScreenModes = screens[0].supportedModeInfo;
+      this.sysScreenMode = screens[0].supportedModeInfo[screens[0].activeModeIndex]
+      LogUtil.info(`${this.TAG} sysScreenMode: ${JSON.stringify(this.sysScreenMode)}.`)
+    }, (err) => {
+      LogUtil.info(`${this.TAG} setScreenActiveMode error: ${JSON.stringify(err)}.`)
+    })
     return;
   }
 
@@ -46,7 +54,7 @@ export class ScreenModeModel extends BaseModel{
    * get supported screenModes
    */
   @Log
-  public getSupportedScreenModes(): Array<Screen.ScreenModeInfo>{
+  public getSupportedScreenModes(){
     return this.supportedScreenModes;
   }
 
@@ -54,17 +62,24 @@ export class ScreenModeModel extends BaseModel{
    * get sysScreenMode
    */
   @Log
-  public getSysScreenMode(): Screen.ScreenModeInfo{
+  public getSysScreenMode(){
     return this.sysScreenMode;
   }
+
 
   /**
    * Set sysScreenMode
    */
   @Log
   public setSysScreenMode(index:number): void{
-    Screen.setScreenActiveMode(index).then((ret) => {
-      LogUtil.info(`${this.TAG} setScreenActiveMode ret: ${JSON.stringify(ret)}.`);
+    ScreenManager.getAllScreen().then((screens) => {
+      screens[0].setScreenActiveMode(index).then((ret) => {
+        if (ret) {
+          LogUtil.info(`${this.TAG} setScreenActiveMode ret: ${JSON.stringify(ret)}.`)
+        }
+      })
+    }, (err) => {
+      LogUtil.info(`${this.TAG} setScreenActiveMode error: ${JSON.stringify(err)}.`)
     })
     return;
   }
@@ -98,7 +113,7 @@ export class ScreenModeModel extends BaseModel{
    */
   @Log
   public getScreenLevel(screenModeInfo): string{
-    return '高';
+    return '';
   }
 
   /**
@@ -107,7 +122,7 @@ export class ScreenModeModel extends BaseModel{
   @Log
   public registerObserver(){
     LogUtil.info(`${this.TAG} registerObserver.`);
-    Screen.on('screenChangeEvent', (ScreenEvent) => {
+    ScreenManager.on('screenChangeEvent', (ScreenEvent) => {
       this.init();
     })
     LogUtil.info(`${this.TAG} registerObserver success.`);
@@ -120,7 +135,7 @@ export class ScreenModeModel extends BaseModel{
   @Log
   public unregisterObserver() {
     LogUtil.info(`${this.TAG} unregisterObserver.`);
-    Screen.off('screenChangeEvent', (ScreenEvent) => {
+    ScreenManager.off('screenChangeEvent', (ScreenEvent) => {
       LogUtil.info(`${this.TAG} unregisterObserver success.`);
     })
     return;
