@@ -103,6 +103,10 @@
         "name": "ohos.permission.DISTRIBUTED_DATASYNC"
       },
       {
+        "name": "ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION",
+        "reason": "Switch system account."
+      },
+      {
         "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
       },
       {
