@@ -15,6 +15,7 @@
  */
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent.ets';
 import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil.ets';
+import {TitleText} from '../../../../../../../common/component/src/main/ets/default/textComponent.ets';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 import SystemAccountController from '../model/usersAndAccounts/systemAccountController.ets';
@@ -48,39 +49,33 @@ struct MultipleUsers {
         }
         .divider({ strokeWidth: $r('app.float.wh_value_1'), color: $r('app.color.color_E3E3E3_grey'),
           startMargin: $r('app.float.wh_value_20'), endMargin: $r('app.float.wh_value_20') })
+        .borderRadius($r("app.float.radius_24"))
+        .backgroundColor($r("app.color.white_bg_color"))
+        .padding($r('app.float.distance_4'))
+        .margin({top: $r("app.float.distance_16"), bottom: $r("app.float.distance_8")})
+        .visibility(this.userList.length > 0 ? Visibility.Visible : Visibility.None)
 
         // Add user, shown when is administrator
-        Text($r("app.string.addUser"))
-          .fontSize($r("app.float.font_28"))
-          .fontColor(Color.Blue)
-          .margin({ left: $r("app.float.wh_value_20"),
-            right: $r("app.float.wh_value_20"),
-            top: $r("app.float.wh_value_20")
-          })
-          .height($r("app.float.wh_value_50"))
-          .textAlign(TextAlign.Start)
-          .visibility(this.isShowAddUser ? Visibility.Visible : Visibility.None)
-          .onClick(() => {
+        TitleText({
+          title: $r("app.string.addUser"),
+          color: Color.Blue,
+          visibility: this.isShowAddUser ? Visibility.Visible : Visibility.None,
+          clickEvent: (event => {
             LogUtil.info("Add user.");
             this.addUserDialogController.open();
-          })
+          }).bind(this)
+        })
 
         /**
          * Add guest, shown with conditions:
          * 1. Current user is administrator
          * 2. Guest is not created.
          */
-        Text($r("app.string.addGuest"))
-          .fontSize($r("app.float.font_28"))
-          .fontColor(Color.Blue)
-          .margin({ left: $r("app.float.wh_value_20"),
-            right: $r("app.float.wh_value_20"),
-            top: $r("app.float.wh_value_20")
-          })
-          .height($r("app.float.wh_value_50"))
-          .textAlign(TextAlign.Start)
-          .visibility(this.isShowAddGuest ? Visibility.Visible : Visibility.None)
-          .onClick((event) => {
+        TitleText({
+          title: $r("app.string.addGuest"),
+          color: Color.Blue,
+          visibility: this.isShowAddGuest ? Visibility.Visible : Visibility.None,
+          clickEvent: ((event) => {
             AlertDialog.show({
               message: $r("app.string.askAddGuest"),
               primaryButton: {
@@ -100,7 +95,8 @@ struct MultipleUsers {
                 LogUtil.info("Cancel dialog.")
               }
             })
-          })
+          }).bind(this)
+        })
       }
       .height(ConfigData.WH_90_100)
       .alignItems(HorizontalAlign.Start)
@@ -139,6 +135,11 @@ struct MultipleUsers {
       }
     }
     .height(ConfigData.WH_100_100)
+    .padding({left:$r('app.float.distance_24'), right:$r('app.float.distance_24')})
+    .align(Alignment.Center)
+    .height(ConfigData.WH_100_100)
+    .width(ConfigData.WH_100_100)
+    .backgroundColor($r("app.color.color_E3E3E3_grey"));
   }
 
   aboutToAppear() {
@@ -155,7 +156,7 @@ struct MultipleUsers {
   onBackPress() {
     LogUtil.info('multiple user on back press.');
     AppStorage.SetOrCreate("systemAccoutList", []);
-    Router.back();
+    router.back();
   }
 
 }
@@ -163,6 +164,7 @@ struct MultipleUsers {
 @Component
 struct UserItem {
   private user: any;
+  @State isTouched:boolean = false;
   private dialogController: CustomDialogController = new CustomDialogController({
     builder: UserItemDialog({ dialogController: this.dialogController, user: this.user }),
     autoCancel: false
@@ -174,7 +176,7 @@ struct UserItem {
         Image("/res/image/ic_user_portrait.svg")
           .width($r("app.float.wh_value_50"))
           .height($r("app.float.wh_value_50"))
-          .margin({ right: $r("app.float.wh_value_12") })
+          .margin({ left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") })
         Column() {
             Text(this.user.localName)
               .fontSize($r("app.float.font_24"))
@@ -190,9 +192,8 @@ struct UserItem {
       Image($r("app.media.ic_settings_arrow"))
         .width($r("app.float.wh_value_40"))
         .height($r("app.float.wh_value_40"))
-        .margin({ right: $r("app.float.wh_value_20") })
+        .margin({ right: $r("app.float.distance_16") })
     }
-    .margin({ left: $r("app.float.wh_value_10"), right: $r("app.float.wh_value_10") })
     .height($r("app.float.wh_value_100"))
     .onClick(event => {
       LogUtil.info("Click the multiple user item.");
@@ -219,6 +220,16 @@ struct UserItem {
         });
       }
     })
+    .borderRadius($r('app.float.radius_24'))
+    .backgroundColor(this.isTouched ? $r("app.color.color_D8D8D8_grey") : $r("app.color.white_bg_color"))
+    .onTouch((event: TouchEvent) => {
+      if (event.type === TouchType.Down) {
+        this.isTouched = true;
+      }
+      if (event.type === TouchType.Up) {
+        this.isTouched = false;
+      }
+    });
   }
 }
 
