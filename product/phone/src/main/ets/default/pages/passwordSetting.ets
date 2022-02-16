@@ -79,7 +79,15 @@ struct PasswordSetting {
 
             if (item.settingIsSectionTitle) {
               ListItem() {
-                Text(item.settingTitle).sectionTitle()
+                Text(item.settingTitle)
+                  .width(ConfigData.WH_100_100)
+                  .height($r('app.float.wh_value_60'))
+                  .fontSize($r('app.float.font_20'))
+                  .fontWeight(FontWeight.Normal)
+                  .fontColor(Color.Grey)
+                  .maxLines(ConfigData.MAX_LINES_1)
+                  .textOverflow({ overflow: TextOverflow.Ellipsis })
+                  .margin({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') })
               }
 
             } else if (item.settingAlias == 'password_disable_password')  {
@@ -225,28 +233,33 @@ struct UnlockDialog {
       // message
       Row() {
         Text($r("app.string.password_disable_prompt"))
-          .margin({
-            top: $r('app.float.item_common_vertical_margin'),
-            bottom: $r('app.float.item_common_vertical_margin'),
-            left: $r('app.float.wh_value_30') })
+          .margin({ top: $r('app.float.item_common_vertical_margin'), bottom: $r('app.float.item_common_vertical_margin'), left: $r('app.float.wh_value_30') })
           .fontSize($r('app.float.font_22'));
       }
 
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button() {
           Text($r('app.string.cancel'))
-            .dialogBtnName()
+            .fontSize($r('app.float.application_button_subtitle_size'))
+            .fontColor(Color.Blue)
+            .textCase(TextCase.UpperCase)
         }
-        .dialogBtn()
+        .backgroundColor($r('app.color.color_E3E3E3_grey'))
+        .width($r("app.float.wh_value_210"))
+        .height($r("app.float.wh_value_60"))
         .align(Alignment.Bottom)
         .onClick(() => {
           this.closeDialog();
         });
         Button() {
           Text($r('app.string.disable_'))
-            .dialogBtnName()
+            .fontSize($r('app.float.application_button_subtitle_size'))
+            .fontColor(Color.Blue)
+            .textCase(TextCase.UpperCase)
         }
-        .dialogBtn()
+        .backgroundColor($r('app.color.color_E3E3E3_grey'))
+        .width($r("app.float.wh_value_210"))
+        .height($r("app.float.wh_value_60"))
         .align(Alignment.Bottom)
         .onClick(() => {
           this.confirmAction(this.item)
@@ -259,27 +272,4 @@ struct UnlockDialog {
         bottom: $r('app.float.item_common_vertical_margin') })
     }
   }
-}
-
-@Extend(Text) function sectionTitle () {
-  .width(ConfigData.WH_100_100)
-  .height($r('app.float.wh_value_60'))
-  .fontSize($r('app.float.font_20'))
-  .fontWeight(FontWeight.Normal)
-  .fontColor(Color.Grey)
-  .maxLines(ConfigData.MAX_LINES_1)
-  .textOverflow({ overflow: TextOverflow.Ellipsis })
-  .margin({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') })
-}
-
-@Extend(Text) function dialogBtnName () {
-  .fontSize($r('app.float.application_button_subtitle_size'))
-  .fontColor(Color.Blue)
-  .textCase(TextCase.UpperCase)
-}
-
-@Extend(Button) function dialogBtn () {
-  .backgroundColor($r('app.color.color_E3E3E3_grey'))
-  .width($r("app.float.wh_value_210"))
-  .height($r("app.float.wh_value_60"))
 }

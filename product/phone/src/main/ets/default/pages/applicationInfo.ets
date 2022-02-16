@@ -158,24 +158,38 @@ struct ShowDialog {
         })
 
       Text(`${appInfo.settingTitle}`)
-        .dialogMsg()
+        .fontSize($r('app.float.font_18'))
+        .align(Alignment.Center)
+        .margin({ bottom: $r('app.float.item_common_vertical_margin') })
 
       Text($r("app.string.uninstall_prompt"))
-        .dialogMsg()
+        .fontSize($r('app.float.font_18'))
+        .align(Alignment.Center)
+        .margin({ bottom: $r('app.float.item_common_vertical_margin') })
 
       // button
       Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
 
         Button() {
-          Text($r('app.string.cancel')).dialogBtnName()
-        }.dialogBtn()
+          Text($r('app.string.cancel'))
+            .fontSize($r('app.float.application_button_subtitle_size'))
+            .fontColor(Color.Blue)
+        }
+        .backgroundColor($r('app.color.color_E3E3E3_grey'))
+        .width($r("app.float.wh_value_160"))
+        .height($r("app.float.wh_value_40"))
         .onClick(() => {
           this.dialogController.close();
         })
 
         Button() {
-          Text($r('app.string.uninstall')).dialogBtnName()
-        }.dialogBtn()
+          Text($r('app.string.uninstall'))
+            .fontSize($r('app.float.application_button_subtitle_size'))
+            .fontColor(Color.Blue)
+        }
+        .backgroundColor($r('app.color.color_E3E3E3_grey'))
+        .width($r("app.float.wh_value_160"))
+        .height($r("app.float.wh_value_40"))
         .onClick(() => {
           this.action();
           this.dialogController.close();
@@ -189,23 +203,4 @@ struct ShowDialog {
     .alignItems(HorizontalAlign.Center)
     .width(ConfigData.WH_100_100);
   }
-}
-
-@Extend(Text) function dialogBtnName () {
-  .fontSize($r('app.float.application_button_subtitle_size'))
-  .fontColor(Color.Blue)
-}
-
-@Extend(Button) function dialogBtn () {
-  .backgroundColor($r('app.color.color_E3E3E3_grey'))
-  .width($r("app.float.wh_value_160"))
-  .height($r("app.float.wh_value_40"))
-}
-
-@Extend(Text) function dialogMsg () {
-  .fontSize($r('app.float.font_18'))
-  .align(Alignment.Center)
-  .margin({
-    bottom: $r('app.float.item_common_vertical_margin')
-  })
 }
