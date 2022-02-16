@@ -200,7 +200,7 @@ struct AudioRingerModeItem {
         .textAlign(TextAlign.Center)
         .align(Alignment.Center);
 
-      Radio({ value: this.value.toString() })
+      Radio({ value: this.value.toString(), group: '' })
         .width($r('app.float.audio_sound_mode_radio_size'))
         .height($r('app.float.audio_sound_mode_radio_size'))
         .checked(this.checkedValue === this.value)

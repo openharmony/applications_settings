@@ -112,7 +112,7 @@ struct RadioComponent {
       .align(Alignment.Start);
 
       Row() {
-        Radio( {value: this.settingValue} )
+        Radio( {value: this.settingValue, group: ''} )
           .height($r('app.float.radio_component_height'))
           .margin({ right: $r('app.float.radio_component_margin_bottom_right') })
           .align(Alignment.End)

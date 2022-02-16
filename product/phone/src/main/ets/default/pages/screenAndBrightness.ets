@@ -53,10 +53,10 @@ struct BrightnessSettings {
           min: BRIGHTNESS_MIN_VALUE,
           max: BRIGHTNESS_MAX_VALUE,
           step: BRIGHTNESS_STEP_VALUE,
-          style: SliderStyle.INSET
+          style: SliderStyle.InSet
         })
           .selectedColor(Color.Blue)
-          .blockColor(Color.Blue)
+          .blockColor(Color.White)
           .width(ConfigData.WH_83_100)
           .onChange((number, mode:SliderChangeMode) => {
             this.brightnessSettingModel.setValue(number, mode);
