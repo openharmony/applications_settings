@@ -14,8 +14,6 @@
  */
 
 #include <pthread.h>
-#include <stdio.h>
-#include <string.h>
 #include <unistd.h>
 
 #include "napi_settings.h"
@@ -38,6 +36,9 @@ static napi_value Init(napi_env env, napi_value exports)
         DECLARE_NAPI_FUNCTION("getUri", napi_get_uri),
         DECLARE_NAPI_FUNCTION("getValue", napi_get_value),
         DECLARE_NAPI_FUNCTION("setValue", napi_set_value),
+        DECLARE_NAPI_FUNCTION("getUriSync", napi_get_uri_sync),
+        DECLARE_NAPI_FUNCTION("getValueSync", napi_get_value_sync),
+        DECLARE_NAPI_FUNCTION("setValueSync", napi_set_value_sync),
     };
 
     NAPI_CALL(env, napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc));
