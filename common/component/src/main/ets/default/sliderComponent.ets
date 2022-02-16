@@ -44,7 +44,7 @@ export default struct SliderComponent {
       .onClick(() => {
         if (this.value != this.min && this.clickConfirm) {
           this.value = Math.max(this.min, this.value - this.step);
-          this.onChangeHandler(this.value, SliderChangeMode.END);
+          this.onChangeHandler(this.value, SliderChangeMode.End);
         }
       }).align(Alignment.Center)
 
@@ -82,7 +82,7 @@ export default struct SliderComponent {
       .onClick(() => {
         if (this.value != this.max && this.clickConfirm) {
           this.value = Math.min(this.max, this.value + this.step);
-          this.onChangeHandler(this.value, SliderChangeMode.END);
+          this.onChangeHandler(this.value, SliderChangeMode.End);
         }
       }).align(Alignment.Center)
 

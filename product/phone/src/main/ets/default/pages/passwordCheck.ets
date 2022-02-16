@@ -103,7 +103,12 @@ struct PasswordCheck {
         Row() {
           // attempt seconds
           Text($r('app.string.password_remain_times', this.freezingTimeForView))
-            .freezingTime()
+            .fontSize($r('app.float.font_28'))
+            .fontColor(Color.Blue)
+            .textCase(TextCase.UpperCase)
+            .margin({ top: $r('app.float.password_input_message_vertical_margin'), bottom: $r('app.float.password_input_message_vertical_margin') })
+            .padding({ left: $r('app.float.item_common_horizontal_margin'), right: $r('app.float.item_common_horizontal_margin') })
+            .align(Alignment.Center)
         }
         .backgroundColor(Color.Gray)
         .margin({
@@ -116,7 +121,10 @@ struct PasswordCheck {
         Column() {
           // input message
           Text(' ')
-            .inputMsg()
+            .fontSize($r('app.float.font_20'))
+            .fontColor($r('app.color.color_666666_grey'))
+            .margin({ top: $r('app.float.password_input_message_vertical_margin'), bottom: $r('app.float.password_input_message_vertical_margin') })
+            .align(Alignment.Center)
             .visibility(Visibility.Hidden)
 
           // input password
@@ -133,22 +141,37 @@ struct PasswordCheck {
 
           // prompt message
           Text(this.promptMessage)
-            .promptMsg()
+            .fontSize($r('app.float.font_18'))
+            .width(ConfigData.WH_83_100)
+            .fontColor(Color.Red)
+            .align(Alignment.Start)
+            .textAlign(TextAlign.Start)
+            .margin({ top: $r('app.float.password_input_message_vertical_margin') })
 
           // button
           Flex({ justifyContent: FlexAlign.SpaceAround }) {
             Button() {
-              Text($r('app.string.cancel')).dialogBtnName()
+              Text($r('app.string.cancel'))
+                .fontSize($r('app.float.application_button_subtitle_size'))
+                .fontColor(Color.Blue)
+                .textCase(TextCase.UpperCase)
             }
-            .dialogBtn()
+            .backgroundColor($r('app.color.color_E3E3E3_grey'))
+            .width($r("app.float.wh_value_210"))
+            .height($r("app.float.wh_value_60"))
             .onClick(() => {
               Router.back();
             })
 
             Button() {
-              Text($r('app.string.next')).dialogBtnName()
+              Text($r('app.string.next'))
+                .fontSize($r('app.float.application_button_subtitle_size'))
+                .fontColor(Color.Blue)
+                .textCase(TextCase.UpperCase)
             }
-            .dialogBtn()
+            .backgroundColor($r('app.color.color_E3E3E3_grey'))
+            .width($r("app.float.wh_value_210"))
+            .height($r("app.float.wh_value_60"))
             .onClick(this.okOnClickHandler);
 
           }
@@ -234,52 +257,4 @@ struct PasswordCheck {
     }
   }
 
-}
-
-@Extend(Text) function freezingTime () {
-  .fontSize($r('app.float.font_28'))
-  .fontColor(Color.Blue)
-  .textCase(TextCase.UpperCase)
-  .margin({
-    top: $r('app.float.password_input_message_vertical_margin'),
-    bottom: $r('app.float.password_input_message_vertical_margin')
-  })
-  .padding({
-    left: $r('app.float.item_common_horizontal_margin'),
-    right: $r('app.float.item_common_horizontal_margin')
-  })
-  .align(Alignment.Center)
-}
-
-@Extend(Text) function inputMsg () {
-  .fontSize($r('app.float.font_20'))
-  .fontColor($r('app.color.color_666666_grey'))
-  .margin({
-    top: $r('app.float.password_input_message_vertical_margin'),
-    bottom: $r('app.float.password_input_message_vertical_margin')
-  })
-  .align(Alignment.Center)
-}
-
-@Extend(Text) function promptMsg () {
-  .fontSize($r('app.float.font_18'))
-  .width(ConfigData.WH_83_100)
-  .fontColor(Color.Red)
-  .align(Alignment.Start)
-  .textAlign(TextAlign.Start)
-  .margin({
-    top: $r('app.float.password_input_message_vertical_margin')
-  })
-}
-
-@Extend(Text) function dialogBtnName () {
-  .fontSize($r('app.float.application_button_subtitle_size'))
-  .fontColor(Color.Blue)
-  .textCase(TextCase.UpperCase)
-}
-
-@Extend(Button) function dialogBtn () {
-  .backgroundColor($r('app.color.color_E3E3E3_grey'))
-  .width($r("app.float.wh_value_210"))
-  .height($r("app.float.wh_value_60"))
 }

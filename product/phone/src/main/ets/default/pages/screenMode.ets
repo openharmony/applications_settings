@@ -56,7 +56,7 @@ struct ScreenMode {
               }
               .alignItems(HorizontalAlign.Start)
 
-              Radio( {value: this.TAG} )
+              Radio( {value: this.TAG, group: ''} )
                 .height($r('app.float.radio_component_height'))
                 .margin({ right: $r('app.float.radio_component_margin_bottom_right') })
                 .align(Alignment.End)

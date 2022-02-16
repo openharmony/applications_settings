@@ -106,7 +106,10 @@ struct PasswordRepeat {
       Column() {
         // input message
         Text($r('app.string.password_message_repeat'))
-          .inputMsg()
+          .fontSize($r('app.float.font_20'))
+          .fontColor($r('app.color.color_666666_grey'))
+          .margin({ top: $r('app.float.password_input_message_vertical_margin'), bottom: $r('app.float.password_input_message_vertical_margin') })
+          .align(Alignment.Center)
 
         // input password
         Row() {
@@ -121,26 +124,47 @@ struct PasswordRepeat {
 
         // prompt message
         Text(this.checkMessage ? this.checkMessage : $r("app.string.password_set_prompt"))
-          .promptMsg()
+          .fontSize($r('app.float.font_18'))
+          .width(ConfigData.WH_83_100)
+          .fontColor(Color.Red)
+          .align(Alignment.Start)
+          .textAlign(TextAlign.Start)
+          .margin({ top: $r('app.float.password_input_message_vertical_margin') })
 
         // change unlock method (Hidden)
         Text($r('app.string.password_change_unlock_method'))
-          .changeUnlockMethod()
+          .width(ConfigData.WH_100_100)
+          .fontSize($r('app.float.font_20'))
+          .fontColor(Color.Blue)
+          .align(Alignment.Center)
+          .textAlign(TextAlign.Center)
+          .visibility(Visibility.Hidden)
+          .padding({ top: $r('app.float.password_input_message_vertical_margin'), bottom: $r('app.float.password_input_message_vertical_margin') })
 
         // button
         Flex( { justifyContent: FlexAlign.SpaceAround } ) {
           Button() {
-            Text($r('app.string.cancel')).dialogBtnName()
+            Text($r('app.string.cancel'))
+              .fontSize($r('app.float.application_button_subtitle_size'))
+              .fontColor(Color.Blue)
+              .textCase(TextCase.UpperCase)
           }
-          .dialogBtn()
+          .backgroundColor($r('app.color.color_E3E3E3_grey'))
+          .width($r("app.float.wh_value_210"))
+          .height($r("app.float.wh_value_60"))
           .onClick(() => {
             Router.back();
           })
 
           Button() {
-            Text($r('app.string.confirm')).dialogBtnName()
+            Text($r('app.string.confirm'))
+              .fontSize($r('app.float.application_button_subtitle_size'))
+              .fontColor(Color.Blue)
+              .textCase(TextCase.UpperCase)
           }
-          .dialogBtn()
+          .backgroundColor($r('app.color.color_E3E3E3_grey'))
+          .width($r("app.float.wh_value_210"))
+          .height($r("app.float.wh_value_60"))
           .onClick(this.okOnClickHandler);
         }
         .margin({ top: $r('app.float.password_input_button_space') })
@@ -197,50 +221,4 @@ struct PasswordRepeat {
     return this.passwordType == PinSubType.PIN_SIX ? Visibility.Hidden : Visibility.Visible;
   }
 
-}
-
-@Extend(Text) function inputMsg () {
-  .fontSize($r('app.float.font_20'))
-  .fontColor($r('app.color.color_666666_grey'))
-  .margin({
-    top: $r('app.float.password_input_message_vertical_margin'),
-    bottom: $r('app.float.password_input_message_vertical_margin')
-  })
-  .align(Alignment.Center)
-}
-
-@Extend(Text) function promptMsg () {
-  .fontSize($r('app.float.font_18'))
-  .width(ConfigData.WH_83_100)
-  .fontColor(Color.Red)
-  .align(Alignment.Start)
-  .textAlign(TextAlign.Start)
-  .margin({
-    top: $r('app.float.password_input_message_vertical_margin')
-  })
-}
-
-@Extend(Text) function changeUnlockMethod () {
-  .width(ConfigData.WH_100_100)
-  .fontSize($r('app.float.font_20'))
-  .fontColor(Color.Blue)
-  .align(Alignment.Center)
-  .textAlign(TextAlign.Center)
-  .visibility(Visibility.Hidden)
-  .padding({
-    top: $r('app.float.password_input_message_vertical_margin'),
-    bottom: $r('app.float.password_input_message_vertical_margin')
-  })
-}
-
-@Extend(Text) function dialogBtnName () {
-  .fontSize($r('app.float.application_button_subtitle_size'))
-  .fontColor(Color.Blue)
-  .textCase(TextCase.UpperCase)
-}
-
-@Extend(Button) function dialogBtn () {
-  .backgroundColor($r('app.color.color_E3E3E3_grey'))
-  .width($r("app.float.wh_value_210"))
-  .height($r("app.float.wh_value_60"))
 }
