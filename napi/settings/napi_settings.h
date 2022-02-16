@@ -18,7 +18,7 @@
 
 #include <vector>
 
-#include "ability_mission_info.h"
+#include "napi/native_api.h"
 #include "napi/native_common.h"
 #include "napi/native_node_api.h"
 #include "running_process_info.h"
@@ -27,6 +27,7 @@
 #define ARGS_ONE 1
 #define ARGS_TWO 2
 #define ARGS_THREE 3
+#define ARGS_FOUR 4
 
 #define PARAM0 0
 #define PARAM1 1
@@ -37,7 +38,6 @@ namespace ohos {
 namespace settings {
 /**
  * @brief getUri NAPI implementation.
- * 
  * @param env the environment that the Node-API call is invoked under
  * @param info the callback info passed into the callback function
  * @return napi_value the return value from NAPI C++ to JS for the module.
@@ -45,8 +45,15 @@ namespace settings {
 napi_value napi_get_uri(napi_env env, napi_callback_info info);
 
 /**
+ * @brief getUriSync NAPI implementation.
+ * @param env the environment that the Node-API call is invoked under
+ * @param info the callback info passed into the callback function
+ * @return napi_value the return value from NAPI C++ to JS for the module.
+ */
+napi_value napi_get_uri_sync(napi_env env, napi_callback_info info);
+
+/**
  * @brief getValue NAPI implementation.
- * 
  * @param env the environment that the Node-API call is invoked under
  * @param info the callback info passed into the callback function
  * @return napi_value the return value from NAPI C++ to JS for the module.
@@ -54,13 +61,28 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info);
 napi_value napi_get_value(napi_env env, napi_callback_info info);
 
 /**
+ * @brief getValueSync NAPI implementation.
+ * @param env the environment that the Node-API call is invoked under
+ * @param info the callback info passed into the callback function
+ * @return napi_value the return value from NAPI C++ to JS for the module.
+ */
+napi_value napi_get_value_sync(napi_env env, napi_callback_info info);
+
+/**
  * @brief setValue NAPI implementation.
- * 
  * @param env the environment that the Node-API call is invoked under
  * @param info the callback info passed into the callback function
  * @return napi_value the return value from NAPI C++ to JS for the module.
  */
 napi_value napi_set_value(napi_env env, napi_callback_info info);
+
+/**
+ * @brief setValueSync NAPI implementation.
+ * @param env the environment that the Node-API call is invoked under
+ * @param info the callback info passed into the callback function
+ * @return napi_value the return value from NAPI C++ to JS for the module.
+ */
+napi_value napi_set_value_sync(napi_env env, napi_callback_info info);
 }  // namespace Settings
 }  // namespace OHOS
 #endif  //  NAPI_SETTINGS_H

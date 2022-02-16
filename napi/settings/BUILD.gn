@@ -15,16 +15,8 @@ import("//build/ohos.gni")
 
 ohos_shared_library("settings") {
   include_dirs = [
-    "//foundation/aafwk/standard/services/common/include",
     "//foundation/ace/napi/interfaces/kits",
-    "//foundation/distributeddatamgr/appdatamgr/interfaces/innerkits/native_rdb/include",
-    "//foundation/distributeddatamgr/appdatamgr/frameworks/innerkitsimpl/native_rdb/include",
-    "//foundation/distributeddatamgr/appdatamgr/interfaces/innerkits/native_dataability/include",
-    "//foundation/distributeddatamgr/appdatamgr/frameworks/jskitsimpl/common",
-    "//foundation/distributeddatamgr/appdatamgr/frameworks/jskitsimpl/native_dataability",
-    "//foundation/distributeddatamgr/appdatamgr/frameworks/jskitsimpl/native_rdb",
     "//third_party/node/src",
-    "//utils/system/safwk/native/include",
   ]
 
   sources = [
@@ -34,30 +26,16 @@ ohos_shared_library("settings") {
 
   deps = [
     "//foundation/aafwk/standard/frameworks/kits/ability/native:abilitykit_native",
-    "//foundation/aafwk/standard/frameworks/kits/appkit:appkit_native",
     "//foundation/aafwk/standard/interfaces/innerkits/ability_manager:ability_manager",
-    "//foundation/aafwk/standard/interfaces/innerkits/app_manager:app_manager",
     "//foundation/aafwk/standard/interfaces/innerkits/base:base",
-    "//foundation/aafwk/standard/services/appmgr:libams",
     "//foundation/ace/napi:ace_napi",
-    "//foundation/appexecfwk/standard/common:libappexecfwk_common",
-    "//foundation/appexecfwk/standard/interfaces/innerkits/appexecfwk_base:appexecfwk_base",
-    "//foundation/appexecfwk/standard/interfaces/innerkits/appexecfwk_core:appexecfwk_core",
-    "//foundation/appexecfwk/standard/interfaces/innerkits/libeventhandler:libeventhandler",
-    "//foundation/appexecfwk/standard/libs/libeventhandler:libeventhandler_target",
     "//foundation/distributeddatamgr/appdatamgr/interfaces/innerkits/native_rdb:native_rdb",
     "//foundation/distributedschedule/dmsfwk/interfaces/innerkits/uri:zuri",
-    "//foundation/distributedschedule/safwk/interfaces/innerkits/safwk:system_ability_fwk",
-    "//foundation/distributedschedule/samgr/interfaces/innerkits/samgr_proxy:samgr_proxy",
-    "//utils/native/base:utils",
   ]
 
   external_deps = [
     "hiviewdfx_hilog_native:libhilog",
-    "ipc:ipc_core",
-    "native_appdatamgr:native_appdatafwk",
     "native_appdatamgr:native_dataability",
-    "native_appdatamgr:native_rdb",
   ]
 
   relative_install_dir = "module"
