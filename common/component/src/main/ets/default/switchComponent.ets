@@ -45,9 +45,14 @@ export default struct SwitchComponent {
   build() {
     Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
       Text(this.title)
-        .cssSwitchComponentTiTle(this.cssValue?.fontSize)
+        .fontColor(Color.Black)
+        .fontStyle(FontStyle.Normal)
+        .padding({ left: $r('app.float.switch_component_margin') })
+        .fontSize(this.cssValue?.fontSize)
       Toggle({ type: ToggleType.Switch, isOn: this.isOn })
-        .cssSwitchComponentToggle()
+        .width($r('app.float.switch_toggle_width'))
+        .height($r('app.float.switch_toggle_height'))
+        .padding({ right: $r('app.float.switch_component_margin') })
         .onChange((isOn: boolean) => {
           this.isOn = new Boolean(isOn).valueOf();
           if (this.toggleValue) {
@@ -55,7 +60,10 @@ export default struct SwitchComponent {
           }
         });
     }
-    .cssSwitchComponentFlex(this.cssValue?.margin, this.cssValue?.padding, this.cssValue?.width, this.cssValue?.height);
+    .width(this.cssValue?.width)
+    .height(this.cssValue?.height)
+    .margin(this.cssValue?.margin)
+    .padding(this.cssValue?.padding);
   }
 
   aboutToAppear() {
@@ -69,24 +77,4 @@ export default struct SwitchComponent {
         .initData();
     }
   }
-}
-
-@Extend(Text) function cssSwitchComponentTiTle (fontSize: number | string | Resource=$r('app.float.switch_title_subtitle_size')) {
-  .fontColor(Color.Black)
-  .fontStyle(FontStyle.Normal)
-  .padding({ left: $r('app.float.switch_component_margin') })
-  .fontSize(fontSize)
-}
-
-@Extend(Toggle) function cssSwitchComponentToggle () {
-  .width($r('app.float.switch_toggle_width'))
-  .height($r('app.float.switch_toggle_height'))
-  .padding({ right: $r('app.float.switch_component_margin') })
-}
-
-@Extend(Flex) function cssSwitchComponentFlex (margin: any, padding: any, width: number | string | Resource=ComponentConfig.WH_100_100, height: number | string | Resource=$r('app.float.switch_component_height')) {
-  .width(width)
-  .height(height)
-  .margin(margin)
-  .padding(padding)
 }
