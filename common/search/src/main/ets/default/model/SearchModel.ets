@@ -50,7 +50,7 @@ export default class SearchModel {
 
       // table SEARCH_DATA init
       await this.rdbStore.executeSql(SearchConfig.search.DDL_TABLE_CREATE, null);
-      console.log('settings table SEARCH_DATA is ready.');
+      LogUtil.log('settings table SEARCH_DATA is ready.');
     }
   }
 
