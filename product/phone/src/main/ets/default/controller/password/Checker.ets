@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import { LogAll } from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
+import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
+import ConfigData from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 
 const PASSWORD_MIN_LENGTH = 4
 const PASSWORD_MAX_LENGTH = 32
@@ -21,8 +22,8 @@ const PASSWORD_MAX_LENGTH = 32
 /**
  * Check whether the string is legal.
  */
-@LogAll
 export class Checker {
+  private TAG = ConfigData.TAG + 'Password Checker ';
 
 /**
    * check if the character string more than 4 digits
@@ -30,6 +31,7 @@ export class Checker {
    * @param str : character string
    */
   checkMinDigits(str: string): boolean {
+    LogUtil.info(this.TAG + 'checkMinDigits in.');
     return str.length >= PASSWORD_MIN_LENGTH;
   }
 
@@ -39,6 +41,7 @@ export class Checker {
    * @param str : character string
    */
   checkMaxDigits(str: string): boolean {
+    LogUtil.info(this.TAG + 'checkMaxDigits in.');
     return str.length <= PASSWORD_MAX_LENGTH;
   }
 
@@ -48,6 +51,7 @@ export class Checker {
    * @param str : character string
    */
   isNumber6(str: string): boolean {
+    LogUtil.info(this.TAG + 'isNumber6 in.');
     var reg = /^[0-9]{6}$/;
     return reg.test(str);
   }
@@ -58,6 +62,7 @@ export class Checker {
    * @param str : character string
    */
   containsOnlyNumbers(str: string): boolean {
+    LogUtil.info(this.TAG + 'containsOnlyNumbers in.');
     var reg = /^[0-9]{4,32}$/;
     return reg.test(str);
   }
@@ -68,6 +73,7 @@ export class Checker {
    * @param str : character string
    */
   isOnlyNumber(str: string): boolean {
+    LogUtil.info(this.TAG + 'isOnlyNumber in.');
     var reg = /^[0-9]+$/;
     return reg.test(str);
   }
@@ -78,6 +84,7 @@ export class Checker {
    * @param str : character string
    */
   containCharacter(str: string): boolean {
+    LogUtil.info(this.TAG + 'containCharacter in.');
     var reg = /^(?=.*[a-zA-Z])[\x20-\x7E]{4,32}$/;
     return reg.test(str);
   }
@@ -88,6 +95,7 @@ export class Checker {
    * @param str : character string
    */
   isContainLetters(str: string): boolean {
+    LogUtil.info(this.TAG + 'isContainLetters in.');
     var reg = /^(?=.*[a-zA-Z])/;
     return reg.test(str);
   }
@@ -98,6 +106,7 @@ export class Checker {
    * @param str : character string
    */
   isContainIllegalCharacter(str: string): boolean {
+    LogUtil.info(this.TAG + 'isContainIllegalCharacter in.');
     var reg = /[^\x20-\x7E]/;
     return reg.test(str);
   }

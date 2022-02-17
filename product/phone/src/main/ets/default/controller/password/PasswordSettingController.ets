@@ -28,7 +28,7 @@ export default class PasswordSettingController extends BaseSettingsController {
   subscribe(): ISettingsController {
     PasswordModel.closeSession();
     PasswordModel.openSession((data) => {
-      LogUtil.info(`${this.TAG}subscribe->openSession data:${data}`);
+      LogUtil.debug(`${this.TAG}subscribe->openSession data:${data}`);
       if (data === '0') {
         LogUtil.info(`${this.TAG}subscribe->openSession failed`);
       } else {
