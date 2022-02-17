@@ -40,11 +40,13 @@ export default class PasswordCheckController extends BaseSettingsController {
     return this
   }
 
+  @Log
   subscribe(): ISettingsController {
     PasswordModel.registerInputer();
     return this;
   };
 
+  @Log
   unsubscribe(): ISettingsController {
     PasswordModel.unregisterInputer();
     return this;
