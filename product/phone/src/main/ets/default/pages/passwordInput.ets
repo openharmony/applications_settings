@@ -91,7 +91,7 @@ struct PasswordInput {
   @Log
   getRouterParam() {
     param = Router.getParams()
-    LogUtil.info(this.TAG_PAGE + 'aboutToAppear : Router param = ' + JSON.stringify(param))
+    LogUtil.debug(this.TAG_PAGE + 'aboutToAppear : Router param = ' + JSON.stringify(param))
     if (!param) {
       return;
     }
@@ -100,7 +100,7 @@ struct PasswordInput {
     this.pinChallenge = param.pinChallenge;
     this.pinToken = param.pinToken;
     this.passwordType = param.passwordType;
-    LogUtil.info(this.TAG_PAGE + 'aboutToAppear : from router : pageRequestCode = ' + this.pageRequestCode
+    LogUtil.debug(this.TAG_PAGE + 'aboutToAppear : from router : pageRequestCode = ' + this.pageRequestCode
     + ', prevPageUri = ' + this.prevPageUri
     + ', pinChallenge = ' + this.pinChallenge
     + ', pinToken = ' + this.pinToken
@@ -115,10 +115,7 @@ struct PasswordInput {
       Column() {
         // input message
         Text(this.inputMessage)
-          .fontSize($r('app.float.font_20'))
-          .fontColor($r('app.color.color_666666_grey'))
-          .margin({ top: $r('app.float.password_input_message_vertical_margin'), bottom: $r('app.float.password_input_message_vertical_margin') })
-          .align(Alignment.Center)
+          .inputMsg()
 
         // input password
         Row() {
@@ -134,22 +131,11 @@ struct PasswordInput {
 
         // prompt message
         Text(this.checkMessage ? this.checkMessage : $r('app.string.password_set_prompt'))
-          .fontSize($r('app.float.font_18'))
-          .width(ConfigData.WH_83_100)
-          .fontColor(Color.Red)
-          .align(Alignment.Start)
-          .textAlign(TextAlign.Start)
-          .margin({ top: $r('app.float.password_input_message_vertical_margin') })
+          .promptMsg()
 
         // change unlock method
         Text($r('app.string.password_change_unlock_method'))
-          .width(ConfigData.WH_100_100)
-          .fontSize($r('app.float.font_20'))
-          .fontColor(Color.Blue)
-          .align(Alignment.Center)
-          .textAlign(TextAlign.Center)
-          .visibility(Visibility.Visible)
-          .padding({ top: $r('app.float.password_input_message_vertical_margin'), bottom: $r('app.float.password_input_message_vertical_margin') })
+          .changeUnlockMethod()
           .onClick(() => {
             this.chooseUnlockMethodDialog.open()
           })
@@ -157,27 +143,17 @@ struct PasswordInput {
         // button
         Flex( { justifyContent: FlexAlign.SpaceAround } ) {
           Button() {
-            Text($r('app.string.cancel'))
-              .fontSize($r('app.float.application_button_subtitle_size'))
-              .fontColor(Color.Blue)
-              .textCase(TextCase.UpperCase)
+            Text($r('app.string.cancel')).dialogBtnName()
           }
-          .backgroundColor($r('app.color.color_E3E3E3_grey'))
-          .width($r("app.float.wh_value_210"))
-          .height($r("app.float.wh_value_60"))
+          .dialogBtn()
           .onClick(() => {
             Router.back();
           })
 
           Button() {
-            Text($r('app.string.continue_'))
-              .fontSize($r('app.float.application_button_subtitle_size'))
-              .fontColor(Color.Blue)
-              .textCase(TextCase.UpperCase)
+            Text($r('app.string.continue_')).dialogBtnName()
           }
-          .backgroundColor($r('app.color.color_E3E3E3_grey'))
-          .width($r("app.float.wh_value_210"))
-          .height($r("app.float.wh_value_60"))
+          .dialogBtn()
           .onClick(this.okOnClickHandler);
         }
         .margin({ top: $r('app.float.password_input_button_space') })
