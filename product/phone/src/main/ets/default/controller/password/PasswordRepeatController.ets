@@ -17,14 +17,13 @@ import BaseSettingsController from '../../../../../../../../common/component/src
 import ConfigData from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
 import ISettingsController from '../../../../../../../../common/component/src/main/ets/default/controller/ISettingsController';
-import {LogAll} from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
+import Log from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
 import PasswordModel, {PinSubType, ResultCode} from '../../model/passwordImpl/PasswordModel.ets';
 import {Checker} from './Checker.ets';
 import Router from '@system.router';
 
 const PASSWORD_SIX_LENGTH = 6
 
-@LogAll
 export default class PasswordRepeatController extends BaseSettingsController {
   private TAG = ConfigData.TAG + 'PasswordRepeatController ';
   private checker = new Checker();
@@ -34,11 +33,13 @@ export default class PasswordRepeatController extends BaseSettingsController {
   private checkMessage: string | Resource = ''
   private password: string = ''
 
+  @Log
   subscribe(): ISettingsController {
     PasswordModel.registerInputer();
     return this;
   };
 
+  @Log
   unsubscribe(): ISettingsController {
     PasswordModel.unregisterInputer();
     return this;
@@ -51,6 +52,7 @@ export default class PasswordRepeatController extends BaseSettingsController {
    * @param value : inputting password
    */
   passwordOnChange(value: string) {
+    LogUtil.info(this.TAG + 'passwordOnChange in.')
     this.password = value;
     LogUtil.info(this.TAG + 'passwordOnChange : passwordType = ' + this.passwordType + ', password = ' + this.password)
     this.checkMessage = this.checkInputDigits(value)
@@ -60,13 +62,14 @@ export default class PasswordRepeatController extends BaseSettingsController {
       // When password is 6 numbers, finish input
       this.inputFinish();
     }
+    LogUtil.info(this.TAG + 'passwordOnChange in.')
   }
 
 /**
    * Input finish. Start simple check.
    */
   inputFinish() {
-    LogUtil.info(this.TAG + 'inputFinish : password = ' + this.password + ', inputPassword = ' + this.inputPassword)
+    LogUtil.debug(this.TAG + 'inputFinish : password = ' + this.password + ', inputPassword = ' + this.inputPassword)
 
     if (!this.password) {
       LogUtil.info(this.TAG + 'inputFinish return : password is none.')
@@ -102,6 +105,7 @@ export default class PasswordRepeatController extends BaseSettingsController {
    * @param value inputting password
    * @return error message
    */
+  @Log
   checkInputDigits(value: string): string | Resource {
 
     // Check PIN fewer than 33 digits
@@ -122,6 +126,7 @@ export default class PasswordRepeatController extends BaseSettingsController {
 /**
    * Return OK result.
    */
+  @Log
   goBackCorrect() {
     Router.back()
   }
@@ -132,12 +137,12 @@ export default class PasswordRepeatController extends BaseSettingsController {
    */
   createPassword() {
     PasswordModel.addPinCredential(this.passwordType, this.password, (result) => {
-      LogUtil.info(this.TAG + 'createPassword->result = ' + JSON.stringify(result));
+      LogUtil.info(this.TAG + 'create password->result = ' + JSON.stringify(result));
       if (result === ResultCode.SUCCESS) {
-        LogUtil.info(`${this.TAG}createPassword success`);
+        LogUtil.info(`${this.TAG}create password success`);
         this.goBackCorrect()
       } else {
-        LogUtil.info(`${this.TAG}createPassword failed`);
+        LogUtil.info(`${this.TAG}create password failed`);
         //TODO show api message to view
         this.checkMessage = 'create failed.'
       }
@@ -149,13 +154,13 @@ export default class PasswordRepeatController extends BaseSettingsController {
    */
   updatePassword() {
     PasswordModel.updateCredential(this.passwordType, this.password, this.pinToken, (result, extraInfo) => {
-      LogUtil.info(this.TAG + 'updateCredential->result = ' + JSON.stringify(result));
-      LogUtil.info(this.TAG + 'updateCredential->extraInfo = ' + JSON.stringify(extraInfo));
+      LogUtil.info(this.TAG + 'update credential->result = ' + JSON.stringify(result));
+      LogUtil.debug(this.TAG + 'update credential->extraInfo = ' + JSON.stringify(extraInfo));
       if (result === ResultCode.SUCCESS) {
-        LogUtil.info(`${this.TAG}updatePassword success`);
+        LogUtil.info(`${this.TAG}update password success`);
         this.goBackCorrect()
       } else {
-        LogUtil.info(`${this.TAG}updatePassword failed`);
+        LogUtil.info(`${this.TAG}update password failed`);
         //TODO show error message to view
         this.checkMessage = 'update failed.'
       }
