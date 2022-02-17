@@ -61,8 +61,8 @@ export struct SubEntryComponent {
 @Component
 export  struct SubEntryComponentWithEndText {
   private targetPage: string;
-  private title:string;
-  @Prop endText:string;
+  private title: string | Resource;
+  @Prop endText: string;
   @State isTouched:boolean = false;
 
   build() {
@@ -81,8 +81,7 @@ export  struct SubEntryComponentWithEndText {
             .fontSize($r('app.float.font_18'))
             .fontColor($r('app.color.font_color_182431'))
             .margin({ right: $r('app.float.distance_4') })
-            .textAlign(TextAlign.End)
-            .visibility(Visibility.None);
+            .textAlign(TextAlign.End);
           Image('/res/image/ic_settings_arrow.svg')
             .width($r('app.float.wh_value_12'))
             .height($r('app.float.wh_value_24'))
