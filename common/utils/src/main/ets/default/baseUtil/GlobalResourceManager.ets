@@ -15,6 +15,7 @@
 import BaseModel from '../model/BaseModel.ets';
 import Rsm from '@ohos.resourceManager';
 import ConfigData  from './ConfigData.ets';
+import LogUtil  from './LogUtil.ets';
 
 export class GlobalResourceManager extends BaseModel {
 
@@ -31,16 +32,16 @@ export class GlobalResourceManager extends BaseModel {
           result.getString(id)
           .then((resource) => {
             resolve(resource);
-            console.info('getStringById resolve(resource) : ' + resolve(resource));
-            console.info('getStringById resource : ' + resource);
-            console.info('getStringById resource2 : ' + JSON.stringify(resource));
+            LogUtil.info('getStringById resolve(resource) : ' + resolve(resource));
+            LogUtil.info('getStringById resource : ' + resource);
+            LogUtil.info('getStringById resource2 : ' + JSON.stringify(resource));
         })
           .catch((err) => {
-            console.info('getStringById err : ' + JSON.stringify(err));
+            LogUtil.info('getStringById err : ' + JSON.stringify(err));
         });
       });
     });
-    console.info('getStringById promise: ' + JSON.stringify(promise));
+    LogUtil.info('getStringById promise: ' + JSON.stringify(promise));
     return promise;
   }
 }
