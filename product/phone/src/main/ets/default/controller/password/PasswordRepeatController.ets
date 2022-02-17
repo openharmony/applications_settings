@@ -33,13 +33,11 @@ export default class PasswordRepeatController extends BaseSettingsController {
   private checkMessage: string | Resource = ''
   private password: string = ''
 
-  @Log
   subscribe(): ISettingsController {
     PasswordModel.registerInputer();
     return this;
   };
 
-  @Log
   unsubscribe(): ISettingsController {
     PasswordModel.unregisterInputer();
     return this;
@@ -105,7 +103,6 @@ export default class PasswordRepeatController extends BaseSettingsController {
    * @param value inputting password
    * @return error message
    */
-  @Log
   checkInputDigits(value: string): string | Resource {
 
     // Check PIN fewer than 33 digits
