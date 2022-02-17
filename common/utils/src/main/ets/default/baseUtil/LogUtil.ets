@@ -24,24 +24,24 @@ let LogLevel = {
   DEBUG: 3,
 
   /**
-     * log
-     */
-  LOG: 4,
-
-  /**
      * info
      */
-  INFO: 5,
+  INFO: 4,
 
   /**
      * warn
      */
-  WARN: 6,
+  WARN: 5,
 
   /**
      * error
      */
-  ERROR: 7
+  ERROR: 6,
+
+  /**
+     * fatal
+     */
+  FATAL: 7
 };
 
 const LOG_LEVEL = LogLevel.INFO
