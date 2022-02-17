@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 import BaseModel from '../../../../../../../../common/utils/src/main/ets/default/model/BaseModel.ets';
-import { LogAll } from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
 import ConfigData from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
 import util from '@ohos.util';
@@ -118,7 +117,6 @@ enum GetPropertyType {
   FREEZING_TIME = 3
 }
 
-@LogAll
 export class PasswordModel extends BaseModel {
   private TAG = ConfigData.TAG + 'PasswordModel#';
   pinAuth: any;
@@ -139,6 +137,7 @@ export class PasswordModel extends BaseModel {
 
   u8AToStr(val: Uint8Array): any{
     if (!val) {
+      LogUtil.debug(`${this.TAG}u8AToStr : param is null.`);
       return ''
     }
     var dataString = "";
@@ -147,6 +146,7 @@ export class PasswordModel extends BaseModel {
       arrNumber.push(val[i]);
     }
     dataString = JSON.stringify(arrNumber);
+    LogUtil.debug(`${this.TAG}u8AToStr out.`);
     return dataString
   }
 
@@ -157,10 +157,12 @@ export class PasswordModel extends BaseModel {
    */
   strToU8A(val: string): Uint8Array{
     if (!val) {
+      LogUtil.debug(`${this.TAG}strToU8A : param is null.`);
       return new Uint8Array([])
     }
     var arr = JSON.parse(val);
     var tmpUint8Array = new Uint8Array(arr);
+    LogUtil.debug(`${this.TAG}strToU8A out.`);
     return tmpUint8Array
   }
 
@@ -171,9 +173,11 @@ export class PasswordModel extends BaseModel {
    */
   encodeToU8A(val: string): Uint8Array{
     if (!val) {
+      LogUtil.debug(`${this.TAG}encodeToU8A : param is null.`);
       return new Uint8Array([])
     }
     var textEncoder = new util.TextEncoder();
+    LogUtil.debug(`${this.TAG}encodeToU8A out.`);
     return textEncoder.encode(val);
   }
 
@@ -185,31 +189,31 @@ export class PasswordModel extends BaseModel {
     try {
       result = this.pinAuth.registerInputer({
         onGetData: (authSubType, inputData) => {
-          LogUtil.info(`${this.TAG}registerInputer->onGetData pAuthSubType:${authSubType}`);
-          LogUtil.info(`${this.TAG}registerInputer->onGetData inAuthSubType:${this.pinSubType}`);
-          LogUtil.info(`${this.TAG}registerInputer->onGetData inPassword:${this.password}`);
+          LogUtil.debug(`${this.TAG}registerInputer->onGetData pAuthSubType:${authSubType}`);
+          LogUtil.debug(`${this.TAG}registerInputer->onGetData inAuthSubType:${this.pinSubType}`);
+          LogUtil.debug(`${this.TAG}registerInputer->onGetData inPassword:${this.password}`);
           let u8aPwd = this.encodeToU8A(this.password);
-          LogUtil.info(`${this.TAG}registerInputer->onGetData inputData.onSetData : encodeToU8A password:${u8aPwd}`);
+          LogUtil.debug(`${this.TAG}registerInputer->onGetData inputData.onSetData : encodeToU8A password:${u8aPwd}`);
           inputData.onSetData(this.pinSubType, u8aPwd);
         }
       });
-      LogUtil.info(`${this.TAG}registerInputer->result:${result}`);
+      LogUtil.debug(`${this.TAG}registerInputer->result:${result}`);
       if(!result){
         this.unregisterInputer();
         result = this.pinAuth.registerInputer({
           onGetData: (authSubType, inputData) => {
-            LogUtil.info(`${this.TAG}registerInputer->onGetData(retry) pAuthSubType:${authSubType}`);
-            LogUtil.info(`${this.TAG}registerInputer->onGetData(retry) inAuthSubType:${this.pinSubType}`);
-            LogUtil.info(`${this.TAG}registerInputer->onGetData(retry) inPassword:${this.password}`);
+            LogUtil.debug(`${this.TAG}registerInputer->onGetData(retry) pAuthSubType:${authSubType}`);
+            LogUtil.debug(`${this.TAG}registerInputer->onGetData(retry) inAuthSubType:${this.pinSubType}`);
+            LogUtil.debug(`${this.TAG}registerInputer->onGetData(retry) inPassword:${this.password}`);
             let u8aPwd = this.encodeToU8A(this.password);
             LogUtil.info(`${this.TAG}registerInputer->onGetData(retry) inputData.onSetData : encodeToU8A password:${u8aPwd}`);
             inputData.onSetData(this.pinSubType, u8aPwd);
           }
         });
-        LogUtil.info(`${this.TAG}registerInputer->result(retry):${result}`);
+        LogUtil.debug(`${this.TAG}registerInputer->result(retry):${result}`);
       }
     } catch {
-      LogUtil.info(`${this.TAG}registerInputer failed`);
+      LogUtil.debug(`${this.TAG}registerInputer failed`);
     }
     return result;
   }
@@ -218,10 +222,11 @@ export class PasswordModel extends BaseModel {
    * UnregisterInputer
    */
   unregisterInputer(): void {
+    LogUtil.debug(`${this.TAG}unregisterInputer in.`);
     try {
       this.pinAuth.unregisterInputer();
     } catch {
-      LogUtil.info(`${this.TAG}unregisterInputer failed`);
+      LogUtil.debug(`${this.TAG}unregisterInputer failed`);
     }
   }
 
@@ -234,11 +239,11 @@ export class PasswordModel extends BaseModel {
   openSession(callback: (challenge: string) => void): void {
     try {
       this.userIdentityManager.openSession((data) => {
-        LogUtil.info(`${this.TAG}openSession challenge:${data}`);
+        LogUtil.debug(`${this.TAG}openSession challenge:${data}`);
         callback(this.u8AToStr(data));
       })
     } catch {
-      LogUtil.info(`${this.TAG}openSession failed`);
+      LogUtil.debug(`${this.TAG}openSession failed`);
       callback('0');
     }
   }
@@ -249,9 +254,9 @@ export class PasswordModel extends BaseModel {
   closeSession(): void {
     try {
       this.userIdentityManager.closeSession()
-      LogUtil.info(`${this.TAG}closeSession success`);
+      LogUtil.debug(`${this.TAG}closeSession success`);
     } catch (e) {
-      LogUtil.info(`${this.TAG}closeSession failed:` + e);
+      LogUtil.debug(`${this.TAG}closeSession failed:` + e);
     }
   }
 
@@ -265,9 +270,9 @@ export class PasswordModel extends BaseModel {
     try {
       let data = this.strToU8A(challenge);
       let result = this.userIdentityManager.cancel(data)
-      LogUtil.info(`${this.TAG}cancel success`);
+      LogUtil.debug(`${this.TAG}cancel success`);
     } catch (e) {
-      LogUtil.info(`${this.TAG}cancel failed:` + e);
+      LogUtil.debug(`${this.TAG}cancel failed:` + e);
     }
     return result;
   }
@@ -282,6 +287,7 @@ export class PasswordModel extends BaseModel {
    * @param onResultCall Get results callback.
    */
   addPinCredential(pinSubType: number, password: string, onResultCall: (result: number) => void): void {
+    LogUtil.debug(`${this.TAG}addPinCredential in.`);
     try {
       this.pinSubType = pinSubType;
       this.password = password;
@@ -291,7 +297,7 @@ export class PasswordModel extends BaseModel {
       }
       let callback = {
         onResult: (result, extraInfo) => {
-          LogUtil.info(`${this.TAG}addPinCredential result:${JSON.stringify(result)}, extraInfo:${JSON.stringify(extraInfo)}`);
+          LogUtil.debug(`${this.TAG}addPinCredential result:${JSON.stringify(result)}, extraInfo:${JSON.stringify(extraInfo)}`);
           onResultCall(result);
         }
       };
@@ -310,6 +316,7 @@ export class PasswordModel extends BaseModel {
   updateCredential(pinSubType: number, password: string, token: string, onResultCall: (result: number, extraInfo: {
     credentialId?: string;
   }) => void): void {
+    LogUtil.debug(`${this.TAG}updateCredential in.`);
     try {
       this.pinSubType = pinSubType;
       this.password = password;
@@ -319,15 +326,15 @@ export class PasswordModel extends BaseModel {
       }
       let callback = {
         onResult: (result, extraInfo) => {
-          LogUtil.info(`${this.TAG}updateCredential result:${JSON.stringify(result)}`);
-          LogUtil.info(`${this.TAG}updateCredential extraInfo:${JSON.stringify(extraInfo)}`);
+          LogUtil.debug(`${this.TAG}updateCredential result:${JSON.stringify(result)}`);
+          LogUtil.debug(`${this.TAG}updateCredential extraInfo:${JSON.stringify(extraInfo)}`);
           let retExtraInfo = {}
           onResultCall(result, retExtraInfo);
         }
       };
       this.userIdentityManager.updateCredential(credentialInfo, callback);
     } catch (e) {
-      LogUtil.info(`${this.TAG}updateCredential failed:` + e);
+      LogUtil.debug(`${this.TAG}updateCredential failed:` + e);
     }
   }
 
@@ -338,11 +345,12 @@ export class PasswordModel extends BaseModel {
    * @param onResultCallback Get results callback.
    */
   delAllCredential(token: string, onResultCallback: (result: number, extraInfo: {}) => void): void {
+    LogUtil.debug(`${this.TAG}delAllCredential in.`);
     try{
       let callback = {
         onResult:(result, extraInfo) => {
-          LogUtil.info(`${this.TAG}delAllCredential result:${JSON.stringify(result)}`);
-          LogUtil.info(`${this.TAG}delAllCredential extraInfo:${JSON.stringify(extraInfo)}`);
+          LogUtil.debug(`${this.TAG}delAllCredential result:${JSON.stringify(result)}`);
+          LogUtil.debug(`${this.TAG}delAllCredential extraInfo:${JSON.stringify(extraInfo)}`);
           let retExtraInfo = {}
           onResultCallback(result, retExtraInfo);
         }
@@ -350,7 +358,7 @@ export class PasswordModel extends BaseModel {
       let data = this.strToU8A(token);
       this.userIdentityManager.delUser(data, callback);
     } catch (e) {
-      LogUtil.info(`${this.TAG}updateCredential failed:` + e);
+      LogUtil.debug(`${this.TAG}updateCredential failed:` + e);
     }
   }
 
@@ -361,12 +369,12 @@ export class PasswordModel extends BaseModel {
    */
   hasPinPassword(callback: (havePassword: boolean) => void): void {
     this.getPinAuthInfo((data) => {
-      LogUtil.info(`${this.TAG}hasPinPassword->getPinAuthInfo data:${JSON.stringify(data)}`);
+      LogUtil.debug(`${this.TAG}hasPinPassword->getPinAuthInfo data:${JSON.stringify(data)}`);
       let passwordHasSet = false;
       if(data?.length && data.length > 0){
         passwordHasSet = true;
       }
-      LogUtil.info(`${this.TAG}hasPinPassword->getPinAuthInfo : before callback: passwordHasSet = ${passwordHasSet}`);
+      LogUtil.debug(`${this.TAG}hasPinPassword->getPinAuthInfo : before callback: passwordHasSet = ${passwordHasSet}`);
       callback(passwordHasSet)
     });
   }
@@ -383,7 +391,7 @@ export class PasswordModel extends BaseModel {
   }>) => void): void {
     try {
       this.userIdentityManager.getAuthInfo(AuthType.PIN, (data) => {
-        LogUtil.info(`${this.TAG}getPinAuthInfo->getAuthInfo data:${JSON.stringify(data)}`);
+        LogUtil.debug(`${this.TAG}getPinAuthInfo->getAuthInfo data:${JSON.stringify(data)}`);
         let arrCredInfo = [];
         try{
           for(let i = 0; i < data.length; i++) {
@@ -394,13 +402,13 @@ export class PasswordModel extends BaseModel {
             arrCredInfo.push(credInfo);
           }
         } catch(e) {
-          console.info('faceDemo pin.getAuthInfo error = ' + e);
+          console.debug('faceDemo pin.getAuthInfo error = ' + e);
         }
-        LogUtil.info(`${this.TAG}getPinAuthInfo->getAuthInfo before callback: data array:${JSON.stringify(arrCredInfo)}`);
+        LogUtil.debug(`${this.TAG}getPinAuthInfo->getAuthInfo before callback: data array:${JSON.stringify(arrCredInfo)}`);
         callback(arrCredInfo);
       })
     } catch (e) {
-      LogUtil.info(`${this.TAG}getPinAuthInfo failed:` + e);
+      LogUtil.error(`${this.TAG}getPinAuthInfo failed:` + e);
     }
   }
 
@@ -418,43 +426,43 @@ export class PasswordModel extends BaseModel {
   }) => void): void {
     this.password = password;
     try {
-      LogUtil.info(`${this.TAG}authPin : ( ${challenge},  ${AuthType.PIN},  ${AuthTrustLevel.ATL4} )`);
+      LogUtil.debug(`${this.TAG}authPin : ( ${challenge},  ${AuthType.PIN},  ${AuthTrustLevel.ATL4} )`);
       this.userAuth.auth(this.strToU8A(challenge), AuthType.PIN, AuthTrustLevel.ATL4, {
         onResult: (result, extraInfo) => {
           try{
-            LogUtil.info(`${this.TAG}userAuth.auth onResult: challenge = ${challenge}, result:${result}, extraInfo:${extraInfo}`);
+            LogUtil.debug(`${this.TAG}userAuth.auth onResult: challenge = ${challenge}, result:${result}, extraInfo:${extraInfo}`);
             if (result === ResultCode.SUCCESS) {
-              LogUtil.info(`${this.TAG}userAuth.auth onResult: result = success`);
+              LogUtil.debug(`${this.TAG}userAuth.auth onResult: result = success`);
             } else {
-              LogUtil.info(`${this.TAG}userAuth.auth onResult: result =  failed`);
+              LogUtil.debug(`${this.TAG}userAuth.auth onResult: result =  failed`);
             }
             let info = {
               'token':  this.u8AToStr(extraInfo?.token),
               'remainTimes': extraInfo.remainTimes,
               'freezingTime': extraInfo.freezingTime
             }
-            LogUtil.info(`${this.TAG}userAuth.auth onResult: before callback: info = ${JSON.stringify(info)}`);
+            LogUtil.debug(`${this.TAG}userAuth.auth onResult: before callback: info = ${JSON.stringify(info)}`);
             onResult(result, info)
           }
           catch(e) {
-            LogUtil.info(`${this.TAG}userAuth.auth onResult error = ${JSON.stringify(e)}`);
+            LogUtil.debug(`${this.TAG}userAuth.auth onResult error = ${JSON.stringify(e)}`);
           }
         },
 
         onAcquireInfo: (acquireModule, acquire, extraInfo) => {
           try{
-            LogUtil.info(this.TAG + 'faceDemo pin.auth onAcquireInfo acquireModule = ' + acquireModule);
-            console.info(this.TAG + 'faceDemo pin.auth onAcquireInfo acquire = ' + acquire);
-            LogUtil.info(this.TAG + 'faceDemo pin.auth onAcquireInfo extraInfo = ' + JSON.stringify(extraInfo));
+            LogUtil.debug(this.TAG + 'faceDemo pin.auth onAcquireInfo acquireModule = ' + acquireModule);
+            LogUtil.debug(this.TAG + 'faceDemo pin.auth onAcquireInfo acquire = ' + acquire);
+            LogUtil.debug(this.TAG + 'faceDemo pin.auth onAcquireInfo extraInfo = ' + JSON.stringify(extraInfo));
           }
           catch(e) {
-            LogUtil.info(this.TAG + 'faceDemo pin.auth onAcquireInfo error = ' + e);
+            LogUtil.error(this.TAG + 'faceDemo pin.auth onAcquireInfo error = ' + e);
           }
         }
       })
 
     } catch (e) {
-      LogUtil.info(`${this.TAG}AuthPin failed:` + e);
+      LogUtil.error(`${this.TAG}AuthPin failed:` + e);
     }
   }
 
@@ -474,19 +482,19 @@ export class PasswordModel extends BaseModel {
         'authType': AuthType.PIN,
         'keys': [GetPropertyType.AUTH_SUB_TYPE, GetPropertyType.REMAIN_TIMES, GetPropertyType.FREEZING_TIME]
       }
-      LogUtil.info(`${this.TAG}getAuthProperty->call api request = ${JSON.stringify(request)}`);
+      LogUtil.debug(`${this.TAG}getAuthProperty->call api request = ${JSON.stringify(request)}`);
 
       this.userAuth.getProperty(request)
         .then((data)=> {
           let i =  JSON.stringify(data);
-          console.info('faceDemo promise.getProperty result i = ' + i);
-          console.info('faceDemo promise.getProperty result = ' + data);
+          LogUtil.debug('faceDemo promise.getProperty result i = ' + i);
+          LogUtil.debug('faceDemo promise.getProperty result = ' + data);
 
-          LogUtil.info(`${this.TAG}getAuthProperty->getProperty data:${JSON.stringify(data)}`);
+          LogUtil.debug(`${this.TAG}getAuthProperty->getProperty data:${JSON.stringify(data)}`);
           callback(data);
         })
         .catch(e =>{
-          LogUtil.info(`${this.TAG}getAuthProperty->getProperty failed:` + e);
+          LogUtil.debug(`${this.TAG}getAuthProperty->getProperty failed:` + e);
         });
     } catch (e) {
       LogUtil.info(`${this.TAG}getAuthProperty failed:` + e);

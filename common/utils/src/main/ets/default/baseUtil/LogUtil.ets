@@ -17,55 +17,67 @@ import BaseModel from '../model/BaseModel.ets';
 /**
  * Log level
  */
-let LOG_LEVEL = {
+let LogLevel = {
   /**
      * debug
      */
-  DEBUG: 'debug',
+  DEBUG: 3,
 
   /**
      * log
      */
-  LOG: 'log',
+  LOG: 4,
 
   /**
      * info
      */
-  INFO: 'info',
+  INFO: 5,
 
   /**
      * warn
      */
-  WARN: 'warn',
+  WARN: 6,
 
   /**
      * error
      */
-  ERROR: 'error'
+  ERROR: 7
 };
+
+const LOG_LEVEL = LogLevel.INFO
 
 /**
  *  log package tool class
  */
 export class LogUtil extends BaseModel {
   debug(msg): void {
-    console.info(msg);
+    if (LogLevel.DEBUG >= LOG_LEVEL) {
+      console.info(msg);
+    }
   }
 
   log(msg): void {
-    console.log(msg);
+    if (LogLevel.INFO >= LOG_LEVEL) {
+      console.log(msg);
+    }
   }
 
   info(msg): void {
-    console.info(msg);
+    if (LogLevel.INFO >= LOG_LEVEL) {
+      console.info(msg);
+    }
   }
 
   warn(msg): void {
-    console.warn(msg);
+    if (LogLevel.WARN >= LOG_LEVEL) {
+      console.warn(msg);
+    }
   }
 
   error(msg): void {
-    console.error(msg);
+    if (LogLevel.ERROR >= LOG_LEVEL) {
+      console.error(msg);
+    }
   }
 }
 

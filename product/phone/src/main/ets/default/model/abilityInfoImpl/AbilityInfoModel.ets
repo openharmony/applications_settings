@@ -92,7 +92,7 @@ export class AbilityInfoModel extends BaseModel {
           if (metaBase.labelId > 0) {
             item.getString(parseInt(metaBase.labelId), (error, value) => {
               if (error != null) {
-                console.info('settings getAbilityInfoListener getString error:' + error);
+                LogUtil.info('settings getAbilityInfoListener getString error:' + error);
                 label = '';
               }
               LogUtil.info('settings getAbilityInfoListener getResourceManager  value.length:' + value.length);
@@ -111,7 +111,7 @@ export class AbilityInfoModel extends BaseModel {
         LogUtil.info('settings getAbilityInfoListener getResourceManager getString() finish label:' + label);
         item.getMediaBase64(parseInt(metaBase.iconId), (error, value) => {
           if (error != null) {
-            console.info('settings getAbilityInfoListener getMediaBase64 error:' + error);
+            LogUtil.info('settings getAbilityInfoListener getMediaBase64 error:' + error);
             imageValue = deaultAppIcon;
             this.getMetaDataList(label, imageValue, metaBase, callback)
           }

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import BaseModel from '../model/BaseModel.ets';
-import  LogUtil  from './LogUtil.ets';
+import LogUtil  from './LogUtil.ets';
 import ohosDataRdb from '@ohos.data.rdb';
 
 const TAG = "RdbStoreUtil.js->";
@@ -38,16 +38,16 @@ export default {
      * create data
      */
   createRdbStore(callback) {
-    console.info(TAG + 'get data')
+    LogUtil.info(TAG + 'get data')
     if (!rdbStore) {
       ohosDataRdb.getRdbStore(STORE_CONFIG, 1)
         .then((store) => {
-        console.info(TAG + 'get data create  success' + JSON.stringify(store))
-        rdbStore = store
-        callback(true)
+          LogUtil.info(TAG + 'get data create  success' + JSON.stringify(store))
+          rdbStore = store
+          callback(true)
       })
         .catch((err) => {
-        console.info(TAG + 'get data createRdbStore err' + err)
+        LogUtil.info(TAG + 'get data createRdbStore err' + err)
         callback(false)
       })
     }
@@ -64,7 +64,7 @@ export default {
      * insert
      */
   insert(tableName, rowValue) {
-    console.info('get data start: ' + tableName);
+    LogUtil.info('get data start: ' + tableName);
     return rdbStore.insert(tableName, rowValue);
   },
   /**
@@ -76,7 +76,7 @@ export default {
   async update(predicates, rowValue) {
     LogUtil.info(TAG + 'update start');
     let changedRows = await rdbStore.update(rowValue, predicates);
-    console.info(TAG + 'update row count: ' + changedRows);
+    LogUtil.info(TAG + 'update row count: ' + changedRows);
   },
   /**
      * delete
