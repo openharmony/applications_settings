@@ -84,9 +84,9 @@ export class AppManagementModel extends BaseModel {
         LogUtil.info('settings AppManagementModel getResourceManager getString() finish label:' + label);
         if (appInfo.iconId > 0) {
           item.getMediaBase64(appInfo.iconId, (error, value) => {
-            console.info('settings AppManagementModel getMediaBase64 error:' + error);
+            LogUtil.info('settings AppManagementModel getMediaBase64 error:' + error);
             if (error != null) {
-              console.info('settings AppManagementModel getMediaBase64 error!=null:' + error);
+              LogUtil.info('settings AppManagementModel getMediaBase64 error!=null:' + error);
               this.mBundleInfoList.push({
                 settingIcon: icon_default,
                 settingTitle: label,

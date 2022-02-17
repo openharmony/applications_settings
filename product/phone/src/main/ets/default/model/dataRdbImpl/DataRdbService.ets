@@ -23,7 +23,7 @@ class DataRdbService {
    */
   queryAllData(callback) {
     DataRdbModel.queryAllData(Stable.tableName.Global, res => {
-      console.info(ConfigData.TAG + 'get data query model result: ' + JSON.stringify(res));
+      LogUtil.info(ConfigData.TAG + 'get data query model result: ' + JSON.stringify(res));
       callback(res);
     });
   }
@@ -32,7 +32,7 @@ class DataRdbService {
    */
   querySingleData(key, callback) {
     DataRdbModel.querySingleData(Stable.tableName.Global, key, res => {
-      console.info(ConfigData.TAG + 'get data query model querySingleData result: ' + JSON.stringify(res));
+      LogUtil.info(ConfigData.TAG + 'get data query model querySingleData result: ' + JSON.stringify(res));
       callback(res);
     });
   }
