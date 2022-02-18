@@ -443,6 +443,10 @@
     {
       "name": "radio_component_margin_bottom_right",
       "value": "15vp"
+    },
+    {
+      "name": "single_item_height",
+      "value": "48vp"
     }
   ]
 }
