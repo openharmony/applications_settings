@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent.ets';
+import {TextComponentWithEndText} from '../../../../../../../common/component/src/main/ets/default/textComponent.ets';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 import DateAndTime from '../../../../../../../common/utils/src/main/ets/default/baseUtil/DateAndTimeUtil.ets';
 import DateAndTimeModel from '../model/dateAndTimeImpl/DateAndTimeModel.ets'
@@ -54,7 +55,6 @@ struct dateAndTime {
           .fontSize($r('app.float.font_22'))
           .fontColor($r('app.color.color_333333_grey'))
           .textAlign(TextAlign.Start)
-          .margin({left: $r('app.float.wh_value_12')});
         Toggle({ type: ToggleType.Switch, isOn: this.is24hTimeFormat() })
           .width($r('app.float.wh_value_50'))
           .height($r('app.float.wh_value_40'))
@@ -66,36 +66,17 @@ struct dateAndTime {
             }
           });
       }
-      .height($r('app.float.wh_value_80'))
-      .margin({ top: $r('app.float.wh_value_8'), bottom: $r('app.float.wh_value_12'),
-        left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_12') })
-      .borderRadius($r('app.float.wh_value_15'));
+      .height($r('app.float.wh_value_56'))
+      .width(ConfigData.WH_100_100)
+      .backgroundColor($r("app.color.white_bg_color"))
+      .padding({ left: $r('app.float.wh_value_24'), right: $r('app.float.wh_value_24') })
+      .margin({ top: $r("app.float.distance_8"), bottom: $r("app.float.wh_value_12")})
+      .borderRadius($r('app.float.radius_24'));
 
-        List() {
-          ForEach(this.dateAndTimeList, (item) => {
-            ListItem() {
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
-                Row() {
-                  Text(item.settingTitle)
-                    .fontSize($r('app.float.font_22'))
-                    .fontColor($r('app.color.color_333333_grey'))
-                    .width(ConfigData.WH_45_100)
-                    .padding({ left: $r('app.float.wh_value_12') })
-                    .textAlign(TextAlign.Start);
-                  Text(item.settingValue)
-                    .fontSize($r('app.float.font_20'))
-                    .fontColor($r('app.color.color_666666_grey'))
-                    .width(ConfigData.WH_55_100)
-                    .textAlign(TextAlign.End);
-                }
-                Image(item.settingArrow)
-                  .width($r('app.float.wh_value_40'))
-                  .height($r('app.float.wh_value_40'));
-              }
-            }
-            .width(ConfigData.WH_100_100)
-            .height($r('app.float.wh_value_80'))
-            .onClick(() => {
+      List() {
+        ForEach(this.dateAndTimeList, (item) => {
+          ListItem() {
+            TextComponentWithEndText({ title: item.settingTitle, endText: item.settingValue, clickEvent: () => {
               LogUtil.info(MODULE_TAG + 'dialog come in' + JSON.stringify(item))
               if (item.settingAlias === 'date') {
                 LogUtil.info(MODULE_TAG + 'date dialog come in')
@@ -105,17 +86,23 @@ struct dateAndTime {
                 LogUtil.info(MODULE_TAG + 'time dialog come in')
                 this.timeDialogController.open()
               }
-            })
-          }, item => JSON.stringify(item))
-        }
-        .divider({ strokeWidth: $r('app.float.wh_value_1'), color: $r('app.color.color_E3E3E3_grey'),
-          startMargin: $r('app.float.wh_value_15'), endMargin: $r('app.float.wh_value_15') })
-        .height($r('app.float.wh_value_160'))
-        .margin({left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_12'),
-          top: $r('app.float.wh_value_8'), bottom: $r('app.float.wh_value_12') })
-        .align(Alignment.TopStart)
-      .borderRadius($r('app.float.wh_value_15'));
+            } });
+          }
+        }, item => JSON.stringify(item))
+      }
+      .divider({ strokeWidth: $r('app.float.wh_value_1'), color: $r('app.color.color_E3E3E3_grey'),
+        startMargin: $r('app.float.wh_value_15'), endMargin: $r('app.float.wh_value_15') })
+      .borderRadius($r("app.float.radius_24"))
+      .backgroundColor($r("app.color.white_bg_color"))
+      .padding($r('app.float.distance_4'))
+      .visibility(this.dateAndTimeList.length > 0 ? Visibility.Visible : Visibility.None)
     }
+    .height(ConfigData.WH_100_100)
+    .padding({ left: $r('app.float.distance_24'), right: $r('app.float.distance_24') })
+    .align(Alignment.Center)
+    .height(ConfigData.WH_100_100)
+    .width(ConfigData.WH_100_100)
+    .backgroundColor($r("app.color.color_E3E3E3_grey"));
   }
   /**
    * Successfully built Dialog
@@ -219,15 +206,15 @@ struct TimeDialog24H {
         Text($r('app.string.settingTime'))
 
           .height($r('app.float.wh_value_60'))
-          .margin({ left: $r('app.float.wh_value_30') })
           .width(ConfigData.WH_100_100)
+          .textAlign(TextAlign.Center)
           .fontSize($r('app.float.font_28'));
         DatePicker({ selected: this.currentTime, type: DatePickerType.Time })
           .useMilitaryTime(this.isNeedMilitaryTime())
           .onChange((date: DatePickerResult) => {
-          this.currentTime = DateAndTime.concatTime(date.hour, date.minute);
-          LogUtil.info(MODULE_TAG + 'onchange currentTime' + this.currentTime);
-        })
+            this.currentTime = DateAndTime.concatTime(date.hour, date.minute);
+            LogUtil.info(MODULE_TAG + 'onchange currentTime' + this.currentTime);
+          })
           .width(ConfigData.WH_100_100)
           .height($r('app.float.wh_value_280'))
       }
@@ -308,8 +295,6 @@ struct DateDialog {
             .fontSize($r('app.float.font_28'))
         }
         .height($r('app.float.wh_value_60'))
-        .margin({ left: $r('app.float.wh_value_15') })
-        .width(ConfigData.WH_100_100)
 
         DatePicker({ start: this.minDate, end: this.maxDate, selected: this.selectedDate, type: DatePickerType.Date })
           .onChange((result: DatePickerResult) => {
