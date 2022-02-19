@@ -31,7 +31,7 @@ export struct TitleText {
         Text(this.title)
           .fontSize($r("app.float.font_28"))
           .fontColor(this.color)
-          .height($r("app.float.wh_value_60"))
+          .height($r("app.float.single_item_height"))
           .textAlign(TextAlign.Start)
       }
       .width(ComponentConfig.WH_100_100)
@@ -54,5 +54,55 @@ export struct TitleText {
     .backgroundColor($r("app.color.white_bg_color"))
     .visibility(this.visibility)
     .padding($r('app.float.distance_4'))
+  }
+}
+
+/**
+ * Text title with end text layout with harmony round style used in list item.
+ * Note that this does not contains the white padding when is touched.
+ * If you want to use it in single touch layout, wrap it with extra container component.
+ */
+@Component
+export  struct TextComponentWithEndText {
+  private title: string | Resource;
+  private clickEvent: (event?: ClickEvent) => void;
+  @Prop endText: string;
+  @State isTouched:boolean = false;
+
+  build() {
+    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Row() {
+        Text(this.title)
+          .fontSize($r('app.float.font_22'))
+          .fontColor($r('app.color.font_color_182431'))
+          .margin({ left: $r('app.float.distance_24') })
+          .textAlign(TextAlign.Start);
+      }
+
+      Row() {
+        Text(this.endText)
+          .fontSize($r('app.float.font_18'))
+          .fontColor($r('app.color.font_color_182431'))
+          .margin({ right: $r('app.float.distance_4') })
+          .textAlign(TextAlign.End);
+        Image('/res/image/ic_settings_arrow.svg')
+          .width($r('app.float.wh_value_12'))
+          .height($r('app.float.wh_value_24'))
+          .margin({ right: $r('app.float.distance_24') });
+      }
+    }
+    .height($r('app.float.wh_value_56'))
+    .width(ComponentConfig.WH_100_100)
+    .borderRadius($r('app.float.radius_24'))
+    .onClick(event => this.clickEvent(event))
+    .backgroundColor(this.isTouched ? $r("app.color.color_D8D8D8_grey") : $r("app.color.white_bg_color"))
+    .onTouch((event: TouchEvent) => {
+      if (event.type === TouchType.Down) {
+        this.isTouched = true;
+      }
+      if (event.type === TouchType.Up) {
+        this.isTouched = false;
+      }
+    });
   }
 }
