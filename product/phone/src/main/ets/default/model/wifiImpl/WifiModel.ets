@@ -106,7 +106,7 @@ export class ApScanResult {
   }
 
   toString(): string {
-    return JSON.stringify(this.apInfo);
+    return `SSID: ${this.getSSID()}, SignalLevel: ${this.getSignalLevel()}, isEncrypt: ${this.isSecurityAp()}`;
   }
 
   static compare(x: ApScanResult, y: ApScanResult): number {
@@ -153,7 +153,6 @@ export class WifiModel extends BaseModel {
     if (apInfo === null || typeof apInfo === 'undefined') {
       this.userSelectedAp = new ApScanResult();
     }
-    LogUtil.info(MODULE_TAG + "set user selected apInfo is : " + JSON.stringify(apInfo));
     this.userSelectedAp = new ApScanResult(apInfo);
   }
 
@@ -191,7 +190,6 @@ export class WifiModel extends BaseModel {
       "isHiddenSsid": false,
       "securityType": apInfo.securityType
     };
-    LogUtil.info(MODULE_TAG + 'start to connect WiFi, the parameter is : ' + JSON.stringify(obj));
     // avoid connect the same AP multi times
     WifiNativeJs.disconnect();
     let ret = WifiNativeJs.connectToDevice(obj);
@@ -223,8 +221,6 @@ export class WifiModel extends BaseModel {
         LogUtil.info(MODULE_TAG + 'get linked info failed');
         return;
       }
-      LogUtil.info(MODULE_TAG + 'get linked info err is : ' + JSON.stringify(err));
-      LogUtil.info(MODULE_TAG + 'get linked info result is : ' + JSON.stringify(result));
       // result.connState need as CONNECTED
       if (result.connState !== 4) {
         LogUtil.info(MODULE_TAG + 'result connState is not CONNECTED');
@@ -269,7 +265,6 @@ export class WifiModel extends BaseModel {
       // make the connected wifi item at the head of the array as
       // the connected wifi need to be shown at top of list-view
       function unshiftConnectedAp(newResults: any[], primaryApInfo: ApScanResult): ApScanResult[] {
-        LogUtil.info(MODULE_TAG + 'primaryApInfo is : ' + primaryApInfo.toString());
         if (primaryApInfo.isValidAp() !== true) {
           return newResults;
         }

@@ -14,6 +14,7 @@
  */
 import ConfigData from './ConfigData.ets';
 import CommonEvent from '@ohos.commonevent';
+import LogUtil from './LogUtil.ets'
 
 let mCommonEventSubscribeInfo = {
   events: ['BRIGHTNESS_VALUE_SYSTEM_UI']
@@ -33,22 +34,21 @@ export class SubscriberUtils {
    * @param broadcastName - broadcastName
    */
   sendEvent(value, broadcastName) {
-    console.log(`settings SubscriberUtils sendEvent ets in value:` + value + "|broadcastName:" + broadcastName);
     let commonEventPublishData = {
       data: value
     };
     CommonEvent.publish(broadcastName, commonEventPublishData, (err, data) => {
-      console.log(`settings SubscriberUtils sendEvent ets ${JSON.stringify(err)}`);
-      console.log(`settings SubscriberUtils sendEvent ets ${JSON.stringify(data)}`);
+      LogUtil.info(ConfigData.TAG + `SubscriberUtils sendEvent ets ${JSON.stringify(err)}`);
+      LogUtil.info(ConfigData.TAG + `SubscriberUtils sendEvent ets ${JSON.stringify(data)}`);
     });
-    console.log(`settings SubscriberUtils sendEvent ets out`);
+    LogUtil.info(ConfigData.TAG + `SubscriberUtils sendEvent ets out`);
   }
 
   /**
    * Register to broadcast
    */
   registerStatusListener(pCommonEventSubscribeInfo?, pCallback?) {
-    console.info(`settings SubscriberUtils Subscriberregister status listener in`);
+    LogUtil.info(ConfigData.TAG + `SubscriberUtils Subscriberregister status listener in`);
 
     mCustomStatusSubscriberCallBack = pCallback;
 
@@ -58,28 +58,29 @@ export class SubscriberUtils {
       this.createStatusSubscriberCallBack.bind(this)
     );
 
-    console.info(`settings SubscriberUtils Subscriberregister status listener out`);
+    LogUtil.info(ConfigData.TAG + `SubscriberUtils Subscriberregister status listener out`);
   }
 
   createStatusSubscriberCallBack(err, data) {
-    console.info(`settings SubscriberUtils Subscriberregister in ets ${JSON.stringify(err)} ${JSON.stringify(data)}`);
+    LogUtil.info(ConfigData.TAG +
+      `SubscriberUtils Subscriberregister in ets ${JSON.stringify(err)} ${JSON.stringify(data)}`);
     mCommonEventSubscriber = data;
     CommonEvent.subscribe(mCommonEventSubscriber, this.statusSubscriberCallBack.bind(this));
-    console.info(`settings SubscriberUtils Subscriberregister in`);
+    LogUtil.info(ConfigData.TAG + `SubscriberUtils Subscriberregister in`);
   }
 
   statusSubscriberCallBack(err, data) {
-    console.info(`settings SubscriberUtils statusSubscriberCallBack data ets : ${JSON.stringify(data)}`);
-    console.info(`settings SubscriberUtils statusSubscriberCallBack err ets : ${JSON.stringify(err)}`);
-    console.log(`settings SubscriberUtils statusSubscriberCallBack data.event ets : ${data.event} `);
+    LogUtil.info(ConfigData.TAG + `SubscriberUtils statusSubscriberCallBack data ets : ${JSON.stringify(data)}`);
+    LogUtil.info(ConfigData.TAG + `SubscriberUtils statusSubscriberCallBack err ets : ${JSON.stringify(err)}`);
+    LogUtil.info(ConfigData.TAG + `SubscriberUtils statusSubscriberCallBack data.event ets : ${data.event} `);
     if (mCustomStatusSubscriberCallBack) {
       mCustomStatusSubscriberCallBack(err, data);
     }
     if (err) {
-      console.info(`settings SubscriberUtils statusSubscriberCallBack error : ${err}`)
+      LogUtil.info(ConfigData.TAG + `SubscriberUtils statusSubscriberCallBack error : ${err}`)
       return;
     }
-    console.log(`settings SubscriberUtils statusSubscriberCallBack out`);
+    LogUtil.info(ConfigData.TAG + `SubscriberUtils statusSubscriberCallBack out`);
   }
 
   /**
@@ -87,7 +88,7 @@ export class SubscriberUtils {
    */
   unSubscriberListener() {
     CommonEvent.unsubscribe(mCommonEventSubscriber, () => {
-      console.info('settings SubscriberUtils unSubscriberListener');
+      LogUtil.info(ConfigData.TAG + 'SubscriberUtils unSubscriberListener');
     });
   }
 }

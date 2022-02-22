@@ -15,6 +15,7 @@
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent.ets';
 import AboutDeviceModel from '../model/aboutDeviceImpl/AboutDeviceModel.ets'
+import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
 
 /**
  * about phone
@@ -84,17 +85,18 @@ struct Index {
   }
 
   private aboutToAppear(): void {
-    console.log('settings get device info come in');
+    LogUtil.info(ConfigData.TAG + 'settings get device info come in');
     this.deviceInfo = AboutDeviceModel.setOnAboutDeviceListener();
     this.aboutDeviceList = AboutDeviceModel.getAboutDeviceInfoListener();
     this.getDeviceInfo();
-    console.log('settings get device info' + JSON.stringify(AboutDeviceModel.setOnAboutDeviceListener()));
-    console.log('settings get device info end in');
+    LogUtil.info(ConfigData.TAG + 'settings get device info' +
+      JSON.stringify(AboutDeviceModel.setOnAboutDeviceListener()));
+    LogUtil.info(ConfigData.TAG + 'settings get device info end in');
   }
 
   onBackPress() {
-    console.log('settings get device onBackPress in');
+    LogUtil.info(ConfigData.TAG + 'settings get device onBackPress in');
     Navigator().active(true);
-    console.log('settings get device onBackPress out');
+    LogUtil.info(ConfigData.TAG + 'settings get device onBackPress out');
   }
 }

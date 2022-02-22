@@ -207,9 +207,9 @@ export class SystemAccountController {
     };
     featureAbility.startAbility(abilityParam)
       .then((data) => {
-        console.info('Start lockscreen successful. Data: ' + JSON.stringify(data))
+        LogUtil.info('Start lockscreen successful. Data: ' + JSON.stringify(data))
       }).catch((error) => {
-      console.error('Start lockscreen failed. Cause: ' + JSON.stringify(error));
+      LogUtil.error('Start lockscreen failed. Cause: ' + JSON.stringify(error));
     })
   }
 }

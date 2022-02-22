@@ -91,7 +91,6 @@ struct PasswordInput {
   @Log
   getRouterParam() {
     param = Router.getParams()
-    LogUtil.debug(this.TAG_PAGE + 'aboutToAppear : Router param = ' + JSON.stringify(param))
     if (!param) {
       return;
     }
@@ -100,11 +99,6 @@ struct PasswordInput {
     this.pinChallenge = param.pinChallenge;
     this.pinToken = param.pinToken;
     this.passwordType = param.passwordType;
-    LogUtil.debug(this.TAG_PAGE + 'aboutToAppear : from router : pageRequestCode = ' + this.pageRequestCode
-    + ', prevPageUri = ' + this.prevPageUri
-    + ', pinChallenge = ' + this.pinChallenge
-    + ', pinToken = ' + this.pinToken
-    + ', passwordType = ' + this.passwordType)
   }
 
   build() {
@@ -223,8 +217,6 @@ struct PasswordInput {
    */
   @Log
   getPageTitle(): string | Resource {
-    LogUtil.info(this.TAG_PAGE + 'getPageTitle : passwordType = ' + this.passwordType)
-
     let title: Resource = $r('app.string.password_enter_password');
     switch (this.passwordType) {
       case PinSubType.PIN_SIX:
@@ -245,8 +237,6 @@ struct PasswordInput {
    */
   @Log
   getInputMessage(): string | Resource {
-    LogUtil.info(this.TAG_PAGE + 'getInputMessage : passwordType = ' + this.passwordType)
-
     let inputMessage: string | Resource = '';
     switch (this.passwordType) {
       case PinSubType.PIN_SIX:
@@ -271,8 +261,6 @@ struct PasswordInput {
    */
   @Log
   getUnlockMethodList(): any[] {
-    LogUtil.info(this.TAG_PAGE + `setUnlockMethodList : passwordType = ${this.passwordType}`)
-
     var list : any[] = [];
     if (this.passwordType != PinSubType.PIN_SIX) {
       list.push({
@@ -301,8 +289,6 @@ struct PasswordInput {
         settingSummary: ''
       })
     }
-
-    LogUtil.info(this.TAG_PAGE + 'setUnlockMethodList : unlockMethodList = ' + JSON.stringify(this.unlockMethodList))
     return list;
   }
 
@@ -351,7 +337,6 @@ struct chooseUnlockMethodDialog {
           checkedValue: this.checkedValue,
           showRadio: false,
           onChange: (item) => {
-            LogUtil.info(ConfigData.TAG + 'chooseUnlockMethodDialog : onCheckedAction : item = ' + JSON.stringify(item));
             if (this.chosenAction != null) {
               LogUtil.info(ConfigData.TAG + 'chooseUnlockMethodDialog : onCheckedAction : call back');
               this.chosenAction(item.settingValue);

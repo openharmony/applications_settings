@@ -15,7 +15,6 @@
 import BaseSettingsController from '../../../../../../../../common/component/src/main/ets/default/controller/BaseSettingsController.ets';
 import ConfigData from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
-import Log from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
 import ISettingsController from '../../../../../../../../common/component/src/main/ets/default/controller/ISettingsController';
 import PasswordModel, {ResultCode} from '../../model/passwordImpl/PasswordModel.ets';
 import Router from '@system.router';
@@ -34,7 +33,6 @@ export default class PasswordCheckController extends BaseSettingsController {
 // private Properties
   private password: string = ''
 
-  @Log
   initData(): ISettingsController {
     this.loadData()
     return this
@@ -57,20 +55,17 @@ export default class PasswordCheckController extends BaseSettingsController {
    * @param value : inputting password
    */
   passwordOnChange(value: string) {
-    LogUtil.info(this.TAG + 'passwordOnChange in.')
+    LogUtil.info(this.TAG + 'passwordOnChange in.');
     this.password = value;
-    LogUtil.debug(this.TAG + 'passwordOnChange : passwordType = ' + this.passwordType + ', password = ' + this.password)
-    LogUtil.info(this.TAG + 'passwordOnChange out.')  }
+    LogUtil.info(this.TAG + 'passwordOnChange out.');
+  }
 
 //------------------------------ check ---------------------------
 /**
    * Input finish. Start simple check.
    */
   inputFinish(event?: ClickEvent) {
-    LogUtil.debug(this.TAG + 'inputFinish : password = ' + this.password)
-
     if (!this.password) {
-      LogUtil.info(this.TAG + 'inputFinish return : password is none.')
       return;
     }
 
@@ -86,15 +81,12 @@ export default class PasswordCheckController extends BaseSettingsController {
    */
   checkInputSuccess() {
     this.checkPasswordCorrect((result, extraInfo) => {
-      LogUtil.info(this.TAG + 'checkInputSuccess : checkPasswordCorrect callback : result = ' + result );
-      LogUtil.debug(this.TAG + 'checkInputSuccess : checkPasswordCorrect callback : extraInfo = ' + JSON.stringify(extraInfo));
       if (result === ResultCode.SUCCESS) {
         if (extraInfo) {
           if (this.pinChallenge) {
             this.pinToken = extraInfo.token;
           }
         }
-        LogUtil.debug(this.TAG + 'checkInputSuccess : callback success. pinChallenge = ' + this.pinChallenge + ', pinToken = ' + this.pinToken);
         this.authSuccess()
 
       } else {
@@ -115,9 +107,7 @@ export default class PasswordCheckController extends BaseSettingsController {
 /**
    * Check password result changed.
    */
-  @Log
   authSuccess() {
-    LogUtil.info(`${this.TAG}resultChanged: pageRequestCode = ${this.pageRequestCode}`);
     if (this.pinToken && this.pageRequestCode == ConfigData.PAGE_REQUEST_CODE_PASSWORD_CHANGE) {
       this.gotoPasswordCreatePage();
     } else if (this.pinToken && this.pageRequestCode == ConfigData.PAGE_REQUEST_CODE_PASSWORD_DISABLE) {
@@ -133,9 +123,7 @@ export default class PasswordCheckController extends BaseSettingsController {
 /**
    * Go to password create page
    */
-  @Log
   gotoPasswordCreatePage() {
-    LogUtil.debug(`${this.TAG}gotoPasswordCreatePage : pageRequestCode: ${this.pageRequestCode}, prevPageUri = ${this.prevPageUri}, pageRequestCode: ${this.pageRequestCode}, pinChallenge: ${this.pinChallenge}, pinToken: ${this.pinToken}`);
     Router.replace({
       uri: 'pages/passwordInput',
       params: {
@@ -150,7 +138,6 @@ export default class PasswordCheckController extends BaseSettingsController {
 /**
    * Auth check ok, return OK result.
    */
-  @Log
   goBackCorrect() {
     Router.back()
   }
@@ -159,10 +146,8 @@ export default class PasswordCheckController extends BaseSettingsController {
 /**
    * Call api to check if has the password
    */
-  @Log
   loadData() {
     PasswordModel.hasPinPassword((havePassword) => {
-      LogUtil.debug(this.TAG + 'hasPinPassword : havePassword = ' + havePassword);
       if (havePassword) {
         this.getAuthProperty();
       } else {
@@ -178,7 +163,6 @@ export default class PasswordCheckController extends BaseSettingsController {
    */
   checkPasswordCorrect(successCallback: (result: number, extraInfo: any) => void): void {
     PasswordModel.authPin(this.pinChallenge, this.password, (result, extraInfo) => {
-      LogUtil.debug(this.TAG + 'checkPasswordCorrect : result = ' + JSON.stringify(result) + ', extraInfo = ' + JSON.stringify(extraInfo));
       if (result === ResultCode.SUCCESS) {
         LogUtil.info(`${this.TAG}check password correct success`);
       } else {
@@ -195,7 +179,6 @@ export default class PasswordCheckController extends BaseSettingsController {
    */
   getAuthProperty() {
     PasswordModel.getAuthProperty((data: any) => {
-      LogUtil.debug(this.TAG + `getAuthProperty data:${JSON.stringify(data)}`);
       if (data.result === ResultCode.SUCCESS) {
         this.passwordType = data.authSubType ? data.authSubType : -1;
         this.freezingTime = data.freezingTime ? data.freezingTime : 0;
@@ -214,13 +197,12 @@ export default class PasswordCheckController extends BaseSettingsController {
    */
   delCredential(successCallback) {
     PasswordModel.delAllCredential(this.pinToken, (result, extraInfo) => {
-      LogUtil.debug(`${this.TAG}delAllCredential->result:${result}, extraInfo:${JSON.stringify(extraInfo)}`);
       if (result === ResultCode.SUCCESS) {
-        LogUtil.info(`${this.TAG}delAllCredential success`);
+        LogUtil.info(`${this.TAG}del success`);
         this.pinToken = '';
         successCallback();
       } else {
-        LogUtil.info(`${this.TAG}delAllCredential failed`);
+        LogUtil.info(`${this.TAG}del failed`);
       }
     })
   }

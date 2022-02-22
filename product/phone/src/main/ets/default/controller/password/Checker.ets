@@ -33,6 +33,7 @@ export class Checker {
   checkMinDigits(str: string): boolean {
     LogUtil.info(this.TAG + 'checkMinDigits in.');
     return str.length >= PASSWORD_MIN_LENGTH;
+    LogUtil.info(this.TAG + 'checkMinDigits out.');
   }
 
 /**
@@ -43,6 +44,7 @@ export class Checker {
   checkMaxDigits(str: string): boolean {
     LogUtil.info(this.TAG + 'checkMaxDigits in.');
     return str.length <= PASSWORD_MAX_LENGTH;
+    LogUtil.info(this.TAG + 'checkMaxDigits out.');
   }
 
 /**
@@ -54,6 +56,7 @@ export class Checker {
     LogUtil.info(this.TAG + 'isNumber6 in.');
     var reg = /^[0-9]{6}$/;
     return reg.test(str);
+    LogUtil.info(this.TAG + 'isNumber6 out.');
   }
 
 /**
@@ -65,6 +68,7 @@ export class Checker {
     LogUtil.info(this.TAG + 'containsOnlyNumbers in.');
     var reg = /^[0-9]{4,32}$/;
     return reg.test(str);
+    LogUtil.info(this.TAG + 'containsOnlyNumbers out.');
   }
 
 /**
@@ -76,6 +80,7 @@ export class Checker {
     LogUtil.info(this.TAG + 'isOnlyNumber in.');
     var reg = /^[0-9]+$/;
     return reg.test(str);
+    LogUtil.info(this.TAG + 'isOnlyNumber out.');
   }
 
 /**
@@ -87,6 +92,7 @@ export class Checker {
     LogUtil.info(this.TAG + 'containCharacter in.');
     var reg = /^(?=.*[a-zA-Z])[\x20-\x7E]{4,32}$/;
     return reg.test(str);
+    LogUtil.info(this.TAG + 'containCharacter out.');
   }
 
 /**
@@ -98,6 +104,7 @@ export class Checker {
     LogUtil.info(this.TAG + 'isContainLetters in.');
     var reg = /^(?=.*[a-zA-Z])/;
     return reg.test(str);
+    LogUtil.info(this.TAG + 'isContainLetters out.');
   }
 
 /**
@@ -109,5 +116,6 @@ export class Checker {
     LogUtil.info(this.TAG + 'isContainIllegalCharacter in.');
     var reg = /[^\x20-\x7E]/;
     return reg.test(str);
+    LogUtil.info(this.TAG + 'isContainIllegalCharacter out.');
   }
 }
