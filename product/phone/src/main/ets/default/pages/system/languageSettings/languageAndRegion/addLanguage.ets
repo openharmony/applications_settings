@@ -181,7 +181,7 @@ struct AllLanguagesList {
                   value: $r("app.string.keepCurrent"),
                   action:() => {
                     router.back();
-                    console.log('callback when first button clicked');
+                    LogUtil.info(ConfigData.TAG + 'callback when first button clicked');
                   }
                 },
                 secondaryButton:{
@@ -189,11 +189,11 @@ struct AllLanguagesList {
                   action:() => {
                     LanguageAndRegionModel.setSystemLanguage(item);
                     router.back();
-                    console.log('callback when first button clicked');
+                    LogUtil.info(ConfigData.TAG + 'callback when first button clicked');
                   }
                 },
                 cancel: () => {
-                  console.info('cancel');
+                  LogUtil.info(ConfigData.TAG + 'cancel');
                 }
               }
             )

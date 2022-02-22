@@ -12,11 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
+import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
+
 export default {
   onCreate() {
-    console.info('Application onCreate')
+    LogUtil.info(ConfigData.TAG + 'Application onCreate')
   },
   onDestroy() {
-    console.info('Application onDestroy')
+    LogUtil.info(ConfigData.TAG + 'Application onDestroy')
   },
 }

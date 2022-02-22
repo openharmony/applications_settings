@@ -85,7 +85,7 @@ struct EditList {
                     confirm: {
                       value: $r("app.string.confirm"),
                       action: () => {
-                        console.log('button clicked');
+                        LogUtil.info(ConfigData.TAG + 'button clicked');
                       }
                     }
                   })
