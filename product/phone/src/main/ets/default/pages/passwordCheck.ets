@@ -79,7 +79,6 @@ struct PasswordCheck {
   @Log
   getRouterParam() {
     param = Router.getParams()
-    LogUtil.debug(this.TAG_PAGE + ' getRouterParam : Router param = ' + JSON.stringify(param))
     if (!param) {
       return;
     }
@@ -87,9 +86,6 @@ struct PasswordCheck {
     this.prevPageUri = param.prevPageUri;
     this.pinChallenge = param.pinChallenge;
     this.passwordType = param.passwordType;
-    LogUtil.debug(this.TAG_PAGE + ' getRouterParam : from router : pageRequestCode = ' + this.pageRequestCode
-    + ', prevPageUri = ' + this.prevPageUri
-    + ', pinChallenge = ' + this.pinChallenge)
   }
 
   build() {

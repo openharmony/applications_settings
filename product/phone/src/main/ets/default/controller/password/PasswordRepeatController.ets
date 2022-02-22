@@ -17,7 +17,6 @@ import BaseSettingsController from '../../../../../../../../common/component/src
 import ConfigData from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
 import ISettingsController from '../../../../../../../../common/component/src/main/ets/default/controller/ISettingsController';
-import Log from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
 import PasswordModel, {PinSubType, ResultCode} from '../../model/passwordImpl/PasswordModel.ets';
 import {Checker} from './Checker.ets';
 import Router from '@system.router';
@@ -52,9 +51,7 @@ export default class PasswordRepeatController extends BaseSettingsController {
   passwordOnChange(value: string) {
     LogUtil.info(this.TAG + 'passwordOnChange in.')
     this.password = value;
-    LogUtil.debug(this.TAG + 'passwordOnChange : passwordType = ' + this.passwordType + ', password = ' + this.password)
     this.checkMessage = this.checkInputDigits(value)
-    LogUtil.debug(this.TAG + 'passwordOnChange : checkInputDigits over : checkMessage = ' + JSON.stringify(this.checkMessage));
 
     if (this.passwordType == PinSubType.PIN_SIX && !this.checkMessage && this.checker.isNumber6(this.password)) {
       // When password is 6 numbers, finish input
@@ -67,10 +64,7 @@ export default class PasswordRepeatController extends BaseSettingsController {
    * Input finish. Start simple check.
    */
   inputFinish() {
-    LogUtil.debug(this.TAG + 'inputFinish : password = ' + this.password + ', inputPassword = ' + this.inputPassword)
-
     if (!this.password) {
-      LogUtil.info(this.TAG + 'inputFinish return : password is none.')
       return;
     }
 
@@ -81,7 +75,6 @@ export default class PasswordRepeatController extends BaseSettingsController {
       this.checkMessage = $r('app.string.password_message_repeat_error')
     }
 
-    LogUtil.info(this.TAG + 'inputFinish ：check over : checkMessage = ' + JSON.stringify(this.checkMessage));
     if (this.checkMessage) {
       LogUtil.info(this.TAG + 'inputFinish return : has error yet.')
       return;
@@ -104,6 +97,7 @@ export default class PasswordRepeatController extends BaseSettingsController {
    * @return error message
    */
   checkInputDigits(value: string): string | Resource {
+    LogUtil.info(this.TAG + 'checkInputDigits in.')
 
     // Check PIN fewer than 33 digits
     if (this.checker.checkMaxDigits(value)) {
@@ -116,13 +110,13 @@ export default class PasswordRepeatController extends BaseSettingsController {
     } else if (this.passwordType == PinSubType.PIN_MIXED) {
       return $r('app.string.password_check_max_error')
     }
+    LogUtil.info(this.TAG + 'checkInputDigits out.');
   }
 
 //------------------------------ Router -----------------------------
 /**
    * Return OK result.
    */
-  @Log
   goBackCorrect() {
     Router.back()
   }
@@ -133,7 +127,6 @@ export default class PasswordRepeatController extends BaseSettingsController {
    */
   createPassword() {
     PasswordModel.addPinCredential(this.passwordType, this.password, (result) => {
-      LogUtil.info(this.TAG + 'create password->result = ' + JSON.stringify(result));
       if (result === ResultCode.SUCCESS) {
         LogUtil.info(`${this.TAG}create password success`);
         this.goBackCorrect()
@@ -150,8 +143,6 @@ export default class PasswordRepeatController extends BaseSettingsController {
    */
   updatePassword() {
     PasswordModel.updateCredential(this.passwordType, this.password, this.pinToken, (result, extraInfo) => {
-      LogUtil.info(this.TAG + 'update credential->result = ' + JSON.stringify(result));
-      LogUtil.debug(this.TAG + 'update credential->extraInfo = ' + JSON.stringify(extraInfo));
       if (result === ResultCode.SUCCESS) {
         LogUtil.info(`${this.TAG}update password success`);
         this.goBackCorrect()
@@ -162,5 +153,4 @@ export default class PasswordRepeatController extends BaseSettingsController {
       }
     });
   }
-
 }

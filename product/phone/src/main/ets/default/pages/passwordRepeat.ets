@@ -79,7 +79,6 @@ struct PasswordRepeat {
   @Log
   getRouterParam() {
     param = Router.getParams()
-    LogUtil.debug(this.TAG_PAGE + 'aboutToAppear : Router param = ' + JSON.stringify(param))
 
     if (!param) {
       return;
@@ -90,12 +89,6 @@ struct PasswordRepeat {
     this.pinToken = param.pinToken;
     this.inputPassword = param.inputPassword;
     this.passwordType = param.passwordType;
-    LogUtil.debug(this.TAG_PAGE + 'aboutToAppear : from router : pageRequestCode = ' + this.pageRequestCode
-    + ', prevPageUri = ' + this.prevPageUri
-    + ', pinChallenge = ' + this.pinChallenge
-    + ', pinToken = ' + this.pinToken
-    + ', inputPassword = ' + this.inputPassword
-    + ', passwordType = ' + this.passwordType)
   }
 
   build() {

@@ -13,13 +13,10 @@
  * limitations under the License.
  */
 // @ts-nocheck
-import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
 import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil.ets';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent.ets';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 import router from '@system.router'
-
-const MODULE_TAG = ConfigData.TAG + '.WifiPasswd -> ';
 
 /**
  * wifi password setting page
@@ -203,7 +200,6 @@ struct WifiPsd {
 
   aboutToAppear(): void {
     let params = router.getParams();
-    LogUtil.info(MODULE_TAG + 'settings wifiPsd aboutToAppear params : ' + JSON.stringify(params));
     this.apInfo = params.apInfo;
     this.isConnected = params.isConnected;
     ResourceUtil.getString($r("app.string.wifiPassword")).then(value => {

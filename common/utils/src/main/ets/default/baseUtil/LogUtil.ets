@@ -41,7 +41,7 @@ let LogLevel = {
   /**
      * fatal
      */
-  FATAL: 7
+  FATAL: 7,
 };
 
 const LOG_LEVEL = LogLevel.INFO
