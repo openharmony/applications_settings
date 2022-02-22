@@ -27,22 +27,22 @@ export class DateAndTimeModel extends BaseModel {
   timeFormat = null;
 
   setTime(time) {
-    LogUtil.info('DateAndTimeModel setTime in ：' + time);
+    LogUtil.info(ConfigData.TAG + 'DateAndTimeModel setTime in ：' + time);
     SystemTime.setTime(time).then(data => {
-      LogUtil.info(`DateAndTimeModel setTime promise then : ${data}`);
+      LogUtil.info(ConfigData.TAG + `DateAndTimeModel setTime promise then : ${data}`);
     })
       .catch(error => {
-      LogUtil.info(`DateAndTimeModel setTime promise1 catch : ${error}`);
+      LogUtil.info(ConfigData.TAG + `DateAndTimeModel setTime promise1 catch : ${error}`);
     }
     );
-    LogUtil.info('DateAndTimeModel setTime out');
+    LogUtil.info(ConfigData.TAG + 'DateAndTimeModel setTime out');
   }
 
   getTimeFormat() : string {
     if (this.timeFormat === null) {
       let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(ConfigData.TIME_FORMAT_URI);
       this.timeFormat = settings.getValue(dataAbilityHelper, ConfigData.TIME_FORMAT_KEY, ConfigData.TIME_FORMAT_24);
-      LogUtil.info('DateAndTimeModel get time format is ' + this.timeFormat);
+      LogUtil.info(ConfigData.TAG + 'DateAndTimeModel get time format is ' + this.timeFormat);
     }
     return this.timeFormat;
   }
@@ -56,12 +56,12 @@ export class DateAndTimeModel extends BaseModel {
   }
 
   public dateAndTimeListener(): any[] {
-    LogUtil.info('getAboutDeviceInfoListener come in');
+    LogUtil.info(ConfigData.TAG + 'getAboutDeviceInfoListener come in');
     return BaseParseConfModel.getJsonData(ConfigData.FILE_URI.concat('dateAndTime.json'));
   }
 
   private setTimeFormat(format: string) : boolean {
-    LogUtil.info('DateAndTimeModel set time format to ' + format);
+    LogUtil.info(ConfigData.TAG + 'DateAndTimeModel set time format to ' + format);
     if (format != ConfigData.TIME_FORMAT_12 && format != ConfigData.TIME_FORMAT_24) {
       return false;
     }

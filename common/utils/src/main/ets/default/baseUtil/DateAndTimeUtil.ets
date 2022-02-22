@@ -55,7 +55,6 @@ export class DateAndTimeUtil {
     let nYear = PreferenceUtil.getStorageValue(ConfigData.DATE_AND_TIME_YEAR,'');
     let nMonth = PreferenceUtil.getStorageValue(ConfigData.DATE_AND_TIME_MONTH,'');
     let nDay = PreferenceUtil.getStorageValue(ConfigData.DATE_AND_TIME_DAY,'');
-    console.info('SettingList concatDate day:'+ nDay)
     return year + nYear + month + nMonth + date + nDay;
   };
 
@@ -64,7 +63,6 @@ export class DateAndTimeUtil {
   };
 
   convert(y, m, d) {
-    console.info('DateAndTimeUtil come in')
     if (m == 1 || m == 2) {
       m += 12;
       y--;
@@ -75,7 +73,6 @@ export class DateAndTimeUtil {
     let e = y / 400
     const week = (d + 2 * m + Math.floor(a) + y + Math.floor(b)
     - Math.floor(c) + Math.floor(e) + 1) % 7;
-    console.info('DateAndTimeUtil get week ' + week);
     switch (week) {
       case 0:
         return $r('app.string.sunday');

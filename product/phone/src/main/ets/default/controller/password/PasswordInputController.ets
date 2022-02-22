@@ -17,7 +17,6 @@ import BaseSettingsController from '../../../../../../../../common/component/src
 import ConfigData from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
 import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
 import ISettingsController from '../../../../../../../../common/component/src/main/ets/default/controller/ISettingsController';
-import Log from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
 import {PinSubType} from '../../model/passwordImpl/PasswordModel.ets';
 import {Checker} from './Checker.ets';
 import Router from '@system.router';
@@ -39,16 +38,11 @@ export default class PasswordInputController extends BaseSettingsController {
 /**
    * Initialize data.
    */
-  @Log
   initData(): ISettingsController {
-
-    LogUtil.info(this.TAG + 'initData start : passwordType = ' + this.passwordType)
     if (!this.passwordType || this.passwordType < 0) {
       LogUtil.info(this.TAG + 'initData : passwordType set DEFAULT')
       this.passwordType = AUTH_SUB_TYPE_DEFAULT;
     }
-
-    LogUtil.info(this.TAG + 'initData : passwordType = ' + this.passwordType)
 
     return super.initData();
   }
@@ -59,7 +53,6 @@ export default class PasswordInputController extends BaseSettingsController {
    *
    * @param value : password type
    */
-  @Log
   changePasswordType(value) {
     this.passwordType = value;
   }
@@ -72,9 +65,7 @@ export default class PasswordInputController extends BaseSettingsController {
   passwordOnChange(value: string) {
     LogUtil.info(this.TAG + 'passwordOnChange in.')
     this.password = value;
-    LogUtil.debug(this.TAG + 'passwordOnChange : passwordType = ' + this.passwordType + ', password = ' + this.password)
     this.checkMessage = this.checkInputDigits(value)
-    LogUtil.debug(this.TAG + 'passwordOnChange : checkInputDigits over : checkMessage = ' + JSON.stringify(this.checkMessage));
 
     if (this.passwordType == PinSubType.PIN_SIX && !this.checkMessage && this.checker.isNumber6(this.password)) {
       // When password is 6 numbers, finish input
@@ -86,10 +77,7 @@ export default class PasswordInputController extends BaseSettingsController {
 /**
    * Input finish. Start simple check.
    */
-  @Log
   inputFinish() {
-    LogUtil.debug(this.TAG + 'inputFinish : password = ' + this.password)
-
     if (!this.password) {
       LogUtil.info(this.TAG + 'inputFinish return : password is none.')
       return;
@@ -108,7 +96,6 @@ export default class PasswordInputController extends BaseSettingsController {
       }
     }
 
-    LogUtil.info(this.TAG + 'inputFinish ：check over : checkMessage = ' + JSON.stringify(this.checkMessage));
     if (this.checkMessage) {
       LogUtil.info(this.TAG + 'inputFinish return : has error yet.')
       return;
@@ -177,7 +164,6 @@ export default class PasswordInputController extends BaseSettingsController {
 /**
    * Input check success.
    */
-  @Log
   checkInputSuccess() {
     this.gotoRepeatPage();
   }
@@ -186,7 +172,6 @@ export default class PasswordInputController extends BaseSettingsController {
 /**
    * When password illegality check is ok, go to repeat input password page.
    */
-  @Log
   gotoRepeatPage() {
     Router.replace({
       uri: 'pages/passwordRepeat',

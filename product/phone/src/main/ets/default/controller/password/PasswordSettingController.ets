@@ -28,7 +28,6 @@ export default class PasswordSettingController extends BaseSettingsController {
   subscribe(): ISettingsController {
     PasswordModel.closeSession();
     PasswordModel.openSession((data) => {
-      LogUtil.debug(`${this.TAG}subscribe->openSession data:${data}`);
       if (data === '0') {
         LogUtil.info(`${this.TAG}subscribe->openSession failed`);
       } else {
@@ -54,9 +53,7 @@ export default class PasswordSettingController extends BaseSettingsController {
 
       // update password settings list
       this.getListData(passwordHasSet , (list) => {
-        LogUtil.info(this.TAG + 'getListData callback : list = ' + JSON.stringify(list));
         this.passwordList = list
-        LogUtil.info(this.TAG + 'getListData callback : end ');
       });
     });
   }

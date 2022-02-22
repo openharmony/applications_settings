@@ -131,7 +131,6 @@ struct Index {
       apInfo: apInfo,
       isConnected: isConnected
     };
-    LogUtil.info(MODULE_TAG + 'start to jump to wifiPsd page : ' + JSON.stringify(params));
     router.push({
       uri: 'pages/wifiPsd',
       params: params,
@@ -171,7 +170,6 @@ struct Index {
   }
 
   wifiConnectStatusCallback(err, data) {
-    LogUtil.info(MODULE_TAG + 'subscriber callback called ' + JSON.stringify(data));
     // connecting
     if (data.code === WifiModel.wiFiStatusEnum.Connecting) {
       LogUtil.info(MODULE_TAG + 'code 1 : connecting');
