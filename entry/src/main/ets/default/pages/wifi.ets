@@ -152,7 +152,6 @@ struct Index {
             AppStorage.SetOrCreate('WifiList', []);
             clearTimeout(this.timeoutFlag);
             clearTimeout(that.timeoutMark);
-            LogUtil.info('init wifi wifiList' + this.wifiList);
           }, 3000);
         } else {
           LogUtil.info('init scan wifiList fail');
@@ -181,7 +180,6 @@ struct Index {
     }
 
     LogUtil.info('[wifi_js_test] connectSecurityType' + this.connectSecurityType);
-    LogUtil.info('[wifi_js_test] connectPsd' + this.connectPsd);
     LogUtil.info('[wifi_js_test] connectName' + this.connectName);
     if (this.connectSecurityType !== 1 && '' == this.connectPsd) {
       LogUtil.info('click to detail wifiPsd');
@@ -196,8 +194,6 @@ struct Index {
     }
     if (WifiModel.connectToDevice(obj)) {
       LogUtil.info('[wifi_js_test] connect to come in');
-      LogUtil.info('[wifi_js_test] connect to come in obj' + JSON.stringify(obj));
-      LogUtil.info('[wifi_js_test] connect to wifiList ' + JSON.stringify(this.wifiList));
     }
     LogUtil.info('clickToSecret end:');
   }
@@ -227,7 +223,7 @@ struct Index {
   private switchOn() {
     LogUtil.info('switchClick wifi start ---->');
     if(this.wifiList.length > 0){
-      console.info('come on one');
+      LogUtil.info('come on one');
       return;
     }
     LogUtil.info('switchClick wifi start 1---->');
@@ -244,7 +240,6 @@ struct Index {
             that.isShow = false;
             clearTimeout(this.timeoutFlag);
             clearTimeout(that.timeoutMark);
-            LogUtil.info('switchClick wifi wifiList' + JSON.stringify(this.wifiList));
           }, 3000);
         } else {
           LogUtil.info('switchClick wifi fail to scan ---->');
@@ -286,9 +281,7 @@ struct Index {
   SubscriberCallBack(err, data) {
     LogUtil.info('subscriber call back');
     LogUtil.info('==========================>SubscriberCallBack  event = ' + data.event);
-    LogUtil.info('==========================>SubscriberCallBack  data = ' + JSON.stringify(data));
     LogUtil.info('==========================>SubscriberCallBack  data code = ' + data.code);
-    LogUtil.info('SubscriberCallBack  this.wifiList：' + JSON.stringify(this.wifiList));
     if (this.connectName !== '' && (data.code === 1 || data.code === 3 || data.code === 4)) {
       let wifi = { 'name': '', 'rssi': -1, 'band': -1 };
       wifi.name = this.connectName;
@@ -297,9 +290,9 @@ struct Index {
       SubscriberUtils.sendEvent(JSON.stringify(wifi), ConfigData.SENT_EVENT_WIFI_CONNECT_NAME);
       BrightnessSettingModel.setStorageValue('wifiConnectName', this.connectName);
       let index = WifiModel.getItemPosition(this.wifiList, this.connectName);
-      LogUtil.info('subscriber connected -1:' + JSON.stringify(this.wifiList));
+      LogUtil.info('subscriber connected -1');
       this.wifiList.splice(index, 1);
-      LogUtil.info('subscriber connected 0:' + JSON.stringify(this.wifiList));
+      LogUtil.info('subscriber connected 0');
       this.wifiList.unshift({
         settingSummary: $r('app.string.connected'),
         settingTitle: this.connectName,
@@ -311,9 +304,9 @@ struct Index {
         bssid: this.connectBssid,
         securityType: this.connectSecurityType,
       });
-      LogUtil.info('subscriber connected 1:' + JSON.stringify(this.wifiList));
+      LogUtil.info('subscriber connected 1');
       this.wifiList[1].settingSummary = '';
-      LogUtil.info('subscriber connected 2' + JSON.stringify(this.wifiList));
+      LogUtil.info('subscriber connected 2');
     }
 
     if (data.code === 7) {
@@ -363,7 +356,6 @@ struct Index {
   }
 
   onPageShow() {
-    LogUtil.info('wifi onPageShow this.password:' + this.password);
     this.connectPsd = this.password;
     if (this.connectPsd !== '') {
       this.connectWifi();
