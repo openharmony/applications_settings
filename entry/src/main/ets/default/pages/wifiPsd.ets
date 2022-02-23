@@ -101,7 +101,6 @@ struct WifiPsd {
   aboutToAppear(): void{
     LogUtil.info('settings wifiPsd aboutToAppear start');
     name = Router.getParams();
-    LogUtil.info('settings wifiPsd aboutToAppear name:' + JSON.stringify(name));
     title = name.connectName;
     LogUtil.info('settings wifiPsd aboutToAppear title:' + title);
     AppStorage.SetOrCreate('wifiPsd', '');
