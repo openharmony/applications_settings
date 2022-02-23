@@ -59,23 +59,18 @@ export class WifiModel extends BaseModel {
     this.mWifiList = [];
     this.remdupWifiList = [];
     WifiNativeJs.getScanInfos(result => {
-      LogUtil.info('[wifi_js_test] wifi received scan info call back results1:' + JSON.stringify(result));
       if (result === null) {
         return;
       }
-      LogUtil.info('[wifi_js_test] wifi received scan info call back results2:' + JSON.stringify(result));
       let clen = Object.keys(result)
         .length;
       let image;
       LogUtil.info('[wifi_js_test] wifi received scan info call back length:' + clen);
       for (let j = 0; j < clen; j++) {
         LogUtil.info('result[0].ssid: ' + result[j].ssid);
-        LogUtil.info('securityType: ' + result[j].securityType);
         LogUtil.info('rssi: ' + result[j].rssi);
-        LogUtil.info('bssid: ' + result[j].bssid);
         LogUtil.info('band: ' + result[j].band);
         LogUtil.info('frequency: ' + result[j].frequency);
-        LogUtil.info('timestamp: ' + result[j].timestamp);
         LogUtil.info('SignalLevel: ' + WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band));
         if (result[j].securityType === 1 && WifiNativeJs.getSignalLevel(result[j].rssi, result[j].band) === 4) {
           image = '/res/image/ic_wifi_signal_4_dark.svg';
@@ -134,7 +129,6 @@ export class WifiModel extends BaseModel {
           });
         }
       }
-      LogUtil.info('original mWifiList :' + JSON.stringify(this.mWifiList));
       for (let i = 0; i < this.mWifiList.length; i++) {
         let position = this.getItemPosition(this.remdupWifiList, this.mWifiList[i].settingTitle);
         if (position !== -1) {
@@ -146,7 +140,6 @@ export class WifiModel extends BaseModel {
           this.remdupWifiList.push(this.mWifiList[i]);
         }
       }
-      LogUtil.info('get linkedList info before0 ：' + JSON.stringify(this.linkedInfoList));
       LogUtil.info('get linkedList info before1 ：' + this.linkedInfoList.length);
       if (this.linkedInfoList.length === 0) {
         LogUtil.info('get linkedList info linkedInfoList empty ：');
@@ -177,7 +170,6 @@ export class WifiModel extends BaseModel {
         }
       }
       AppStorage.SetOrCreate('WifiList', this.remdupWifiList);
-      LogUtil.info('remove duplicate ssid remdupWifiList: ' + JSON.stringify(this.remdupWifiList));
     });
     LogUtil.info('get to wifi information end ---->');
   }
@@ -217,11 +209,9 @@ export class WifiModel extends BaseModel {
     LogUtil.info('[wifi_js] get wifi linked info start');
     WifiNativeJs.getLinkedInfo()
       .then(data => {
-      LogUtil.info("[wifi_js] get wifi linked info [promise] -> " + JSON.stringify(data));
       LogUtil.info("[wifi_js] get wifi linked info [promise] -> " + JSON.stringify(data.ssid));
       LogUtil.info('data result[0].ssid: ' + data.ssid);
       LogUtil.info('data rssi: ' + data.rssi);
-      LogUtil.info('data bssid: ' + data.bssid);
       LogUtil.info('data band: ' + data.band);
       this.linkedInfoList.push({
         settingSummary: '',
@@ -234,9 +224,7 @@ export class WifiModel extends BaseModel {
         securityType: '',
         signalLevel: WifiNativeJs.getSignalLevel(data.rssi, data.band),
       });
-      LogUtil.info("[wifi_js] get wifi linked info linkedInfoList 1" + JSON.stringify(this.linkedInfoList))
       AppStorage.SetOrCreate('linkedInfoList', this.linkedInfoList);
-      LogUtil.info("[wifi_js] get wifi linked info linkedInfoList 2" + JSON.stringify(this.linkedInfoList))
     })
       .catch(error => {
       LogUtil.info("[wifi_js] linked info promise then error" + error);
