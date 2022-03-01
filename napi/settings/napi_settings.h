@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -83,6 +83,14 @@ napi_value napi_set_value(napi_env env, napi_callback_info info);
  * @return napi_value the return value from NAPI C++ to JS for the module.
  */
 napi_value napi_set_value_sync(napi_env env, napi_callback_info info);
+
+/**
+ * @brief setValueSync NAPI implementation.
+ * @param env the environment that the Node-API call is invoked under
+ * @param exports the class property
+ * @return napi_value the return value from NAPI C++ to JS for the module.
+ */
+napi_value InitNapiClass(napi_env env, napi_value exports);
 }  // namespace Settings
 }  // namespace OHOS
 #endif  //  NAPI_SETTINGS_H
