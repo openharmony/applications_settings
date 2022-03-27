@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
-import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
+import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
+import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 
 export default {
   onCreate() {

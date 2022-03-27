@@ -12,12 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
-import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
-import {BrightnessSettingModel} from '../model/displayAndBrightnessImpl/brightness/BrightnessSettingModel.ets';
+import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
+import {BrightnessSettingModel} from '../model/displayAndBrightnessImpl/brightness/BrightnessSettingModel';
+import {ScreenModeModel} from '../model/displayAndBrightnessImpl/display/ScreenMode';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent.ets';
-import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
+import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import {SubEntryComponentWithEndText} from '../../../../../../../common/component/src/main/ets/default/subEntryComponent.ets';
+import {SubHeader} from '../../../../../../../common/component/src/main/ets/default/textComponent.ets';
 
 
 const BRIGHTNESS_MIN_VALUE = 4;
@@ -31,62 +33,88 @@ const BRIGHTNESS_STEP_VALUE = 1;
 @Component
 struct BrightnessSettings {
   @State brightnessSettingModel:BrightnessSettingModel = new BrightnessSettingModel();
+  @State screenModeModel:ScreenModeModel = new ScreenModeModel();
   private TAG = ConfigData.TAG + 'BrightnessSettings ';
 
   build() {
-    Column() {
-      HeadComponent({ headName: $r('app.string.brightnessTab'), isActive: true });
-      Text($r('app.string.brightness'))
-        .fontSize($r('app.float.font_18'))
-        .textAlign(TextAlign.Start)
-        .margin({top:$r('app.float.distance_24'), bottom:$r('app.float.distance_24')})
-        .padding({left:$r('app.float.distance_24'), right:$r('app.float.distance_24'),})
-        .width(ConfigData.WH_100_100)
-
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        Image($r('app.media.ic_settings_brightness_minimum'))
-          .width($r('app.float.wh_value_40'))
-          .height($r('app.float.wh_value_40'))
-          .objectFit(ImageFit.Contain);
-        Slider({
-          value: this.brightnessSettingModel.getValue(),
-          min: BRIGHTNESS_MIN_VALUE,
-          max: BRIGHTNESS_MAX_VALUE,
-          step: BRIGHTNESS_STEP_VALUE,
-          style: SliderStyle.InSet
-        })
-          .selectedColor(Color.Blue)
-          .blockColor(Color.White)
-          .width(ConfigData.WH_83_100)
-          .onChange((number, mode:SliderChangeMode) => {
-            this.brightnessSettingModel.setValue(number, mode);
+    Column(){
+      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+        Row({}) {
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
+            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
           });
-        Image($r('app.media.ic_settings_brightness_maximum'))
-          .width($r('app.float.wh_value_40'))
-          .height($r('app.float.wh_value_40'))
-          .objectFit(ImageFit.Contain);
-      }
-      .padding({ left: $r('app.float.wh_value_24'), right: $r('app.float.wh_value_24') })
-      .height($r('app.float.wh_value_56'))
-      .width(ConfigData.WH_100_100)
-      .borderRadius($r('app.float.radius_24'))
-      .backgroundColor($r("app.color.white_bg_color"))
 
-      Text($r('app.string.screen'))
-        .fontSize($r('app.float.font_18'))
-        .textAlign(TextAlign.Start)
-        .margin({top:$r('app.float.distance_24'), bottom:$r('app.float.distance_24')})
-        .padding({left:$r('app.float.distance_24'), right:$r('app.float.distance_24'),})
+          Column() {
+            HeadComponent({headName: $r('app.string.brightnessTab'), isActive: true});
+
+            SubHeader({ titleContent: $r('app.string.brightness') })
+
+            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Image($r('app.media.ic_settings_brightness_maximum'))
+                .width($r('app.float.wh_value_18'))
+                .height($r('app.float.wh_value_18'))
+                .objectFit(ImageFit.Contain);
+              Slider({
+                value: this.brightnessSettingModel.getValue(),
+                min: BRIGHTNESS_MIN_VALUE,
+                max: BRIGHTNESS_MAX_VALUE,
+                step: BRIGHTNESS_STEP_VALUE,
+                style: SliderStyle.InSet
+              })
+                .selectedColor($r('app.color.font_color_007DFF'))
+                .blockColor(Color.White)
+                .layoutWeight(1)
+                .padding({left: $r('app.float.distance_12'), right: $r('app.float.distance_12')})
+                .onChange((number, mode:SliderChangeMode) => {
+                  this.brightnessSettingModel.setValue(number, mode);
+                });
+              Image($r('app.media.ic_settings_brightness_maximum'))
+                .width($r('app.float.wh_value_24'))
+                .height($r('app.float.wh_value_24'))
+                .objectFit(ImageFit.Contain);
+            }
+            .padding({left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end')})
+            .height($r('app.float.distance_64'))
+            .width(ConfigData.WH_100_100)
+            .borderRadius($r('app.float.radius_24'))
+            .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
+
+            SubHeader({ titleContent: $r('app.string.screen') })
+
+            SubEntryComponentWithEndText({targetPage: "pages/screenMode", title: $r("app.string.screenResolution"), endText: this.screenModeModel.sysScreenModeText})
+          }
+          .padding({left: $r('app.float.distance_24'), right: $r('app.float.distance_24')})
+          .align(Alignment.Center)
+          .height(ConfigData.WH_100_100)
+          .width(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
+            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
+          });
+
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
+            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
+          })
+        }
         .width(ConfigData.WH_100_100)
-
-      SubEntryComponentWithEndText({targetPage: "pages/screenMode", title: $r("app.string.screenResolution"), endText: $r('app.string.high')})
-
+        .height(ConfigData.WH_100_100);
+      }
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100);
     }
-    .padding({left:$r('app.float.distance_24'), right:$r('app.float.distance_24')})
-    .align(Alignment.Center)
-    .height(ConfigData.WH_100_100)
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
-    .backgroundColor($r("app.color.color_E3E3E3_grey"));
+    .height(ConfigData.WH_100_100);
   }
 
   @Log
