@@ -15,25 +15,76 @@
 
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent.ets';
 import SwitchComponent from '../../../../../../../common/component/src/main/ets/default/switchComponent.ets';
-import UsbDebuggingController from '../controller/developerOptions/UsbDebuggingController.ets'
-
+import UsbDebuggingController from '../controller/developerOptions/UsbDebuggingController'
+import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 /**
  * Developer options
  */
 @Entry
 @Component
 struct developerOptions {
+  @State columnMargin: string = '24vp';
   @State isOn: boolean = false;
   private controller: UsbDebuggingController = new UsbDebuggingController();
 
   build() {
-    Column() {
-      HeadComponent({ headName: $r("app.string.developerOptionsTab"), isActive: true });
-      SwitchComponent({
-        title: $r("app.string.usbDebugging"),
-        isOn: $isOn,
-        controller: this.controller
-      })
+    Column(){
+      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+        Row({}) {
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
+            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
+          });
+
+          Column() {
+            HeadComponent({ headName: $r("app.string.developerOptionsTab"), isActive: true });
+            SwitchComponent({
+              title: $r("app.string.usbDebugging"),
+              summary: $r("app.string.locationServicesPromptInfo"),
+              isOn: $isOn,
+              controller: this.controller,
+              cssValue: {
+                fontSize: $r("app.float.font_16"),
+                summaryFontSize: $r("app.float.font_14"),
+                height: $r('app.float.wh_value_72'),
+                width: ConfigData.WH_100_100,
+                backgroundColor: ($r("app.color.white_bg_color")),
+                margin: ({
+                  top: $r('app.float.distance_16'),
+                }),
+                borderRadius: $r("sys.float.ohos_id_corner_radius_default_l")
+              }
+            })
+          }
+          .padding({left: $r('app.float.distance_24'), right: $r('app.float.distance_24')})
+          .height(ConfigData.WH_100_100)
+          .width(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
+            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
+          });
+
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
+            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
+          })
+        }
+        .width(ConfigData.WH_100_100)
+        .height(ConfigData.WH_100_100);
+      }
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100);
     }
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100);
   }
 }
