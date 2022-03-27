@@ -37,6 +37,126 @@
       "value": "WLAN"
     },
     {
+      "name": "wifiTipConnectedWLAN",
+      "value": "Connected WLAN"
+    },
+    {
+      "name": "wifiTipValidWLAN",
+      "value": "Valid WLAN"
+    },
+    {
+      "name": "wifiButtonCancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "wifiButtonDelete",
+      "value": "Delete"
+    },
+    {
+      "name": "wifiButtonConnect",
+      "value": "Connect"
+    },
+    {
+      "name": "wifiInfoTitleIntensity",
+      "value": "Signal intensity"
+    },
+    {
+      "name": "wifiInfoTitleEncryptMethod",
+      "value": "Encrypt method"
+    },
+    {
+      "name": "wifiInfoTitleStatus",
+      "value": "Status"
+    },
+    {
+      "name": "wifiInfoTitleSpeed",
+      "value": "Speed"
+    },
+    {
+      "name": "wifiInfoTitleFrequency",
+      "value": "Frequency"
+    },
+    {
+      "name": "wifiSummaryConnected",
+      "value": "Connected"
+    },
+    {
+      "name": "wifiSummaryConnecting",
+      "value": "Connecting..."
+    },
+    {
+      "name": "wifiSummarySaveEncrypted",
+      "value": "Saved, Encrypted"
+    },
+    {
+      "name": "wifiSummarySaveOpen",
+      "value": "Saved, Open"
+    },
+    {
+      "name": "wifiSummaryEncrypted",
+      "value": "Encrypted"
+    },
+    {
+      "name": "wifiSummaryOpen",
+      "value": "Open"
+    },
+    {
+      "name": "wifiSummaryObtainingIP",
+      "value": "Obtaining IP address..."
+    },
+    {
+      "name": "wifiSigIntensityStrong",
+      "value": "Good"
+    },
+    {
+      "name": "wifiSigIntensityWell",
+      "value": "Well"
+    },
+    {
+      "name": "wifiSigIntensityNormal",
+      "value": "Normal"
+    },
+    {
+      "name": "wifiSigIntensityBad",
+      "value": "Bad"
+    },
+    {
+      "name": "wifiEncryptMethodOpen",
+      "value": "Open"
+    },
+    {
+      "name": "wifiEncryptMethodWEP",
+      "value": "WEP"
+    },
+    {
+      "name": "wifiEncryptMethodWPA",
+      "value": "WPA"
+    },
+    {
+      "name": "wifiEncryptMethodWPA2",
+      "value": "WPA2-Personal"
+    },
+    {
+      "name": "wifiTipsScanInfo",
+      "value": "Scan the QR to connect this AP, be careful your information security"
+    },
+    {
+      "name": "wifiTipsConnecting",
+      "value": "Connecting to \"%s\"..."
+    },
+    {
+      "name": "wifiTipsConnectAuthFailed",
+      "value": "Password incorrect, auth failed"
+    },
+    {
+      "name": "wifiTipsConnectFailed",
+      "value": "连接失败"
+    },
+    {
+      "name": "wifiTipsGotIt",
+      "value": "Got it"
+    },
+    {
       "name": "brightnessTab",
       "value": "Display and Brightness"
     },
@@ -50,19 +170,19 @@
     },
     {
       "name": "volumeControlTab",
-      "value": "volumeControl"
+      "value": "Volume"
     },
     {
       "name": "volumeControlRing",
-      "value": "Ringer, Messages, Notifications"
+      "value": "Ringer"
     },
     {
       "name": "volumeControlMedia",
-      "value": "Music, Videos, games"
+      "value": "Media"
     },
     {
       "name": "volumeControlCall",
-      "value": "Calls"
+      "value": "Call"
     },
     {
       "name": "soundMode",
@@ -201,8 +321,8 @@
       "value": "wifi,liebiao"
     },
     {
-      "name": "systemName",
-      "value": "SystemName"
+      "name": "deviceName",
+      "value": "Device Name"
     },
     {
       "name": "model",
@@ -329,8 +449,20 @@
       "value": "Add New User"
     },
     {
+      "name": "isCreatingUser",
+      "value": "正在创建..."
+    },
+    {
+      "name": "isRemoving",
+      "value": "Is removing account..."
+    },
+    {
       "name": "addUserDescription",
       "value": "When you add a new user, that person needs to set up their space."
+    },
+    {
+      "name": "userCreatedWarn",
+      "value": "Name has been used"
     },
     {
       "name": "askSwitchUser",
@@ -437,7 +569,7 @@
       "value": "Face Recognition"
     },
     {
-      "name": "faceauthFailed",
+      "name": "face_auth_failed",
       "value": "Face recognition failed to start, please make sure the function is available."
     },
     {
@@ -466,7 +598,7 @@
     },
     {
       "name": "remainingSpace",
-      "value": "remainingSpaceInformation"
+      "value": "availableSpace"
     },
     {
       "name": "authorityManagement",
@@ -618,7 +750,7 @@
     },
     {
       "name":"password_disable_prompt",
-      "value":"Your personal data can be used by anyone who has access to your phone if you disable your lock screen password."
+      "value":"Your personal data can be used by anyone who has access to your device if you disable your lock screen password."
     },
     {
       "name":"password_message_incorrect",
@@ -691,6 +823,202 @@
     {
       "name": "highText",
       "value": "%s, clearer screen"
+    },
+    {
+      "name": "used",
+      "value": "Used %s / %s"
+    },
+    {
+      "name": "resetPhone",
+      "value": "Reset Device"
+    },
+    {
+      "name": "resetPhonePrompt",
+      "value": "This will delete all data from your device,including:"
+    },
+    {
+      "name": "resetPhonePromptDetails",
+      "value": "· Accounts\n\n· App data and system settings\n\n· Installed apps\n\n· Music\n\n· Photos\n\n· Files\n\n· Security chip contents(will be erased the next time the device connects to the Internet)\n\n· Locally-stored system,app,and personal data related to HUAWEIIDs"
+    },
+    {
+      "name": "resetPhonePromptInfo",
+      "value": "Resetting your device will erase all system data and installed apps.Your personal files such as music and photos will be permanently deleted.This cannot be undone"
+    },
+    {
+      "name": "locationServicesPromptInfo",
+      "value": "Turn on debugging mode after connecting USB"
+    },
+    {
+      "name": "bluetoothTab",
+      "value": "Bluetooth"
+    },
+    {
+      "name": "bluetooth_state_pairing",
+      "value": "Pairing…"
+    },
+    {
+      "name": "bluetooth_state_connecting",
+      "value": "Connecting…"
+    },
+    {
+      "name": "bluetooth_state_connected",
+      "value": "Connected"
+    },
+    {
+      "name": "bluetooth_state_disconnecting",
+      "value": "Disconnecting…"
+    },
+    {
+      "name": "bluetooth_visible_to_nearby",
+      "value": "Currently visible to nearby devices"
+    },
+    {
+      "name": "bluetooth_device_name",
+      "value": "Device name"
+    },
+    {
+      "name": "bluetooth_paired_devices",
+      "value": "Paired devices"
+    },
+    {
+      "name": "bluetooth_available_devices",
+      "value": "Available devices"
+    },
+    {
+      "name": "bluetoothContent",
+      "value": "Other devices will see this name when using Bluetooth interconnection, hotspot sharing and USB connection"
+    },
+    {
+      "name": "cancelPairing",
+      "value": "cancelPairing"
+    },
+    {
+      "name": "scanning",
+      "value": "Scanning..."
+    },
+    {
+      "name": "bluetooth_pairing_request",
+      "value": "Bluetooth pairing request"
+    },
+    {
+      "name": "bluetooth_pairing_media_device_hit",
+      "value": "Pair with the following devices："
+    },
+    {
+      "name": "bluetooth_pairing_intelligent_device_hit",
+      "value": "%s would like to pair with this device. Confirm that this code is also shown on th %s."
+    },
+    {
+      "name": "bluetooth_disconnect",
+      "value": "Disconnect?"
+    },
+    {
+      "name": "bluetooth_disconnect_device",
+      "value": "This will end your connection with: %s"
+    },
+    {
+      "name": "pairing_failed_title",
+      "value": "Pairing failed"
+    },
+    {
+      "name": "pairing_failed_message",
+      "value": "An error occurred during pairing."
+    },
+    {
+      "name": "bluetooth_holding_should_pairing",
+      "value": "Ensure the bluetooth device is in pairable mode."
+    },
+    {
+      "name": "bluetooth_pairing_with_app",
+      "value": "Please complete pairing by the related app."
+    },
+    {
+      "name": "bluetooth_address_error_msg",
+      "value": "The address device is illegal and may be at risk. Continue connecting?"
+    },
+    {
+      "name": "bluetooth_connect_failed",
+      "value": "Failed to connect"
+    },
+    {
+      "name": "bluetooth_connect_failed_msg",
+      "value": "Unable to connect to %s. Possible reasons:\n1.The device is out of range (10 m) or Bluetooth is not enabled.\n2.The device is connected to another device. End that connection and try again."
+    },
+    {
+      "name": "bluetooth_know_button",
+      "value": "know"
+    },
+    {
+      "name": "bluetooth_pair_button",
+      "value": "pair"
+    },
+    {
+      "name": "mobileData",
+      "value": "Mobile Data"
+    },
+    {
+      "name": "mobileDataFailed",
+      "value": "Mobile data failed to start, please make sure the function is available."
+    },
+    {
+      "name": "regionExample",
+      "value": "Example of region format"
+    },
+    {
+      "name": "regionExampleLanguage",
+      "value": "English"
+    },
+    {
+      "name": "regionExampleDate",
+      "value": "Wednesday, April 7, 2019"
+    },
+    {
+      "name": "regionExampleTime",
+      "value": "1:03 am"
+    },
+    {
+      "name": "regionExampleNumber",
+      "value": "12,345.67"
+    },
+    {
+      "name": "regionExamplePercent",
+      "value": "78.9%"
+    },
+    {
+      "name": "regionExampleMoney",
+      "value": "/$1,234.56"
+    },
+    {
+      "name": "deviceNameChangeText",
+      "value": "This name will be visible to other devices when using Bluetooth Interconnect, WLAN Direct, Hotspot Sharing and USB connections."
+    },
+    {
+      "name": "more",
+      "value": "more"
+    },
+    {
+      "name": "put_away",
+      "value": "put away"
+    },
+    {
+      "name": "senior",
+      "value": "senior"
+    },
+    {
+      "name": "store_description_information",
+      "value": "Internal storage space used %s"
+    },
+    {
+      "name": "illegalcharacters",
+      "value": "Illegal Characters"
+    },
+    {
+      "name": "softwareUpdates",
+      "value": "Software Updates"
+    },
+    {
+      "name": "softwareUpdateFailed",
+      "value": "Software update startup failed, please make sure the function is available."
     }
   ]
 }

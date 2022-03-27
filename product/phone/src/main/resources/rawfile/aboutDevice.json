@@ -1,10 +1,5 @@
 [
   {
-    "settingAlias": "systemName",
-    "settingTitle": "",
-    "settingValue": "OpenHarmony"
-  },
-  {
     "settingAlias": "model",
     "settingTitle": "",
     "settingValue": ""

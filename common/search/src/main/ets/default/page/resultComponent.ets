@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import ResourceUtil from '../common/ResourceUtil';
 import SearchData from '../model/SearchData';
-import LogUtil from '../../../../../../utils/src/main/ets/default/baseUtil/LogUtil.ets';
-import Log from '../../../../../../utils/src/main/ets/default/baseUtil/LogDecorator.ets';
-import ConfigData from '../../../../../../utils/src/main/ets/default/baseUtil/ConfigData.ets';
+import LogUtil from '../../../../../../utils/src/main/ets/default/baseUtil/LogUtil';
+import Log from '../../../../../../utils/src/main/ets/default/baseUtil/LogDecorator';
+import ConfigData from '../../../../../../utils/src/main/ets/default/baseUtil/ConfigData';
 
 /**
  * result component
@@ -27,6 +28,7 @@ export default struct ResultComponent {
   @Link highlightKeyword: string
   @State icon: string = ''
   @State data: SearchData = new SearchData()
+  @State columnSpace: string = '2vp';
 
   @Builder HighlightText(
     spans: string[],
@@ -50,32 +52,31 @@ export default struct ResultComponent {
     .textAlign(TextAlign.Start)
     .maxLines(3)
     .textOverflow({ overflow: TextOverflow.Ellipsis })
-    .margin({ top: $r('app.float.wh_value_10'), bottom: $r('app.float.wh_value_5') })
   }
 
   build() {
     Row() {
       Image(this.icon)
-        .width($r('app.float.wh_value_50'))
-        .height($r('app.float.wh_value_50'))
-        .margin({ right: $r('app.float.wh_value_10') })
+        .width($r('app.float.item_icon_size'))
+        .height($r('app.float.item_icon_size'))
+        .margin({ right: $r('app.float.sys_elements_margin_horizontal_l') })
         .visibility(this.icon ? Visibility.Visible : Visibility.Hidden)
         .objectFit(ImageFit.Contain);
 
-      Column() {
+      Column({space: this.columnSpace}){
         this.HighlightText(
-        this.splitToHighlightText(this.data.keyword),
-        $r('app.color.color_333333_grey'),
-        $r('app.float.search_result_item_title_font_size'),
-          Color.Blue
+          this.splitToHighlightText(this.data.keyword),
+          $r('app.color.search_result_text_color'),
+          $r('app.float.search_result_item_title_font_size'),
+          $r('app.color.search_result_text_color_highlight'),
         )
 
         if (this.data.summary) {
           this.HighlightText(
-          this.splitToHighlightText(this.data.summary),
-          $r('app.color.color_666666_grey'),
-          $r('app.float.search_result_item_summary_font_size'),
-            Color.Blue
+            this.splitToHighlightText(this.data.summary),
+            $r('app.color.search_result_text_color'),
+            $r('app.float.search_result_item_summary_font_size'),
+            $r('app.color.search_result_text_color_highlight'),
           )
         }
       }
@@ -83,16 +84,23 @@ export default struct ResultComponent {
       .alignItems(HorizontalAlign.Start);
 
       Image("/res/image/ic_settings_arrow.svg")
-        .width($r('app.float.wh_value_40'))
-        .height($r('app.float.wh_value_40'))
+        .width($r('app.float.item_arrow_width'))
+        .height($r('app.float.item_icon_size'))
+        .margin({ left: $r('app.float.sys_elements_margin_horizontal_m') })
     }
+    .height($r('app.float.search_item_height'))
     .padding({
-      left: $r('app.float.item_common_horizontal_margin'),
-      right: $r('app.float.item_common_horizontal_margin')
+      left: $r('sys.float.ohos_id_card_margin_start'),
+      right: $r('sys.float.ohos_id_card_margin_end')
     })
     .flexShrink(0)
     .alignItems(VerticalAlign.Center)
     .align(Alignment.Start)
+  }
+
+  @Log
+  aboutToAppear(){
+    ResourceUtil.getString($r('app.float.distance_2')).then(value => this.columnSpace = value);
   }
 
   /**

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import ComponentConfig from './ComponentConfig.ets';
+import InputMethod from '@ohos.inputmethod';
 
 /**
  * TextInput component
@@ -33,7 +34,12 @@ export default struct textInputComponent {
       .width(ComponentConfig.WH_100_100)
       .margin({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') })
       .onChange((value: string) => {
-      this.contextText = value;
-    });
+        this.contextText = value;
+      })
+      .onSubmit((enterKey) => {
+        InputMethod.getInputMethodController().stopInput().then((ret) => {
+          LogUtil.debug( `${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
+        });
+      });
   }
 }
