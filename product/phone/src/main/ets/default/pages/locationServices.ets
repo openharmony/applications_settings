@@ -14,9 +14,9 @@
  */
 
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent.ets';
-import ViewModel from '../model/locationServicesImpl/LocationViewModel.ets'
-import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
-import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
+import ViewModel from '../model/locationServicesImpl/LocationViewModel'
+import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 
 /**
  * LocationServices
@@ -36,40 +36,71 @@ struct LocationServices {
   }
 
   build() {
-    Column() {
-      HeadComponent({ headName: $r('app.string.locationServicesTab'), isActive: true });
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        Text($r('app.string.positionInformation'))
-          .fontColor(Color.Black)
-          .fontStyle(FontStyle.Normal)
-          .padding({ left: $r('app.float.switch_component_margin') })
-          .fontSize('20')
-        Toggle({ type: ToggleType.Switch, isOn: this.locationServiceStatus })
-          .width($r('app.float.switch_toggle_width'))
-          .height($r('app.float.switch_toggle_height'))
-          .padding({ right: $r('app.float.switch_component_margin') })
-          .onChange((isOn: boolean) => {
-            LogUtil.info(ConfigData.TAG + 'location service status is :'+ this.locationServiceStatus);
-            if(this.locationServiceStatus === true){
-              ViewModel.disableLocation();
-            }else{
-              ViewModel.enableLocation();
-            }
+    Column(){
+      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+        Row({}) {
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
+            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
           });
-      }
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-        Text() {
-          Span($r('app.string.positionContent'))
-            .fontSize($r('app.float.location_font_size'));
-          Span($r('app.string.statement'))
-            .fontColor(Color.Blue)
-            .fontSize($r('app.float.location_font_size'))
-            .onClick(() => {
-            })
+
+          Column() {
+            HeadComponent({ headName: $r('app.string.locationServicesTab'), isActive: true });
+            Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Row() {
+                Text($r('app.string.positionInformation'))
+                  .fontColor($r("app.color.font_color_182431"))
+                  .fontStyle(FontStyle.Normal)
+                  .fontSize($r("app.float.location_font_size"))
+                  .margin({left:$r('app.float.distance_24'), top:$r('app.float.distance_8'), bottom:$r('app.float.distance_8')})
+              }
+              Toggle({ type: ToggleType.Switch, isOn: this.locationServiceStatus })
+                .width($r('app.float.location_toggle_width'))
+                .height($r('app.float.location_toggle_height'))
+                .padding({ right: $r('app.float.distance_24') })
+                .onChange((isOn: boolean) => {
+                  LogUtil.info(ConfigData.TAG + 'location service status is :' + this.locationServiceStatus);
+                  if (this.locationServiceStatus === true) {
+                    ViewModel.disableLocation();
+                  } else {
+                    ViewModel.enableLocation();
+                  }
+                });
+            }
+            .height($r('app.float.wh_value_56'))
+            .backgroundColor($r("app.color.white_bg_color"))
+            .margin({ top:$r('app.float.distance_16')})
+            .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
+          }
+          .padding({left: $r('app.float.distance_24'), right: $r('app.float.distance_24')})
+          .height(ConfigData.WH_100_100)
+          .width(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
+            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
+          });
+
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
+            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
+          })
         }
+        .width(ConfigData.WH_100_100)
+        .height(ConfigData.WH_100_100);
       }
-      .visibility(this.locationServiceStatus ? Visibility.None : Visibility.Visible)
-      .margin({ left: $r('app.float.location_common_margin'), right: $r('app.float.location_common_margin') });
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100);
     }
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100);
   }
 }

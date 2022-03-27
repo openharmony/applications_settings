@@ -12,14 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import prompt from '@system.prompt';
-import FeatureAbility from '@ohos.ability.featureAbility';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent.ets';
-import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
-import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
-import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
-import PasswordListController from '../controller/password/PasswordSettingController.ets';
+import {DialogButtonLayout} from '../../../../../../../common/component/src/main/ets/default/dialogComponent.ets';
+import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
+import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
+import PasswordListController from '../controller/password/PasswordSettingController';
 import EntryComponent from '../../../../../../../common/component/src/main/ets/default/EntryComponent.ets';
+import { PasswordSettingItem } from '../../../../../../../common/utils/src/main/ets/default/bean/PasswordSettingItem';
+import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
+import FeatureAbility from '@ohos.ability.featureAbility';
+import prompt from '@system.prompt';
 import Router from '@system.router';
 
 @Entry
@@ -29,23 +32,15 @@ struct PasswordSetting {
   private mController: PasswordListController = new PasswordListController();
 
 // bind Properties
-  @State private passwordList: any[] = [];
+  @State private passwordList: PasswordSettingItem[][] = [];
   private pinChallenge: string = '';
 
 // private Properties
   private lockUi: boolean = false // prevent continuous and multiple clicks
-  private delItem: any;
-
-// dialog
-  private unlockDialog : CustomDialogController = new CustomDialogController({
-    builder: UnlockDialog({
-      confirmAction: (item) => {
-        LogUtil.info(this.TAG_PAGE + ' dialog disable button onclick.')
-        this.gotoNextPage(this.delItem);
-      }
-    }),
-    autoCancel: true
-  });
+  @State isTouched: boolean = false;
+  @State touchedItem: boolean = false;
+  @State listSpace: string = '10vp'
+  @State faceAuthFailedMessage: string = '';
 
   @Log
   aboutToAppear(): void {
@@ -55,6 +50,9 @@ struct PasswordSetting {
       .bindProperties(["passwordList", "pinChallenge"])
       .initData()
       .subscribe();
+
+    ResourceUtil.getString($r('app.float.distance_10')).then(value => this.listSpace = value);
+    ResourceUtil.getString($r("app.string.face_auth_failed")).then(value => this.faceAuthFailedMessage = value);
   }
 
   @Log
@@ -68,121 +66,199 @@ struct PasswordSetting {
     this.mController.loadData();
   }
 
+  @Builder FaceAuthItem() {
+    Stack() {
+      EntryComponent({
+        settingIcon: '',
+        settingTitle: $r('app.string.face_recognition'),
+        settingSummary: '',
+        settingValue: '',
+        settingArrow: '/res/image/ic_settings_arrow.svg',
+        settingArrowStyle: '',
+        settingUri: '',
+        height: $r('app.float.password_list_item_height'),
+        fontSize: $r('app.float.password_list_item_title_font_size')
+      })
+    }
+    .width(ConfigData.WH_100_100)
+    .onClick(() => {
+      if (this.lockUi) {
+        return;
+      }
+      this.lockUi = true
+      FeatureAbility.startAbility({
+        want: {
+          bundleName: ConfigData.FACEAUTH_BUNDLE_NAME,
+          abilityName: ConfigData.FACEAUTH_ABILITY_NAME
+        }
+      })
+      .then((data) => {
+        LogUtil.info(`${this.TAG_PAGE}, ${ConfigData.FACEAUTH_BUNDLE_NAME} start successful. Data: ${JSON.stringify(data)}`);
+      })
+      .catch((error) => {
+        prompt.showToast({
+          message: this.faceAuthFailedMessage,
+          duration: 2000
+        })
+        LogUtil.error(`${this.TAG_PAGE}, ${ConfigData.FACEAUTH_BUNDLE_NAME} start failed. Cause: ${JSON.stringify(error)}`);
+      })
+      this.lockUi = false
+    })
+  }
+
+  @Builder DisablePasswordItem(item: PasswordSettingItem) {
+    Stack() {
+      EntryComponent({
+        settingIcon: '',
+        settingTitle: item.settingTitle,
+        settingSummary: '',
+        settingValue: item.settingValue,
+        settingArrow: item.settingArrow,
+        settingUri: item.settingUri,
+        settingArrowStyle: '',
+        titleFontColor: $r("app.color.font_color_007DFF"),
+        height: $r('app.float.password_list_item_height'),
+        fontSize: $r('app.float.font_16')
+      });
+    }
+    .width(ConfigData.WH_100_100)
+    .onClick(() => {
+      if (this.lockUi) {
+        return;
+      }
+      this.lockUi = true
+      LogUtil.info(this.TAG_PAGE + ' disable password onclick : item = ' + JSON.stringify(item))
+      this.showClosePasswordDialog(item);
+      this.lockUi = false
+    });
+  }
+
+  @Builder NormalItem(item: PasswordSettingItem) {
+    Stack() {
+      EntryComponent({
+        settingIcon: '',
+        settingTitle: item.settingTitle,
+        settingSummary: '',
+        settingValue: item.settingValue,
+        settingArrow: item.settingArrow,
+        settingArrowStyle: '',
+        settingUri: item.settingUri,
+        height: $r('app.float.password_list_item_height'),
+        fontSize: $r('app.float.font_16')
+      });
+    }
+    .width(ConfigData.WH_100_100)
+    .onClick(() => {
+      if (this.lockUi) {
+        return;
+      }
+      this.lockUi = true
+      LogUtil.info(this.TAG_PAGE + ' item onclick : item = ' + JSON.stringify(item))
+      this.gotoNextPage(item)
+      this.lockUi = false
+    });
+  }
+
+
   build() {
-    Column() {
-      HeadComponent({ headName: $r('app.string.biometricsAndPassword'), isActive: true })
+    Column(){
+      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+        Row({}) {
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
+            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
+          });
 
-      List() {
-        ForEach(this.passwordList, (item) => {
+          Column() {
+            HeadComponent({ headName: $r('app.string.biometricsAndPassword'), isActive: true })
 
-          if (item.settingShouldDisplay) {
+            List({space: this.listSpace}) {
+              ForEach(this.passwordList, (group: PasswordSettingItem[]) => {
 
-            if (item.settingIsSectionTitle) {
-              ListItem() {
-                Text(item.settingTitle)
-                  .width(ConfigData.WH_100_100)
-                  .height($r('app.float.wh_value_60'))
-                  .fontSize($r('app.float.font_20'))
-                  .fontWeight(FontWeight.Normal)
-                  .fontColor(Color.Grey)
-                  .maxLines(ConfigData.MAX_LINES_1)
-                  .textOverflow({ overflow: TextOverflow.Ellipsis })
-                  .margin({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') })
-              }
-
-            } else if (item.settingAlias == 'password_disable_password')  {
-              ListItem() {
-                EntryComponent({
-                  settingIcon: '',
-                  settingTitle: item.settingTitle,
-                  settingSummary: '',
-                  settingValue: item.settingValue,
-                  settingArrow: item.settingArrow,
-                  settingArrowStyle: '',
-                  settingUri: item.settingUri,
-                  titleFontColor: Color.Blue
-                });
-              }
-              .height($r('app.float.wh_value_70'))
-              .onClick(() => {
-                if (this.lockUi) {
-                  return;
-                }
-                this.lockUi = true
-                LogUtil.info(this.TAG_PAGE + ' disable password onclick : item = ' + JSON.stringify(item))
-                this.delItem = item
-                this.unlockDialog.open();
-                this.lockUi = false
-              });
-
-            } else if (item.settingAlias == "face_recognition") {
-              ListItem() {
-                EntryComponent({
-                  settingIcon: '',
-                  settingTitle: item.settingTitle,
-                  settingSummary: '',
-                  settingValue: item.settingValue,
-                  settingArrow: item.settingArrow,
-                  settingArrowStyle: '',
-                  settingUri: item.settingUri,
-                  titleFontColor: Color.Blue
-                });
-              }
-              .height($r('app.float.wh_value_70'))
-              .onClick(()=>{
-                FeatureAbility.startAbility({
-                  want: {
-                    bundleName: ConfigData.FACEAUTH_BUNDLE_NAME,
-                    abilityName: ConfigData.FACEAUTH_ABILITY_NAME
+                // section title
+                if (group[0].settingIsSectionTitle && group[0].settingShouldDisplay) {
+                  ListItem() {
+                    Text(group[0].settingTitle)
+                      .fontSize($r("app.float.font_14"))
+                      .lineHeight($r("app.float.lineHeight_19"))
+                      .textAlign(TextAlign.Start)
+                      .margin({ top: $r("app.float.distance_9_5") })
+                      .padding({ left: $r('app.float.distance_24'), right: $r('app.float.distance_24') })
+                      .width(ConfigData.WH_100_100);
                   }
-                })
-                  .then((data) => {
-                    LogUtil.info(`${this.TAG_PAGE}, ${ConfigData.FACEAUTH_BUNDLE_NAME} start successful. Data: ${JSON.stringify(data)}`);
-                  })
-                  .catch((error) => {
-                    prompt.showToast({
-                      message: $r("app.string.faceauthFailed"),
-                      duration: 2000
-                    })
-                    LogUtil.error(`${this.TAG_PAGE}, ${ConfigData.FACEAUTH_BUNDLE_NAME} start failed. Cause: ${JSON.stringify(error)}`);
-                  })
-              })
-            } else {
-              ListItem() {
-                EntryComponent({
-                  settingIcon: '',
-                  settingTitle: item.settingTitle,
-                  settingSummary: '',
-                  settingValue: item.settingValue,
-                  settingArrow: item.settingArrow,
-                  settingArrowStyle: '',
-                  settingUri: item.settingUri,
-                });
-              }
-              .height($r('app.float.wh_value_70'))
-              .onClick(() => {
-                if (this.lockUi) {
-                  return;
                 }
-                this.lockUi = true
-                LogUtil.info(this.TAG_PAGE + ' item onclick : item = ' + JSON.stringify(item))
-                this.gotoNextPage(item)
+
+                ListItem() {
+                  List() { // item 0 is section title
+                    ForEach(group, (item: PasswordSettingItem, index: number) => {
+
+                      if (index > 0 && item.settingShouldDisplay) {
+
+                        ListItem() {
+                          if (item.settingAlias == "face_recognition") {
+
+                            // face recognition item
+                            this.FaceAuthItem();
+
+                          } else if (item.settingAlias == 'password_disable_password') {
+
+                            // disable password item
+                            this.DisablePasswordItem(item);
+
+                          } else {
+
+                            // normal item
+                            this.NormalItem(item);
+                          }
+                        }
+                      }
+                    });
+                  }
+                  .width(ConfigData.WH_100_100)
+                  .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
+                  .borderRadius($r('app.float.radius_24'))
+                  .padding($r('app.float.distance_4'))
+                  .divider({
+                    strokeWidth: 1,
+                    color: $r('app.color.color_E3E3E3_grey'),
+                    startMargin: $r('app.float.wh_value_15'),
+                    endMargin: $r('app.float.wh_value_15')
+                  })
+                }
               });
             }
+            .width(ConfigData.WH_100_100)
           }
-        });
-      }
-      .divider({
-        strokeWidth: 1,
-        color: $r('app.color.color_E3E3E3_grey'),
-        startMargin: $r('app.float.wh_value_65'),
-        endMargin: $r('app.float.wh_value_15')
-      })
-      .width(ConfigData.WH_100_100)
-      .height(ConfigData.WH_100_100)
-      .alignSelf(ItemAlign.Start);
+          .padding({left: $r('app.float.distance_24'), right: $r('app.float.distance_24')})
+          .height(ConfigData.WH_100_100)
+          .width(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
+            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
+          });
 
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
+            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
+          })
+        }
+        .width(ConfigData.WH_100_100)
+        .height(ConfigData.WH_100_100);
+      }
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100);
     }
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100);
   }
 
 //------------------------------ Router ---------------------------
@@ -193,7 +269,7 @@ struct PasswordSetting {
    * @param pageRequestCode : page request code
    */
   @Log
-  gotoNextPage(item: any) {
+  gotoNextPage(item: PasswordSettingItem) {
     if (!item.settingUri) {
       return
     }
@@ -206,70 +282,35 @@ struct PasswordSetting {
       },
     });
   }
-}
 
-@CustomDialog
-struct UnlockDialog {
-  controller: CustomDialogController;
-  item: any;
-  confirmAction: (item: any) => void;
-
+//------------------------------ Dialog ---------------------------
+/**
+   * Close password dialog
+   * @param item password setting item
+   */
   @Log
-  closeDialog() {
-    this.controller.close();
-  }
-
-  build() {
-    Column() {
-      // title
-      Row() {
-        Text($r("app.string.password_select_unlock_method"))
-          .height($r('app.float.wh_value_60'))
-          .margin({ left: $r('app.float.wh_value_30') })
-          .width(ConfigData.WH_100_100)
-          .fontSize($r('app.float.font_28'));
-      }
-
-      // message
-      Row() {
-        Text($r("app.string.password_disable_prompt"))
-          .margin({ top: $r('app.float.item_common_vertical_margin'), bottom: $r('app.float.item_common_vertical_margin'), left: $r('app.float.wh_value_30') })
-          .fontSize($r('app.float.font_22'));
-      }
-
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
-        Button() {
-          Text($r('app.string.cancel'))
-            .fontSize($r('app.float.application_button_subtitle_size'))
-            .fontColor(Color.Blue)
-            .textCase(TextCase.UpperCase)
+  showClosePasswordDialog(delItem: PasswordSettingItem){
+    AlertDialog.show({
+      title: $r("app.string.password_disable_password"),
+      message: $r("app.string.password_disable_prompt"),
+      primaryButton: {
+        value: $r('app.string.cancel'),
+        action: () => {
+          LogUtil.info(this.TAG_PAGE + 'ClosePasswordDialog cancel click callback.')
         }
-        .backgroundColor($r('app.color.color_E3E3E3_grey'))
-        .width($r("app.float.wh_value_210"))
-        .height($r("app.float.wh_value_60"))
-        .align(Alignment.Bottom)
-        .onClick(() => {
-          this.closeDialog();
-        });
-        Button() {
-          Text($r('app.string.disable_'))
-            .fontSize($r('app.float.application_button_subtitle_size'))
-            .fontColor(Color.Blue)
-            .textCase(TextCase.UpperCase)
+      },
+      secondaryButton: {
+        value: $r('app.string.disable_'),
+        action: () => {
+          LogUtil.info(this.TAG_PAGE + 'ClosePasswordDialog disable click callback.')
+          this.gotoNextPage(delItem);
         }
-        .backgroundColor($r('app.color.color_E3E3E3_grey'))
-        .width($r("app.float.wh_value_210"))
-        .height($r("app.float.wh_value_60"))
-        .align(Alignment.Bottom)
-        .onClick(() => {
-          this.confirmAction(this.item)
-          this.closeDialog();
-        });
-      }
-      .width(ConfigData.WH_100_100)
-      .margin({
-        top: $r('app.float.item_common_vertical_margin'),
-        bottom: $r('app.float.item_common_vertical_margin') })
-    }
+      },
+      cancel: () => {
+        LogUtil.info(this.TAG_PAGE + 'ClosePasswordDialog Closed callbacks')
+      },
+      autoCancel: true,
+      alignment: DialogAlignment.Bottom
+    })
   }
 }

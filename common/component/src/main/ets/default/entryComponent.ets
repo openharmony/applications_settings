@@ -24,52 +24,57 @@ struct EntryComponent {
   @Prop settingIcon: string;
   @State endTextIsShow: Boolean= true;
   @Prop settingTitle: string;
-  @Prop settingSummary: string;
+  @State settingSummary: string | Resource = '';
   @Prop settingValue: string;
-  @Prop settingArrow: string;
+  @State settingArrow: string | PixelMap | Resource = '';
   @Prop settingArrowStyle: string;
   @Prop settingUri: string;
-  @State titleFontColor: Color | number | string | Resource = $r('app.color.color_333333_grey');
+  @State titleFontColor: Color | number | string | Resource = $r('sys.color.ohos_id_color_text_primary');
   private enabled : boolean = true;
   private onArrowClick?: () => void;
   @State isTouched: boolean = false;
   private height ?= $r('app.float.wh_value_70');
+  private image_wh ?= $r('app.float.wh_value_50');
+  private fontSize ?= $r('sys.float.ohos_id_text_size_body1');
+  private valueFontSize ?= $r('sys.float.ohos_id_text_size_body2');
 
   build() {
-    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
+    Row() {
       Row() {
         Image(this.settingIcon)
-          .width($r('app.float.wh_value_50'))
-          .height($r('app.float.wh_value_50'))
+          .width(this.image_wh)
+          .height(this.image_wh)
           .margin({ right: $r('app.float.wh_value_10') })
           .visibility('' === this.settingIcon ? Visibility.None : Visibility.Visible)
           .objectFit(ImageFit.Contain);
+
         Column() {
           Text(this.settingTitle)
-            .fontColor(this.titleFontColor)
-            .fontColor($r('app.color.color_333333_grey'))
-            .fontSize($r('app.float.font_20'))
+            .fontColor(this.enabled ? this.titleFontColor : $r('sys.color.ohos_fa_text_primary'))
+            .fontSize(this.fontSize)
             .textAlign(TextAlign.Start)
             .maxLines(ComponentConfig.MAX_LINES_3)
             .textOverflow({ overflow: TextOverflow.Ellipsis })
-            .margin({ top: $r('app.float.wh_value_10'), bottom: $r('app.float.wh_value_5') });
+
           Row() {
             Text($r('app.string.version'))
-              .fontColor($r('app.color.color_999999_grey'))
-              .fontSize($r('app.float.font_18'))
+              .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+              .fontSize($r('sys.float.ohos_id_text_size_body2'))
               .textAlign(TextAlign.Start)
               .maxLines(ComponentConfig.MAX_LINES_1)
               .textOverflow({ overflow: TextOverflow.Ellipsis })
               .visibility('pages/applicationInfo' === this.settingUri ? Visibility.Visible : Visibility.None)
-              .margin({ bottom: $r('app.float.wh_value_10') });
+              .margin({ top:$r('sys.float.ohos_id_text_margin_vertical') });
+
             Text(this.settingSummary)
-              .fontColor($r('app.color.color_999999_grey'))
-              .fontSize($r('app.float.font_18'))
+              .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+              .fontSize($r('sys.float.ohos_id_text_size_body2'))
+              .fontWeight('sans-serif')
               .textAlign(TextAlign.Start)
               .maxLines(ComponentConfig.MAX_LINES_1)
               .textOverflow({ overflow: TextOverflow.Ellipsis })
               .visibility('' === this.settingSummary || undefined === this.settingSummary ? Visibility.None : Visibility.Visible)
-              .margin({ bottom: $r('app.float.wh_value_10') });
+              .margin({ top:$r('sys.float.ohos_id_text_margin_vertical') });
           }
         }
         .alignItems(HorizontalAlign.Start);
@@ -77,26 +82,49 @@ struct EntryComponent {
       .flexShrink(0)
       .alignItems(VerticalAlign.Center)
       .align(Alignment.Start)
+      .layoutWeight(1)
 
       Row() {
         Text(this.settingValue)
-          .fontSize($r('app.float.font_18'))
-          .fontColor($r('app.color.color_999999_grey'))
+          .fontSize(this.valueFontSize)
+          .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+          .fontWeight('sans-serif')
           .height($r('app.float.wh_value_40'))
-          .margin({ right: $r('app.float.wh_value_10') })
+          .margin({ left: $r('sys.float.ohos_id_elements_margin_horizontal_l') })
           .align(Alignment.End);
-        Image(this.settingArrow)
-          .width(this.settingArrowStyle === '' ? $r('app.float.wh_value_20') : $r('app.float.wh_value_40'))
-          .height($r('app.float.wh_value_40'))
-          .visibility('' === this.settingArrow ? Visibility.None : Visibility.Visible);
+
+        Stack({ alignContent: Alignment.Center }) {
+          Image(this.settingArrow)
+            .width(this.settingArrowStyle === '' ? $r('app.float.wh_value_12') : $r('app.float.wh_value_40'))
+            .height($r('app.float.wh_value_24'))
+            .visibility('' === this.settingArrow ? Visibility.None : Visibility.Visible)
+        }
+        .width($r('app.float.wh_value_48'))
+        .height($r('app.float.wh_value_48'))
+        .margin({ left: $r('app.float.wh_value_4') })
+        .visibility('' === this.settingArrow ? Visibility.None : Visibility.Visible)
+        .onClick(this.onArrowClick);
       }
       .align(Alignment.End);
     }
-    .padding({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') })
-    .height($r('app.float.wh_value_70'))
+    .height(this.height)
     .width(ComponentConfig.WH_100_100)
-    .borderRadius($r('app.float.radius_24'))
-    .backgroundColor(this.isTouched ? $r("app.color.color_D8D8D8_grey"):$r("app.color.white_bg_color"))
+    .padding({
+      left: $r('sys.float.ohos_id_max_padding_start'),
+      right: $r('sys.float.ohos_id_max_padding_end'),
+      top: $r('sys.float.ohos_id_elements_margin_vertical_m'),
+      bottom: $r('sys.float.ohos_id_elements_margin_vertical_m')
+    })
+    .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
+    .linearGradient((this.enabled && this.isTouched) ? {
+       angle: 90,
+       direction: GradientDirection.Right,
+       colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+       } : {
+       angle: 90,
+       direction: GradientDirection.Right,
+       colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
+    .alignItems(VerticalAlign.Center)
     .onTouch((event: TouchEvent) => {
       if (event.type === TouchType.Down) {
         this.isTouched = true;
