@@ -21,6 +21,10 @@
       "value": "#D8D8D8"
     },
     {
+      "name": "color_button_grey",
+      "value": "#1824310D"
+    },
+    {
       "name": "color_00000000_transparent",
       "value": "#00000000"
     },
@@ -39,6 +43,30 @@
     {
       "name": "font_color_007DFF",
       "value": "#007DFF"
+    },
+    {
+      "name": "search_no_result_text_color",
+      "value": "$color:font_color_182431"
+    },
+    {
+      "name": "search_result_text_color",
+      "value": "$color:font_color_182431"
+    },
+    {
+      "name": "search_result_text_color_highlight",
+      "value": "$color:font_color_007DFF"
+    },
+    {
+      "name": "bluetooth_text_color_highlight",
+      "value": "$color:font_color_007DFF"
+    },
+    {
+      "name": "FAFAFA",
+      "value": "#FAFAFA"
+    },
+    {
+      "name": "DCEAF9",
+      "value": "#DCEAF9"
     }
   ]
 }

@@ -12,11 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
-import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
-import {ScreenModeModel} from '../model/displayAndBrightnessImpl/display/ScreenMode.ets';
+import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
+import {ScreenModeModel} from '../model/displayAndBrightnessImpl/display/ScreenMode';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent.ets';
-import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
+import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
+import { BaseData } from '../../../../../../../common/utils/src/main/ets/default/bean/BaseData';
 
 
 /**
@@ -25,65 +26,100 @@ import ConfigData from '../../../../../../../common/utils/src/main/ets/default/b
 @Entry
 @Component
 struct ScreenMode {
+  @StorageLink('supportedScreenModes') supportedScreenModes: [] = [];
   @State screenModeModel:ScreenModeModel = new ScreenModeModel();
   private TAG = ConfigData.TAG + 'ScreenMode ';
 
   build() {
-    Column() {
-      HeadComponent({ headName: $r('app.string.screenResolution'), isActive: true });
-      Text($r('app.string.screenResolutionWarning'))
-        .fontSize($r('app.float.font_18'))
-        .textAlign(TextAlign.Start)
-        .margin({top:$r('app.float.distance_24'), bottom:$r('app.float.distance_24')})
-        .padding({left:$r('app.float.distance_24'), right:$r('app.float.distance_24'),})
-        .width(ConfigData.WH_100_100)
-
-      List(){
-        ForEach(this.screenModeModel.getSupportedScreenModes(), (item) => {
-          ListItem(){
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }){
-              Column(){
-                Text($r('app.string.high'))
-                  .fontSize($r('app.float.font_22'))
-                  .margin({top:$r('app.float.distance_16'), bottom:$r('app.float.distance_4')})
-                  .textAlign(TextAlign.Start);
-
-                Text($r('app.string.highText', `${this.screenModeModel.getScreenModeWidth(item)} x ${this.screenModeModel.getScreenModeHeight(item)}`))
-                  .fontSize($r('app.float.font_18'))
-                  .margin({bottom:$r('app.float.distance_16')})
-                  .textAlign(TextAlign.Start);
-
-              }
-              .alignItems(HorizontalAlign.Start)
-
-              Radio( {value: this.TAG, group: ''} )
-                .height($r('app.float.radio_component_height'))
-                .margin({ right: $r('app.float.radio_component_margin_bottom_right') })
-                .align(Alignment.End)
-                .enabled(false)
-                .checked(this.screenModeModel.isSysScreenMode(item))
-                .onClick(() => {
-                  LogUtil.info('settings RadioListComponent : onChange: settingValue = ' + item.settingValue)
-                  this.screenModeModel.setSysScreenMode(0);
-                })
-            }
+    Column(){
+      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+        Row({}) {
+          Column() {
           }
-          .height($r('app.float.wh_value_80'))
           .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
+            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
+          });
 
-        }, item => JSON.stringify(item));
+          Column() {
+            HeadComponent({headName: $r('app.string.screenResolution'), isActive: true});
+            Text($r('app.string.screenResolutionWarning'))
+              .fontSize($r("app.float.font_14"))
+              .lineHeight($r("app.float.lineHeight_19"))
+              .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+              .fontWeight(FontWeight.Regular)
+              .textAlign(TextAlign.Start)
+              .margin({top: $r('app.float.distance_24'), bottom: $r('app.float.distance_24')})
+              .padding({left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end'),})
+              .width(ConfigData.WH_100_100)
+
+            List(){
+              ForEach(this.supportedScreenModes, (item: BaseData) => {
+                ListItem(){
+                  Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }){
+                    Column(){
+                      Text(`${this.screenModeModel.getScreenModeWidth(item)} x ${this.screenModeModel.getScreenModeHeight(item)}`)
+                        .fontSize($r("app.float.font_16"))
+                        .lineHeight($r("app.float.lineHeight_22"))
+                        .fontWeight(FontWeight.Medium)
+                        .margin({top: $r('app.float.distance_13'), bottom: $r('app.float.distance_13')})
+                        .textAlign(TextAlign.Start);
+
+                    }
+                    .alignItems(HorizontalAlign.Start)
+
+                    Radio( {value: this.TAG, group: ''} )
+                      .width($r('app.float.wh_value_24'))
+                      .height($r('app.float.wh_value_24'))
+                      .align(Alignment.End)
+                      .enabled(false)
+                      .checked(this.screenModeModel.isSysScreenMode(item))
+                      .onClick(() => {
+                        LogUtil.info('settings RadioListComponent : onChange: settingValue = ' + item.settingValue)
+                        this.screenModeModel.setSysScreenMode(0);
+                      })
+                  }
+                }
+                .height($r('app.float.wh_value_48'))
+                .width(ConfigData.WH_100_100)
+
+              }, item => JSON.stringify(item));
+            }
+            .padding({left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end'), top: $r('app.float.distance_4'), bottom: $r('app.float.distance_4')})
+            .divider({strokeWidth: 1, color: $r("app.color.color_E3E3E3_grey")})
+            .borderRadius($r("app.float.radius_24"))
+            .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
+
+          }
+          .padding({left: $r('app.float.distance_24'), right: $r('app.float.distance_24')})
+          .align(Alignment.Start)
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
+            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
+          });
+
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
+            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
+          })
+        }
+        .width(ConfigData.WH_100_100)
+        .height(ConfigData.WH_100_100);
       }
-      .padding({left:$r('app.float.distance_24'), right:$r('app.float.distance_24')})
-      .divider({strokeWidth: 1, color: $r("app.color.color_E3E3E3_grey")})
-      .borderRadius($r("app.float.radius_24"))
-      .backgroundColor($r("app.color.white_bg_color"));
-
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100);
     }
-    .padding({left:$r('app.float.distance_24'), right:$r('app.float.distance_24')})
-    .align(Alignment.Start)
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
-    .height(ConfigData.WH_100_100)
-    .backgroundColor($r("app.color.color_D8D8D8_grey"));
+    .height(ConfigData.WH_100_100);
   }
 
   @Log

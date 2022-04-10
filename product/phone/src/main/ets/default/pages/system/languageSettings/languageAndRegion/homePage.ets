@@ -12,10 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import LogUtil from '../../../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
+import LogUtil from '../../../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import HeadComponent from '../../../../../../../../../../common/component/src/main/ets/default/headComponent.ets';
-import ConfigData from '../../../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
-import LanguageAndRegionModel from '../../../../../default/model/systemImpl/languageSettings/LanguageAndRegionModel.ets'
+import ConfigData from '../../../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
+import LanguageAndRegionModel from '../../../../../default/model/systemImpl/languageSettings/LanguageAndRegionModel'
+import ResourceUtil from '../../../../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
+import {SubHeader} from '../../../../../../../../../../common/component/src/main/ets/default/textComponent.ets';
 
 /**
  * Home Page Of LanguageAndRegion Settings
@@ -26,54 +28,88 @@ struct LanguageAndRegion {
   private TAG = `${ConfigData.TAG} LanguageAndRegion`;
 
   build() {
-    Column() {
-      HeadComponent({ headName: $r('app.string.languageAndRegion'), isActive: true });
-      List({space:10, initialIndex:0}){
-        ListItem(){
-          Flex({justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center}){
-            Text($r("app.string.languageTab"))
-              .fontSize($r("app.float.font_22"))
-              .fontColor($r("app.color.font_color_182431"))
-              .textAlign(TextAlign.Start)
-              .height(ConfigData.WH_100_100);
-            Navigator({target: 'pages/system/languageSettings/languageAndRegion/editLanguage'}){
-              Text($r("app.string.edit"))
-                .fontSize($r("app.float.font_22"))
-                .fontColor($r("app.color.font_color_007DFF"))
-                .textAlign(TextAlign.End)
-                .height(ConfigData.WH_100_100);
+    Column(){
+      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+        Row({}) {
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
+            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
+          });
+
+          Column() {
+            HeadComponent({headName: $r('app.string.languageAndRegion'), isActive: true});
+            List() {
+              ListItem() {
+                Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+                  Text($r("app.string.languageTab"))
+                    .fontSize($r("app.float.font_14"))
+                    .lineHeight($r("app.float.lineHeight_19"))
+                    .fontWeight(FontWeight.Medium)
+                    .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+                    .textAlign(TextAlign.Start)
+                    .margin({top: $r("app.float.distance_19_5"), bottom: $r("app.float.distance_9_5")});
+                  Navigator({target: 'pages/system/languageSettings/languageAndRegion/editLanguage'}) {
+                    Text($r("app.string.edit"))
+                      .fontColor($r("app.color.font_color_007DFF"))
+                      .fontSize($r("app.float.font_14"))
+                      .fontWeight(FontWeight.Medium)
+                      .lineHeight($r("app.float.lineHeight_19"))
+                      .textAlign(TextAlign.End)
+                      .margin({top: $r("app.float.distance_19_5"), bottom: $r("app.float.distance_9_5")});
+                  }
+                }
+                .margin({left: $r("sys.float.ohos_id_card_margin_start"), right: $r("sys.float.ohos_id_card_margin_end")})
+                .height($r("app.float.wh_value_48"));
+              }
+
+              ListItem() {
+                AddedList();
+              }.margin({ bottom:$r("app.float.distance_12") })
+
+              ListItem() {
+                AddText();
+              }
+
+              ListItem() {
+                SubHeader({ titleContent: $r('app.string.region') })
+              }
+
+              ListItem() {
+                Region();
+              }
+
             }
           }
-          .margin({left:$r("app.float.distance_24"),right:$r("app.float.distance_24"), bottom:$r("app.float.distance_8")})
-          .height($r("app.float.wh_value_56"));
-        }
+          .height(ConfigData.WH_100_100)
+          .width(ConfigData.WH_100_100)
+          .padding({left: $r("app.float.distance_24"), right: $r("app.float.distance_24")})
+          .useSizeType({
+            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
+            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
+          });
 
-        ListItem(){
-          AddedList();
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
+            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
+          })
         }
-
-        ListItem(){
-          AddText();
-        }
-
-        ListItem(){
-          Text($r("app.string.region"))
-            .fontSize($r("app.float.font_22"))
-            .fontColor($r("app.color.font_color_182431"))
-            .textAlign(TextAlign.Start)
-            .padding({left:$r("app.float.distance_24"), right:$r("app.float.distance_24"), top:$r("app.float.distance_8"), bottom:$r("app.float.distance_8")})
-            .height($r("app.float.wh_value_56"));
-        }
-
-        ListItem(){
-         Region();
-        }
+        .width(ConfigData.WH_100_100)
+        .height(ConfigData.WH_100_100);
       }
-      .margin({left:$r("app.float.distance_24"), right:$r("app.float.distance_24"), top:$r("app.float.distance_16")});
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100);
     }
-    .height(ConfigData.WH_100_100)
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
-    .backgroundColor($r("app.color.color_E3E3E3_grey"));
+    .height(ConfigData.WH_100_100);
   }
 
   aboutToAppear(){
@@ -98,29 +134,48 @@ struct AddedList {
   @State touchedItem:string = '';
 
   build(){
-    List({space:0}){
+    List(){
       ForEach(this.addedLanguages, (item) => {
         ListItem(){
-          Column(){
-            Text(LanguageAndRegionModel.getSysDisplayLanguage(item))
-              .fontSize($r("app.float.font_28"))
-              .height(LanguageAndRegionModel.isSystemLanguage(item) ? $r("app.float.wh_value_56") : $r("app.float.wh_value_44"))
-              .padding({left:$r("app.float.distance_16"),right:$r("app.float.distance_16")})
-              .fontColor($r("app.color.font_color_182431"))
-              .textAlign(TextAlign.Start);
-            Text(LanguageAndRegionModel.getDisplayLanguage(item))
-              .fontSize($r("app.float.font_22"))
-              .height($r("app.float.wh_value_32"))
-              .padding({left:$r("app.float.distance_16"),right:$r("app.float.distance_16"),bottom:$r("app.float.distance_8")})
-              .fontColor($r("app.color.font_color_182431"))
-              .textAlign(TextAlign.Start)
-              .visibility(LanguageAndRegionModel.isSystemLanguage(item) ? Visibility.None : Visibility.Visible);
+          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
+            Column(){
+              Text(LanguageAndRegionModel.getSysDisplayLanguage(item))
+                .fontSize($r("app.float.font_16"))
+                .lineHeight($r("app.float.wh_value_22"))
+                .fontWeight(FontWeight.Medium)
+                .padding(LanguageAndRegionModel.isSystemLanguage(item) ? {top: $r("app.float.distance_21"), bottom: $r("app.float.distance_17")} : {top: $r("app.float.distance_10"), bottom: $r("app.float.distance_2")})
+                .fontColor(LanguageAndRegionModel.isSystemLanguage(item) ? $r("app.color.font_color_007DFF") : $r("app.color.font_color_182431"))
+                .textAlign(TextAlign.Start);
+              Text(LanguageAndRegionModel.getDisplayLanguage(item))
+                .fontSize($r("app.float.font_14"))
+                .lineHeight($r("app.float.wh_value_19"))
+                .fontWeight(FontWeight.Regular)
+                .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+                .margin({ bottom: $r("app.float.distance_11") })
+                .fontColor($r("app.color.font_color_182431"))
+                .textAlign(TextAlign.Start)
+                .visibility(LanguageAndRegionModel.isSystemLanguage(item) ? Visibility.None : Visibility.Visible);
+            }
+            .alignItems(HorizontalAlign.Start)
+
+            Image($r("app.media.ic_ok"))
+              .width($r('app.float.wh_value_24'))
+              .height($r('app.float.wh_value_24'))
+              .objectFit(ImageFit.Contain)
+              .visibility(LanguageAndRegionModel.isSystemLanguage(item) ? Visibility.Visible : Visibility.None);
           }
-          .alignItems(HorizontalAlign.Start)
+          .padding({left: $r("app.float.distance_8"), right: $r("app.float.distance_8")})
         }
         .align(Alignment.Start)
-        .borderRadius($r("app.float.radius_24"))
-        .backgroundColor(item === this.touchedItem ? $r("app.color.color_D8D8D8_grey"):$r("app.color.white_bg_color"))
+        .borderRadius($r("app.float.radius_20"))
+        .linearGradient(item === this.touchedItem ? {
+           angle: 90,
+           direction: GradientDirection.Right,
+           colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+           } : {
+           angle: 90,
+           direction: GradientDirection.Right,
+           colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
         .width(ConfigData.WH_100_100)
         .onClick(()=>{
           LanguageAndRegionModel.setSystemLanguage(item);
@@ -135,10 +190,10 @@ struct AddedList {
         })
       }, item => item);
     }
-    .borderRadius($r("app.float.radius_40"))
-    .padding({left:$r("app.float.distance_8"),right:$r("app.float.distance_8"),top:$r("app.float.distance_24"),bottom:$r("app.float.distance_24")})
-    .divider({strokeWidth: 1, color: $r("app.color.color_E3E3E3_grey"), startMargin:$r("app.float.distance_16"), endMargin:$r("app.float.distance_16")})
-    .backgroundColor($r("app.color.white_bg_color"));
+    .padding($r("app.float.distance_4"))
+    .borderRadius($r("app.float.radius_24"))
+    .divider({strokeWidth: 1, color: $r("app.color.color_E3E3E3_grey"), startMargin: $r("app.float.distance_8"), endMargin: $r("app.float.distance_8")})
+    .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
   }
 }
 
@@ -148,33 +203,43 @@ struct AddedList {
  */
 @Component
 struct AddText {
-  @State touched:boolean = false;
+  @State isTouched:boolean = false;
 
-  build(){
+  build() {
     Navigator({ target: 'pages/system/languageSettings/languageAndRegion/addLanguage' }) {
-      Row(){
+      Row() {
         Text($r("app.string.addLanguage"))
-          .fontSize($r("app.float.font_28"))
+          .fontSize($r('app.float.font_16'))
+          .lineHeight($r('app.float.wh_value_22'))
+          .fontWeight(FontWeight.Medium)
           .fontColor($r("app.color.font_color_007DFF"))
-          .padding({left:$r("app.float.distance_16"),right:$r("app.float.distance_16")})
-          .height($r("app.float.wh_value_70"))
-          .width(ConfigData.WH_100_100)
-          .textAlign(TextAlign.Start)
-          .backgroundColor(this.touched ? $r("app.color.color_D8D8D8_grey"):$r("app.color.white_bg_color"))
-          .borderRadius($r("app.float.radius_24"))
-          .onTouch((event: TouchEvent) => {
-            if (event.type === TouchType.Down) {
-              this.touched = true;
-            }
-            if (event.type === TouchType.Up) {
-              this.touched = false;
-            }
-          });
+          .margin({left: $r('app.float.distance_8')})
+          .textAlign(TextAlign.Start);
       }
-      .borderRadius($r("app.float.radius_24"))
-      .padding({ left: $r("app.float.distance_8"), right: $r("app.float.distance_8"), top: $r("app.float.distance_8"), bottom: $r("app.float.distance_8") })
-      .backgroundColor($r("app.color.white_bg_color"));
+      .height(ConfigData.WH_100_100)
+      .width(ConfigData.WH_100_100)
+      .borderRadius($r('app.float.radius_20'))
+      .linearGradient(this.isTouched ? {
+         angle: 90,
+         direction: GradientDirection.Right,
+         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+         } : {
+         angle: 90,
+         direction: GradientDirection.Right,
+         colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
+      .onTouch((event: TouchEvent) => {
+        if (event.type === TouchType.Down) {
+          this.isTouched = true;
+        }
+        if (event.type === TouchType.Up) {
+          this.isTouched = false;
+        }
+      });
     }
+    .padding($r("app.float.distance_4"))
+    .height($r('app.float.wh_value_56'))
+    .borderRadius($r('app.float.radius_24'))
+    .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
   }
 }
 
@@ -184,42 +249,59 @@ struct AddText {
  */
 @Component
 struct Region {
-  @StorageLink('currentRegion') currentRegion:string = LanguageAndRegionModel.getSysDisplayRegion();
-  @State touched:boolean = false;
+  @StorageProp('currentRegion') currentRegion:string = LanguageAndRegionModel.getSysDisplayRegion();
+  @State isTouched:boolean = false;
 
-  build(){
-    Navigator({ target: 'pages/system/languageSettings/languageAndRegion/selectRegion' }) {
-      Row(){
-        Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+  build() {
+    Navigator({target: 'pages/system/languageSettings/languageAndRegion/selectRegion'}) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+        Row() {
           Text($r("app.string.currentRegion"))
-            .fontSize($r("app.float.font_28"))
-            .fontColor($r("app.color.font_color_182431"))
+            .fontSize($r('app.float.font_16'))
+            .lineHeight($r('app.float.wh_value_22'))
+            .fontWeight(FontWeight.Medium)
+            .fontColor($r('app.color.font_color_182431'))
+            .margin({left: $r('app.float.distance_8')})
             .textAlign(TextAlign.Start);
-          Row() {
-            Text(this.currentRegion)
-              .fontSize($r("app.float.font_28"))
-              .fontColor($r("app.color.font_color_007DFF"));
-            Image('/res/image/ic_settings_arrow.svg')
-              .width($r('app.float.wh_value_40'))
-              .height($r('app.float.wh_value_40'));
-          }
         }
-        .height($r("app.float.wh_value_70"))
-        .backgroundColor(this.touched ? $r("app.color.color_D8D8D8_grey"):$r("app.color.white_bg_color"))
-        .borderRadius($r("app.float.radius_24"))
-        .padding({left:$r("app.float.distance_16"),right:$r("app.float.distance_16")})
-        .onTouch((event: TouchEvent) => {
-          if (event.type === TouchType.Down) {
-            this.touched = true;
-          }
-          if (event.type === TouchType.Up) {
-            this.touched = false;
-          }
-        });
+
+        Row() {
+          Text(this.currentRegion)
+            .fontSize($r('app.float.font_14'))
+            .lineHeight($r('app.float.wh_value_19'))
+            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+            .margin({ right: $r('app.float.distance_4') })
+            .textAlign(TextAlign.End);
+          Image('/res/image/ic_settings_arrow.svg')
+            .width($r('app.float.wh_value_12'))
+            .height($r('app.float.wh_value_24'))
+            .margin({right: $r('app.float.distance_8')});
+        }
       }
-      .borderRadius($r("app.float.radius_24"))
-      .padding({ left: $r("app.float.distance_8"), right: $r("app.float.distance_8"), top: $r("app.float.distance_8"), bottom: $r("app.float.distance_8") })
-      .backgroundColor($r("app.color.white_bg_color"));
+      .height(ConfigData.WH_100_100)
+      .width(ConfigData.WH_100_100)
+      .borderRadius($r('app.float.radius_20'))
+      .linearGradient(this.isTouched ? {
+         angle: 90,
+         direction: GradientDirection.Right,
+         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+         } : {
+         angle: 90,
+         direction: GradientDirection.Right,
+         colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
+      .onTouch((event: TouchEvent) => {
+        if (event.type === TouchType.Down) {
+          this.isTouched = true;
+        }
+        if (event.type === TouchType.Up) {
+          this.isTouched = false;
+        }
+      });
     }
+    .padding($r("app.float.distance_4"))
+    .height($r('app.float.wh_value_56'))
+    .width(ConfigData.WH_100_100)
+    .borderRadius($r('app.float.radius_24'))
+    .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
   }
 }
