@@ -12,9 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import LogUtil from '../../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
+import LogUtil from '../../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import HeadComponent from '../../../../../../../../../common/component/src/main/ets/default/headComponent.ets';
-import ConfigData from '../../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
+import ConfigData from '../../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
+import {SubEntryComponent} from '../../../../../../../../../common/component/src/main/ets/default/subEntryComponent.ets';
 
 /**
  * Home Page Of Language Settings
@@ -22,43 +23,52 @@ import ConfigData from '../../../../../../../../../common/utils/src/main/ets/def
 @Entry
 @Component
 struct LanguageSettings {
-  @State touchedItem:boolean = false;
   private TAG = `${ConfigData.TAG} LanguageSettings`;
 
   build() {
-    Column() {
-      HeadComponent({ headName: $r('app.string.setlanguage'), isActive: true })
-      Navigator({target: 'pages/system/languageSettings/languageAndRegion/homePage'}){
-        Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
-          Row() {
-            Text($r("app.string.languageAndRegion"))
-              .fontSize($r("app.float.font_22"))
-              .fontColor($r("app.color.font_color_182431"))
-              .margin({left:$r('app.float.distance_24'), top:$r('app.float.distance_8'), bottom:$r('app.float.distance_8')})
-              .textAlign(TextAlign.Start);
+    Column(){
+      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+        Row({}) {
+          Column() {
           }
-          Image('/res/image/ic_settings_arrow.svg')
-            .width($r('app.float.wh_value_40'))
-            .height($r('app.float.wh_value_40'));
-        }
-        .height($r('app.float.wh_value_56'))
-        .backgroundColor(this.touchedItem? $r("app.color.color_D8D8D8_grey"):$r("app.color.white_bg_color"))
-        .margin({left:$r('app.float.distance_24'), right:$r('app.float.distance_24'), top:$r('app.float.distance_16')})
-        .borderRadius($r('app.float.radius_24'))
-        .onTouch((event: TouchEvent) => {
-          if (event.type === TouchType.Down) {
-            this.touchedItem = true;
-          }
-          if (event.type === TouchType.Up) {
-            this.touchedItem = false;
-          }
-        })
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
+            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
+          });
 
+          Column() {
+            HeadComponent({headName: $r('app.string.setlanguage'), isActive: true})
+
+            SubEntryComponent({targetPage: 'pages/system/languageSettings/languageAndRegion/homePage', title: $r("app.string.languageAndRegion")})
+          }
+          .padding({left: $r('app.float.distance_24'), right: $r('app.float.distance_24')})
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
+            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
+          });
+
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
+            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
+          })
+        }
+        .width(ConfigData.WH_100_100)
+        .height(ConfigData.WH_100_100);
       }
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100);
     }
-    .height(ConfigData.WH_100_100)
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
-    .backgroundColor($r("app.color.color_E3E3E3_grey"));
+    .height(ConfigData.WH_100_100);
   }
 
   aboutToAppear(){

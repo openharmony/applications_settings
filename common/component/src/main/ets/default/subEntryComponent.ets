@@ -28,20 +28,29 @@ export struct SubEntryComponent {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
         Row() {
           Text(this.title)
-            .fontSize($r('app.float.font_22'))
+            .fontSize($r('app.float.font_16'))
+            .lineHeight($r('app.float.wh_value_22'))
             .fontColor($r('app.color.font_color_182431'))
-            .margin({left:$r('app.float.distance_24')})
+            .fontWeight(FontWeight.Medium)
+            .margin({left: $r('app.float.distance_8')})
             .textAlign(TextAlign.Start);
         }
         Image('/res/image/ic_settings_arrow.svg')
           .width($r('app.float.wh_value_12'))
           .height($r('app.float.wh_value_24'))
-          .margin({right:$r('app.float.distance_24')});
+          .margin({right: $r('app.float.distance_8')});
       }
-      .height($r('app.float.wh_value_56'))
+      .height(ComponentConfig.WH_100_100)
       .width(ComponentConfig.WH_100_100)
-      .borderRadius($r('app.float.radius_24'))
-      .backgroundColor(this.isTouched? $r("app.color.color_D8D8D8_grey"):$r("app.color.white_bg_color"))
+      .borderRadius($r('app.float.radius_20'))
+      .linearGradient(this.isTouched ? {
+         angle: 90,
+         direction: GradientDirection.Right,
+         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+         } : {
+         angle: 90,
+         direction: GradientDirection.Right,
+         colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
       .onTouch((event: TouchEvent) => {
         if (event.type === TouchType.Down) {
           this.isTouched = true;
@@ -51,6 +60,10 @@ export struct SubEntryComponent {
         }
       })
     }
+    .padding($r('app.float.distance_4'))
+    .height($r('app.float.wh_value_56'))
+    .borderRadius($r('app.float.radius_24'))
+    .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
   }
 }
 
@@ -60,38 +73,49 @@ export struct SubEntryComponent {
  */
 @Component
 export  struct SubEntryComponentWithEndText {
+  @State isTouched:boolean = false;
+  @Prop endText: string;
   private targetPage: string;
   private title: string | Resource;
-  @Prop endText: string;
-  @State isTouched:boolean = false;
 
   build() {
     Navigator({ target: this.targetPage }) {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         Row() {
           Text(this.title)
-            .fontSize($r('app.float.font_22'))
+            .fontSize($r('app.float.font_16'))
+            .lineHeight($r('app.float.wh_value_22'))
+            .fontWeight(FontWeight.Medium)
             .fontColor($r('app.color.font_color_182431'))
-            .margin({ left: $r('app.float.distance_24') })
+            .margin({left: $r('app.float.distance_8')})
             .textAlign(TextAlign.Start);
         }
 
         Row() {
           Text(this.endText)
-            .fontSize($r('app.float.font_18'))
-            .fontColor($r('app.color.font_color_182431'))
-            .margin({ right: $r('app.float.distance_4') })
+            .fontSize($r('app.float.font_14'))
+            .lineHeight($r('app.float.wh_value_19'))
+            .fontWeight(FontWeight.Regular)
+            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+            .margin({right: $r('app.float.distance_4')})
             .textAlign(TextAlign.End);
           Image('/res/image/ic_settings_arrow.svg')
             .width($r('app.float.wh_value_12'))
             .height($r('app.float.wh_value_24'))
-            .margin({ right: $r('app.float.distance_24') });
+            .margin({right: $r('app.float.distance_8')});
         }
       }
-      .height($r('app.float.wh_value_56'))
+      .height(ComponentConfig.WH_100_100)
       .width(ComponentConfig.WH_100_100)
-      .borderRadius($r('app.float.radius_24'))
-      .backgroundColor(this.isTouched ? $r("app.color.color_D8D8D8_grey") : $r("app.color.white_bg_color"))
+      .borderRadius($r('app.float.radius_20'))
+      .linearGradient(this.isTouched ? {
+         angle: 90,
+         direction: GradientDirection.Right,
+         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+         } : {
+         angle: 90,
+         direction: GradientDirection.Right,
+         colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
       .onTouch((event: TouchEvent) => {
         if (event.type === TouchType.Down) {
           this.isTouched = true;
@@ -101,5 +125,9 @@ export  struct SubEntryComponentWithEndText {
         }
       });
     }
+    .padding($r('app.float.distance_4'))
+    .height($r('app.float.wh_value_56'))
+    .borderRadius($r('app.float.radius_24'))
+    .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
   }
 }

@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 import ComponentConfig from './ComponentConfig.ets';
-import SwitchController from './controller/switchController.ets'
+import SwitchController from './controller/SwitchController'
+import Log from '../../../../../utils/src/main/ets/default/baseUtil/LogDecorator';
 
 /**
  * Toggle component
@@ -24,48 +25,65 @@ export default struct SwitchComponent {
   @Prop title: string;
   private toggleValue: (isOn: boolean) => void;
   private controller: SwitchController;
+  private summary?: string;
+  @State enabled?: boolean = true;
   private cssValue: {
-    fontSize?: number | string | Resource,
-    height?: number | string | Resource,
-    width?: number | string | Resource,
     margin?: {
       top?: number | string | Resource,
       right?: number | string | Resource,
       bottom?: number | string | Resource,
       left?: number | string | Resource
-    } | number | string | Resource,
-    padding: {
-      top?: number | string | Resource,
-      right?: number | string | Resource,
-      bottom?: number | string | Resource,
-      left?: number | string | Resource
-    } | number | string | Resource,
+    } | number | string | Resource
   };
 
   build() {
-    Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-      Text(this.title)
-        .fontColor(Color.Black)
-        .fontStyle(FontStyle.Normal)
-        .padding({ left: $r('app.float.switch_component_margin') })
-        .fontSize(this.cssValue?.fontSize)
-      Toggle({ type: ToggleType.Switch, isOn: this.isOn })
-        .width($r('app.float.switch_toggle_width'))
-        .height($r('app.float.switch_toggle_height'))
-        .padding({ right: $r('app.float.switch_component_margin') })
-        .onChange((isOn: boolean) => {
-          this.isOn = new Boolean(isOn).valueOf();
-          if (this.toggleValue) {
-            this.toggleValue(isOn);
-          }
-        });
+    Row() {//{ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      Column() {
+        Text(this.title)
+          .fontColor($r('sys.color.ohos_fa_text_primary'))
+          .fontSize($r("app.float.font_16"))
+          .fontStyle(FontStyle.Normal)
+        if (this.summary) {
+          Text(this.summary)
+            .fontColor($r('sys.color.ohos_fa_text_secondary'))
+            .fontSize($r('sys.float.ohos_id_text_size_body2'))
+            .fontWeight('sans-serif')
+            .textAlign(TextAlign.Start)
+            .maxLines(ComponentConfig.MAX_LINES_1)
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
+            .margin({ top:$r('sys.float.ohos_id_text_margin_vertical') })
+        }
+      }
+      .alignItems(HorizontalAlign.Start)
+
+      Blank()
+
+      Stack({ alignContent: Alignment.Center }) {
+        Toggle({ type: ToggleType.Switch, isOn: this.isOn })
+          .width($r('app.float.switch_toggle_width'))
+          .height($r('app.float.switch_toggle_height'))
+          .onChange((isOn: boolean) => {
+            if (!this.enabled) return;
+            this.isOn = new Boolean(isOn).valueOf();
+            this.toggleValue(this.isOn);
+          });
+      }
+      .width($r('app.float.wh_value_48'))
+      .height($r('app.float.wh_value_48'))
     }
-    .width(this.cssValue?.width)
-    .height(this.cssValue?.height)
+    .width(ComponentConfig.WH_100_100)
+    .height(this.summary ? $r('app.float.wh_value_64') : $r('app.float.wh_value_56'))
+    .backgroundColor($r("app.color.white_bg_color"))
     .margin(this.cssValue?.margin)
-    .padding(this.cssValue?.padding);
+    .padding({
+      left: $r('sys.float.ohos_id_default_padding_start'),
+      right: $r('sys.float.ohos_id_default_padding_end')
+    })
+    .alignItems(VerticalAlign.Center)
+    .borderRadius($r('sys.float.ohos_id_corner_radius_default_xl'))
   }
 
+  @Log
   aboutToAppear() {
     if (this.controller) {
       // bind event handlers
@@ -73,8 +91,14 @@ export default struct SwitchComponent {
 
       // bind component and initialize
       this.controller.bindComponent(this)
-        .bindProperties(["isOn"])
-        .initData();
+        .bindProperties(["isOn", "enabled"])
+        .initData()
+        .subscribe();
     }
+  }
+
+  @Log
+  aboutToDisappear() {
+    this.controller.unsubscribe();
   }
 }
