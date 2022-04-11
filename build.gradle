@@ -2,7 +2,7 @@
 apply plugin: 'com.huawei.ohos.app'
 
 ohos {
-    compileSdkVersion 7
+    compileSdkVersion 8
     defaultConfig {
         compatibleSdkVersion 6
     }
@@ -23,7 +23,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.huawei.ohos:hap:3.0.3.2'
+        classpath 'com.huawei.ohos:hap:3.0.5.2'
     }
 }
 

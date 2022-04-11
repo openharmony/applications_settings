@@ -13,11 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ResourceUtil from '../common/ResourceUtil.ets';
-import LogUtil from '../../../../../../utils/src/main/ets/default/baseUtil/LogUtil.ets';
-import Log from '../../../../../../utils/src/main/ets/default/baseUtil/LogDecorator.ets';
-import ConfigData from '../../../../../../utils/src/main/ets/default/baseUtil/ConfigData.ets';
+import ResourceUtil from '../common/ResourceUtil';
+import ComponentConfig from '../../../../../../component/src/main/ets/default/ComponentConfig.ets';
+import LogUtil from '../../../../../../utils/src/main/ets/default/baseUtil/LogUtil';
+import Log from '../../../../../../utils/src/main/ets/default/baseUtil/LogDecorator';
+import ConfigData from '../../../../../../utils/src/main/ets/default/baseUtil/ConfigData';
 import Router from '@system.router'
+import InputMethod from '@ohos.inputmethod';
+
+let SEARCH_INPUT_MAX_LENGTH = 100;
 
 /**
  * Search header component
@@ -25,62 +29,64 @@ import Router from '@system.router'
 @Component
 export default struct SearchHeader {
   @Link inputKeyword: string
+  @State placeholderSize: string = ''
   @State placeholder: string = ''
+  @State isTouch: boolean= false;
 
   build() {
     Row() {
-
-      // back
-      Image($r('app.media.ic_back'))
-        .width($r('app.float.wh_value_50'))
-        .height($r('app.float.wh_value_50'))
-        .objectFit(ImageFit.Contain)
-        .onClick(() => {
-          LogUtil.debug(ConfigData.TAG + 'searchPage SearchHeader : back clicked.');
-          Router.back()
+      Image($r("app.media.ic_back"))
+        .width($r("app.float.square_click_image_size"))
+        .height($r("app.float.square_click_image_size"))
+        .padding({
+          top: $r("app.float.sys_elements_margin_vertical_l"),
+          bottom: $r("app.float.sys_elements_margin_vertical_l"),
+          left: $r("app.float.sys_elements_margin_horizontal_l"),
+          right: $r("app.float.sys_elements_margin_horizontal_l"),
         })
+        .borderRadius($r("app.float.sys_corner_radius_clicked"))
+        .backgroundColor(this.isTouch ? $r("app.color.color_E3E3E3_grey") : $r("app.color.color_00000000_transparent"))
+        .onClick(()=>{
+          Router.back();
+        })
+        .onTouch((event: TouchEvent) => {
+          if (event.type === TouchType.Down) {
+            this.isTouch = true;
+          }
+          if (event.type === TouchType.Up) {
+            this.isTouch = false;
+          }
+        });
 
       // text input
-      Stack({ alignContent: Alignment.End }) {
-        TextInput({ placeholder: this.placeholder })
-          .margin({
-            left: $r('app.float.search_input_horizontal_margin'),
-            right: $r('app.float.search_input_horizontal_margin')
-          })
-          .placeholderFont({size:10,weight:FontWeight.Normal,style:FontStyle.Normal})
-          .type(InputType.Normal)
-          .enterKeyType(EnterKeyType.Search)
-          .layoutWeight(1)
-          .height($r("app.float.search_input_height"))
-          .borderRadius($r("app.float.search_input_border_radius"))
-          .backgroundColor(Color.White)
-          .onChange((value: string) => {
-            LogUtil.debug(ConfigData.TAG + 'searchPage SearchHeader : text input on change ：value = ' + JSON.stringify(value));
-            this.inputKeyword = value
-          })
+      TextInput({ placeholder: this.placeholder })
+        .placeholderFont({ size: this.placeholderSize, weight: FontWeight.Normal, style: FontStyle.Normal })
+        .type(InputType.Normal)
+        .enterKeyType(EnterKeyType.Search)
+        .caretColor(Color.Blue)
+        .maxLength(SEARCH_INPUT_MAX_LENGTH)
+        .layoutWeight(1)
+        .height($r("app.float.search_input_height"))
+        .onChange((value: string) => {
+          LogUtil.debug(ConfigData.TAG + 'searchPage SearchHeader : text input on change ：value = ' + JSON.stringify(value));
+          this.inputKeyword = value
+        })
+        .onSubmit((enterKey) => {
+          InputMethod.getInputMethodController().stopInput().then((ret) => {
+            LogUtil.debug( `${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
+          });
+        })
 
-        if (this.inputKeyword) {
-
-          // input text clear
-          Text('×')
-            .fontSize($r('app.float.font_28'))
-            .width($r('app.float.wh_value_60'))
-            .height($r('app.float.wh_value_60'))
-            .backgroundColor($r('app.color.color_00000000_transparent'))
-            .textAlign(TextAlign.Center)
-            .onClick(() => {
-              LogUtil.debug(ConfigData.TAG + 'searchPage SearchHeader : clear search key clicked.');
-              this.inputKeyword = ''
-            })
-        }
-      }
     }
-    .height($r('app.float.page_header_height'))
-    .padding({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_60') })
+    .width(ComponentConfig.WH_100_100)
+    .height($r("app.float.page_header_height"))
+    .alignItems(VerticalAlign.Center)
+    .align(Alignment.Start);
   }
 
   @Log
   aboutToAppear() {
     ResourceUtil.getString($r("app.string.searchHint")).then(value => this.placeholder = value)
+    ResourceUtil.getString($r("app.float.search_placeholder_font")).then(value => this.placeholderSize = value);
   }
 }

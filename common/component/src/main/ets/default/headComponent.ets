@@ -28,38 +28,40 @@ struct HeadComponent {
 
   build() {
     Row() {
-      Image($r('app.media.ic_back'))
-        .width($r('app.float.wh_value_50'))
-        .height($r('app.float.wh_value_50'))
-        .borderRadius($r('app.float.wh_value_15'))
-        .margin({
-          left: $r('app.float.wh_value_15'),
-          top: $r('app.float.wh_value_5'),
-          bottom: $r('app.float.wh_value_5')})
-        .backgroundColor(this.isTouch ? $r('app.color.color_E3E3E3_grey') : $r('app.color.color_00000000_transparent'))
-        .visibility(this.icBackIsVisibility ? Visibility.Visible : Visibility.None)
-        .onClick(()=>{
-          Router.back();
-        })
-        .onTouch((event: TouchEvent) => {
-          if (event.type === TouchType.Down) {
-            this.isTouch = true;
-          }
-          if (event.type === TouchType.Up) {
-            this.isTouch = false;
-          }
-        });
+      Stack({ alignContent: Alignment.Center }) {
+        Image($r('app.media.ic_back'))
+          .width($r('app.float.wh_value_24'))
+          .height($r('app.float.wh_value_24'))
+      }
+      .margin({left: $r('app.float.wh_value_4'), right: $r('app.float.wh_value_16')})
+      .backgroundColor(this.isTouch ? $r('app.color.color_E3E3E3_grey') : $r('app.color.color_00000000_transparent'))
+      .visibility(this.icBackIsVisibility ? Visibility.Visible : Visibility.None)
+      .onClick(() => {
+        Router.back();
+      })
+      .onTouch((event: TouchEvent) => {
+        if (event.type === TouchType.Down) {
+          this.isTouch = true;
+        }
+        if (event.type === TouchType.Up) {
+          this.isTouch = false;
+        }
+      });
+
       Text(this.headName)
         .fontSize($r('app.float.font_24'))
+        .lineHeight($r('app.float.wh_value_33'))
+        .fontFamily('HarmonyHeiTi-Bold')
         .fontWeight(FontWeight.Bold)
-        .fontColor(Color.Black)
-        .width(ComponentConfig.WH_90_100)
+        .fontColor($r('app.color.font_color_182431'))
         .maxLines(ComponentConfig.MAX_LINES_1)
         .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .margin({ left: $r('app.float.wh_value_15'), right: $r('app.float.wh_value_15') });
+        .textAlign(TextAlign.Start)
+        .margin({ top: $r('app.float.wh_value_13'), bottom: $r('app.float.wh_value_15') });
     }
     .width(ComponentConfig.WH_100_100)
-    .height($r('app.float.wh_value_70'))
+    .padding({ left: $r('app.float.wh_value_8') })
+    .height($r('app.float.wh_value_56'))
     .alignItems(VerticalAlign.Center)
     .align(Alignment.Start);
   }

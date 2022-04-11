@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 import ComponentConfig from './ComponentConfig.ets';
-import LogUtil from '../../../../../utils/src/main/ets/default/baseUtil/LogUtil.ets';
-import Log from '../../../../../utils/src/main/ets/default/baseUtil/LogDecorator.ets';
+import LogUtil from '../../../../../utils/src/main/ets/default/baseUtil/LogUtil';
+import Log from '../../../../../utils/src/main/ets/default/baseUtil/LogDecorator';
+import { RadioListItem } from '../../../../../utils/src/main/ets/default/bean/RadioListItem';
 
 /**
  * Radio component
@@ -22,21 +23,18 @@ import Log from '../../../../../utils/src/main/ets/default/baseUtil/LogDecorator
 @Component
 export default
 struct RadioListComponent {
-  @State dataList: any[] = [];
-  @State checkedValue: string = '';
+  @State dataList: RadioListItem[] = [];
+  @State checkedValue: string | Resource = '';
   private showRadio: boolean = true;
-  private onChange?: (item : any) => void;
+  private onChange?: (item : RadioListItem) => void;
 
   build() {
     Column() {
       List() {
-        ForEach(this.dataList, (item: any) => {
+        ForEach(this.dataList, (item: RadioListItem) => {
           ListItem() {
             RadioComponent({
-              settingIcon: item.settingIcon,
-              settingTitle: item.settingTitle,
-              settingSummary: item.settingSummary,
-              settingValue: item.settingValue,
+              radioItem: item,
               showRadio: this.showRadio,
               isChecked: (this.checkedValue == item.settingValue),
               onChange:() => {
@@ -69,10 +67,7 @@ struct RadioListComponent {
  */
 @Component
 struct RadioComponent {
-  private settingIcon: string = '';
-  private settingTitle: string = '';
-  private settingSummary: string = '';
-  private settingValue: string = '';
+  private radioItem: RadioListItem;
   private isChecked: boolean = false;
   private onChange?: () => void;
   private showRadio: boolean = true;
@@ -80,14 +75,14 @@ struct RadioComponent {
   build() {
     Flex({ justifyContent: FlexAlign.SpaceBetween }) {
       Row() {
-        Image(this.settingIcon)
+        Image(this.radioItem.settingIcon)
           .width($r('app.float.audio_image_common_size'))
           .height($r('app.float.audio_image_common_size'))
           .margin({ right: $r('app.float.audio_image_margin_right') })
-          .visibility(this.settingIcon ? Visibility.Visible : Visibility.None)
+          .visibility(this.radioItem.settingIcon ? Visibility.Visible : Visibility.None)
           .objectFit(ImageFit.Contain);
         Column() {
-          Text(this.settingTitle)
+          Text(this.radioItem.settingTitle)
             .fontColor($r('app.color.color_333333_grey'))
             .fontSize($r('app.float.control_common_font_size'))
             .textAlign(TextAlign.Start)
@@ -95,13 +90,13 @@ struct RadioComponent {
             .textOverflow({ overflow: TextOverflow.Ellipsis })
             .margin({ top: $r('app.float.audio_subtitle_margin_top'), bottom: $r('app.float.audio_subtitle_margin_bottom') });
 
-          Text(this.settingSummary)
+          Text(this.radioItem.settingSummary)
             .fontColor($r('app.color.color_999999_grey'))
             .fontSize($r('app.float.audio_subtitle_font_size'))
             .textAlign(TextAlign.Start)
             .maxLines(ComponentConfig.MAX_LINES_1)
             .textOverflow({ overflow: TextOverflow.Ellipsis })
-            .visibility(this.settingSummary ? Visibility.Visible : Visibility.None)
+            .visibility(this.radioItem.settingSummary ? Visibility.Visible : Visibility.None)
             .margin({ bottom: $r('app.float.audio_summary_subtitle_margin_bottom') });
         }
         .margin({ left: $r('app.float.audio_title_summary_margin_left') })
@@ -112,7 +107,7 @@ struct RadioComponent {
       .align(Alignment.Start);
 
       Row() {
-        Radio( {value: this.settingValue, group: ''} )
+        Radio( {value: this.radioItem.settingValue, group: ''} )
           .height($r('app.float.radio_component_height'))
           .margin({ right: $r('app.float.radio_component_margin_bottom_right') })
           .align(Alignment.End)
