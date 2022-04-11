@@ -14,9 +14,11 @@
  */
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent.ets';
 import {SubEntryComponentWithEndText} from '../../../../../../../common/component/src/main/ets/default/subEntryComponent.ets';
-import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
-import SystemAccount from '../model/usersAndAccounts/systemAccountModel.ets'
-import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
+import {SubHeader} from '../../../../../../../common/component/src/main/ets/default/textComponent.ets';
+import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
+import SystemAccount from '../model/usersAndAccounts/systemAccountModel'
+import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import featureAbility from '@ohos.ability.featureAbility';
 import router from '@system.router';
 
 /**
@@ -28,30 +30,58 @@ struct UsersAccounts {
   @State accountName: string = "";
 
   build() {
-    Column() {
-      // head
-      HeadComponent({ headName: $r("app.string.usersAccountsTab"), isActive: true })
+    Column(){
+      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+        Row({}) {
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
+            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
+          });
 
-      Text($r('app.string.user'))
-        .padding({ left: $r('app.float.distance_24'), right: $r("app.float.distance_24") })
-        .margin({ bottom: $r('app.float.distance_8') })
-        .fontSize($r('app.float.font_18'))
-        .fontColor(Color.Black)
+          Column() {
+            // head
+            HeadComponent({ headName: $r("app.string.usersAccountsTab"), isActive: true })
+
+            SubHeader({ titleContent: $r('app.string.user') })
+
+            // current user subEntry
+            SubEntryComponentWithEndText({
+              targetPage: "pages/multipleUsers",
+              title: $r("app.string.currentLogin"),
+              endText: this.accountName
+            });
+          }
+          .padding({left:$r('app.float.distance_24'), right:$r('app.float.distance_24')})
+          .align(Alignment.Center)
+          .height(ConfigData.WH_100_100)
+          .width(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
+            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
+          });
+
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
+            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
+          })
+        }
         .width(ConfigData.WH_100_100)
-        .textAlign(TextAlign.Start)
-
-      // current user subEntry
-      SubEntryComponentWithEndText({
-        targetPage: "pages/multipleUsers",
-        title: $r("app.string.currentLogin"),
-        endText: this.accountName
-      });
+        .height(ConfigData.WH_100_100);
+      }
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100);
     }
-    .padding({left:$r('app.float.distance_24'), right:$r('app.float.distance_24')})
-    .align(Alignment.Center)
-    .height(ConfigData.WH_100_100)
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
-    .backgroundColor($r("app.color.color_E3E3E3_grey"));
+    .height(ConfigData.WH_100_100);
   }
 
   onPageShow() {

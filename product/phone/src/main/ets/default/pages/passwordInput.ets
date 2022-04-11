@@ -12,15 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
+import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent.ets';
-import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator.ets';
-import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
-import { BaseData } from '../../../../../../../common/utils/src/main/ets/default/model/BaseData.ets'
-import { PinSubType } from '../model/passwordImpl/PasswordModel.ets';
-import PasswordInputController from '../controller/password/PasswordInputController.ets'
+import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
+import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { PinSubType } from '../model/passwordImpl/PasswordModel';
+import PasswordInputController from '../controller/password/PasswordInputController'
 import RadioListComponent from '../../../../../../../common/component/src/main/ets/default/radioListComponent.ets';
 import Router from '@system.router';
+import { RadioListItem } from '../../../../../../../common/utils/src/main/ets/default/bean/RadioListItem';
+import InputMethod from '@ohos.inputmethod';
 
 let param;
 
@@ -31,8 +32,8 @@ struct PasswordInput {
   private mController: PasswordInputController = new PasswordInputController()
 
 // bind Properties
+  @State @Watch("clearViewData")private isInputFirstTime: boolean = true
   @State @Watch("clearViewData")private passwordType: number = -1
-  @State private checkMessage: string | Resource = ''
   private password: string = ''
 
 // private Properties
@@ -42,8 +43,10 @@ struct PasswordInput {
   private pinToken: string = undefined
   @State private pageTitle: string | Resource = ''
   @State private inputMessage: string | Resource = ''
-  @State private unlockMethodList: BaseData[] = []
+  @State private unlockMethodList: RadioListItem[] = []
   @State private buttonVisibility: Visibility = Visibility.Visible
+  @State isTouchedLeft: boolean = false;
+  @State isTouchedRight: boolean = false;
 
 // handler
   private passwordOnChangeHandler: (value: string) => void;
@@ -53,6 +56,7 @@ struct PasswordInput {
 //dialog
   private chooseUnlockMethodDialog: CustomDialogController = new CustomDialogController({
     builder: chooseUnlockMethodDialog({
+      dialogTitle: $r('app.string.password_change_unlock_method'),
       dataList: $unlockMethodList,
       checkedValue: $passwordType,
       chosenAction: (value) => {
@@ -73,7 +77,7 @@ struct PasswordInput {
 
     // bind component and initialize
     this.mController.bindComponent(this)
-      .bindProperties(["passwordType", "checkMessage", "password"])
+      .bindProperties(["passwordType", "isInputFirstTime", "password", "pinToken"])
       .initData()
       .subscribe();
 
@@ -102,89 +106,157 @@ struct PasswordInput {
   }
 
   build() {
-    Column() {
-      // head
-      HeadComponent({ headName: this.pageTitle, isActive: true })
-
-      Column() {
-        // input message
-        Text(this.inputMessage)
-          .fontSize($r('app.float.font_20'))
-          .fontColor($r('app.color.color_666666_grey'))
-          .margin({ top: $r('app.float.password_input_message_vertical_margin'), bottom: $r('app.float.password_input_message_vertical_margin') })
-          .align(Alignment.Center)
-
-        // input password
-        Row() {
-          TextInput({ placeholder: '', text: this.password })
-            .height($r('app.float.wh_value_70'))
-            .layoutWeight(1)
-            .backgroundColor(Color.White)
-            .type(InputType.Password)
-            .enterKeyType(EnterKeyType.Done)
-            .onChange(this.passwordOnChangeHandler);
-          //todo  max length : wait ACE
-        }
-
-        // prompt message
-        Text(this.checkMessage ? this.checkMessage : $r('app.string.password_set_prompt'))
-          .fontSize($r('app.float.font_18'))
-          .width(ConfigData.WH_83_100)
-          .fontColor(Color.Red)
-          .align(Alignment.Start)
-          .textAlign(TextAlign.Start)
-          .margin({ top: $r('app.float.password_input_message_vertical_margin') })
-
-        // change unlock method
-        Text($r('app.string.password_change_unlock_method'))
+    Column(){
+      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+        Row({}) {
+          Column() {
+          }
           .width(ConfigData.WH_100_100)
-          .fontSize($r('app.float.font_20'))
-          .fontColor(Color.Blue)
-          .align(Alignment.Center)
-          .textAlign(TextAlign.Center)
-          .visibility(Visibility.Visible)
-          .padding({ top: $r('app.float.password_input_message_vertical_margin'), bottom: $r('app.float.password_input_message_vertical_margin') })
-          .onClick(() => {
-            this.chooseUnlockMethodDialog.open()
-          })
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
+            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
+          });
 
-        // button
-        Flex( { justifyContent: FlexAlign.SpaceAround } ) {
-          Button() {
-            Text($r('app.string.cancel'))
-              .fontSize($r('app.float.application_button_subtitle_size'))
-              .fontColor(Color.Blue)
-              .textCase(TextCase.UpperCase)
-          }
-          .backgroundColor($r('app.color.color_E3E3E3_grey'))
-          .width($r("app.float.wh_value_210"))
-          .height($r("app.float.wh_value_60"))
-          .onClick(() => {
-            Router.back();
-          })
+          Column() {
+            // head
+            HeadComponent({ headName: this.pageTitle, isActive: true })
 
-          Button() {
-            Text($r('app.string.continue_'))
-              .fontSize($r('app.float.application_button_subtitle_size'))
-              .fontColor(Color.Blue)
-              .textCase(TextCase.UpperCase)
+            Column() {
+              // input message
+              Text(this.inputMessage)
+                .fontSize($r('sys.float.ohos_id_text_size_sub_title2'))
+                .fontWeight(FontWeight.Medium)
+                .fontColor($r('sys.color.ohos_id_color_foreground'))
+                .margin({ top: $r('app.float.item_common_horizontal_margin') })
+                .align(Alignment.Center)
+
+              // input password
+              Row() {
+                TextInput({ placeholder: '', text: this.password })
+                  .placeholderFont({size: $r("app.float.font_18"), weight:FontWeight.Normal, style: FontStyle.Normal})
+                  .type(InputType.Password)
+                  .enterKeyType(EnterKeyType.Done)
+                  .caretColor(Color.Blue)
+                  .padding({left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end')})
+                  .margin({ top: $r('app.float.wh_value_50') })
+                  .height($r("app.float.wh_value_40"))
+                  .layoutWeight(1)
+                  .borderRadius(0)
+                  .backgroundColor($r('app.color.color_00000000_transparent'))
+                  .onChange(this.passwordOnChangeHandler)
+                  .onSubmit((enterKey) => {
+                    InputMethod.getInputMethodController().stopInput().then((ret) => {
+                      LogUtil.debug( `${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
+                    });
+                  });
+
+              }
+              Divider()
+                .padding({left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end')})
+
+              CheckText();
+
+              // change unlock method
+              Text($r('app.string.password_change_unlock_method'))
+                .height($r("app.float.wh_value_56"))
+                .fontSize($r('sys.float.ohos_id_text_size_button1'))
+                .fontColor($r('sys.color.ohos_id_color_text_primary_activated'))
+                .fontWeight(FontWeight.Medium)
+                .align(Alignment.Center)
+                .alignSelf(ItemAlign.Center)
+                .textAlign(TextAlign.Center)
+                .visibility(this.isInputFirstTime ? Visibility.Visible : Visibility.Hidden)
+                .padding({ left: $r('app.float.distance_30'), right: $r('app.float.distance_30') })
+                .onClick(() => {
+                  this.chooseUnlockMethodDialog.open()
+                })
+
+              // button
+              Row() {
+                Text($r('app.string.cancel'))
+                  .fontSize($r('app.float.application_button_subtitle_size'))
+                  .lineHeight($r('app.float.wh_value_22'))
+                  .fontColor($r('app.color.font_color_007DFF'))
+                  .textAlign(TextAlign.Center)
+                  .layoutWeight(1)
+                  .height($r('app.float.application_button_height'))
+                  .borderRadius($r('app.float.radius_20'))
+                  .backgroundColor(!this.isTouchedLeft ? $r("app.color.color_D8D8D8_grey") : $r("sys.color.ohos_id_color_foreground_contrary"))
+                  .onTouch((event: TouchEvent) => {
+                    if (event.type === TouchType.Down) {
+                      this.isTouchedLeft = true;
+                    }
+                    if (event.type === TouchType.Up) {
+                      this.isTouchedLeft = false;
+                    }
+                  })
+                  .onClick(() => {
+                    Router.back();
+                  })
+
+                Column()
+                  .width( $r('app.float.distance_12'))
+                  .height($r('app.float.application_button_height'))
+
+                Text(this.isInputFirstTime ? $r('app.string.continue_') : $r('app.string.confirm'))
+                  .fontSize($r('app.float.application_button_subtitle_size'))
+                  .lineHeight($r('app.float.wh_value_22'))
+                  .fontColor($r('app.color.font_color_007DFF'))
+                  .textAlign(TextAlign.Center)
+                  .layoutWeight(1)
+                  .height($r('app.float.application_button_height'))
+                  .borderRadius($r('app.float.radius_20'))
+                  .backgroundColor(!this.isTouchedRight ? $r("app.color.color_D8D8D8_grey") : $r("sys.color.ohos_id_color_foreground_contrary"))
+                  .onTouch((event: TouchEvent) => {
+                    if (event.type === TouchType.Down) {
+                      this.isTouchedRight = true;
+                    }
+                    if (event.type === TouchType.Up) {
+                      this.isTouchedRight = false;
+                    }
+                  })
+                  .onClick(this.okOnClickHandler)
+              }
+              .alignItems(VerticalAlign.Center)
+              .width(ConfigData.WH_100_100)
+              .padding({
+                top: $r('app.float.distance_24'),
+                bottom: $r('app.float.distance_36'),
+                left: $r('app.float.distance_24'),
+                right: $r('app.float.distance_24')
+              })
+              .margin({ top: $r('app.float.password_input_button_space') })
+              .visibility(this.buttonVisibility)
+
+            }
           }
-          .backgroundColor($r('app.color.color_E3E3E3_grey'))
-          .width($r("app.float.wh_value_210"))
-          .height($r("app.float.wh_value_60"))
-          .onClick(this.okOnClickHandler);
+          .padding({left: $r('app.float.distance_24'), right: $r('app.float.distance_24')})
+          .height(ConfigData.WH_100_100)
+          .width(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
+            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
+          });
+
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
+            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
+          })
         }
-        .margin({ top: $r('app.float.password_input_button_space') })
-        .visibility(this.buttonVisibility)
-
+        .width(ConfigData.WH_100_100)
+        .height(ConfigData.WH_100_100);
       }
       .width(ConfigData.WH_100_100)
-      .margin({ top: $r('app.float.password_input_button_margin_top') })
-      .padding({
-        left:$r('app.float.item_common_horizontal_margin'),
-        right:$r('app.float.item_common_horizontal_margin'),
-      })
+      .height(ConfigData.WH_100_100);
     }
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100);
   }
 
 // --------------------------- updateView -----------------------
@@ -193,7 +265,7 @@ struct PasswordInput {
    */
   @Log
   clearViewData() {
-    this.checkMessage = ''
+    AppStorage.SetOrCreate("checkMessage", '');
     this.password = ''
     this.mController.bindComponent(this).initData()
     this.updateView()
@@ -238,18 +310,22 @@ struct PasswordInput {
   @Log
   getInputMessage(): string | Resource {
     let inputMessage: string | Resource = '';
-    switch (this.passwordType) {
-      case PinSubType.PIN_SIX:
-        inputMessage = $r('app.string.password_message_number_6')
-        break;
+    if (this.isInputFirstTime) {
+      switch (this.passwordType) {
+        case PinSubType.PIN_SIX:
+          inputMessage = $r('app.string.password_message_number_6')
+          break;
 
-      case PinSubType.PIN_NUMBER:
-        inputMessage = $r('app.string.password_message_custom')
-        break;
+        case PinSubType.PIN_NUMBER:
+          inputMessage = $r('app.string.password_message_custom')
+          break;
 
-      case PinSubType.PIN_MIXED:
-        inputMessage = $r('app.string.password_message_character')
-        break;
+        case PinSubType.PIN_MIXED:
+          inputMessage = $r('app.string.password_message_character')
+          break;
+      }
+    } else {
+      inputMessage = $r('app.string.password_message_repeat');
     }
     return inputMessage;
   }
@@ -260,33 +336,27 @@ struct PasswordInput {
    * @return : unlock method list
    */
   @Log
-  getUnlockMethodList(): any[] {
-    var list : any[] = [];
+  getUnlockMethodList(): RadioListItem[] {
+    var list : RadioListItem[] = [];
+    if (!this.isInputFirstTime) {
+      return list;
+    }
     if (this.passwordType != PinSubType.PIN_SIX) {
       list.push({
-        settingValue: PinSubType.PIN_SIX,
-        settingTitle: $r('app.string.password_item_text_number_6'),
-        settingIcon: '',
-        settingAlias: '',
-        settingSummary: ''
+        settingType: PinSubType.PIN_SIX,
+        settingTitle: $r('app.string.password_item_text_number_6')
       })
     }
     if (this.passwordType != PinSubType.PIN_NUMBER) {
       list.push({
-        settingValue: PinSubType.PIN_NUMBER,
-        settingTitle: $r('app.string.password_item_text_custom'),
-        settingIcon: '',
-        settingAlias: '',
-        settingSummary: ''
+        settingType: PinSubType.PIN_NUMBER,
+        settingTitle: $r('app.string.password_item_text_custom')
       })
     }
     if (this.passwordType != PinSubType.PIN_MIXED) {
       list.push({
-        settingValue: PinSubType.PIN_MIXED,
-        settingTitle: $r('app.string.password_item_text_character') ,
-        settingIcon: '',
-        settingAlias: '',
-        settingSummary: ''
+        settingType: PinSubType.PIN_MIXED,
+        settingTitle: $r('app.string.password_item_text_character')
       })
     }
     return list;
@@ -304,6 +374,23 @@ struct PasswordInput {
   }
 
 }
+// The check message need to change real time, put it in child component, so parent component does not refresh.
+@Component
+struct CheckText {
+  @StorageLink("checkMessage") private checkMessage: string | Resource = ''
+
+  build() {
+    Row() {
+      Text(this.checkMessage ? this.checkMessage : $r('app.string.password_set_prompt'))
+          .fontSize($r('sys.float.ohos_id_text_size_body2'))
+          .fontWeight(FontWeight.Medium)
+          .fontColor($r('sys.color.ohos_id_color_warning'))
+          .align(Alignment.Center)
+          .textAlign(TextAlign.Center)
+          .margin({ top: $r('app.float.distance_14'), bottom: $r('app.float.distance_32') })
+    }
+  }
+}
 
 /**
  * Choose Unlock Method Dialog
@@ -311,10 +398,11 @@ struct PasswordInput {
 @CustomDialog
 struct chooseUnlockMethodDialog {
   controller: CustomDialogController;
-  @Link dataList: BaseData[];
+  @Link dataList: RadioListItem[];
   @Link checkedValue: string;
   private dialogTitle: string= "";
   private chosenAction: (value: number) => void;
+  @State isTouched :Boolean = false;
 
   @Log
   closeDialog() {
@@ -336,10 +424,10 @@ struct chooseUnlockMethodDialog {
           dataList: this.dataList,
           checkedValue: this.checkedValue,
           showRadio: false,
-          onChange: (item) => {
+          onChange: (item: RadioListItem) => {
             if (this.chosenAction != null) {
               LogUtil.info(ConfigData.TAG + 'chooseUnlockMethodDialog : onCheckedAction : call back');
-              this.chosenAction(item.settingValue);
+              this.chosenAction(item.settingType);
             }
             this.closeDialog();
           }
@@ -347,23 +435,35 @@ struct chooseUnlockMethodDialog {
       }
 
       Column() {
-        Button() {
-          Text($r('app.string.cancel'))
-            .fontSize($r('app.float.application_button_subtitle_size'))
-            .fontColor(Color.Blue)
-            .textCase(TextCase.UpperCase)
-        }
-        .backgroundColor($r('app.color.color_E3E3E3_grey'))
-        .width($r("app.float.wh_value_210"))
-        .height($r("app.float.wh_value_60"))
-        .align(Alignment.Bottom)
-        .onClick(() => {
-          this.closeDialog();
-        });
+        Text($r('app.string.cancel'))
+          .fontSize($r('app.float.application_button_subtitle_size'))
+          .fontColor($r('sys.color.ohos_id_color_focused_bg'))
+          .textAlign(TextAlign.Center)
+          .width(ConfigData.WH_100_100)
+          .height($r("app.float.wh_value_56"))
+          .borderRadius($r('app.float.radius_20'))
+          .linearGradient(this.isTouched ? {
+             angle: 90,
+             direction: GradientDirection.Right,
+             colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+             } : {
+             angle: 90,
+             direction: GradientDirection.Right,
+             colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
+          .onTouch((event: TouchEvent) => {
+            if (event.type === TouchType.Down) {
+              this.isTouched = true;
+            }
+            if (event.type === TouchType.Up) {
+              this.isTouched = false;
+            }
+          })
+          .onClick(() => {
+            this.closeDialog();
+          });
       }
-      .width(ConfigData.WH_100_100)
-      .alignItems(HorizontalAlign.Center)
-      .margin({ top: $r('app.float.item_common_vertical_margin'), bottom: $r('app.float.item_common_vertical_margin') })
+      .padding($r('app.float.distance_20'))
+      .align(Alignment.Center);
     }
   }
 }

@@ -1,0 +1,5 @@
+.gradle/
+.idea/
+product/phone/build/
+product/wearable/build/
+build/

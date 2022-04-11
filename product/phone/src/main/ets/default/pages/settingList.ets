@@ -12,14 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
-import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
-import EntryComponent from '../../../../../../../common/component/src/main/ets/default/entryComponent.ets';
-import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent.ets';
-import SettingListModel from '../model/settingListImpl/SettingListModel.ets';
-import WifiModel from '../model/wifiImpl/WifiModel.ets';
-import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil.ets';
+import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
+import SettingListModel from '../model/settingListImpl/SettingListModel';
+import WifiModel from '../model/wifiImpl/WifiModel';
+import BluetoothModel from '../model/bluetoothImpl/BluetoothModel';
+import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
+import GlobalResourceManager from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalResourceManager';
+import PreferenceUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/PreferenceUtil';
 import Router from '@system.router';
+import FeatureAbility from '@ohos.ability.featureAbility';
+import { BaseData } from '../../../../../../../common/utils/src/main/ets/default/bean/BaseData';
 
 const PAGE_SEARCH = 'pages/searchPage'; // for search
 
@@ -29,109 +32,386 @@ const PAGE_SEARCH = 'pages/searchPage'; // for search
 @Entry
 @Component
 struct SettingList {
-  settingsList: any[]= SettingListModel.getSettingList();
-  @State wifiStatus: boolean= false;
-  @State status: any= '';
+  settingsList: BaseData[][] = SettingListModel.getSettingList();
   @State placeholder: string= ''; // for search
   @State placeholdersize: string = '22'
+  @State listSpace: string = '12vp'
+
 
   build() {
-    Column() {
-      HeadComponent({ icBackIsVisibility: false, headName: $r('app.string.settings'), isActive: false });
+    Column(){
+      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+        Row({}) {
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
+            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
+          })
 
-      // for search
-      Navigator({ target: PAGE_SEARCH }) {
-        TextInput({ placeholder: this.placeholder, text: '' })
-          .placeholderFont({ size:this.placeholdersize, weight:FontWeight.Normal,style:FontStyle.Normal})
-          .type(InputType.Normal)
-          .enterKeyType(EnterKeyType.Search)
-          .caretColor(Color.Green)
-          .layoutWeight(1)
-          .height($r("app.float.search_input_height"))
-          .borderRadius($r("app.float.search_input_border_radius"))
-          .backgroundColor(Color.White)
-          .enabled(false)
-      }
-      .margin({bottom:$r('app.float.distance_24') })
-      .onClick(() => {
-        LogUtil.info('On click the search editText.');
-        Router.push({
-          uri: PAGE_SEARCH
-        })
-      })
+          Column() {
+            Text($r('app.string.settings'))
+              .fontSize($r("app.float.font_30"))
+              .lineHeight($r("app.float.lineHeight_41"))
+              .fontWeight(FontWeight.Bold)
+              .fontFamily('HarmonyHeiTi')
+              .textAlign(TextAlign.Start)
+              .width(ConfigData.WH_100_100)
+              .padding({left: $r('app.float.distance_26'), top: $r('app.float.distance_12'), bottom: $r('app.float.distance_17')})
 
-      List({space: 10, initialIndex: 0}) {
-        ForEach(this.settingsList, (moduleBlock) => {
-          ListItem() {
-            List(){
-              ForEach(moduleBlock, (item) => {
-                ListItem(){
-                  EntryComponent({
-                    settingIcon: item.settingIcon,
-                    settingTitle: item.settingTitle,
-                    settingSummary: item.settingSummary,
-                    settingValue: item.settingValue,
-                    settingArrow: item.settingArrow,
-                    settingArrowStyle: '',
-                    settingUri: item.settingUri
-                  });
+            List({ space: this.listSpace}) {
+
+              // for search
+              ListItem() {
+                Row(){
+                  Image($r("app.media.ic_search"))
+                    .width($r('app.float.wh_value_18'))
+                    .height($r('app.float.wh_value_18'))
+                    .objectFit(ImageFit.Contain)
+                    .margin({ left: $r("app.float.distance_11"), top: $r('app.float.distance_11'), bottom: $r('app.float.distance_11')});
+                  Text($r("app.string.searchHint"))
+                    .fontSize($r("app.float.font_16"))
+                    .lineHeight($r("app.float.lineHeight_21"))
+                    .fontWeight(FontWeight.Regular)
+                    .fontFamily('HarmonyHeiTi')
+                    .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+                    .align(Alignment.Start)
+                    .margin({ left: $r("app.float.distance_6"), top: $r('app.float.distance_9'), bottom: $r('app.float.distance_9')});
                 }
-                .onClick(() => {
-                  Router.push({
-                    uri: item.settingUri,
-                  });
+                .margin({left: $r("app.float.distance_1"), right: $r("app.float.distance_1"), bottom: $r("app.float.distance_4")})
+                .borderRadius($r("app.float.radius_20"))
+                .height($r("app.float.wh_value_40"))
+                .width(ConfigData.WH_100_100)
+                .alignItems(VerticalAlign.Center)
+                .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
+              }
+              .width(ConfigData.WH_100_100)
+              .onClick(() => {
+                LogUtil.info('On click the search editText.');
+                Router.push({
+                  uri: PAGE_SEARCH
                 })
               })
+
+              ForEach(this.settingsList, (eachBlock) => {
+                ListItem() {
+                  List() {
+                    ForEach(eachBlock, (eachitem) => {
+                      ListItem() {
+                        if(eachitem.settingAlias === 'wlanTab'){
+                          wifiItemComponent({item: eachitem})
+                        } else if (eachitem.settingAlias === 'blueToothTab') {
+                            if(BluetoothModel.canUse){
+                              bluetoothItemComponent({item: eachitem})
+                            }
+                        } else {
+                          ItemComponent({ item: eachitem })
+                        }
+                      }
+                    })
+                  }
+                  .width(ConfigData.WH_100_100)
+                  .divider({
+                    strokeWidth: 1,
+                    color: $r('app.color.color_E3E3E3_grey'),
+                    startMargin: $r('app.float.wh_value_48'),
+                    endMargin: $r('app.float.wh_value_8')
+                  })
+                }
+                .width(ConfigData.WH_100_100)
+                .borderRadius($r("app.float.radius_24"))
+                .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
+                .padding($r('app.float.distance_4'))
+              });
             }
-            .divider({
-              strokeWidth: 1,
-              color: $r('app.color.color_E3E3E3_grey'),
-              startMargin: $r('app.float.wh_value_65'),
-              endMargin: $r('app.float.wh_value_20')
-            })
+            .width(ConfigData.WH_100_100)
+            .height(ConfigData.WH_100_100)
+            .alignSelf(ItemAlign.Start);
           }
-          .borderRadius($r("app.float.radius_24"))
-          .backgroundColor($r("app.color.white_bg_color"))
-          .padding($r('app.float.distance_4'))
-        });
+          .padding({left: $r('app.float.distance_24'), right: $r('app.float.distance_24')})
+          .align(Alignment.Start)
+          .alignItems(HorizontalAlign.Start)
+          .height(ConfigData.WH_100_100)
+          .width(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
+            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
+          })
+
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
+            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
+          })
+        }
+        .width(ConfigData.WH_100_100)
+        .height(ConfigData.WH_100_100);
       }
       .width(ConfigData.WH_100_100)
-      .height(ConfigData.WH_100_100)
-      .alignSelf(ItemAlign.Start);
+      .height(ConfigData.WH_100_100);
     }
-    .padding({left:$r('app.float.distance_24'), right:$r('app.float.distance_24')})
-    .align(Alignment.Start)
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
-    .height(ConfigData.WH_100_100)
-    .backgroundColor($r("app.color.color_D8D8D8_grey"));
+    .height(ConfigData.WH_100_100);
   }
 
   aboutToAppear() {
     LogUtil.info('settings SettingList aboutToAppear enter');
     ResourceUtil.getString($r("app.string.searchHint")).then(value => this.placeholder = value) // for search
     ResourceUtil.getString($r("app.float.search_placeholder_font")).then(value => this.placeholdersize = value);
+    ResourceUtil.getString($r('app.float.distance_12')).then(value => this.listSpace = value);
+    let nYear = GlobalResourceManager.getStringByResource($r('app.string.year'));
+    nYear.then(resp => PreferenceUtil.setStorageValue(ConfigData.DATE_AND_TIME_YEAR, resp));
+    let nMonth = GlobalResourceManager.getStringByResource($r('app.string.month'));
+    nMonth.then(resp => PreferenceUtil.setStorageValue(ConfigData.DATE_AND_TIME_MONTH, resp));
+    let nDay = GlobalResourceManager.getStringByResource($r('app.string.day'));
+    nDay.then(resp => {
+      PreferenceUtil.setStorageValue(ConfigData.DATE_AND_TIME_DAY, resp);
+      LogUtil.info('SettingList day:' + PreferenceUtil.getStorageValue(ConfigData.DATE_AND_TIME_DAY, ''));
+    })
     LogUtil.info('settings SettingList aboutToAppear end');
   }
 
-  onPageShow(): void{
-    this.wifiStatus = WifiModel.isWiFiActive();
-    if (this.wifiStatus) {
-      this.status = $r('app.string.enabled');
-    } else {
-      this.status = $r('app.string.disabled');
-    }
-    LogUtil.info('settings SettingList onPageShow this.wifiStatus:' + this.wifiStatus);
-    this.settingsList.unshift([{
-      "settingIcon": "/res/image/ic_settings_wifi.svg",
-      "settingTitle": $r('app.string.wifiTab'),
-      "settingAlias": '',
-      "settingValue": this.status,
-      "settingArrow": "/res/image/ic_settings_arrow.svg",
-      "settingSummary": "",
-      "settingUri": "pages/wifi"
-       },]);
-    this.settingsList.splice(1, 1);
-    LogUtil.info('settings SettingList onPageShow out:' + +JSON.stringify(this.settingsList));
+  onPageShow(){
+    FeatureAbility.getWant().then((want) => {
+      if(want.uri === "wifi"){
+        Router.replace({uri: "pages/wifi"})
+      } else if(want.uri === "bluetooth") {
+        Router.replace({uri: "pages/bluetooth"})
+      } else if(want.uri === "volumeControl") {
+        Router.replace({uri: "pages/volumeControl"})
+      } else if(want.uri === "locationServices") {
+        Router.replace({uri: "pages/locationServices"})
+      }
+    })
   }
 
+}
+
+
+@Component
+struct ItemComponent {
+  @State isTouched: boolean = false;
+  private item;
+
+  build(){
+    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }){
+      Row(){
+        Image(this.item.settingIcon)
+          .width($r("app.float.wh_value_24"))
+          .height($r("app.float.wh_value_24"))
+          .margin({left: $r("app.float.distance_8"), top: $r("app.float.distance_15"), bottom: $r("app.float.distance_17")})
+
+        Text(this.item.settingTitle)
+          .fontSize($r("app.float.font_16"))
+          .lineHeight($r("app.float.lineHeight_22"))
+          .fontWeight(FontWeight.Medium)
+          .fontFamily('HarmonyHeiTi')
+          .fontColor($r("sys.color.ohos_id_color_text_primary"))
+          .align(Alignment.Start)
+          .margin({left: $r("app.float.distance_16"), top: $r("app.float.distance_17"), bottom: $r("app.float.distance_17")})
+      }
+      .align(Alignment.Start)
+      .height(ConfigData.WH_100_100)
+
+      Row() {
+        Image(this.item.settingArrow)
+          .width($r("app.float.wh_value_12"))
+          .height($r("app.float.wh_value_24"))
+          .margin({left: $r("app.float.distance_4"), right: $r("app.float.distance_8"), top: $r("app.float.distance_16"), bottom: $r("app.float.distance_16")})
+
+      }
+      .align(Alignment.End)
+      .height(ConfigData.WH_100_100);
+    }
+    .width(ConfigData.WH_100_100)
+    .height($r("app.float.wh_value_56"))
+    .borderRadius($r("app.float.radius_20"))
+    .linearGradient(this.isTouched ? {
+       angle: 90,
+       direction: GradientDirection.Right,
+       colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+       } : {
+       angle: 90,
+       direction: GradientDirection.Right,
+       colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
+    .onTouch((event: TouchEvent) => {
+      if (event.type === TouchType.Down) {
+        this.isTouched = true;
+      }
+      if (event.type === TouchType.Up) {
+        this.isTouched = false;
+      }
+    })
+    .onClick(() => {
+      SettingListModel.onClick(this.item);
+    })
+
+
+  }
+}
+
+
+@Component
+struct wifiItemComponent {
+  @StorageLink('wifiStatus') wifiStatus: boolean = WifiModel.isWiFiActive();
+  @State isTouched: boolean = false;
+  private item;
+
+  build(){
+    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }){
+      Row(){
+        Image(this.item.settingIcon)
+          .width($r("app.float.wh_value_24"))
+          .height($r("app.float.wh_value_24"))
+          .margin({left: $r("app.float.distance_8"), top: $r("app.float.distance_15"), bottom: $r("app.float.distance_17")})
+
+        Text(this.item.settingTitle)
+          .fontSize($r("app.float.font_16"))
+          .lineHeight($r("app.float.lineHeight_22"))
+          .fontWeight(FontWeight.Medium)
+          .fontFamily('HarmonyHeiTi')
+          .fontColor($r("sys.color.ohos_id_color_text_primary"))
+          .align(Alignment.Start)
+          .margin({left: $r("app.float.distance_16"), top: $r("app.float.distance_17"), bottom: $r("app.float.distance_17")})
+      }
+      .align(Alignment.Start)
+      .height(ConfigData.WH_100_100)
+
+      Row() {
+        Text(this.wifiStatus ? $r("app.string.enabled") : $r("app.string.disabled"))
+          .fontSize($r("app.float.font_14"))
+          .lineHeight($r("app.float.lineHeight_19"))
+          .align(Alignment.End)
+          .fontWeight(FontWeight.Regular)
+          .fontFamily('HarmonyHeiTi')
+          .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+          .margin({top: $r("app.float.distance_19"), bottom: $r("app.float.distance_18") });
+        Image(this.item.settingArrow)
+          .width($r("app.float.wh_value_12"))
+          .height($r("app.float.wh_value_24"))
+          .margin({left: $r("app.float.distance_4"), right: $r("app.float.distance_8"), top: $r("app.float.distance_16"), bottom: $r("app.float.distance_16")})
+
+      }
+      .align(Alignment.End)
+      .height(ConfigData.WH_100_100);
+    }
+    .width(ConfigData.WH_100_100)
+    .height($r("app.float.wh_value_56"))
+    .borderRadius($r("app.float.radius_20"))
+    .linearGradient(this.isTouched ? {
+       angle: 90,
+       direction: GradientDirection.Right,
+       colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+       } : {
+       angle: 90,
+       direction: GradientDirection.Right,
+       colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
+    .onTouch((event: TouchEvent) => {
+      if (event.type === TouchType.Down) {
+        this.isTouched = true;
+      }
+      if (event.type === TouchType.Up) {
+        this.isTouched = false;
+      }
+    })
+    .onClick(() => {
+      SettingListModel.onClick(this.item);
+    })
+  }
+
+  aboutToAppear() {
+    LogUtil.info('settings SettingList wifiItem aboutToAppear');
+    SettingListModel.registerObserver();
+    LogUtil.info('settings SettingList  wifiItem aboutToAppear end');
+  }
+}
+
+@Component
+struct bluetoothItemComponent {
+  @StorageLink('bluetoothIsOn') bluetoothIsOn: boolean = false;
+  @State isTouched: boolean = false;
+  private item;
+
+  build(){
+    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }){
+      Row(){
+        Image(this.item.settingIcon)
+          .width($r("app.float.wh_value_24"))
+          .height($r("app.float.wh_value_24"))
+          .margin({left: $r("app.float.distance_8"), top: $r("app.float.distance_15"), bottom: $r("app.float.distance_17")})
+
+        Text(this.item.settingTitle)
+          .fontSize($r("app.float.font_16"))
+          .lineHeight($r("app.float.lineHeight_22"))
+          .fontWeight(FontWeight.Medium)
+          .fontFamily('HarmonyHeiTi')
+          .fontColor($r("sys.color.ohos_id_color_text_primary"))
+          .align(Alignment.Start)
+          .margin({left: $r("app.float.distance_16"), top: $r("app.float.distance_17"), bottom: $r("app.float.distance_17")})
+      }
+      .align(Alignment.Start)
+      .height(ConfigData.WH_100_100)
+
+      Row() {
+        Text(this.bluetoothIsOn ? $r("app.string.enabled") : $r("app.string.disabled"))
+          .fontSize($r("app.float.font_14"))
+          .lineHeight($r("app.float.lineHeight_19"))
+          .align(Alignment.End)
+          .fontWeight(FontWeight.Regular)
+          .fontFamily('HarmonyHeiTi')
+          .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+          .margin({top: $r("app.float.distance_19"), bottom: $r("app.float.distance_18") });
+        Image(this.item.settingArrow)
+          .width($r("app.float.wh_value_12"))
+          .height($r("app.float.wh_value_24"))
+          .margin({left: $r("app.float.distance_4"), right: $r("app.float.distance_8"), top: $r("app.float.distance_16"), bottom: $r("app.float.distance_16")})
+
+      }
+      .align(Alignment.End)
+      .height(ConfigData.WH_100_100);
+    }
+    .width(ConfigData.WH_100_100)
+    .height($r("app.float.wh_value_56"))
+    .borderRadius($r("app.float.radius_20"))
+    .linearGradient(this.isTouched ? {
+       angle: 90,
+       direction: GradientDirection.Right,
+       colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+       } : {
+       angle: 90,
+       direction: GradientDirection.Right,
+       colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
+    .onTouch((event: TouchEvent) => {
+      if (event.type === TouchType.Down) {
+        this.isTouched = true;
+      }
+      if (event.type === TouchType.Up) {
+        this.isTouched = false;
+      }
+    })
+    .onClick(() => {
+      SettingListModel.onClick(this.item);
+    })
+  }
+
+  aboutToAppear() {
+    LogUtil.info('settings SettingList bluetoothItem aboutToAppear in');
+    this.bluetoothIsOn = BluetoothModel.isStateOn();
+    BluetoothModel.subscribeStateChange((isOn: boolean) => {
+      AppStorage.SetOrCreate('bluetoothIsOn', isOn);
+    });
+    LogUtil.info('settings SettingList bluetoothItem aboutToAppear end');
+  }
+
+  aboutToDisappear() {
+    LogUtil.info('settings SettingList bluetoothItem aboutToDisappear in');
+    BluetoothModel.unsubscribeStateChange();
+    LogUtil.info('settings SettingList bluetoothItem aboutToDisappear end');
+  }
 }

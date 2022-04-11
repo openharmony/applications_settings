@@ -14,11 +14,13 @@
  */
 import router from '@system.router';
 import prompt from '@system.prompt';
-import LogUtil from '../../../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil.ets';
+import LogUtil from '../../../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import HeadComponent from '../../../../../../../../../../common/component/src/main/ets/default/headComponent.ets';
-import ConfigData from '../../../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData.ets';
-import BasicDataSource from '../../../../../../../../../../common/utils/src/main/ets/default/model/BasicDataSource.ets';
-import LanguageAndRegionModel from '../../../../../default/model/systemImpl/languageSettings/LanguageAndRegionModel.ets'
+import ConfigData from '../../../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
+import BasicDataSource from '../../../../../../../../../../common/utils/src/main/ets/default/model/BasicDataSource';
+import LanguageAndRegionModel from '../../../../../default/model/systemImpl/languageSettings/LanguageAndRegionModel'
+import ResourceUtil from '../../../../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
+import {SubHeader} from '../../../../../../../../../../common/component/src/main/ets/default/textComponent.ets';
 
 /**
  * Home Page Of AddLanguage
@@ -27,47 +29,73 @@ import LanguageAndRegionModel from '../../../../../default/model/systemImpl/lang
 @Component
 struct AddLanguage {
   private TAG = `${ConfigData.TAG} AddLanguage`;
+  private listSpace = '10vp'
 
   build() {
-    Column() {
-      HeadComponent({ headName: $r('app.string.addLanguage'), isActive: true })
-      List({space: 10, initialIndex: 0}){
-        ListItem() {
-          Text($r("app.string.addedLanguage"))
-            .fontSize($r("app.float.font_22"))
-            .fontColor($r("app.color.font_color_182431"))
-            .width(ConfigData.WH_100_100)
-            .height($r("app.float.wh_value_26"))
-            .textAlign(TextAlign.Start)
-        }.padding($r("app.float.distance_24"));
+    Column(){
+      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+        Row({}) {
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
+            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
+          });
 
-        ListItem() {
-          AddedLanguagesList();
+          Column() {
+            HeadComponent({ headName: $r('app.string.addLanguage'), isActive: true })
+            List({space: this.listSpace}){
+              ListItem() {
+                SubHeader({ titleContent: $r('app.string.addedLanguage') })
+              }
+
+              ListItem() {
+                AddedLanguagesList();
+              }
+
+              ListItem() {
+                SubHeader({ titleContent: $r('app.string.allLanguage') })
+              }
+
+              ListItem() {
+                AllLanguagesList();
+              }
+            }
+            .edgeEffect(EdgeEffect.Spring);
+          }
+          .padding({left: $r("app.float.distance_24"), right: $r("app.float.distance_24")})
+          .height(ConfigData.WH_100_100)
+          .width(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
+            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
+          });
+
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
+            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
+          })
         }
-
-        ListItem() {
-          Text($r("app.string.allLanguage"))
-            .fontSize($r("app.float.font_22"))
-            .fontColor($r("app.color.font_color_182431"))
-            .width(ConfigData.WH_100_100)
-            .height($r("app.float.wh_value_26"))
-            .textAlign(TextAlign.Start)
-        }.padding($r("app.float.distance_24"));
-
-        ListItem() {
-          AllLanguagesList();
-        }
+        .width(ConfigData.WH_100_100)
+        .height(ConfigData.WH_100_100);
       }
-      .margin({ left:$r("app.float.distance_24"), right:$r("app.float.distance_24"), top:$r("app.float.distance_16"), bottom:$r("app.float.distance_80") })
-      .edgeEffect(EdgeEffect.Spring);
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100);
     }
-    .height(ConfigData.WH_100_100)
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
-    .backgroundColor($r("app.color.color_E3E3E3_grey"));
+    .height(ConfigData.WH_100_100);
   }
 
   aboutToAppear(){
     LogUtil.info(`${this.TAG} aboutToAppear in`);
+    ResourceUtil.getString($r('app.float.distance_10')).then(value => this.listSpace = value);
     LogUtil.info(`${this.TAG} aboutToAppear out`);
   }
 
@@ -88,20 +116,22 @@ struct AddedLanguagesList {
   @State touchedItem:string = '';
 
   build(){
-    List({space:0}){
+    List(){
       ForEach(this.addedLanguages, (item) => {
         ListItem(){
           Column(){
             Text(LanguageAndRegionModel.getSysDisplayLanguage(item))
-              .fontSize($r("app.float.font_28"))
-              .height($r("app.float.wh_value_32"))
-              .margin({right:$r("app.float.distance_16"),top:$r("app.float.distance_20"),bottom:$r("app.float.distance_8")})
+              .fontSize($r("app.float.font_16"))
+              .height($r("app.float.wh_value_22"))
+              .fontWeight(FontWeight.Medium)
+              .margin({top: $r("app.float.distance_10"), bottom: $r("app.float.distance_2")})
               .fontColor($r("app.color.font_color_182431"))
               .textAlign(TextAlign.Start);
             Text(LanguageAndRegionModel.getDisplayLanguage(item))
-              .fontSize($r("app.float.font_22"))
-              .height($r("app.float.wh_value_26"))
-              .margin({right:$r("app.float.distance_16"),bottom:$r("app.float.distance_20")})
+              .fontSize($r("app.float.font_14"))
+              .height($r("app.float.wh_value_19"))
+              .fontWeight(FontWeight.Regular)
+              .margin({bottom: $r("app.float.distance_11")})
               .fontColor($r("app.color.font_color_182431"))
               .textAlign(TextAlign.Start);
           }
@@ -109,9 +139,16 @@ struct AddedLanguagesList {
         }
         .align(Alignment.Start)
         .width(ConfigData.WH_100_100)
-        .padding({ left: $r("app.float.distance_16"), right: $r("app.float.distance_16") })
-        .borderRadius($r("app.float.radius_24"))
-        .backgroundColor(item === this.touchedItem ? $r("app.color.color_D8D8D8_grey"):$r("app.color.white_bg_color"))
+        .padding({left: $r("app.float.distance_8"), right: $r("app.float.distance_8")})
+        .borderRadius($r("app.float.radius_20"))
+        .linearGradient(item === this.touchedItem ? {
+           angle: 90,
+           direction: GradientDirection.Right,
+           colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+           } : {
+           angle: 90,
+           direction: GradientDirection.Right,
+           colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
         .onTouch((event: TouchEvent) => {
           if (event.type === TouchType.Down) {
             this.touchedItem = item;
@@ -122,10 +159,10 @@ struct AddedLanguagesList {
         })
       }, item => item);
     }
-    .padding($r("app.float.distance_8"))
-    .borderRadius($r("app.float.radius_40"))
-    .divider({strokeWidth: 1, color: $r("app.color.color_E3E3E3_grey"), startMargin:$r("app.float.distance_16"), endMargin:$r("app.float.distance_16")})
-    .backgroundColor($r("app.color.white_bg_color"));
+    .padding($r("app.float.distance_4"))
+    .borderRadius($r("app.float.radius_24"))
+    .divider({strokeWidth: 1, color: $r("app.color.color_E3E3E3_grey"), startMargin: $r("app.float.distance_8"), endMargin: $r("app.float.distance_8")})
+    .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
   }
 }
 
@@ -139,20 +176,22 @@ struct AllLanguagesList {
   @State touchedItem:string = '';
 
   build(){
-    List({space:0}){
+    List(){
       LazyForEach(this.allLanguages, (item) => {
         ListItem(){
           Column(){
             Text(LanguageAndRegionModel.getSysDisplayLanguage(item))
-              .fontSize($r("app.float.font_28"))
-              .height($r("app.float.wh_value_32"))
-              .margin({right:$r("app.float.distance_16"),top:$r("app.float.distance_20"),bottom:$r("app.float.distance_8")})
+              .fontSize($r("app.float.font_16"))
+              .height($r("app.float.wh_value_22"))
+              .fontWeight(FontWeight.Medium)
+              .margin({top: $r("app.float.distance_10"), bottom: $r("app.float.distance_2")})
               .fontColor($r("app.color.font_color_182431"))
               .textAlign(TextAlign.Start);
             Text(LanguageAndRegionModel.getDisplayLanguage(item))
-              .fontSize($r("app.float.font_22"))
-              .height($r("app.float.wh_value_26"))
-              .margin({right:$r("app.float.distance_16"),bottom:$r("app.float.distance_20")})
+              .fontSize($r("app.float.font_14"))
+              .height($r("app.float.wh_value_19"))
+              .fontWeight(FontWeight.Regular)
+              .margin({bottom: $r("app.float.distance_11")})
               .fontColor($r("app.color.font_color_182431"))
               .textAlign(TextAlign.Start);
           }
@@ -160,9 +199,16 @@ struct AllLanguagesList {
         }
         .align(Alignment.Start)
         .width(ConfigData.WH_100_100)
-        .padding({ left: $r("app.float.distance_16"), right: $r("app.float.distance_16") })
-        .borderRadius($r("app.float.radius_24"))
-        .backgroundColor(item === this.touchedItem ? $r("app.color.color_D8D8D8_grey"):$r("app.color.white_bg_color"))
+        .padding({left: $r("app.float.distance_8"), right: $r("app.float.distance_8")})
+        .borderRadius($r("app.float.radius_20"))
+        .linearGradient(item === this.touchedItem ? {
+           angle: 90,
+           direction: GradientDirection.Right,
+           colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+           } : {
+           angle: 90,
+           direction: GradientDirection.Right,
+           colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
         .onTouch((event: TouchEvent) => {
           if (event.type === TouchType.Down) {
             this.touchedItem = item;
@@ -206,10 +252,10 @@ struct AllLanguagesList {
         })
       }, item => item);
     }
-    .padding($r("app.float.distance_8"))
-    .backgroundColor($r("app.color.white_bg_color"))
-    .borderRadius($r("app.float.radius_40"))
-    .divider({strokeWidth: 1, color: $r("app.color.color_E3E3E3_grey"), startMargin:$r("app.float.distance_16"), endMargin:$r("app.float.distance_16")});
+    .padding($r("app.float.distance_4"))
+    .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
+    .borderRadius($r("app.float.radius_24"))
+    .divider({strokeWidth: 1, color: $r("app.color.color_E3E3E3_grey"), startMargin: $r("app.float.distance_8"), endMargin: $r("app.float.distance_8")});
   }
 }
 
@@ -228,7 +274,7 @@ class AllLanguages extends BasicDataSource {
     return this.languagesArray.length;
   }
 
-  public getData(index: number): any {
+  public getData(index: number): string {
     return this.languagesArray[index];
   }
 }

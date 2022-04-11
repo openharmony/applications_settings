@@ -15,12 +15,40 @@
 import ComponentConfig from './ComponentConfig.ets';
 
 /**
+ * Subheader layout.
+ * It's suggested to use it when subheader is needed.
+ */
+@Component
+export struct SubHeader {
+  private titleContent: string | Resource;
+
+  build() {
+    Row() {
+      Text(this.titleContent)
+        .fontSize($r('app.float.font_14'))
+        .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+        .fontFamily('HarmonyHeiTi')
+        .fontWeight(FontWeight.Medium)
+        .width(ComponentConfig.WH_100_100)
+    }
+    .height($r("app.float.wh_value_48"))
+    .alignItems(VerticalAlign.Bottom)
+    .padding({
+      bottom: $r('app.float.distance_9_5'),
+      top: $r('app.float.distance_9_5'),
+      left: $r('sys.float.ohos_id_card_margin_start'),
+      right: $r("sys.float.ohos_id_card_margin_end")
+    })
+  }
+}
+
+/**
  * Single title text with round corner.
  */
 @Component
 export struct TitleText {
   private title: string | Resource;
-  private color: Color = Color.Black;
+  private color: ResourceColor = $r('app.color.font_color_182431');
   private visibility: Visibility = Visibility.Visible;
   private clickEvent: (event?: ClickEvent) => void;
   @State isTouched: boolean = false;
@@ -29,15 +57,23 @@ export struct TitleText {
     Row() {
       Row() {
         Text(this.title)
-          .fontSize($r("app.float.font_28"))
+          .fontSize($r("app.float.font_16"))
           .fontColor(this.color)
-          .height($r("app.float.single_item_height"))
+          .height($r("app.float.wh_value_48"))
+          .fontWeight(FontWeight.Medium)
           .textAlign(TextAlign.Start)
       }
       .width(ComponentConfig.WH_100_100)
       .padding({left: $r("app.float.distance_24"), right: $r("app.float.distance_24")})
       .borderRadius($r("app.float.radius_24"))
-      .backgroundColor(this.isTouched? $r("app.color.color_D8D8D8_grey"):$r("app.color.white_bg_color"))
+      .linearGradient(this.isTouched ? {
+         angle: 90,
+         direction: GradientDirection.Right,
+         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+         } : {
+         angle: 90,
+         direction: GradientDirection.Right,
+         colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
       .onClick(event => this.clickEvent(event))
       .onTouch((event: TouchEvent) => {
         if (event.type === TouchType.Down) {
@@ -50,10 +86,11 @@ export struct TitleText {
     }
     .width(ComponentConfig.WH_100_100)
     .margin({top: $r("app.float.distance_8"), bottom: $r("app.float.distance_8")})
-    .borderRadius($r("app.float.radius_24"))
-    .backgroundColor($r("app.color.white_bg_color"))
-    .visibility(this.visibility)
     .padding($r('app.float.distance_4'))
+    .borderRadius($r("app.float.radius_24"))
+    .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
+    .visibility(this.visibility);
+
   }
 }
 
@@ -73,15 +110,16 @@ export  struct TextComponentWithEndText {
     Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
       Row() {
         Text(this.title)
-          .fontSize($r('app.float.font_22'))
+          .fontSize($r('app.float.font_16'))
           .fontColor($r('app.color.font_color_182431'))
+          .fontWeight(FontWeight.Medium)
           .margin({ left: $r('app.float.distance_24') })
           .textAlign(TextAlign.Start);
       }
 
       Row() {
         Text(this.endText)
-          .fontSize($r('app.float.font_18'))
+          .fontSize($r('app.float.font_14'))
           .fontColor($r('app.color.font_color_182431'))
           .margin({ right: $r('app.float.distance_4') })
           .textAlign(TextAlign.End);
@@ -95,7 +133,14 @@ export  struct TextComponentWithEndText {
     .width(ComponentConfig.WH_100_100)
     .borderRadius($r('app.float.radius_24'))
     .onClick(event => this.clickEvent(event))
-    .backgroundColor(this.isTouched ? $r("app.color.color_D8D8D8_grey") : $r("app.color.white_bg_color"))
+    .linearGradient(this.isTouched ? {
+       angle: 90,
+       direction: GradientDirection.Right,
+       colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+       } : {
+       angle: 90,
+       direction: GradientDirection.Right,
+       colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
     .onTouch((event: TouchEvent) => {
       if (event.type === TouchType.Down) {
         this.isTouched = true;
