@@ -252,6 +252,9 @@
       },
       {
         "name": "ohos.permission.UPDATE_CONFIGURATION"
+      },
+      {
+        "name": "ohos.permission.FACTORY_RESET"
       }
     ]
   }
