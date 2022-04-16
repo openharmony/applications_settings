@@ -81,7 +81,6 @@ struct SelectRegion {
                     })
                   }, item => item);
                 }
-                .margin({bottom: $r('app.float.wh_value_70') })
                 .padding($r('app.float.distance_4'))
                 .width(ConfigData.WH_100_100)
                 .borderRadius($r('app.float.radius_24'))
@@ -89,8 +88,8 @@ struct SelectRegion {
                 .divider({strokeWidth: 1, color: $r("app.color.color_E3E3E3_grey"), startMargin: $r("app.float.distance_8"), endMargin: $r("app.float.distance_8")});
               }
             }
+            .flexShrink(1)
             .width(ConfigData.WH_100_100)
-            .height(ConfigData.WH_100_100)
           }
           .padding({left: $r('app.float.radius_24'), right: $r('app.float.radius_24')})
           .width(ConfigData.WH_100_100)
