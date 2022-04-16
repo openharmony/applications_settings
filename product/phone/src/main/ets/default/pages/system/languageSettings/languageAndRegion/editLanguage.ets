@@ -165,6 +165,7 @@ struct EditList {
         })
       }, item => item);
     }
+    .flexShrink(1)
     .padding($r("app.float.distance_4"))
     .margin({top:$r("app.float.distance_8")})
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))

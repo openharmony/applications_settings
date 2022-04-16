@@ -126,8 +126,8 @@ struct SettingList {
                 .padding($r('app.float.distance_4'))
               });
             }
+            .flexShrink(1)
             .width(ConfigData.WH_100_100)
-            .height(ConfigData.WH_100_100)
             .alignSelf(ItemAlign.Start);
           }
           .padding({left: $r('app.float.distance_24'), right: $r('app.float.distance_24')})

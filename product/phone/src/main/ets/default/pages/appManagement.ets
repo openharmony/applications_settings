@@ -54,7 +54,7 @@ struct AppManagement {
             .width(ConfigData.WH_100_100)
             .height(ConfigData.WH_100_100);
 
-            Row() {
+            Column() {
               List() {
                 ForEach(this.appList, (item) => {
                   ListItem() {
@@ -82,10 +82,10 @@ struct AppManagement {
                 startMargin: $r('app.float.wh_value_65'),
                 endMargin: $r('sys.float.ohos_id_card_margin_end')
               })
-              .margin({ bottom: $r('app.float.wh_value_70') })
               .visibility(this.appList.length > 0 ? Visibility.Visible : Visibility.None)
               .zIndex(0);
             }
+            .flexShrink(1)
             .borderRadius($r("app.float.radius_24"))
             .backgroundColor($r("app.color.white_bg_color"))
             .padding($r('app.float.distance_4'))
