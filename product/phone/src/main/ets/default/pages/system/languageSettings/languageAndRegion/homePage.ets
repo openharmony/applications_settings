@@ -83,6 +83,7 @@ struct LanguageAndRegion {
               }
 
             }
+            .flexShrink(1)
           }
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
