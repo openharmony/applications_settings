@@ -63,6 +63,7 @@ struct AddLanguage {
                 AllLanguagesList();
               }
             }
+            .flexShrink(1)
             .edgeEffect(EdgeEffect.Spring);
           }
           .padding({left: $r("app.float.distance_24"), right: $r("app.float.distance_24")})
