@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ComponentConfig from './ComponentConfig.ets';
+import ComponentConfig from './ComponentConfig';
 
 /**
  * Sub-Page Entry Component
@@ -20,7 +20,7 @@ import ComponentConfig from './ComponentConfig.ets';
 @Component
 export struct SubEntryComponent {
   private targetPage: string;
-  private title:string;
+  private title:string | Resource;
   @State isTouched:boolean = false;
 
   build() {

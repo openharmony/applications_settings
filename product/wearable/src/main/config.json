@@ -1,7 +1,7 @@
 {
   "app": {
-    "bundleName": "com.ohos.settings",
     "vendor": "ohos",
+    "bundleName": "com.ohos.settings",
     "version": {
       "code": 1000000,
       "name": "1.0.0"
@@ -9,18 +9,11 @@
   },
   "deviceConfig": {},
   "module": {
-    "package": "com.ohos.settings",
-    "name": ".MyApplication",
-    "mainAbility": "com.ohos.settings.MainAbility",
+    "mainAbility": ".MainAbility",
     "deviceType": [
-      "wearable"
+      "phone",
+      "tablet"
     ],
-    "distro": {
-      "deliveryWithInstall": true,
-      "moduleName": "wearable",
-      "moduleType": "entry",
-      "installationFree": true
-    },
     "abilities": [
       {
         "skills": [
@@ -33,24 +26,28 @@
             ]
           }
         ],
+        "orientation": "unspecified",
         "visible": true,
-        "name": "com.ohos.settings.MainAbility",
-        "icon": "$media:icon",
-        "description": "$string:mainability_description",
-        "label": "$string:entry_MainAbility",
-        "type": "page",
-        "launchType": "standard",
-        "srcPath": "default",
+        "srcPath": "MainAbility",
+        "name": ".MainAbility",
         "srcLanguage": "ets",
-        "metaData": {
-          "customizeData": [
-            {
-              "name": "hwc-theme"
-            }
-          ]
-        }
+        "icon": "$media:icon",
+        "description": "$string:MainAbility_desc",
+        "formsEnabled": false,
+        "label": "$string:MainAbility_label",
+        "type": "page",
+        "launchType": "standard"
       }
     ],
+    "distro": {
+      "moduleType": "feature",
+      "installationFree": false,
+      "deliveryWithInstall": true,
+      "moduleName": "wearable"
+    },
+    "package": "com.ohos.settings",
+    "srcPath": "",
+    "name": ".wearable",
     "js": [
       {
         "mode": {
@@ -60,7 +57,7 @@
         "pages": [
           "pages/index"
         ],
-        "name": "default",
+        "name": ".MainAbility",
         "window": {
           "designWidth": 720,
           "autoDesignWidth": false
