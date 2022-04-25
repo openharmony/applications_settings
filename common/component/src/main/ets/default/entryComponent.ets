@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ComponentConfig from './ComponentConfig.ets';
+import ComponentConfig from './ComponentConfig';
 
 /**
  * item custom component
@@ -23,12 +23,12 @@ struct EntryComponent {
   @State isShow: Boolean = true;
   @Prop settingIcon: string;
   @State endTextIsShow: Boolean= true;
-  @Prop settingTitle: string;
+  private settingTitle: string | Resource;
   @State settingSummary: string | Resource = '';
-  @Prop settingValue: string;
+  private settingValue: string;
   @State settingArrow: string | PixelMap | Resource = '';
   @Prop settingArrowStyle: string;
-  @Prop settingUri: string;
+  private settingUri: string;
   @State titleFontColor: Color | number | string | Resource = $r('sys.color.ohos_id_color_text_primary');
   private enabled : boolean = true;
   private onArrowClick?: () => void;
@@ -93,28 +93,30 @@ struct EntryComponent {
           .margin({ left: $r('sys.float.ohos_id_elements_margin_horizontal_l') })
           .align(Alignment.End);
 
-        Stack({ alignContent: Alignment.Center }) {
+        if (!this.settingArrowStyle && this.settingArrow) {
           Image(this.settingArrow)
-            .width(this.settingArrowStyle === '' ? $r('app.float.wh_value_12') : $r('app.float.wh_value_40'))
-            .height($r('app.float.wh_value_24'))
             .visibility('' === this.settingArrow ? Visibility.None : Visibility.Visible)
+            .width($r("app.float.wh_value_12"))
+            .height($r("app.float.wh_value_24"))
+            .margin({ left: $r("app.float.distance_4"), right: $r("app.float.distance_8") })
+
+        } else if (this.settingArrow) {
+          Image(this.settingArrow)
+            .visibility('' === this.settingArrow ? Visibility.None : Visibility.Visible)
+            .width($r('app.float.wh_value_48'))
+            .height($r('app.float.wh_value_48'))
+            .padding($r('app.float.wh_value_4'))
+            .margin({ left: $r('app.float.wh_value_4'), right: $r('app.float.wh_value_4') })
+            .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
+            .onClick(this.onArrowClick);
         }
-        .width($r('app.float.wh_value_48'))
-        .height($r('app.float.wh_value_48'))
-        .margin({ left: $r('app.float.wh_value_4') })
-        .visibility('' === this.settingArrow ? Visibility.None : Visibility.Visible)
-        .onClick(this.onArrowClick);
       }
+      .alignItems(VerticalAlign.Center)
       .align(Alignment.End);
     }
     .height(this.height)
     .width(ComponentConfig.WH_100_100)
-    .padding({
-      left: $r('sys.float.ohos_id_max_padding_start'),
-      right: $r('sys.float.ohos_id_max_padding_end'),
-      top: $r('sys.float.ohos_id_elements_margin_vertical_m'),
-      bottom: $r('sys.float.ohos_id_elements_margin_vertical_m')
-    })
+    .padding({ left: $r('sys.float.ohos_id_default_padding_start') })
     .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
     .linearGradient((this.enabled && this.isTouched) ? {
        angle: 90,
