@@ -38,7 +38,7 @@ export class PreferenceUtil {
    * @param key - key
    * @param defaultValue - defaultValue
    */
-  getStorageValue<T>(key: string, defaultValue: T): T {
+  getStorageValue(key: string, defaultValue) {
     let value = preference.getSync(key, defaultValue);
     LogUtil.info(`Get storage value, key: ${key}, value: ${value}`);
     return value;
