@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ComponentConfig from './ComponentConfig.ets';
+import ComponentConfig from './ComponentConfig';
 import SwitchController from './controller/SwitchController'
 import Log from '../../../../../utils/src/main/ets/default/baseUtil/LogDecorator';
 
@@ -22,70 +22,65 @@ import Log from '../../../../../utils/src/main/ets/default/baseUtil/LogDecorator
 @Component
 export default struct SwitchComponent {
   @Link isOn: boolean;
-  @Prop title: string;
+  private title: string | Resource;
   private toggleValue: (isOn: boolean) => void;
   private controller: SwitchController;
-  private summary?: string;
+  private summary?: string | Resource;
   @State enabled?: boolean = true;
   private cssValue: {
-    fontSize?: number | string | Resource,
-    summaryFontSize?: number | string | Resource,
-    height?: number | string | Resource,
-    width?: number | string | Resource,
-    backgroundColor?: number | string | Resource,
-    borderRadius?: number | string | Resource,
     margin?: {
       top?: number | string | Resource,
       right?: number | string | Resource,
       bottom?: number | string | Resource,
       left?: number | string | Resource
-    } | number | string | Resource,
-    padding: {
-      top?: number | string | Resource,
-      right?: number | string | Resource,
-      bottom?: number | string | Resource,
-      left?: number | string | Resource
-    } | number | string | Resource,
+    } | number | string | Resource
   };
 
   build() {
-    Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+    Row() {//{ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
       Column() {
         Text(this.title)
           .fontColor($r('sys.color.ohos_fa_text_primary'))
+          .fontSize($r("app.float.font_16"))
           .fontStyle(FontStyle.Normal)
-          .fontSize(this.cssValue?.fontSize)
         if (this.summary) {
-          Row() {
-            Text(this.summary)
-              .fontColor($r('app.color.font_color_182431'))
-              .fontSize(this.cssValue?.summaryFontSize)
-              .textAlign(TextAlign.Start)
-          }.padding({ top: $r("app.float.switch_summary_margin") })
+          Text(this.summary)
+            .fontColor($r('sys.color.ohos_fa_text_secondary'))
+            .fontSize($r('sys.float.ohos_id_text_size_body2'))
+            .fontWeight('sans-serif')
+            .textAlign(TextAlign.Start)
+            .maxLines(ComponentConfig.MAX_LINES_1)
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
+            .margin({ top:$r('sys.float.ohos_id_text_margin_vertical') })
         }
       }
-      .padding({ left: $r('sys.float.ohos_id_max_padding_start'), })
       .alignItems(HorizontalAlign.Start)
 
-      Toggle({ type: ToggleType.Switch, isOn: this.isOn })
-        .width($r('app.float.switch_toggle_width'))
-        .height($r('app.float.switch_toggle_height'))
-        .padding({ right: $r('app.float.distance_24') })
-        .enabled(this.enabled)
-        .onChange((isOn: boolean) => {
-          if (!this.enabled) return;
-          this.isOn = new Boolean(isOn).valueOf();
-          if (this.toggleValue) {
-            this.toggleValue(isOn);
-          }
-        });
+      Blank()
+
+      Stack({ alignContent: Alignment.Center }) {
+        Toggle({ type: ToggleType.Switch, isOn: this.isOn })
+          .width($r('app.float.switch_toggle_width'))
+          .height($r('app.float.switch_toggle_height'))
+          .onChange((isOn: boolean) => {
+            if (!this.enabled) return;
+            this.isOn = new Boolean(isOn).valueOf();
+            this.toggleValue(this.isOn);
+          });
+      }
+      .width($r('app.float.wh_value_48'))
+      .height($r('app.float.wh_value_48'))
     }
-    .width(this.cssValue?.width)
-    .height(this.cssValue?.height)
-    .backgroundColor(this.cssValue?.backgroundColor)
+    .width(ComponentConfig.WH_100_100)
+    .height(this.summary ? $r('app.float.wh_value_64') : $r('app.float.wh_value_56'))
+    .backgroundColor($r("app.color.white_bg_color"))
     .margin(this.cssValue?.margin)
-    .padding(this.cssValue?.padding)
-    .borderRadius(this.cssValue?.borderRadius);
+    .padding({
+      left: $r('sys.float.ohos_id_default_padding_start'),
+      right: $r('sys.float.ohos_id_default_padding_end')
+    })
+    .alignItems(VerticalAlign.Center)
+    .borderRadius($r('sys.float.ohos_id_corner_radius_default_xl'))
   }
 
   @Log

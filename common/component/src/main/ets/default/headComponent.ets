@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ComponentConfig from './ComponentConfig.ets';
+import ComponentConfig from './ComponentConfig';
 import Router from '@system.router';
 
 /**
@@ -23,7 +23,7 @@ export default
 struct HeadComponent {
   private isActive: boolean= true;
   private icBackIsVisibility: boolean= true;
-  private headName: string= '';
+  private headName: string | Resource = '';
   @State isTouch: boolean= false;
 
   build() {

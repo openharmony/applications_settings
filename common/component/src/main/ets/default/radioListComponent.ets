@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ComponentConfig from './ComponentConfig.ets';
+import ComponentConfig from './ComponentConfig';
 import LogUtil from '../../../../../utils/src/main/ets/default/baseUtil/LogUtil';
 import Log from '../../../../../utils/src/main/ets/default/baseUtil/LogDecorator';
 import { RadioListItem } from '../../../../../utils/src/main/ets/default/bean/RadioListItem';
