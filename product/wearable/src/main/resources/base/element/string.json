@@ -1,12 +1,16 @@
 {
   "string": [
     {
-      "name": "entry_MainAbility",
-      "value": "设置"
+      "name": "wearable_desc",
+      "value": "description"
     },
     {
-      "name": "mainability_description",
-      "value": "ETS_Empty Feature Ability"
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
     }
   ]
 }

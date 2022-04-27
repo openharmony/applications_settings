@@ -21,7 +21,7 @@ export class PasswordSettingItem {
   settingShouldDisplay?: boolean;
   settingTitle?: string | Resource;
   settingAlias?: string;
-  settingValue?: number;
+  settingValue?: string;
   settingArrow?: string | Resource;
   settingRequestCode?: number;
   settingUri?: string

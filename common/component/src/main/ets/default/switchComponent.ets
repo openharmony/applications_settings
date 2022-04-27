@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ComponentConfig from './ComponentConfig.ets';
+import ComponentConfig from './ComponentConfig';
 import SwitchController from './controller/SwitchController'
 import Log from '../../../../../utils/src/main/ets/default/baseUtil/LogDecorator';
 
@@ -22,10 +22,10 @@ import Log from '../../../../../utils/src/main/ets/default/baseUtil/LogDecorator
 @Component
 export default struct SwitchComponent {
   @Link isOn: boolean;
-  @Prop title: string;
+  private title: string | Resource;
   private toggleValue: (isOn: boolean) => void;
   private controller: SwitchController;
-  private summary?: string;
+  private summary?: string | Resource;
   @State enabled?: boolean = true;
   private cssValue: {
     margin?: {

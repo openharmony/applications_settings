@@ -1,5 +1,4 @@
-.gradle/
-.idea/
-product/phone/build/
-product/wearable/build/
-build/
+/node_modules
+/local.properties
+/.idea
+**/build
