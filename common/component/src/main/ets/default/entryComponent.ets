@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ComponentConfig from './ComponentConfig.ets';
+import ComponentConfig from './ComponentConfig';
 
 /**
  * item custom component
@@ -23,12 +23,12 @@ struct EntryComponent {
   @State isShow: Boolean = true;
   @Prop settingIcon: string;
   @State endTextIsShow: Boolean= true;
-  @Prop settingTitle: string;
+  private settingTitle: string | Resource;
   @State settingSummary: string | Resource = '';
-  @Prop settingValue: string;
+  private settingValue: string;
   @State settingArrow: string | PixelMap | Resource = '';
   @Prop settingArrowStyle: string;
-  @Prop settingUri: string;
+  private settingUri: string;
   @State titleFontColor: Color | number | string | Resource = $r('sys.color.ohos_id_color_text_primary');
   private enabled : boolean = true;
   private onArrowClick?: () => void;
