@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ComponentConfig from './ComponentConfig.ets';
+import ComponentConfig from './ComponentConfig';
 
 /**
  * ImageAnimator component
@@ -20,9 +20,9 @@ import ComponentConfig from './ComponentConfig.ets';
 @Component
 export default
 struct ImageAnimatorComponent {
-  @State imageWidth: number = 0
-  @State imageHeight: number = 0
-  @State whtl: number = ComponentConfig.value_20;
+  private imageWidth: number | Resource = 0
+  private imageHeight: number | Resource = 0
+  private whtl: number | string = ComponentConfig.value_20;
 
   build() {
     Column() {

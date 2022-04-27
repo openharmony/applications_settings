@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import ResourceUtil from '../common/ResourceUtil';
-import ComponentConfig from '../../../../../../component/src/main/ets/default/ComponentConfig.ets';
+import ComponentConfig from '../../../../../../component/src/main/ets/default/ComponentConfig';
 import LogUtil from '../../../../../../utils/src/main/ets/default/baseUtil/LogUtil';
 import Log from '../../../../../../utils/src/main/ets/default/baseUtil/LogDecorator';
 import ConfigData from '../../../../../../utils/src/main/ets/default/baseUtil/ConfigData';
