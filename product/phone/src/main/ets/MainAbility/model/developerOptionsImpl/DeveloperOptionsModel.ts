@@ -29,7 +29,7 @@ export class DeveloperOptionsModel extends BaseModel {
    * @return state
    */
   getUsbCurrentFunctions() {
-    return //usb.getCurrentFunctions() xuchangzhou
+    return //usb.getCurrentFunctions() //USB TAG: module is temporarily unavailable
   }
 
   /**
@@ -46,7 +46,7 @@ export class DeveloperOptionsModel extends BaseModel {
 //    usb.setCurrentFunctions(funcs).then((val) => {
 //    }).catch((err) => {
 //      LogUtil.info(ConfigData.TAG + `setCurrentFunctions fail:` + err);
-//    }) xuchangzhou
+//    }) //USB TAG: module is temporarily unavailable
   }
 }
 
