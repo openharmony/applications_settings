@@ -645,7 +645,7 @@ struct PairDialog {
   dialogController: CustomDialogController;
   action: (accept: boolean) => void;
   private deviceName: string = undefined;
-  private pinCode: string;//xuchangzhou
+  private pinCode: string;
 
   @Log
   aboutToAppear(): void {

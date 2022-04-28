@@ -309,7 +309,7 @@ struct WifiPsd {
 @CustomDialog
 struct connectProgressDialog {
   controller: CustomDialogController;
-  private ssid: string; //xuchangzhou
+  private ssid: string;
   private message: string = $r("app.string.wifiTipsConnecting", this.ssid);
 
   build() {

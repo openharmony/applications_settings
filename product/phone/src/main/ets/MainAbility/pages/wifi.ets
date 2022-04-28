@@ -432,7 +432,7 @@ struct ApInfoComponent {
 @CustomDialog
 struct apInfoDialog {
   controller: CustomDialogController;
-  private apInfo: WifiScanInfo;//xuchangzhou
+  private apInfo: WifiScanInfo;
   @State dataList: any[] = [{key: $r('app.string.wifiInfoTitleIntensity'),
                                value: $r('app.string.wifiSigIntensityBad')},
                              {key: $r('app.string.wifiInfoTitleEncryptMethod'),
@@ -540,7 +540,7 @@ struct apInfoDialog {
 @CustomDialog
 struct apInfoDetailsDialog {
   controller: CustomDialogController;
-  private apInfo: WifiScanInfo;//xuchangzhou
+  private apInfo: WifiScanInfo;
   private disconnectAction: () => void;
   private value: string = '';
   private frequency: string = '2.4GHz';
