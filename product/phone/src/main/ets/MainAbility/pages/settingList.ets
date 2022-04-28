@@ -26,7 +26,7 @@ import { BaseData } from '../../../../../../../common/utils/src/main/ets/default
 
 const PAGE_SEARCH = 'pages/searchPage'; // for search
 
-let xusettingsList = [
+const SETTINGS_LIST = [
     [
       {
         "settingIcon": "/res/image/wlan.svg",
@@ -152,7 +152,7 @@ let xusettingsList = [
 @Entry
 @Component
 struct SettingList {
-  settingsList: BaseData[][] = xusettingsList;
+  private settingsList: BaseData[][] = SETTINGS_LIST;
   @State placeholder: string= ''; // for search
   @State placeholdersize: string = '22'
   @State listSpace: string = '12vp'
