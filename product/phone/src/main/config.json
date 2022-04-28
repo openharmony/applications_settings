@@ -186,6 +186,12 @@
       },
       {
         "name": "ohos.permission.FACTORY_RESET"
+      },
+      {
+        "name": "ohos.permission.ACCESS_NOTIFICATION_POLICY"
+      },
+      {
+        "name": "ohos.permission.MODIFY_AUDIO_SETTINGS"
       }
     ]
   }
