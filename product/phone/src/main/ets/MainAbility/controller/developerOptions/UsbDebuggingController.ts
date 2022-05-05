@@ -26,9 +26,9 @@ export default class UsbDebuggingController extends SwitchController {
    */
   initData(): ISettingsController {
     super.initData();
-    // usb current state
+//    usb current state. USB TAG: module is temporarily unavailable
 //    let state = new Boolean(this.getUsbCurrentFunctions() & ConfigData.FUNCTION_TYPE_HDC).valueOf();
-//    this.isOn = state; xuchangzhou
+//    this.isOn = state;
     LogUtil.info(ConfigData.TAG + `initData isOn:` + this.isOn);
     return this;
   }
