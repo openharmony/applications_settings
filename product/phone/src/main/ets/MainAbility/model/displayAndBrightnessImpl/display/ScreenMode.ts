@@ -42,8 +42,9 @@ export class ScreenModeModel extends BaseModel{
   public init(): void{
     ScreenManager.getAllScreen().then((screens) => {
       LogUtil.info(`${this.TAG} sysScreenMode AllScreen: ${JSON.stringify(screens)}.`)
-      this.supportedScreenModes = this.distinct(screens[0].supportedModeInfo);
+      this.supportedScreenModes = screens[0].supportedModeInfo;
       this.sysScreenMode = this.supportedScreenModes[screens[0].activeModeIndex]
+      this.supportedScreenModes = this.distinct(this.supportedScreenModes);
       this.sysScreenModeText = `${this.getScreenModeWidth(this.getSysScreenMode())} x ${this.getScreenModeHeight(this.getSysScreenMode())}`
       AppStorage.SetOrCreate('supportedScreenModes', this.supportedScreenModes);
       AppStorage.SetOrCreate('sysScreenModeText', this.sysScreenModeText);
