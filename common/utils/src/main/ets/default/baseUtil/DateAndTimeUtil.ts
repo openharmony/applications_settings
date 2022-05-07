@@ -17,7 +17,6 @@
  */
 
 import ConfigData from './ConfigData';
-import PreferenceUtil from './PreferenceUtil';
 
 export class DateAndTimeUtil {
   getSystemTime(isUsing24hFormat: boolean) {
@@ -52,9 +51,9 @@ export class DateAndTimeUtil {
   };
 
   concatDate(year, month, date) {
-    let nYear = PreferenceUtil.getStorageValue(ConfigData.DATE_AND_TIME_YEAR,'');
-    let nMonth = PreferenceUtil.getStorageValue(ConfigData.DATE_AND_TIME_MONTH,'');
-    let nDay = PreferenceUtil.getStorageValue(ConfigData.DATE_AND_TIME_DAY,'');
+    let nYear = AppStorage.Get(ConfigData.DATE_AND_TIME_YEAR);
+    let nMonth = AppStorage.Get(ConfigData.DATE_AND_TIME_MONTH);
+    let nDay = AppStorage.Get(ConfigData.DATE_AND_TIME_DAY);
     return year + nYear + month + nMonth + date + nDay;
   };
 

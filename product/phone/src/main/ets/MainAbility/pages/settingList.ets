@@ -19,7 +19,6 @@ import WifiModel from '../model/wifiImpl/WifiModel';
 import BluetoothModel from '../model/bluetoothImpl/BluetoothModel';
 import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import GlobalResourceManager from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalResourceManager';
-import PreferenceUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/PreferenceUtil';
 import Router from '@system.router';
 import FeatureAbility from '@ohos.ability.featureAbility';
 import { BaseData } from '../../../../../../../common/utils/src/main/ets/default/bean/BaseData';
@@ -286,14 +285,11 @@ struct SettingList {
     ResourceUtil.getString($r("app.float.search_placeholder_font")).then(value => this.placeholdersize = value);
     ResourceUtil.getString($r('app.float.distance_12')).then(value => this.listSpace = value);
     let nYear = GlobalResourceManager.getStringByResource($r('app.string.year'));
-    nYear.then(resp => PreferenceUtil.setStorageValue(ConfigData.DATE_AND_TIME_YEAR, resp));
+    nYear.then(resp => AppStorage.SetOrCreate(ConfigData.DATE_AND_TIME_YEAR, resp));
     let nMonth = GlobalResourceManager.getStringByResource($r('app.string.month'));
-    nMonth.then(resp => PreferenceUtil.setStorageValue(ConfigData.DATE_AND_TIME_MONTH, resp));
+    nMonth.then(resp => AppStorage.SetOrCreate(ConfigData.DATE_AND_TIME_MONTH, resp));
     let nDay = GlobalResourceManager.getStringByResource($r('app.string.day'));
-    nDay.then(resp => {
-      PreferenceUtil.setStorageValue(ConfigData.DATE_AND_TIME_DAY, resp);
-      LogUtil.info('SettingList day:' + PreferenceUtil.getStorageValue(ConfigData.DATE_AND_TIME_DAY, ''));
-    })
+    nDay.then(resp => AppStorage.SetOrCreate(ConfigData.DATE_AND_TIME_DAY, resp));
     LogUtil.info('settings SettingList aboutToAppear end');
   }
 
