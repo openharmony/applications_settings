@@ -82,8 +82,8 @@ export class ConfigData {
   ADDLANGUAGES = 'addedLanguages';
   CURRENTREGION = 'currentRegion';
 
-  //Storage Path
-  STORAGEPATH = '/data/accounts/account_0/appdata/com.ohos.settings/files';
+  //Key of StoragePath
+  STORAGEPATHKEY = 'storagePath';
 
   //StartAbility
   FACEAUTH_BUNDLE_NAME = 'com.ohos.settings.faceauth';

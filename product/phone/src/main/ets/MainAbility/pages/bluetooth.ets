@@ -24,7 +24,7 @@ import Router from '@system.router';
 
 import BluetoothDeviceController from '../controller/bluetooth/BluetoothDeviceController';
 import BluetoothDevice from '../model/bluetoothImpl/BluetoothDevice'
-import { DeviceType, DeviceState, BluetoothErrorCode } from '../model/bluetoothImpl/BluetoothModel';
+import { DeviceType, ProfileConnectionState, BondState } from '../model/bluetoothImpl/BluetoothModel';
 
 const PAIRED_ITEM_NUMBER = 3;
 const PAGE_URI_DEVICE_NAME = 'pages/deviceName';
@@ -267,14 +267,14 @@ struct PairedDeviceComponent {
                   EntryComponent({
                     settingIcon: getDeviceIconPath(item.deviceType),
                     settingTitle: item.deviceName,
-                    settingSummary: getConnectionStateText(item),
+                    settingSummary: this.getConnectionStateText(item),
                     settingValue: '',
                     settingArrow: $r("app.media.ic_settings_arrow"),
                     settingArrowStyle: 'bluetooth',
                     settingUri: '',
                     titleFontColor: this.isHeadPhoneConnected(item) ? $r("app.color.bluetooth_text_color_highlight") : $r("sys.color.ohos_id_color_text_primary"),
                     image_wh: $r('app.float.wh_value_24'),
-                    height: getConnectionStateText(item) == '' ? $r('app.float.wh_value_56') : ($r('app.float.wh_value_64')),
+                    height: this.getConnectionStateText(item) == '' ? $r('app.float.wh_value_56') : ($r('app.float.wh_value_64')),
                     fontSize: ($r('app.float.font_16')),
                     onArrowClick: () => {
                       LogUtil.info(this.TAG_PAGE + 'item go detail : ' + JSON.stringify(item));
@@ -337,13 +337,45 @@ struct PairedDeviceComponent {
   }
 
   /**
+   * Get connection state text
+   * @param device
+   */
+  @Log
+  getConnectionStateText(device: BluetoothDevice): string | Resource {
+    let stateText: string | Resource = '';
+    switch (device.connectionState) {
+      case ProfileConnectionState.STATE_DISCONNECTED:
+        stateText = '';
+        break;
+
+      case ProfileConnectionState.STATE_CONNECTING:
+        stateText = $r('app.string.bluetooth_state_connecting');
+        break;
+
+      case ProfileConnectionState.STATE_CONNECTED:
+        if (device.deviceType === DeviceType.HEADPHONE) {
+          stateText = $r('app.string.bluetooth_state_connected');
+        } else {
+          stateText = '';
+        }
+        break;
+
+      case ProfileConnectionState.STATE_DISCONNECTING:
+        stateText = $r('app.string.bluetooth_state_disconnecting');
+        break;
+
+    }
+    return stateText;
+  }
+
+  /**
    * Whether headphone connected.
    * @param item device
    * @return headphone connected or not
    */
   @Log
   private isHeadPhoneConnected(item: BluetoothDevice): boolean {
-    return item.deviceType === DeviceType.HEADPHONE && item.connectionState === DeviceState.STATE_CONNECTED
+    return item.deviceType === DeviceType.HEADPHONE && item.connectionState === ProfileConnectionState.STATE_CONNECTED
   }
 
   /**
@@ -352,8 +384,8 @@ struct PairedDeviceComponent {
    */
   @Log
   private gotoPairedDeviceInfo(item: BluetoothDevice) {
-    if (item.connectionState != DeviceState.STATE_CONNECTING
-    && item.connectionState != DeviceState.STATE_DISCONNECTING) {
+    if (item.connectionState != ProfileConnectionState.STATE_CONNECTING
+    && item.connectionState != ProfileConnectionState.STATE_DISCONNECTING) {
       LogUtil.info(this.TAG_PAGE + 'item right icon on click : ' + JSON.stringify(item));
       let param = { 'bluetoothDevice': JSON.stringify(item) }
       Router.push({
@@ -371,15 +403,15 @@ struct PairedDeviceComponent {
   private itemClicked(item: BluetoothDevice) {
     switch (item.connectionState) {
 
-      case DeviceState.STATE_CONNECTED:
+      case ProfileConnectionState.STATE_CONNECTED:
         this.showDisconnectDialog(item.deviceName, () => {
           this.controller.disconnect(item.deviceId)
         });
         break;
 
-      case DeviceState.STATE_DISCONNECTED:
+      case ProfileConnectionState.STATE_DISCONNECTED:
         if (!this.controller.connect(item.deviceId)) {
-          this.showConnectFailedDialog();
+          this.showConnectFailedDialog(item.deviceName);
         }
         break;
     }
@@ -388,10 +420,10 @@ struct PairedDeviceComponent {
   /**
    * Connect Failed Dialog
    */
-  private showConnectFailedDialog() {
+  private showConnectFailedDialog(deviceName: string) {
     showDialog(
     $r("app.string.bluetooth_connect_failed"),
-    $r("app.string.bluetooth_connect_failed_msg"),
+    $r("app.string.bluetooth_connect_failed_msg", deviceName),
     $r("app.string.bluetooth_know_button")
     );
   }
@@ -457,7 +489,7 @@ struct AvailableDeviceComponent {
   pairDialog: CustomDialogController = new CustomDialogController({
     builder: PairDialog({
       deviceName: this.pairingDevice.deviceName,
-      pinCode: $pairPinCode,
+      pinCode: this.pairPinCode,
       action: (accept: boolean) => {
         this.confirmPairing(accept);
       }
@@ -512,13 +544,13 @@ struct AvailableDeviceComponent {
                 EntryComponent({
                   settingIcon: getDeviceIconPath(item.deviceType),
                   settingTitle: item.deviceName ? item.deviceName : item.deviceId,
-                  settingSummary: getConnectionStateText(item),
+                  settingSummary: this.getPairStateText(item),
                   settingValue: '',
                   settingArrow: '',
                   settingArrowStyle: '',
                   settingUri: '',
                   image_wh: $r('app.float.wh_value_24'),
-                  height: getConnectionStateText(item) == '' ? $r('app.float.wh_value_56') :  ($r('app.float.wh_value_64')),
+                  height: this.getPairStateText(item) == '' ? $r('app.float.wh_value_56') :  ($r('app.float.wh_value_64')),
                   fontSize: ($r('app.float.font_16')),
                 });
               }
@@ -551,6 +583,15 @@ struct AvailableDeviceComponent {
         }
       }
     }
+  }
+
+  /**
+   * Get pair state text
+   * @param device
+   */
+  @Log
+  getPairStateText(device: BluetoothDevice): string | Resource {
+    return device.connectionState == BondState.BOND_STATE_BONDING ? $r('app.string.bluetooth_state_pairing') : '';
   }
 
   /**
@@ -616,10 +657,10 @@ struct AvailableDeviceComponent {
    * Show connect Failed Dialog
    */
   @Log
-  private showConnectFailedDialog() {
+  private showConnectFailedDialog(deviceName: string) {
     showDialog(
     $r("app.string.bluetooth_connect_failed"),
-    $r("app.string.bluetooth_connect_failed_msg"),
+    $r("app.string.bluetooth_connect_failed_msg", deviceName),
     $r("app.string.bluetooth_know_button")
     );
   }
@@ -649,7 +690,7 @@ struct PairDialog {
 
   @Log
   aboutToAppear(): void {
-    LogUtil.log(ConfigData.TAG + `bluetooth PairDialog aboutToAppear pinCode = ${this.pinCode}`)
+    LogUtil.log(ConfigData.TAG + `bluetooth PairDialog aboutToAppear deviceName = ${this.deviceName}, pinCode = ${this.pinCode}`)
   }
 
   build() {
@@ -775,42 +816,7 @@ function getDeviceIconPath(deviceType: string): string {
       path = "/res/image/ic_device_matebook.svg";
       break;
   }
-  return path
-}
-
-/**
- * Get connection state text
- * @param connectionState
- */
-function getConnectionStateText(device: BluetoothDevice): string | Resource {
-  let stateText: string | Resource = '';
-  switch (device.connectionState) {
-    case DeviceState.STATE_DISCONNECTED:
-      stateText = '';
-      break;
-
-    case DeviceState.STATE_CONNECTING:
-      stateText = $r('app.string.bluetooth_state_connecting');
-      break;
-
-    case DeviceState.STATE_CONNECTED:
-      if (device.deviceType === DeviceType.HEADPHONE) {
-        stateText = $r('app.string.bluetooth_state_connected');
-      } else {
-        stateText = '';
-      }
-      break;
-
-    case DeviceState.STATE_DISCONNECTING:
-      stateText = $r('app.string.bluetooth_state_disconnecting');
-      break;
-
-    case DeviceState.STATE_PAIRING:
-      stateText = $r('app.string.bluetooth_state_pairing');
-      break;
-
-  }
-  return stateText;
+  return path;
 }
 
 /**
@@ -820,18 +826,20 @@ function getConnectionStateText(device: BluetoothDevice): string | Resource {
  * @param buttonValue Dialog buttonValue
  */
 function showDialog(dialogTitle: string | Resource, dialogMessage: string | Resource, buttonValue: string | Resource){
+  LogUtil.info(ConfigData.TAG + 'Bluetooth page showDialog in.');
   AlertDialog.show({
     title: dialogTitle,
     message: dialogMessage,
     confirm: {
       value: buttonValue,
       action: () => {
-        LogUtil.info('Button-clicking callback')
+        LogUtil.info(ConfigData.TAG + 'Bluetooth page showDialog : Button-clicking callback');
       }
     },
     cancel: () => {
-      LogUtil.info('Closed callbacks')
+      LogUtil.info(ConfigData.TAG + 'Bluetooth page showDialog : Closed callbacks');
     },
     alignment: DialogAlignment.Bottom
   })
+  LogUtil.info(ConfigData.TAG + 'Bluetooth page showDialog out.');
 }
