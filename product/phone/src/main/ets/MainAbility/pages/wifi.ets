@@ -100,7 +100,7 @@ struct Index {
 
   private clickApInfoDialog: CustomDialogController = new CustomDialogController({
     builder: apInfoDialog({
-      apInfo: $userSelectedApInfo,
+      apInfo: this.userSelectedApInfo,
     }),
     autoCancel: true,
     customStyle: true
@@ -108,7 +108,7 @@ struct Index {
 
   private clickApInfoDetailsDialog: CustomDialogController = new CustomDialogController({
     builder: apInfoDetailsDialog({
-      apInfo: $userSelectedApInfo,
+      apInfo: this.userSelectedApInfo,
       disconnectAction: () => {
         WifiModel.disconnectWiFi();
         WifiModel.refreshApScanResults();
