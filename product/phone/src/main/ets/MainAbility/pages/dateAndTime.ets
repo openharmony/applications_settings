@@ -38,7 +38,6 @@ struct dateAndTime {
   private timeMark: string = 'time';
   private commonEventSubscribeInfo = {events: [CommonEvent.Support.COMMON_EVENT_TIME_CHANGED, CommonEvent.Support.COMMON_EVENT_DATE_CHANGED]};
   private subscriber;
-  private headName: string = '';
 
   @State dateAndTimeList: BaseData[] = [];
   timeDialogController: CustomDialogController = new CustomDialogController({
@@ -66,7 +65,7 @@ struct dateAndTime {
           });
 
           Column() {
-            HeadComponent({ headName: this.headName, isActive: true })
+            HeadComponent({ headName: $r('app.string.dateAndTimeTab'), isActive: true })
             Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center}) {
               Text($r('app.string.timeFormat'))
                 .fontSize($r('app.float.font_16'))
@@ -180,7 +179,6 @@ struct dateAndTime {
   }
 
   aboutToAppear(): void {
-    ResourceUtil.getString($r('app.string.dateAndTimeTab')).then(value => {this.headName = value})
     this.image = "/res/image/ic_settings_arrow.svg";
     this.time = DateAndTime.getSystemTime(this.is24hTimeFormat());
     this.date = DateAndTime.getSystemDate();

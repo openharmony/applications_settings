@@ -398,8 +398,8 @@ struct CheckText {
 @CustomDialog
 struct chooseUnlockMethodDialog {
   controller: CustomDialogController;
-  private dataList: RadioListItem[];//xuchangzhou
-  private checkedValue: string;//xuchangzhou
+  private dataList: RadioListItem[];
+  private checkedValue: string;
   private dialogTitle: string | Resource= "";
   private chosenAction: (value: number) => void;
   @State isTouched :Boolean = false;
