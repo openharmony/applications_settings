@@ -76,7 +76,7 @@ export class ConfigData {
   SETTINGSDATA_VOLUME_CALL = 'settings.audio.voicecall';
   SLIDER_CHANG_MODE_MOVING = 1;
   SLIDER_CHANG_MODE_END = 2;
-  SETTINGSDATA_DEVICE_NAME = 'settings.general.device_name';
+  SETTINGSDATA_DEVICE_NAME = 'settings.general.DEVICE_NAME';
 
   //Language And Region
   ADDLANGUAGES = 'addedLanguages';
