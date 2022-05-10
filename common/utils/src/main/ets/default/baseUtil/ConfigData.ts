@@ -69,8 +69,8 @@ export class ConfigData {
   TIME_PREFIX_MORNING = "上午" ;
   TIME_PREFIX_AFTERNOON = "下午";
   TIME_FORMAT_URI = "dataability:///com.ohos.settingsdata.DataAbility";
-  TIME_FORMAT_KEY = 'settings.time.format';
-  SETTINGSDATA_BRIGHTNESS = 'settings.screen.brightness';
+  TIME_FORMAT_KEY = 'settings.date.TIME_FORMAT';
+  SETTINGSDATA_BRIGHTNESS = 'settings.display.SCREEN_BRIGHTNESS_STATUS';
   SETTINGSDATA_VOLUME_RINGTONE = 'settings.audio.ringtone';
   SETTINGSDATA_VOLUME_MEDIA = 'settings.audio.media';
   SETTINGSDATA_VOLUME_CALL = 'settings.audio.voicecall';
