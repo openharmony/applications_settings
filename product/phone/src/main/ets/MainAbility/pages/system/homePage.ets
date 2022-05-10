@@ -46,7 +46,7 @@ struct SystemSettings {
           Column() {
             HeadComponent({headName: $r('app.string.systemTab'), isActive: true})
             Column({space: this.columnMargin}){
-              //SoftwareUpdateComponent({title: $r("app.string.softwareUpdates")})
+              SoftwareUpdateComponent({title: $r("app.string.softwareUpdates")})
 
               SubEntryComponent({targetPage: "pages/restoreFactorySettings", title:$r("app.string.restoreFactoryTab")})
 
