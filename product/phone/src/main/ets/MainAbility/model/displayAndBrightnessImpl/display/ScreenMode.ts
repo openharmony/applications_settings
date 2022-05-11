@@ -40,7 +40,7 @@ export class ScreenModeModel extends BaseModel{
    */
   @Log
   public init(): void{
-    ScreenManager.getAllScreen().then((screens) => {
+    ScreenManager.getAllScreens().then((screens) => {
       LogUtil.info(`${this.TAG} sysScreenMode AllScreen: ${JSON.stringify(screens)}.`)
       this.supportedScreenModes = screens[0].supportedModeInfo;
       this.sysScreenMode = this.supportedScreenModes[screens[0].activeModeIndex]
