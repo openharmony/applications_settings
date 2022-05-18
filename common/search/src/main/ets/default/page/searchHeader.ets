@@ -35,18 +35,14 @@ export default struct SearchHeader {
 
   build() {
     Row() {
-      Image($r("app.media.ic_back"))
-        .width($r("app.float.square_click_image_size"))
-        .height($r("app.float.square_click_image_size"))
-        .padding({
-          top: $r("app.float.sys_elements_margin_vertical_l"),
-          bottom: $r("app.float.sys_elements_margin_vertical_l"),
-          left: $r("app.float.sys_elements_margin_horizontal_l"),
-          right: $r("app.float.sys_elements_margin_horizontal_l"),
-        })
-        .borderRadius($r("app.float.sys_corner_radius_clicked"))
-        .backgroundColor(this.isTouch ? $r("app.color.color_E3E3E3_grey") : $r("app.color.color_00000000_transparent"))
-        .onClick(()=>{
+      Stack({ alignContent: Alignment.Center }) {
+        Image($r('app.media.ic_back'))
+          .width($r('app.float.wh_value_24'))
+          .height($r('app.float.wh_value_24'))
+        }
+        .margin({left: $r('app.float.wh_value_4'), right: $r('app.float.wh_value_16')})
+        .backgroundColor(this.isTouch ? $r('app.color.color_E3E3E3_grey') : $r('app.color.color_00000000_transparent'))
+        .onClick(() => {
           Router.back();
         })
         .onTouch((event: TouchEvent) => {

@@ -21,6 +21,7 @@ import SearchData from '../model/SearchData';
 import SearchDataProvider from '../provider/SearchDataProvider';
 import BaseParseConfModel from '../../../../../../utils/src/main/ets/default/model/BaseParseConfModel';
 import ohosDataRdb from '@ohos.data.rdb';
+import featureAbility from '@ohos.ability.featureAbility';
 
 /**
  * Search service class
@@ -45,7 +46,7 @@ export default class SearchModel {
 
       // database init
       const STORE_CONFIG = { name: SearchConfig.RDB_NAME};
-      this.rdbStore = await ohosDataRdb.getRdbStore(this, STORE_CONFIG, 1);
+      this.rdbStore = await ohosDataRdb.getRdbStore(featureAbility.getContext(), STORE_CONFIG, 1);
       LogUtil.log('settings SettingsSearch.db is ready.');
 
       // table SEARCH_DATA init
