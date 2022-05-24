@@ -43,7 +43,7 @@ struct WifiPsd {
 
   private connectDialog: CustomDialogController = new CustomDialogController({
     builder: connectProgressDialog({
-      ssid: $tobeConnectedSSID,
+      ssid: this.tobeConnectedSSID,
     }),
     autoCancel: false,
     customStyle: true
@@ -310,7 +310,11 @@ struct WifiPsd {
 struct connectProgressDialog {
   controller: CustomDialogController;
   private ssid: string;
-  private message: string = $r("app.string.wifiTipsConnecting", this.ssid);
+  @State message: String= ""
+
+  aboutToAppear() {
+    this.message = $r("app.string.wifiTipsConnecting", this.ssid)
+  }
 
   build() {
     Column() {
