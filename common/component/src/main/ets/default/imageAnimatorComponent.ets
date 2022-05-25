@@ -18,8 +18,7 @@ import ComponentConfig from './ComponentConfig';
  * ImageAnimator component
  */
 @Component
-export default
-struct ImageAnimatorComponent {
+export default struct ImageAnimatorComponent {
   private imageWidth: number | Resource = 0
   private imageHeight: number | Resource = 0
   private whtl: number | string = ComponentConfig.value_20;
@@ -28,54 +27,54 @@ struct ImageAnimatorComponent {
     Column() {
       ImageAnimator()
         .images([
-        {
-          src: 'res/image/xxxhdpi/ic_loading01.png',
-          duration: ComponentConfig.DURATION_TIME,
-          width: this.whtl,
-          height: this.whtl,
-          top: this.whtl,
-          left: this.whtl
-        },
-        {
-          src: 'res/image/xxxhdpi/ic_loading02.png',
-          duration: ComponentConfig.DURATION_TIME,
-          width: this.whtl,
-          height: this.whtl,
-          top: this.whtl,
-          left: this.whtl
-        },
-        {
-          src: 'res/image/xxxhdpi/ic_loading03.png',
-          duration: ComponentConfig.DURATION_TIME,
-          width: this.whtl,
-          height: this.whtl,
-          top: this.whtl,
-          left: this.whtl
-        },
-        {
-          src: 'res/image/xxxhdpi/ic_loading04.png',
-          duration: ComponentConfig.DURATION_TIME,
-          width: this.whtl,
-          height: this.whtl,
-          top: this.whtl,
-          left: this.whtl
-        },
-        {
-          src: 'res/image/xxxhdpi/ic_loading05.png',
-          duration: ComponentConfig.DURATION_TIME,
-          width: this.whtl,
-          height: this.whtl,
-          top: this.whtl,
-          left: this.whtl
-        },
-        {
-          src: 'res/image/hdpi/ic_loading06.png',
-          duration: ComponentConfig.DURATION_TIME,
-          width: this.whtl,
-          height: this.whtl,
-          top: this.whtl,
-          left: this.whtl
-        }])
+          {
+            src: 'res/image/xxxhdpi/ic_loading01.png',
+            duration: ComponentConfig.DURATION_TIME,
+            width: this.whtl,
+            height: this.whtl,
+            top: this.whtl,
+            left: this.whtl
+          },
+          {
+            src: 'res/image/xxxhdpi/ic_loading02.png',
+            duration: ComponentConfig.DURATION_TIME,
+            width: this.whtl,
+            height: this.whtl,
+            top: this.whtl,
+            left: this.whtl
+          },
+          {
+            src: 'res/image/xxxhdpi/ic_loading03.png',
+            duration: ComponentConfig.DURATION_TIME,
+            width: this.whtl,
+            height: this.whtl,
+            top: this.whtl,
+            left: this.whtl
+          },
+          {
+            src: 'res/image/xxxhdpi/ic_loading04.png',
+            duration: ComponentConfig.DURATION_TIME,
+            width: this.whtl,
+            height: this.whtl,
+            top: this.whtl,
+            left: this.whtl
+          },
+          {
+            src: 'res/image/xxxhdpi/ic_loading05.png',
+            duration: ComponentConfig.DURATION_TIME,
+            width: this.whtl,
+            height: this.whtl,
+            top: this.whtl,
+            left: this.whtl
+          },
+          {
+            src: 'res/image/hdpi/ic_loading06.png',
+            duration: ComponentConfig.DURATION_TIME,
+            width: this.whtl,
+            height: this.whtl,
+            top: this.whtl,
+            left: this.whtl
+          }])
         .width(this.imageWidth)
         .height(this.imageHeight)
         .iterations(-1)

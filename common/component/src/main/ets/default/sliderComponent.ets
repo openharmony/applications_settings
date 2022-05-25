@@ -29,8 +29,8 @@ export default struct SliderComponent {
   @State showStep: boolean = false;
   @State value: number = 0;
   private onChange?: (value: number, mode: SliderChangeMode) => void
-  private summary: string | Resource;       // Text details
-  @State fontSize: number = 18;      // Font size
+  private summary: string | Resource; // Text details
+  @State fontSize: number = 18; // Font size
 
   build() {
     Flex({ direction: FlexDirection.Row }) {
@@ -39,14 +39,17 @@ export default struct SliderComponent {
           .width($r('app.float.slider_image_width'))
           .height($r('app.float.slider_image_height'))
           .objectFit(ImageFit.Contain);
-      }.align(Alignment.TopStart).visibility(this.visible ? Visibility.Visible : Visibility.None)
+      }
+      .align(Alignment.TopStart)
+      .visibility(this.visible ? Visibility.Visible : Visibility.None)
       .padding({ left: $r('app.float.slider_image_margin') })
       .onClick(() => {
         if (this.value != this.min && this.clickConfirm) {
           this.value = Math.max(this.min, this.value - this.step);
           this.onChangeHandler(this.value, SliderChangeMode.End);
         }
-      }).align(Alignment.Center)
+      })
+      .align(Alignment.Center)
 
       Column() {
         Row() {
@@ -77,24 +80,27 @@ export default struct SliderComponent {
           .height($r('app.float.slider_image_height'))
           .align(Alignment.Start)
           .objectFit(ImageFit.Contain);
-      }.align(Alignment.TopEnd).visibility(this.visible ? Visibility.Visible : Visibility.None)
+      }
+      .align(Alignment.TopEnd)
+      .visibility(this.visible ? Visibility.Visible : Visibility.None)
       .padding({ right: $r('app.float.slider_image_margin') })
       .onClick(() => {
         if (this.value != this.max && this.clickConfirm) {
           this.value = Math.min(this.max, this.value + this.step);
           this.onChangeHandler(this.value, SliderChangeMode.End);
         }
-      }).align(Alignment.Center)
+      })
+      .align(Alignment.Center)
 
     }.width(ComponentConfig.WH_100_100).align(Alignment.TopStart)
   }
 
-/**
-   * Change handler
-   *
-   * @param value - Change value
-   * @param mode - State
-   */
+  /**
+     * Change handler
+     *
+     * @param value - Change value
+     * @param mode - State
+     */
   onChangeHandler(value, mode) {
     if (this.onChange) {
       this.onChange(value, mode);

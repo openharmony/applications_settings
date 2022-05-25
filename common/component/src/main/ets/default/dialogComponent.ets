@@ -26,13 +26,14 @@ export struct DialogButtonLayout {
   private secondTitle: string | Resource = $r("app.string.confirm");
   private firstClickEvent: (event: ClickEvent) => void;
   private secondClickEvent: (event: ClickEvent) => void;
+
   build() {
     DialogButtonLayoutWithState({
       firstTitle: this.firstTitle,
       secondTitle: this.secondTitle,
       firstClickEvent: this.firstClickEvent,
       secondClickEvent: this.secondClickEvent,
-      secondButtonState: this.secondButtonState
+      secondButtonState: this.secondButtonState,
     })
   }
 }
@@ -45,7 +46,7 @@ export struct DialogButtonLayout {
 @Component
 export struct DialogButtonLayoutWithState {
   private firstTitle: string | Resource = $r("app.string.cancel");
-  private secondTitle: string | Resource = $r("app.string.confirm");
+  private secondTitle: string | Resource = $r("app.string.add");
   private firstClickEvent: (event: ClickEvent) => void;
   private secondClickEvent: (event: ClickEvent) => void;
   @Prop secondButtonState: boolean;
@@ -59,13 +60,13 @@ export struct DialogButtonLayoutWithState {
         .fontWeight(FontWeight.Medium)
         .width(ComponentConfig.WH_50_100)
         .onClick((event) => this.firstClickEvent(event))
-
+        .height($r("app.float.wh_value_22"))
       Divider()
         .strokeWidth($r("app.float.wh_value_1"))
-        .color($r("app.color.font_color_182431"))
+        .color($r("sys.color.ohos_id_color_list_separator"))
         .vertical(true)
-        .height($r("app.float.wh_value_24"))
-        .opacity($r("app.float.divider_opacity"))
+        .height($r("app.float.wh_value_22"))
+        .opacity($r("app.float.opacity_0_2"))
 
       Button(this.secondTitle)
         .backgroundColor(Color.White)
@@ -76,8 +77,10 @@ export struct DialogButtonLayoutWithState {
         .enabled(this.secondButtonState)
         .opacity(this.secondButtonState ? 1 : 0.5)
         .onClick(event => this.secondClickEvent(event))
+        .height($r("app.float.wh_value_22"))
     }
     .height($r("app.float.wh_value_40"))
     .margin({ bottom: $r("app.float.wh_value_16") })
+    .padding({ top: $r("app.float.distance_9") })
   }
 }
