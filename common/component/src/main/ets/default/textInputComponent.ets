@@ -38,7 +38,7 @@ export default struct textInputComponent {
       })
       .onSubmit((enterKey) => {
         InputMethod.getInputMethodController().stopInput().then((ret) => {
-          LogUtil.debug( `${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
+          LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
         });
       });
   }

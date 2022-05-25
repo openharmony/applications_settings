@@ -102,7 +102,7 @@
     },
     {
       "name": "wh_value_33",
-      "value": "33vp"
+      "value": "28vp"
     },
     {
       "name": "wh_value_40",
@@ -182,7 +182,7 @@
     },
     {
       "name": "wh_value_160",
-      "value": "160vp"
+      "value": "144vp"
     },
     {
       "name": "wh_value_200",
@@ -194,7 +194,7 @@
     },
     {
       "name": "wh_value_212",
-      "value": "212vp"
+      "value": "280vp"
     },
     {
       "name": "wh_value_216",
@@ -210,7 +210,7 @@
     },
     {
       "name": "wh_value_263",
-      "value": "263vp"
+      "value": "150vp"
     },
     {
       "name": "wh_value_280",
@@ -222,7 +222,7 @@
     },
     {
       "name": "wh_value_362",
-      "value": "362vp"
+      "value": "288vp"
     },
     {
       "name": "wh_value_390",
@@ -234,7 +234,7 @@
     },
     {
       "name": "wh_value_410",
-      "value": "410vp"
+      "value": "336vp"
     },
     {
       "name": "wh_value_620",
@@ -278,7 +278,7 @@
     },
     {
       "name": "font_24",
-      "value": "24fp"
+      "value": "20fp"
     },
     {
       "name": "font_28",
@@ -841,7 +841,7 @@
       "value": "324vp"
     },
     {
-      "name": "opacity_0_2",
+      "name": "divider_opacity",
       "value": "0.2"
     },
     {
@@ -862,7 +862,7 @@
     },
     {
       "name": "deviceName_button_width",
-      "value": "263vp"
+      "value": "150vp"
     },
     {
       "name": "applicationInfo_button_width",
@@ -874,27 +874,27 @@
     },
     {
       "name": "dialog_16",
-      "value": "0vp"
+      "value": "16vp"
     },
     {
       "name": "dialog_118",
-      "value": "118vp"
+      "value": "92vp"
     },
     {
       "name": "wh_24",
-      "value": "24vp"
+      "value": "12vp"
     },
     {
       "name": "wh_20",
-      "value": "20vp"
+      "value": "8vp"
     },
     {
       "name": "wh_10",
-      "value": "10vp"
+      "value": "16vp"
     },
     {
       "name": "wh_23",
-      "value": "23vp"
+      "value": "16vp"
     },
     {
       "name": "wh_35",
@@ -902,43 +902,43 @@
     },
     {
       "name": "wh_42",
-      "value": "42vp"
+      "value": "22vp"
     },
     {
       "name": "wh_48",
-      "value": "52vp"
+      "value": "48vp"
     },
     {
       "name": "wh_205",
-      "value": "205vp"
+      "value": "292vp"
     },
     {
       "name": "wh_263",
-      "value": "263vp"
+      "value": "186vp"
+    },
+    {
+      "name": "wh_hed_14",
+      "value": "14vp"
     },
     {
       "name": "wh_600",
       "value": "600vp"
     },
     {
-      "name": "wh_hed_14",
+      "name": "padding_24",
       "value": "0vp"
     },
     {
-      "name": "padding_24",
-      "value": "24vp"
-    },
-    {
       "name": "padding_26",
-      "value": "26vp"
+      "value": "14vp"
     },
     {
       "name": "wh_padding_32",
-      "value": "32vp"
+      "value": "25vp"
     },
     {
       "name": "wh_padding_33",
-      "value": "33vp"
+      "value": "20vp"
     },
     {
       "name": "wh_padding_35",
@@ -946,7 +946,7 @@
     },
     {
       "name": "wh_padding_48",
-      "value": "48vp"
+      "value": "24vp"
     },
     {
       "name": "wh_padding_112",
@@ -958,7 +958,7 @@
     },
     {
       "name": "wh_padding_212",
-      "value": "212vp"
+      "value": "272vp"
     },
     {
       "name": "dataPanel_proportion_font_size_1",
@@ -966,11 +966,11 @@
     },
     {
       "name": "dataPanel_percent_font_size_1",
-      "value": "16vp"
+      "value": "16fp"
     },
     {
       "name": "dataPanel_used_font_size_1",
-      "value": "14vp"
+      "value": "14fp"
     },
     {
       "name": "divider_wh",
@@ -978,7 +978,7 @@
     },
     {
       "name": "progress_bottom",
-      "value": "24vp"
+      "value": "127vp"
     }
   ]
 }

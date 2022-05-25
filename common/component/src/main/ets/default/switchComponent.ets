@@ -37,7 +37,7 @@ export default struct SwitchComponent {
   };
 
   build() {
-    Row() {//{ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+    Row() {
       Column() {
         Text(this.title)
           .fontColor($r('sys.color.ohos_fa_text_primary'))
@@ -51,36 +51,36 @@ export default struct SwitchComponent {
             .textAlign(TextAlign.Start)
             .maxLines(ComponentConfig.MAX_LINES_1)
             .textOverflow({ overflow: TextOverflow.Ellipsis })
-            .margin({ top:$r('sys.float.ohos_id_text_margin_vertical') })
+            .margin({ top: $r('sys.float.ohos_id_text_margin_vertical') })
         }
       }
+      .margin({ left: $r('app.float.wh_24') })
       .alignItems(HorizontalAlign.Start)
 
       Blank()
 
       Stack({ alignContent: Alignment.Center }) {
         Toggle({ type: ToggleType.Switch, isOn: this.isOn })
-          .width($r('app.float.switch_toggle_width'))
-          .height($r('app.float.switch_toggle_height'))
+          .width('36vp')
+          .height('20vp')
+          .margin({ left: '6vp' })
+          .selectedColor('#007DFF')
           .onChange((isOn: boolean) => {
             if (!this.enabled) return;
             this.isOn = new Boolean(isOn).valueOf();
             this.toggleValue(this.isOn);
           });
       }
+      .margin({ right: $r('app.float.wh_24') })
       .width($r('app.float.wh_value_48'))
-      .height($r('app.float.wh_value_48'))
+      .height($r('app.float.wh_value_56'))
     }
     .width(ComponentConfig.WH_100_100)
-    .height(this.summary ? $r('app.float.wh_value_64') : $r('app.float.wh_value_56'))
+    .height(this.summary ? $r('app.float.wh_value_72') : $r('app.float.wh_value_56'))
     .backgroundColor($r("app.color.white_bg_color"))
-    .margin(this.cssValue?.margin)
-    .padding({
-      left: $r('sys.float.ohos_id_default_padding_start'),
-      right: $r('sys.float.ohos_id_default_padding_end')
-    })
+    .padding({ top: $r("app.float.wh_value_4"), bottom: $r("app.float.wh_value_4") })
     .alignItems(VerticalAlign.Center)
-    .borderRadius($r('sys.float.ohos_id_corner_radius_default_xl'))
+    .borderRadius($r("app.float.wh_value_24"))
   }
 
   @Log

@@ -21,12 +21,11 @@ import { RadioListItem } from '../../../../../utils/src/main/ets/default/bean/Ra
  * Radio component
  */
 @Component
-export default
-struct RadioListComponent {
+export default struct RadioListComponent {
   @State dataList: RadioListItem[] = [];
   @State checkedValue: string | Resource = '';
   private showRadio: boolean = true;
-  private onChange?: (item : RadioListItem) => void;
+  private onChange?: (item: RadioListItem) => void;
 
   build() {
     Column() {
@@ -37,7 +36,7 @@ struct RadioListComponent {
               radioItem: item,
               showRadio: this.showRadio,
               isChecked: (this.checkedValue == item.settingValue),
-              onChange:() => {
+              onChange: () => {
                 this.checkedValue = item.settingValue;
                 if (this.onChange) {
                   LogUtil.info('settings RadioListComponent : onChange: settingValue = ' + item.settingValue)
@@ -46,14 +45,14 @@ struct RadioListComponent {
               }
             });
           }
-          .height(item.settingIcon ? $r('app.float.audio_no_icon_height') : $r('app.float.audio_icon_height'));
+          .height(item.settingIcon ? $r('app.float.audio_no_icon_height') : $r('app.float.password_list_item_height'));
         });
       }
       .divider({
-        strokeWidth: 1,
+        strokeWidth: $r('app.float.divider_wh'),
         color: $r('app.color.color_E3E3E3_grey'),
-        startMargin: $r('app.float.audio_start_end_margin_left'),
-        endMargin: $r('app.float.audio_start_end_margin_left')
+        startMargin: $r('app.float.wh_value_24'),
+        endMargin: $r('app.float.wh_value_24')
       })
       .width(ComponentConfig.WH_100_100)
       .alignSelf(ItemAlign.Start);
@@ -83,13 +82,13 @@ struct RadioComponent {
           .objectFit(ImageFit.Contain);
         Column() {
           Text(this.radioItem.settingTitle)
-            .fontColor($r('app.color.color_333333_grey'))
-            .fontSize($r('app.float.control_common_font_size'))
+            .fontColor($r("sys.color.ohos_id_color_primary"))
+            .fontSize($r('app.float.font_16'))
             .textAlign(TextAlign.Start)
+            .fontWeight(500)
+            .lineHeight('22vp')
             .maxLines(ComponentConfig.MAX_LINES_3)
             .textOverflow({ overflow: TextOverflow.Ellipsis })
-            .margin({ top: $r('app.float.audio_subtitle_margin_top'), bottom: $r('app.float.audio_subtitle_margin_bottom') });
-
           Text(this.radioItem.settingSummary)
             .fontColor($r('app.color.color_999999_grey'))
             .fontSize($r('app.float.audio_subtitle_font_size'))
@@ -99,7 +98,6 @@ struct RadioComponent {
             .visibility(this.radioItem.settingSummary ? Visibility.Visible : Visibility.None)
             .margin({ bottom: $r('app.float.audio_summary_subtitle_margin_bottom') });
         }
-        .margin({ left: $r('app.float.audio_title_summary_margin_left') })
         .alignItems(HorizontalAlign.Start);
       }
       .flexShrink(0)
@@ -107,7 +105,7 @@ struct RadioComponent {
       .align(Alignment.Start);
 
       Row() {
-        Radio( {value: this.radioItem.settingValue, group: ''} )
+        Radio({ value: this.radioItem.settingValue, group: '' })
           .height($r('app.float.radio_component_height'))
           .margin({ right: $r('app.float.radio_component_margin_bottom_right') })
           .align(Alignment.End)
@@ -117,7 +115,9 @@ struct RadioComponent {
       }
       .align(Alignment.End);
     }
-    .margin({ left: $r('app.float.audio_margin_left') })
+    .height($r('app.float.wh_value_48'))
+    .margin({ left: $r('app.float.wh_value_24') })
+    .padding({ top: $r('app.float.wh_value_13'), bottom: $r('app.float.wh_value_13') })
     .width(ComponentConfig.WH_100_100)
     .onClick(() => {
       LogUtil.info('settings RadioComponent : call onClick.')
@@ -126,5 +126,4 @@ struct RadioComponent {
       }
     });
   }
-
 }

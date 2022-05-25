@@ -18,8 +18,7 @@ import ComponentConfig from './ComponentConfig';
  * item custom component
  */
 @Component
-export default
-struct DoubleLineComponent {
+export default struct DoubleLineComponent {
   @Prop settingIcon: string;
   @Prop settingTitle: string;
   @Prop settingSummary: string;
@@ -28,13 +27,13 @@ struct DoubleLineComponent {
   @Prop settingArrowStyle: string;
   @Prop settingUri: string;
   @State titleFontColor: Color | number | string | Resource = $r('sys.color.ohos_id_color_text_primary');
-  private enabled : boolean = true;
+  private enabled: boolean = true;
   private onArrowClick?: () => void;
   @State isTouched: boolean = false;
-  @State height : string | Resource = $r('app.float.wh_value_72');
-  @State image_wh : string | Resource = $r('app.float.wh_value_40');
-  @State fontSize : string | Resource = $r('sys.float.ohos_id_text_size_body1');
-  @State valueFontSize : string | Resource = $r('sys.float.ohos_id_text_size_body2');
+  @State height: string | Resource = $r('app.float.wh_value_72');
+  @State image_wh: string | Resource = $r('app.float.wh_value_40');
+  @State fontSize: string | Resource = $r('sys.float.ohos_id_text_size_body1');
+  @State valueFontSize: string | Resource = $r('sys.float.ohos_id_text_size_body2');
 
   build() {
     Row() {
@@ -48,31 +47,31 @@ struct DoubleLineComponent {
 
         Column() {
           Text(this.settingTitle)
-            .fontColor(this.enabled ? this.titleFontColor : $r('sys.color.ohos_fa_text_primary'))
+            .fontColor(this.enabled ? this.titleFontColor : $r("sys.color.ohos_id_color_primary"))
             .fontSize(this.fontSize)
+            .fontWeight(FontWeight.Medium)
             .textAlign(TextAlign.Start)
             .maxLines(ComponentConfig.MAX_LINES_3)
             .textOverflow({ overflow: TextOverflow.Ellipsis })
-
           Row() {
             Text($r('app.string.version'))
-              .fontColor($r('sys.color.ohos_fa_text_secondary'))
+              .fontColor($r('sys.color.ohos_id_color_mask_light'))
               .fontSize(this.valueFontSize)
               .textAlign(TextAlign.Start)
+              .fontWeight(FontWeight.Regular)
               .maxLines(ComponentConfig.MAX_LINES_1)
               .textOverflow({ overflow: TextOverflow.Ellipsis })
               .visibility('pages/applicationInfo' === this.settingUri ? Visibility.Visible : Visibility.None)
-              .margin({ top:$r('sys.float.ohos_id_text_margin_vertical') });
-
+              .margin({ top: $r('sys.float.ohos_id_text_margin_vertical') })
             Text(this.settingSummary)
-              .fontColor($r('sys.color.ohos_fa_text_secondary'))
+              .fontColor($r('sys.color.ohos_id_color_mask_light'))
               .fontSize(this.valueFontSize)
-              .fontWeight('sans-serif')
+              .fontWeight(FontWeight.Regular)
               .textAlign(TextAlign.Start)
               .maxLines(ComponentConfig.MAX_LINES_1)
               .textOverflow({ overflow: TextOverflow.Ellipsis })
               .visibility('pages/applicationInfo' === this.settingUri ? Visibility.Visible : Visibility.None)
-              .margin({ top:$r('sys.float.ohos_id_text_margin_vertical') });
+              .margin({ top: $r('sys.float.ohos_id_text_margin_vertical') })
           }
         }
         .alignItems(HorizontalAlign.Start);
@@ -115,13 +114,14 @@ struct DoubleLineComponent {
     })
     .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
     .linearGradient((this.enabled && this.isTouched) ? {
-       angle: 90,
-       direction: GradientDirection.Right,
-       colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-       } : {
-       angle: 90,
-       direction: GradientDirection.Right,
-       colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
+                                                         angle: 90,
+                                                         direction: GradientDirection.Right,
+                                                         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+                                                       } : {
+                                                             angle: 90,
+                                                             direction: GradientDirection.Right,
+                                                             colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+                                                           })
     .alignItems(VerticalAlign.Center)
     .onTouch((event: TouchEvent) => {
       if (event.type === TouchType.Down) {
