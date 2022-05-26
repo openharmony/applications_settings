@@ -42,9 +42,9 @@ export default struct ResultComponent {
       }), item => {
 
         if (item.data.type == this.TEXT_TYPE_NORMAL) {
-          Span(item.data.text).fontColor(fontColor).fontSize(fontSize)
+          Span(item.data.text).fontColor(fontColor).fontSize(fontSize).fontWeight(FontWeight.Medium)
         } else if (item.data.type == this.TEXT_TYPE_KEYWORD) {
-          Span(item.data.text).fontColor(highlightFontColor).fontSize(fontSize)
+          Span(item.data.text).fontColor(highlightFontColor).fontSize(fontSize).fontWeight(FontWeight.Regular)
         }
       },
         item => item.index)
@@ -74,7 +74,7 @@ export default struct ResultComponent {
         if (this.data.summary) {
           this.HighlightText(
             this.splitToHighlightText(this.data.summary),
-            $r('app.color.search_result_text_color'),
+            $r('sys.color.ohos_id_color_text_secondary'),
             $r('app.float.search_result_item_summary_font_size'),
             $r('app.color.search_result_text_color_highlight'),
           )
@@ -87,8 +87,9 @@ export default struct ResultComponent {
         .width($r('app.float.item_arrow_width'))
         .height($r('app.float.item_icon_size'))
         .margin({ left: $r('app.float.sys_elements_margin_horizontal_m') })
+        .fillColor($r("sys.color.ohos_id_color_fourth"))
     }
-    .height($r('app.float.search_item_height'))
+//    .height($r('app.float.search_item_height'))
     .padding({
       left: $r('sys.float.ohos_id_card_margin_start'),
       right: $r('sys.float.ohos_id_card_margin_end')

@@ -20,37 +20,41 @@ import ComponentConfig from './ComponentConfig';
 @Component
 export struct SubEntryComponent {
   private targetPage: string;
-  private title:string | Resource;
-  @State isTouched:boolean = false;
+  private title: string | Resource;
+  @State isTouched: boolean = false;
 
   build() {
-    Navigator({target: this.targetPage}){
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
+    Navigator({ target: this.targetPage }) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         Row() {
           Text(this.title)
             .fontSize($r('app.float.font_16'))
             .lineHeight($r('app.float.wh_value_22'))
             .fontColor($r('app.color.font_color_182431'))
             .fontWeight(FontWeight.Medium)
-            .margin({left: $r('app.float.distance_8')})
+            .margin({ left: $r('app.float.distance_8') })
             .textAlign(TextAlign.Start);
         }
+
         Image('/res/image/ic_settings_arrow.svg')
           .width($r('app.float.wh_value_12'))
           .height($r('app.float.wh_value_24'))
-          .margin({right: $r('app.float.distance_8')});
+          .margin({ right: $r('app.float.distance_8') })
+          .fillColor($r("sys.color.ohos_id_color_primary"))
+          .opacity($r("app.float.opacity_0_2"))
       }
       .height(ComponentConfig.WH_100_100)
       .width(ComponentConfig.WH_100_100)
       .borderRadius($r('app.float.radius_20'))
       .linearGradient(this.isTouched ? {
-         angle: 90,
-         direction: GradientDirection.Right,
-         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-         } : {
-         angle: 90,
-         direction: GradientDirection.Right,
-         colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
+                                         angle: 90,
+                                         direction: GradientDirection.Right,
+                                         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+                                       } : {
+                                             angle: 90,
+                                             direction: GradientDirection.Right,
+                                             colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+                                           })
       .onTouch((event: TouchEvent) => {
         if (event.type === TouchType.Down) {
           this.isTouched = true;
@@ -72,8 +76,8 @@ export struct SubEntryComponent {
  * Sub-Page Entry Component with EndText
  */
 @Component
-export  struct SubEntryComponentWithEndText {
-  @State isTouched:boolean = false;
+export struct SubEntryComponentWithEndText {
+  @State isTouched: boolean = false;
   @Prop endText: string;
   private targetPage: string;
   private title: string | Resource;
@@ -87,7 +91,7 @@ export  struct SubEntryComponentWithEndText {
             .lineHeight($r('app.float.wh_value_22'))
             .fontWeight(FontWeight.Medium)
             .fontColor($r('app.color.font_color_182431'))
-            .margin({left: $r('app.float.distance_8')})
+            .margin({ left: $r('app.float.distance_8') })
             .textAlign(TextAlign.Start);
         }
 
@@ -97,25 +101,28 @@ export  struct SubEntryComponentWithEndText {
             .lineHeight($r('app.float.wh_value_19'))
             .fontWeight(FontWeight.Regular)
             .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-            .margin({right: $r('app.float.distance_4')})
+            .margin({ right: $r('app.float.distance_4') })
             .textAlign(TextAlign.End);
           Image('/res/image/ic_settings_arrow.svg')
             .width($r('app.float.wh_value_12'))
             .height($r('app.float.wh_value_24'))
-            .margin({right: $r('app.float.distance_8')});
+            .margin({ right: $r('app.float.distance_8') })
+            .fillColor($r("sys.color.ohos_id_color_primary"))
+            .opacity($r("app.float.opacity_0_2"))
         }
       }
       .height(ComponentConfig.WH_100_100)
       .width(ComponentConfig.WH_100_100)
       .borderRadius($r('app.float.radius_20'))
       .linearGradient(this.isTouched ? {
-         angle: 90,
-         direction: GradientDirection.Right,
-         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-         } : {
-         angle: 90,
-         direction: GradientDirection.Right,
-         colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
+                                         angle: 90,
+                                         direction: GradientDirection.Right,
+                                         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+                                       } : {
+                                             angle: 90,
+                                             direction: GradientDirection.Right,
+                                             colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+                                           })
       .onTouch((event: TouchEvent) => {
         if (event.type === TouchType.Down) {
           this.isTouched = true;
