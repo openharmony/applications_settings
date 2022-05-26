@@ -24,10 +24,8 @@ export class ComponentConfig {
   WH_55_100 = '55%';
   WH_83_100 = '83%';
   WH_90_100 = '90%';
-
   value_20 = 20;
   font_20 = 20;
-
   MAX_LINES_1 = 1;
   MAX_LINES_2 = 2;
   MAX_LINES_3 = 3;
@@ -35,4 +33,5 @@ export class ComponentConfig {
 }
 
 let componentConfig = new ComponentConfig();
+
 export default componentConfig as ComponentConfig;

@@ -19,8 +19,7 @@ import Router from '@system.router';
  * head custom component
  */
 @Component
-export default
-struct HeadComponent {
+export default struct HeadComponent {
   private isActive: boolean= true;
   private icBackIsVisibility: boolean= true;
   private headName: string | Resource = '';
@@ -32,8 +31,9 @@ struct HeadComponent {
         Image($r('app.media.ic_back'))
           .width($r('app.float.wh_value_24'))
           .height($r('app.float.wh_value_24'))
+          .fillColor($r("sys.color.ohos_id_color_primary"))
       }
-      .margin({left: $r('app.float.wh_value_4'), right: $r('app.float.wh_value_16')})
+      .margin({ right: $r('app.float.wh_value_16') })
       .backgroundColor(this.isTouch ? $r('app.color.color_E3E3E3_grey') : $r('app.color.color_00000000_transparent'))
       .visibility(this.icBackIsVisibility ? Visibility.Visible : Visibility.None)
       .onClick(() => {
@@ -49,7 +49,7 @@ struct HeadComponent {
       });
 
       Text(this.headName)
-        .fontSize($r('app.float.font_24'))
+        .fontSize($r('app.float.font_20'))
         .lineHeight($r('app.float.wh_value_33'))
         .fontFamily('HarmonyHeiTi-Bold')
         .fontWeight(FontWeight.Bold)
@@ -60,9 +60,9 @@ struct HeadComponent {
         .margin({ top: $r('app.float.wh_value_13'), bottom: $r('app.float.wh_value_15') });
     }
     .width(ComponentConfig.WH_100_100)
-    .padding({ left: $r('app.float.wh_value_8') })
+    .padding({ left: $r('app.float.wh_value_12') })
     .height($r('app.float.wh_value_56'))
     .alignItems(VerticalAlign.Center)
-    .align(Alignment.Start);
+    .align(Alignment.Start)
   }
 }

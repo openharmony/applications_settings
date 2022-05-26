@@ -462,7 +462,7 @@
     },
     {
       "name": "addUserDescription",
-      "value": "添加后，新用户需设置自己的空间。"
+      "value": "添加后，新用户需要设置自己的空间。"
     },
     {
       "name": "userCreatedWarn",
@@ -470,7 +470,7 @@
     },
     {
       "name": "askSwitchUser",
-      "value": "切换到新用户吗？"
+      "value": "是否切换到新用户？"
     },
     {
       "name": "switchButton",
@@ -834,7 +834,7 @@
     },
     {
       "name": "resetPhone",
-      "value": "重置设备"
+      "value": "重置手机"
     },
     {
       "name": "resetPhonePrompt",
@@ -842,7 +842,7 @@
     },
     {
       "name": "resetPhonePromptDetails",
-      "value": "• 您的帐户\n\n\n\n• 系统及应用数据和设置\n\n\n\n• 已安装的应用\n\n\n\n• 音乐\n\n\n\n• 图片\n\n• 文件\n\n\n\n• 安全芯片中的信息（重启设备联网后自动清除）\n\n\n\n• 与帐号关联并存储在本设备上的系统、应用和个人数据\n\n\n\n• 此设备上的其他用户"
+      "value": "• 您的帐户\n\n\n\n• 系统及应用数据和设置\n\n\n\n• 已安装的应用\n\n\n\n• 音乐\n\n\n\n• 图片\n\n\n\n• 文件\n\n\n\n• 安全芯片中的信息（重启设备联网后自动清除）\n\n\n\n• 与帐号关联并存储在本设备上的系统、应用和个人数据\n\n\n\n• 此设备上的其他用户"
     },
     {
       "name": "resetPhonePromptInfo",

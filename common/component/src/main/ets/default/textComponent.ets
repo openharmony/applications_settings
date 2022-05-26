@@ -35,7 +35,7 @@ export struct SubHeader {
     .alignItems(VerticalAlign.Bottom)
     .padding({
       bottom: $r('app.float.distance_9_5'),
-      top: $r('app.float.distance_9_5'),
+      top: $r('app.float.distance_11_5'),
       left: $r('sys.float.ohos_id_card_margin_start'),
       right: $r("sys.float.ohos_id_card_margin_end")
     })
@@ -59,21 +59,23 @@ export struct TitleText {
         Text(this.title)
           .fontSize($r("app.float.font_16"))
           .fontColor(this.color)
-          .height($r("app.float.wh_value_48"))
-          .fontWeight(FontWeight.Medium)
+          .fontWeight(500)
           .textAlign(TextAlign.Start)
+          .padding($r('app.float.wh_value_4'))
       }
+      .height($r("app.float.wh_value_56"))
       .width(ComponentConfig.WH_100_100)
-      .padding({left: $r("app.float.distance_24"), right: $r("app.float.distance_24")})
+      .padding({ left: $r('app.float.wh_20'), right: $r('app.float.wh_20') })
       .borderRadius($r("app.float.radius_24"))
       .linearGradient(this.isTouched ? {
-         angle: 90,
-         direction: GradientDirection.Right,
-         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-         } : {
-         angle: 90,
-         direction: GradientDirection.Right,
-         colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
+                                         angle: 90,
+                                         direction: GradientDirection.Right,
+                                         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+                                       } : {
+                                             angle: 90,
+                                             direction: GradientDirection.Right,
+                                             colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+                                           })
       .onClick(event => this.clickEvent(event))
       .onTouch((event: TouchEvent) => {
         if (event.type === TouchType.Down) {
@@ -85,8 +87,7 @@ export struct TitleText {
       })
     }
     .width(ComponentConfig.WH_100_100)
-    .margin({top: $r("app.float.distance_8"), bottom: $r("app.float.distance_8")})
-    .padding($r('app.float.distance_4'))
+    .margin({ top: $r("app.float.distance_12") })
     .borderRadius($r("app.float.radius_24"))
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
     .visibility(this.visibility);
@@ -100,11 +101,11 @@ export struct TitleText {
  * If you want to use it in single touch layout, wrap it with extra container component.
  */
 @Component
-export  struct TextComponentWithEndText {
+export struct TextComponentWithEndText {
   private title: string | Resource;
   private clickEvent: (event?: ClickEvent) => void;
   @Prop endText: string;
-  @State isTouched:boolean = false;
+  @State isTouched: boolean = false;
 
   build() {
     Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
@@ -113,7 +114,7 @@ export  struct TextComponentWithEndText {
           .fontSize($r('app.float.font_16'))
           .fontColor($r('app.color.font_color_182431'))
           .fontWeight(FontWeight.Medium)
-          .margin({ left: $r('app.float.distance_24') })
+          .margin({ left: $r('app.float.wh_24') })
           .textAlign(TextAlign.Start);
       }
 
@@ -126,21 +127,24 @@ export  struct TextComponentWithEndText {
         Image('/res/image/ic_settings_arrow.svg')
           .width($r('app.float.wh_value_12'))
           .height($r('app.float.wh_value_24'))
-          .margin({ right: $r('app.float.distance_24') });
+          .margin({ right: $r('app.float.wh_24') })
+          .fillColor($r("sys.color.ohos_id_color_primary"))
+          .opacity($r("app.float.opacity_0_2"))
       }
     }
-    .height($r('app.float.wh_value_56'))
+    .height($r('app.float.wh_value_48'))
     .width(ComponentConfig.WH_100_100)
     .borderRadius($r('app.float.radius_24'))
     .onClick(event => this.clickEvent(event))
     .linearGradient(this.isTouched ? {
-       angle: 90,
-       direction: GradientDirection.Right,
-       colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-       } : {
-       angle: 90,
-       direction: GradientDirection.Right,
-       colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
+                                       angle: 90,
+                                       direction: GradientDirection.Right,
+                                       colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+                                     } : {
+                                           angle: 90,
+                                           direction: GradientDirection.Right,
+                                           colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+                                         })
     .onTouch((event: TouchEvent) => {
       if (event.type === TouchType.Down) {
         this.isTouched = true;
