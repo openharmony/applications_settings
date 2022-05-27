@@ -15,8 +15,9 @@
  */
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent';
 import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
-import {TitleText} from '../../../../../../../common/component/src/main/ets/default/textComponent';
-import {DialogButtonLayout, DialogButtonLayoutWithState} from '../../../../../../../common/component/src/main/ets/default/dialogComponent';
+import { TitleText } from '../../../../../../../common/component/src/main/ets/default/textComponent';
+import { DialogButtonLayout, DialogButtonLayoutWithState
+} from '../../../../../../../common/component/src/main/ets/default/dialogComponent';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import SystemAccountController from '../model/usersAndAccounts/systemAccountController';
@@ -35,17 +36,30 @@ struct MultipleUsers {
   @StorageLink("systemAccoutList") userList: account_osAccount.OsAccountInfo[] = [];
   @StorageLink("isShowDelete") isShowDelete: boolean = false;
   private addUserDialogController: CustomDialogController = new CustomDialogController({
-    builder: AddUserDialog({ controller: this.addUserDialogController, account: {} , confirm: this.onConfirm.bind(this)}),
+    builder: AddUserDialog({
+      controller: this.addUserDialogController,
+      account: {},
+      confirm: this.onConfirm.bind(this)
+    }),
+    alignment: DialogAlignment.Bottom,
+    offset: ({ dx: 0, dy: '-24dp' }),
     autoCancel: true
   });
   private waitDialogController: CustomDialogController = new CustomDialogController({
-    builder: WaitDialog({ controller: this.waitDialogController, content: $r("app.string.isCreatingUser")}),
-    autoCancel: false
+    builder: WaitDialog({ controller: this.waitDialogController, content: $r("app.string.isCreatingUser") }),
+    autoCancel: false,
+    alignment: DialogAlignment.Bottom,
+    offset: ({ dx: 0, dy: '-24dp' }),
   });
 
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+    Column() {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
         Row({}) {
           Column() {
           }
@@ -56,7 +70,11 @@ struct MultipleUsers {
             md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
           });
 
-          Flex({ direction: FlexDirection.Column, alignItems: Alignment.Center, justifyContent: FlexAlign.SpaceBetween }) {
+          Flex({
+            direction: FlexDirection.Column,
+            alignItems: Alignment.Center,
+            justifyContent: FlexAlign.SpaceBetween
+          }) {
             Column() {
               // head
               HeadComponent({ headName: $r('app.string.user'), isActive: true });
@@ -69,12 +87,15 @@ struct MultipleUsers {
                   }
                 })
               }
-              .divider({ strokeWidth: $r('app.float.wh_value_1'), color: $r('app.color.color_E3E3E3_grey'),
-                startMargin: $r('app.float.wh_value_20'), endMargin: $r('app.float.wh_value_20') })
+              .margin({ top: $r("app.float.distance_14") })
+              .divider({
+                strokeWidth: $r('app.float.divider_wh'),
+                color: $r('sys.color.ohos_id_color_list_separator'),
+                startMargin: $r('app.float.wh_value_20'),
+                endMargin: $r('app.float.wh_value_20')
+              })
               .borderRadius($r("app.float.radius_24"))
               .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
-              .padding($r('app.float.distance_4'))
-              .margin({top: $r("app.float.distance_16"), bottom: $r("app.float.distance_8")})
               .visibility(this.userList.length > 0 ? Visibility.Visible : Visibility.None)
 
               // Add user, shown when is administrator
@@ -123,6 +144,7 @@ struct MultipleUsers {
                 }).bind(this)
               })
             }
+            .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
             .height(ConfigData.WH_90_100)
             .alignItems(HorizontalAlign.Start)
 
@@ -131,6 +153,7 @@ struct MultipleUsers {
                 Image($r("app.media.ic_delete"))
                   .height($r("app.float.wh_value_40"))
                   .width($r("app.float.wh_value_40"))
+                  .fillColor($r("sys.color.ohos_id_color_primary"))
                   .margin({ top: $r("app.float.wh_value_20"), bottom: $r("app.float.wh_value_10") })
                 Text($r("app.string.deleteButton"))
                   .fontSize($r("app.float.font_20"))
@@ -159,8 +182,9 @@ struct MultipleUsers {
               })
             }
           }
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
           .height(ConfigData.WH_100_100)
-          .padding({left:$r('app.float.distance_24'), right:$r('app.float.distance_24')})
+          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           .align(Alignment.Center)
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
@@ -231,16 +255,17 @@ struct MultipleUsers {
     LogUtil.info('multiple user on back press.');
     router.back();
   }
-
 }
 
 @Component
 struct UserItem {
   private user: account_osAccount.OsAccountInfo;
-  @State isTouched:boolean = false;
+  @State isTouched: boolean = false;
   private dialogController: CustomDialogController = new CustomDialogController({
     builder: UserItemDialog({ dialogController: this.dialogController, user: this.user }),
-    autoCancel: false
+    autoCancel: false,
+    alignment: DialogAlignment.Bottom,
+    offset: ({ dx: 0, dy: '-24dp' }),
   });
 
   build() {
@@ -251,14 +276,16 @@ struct UserItem {
           .height($r("app.float.wh_value_40"))
           .margin({ left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") })
         Column() {
-            Text(this.user.localName)
-              .fontSize($r("app.float.font_16"))
-              .fontWeight(FontWeight.Medium)
-              .fontColor(Color.Black)
+          Text(this.user.localName)
+            .fontSize($r("app.float.font_16"))
+            .fontWeight(FontWeight.Medium)
+            .fontSize($r('sys.float.ohos_id_text_size_body1'))
+            .margin({ bottom: $r('sys.float.ohos_id_text_margin_vertical') })
           if (SystemAccountController.isShowIdentity(this.user)) {
             Text(SystemAccountModel.getIdentityFromMap(this.user.type))
-              .fontSize($r("app.float.font_14"))
-              .fontColor(Color.Black)
+              .fontSize($r('sys.float.ohos_id_text_size_body2'))
+              .fontWeight(FontWeight.Regular)
+              .fontColor($r('sys.color.ohos_id_color_text_secondary'))
           }
         }
         .alignItems(HorizontalAlign.Start)
@@ -267,13 +294,15 @@ struct UserItem {
       Image($r("app.media.ic_settings_arrow"))
         .width($r("app.float.wh_value_12"))
         .height($r("app.float.wh_value_24"))
-        .margin({ right: $r("app.float.distance_20") })
+        .margin({ right: $r("app.float.distance_11") })
+        .fillColor($r("sys.color.ohos_id_color_primary"))
+        .opacity($r("app.float.opacity_0_2"))
     }
-    .height($r("app.float.wh_value_72"))
+    .height($r("app.float.wh_value_80"))
     .onClick(event => {
       LogUtil.info("Click the multiple user item.");
       if (SystemAccountController.isCurrentAdministrator() || SystemAccountController.isCurrentUser(this.user)
-        && !SystemAccountController.isGuestAccount(this.user)) {
+      && !SystemAccountController.isGuestAccount(this.user)) {
         this.dialogController.open();
         return;
       }
@@ -297,13 +326,14 @@ struct UserItem {
     })
     .borderRadius($r('app.float.radius_20'))
     .linearGradient(this.isTouched ? {
-       angle: 90,
-       direction: GradientDirection.Right,
-       colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-       } : {
-       angle: 90,
-       direction: GradientDirection.Right,
-       colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
+                                       angle: 90,
+                                       direction: GradientDirection.Right,
+                                       colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+                                     } : {
+                                           angle: 90,
+                                           direction: GradientDirection.Right,
+                                           colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+                                         })
     .onTouch((event: TouchEvent) => {
       if (event.type === TouchType.Down) {
         this.isTouched = true;
@@ -341,35 +371,46 @@ struct CurrentDialogBuilder {
       Image("/res/image/ic_user_portrait.svg")
         .width($r("app.float.wh_value_40"))
         .height($r("app.float.wh_value_40"))
-        .margin({ top: $r("app.float.wh_value_24"), bottom: $r("app.float.wh_value_13") })
+        .margin({ top: $r("app.float.wh_value_24"), bottom: $r("app.float.wh_value_16") })
         .onClick((event) => {
           LogUtil.info("Click to modify user image.")
-          let chooseImageDialog = new  CustomDialogController({
-            builder: ChooseImageDialog({ controller: this.controller })
+          let chooseImageDialog = new CustomDialogController({
+            builder: ChooseImageDialog({ controller: this.controller }),
+            alignment: DialogAlignment.Bottom,
           });
           chooseImageDialog.open();
         })
       Text($r("app.string.addUserImage"))
         .fontSize($r("app.float.font_16"))
-        .fontColor($r("app.color.font_color_182431"))
+        .fontColor($r("sys.color.ohos_id_color_primary"))
         .fontWeight(FontWeight.Medium)
         .margin({ bottom: $r("app.float.wh_value_8") })
       TextInput({ text: this.user.localName })
         .placeholderColor($r("app.color.font_color_182431"))
         .placeholderFont({ size: $r("app.float.font_16"), weight: FontWeight.Normal, style: FontStyle.Normal })
         .width(ConfigData.WH_100_100)
-        .margin({bottom: $r("app.float.wh_value_8")})
+        .height($r("app.float.wh_value_48"))
         .borderRadius($r("app.float.search_input_border_radius"))
         .maxLength(MAX_LENGTH)
+        .padding({ left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") })
+        .backgroundColor($r('app.color.color_00000000_transparent'))
+
         .onChange((value: string) => {
           LogUtil.info("Set current account name, name: " + value);
           this.tempName = value;
         })
         .onSubmit((enterKey) => {
           InputMethod.getInputMethodController().stopInput().then((ret) => {
-            LogUtil.debug( `${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
+            LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
           });
         })
+      Divider()
+        .margin({
+          left: $r("app.float.wh_value_12"),
+          right: $r("app.float.wh_value_12"),
+          bottom: $r("app.float.distance_9")
+        })
+        .color($r("sys.color.ohos_id_color_list_separator"))
       DialogButtonLayout({
         firstClickEvent: () => {
           LogUtil.info("Cancel current user modify dialog.");
@@ -381,8 +422,9 @@ struct CurrentDialogBuilder {
           SystemAccountController.setAccountName(this.user.localId, this.tempName);
         }
       })
-    }
-    .margin({ left: $r("app.float.wh_value_20"), right: $r("app.float.wh_value_20") })
+    }.padding({ left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") })
+    .borderRadius('24vp')
+    .height('220vp')
   }
 }
 
@@ -392,7 +434,7 @@ struct UserDialogBuilder {
   private controller: CustomDialogController;
   private user: account_osAccount.OsAccountInfo;
   private waitController: CustomDialogController = new CustomDialogController({
-    builder: WaitDialog({controller: this.waitController, content: $r("app.string.isRemoving")}),
+    builder: WaitDialog({ controller: this.waitController, content: $r("app.string.isRemoving") }),
     autoCancel: false
   });
 
@@ -415,7 +457,7 @@ struct UserDialogBuilder {
           SystemAccountController.switchUser(this.user.localId);
         })
 
-      Divider()
+      Divider().color($r("sys.color.ohos_id_color_list_separator"))
 
       Text($r("app.string.removeUser"))
         .fontSize($r("app.float.font_16"))
@@ -476,14 +518,15 @@ struct AddUserDialog {
       Text($r("app.string.addNewUser"))
         .fontSize($r("app.float.font_20"))
         .fontWeight(FontWeight.Medium)
-        .fontColor($r("app.color.font_color_182431"))
+        .fontColor($r("sys.color.ohos_id_color_primary"))
         .height($r("app.float.wh_value_56"))
         .width(ConfigData.WH_100_100)
         .textAlign(TextAlign.Start)
-      Image("/res/image/ic_user_portrait.svg")
+        .padding({ right: $r("app.float.wh_value_12"), left: $r("app.float.wh_value_12") })
+      Image("/res/image/ic_user_camera.svg")
         .width($r("app.float.wh_value_40"))
         .height($r("app.float.wh_value_40"))
-        .margin({ bottom: $r("app.float.wh_value_24") })
+        .margin({ bottom: $r("app.float.wh_value_32") })
       TextInput({
         placeholder: this.hintText
       })
@@ -491,6 +534,10 @@ struct AddUserDialog {
         .placeholderColor($r("app.color.font_color_182431"))
         .borderRadius($r("app.float.search_input_border_radius"))
         .maxLength(MAX_LENGTH)
+        .width(ConfigData.WH_100_100)
+        .padding({ left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") })
+        .borderRadius(0)
+        .backgroundColor($r('app.color.color_00000000_transparent'))
         .onChange((value: string) => {
           LogUtil.info("Set the user name: " + value);
           this.account.localName = value;
@@ -500,23 +547,35 @@ struct AddUserDialog {
         })
         .onSubmit((enterKey) => {
           InputMethod.getInputMethodController().stopInput().then((ret) => {
-            LogUtil.debug( `${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
+            LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
           });
         })
+      Divider()
+        .margin({ right: $r("app.float.wh_value_12"), left: $r("app.float.wh_value_12") })
+        .color($r("sys.color.ohos_id_color_list_separator"))
       if (this.isWarn) {
         Text($r("app.string.userCreatedWarn"))
           .fontSize($r("app.float.font_14"))
-          .fontColor(Color.Red)
+          .fontColor($r("sys.color.ohos_id_color_primary"))
           .width(ConfigData.WH_100_100)
           .textAlign(TextAlign.Start)
-          .margin({ top: $r("app.float.wh_value_8"), bottom: $r("app.float.wh_value_8") })
+          .margin({
+            top: $r("app.float.wh_value_8"),
+            bottom: $r("app.float.wh_value_18"),
+            left: $r("app.float.wh_value_12")
+          })
       } else {
         Text($r("app.string.addUserDescription"))
           .fontSize($r("app.float.font_16"))
           .fontColor($r("app.color.font_color_182431"))
+          .fontWeight(500)
           .width(ConfigData.WH_100_100)
           .textAlign(TextAlign.Start)
-          .margin({ top: $r("app.float.wh_value_8"), bottom: $r("app.float.wh_value_8") })
+          .padding({
+            top: $r("app.float.wh_value_8"),
+            bottom: $r("app.float.distance_9"),
+            left: $r("app.float.wh_value_12")
+          })
       }
       DialogButtonLayoutWithState({
         firstClickEvent: () => {
@@ -531,7 +590,9 @@ struct AddUserDialog {
         secondButtonState: this.buttonState
       })
     }
-    .margin({ left: $r("app.float.wh_value_24"), right: $r("app.float.wh_value_24") })
+    .borderRadius($r("app.float.wh_value_24") )
+    .height($r("app.float.wh_value_260"))
+    .margin({ left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") })
   }
 
   aboutToAppear() {
@@ -562,7 +623,7 @@ struct ChooseImageDialog {
 }
 
 @CustomDialog
-struct WaitDialog{
+struct WaitDialog {
   private controller: CustomDialogController;
   private content: string | Resource;
 

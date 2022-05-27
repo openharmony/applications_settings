@@ -26,10 +26,16 @@ import Router from '@system.router';
 struct restoreFactorySettings {
   private controller: RestoreFactorySettingsController = new RestoreFactorySettingsController();
   @State isTouched: boolean = false;
+  @State  textContent: any = $r("app.string.resetPhonePromptDetails")
 
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+    Column() {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '24vp',
+        margin: vp2px(1) === 2 ? '24vp' : '24vp'
+      }) {
         Row({}) {
           Column() {
           }
@@ -44,49 +50,58 @@ struct restoreFactorySettings {
             HeadComponent({ headName: $r("app.string.restoreFactoryTab"), isActive: true });
             Row() {
               Text($r("app.string.resetPhonePrompt"))
-                .fontSize($r("app.float.font_18"))
+                .fontSize($r('sys.float.ohos_id_text_size_sub_title1'))
+                .fontColor($r("sys.color.ohos_id_color_primary"))
+                .fontWeight(FontWeight.Medium)
                 .margin({
-                  left: $r("app.float.distance_24"),
-                  right: $r("app.float.distance_30"),
+                  left: $r('app.float.wh_24'),
+                  right: $r("app.float.distance_6"),
                   top: $r("app.float.distance_24"),
                   bottom: $r("app.float.distance_24")
                 })
                 .align(Alignment.Start)
             }.width(ConfigData.WH_100_100)
+            .margin({ right: $r('app.float.wh_24') })
 
             Row() {
               Text($r("app.string.resetPhonePromptDetails"))
                 .fontSize($r("app.float.font_16"))
-                .margin({ left: $r("app.float.distance_24"), right: $r("app.float.distance_24") })
+                .fontWeight(500)
+                .fontColor($r("sys.color.ohos_id_color_primary"))
+                .margin({ left: $r('app.float.wh_24') })
                 .align(Alignment.Start)
-            }.width(ConfigData.WH_100_100)
+            }
+            .margin({ right: $r('app.float.wh_24') })
+            .width(ConfigData.WH_100_100)
 
             Blank()
-            Button() {
-              Text($r("app.string.resetPhone"))
-                .fontSize($r('app.float.restore_factory_font_size'))
-                .fontColor($r("app.color.font_color_007DFF"))
+            Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+              Button() {
+                Text($r("app.string.resetPhone"))
+                  .fontSize($r('sys.float.ohos_id_text_size_button1'))
+                  .fontColor($r("app.color.font_color_007DFF"))
+                  .fontWeight(500)
+              }
+              .width($r('app.float.wh_263'))
+
+              .fontSize($r("app.float.font_16"))
+              .height($r('app.float.restore_factory_button_height'))
+              .align(Alignment.Center)
+              .margin({ bottom: $r("app.float.distance_24") })
+              .backgroundColor(!this.isTouched ? '#E6E9EB' : $r("sys.color.ohos_id_color_foreground_contrary"))
+              .onTouch((event: TouchEvent) => {
+                if (event.type === TouchType.Down) {
+                  this.isTouched = true;
+                }
+                if (event.type === TouchType.Up) {
+                  this.isTouched = false;
+                }
+              })
+              .onClick(this.getRestoreFactory)
             }
-            .width(ConfigData.WH_100_100)
-            .height($r('app.float.restore_factory_button_height'))
-            .align(Alignment.Center)
-            .margin({ bottom: $r("app.float.distance_24") })
-            .backgroundColor(!this.isTouched ? $r("app.color.color_D8D8D8_grey") : $r("sys.color.ohos_id_color_foreground_contrary"))
-            .useSizeType({
-              xs: { span: 4, offset: 0 }, sm: { span: 4, offset: 0 },
-              md: { span: 4, offset: 0 }, lg: { span: 4, offset: 0 }
-            })
-            .onTouch((event: TouchEvent) => {
-              if (event.type === TouchType.Down) {
-                this.isTouched = true;
-              }
-              if (event.type === TouchType.Up) {
-                this.isTouched = false;
-              }
-            })
-            .onClick(this.getRestoreFactory)
           }
-          .padding({left: $r('app.float.distance_24'), right: $r('app.float.distance_24')})
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
           .useSizeType({
@@ -114,14 +129,13 @@ struct restoreFactorySettings {
     .height(ConfigData.WH_100_100);
   }
 
- /**
-  * Get restoreFactory
-  */
+  /**
+   * Get restoreFactory
+   */
   private getRestoreFactory = (event) => {
     let existPassword = false;
     if (!existPassword) {
       Router.push({ uri: 'pages/resetPhone' });
     }
   }
-
 }

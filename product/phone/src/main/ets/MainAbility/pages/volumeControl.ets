@@ -58,7 +58,6 @@ export struct VolumeControl {
             // volume control
             VolumeControlComponent();
           }
-          .padding({left:$r('app.float.distance_24'), right:$r('app.float.distance_24')})
           .align(Alignment.Center)
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
@@ -82,6 +81,10 @@ export struct VolumeControl {
       .width(ConfigData.WH_100_100)
       .height(ConfigData.WH_100_100);
     }
+    .padding({
+      left: $r('sys.float.ohos_id_card_margin_start'),
+      right: $r('sys.float.ohos_id_card_margin_end')
+    })
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
     .height(ConfigData.WH_100_100);
@@ -114,18 +117,33 @@ struct AudioRingerModeComponent {
 
 
   build() {
-    Row(){
-      RowSplit() {
-        AudioRingerModeItem({checked: $ringerModeNormal, audioRingerModel: this.ringerNormalModel, image: $r("app.media.ic_ring"), text: $r('app.string.soundModeSound')});
-        AudioRingerModeItem({checked: $ringerModeSilent, audioRingerModel: this.ringerSilentModel, image: $r("app.media.ic_ring_off"), text: $r('app.string.soundModeSilent')});
-      }
-      .resizeable(false)
-    }
+       Flex({direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween}) {
+         RowSplit() {
+           AudioRingerModeItem({
+             checked: $ringerModeNormal,
+             audioRingerModel: this.ringerNormalModel,
+             image: $r("app.media.ic_ring"),
+             text: $r('app.string.soundModeSound')
+           });
+           AudioRingerModeItem({
+             checked: $ringerModeSilent,
+             audioRingerModel: this.ringerSilentModel,
+             image: $r("app.media.ic_ring_off"),
+             text: $r('app.string.soundModeSilent')
+           });
+         }
+         .resizeable(false)
+         .colorBlend($r("sys.color.ohos_id_color_list_separator"))
+       }
     .borderRadius($r('app.float.radius_24'))
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
     .width(ConfigData.WH_100_100)
     .height($r('app.float.wh_value_119'))
-    .padding({top: $r('app.float.distance_14'), bottom: $r('app.float.distance_14')});
+    .padding({
+      top: $r('app.float.distance_16'),
+      bottom: $r('app.float.distance_16')
+    })
+
   }
 
   @Log
@@ -153,25 +171,28 @@ struct AudioRingerModeItem {
   private text: string | Resource;
 
   build() {
-    Column() {
+   Column() {
       Image(this.image)
         .width($r('app.float.wh_value_24'))
         .height($r('app.float.wh_value_24'))
-        .objectFit(ImageFit.Contain);
-
+        .objectFit(ImageFit.Contain)
+        .fillColor($r("sys.color.ohos_id_color_primary"))
       Text(this.text)
-        .fontSize($r("app.float.font_14"))
+        .fontColor($r("sys.color.ohos_id_color_text_primary"))
+        .fontSize($r("sys.float.ohos_id_text_size_body2"))
         .lineHeight($r("app.float.lineHeight_19"))
         .fontWeight(FontWeight.Regular)
         .textAlign(TextAlign.Center)
-        .margin({top: $r('app.float.distance_8')});
+        .margin({top:$r('app.float.wh_4')});
 
       Radio({ value: '', group: '' })
-        .width($r('app.float.wh_value_24'))
-        .height($r('app.float.wh_value_24'))
+        .width($r('app.float.wh_value_30'))
+        .height($r('app.float.wh_value_30'))
+        .margin({top: $r('app.float.distance_8')})
         .checked(this.checked)
         .enabled(false)
     }
+    .padding({left: $r("app.float.distance_12"), right: $r("app.float.distance_12")})
     .alignItems(HorizontalAlign.Center)
     .width(ConfigData.WH_50_100)
     .height(ConfigData.WH_100_100)
@@ -191,6 +212,7 @@ struct AudioRingerModeItem {
 struct VolumeControlComponent {
   @StorageLink('volume_ringtone') volumeRingTone: number = 2;
   @StorageLink('volume_media') volumeMedia: number = 2;
+
   @StorageLink('volume_voicecall') volumeVoiceCall: number = 2;
   private voiceCallModel:VolumeModel = new VolumeModel(Audio.AudioVolumeType.VOICE_CALL);
   private ringtoneModel:VolumeModel = new VolumeModel(Audio.AudioVolumeType.RINGTONE);
@@ -220,7 +242,12 @@ struct VolumeControlComponent {
     .width(ConfigData.WH_100_100)
     .borderRadius($r('app.float.radius_24'))
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
-    .padding($r('app.float.distance_12'));
+    .padding({
+      top: $r('app.float.distance_12'),
+      left: $r('app.float.distance_12'),
+      right: $r('app.float.distance_12'),
+      bottom: $r('app.float.distance_24')
+    })
   }
 
   @Log
@@ -253,18 +280,20 @@ struct VolumeControlItem {
         Image(this.image)
           .width($r('app.float.wh_value_20'))
           .height($r('app.float.wh_value_20'))
+          .fillColor($r("sys.color.ohos_id_color_primary"))
           .objectFit(ImageFit.Contain)
-          .margin({ top: $r('app.float.distance_13'), bottom: $r('app.float.distance_1')});
+
         Text(this.text)
           .fontSize($r("app.float.font_16"))
           .lineHeight($r("app.float.lineHeight_22"))
           .fontColor($r('sys.color.ohos_id_color_text_secondary'))
           .textAlign(TextAlign.Start)
-          .padding({left: $r('app.float.distance_12'), right: $r('app.float.distance_12'), top: $r('app.float.distance_12')})
+          .margin({left: $r('app.float.distance_12')})
           .width(ConfigData.WH_100_100);
       }
+      .margin({  bottom: $r('app.float.distance_1')})
       .width(ConfigData.WH_100_100)
-      .align(Alignment.Start);
+      .align(Alignment.Center);
       Slider({
         value: this.volumeValue,
         min: VOLUME_MIN_VALUE,
@@ -279,6 +308,7 @@ struct VolumeControlItem {
           this.volumeModel.setVolume(value);
         });
     }
+    .margin({top: $r("app.float.distance_12")})
     .width(ConfigData.WH_100_100);
   }
 }

@@ -881,11 +881,7 @@
       "value": "92vp"
     },
     {
-      "name": "wh_24",
-      "value": "12vp"
-    },
-    {
-      "name": "wh_20",
+      "name": "wh_4",
       "value": "8vp"
     },
     {
@@ -893,12 +889,24 @@
       "value": "16vp"
     },
     {
+      "name": "wh_20",
+      "value": "8vp"
+    },
+    {
       "name": "wh_23",
       "value": "16vp"
     },
     {
+      "name": "wh_24",
+      "value": "12vp"
+    },
+    {
       "name": "wh_35",
       "value": "16vp"
+    },
+    {
+      "name": "wh_37",
+      "value": "37vp"
     },
     {
       "name": "wh_42",
@@ -907,6 +915,10 @@
     {
       "name": "wh_48",
       "value": "48vp"
+    },
+    {
+      "name": "wh_192",
+      "value": "192vp"
     },
     {
       "name": "wh_205",

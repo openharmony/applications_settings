@@ -24,12 +24,17 @@ import HeadComponent from '../../../../../../../common/component/src/main/ets/de
 @Entry
 @Component
 struct BiometricsAndPassword {
-  @State touchedItem:boolean = false;
+  @State touchedItem: boolean = false;
   private TAG = `${ConfigData.TAG} BiometricsAndPassword`;
 
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+    Column() {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
         Row({}) {
           Column() {
           }
@@ -42,31 +47,44 @@ struct BiometricsAndPassword {
 
           Column() {
             HeadComponent({ headName: $r('app.string.biometricsAndPassword'), isActive: true })
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
+            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
               Row() {
                 Text($r('app.string.faceRecognition'))
                   .fontSize($r('app.float.font_22'))
                   .fontColor($r('app.color.font_color_182431'))
                   .fontWeight(FontWeight.Medium)
-                  .margin({left: $r('app.float.distance_8'), top: $r('app.float.distance_8'), bottom: $r('app.float.distance_8'), right: 0})
+                  .margin({
+                    left: $r('app.float.distance_8'),
+                    top: $r('app.float.distance_8'),
+                    bottom: $r('app.float.distance_8'),
+                    right: 0
+                  })
                   .textAlign(TextAlign.Start);
               }
+
               Image('/res/image/ic_settings_arrow.svg')
                 .width($r('app.float.wh_value_40'))
-                .height($r('app.float.wh_value_40'));
+                .height($r('app.float.wh_value_40'))
+                .fillColor($r("sys.color.ohos_id_color_primary"))
+                .opacity($r("app.float.opacity_0_2"))
             }
             .linearGradient(this.touchedItem ? {
-               angle: 90,
-               direction: GradientDirection.Right,
-               colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-               } : {
-               angle: 90,
-               direction: GradientDirection.Right,
-               colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
+                                                 angle: 90,
+                                                 direction: GradientDirection.Right,
+                                                 colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+                                               } : {
+                                                     angle: 90,
+                                                     direction: GradientDirection.Right,
+                                                     colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+                                                   })
             .height($r('app.float.wh_value_56'))
-            .margin({left: $r('app.float.distance_24'), right: $r('app.float.distance_24'), top: $r('app.float.distance_16')})
+            .margin({
+              left: $r('app.float.distance_24'),
+              right: $r('app.float.distance_24'),
+              top: $r('app.float.distance_16')
+            })
             .borderRadius($r('app.float.radius_24'))
-            .onClick(()=>{
+            .onClick(() => {
               FeatureAbility.startAbility({
                 want: {
                   bundleName: ConfigData.FACEAUTH_BUNDLE_NAME,
@@ -93,6 +111,7 @@ struct BiometricsAndPassword {
               }
             });
           }
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
           .width(ConfigData.WH_100_100)
           .height(ConfigData.WH_100_100)
           .useSizeType({
@@ -120,12 +139,12 @@ struct BiometricsAndPassword {
     .height(ConfigData.WH_100_100);
   }
 
-  aboutToAppear(){
+  aboutToAppear() {
     LogUtil.info(`${this.TAG} aboutToAppear in`);
     LogUtil.info(`${this.TAG} aboutToAppear out`);
   }
 
-  aboutToDisappear(){
+  aboutToDisappear() {
     LogUtil.info(`${this.TAG} aboutToDisappear in`);
     LogUtil.info(`${this.TAG} aboutToDisappear out`);
   }

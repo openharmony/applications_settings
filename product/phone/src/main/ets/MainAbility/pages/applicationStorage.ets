@@ -19,7 +19,7 @@ import LogUtil from '../../../../../../../common/utils/src/main/ets/default/base
 import Router from '@system.router';
 import ApplicationStorageController from '../controller/application/ApplicationStorageController'
 import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
-import {SubHeader} from '../../../../../../../common/component/src/main/ets/default/textComponent';
+import { SubHeader } from '../../../../../../../common/component/src/main/ets/default/textComponent';
 
 let appInfo;
 /**
@@ -34,8 +34,13 @@ struct ApplicationStorage {
   private controller: ApplicationStorageController = new ApplicationStorageController();
 
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+    Column() {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
         Row({}) {
           Column() {
           }
@@ -73,7 +78,7 @@ struct ApplicationStorage {
               .width(ConfigData.WH_100_100)
               .height($r('app.float.wh_value_64'))
             }.width(ConfigData.WH_100_100)
-            .margin({ bottom: $r('app.float.wh_value_32') });
+            .margin({ bottom: $r('app.float.wh_value_32'), top: $r("app.float.distance_16") });
 
             SubHeader({ titleContent: $r('app.string.senior') })
 
@@ -97,7 +102,7 @@ struct ApplicationStorage {
                 });
               }
               .divider({
-                strokeWidth: 1,
+                strokeWidth: $r('app.float.divider_wh'),
                 color: $r('app.color.color_E3E3E3_grey'),
                 startMargin: $r('app.float.storage_common_margin'),
                 endMargin: $r('app.float.storage_common_margin')
@@ -107,20 +112,20 @@ struct ApplicationStorage {
             .backgroundColor($r("app.color.white_bg_color"))
             .padding($r('app.float.distance_4'))
 
-            ButtonComponent({text: $r("app.string.deleteDataTab"), onClick: () => {
+            ButtonComponent({ text: $r("app.string.deleteDataTab"), onClick: () => {
               this.showDialog(this.controller.clearUpApplicationData.bind(this, appInfo.settingBundleName));
-            }})
+            } })
 
             Row() {
               Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
                 Row() {
-                    Text($r('app.string.cacheTab'))
-                      .fontColor($r('app.color.color_333333_grey'))
-                      .fontSize($r('app.float.font_16'))
-                      .textAlign(TextAlign.Start)
-                      .textOverflow({ overflow: TextOverflow.Ellipsis })
-                      .height($r('app.float.wh_value_48'))
-                      .margin({ left: $r('sys.float.ohos_id_card_margin_start') })
+                  Text($r('app.string.cacheTab'))
+                    .fontColor($r('app.color.color_333333_grey'))
+                    .fontSize($r('app.float.font_16'))
+                    .textAlign(TextAlign.Start)
+                    .textOverflow({ overflow: TextOverflow.Ellipsis })
+                    .height($r('app.float.wh_value_48'))
+                    .margin({ left: $r('sys.float.ohos_id_card_margin_start') })
                 }
 
                 Text(`${this.cacheValue} B`)
@@ -128,7 +133,11 @@ struct ApplicationStorage {
                   .fontColor($r('app.color.color_999999_grey'))
                   .height($r('app.float.wh_value_48'))
                   .align(Alignment.End)
-                  .margin({ right: $r('sys.float.ohos_id_card_margin_end'), top: $r('app.float.distance_15'), bottom: $r('app.float.distance_14') });
+                  .margin({
+                    right: $r('sys.float.ohos_id_card_margin_end'),
+                    top: $r('app.float.distance_15'),
+                    bottom: $r('app.float.distance_14')
+                  });
               }
               .backgroundColor(this.isTouched ? $r("app.color.color_D8D8D8_grey") : $r("sys.color.ohos_id_color_foreground_contrary"))
               .onTouch((event: TouchEvent) => {
@@ -148,14 +157,15 @@ struct ApplicationStorage {
             .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
             .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
 
-            ButtonComponent({text: $r("app.string.clearCacheTab"), onClick: () => {
+            ButtonComponent({ text: $r("app.string.clearCacheTab"), onClick: () => {
               this.controller.cleanBundleCacheFiles(appInfo.settingBundleName);
-            }})
+            } })
 
           }
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
           .width(ConfigData.WH_100_100)
           .height(ConfigData.WH_100_100)
-          .padding({ left: $r('app.float.distance_24'), right: $r('app.float.distance_24') })
+          .padding({ left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end') })
           .align(Alignment.Start)
           .useSizeType({
             xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
@@ -187,7 +197,7 @@ struct ApplicationStorage {
     // bind component and initialize
     if (this.controller) {
       this.controller.bindComponent(this)
-        .bindProperties(["storageList" ])
+        .bindProperties(["storageList"])
         .initData();
     }
     appInfo = Router.getParams();
@@ -230,7 +240,8 @@ struct ApplicationStorage {
 struct ButtonComponent {
   @State isTouched: boolean = false;
   private text;
-  private onClick = () => {};
+  private onClick = () => {
+  };
 
   build() {
     Column() {

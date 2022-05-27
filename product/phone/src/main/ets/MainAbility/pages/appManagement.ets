@@ -31,8 +31,13 @@ struct AppManagement {
   private whtl: string = '80vp';
 
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+    Column() {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
         Row({}) {
           Column() {
           }
@@ -49,6 +54,7 @@ struct AppManagement {
               ImageAnimatorComponent({ imageWidth: $r('app.float.wh_value_80'),
                 imageHeight: $r('app.float.wh_value_80'), whtl: this.whtl });
             }
+            .margin({ top: $r("app.float.distance_8") })
             .zIndex(1)
             .visibility(this.appList.length > 0 ? Visibility.None : Visibility.Visible)
             .align(Alignment.Center)
@@ -92,7 +98,8 @@ struct AppManagement {
             .backgroundColor($r("app.color.white_bg_color"))
             .padding($r('app.float.distance_4'))
           }
-          .padding({ left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end'), top:$r('app.float.distance_12') })
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+          .padding({ left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end') })
           .align(Alignment.Center)
           .width(ConfigData.WH_100_100)
           .height(ConfigData.WH_100_100)

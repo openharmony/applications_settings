@@ -28,8 +28,13 @@ struct restoreFactorySettings {
   @State isTouched: boolean = false;
 
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+    Column() {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
         Row({}) {
           Column() {
           }
@@ -46,27 +51,26 @@ struct restoreFactorySettings {
               Text($r("app.string.resetPhonePromptInfo"))
                 .fontSize($r("app.float.font_18"))
                 .align(Alignment.Start)
+                .fontWeight(500)
                 .margin({
-                  left: $r("app.float.distance_24"),
-                  right: $r("app.float.distance_30"),
+                  left: $r('app.float.wh_24'),
+                  right: $r("app.float.distance_18"),
                   top: $r("app.float.distance_24"),
                 })
             }.width(ConfigData.WH_100_100)
+
             Blank()
             Button() {
               Text($r("app.string.resetPhone"))
-                .fontSize($r('app.float.restore_factory_font_size'))
                 .fontColor(Color.Red)
+                .fontSize($r('sys.float.ohos_id_text_size_button1'))
+                .fontWeight(500)
             }
-            .width(ConfigData.WH_100_100)
+            .width($r('app.float.wh_263'))
             .height($r('app.float.restore_factory_button_height'))
             .align(Alignment.Center)
             .margin({ bottom: $r("app.float.distance_24") })
-            .backgroundColor(!this.isTouched ? $r("app.color.color_D8D8D8_grey") : $r("sys.color.ohos_id_color_foreground_contrary"))
-            .useSizeType({
-              xs: { span: 4, offset: 0 }, sm: { span: 4, offset: 0 },
-              md: { span: 4, offset: 0 }, lg: { span: 4, offset: 0 }
-            })
+            .backgroundColor(!this.isTouched ? '#E6E9EB' : $r("sys.color.ohos_id_color_foreground_contrary"))
             .onTouch((event: TouchEvent) => {
               if (event.type === TouchType.Down) {
                 this.isTouched = true;
@@ -75,11 +79,12 @@ struct restoreFactorySettings {
                 this.isTouched = false;
               }
             })
-            .onClick(()=>{
+            .onClick(() => {
               this.controller.restoreFactorySettings();
             })
           }
-          .padding({ left: $r('app.float.distance_24'), right: $r('app.float.distance_24') })
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
           .useSizeType({
@@ -106,9 +111,7 @@ struct restoreFactorySettings {
     .width(ConfigData.WH_100_100)
     .height(ConfigData.WH_100_100);
   }
-
 }
-
 
 
 

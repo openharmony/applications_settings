@@ -15,7 +15,7 @@
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import EntryComponent from '../../../../../../../common/component/src/main/ets/default/entryComponent';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent';
-import {DialogButtonLayout} from '../../../../../../../common/component/src/main/ets/default/dialogComponent';
+import { DialogButtonLayout } from '../../../../../../../common/component/src/main/ets/default/dialogComponent';
 import Router from '@system.router'
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import ApplicationInfoController from '../controller/application/ApplicationInfoController'
@@ -35,7 +35,6 @@ struct ApplicationInfo {
   @State isRemovableBundle: boolean = true;
   @State isTouchedLeft: boolean = false;
   @State isTouchedRight: boolean = false;
-
   showDialog: CustomDialogController = new CustomDialogController({
     builder: ShowDialog({
       action: () => {
@@ -90,6 +89,7 @@ struct ApplicationInfo {
               .width(ConfigData.WH_100_100)
               .height($r('app.float.wh_value_64'))
             }.width(ConfigData.WH_100_100)
+            .margin({ top: $r("app.float.distance_8") })
 
             Row() {
               Text($r('app.string.uninstall'))
@@ -115,10 +115,10 @@ struct ApplicationInfo {
                 })
 
               Column()
-                .width( $r('app.float.distance_24'))
+                .width($r('app.float.distance_24'))
                 .height($r('app.float.application_button_height'))
 
-              Text( $r('app.string.forcedStop'))
+              Text($r('app.string.forcedStop'))
                 .fontSize($r('app.float.application_button_subtitle_size'))
                 .lineHeight($r('app.float.wh_value_22'))
                 .fontColor($r('app.color.font_color_007DFF'))
@@ -168,7 +168,8 @@ struct ApplicationInfo {
               Router.push({ uri: 'pages/applicationStorage', params: appInfo });
             })
           }
-          .padding({ left: $r('app.float.distance_24'), right: $r('app.float.distance_24') })
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+          .padding({ left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end') })
           .width(ConfigData.WH_100_100)
           .height(ConfigData.WH_100_100)
           .useSizeType({
@@ -208,9 +209,9 @@ struct ApplicationInfo {
     Router.back();
   }
 
-/**
-   * Stop exception prompt Dialog
-   */
+  /**
+     * Stop exception prompt Dialog
+     */
   @Log
   showPromptDialog(callback) {
     AlertDialog.show({

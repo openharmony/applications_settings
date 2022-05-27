@@ -36,8 +36,13 @@ struct LocationServices {
   }
 
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+    Column() {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
         Row({}) {
           Column() {
           }
@@ -50,18 +55,28 @@ struct LocationServices {
 
           Column() {
             HeadComponent({ headName: $r('app.string.locationServicesTab'), isActive: true });
-            Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Flex({
+              direction: FlexDirection.Row,
+              justifyContent: FlexAlign.SpaceBetween,
+              alignItems: ItemAlign.Center
+            }) {
               Row() {
                 Text($r('app.string.positionInformation'))
                   .fontColor($r("app.color.font_color_182431"))
                   .fontStyle(FontStyle.Normal)
                   .fontSize($r("app.float.location_font_size"))
-                  .margin({left:$r('app.float.distance_24'), top:$r('app.float.distance_8'), bottom:$r('app.float.distance_8')})
+                  .margin({
+                    left: $r('app.float.distance_24'),
+                    top: $r('app.float.distance_8'),
+                    bottom: $r('app.float.distance_8')
+                  })
               }
+
               Toggle({ type: ToggleType.Switch, isOn: this.locationServiceStatus })
-                .width($r('app.float.location_toggle_width'))
-                .height($r('app.float.location_toggle_height'))
-                .padding({ right: $r('app.float.distance_24') })
+                .margin({ right: $r('app.float.wh_value_6') })
+                .width('36vp')
+                .height('20vp')
+                .selectedColor('#007DFF')
                 .onChange((isOn: boolean) => {
                   LogUtil.info(ConfigData.TAG + 'location service status is :' + this.locationServiceStatus);
                   if (this.locationServiceStatus === true) {
@@ -71,12 +86,13 @@ struct LocationServices {
                   }
                 });
             }
+            .margin({ top: $r("app.float.distance_8") })
             .height($r('app.float.wh_value_56'))
             .backgroundColor($r("app.color.white_bg_color"))
-            .margin({ top:$r('app.float.distance_16')})
             .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
           }
-          .padding({left: $r('app.float.distance_24'), right: $r('app.float.distance_24')})
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
           .useSizeType({

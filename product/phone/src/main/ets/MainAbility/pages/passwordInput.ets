@@ -23,20 +23,25 @@ import Router from '@system.router';
 import { RadioListItem } from '../../../../../../../common/utils/src/main/ets/default/bean/RadioListItem';
 import InputMethod from '@ohos.inputmethod';
 
+const MODULE_TAG = ConfigData.TAG + 'PasswdSetting.PasswdInput -> '
+
 let param;
 console.log('settings_20220424 passwordInput page in');
+
 @Entry
 @Component
 struct PasswordInput {
   private TAG_PAGE = ConfigData.TAG + 'PasswordInput page'
   private mController: PasswordInputController = new PasswordInputController()
 
-// bind Properties
-  @State @Watch("clearViewData")private isInputFirstTime: boolean = true
-  @State @Watch("clearViewData")private passwordType: number = -1
+  // bind Properties
+  @State @Watch("clearViewData")
+  private isInputFirstTime: boolean = true
+  @State @Watch("clearViewData")
+  private passwordType: number = -1
   private password: string = ''
-
-// private Properties
+  @State passwordCircle: string[]= ["", "", "", "", "", ""]
+  // private Properties
   private pageRequestCode: number = -1
   private prevPageUri: string = undefined
   private pinChallenge: string = undefined
@@ -47,13 +52,13 @@ struct PasswordInput {
   @State private buttonVisibility: Visibility = Visibility.Visible
   @State isTouchedLeft: boolean = false;
   @State isTouchedRight: boolean = false;
-
-// handler
+  @State isFocused: boolean = false;
+  // handler
   private passwordOnChangeHandler: (value: string) => void;
   private okOnClickHandler: (event?: ClickEvent) => void;
   private unlockMethodChosenHandler: (value: number) => void;
 
-//dialog
+  //dialog
   private chooseUnlockMethodDialog: CustomDialogController = new CustomDialogController({
     builder: chooseUnlockMethodDialog({
       dialogTitle: $r('app.string.password_change_unlock_method'),
@@ -63,7 +68,9 @@ struct PasswordInput {
         this.unlockMethodChosenHandler(value)
       }
     }),
-    autoCancel: true
+    autoCancel: true,
+    alignment: DialogAlignment.Bottom,
+    offset: ({ dx: 0, dy: '-24dp' }),
   });
 
   @Log
@@ -89,9 +96,9 @@ struct PasswordInput {
     this.mController.unsubscribe();
   }
 
-/**
-   * Get the params from router
-   */
+  /**
+     * Get the params from router
+     */
   @Log
   getRouterParam() {
     param = Router.getParams()
@@ -106,8 +113,13 @@ struct PasswordInput {
   }
 
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+    Column() {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
         Row({}) {
           Column() {
           }
@@ -127,111 +139,180 @@ struct PasswordInput {
               Text(this.inputMessage)
                 .fontSize($r('sys.float.ohos_id_text_size_sub_title2'))
                 .fontWeight(FontWeight.Medium)
-                .fontColor($r('sys.color.ohos_id_color_foreground'))
-                .margin({ top: $r('app.float.item_common_horizontal_margin') })
-                .align(Alignment.Center)
+                .fontColor($r("sys.color.ohos_id_color_primary"))
+                .margin({ top: $r("sys.float.ohos_id_default_padding_top") })
+                .align((this.passwordType == PinSubType.PIN_MIXED) ? Alignment.Start : Alignment.Center)
 
               // input password
-              Row() {
-                TextInput({ placeholder: '', text: this.password })
-                  .placeholderFont({size: $r("app.float.font_18"), weight:FontWeight.Normal, style: FontStyle.Normal})
-                  .type(InputType.Password)
-                  .enterKeyType(EnterKeyType.Done)
-                  .caretColor(Color.Blue)
-                  .padding({left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end')})
-                  .margin({ top: $r('app.float.wh_value_50') })
-                  .height($r("app.float.wh_value_40"))
-                  .layoutWeight(1)
-                  .borderRadius(0)
-                  .backgroundColor($r('app.color.color_00000000_transparent'))
-                  .onChange(this.passwordOnChangeHandler)
-                  .onSubmit((enterKey) => {
-                    InputMethod.getInputMethodController().stopInput().then((ret) => {
-                      LogUtil.debug( `${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
-                    });
-                  });
+              if (this.passwordType == PinSubType.PIN_SIX) {
+                Row() {
+                  Stack() {
+                    TextInput({ placeholder: '', text: this.password })
+                      .height($r('app.float.distance_36'))
+                      .width($r('app.float.wh_192'))
+                      .opacity(1)
+                      .fontColor(('rgba(0,0,0,0)'))
+                      .backgroundColor(('rgba(0,0,0,0)'))
+                      .caretColor(('rgba(0,0,0,0)'))
+                      .maxLength(6)
+                      .margin({bottom:$r('app.float.wh_value_8')})
+                      .onChange((value: string) => {
+                        if (value.length > 6) {
+                          return
+                        }
+                        let length = value.length
+                        for (let i = 0;i < 6; i++) {
+                          if (i < length) {
+                            this.passwordCircle[i] = value[i]
+                          } else {
+                            this.passwordCircle[i] = ''
+                          }
+                        }
+                        this.passwordOnChangeHandler(value)
+                      })
+                      .onSubmit((enterKey) => {
+                        InputMethod.getInputMethodController().stopInput().then((ret) => {
+                          LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
+                        })
+                      });
+                    List({ space: 24 }) {
+                      ForEach(this.passwordCircle, (item) => {
+                        ListItem() {
+                          Column()
+                            .width($r('app.float.wh_value_12'))
+                            .height($r('app.float.wh_value_12'))
+                            .backgroundColor(item === '' ? 'white' : 'black')
+                            .border({ width: 1, color: 'black', radius: 12 })
+                            .margin({ top: $r('app.float.wh_value_12') })
+                        }
+                      })
+                    }.listDirection(Axis.Horizontal)
+                  }
+                  .margin({ top: $r('app.float.wh_value_20') })
+                  .width(ConfigData.WH_100_100)
+                  .height($r("app.float.wh_value_32"))
+                }
+              } else {
+                Column() {
+                  Row() {
+                    TextInput({ placeholder: '', text: this.password })
+                      .margin({ right: $r("app.float.distance_16") })
+                      .width(ConfigData.WH_100_100)
+                      .height(ConfigData.WH_100_100)
+                      .placeholderFont({
+                        size: $r("app.float.font_18"),
+                        weight: FontWeight.Normal,
+                        style: FontStyle.Normal
+                      })
+                      .type(InputType.Password)
+                      .enterKeyType(EnterKeyType.Done)
+                      .caretColor($r('sys.color.ohos_id_color_text_primary_activated'))
+                      .borderRadius(0)
+                      .layoutWeight(1)
+                      .backgroundColor($r('app.color.color_00000000_transparent'))
+                      .onChange(this.passwordOnChangeHandler)
+                      .onSubmit((enterKey) => {
+                        InputMethod.getInputMethodController().stopInput().then((ret) => {
+                          LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
+                        });
+                      })
+                      .onFocus(() => {
+                        LogUtil.info(MODULE_TAG + "text input is focused");
+                        this.isFocused = true;
+                      })
 
+                  }
+
+                  Divider()
+                }
+                .margin({ top: $r('app.float.wh_value_32') })
+                .height($r("app.float.wh_value_48"))
+                .padding({ top: $r("app.float.distance_8"), bottom: $r("app.float.distance_6") })
               }
-              Divider()
-                .padding({left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end')})
+
 
               CheckText();
 
               // change unlock method
-              Text($r('app.string.password_change_unlock_method'))
-                .height($r("app.float.wh_value_56"))
-                .fontSize($r('sys.float.ohos_id_text_size_button1'))
-                .fontColor($r('sys.color.ohos_id_color_text_primary_activated'))
-                .fontWeight(FontWeight.Medium)
-                .align(Alignment.Center)
-                .alignSelf(ItemAlign.Center)
-                .textAlign(TextAlign.Center)
-                .visibility(this.isInputFirstTime ? Visibility.Visible : Visibility.Hidden)
-                .padding({ left: $r('app.float.distance_30'), right: $r('app.float.distance_30') })
-                .onClick(() => {
-                  this.chooseUnlockMethodDialog.open()
-                })
-
-              // button
-              Row() {
-                Text($r('app.string.cancel'))
-                  .fontSize($r('app.float.application_button_subtitle_size'))
-                  .lineHeight($r('app.float.wh_value_22'))
-                  .fontColor($r('app.color.font_color_007DFF'))
+              Button({ type: ButtonType.Normal, stateEffect: true }) {
+                Text($r('app.string.password_change_unlock_method'))
+                  .fontSize($r('sys.float.ohos_id_text_size_button1'))
+                  .fontColor($r('sys.color.ohos_id_color_text_primary_activated'))
+                  .fontWeight(FontWeight.Medium)
+                  .align(Alignment.Center)
+                  .alignSelf(ItemAlign.Center)
                   .textAlign(TextAlign.Center)
-                  .layoutWeight(1)
-                  .height($r('app.float.application_button_height'))
-                  .borderRadius($r('app.float.radius_20'))
-                  .backgroundColor(!this.isTouchedLeft ? $r("app.color.color_D8D8D8_grey") : $r("sys.color.ohos_id_color_foreground_contrary"))
-                  .onTouch((event: TouchEvent) => {
-                    if (event.type === TouchType.Down) {
-                      this.isTouchedLeft = true;
-                    }
-                    if (event.type === TouchType.Up) {
-                      this.isTouchedLeft = false;
-                    }
-                  })
-                  .onClick(() => {
-                    Router.back();
-                  })
-
-                Column()
-                  .width( $r('app.float.distance_12'))
-                  .height($r('app.float.application_button_height'))
-
-                Text(this.isInputFirstTime ? $r('app.string.continue_') : $r('app.string.confirm'))
-                  .fontSize($r('app.float.application_button_subtitle_size'))
-                  .lineHeight($r('app.float.wh_value_22'))
-                  .fontColor($r('app.color.font_color_007DFF'))
-                  .textAlign(TextAlign.Center)
-                  .layoutWeight(1)
-                  .height($r('app.float.application_button_height'))
-                  .borderRadius($r('app.float.radius_20'))
-                  .backgroundColor(!this.isTouchedRight ? $r("app.color.color_D8D8D8_grey") : $r("sys.color.ohos_id_color_foreground_contrary"))
-                  .onTouch((event: TouchEvent) => {
-                    if (event.type === TouchType.Down) {
-                      this.isTouchedRight = true;
-                    }
-                    if (event.type === TouchType.Up) {
-                      this.isTouchedRight = false;
-                    }
-                  })
-                  .onClick(this.okOnClickHandler)
+                  .visibility(this.isInputFirstTime ? Visibility.Visible : Visibility.Hidden)
               }
-              .alignItems(VerticalAlign.Center)
-              .width(ConfigData.WH_100_100)
-              .padding({
-                top: $r('app.float.distance_24'),
-                bottom: $r('app.float.distance_36'),
-                left: $r('app.float.distance_24'),
-                right: $r('app.float.distance_24')
+              .backgroundColor("rgba(0,0,0,0)")
+              .onClick(() => {
+                this.chooseUnlockMethodDialog.open()
               })
-              .margin({ top: $r('app.float.password_input_button_space') })
-              .visibility(this.buttonVisibility)
 
             }
+            .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
+
+
+            // button
+            Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+              Row() {
+                Button({ type: ButtonType.Capsule, stateEffect: true }) {
+                  Text($r('app.string.cancel'))
+                    .fontSize($r('app.float.application_button_subtitle_size'))
+                    .lineHeight($r('app.float.wh_value_22'))
+                    .fontColor($r('app.color.font_color_007DFF'))
+                    .textAlign(TextAlign.Center)
+                }
+                .margin({ right: "12vp" })
+                .layoutWeight(1)
+                .backgroundColor(!this.isTouchedLeft ? $r("sys.color.ohos_id_color_button_normal") : $r("sys.color.ohos_id_color_foreground_contrary"))
+                .onTouch((event: TouchEvent) => {
+                  if (event.type === TouchType.Down) {
+                    this.isTouchedLeft = true;
+                  }
+                  if (event.type === TouchType.Up) {
+                    this.isTouchedLeft = false;
+                  }
+                })
+                .onClick(() => {
+                  Router.back();
+                })
+
+
+                Button({ type: ButtonType.Capsule, stateEffect: true }) {
+                  Text(this.isInputFirstTime ? $r('app.string.continue_') : $r('app.string.confirm'))
+                    .fontSize($r('app.float.application_button_subtitle_size'))
+                    .lineHeight($r('app.float.wh_value_22'))
+                    .fontColor($r('app.color.font_color_007DFF'))
+                    .textAlign(TextAlign.Center)
+                }
+                .layoutWeight(1)
+                .backgroundColor(!this.isTouchedRight ? $r("sys.color.ohos_id_color_button_normal") : $r("sys.color.ohos_id_color_foreground_contrary"))
+                .onTouch((event: TouchEvent) => {
+
+                  if (event.type === TouchType.Down) {
+                    this.isTouchedRight = true;
+                  }
+                  if (event.type === TouchType.Up) {
+                    this.isTouchedRight = false;
+                    console.log("isFocused0000000000")
+                    this.isFocused = false
+
+                  }
+                })
+                .onClick(this.okOnClickHandler)
+
+              }
+              .alignItems(this.isFocused === false ? VerticalAlign.Bottom : VerticalAlign.Top)
+              .height(this.passwordType == PinSubType.PIN_MIXED ? "63%" : "65%")
+              .padding(this.isFocused === false ?
+                { bottom: 24 } :
+                { top: (this.passwordType == PinSubType.PIN_MIXED ? "14%" : "16%") })
+            }
+            .width(ConfigData.WH_100_100)
+            .visibility(this.buttonVisibility)
+            .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           }
-          .padding({left: $r('app.float.distance_24'), right: $r('app.float.distance_24')})
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
           .useSizeType({
@@ -254,39 +335,44 @@ struct PasswordInput {
       .width(ConfigData.WH_100_100)
       .height(ConfigData.WH_100_100);
     }
+    .padding({
+      left: $r('sys.float.ohos_id_card_margin_start'),
+      right: $r('sys.float.ohos_id_card_margin_end')
+    })
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
     .height(ConfigData.WH_100_100);
   }
 
-// --------------------------- updateView -----------------------
-/**
-   * Update view data
-   */
+  // --------------------------- updateView -----------------------
+  /**
+     * Update view data
+     */
   @Log
   clearViewData() {
     AppStorage.SetOrCreate("checkMessage", '');
     this.password = ''
+    this.passwordCircle = ["", "", "", "", "", ""]
     this.mController.bindComponent(this).initData()
     this.updateView()
   }
 
-/**
-   * Update view
-   */
+  /**
+     * Update view
+     */
   @Log
   updateView() {
     this.pageTitle = this.getPageTitle();
-    this.inputMessage =  this.getInputMessage();
+    this.inputMessage = this.getInputMessage();
     this.unlockMethodList = this.getUnlockMethodList();
     this.buttonVisibility = this.getButtonVisibility();
   }
 
-/**
-   * Get page title
-   *
-   * @return : page title
-   */
+  /**
+     * Get page title
+     *
+     * @return : page title
+     */
   @Log
   getPageTitle(): string | Resource {
     let title: Resource = $r('app.string.password_enter_password');
@@ -302,11 +388,11 @@ struct PasswordInput {
     return title;
   }
 
-/**
-   * Get input message
-   *
-   * @return : message
-   */
+  /**
+     * Get input message
+     *
+     * @return : message
+     */
   @Log
   getInputMessage(): string | Resource {
     let inputMessage: string | Resource = '';
@@ -330,14 +416,14 @@ struct PasswordInput {
     return inputMessage;
   }
 
-/**
-   * Get unlock method list.
-   *
-   * @return : unlock method list
-   */
+  /**
+     * Get unlock method list.
+     *
+     * @return : unlock method list
+     */
   @Log
   getUnlockMethodList(): RadioListItem[] {
-    var list : RadioListItem[] = [];
+    var list: RadioListItem[] = [];
     if (!this.isInputFirstTime) {
       return list;
     }
@@ -362,33 +448,33 @@ struct PasswordInput {
     return list;
   }
 
-/**
-   * Get button visibility
-   *
-   * @return : button visibility
-   *
-   */
+  /**
+     * Get button visibility
+     *
+     * @return : button visibility
+     *
+     */
   @Log
   getButtonVisibility(): Visibility {
     return this.passwordType == PinSubType.PIN_SIX ? Visibility.Hidden : Visibility.Visible
   }
-
 }
 // The check message need to change real time, put it in child component, so parent component does not refresh.
 @Component
 struct CheckText {
-  @StorageLink("checkMessage") private checkMessage: string | Resource = ''
+  @StorageLink("checkMessage")
+  private checkMessage: string | Resource = ''
 
   build() {
     Row() {
       Text(this.checkMessage ? this.checkMessage : $r('app.string.password_set_prompt'))
-          .fontSize($r('sys.float.ohos_id_text_size_body2'))
-          .fontWeight(FontWeight.Medium)
-          .fontColor($r('sys.color.ohos_id_color_warning'))
-          .align(Alignment.Center)
-          .textAlign(TextAlign.Center)
-          .margin({ top: $r('app.float.distance_14'), bottom: $r('app.float.distance_32') })
+        .fontSize($r('sys.float.ohos_id_text_size_body2'))
+        .fontWeight(FontWeight.Medium)
+        .fontColor($r('sys.color.ohos_id_color_warning'))
+        .align(Alignment.Center)
+        .textAlign(TextAlign.Center)
     }
+    .margin({ top: $r('app.float.distance_4'), bottom: $r('app.float.distance_24') })
   }
 }
 
@@ -398,11 +484,11 @@ struct CheckText {
 @CustomDialog
 struct chooseUnlockMethodDialog {
   controller: CustomDialogController;
-  private dataList: RadioListItem[];
-  private checkedValue: string;
+  private dataList: RadioListItem[]
+  private checkedValue: string
   private dialogTitle: string | Resource= "";
   private chosenAction: (value: number) => void;
-  @State isTouched :Boolean = false;
+  @State isTouched: Boolean = false;
 
   @Log
   closeDialog() {
@@ -413,10 +499,12 @@ struct chooseUnlockMethodDialog {
     Column() {
       Row() {
         Text(this.dialogTitle)
-          .height($r('app.float.wh_value_60'))
-          .margin({ left: $r('app.float.wh_value_30') })
+          .height($r('app.float.wh_value_56'))
+          .margin({ left: $r('app.float.wh_value_24') })
           .width(ConfigData.WH_100_100)
-          .fontSize($r('app.float.font_28'));
+          .fontSize($r('app.float.font_20'))
+          .fontColor($r("sys.color.ohos_id_color_primary"))
+          .fontWeight(500)
       }
 
       Row() {
@@ -439,17 +527,21 @@ struct chooseUnlockMethodDialog {
           .fontSize($r('app.float.application_button_subtitle_size'))
           .fontColor($r('sys.color.ohos_id_color_focused_bg'))
           .textAlign(TextAlign.Center)
+          .fontWeight(500)
           .width(ConfigData.WH_100_100)
           .height($r("app.float.wh_value_56"))
+          .margin({ top: $r("app.float.wh_value_6") })
+          .padding({ top: $r("app.float.wh_value_12"), bottom: $r("app.float.wh_value_6") })
           .borderRadius($r('app.float.radius_20'))
           .linearGradient(this.isTouched ? {
-             angle: 90,
-             direction: GradientDirection.Right,
-             colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-             } : {
-             angle: 90,
-             direction: GradientDirection.Right,
-             colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
+                                             angle: 90,
+                                             direction: GradientDirection.Right,
+                                             colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+                                           } : {
+                                                 angle: 90,
+                                                 direction: GradientDirection.Right,
+                                                 colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+                                               })
           .onTouch((event: TouchEvent) => {
             if (event.type === TouchType.Down) {
               this.isTouched = true;
@@ -462,7 +554,6 @@ struct chooseUnlockMethodDialog {
             this.closeDialog();
           });
       }
-      .padding($r('app.float.distance_20'))
       .align(Alignment.Center);
     }
   }

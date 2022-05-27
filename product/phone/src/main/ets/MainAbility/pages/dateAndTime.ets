@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent';
-import {TextComponentWithEndText} from '../../../../../../../common/component/src/main/ets/default/textComponent';
-import {DialogButtonLayout} from '../../../../../../../common/component/src/main/ets/default/dialogComponent';
+import { TextComponentWithEndText } from '../../../../../../../common/component/src/main/ets/default/textComponent';
+import { DialogButtonLayout } from '../../../../../../../common/component/src/main/ets/default/dialogComponent';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import DateAndTime from '../../../../../../../common/utils/src/main/ets/default/baseUtil/DateAndTimeUtil';
 import DateAndTimeModel from '../model/dateAndTimeImpl/DateAndTimeModel'
@@ -36,24 +36,35 @@ struct dateAndTime {
   private image: string | Resource = '';
   private dateMark: string = 'date';
   private timeMark: string = 'time';
-  private commonEventSubscribeInfo = {events: [CommonEvent.Support.COMMON_EVENT_TIME_CHANGED, CommonEvent.Support.COMMON_EVENT_DATE_CHANGED]};
+  private commonEventSubscribeInfo = {
+    events: [CommonEvent.Support.COMMON_EVENT_TIME_CHANGED, CommonEvent.Support.COMMON_EVENT_DATE_CHANGED]
+  };
   private subscriber;
-
+  private headName: string = '';
   @State dateAndTimeList: BaseData[] = [];
   timeDialogController: CustomDialogController = new CustomDialogController({
     builder: TimeDialog24H({ action: this.onAccept }),
     cancel: this.existApp,
-    autoCancel: true
+    autoCancel: true,
+    alignment: DialogAlignment.Bottom,
+    offset: ({ dx: 0, dy: '-24dp' }),
   });
   dateDialogController: CustomDialogController = new CustomDialogController({
     builder: DateDialog({ action: this.onAccept }),
     cancel: this.existApp,
-    autoCancel: true
+    autoCancel: true,
+    alignment: DialogAlignment.Bottom,
+    offset: ({ dx: 0, dy: '-24dp' }),
   });
 
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+    Column() {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
         Row({}) {
           Column() {
           }
@@ -66,15 +77,22 @@ struct dateAndTime {
 
           Column() {
             HeadComponent({ headName: $r('app.string.dateAndTimeTab'), isActive: true })
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center}) {
+            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
               Text($r('app.string.timeFormat'))
                 .fontSize($r('app.float.font_16'))
                 .fontColor($r('app.color.font_color_182431'))
                 .fontWeight(FontWeight.Medium)
                 .textAlign(TextAlign.Start)
+                .margin({
+                  top: $r("app.float.wh_value_4"),
+                  bottom: $r("app.float.wh_value_4"),
+                  left: $r("app.float.wh_value_12")
+                })
               Toggle({ type: ToggleType.Switch, isOn: this.is24hTimeFormat() })
-                .width($r('app.float.switch_toggle_width'))
-                .height($r('app.float.switch_toggle_height'))
+                .margin({ right: $r('app.float.wh_value_6') })
+                .width('36vp')
+                .height('20vp')
+                .selectedColor('#007DFF')
                 .onChange((isOn: boolean) => {
                   if (this.is24hTimeFormat()) {
                     this.setTimeFormatAs12H();
@@ -86,8 +104,7 @@ struct dateAndTime {
             .height($r('app.float.wh_value_56'))
             .width(ConfigData.WH_100_100)
             .backgroundColor($r("app.color.white_bg_color"))
-            .padding({ left: $r('app.float.wh_value_24'), right: $r('app.float.wh_value_24') })
-            .margin({ top: $r("app.float.distance_8"), bottom: $r("app.float.wh_value_12")})
+            .margin({ bottom: $r("app.float.wh_value_12"), top: $r("app.float.distance_8") })
             .borderRadius($r('app.float.radius_24'));
 
             List() {
@@ -107,15 +124,16 @@ struct dateAndTime {
                 }
               }, item => JSON.stringify(item))
             }
-            .divider({ strokeWidth: $r('app.float.wh_value_1'), color: $r('app.color.color_E3E3E3_grey'),
+            .padding({ top: $r('app.float.wh_value_4'), bottom: $r('app.float.wh_value_4') })
+            .divider({ strokeWidth: $r('app.float.divider_wh'), color: $r('sys.color.ohos_id_color_list_separator'),
               startMargin: $r('app.float.wh_value_15'), endMargin: $r('app.float.wh_value_15') })
             .borderRadius($r("app.float.radius_24"))
             .backgroundColor($r("app.color.white_bg_color"))
-            .padding($r('app.float.distance_4'))
             .visibility(this.dateAndTimeList.length > 0 ? Visibility.Visible : Visibility.None)
           }
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
           .height(ConfigData.WH_100_100)
-          .padding({ left: $r('app.float.distance_24'), right: $r('app.float.distance_24') })
+          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           .align(Alignment.Center)
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
@@ -199,12 +217,12 @@ struct dateAndTime {
    * get current system time
    */
   private getNowTime(): void {
-      LogUtil.info(MODULE_TAG + 'get time come in');
-      this.time = DateAndTime.getSystemTime(this.is24hTimeFormat());
-      this.date = DateAndTime.getSystemDate();
-      LogUtil.info(MODULE_TAG + 'get time end in date=' + this.date);
-      LogUtil.info(MODULE_TAG + 'get time end in time=' + this.time);
-      this.changeValue();
+    LogUtil.info(MODULE_TAG + 'get time come in');
+    this.time = DateAndTime.getSystemTime(this.is24hTimeFormat());
+    this.date = DateAndTime.getSystemDate();
+    LogUtil.info(MODULE_TAG + 'get time end in date=' + this.date);
+    LogUtil.info(MODULE_TAG + 'get time end in time=' + this.time);
+    this.changeValue();
   }
 
   aboutToDisappear(): void {
@@ -226,7 +244,7 @@ struct dateAndTime {
     DateAndTimeModel.setTimeFormatAs12H();
   }
 
-  private is24hTimeFormat() : boolean {
+  private is24hTimeFormat(): boolean {
     let result = DateAndTimeModel.getTimeFormat();
     if (result === ConfigData.TIME_FORMAT_24) {
       return true;
@@ -254,8 +272,9 @@ struct TimeDialog24H {
           .width(ConfigData.WH_100_100)
           .textAlign(TextAlign.Center)
           .fontSize($r('app.float.font_20'))
+          .fontColor($r("sys.color.ohos_id_color_primary"))
           .fontWeight(FontWeight.Medium);
-        TimePicker({selected: this.currentTime})
+        TimePicker({ selected: this.currentTime })
           .useMilitaryTime(this.isNeedMilitaryTime())
           .onChange((date: TimePickerResult) => {
             this.currentTime = DateAndTime.concatTime(date.hour, date.minute);
@@ -263,7 +282,7 @@ struct TimeDialog24H {
           })
           .width(ConfigData.WH_100_100)
           .height($r('app.float.wh_value_200'))
-      }
+      }.padding({ left: $r('sys.float.ohos_id_max_padding_start'), right: $r('app.float.wh_value_21') })
 
       DialogButtonLayout({
         firstClickEvent: () => {
@@ -290,7 +309,7 @@ struct TimeDialog24H {
     .width(ConfigData.WH_100_100)
   }
 
-  private isNeedMilitaryTime() : boolean {
+  private isNeedMilitaryTime(): boolean {
     let result = DateAndTimeModel.getTimeFormat();
     // 24h time format need using military time
     if (result === ConfigData.TIME_FORMAT_24) {
@@ -320,8 +339,12 @@ struct DateDialog {
         Row() {
           Text(this.date)
             .fontSize($r('app.float.font_20'))
+            .fontWeight(500)
+            .fontColor($r("sys.color.ohos_id_color_primary"))
           Text(this.day)
             .fontSize($r('app.float.font_20'))
+            .fontWeight(500)
+            .fontColor($r("sys.color.ohos_id_color_primary"))
         }
         .height($r('app.float.wh_value_56'))
 
@@ -338,10 +361,12 @@ struct DateDialog {
               LogUtil.info(MODULE_TAG + 'onchange refresh the show date is : ' + this.date);
               LogUtil.info(MODULE_TAG + 'onchange refresh the show day is : ' + this.day);
             });
-        })
+          })
           .width(ConfigData.WH_100_100)
-          .height($r('app.float.wh_value_200'));
+          .height($r('app.float.wh_value_200'))
+          .padding({ right: $r('app.float.wh_37') })
       }
+      .padding({ left: $r('app.float.wh_padding_32'), right: $r('app.float.wh_padding_33') })
 
       DialogButtonLayout({
         firstClickEvent: () => {
