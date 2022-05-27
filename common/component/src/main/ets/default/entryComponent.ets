@@ -47,10 +47,9 @@ export default struct EntryComponent {
           .visibility('' === this.settingIcon ? Visibility.None : Visibility.Visible)
           .objectFit(ImageFit.Contain)
           .fillColor($r("sys.color.ohos_id_color_primary"))
-
         Column() {
           Text(this.settingTitle)
-            .fontColor(this.enabled ? this.titleFontColor : $r('sys.color.ohos_id_color_text_secondary'))
+            .fontColor(this.enabled ? this.titleFontColor : $r("sys.color.ohos_id_color_primary"))
             .fontSize(this.fontSize)
             .textAlign(TextAlign.Start)
             .maxLines(ComponentConfig.MAX_LINES_3)
@@ -87,7 +86,8 @@ export default struct EntryComponent {
       Row() {
         Text(this.settingValue)
           .fontSize(this.valueFontSize)
-          .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+          .fontColor($r("sys.color.ohos_id_color_primary"))
+          .opacity($r('sys.float.ohos_id_alpha_content_secondary'))
           .fontWeight('HwChinese-medium')
           .height($r('app.float.wh_value_40'))
           .margin({ left: $r('sys.float.ohos_id_elements_margin_horizontal_l'), right: $r('app.float.wh_value_4') })
@@ -116,6 +116,7 @@ export default struct EntryComponent {
       .alignItems(VerticalAlign.Center)
       .align(Alignment.End);
     }
+    .opacity(this.enabled?1:$r('sys.float.ohos_id_alpha_disabled'))
     .height(this.height)
     .width(ComponentConfig.WH_100_100)
     .padding({ left: $r('sys.float.ohos_id_default_padding_start') })

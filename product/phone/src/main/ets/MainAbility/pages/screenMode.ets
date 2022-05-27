@@ -14,7 +14,7 @@
  */
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
-import {ScreenModeModel} from '../model/displayAndBrightnessImpl/display/ScreenMode';
+import { ScreenModeModel } from '../model/displayAndBrightnessImpl/display/ScreenMode';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import { BaseData } from '../../../../../../../common/utils/src/main/ets/default/bean/BaseData';
@@ -27,12 +27,17 @@ import { BaseData } from '../../../../../../../common/utils/src/main/ets/default
 @Component
 struct ScreenMode {
   @StorageLink('supportedScreenModes') supportedScreenModes: [] = [];
-  @State screenModeModel:ScreenModeModel = new ScreenModeModel();
+  @State screenModeModel: ScreenModeModel = new ScreenModeModel();
   private TAG = ConfigData.TAG + 'ScreenMode ';
 
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+    Column() {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
         Row({}) {
           Column() {
           }
@@ -44,36 +49,36 @@ struct ScreenMode {
           });
 
           Column() {
-            HeadComponent({headName: $r('app.string.screenResolution'), isActive: true});
+            HeadComponent({ headName: $r('app.string.screenResolution'), isActive: true });
             Text($r('app.string.screenResolutionWarning'))
-              .fontSize($r("app.float.font_14"))
-              .lineHeight($r("app.float.lineHeight_19"))
+              .fontSize($r("sys.float.ohos_id_text_size_body2"))
               .fontColor($r('sys.color.ohos_id_color_text_secondary'))
               .fontWeight(FontWeight.Regular)
               .textAlign(TextAlign.Start)
-              .margin({top: $r('app.float.distance_24'), bottom: $r('app.float.distance_24')})
-              .padding({left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end'),})
+              .margin({ top: $r('app.float.distance_24'), bottom: $r('app.float.distance_24') })
+              .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_12'), })
               .width(ConfigData.WH_100_100)
 
-            List(){
+            List() {
               ForEach(this.supportedScreenModes, (item: BaseData) => {
-                ListItem(){
-                  Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }){
-                    Column(){
+                ListItem() {
+                  Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+                    Column() {
                       Text(`${this.screenModeModel.getScreenModeWidth(item)} x ${this.screenModeModel.getScreenModeHeight(item)}`)
+                        .fontColor($r('sys.color.ohos_id_color_text_primary'))
                         .fontSize($r("app.float.font_16"))
                         .lineHeight($r("app.float.lineHeight_22"))
                         .fontWeight(FontWeight.Medium)
-                        .margin({top: $r('app.float.distance_13'), bottom: $r('app.float.distance_13')})
+                        .margin({ top: $r('app.float.distance_13'), bottom: $r('app.float.distance_13') })
                         .textAlign(TextAlign.Start);
 
                     }
                     .alignItems(HorizontalAlign.Start)
 
-                    Radio( {value: this.TAG, group: ''} )
-                      .width($r('app.float.wh_value_24'))
-                      .height($r('app.float.wh_value_24'))
-                      .align(Alignment.End)
+                    Radio({ value: this.TAG, group: '' })
+                      .colorBlend($r("sys.color.ohos_id_color_switch_bg_off"))
+                      .width('20vp')
+                      .height('20vp')
                       .enabled(false)
                       .checked(this.screenModeModel.isSysScreenMode(item))
                       .onClick(() => {
@@ -87,13 +92,16 @@ struct ScreenMode {
 
               }, item => JSON.stringify(item));
             }
-            .padding({left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end'), top: $r('app.float.distance_4'), bottom: $r('app.float.distance_4')})
-            .divider({strokeWidth: 1, color: $r("app.color.color_E3E3E3_grey")})
+            .padding({
+              left: $r('app.float.wh_value_12'),
+              right: $r('app.float.wh_value_12'),
+              top: $r('app.float.distance_4'),
+              bottom: $r('app.float.distance_4')
+            })
+            .divider({ strokeWidth: $r('app.float.divider_wh'), color: $r("app.color.color_E3E3E3_grey") })
             .borderRadius($r("app.float.radius_24"))
             .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
-
           }
-          .padding({left: $r('app.float.distance_24'), right: $r('app.float.distance_24')})
           .align(Alignment.Start)
           .width(ConfigData.WH_100_100)
           .height(ConfigData.WH_100_100)
@@ -117,6 +125,10 @@ struct ScreenMode {
       .width(ConfigData.WH_100_100)
       .height(ConfigData.WH_100_100);
     }
+    .padding({
+      left: $r('sys.float.ohos_id_card_margin_start'),
+      right: $r('sys.float.ohos_id_card_margin_end')
+    })
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
     .height(ConfigData.WH_100_100);

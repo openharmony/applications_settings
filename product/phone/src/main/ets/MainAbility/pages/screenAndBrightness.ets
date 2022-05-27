@@ -14,12 +14,12 @@
  */
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
-import {BrightnessSettingModel} from '../model/displayAndBrightnessImpl/brightness/BrightnessSettingModel';
-import {ScreenModeModel} from '../model/displayAndBrightnessImpl/display/ScreenMode';
+import { BrightnessSettingModel } from '../model/displayAndBrightnessImpl/brightness/BrightnessSettingModel';
+import { ScreenModeModel } from '../model/displayAndBrightnessImpl/display/ScreenMode';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import {SubEntryComponentWithEndText} from '../../../../../../../common/component/src/main/ets/default/subEntryComponent';
-import {SubHeader} from '../../../../../../../common/component/src/main/ets/default/textComponent';
+import { SubEntryComponentWithEndText } from '../../../../../../../common/component/src/main/ets/default/subEntryComponent';
+import { SubHeader } from '../../../../../../../common/component/src/main/ets/default/textComponent';
 
 
 const BRIGHTNESS_MIN_VALUE = 4;
@@ -32,12 +32,17 @@ const BRIGHTNESS_STEP_VALUE = 1;
 @Entry
 @Component
 struct BrightnessSettings {
-  @State brightnessSettingModel:BrightnessSettingModel = new BrightnessSettingModel();
+  @State brightnessSettingModel: BrightnessSettingModel = new BrightnessSettingModel();
   private TAG = ConfigData.TAG + 'BrightnessSettings ';
 
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+    Column() {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
         Row({}) {
           Column() {
           }
@@ -49,15 +54,19 @@ struct BrightnessSettings {
           });
 
           Column() {
-            HeadComponent({headName: $r('app.string.brightnessTab'), isActive: true});
+            HeadComponent({ headName: $r('app.string.brightnessTab'), isActive: true });
 
             SubHeader({ titleContent: $r('app.string.brightness') })
 
             Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
               Image($r('app.media.ic_settings_brightness_maximum'))
-                .width($r('app.float.wh_value_18'))
-                .height($r('app.float.wh_value_18'))
-                .objectFit(ImageFit.Contain);
+                .padding("3vp")
+                .width($r('app.float.wh_value_24'))
+                .height($r('app.float.wh_value_24'))
+                .objectFit(ImageFit.Contain)
+                .fillColor($r("sys.color.ohos_id_color_primary"))
+                .opacity($r("sys.float.ohos_fa_alpha_content_secondary"))
+
               Slider({
                 value: this.brightnessSettingModel.getValue(),
                 min: BRIGHTNESS_MIN_VALUE,
@@ -68,16 +77,21 @@ struct BrightnessSettings {
                 .selectedColor($r('app.color.font_color_007DFF'))
                 .blockColor(Color.White)
                 .layoutWeight(1)
-                .padding({left: $r('app.float.distance_12'), right: $r('app.float.distance_12')})
-                .onChange((number, mode:SliderChangeMode) => {
+                .padding({ left: $r('app.float.distance_12'), right: $r('app.float.distance_12') })
+                .onChange((number, mode: SliderChangeMode) => {
                   this.brightnessSettingModel.setValue(number, mode);
                 });
               Image($r('app.media.ic_settings_brightness_maximum'))
                 .width($r('app.float.wh_value_24'))
                 .height($r('app.float.wh_value_24'))
-                .objectFit(ImageFit.Contain);
+                .objectFit(ImageFit.Contain)
+                .fillColor($r("sys.color.ohos_id_color_primary"))
+                .opacity($r("sys.float.ohos_fa_alpha_content_secondary"))
             }
-            .padding({left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end')})
+            .padding({
+              left: $r('sys.float.ohos_id_card_margin_start'),
+              right: $r("sys.float.ohos_id_card_margin_end")
+            })
             .height($r('app.float.distance_64'))
             .width(ConfigData.WH_100_100)
             .borderRadius($r('app.float.radius_24'))
@@ -87,7 +101,6 @@ struct BrightnessSettings {
 
             ScreenModelComponent()
           }
-          .padding({left: $r('app.float.distance_24'), right: $r('app.float.distance_24')})
           .align(Alignment.Center)
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
@@ -111,6 +124,10 @@ struct BrightnessSettings {
       .width(ConfigData.WH_100_100)
       .height(ConfigData.WH_100_100);
     }
+    .padding({
+      left: $r('sys.float.ohos_id_card_margin_start'),
+      right: $r('sys.float.ohos_id_card_margin_end')
+    })
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
     .height(ConfigData.WH_100_100);
@@ -132,15 +149,14 @@ struct BrightnessSettings {
 }
 
 
-
 /**
  * Sub-Page Entry Component with EndText
  */
 @Component
-export  struct ScreenModelComponent {
-  @State isTouched:boolean = false;
+export struct ScreenModelComponent {
+  @State isTouched: boolean = false;
   @StorageLink('sysScreenModeText') sysScreenModeText: string = '';
-  @State screenModeModel:ScreenModeModel = new ScreenModeModel();
+  @State screenModeModel: ScreenModeModel = new ScreenModeModel();
 
   build() {
     Navigator({ target: "pages/screenMode" }) {
@@ -150,8 +166,8 @@ export  struct ScreenModelComponent {
             .fontSize($r('app.float.font_16'))
             .lineHeight($r('app.float.wh_value_22'))
             .fontWeight(FontWeight.Medium)
-            .fontColor($r('app.color.font_color_182431'))
-            .margin({left: $r('app.float.distance_8')})
+            .fontColor($r("sys.color.ohos_id_color_text_primary"))
+            .margin({ left: $r('app.float.distance_8') })
             .textAlign(TextAlign.Start);
         }
 
@@ -160,13 +176,16 @@ export  struct ScreenModelComponent {
             .fontSize($r('app.float.font_14'))
             .lineHeight($r('app.float.wh_value_19'))
             .fontWeight(FontWeight.Regular)
-            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-            .margin({right: $r('app.float.distance_4')})
+            .fontColor($r('sys.color.ohos_id_color_text_primary'))
+            .opacity($r("sys.float.ohos_fa_alpha_content_secondary"))
+            .margin({ right: $r('app.float.distance_4') })
             .textAlign(TextAlign.End);
           Image('/res/image/ic_settings_arrow.svg')
             .width($r('app.float.wh_value_12'))
             .height($r('app.float.wh_value_24'))
-            .margin({right: $r('app.float.distance_8')});
+            .margin({ right: $r('app.float.distance_8') })
+            .fillColor($r("sys.color.ohos_id_color_primary"))
+            .opacity($r("sys.float.ohos_fa_alpha_content_fourth"))
         }
       }
       .height(ConfigData.WH_100_100)
@@ -179,7 +198,8 @@ export  struct ScreenModelComponent {
                                        } : {
                                              angle: 90,
                                              direction: GradientDirection.Right,
-                                             colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
+                                             colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+                                           })
       .onTouch((event: TouchEvent) => {
         if (event.type === TouchType.Down) {
           this.isTouched = true;
