@@ -17,7 +17,7 @@ import FeatureAbility from '@ohos.ability.featureAbility';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent';
-import {SubEntryComponent} from '../../../../../../../common/component/src/main/ets/default/subEntryComponent';
+import { SubEntryComponent } from '../../../../../../../common/component/src/main/ets/default/subEntryComponent';
 import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 
 /**
@@ -30,12 +30,16 @@ struct PrivacySettings {
   @State columnMargin: string = '12vp';
 
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+    Column() {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
         Row({}) {
           Column() {
           }
-          .margin({ bottom: $r("app.float.distance_12") })
           .width(ConfigData.WH_100_100)
           .height(ConfigData.WH_100_100)
           .useSizeType({
@@ -44,14 +48,16 @@ struct PrivacySettings {
           });
 
           Column() {
-            HeadComponent({headName: $r('app.string.privacy'), isActive: true})
-            Column({space: this.columnMargin}){
-              PermissionComponent();
-              SubEntryComponent({targetPage: 'pages/locationServices', title: $r('app.string.locationServicesTab')})
+            HeadComponent({ headName: $r('app.string.privacy'), isActive: true })
+            Column({ space: this.columnMargin }) {
+              PermissionComponent()
+              SubEntryComponent({ targetPage: 'pages/locationServices', title: $r('app.string.locationServicesTab') })
             }
+            .margin({ top: $r("app.float.distance_8") })
             .width(ConfigData.WH_100_100)
           }
-          .padding({left: $r('app.float.distance_24'), right: $r('app.float.distance_24')})
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           .width(ConfigData.WH_100_100)
           .height(ConfigData.WH_100_100)
           .useSizeType({
@@ -79,17 +85,16 @@ struct PrivacySettings {
     .height(ConfigData.WH_100_100);
   }
 
-  aboutToAppear(){
+  aboutToAppear() {
     LogUtil.info(`${this.TAG} aboutToAppear in`);
     ResourceUtil.getString($r('app.float.distance_12')).then(value => this.columnMargin = value);
     LogUtil.info(`${this.TAG} aboutToAppear out`);
   }
 
-  aboutToDisappear(){
+  aboutToDisappear() {
     LogUtil.info(`${this.TAG} aboutToDisappear in`);
     LogUtil.info(`${this.TAG} aboutToDisappear out`);
   }
-
 }
 
 
@@ -99,36 +104,40 @@ struct PrivacySettings {
 @Component
 export struct PermissionComponent {
   private TAG = `${ConfigData.TAG} PrivacySettings PermissionComponent`;
-  @State isTouched:boolean = false;
+  @State isTouched: boolean = false;
 
   build() {
-    Column(){
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
+    Column() {
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         Row() {
           Text($r('app.string.permissionManager'))
             .fontSize($r('app.float.font_16'))
             .lineHeight($r('app.float.wh_value_22'))
             .fontColor($r('app.color.font_color_182431'))
             .fontWeight(FontWeight.Medium)
-            .margin({left: $r('app.float.distance_8')})
+            .margin({ left: $r('app.float.distance_8') })
             .textAlign(TextAlign.Start);
         }
+
         Image('/res/image/ic_settings_arrow.svg')
           .width($r('app.float.wh_value_12'))
           .height($r('app.float.wh_value_24'))
-          .margin({right: $r('app.float.distance_8')});
+          .margin({ right: $r('app.float.distance_8') })
+          .fillColor($r("sys.color.ohos_id_color_primary"))
+          .opacity($r("app.float.opacity_0_2"))
       }
       .height(ConfigData.WH_100_100)
       .width(ConfigData.WH_100_100)
       .borderRadius($r('app.float.radius_20'))
       .linearGradient(this.isTouched ? {
-         angle: 90,
-         direction: GradientDirection.Right,
-         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-         } : {
-         angle: 90,
-         direction: GradientDirection.Right,
-         colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
+                                         angle: 90,
+                                         direction: GradientDirection.Right,
+                                         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+                                       } : {
+                                             angle: 90,
+                                             direction: GradientDirection.Right,
+                                             colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+                                           })
       .onTouch((event: TouchEvent) => {
         if (event.type === TouchType.Down) {
           this.isTouched = true;
@@ -139,10 +148,10 @@ export struct PermissionComponent {
       })
     }
     .padding($r('app.float.distance_4'))
+    .backgroundColor('#FFFFFF')
     .height($r('app.float.wh_value_56'))
     .borderRadius($r('app.float.radius_24'))
-    .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
-    .onClick(()=>{
+    .onClick(() => {
       FeatureAbility.startAbility({
         want: {
           bundleName: ConfigData.PERMISSION_MANAGER_BUNDLE_NAME,

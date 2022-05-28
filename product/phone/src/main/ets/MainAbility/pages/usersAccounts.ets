@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent';
-import {SubEntryComponentWithEndText} from '../../../../../../../common/component/src/main/ets/default/subEntryComponent';
-import {SubHeader} from '../../../../../../../common/component/src/main/ets/default/textComponent';
+import { SubEntryComponentWithEndText
+} from '../../../../../../../common/component/src/main/ets/default/subEntryComponent';
+import { SubHeader } from '../../../../../../../common/component/src/main/ets/default/textComponent';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import SystemAccount from '../model/usersAndAccounts/systemAccountModel'
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
@@ -30,8 +31,13 @@ struct UsersAccounts {
   @State accountName: string = "";
 
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+    Column() {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
         Row({}) {
           Column() {
           }
@@ -55,7 +61,8 @@ struct UsersAccounts {
               endText: this.accountName
             });
           }
-          .padding({left:$r('app.float.distance_24'), right:$r('app.float.distance_24')})
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           .align(Alignment.Center)
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)

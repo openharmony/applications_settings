@@ -56,9 +56,10 @@ struct SystemSettings {
 
               SubEntryComponent({targetPage: "pages/developerOptions", title: $r("app.string.developerOptionsTab")})
             }
+            .margin({top:$r('app.float.distance_8')})
             .width(ConfigData.WH_100_100)
           }
-          .padding({left: $r('app.float.distance_24'), right: $r('app.float.distance_24')})
+          .padding({  left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end')})
           .width(ConfigData.WH_100_100)
           .height(ConfigData.WH_100_100)
           .useSizeType({

@@ -881,24 +881,32 @@
       "value": "118vp"
     },
     {
-      "name": "wh_24",
-      "value": "24vp"
-    },
-    {
-      "name": "wh_20",
-      "value": "20vp"
+      "name": "wh_4",
+      "value": "4vp"
     },
     {
       "name": "wh_10",
       "value": "10vp"
     },
     {
+      "name": "wh_20",
+      "value": "20vp"
+    },
+    {
       "name": "wh_23",
       "value": "23vp"
     },
     {
+      "name": "wh_24",
+      "value": "24vp"
+    },
+    {
       "name": "wh_35",
       "value": "16vp"
+    },
+    {
+      "name": "wh_37",
+      "value": "0vp"
     },
     {
       "name": "wh_42",
@@ -907,6 +915,10 @@
     {
       "name": "wh_48",
       "value": "52vp"
+    },
+    {
+      "name": "wh_192",
+      "value": "192vp"
     },
     {
       "name": "wh_205",
@@ -978,6 +990,10 @@
     },
     {
       "name": "progress_bottom",
+      "value": "24vp"
+    },
+    {
+      "name": "head_font_24",
       "value": "24vp"
     }
   ]

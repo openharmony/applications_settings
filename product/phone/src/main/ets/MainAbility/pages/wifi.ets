@@ -13,14 +13,17 @@
  * limitations under the License.
  */
 import WifiModel from '../model/wifiImpl/WifiModel';
-import {WifiScanInfo, ApScanResult, WiFiSummaryMap, WiFiIntensityMap, WiFiEncryptMethodMap} from '../model/wifiImpl/WifiModel';
+import { WifiScanInfo, ApScanResult, WiFiSummaryMap, WiFiIntensityMap, WiFiEncryptMethodMap
+} from '../model/wifiImpl/WifiModel';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent';
 import ImageAnimatorComponent from '../../../../../../../common/component/src/main/ets/default/imageAnimatorComponent';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import router from '@system.router';
+import deviceInfo from '@ohos.deviceInfo'
 console.log('settings_20220424 wifi page in');
-const MODULE_TAG = ConfigData.TAG + 'WifiModel.wifi -> ';
+const MODULE_TAG = ConfigData.TAG + 'WifiModel.wifi -> '
+const deviceTypeInfo = deviceInfo.deviceType
 
 function genWiFiIntensity(intensityEnum: number) {
   if (intensityEnum === WiFiIntensityMap.GOOD) {
@@ -87,7 +90,7 @@ struct Index {
   @StorageLink('slConnectedWifi') connectedWiFi: any = [];
   @State isWiFiEnabled: boolean = false;
   @State userSelectedApInfo: WifiScanInfo = {
-    ssid:'',
+    ssid: '',
     bssid: '',
     rssi: -100,
     band: 0,
@@ -96,16 +99,17 @@ struct Index {
     securityType: 1,
   };
   @State isScrollBarTouched: boolean = false;
+  @State isPhone: boolean = false
   private switchDebounceFlag = undefined;
-
   private clickApInfoDialog: CustomDialogController = new CustomDialogController({
     builder: apInfoDialog({
       apInfo: this.userSelectedApInfo,
     }),
+    alignment: this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
     autoCancel: true,
     customStyle: true
   });
-
   private clickApInfoDetailsDialog: CustomDialogController = new CustomDialogController({
     builder: apInfoDetailsDialog({
       apInfo: this.userSelectedApInfo,
@@ -114,13 +118,20 @@ struct Index {
         WifiModel.refreshApScanResults();
       }
     }),
+    alignment: this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
     autoCancel: true,
     customStyle: true
   });
 
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+    Column() {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
         Row({}) {
           Column() {
           }
@@ -132,12 +143,12 @@ struct Index {
           });
 
           Column() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
+            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
               HeadComponent({ headName: $r('app.string.wifiTab'), isActive: true });
             }
-            .margin({left: $r("app.float.wh_value_24"), right: $r("app.float.wh_value_24")});
+            .margin({ left: $r("app.float.wh_24"), right: $r("app.float.wh_24") })
 
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
+            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
               Row() {
                 Text($r('app.string.wifiTab'))
                   .fontSize($r('sys.float.ohos_id_text_size_body1'))
@@ -148,18 +159,19 @@ struct Index {
               .alignItems(VerticalAlign.Center)
               .width($r("app.float.wh_value_240"))
               .height($r("app.float.wh_value_48"))
-              .margin({top: $r("app.float.wh_value_4"), bottom: $r("app.float.wh_value_4"),
-                left: $r("app.float.wh_value_12")})
+              .margin({ top: $r("app.float.wh_value_4"), bottom: $r("app.float.wh_value_4"),
+                left: $r("app.float.wh_value_12") })
 
               Toggle({ type: ToggleType.Switch, isOn: this.isWiFiEnabled })
-                .width($r('app.float.switch_toggle_width'))
-                .height($r('app.float.switch_toggle_height'))
-                .margin({right: $r("app.float.wh_value_12")})
+                .width('36vp')
+                .height('20vp')
+                .selectedColor('#007DFF')
+                .margin({ right: $r('app.float.wh_value_6') })
                 .onChange((isOn: boolean) => {
                   this.switchWiFiActiveStatus();
                 });
             }
-            .margin({left: $r("app.float.wh_value_24"), right: $r("app.float.wh_value_24")})
+            .margin({ left: $r("app.float.wh_24"), right: $r("app.float.wh_24"), top: $r("app.float.distance_8") })
             .height($r('app.float.wh_value_56'))
             .backgroundColor($r("app.color.white_bg_color"))
             .borderRadius($r('app.float.radius_24'))
@@ -167,15 +179,16 @@ struct Index {
             Scroll(this.scroller) {
               Column() {
                 Column() {
-                  Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
+                  Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
                     Text($r("app.string.wifiTipConnectedWLAN"))
                       .fontSize($r('sys.float.ohos_id_text_size_body2'))
                       .fontColor($r('sys.color.ohos_id_color_text_secondary'))
                       .fontWeight(FontWeight.Medium)
-                      .textAlign(TextAlign.Start);
+                      .textAlign(TextAlign.Start)
+                      .margin({ top: $r('app.float.distance_19_5'), bottom: $r('app.float.distance_9_5') })
                   }
                   .height($r("app.float.wh_value_48"))
-                  .margin({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_12') });
+                  .margin({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') });
 
                   Column() {
                     List() {
@@ -190,11 +203,12 @@ struct Index {
                           titleFontColor: "activated"
                         });
                       }
-                      .margin({top: $r("app.float.wh_value_4"), bottom: $r("app.float.wh_value_4")})
+                      .margin({ top: $r("app.float.wh_value_4"), bottom: $r("app.float.wh_value_4") })
                       .onClick(() => {
                         LogUtil.info(MODULE_TAG + 'clicked connected wifi item');
                         this.userSelectedApInfo = this.connectedWiFi.apInfo;
                         this.clickApInfoDetailsDialog.open();
+                        LogUtil.info(MODULE_TAG + 'end!!!');
                       });
                     }
                   }
@@ -205,19 +219,20 @@ struct Index {
                 .visibility(this.isNeedRenderConnectedWiFi() ? Visibility.Visible : Visibility.None);
 
                 Column() {
-                  Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
+                  Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
                     Text($r("app.string.wifiTipValidWLAN"))
                       .fontSize($r('sys.float.ohos_id_text_size_body2'))
                       .fontColor($r('sys.color.ohos_id_color_text_secondary'))
                       .fontWeight(FontWeight.Medium)
-                      .textAlign(TextAlign.Start);
+                      .margin({ top: $r('app.float.distance_19_5'), bottom: $r('app.float.distance_9_5') })
+                      .textAlign(TextAlign.Start)
                     Row() {
                       ImageAnimatorComponent({ imageWidth: $r('app.float.wh_value_24'),
                         imageHeight: $r('app.float.wh_value_24') })
                     }
                   }
                   .height($r("app.float.wh_value_48"))
-                  .margin({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_12') })
+                  .margin({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
 
                   Column() {
                     List() {
@@ -243,15 +258,15 @@ struct Index {
                         })
                       });
                     }
-                    .margin({top:$r('app.float.wh_value_4'), bottom: $r('app.float.wh_value_4')})
+                    .margin({ top: $r('app.float.wh_value_4'), bottom: $r('app.float.wh_value_4') })
                     .divider({
-                      strokeWidth: $r('app.float.wh_value_1'),
+                      strokeWidth: $r('app.float.divider_wh'),
                       color: $r('app.color.color_E3E3E3_grey'),
                       startMargin: $r("app.float.wh_value_12"),
                       endMargin: $r("app.float.wh_value_12"),
                     });
                   }
-                  .margin({bottom: $r("app.float.wh_value_56")})
+                  .margin({ bottom: $r("app.float.wh_value_56") })
                   .borderRadius($r("app.float.radius_24"))
                   .backgroundColor($r("app.color.white_bg_color"))
                   .visibility(this.scanWiFiResults.length !== 0 ? Visibility.Visible : Visibility.None)
@@ -259,14 +274,14 @@ struct Index {
                 .visibility(this.isWiFiEnabled ? Visibility.Visible : Visibility.None);
               }
               .width('100%')
-              .padding({left: $r("app.float.wh_value_24"), right: $r("app.float.wh_value_24")})
+              .padding({ left: $r("app.float.wh_24"), right: $r("app.float.wh_24") })
             }
-            .margin({top: $r("app.float.wh_value_4"), bottom: $r("app.float.wh_value_72")})
+            .margin({ top: $r("app.float.wh_value_4"), bottom: $r("app.float.wh_value_72") })
             .width(ConfigData.WH_100_100)
             .scrollable(ScrollDirection.Vertical)
             .scrollBar(BarState.On)
-            .scrollBarColor(Color.Gray)
-            .scrollBarWidth(this.isScrollBarTouched === true ? 6 : 3)
+            .scrollBarColor('#B3B3B3')
+            .scrollBarWidth(this.isScrollBarTouched ? 6 : 3)
             .borderRadius($r("app.float.radius_24"))
             .onTouch((event: TouchEvent) => {
               if (event.type === TouchType.Down) {
@@ -277,6 +292,7 @@ struct Index {
               }
             });
           }
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
           .width(ConfigData.WH_100_100)
           .height(ConfigData.WH_100_100)
           .useSizeType({
@@ -345,7 +361,7 @@ struct Index {
     if (this.switchDebounceFlag) {
       clearTimeout(this.switchDebounceFlag);
     }
-    this.switchDebounceFlag = setTimeout(()=> {
+    this.switchDebounceFlag = setTimeout(() => {
       if (this.isWiFiEnabled) {
         LogUtil.info(MODULE_TAG + 'enable wifi');
         WifiModel.enableWiFi();
@@ -368,6 +384,11 @@ struct Index {
     });
     // init wifi active status
     this.isWiFiEnabled = WifiModel.isWiFiActive();
+    if (deviceTypeInfo === 'phone') {
+      this.isPhone = true
+    } else {
+      this.isPhone = false
+    }
   }
 
   aboutToDisappear(): void {
@@ -396,13 +417,12 @@ struct Index {
 }
 
 @Component
-export default
-struct ApInfoComponent {
+export default struct ApInfoComponent {
   @Prop key: string;
   @Prop value: string;
 
   build() {
-    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
+    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
       Row() {
         Text(this.key)
           .fontSize($r('sys.float.ohos_id_text_size_body1'))
@@ -433,15 +453,15 @@ struct ApInfoComponent {
 struct apInfoDialog {
   controller: CustomDialogController;
   private apInfo: WifiScanInfo;
-  @State dataList: any[] = [{key: $r('app.string.wifiInfoTitleIntensity'),
-                               value: $r('app.string.wifiSigIntensityBad')},
-                             {key: $r('app.string.wifiInfoTitleEncryptMethod'),
-                               value: $r('app.string.wifiEncryptMethodOpen')}];
+  @State dataList: any[] = [{ key: $r('app.string.wifiInfoTitleIntensity'),
+                              value: $r('app.string.wifiSigIntensityBad') },
+                            { key: $r('app.string.wifiInfoTitleEncryptMethod'),
+                              value: $r('app.string.wifiEncryptMethodOpen') }];
 
   // 0 is cancel, 1 is delete, 2 is connect
-  private buttons: any[] = [{summary: $r('app.string.wifiButtonCancel'), opType: 0},
-                            {summary: $r('app.string.wifiButtonDelete'), opType: 1},
-                            {summary: $r('app.string.wifiButtonConnect'), opType: 2}];
+  private buttons: any[] = [{ summary: $r('app.string.wifiButtonCancel'), opType: 0 },
+                            { summary: $r('app.string.wifiButtonDelete'), opType: 1 },
+                            { summary: $r('app.string.wifiButtonConnect'), opType: 2 }];
 
   build() {
     Column() {
@@ -454,7 +474,7 @@ struct apInfoDialog {
       }
       .height($r("app.float.wh_value_56"))
       .width($r("app.float.wh_value_362"))
-      .margin({left: $r("app.float.wh_value_24"), right: $r("app.float.wh_value_24")})
+      .margin({ left: $r("app.float.wh_value_24"), right: $r("app.float.wh_value_24") })
 
       List() {
         ForEach(this.dataList, (item) => {
@@ -470,9 +490,9 @@ struct apInfoDialog {
           })
         })
       }
-      .margin({left: $r("app.float.wh_value_24"), right: $r("app.float.wh_value_24")})
+      .margin({ left: $r("app.float.wh_value_24"), right: $r("app.float.wh_value_24") })
       .divider({
-        strokeWidth: $r('app.float.wh_value_1'),
+        strokeWidth: $r('app.float.divider_wh'),
         color: $r('app.color.color_E3E3E3_grey'),
       })
 
@@ -485,13 +505,13 @@ struct apInfoDialog {
                 .fontColor($r('sys.color.ohos_id_color_text_primary_activated'))
                 .fontWeight(FontWeight.Medium)
                 .width(ConfigData.WH_100_100)
-                .textAlign(TextAlign.Center);
+                .textAlign(TextAlign.Center)
             }
-            .width($r("app.float.wh_value_118"))
+            .width($r("app.float.dialog_118"))
             .height($r("app.float.wh_value_40"))
             .alignItems(VerticalAlign.Center)
           }
-          .margin({left: $r("app.float.wh_value_4"), right: $r("app.float.wh_value_4")})
+          .margin({ left: $r("app.float.wh_value_4"), right: $r("app.float.wh_value_4") })
           .onClick(() => {
             // 0 is cancel, 1 is delete, 2 is connect
             if (item.opType === 0) {
@@ -512,11 +532,16 @@ struct apInfoDialog {
           })
         })
       }
-      .margin({top:$r('app.float.wh_value_8'), left: $r("app.float.wh_value_16"), right: $r("app.float.wh_value_16")})
+      .margin({
+        top: $r('app.float.wh_value_8'),
+        left: $r("app.float.wh_value_16"),
+        right: $r("app.float.wh_value_16"),
+        bottom: $r("app.float.wh_value_16")
+      })
       .height($r('app.float.wh_value_40'))
       .listDirection(Axis.Horizontal)
       .divider({
-        strokeWidth: $r('app.float.wh_value_1'),
+        strokeWidth: $r('app.float.divider_wh'),
         color: $r('app.color.color_E3E3E3_grey'),
         startMargin: $r('app.float.wh_value_8'),
         endMargin: $r('app.float.wh_value_8')
@@ -537,6 +562,7 @@ struct apInfoDialog {
   }
 }
 
+
 @CustomDialog
 struct apInfoDetailsDialog {
   controller: CustomDialogController;
@@ -545,19 +571,18 @@ struct apInfoDetailsDialog {
   private value: string = '';
   private frequency: string = '2.4GHz';
   private speed: string = '144Mbps';
-  @State dataList: any[] = [{key: $r('app.string.wifiInfoTitleStatus'),
-                              value: $r('app.string.wifiSummaryConnected')},
-                            {key: $r('app.string.wifiInfoTitleIntensity'),
-                              value: $r('app.string.wifiSigIntensityBad')},
-                            {key: $r('app.string.wifiInfoTitleSpeed'),
-                              value: this.speed},
-                            {key: $r('app.string.wifiInfoTitleFrequency'),
-                              value: this.frequency},
-                            {key: $r('app.string.wifiInfoTitleEncryptMethod'),
-                              value: $r("app.string.wifiEncryptMethodOpen")}];
-
-  private buttons: any[] = [{summary: $r('app.string.wifiButtonCancel'), opType: 0},
-                            {summary: $r('app.string.wifiButtonDelete'), opType: 2}];
+  @State dataList: any[] = [{ key: $r('app.string.wifiInfoTitleStatus'),
+                              value: $r('app.string.wifiSummaryConnected') },
+                            { key: $r('app.string.wifiInfoTitleIntensity'),
+                              value: $r('app.string.wifiSigIntensityBad') },
+                            { key: $r('app.string.wifiInfoTitleSpeed'),
+                              value: this.speed },
+                            { key: $r('app.string.wifiInfoTitleFrequency'),
+                              value: this.frequency },
+                            { key: $r('app.string.wifiInfoTitleEncryptMethod'),
+                              value: $r("app.string.wifiEncryptMethodOpen") }];
+  private buttons: any[] = [{ summary: $r('app.string.wifiButtonCancel'), opType: 0 },
+                            { summary: $r('app.string.wifiButtonDelete'), opType: 2 }];
 
   build() {
     Column() {
@@ -567,7 +592,7 @@ struct apInfoDetailsDialog {
           .height(160)
       }
       .width(ConfigData.WH_100_100)
-      .margin({top: $r("app.float.wh_value_52")})
+      .margin({ top: $r("app.float.wh_48") })
       .alignItems(HorizontalAlign.Center);
 
       Row() {
@@ -580,7 +605,7 @@ struct apInfoDetailsDialog {
       }
       .width($r("app.float.wh_value_288"))
       .height($r("app.float.wh_value_32"))
-      .margin({top: $r("app.float.wh_value_28")});
+      .margin({ top: $r("app.float.wh_value_28") });
 
       Row() {
         Text($r("app.string.wifiTipsScanInfo"))
@@ -592,7 +617,7 @@ struct apInfoDetailsDialog {
       }
       .width($r("app.float.wh_value_250"))
       .height($r("app.float.wh_value_19"))
-      .margin({top: $r("app.float.wh_value_6")});
+      .margin({ top: $r("app.float.wh_value_6") });
 
       List() {
         ForEach(this.dataList, (item) => {
@@ -608,9 +633,13 @@ struct apInfoDetailsDialog {
           })
         })
       }
-      .margin({top:$r("app.float.wh_value_16"), left: $r("app.float.wh_value_24"), right: $r("app.float.wh_value_24")})
+      .margin({
+        top: $r("app.float.wh_value_16"),
+        left: $r("app.float.wh_value_24"),
+        right: $r("app.float.wh_value_24")
+      })
       .divider({
-        strokeWidth: $r('app.float.wh_value_1'),
+        strokeWidth: $r('app.float.divider_wh'),
         color: $r('app.color.color_E3E3E3_grey'),
       })
 
@@ -623,13 +652,13 @@ struct apInfoDetailsDialog {
                 .fontColor($r('sys.color.ohos_id_color_text_primary_activated'))
                 .fontWeight(FontWeight.Medium)
                 .width(ConfigData.WH_100_100)
-                .textAlign(TextAlign.Center);
+                .textAlign(TextAlign.Center)
             }
             .width($r("app.float.wh_value_160"))
             .height($r("app.float.wh_value_40"))
             .alignItems(VerticalAlign.Center)
           }
-          .margin({left: $r("app.float.wh_value_4"), right: $r("app.float.wh_value_4")})
+          .margin({ left: $r("app.float.wh_value_4"), right: $r("app.float.wh_value_4") })
           .onClick(() => {
             if (item.opType === 0) {
               LogUtil.info(MODULE_TAG + 'clicked ap info cancel');
@@ -644,17 +673,18 @@ struct apInfoDetailsDialog {
           })
         })
       }
-      .margin({top:$r('app.float.wh_value_11'), bottom: $r('app.float.wh_value_16'),
-        left: $r("app.float.wh_value_4"), right: $r("app.float.wh_value_4")})
+      .margin({ top: $r('app.float.wh_value_8'), bottom: $r('app.float.wh_value_16'),
+        left: $r("app.float.wh_value_4"), right: $r("app.float.wh_value_4") })
       .height($r('app.float.wh_value_40'))
       .listDirection(Axis.Horizontal)
       .divider({
-        strokeWidth: $r('app.float.wh_value_1'),
+        strokeWidth: $r('app.float.divider_wh'),
         color: $r('app.color.color_E3E3E3_grey'),
         startMargin: $r('app.float.wh_value_8'),
         endMargin: $r('app.float.wh_value_8')
       });
     }
+    .padding({ top: $r('app.float.wh_value_6') })
     .alignItems(HorizontalAlign.Center)
     .height($r("app.float.wh_value_620"))
     .width($r("app.float.wh_value_336"))
@@ -670,16 +700,16 @@ struct apInfoDetailsDialog {
     this.speed = linkInfo.linkSpeed + 'Mbps';
     this.frequency = (linkInfo.frequency / 1000).toFixed(1).toString() + 'GHz';
     this.dataList = [
-      {key: $r('app.string.wifiInfoTitleStatus'),
-        value: $r('app.string.wifiSummaryConnected')},
-      {key: $r('app.string.wifiInfoTitleIntensity'),
-        value: genWiFiIntensity(intensity)},
-      {key: $r('app.string.wifiInfoTitleSpeed'),
-        value: this.speed},
-      {key: $r('app.string.wifiInfoTitleFrequency'),
-        value: this.frequency},
-      {key: $r('app.string.wifiInfoTitleEncryptMethod'),
-        value: genWiFiEncryptMethod(encryptType)}
+      { key: $r('app.string.wifiInfoTitleStatus'),
+        value: $r('app.string.wifiSummaryConnected') },
+      { key: $r('app.string.wifiInfoTitleIntensity'),
+        value: genWiFiIntensity(intensity) },
+      { key: $r('app.string.wifiInfoTitleSpeed'),
+        value: this.speed },
+      { key: $r('app.string.wifiInfoTitleFrequency'),
+        value: this.frequency },
+      { key: $r('app.string.wifiInfoTitleEncryptMethod'),
+        value: genWiFiEncryptMethod(encryptType) }
     ];
   }
 }
@@ -697,25 +727,26 @@ struct WiFiEntryComponent {
   @State isTouched: boolean = false;
 
   build() {
-    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
+    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
       Row() {
         Column() {
           Text(this.settingTitle)
             .fontSize($r('sys.float.ohos_id_text_size_body1'))
             .fontColor(this.titleFontColor === "activated" ?
-              $r('sys.color.ohos_id_color_text_primary_activated') :
-              $r('sys.color.ohos_id_color_text_primary'))
+            $r('sys.color.ohos_id_color_text_primary_activated') :
+            $r('sys.color.ohos_id_color_text_primary'))
             .fontWeight(FontWeight.Medium)
             .textAlign(TextAlign.Start);
 
-          Row() {}
+          Row() {
+          }
           .height($r('app.float.wh_value_8'))
 
           Text(this.settingSummary)
             .fontSize($r('sys.float.ohos_id_text_size_body2'))
             .fontColor(this.titleFontColor === "activated" ?
-              $r('sys.color.ohos_id_color_text_primary') :
-              $r('sys.color.ohos_id_color_text_secondary'))
+            $r('sys.color.ohos_id_color_text_primary') :
+            $r('sys.color.ohos_id_color_text_secondary'))
             .fontWeight(FontWeight.Regular)
             .textAlign(TextAlign.Start)
         }
@@ -723,15 +754,16 @@ struct WiFiEntryComponent {
       }
       .flexShrink(0)
       .alignItems(VerticalAlign.Center)
-      .margin({ left: $r("app.float.wh_value_12")})
+      .margin({ left: $r("app.float.wh_value_12") })
       .align(Alignment.Start);
 
       Row() {
         Image(this.settingArrow)
+          .fillColor($r("sys.color.ohos_id_color_primary"))
           .width($r('app.float.wh_value_24'))
           .height($r('app.float.wh_value_24'))
       }
-      .margin({ right: $r("app.float.wh_value_12")})
+      .margin({ right: $r("app.float.wh_value_12") })
       .align(Alignment.End);
 
     }
@@ -739,7 +771,7 @@ struct WiFiEntryComponent {
     .width(ConfigData.WH_100_100)
     .borderRadius($r("app.float.radius_24"))
     .backgroundColor(this.isTouched ? $r("app.color.color_D8D8D8_grey") :
-      $r("sys.color.ohos_id_color_foreground_contrary"))
+    $r("sys.color.ohos_id_color_foreground_contrary"))
     .onTouch((event: TouchEvent) => {
       if (event.type === TouchType.Down) {
         this.isTouched = true;

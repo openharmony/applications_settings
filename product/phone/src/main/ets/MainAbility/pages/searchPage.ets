@@ -34,12 +34,18 @@ struct SearchPage {
   @State @Watch('setSearchKeyword') inputKeyword: string = ''
   @State @Watch('doSearch') searchKeyword: string = ''
   @State searchResultList: SearchData[][] = []
+  @State data: SearchData = new SearchData()
   private searchModel: SearchModel;
   @State listSpace: string = '12vp'
 
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+    Column() {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
         Row({}) {
           Column() {
           }
@@ -54,7 +60,6 @@ struct SearchPage {
             SearchHeader({ inputKeyword: $inputKeyword })
 
             if (this.searchKeyword) {
-
               // search result exist
               if (this.searchResultList && this.searchResultList.length > 0) {
 
@@ -64,14 +69,13 @@ struct SearchPage {
                   ForEach(this.searchResultList, (eachBlock) => {
                     ListItem() {
                       List() {
-
                         // item
                         ForEach(eachBlock.map((item2, index2) => {
                           return { index: index2, data: item2 }
                         }), (item) => {
 
                           ListItem() {
-                            Column() {
+                            Flex({ alignItems: ItemAlign.Center }) {
                               Navigator({ target: item.data.uri }) {
                                 ResultComponent({
                                   highlightKeyword: $searchKeyword,
@@ -79,25 +83,27 @@ struct SearchPage {
                                   data: item.data
                                 });
                               }
-                            }
+                            }.padding({ top: $r('app.float.wh_value_8'), bottom: $r('app.float.wh_value_8') })
                           }
+                          .constraintSize({
+                            minHeight: this.data.summary ? $r('app.float.wh_value_64') : $r('app.float.wh_value_56')
+                          })
                         })
                       }
+                      .padding({ top: $r('app.float.wh_value_4'), bottom: $r('app.float.wh_value_4') })
                       .width(ConfigData.WH_100_100)
                       .divider({
-                        strokeWidth: 1,
+                        strokeWidth: $r('app.float.divider_wh'),
                         color: $r('app.color.color_E3E3E3_grey'),
-                        startMargin: $r('app.float.wh_value_60'),
+                        startMargin: $r('app.float.wh_value_52'),
                         endMargin: $r('app.float.wh_value_20')
                       })
                       .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
                       .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
-                      .padding($r('app.float.distance_4'))
                     }
                   })
                 }
                 .width(ConfigData.WH_100_100)
-
               } else {
                 // search no match
                 Column() {
@@ -113,13 +119,13 @@ struct SearchPage {
                     .alignSelf(ItemAlign.Center);
                 }
                 .alignItems(HorizontalAlign.Center)
-                .margin({ top: $r("app.float.search_no_result_margin_top")})
+                .margin({ top: $r("app.float.search_no_result_margin_top") })
               }
             }
           }
           .width(ConfigData.WH_100_100)
           .height(ConfigData.WH_100_100)
-          .padding({ left: $r('app.float.distance_24'), right: $r('app.float.distance_24') })
+          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           .useSizeType({
             xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
             md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
@@ -193,7 +199,7 @@ struct SearchPage {
    * @return Data for show to view
    */
   @Log
-  makeViewData(result: SearchData[]) : SearchData[][]  {
+  makeViewData(result: SearchData[]): SearchData[][]  {
 
     let list: SearchData[][] = [];
     let group: SearchData[] = undefined;
@@ -216,8 +222,6 @@ struct SearchPage {
         list.push(group);
       }
     }
-
     return list
   }
-
 }

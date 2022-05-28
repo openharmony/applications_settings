@@ -16,7 +16,7 @@ import ConfigData from '../../../../../../../common/utils/src/main/ets/default/b
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent';
 import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import {PinSubType} from '../model/passwordImpl/PasswordModel';
+import { PinSubType } from '../model/passwordImpl/PasswordModel';
 import PasswordCheckController from '../controller/password/PasswordCheckController'
 import Router from '@system.router';
 import InputMethod from '@ohos.inputmethod';
@@ -30,16 +30,18 @@ struct PasswordCheck {
   private TAG_PAGE = ConfigData.TAG + 'PasswordCheck page ';
   private mController: PasswordCheckController = new PasswordCheckController()
 
-// bind Properties
+  // bind Properties
   private pinToken: string = undefined
-  @State @Watch("freezeView") private freezingTime: number = 0
-  @State @Watch("updateView") private remainTimes: number = -1
+  @State @Watch("freezeView")
+  private freezingTime: number = 0
+  @State @Watch("updateView")
+  private remainTimes: number = -1
 
-// handler
+  // handler
   private passwordOnChangeHandler: (value: string) => void;
   private okOnClickHandler: (event?: ClickEvent) => void;
 
-// private Properties
+  // private Properties
   private pageRequestCode: number = -1
   private prevPageUri: string = undefined
   private pinChallenge: string = undefined
@@ -76,9 +78,9 @@ struct PasswordCheck {
     this.stopCountDown();
   }
 
-/**
-   * Get the params from router
-   */
+  /**
+     * Get the params from router
+     */
   @Log
   getRouterParam() {
     param = Router.getParams()
@@ -92,8 +94,13 @@ struct PasswordCheck {
   }
 
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+    Column() {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
         Row({}) {
           Column() {
           }
@@ -110,15 +117,20 @@ struct PasswordCheck {
 
             // freeze view
             if (this.freezingTimeForView > 0) {
-
               Row() {
                 // attempt seconds
                 Text($r('app.string.password_remain_times', this.freezingTimeForView))
                   .fontSize($r('app.float.font_28'))
                   .fontColor(Color.Blue)
                   .textCase(TextCase.UpperCase)
-                  .margin({ top: $r('app.float.password_input_message_vertical_margin'), bottom: $r('app.float.password_input_message_vertical_margin') })
-                  .padding({ left: $r('app.float.item_common_horizontal_margin'), right: $r('app.float.item_common_horizontal_margin') })
+                  .margin({
+                    top: $r('app.float.password_input_message_vertical_margin'),
+                    bottom: $r('app.float.password_input_message_vertical_margin')
+                  })
+                  .padding({
+                    left: $r('app.float.item_common_horizontal_margin'),
+                    right: $r('app.float.item_common_horizontal_margin')
+                  })
                   .align(Alignment.Center)
               }
               .backgroundColor(Color.Gray)
@@ -142,11 +154,18 @@ struct PasswordCheck {
                 // input password
                 Row() {
                   TextInput({ placeholder: '', text: this.password })
-                    .placeholderFont({size: $r("app.float.font_18"), weight:FontWeight.Normal, style: FontStyle.Normal})
+                    .placeholderFont({
+                      size: $r("app.float.font_18"),
+                      weight: FontWeight.Normal,
+                      style: FontStyle.Normal
+                    })
                     .type(InputType.Password)
                     .enterKeyType(EnterKeyType.Done)
                     .caretColor(Color.Blue)
-                    .padding({left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end')})
+                    .padding({
+                      left: $r('sys.float.ohos_id_card_margin_start'),
+                      right: $r('sys.float.ohos_id_card_margin_end')
+                    })
                     .margin({ top: $r('app.float.wh_value_50') })
                     .height($r("app.float.wh_value_40"))
                     .layoutWeight(1)
@@ -155,13 +174,17 @@ struct PasswordCheck {
                     .onChange(this.passwordOnChangeHandler)
                     .onSubmit((enterKey) => {
                       InputMethod.getInputMethodController().stopInput().then((ret) => {
-                        LogUtil.debug( `${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
+                        LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
                       });
                     })
                 }
-                Divider()
-                  .padding({left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end')})
 
+                Divider()
+                  .padding({
+                    left: $r('sys.float.ohos_id_card_margin_start'),
+                    right: $r('sys.float.ohos_id_card_margin_end')
+                  })
+                  .color($r("sys.color.ohos_id_color_list_separator"))
                 // prompt message
                 Text(this.promptMessage)
                   .fontSize($r('sys.float.ohos_id_text_size_body2'))
@@ -174,14 +197,15 @@ struct PasswordCheck {
                 // button
                 Row() {
                   Text($r('app.string.cancel'))
-                    .fontSize($r('app.float.application_button_subtitle_size'))
+                    .fontSize($r('app.float.font_16'))
+                    .fontWeight(FontWeight.Medium)
                     .lineHeight($r('app.float.wh_value_22'))
                     .fontColor($r('app.color.font_color_007DFF'))
                     .textAlign(TextAlign.Center)
                     .layoutWeight(1)
                     .height($r('app.float.application_button_height'))
                     .borderRadius($r('app.float.radius_20'))
-                    .backgroundColor(!this.isTouchedLeft ? $r("app.color.color_D8D8D8_grey") : $r("sys.color.ohos_id_color_foreground_contrary"))
+                    .backgroundColor(!this.isTouchedLeft ? '#E6E9EB' : $r("sys.color.ohos_id_color_foreground_contrary"))
                     .onTouch((event: TouchEvent) => {
                       if (event.type === TouchType.Down) {
                         this.isTouchedLeft = true;
@@ -193,20 +217,19 @@ struct PasswordCheck {
                     .onClick(() => {
                       Router.back();
                     })
-
                   Column()
                     .width( $r('app.float.distance_12'))
                     .height($r('app.float.application_button_height'))
-
-                  Text( $r('app.string.next'))
-                    .fontSize($r('app.float.application_button_subtitle_size'))
+                  Text($r('app.string.next'))
+                    .fontSize($r('app.float.font_16'))
+                    .fontWeight(FontWeight.Medium)
                     .lineHeight($r('app.float.wh_value_22'))
                     .fontColor($r('app.color.font_color_007DFF'))
                     .textAlign(TextAlign.Center)
                     .layoutWeight(1)
                     .height($r('app.float.application_button_height'))
                     .borderRadius($r('app.float.radius_20'))
-                    .backgroundColor(!this.isTouchedRight ? $r("app.color.color_D8D8D8_grey") : $r("sys.color.ohos_id_color_foreground_contrary"))
+                    .backgroundColor(!this.isTouchedLeft ? '#E6E9EB' : $r("sys.color.ohos_id_color_foreground_contrary"))
                     .onTouch((event: TouchEvent) => {
                       if (event.type === TouchType.Down) {
                         this.isTouchedRight = true;
@@ -231,7 +254,8 @@ struct PasswordCheck {
               }
             }
           }
-          .padding({left: $r('app.float.distance_24'), right: $r('app.float.distance_24')})
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
           .useSizeType({
@@ -259,41 +283,41 @@ struct PasswordCheck {
     .height(ConfigData.WH_100_100);
   }
 
-// --------------------------- updateView -----------------------
-/**
-   * Update view
-   */
+  // --------------------------- updateView -----------------------
+  /**
+     * Update view
+     */
   @Log
   updateView() {
     this.promptMessage = this.getPromptMessage();
     this.buttonVisibility = this.getButtonVisibility();
   }
 
-/**
-   * Get prompt message
-   *
-   * @return : message
-   */
+  /**
+     * Get prompt message
+     *
+     * @return : message
+     */
   @Log
   getPromptMessage(): string | Resource {
     return (this.remainTimes > 0 && this.remainTimes < DEFAULT_TIMES) ? $r('app.string.password_message_incorrect', this.remainTimes) : '';
   }
 
-/**
-   * Get button visibility
-   *
-   * @return : button visibility
-   */
+  /**
+     * Get button visibility
+     *
+     * @return : button visibility
+     */
   @Log
   getButtonVisibility(): Visibility {
     return this.passwordType == PinSubType.PIN_SIX ? Visibility.Hidden : Visibility.Visible
   }
 
-/**
-   * When freezing time is greater than 0, start count down view.
-   *
-   * @return : button visibility
-   */
+  /**
+     * When freezing time is greater than 0, start count down view.
+     *
+     * @return : button visibility
+     */
   @Log
   freezeView() {
     if (this.freezingTime <= 0) {
@@ -315,9 +339,9 @@ struct PasswordCheck {
     }, 1000)
   }
 
-/**
-   * Stop count down view.
-   */
+  /**
+     * Stop count down view.
+     */
   @Log
   stopCountDown() {
     // for freezing view
@@ -326,5 +350,4 @@ struct PasswordCheck {
       clearInterval(this.freezingTimeForView)
     }
   }
-
 }

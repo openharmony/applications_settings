@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent';
-import {DialogButtonLayout} from '../../../../../../../common/component/src/main/ets/default/dialogComponent';
+import { DialogButtonLayout } from '../../../../../../../common/component/src/main/ets/default/dialogComponent';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
@@ -31,11 +31,11 @@ struct PasswordSetting {
   private TAG_PAGE = ConfigData.TAG + 'PasswordSetting page ';
   private mController: PasswordListController = new PasswordListController();
 
-// bind Properties
+  // bind Properties
   @State private passwordList: PasswordSettingItem[][] = [];
   private pinChallenge: string = '';
 
-// private Properties
+  // private Properties
   private lockUi: boolean = false // prevent continuous and multiple clicks
   @State isTouched: boolean = false;
   @State touchedItem: boolean = false;
@@ -92,16 +92,16 @@ struct PasswordSetting {
           abilityName: ConfigData.FACEAUTH_ABILITY_NAME
         }
       })
-      .then((data) => {
-        LogUtil.info(`${this.TAG_PAGE}, ${ConfigData.FACEAUTH_BUNDLE_NAME} start successful. Data: ${JSON.stringify(data)}`);
-      })
-      .catch((error) => {
-        prompt.showToast({
-          message: this.faceAuthFailedMessage,
-          duration: 2000
+        .then((data) => {
+          LogUtil.info(`${this.TAG_PAGE}, ${ConfigData.FACEAUTH_BUNDLE_NAME} start successful. Data: ${JSON.stringify(data)}`);
         })
-        LogUtil.error(`${this.TAG_PAGE}, ${ConfigData.FACEAUTH_BUNDLE_NAME} start failed. Cause: ${JSON.stringify(error)}`);
-      })
+        .catch((error) => {
+          prompt.showToast({
+            message: this.faceAuthFailedMessage,
+            duration: 2000
+          })
+          LogUtil.error(`${this.TAG_PAGE}, ${ConfigData.FACEAUTH_BUNDLE_NAME} start failed. Cause: ${JSON.stringify(error)}`);
+        })
       this.lockUi = false
     })
   }
@@ -159,10 +159,14 @@ struct PasswordSetting {
     });
   }
 
-
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+    Column() {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
         Row({}) {
           Column() {
           }
@@ -176,7 +180,7 @@ struct PasswordSetting {
           Column() {
             HeadComponent({ headName: $r('app.string.biometricsAndPassword'), isActive: true })
 
-            List({space: this.listSpace}) {
+            List({ space: this.listSpace }) {
               ForEach(this.passwordList, (group: PasswordSettingItem[]) => {
 
                 // section title
@@ -223,7 +227,7 @@ struct PasswordSetting {
                   .borderRadius($r('app.float.radius_24'))
                   .padding($r('app.float.distance_4'))
                   .divider({
-                    strokeWidth: 1,
+                    strokeWidth: $r('app.float.divider_wh'),
                     color: $r('app.color.color_E3E3E3_grey'),
                     startMargin: $r('app.float.wh_value_15'),
                     endMargin: $r('app.float.wh_value_15')
@@ -231,9 +235,11 @@ struct PasswordSetting {
                 }
               });
             }
+            .margin({ top: $r('app.float.wh_value_8') })
             .width(ConfigData.WH_100_100)
           }
-          .padding({left: $r('app.float.distance_24'), right: $r('app.float.distance_24')})
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
           .useSizeType({
@@ -261,13 +267,13 @@ struct PasswordSetting {
     .height(ConfigData.WH_100_100);
   }
 
-//------------------------------ Router ---------------------------
-/**
-   * Go to password page
-   *
-   * @param uri : page uri
-   * @param pageRequestCode : page request code
-   */
+  //------------------------------ Router ---------------------------
+  /**
+     * Go to password page
+     *
+     * @param uri : page uri
+     * @param pageRequestCode : page request code
+     */
   @Log
   gotoNextPage(item: PasswordSettingItem) {
     if (!item.settingUri) {
@@ -283,16 +289,17 @@ struct PasswordSetting {
     });
   }
 
-//------------------------------ Dialog ---------------------------
-/**
-   * Close password dialog
-   * @param item password setting item
-   */
+  //------------------------------ Dialog ---------------------------
+  /**
+     * Close password dialog
+     * @param item password setting item
+     */
   @Log
-  showClosePasswordDialog(delItem: PasswordSettingItem){
+  showClosePasswordDialog(delItem: PasswordSettingItem) {
     AlertDialog.show({
       title: $r("app.string.password_disable_password"),
       message: $r("app.string.password_disable_prompt"),
+
       primaryButton: {
         value: $r('app.string.cancel'),
         action: () => {
@@ -310,7 +317,8 @@ struct PasswordSetting {
         LogUtil.info(this.TAG_PAGE + 'ClosePasswordDialog Closed callbacks')
       },
       autoCancel: true,
-      alignment: DialogAlignment.Bottom
+      alignment: DialogAlignment.Bottom,
+      offset: ({ dx: 0, dy: '-16dp' })
     })
   }
 }
