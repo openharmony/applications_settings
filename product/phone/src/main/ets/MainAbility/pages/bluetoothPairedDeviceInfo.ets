@@ -41,7 +41,12 @@ struct BluetoothPairedDeviceInfo {
 
   build() {
     Column() {
-      GridContainer({ columns: 12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp' }) {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
         Row({}) {
           Column() {
           }
@@ -78,9 +83,10 @@ struct BluetoothPairedDeviceInfo {
                   Router.back();
                 }
               })
-            }.margin({ bottom: $r('app.float.distance_24') });
+            }.margin({ bottom: $r('app.float.distance_24'), top: $r("app.float.distance_8") });
           }
-          .padding({ left: $r('app.float.distance_24'), right: $r('app.float.distance_24') })
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
           .useSizeType({
@@ -108,7 +114,6 @@ struct BluetoothPairedDeviceInfo {
     .height(ConfigData.WH_100_100);
   }
 }
-
 
 
 
