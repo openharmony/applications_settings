@@ -22,9 +22,9 @@ import LogUtil from '../../../../../../../common/utils/src/main/ets/default/base
 import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import { BaseData } from '../../../../../../../common/utils/src/main/ets/default/bean/BaseData';
 import CommonEvent from '@ohos.commonevent';
-
+import deviceInfo from '@ohos.deviceInfo'
 const MODULE_TAG = ConfigData.TAG + '.dateAndTime -> ';
-
+const deviceTypeInfo = deviceInfo.deviceType
 /**
  * date and time
  */
@@ -42,19 +42,20 @@ struct dateAndTime {
   private subscriber;
   private headName: string = '';
   @State dateAndTimeList: BaseData[] = [];
+  @State isPhone: boolean = false
   timeDialogController: CustomDialogController = new CustomDialogController({
     builder: TimeDialog24H({ action: this.onAccept }),
     cancel: this.existApp,
     autoCancel: true,
-    alignment: DialogAlignment.Bottom,
-    offset: ({ dx: 0, dy: '-24dp' }),
+    alignment:this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
   });
   dateDialogController: CustomDialogController = new CustomDialogController({
     builder: DateDialog({ action: this.onAccept }),
     cancel: this.existApp,
     autoCancel: true,
-    alignment: DialogAlignment.Bottom,
-    offset: ({ dx: 0, dy: '-24dp' }),
+    alignment: this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
   });
 
   build() {
@@ -197,6 +198,11 @@ struct dateAndTime {
   }
 
   aboutToAppear(): void {
+    if (deviceTypeInfo === 'phone') {
+      this.isPhone = true
+    } else {
+      this.isPhone = false
+    }
     this.image = "/res/image/ic_settings_arrow.svg";
     this.time = DateAndTime.getSystemTime(this.is24hTimeFormat());
     this.date = DateAndTime.getSystemDate();

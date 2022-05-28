@@ -991,6 +991,10 @@
     {
       "name": "progress_bottom",
       "value": "24vp"
+    },
+    {
+      "name": "head_font_24",
+      "value": "24vp"
     }
   ]
 }

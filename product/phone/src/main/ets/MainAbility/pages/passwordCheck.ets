@@ -195,17 +195,16 @@ struct PasswordCheck {
                   .margin({ top: $r('app.float.distance_14'), bottom: $r('app.float.distance_32') })
 
                 // button
-                Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+                Row() {
                   Text($r('app.string.cancel'))
                     .fontSize($r('app.float.font_16'))
                     .fontWeight(FontWeight.Medium)
                     .lineHeight($r('app.float.wh_value_22'))
                     .fontColor($r('app.color.font_color_007DFF'))
                     .textAlign(TextAlign.Center)
-                    .width($r('app.float.deviceName_button_width'))
-                    .height($r("app.float.wh_value_40"))
+                    .layoutWeight(1)
+                    .height($r('app.float.application_button_height'))
                     .borderRadius($r('app.float.radius_20'))
-                    .margin({ right: $r("app.float.distance_12") })
                     .backgroundColor(!this.isTouchedLeft ? '#E6E9EB' : $r("sys.color.ohos_id_color_foreground_contrary"))
                     .onTouch((event: TouchEvent) => {
                       if (event.type === TouchType.Down) {
@@ -218,14 +217,17 @@ struct PasswordCheck {
                     .onClick(() => {
                       Router.back();
                     })
+                  Column()
+                    .width( $r('app.float.distance_12'))
+                    .height($r('app.float.application_button_height'))
                   Text($r('app.string.next'))
                     .fontSize($r('app.float.font_16'))
                     .fontWeight(FontWeight.Medium)
                     .lineHeight($r('app.float.wh_value_22'))
                     .fontColor($r('app.color.font_color_007DFF'))
                     .textAlign(TextAlign.Center)
-                    .width($r('app.float.deviceName_button_width'))
-                    .height($r("app.float.wh_value_40"))
+                    .layoutWeight(1)
+                    .height($r('app.float.application_button_height'))
                     .borderRadius($r('app.float.radius_20'))
                     .backgroundColor(!this.isTouchedLeft ? '#E6E9EB' : $r("sys.color.ohos_id_color_foreground_contrary"))
                     .onTouch((event: TouchEvent) => {
@@ -238,10 +240,13 @@ struct PasswordCheck {
                     })
                     .onClick(this.okOnClickHandler)
                 }
+                .alignItems(VerticalAlign.Center)
                 .width(ConfigData.WH_100_100)
                 .padding({
                   top: $r('app.float.distance_24'),
                   bottom: $r('app.float.distance_36'),
+                  left: $r('app.float.distance_24'),
+                  right: $r('app.float.distance_24')
                 })
                 .margin({ top: $r('app.float.distance_66') })
                 .visibility(this.buttonVisibility)

@@ -65,7 +65,7 @@ struct DeviceName {
               .borderRadius(0)
               .margin({ top: $r("app.float.distance_8") })
               .backgroundColor($r('app.color.color_00000000_transparent'))
-              .onClick(() => {
+              .onFocus(() => {
                 this.isFocused = true;
               })
               .onChange((value: string) => {
@@ -111,9 +111,7 @@ struct DeviceName {
             }
             .alignItems(this.isFocused ? VerticalAlign.Top : VerticalAlign.Bottom)
             .height('100%')
-            .padding(this.isFocused ? { top: $r("app.float.wh_value_212") } : {
-                                                                                bottom: $r('app.float.wh_padding_128')
-                                                                              })
+            .padding(this.isFocused ? { top: $r("app.float.wh_value_212") } : { bottom: $r('app.float.wh_padding_128') })
           }
           .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
           .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })

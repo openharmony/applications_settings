@@ -20,9 +20,10 @@ import ImageAnimatorComponent from '../../../../../../../common/component/src/ma
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import router from '@system.router';
-
+import deviceInfo from '@ohos.deviceInfo'
 console.log('settings_20220424 wifi page in');
-const MODULE_TAG = ConfigData.TAG + 'WifiModel.wifi -> ';
+const MODULE_TAG = ConfigData.TAG + 'WifiModel.wifi -> '
+const deviceTypeInfo = deviceInfo.deviceType
 
 function genWiFiIntensity(intensityEnum: number) {
   if (intensityEnum === WiFiIntensityMap.GOOD) {
@@ -98,13 +99,14 @@ struct Index {
     securityType: 1,
   };
   @State isScrollBarTouched: boolean = false;
+  @State isPhone: boolean = false
   private switchDebounceFlag = undefined;
   private clickApInfoDialog: CustomDialogController = new CustomDialogController({
     builder: apInfoDialog({
       apInfo: this.userSelectedApInfo,
     }),
-    alignment: DialogAlignment.Bottom,
-    offset: ({ dx: 0, dy: '-16dp' }),
+    alignment: this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
     autoCancel: true,
     customStyle: true
   });
@@ -116,8 +118,8 @@ struct Index {
         WifiModel.refreshApScanResults();
       }
     }),
-    alignment: DialogAlignment.Bottom,
-    offset: ({ dx: 0, dy: '-16dp' }),
+    alignment: this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
     autoCancel: true,
     customStyle: true
   });
@@ -382,6 +384,11 @@ struct Index {
     });
     // init wifi active status
     this.isWiFiEnabled = WifiModel.isWiFiActive();
+    if (deviceTypeInfo === 'phone') {
+      this.isPhone = true
+    } else {
+      this.isPhone = false
+    }
   }
 
   aboutToDisappear(): void {
