@@ -24,16 +24,19 @@ import Router from '@system.router';
 import BluetoothDeviceController from '../controller/bluetooth/BluetoothDeviceController';
 import BluetoothDevice from '../model/bluetoothImpl/BluetoothDevice'
 import { DeviceType, ProfileConnectionState, BondState } from '../model/bluetoothImpl/BluetoothModel';
+import deviceInfo from '@ohos.deviceInfo'
 
 const PAIRED_ITEM_NUMBER = 3;
 const PAGE_URI_DEVICE_NAME = 'pages/deviceName';
 const PAGE_URI_BLUETOOTH_PAIRED_DEVICE_INFO = 'pages/bluetoothPairedDeviceInfo';
+const deviceTypeInfo = deviceInfo.deviceType
 
 @Entry
 @Component
 struct Bluetooth {
   private PAGE_TAG = ConfigData.TAG + 'Bluetooth page '
   private deviceController: BluetoothDeviceController = new BluetoothDeviceController();
+  @State isPhone: boolean = false
   @StorageLink('bluetoothIsOn') isOn: boolean = false;
   @StorageLink('bluetoothToggleEnabled') enabled: boolean = true;
   @StorageLink('bluetoothLocalName') localName: string = '';
@@ -45,6 +48,11 @@ struct Bluetooth {
       .initData()
       .subscribe();
     LogUtil.log(this.PAGE_TAG + 'aboutToAppear out : isOn = ' + this.isOn)
+    if (deviceTypeInfo === 'phone') {
+      this.isPhone = true
+    } else {
+      this.isPhone = false
+    }
   }
 
   @Log
@@ -133,7 +141,8 @@ struct Bluetooth {
                   })
 
                   AvailableDeviceComponent({
-                    controller: this.deviceController
+                    controller: this.deviceController,
+                    isPhone:this.isPhone
                   })
 
                 }
@@ -477,6 +486,7 @@ struct AvailableDeviceComponent {
   @StorageLink('bluetoothAvailableDevices') availableDevices: BluetoothDevice[] = [];
   @State pairPinCode: string = '';
   private pairingDevice: BluetoothDevice = undefined;
+  @State isPhone: boolean = false
   pairDialog: CustomDialogController = new CustomDialogController({
     builder: PairDialog({
       deviceName: this.pairingDevice.deviceName,
@@ -485,9 +495,9 @@ struct AvailableDeviceComponent {
         this.confirmPairing(accept);
       }
     }),
-    alignment: DialogAlignment.Bottom,
+    alignment: this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
     autoCancel: true,
-    offset: ({ dx: 0, dy: '-16dp' })
   });
 
   @Log

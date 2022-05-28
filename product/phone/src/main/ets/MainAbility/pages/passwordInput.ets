@@ -188,7 +188,7 @@ struct PasswordInput {
                       })
                     }.listDirection(Axis.Horizontal)
                   }
-                  .margin({ top: $r('app.float.wh_value_20') })
+                  .margin({ top: $r('app.float.wh_value_20'),bottom:$r('app.float.wh_value_12') })
                   .width(ConfigData.WH_100_100)
                   .height($r("app.float.wh_value_32"))
                 }

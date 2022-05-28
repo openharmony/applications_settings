@@ -49,7 +49,7 @@ export default struct HeadComponent {
       });
 
       Text(this.headName)
-        .fontSize($r('app.float.font_20'))
+        .fontSize($r('app.float.head_font_24'))
         .lineHeight($r('app.float.wh_value_33'))
         .fontFamily('HarmonyHeiTi-Bold')
         .fontWeight(FontWeight.Bold)
