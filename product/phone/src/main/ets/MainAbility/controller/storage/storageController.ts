@@ -123,12 +123,12 @@ export default class storageController  extends BaseSettingsController {
       LogUtil.info(ConfigData.TAG + 'Storage getStorageList key:' + key);
       switch (key) {
         case Space.USED_SPACE:
-          storageList[key].settingIcon = $r('sys.color.ohos_id_color_palette11');
+          storageList[key].settingIcon = '#4C89F0';
           storageList[key].settingTitle = $r('app.string.usedSpace');
           storageList[key].settingValue = this.usedSpace;
           break;
         case Space.REMAINING_SPACE:
-          storageList[key].settingIcon = $r('app.color.color_666666_grey');
+          storageList[key].settingIcon = '#D1D0DB';
           storageList[key].settingTitle = $r('app.string.remainingSpace');
           storageList[key].settingValue = this.freeBytes;
           break;
