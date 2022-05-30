@@ -51,7 +51,6 @@ struct LanguageAndRegion {
                     .fontWeight(FontWeight.Medium)
                     .fontColor($r('sys.color.ohos_id_color_text_secondary'))
                     .textAlign(TextAlign.Start)
-                    .margin({top: $r("app.float.distance_19_5"), bottom: $r("app.float.distance_9_5")});
                   Navigator({target: 'pages/system/languageSettings/languageAndRegion/editLanguage'}) {
                     Text($r("app.string.edit"))
                       .fontColor($r("app.color.font_color_007DFF"))
@@ -59,11 +58,11 @@ struct LanguageAndRegion {
                       .fontWeight(FontWeight.Medium)
                       .lineHeight($r("app.float.lineHeight_19"))
                       .textAlign(TextAlign.End)
-                      .margin({top: $r("app.float.distance_19_5"), bottom: $r("app.float.distance_9_5")});
                   }
                 }
                 .margin({left: $r("sys.float.ohos_id_card_margin_start"), right: $r("sys.float.ohos_id_card_margin_end")})
-                .height($r("app.float.wh_value_48"));
+                .height($r("app.float.wh_value_48"))
+                .padding({top:$r('app.float.distance_19_5'),bottom:$r('app.float.distance_9_5')})
               }
 
               ListItem() {
@@ -85,9 +84,10 @@ struct LanguageAndRegion {
             }
             .flexShrink(1)
           }
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
-          .padding({left: $r("app.float.distance_24"), right: $r("app.float.distance_24")})
+          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           .useSizeType({
             xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
             md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
@@ -141,21 +141,22 @@ struct AddedList {
           Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
             Column(){
               Text(LanguageAndRegionModel.getSysDisplayLanguage(item))
-                .fontSize($r("app.float.font_16"))
+                .fontSize($r("sys.float.ohos_id_text_size_body1"))
                 .lineHeight($r("app.float.wh_value_22"))
                 .fontWeight(FontWeight.Medium)
                 .padding(LanguageAndRegionModel.isSystemLanguage(item) ? {top: $r("app.float.distance_21"), bottom: $r("app.float.distance_17")} : {top: $r("app.float.distance_10"), bottom: $r("app.float.distance_2")})
                 .fontColor(LanguageAndRegionModel.isSystemLanguage(item) ? $r("app.color.font_color_007DFF") : $r("app.color.font_color_182431"))
                 .textAlign(TextAlign.Start);
               Text(LanguageAndRegionModel.getDisplayLanguage(item))
-                .fontSize($r("app.float.font_14"))
+                .fontSize($r("sys.float.ohos_id_text_size_body2"))
                 .lineHeight($r("app.float.wh_value_19"))
                 .fontWeight(FontWeight.Regular)
-                .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+                .fontColor($r('sys.color.ohos_id_color_primary'))
+                .opacity($r('sys.float.ohos_fa_alpha_content_secondary'))
                 .margin({ bottom: $r("app.float.distance_11") })
                 .fontColor($r("app.color.font_color_182431"))
                 .textAlign(TextAlign.Start)
-                .visibility(LanguageAndRegionModel.isSystemLanguage(item) ? Visibility.None : Visibility.Visible);
+                .visibility(LanguageAndRegionModel.isSystemLanguage(item) ? Visibility.None : Visibility.Visible)
             }
             .alignItems(HorizontalAlign.Start)
 
@@ -165,6 +166,7 @@ struct AddedList {
               .objectFit(ImageFit.Contain)
               .visibility(LanguageAndRegionModel.isSystemLanguage(item) ? Visibility.Visible : Visibility.None);
           }
+          .height($r('app.float.wh_value_64'))
           .padding({left: $r("app.float.distance_8"), right: $r("app.float.distance_8")})
         }
         .align(Alignment.Start)
@@ -193,7 +195,7 @@ struct AddedList {
     }
     .padding($r("app.float.distance_4"))
     .borderRadius($r("app.float.radius_24"))
-    .divider({strokeWidth: 1, color: $r("app.color.color_E3E3E3_grey"), startMargin: $r("app.float.distance_8"), endMargin: $r("app.float.distance_8")})
+    .divider({strokeWidth: $r('app.float.divider_wh'), color: $r('sys.color.ohos_id_color_list_separator'), startMargin: $r("app.float.distance_8"), endMargin: $r("app.float.distance_8")})
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
   }
 }
@@ -261,7 +263,7 @@ struct Region {
             .fontSize($r('app.float.font_16'))
             .lineHeight($r('app.float.wh_value_22'))
             .fontWeight(FontWeight.Medium)
-            .fontColor($r('app.color.font_color_182431'))
+            .fontColor($r("sys.color.ohos_id_color_primary"))
             .margin({left: $r('app.float.distance_8')})
             .textAlign(TextAlign.Start);
         }
@@ -270,13 +272,15 @@ struct Region {
           Text(this.currentRegion)
             .fontSize($r('app.float.font_14'))
             .lineHeight($r('app.float.wh_value_19'))
-            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+            .fontColor($r("sys.color.ohos_id_color_primary"))
             .margin({ right: $r('app.float.distance_4') })
             .textAlign(TextAlign.End);
           Image('/res/image/ic_settings_arrow.svg')
             .width($r('app.float.wh_value_12'))
             .height($r('app.float.wh_value_24'))
-            .margin({right: $r('app.float.distance_8')});
+            .margin({right: $r('app.float.distance_8')})
+            .fillColor($r("sys.color.ohos_id_color_primary"))
+            .opacity($r("app.float.opacity_0_2"))
         }
       }
       .height(ConfigData.WH_100_100)
