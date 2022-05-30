@@ -85,13 +85,14 @@ struct SelectRegion {
                 .width(ConfigData.WH_100_100)
                 .borderRadius($r('app.float.radius_24'))
                 .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
-                .divider({strokeWidth: 1, color: $r("app.color.color_E3E3E3_grey"), startMargin: $r("app.float.distance_8"), endMargin: $r("app.float.distance_8")});
+                .divider({strokeWidth: $r('app.float.divider_wh'), color: $r('sys.color.ohos_id_color_list_separator'), startMargin: $r("app.float.distance_8"), endMargin: $r("app.float.distance_8")});
               }
             }
             .flexShrink(1)
             .width(ConfigData.WH_100_100)
           }
-          .padding({left: $r('app.float.radius_24'), right: $r('app.float.radius_24')})
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           .width(ConfigData.WH_100_100)
           .height(ConfigData.WH_100_100)
           .useSizeType({
