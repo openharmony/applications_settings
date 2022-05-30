@@ -56,10 +56,11 @@ struct SystemSettings {
 
               SubEntryComponent({targetPage: "pages/developerOptions", title: $r("app.string.developerOptionsTab")})
             }
-            .margin({top:$r('app.float.distance_8')})
+            .margin({top:$r("app.float.distance_8")})
             .width(ConfigData.WH_100_100)
           }
-          .padding({  left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end')})
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           .width(ConfigData.WH_100_100)
           .height(ConfigData.WH_100_100)
           .useSizeType({
@@ -124,7 +125,9 @@ struct SoftwareUpdateComponent {
         Image('/res/image/ic_settings_arrow.svg')
           .width($r('app.float.wh_value_12'))
           .height($r('app.float.wh_value_24'))
-          .margin({right: $r('app.float.distance_8')});
+          .margin({right: $r('app.float.distance_8')})
+          .fillColor($r("sys.color.ohos_id_color_primary"))
+          .opacity($r("app.float.opacity_0_2"))
       }
       .height(ConfigData.WH_100_100)
       .width(ConfigData.WH_100_100)

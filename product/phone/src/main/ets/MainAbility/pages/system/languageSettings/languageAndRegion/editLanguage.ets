@@ -40,9 +40,12 @@ struct EditLanguage {
 
           Column() {
             HeadComponent({headName: $r('app.string.editLanguage')});
-            EditList();
+            Column(){
+              EditList();
+            }.margin({top:$r("app.float.distance_8")})
           }
-          .padding({left: $r("app.float.distance_24"), right: $r("app.float.distance_24")})
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
           .useSizeType({
@@ -99,6 +102,7 @@ struct EditList {
               Image($r('app.media.ic_move'))
                 .width($r('app.float.wh_value_24'))
                 .height($r('app.float.wh_value_24'))
+                .fillColor($r("sys.color.ohos_id_color_primary"))
                 .objectFit(ImageFit.Contain)
                 .margin({right: $r("app.float.distance_11")});
 
@@ -170,7 +174,7 @@ struct EditList {
     .margin({top:$r("app.float.distance_8")})
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
     .borderRadius($r("app.float.radius_24"))
-    .divider({strokeWidth:1, color: $r("app.color.color_E3E3E3_grey"), startMargin: $r("sys.float.ohos_id_card_margin_start"), endMargin: $r("sys.float.ohos_id_card_margin_end")})
+    .divider({strokeWidth:$r('app.float.divider_wh'),  color: $r('sys.color.ohos_id_color_list_separator'), startMargin: $r("sys.float.ohos_id_card_margin_start"), endMargin: $r("sys.float.ohos_id_card_margin_end")})
   }
 }
 
@@ -188,6 +192,7 @@ struct HeadComponent {
         Image($r('app.media.ic_close'))
           .width($r('app.float.wh_value_24'))
           .height($r('app.float.wh_value_24'))
+          .fillColor($r("sys.color.ohos_id_color_primary"))
           .margin({ right: $r('app.float.wh_value_16'), top: $r('app.float.wh_value_16'), bottom: $r('app.float.wh_value_16')})
           .backgroundColor(this.isTouch ? $r('app.color.color_E3E3E3_grey') : $r('app.color.color_00000000_transparent'))
           .onClick(()=>{
@@ -215,6 +220,7 @@ struct HeadComponent {
       Image($r("app.media.ic_ok"))
         .width($r('app.float.wh_value_24'))
         .height($r('app.float.wh_value_24'))
+        .fillColor($r("sys.color.ohos_id_color_primary"))
         .objectFit(ImageFit.Contain);
     }
     .width(ConfigData.WH_100_100)

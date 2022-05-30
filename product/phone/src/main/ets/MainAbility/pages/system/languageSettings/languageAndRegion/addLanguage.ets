@@ -46,7 +46,7 @@ struct AddLanguage {
 
           Column() {
             HeadComponent({ headName: $r('app.string.addLanguage'), isActive: true })
-            List({space: this.listSpace}){
+            List(){
               ListItem() {
                 SubHeader({ titleContent: $r('app.string.addedLanguage') })
               }
@@ -58,7 +58,6 @@ struct AddLanguage {
               ListItem() {
                 SubHeader({ titleContent: $r('app.string.allLanguage') })
               }
-
               ListItem() {
                 AllLanguagesList();
               }
@@ -66,7 +65,8 @@ struct AddLanguage {
             .flexShrink(1)
             .edgeEffect(EdgeEffect.Spring);
           }
-          .padding({left: $r("app.float.distance_24"), right: $r("app.float.distance_24")})
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
           .useSizeType({
@@ -133,7 +133,8 @@ struct AddedLanguagesList {
               .height($r("app.float.wh_value_19"))
               .fontWeight(FontWeight.Regular)
               .margin({bottom: $r("app.float.distance_11")})
-              .fontColor($r("app.color.font_color_182431"))
+              .fontColor($r('sys.color.ohos_id_color_primary'))
+              .opacity($r('sys.float.ohos_fa_alpha_content_secondary'))
               .textAlign(TextAlign.Start);
           }
           .alignItems(HorizontalAlign.Start);
@@ -162,8 +163,8 @@ struct AddedLanguagesList {
     }
     .padding($r("app.float.distance_4"))
     .borderRadius($r("app.float.radius_24"))
-    .divider({strokeWidth: 1, color: $r("app.color.color_E3E3E3_grey"), startMargin: $r("app.float.distance_8"), endMargin: $r("app.float.distance_8")})
-    .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
+    .divider({strokeWidth: $r('app.float.divider_wh'),  color: $r('sys.color.ohos_id_color_list_separator'), startMargin: $r("app.float.distance_8"), endMargin: $r("app.float.distance_8")})
+    .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
   }
 }
 
@@ -193,7 +194,8 @@ struct AllLanguagesList {
               .height($r("app.float.wh_value_19"))
               .fontWeight(FontWeight.Regular)
               .margin({bottom: $r("app.float.distance_11")})
-              .fontColor($r("app.color.font_color_182431"))
+              .fontColor($r('sys.color.ohos_id_color_primary'))
+              .opacity($r('sys.float.ohos_fa_alpha_content_secondary'))
               .textAlign(TextAlign.Start);
           }
           .alignItems(HorizontalAlign.Start);
@@ -258,7 +260,7 @@ struct AllLanguagesList {
     .padding($r("app.float.distance_4"))
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
     .borderRadius($r("app.float.radius_24"))
-    .divider({strokeWidth: 1, color: $r("app.color.color_E3E3E3_grey"), startMargin: $r("app.float.distance_8"), endMargin: $r("app.float.distance_8")});
+    .divider({strokeWidth: $r('app.float.divider_wh'),  color: $r('sys.color.ohos_id_color_list_separator'), startMargin: $r("app.float.distance_8"), endMargin: $r("app.float.distance_8")});
   }
 }
 
