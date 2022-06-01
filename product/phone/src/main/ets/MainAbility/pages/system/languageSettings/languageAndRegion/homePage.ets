@@ -163,6 +163,7 @@ struct AddedList {
             Image($r("app.media.ic_ok"))
               .width($r('app.float.wh_value_24'))
               .height($r('app.float.wh_value_24'))
+              .fillColor($r("sys.color.ohos_id_color_primary"))
               .objectFit(ImageFit.Contain)
               .visibility(LanguageAndRegionModel.isSystemLanguage(item) ? Visibility.Visible : Visibility.None);
           }
