@@ -58,7 +58,7 @@ struct DeviceName {
               .type(InputType.Normal)
               .enterKeyType(EnterKeyType.Done)
               .caretColor($r('app.color.font_color_007DFF'))
-              .maxLength(10)
+              .maxLength(20)
               .fontColor($r("sys.color.ohos_id_color_primary"))
               .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
               .height($r("app.float.wh_value_40"))
@@ -71,7 +71,7 @@ struct DeviceName {
               .onChange((value: string) => {
                 LogUtil.debug(ConfigData.TAG + 'device name changed to: ' + JSON.stringify(value));
                 this.deviceName = value;
-                if (this.deviceName.length == 10) {
+                if (this.deviceName.length == 20) {
                   this.isFocused = false
                   prompt.showToast({
                     message: "输入已达上限",
