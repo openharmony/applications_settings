@@ -22,7 +22,8 @@ import RadioListComponent from '../../../../../../../common/component/src/main/e
 import Router from '@system.router';
 import { RadioListItem } from '../../../../../../../common/utils/src/main/ets/default/bean/RadioListItem';
 import InputMethod from '@ohos.inputmethod';
-
+import deviceInfo from '@ohos.deviceInfo'
+const deviceTypeInfo = deviceInfo.deviceType
 const MODULE_TAG = ConfigData.TAG + 'PasswdSetting.PasswdInput -> '
 
 let param;
@@ -57,7 +58,7 @@ struct PasswordInput {
   private passwordOnChangeHandler: (value: string) => void;
   private okOnClickHandler: (event?: ClickEvent) => void;
   private unlockMethodChosenHandler: (value: number) => void;
-
+  @State isPhone: boolean = false
   //dialog
   private chooseUnlockMethodDialog: CustomDialogController = new CustomDialogController({
     builder: chooseUnlockMethodDialog({
@@ -69,8 +70,8 @@ struct PasswordInput {
       }
     }),
     autoCancel: true,
-    alignment: DialogAlignment.Bottom,
-    offset: ({ dx: 0, dy: '-24dp' }),
+    alignment: this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
   });
 
   @Log
@@ -89,6 +90,11 @@ struct PasswordInput {
       .subscribe();
 
     this.updateView();
+    if (deviceTypeInfo === 'phone') {
+      this.isPhone = true
+    } else {
+      this.isPhone = false
+    }
   }
 
   @Log

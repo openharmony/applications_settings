@@ -150,6 +150,7 @@ struct Bluetooth {
               .width(ConfigData.WH_100_100)
               .margin({ bottom: $r('sys.float.ohos_id_default_padding_bottom_fixed') })
             }
+            .scrollBarWidth(0)
             .width(ConfigData.WH_100_100)
             .align(Alignment.TopStart)
             .layoutWeight(1)
@@ -454,7 +455,8 @@ struct PairedDeviceComponent {
           callback();
         }
       },
-      alignment: DialogAlignment.Bottom
+      alignment: DialogAlignment.Bottom,
+      offset:({dx:0,dy:'-16dp'}),
     })
   }
 }
@@ -495,7 +497,7 @@ struct AvailableDeviceComponent {
         this.confirmPairing(accept);
       }
     }),
-    alignment: this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
+    alignment:this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
     offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
     autoCancel: true,
   });

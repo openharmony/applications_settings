@@ -23,6 +23,8 @@ import wifi from '@ohos.wifi';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import router from '@system.router'
 import InputMethod from '@ohos.inputmethod';
+import deviceInfo from '@ohos.deviceInfo'
+const deviceTypeInfo = deviceInfo.deviceType
 
 const MODULE_TAG = ConfigData.TAG + 'WifiModel.WifiPasswd -> ';
 
@@ -39,19 +41,20 @@ struct WifiPsd {
   private tobeConnectedAp: WifiScanInfo = null;
   private isConnectedBefore: boolean = false;
   private taskId: number = -1;
+  @State isPhone: boolean = false
   private connectDialog: CustomDialogController = new CustomDialogController({
     builder: connectProgressDialog({
       ssid: this.tobeConnectedSSID,
     }),
-    alignment: DialogAlignment.Bottom,
-    offset: ({ dx: 0, dy: '-16dp' }),
+    alignment: this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
     autoCancel: false,
     customStyle: true
   });
   private failedDialog: CustomDialogController = new CustomDialogController({
     builder: connectFailedDialog({}),
-    alignment: DialogAlignment.Bottom,
-    offset: ({ dx: 0, dy: '-16dp' }),
+    alignment: this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
     autoCancel: true,
     customStyle: true
   });
@@ -161,7 +164,6 @@ struct WifiPsd {
                     () => {
                       WifiModel.setUserSelectedAp(this.tobeConnectedAp);
                       WifiModel.connectWiFi(this.userInputs);
-                      this.isFocused = false
                       this.connectDialog.open();
                     });
                 }
@@ -228,6 +230,11 @@ struct WifiPsd {
     }
     this.tobeConnectedAp = params.apInfo;
     this.tobeConnectedSSID = this.tobeConnectedAp.ssid;
+    if (deviceTypeInfo === 'phone') {
+      this.isPhone = true
+    } else {
+      this.isPhone = false
+    }
   }
 
   onPageShow() {
