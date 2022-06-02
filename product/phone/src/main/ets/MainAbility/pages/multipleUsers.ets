@@ -26,7 +26,8 @@ import { MAX_LENGTH } from '../model/usersAndAccounts/systemAccountModel';
 import account_osAccount from '@ohos.account.osAccount';
 import router from '@system.router';
 import InputMethod from '@ohos.inputmethod';
-
+import deviceInfo from '@ohos.deviceInfo'
+const deviceTypeInfo = deviceInfo.deviceType
 
 @Entry
 @Component
@@ -35,21 +36,22 @@ struct MultipleUsers {
   @StorageLink("isShowAddGuest") isShowAddGuest: boolean = false;
   @StorageLink("systemAccoutList") userList: account_osAccount.OsAccountInfo[] = [];
   @StorageLink("isShowDelete") isShowDelete: boolean = false;
+  @State isPhone: boolean = false
   private addUserDialogController: CustomDialogController = new CustomDialogController({
     builder: AddUserDialog({
       controller: this.addUserDialogController,
       account: {},
       confirm: this.onConfirm.bind(this)
     }),
-    alignment: DialogAlignment.Bottom,
-    offset: ({ dx: 0, dy: '-24dp' }),
+    alignment: this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
     autoCancel: true
   });
   private waitDialogController: CustomDialogController = new CustomDialogController({
     builder: WaitDialog({ controller: this.waitDialogController, content: $r("app.string.isCreatingUser") }),
     autoCancel: false,
-    alignment: DialogAlignment.Bottom,
-    offset: ({ dx: 0, dy: '-24dp' }),
+    alignment: this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
   });
 
   build() {
@@ -239,7 +241,13 @@ struct MultipleUsers {
       })
     })).bind(this);
   }
-
+  aboutToAppear(): void {
+    if (deviceTypeInfo === 'phone') {
+      this.isPhone = true
+    } else {
+      this.isPhone = false
+    }
+  }
   onPageShow() {
     LogUtil.info("Multiple user list about to appear.")
     SystemAccountController.refreshSystemAccountList();
@@ -264,8 +272,8 @@ struct UserItem {
   private dialogController: CustomDialogController = new CustomDialogController({
     builder: UserItemDialog({ dialogController: this.dialogController, user: this.user }),
     autoCancel: false,
-    alignment: DialogAlignment.Bottom,
-    offset: ({ dx: 0, dy: '-24dp' }),
+    alignment: this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
   });
 
   build() {
@@ -377,6 +385,7 @@ struct CurrentDialogBuilder {
           let chooseImageDialog = new CustomDialogController({
             builder: ChooseImageDialog({ controller: this.controller }),
             alignment: DialogAlignment.Bottom,
+            offset: ({ dx: 0, dy: '-24dp' }),
           });
           chooseImageDialog.open();
         })
