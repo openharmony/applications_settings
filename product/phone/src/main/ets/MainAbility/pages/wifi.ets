@@ -412,7 +412,6 @@ struct Index {
   }
 
   onBackPress() {
-    Navigator().active(true);
   }
 }
 
