@@ -18,6 +18,7 @@ import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/b
 import ConfigData from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import BaseSettingsController from '../../../../../../../../common/component/src/main/ets/default/controller/BaseSettingsController';
 import ISettingsController from '../../../../../../../../common/component/src/main/ets/default/controller/ISettingsController'
+import featureAbility from '@ohos.ability.featureAbility';
 
 enum Space {
   /**
@@ -49,8 +50,8 @@ export default class storageController  extends BaseSettingsController {
    * get TotalSpace
    */
   getTotalSpace() {
-    StorageModel.getStorageDataDir((err, data: string) => {
-
+    let context = featureAbility.getContext();
+    context.getFilesDir((err, data: string) => {
       LogUtil.info(ConfigData.TAG + 'getStorageDataDir err: ' + JSON.stringify(err));
       LogUtil.info(ConfigData.TAG + 'getStorageDataDir data: ' + JSON.stringify(data));
       if (data && data.length > 0) {
@@ -72,7 +73,8 @@ export default class storageController  extends BaseSettingsController {
    * get RemainingSpace
    */
   getFreeBytes() {
-    StorageModel.getStorageDataDir((err, data) => {
+    let context = featureAbility.getContext();
+    context.getFilesDir((err, data) => {
       LogUtil.info(ConfigData.TAG + 'getStorageDataDir err: ' + JSON.stringify(err));
       LogUtil.info(ConfigData.TAG + 'getStorageDataDir data: ' + JSON.stringify(data));
       if (data && data.length > 0) {
