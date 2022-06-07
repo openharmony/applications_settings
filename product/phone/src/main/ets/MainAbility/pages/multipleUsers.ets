@@ -239,7 +239,7 @@ struct MultipleUsers {
           LogUtil.info("Cancel dialog.")
         }
       })
-    })).bind(this);
+    }));
   }
   aboutToAppear(): void {
     if (deviceTypeInfo === 'phone') {
