@@ -19,10 +19,11 @@ import LogUtil from '../../../../../../../common/utils/src/main/ets/default/base
 import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import Audio from '@ohos.multimedia.audio';
 import {SubHeader} from '../../../../../../../common/component/src/main/ets/default/textComponent';
+import deviceInfo from '@ohos.deviceInfo'
 
 const VOLUME_MIN_VALUE = 0;
 const VOLUME_MAX_VALUE = 15;
-
+const deviceTypeInfo = deviceInfo.deviceType
 /**
  * Volume control
  */
@@ -169,7 +170,15 @@ struct AudioRingerModeItem {
   private audioRingerModel: RingerModel;
   private image;
   private text: string | Resource;
+  @State isRk: boolean = true
 
+  aboutToAppear() {
+    if (deviceTypeInfo === 'default') {
+      this.isRk = true
+    } else {
+      this.isRk = false
+    }
+  }
   build() {
    Column() {
       Image(this.image)
@@ -186,8 +195,8 @@ struct AudioRingerModeItem {
         .margin({top:$r('app.float.wh_4')});
 
       Radio({ value: '', group: '' })
-        .width($r('app.float.wh_value_30'))
-        .height($r('app.float.wh_value_30'))
+        .width(this.isRk?$r('app.float.distance_8'):$r('app.float.wh_value_30'))
+        .height(this.isRk?$r('app.float.distance_8'):$r('app.float.wh_value_30'))
         .margin({top: $r('app.float.distance_8')})
         .checked(this.checked)
         .enabled(false)
