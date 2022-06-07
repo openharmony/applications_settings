@@ -18,12 +18,20 @@ import account_osAccount from '@ohos.account.osAccount';
 import featureAbility from '@ohos.ability.featureAbility';
 import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import GlobalResourceManager from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalResourceManager';
-import {TYPE_ADMIN, TYPE_NORMAL, TYPE_GUEST, MAX_ACCOUNT} from './systemAccountModel'
-import SystemAccountModel from './systemAccountModel'
+import {TYPE_ADMIN, TYPE_NORMAL, TYPE_GUEST, MAX_ACCOUNT} from './systemAccountModel';
+import SystemAccountModel from './systemAccountModel';
 
 export class SystemAccountController {
   private currentAccount: account_osAccount.OsAccountInfo;
   private accountList: account_osAccount.OsAccountInfo[] = [];
+  private static instance: SystemAccountController;
+
+  public static getInstance(): SystemAccountController {
+    if (!SystemAccountController.instance) {
+      SystemAccountController.instance = new SystemAccountController();
+    }
+    return SystemAccountController.instance;
+  }
 
   constructor() {
   }
@@ -233,5 +241,5 @@ export class SystemAccountController {
   }
 }
 
-let systemAccountController = new SystemAccountController();
+let systemAccountController = SystemAccountController.getInstance();
 export default systemAccountController as SystemAccountController;

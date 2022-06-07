@@ -157,7 +157,6 @@ struct Index {
 
   onBackPress() {
     LogUtil.info(ConfigData.TAG + 'settings get device onBackPress in');
-    Navigator().active(true);
     LogUtil.info(ConfigData.TAG + 'settings get device onBackPress out');
   }
 
