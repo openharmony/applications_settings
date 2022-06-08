@@ -136,9 +136,7 @@ struct AppManagement {
   }
 
   onBackPress() {
-    LogUtil.info('settings AppManagement onBackPress in');
-    Router.back();
-    LogUtil.info('settings AppManagement onBackPress out');
+    LogUtil.info('settings AppManagement onBackPress');
   }
 
   aboutToDisappear(): void{

@@ -206,7 +206,7 @@ struct ApplicationStorage {
 
   @Log
   onBackPress() {
-    Router.back();
+    LogUtil.info('settings ApplicationStorage onBackPress');
   }
 
   /**
