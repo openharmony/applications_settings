@@ -260,8 +260,7 @@ struct MultipleUsers {
   }
 
   onBackPress() {
-    LogUtil.info('multiple user on back press.');
-    router.back();
+    LogUtil.info('settings MultipleUsers onBackPress');
   }
 }
 
