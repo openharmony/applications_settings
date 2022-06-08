@@ -412,6 +412,7 @@ struct Index {
   }
 
   onBackPress() {
+    LogUtil.info('settings Wifi onBackPress');
   }
 }
 

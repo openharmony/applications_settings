@@ -206,7 +206,7 @@ struct ApplicationInfo {
 
   @Log
   onBackPress() {
-    Router.back();
+    LogUtil.info('settings ApplicationInfo onBackPress');
   }
 
   /**
