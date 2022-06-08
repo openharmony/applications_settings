@@ -257,10 +257,7 @@ struct WifiPsd {
   }
 
   onBackPress() {
-    LogUtil.info(MODULE_TAG + 'on back press');
-    router.back({
-      uri: 'pages/wifi',
-    });
+    LogUtil.info('settings wifiPsd onBackPress');
   }
 
   initTextInputHint() {

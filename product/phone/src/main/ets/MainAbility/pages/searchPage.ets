@@ -166,7 +166,7 @@ struct SearchPage {
 
   @Log
   onBackPress() {
-    Router.back();
+    LogUtil.info('settings SearchPage onBackPress');
   }
 
   /**
