@@ -16,7 +16,8 @@ import BaseModel from '../../../../../../../../common/utils/src/main/ets/default
 import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import Bundle from '@ohos.bundle';
 import ResMgr from '@ohos.resourceManager';
-import appManager from '@ohos.application.appManager'
+import appManager from '@ohos.application.appManager';
+import osAccount from '@ohos.account.osAccount';
 import ConfigData from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import {LogAll} from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 
@@ -39,6 +40,7 @@ export class AppManagementModel extends BaseModel {
   */
   setAppManagementListener() {
     LogUtil.info('settings AppManagementModel getIconItem ResMgr:' + JSON.stringify(ResMgr));
+    this.mBundleInfoList = [];
     Bundle.getAllBundleInfo(IS_INCLUDE_ABILITY_INFO)
       .then((data) => {
       LogUtil.info('settings AppManagementModel setAppManagementListener getBundleInfos() start ');
@@ -148,7 +150,7 @@ export class AppManagementModel extends BaseModel {
          AppStorage.SetOrCreate('appManagementList', this.distinct(AppStorage.Get('appManagementList')));
       });
     } catch (error) {
-      LogUtil.info('settings AppManagementModel catch error:' + error);
+      LogUtil.error('settings AppManagementModel catch error:' + error);
     }
     LogUtil.info('settings appManagement AppManagementModel getIconItem end');
   }
@@ -188,11 +190,22 @@ export class AppManagementModel extends BaseModel {
    * Uninstall an application.
    * @param bundleName bundle name
    */
-   async uninstall(bundleName: string, callback) {
+  async uninstall(bundleName: string, callback) {
     LogUtil.info(ConfigData.TAG + "start uninstall in model");
     const bundlerInstaller = await Bundle.getBundleInstaller();
+    const accountManager = await osAccount.getAccountManager();
+    const mUserID = await accountManager.getOsAccountLocalIdFromProcess();
     LogUtil.info(ConfigData.TAG + "get bundlerInstaller : " + typeof bundlerInstaller);
-    bundlerInstaller.uninstall(bundleName, { userId: 0, installFlag: 0, isKeepData: false }, (result) => { callback(result); });
+    bundlerInstaller.uninstall(bundleName,
+      {
+        userId: mUserID,
+        installFlag: 0,
+        isKeepData: false
+      }, (err, result) => {
+        AppStorage.SetOrCreate('appManagementList', []);
+        this.setAppManagementListener();
+        callback(err, result);
+      });
     LogUtil.info(ConfigData.TAG + "end uninstall in model");
   }
 
