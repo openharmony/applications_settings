@@ -29,9 +29,9 @@ export default class ApplicationInfoController extends BaseSettingsController {
    */
    uninstall(bundleName: string) {
     LogUtil.info(ConfigData.TAG + "start uninstall in controller");
-    AppManagementModel.uninstall(bundleName, (data) => {
-      LogUtil.info(ConfigData.TAG + 'uninstall in controller' + ' bundleName: ' + bundleName +
-      ' data: ' + JSON.stringify(data));
+    AppManagementModel.uninstall(bundleName, (err, data) => {
+      LogUtil.info(ConfigData.TAG + 'uninstall in controller' + ' bundleName: ' + bundleName
+      +' err: ' + JSON.stringify(err) +' data: ' + JSON.stringify(data));
     });
     LogUtil.info(ConfigData.TAG + "end uninstall in controller");
   }
