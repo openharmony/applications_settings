@@ -94,6 +94,19 @@ export class ConfigData {
   SOFTWARE_UPDATES_ABILITY_NAME = 'com.hmos.ouc.MainAbility';
 
   DEVICE_NAME = 'OpenHarmony 2.0 Canary';
+
+  // NFC states
+  // NFC is off
+  STATE_OFF = 1;
+  // NFC is turning on
+  STATE_TURNING_ON = 2;
+  // NFC is on
+  STATE_ON = 3;
+  // NFC is turning off
+  STATE_TURN_OFF = 4;
+
+  NFC_OPEN = '已开启';
+  NFC_CLOSE = '已关闭';
 }
 
 let configData = new ConfigData();

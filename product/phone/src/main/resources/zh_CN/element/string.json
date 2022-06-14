@@ -33,6 +33,18 @@
       "value": "没有匹配的结果"
     },
     {
+      "name": "moreConnectionsTab",
+      "value": "更多连接"
+    },
+    {
+      "name": "NFC",
+      "value": "NFC"
+    },
+    {
+      "name": "nfcTips",
+      "value": "若要进行移动支付、钥匙验证、碰一碰等操作，可将本设备背部触碰其他终端 NFC 感应区。"
+    },
+    {
       "name": "wifiTab",
       "value": "WLAN"
     },
