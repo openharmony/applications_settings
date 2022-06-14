@@ -22,7 +22,8 @@ import GlobalResourceManager from '../../../../../../../common/utils/src/main/et
 import Router from '@system.router';
 import FeatureAbility from '@ohos.ability.featureAbility';
 import { BaseData } from '../../../../../../../common/utils/src/main/ets/default/bean/BaseData';
-import deviceInfo from '@ohos.deviceInfo'
+import deviceInfo from '@ohos.deviceInfo';
+import parameter from '@ohos.systemParameter';
 
 const PAGE_SEARCH = 'pages/searchPage'; // for search
 const deviceTypeInfo = deviceInfo.deviceType
@@ -54,6 +55,15 @@ const SETTINGS_LIST = [
       "settingArrow": "/res/image/ic_settings_arrow.svg",
       "settingSummary": "",
       "settingUri": ""
+    },
+    {
+      "settingIcon": "/res/image/ic_settings_more_connections.svg",
+      "settingTitle": $r('app.string.moreConnectionsTab'),
+      "settingAlias": "moreConnectionsTab",
+      "settingValue": "",
+      "settingArrow": "/res/image/ic_settings_arrow.svg",
+      "settingSummary": "",
+      "settingUri": "pages/moreConnections"
     }
   ],
   [
@@ -265,9 +275,23 @@ struct SettingList {
 
 @Component
 struct EntryComponent {
-  private settingsList: BaseData[][] = SETTINGS_LIST
-  @State listSpace: string = '12vp'
-  @State isPhone: boolean = false
+  private settingsList: BaseData[][] = SETTINGS_LIST;
+  private nfcInfo: boolean;
+  @State listSpace: string = '12vp';
+  @State isPhone: boolean = false;
+
+  aboutToAppear() {
+    let info: string = parameter.getSync("const.SystemCapability.Communication.NFC.Core" ,"false");
+    if (info === 'true') {
+      this.nfcInfo = true;
+    } else {
+      this.nfcInfo = false;
+    }
+    LogUtil.info('settings SettingList nfc canUse' + this.nfcInfo);
+    if (!this.nfcInfo) {
+      this.settingsList[0].pop()
+    }
+  }
 
   build() {
     Column() {

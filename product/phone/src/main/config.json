@@ -87,7 +87,9 @@
           "pages/passwordInput",
           "pages/bluetooth",
           "pages/bluetoothPairedDeviceInfo",
-          "pages/screenMode"
+          "pages/screenMode",
+          "pages/moreConnections",
+          "pages/nfc"
         ],
         "name": ".MainAbility",
         "window": {
