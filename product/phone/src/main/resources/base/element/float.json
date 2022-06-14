@@ -189,6 +189,10 @@
       "value": "200vp"
     },
     {
+      "name": "wh_value_208",
+      "value": "208vp"
+    },
+    {
       "name": "wh_value_210",
       "value": "210vp"
     },
@@ -215,6 +219,10 @@
     {
       "name": "wh_value_280",
       "value": "280vp"
+    },
+    {
+      "name": "wh_value_298",
+      "value": "298vp"
     },
     {
       "name": "wh_value_336",
@@ -407,6 +415,10 @@
     {
       "name": "distance_26",
       "value": "26vp"
+    },
+    {
+      "name": "distance_27_5",
+      "value": "27.5vp"
     },
     {
       "name": "distance_30",
@@ -995,6 +1007,10 @@
     {
       "name": "head_font_24",
       "value": "24vp"
+    },
+    {
+      "name": "opacity_100_60",
+      "value": "0.6"
     }
   ]
 }

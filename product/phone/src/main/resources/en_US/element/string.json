@@ -205,6 +205,18 @@
       "value": "apply"
     },
     {
+      "name": "moreConnectionsTab",
+      "value": "More Connections"
+    },
+    {
+      "name": "NFC",
+      "value": "NFC"
+    },
+    {
+      "name": "nfcTips",
+      "value": "To perform mobile payment, key verification, and touch, touch the back of the device to the NFC sensor area of another terminal."
+    },
+    {
       "name": "dateAndTimeTab",
       "value": "dateAndTime"
     },
