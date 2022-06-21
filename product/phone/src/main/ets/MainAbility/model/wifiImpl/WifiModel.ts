@@ -361,7 +361,7 @@ export class WifiModel extends BaseModel {
   }
 
   removeDeviceConfig(apInfo: WifiScanInfo) {
-    LogUtil.info(MODULE_TAG + 'apInfo ssid is : ' + apInfo.ssid);
+    LogUtil.info(MODULE_TAG + 'start to removeDeviceConfig');
     let deviceConfigs: any[] = wifi.getDeviceConfigs();
     let networkId: number = -1;
     for (let i = 0; i < deviceConfigs.length; i++) {
@@ -373,7 +373,7 @@ export class WifiModel extends BaseModel {
     if (networkId === -1) {
       return;
     }
-    LogUtil.info(MODULE_TAG + 'remove network id is : ' + networkId);
+    LogUtil.info(MODULE_TAG + 'start to removeDevice');
     let ret = wifi.removeDevice(networkId);
     LogUtil.info(MODULE_TAG + 'remove device config : ' + ret);
   }
