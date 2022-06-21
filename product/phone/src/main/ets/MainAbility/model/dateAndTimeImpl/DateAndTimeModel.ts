@@ -20,6 +20,7 @@ import SystemTime from '@ohos.systemTime';
 import settings from '@ohos.settings';
 import featureAbility from '@ohos.ability.featureAbility'
 import CatchError from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/CatchError';
+import i18n from '@ohos.i18n';
 
 /**
  * Set date and time
@@ -57,7 +58,7 @@ export class DateAndTimeModel extends BaseModel {
 
   @CatchError('24')
   getTimeFormat() : string {
-    if (this.timeFormat === '') {
+    if (i18n.is24HourClock()) {
       this.timeFormat = settings.getValueSync(this.dataAbilityHelper, ConfigData.TIME_FORMAT_KEY, ConfigData.TIME_FORMAT_24);
       LogUtil.info(ConfigData.TAG + 'DateAndTimeModel get time format is ' + this.timeFormat);
     }
@@ -85,6 +86,11 @@ export class DateAndTimeModel extends BaseModel {
     }
     if (format === this.timeFormat) {
       return true;
+    }
+    if(format === ConfigData.TIME_FORMAT_24){
+      i18n.set24HourClock(true)
+    } else {
+      i18n.set24HourClock(false)
     }
     let ret = settings.setValueSync(this.dataAbilityHelper, ConfigData.TIME_FORMAT_KEY, format);
     if (ret === true) {
