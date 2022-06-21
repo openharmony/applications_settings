@@ -239,7 +239,6 @@ struct dateAndTime {
   }
 
   onBackPress() {
-    Navigator().active(true);
   }
 
   private setTimeFormatAs24H() {
