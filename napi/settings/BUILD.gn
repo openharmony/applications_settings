@@ -37,6 +37,7 @@ ohos_shared_library("settings") {
     "bundle_framework:appexecfwk_base",
     "hiviewdfx_hilog_native:libhilog",
     "relational_store:native_dataability",
+    "utils_base:utils",
   ]
 
   relative_install_dir = "module"
