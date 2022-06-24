@@ -19,6 +19,7 @@ import Log from '../../../../../../../../common/utils/src/main/ets/default/baseU
 import ConfigData from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import ISettingsController from '../../../../../../../../common/component/src/main/ets/default/controller/ISettingsController';
 import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import AboutDeviceModel from '../../model/aboutDeviceImpl/AboutDeviceModel'
 
 const DISCOVERY_DURING_TIME: number = 30000;    // 30'
 const DISCOVERY_INTERVAL_TIME: number = 3000;   // 3'
@@ -112,7 +113,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
    * Get Local Name
    */
   getLocalName() {
-    AppStorage.SetOrCreate('bluetoothLocalName', BluetoothModel.getLocalName());
+    AppStorage.SetOrCreate('bluetoothLocalName', AboutDeviceModel.getSystemName());
   }
 
   /**
@@ -260,7 +261,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
         this.startBluetoothDiscovery();
       } else {
         LogUtil.log(this.TAG + 'bluetooth state changed. subscribe')
-        this.stopBluetoothDiscovery();
+        this.mStopBluetoothDiscovery();
       }
     });
   }
@@ -416,6 +417,21 @@ export default class BluetoothDeviceController extends BaseSettingsController {
     this.discoveryStartTimeoutId = setTimeout(() => {
       this.startBluetoothDiscovery();
     }, DISCOVERY_INTERVAL_TIME);
+  }
+
+   /**
+   * Stop bluetooth discovery.
+   */
+  private mStopBluetoothDiscovery() {
+    this.isDeviceDiscovering = false;
+    BluetoothModel.stopBluetoothDiscovery();
+    if (this.discoveryStartTimeoutId) {
+      clearTimeout(this.discoveryStartTimeoutId);
+    }
+
+    if (this.discoveryStopTimeoutId) {
+      clearTimeout(this.discoveryStopTimeoutId);
+    }
   }
 
   /**
