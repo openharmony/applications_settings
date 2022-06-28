@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 import ConfigData from '../../../../../../utils/src/main/ets/default/baseUtil/ConfigData';
-import ResMgr from '@ohos.resourceManager';
+//import ResMgr from '@ohos.resourceManager';
 import Log from '../../../../../../utils/src/main/ets/default/baseUtil/LogDecorator';
 
 /**
  * Resource util
  */
 export class ResourceUtil {
-  private resMgr: ResMgr.ResourceManager;
+  private resMgr: any;
 
   /**
    * Initialize ResourceManager
@@ -29,7 +29,7 @@ export class ResourceUtil {
   @Log
   async initResourceManager(): Promise<void> {
     if (!this.resMgr) {
-      this.resMgr = await ResMgr.getResourceManager(ConfigData.DEFAULT_BUNDLE_NAME);
+      this.resMgr = await  globalThis.settingsAbilityContext.resourceManager;
     }
   }
 
