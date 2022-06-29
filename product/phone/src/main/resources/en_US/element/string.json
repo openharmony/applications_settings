@@ -282,11 +282,11 @@
     },
     {
       "name": "timeMorning",
-      "value": "AM"
+      "value": "%s AM"
     },
     {
       "name": "timeAfternoon",
-      "value": "PM"
+      "value": "%s PM"
     },
     {
       "name": "settingTime",
