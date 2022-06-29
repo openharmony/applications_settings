@@ -32,7 +32,7 @@ const deviceTypeInfo = deviceInfo.deviceType
 @Component
 struct dateAndTime {
   private date: string = '';
-  private time: string = '';
+  private time: Resource | string = '';
   private image: string | Resource = '';
   private dateMark: string = 'date';
   private timeMark: string = 'time';
