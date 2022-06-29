@@ -282,11 +282,11 @@
     },
     {
       "name": "timeMorning",
-      "value": "上午"
+      "value": "上午 %s"
     },
     {
       "name": "timeAfternoon",
-      "value": "下午"
+      "value": "下午 %s"
     },
     {
       "name": "settingTime",
@@ -854,7 +854,7 @@
     },
     {
       "name": "resetPhonePromptDetails",
-      "value": "• 您的帐户\n\n\n\n• 系统及应用数据和设置\n\n\n\n• 已安装的应用\n\n\n\n• 音乐\n\n\n\n• 图片\n\n\n\n• 文件\n\n\n\n• 安全芯片中的信息（重启设备联网后自动清除）\n\n\n\n• 与帐号关联并存储在本设备上的系统、应用和个人数据\n\n\n\n• 此设备上的其他用户"
+      "value": "• 您的帐户\n\n\n\n• 系统及应用数据和设置\n\n\n\n• 已安装的应用\n\n\n\n• 音乐\n\n\n\n• 图片\n\n\n\n• 文件\n\n\n\n• 安全芯片中的信息（重启设备联网后自动清除）\n\n\n\n• 与帐号关联并存储在本设备上的系统、应用和个人数据\n\n\n\n• 此设备上的其他用户\n"
     },
     {
       "name": "resetPhonePromptInfo",
