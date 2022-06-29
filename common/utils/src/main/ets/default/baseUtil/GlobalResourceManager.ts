@@ -13,39 +13,37 @@
  * limitations under the License.
  */
 import BaseModel from '../model/BaseModel';
-import Rsm from '@ohos.resourceManager';
+//import Rsm from '@ohos.resourceManager';
 import ConfigData  from './ConfigData';
 import LogUtil  from './LogUtil';
 
 export class GlobalResourceManager extends BaseModel {
+    public async getStringByResource(res: Resource): Promise<string> {
+        let json = JSON.parse(JSON.stringify(res));
+        let id = json.id;
+        return await this.getStringById(id);
+    }
 
-  public async getStringByResource(res: Resource): Promise<string>{
-    let json = JSON.parse(JSON.stringify(res));
-    let id = json.id;
-    return await this.getStringById(id);
-  }
-
-  public getStringById(id: number): Promise<string>{
-    let promise = new Promise<string>(resolve => {
-      let resourceMgr = Rsm.getResourceManager(ConfigData.DEFAULT_BUNDLE_NAME);
-        resourceMgr.then((result) => {
-          result.getString(id)
-          .then((resource) => {
-            resolve(resource);
-            LogUtil.info('getStringById resolve(resource) : ' + resolve(resource));
-            LogUtil.info('getStringById resource : ' + resource);
-            LogUtil.info('getStringById resource2 : ' + JSON.stringify(resource));
-        })
-          .catch((err) => {
-            LogUtil.info('getStringById err : ' + JSON.stringify(err));
+    public getStringById(id: number): Promise<string>{
+        let promise = new Promise<string>(resolve => {
+            let resourceMgr = globalThis.settingsAbilityContext.resourceManager;
+            resourceMgr.getString(id)
+                .then((resource) => {
+                    resolve(resource);
+                    LogUtil.info('getStringById resolve(resource) : ' + resolve(resource));
+                    LogUtil.info('getStringById resource : ' + resource);
+                    LogUtil.info('getStringById resource2 : ' + JSON.stringify(resource));
+                })
+                .catch((err) => {
+                    LogUtil.info('getStringById err : ' + JSON.stringify(err));
+                });
         });
-      });
-    });
-    LogUtil.info('getStringById promise: ' + JSON.stringify(promise));
-    return promise;
-  }
+        LogUtil.info('getStringById promise: ' + JSON.stringify(promise));
+        return promise;
+    }
 }
 
 let mGlobalResourceManager = new GlobalResourceManager();
+
 export default mGlobalResourceManager as GlobalResourceManager
 ;

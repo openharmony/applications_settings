@@ -24,14 +24,14 @@ export class DateAndTimeUtil {
     let hours = datetime.getHours();
     let minutes = datetime.getMinutes();
 
-    let time = this.concatTime(hours, minutes)
+    let time : Resource | string = this.concatTime(hours, minutes)
     if (isUsing24hFormat === false) {
       if (hours < 12) {
-        time = ConfigData.TIME_PREFIX_MORNING + this.concatTime(hours, minutes);
+        time = $r("app.string.timeMorning", this.concatTime(hours, minutes));
       } else if (hours === 12) {
-        time = ConfigData.TIME_PREFIX_AFTERNOON + this.concatTime(hours, minutes);
+        time = $r("app.string.timeMorning", this.concatTime(hours, minutes));
       } else {
-        time = ConfigData.TIME_PREFIX_AFTERNOON + this.concatTime((hours % 12), minutes);
+        time = $r("app.string.timeAfternoon",this.concatTime((hours % 12), minutes)) ;
       }
     }
     return time;

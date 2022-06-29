@@ -15,9 +15,10 @@
 
 import ConfigData from './ConfigData';
 import LogUtil from './LogUtil'
-import Storage from '@ohos.data.storage';
+//import Storage from '@ohos.data.storage';
 
-let preference = Storage.getStorageSync(ConfigData.PREFERENCES_PATH);
+//let preference = Storage.getStorageSync(ConfigData.PREFERENCES_PATH);
+this.storage = await dataStorage.getPreferences(globalThis.settingsAbilityContext, ConfigData.PREFERENCES_PATH)
 
 export class PreferenceUtil {
   /**

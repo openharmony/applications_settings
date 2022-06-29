@@ -282,11 +282,11 @@
     },
     {
       "name": "timeMorning",
-      "value": "AM"
+      "value": "%s AM"
     },
     {
       "name": "timeAfternoon",
-      "value": "PM"
+      "value": "%s PM"
     },
     {
       "name": "settingTime",
@@ -850,7 +850,7 @@
     },
     {
       "name": "resetPhonePromptDetails",
-      "value": "• Accounts\n\n\n\n• App data and system settings\n\n\n\n• Installed apps\n\n\n\n• Music\n\n\n\n• Photos\n\n\n\n• Files\n\n\n\n• Security chip contents(will be erased the next time the device connects to the Internet)\n\n\n\n• Locally-stored system,app,and personal data related to HUAWEIIDs"
+      "value": "• Accounts\n\n\n\n• App data and system settings\n\n\n\n• Installed apps\n\n\n\n• Music\n\n\n\n• Photos\n\n\n\n• Files\n\n\n\n• Security chip contents(will be erased the next time the device connects to the Internet)\n\n\n\n• Locally-stored system,app,and personal data related to HUAWEIIDs\n"
     },
     {
       "name": "resetPhonePromptInfo",

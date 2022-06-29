@@ -46,7 +46,7 @@ export default class SearchModel {
 
       // database init
       const STORE_CONFIG = { name: SearchConfig.RDB_NAME};
-      this.rdbStore = await ohosDataRdb.getRdbStore(featureAbility.getContext(), STORE_CONFIG, 1);
+      this.rdbStore = await ohosDataRdb.getRdbStore(globalThis.settingsAbilityContext, STORE_CONFIG, 1);
       LogUtil.log('settings SettingsSearch.db is ready.');
 
       // table SEARCH_DATA init
