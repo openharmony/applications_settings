@@ -33,7 +33,7 @@ static napi_value Init(napi_env env, napi_value exports)
     HILOG_INFO("napi_moudule Init start...");
 
     napi_property_descriptor desc[] = {
-        DECLARE_NAPI_FUNCTION("getUri", napi_get_uri),
+        DECLARE_NAPI_FUNCTION("getURI", napi_get_uri),
         DECLARE_NAPI_FUNCTION("getValue", napi_get_value),
         DECLARE_NAPI_FUNCTION("setValue", napi_set_value),
         DECLARE_NAPI_FUNCTION("getUriSync", napi_get_uri_sync),
