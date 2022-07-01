@@ -19,7 +19,8 @@ import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUti
 import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import Audio from '@ohos.multimedia.audio';
 import {SubHeader} from '../../../../../../common/component/src/main/ets/default/textComponent';
-import deviceInfo from '@ohos.deviceInfo'
+import deviceInfo from '@ohos.deviceInfo';
+import OuterComponent from './OuterComponent';
 
 const VOLUME_MIN_VALUE = 0;
 const VOLUME_MAX_VALUE = 15;
@@ -32,61 +33,31 @@ const deviceTypeInfo = deviceInfo.deviceType
 export struct VolumeControl {
   private TAG = ConfigData.TAG + ' VolumeControl ';
 
+  @Builder mVolumeControlComponent() {
+    Column() {
+      //head
+      HeadComponent({ headName: $r('app.string.volumeControlTab') });
+
+      SubHeader({ titleContent: $r('app.string.soundMode') })
+
+      // sound mode
+      AudioRingerModeComponent();
+
+      SubHeader({ titleContent: $r('app.string.volumeControl') })
+
+      // volume control
+      VolumeControlComponent();
+    }
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100);
+  }
+
   build() {
     Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
-        Row({}) {
-          Column() {
-          }
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
-            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
-          });
-
-          Column() {
-            // head
-            HeadComponent({ headName: $r('app.string.volumeControlTab'), isActive: true });
-
-            SubHeader({ titleContent: $r('app.string.soundMode') })
-
-            // sound mode
-            AudioRingerModeComponent();
-
-            SubHeader({ titleContent: $r('app.string.volumeControl') })
-
-            // volume control
-            VolumeControlComponent();
-          }
-          .align(Alignment.Center)
-          .height(ConfigData.WH_100_100)
-          .width(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
-            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
-          });
-
-          Column() {
-          }
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
-            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
-          })
-        }
-        .width(ConfigData.WH_100_100)
-        .height(ConfigData.WH_100_100);
-      }
-      .width(ConfigData.WH_100_100)
-      .height(ConfigData.WH_100_100);
+      OuterComponent({
+        mContentComponent: this.mVolumeControlComponent
+      })
     }
-    .padding({
-      left: $r('sys.float.ohos_id_card_margin_start'),
-      right: $r('sys.float.ohos_id_card_margin_end')
-    })
-    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
     .height(ConfigData.WH_100_100);
   }
