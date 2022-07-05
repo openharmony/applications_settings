@@ -21,6 +21,7 @@ import settings from '@ohos.settings';
 import Brightness from '@ohos.brightness';
 import featureAbility from '@ohos.ability.featureAbility';
 import CatchError from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/CatchError';
+import systemParameter from '@ohos.systemparameter';
 
 /**
  * Brightness setting
@@ -31,7 +32,7 @@ export class BrightnessSettingModel extends BaseModel{
   private dataAbilityHelper;
   private urivar:string;
   private brightness:number = 5;
-  private defaultBrightnessStr = '5';
+  private defaultBrightnessStr = this.getDefaultBrightness().toString();
   private TAG = `${ConfigData.TAG} BrightnessSettingModel `;
   private readonly uri = 'dataability:///com.ohos.settingsdata.DataAbility';
 
@@ -57,6 +58,27 @@ export class BrightnessSettingModel extends BaseModel{
   @Log
   public getValue(){
     return this.brightness;
+  }
+
+  /**
+   * Get min brightness value in the BrightnessSettingModel
+   */
+  public getMinBrightness(){
+    return parseInt(systemParameter.getSync('const.display.brightness.min'))
+  }
+
+  /**
+   * Get max brightness value in the BrightnessSettingModel
+   */
+  public getMaxBrightness(){
+    return parseInt(systemParameter.getSync('const.display.brightness.max'))
+  }
+
+  /**
+   * Get default brightness value in the BrightnessSettingModel
+   */
+  public getDefaultBrightness(){
+    return parseInt(systemParameter.getSync('const.display.brightness.default'))
   }
 
   /**
