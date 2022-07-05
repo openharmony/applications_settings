@@ -21,9 +21,6 @@ import ConfigData from '../../../../../../common/utils/src/main/ets/default/base
 import {SubEntryComponentWithEndText} from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
 import {SubHeader} from '../../../../../../common/component/src/main/ets/default/textComponent';
 
-
-const BRIGHTNESS_MIN_VALUE = 4;
-const BRIGHTNESS_MAX_VALUE = 100;
 const BRIGHTNESS_STEP_VALUE = 1;
 
 /**
@@ -69,8 +66,8 @@ struct BrightnessSettings {
 
               Slider({
                 value: this.brightnessSettingModel.getValue(),
-                min: BRIGHTNESS_MIN_VALUE,
-                max: BRIGHTNESS_MAX_VALUE,
+                min: this.brightnessSettingModel.getMinBrightness(),
+                max: this.brightnessSettingModel.getMaxBrightness(),
                 step: BRIGHTNESS_STEP_VALUE,
                 style: SliderStyle.InSet
               })
