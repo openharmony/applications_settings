@@ -1031,6 +1031,130 @@
     {
       "name": "softwareUpdateFailed",
       "value": "Software update startup failed, please make sure the function is available."
+    },
+    {
+      "name": "MANAGE_LOCAL_ACCOUNTS",
+      "value": "MANAGE LOCAL ACCOUNTS"
+    },
+    {
+      "name": "DISTRIBUTED_DATASYNC",
+      "value": "Distributed Data Synchronization"
+    },
+    {
+      "name": "INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION",
+      "value": "Local extended user for cross-domain interaction"
+    },
+    {
+      "name": "INTERACT_ACROSS_LOCAL_ACCOUNTS",
+      "value": "Local user for cross-domain interaction"
+    },
+    {
+      "name": "CLEAN_BACKGROUND_PROCESSES",
+      "value": "Clean background processes"
+    },
+    {
+      "name": "GET_RUNNING_INFO",
+      "value": "Obtaining Running Information"
+    },
+    {
+      "name": "CLEAN_APPLICATION_DATA",
+      "value": "Clean application data"
+    },
+    {
+      "name": "GET_BUNDLE_INFO_PRIVILEGED",
+      "value": "Get Bundle Information Privilege"
+    },
+    {
+      "name": "INSTALL_BUNDLE",
+      "value": "Install Bundle"
+    },
+    {
+      "name": "REMOVE_CACHE_FILES",
+      "value": "Delete Cache Files"
+    },
+    {
+      "name": "USE_USER_IDM",
+      "value": "Use User IDM"
+    },
+    {
+      "name": "ACCESS_USER_AUTH_INTERNAL",
+      "value": "Access User Internal Authentication"
+    },
+    {
+      "name": "ACCESS_PIN_AUTH",
+      "value": "Access PIN Authentication"
+    },
+    {
+      "name": "MANAGE_USER_IDM",
+      "value": "Managing User IDMs"
+    },
+    {
+      "name": "GET_WIFI_INFO",
+      "value": "Obtaining Wi-Fi Information"
+    },
+    {
+      "name": "SET_WIFI_INFO",
+      "value": "Setting Wi-Fi Information"
+    },
+    {
+      "name": "MANAGE_WIFI_CONNECTION",
+      "value": "Managing Wi-Fi Connections"
+    },
+    {
+      "name": "SET_WIFI_CONFIG",
+      "value": "Setting the Wi-Fi Configuration"
+    },
+    {
+      "name": "GET_WIFI_CONFIG",
+      "value": "Getting the Wi-Fi Configuration"
+    },
+    {
+      "name": "GET_WIFI_INFO_INTERNAL",
+      "value": "Obtaining Internal Wi-Fi Information"
+    },
+    {
+      "name": "GET_WIFI_PEERS_MAC",
+      "value": "Obtaining the Wi-Fi Peer MAC Address"
+    },
+    {
+      "name": "USE_BLUETOOTH",
+      "value": "Using Bluetooth"
+    },
+    {
+      "name": "DISCOVER_BLUETOOTH",
+      "value": "Discover Bluetooth"
+    },
+    {
+      "name": "MANAGE_BLUETOOTH",
+      "value": "Managing Bluetooth"
+    },
+    {
+      "name": "MANAGE_SECURE_SETTINGS",
+      "value": "Security Settings Management"
+    },
+    {
+      "name": "SET_TIME",
+      "value": "Set the time"
+    },
+    {
+      "name": "SET_TIME_ZONE",
+      "value": "Set the time zone"
+    },
+    {
+      "name": "UPDATE_CONFIGURATION",
+      "value": "Update Configuration"
+    },
+    {
+      "name": "FACTORY_RESET",
+      "value": "Restoring Factory Settings"
+    },
+    {
+      "name": "ACCESS_NOTIFICATION_POLICY",
+      "value": "Access Notification Policy"
+    },
+    {
+      "name": "MODIFY_AUDIO_SETTINGS",
+      "value": "Modify Audio Settings"
     }
   ]
 }

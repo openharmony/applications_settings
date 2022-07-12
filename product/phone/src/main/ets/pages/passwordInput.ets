@@ -17,14 +17,15 @@ import HeadComponent from '../../../../../../common/component/src/main/ets/defau
 import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import { PinSubType } from '../model/passwordImpl/PasswordModel';
-import PasswordInputController from '../controller/password/PasswordInputController'
+import PasswordInputController from '../controller/password/PasswordInputController';
 import RadioListComponent from '../../../../../../common/component/src/main/ets/default/radioListComponent';
 import Router from '@system.router';
 import { RadioListItem } from '../../../../../../common/utils/src/main/ets/default/bean/RadioListItem';
 import InputMethod from '@ohos.inputmethod';
-import deviceInfo from '@ohos.deviceInfo'
-const deviceTypeInfo = deviceInfo.deviceType
-const MODULE_TAG = ConfigData.TAG + 'PasswdSetting.PasswdInput -> '
+import deviceInfo from '@ohos.deviceInfo';
+
+const deviceTypeInfo = deviceInfo.deviceType;
+const MODULE_TAG = ConfigData.TAG + 'PasswdSetting.PasswdInput -> ';
 
 let param;
 console.log('settings_20220424 passwordInput page in');
@@ -32,25 +33,25 @@ console.log('settings_20220424 passwordInput page in');
 @Entry
 @Component
 struct PasswordInput {
-  private TAG_PAGE = ConfigData.TAG + 'PasswordInput page'
-  private mController: PasswordInputController = new PasswordInputController()
+  private TAG_PAGE = ConfigData.TAG + 'PasswordInput page';
+  private mController: PasswordInputController = new PasswordInputController();
 
   // bind Properties
   @State @Watch("clearViewData")
-  private isInputFirstTime: boolean = true
+  private isInputFirstTime: boolean = true;
   @State @Watch("clearViewData")
-  private passwordType: number = -1
-  private password: string = ''
-  @State passwordCircle: string[]= ["", "", "", "", "", ""]
+  private passwordType: number = -1;
+  private password: string = '';
+  @State passwordCircle: string[]= ["", "", "", "", "", ""];
   // private Properties
-  private pageRequestCode: number = -1
-  private prevPageUri: string = undefined
-  private pinChallenge: string = undefined
-  private pinToken: string = undefined
-  @State private pageTitle: string | Resource = ''
-  @State private inputMessage: string | Resource = ''
-  @State private unlockMethodList: RadioListItem[] = []
-  @State private buttonVisibility: Visibility = Visibility.Visible
+  private pageRequestCode: number = -1;
+  private prevPageUri: string = undefined;
+  private pinChallenge: string = undefined;
+  private pinToken: string = undefined;
+  @State private pageTitle: string | Resource = '';
+  @State private inputMessage: string | Resource = '';
+  @State private unlockMethodList: RadioListItem[] = [];
+  @State private buttonVisibility: Visibility = Visibility.Visible;
   @State isTouchedLeft: boolean = false;
   @State isTouchedRight: boolean = false;
   @State isFocused: boolean = false;
@@ -58,7 +59,7 @@ struct PasswordInput {
   private passwordOnChangeHandler: (value: string) => void;
   private okOnClickHandler: (event?: ClickEvent) => void;
   private unlockMethodChosenHandler: (value: number) => void;
-  @State isPhone: boolean = false
+  @State isPhone: boolean = false;
   //dialog
   private chooseUnlockMethodDialog: CustomDialogController = new CustomDialogController({
     builder: chooseUnlockMethodDialog({
@@ -66,7 +67,7 @@ struct PasswordInput {
       dataList: this.unlockMethodList,
       checkedValue: this.passwordType.toString(),
       chosenAction: (value) => {
-        this.unlockMethodChosenHandler(value)
+        this.unlockMethodChosenHandler(value);
       }
     }),
     autoCancel: true,
@@ -76,7 +77,7 @@ struct PasswordInput {
 
   @Log
   aboutToAppear(): void {
-    this.getRouterParam()
+    this.getRouterParam();
 
     // bind event handlers
     this.passwordOnChangeHandler = this.mController.passwordOnChange.bind(this.mController);
@@ -85,15 +86,15 @@ struct PasswordInput {
 
     // bind component and initialize
     this.mController.bindComponent(this)
-      .bindProperties(["passwordType", "isInputFirstTime", "password", "pinToken"])
+      .bindProperties(["passwordType", "isInputFirstTime", "password", "pinToken", "passwordCircle"])
       .initData()
       .subscribe();
 
     this.updateView();
     if (deviceTypeInfo === 'phone') {
-      this.isPhone = true
+      this.isPhone = true;
     } else {
-      this.isPhone = false
+      this.isPhone = false;
     }
   }
 
@@ -357,10 +358,10 @@ struct PasswordInput {
   @Log
   clearViewData() {
     AppStorage.SetOrCreate("checkMessage", '');
-    this.password = ''
-    this.passwordCircle = ["", "", "", "", "", ""]
-    this.mController.bindComponent(this).initData()
-    this.updateView()
+    this.password = '';
+    this.passwordCircle = ["", "", "", "", "", ""];
+    this.mController.bindComponent(this).initData();
+    this.updateView();
   }
 
   /**
@@ -469,7 +470,7 @@ struct PasswordInput {
 @Component
 struct CheckText {
   @StorageLink("checkMessage")
-  private checkMessage: string | Resource = ''
+  private checkMessage: string | Resource = '';
 
   build() {
     Row() {
@@ -490,8 +491,8 @@ struct CheckText {
 @CustomDialog
 struct chooseUnlockMethodDialog {
   controller: CustomDialogController;
-  private dataList: RadioListItem[]
-  private checkedValue: string
+  private dataList: RadioListItem[];
+  private checkedValue: string;
   private dialogTitle: string | Resource= "";
   private chosenAction: (value: number) => void;
   @State isTouched: Boolean = false;
