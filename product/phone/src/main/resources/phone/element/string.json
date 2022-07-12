@@ -1027,6 +1027,130 @@
     {
       "name": "add",
       "value": "添加"
+    },
+    {
+      "name": "MANAGE_LOCAL_ACCOUNTS",
+      "value": "管理本地帐户"
+    },
+    {
+      "name": "DISTRIBUTED_DATASYNC",
+      "value": "分布式数据同步"
+    },
+    {
+      "name": "INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION",
+      "value": "跨域交互本地扩展用户"
+    },
+    {
+      "name": "INTERACT_ACROSS_LOCAL_ACCOUNTS",
+      "value": "跨域交互本地用户"
+    },
+    {
+      "name": "CLEAN_BACKGROUND_PROCESSES",
+      "value": "清除后台进程"
+    },
+    {
+      "name": "GET_RUNNING_INFO",
+      "value": "获取运行信息"
+    },
+    {
+      "name": "CLEAN_APPLICATION_DATA",
+      "value": "清除应用数据"
+    },
+    {
+      "name": "GET_BUNDLE_INFO_PRIVILEGED",
+      "value": "获取应用信息特权"
+    },
+    {
+      "name": "INSTALL_BUNDLE",
+      "value": "安装应用"
+    },
+    {
+      "name": "REMOVE_CACHE_FILES",
+      "value": "删除缓存文件"
+    },
+    {
+      "name": "USE_USER_IDM",
+      "value": "使用用户IDM"
+    },
+    {
+      "name": "ACCESS_USER_AUTH_INTERNAL",
+      "value": "访问用户内部身份验证"
+    },
+    {
+      "name": "ACCESS_PIN_AUTH",
+      "value": "访问PIN码身份验证"
+    },
+    {
+      "name": "MANAGE_USER_IDM",
+      "value": "管理用户IDM"
+    },
+    {
+      "name": "GET_WIFI_INFO",
+      "value": "获取WLAN信息"
+    },
+    {
+      "name": "SET_WIFI_INFO",
+      "value": "设置WLAN信息"
+    },
+    {
+      "name": "MANAGE_WIFI_CONNECTION",
+      "value": "管理WLAN连接"
+    },
+    {
+      "name": "SET_WIFI_CONFIG",
+      "value": "设置WLAN配置"
+    },
+    {
+      "name": "GET_WIFI_CONFIG",
+      "value": "获取WLAN配置"
+    },
+    {
+      "name": "GET_WIFI_INFO_INTERNAL",
+      "value": "获取内部WLAN信息"
+    },
+    {
+      "name": "GET_WIFI_PEERS_MAC",
+      "value": "获取WLAN的MAC地址"
+    },
+    {
+      "name": "USE_BLUETOOTH",
+      "value": "使用蓝牙"
+    },
+    {
+      "name": "DISCOVER_BLUETOOTH",
+      "value": "发现蓝牙"
+    },
+    {
+      "name": "MANAGE_BLUETOOTH",
+      "value": "管理蓝牙"
+    },
+    {
+      "name": "MANAGE_SECURE_SETTINGS",
+      "value": "安全设置管理"
+    },
+    {
+      "name": "SET_TIME",
+      "value": "设置时间"
+    },
+    {
+      "name": "SET_TIME_ZONE",
+      "value": "设置时区"
+    },
+    {
+      "name": "UPDATE_CONFIGURATION",
+      "value": "更新配置"
+    },
+    {
+      "name": "FACTORY_RESET",
+      "value": "恢复出厂设置"
+    },
+    {
+      "name": "ACCESS_NOTIFICATION_POLICY",
+      "value": "访问通知策略"
+    },
+    {
+      "name": "MODIFY_AUDIO_SETTINGS",
+      "value": "修改音频设置"
     }
   ]
 }

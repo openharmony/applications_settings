@@ -112,7 +112,7 @@ struct Bluetooth {
             .height($r('app.float.wh_value_56'))
             .backgroundColor($r("app.color.white_bg_color"))
             .borderRadius($r('app.float.wh_value_28'))
-            .margin({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24'), top: $r("app.float.distance_8") })
+            .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_12') })
             .alignItems(VerticalAlign.Center)
             .borderRadius($r('app.float.distance_24'))
 
@@ -148,7 +148,6 @@ struct Bluetooth {
                 }
               }
               .width(ConfigData.WH_100_100)
-              .margin({ bottom: $r('sys.float.ohos_id_default_padding_bottom_fixed') })
             }
             .scrollBarWidth(0)
             .width(ConfigData.WH_100_100)
@@ -159,7 +158,6 @@ struct Bluetooth {
           .padding({
             left: $r('app.float.wh_24'),
             right: $r('app.float.wh_24'),
-            bottom: $r('app.float.distance_32')
           })
           .width(ConfigData.WH_100_100)
           .height(ConfigData.WH_100_100)
@@ -177,7 +175,6 @@ struct Bluetooth {
             md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
           })
         }
-        .padding({ bottom: $r('sys.float.ohos_id_dialog_margin_bottom') })
         .width(ConfigData.WH_100_100)
         .height(ConfigData.WH_100_100);
       }

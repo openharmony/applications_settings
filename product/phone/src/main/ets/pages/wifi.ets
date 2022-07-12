@@ -97,8 +97,7 @@ struct Index {
     timestamp: 0,
     securityType: 1,
   };
-  @State isScrollBarTouched: boolean = false;
-  @State isPhone: boolean = false
+  @State isPhone: boolean = false;
   private switchDebounceFlag = undefined;
   private clickApInfoDialog: CustomDialogController = new CustomDialogController({
     builder: apInfoDialog({
@@ -280,16 +279,8 @@ struct Index {
             .scrollable(ScrollDirection.Vertical)
             .scrollBar(BarState.On)
             .scrollBarColor('#B3B3B3')
-            .scrollBarWidth(this.isScrollBarTouched ? 6 : 3)
+            .scrollBarWidth(6)
             .borderRadius($r("app.float.radius_24"))
-            .onTouch((event: TouchEvent) => {
-              if (event.type === TouchType.Down) {
-                this.isScrollBarTouched = true;
-              }
-              if (event.type === TouchType.Up) {
-                this.isScrollBarTouched = false;
-              }
-            });
           }
           .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
           .width(ConfigData.WH_100_100)

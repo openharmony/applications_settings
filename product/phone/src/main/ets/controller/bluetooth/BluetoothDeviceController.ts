@@ -304,7 +304,6 @@ export default class BluetoothDeviceController extends BaseSettingsController {
       deviceId: string;
       bondState: number;
     }) => {
-      LogUtil.log(this.TAG + `bluetooth subscribeBondStateChange callback: data = ${JSON.stringify(data)}`);
       //paired devices
       if (data.bondState !== BondState.BOND_STATE_BONDING) {
         this.refreshPairedDevices();
@@ -445,11 +444,9 @@ export default class BluetoothDeviceController extends BaseSettingsController {
    * @param deviceId device id
    */
   private getAvailableDevice(deviceIds: string): BluetoothDevice {
-    LogUtil.log(this.TAG + 'getAvailableDevice  length = ' + this.availableDevices.length + "  "+ deviceIds);
+    LogUtil.log(this.TAG + 'getAvailableDevice  length = ' + this.availableDevices.length);
     let temp =  this.availableDevices;
     for(let i = 0; i < temp.length; i++){
-      LogUtil.log(this.TAG + 'getAvailableDevice  forEach-01= ' + JSON.stringify(temp[i].deviceId));
-      LogUtil.log(this.TAG + 'getAvailableDevice  forEach-02= ' + JSON.stringify(temp[i].deviceId === deviceIds));
       if (temp[i].deviceId === deviceIds) {
         return temp[i];
       }

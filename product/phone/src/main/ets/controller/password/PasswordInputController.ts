@@ -21,29 +21,30 @@ import PasswordModel, {PinSubType, ResultCode} from '../../model/passwordImpl/Pa
 import {Checker} from './Checker';
 import Router from '@system.router';
 
-const PASSWORD_SIX_LENGTH = 6
-const AUTH_SUB_TYPE_DEFAULT = PinSubType.PIN_SIX
+const PASSWORD_SIX_LENGTH = 6;
+const AUTH_SUB_TYPE_DEFAULT = PinSubType.PIN_SIX;
 
 export default class PasswordInputController extends BaseSettingsController {
   private TAG = ConfigData.TAG + 'PasswordInputController ';
 
   private checker = new Checker();
-  private isInputFirstTime: boolean = false
-  private pageRequestCode: number = -1
-  private prevPageUri: string = undefined
-  private pinChallenge: string = undefined
-  private pinToken: string = undefined
-  private password: string = ''
-  private passwordType: number = -1
-  private inputPassword: string = undefined
-  private checkMessage: string | Resource = ''
+  private isInputFirstTime: boolean = false;
+  private pageRequestCode: number = -1;
+  private prevPageUri: string = undefined;
+  private pinChallenge: string = undefined;
+  private pinToken: string = undefined;
+  private password: string = '';
+  private passwordCircle: string[];
+  private passwordType: number = -1;
+  private inputPassword: string = undefined;
+  private checkMessage: string | Resource = '';
 
   /**
    * Initialize data.
    */
   initData(): ISettingsController {
     if (!this.passwordType || this.passwordType < 0) {
-      LogUtil.info(this.TAG + 'initData : passwordType set DEFAULT')
+      LogUtil.info(this.TAG + 'initData : passwordType set DEFAULT');
       this.passwordType = AUTH_SUB_TYPE_DEFAULT;
     }
 
@@ -76,7 +77,7 @@ export default class PasswordInputController extends BaseSettingsController {
    * @param value : inputting password
    */
   passwordOnChange(value: string) {
-    LogUtil.info(this.TAG + 'passwordOnChange in.')
+    LogUtil.info(this.TAG + 'passwordOnChange in.');
     this.password = value;
     let tempMessage = this.checkInputDigits(value);
     if (this.checkMessage != tempMessage) {
@@ -87,7 +88,7 @@ export default class PasswordInputController extends BaseSettingsController {
       // When password is 6 numbers, finish input
       this.inputFinish();
     }
-    LogUtil.info(this.TAG + 'passwordOnChange out.')
+    LogUtil.info(this.TAG + 'passwordOnChange out.');
   }
 
   /**
@@ -95,7 +96,7 @@ export default class PasswordInputController extends BaseSettingsController {
    */
   inputFinish() {
     if (!this.password) {
-      LogUtil.info(this.TAG + 'inputFinish return : password is none.')
+      LogUtil.info(this.TAG + 'inputFinish return : password is none.');
       return;
     }
 
@@ -103,41 +104,42 @@ export default class PasswordInputController extends BaseSettingsController {
 
       if (this.isInputFirstTime) {
 
-        this.checkMessage = this.checkInputDigits(this.password)
+        this.checkMessage = this.checkInputDigits(this.password);
 
         // PIN must more than 4 digits
         if (!this.checker.checkMinDigits(this.password)) {
           if (this.passwordType == PinSubType.PIN_NUMBER) {
-            this.checkMessage = $r('app.string.password_PIN_check_min_error')
+            this.checkMessage = $r('app.string.password_PIN_check_min_error');
           } else if (this.passwordType == PinSubType.PIN_MIXED) {
-            this.checkMessage = $r('app.string.password_check_min_error')
+            this.checkMessage = $r('app.string.password_check_min_error');
           }
         }
 
       } else{
         // check match
         if (this.password != this.inputPassword) {
+          this.password = '';
+          this.passwordCircle = ["", "", "", "", "", ""];
           // not match
-          LogUtil.info(this.TAG + 'inputFinish : not match')
-          this.checkMessage = $r('app.string.password_message_repeat_error')
+          LogUtil.info(this.TAG + 'inputFinish : not match');
+          this.checkMessage = $r('app.string.password_message_repeat_error');
         }
       }
     }
 
     AppStorage.SetOrCreate("checkMessage", this.checkMessage);
     if (this.checkMessage) {
-      LogUtil.info(this.TAG + 'inputFinish return : has error yet.')
+      LogUtil.info(this.TAG + 'inputFinish return : has error yet.');
       return;
     }
 
     if (this.isInputFirstTime) {
-      this.checkInputSuccess()
+      this.checkInputSuccess();
     } else if (this.pinToken) {
-      this.updatePassword()
+      this.updatePassword();
     } else {
-      this.createPassword()
+      this.createPassword();
     }
-
   }
 
   //------------------------------ check ---------------------------
@@ -158,7 +160,7 @@ export default class PasswordInputController extends BaseSettingsController {
 
       // PIN must be 6 numbers
         if (this.isInputFirstTime && !this.checker.isOnlyNumber(pwd) || pwd?.length > PASSWORD_SIX_LENGTH) {
-          return $r('app.string.password_PIN_must_be_6_numbers')
+          return $r('app.string.password_PIN_must_be_6_numbers');
         }
         break;
 
@@ -166,12 +168,12 @@ export default class PasswordInputController extends BaseSettingsController {
 
       // PIN must less than 33 digits
         if (!this.checker.checkMaxDigits(pwd)) {
-          return $r('app.string.password_PIN_check_max_error')
+          return $r('app.string.password_PIN_check_max_error');
         }
 
       // PIN must be numbers
         if (this.isInputFirstTime && !this.checker.isOnlyNumber(pwd)) {
-          return $r('app.string.password_PIN_must_be_numbers')
+          return $r('app.string.password_PIN_must_be_numbers');
         }
         break;
 
@@ -179,17 +181,17 @@ export default class PasswordInputController extends BaseSettingsController {
 
       // Password must less than 33 digits
         if (!this.checker.checkMaxDigits(pwd)) {
-          return $r('app.string.password_check_max_error')
+          return $r('app.string.password_check_max_error');
         }
 
       // Check illegal character
         if (this.isInputFirstTime && this.checker.isContainIllegalCharacter(pwd)) {
-          return $r('app.string.password_illegal_character')
+          return $r('app.string.password_illegal_character');
         }
 
       // When password is more than 4 digits, check password must contains letter.
         if (this.isInputFirstTime && this.checker.checkMinDigits(pwd) && !this.checker.isContainLetters(pwd)) {
-          return $r('app.string.password_check_char_error')
+          return $r('app.string.password_check_char_error');
         }
         break;
     }
@@ -209,7 +211,7 @@ export default class PasswordInputController extends BaseSettingsController {
    * Return OK result.
    */
   goBackCorrect() {
-    Router.back()
+    Router.back();
   }
 
   /**
@@ -217,8 +219,8 @@ export default class PasswordInputController extends BaseSettingsController {
    */
   //todo
   gotoRepeatPage() {
-    this.inputPassword = this.password
-    this.isInputFirstTime = false
+    this.inputPassword = this.password;
+    this.isInputFirstTime = false;
 //    Router.replace({
 //      uri: 'pages/passwordRepeat',
 //      params: {
@@ -240,11 +242,11 @@ export default class PasswordInputController extends BaseSettingsController {
     PasswordModel.addPinCredential(this.passwordType, this.password, (result) => {
       if (result === ResultCode.SUCCESS) {
         LogUtil.info(`${this.TAG}create password success`);
-        this.goBackCorrect()
+        this.goBackCorrect();
       } else {
         LogUtil.info(`${this.TAG}create password failed`);
         //TODO show api message to view
-        this.checkMessage = 'create failed.'
+        this.checkMessage = 'create failed.';
       }
     });
   }
@@ -256,11 +258,11 @@ export default class PasswordInputController extends BaseSettingsController {
     PasswordModel.updateCredential(this.passwordType, this.password, this.pinToken, (result, extraInfo) => {
       if (result === ResultCode.SUCCESS) {
         LogUtil.info(`${this.TAG}update password success`);
-        this.goBackCorrect()
+        this.goBackCorrect();
       } else {
         LogUtil.info(`${this.TAG}update password failed`);
         //TODO show error message to view
-        this.checkMessage = 'update failed.'
+        this.checkMessage = 'update failed.';
       }
     });
   }
