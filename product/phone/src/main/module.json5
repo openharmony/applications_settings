@@ -37,97 +37,128 @@
 
     "requestPermissions": [
       {
-        "name": "ohos.permission.MANAGE_LOCAL_ACCOUNTS"
+        "name": "ohos.permission.MANAGE_LOCAL_ACCOUNTS",
+        "reason": "$string:MANAGE_LOCAL_ACCOUNTS"
       },
       {
-        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+        "reason": "$string:DISTRIBUTED_DATASYNC"
       },
       {
         "name": "ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION",
+        "reason": "$string:INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION"
       },
       {
-        "name": "ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS"
+        "name": "ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS",
+        "reason": "$string:INTERACT_ACROSS_LOCAL_ACCOUNTS"
       },
       {
         "name": "ohos.permission.CLEAN_BACKGROUND_PROCESSES",
+        "reason": "$string:CLEAN_BACKGROUND_PROCESSES"
       },
       {
-        "name": "ohos.permission.GET_RUNNING_INFO"
+        "name": "ohos.permission.GET_RUNNING_INFO",
+        "reason": "$string:GET_RUNNING_INFO"
       },
       {
-        "name": "ohos.permission.CLEAN_APPLICATION_DATA"
+        "name": "ohos.permission.CLEAN_APPLICATION_DATA",
+        "reason": "$string:CLEAN_APPLICATION_DATA"
       },
       {
-        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+        "reason": "$string:GET_BUNDLE_INFO_PRIVILEGED"
       },
       {
-        "name": "ohos.permission.INSTALL_BUNDLE"
+        "name": "ohos.permission.INSTALL_BUNDLE",
+        "reason": "$string:INSTALL_BUNDLE"
       },
       {
-        "name": "ohos.permission.REMOVE_CACHE_FILES"
+        "name": "ohos.permission.REMOVE_CACHE_FILES",
+        "reason": "$string:REMOVE_CACHE_FILES"
       },
       {
         "name": "ohos.permission.USE_USER_IDM",
+        "reason": "$string:USE_USER_IDM"
       },
       {
-        "name": "ohos.permission.ACCESS_USER_AUTH_INTERNAL"
+        "name": "ohos.permission.ACCESS_USER_AUTH_INTERNAL",
+        "reason": "$string:ACCESS_USER_AUTH_INTERNAL"
       },
       {
-        "name": "ohos.permission.ACCESS_PIN_AUTH"
+        "name": "ohos.permission.ACCESS_PIN_AUTH",
+        "reason": "$string:ACCESS_PIN_AUTH"
       },
       {
-        "name": "ohos.permission.MANAGE_USER_IDM"
+        "name": "ohos.permission.MANAGE_USER_IDM",
+        "reason": "$string:MANAGE_USER_IDM"
       },
       {
-        "name": "ohos.permission.GET_WIFI_INFO"
+        "name": "ohos.permission.GET_WIFI_INFO",
+        "reason": "$string:GET_WIFI_INFO"
       },
       {
-        "name": "ohos.permission.SET_WIFI_INFO"
+        "name": "ohos.permission.SET_WIFI_INFO",
+        "reason": "$string:SET_WIFI_INFO"
       },
       {
-        "name": "ohos.permission.MANAGE_WIFI_CONNECTION"
+        "name": "ohos.permission.MANAGE_WIFI_CONNECTION",
+        "reason": "$string:MANAGE_WIFI_CONNECTION"
       },
       {
-        "name": "ohos.permission.SET_WIFI_CONFIG"
+        "name": "ohos.permission.SET_WIFI_CONFIG",
+        "reason": "$string:SET_WIFI_CONFIG"
       },
       {
-        "name": "ohos.permission.GET_WIFI_CONFIG"
+        "name": "ohos.permission.GET_WIFI_CONFIG",
+        "reason": "$string:GET_WIFI_CONFIG"
       },
       {
-        "name": "ohos.permission.GET_WIFI_INFO_INTERNAL"
+        "name": "ohos.permission.GET_WIFI_INFO_INTERNAL",
+        "reason": "$string:GET_WIFI_INFO_INTERNAL"
       },
       {
-        "name": "ohos.permission.GET_WIFI_PEERS_MAC"
+        "name": "ohos.permission.GET_WIFI_PEERS_MAC",
+        "reason": "$string:GET_WIFI_PEERS_MAC"
       },
       {
-        "name": "ohos.permission.USE_BLUETOOTH"
+        "name": "ohos.permission.USE_BLUETOOTH",
+        "reason": "$string:USE_BLUETOOTH"
       },
       {
-        "name": "ohos.permission.DISCOVER_BLUETOOTH"
+        "name": "ohos.permission.DISCOVER_BLUETOOTH",
+        "reason": "$string:DISCOVER_BLUETOOTH"
       },
       {
-        "name": "ohos.permission.MANAGE_BLUETOOTH"
+        "name": "ohos.permission.MANAGE_BLUETOOTH",
+        "reason": "$string:MANAGE_BLUETOOTH"
       },
       {
-        "name": "ohos.permission.MANAGE_SECURE_SETTINGS"
+        "name": "ohos.permission.MANAGE_SECURE_SETTINGS",
+        "reason": "$string:MANAGE_SECURE_SETTINGS"
       },
       {
-        "name": "ohos.permission.SET_TIME"
+        "name": "ohos.permission.SET_TIME",
+        "reason": "$string:SET_TIME"
       },
       {
-        "name": "ohos.permission.SET_TIME_ZONE"
+        "name": "ohos.permission.SET_TIME_ZONE",
+        "reason": "$string:SET_TIME_ZONE"
       },
       {
-        "name": "ohos.permission.UPDATE_CONFIGURATION"
+        "name": "ohos.permission.UPDATE_CONFIGURATION",
+        "reason": "$string:UPDATE_CONFIGURATION"
       },
       {
-        "name": "ohos.permission.FACTORY_RESET"
+        "name": "ohos.permission.FACTORY_RESET",
+        "reason": "$string:FACTORY_RESET"
       },
       {
-        "name": "ohos.permission.ACCESS_NOTIFICATION_POLICY"
+        "name": "ohos.permission.ACCESS_NOTIFICATION_POLICY",
+        "reason": "$string:ACCESS_NOTIFICATION_POLICY"
       },
       {
-        "name": "ohos.permission.MODIFY_AUDIO_SETTINGS"
+        "name": "ohos.permission.MODIFY_AUDIO_SETTINGS",
+        "reason": "$string:MODIFY_AUDIO_SETTINGS"
       }
     ],
   }
