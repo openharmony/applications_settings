@@ -98,7 +98,7 @@ export default struct EntryComponent {
             .visibility('' === this.settingArrow ? Visibility.None : Visibility.Visible)
             .width($r("app.float.wh_value_12"))
             .height($r("app.float.wh_value_24"))
-            .margin({ right: $r('app.float.wh_24') })
+            .margin({ right: $r('app.float.wh_value_12') })
             .fillColor($r("sys.color.ohos_id_color_primary"))
             .opacity($r("app.float.opacity_0_2"))
         } else if (this.settingArrow) {

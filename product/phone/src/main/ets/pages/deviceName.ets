@@ -25,10 +25,12 @@ import prompt from "@ohos.prompt"
 @Entry
 @Component
 struct DeviceName {
-  private deviceName: string = AboutDeviceModel.getSystemName();
-  private deviceInfo: any = ''
-  private aboutDeviceList: any[] = []
-  @State isFocused: boolean = false;
+  @State deviceName: string = AboutDeviceModel.getSystemName();
+  private deviceInfo: any = '';
+  private aboutDeviceList: any[] = [];
+  @State isFocused: boolean = false ;
+  @State cancelButton : boolean = true;
+  @State confirmsButton : boolean = false;
 
   build() {
     Column() {
@@ -70,7 +72,13 @@ struct DeviceName {
               })
               .onChange((value: string) => {
                 LogUtil.debug(ConfigData.TAG + 'device name changed to: ' + JSON.stringify(value));
-                this.deviceName = value;
+                if(value.trim().length != 0){
+                  this.deviceName = value;
+                  this.confirmsButton = true
+                } else {
+                  this.deviceName = value.trim();
+                  this.confirmsButton = false
+                }
                 if (this.deviceName.length == 30) {
                   this.isFocused = false
                   prompt.showToast({
@@ -93,7 +101,7 @@ struct DeviceName {
             Row() {
               Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
                 Row() {
-                  ButtonComponent({ text: $r("app.string.cancel"), onClick: () => {
+                  ButtonComponent({ text: $r("app.string.cancel"),deviceName : $deviceName ,buttonFlag : $cancelButton, onClick: () => {
                     Router.back();
                   } })
                 }
@@ -102,11 +110,17 @@ struct DeviceName {
                 .margin({ right: $r("app.float.distance_12") })
 
                 Row() {
-                  ButtonComponent({ text: $r("app.string.confirm"), onClick: () => {
-                    AboutDeviceModel.setSystemName(this.deviceName)
-                    Router.back();
-                  } })
-                }.width($r("app.float.deviceName_button_width"))
+                  ButtonComponent({ text: $r("app.string.confirm"),deviceName : $deviceName ,buttonFlag : $confirmsButton,onClick: () => {
+                    if(this.deviceName.length >0){
+                      AboutDeviceModel.setSystemName(this.deviceName)
+                      Router.back();
+                    } else {
+                      return
+                    }
+
+                  }})
+                }
+                .width($r("app.float.deviceName_button_width"))
               }
             }
             .alignItems(this.isFocused ? VerticalAlign.Top : VerticalAlign.Bottom)
@@ -147,6 +161,8 @@ struct DeviceName {
 @Component
 struct ButtonComponent {
   @State isTouched: boolean = false;
+  @Link deviceName: string ;
+  @Link buttonFlag : boolean;
   private text;
   private onClick = () => {
   };
@@ -164,17 +180,22 @@ struct ButtonComponent {
         .borderRadius($r('app.float.radius_20'))
         .backgroundColor(!this.isTouched ? $r('sys.color.ohos_id_color_button_normal') : $r("sys.color.ohos_id_color_foreground_contrary"))
         .onTouch((event: TouchEvent) => {
-          if (event.type === TouchType.Down) {
-            this.isTouched = true;
-          }
-          if (event.type === TouchType.Up) {
-            this.isTouched = false;
+          if(this.deviceName.length === 0 && this.buttonFlag != true){
+            return
+          } else {
+            if (event.type === TouchType.Down) {
+              this.isTouched = true;
+            }
+            if (event.type === TouchType.Up) {
+              this.isTouched = false;
+            }
           }
         })
         .onClick(() => {
           this.onClick();
         })
     }
+    .opacity(this.deviceName.length === 0 && this.buttonFlag != true ? $r('sys.float.ohos_fa_alpha_disabled') : 1)
     .width(ConfigData.WH_100_100)
   }
 }
