@@ -18,20 +18,34 @@ import LogUtil from '../../../../../../../common/utils/src/main/ets/default/base
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import {LogAll} from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 
+const TAG = ConfigData.TAG + 'RestoreFactorySettingsModel';
+
 /**
  * Restore factorySettings model
  */
 @LogAll
 export class RestoreFactorySettingsModel extends BaseModel {
 
-
   /**
    * Reboot and clean userData
    */
   rebootAndCleanUserData(callback?: (value) => void) {
-    Updater.getUpdater('/data/updater/updater.zip', 'OTA').rebootAndCleanUserData().then((value) => {
-      LogUtil.log(ConfigData.TAG + "rebootAndCleanUserData value:" + value)
-    })
+    let restorer = Updater.getRestorer();
+    if (!restorer) {
+      LogUtil.error(TAG + 'Updater getRestorer failed');
+      return;
+    }
+    try {
+      restorer.factoryReset()
+            .then(() => {
+              LogUtil.info(TAG + 'factoryReset success');
+            })
+            .catch((err) => {
+              LogUtil.error(TAG + 'factoryReset failed: ' + JSON.stringify(err));
+            })
+    } catch(err) {
+      LogUtil.error(TAG + 'Updater factoryReset failed: ' + JSON.stringify(err));
+    }
   }
 }
 
