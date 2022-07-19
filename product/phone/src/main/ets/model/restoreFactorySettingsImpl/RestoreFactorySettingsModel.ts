@@ -25,7 +25,6 @@ const TAG = ConfigData.TAG + 'RestoreFactorySettingsModel';
  */
 @LogAll
 export class RestoreFactorySettingsModel extends BaseModel {
-
   /**
    * Reboot and clean userData
    */
