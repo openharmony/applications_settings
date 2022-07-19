@@ -88,7 +88,7 @@ export class AbilityInfoModel extends BaseModel {
         label = metaBase.labelName;
       } else {
         if (metaBase.labelId > 0) {
-          globalThis.settingsAbilityContext.resourceManager.getString(parseInt(metaBase.labelId), (error, value) => {
+            globalThis.settingsAbilityContext.resourceManager.getString(parseInt(metaBase.labelId), (error, value) => {
             if (error != null) {
               LogUtil.info('settings getAbilityInfoListener getString error:' + error);
               label = '';
