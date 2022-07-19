@@ -91,7 +91,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
     BluetoothModel.unsubscribeBluetoothDeviceFind();
     BluetoothModel.unsubscribeBondStateChange();
     BluetoothModel.unsubscribeDeviceStateChange();
-
+        AppStorage.Delete('BluetoothFailedDialogFlag');
     return this;
   }
 
@@ -201,6 +201,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
    * @param deviceId device id
    */
   unpair(deviceId: string): boolean {
+        AppStorage.SetOrCreate('BluetoothFailedDialogFlag', false);
     const result = BluetoothModel.unpairDevice(deviceId);
     LogUtil.log(this.TAG + 'bluetooth paired device unpair. result = ' + result)
     this.refreshPairedDevices()
@@ -327,15 +328,18 @@ export default class BluetoothDeviceController extends BaseSettingsController {
         }
         this.forceRefresh(this.availableDevices);
         AppStorage.SetOrCreate('bluetoothAvailableDevices', this.availableDevices);
-
-        this.showConnectFailedDialog();
-
-      } else if (data.bondState == BondState.BOND_STATE_BONDED) {
-        // case success
-        LogUtil.log(this.TAG + 'bluetooth bonded : remove device.');
-        this.removeAvailableDevice(data.deviceId);
-        BluetoothModel.connectDevice(data.deviceId);
-      }
+                let showFlag = AppStorage.Get('BluetoothFailedDialogFlag');
+                if (showFlag == false) {
+                    AppStorage.SetOrCreate('BluetoothFailedDialogFlag', true);
+                    return;
+                }
+                this.showConnectFailedDialog(this.getDevice(data.deviceId).deviceName);
+            } else if (data.bondState == BondState.BOND_STATE_BONDED) {
+                // case success
+                LogUtil.log(this.TAG + 'bluetooth bonded : remove device.');
+                this.removeAvailableDevice(data.deviceId);
+                BluetoothModel.connectDevice(data.deviceId);
+            }
 
     });
   }
@@ -466,24 +470,24 @@ export default class BluetoothDeviceController extends BaseSettingsController {
     LogUtil.log(this.TAG + 'removeAvailableDevice : after : availableDevices length = ' + this.availableDevices.length);
   }
 
-  /**
-   * Connect Failed Dialog
-   */
-  private showConnectFailedDialog() {
-    AlertDialog.show({
-      title: $r("app.string.bluetooth_connect_failed"),
-      message: $r("app.string.bluetooth_connect_failed_msg"),
-      confirm: {
-        value: $r("app.string.bluetooth_know_button"),
-        action: () => {
-          LogUtil.info('Button-clicking callback')
-        }
-      },
-      cancel: () => {
-        LogUtil.info('Closed callbacks')
-      },
-      alignment: DialogAlignment.Bottom
-    })
+    /**
+     * Connect Failed Dialog
+     */
+    private showConnectFailedDialog(deviceName: string) {
+        AlertDialog.show({
+            title: $r("app.string.bluetooth_connect_failed"),
+            message: $r("app.string.bluetooth_connect_failed_msg", deviceName),
+            confirm: {
+                value: $r("app.string.bluetooth_know_button"),
+                action: () => {
+                    LogUtil.info('Button-clicking callback')
+                }
+            },
+            cancel: () => {
+                LogUtil.info('Closed callbacks')
+            },
+            alignment: DialogAlignment.Bottom
+        })
 
   }
 }

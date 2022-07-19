@@ -42,6 +42,7 @@ struct WifiPsd {
   private isConnectedBefore: boolean = false;
   private taskId: number = -1;
   @State isPhone: boolean = false
+  @State @Watch("controlFailedDialog") ControlFailedDialog : boolean = false;
   private connectDialog: CustomDialogController = new CustomDialogController({
     builder: connectProgressDialog({
       ssid: this.tobeConnectedSSID,
@@ -52,12 +53,19 @@ struct WifiPsd {
     customStyle: true
   });
   private failedDialog: CustomDialogController = new CustomDialogController({
-    builder: connectFailedDialog({}),
+    builder: connectFailedDialog({ControlFailedDialog:$ControlFailedDialog}),
     alignment: this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
     offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
     autoCancel: true,
     customStyle: true
   });
+
+  controlFailedDialog() {
+     if(this.ControlFailedDialog){
+       this.failedDialog.close()
+       this.ControlFailedDialog =false
+     }
+  }
 
   build() {
     Column() {
@@ -368,8 +376,8 @@ struct connectProgressDialog {
 
 @CustomDialog
 struct connectFailedDialog {
-  controller: CustomDialogController;
-
+  controller: CustomDialogController ;
+  @Link ControlFailedDialog : boolean ;
   build() {
     Column() {
       Row() {
@@ -389,9 +397,7 @@ struct connectFailedDialog {
           .fontColor($r('sys.color.ohos_id_color_text_primary_activated'))
           .fontWeight(FontWeight.Medium)
           .onClick(() => {
-            router.back({
-              uri: 'pages/wifi',
-            });
+             this.ControlFailedDialog = true
           })
       }
       .alignItems(VerticalAlign.Top)
