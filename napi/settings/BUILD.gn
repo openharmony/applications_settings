@@ -30,7 +30,6 @@ ohos_shared_library("settings") {
     "//foundation/ability/ability_runtime/frameworks/native/ability/native:data_ability_helper",
     "//foundation/ability/ability_runtime/interfaces/inner_api/ability_manager:ability_manager",
     "//foundation/arkui/napi:ace_napi",
-    "//foundation/distributeddatamgr/appdatamgr/relational_store/interfaces/inner_api/rdb:native_rdb",
   ]
 
   external_deps = [
@@ -38,6 +37,7 @@ ohos_shared_library("settings") {
     "bundle_framework:appexecfwk_base",
     "hiviewdfx_hilog_native:libhilog",
     "relational_store:native_dataability",
+    "relational_store:native_rdb",
     "utils_base:utils",
   ]
 
