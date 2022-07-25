@@ -652,12 +652,10 @@ struct bluetoothItemComponent {
   aboutToAppear() {
     LogUtil.info('settings SettingList bluetoothItem aboutToAppear in');
     this.bluetoothIsOn = BluetoothModel.isStateOn();
-    LogUtil.info('settings SettingList bluetoothItem aboutToAppear end');
-  }
-  onPageShow(){
     BluetoothModel.subscribeStateChange((isOn: boolean) => {
       AppStorage.SetOrCreate('bluetoothIsOn', isOn);
     });
+    LogUtil.info('settings SettingList bluetoothItem aboutToAppear end');
   }
 
   aboutToDisappear() {
