@@ -17,7 +17,12 @@ import ConfigData from '../../../../../../common/utils/src/main/ets/default/base
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import {SubEntryComponentWithEndText} from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
 import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
-import nfcController from '@ohos.nfc.controller';
+import NfcModel from '../model/moreConnectionsImpl/NfcModel';
+import display from '@ohos.display';
+import deviceInfo from '@ohos.deviceInfo';
+
+const TAG = ConfigData.TAG + 'MoreConnections: ';
+const deviceTypeInfo = deviceInfo.deviceType;
 
 /**
  * MoreConnections
@@ -27,12 +32,17 @@ import nfcController from '@ohos.nfc.controller';
 struct MoreConnections {
   @State columnMargin: string = '24vp';
   @State nfcEnable: string = '';
-  @State isNfcEnable: boolean = false;
+  @StorageLink('nfcStatus') nfcStatus: boolean = NfcModel.isNfcOpen();
+  private maxScreenWidth;
+  private maxScreenHeight;
+  private nfcImageWidth;
+  private nfcImageHeight;
 
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
-        Row({}) {
+    Column() {
+      GridContainer({columns: 12, sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
+        Row() {
           Column() {
           }
           .width(ConfigData.WH_100_100)
@@ -45,12 +55,12 @@ struct MoreConnections {
           Column() {
             HeadComponent({ headName: $r('app.string.moreConnectionsTab'), isActive: true })
             Column({space: this.columnMargin}){
-              SubEntryComponentWithEndText({targetPage:'pages/nfc', title: $r('app.string.NFC'), endText: this.nfcEnable})
+              SubEntryComponentWithEndText({targetPage:'pages/nfc', title: $r('app.string.NFC'), endText: this.nfcStatus ? $r("app.string.enabled") : $r("app.string.disabled")})
             }
             .margin({ top: $r("app.float.distance_8") })
             .width(ConfigData.WH_100_100)
           }
-          .padding({ left: $r('app.float.distance_24'), right: $r('app.float.distance_24') })
+          .margin({ left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end') })
           .width(ConfigData.WH_100_100)
           .height(ConfigData.WH_100_100)
           .useSizeType({
@@ -79,19 +89,45 @@ struct MoreConnections {
   }
 
   aboutToAppear(){
-    LogUtil.info('settings moreConnections aboutToAppear in');
+    LogUtil.info(TAG + 'aboutToAppear in');
     ResourceUtil.getString($r('app.float.distance_24')).then(value => this.columnMargin = value);
 
-    let nfcState = nfcController.getNfcState();
-    if (nfcState === ConfigData.STATE_ON) {
-      this.isNfcEnable = true;
-      this.nfcEnable = ConfigData.NFC_OPEN;
-    }
-    if (nfcState === ConfigData.STATE_OFF) {
-      this.isNfcEnable = false;
-      this.nfcEnable = ConfigData.NFC_CLOSE;
-    }
-    AppStorage.SetOrCreate('isNfcEnable', this.isNfcEnable)
-    LogUtil.info('settings moreConnections aboutToAppear out');
+    // get screen max width and max height to show nfc image width and height
+    display.getDefaultDisplay((err, data) => {
+      if (err.code) {
+        LogUtil.error(TAG + 'Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+        return;
+      }
+      LogUtil.info(TAG + 'Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+
+      // screen max width
+      this.maxScreenWidth = data.width;
+      // screen max height
+      this.maxScreenHeight = data.height;
+
+      if (deviceTypeInfo === 'phone') {
+        if (this.maxScreenWidth < this.maxScreenHeight / 2) {
+          this.nfcImageWidth = this.maxScreenWidth * 0.8;
+          this.nfcImageHeight = this.maxScreenWidth * 0.8;
+        } else {
+          this.nfcImageWidth = (this.maxScreenHeight / 2) * 0.8;
+          this.nfcImageHeight = (this.maxScreenHeight / 2) * 0.8;
+        }
+      }
+      else {
+        if (this.maxScreenHeight > this.maxScreenWidth / 2) {
+          this.nfcImageWidth = (this.maxScreenWidth / 2) * 0.7;
+          this.nfcImageHeight = (this.maxScreenWidth / 2) * 0.7;
+        } else {
+          this.nfcImageWidth = this.maxScreenHeight * 0.7;
+          this.nfcImageHeight = this.maxScreenHeight * 0.7;
+        }
+      }
+      AppStorage.SetOrCreate('nfcImageWidth', this.nfcImageWidth);
+      AppStorage.SetOrCreate('nfcImageHeight', this.nfcImageHeight);
+      LogUtil.info('cq=====' + this.nfcImageWidth + typeof(this.maxScreenHeight));
+    })
+
+    LogUtil.info(TAG + 'aboutToAppear out');
   }
 }

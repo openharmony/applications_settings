@@ -1037,6 +1037,10 @@
       "value": "软件更新启动失败，请确定该功能是否可用"
     },
     {
+      "name": "add",
+      "value": "添加"
+    },
+    {
       "name": "MANAGE_LOCAL_ACCOUNTS",
       "value": "管理本地帐户"
     },

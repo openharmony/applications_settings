@@ -12,23 +12,53 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import nfcController from '@ohos.nfc.controller';
 
-export class NfcModel {
-  private isNfcOpen: boolean;
-  private TAG = ConfigData.TAG + 'NfcModel ';
+const TAG = ConfigData.TAG + 'NfcModel: ';
 
+export class NfcModel {
+  /**
+   * register Nfc Status change
+   * @param callback
+   */
+  registerNfcStatusObserver(callback) {
+    LogUtil.info(TAG + 'start register nfc status observer' );
+    nfcController.on('nfcStateChange', (code) => {
+      AppStorage.SetOrCreate('nfcStatus', nfcController.isNfcOpen());
+      callback(code);
+    })
+  }
+
+  /**
+   * check whether NFC is open
+   * return boolean. true is mean of NFC open, false is mean of NFC close
+   */
+  isNfcOpen(): boolean {
+    const isOpen: boolean = nfcController.isNfcOpen();
+    LogUtil.info(TAG + 'check nfc is open: ' + isOpen);
+    return isOpen;
+  }
+
+  /**
+   * open NFC
+   * return boolean. true is mean of NFC open success, false is mean of NFC open failed
+   */
   openNfc(): boolean {
-    let enableNfc = nfcController.openNfc()
-    LogUtil.info(this.TAG + enableNfc)
+    let enableNfc = nfcController.openNfc();
+    LogUtil.info(TAG + 'open nfc: ' + enableNfc);
     return enableNfc;
   }
 
+  /**
+   * close NFC
+   * return boolean. true is mean of NFC close success, false is mean of NFC close failed
+   */
   closeNfc(): boolean {
-    let disableNfc = nfcController.closeNfc()
-    LogUtil.info(this.TAG + disableNfc)
+    let disableNfc = nfcController.closeNfc();
+    LogUtil.info(TAG + 'close nfc' + disableNfc);
     return disableNfc;
   }
 }

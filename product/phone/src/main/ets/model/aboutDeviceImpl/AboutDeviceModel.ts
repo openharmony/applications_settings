@@ -55,6 +55,7 @@ export class AboutDeviceModel extends BaseModel {
   constructor(){
     super();
     this.urivar = this.getUri();
+    // @ts-ignore
     this.dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.settingsAbilityContext, this.uri);
   }
 
