@@ -39,6 +39,7 @@ export class BrightnessSettingModel extends BaseModel{
   constructor() {
     super();
     this.urivar = this.getUri();
+    // @ts-ignore
     this.dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.settingsAbilityContext, this.uri);
     this.updateValue();
   }

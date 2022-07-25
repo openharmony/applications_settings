@@ -34,6 +34,7 @@ export class DateAndTimeModel extends BaseModel {
   constructor() {
     super();
     this.urivar = this.getUri();
+    // @ts-ignore
     this.dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.settingsAbilityContext, this.uri);
   }
 

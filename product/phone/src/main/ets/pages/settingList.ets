@@ -23,7 +23,7 @@ import Router from '@system.router';
 import FeatureAbility from '@ohos.ability.featureAbility';
 import { BaseData } from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
 import deviceInfo from '@ohos.deviceInfo';
-import parameter from '@ohos.systemParameter';
+import parameter from '@ohos.systemparameter';
 
 const PAGE_SEARCH = 'pages/searchPage'; // for search
 const deviceTypeInfo = deviceInfo.deviceType

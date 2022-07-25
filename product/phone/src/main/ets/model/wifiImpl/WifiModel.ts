@@ -304,6 +304,7 @@ export class WifiModel extends BaseModel {
 
   connectWiFi(password: string) {
     let apInfo = this.userSelectedAp.getApInfo();
+    let ret = false;
     let connectParam: any = {
       "ssid": apInfo.ssid,
       "bssid": apInfo.bssid,
@@ -311,13 +312,20 @@ export class WifiModel extends BaseModel {
       "isHiddenSsid": false, // we don't support connect to hidden ap yet
       "securityType": apInfo.securityType
     };
-
+    LogUtil.info(MODULE_TAG + 'disconnect WiFi isConnected is ' + wifi.isConnected());
     if (wifi.isConnected() === true) {
-      wifi.disconnect();
+      ret = wifi.disconnect();
+      LogUtil.info(MODULE_TAG + 'disconnect WiFi ret is ' + ret);
+      this.registerWiFiConnectionObserver((code: Number) => {
+        if (code === 0) {
+          ret = wifi.connectToDevice(connectParam);
+          this.unregisterWiFiConnectionObserver();
+        }
+      })
+    }else{
+      ret = wifi.connectToDevice(connectParam);
+      LogUtil.info(MODULE_TAG + 'connect WiFi ret is ' + ret);
     }
-
-    let ret = wifi.connectToDevice(connectParam);
-    LogUtil.info(MODULE_TAG + 'connect WiFi ret is ' + ret);
     return ret;
   }
 
@@ -351,7 +359,7 @@ export class WifiModel extends BaseModel {
       return WiFiEncryptMethodMap.OPEN;
     }
     if (apInfo.securityType === 2) {
-      return WiFiEncryptMethodMap.WPA;
+      return WiFiEncryptMethodMap.WEP;
     }
     return WiFiEncryptMethodMap.WPA2;
   }

@@ -995,6 +995,10 @@
     {
       "name": "head_font_24",
       "value": "20vp"
+    },
+    {
+      "name": "opacity_100_60",
+      "value": "0.6"
     }
   ]
 }

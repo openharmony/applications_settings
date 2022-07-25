@@ -381,7 +381,7 @@ struct CurrentDialogBuilder {
         .onClick((event) => {
           LogUtil.info("Click to modify user image.")
           let chooseImageDialog = new CustomDialogController({
-            builder: ChooseImageDialog({ controller: this.controller }),
+            builder: ChooseImageDialog(),
             alignment: DialogAlignment.Bottom,
             offset: ({ dx: 0, dy: '-24dp' }),
           });
