@@ -87,7 +87,6 @@ export default class BluetoothDeviceController extends BaseSettingsController {
       clearTimeout(this.discoveryStopTimeoutId);
     }
 
-    BluetoothModel.unsubscribeStateChange();
     BluetoothModel.unsubscribeBluetoothDeviceFind();
     BluetoothModel.unsubscribeBondStateChange();
     BluetoothModel.unsubscribeDeviceStateChange();

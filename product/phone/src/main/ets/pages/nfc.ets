@@ -6,22 +6,26 @@
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or
-    {
-      "name": "bluetoothTab", agreed to in writing, software
+ * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import NfcModel from '../model/moreConnectionsImpl/NfcModel';
 
+const TAG = ConfigData.TAG + 'Nfc: ';
+
 @Entry
 @Component
 struct Nfc {
-  @StorageLink('isNfcEnable') isNfcEnable: boolean = false;
+  @State isNfcEnable: boolean = false;
+  @StorageLink('nfcImageWidth') nfcImageWidth: number = null;
+  @StorageLink('nfcImageWidth') nfcImageHeight: number = null;
 
   build() {
     Column() {
@@ -46,19 +50,19 @@ struct Nfc {
             }
 
             Image($r("app.media.ic_nfc"))
-              .height($r("app.float.wh_value_298"))
-              .width($r("app.float.wh_value_208"))
+              .width(this.nfcImageWidth + "px")
+              .height(this.nfcImageHeight + "px")
               .margin({ top: $r("app.float.distance_19") })
 
             Text($r("app.string.nfcTips"))
               .fontFamily('HarmonyHeiTi')
               .fontWeight(FontWeight.Regular)
               .fontSize($r("app.float.font_14"))
-              .height($r("app.float.wh_value_19"))
               .lineHeight($r("app.float.lineHeight_19"))
               .fontColor($r("app.color.font_color_182431"))
-              .margin({ bottom: $r("app.float.distance_36"), top: $r("app.float.distance_27_5") })
+              .margin({ bottom: $r("app.float.distance_36"), top: $r("app.float.distance_24") })
               .opacity($r("app.float.opacity_100_60"))
+              .textAlign(TextAlign.Center)
 
               Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
                 Row() {
@@ -75,15 +79,20 @@ struct Nfc {
                   left: $r("app.float.wh_value_12") })
 
                 Toggle({ type: ToggleType.Switch, isOn: this.isNfcEnable })
-                  .width('36vp')
-                  .height('20vp')
-                  .selectedColor('#007DFF')
+                  .width($r("app.float.switch_toggle_width"))
+                  .height($r("app.float.switch_toggle_height"))
+                  .selectedColor($r("app.color.toggle_selected_color_007DFF"))
                   .margin({ right: $r('app.float.wh_value_6') })
                   .onChange((isOn: boolean) => {
-                    if (isOn) {
+                    this.isNfcEnable = !this.isNfcEnable;
+                    if (this.isNfcEnable) {
+                      // open NFC
                       NfcModel.openNfc()
+                      LogUtil.info(TAG + 'enable nfc: ' + NfcModel.openNfc());
                     } else {
+                      // close NFC
                       NfcModel.closeNfc()
+                      LogUtil.info(TAG + 'disable nfc: ' + NfcModel.openNfc());
                     }
                   });
               }
@@ -93,11 +102,7 @@ struct Nfc {
               .borderRadius($r('app.float.radius_24'))
           }
           .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .padding({
-            left: $r('app.float.wh_24'),
-            right: $r('app.float.wh_24'),
-            bottom: $r('app.float.distance_32')
-          })
+          .margin({ left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end') })
           .width(ConfigData.WH_100_100)
           .height(ConfigData.WH_100_100)
           .useSizeType({
@@ -124,5 +129,17 @@ struct Nfc {
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
     .height(ConfigData.WH_100_100);
+  }
+
+  aboutToAppear() {
+    LogUtil.info(TAG + 'aboutToAppear in');
+    NfcModel.registerNfcStatusObserver((code) => {
+      LogUtil.info(TAG + 'aboutToAppear status code: ' + code);
+      this.isNfcEnable = NfcModel.isNfcOpen();
+      LogUtil.info(TAG + 'aboutToAppear nfc open status: ' + this.isNfcEnable);
+    })
+    // init nfc active status
+    this.isNfcEnable = NfcModel.isNfcOpen();
+    LogUtil.info(TAG + 'aboutToAppear out');
   }
 }
