@@ -41,6 +41,7 @@ struct WifiPsd {
   private tobeConnectedAp: WifiScanInfo = null;
   private isConnectedBefore: boolean = false;
   private taskId: number = -1;
+  private toConnected: boolean = false;
   @State isPhone: boolean = false
   @State @Watch("controlFailedDialog") ControlFailedDialog : boolean = false;
   private connectDialog: CustomDialogController = new CustomDialogController({
@@ -172,6 +173,7 @@ struct WifiPsd {
                     () => {
                       WifiModel.setUserSelectedAp(this.tobeConnectedAp);
                       WifiModel.connectWiFi(this.userInputs);
+                      this.toConnected = true;
                       this.connectDialog.open();
                     });
                 }
@@ -229,6 +231,7 @@ struct WifiPsd {
     }
     this.initTextInputHint();
     this.isConnectedBefore = wifi.isConnected();
+
     if (this.isConnectedBefore) {
       LogUtil.info(MODULE_TAG + 'start task');
       this.startLinkedInfoTask();
@@ -315,7 +318,8 @@ struct WifiPsd {
           });
           WifiModel.refreshApScanResults();
         }
-        if (result.connState === 6) {
+        if (result.connState === 6 && this.toConnected) {
+          this.toConnected = false;
           this.connectDialog.close()
           this.failedDialog.open()
           WifiModel.removeDeviceConfig(this.tobeConnectedAp);

@@ -462,7 +462,7 @@
     },
     {
       "name": "isCreatingUser",
-      "value": "正在创建..."
+      "value": "Is Creating User..."
     },
     {
       "name": "isRemoving",
@@ -817,7 +817,7 @@
       "value": "Brightness"
     },
     {
-      "name": "Screen",
+      "name": "screen",
       "value": "Screen"
     },
     {
@@ -1031,6 +1031,10 @@
     {
       "name": "softwareUpdateFailed",
       "value": "Software update startup failed, please make sure the function is available."
+    },
+    {
+      "name": "add",
+      "value": "Add"
     },
     {
       "name": "MANAGE_LOCAL_ACCOUNTS",

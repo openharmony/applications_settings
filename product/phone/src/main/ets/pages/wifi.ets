@@ -319,10 +319,12 @@ struct Index {
     }
     // as the ConnectionStateChange event is diff with the getLinkInfo callback,
     // we always get the diff status between them
-    if (this.connectedWiFi.settingTitle === '') {
-      return false
+    let titleSign: boolean = (!!this.connectedWiFi.settingTitle) && (this.connectedWiFi.settingTitle.length > 0);
+    let arrowSign: boolean = (!!this.connectedWiFi.settingArrow) && (this.connectedWiFi.settingArrow.length > 0);
+    if(titleSign && arrowSign){
+      return true;
     }
-    return true;
+    return false;
   }
 
   jumpToConnectApPage(apInfo: WifiScanInfo) {
@@ -379,6 +381,8 @@ struct Index {
     } else {
       this.isPhone = false
     }
+
+    AppStorage.SetOrCreate('slConnectedWifi', (new ApScanResult()).renderToListModel());
   }
 
   aboutToDisappear(): void {
