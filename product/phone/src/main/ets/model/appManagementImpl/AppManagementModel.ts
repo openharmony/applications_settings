@@ -37,14 +37,21 @@ export class AppManagementModel extends BaseModel {
 
     constructor() {
         super();
-        globalThis.settingsAbilityContext.resourceManager.getMediaBase64(icon_default)
-            .then((res) => {
-                icon_default_str = res;
-                LogUtil.info('settings AppManagementModel getResourceManager init defaultIcon res:' + icon_default_str);
-            })
-            .catch((err) => {
-                LogUtil.info('settings AppManagementModel getResourceManager init defaultIcon error:' + err);
-            });
+        try {
+            globalThis.settingsAbilityContext.resourceManager.getMediaBase64(icon_default)
+                .then((res) => {
+                    icon_default_str = res;
+                    LogUtil.info('settings AppManagementModel getResourceManager init defaultIcon res:' + icon_default_str);
+                })
+                .catch((err) => {
+                    icon_default_str = "";
+                    LogUtil.info('settings AppManagementModel getResourceManager init defaultIcon error:' + err);
+                });
+        } catch (err) {
+            icon_default_str = "";
+            LogUtil.info('settings AppManagementModel getResourceManager init defaultIcon error:' + err);
+        }
+
     }
     /**
      * get application data
