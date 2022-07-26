@@ -42,7 +42,6 @@ export default struct DoubleLineComponent {
           .width(this.image_wh)
           .height(this.image_wh)
           .margin({ right: $r('app.float.wh_value_16') })
-          .visibility('' === this.settingIcon ? Visibility.None : Visibility.Visible)
           .objectFit(ImageFit.Contain);
 
         Column() {
