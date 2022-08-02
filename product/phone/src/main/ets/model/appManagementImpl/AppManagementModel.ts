@@ -24,7 +24,7 @@ const INDEX = 0;
 const IS_INCLUDE_ABILITY_INFO = 0;
 const URI_PAGE = 'pages/applicationInfo';
 let icon_arrow = $r('app.media.ic_settings_arrow');
-let icon_default = $r('app.media.icon_default');
+let icon_default = "ohos_app_icon";
 let icon_default_str = "";
 
 const MODULE_TAG = ConfigData.TAG + 'application-> ';
@@ -38,7 +38,7 @@ export class AppManagementModel extends BaseModel {
     constructor() {
         super();
         try {
-            globalThis.settingsAbilityContext.resourceManager.getMediaBase64(icon_default)
+            globalThis.settingsAbilityContext.resourceManager.getMediaBase64ByName(icon_default)
                 .then((res) => {
                     icon_default_str = res;
                     LogUtil.info('settings AppManagementModel getResourceManager init defaultIcon res:' + icon_default_str);

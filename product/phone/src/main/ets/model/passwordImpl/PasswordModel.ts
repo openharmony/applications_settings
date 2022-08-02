@@ -308,9 +308,14 @@ export class PasswordModel extends BaseModel {
   openSession(callback: (challenge: string) => void): void {
     LogUtil.debug(`${this.TAG}openSession in.`);
     try {
-      this.userIdentityManager.openSession((data) => {
-        callback(this.u8AToStr(data));
-      })
+      this.userIdentityManager.openSession()
+                              .then((data) =>{
+                                callback(this.u8AToStr(data));
+                                LogUtil.info(`${this.TAG} openSession success`);
+                              })
+                              .catch((err) => {
+                                LogUtil.error(`${this.TAG} openSession failed` + JSON.stringify(err));
+                              })
     } catch {
       LogUtil.error(`${this.TAG}openSession failed`);
       callback('0');
@@ -466,25 +471,31 @@ export class PasswordModel extends BaseModel {
   }>) => void): void {
     LogUtil.debug(`${this.TAG}getPinAuthInfo in.`);
     try {
-      this.userIdentityManager.getAuthInfo(AuthType.PIN, (data) => {
-        LogUtil.info(`${this.TAG} get pin auth info data.`);
-        let arrCredInfo = [];
-        try{
-          for(let i = 0; i < data.length; i++) {
-            let credInfo = {
-              'authType': data[i].authType,
-              'authSubType': data[i].authSubType
-            };
-            if (credInfo.authType == AuthType.PIN) {
-              this.pinSubType = credInfo.authSubType;
-            }
-            arrCredInfo.push(credInfo);
-          }
-        } catch(e) {
-          LogUtil.debug('faceDemo pin.getAuthInfo error = ' + e);
-        }
-        callback(arrCredInfo);
-      })
+      this.userIdentityManager.getAuthInfo(AuthType.PIN)
+                              .then((data) => {
+                                LogUtil.info(`${this.TAG} get pin auth info data.`);
+                                let arrCredInfo = [];
+                                try {
+                                  for(let i = 0; i < data.length; i++) {
+                                    let credInfo = {
+                                      'authType': data[i].authType,
+                                      'authSubType': data[i].authSubType
+                                    };
+
+                                    if (credInfo.authType == AuthType.PIN) {
+                                      this.pinSubType = credInfo.authSubType;
+                                    }
+                                    arrCredInfo.push(credInfo);
+                                  }
+                                } catch(e) {
+                                  LogUtil.info('faceDemo pin.getAuthInfo error = ' + e);
+                                }
+                                callback(arrCredInfo);
+                                LogUtil.info(`${this.TAG} getAuthInfo success.`);
+                              })
+                              .catch((err) => {
+                                LogUtil.error(`${this.TAG} getAuthInfo failed.` + JSON.stringify(err));
+                              })
     } catch (e) {
       LogUtil.error(`${this.TAG}getPinAuthInfo failed:` + e);
     }
