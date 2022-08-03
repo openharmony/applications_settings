@@ -831,7 +831,8 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
  * @param info the callback info passed into the callback function
  * @return napi_value the return value from NAPI C++ to JS for the module.
  */
-napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info){
+napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
+{
     const size_t paramOfPromise = ARGS_ONE;
     const size_t paramOfCallback = ARGS_TWO;
 
@@ -955,7 +956,8 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info){
  * @param info the callback info passed into the callback function
  * @return napi_value the return value from NAPI C++ to JS for the module.
  */
-napi_value napi_can_show_floating(napi_env env, napi_callback_info info){
+napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
+{
     const size_t paramOfPromise = PARAM0;
     const size_t paramOfCallback = PARAM1;
 
