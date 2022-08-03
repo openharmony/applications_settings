@@ -824,5 +824,249 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
     HILOG_INFO("settingsnapi : set  value end");
     return ret;
 }
+
+/**
+ * @brief enableAirplaneMode NAPI implementation.
+ * @param env the environment that the Node-API call is invoked under
+ * @param info the callback info passed into the callback function
+ * @return napi_value the return value from NAPI C++ to JS for the module.
+ */
+napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info){
+    const size_t paramOfPromise = ARGS_ONE;
+    const size_t paramOfCallback = ARGS_TWO;
+
+    size_t argc = ARGS_TWO;
+    napi_value args[ARGS_TWO] = {nullptr};
+    NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
+    if (argc != paramOfCallback && argc != paramOfPromise) {
+        HILOG_ERROR("settingsnapi : %{public}s, wrong number of arguments, expect 1 or 2 but get %{public}zd",
+            __func__, argc);
+        return wrap_void_to_js(env);
+    }
+
+    HILOG_INFO("settingsnapi : napi_enable_airplane_mode arg count is %{public}zd", argc);
+    HILOG_INFO("settingsnapi : napi_enable_airplane_mode start create aysnc call back info");
+    AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
+        .env = env,
+        .asyncWork = nullptr,
+        .deferred = nullptr,
+        .callbackRef = nullptr,
+        .dataAbilityHelper = nullptr,
+        .key = "",
+        .value = "",
+        .uri = "",
+        .status = 0,
+    };
+    HILOG_INFO("settingsnapi : after create aysnc call back info");
+
+    napi_valuetype valueType;
+    NAPI_CALL(env, napi_typeof(env, args[PARAM0], &valueType));
+    NAPI_ASSERT(env, valueType == napi_boolean, "Wrong argument[0], type. Boolean expected");
+
+    napi_value resource = nullptr;  
+    NAPI_CALL(env, napi_create_string_utf8(env, "enableAirplaneMode", NAPI_AUTO_LENGTH, &resource));
+
+    if (argc == paramOfCallback) {
+        HILOG_INFO("%{public}s, asyncCallback.", __func__);
+
+        napi_create_reference(env, args[PARAM1], 1, &asyncCallbackInfo->callbackRef);
+        napi_create_async_work(
+            env,
+            nullptr,
+            resource,
+            [](napi_env env, void* data) {},
+            [](napi_env env, napi_status status, void* data) {
+                if (data == nullptr) {
+                    HILOG_INFO("settingsnapi : callback async end data is null");
+                    return;
+                }
+                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+
+                napi_value callback = nullptr;
+                napi_value undefined;
+                napi_get_undefined(env, &undefined);
+
+                napi_value result[PARAM2] = {0};
+
+                // create error code
+                napi_value error = nullptr;
+                napi_create_object(env, &error);
+                int unSupportCode = 801;
+                napi_value errCode = nullptr;
+                napi_create_int32(env, unSupportCode, &errCode);
+                napi_set_named_property(env, error, "code", errCode);
+                result[0] = error;
+                napi_get_undefined(env, &result[1]);
+
+                napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
+                napi_value callResult;
+                napi_call_function(env, undefined, callback, PARAM2, result, &callResult);
+                HILOG_INFO("settingsnapi : callback aysnc end called");
+
+                napi_delete_reference(env, asyncCallbackInfo->callbackRef);
+                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
+                delete asyncCallbackInfo;
+                HILOG_INFO("settingsnapi : callback change callback complete");
+            },
+            (void*)asyncCallbackInfo,
+            &asyncCallbackInfo->asyncWork
+        );
+        NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
+        return wrap_void_to_js(env);
+    } else {
+        HILOG_INFO("%{public}s, promise.", __func__);
+        napi_deferred deferred;
+        napi_value promise;
+        NAPI_CALL(env, napi_create_promise(env, &deferred, &promise));
+        asyncCallbackInfo->deferred = deferred;
+
+        napi_create_async_work(
+            env,
+            nullptr,
+            resource,
+            [](napi_env env, void *data) {},
+            [](napi_env env, napi_status status, void *data) {
+                HILOG_INFO("%{public}s, promise complete", __func__);
+                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+
+                napi_value result;
+                napi_value error = nullptr;
+                napi_create_object(env, &error);
+                int unSupportCode = 801;
+                napi_value errCode = nullptr;
+                napi_create_int32(env, unSupportCode, &errCode);
+                napi_set_named_property(env, error, "code", errCode);
+                result = error;
+
+                napi_reject_deferred(env, asyncCallbackInfo->deferred, result);
+                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
+                delete asyncCallbackInfo;
+            },
+            (void *)asyncCallbackInfo,
+            &asyncCallbackInfo->asyncWork);
+        napi_queue_async_work(env, asyncCallbackInfo->asyncWork);
+        return promise;
+    }
+}
+
+/**
+ * @brief canShowFloating NAPI implementation.
+ * @param env the environment that the Node-API call is invoked under
+ * @param info the callback info passed into the callback function
+ * @return napi_value the return value from NAPI C++ to JS for the module.
+ */
+napi_value napi_can_show_floating(napi_env env, napi_callback_info info){
+    const size_t paramOfPromise = PARAM0;
+    const size_t paramOfCallback = PARAM1;
+
+    size_t argc = PARAM1;
+    napi_value args[PARAM1] = {nullptr};
+    NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
+    if (argc != paramOfCallback && argc != paramOfPromise) {
+        HILOG_ERROR("settingsnapi : %{public}s, wrong number of arguments, expect 0 or 1 but get %{public}zd",
+            __func__, argc);
+        return wrap_void_to_js(env);
+    }
+
+    HILOG_INFO("settingsnapi : napi_enable_airplane_mode arg count is %{public}zd", argc);
+    HILOG_INFO("settingsnapi : napi_enable_airplane_mode start create aysnc call back info");
+    AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
+        .env = env,
+        .asyncWork = nullptr,
+        .deferred = nullptr,
+        .callbackRef = nullptr,
+        .dataAbilityHelper = nullptr,
+        .key = "",
+        .value = "",
+        .uri = "",
+        .status = 0,
+    };
+    HILOG_INFO("settingsnapi : after create aysnc call back info");
+
+    napi_value resource = nullptr;  
+    NAPI_CALL(env, napi_create_string_utf8(env, "enableAirplaneMode", NAPI_AUTO_LENGTH, &resource));
+
+    if (argc == paramOfCallback) {
+        HILOG_INFO("%{public}s, asyncCallback.", __func__);
+
+        napi_create_reference(env, args[PARAM0], 1, &asyncCallbackInfo->callbackRef);
+        napi_create_async_work(
+            env,
+            nullptr,
+            resource,
+            [](napi_env env, void* data) {},
+            [](napi_env env, napi_status status, void* data) {
+                if (data == nullptr) {
+                    HILOG_INFO("settingsnapi : callback async end data is null");
+                    return;
+                }
+                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+
+                napi_value callback = nullptr;
+                napi_value undefined;
+                napi_get_undefined(env, &undefined);
+
+                napi_value result[PARAM2] = {0};
+
+                // create error code
+                napi_value error = nullptr;
+                napi_create_object(env, &error);
+                int unSupportCode = 801;
+                napi_value errCode = nullptr;
+                napi_create_int32(env, unSupportCode, &errCode);
+                napi_set_named_property(env, error, "code", errCode);
+                result[0] = error;
+                result[1] = wrap_bool_to_js(env, false);
+
+                napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
+                napi_value callResult;
+                napi_call_function(env, undefined, callback, PARAM2, result, &callResult);
+                HILOG_INFO("settingsnapi : callback aysnc end called");
+
+                napi_delete_reference(env, asyncCallbackInfo->callbackRef);
+                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
+                delete asyncCallbackInfo;
+                HILOG_INFO("settingsnapi : callback change callback complete");
+            },
+            (void*)asyncCallbackInfo,
+            &asyncCallbackInfo->asyncWork
+        );
+        NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
+        return wrap_void_to_js(env);
+    } else {
+        HILOG_INFO("%{public}s, promise.", __func__);
+        napi_deferred deferred;
+        napi_value promise;
+        NAPI_CALL(env, napi_create_promise(env, &deferred, &promise));
+        asyncCallbackInfo->deferred = deferred;
+
+        napi_create_async_work(
+            env,
+            nullptr,
+            resource,
+            [](napi_env env, void *data) {},
+            [](napi_env env, napi_status status, void *data) {
+                HILOG_INFO("%{public}s, promise complete", __func__);
+                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+
+                napi_value result;
+                napi_value error = nullptr;
+                napi_create_object(env, &error);
+                int unSupportCode = 801;
+                napi_value errCode = nullptr;
+                napi_create_int32(env, unSupportCode, &errCode);
+                napi_set_named_property(env, error, "code", errCode);
+                result = error;
+
+                napi_reject_deferred(env, asyncCallbackInfo->deferred, result);
+                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
+                delete asyncCallbackInfo;
+            },
+            (void *)asyncCallbackInfo,
+            &asyncCallbackInfo->asyncWork);
+        napi_queue_async_work(env, asyncCallbackInfo->asyncWork);
+        return promise;
+    }
+}
 }  // namespace Settings
 }  // namespace OHOS
