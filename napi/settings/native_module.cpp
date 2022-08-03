@@ -39,6 +39,8 @@ static napi_value Init(napi_env env, napi_value exports)
         DECLARE_NAPI_FUNCTION("getUriSync", napi_get_uri_sync),
         DECLARE_NAPI_FUNCTION("getValueSync", napi_get_value_sync),
         DECLARE_NAPI_FUNCTION("setValueSync", napi_set_value_sync),
+        DECLARE_NAPI_FUNCTION("enableAirplaneMode", napi_enable_airplane_mode),
+        DECLARE_NAPI_FUNCTION("canShowFloating", napi_can_show_floating),
     };
 
     // init settings class
