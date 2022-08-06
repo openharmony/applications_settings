@@ -999,6 +999,14 @@
     {
       "name": "opacity_100_60",
       "value": "0.6"
+    },
+    {
+      "name": "cancel_animation_button_w_value",
+      "value": "152vp"
+    },
+    {
+      "name": "animationScalingInformation_h_value",
+      "value": "456vp"
     }
   ]
 }

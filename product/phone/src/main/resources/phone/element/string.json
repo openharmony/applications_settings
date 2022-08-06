@@ -1125,6 +1125,10 @@
       "value": "获取WLAN的MAC地址"
     },
     {
+      "name": "ERROR_WIFI_CHANGE",
+      "value": "操作WLAN错误"
+    },
+    {
       "name": "USE_BLUETOOTH",
       "value": "使用蓝牙"
     },
@@ -1163,6 +1167,42 @@
     {
       "name": "MODIFY_AUDIO_SETTINGS",
       "value": "修改音频设置"
+    },
+    {
+      "name": "Debug_GPU_OverDraw",
+      "value": "调试 GPU 过度绘制"
+    },
+    {
+      "name": "Animation_Multiplier",
+      "value": "动画缩放 %sx"
+    },
+    {
+      "name": "Close_Animation",
+      "value": "关闭动画"
+    },
+    {
+      "name": "Animation_Zooms",
+      "value": "动画缩放 1x"
+    },
+    {
+      "name": "Show_Layout_Boundaries",
+      "value": "显示布局边界"
+    },
+    {
+      "name": "Show_boundaries_Margin",
+      "value": "显示剪辑边界、边距等"
+    },
+    {
+      "name": "Global_Animation",
+      "value": "全局动画"
+    },
+    {
+      "name": "Excessive_animation_scaling",
+      "value": "过度动画缩放"
+    },
+    {
+      "name": "Cancel_Animation",
+      "value": "取消"
     }
   ]
 }

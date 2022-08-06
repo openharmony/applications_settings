@@ -18,7 +18,7 @@ import BaseSettingsController from './BaseSettingsController'
  * Switch controller
  */
 export default abstract class SwitchController extends BaseSettingsController {
-  protected isOn: boolean = false;
+  isOn: boolean = false;
   protected enabled: boolean = true;
 
   /**

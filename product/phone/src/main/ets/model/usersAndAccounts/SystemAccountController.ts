@@ -64,12 +64,27 @@ export class SystemAccountController {
   }
 
   /**
+   * Whether account list has quest
+   *
+   * @return boolean.true if account list has quest,false if account list doesn't have quest
+   */
+  isHasQuest() {
+    for (let index = 0; index < this.accountList.length; index++) {
+      LogUtil.info("Is show add quest, system account type: " + this.accountList[index].type);
+      if (this.accountList[index].type.GUEST == TYPE_GUEST) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
    * Whether to show add normal user item.
    *
    * @return true if current user is administrator.
    */
   isShowAddUser() {
-    return this.currentAccount.type.ADMIN == TYPE_ADMIN && this.accountList.length < MAX_ACCOUNT;
+    return this.currentAccount.type.ADMIN == TYPE_ADMIN && this.accountList.length < (this.isHasQuest() ? MAX_ACCOUNT : (MAX_ACCOUNT - 1));
   }
 
   /**
@@ -78,14 +93,7 @@ export class SystemAccountController {
    * @return true when created account list no contains quest account.
    */
   isShowAddQuest() {
-    let hasQuest = false;
-    for (let index = 0; index < this.accountList.length; index++) {
-      LogUtil.info("Is show add quest, system account type: " + this.accountList[index].type);
-      if (this.accountList[index].type.GUEST == TYPE_GUEST) {
-        hasQuest = true;
-      }
-    }
-    return !hasQuest && this.accountList.length < MAX_ACCOUNT;
+    return this.currentAccount.type.ADMIN == TYPE_ADMIN && !this.isHasQuest() && this.accountList.length < MAX_ACCOUNT;
   }
 
   /**
