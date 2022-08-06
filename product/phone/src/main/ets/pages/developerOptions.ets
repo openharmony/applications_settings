@@ -15,8 +15,20 @@
 
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import SwitchComponent from '../../../../../../common/component/src/main/ets/default/switchComponent';
-import UsbDebuggingController from '../controller/developerOptions/UsbDebuggingController'
+import UsbDebuggingController from '../controller/developerOptions/UsbDebuggingController';
+import OverdrawController from '../controller/developerOptions/OverdrawController';
+import LayoutBoundariesController from '../controller/developerOptions/LayoutBoundariesController'
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
+import parameter from '@ohos.systemparameter';
+import deviceInfo from '@ohos.deviceInfo';
+import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+
+const deviceTypeInfo = deviceInfo.deviceType
+
+const MODULE_TAG = ConfigData.TAG + '.developerOptions -> ';
+const GRAPHIC_ANIMATION_SCALE_NAME = "persist.sys.graphic.animationscale";
+const ARKUI_ANIMATION_SCALE_NAME = "persist.sys.arkui.animationscale";
+
 /**
  * Developer options
  */
@@ -24,8 +36,46 @@ import ConfigData from '../../../../../../common/utils/src/main/ets/default/base
 @Component
 struct developerOptions {
   @State columnMargin: string = '24vp';
-  @State isOn: boolean = false;
+  @State AnimationText: string | Resource = " ";
+  @State checked: string = "1";
+  @State controllerLayoutBoundariesIsOn: boolean = false;
+  @State controllerOverdrawIsOn: boolean = false;
+  @State controllerDebugIsOn: boolean = false;
+  @State isPhone : boolean = deviceTypeInfo === "phone";
+  @State getAnimationMultiplier : string =  parameter.getSync(ARKUI_ANIMATION_SCALE_NAME);
   private controller: UsbDebuggingController = new UsbDebuggingController();
+  private controllerOverdraw: OverdrawController = new OverdrawController();
+  private controllerLayoutBoundaries: LayoutBoundariesController = new LayoutBoundariesController();
+  private AnimationMultiplier: any[] = ["0", "0.5", "1", "1.5", "2", "5", "10"];
+  private AnimationScalingDialog: CustomDialogController = new CustomDialogController({
+    builder: AnimationScalingInformation({
+      AnimationMultiplier: this.AnimationMultiplier,
+      AnimationText: $AnimationText,
+      checked: $checked,
+      isPhone:$isPhone
+    }),
+    alignment: this.isPhone? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: 0 }),
+    autoCancel: true,
+    customStyle: true
+  });
+
+  aboutToAppear() {
+    LogUtil.info(MODULE_TAG + "aboutToAppear")
+    this.AnimationText = this.getAnimationMultiplier === "" ? $r("app.string.Animation_Zooms") : this.getAnimationMultiplier === "0" ? $r("app.string.Close_Animation") : $r("app.string.Animation_Multiplier", this.getAnimationMultiplier)
+    this.checked = this.getAnimationMultiplier === "" ? "1" : this.getAnimationMultiplier
+    if (parameter.getSync("debug.graphic.overdraw") === "false") {
+      this.controllerOverdrawIsOn = false
+    } else {
+      this.controllerOverdrawIsOn = Boolean(parameter.getSync("debug.graphic.overdraw"))
+    }
+    if (parameter.getSync("persist.ace.debug.boundary.enabled") === "false") {
+      this.controllerLayoutBoundariesIsOn = false
+    } else {
+      this.controllerLayoutBoundariesIsOn = Boolean(parameter.getSync("persist.ace.debug.boundary.enabled"))
+    }
+    LogUtil.info(MODULE_TAG + "aboutToAppear end")
+  }
 
   build() {
     Column() {
@@ -51,14 +101,83 @@ struct developerOptions {
               SwitchComponent({
                 title: $r("app.string.usbDebugging"),
                 summary: $r("app.string.locationServicesPromptInfo"),
-                isOn: $isOn,
+                isOn: $controllerDebugIsOn,
                 controller: this.controller
               })
             }.margin({ top: $r("app.float.distance_8") })
 
+            Column() {
+              List() {
+                ListItem() {
+                  SwitchComponent({
+                    title: $r("app.string.Show_Layout_Boundaries"),
+                    summary: $r("app.string.Show_boundaries_Margin"),
+                    isOn: $controllerLayoutBoundariesIsOn,
+                    controller: this.controllerLayoutBoundaries
+                  })
+                }
+
+                ListItem() {
+                  Row() {
+                    Column() {
+                      Text($r("app.string.Global_Animation"))
+                        .fontColor("#000000")
+                        .fontFamily("HarmonyHeiTi")
+                        .fontWeight(FontWeight.Regular)
+                        .fontSize($r("sys.float.ohos_id_text_size_body1"))
+                    }
+                    .alignItems(HorizontalAlign.Start)
+                    .margin({ left: $r('app.float.wh_24') })
+
+                    Blank()
+                    Row() {
+                      Text(this.AnimationText)
+                        .margin({ right: $r("app.float.distance_4") })
+                        .fontSize($r("sys.float.ohos_id_text_size_body2"))
+                        .fontColor($r("app.color.font_color_182431"))
+                      Image('/res/image/ic_settings_arrow.svg')
+                        .width($r('app.float.wh_value_12'))
+                        .height($r('app.float.wh_value_24'))
+                        .margin({ right: $r('app.float.distance_8') })
+                        .fillColor($r("sys.color.ohos_id_color_primary"))
+                        .opacity($r("app.float.opacity_0_2"))
+                        .margin({ right: $r('app.float.wh_24') })
+                    }
+                    .onClick(() => {
+                      this.AnimationScalingDialog.open()
+                    })
+                  }
+                  .alignItems(VerticalAlign.Center)
+                  .width(ConfigData.WH_100_100)
+                  .height($r("app.float.wh_48"))
+                }
+              }
+              .width(ConfigData.WH_100_100)
+              .divider({ strokeWidth: $r('app.float.divider_wh'), color: $r('sys.color.ohos_id_color_list_separator'),
+                startMargin: $r('app.float.wh_value_15'), endMargin: $r('app.float.wh_value_15') })
+
+            }
+            .borderRadius($r("app.float.wh_value_24"))
+            .backgroundColor($r("app.color.white_bg_color"))
+            .width(ConfigData.WH_100_100)
+            .height($r("app.float.wh_value_120"))
+            .margin({ top: $r("app.float.distance_12") })
+
+            Column() {
+              SwitchComponent({
+                title: $r("app.string.Debug_GPU_OverDraw"),
+                summary: "",
+                isOn: $controllerOverdrawIsOn,
+                controller: this.controllerOverdraw
+              })
+            }.margin({ top: $r("app.float.distance_12") })
+            .height($r("app.float.wh_value_56"))
           }
           .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
+          .padding({
+            left: this.isPhone ? $r("app.float.wh_value_12") : $r('app.float.wh_24'),
+            right: this.isPhone ? $r("app.float.wh_value_12") : $r('app.float.wh_24')
+          })
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
           .useSizeType({
@@ -86,3 +205,102 @@ struct developerOptions {
     .height(ConfigData.WH_100_100);
   }
 }
+
+@CustomDialog
+struct AnimationScalingInformation {
+  controller: CustomDialogController;
+  private AnimationMultiplier;
+  @Link isPhone : boolean ;
+  @Link AnimationText: string | Resource;
+  @Link checked: string;
+
+  aboutToAppear() {
+    LogUtil.info(MODULE_TAG + "aboutToAppear  deviceTypeInfo" + JSON.stringify(deviceTypeInfo))
+  }
+
+  build() {
+    Column(){
+      Column() {
+        Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+          Text($r("app.string.Excessive_animation_scaling"))
+            .fontFamily("HarmonyHeiTi")
+            .fontSize($r("sys.float.ohos_id_text_size_headline8"))
+            .fontWeight(FontWeight.Medium)
+        }
+        .height($r("app.float.wh_value_56"))
+
+        List() {
+          ForEach(this.AnimationMultiplier, (item, index) => {
+            ListItem() {
+              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+                Column() {
+                  Text(item === "0" ? $r("app.string.Close_Animation") : $r("app.string.Animation_Multiplier", item))
+                    .fontFamily("HarmonyHeiTi")
+                    .fontSize($r("sys.float.ohos_id_text_size_body1"))
+                    .fontWeight(FontWeight.Medium)
+                }
+
+                Row() {
+                  Radio({ value: "", group: 'radioGroup' })
+                    .checked(this.checked === this.AnimationMultiplier[index] ? true : false)
+                    .height($r("app.float.wh_value_24"))
+                    .width($r("app.float.wh_value_24"))
+                    .onChange((value: boolean) => {
+                      this.controller.close()
+                      if (item === "0") {
+                        this.AnimationText = $r("app.string.Close_Animation")
+                        parameter.set(GRAPHIC_ANIMATION_SCALE_NAME, "0")
+                        parameter.set(ARKUI_ANIMATION_SCALE_NAME, "0")
+                        LogUtil.info(MODULE_TAG + "close animation success")
+                      }
+                      else {
+                        this.AnimationText = $r("app.string.Animation_Multiplier", item)
+                        parameter.set(GRAPHIC_ANIMATION_SCALE_NAME, item).then(() => {
+                          LogUtil.info(MODULE_TAG + "set graphic parameter success")
+                        }).catch((err) => {
+                          LogUtil.info(MODULE_TAG + "catch graphic parameter error" + JSON.stringify(err))
+                        })
+                        parameter.set(ARKUI_ANIMATION_SCALE_NAME, item).then(() => {
+                          LogUtil.info(MODULE_TAG + "set arkui parameter success")
+                        }).catch((err) => {
+                          LogUtil.info(MODULE_TAG + "catch arkui parameter error" + JSON.stringify(err))
+                        })
+                      }
+                      this.checked = item
+                    })
+                }
+              }
+              .height($r("app.float.wh_value_48"))
+            }
+            .height($r("app.float.wh_value_48"))
+          })
+        }
+
+        Column() {
+          Text($r("app.string.Cancel_Animation"))
+            .fontSize($r("sys.float.ohos_id_text_size_button1"))
+            .fontColor($r("sys.color.ohos_id_color_text_primary_activated"))
+        }
+        .justifyContent(FlexAlign.Center)
+        .width($r("app.float.cancel_animation_button_w_value"))
+        .height($r("app.float.wh_value_40"))
+        .margin({ top: $r("app.float.distance_8") })
+        .backgroundColor($r("app.color.white_bg_color"))
+        .onClick(() => {
+          this.controller.close()
+        })
+      }
+      .padding({
+        left: $r("app.float.padding_24"),
+        right: $r("app.float.padding_24")
+      })
+      .height($r("app.float.animationScalingInformation_h_value"))
+      .alignItems(HorizontalAlign.Center)
+      .backgroundColor($r("app.color.white_bg_color"))
+      .borderRadius($r("app.float.radius_24"))
+    }
+    .width(this.isPhone ? ConfigData.WH_100_100 : $r("app.float.wh_value_410"))
+    .padding(this.isPhone ? { left: $r("app.float.distance_12"), right: $r("app.float.distance_12")} : {})
+  }
+}
+

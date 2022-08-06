@@ -20,7 +20,8 @@ import ConfigData from '../../../../../../common/utils/src/main/ets/default/base
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import router from '@system.router';
 import deviceInfo from '@ohos.deviceInfo'
-console.log('settings_20220424 wifi page in');
+import prompt from '@system.prompt';
+
 const MODULE_TAG = ConfigData.TAG + 'WifiModel.wifi -> '
 const deviceTypeInfo = deviceInfo.deviceType
 
@@ -99,6 +100,7 @@ struct Index {
   };
   @State isPhone: boolean = false;
   private switchDebounceFlag = undefined;
+  private timerId: number = -1;
   private clickApInfoDialog: CustomDialogController = new CustomDialogController({
     builder: apInfoDialog({
       apInfo: this.userSelectedApInfo,
@@ -344,6 +346,22 @@ struct Index {
     });
   }
 
+  timeLimits() {
+    this.timerId = setTimeout(() => {
+      if(this.isWiFiEnabled == WifiModel.isWiFiActive()){
+        this.timerId = -1;
+        return;
+      }
+      this.isWiFiEnabled = WifiModel.isWiFiActive();
+      LogUtil.error(MODULE_TAG + 'wifi timeLimits active status : ' + this.isWiFiEnabled);
+      this.timerId = -1;
+      prompt.showToast({
+        message: $r('app.string.ERROR_WIFI_CHANGE'),
+        duration: 1000,
+      });
+    }, 5000)
+  }
+
   switchWiFiActiveStatus() {
     // make the ui change quickly
     this.isWiFiEnabled = !this.isWiFiEnabled;
@@ -352,6 +370,9 @@ struct Index {
     // delay the wifi status change event
     if (this.switchDebounceFlag) {
       clearTimeout(this.switchDebounceFlag);
+    }
+    if (this.timerId != -1) {
+      clearTimeout(this.timerId);
     }
     this.switchDebounceFlag = setTimeout(() => {
       if (this.isWiFiEnabled) {
@@ -362,6 +383,7 @@ struct Index {
         WifiModel.disableWifi();
       }
       this.switchDebounceFlag = undefined;
+      this.timeLimits();
     }, 2000);
   }
 
@@ -369,9 +391,13 @@ struct Index {
     LogUtil.info(MODULE_TAG + 'about to appear wifi page');
     WifiModel.registerWiFiStatusObserver((code) => {
       LogUtil.info(MODULE_TAG + 'wifi status code : ' + code + ' taskId : ' + this.switchDebounceFlag);
-      if (!this.switchDebounceFlag) {
-        this.isWiFiEnabled = WifiModel.isWiFiActive();
-        LogUtil.info(MODULE_TAG + 'wifi active status : ' + this.isWiFiEnabled);
+      if ((!this.switchDebounceFlag) && (code == 0 || code == 1)) {
+        this.isWiFiEnabled = Boolean(code);
+        LogUtil.info(MODULE_TAG + 'wifi active status code : ' + code + " isWiFiEnabled" + this.isWiFiEnabled);
+        if (this.timerId != -1) {
+          clearTimeout(this.timerId);
+          this.timerId = -1;
+        }
       }
     });
     // init wifi active status

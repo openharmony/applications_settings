@@ -125,7 +125,6 @@ struct MoreConnections {
       }
       AppStorage.SetOrCreate('nfcImageWidth', this.nfcImageWidth);
       AppStorage.SetOrCreate('nfcImageHeight', this.nfcImageHeight);
-      LogUtil.info('cq=====' + this.nfcImageWidth + typeof(this.maxScreenHeight));
     })
 
     LogUtil.info(TAG + 'aboutToAppear out');
