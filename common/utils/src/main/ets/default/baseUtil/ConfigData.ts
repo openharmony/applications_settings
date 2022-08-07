@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import settings from '@ohos.settings';
 
 export class ConfigData {
   FILE_URI = '/data/accounts/account_0/applications/com.ohos.settings'
@@ -69,21 +70,18 @@ export class ConfigData {
   TIME_PREFIX_MORNING = "上午" ;
   TIME_PREFIX_AFTERNOON = "下午";
   TIME_FORMAT_URI = "dataability:///com.ohos.settingsdata.DataAbility";
-  TIME_FORMAT_KEY = 'settings.time.format';
-  SETTINGSDATA_BRIGHTNESS = 'settings.screen.brightness';
-  SETTINGSDATA_VOLUME_RINGTONE = 'settings.audio.ringtone';
-  SETTINGSDATA_VOLUME_MEDIA = 'settings.audio.media';
-  SETTINGSDATA_VOLUME_CALL = 'settings.audio.voicecall';
+  TIME_FORMAT_KEY = settings.date.TIME_FORMAT;
+  SETTINGSDATA_DEVICE_NAME = settings.general.DEVICE_NAME;
+  SETTINGSDATA_BRIGHTNESS = settings.display.SCREEN_BRIGHTNESS_STATUS;
   SLIDER_CHANG_MODE_MOVING = 1;
   SLIDER_CHANG_MODE_END = 2;
-  SETTINGSDATA_DEVICE_NAME = 'settings.general.device_name';
 
   //Language And Region
   ADDLANGUAGES = 'addedLanguages';
   CURRENTREGION = 'currentRegion';
 
-  //Storage Path
-  STORAGEPATH = '/data/accounts/account_0/appdata/com.ohos.settings/files';
+  //Key of StoragePath
+  STORAGEPATHKEY = 'storagePath';
 
   //StartAbility
   FACEAUTH_BUNDLE_NAME = 'com.ohos.settings.faceauth';

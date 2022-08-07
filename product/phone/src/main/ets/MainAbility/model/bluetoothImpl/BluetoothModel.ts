@@ -31,6 +31,17 @@ export enum ProfileCode {
   CODE_BT_PROFILE_PBAP_SERVER,
 };
 
+export enum ProfileConnectionState {
+  /** the current profile is disconnected */
+  STATE_DISCONNECTED = 0,
+  /** the current profile is being connected */
+  STATE_CONNECTING = 1,
+  /** the current profile is connected */
+  STATE_CONNECTED = 2,
+  /** the current profile is being disconnected */
+  STATE_DISCONNECTING = 3
+}
+
 export enum BondState {
   /** Indicate the bond state is invalid */
   BOND_STATE_INVALID = 0,
@@ -46,23 +57,6 @@ export enum DeviceType {
   PHONE = '3',
   COMPUTER = '4',
   WATCH = '5'
-}
-
-export enum DeviceState {
-  /** the device is disconnected */
-  STATE_DISCONNECTED = 0,
-  /** the device is being connected */
-  STATE_CONNECTING = 1,
-  /** the device is connected */
-  STATE_CONNECTED = 2,
-  /** the device is being disconnected */
-  STATE_DISCONNECTING = 3,
-  /** the device is available */
-  STATE_AVAILABLE = 100,
-  /** the device is pairing */
-  STATE_PAIRING = 101,
-  /** the device is paired */
-  STATE_PAIRED = 102
 }
 
 export enum BluetoothErrorCode {
