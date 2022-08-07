@@ -36,7 +36,6 @@ struct BluetoothPairedDeviceInfo {
   aboutToAppear() {
     param = Router.getParams();
     this.bluetoothDevice = JSON.parse(param.bluetoothDevice);
-    LogUtil.log(ConfigData.TAG + "aboutToAppear bluetoothDevice: " + JSON.stringify(this.bluetoothDevice));
   }
 
   build() {

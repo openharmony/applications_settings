@@ -54,7 +54,6 @@ export default class BluetoothDevice {
     })
   }
 
-  @Log
   setProfile(data: {
     profileId: number;
     deviceId: string;
