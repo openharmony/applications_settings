@@ -42,18 +42,23 @@ struct Bluetooth {
 
   @Log
   aboutToAppear(): void {
-    LogUtil.log(this.PAGE_TAG + 'aboutToAppear in : isOn = ' + this.isOn )
+    LogUtil.log(this.PAGE_TAG + 'aboutToAppear in : isOn = ' + this.isOn)
     this.deviceController
       .initData()
       .subscribe();
-    LogUtil.log(this.PAGE_TAG + 'aboutToAppear out : isOn = ' + this.isOn )
+    LogUtil.log(this.PAGE_TAG + 'aboutToAppear out : isOn = ' + this.isOn)
+    if (deviceTypeInfo === 'phone') {
+      this.isPhone = true
+    } else {
+      this.isPhone = false
+    }
   }
 
   @Log
   onPageShow(): void {
-    LogUtil.log(this.PAGE_TAG + 'onPageShow in : localName = ' + this.localName )
+    LogUtil.log(this.PAGE_TAG + 'onPageShow in : localName = ' + this.localName)
     this.deviceController.getLocalName();
-    LogUtil.log(this.PAGE_TAG + 'onPageShow out : localName = ' + this.localName )
+    LogUtil.log(this.PAGE_TAG + 'onPageShow out : localName = ' + this.localName)
   }
 
   @Log
@@ -88,7 +93,7 @@ struct Bluetooth {
                   .width($r('app.float.switch_toggle_width'))
                   .height($r('app.float.switch_toggle_height'))
                   .onChange(() => {
-                    LogUtil.log(this.PAGE_TAG + 'Toggle onClick: isOn = ' + this.isOn + ', enabled = ' + this.enabled )
+                    LogUtil.log(this.PAGE_TAG + 'Toggle onClick: isOn = ' + this.isOn + ', enabled = ' + this.enabled)
                     if (!this.enabled) return;
                     this.deviceController.toggleValue(!this.isOn);
                   });
@@ -222,9 +227,7 @@ struct DeviceNameComponent {
 @Component
 struct PairedDeviceComponent {
   private TAG_PAGE = ConfigData.TAG + 'PairedDeviceComponent ';
-
   private controller: BluetoothDeviceController;
-
   @StorageLink('bluetoothPairedDevices') pairedDevices: BluetoothDevice[] = [];
   @State isTouched: boolean = false;
   @State hide: boolean = true;
@@ -277,7 +280,7 @@ struct PairedDeviceComponent {
                     height: this.getConnectionStateText(item) == '' ? $r('app.float.wh_value_56') : ($r('app.float.wh_value_64')),
                     fontSize: ($r('app.float.font_16')),
                     onArrowClick: () => {
-                      LogUtil.info(this.TAG_PAGE + 'item go detail : ' + JSON.stringify(item));
+                      LogUtil.info(this.TAG_PAGE + 'item go detail');
                       this.gotoPairedDeviceInfo(item);
                     }
                   });
@@ -337,10 +340,9 @@ struct PairedDeviceComponent {
   }
 
   /**
-   * Get connection state text
-   * @param device
-   */
-  @Log
+    * Get connection state text
+    * @param device
+    */
   getConnectionStateText(device: BluetoothDevice): string | Resource {
     let stateText: string | Resource = '';
     switch (device.connectionState) {
@@ -373,7 +375,6 @@ struct PairedDeviceComponent {
    * @param item device
    * @return headphone connected or not
    */
-  @Log
   private isHeadPhoneConnected(item: BluetoothDevice): boolean {
     return item.deviceType === DeviceType.HEADPHONE && item.connectionState === ProfileConnectionState.STATE_CONNECTED
   }
@@ -382,11 +383,10 @@ struct PairedDeviceComponent {
    * Goto paired device Info
    * @param item device
    */
-  @Log
   private gotoPairedDeviceInfo(item: BluetoothDevice) {
     if (item.connectionState != ProfileConnectionState.STATE_CONNECTING
     && item.connectionState != ProfileConnectionState.STATE_DISCONNECTING) {
-      LogUtil.info(this.TAG_PAGE + 'item right icon on click : ' + JSON.stringify(item));
+      LogUtil.info(this.TAG_PAGE + 'item right icon on click.');
       let param = { 'bluetoothDevice': JSON.stringify(item) }
       Router.push({
         uri: PAGE_URI_BLUETOOTH_PAIRED_DEVICE_INFO,
@@ -476,14 +476,10 @@ struct DiscoveringAnimatorComponent {
 @Component
 struct AvailableDeviceComponent {
   private TAG_PAGE = ConfigData.TAG + 'AvailableDeviceComponent ';
-
   private controller: BluetoothDeviceController;
-
   @State isDeviceDiscovering: boolean = false;
   @StorageLink('bluetoothAvailableDevices') availableDevices: BluetoothDevice[] = [];
-
   @State pairPinCode: string = '';
-
   private pairingDevice: BluetoothDevice = undefined;
 
   pairDialog: CustomDialogController = new CustomDialogController({
@@ -559,7 +555,7 @@ struct AvailableDeviceComponent {
               .padding($r('app.float.distance_4'))
               .backgroundColor($r("app.color.white_bg_color"))
               .onClick(() => {
-                LogUtil.info(this.TAG_PAGE + 'item on click : ' + JSON.stringify(item));
+                LogUtil.info(this.TAG_PAGE + 'item on click');
                 this.pairDevice(item)
               })
             }
@@ -589,7 +585,6 @@ struct AvailableDeviceComponent {
    * Get pair state text
    * @param device
    */
-  @Log
   getPairStateText(device: BluetoothDevice): string | Resource {
     return device.connectionState == BondState.BOND_STATE_BONDING ? $r('app.string.bluetooth_state_pairing') : '';
   }
@@ -598,7 +593,6 @@ struct AvailableDeviceComponent {
    * Pair device
    * @param device
    */
-  @Log
   pairDevice(device: BluetoothDevice) {
     this.controller.pair(device.deviceId, (pinCode: string) => {
       LogUtil.info(this.TAG_PAGE + 'pairDevice success callback : pinCode = ' + pinCode);
@@ -617,7 +611,7 @@ struct AvailableDeviceComponent {
    */
   @Log
   confirmPairing(accept: boolean) {
-    LogUtil.info(this.TAG_PAGE + 'confirmPairing : pairingDevice + ' + JSON.stringify(this.pairingDevice));
+    LogUtil.info(this.TAG_PAGE + 'confirmPairing pairingDevice');
     this.controller.confirmPairing(this.pairingDevice.deviceId, accept);
   }
 
@@ -656,7 +650,6 @@ struct AvailableDeviceComponent {
   /**
    * Show connect Failed Dialog
    */
-  @Log
   private showConnectFailedDialog(deviceName: string) {
     showDialog(
     $r("app.string.bluetooth_connect_failed"),
@@ -690,7 +683,7 @@ struct PairDialog {
 
   @Log
   aboutToAppear(): void {
-    LogUtil.log(ConfigData.TAG + `bluetooth PairDialog aboutToAppear deviceName = ${this.deviceName}, pinCode = ${this.pinCode}`)
+    LogUtil.log(ConfigData.TAG + `bluetooth PairDialog aboutToAppear.`)
   }
 
   build() {
