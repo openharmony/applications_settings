@@ -57,8 +57,8 @@ struct PasswordInput {
   private chooseUnlockMethodDialog: CustomDialogController = new CustomDialogController({
     builder: chooseUnlockMethodDialog({
       dialogTitle: $r('app.string.password_change_unlock_method'),
-      dataList: $unlockMethodList,
-      checkedValue: $passwordType,
+      dataList: this.unlockMethodList,
+      checkedValue: this.passwordType.toString(),
       chosenAction: (value) => {
         this.unlockMethodChosenHandler(value)
       }
