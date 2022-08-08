@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { DeviceState } from './BluetoothModel'
+import { ProfileConnectionState } from './BluetoothModel';
 import Log from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 
 export class Profile {
@@ -54,7 +54,6 @@ export default class BluetoothDevice {
     })
   }
 
-  @Log
   setProfile(data: {
     profileId: number;
     deviceId: string;
@@ -72,27 +71,23 @@ export default class BluetoothDevice {
     let countStateDisconnecting = 0;
 
     this.profiles.forEach((profile, key) => {
-      if (profile.profileConnectionState == 0) {
-        // 0:the current profile is disconnected
+      if (profile.profileConnectionState == ProfileConnectionState.STATE_DISCONNECTED) {
         countStateDisconnect++;
-      } else if (profile.profileConnectionState == 1) {
-        // 1:the current profile is being connected
+      } else if (profile.profileConnectionState == ProfileConnectionState.STATE_CONNECTING) {
         countStateConnecting++;
-      } else if (profile.profileConnectionState == 2) {
-        // 2:the current profile is connected
+      } else if (profile.profileConnectionState == ProfileConnectionState.STATE_CONNECTED) {
         countStateConnected++;
-      } else if (profile.profileConnectionState == 3) {
-        // 3:the current profile is being disconnected
+      } else if (profile.profileConnectionState == ProfileConnectionState.STATE_DISCONNECTING) {
         countStateDisconnecting++;
       }
     });
 
     if (countStateConnected > 0 || countStateDisconnecting > 0) {
-      this.connectionState = DeviceState.STATE_CONNECTED;
+      this.connectionState = ProfileConnectionState.STATE_CONNECTED;
     } else if (countStateConnecting > 0) {
-      this.connectionState = DeviceState.STATE_CONNECTING;
+      this.connectionState = ProfileConnectionState.STATE_CONNECTING;
     } else {
-      this.connectionState = DeviceState.STATE_DISCONNECTED;
+      this.connectionState = ProfileConnectionState.STATE_DISCONNECTED;
     }
   }
 }

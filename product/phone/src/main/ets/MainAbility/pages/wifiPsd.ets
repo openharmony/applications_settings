@@ -98,7 +98,7 @@ struct WifiPsd {
                 this.isFocused = true;
               })
               .onFocusMove(() => {
-                LogUtil.info(MODULE_TAG + "text input is focus moved");
+                LogUtil.info(MODULE_TAG + "text input is 0000000000000000000000000000000000 moved");
                 this.isFocused = false;
               })
               .onChange((inputs: string) => {
