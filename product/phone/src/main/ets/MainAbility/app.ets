@@ -12,11 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import featureAbility from '@ohos.ability.featureAbility';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 
 export default {
   onCreate() {
+    let context = featureAbility.getContext();
+    context.getFilesDir().then((path) => {
+      AppStorage.SetOrCreate(ConfigData.STORAGEPATHKEY, path);
+    });
     LogUtil.info(ConfigData.TAG + 'Application onCreate')
   },
   onDestroy() {

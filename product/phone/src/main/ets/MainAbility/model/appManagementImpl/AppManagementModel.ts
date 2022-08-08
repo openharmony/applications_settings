@@ -145,11 +145,27 @@ export class AppManagementModel extends BaseModel {
             AppStorage.SetOrCreate('appManagementList', this.mBundleInfoList);
           }
         }
+         AppStorage.SetOrCreate('appManagementList', this.distinct(AppStorage.Get('appManagementList')));
       });
     } catch (error) {
       LogUtil.info('settings AppManagementModel catch error:' + error);
     }
     LogUtil.info('settings appManagement AppManagementModel getIconItem end');
+  }
+
+  /**
+   * Remove duplicate item
+   */
+  public distinct(arr){
+    for(let i = 0; i < arr.length; i++ ){
+      for(let j=i+1; j < arr.length; j++ ){
+        if(arr[i].settingBundleName === arr[j].settingBundleName){
+          arr.splice(j,1);
+          j--;
+        }
+      }
+    }
+    return arr;
   }
 
   /**
