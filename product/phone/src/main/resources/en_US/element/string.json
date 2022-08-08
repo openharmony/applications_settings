@@ -1121,6 +1121,10 @@
       "value": "Obtaining the Wi-Fi Peer MAC Address"
     },
     {
+      "name": "ERROR_WIFI_CHANGE",
+      "value": "WLAN Operation Error"
+    },
+    {
       "name": "USE_BLUETOOTH",
       "value": "Using Bluetooth"
     },
@@ -1159,6 +1163,42 @@
     {
       "name": "MODIFY_AUDIO_SETTINGS",
       "value": "Modify Audio Settings"
+    },
+    {
+      "name": "Debug_GPU_OverDraw",
+      "value": "Debug GPU OverDraw"
+    },
+    {
+      "name": "Animation_Multiplier",
+      "value": "Animation Multiplier %sx"
+    },
+    {
+      "name": "Close_Animation",
+      "value": "Close Animation"
+    },
+    {
+      "name": "Animation_Zooms",
+      "value": "Animation Zooms 1x"
+    },
+    {
+      "name": "Show_Layout_Boundaries",
+      "value": "Show Layout Boundaries"
+    },
+    {
+      "name": "Show_boundaries_Margin",
+      "value": "Show Clip boundaries Margin"
+    },
+    {
+      "name": "Global_Animation",
+      "value": "Global Animation"
+    },
+    {
+      "name": "Excessive_animation_scaling",
+      "value": "Excessive animation scaling"
+    },
+    {
+      "name": "Cancel_Animation",
+      "value": "Cancel"
     }
   ]
 }

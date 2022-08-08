@@ -13,71 +13,33 @@
  * limitations under the License.
  */
 import BaseModel from '../model/BaseModel';
+import HiLog from "@ohos.hilog"
 
-/**
- * Log level
- */
-let LogLevel = {
-  /**
-     * debug
-     */
-  DEBUG: 3,
-
-  /**
-     * info
-     */
-  INFO: 4,
-
-  /**
-     * warn
-     */
-  WARN: 5,
-
-  /**
-     * error
-     */
-  ERROR: 6,
-
-  /**
-     * fatal
-     */
-  FATAL: 7,
-};
-
-const LOG_LEVEL = LogLevel.INFO
+const DOMAIN = 0x0500;
+const TAG = "[Settings]"
 
 /**
  *  log package tool class
  */
 export class LogUtil extends BaseModel {
   debug(msg): void {
-    if (LogLevel.DEBUG >= LOG_LEVEL) {
-      console.info(msg);
-    }
+    HiLog.debug(DOMAIN, TAG, msg);
   }
 
   log(msg): void {
-    if (LogLevel.INFO >= LOG_LEVEL) {
-      console.log(msg);
-    }
+    HiLog.info(DOMAIN, TAG, msg);
   }
 
   info(msg): void {
-    if (LogLevel.INFO >= LOG_LEVEL) {
-      console.info(msg);
-    }
+    HiLog.info(DOMAIN, TAG, msg);
   }
 
   warn(msg): void {
-    if (LogLevel.WARN >= LOG_LEVEL) {
-      console.warn(msg);
-    }
+    HiLog.warn(DOMAIN, TAG, msg);
   }
 
   error(msg): void {
-    if (LogLevel.ERROR >= LOG_LEVEL) {
-      console.error(msg);
-    }
+    HiLog.error(DOMAIN, TAG, msg);
   }
 }
 
