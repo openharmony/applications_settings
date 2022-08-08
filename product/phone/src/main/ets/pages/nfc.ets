@@ -44,15 +44,13 @@ struct Nfc {
             xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
             md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
           });
+
           Column() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
-              HeadComponent({ headName: $r('app.string.NFC'), isActive: true });
-            }
+            HeadComponent({ headName: $r('app.string.NFC'), isActive: true });
 
             Image($r("app.media.ic_nfc"))
               .width(this.nfcImageWidth + "px")
               .height(this.nfcImageHeight + "px")
-              .margin({ top: $r("app.float.distance_19") })
 
             Text($r("app.string.nfcTips"))
               .fontFamily('HarmonyHeiTi')
@@ -64,25 +62,20 @@ struct Nfc {
               .opacity($r("app.float.opacity_100_60"))
               .textAlign(TextAlign.Center)
 
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-                Row() {
-                  Text($r('app.string.NFC'))
-                    .fontSize($r('sys.float.ohos_id_text_size_body1'))
-                    .fontColor($r('sys.color.ohos_id_color_text_primary'))
-                    .fontWeight(FontWeight.Medium)
-                    .textAlign(TextAlign.Start);
-                }
-                .alignItems(VerticalAlign.Center)
-                .width($r("app.float.wh_value_240"))
-                .height($r("app.float.wh_value_48"))
-                .margin({ top: $r("app.float.wh_value_4"), bottom: $r("app.float.wh_value_4"),
-                  left: $r("app.float.wh_value_12") })
+            Row() {
+              Text($r('app.string.NFC'))
+                .fontSize($r('sys.float.ohos_id_text_size_body1'))
+                .fontColor($r('sys.color.ohos_id_color_text_primary'))
+                .fontWeight(FontWeight.Medium)
 
+              Blank()
+
+              Stack({ alignContent: Alignment.Start }) {
                 Toggle({ type: ToggleType.Switch, isOn: this.isNfcEnable })
                   .width($r("app.float.switch_toggle_width"))
                   .height($r("app.float.switch_toggle_height"))
                   .selectedColor($r("app.color.toggle_selected_color_007DFF"))
-                  .margin({ right: $r('app.float.wh_value_6') })
+                  .margin({ left: $r('app.float.wh_value_6') })
                   .onChange((isOn: boolean) => {
                     this.isNfcEnable = !this.isNfcEnable;
                     if (this.isNfcEnable) {
@@ -96,13 +89,16 @@ struct Nfc {
                     }
                   });
               }
-              .margin({ left: $r("app.float.wh_24"), right: $r("app.float.wh_24"), top: $r("app.float.distance_8") })
-              .height($r('app.float.wh_value_56'))
-              .backgroundColor($r("app.color.white_bg_color"))
-              .borderRadius($r('app.float.radius_24'))
+            }
+            .width(ConfigData.WH_100_100)
+            .height($r('app.float.wh_value_56'))
+            .backgroundColor($r("app.color.white_bg_color"))
+            .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_12') })
+            .alignItems(VerticalAlign.Center)
+            .borderRadius($r('app.float.radius_24'))
           }
           .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .margin({ left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end') })
+          .padding({ left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end') })
           .width(ConfigData.WH_100_100)
           .height(ConfigData.WH_100_100)
           .useSizeType({

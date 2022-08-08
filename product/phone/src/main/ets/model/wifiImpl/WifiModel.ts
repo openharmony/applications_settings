@@ -281,8 +281,9 @@ export class WifiModel extends BaseModel {
       LogUtil.info(MODULE_TAG + 'wifi is already active');
       return;
     }
-    const ret: boolean = wifi.enableWifi();
+    let ret: boolean = wifi.enableWifi();
     LogUtil.info(MODULE_TAG + 'enable WiFi result is : ' + ret);
+    return ret;
   }
 
   disableWifi() {
