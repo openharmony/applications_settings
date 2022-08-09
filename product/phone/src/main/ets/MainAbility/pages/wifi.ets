@@ -100,7 +100,7 @@ struct Index {
 
   private clickApInfoDialog: CustomDialogController = new CustomDialogController({
     builder: apInfoDialog({
-      apInfo: $userSelectedApInfo,
+      apInfo: this.userSelectedApInfo,
     }),
     autoCancel: true,
     customStyle: true
@@ -108,7 +108,7 @@ struct Index {
 
   private clickApInfoDetailsDialog: CustomDialogController = new CustomDialogController({
     builder: apInfoDetailsDialog({
-      apInfo: $userSelectedApInfo,
+      apInfo: this.userSelectedApInfo,
       disconnectAction: () => {
         WifiModel.disconnectWiFi();
         WifiModel.refreshApScanResults();
@@ -195,6 +195,7 @@ struct Index {
                         LogUtil.info(MODULE_TAG + 'clicked connected wifi item');
                         this.userSelectedApInfo = this.connectedWiFi.apInfo;
                         this.clickApInfoDetailsDialog.open();
+                        LogUtil.info(MODULE_TAG + 'end!!!');
                       });
                     }
                   }
@@ -391,13 +392,12 @@ struct Index {
   }
 
   onBackPress() {
-    Navigator().active(true);
+    LogUtil.info('settings Wifi onBackPress');
   }
 }
 
 @Component
-export default
-struct ApInfoComponent {
+export default struct ApInfoComponent {
   @Prop key: string;
   @Prop value: string;
 

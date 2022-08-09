@@ -15,7 +15,7 @@
 import BaseModel from '../../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
 import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import {LogAll} from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
+import Log from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import bluetooth from '@ohos.bluetooth';
 
 export enum ProfileCode {
@@ -30,6 +30,17 @@ export enum ProfileCode {
   CODE_BT_PROFILE_PBAP_CLIENT,
   CODE_BT_PROFILE_PBAP_SERVER,
 };
+
+export enum ProfileConnectionState {
+  /** the current profile is disconnected */
+  STATE_DISCONNECTED = 0,
+  /** the current profile is being connected */
+  STATE_CONNECTING = 1,
+  /** the current profile is connected */
+  STATE_CONNECTED = 2,
+  /** the current profile is being disconnected */
+  STATE_DISCONNECTING = 3
+}
 
 export enum BondState {
   /** Indicate the bond state is invalid */
@@ -46,23 +57,6 @@ export enum DeviceType {
   PHONE = '3',
   COMPUTER = '4',
   WATCH = '5'
-}
-
-export enum DeviceState {
-  /** the device is disconnected */
-  STATE_DISCONNECTED = 0,
-  /** the device is being connected */
-  STATE_CONNECTING = 1,
-  /** the device is connected */
-  STATE_CONNECTED = 2,
-  /** the device is being disconnected */
-  STATE_DISCONNECTING = 3,
-  /** the device is available */
-  STATE_AVAILABLE = 100,
-  /** the device is pairing */
-  STATE_PAIRING = 101,
-  /** the device is paired */
-  STATE_PAIRED = 102
 }
 
 export enum BluetoothErrorCode {
@@ -94,7 +88,6 @@ enum BluetoothState {
 /**
  * bluetooth service class
  */
-@LogAll
 export class BluetoothModel extends BaseModel {
   private TAG = ConfigData.TAG + 'BluetoothModel ';
   private profiles: any[] = new Array(10);
@@ -152,6 +145,7 @@ export class BluetoothModel extends BaseModel {
    * Subscribe Bluetooth switch status Change
    */
   subscribeStateChange(callback: (data: boolean) => void): void {
+    LogUtil.info('bluetooth.subscribeStateChange start');
     bluetooth.on('stateChange', (data) => {
       LogUtil.info(`${this.TAG} subscribeStateChange->stateChange data:${data}`);
       if (callback) {
@@ -178,6 +172,7 @@ export class BluetoothModel extends BaseModel {
    * unsubscribe Bluetooth switch status Change
    */
   unsubscribeStateChange(callback?: (data: boolean) => void): void {
+    LogUtil.info('bluetooth.unsubscribeStateChange start');
     bluetooth.off('stateChange', (data) => {
       LogUtil.info(`${this.TAG} unsubscribeStateChange->stateChange data:${data}`);
       if (callback) {
@@ -201,6 +196,7 @@ export class BluetoothModel extends BaseModel {
   /**
    * Turn on Bluetooth
    */
+  @Log
   enableBluetooth(): boolean {
     return bluetooth.enableBluetooth();
   }
@@ -208,6 +204,7 @@ export class BluetoothModel extends BaseModel {
   /**
    * Turn off Bluetooth
    */
+  @Log
   disableBluetooth(): boolean {
     return bluetooth.disableBluetooth();
   }
@@ -236,6 +233,7 @@ export class BluetoothModel extends BaseModel {
   /**
    * Start Bluetooth discovery
    */
+  @Log
   startBluetoothDiscovery(): boolean {
     return bluetooth.startBluetoothDiscovery();
   }
@@ -243,6 +241,7 @@ export class BluetoothModel extends BaseModel {
   /**
    * Stop Bluetooth discovery
    */
+  @Log
   stopBluetoothDiscovery(): boolean {
     return bluetooth.stopBluetoothDiscovery();
   }
@@ -251,8 +250,9 @@ export class BluetoothModel extends BaseModel {
    * Subscribe Bluetooth status Change
    */
   subscribeBluetoothDeviceFind(callback: (data: Array<string>) => void): void {
+    LogUtil.info('bluetooth.subscribeBluetoothDeviceFind start');
     bluetooth.on('bluetoothDeviceFind', (data: Array<string>) => {
-      LogUtil.info(`${this.TAG} subscribeBluetoothDeviceFind->deviceFind return:${JSON.stringify(data)}`);
+      LogUtil.info(`${this.TAG} subscribeBluetoothDeviceFind->deviceFind callback`);
       if (callback) {
         callback(data)
       }
@@ -263,8 +263,9 @@ export class BluetoothModel extends BaseModel {
    * unsubscribe Bluetooth status Change
    */
   unsubscribeBluetoothDeviceFind(callback?: (data: Array<string>) => void): void {
+    LogUtil.info('bluetooth.unsubscribeBluetoothDeviceFind start');
     bluetooth.off('bluetoothDeviceFind', (data) => {
-      LogUtil.info(`${this.TAG} unsubscribeBluetoothDeviceFind->deviceFind return:${JSON.stringify(data)}`);
+      LogUtil.info(`${this.TAG} unsubscribeBluetoothDeviceFind->deviceFind callback`);
       if (callback) {
         callback(data)
       }
@@ -285,11 +286,12 @@ export class BluetoothModel extends BaseModel {
     deviceId: string;
     pinCode: string;
   }) => void): void {
+    LogUtil.info('bluetooth.subscribePinRequired start');
     bluetooth.on('pinRequired', (data: {
       deviceId: string;
       pinCode: string;
     }) => {
-      LogUtil.info(`${this.TAG} subscribePinRequired->pinRequired return:${JSON.stringify(data)}`);
+      LogUtil.info(`${this.TAG} subscribePinRequired->pinRequired return: ${data.pinCode}`);
       if (callback) {
         callback(data)
       }
@@ -303,11 +305,12 @@ export class BluetoothModel extends BaseModel {
     deviceId: string;
     pinCode: string;
   }) => void): void {
+    LogUtil.info('bluetooth.unsubscribePinRequired start');
     bluetooth.off('pinRequired', (data: {
       deviceId: string;
       pinCode: string;
     }) => {
-      LogUtil.info(`${this.TAG} unsubscribePinRequired->pinRequired return: ${JSON.stringify(data)}`);
+      LogUtil.info(`${this.TAG} unsubscribePinRequired->pinRequired return: ${data.pinCode}`);
       if (callback) {
         callback(data)
       }
@@ -318,21 +321,25 @@ export class BluetoothModel extends BaseModel {
    * Set device PairingConfirmation
    */
   setDevicePairingConfirmation(deviceId: string, accept: boolean): boolean {
-    return bluetooth.setDevicePairingConfirmation(deviceId, accept);
+    LogUtil.info('bluetooth.setDevicePairingConfirmation start, accept:' + accept);
+    let ret = bluetooth.setDevicePairingConfirmation(deviceId, accept);
+    LogUtil.info('bluetooth.unsubscribePinRequired end, ret: ' + ret);
+    return ret;
   }
 
   /**
    * Subscribe bondStateChange
    */
   subscribeBondStateChange(callback): void {
+    LogUtil.info('bluetooth.subscribeBondStateChange start');
     bluetooth.on('bondStateChange', (data) => {
-      LogUtil.info(`${this.TAG} subscribeBondStateChange->bondStateChange data:${JSON.stringify(data)}`);
+      LogUtil.info(`${this.TAG} subscribeBondStateChange->bondStateChange data.state:${JSON.stringify(data.state)}`);
       if (callback) {
         let result = {
           deviceId: data.deviceId,
           bondState: data.state
         }
-        LogUtil.info(`${this.TAG} subscribeBondStateChange->bondStateChange return:${JSON.stringify(result)}`);
+        LogUtil.info(`${this.TAG} subscribeBondStateChange->bondStateChange return:${JSON.stringify(result.bondState)}`);
         callback(result);
       }
     })
@@ -346,13 +353,13 @@ export class BluetoothModel extends BaseModel {
     bondState: number;
   }) => void): void {
     bluetooth.off('bondStateChange', (data) => {
-      LogUtil.info(`${this.TAG} unsubscribeBondStateChange->bondStateChange data:${JSON.stringify(data)}`);
+      LogUtil.info(`${this.TAG} unsubscribeBondStateChange->bondStateChange start`);
       if (callback) {
         let result = {
           deviceId: data.deviceId,
           bondState: data.state
         }
-        LogUtil.info(`${this.TAG} unsubscribeBondStateChange->bondStateChange return:${JSON.stringify(result)}`);
+        LogUtil.info(`${this.TAG} unsubscribeBondStateChange->bondStateChange return:${JSON.stringify(result.bondState)}`);
         callback(result);
       }
     })
@@ -392,6 +399,7 @@ export class BluetoothModel extends BaseModel {
         deviceType = DeviceType.BLUETOOTH;
         break;
     }
+    LogUtil.info('bluetooth.getDeviceType end, return:' + deviceType);
     return deviceType;
   }
 
@@ -429,6 +437,7 @@ export class BluetoothModel extends BaseModel {
     profileId: number;
     connectRet: boolean;
   }> {
+    LogUtil.info('bluetooth.connectDevice start');
     let result = [];
     for (let i = 0;i < this.profiles.length; i++) {
       if (this.profiles[i]) {
@@ -440,6 +449,7 @@ export class BluetoothModel extends BaseModel {
         });
       }
     }
+    LogUtil.info('bluetooth.connectDevice end, return:' + result);
     return result;
   }
 
@@ -450,16 +460,17 @@ export class BluetoothModel extends BaseModel {
     profileId: number;
     disconnectRet: boolean;
   }> {
+    LogUtil.info('bluetooth.disconnectDevice start');
     let result = [];
     for (let i = 0;i < this.profiles.length; i++) {
       let profile = this.profiles[i];
       if (this.profiles[i]) {
         let profileConnectionState = profile.getDeviceState(deviceId);
         let disconnectRet = true;
-        LogUtil.info(`${this.TAG} disconnectDevice deviceId = ${deviceId}, connectionState = ${profileConnectionState}`);
+        LogUtil.info(`${this.TAG} disconnectDevice , connectionState = ${profileConnectionState}`);
         if (profileConnectionState === 2) {
         disconnectRet = profile.disconnect(deviceId);
-        LogUtil.info(`${this.TAG} disconnectDevice call disconnect over. api return =  ${disconnectRet}, deviceId = ${deviceId}`);
+        LogUtil.info(`${this.TAG} disconnectDevice call disconnect over. api return =  ${disconnectRet}`);
         }
         result.push({
           profileId: i,
@@ -467,6 +478,7 @@ export class BluetoothModel extends BaseModel {
         });
       }
     }
+    LogUtil.info('bluetooth.connectDevice end, return:' + result);
     return result;
   }
 
@@ -482,14 +494,14 @@ export class BluetoothModel extends BaseModel {
       if (this.profiles[i]) {
         let profile = this.profiles[i];
         profile.on('connectionStateChange', (data) => {
-          LogUtil.info(`${this.TAG} subscribeDeviceStateChange->connectionStateChange data:${JSON.stringify(data)}`);
           if (callback) {
             let result = {
               profileId: i,
               deviceId: data.deviceId,
               profileConnectionState: data.state
             };
-            LogUtil.info(`${this.TAG} subscribeDeviceStateChange->connectionStateChange return:${JSON.stringify(result)}`);
+            LogUtil.info(`${this.TAG} subscribeDeviceStateChange->connectionStateChange,
+              return:${result.profileId} - ${result.profileConnectionState}`);
             callback(result);
           }
         })
@@ -509,14 +521,18 @@ export class BluetoothModel extends BaseModel {
       if (this.profiles[i]) {
         let profile = this.profiles[i];
         profile.off('connectionStateChange', (data) => {
-          LogUtil.info(`${this.TAG} unsubscribeDeviceStateChange->connectionStateChange data:${JSON.stringify(data)}`);
+          if(data == undefined || !data){
+            LogUtil.error(`${this.TAG} unsubscribeDeviceStateChange->connectionStateChange error`);
+            return;
+          }
           if (callback) {
             let result = {
               profileId: i,
               deviceId: data.deviceId,
               profileConnectionState: data.state
             };
-            LogUtil.info(`${this.TAG} unsubscribeDeviceStateChange->connectionStateChange return:${JSON.stringify(result)}`);
+            LogUtil.info(`${this.TAG} unsubscribeDeviceStateChange->connectionStateChange,
+              return:${result.profileId} - ${result.profileConnectionState}`);
             callback(result);
           }
         })
