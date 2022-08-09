@@ -47,11 +47,6 @@ struct Bluetooth {
       .initData()
       .subscribe();
     LogUtil.log(this.PAGE_TAG + 'aboutToAppear out : isOn = ' + this.isOn)
-    if (deviceTypeInfo === 'phone') {
-      this.isPhone = true
-    } else {
-      this.isPhone = false
-    }
   }
 
   @Log
@@ -399,7 +394,6 @@ struct PairedDeviceComponent {
    * Item clicked
    * @param item device
    */
-  @Log
   private itemClicked(item: BluetoothDevice) {
     switch (item.connectionState) {
 
