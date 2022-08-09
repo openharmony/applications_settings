@@ -26,6 +26,7 @@ export default struct SwitchComponent {
   private toggleValue: (isOn: boolean) => void;
   private controller: SwitchController;
   private summary?: string | Resource;
+  private switchHeight?: string | Resource;
   @State enabled?: boolean = true;
   private cssValue: {
     margin?: {
@@ -42,7 +43,7 @@ export default struct SwitchComponent {
         Text(this.title)
           .fontColor($r('sys.color.ohos_fa_text_primary'))
           .fontSize($r("app.float.font_16"))
-          .fontStyle(FontStyle.Normal)
+          .fontWeight(FontWeight.Medium)
         if (this.summary) {
           Text(this.summary)
             .fontColor($r('sys.color.ohos_fa_text_secondary'))
@@ -76,9 +77,8 @@ export default struct SwitchComponent {
       .height($r('app.float.wh_value_56'))
     }
     .width(ComponentConfig.WH_100_100)
-    .height(this.summary ? $r('app.float.wh_value_72') : $r('app.float.wh_value_56'))
+    .height(this.switchHeight)
     .backgroundColor($r("app.color.white_bg_color"))
-    .padding({ top: $r("app.float.wh_value_4"), bottom: $r("app.float.wh_value_4") })
     .alignItems(VerticalAlign.Center)
     .borderRadius($r("app.float.wh_value_24"))
   }
