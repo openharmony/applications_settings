@@ -102,7 +102,8 @@ struct developerOptions {
                 title: $r("app.string.usbDebugging"),
                 summary: $r("app.string.locationServicesPromptInfo"),
                 isOn: $controllerDebugIsOn,
-                controller: this.controller
+                controller: this.controller,
+                switchHeight:$r("app.float.wh_value_72")
               })
             }.margin({ top: $r("app.float.distance_8") })
 
@@ -113,7 +114,8 @@ struct developerOptions {
                     title: $r("app.string.Show_Layout_Boundaries"),
                     summary: $r("app.string.Show_boundaries_Margin"),
                     isOn: $controllerLayoutBoundariesIsOn,
-                    controller: this.controllerLayoutBoundaries
+                    controller: this.controllerLayoutBoundaries,
+                    switchHeight:$r("app.float.wh_value_64")
                   })
                 }
 
@@ -121,9 +123,9 @@ struct developerOptions {
                   Row() {
                     Column() {
                       Text($r("app.string.Global_Animation"))
-                        .fontColor("#000000")
+                        .fontColor($r('sys.color.ohos_fa_text_primary'))
                         .fontFamily("HarmonyHeiTi")
-                        .fontWeight(FontWeight.Regular)
+                        .fontWeight(FontWeight.Medium)
                         .fontSize($r("sys.float.ohos_id_text_size_body1"))
                     }
                     .alignItems(HorizontalAlign.Start)
@@ -134,7 +136,7 @@ struct developerOptions {
                       Text(this.AnimationText)
                         .margin({ right: $r("app.float.distance_4") })
                         .fontSize($r("sys.float.ohos_id_text_size_body2"))
-                        .fontColor($r("app.color.font_color_182431"))
+                        .fontColor($r('sys.color.ohos_fa_text_secondary'))
                       Image('/res/image/ic_settings_arrow.svg')
                         .width($r('app.float.wh_value_12'))
                         .height($r('app.float.wh_value_24'))
@@ -149,7 +151,7 @@ struct developerOptions {
                   }
                   .alignItems(VerticalAlign.Center)
                   .width(ConfigData.WH_100_100)
-                  .height($r("app.float.wh_48"))
+                  .height($r("app.float.wh_value_48"))
                 }
               }
               .width(ConfigData.WH_100_100)
@@ -160,18 +162,21 @@ struct developerOptions {
             .borderRadius($r("app.float.wh_value_24"))
             .backgroundColor($r("app.color.white_bg_color"))
             .width(ConfigData.WH_100_100)
-            .height($r("app.float.wh_value_120"))
             .margin({ top: $r("app.float.distance_12") })
+            .padding({
+              top:$r("app.float.distance_4"),
+              bottom:$r("app.float.distance_4")
+            })
 
             Column() {
               SwitchComponent({
                 title: $r("app.string.Debug_GPU_OverDraw"),
                 summary: "",
                 isOn: $controllerOverdrawIsOn,
-                controller: this.controllerOverdraw
+                controller: this.controllerOverdraw,
+                switchHeight:$r("app.float.wh_value_56")
               })
             }.margin({ top: $r("app.float.distance_12") })
-            .height($r("app.float.wh_value_56"))
           }
           .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
           .padding({
