@@ -76,7 +76,7 @@ struct PasswordSetting {
         settingArrow: '/res/image/ic_settings_arrow.svg',
         settingArrowStyle: '',
         settingUri: '',
-        height: $r('app.float.password_list_item_height'),
+        heights: $r('app.float.password_list_item_height'),
         fontSize: $r('app.float.password_list_item_title_font_size')
       })
     }
@@ -115,7 +115,7 @@ struct PasswordSetting {
         settingUri: item.settingUri,
         settingArrowStyle: '',
         titleFontColor: $r("app.color.font_color_007DFF"),
-        height: $r('app.float.password_list_item_height'),
+        heights: $r('app.float.password_list_item_height'),
         fontSize: $r('app.float.font_16')
       });
     }
@@ -141,7 +141,7 @@ struct PasswordSetting {
         settingArrow: item.settingArrow,
         settingArrowStyle: '',
         settingUri: item.settingUri,
-        height: $r('app.float.password_list_item_height'),
+        heights: $r('app.float.password_list_item_height'),
         fontSize: $r('app.float.font_16')
       });
     }

@@ -1203,6 +1203,10 @@
     {
       "name": "Cancel_Animation",
       "value": "取消"
+    },
+    {
+      "name": "Input_Reached_Limited",
+      "value": "输入已达上限"
     }
   ]
 }

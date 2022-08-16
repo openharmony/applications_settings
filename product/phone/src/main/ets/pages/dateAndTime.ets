@@ -21,7 +21,7 @@ import DateAndTimeModel from '../model/dateAndTimeImpl/DateAndTimeModel'
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import { BaseData } from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
-import CommonEvent from '@ohos.commonevent';
+import CommonEvent from '@ohos.commonEvent';
 import deviceInfo from '@ohos.deviceInfo'
 const MODULE_TAG = ConfigData.TAG + '.dateAndTime -> ';
 const deviceTypeInfo = deviceInfo.deviceType
@@ -37,7 +37,12 @@ struct dateAndTime {
   private dateMark: string = 'date';
   private timeMark: string = 'time';
   private commonEventSubscribeInfo = {
-    events: [CommonEvent.Support.COMMON_EVENT_TIME_CHANGED, CommonEvent.Support.COMMON_EVENT_DATE_CHANGED]
+    events: [
+      CommonEvent.Support.COMMON_EVENT_TIME_CHANGED,
+      CommonEvent.Support.COMMON_EVENT_TIMEZONE_CHANGED,
+      CommonEvent.Support.COMMON_EVENT_TIME_TICK,
+      CommonEvent.Support.COMMON_EVENT_DATE_CHANGED,
+    ]
   };
   private subscriber;
   private headName: string = '';

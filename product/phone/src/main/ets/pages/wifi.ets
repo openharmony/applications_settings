@@ -18,6 +18,7 @@ import HeadComponent from '../../../../../../common/component/src/main/ets/defau
 import ImageAnimatorComponent from '../../../../../../common/component/src/main/ets/default/imageAnimatorComponent';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import router from '@system.router';
 import deviceInfo from '@ohos.deviceInfo'
 import prompt from '@system.prompt';
@@ -101,6 +102,7 @@ struct Index {
   @State isPhone: boolean = false;
   private switchDebounceFlag = undefined;
   private timerId: number = -1;
+  private errorMessage: string = "";
   private clickApInfoDialog: CustomDialogController = new CustomDialogController({
     builder: apInfoDialog({
       apInfo: this.userSelectedApInfo,
@@ -356,7 +358,7 @@ struct Index {
       LogUtil.error(MODULE_TAG + 'wifi timeLimits active status : ' + this.isWiFiEnabled);
       this.timerId = -1;
       prompt.showToast({
-        message: $r('app.string.ERROR_WIFI_CHANGE'),
+        message: this.errorMessage,
         duration: 1000,
       });
     }, 5000)
@@ -389,6 +391,13 @@ struct Index {
 
   aboutToAppear(): void {
     LogUtil.info(MODULE_TAG + 'about to appear wifi page');
+    try{
+      ResourceUtil.getString($r('app.string.ERROR_WIFI_CHANGE')).then((data)=>{
+        this.errorMessage = data
+      })
+    }catch(error){
+      LogUtil.error(MODULE_TAG + 'get errorMessage String error:' + JSON.stringify(error));
+    }
     WifiModel.registerWiFiStatusObserver((code) => {
       LogUtil.info(MODULE_TAG + 'wifi status code : ' + code + ' taskId : ' + this.switchDebounceFlag);
       if ((!this.switchDebounceFlag) && (code == 0 || code == 1)) {
@@ -438,13 +447,13 @@ struct Index {
 
 @Component
 export default struct ApInfoComponent {
-  @Prop key: string;
+  @Prop label: string;
   @Prop value: string;
 
   build() {
     Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
       Row() {
-        Text(this.key)
+        Text(this.label)
           .fontSize($r('sys.float.ohos_id_text_size_body1'))
           .fontColor($r('sys.color.ohos_id_color_text_primary'))
           .fontWeight(FontWeight.Medium)
@@ -500,7 +509,7 @@ struct apInfoDialog {
         ForEach(this.dataList, (item) => {
           ListItem() {
             ApInfoComponent({
-              key: item.key,
+              label: item.key,
               value: item.value
             });
           }
@@ -643,7 +652,7 @@ struct apInfoDetailsDialog {
         ForEach(this.dataList, (item) => {
           ListItem() {
             ApInfoComponent({
-              key: item.key,
+              label: item.key,
               value: item.value
             });
           }

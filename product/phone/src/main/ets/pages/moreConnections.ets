@@ -32,7 +32,7 @@ const deviceTypeInfo = deviceInfo.deviceType;
 struct MoreConnections {
   @State columnMargin: string = '24vp';
   @State nfcEnable: string = '';
-  @StorageLink('nfcStatus') nfcStatus: boolean = NfcModel.isNfcOpen();
+  @StorageLink('nfcStatus') nfcStatus: boolean = false;
   private maxScreenWidth;
   private maxScreenHeight;
   private nfcImageWidth;
@@ -91,6 +91,18 @@ struct MoreConnections {
   aboutToAppear(){
     LogUtil.info(TAG + 'aboutToAppear in');
     ResourceUtil.getString($r('app.float.distance_24')).then(value => this.columnMargin = value);
+
+    try {
+      this.nfcStatus = !!NfcModel.isNfcOpen();
+      LogUtil.info(TAG + 'check whether NFC is open: ' + this.nfcStatus);
+      AppStorage.SetOrCreate('nfcStatus', this.nfcStatus);
+    } catch(err) {
+      LogUtil.error(TAG + 'check nfcStatus api failed');
+    }
+
+    NfcModel.registerNfcStatusObserver((code) => {
+      LogUtil.info(TAG + 'NFC state code: ' + code);
+    })
 
     // get screen max width and max height to show nfc image width and height
     display.getDefaultDisplay((err, data) => {

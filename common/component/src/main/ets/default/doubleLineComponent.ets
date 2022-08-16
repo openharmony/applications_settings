@@ -27,10 +27,10 @@ export default struct DoubleLineComponent {
   @Prop settingArrowStyle: string;
   @Prop settingUri: string;
   @State titleFontColor: Color | number | string | Resource = $r('sys.color.ohos_id_color_text_primary');
-  private enabled: boolean = true;
+  private isEnabled: boolean = true;
   private onArrowClick?: () => void;
   @State isTouched: boolean = false;
-  @State height: string | Resource = $r('app.float.wh_value_72');
+  @State heights: string | Resource = $r('app.float.wh_value_72');
   @State image_wh: string | Resource = $r('app.float.wh_value_40');
   @State fontSize: string | Resource = $r('sys.float.ohos_id_text_size_body1');
   @State valueFontSize: string | Resource = $r('sys.float.ohos_id_text_size_body2');
@@ -46,7 +46,7 @@ export default struct DoubleLineComponent {
 
         Column() {
           Text(this.settingTitle)
-            .fontColor(this.enabled ? this.titleFontColor : $r("sys.color.ohos_id_color_primary"))
+            .fontColor(this.isEnabled ? this.titleFontColor : $r("sys.color.ohos_id_color_primary"))
             .fontSize(this.fontSize)
             .fontWeight(FontWeight.Medium)
             .textAlign(TextAlign.Start)
@@ -103,7 +103,7 @@ export default struct DoubleLineComponent {
       }
       .align(Alignment.End);
     }
-    .height(this.height)
+    .height(this.heights)
     .width(ComponentConfig.WH_100_100)
     .padding({
       left: $r('sys.float.ohos_id_card_margin_end'),
@@ -112,7 +112,7 @@ export default struct DoubleLineComponent {
       bottom: $r('sys.float.ohos_id_elements_margin_vertical_m')
     })
     .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
-    .linearGradient((this.enabled && this.isTouched) ? {
+    .linearGradient((this.isEnabled && this.isTouched) ? {
                                                          angle: 90,
                                                          direction: GradientDirection.Right,
                                                          colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]

@@ -39,11 +39,17 @@ export default class LayoutBoundariesController extends SwitchController {
    */
   afterCurrentValueChanged() {
     if(this.isOn){
-       parameter.setSync("persist.ace.debug.boundary.enabled", "true")
-        LogUtil.info(MODULE_TAG + "open boundary " + JSON.stringify(parameter.setSync("persist.ace.debug.boundary.enabled", "true")))
+       parameter.set("persist.ace.debug.boundary.enabled", "true").then(()=>{
+       LogUtil.info(MODULE_TAG + "open boundary success ")
+    }).catch((error)=>{
+        LogUtil.info(MODULE_TAG + "open boundary fail " + JSON.stringify(error))
+    })
     } else {
-       parameter.setSync("persist.ace.debug.boundary.enabled", "false");
-       LogUtil.info(MODULE_TAG + "close boundary " + JSON.stringify(parameter.setSync("persist.ace.debug.boundary.enabled", "false")))
+       parameter.set("persist.ace.debug.boundary.enabled", "false").then(()=>{
+           LogUtil.info(MODULE_TAG + "close boundary success ")
+       }).catch((error)=>{
+           LogUtil.info(MODULE_TAG + "close boundary fail " + JSON.stringify(error))
+       });
     }
   }
 }

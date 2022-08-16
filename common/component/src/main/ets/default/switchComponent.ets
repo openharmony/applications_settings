@@ -27,7 +27,7 @@ export default struct SwitchComponent {
   private controller: SwitchController;
   private summary?: string | Resource;
   private switchHeight?: string | Resource;
-  @State enabled?: boolean = true;
+  @State isEnabled?: boolean = true;
   private cssValue: {
     margin?: {
       top?: number | string | Resource,
@@ -67,7 +67,7 @@ export default struct SwitchComponent {
           .margin({ left: '6vp' })
           .selectedColor('#007DFF')
           .onChange((isOn: boolean) => {
-            if (!this.enabled) return;
+            if (!this.isEnabled) return;
             this.isOn = new Boolean(isOn).valueOf();
             this.toggleValue(this.isOn);
           });
@@ -91,7 +91,7 @@ export default struct SwitchComponent {
 
       // bind component and initialize
       this.controller.bindComponent(this)
-        .bindProperties(["isOn", "enabled"])
+        .bindProperties(["isOn", "isEnabled"])
         .initData()
         .subscribe();
     }

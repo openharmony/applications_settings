@@ -6,7 +6,7 @@
     "description": "$string:mainability_description",
     "mainElement": "com.ohos.settings.MainAbility",
     "deviceTypes": [
-      "phone",
+      "default",
       "tablet"
     ],
     "deliveryWithInstall": true,
@@ -31,10 +31,11 @@
               "action.system.home"
             ]
           }
-        ]
+        ],
+        "startWindowIcon": "$media:app_icon",
+        "startWindowBackground": "$color:white",
       }
     ],
-
     "requestPermissions": [
       {
         "name": "ohos.permission.MANAGE_LOCAL_ACCOUNTS",
@@ -160,6 +161,6 @@
         "name": "ohos.permission.MODIFY_AUDIO_SETTINGS",
         "reason": "$string:MODIFY_AUDIO_SETTINGS"
       }
-    ],
+    ]
   }
 }
