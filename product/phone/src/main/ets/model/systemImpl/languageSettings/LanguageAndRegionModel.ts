@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -66,7 +65,7 @@ class LanguageAndRegionModel extends BaseModel {
      * Init App Storage
      */
   @Log
-  async initAppStorage():void{
+  async initAppStorage():Promise<void>{
     this.storage = await dataStorage.getPreferences(globalThis.settingsAbilityContext, 'languageAndRegion')
     LogUtil.info(`${this.TAG} initAppStorage in` + JSON.stringify(this.storage));
     if(!(await this.storage.has(this.addStr))){
@@ -91,7 +90,7 @@ class LanguageAndRegionModel extends BaseModel {
      * Set system language
      */
   @Log
-  async setSystemLanguage(language:string):void{
+  async setSystemLanguage(language:string):Promise<void>{
     LogUtil.info(`${this.TAG} setSystemLanguage in`);
     this.addedLanguages = this.getAddedLanguages();
     this.addedLanguages.splice(this.addedLanguages.indexOf(language), 1);
@@ -109,7 +108,7 @@ class LanguageAndRegionModel extends BaseModel {
      * Add language to the addedLanguages list
      */
   @Log
-  async addLanguage(language:string):void{
+  async addLanguage(language:string):Promise<void>{
     LogUtil.info(`${this.TAG} addLanguage in, language: ${language}` );
     this.addedLanguages = AppStorage.Get(this.addStr);
     this.addedLanguages.push(language);
@@ -124,7 +123,7 @@ class LanguageAndRegionModel extends BaseModel {
      * Remove language from the addedLanguages list
      */
   @Log
-  async deleteLanguage(language:string):void{
+  async deleteLanguage(language:string):Promise<void>{
     LogUtil.info(`${this.TAG} deleteLanguage in`);
     this.addedLanguages = AppStorage.Get(this.addStr);
     this.addedLanguages.splice(this.addedLanguages.indexOf(language), 1);

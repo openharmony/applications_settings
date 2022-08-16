@@ -95,7 +95,7 @@ struct ApplicationStorage {
                       settingArrow: item.settingArrow,
                       settingArrowStyle: '',
                       settingUri: '',
-                      height: $r('app.float.wh_value_48'),
+                      heights: $r('app.float.wh_value_48'),
                       fontSize: $r('app.float.font_16')
                     });
                   }
@@ -112,7 +112,7 @@ struct ApplicationStorage {
             .backgroundColor($r("app.color.white_bg_color"))
             .padding($r('app.float.distance_4'))
 
-            ButtonComponent({ text: $r("app.string.deleteDataTab"), onClick: () => {
+            ButtonComponent({ text: $r("app.string.deleteDataTab"), onClickEvent: () => {
               this.showDialog(this.controller.clearUpApplicationData.bind(this, appInfo.settingBundleName));
             } })
 
@@ -157,7 +157,7 @@ struct ApplicationStorage {
             .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
             .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
 
-            ButtonComponent({ text: $r("app.string.clearCacheTab"), onClick: () => {
+            ButtonComponent({ text: $r("app.string.clearCacheTab"), onClickEvent: () => {
               this.controller.cleanBundleCacheFiles(appInfo.settingBundleName);
             } })
 
@@ -240,7 +240,7 @@ struct ApplicationStorage {
 struct ButtonComponent {
   @State isTouched: boolean = false;
   private text;
-  private onClick = () => {
+  private onClickEvent = () => {
   };
 
   build() {
@@ -264,7 +264,7 @@ struct ButtonComponent {
           }
         })
         .onClick(() => {
-          this.onClick();
+          this.onClickEvent();
         })
     }
     .align(Alignment.Center);

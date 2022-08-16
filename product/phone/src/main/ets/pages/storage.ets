@@ -205,7 +205,7 @@ struct Storage {
     .height(ConfigData.WH_100_100);
   }
 
-  onPageShow(): void{
+  aboutToAppear(): void{
     // bind component and initialize
     if (this.controller) {
       this.controller.bindComponent(this)

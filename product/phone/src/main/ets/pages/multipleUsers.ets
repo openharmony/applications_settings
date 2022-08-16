@@ -103,7 +103,7 @@ struct MultipleUsers {
               TitleText({
                 title: $r("app.string.addUser"),
                 color: $r("app.color.font_color_007DFF"),
-                visibility: this.isShowAddUser ? Visibility.Visible : Visibility.None,
+                visible: this.isShowAddUser ? Visibility.Visible : Visibility.None,
                 clickEvent: (event => {
                   LogUtil.info("Add user.");
                   this.addUserDialogController.open();
@@ -118,7 +118,7 @@ struct MultipleUsers {
               TitleText({
                 title: $r("app.string.addGuest"),
                 color: $r("app.color.font_color_007DFF"),
-                visibility: this.isShowAddGuest ? Visibility.Visible : Visibility.None,
+                visible: this.isShowAddGuest ? Visibility.Visible : Visibility.None,
                 clickEvent: ((event) => {
                   AlertDialog.show({
                     message: $r("app.string.askAddGuest"),

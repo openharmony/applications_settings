@@ -79,6 +79,10 @@
     {
       "name": "D1D0DB",
       "value": "#D1D0DB"
+    },
+    {
+      "name": "white",
+      "value": "#FFFFFF"
     }
   ]
 }

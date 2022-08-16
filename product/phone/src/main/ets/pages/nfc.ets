@@ -23,9 +23,10 @@ const TAG = ConfigData.TAG + 'Nfc: ';
 @Entry
 @Component
 struct Nfc {
-  @State isNfcEnable: boolean = false;
+  @StorageLink('isNfcEnabled') isNfcEnabled: boolean = false;
   @StorageLink('nfcImageWidth') nfcImageWidth: number = null;
   @StorageLink('nfcImageWidth') nfcImageHeight: number = null;
+  private switchDebounceFlag = undefined;
 
   build() {
     Column() {
@@ -71,22 +72,13 @@ struct Nfc {
               Blank()
 
               Stack({ alignContent: Alignment.Start }) {
-                Toggle({ type: ToggleType.Switch, isOn: this.isNfcEnable })
+                Toggle({ type: ToggleType.Switch, isOn: this.isNfcEnabled })
                   .width('36vp')
                   .height('20vp')
                   .selectedColor($r("app.color.toggle_selected_color_007DFF"))
                   .margin({ left: $r('app.float.wh_value_6') })
                   .onChange((isOn: boolean) => {
-                    this.isNfcEnable = !this.isNfcEnable;
-                    if (this.isNfcEnable) {
-                      // open NFC
-                      NfcModel.openNfc()
-                      LogUtil.info(TAG + 'enable nfc: ' + NfcModel.openNfc());
-                    } else {
-                      // close NFC
-                      NfcModel.closeNfc()
-                      LogUtil.info(TAG + 'disable nfc: ' + NfcModel.openNfc());
-                    }
+                    this.switchNfcActiveStatus();
                   });
               }
             }
@@ -127,15 +119,37 @@ struct Nfc {
     .height(ConfigData.WH_100_100);
   }
 
+  switchNfcActiveStatus() {
+    // make the ui change quickly
+    this.isNfcEnabled = !this.isNfcEnabled;
+    LogUtil.info(TAG + 'current enable status: ' + this.isNfcEnabled);
+
+    // delay the nfc status change event
+    if (this.switchDebounceFlag) {
+      clearTimeout(this.switchDebounceFlag);
+    }
+    this.switchDebounceFlag = setTimeout(() => {
+      if (this.isNfcEnabled) {
+        let enableNFC = NfcModel.openNfc();
+        LogUtil.info(TAG + 'enable nfc: ' + enableNFC);
+      } else {
+        let disableNFC = NfcModel.closeNfc();
+        LogUtil.info(TAG + 'disable nfc: ' + disableNFC);
+      }
+      this.switchDebounceFlag = undefined;
+    }, 1500);
+  }
+
   aboutToAppear() {
     LogUtil.info(TAG + 'aboutToAppear in');
-    NfcModel.registerNfcStatusObserver((code) => {
-      LogUtil.info(TAG + 'aboutToAppear status code: ' + code);
-      this.isNfcEnable = NfcModel.isNfcOpen();
-      LogUtil.info(TAG + 'aboutToAppear nfc open status: ' + this.isNfcEnable);
-    })
-    // init nfc active status
-    this.isNfcEnable = NfcModel.isNfcOpen();
+    if (!this.switchDebounceFlag) {
+      NfcModel.registerNfcStatusObserver((code) => {
+        LogUtil.info(TAG + 'register status code: ' + code);
+      })
+    }
+
+    // init wifi active status
+    this.isNfcEnabled = NfcModel.isNfcOpen();
     LogUtil.info(TAG + 'aboutToAppear out');
   }
 }
