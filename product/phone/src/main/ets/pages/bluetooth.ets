@@ -38,7 +38,7 @@ struct Bluetooth {
   private deviceController: BluetoothDeviceController = new BluetoothDeviceController();
   @State isPhone: boolean = false
   @StorageLink('bluetoothIsOn') isOn: boolean = false;
-  @StorageLink('bluetoothToggleEnabled') enabled: boolean = true;
+  @StorageLink('bluetoothToggleEnabled') isEnabled: boolean = true;
   @StorageLink('bluetoothLocalName') localName: string = '';
 
   @Log
@@ -101,8 +101,8 @@ struct Bluetooth {
                   .selectedColor('#007DFF')
                   .margin({ left: $r('app.float.wh_value_6') })
                   .onChange(() => {
-                    LogUtil.log(this.PAGE_TAG + 'Toggle onClick: isOn = ' + this.isOn + ', enabled = ' + this.enabled)
-                    if (!this.enabled) return;
+                    LogUtil.log(this.PAGE_TAG + 'Toggle onClick: isOn = ' + this.isOn + ', enabled = ' + this.isEnabled)
+                    if (!this.isEnabled) return;
                     this.deviceController.toggleValue(!this.isOn);
                   });
               }
@@ -130,7 +130,7 @@ struct Bluetooth {
               Column() {
 
                 DeviceNameComponent({
-                  enabled: $isOn,
+                  isEnabled: $isOn,
                   localName: $localName
                 })
 
@@ -142,7 +142,7 @@ struct Bluetooth {
 
                   AvailableDeviceComponent({
                     controller: this.deviceController,
-                    isPhone:this.isPhone
+                    isPhone: this.isPhone
                   })
 
                 }
@@ -192,7 +192,7 @@ struct Bluetooth {
  */
 @Component
 struct DeviceNameComponent {
-  @Link enabled: boolean;
+  @Link isEnabled: boolean;
   @Link localName: string;
 
   build() {
@@ -205,18 +205,18 @@ struct DeviceNameComponent {
         settingArrow: $r("app.media.ic_settings_arrow"),
         settingArrowStyle: '',
         settingUri: '',
-        enabled: this.enabled,
-        height: ($r('app.float.wh_value_48')),
+        isEnabled: this.isEnabled,
+        heights: ($r('app.float.wh_value_48')),
         fontSize: ($r('app.float.font_16'))
       })
     }
-    .margin({ top: this.enabled ? $r('app.float.wh_value_0') : $r('app.float.wh_value_12') })
+    .margin({ top: this.isEnabled ? $r('app.float.wh_value_0') : $r('app.float.wh_value_12') })
     .width(ConfigData.WH_100_100)
     .height($r('app.float.wh_value_56'))
     .borderRadius($r("app.float.radius_24"))
     .backgroundColor($r("app.color.white_bg_color"))
     .onClick(() => {
-      if (this.enabled) {
+      if (this.isEnabled) {
         Router.push({ uri: PAGE_URI_DEVICE_NAME });
       }
     });
@@ -281,7 +281,7 @@ struct PairedDeviceComponent {
                     settingUri: '',
                     titleFontColor: this.isHeadPhoneConnected(item) ? $r("app.color.bluetooth_text_color_highlight") : $r("sys.color.ohos_id_color_text_primary"),
                     image_wh: $r('app.float.wh_value_24'),
-                    height: this.getConnectionStateText(item) == '' ? $r('app.float.wh_value_56') : ($r('app.float.wh_value_64')),
+                    heights: this.getConnectionStateText(item) == '' ? $r('app.float.wh_value_56') : ($r('app.float.wh_value_64')),
                     fontSize: ($r('app.float.font_16')),
                     onArrowClick: () => {
                       LogUtil.info(this.TAG_PAGE + 'item go detail');
@@ -481,7 +481,8 @@ struct AvailableDeviceComponent {
   @StorageLink('bluetoothAvailableDevices') availableDevices: BluetoothDevice[] = [];
   @State pairPinCode: string = '';
   private pairingDevice: BluetoothDevice = undefined;
-  @State isPhone: boolean = false
+  private isPhone: boolean = false;
+  @StorageLink("controlPairing") controlPairing: boolean = true ;
   pairDialog: CustomDialogController = new CustomDialogController({
     builder: PairDialog({
       deviceName: this.pairingDevice.deviceName,
@@ -546,7 +547,7 @@ struct AvailableDeviceComponent {
                   settingArrowStyle: '',
                   settingUri: '',
                   image_wh: $r('app.float.wh_value_24'),
-                  height: this.getPairStateText(item) == '' ? $r('app.float.wh_value_56') : ($r('app.float.wh_value_64')),
+                  heights: this.getPairStateText(item) == '' ? $r('app.float.wh_value_56') : ($r('app.float.wh_value_64')),
                   fontSize: ($r('app.float.font_16')),
                 });
               }
@@ -555,7 +556,11 @@ struct AvailableDeviceComponent {
               .backgroundColor($r("app.color.white_bg_color"))
               .onClick(() => {
                 LogUtil.info(this.TAG_PAGE + 'item on click');
-                this.pairDevice(item)
+                if(this.controlPairing){
+                  this.pairDevice(item)
+                } else {
+                  return
+                }
               })
             }
           }, item => JSON.stringify(item));

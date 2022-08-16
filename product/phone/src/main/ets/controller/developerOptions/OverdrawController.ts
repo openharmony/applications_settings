@@ -39,11 +39,17 @@ export default class OverdrawController extends SwitchController {
    */
   afterCurrentValueChanged() {
     if(this.isOn){
-       parameter.setSync("debug.graphic.overdraw", "true");
-       LogUtil.info(MODULE_TAG + "open overdraw " + JSON.stringify( parameter.setSync("debug.graphic.overdraw", "true")))
+       parameter.set("debug.graphic.overdraw", "true").then(()=>{
+       LogUtil.info(MODULE_TAG + "open overdraw success")
+       }).catch((err)=>{
+       LogUtil.info(MODULE_TAG + "open overdraw fail" + JSON.stringify(err))
+       });
     } else {
-       parameter.setSync("debug.graphic.overdraw", "false");
-       LogUtil.info(MODULE_TAG + " close overdraw " + JSON.stringify( parameter.setSync("debug.graphic.overdraw", "false")))
+       parameter.set("debug.graphic.overdraw", "false").then(()=>{
+       LogUtil.info(MODULE_TAG + " close overdraw success")
+       }) .catch((err)=>{
+       LogUtil.info(MODULE_TAG + " close overdraw fail " + JSON.stringify(err))
+       });
     }
   }
 }

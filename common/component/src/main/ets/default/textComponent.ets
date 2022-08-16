@@ -49,7 +49,7 @@ export struct SubHeader {
 export struct TitleText {
   private title: string | Resource;
   private color: ResourceColor = $r('app.color.font_color_182431');
-  private visibility: Visibility = Visibility.Visible;
+  private visible: Visibility = Visibility.Visible;
   private clickEvent: (event?: ClickEvent) => void;
   @State isTouched: boolean = false;
 
@@ -90,7 +90,7 @@ export struct TitleText {
     .margin({ top: $r("app.float.distance_12") })
     .borderRadius($r("app.float.radius_24"))
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
-    .visibility(this.visibility);
+    .visibility(this.visible);
 
   }
 }

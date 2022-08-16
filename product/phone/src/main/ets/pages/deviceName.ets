@@ -19,6 +19,7 @@ import AboutDeviceModel from '../model/aboutDeviceImpl/AboutDeviceModel'
 import Router from '@system.router';
 import InputMethod from '@ohos.inputmethod';
 import prompt from "@ohos.prompt"
+import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 /**
  * about phone
  */
@@ -81,10 +82,12 @@ struct DeviceName {
                 }
                 if (this.deviceName.length == 30) {
                   this.isFocused = false
-                  prompt.showToast({
-                    message: "输入已达上限",
-                    duration: 2000,
-                    bottom: 1000
+                  ResourceUtil.getString($r("app.string.Input_Reached_Limited")).then(value => {
+                    prompt.showToast({
+                      message:value,
+                      duration: 2000,
+                      bottom: 1000
+                    })
                   })
                 }
               })
@@ -101,7 +104,7 @@ struct DeviceName {
             Row() {
               Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
                 Row() {
-                  ButtonComponent({ text: $r("app.string.cancel"),deviceName : $deviceName ,buttonFlag : $cancelButton, onClick: () => {
+                  ButtonComponent({ text: $r("app.string.cancel"),deviceName : $deviceName ,buttonFlag : $cancelButton, onClickEvent: () => {
                     Router.back();
                   } })
                 }
@@ -110,7 +113,7 @@ struct DeviceName {
                 .margin({ right: $r("app.float.distance_12") })
 
                 Row() {
-                  ButtonComponent({ text: $r("app.string.confirm"),deviceName : $deviceName ,buttonFlag : $confirmsButton,onClick: () => {
+                  ButtonComponent({ text: $r("app.string.confirm"),deviceName : $deviceName ,buttonFlag : $confirmsButton,onClickEvent: () => {
                     if(this.deviceName.length >0){
                       AboutDeviceModel.setSystemName(this.deviceName)
                       Router.back();
@@ -164,7 +167,7 @@ struct ButtonComponent {
   @Link deviceName: string ;
   @Link buttonFlag : boolean;
   private text;
-  private onClick = () => {
+  private onClickEvent = () => {
   };
 
   build() {
@@ -192,7 +195,7 @@ struct ButtonComponent {
           }
         })
         .onClick(() => {
-          this.onClick();
+          this.onClickEvent();
         })
     }
     .opacity(this.deviceName.length === 0 && this.buttonFlag != true ? $r('sys.float.ohos_fa_alpha_disabled') : 1)
