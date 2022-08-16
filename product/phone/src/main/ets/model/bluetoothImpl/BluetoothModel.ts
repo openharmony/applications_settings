@@ -100,8 +100,13 @@ export class BluetoothModel extends BaseModel {
     super();
     try{
       LogUtil.info('bluetooth.getProfile start')
-      this.profiles[1] = bluetooth.getProfile(1);
-      this.profiles[4] = bluetooth.getProfile(4);
+      let ProfileId = bluetooth.ProfileId;
+      this.profiles[ProfileId.PROFILE_A2DP_SOURCE]
+        = bluetooth.getProfile(ProfileId.PROFILE_A2DP_SOURCE);
+      this.profiles[ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY]
+        = bluetooth.getProfile(ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+      this.profiles[ProfileId.PROFILE_HID_HOST]
+        = bluetooth.getProfile(ProfileId.PROFILE_HID_HOST);
       LogUtil.info('bluetooth.getProfile end')
       this.canUse = true;
       }

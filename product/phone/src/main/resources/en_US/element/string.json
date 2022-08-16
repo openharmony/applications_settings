@@ -10,7 +10,7 @@
     },
     {
       "name": "enabled",
-      "value": "Enabled"
+      "value": "On"
     },
     {
       "name": "disable_",
@@ -18,7 +18,7 @@
     },
     {
       "name": "disabled",
-      "value": "Disabled"
+      "value": "Off"
     },
     {
       "name": "settings",
@@ -158,7 +158,7 @@
     },
     {
       "name": "brightnessTab",
-      "value": "Display and Brightness"
+      "value": "Display & Brightness"
     },
     {
       "name": "volumeControl",
@@ -170,7 +170,7 @@
     },
     {
       "name": "volumeControlTab",
-      "value": "Volume"
+      "value": "Sounds"
     },
     {
       "name": "volumeControlRing",
@@ -202,7 +202,7 @@
     },
     {
       "name": "applyTab",
-      "value": "apply"
+      "value": "Apps"
     },
     {
       "name": "moreConnectionsTab",
@@ -222,7 +222,7 @@
     },
     {
       "name": "aboutTab",
-      "value": "about"
+      "value": "About Device"
     },
     {
       "name": "applicationInfo",
@@ -502,7 +502,7 @@
     },
     {
       "name": "systemTab",
-      "value": "system"
+      "value": "System & Updates"
     },
     {
       "name": "languageTab",
@@ -598,7 +598,7 @@
     },
     {
       "name": "storageTab",
-      "value": "storageTab"
+      "value": "Storage"
     },
     {
       "name": "totalSpace",
@@ -1199,6 +1199,10 @@
     {
       "name": "Cancel_Animation",
       "value": "Cancel"
+    },
+    {
+      "name": "Input_Reached_Limited",
+      "value": "Input has reached the upper limit"
     }
   ]
 }

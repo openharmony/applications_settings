@@ -164,7 +164,7 @@ const SETTINGS_LIST = [
 struct SettingList {
   @State placeholder: string= ''; // for search
   @State placeholdersize: string = '22'
-  @State listSpace: string = '12vp'
+  @State listSpaces: string = '12vp'
   @State isPhone: boolean = false
 
   @Builder NavigationTitle() {
@@ -199,14 +199,14 @@ struct SettingList {
           Column() {
             if (this.isPhone) {
               Navigation() {
-                EntryComponent({ listSpace: this.listSpace, isPhone: this.isPhone })
+                EntryComponent({ listSpaces: this.listSpaces, isPhone: this.isPhone })
               }
               .title(this.NavigationTitle)
               .titleMode(NavigationTitleMode.Free)
               .hideTitleBar(false)
               .hideBackButton(true)
             } else {
-              EntryComponent({ listSpace: this.listSpace })
+              EntryComponent({ listSpaces: this.listSpaces })
             }
           }
           .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
@@ -243,7 +243,7 @@ struct SettingList {
     LogUtil.info('settings SettingList aboutToAppear enter');
     ResourceUtil.getString($r("app.string.searchHint")).then(value => this.placeholder = value) // for search
     ResourceUtil.getString($r("app.float.search_placeholder_font")).then(value => this.placeholdersize = value);
-    ResourceUtil.getString($r('app.float.distance_12')).then(value => this.listSpace = value);
+    ResourceUtil.getString($r('app.float.distance_12')).then(value => this.listSpaces = value);
     let nYear = GlobalResourceManager.getStringByResource($r('app.string.year'));
     nYear.then(resp => AppStorage.SetOrCreate(ConfigData.DATE_AND_TIME_YEAR, resp));
     let nMonth = GlobalResourceManager.getStringByResource($r('app.string.month'));
@@ -277,8 +277,8 @@ struct SettingList {
 struct EntryComponent {
   private settingsList: BaseData[][] = SETTINGS_LIST;
   private nfcInfo: boolean;
-  @State listSpace: string = '12vp';
-  @State isPhone: boolean = false;
+  private listSpaces: string = '12vp';
+  private isPhone: boolean = false;
 
   aboutToAppear() {
     let info: string = parameter.getSync("const.SystemCapability.Communication.NFC.Core" ,"false");
@@ -309,7 +309,7 @@ struct EntryComponent {
             bottom: $r('app.float.distance_17')
           })
       }
-      List({ space: this.listSpace }) {
+      List({ space: this.listSpaces }) {
         // for search
         ListItem() {
           Column() {

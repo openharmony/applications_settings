@@ -20,6 +20,9 @@ import nfcController from '@ohos.nfc.controller';
 const TAG = ConfigData.TAG + 'NfcModel: ';
 
 export class NfcModel {
+  private nfcStatus: boolean;
+  private isNfcEnabled: boolean;
+
   /**
    * register Nfc Status change
    * @param callback
@@ -27,9 +30,22 @@ export class NfcModel {
   registerNfcStatusObserver(callback) {
     LogUtil.info(TAG + 'start register nfc status observer' );
     nfcController.on('nfcStateChange', (code) => {
-      AppStorage.SetOrCreate('nfcStatus', nfcController.isNfcOpen());
+      if(code == nfcController.NfcState.STATE_OFF || code == nfcController.NfcState.STATE_ON) {
+        if (code == nfcController.NfcState.STATE_ON) {
+          this.isNfcEnabled = true;
+          this.nfcStatus = true;
+        }
+        if (code == nfcController.NfcState.STATE_OFF) {
+          this.isNfcEnabled = false;
+          this.nfcStatus = false;
+        }
+        AppStorage.SetOrCreate('isNfcEnabled', this.isNfcEnabled);
+        AppStorage.SetOrCreate('nfcStatus', this.nfcStatus);
+        LogUtil.info(TAG + 'nfc active status code : ' + code + " isNfcEnabled" + this.isNfcEnabled);
+      }
       callback(code);
     })
+    LogUtil.info(TAG + 'end register nfc status observer' );
   }
 
   /**

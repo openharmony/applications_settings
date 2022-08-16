@@ -304,13 +304,16 @@ export default class BluetoothDeviceController extends BaseSettingsController {
       deviceId: string;
       bondState: number;
     }) => {
+      LogUtil.info(this.TAG + "data.bondState" + JSON.stringify(data.bondState))
       //paired devices
       if (data.bondState !== BondState.BOND_STATE_BONDING) {
+        AppStorage.SetOrCreate("controlPairing", true)
         this.refreshPairedDevices();
       }
 
       //available devices
       if (data.bondState == BondState.BOND_STATE_BONDING) {
+        AppStorage.SetOrCreate("controlPairing", false)
         // case bonding
         // do nothing and still listening
         LogUtil.log(this.TAG + 'bluetooth continue listening bondStateChange.');
@@ -321,6 +324,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
         AppStorage.SetOrCreate('bluetoothAvailableDevices', this.availableDevices);
 
       } else if (data.bondState == BondState.BOND_STATE_INVALID) {
+        AppStorage.SetOrCreate("controlPairing", true)
         // case failed
         if(this.getAvailableDevice(data.deviceId) != null){
           this.getAvailableDevice(data.deviceId).connectionState = ProfileConnectionState.STATE_DISCONNECTED;

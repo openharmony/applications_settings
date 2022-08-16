@@ -18,7 +18,7 @@ import wifi from '@ohos.wifi';
 import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
 
 const MODULE_TAG = ConfigData.TAG + 'WifiModel -> ';
-
+const Undefined_TaskId = -1;
 export interface WifiScanInfo {
   ssid: string,
   bssid: string,
@@ -218,7 +218,7 @@ export class WifiModel extends BaseModel {
   private userSelectedAp: ApScanResult = new ApScanResult();
   private linkedApInfo: any = undefined;
 
-  private scanTaskId: number = -1;
+  private scanTaskId: number = Undefined_TaskId;
   private isScanning: boolean = false;
 
   destroyWiFiModelData() {
@@ -504,6 +504,12 @@ export class WifiModel extends BaseModel {
 
   startScanTask() {
     LogUtil.info(MODULE_TAG + 'start the wifi scan task');
+
+    if (this.scanTaskId !== Undefined_TaskId) {
+      clearInterval(this.scanTaskId);
+      this.scanTaskId = Undefined_TaskId;
+    }
+
     this.scanTaskId = setInterval(() => {
       if (this.isWiFiActive() === true && this.isScanning === true) {
         this.refreshApScanResults();
@@ -519,9 +525,9 @@ export class WifiModel extends BaseModel {
 
   stopScanTask() {
     LogUtil.info(MODULE_TAG + 'stop the wifi scan task');
-    if (this.scanTaskId !== -1) {
+    if (this.scanTaskId !== Undefined_TaskId) {
       clearInterval(this.scanTaskId);
-      this.scanTaskId = -1;
+      this.scanTaskId = Undefined_TaskId;
     }
     this.isScanning = false;
   }
