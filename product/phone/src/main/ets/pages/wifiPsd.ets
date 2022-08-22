@@ -25,7 +25,7 @@ import router from '@system.router'
 import InputMethod from '@ohos.inputmethod';
 import deviceInfo from '@ohos.deviceInfo'
 const deviceTypeInfo = deviceInfo.deviceType
-
+const miniPassWordSize = 8;
 const MODULE_TAG = ConfigData.TAG + 'WifiModel.WifiPasswd -> ';
 
 /**
@@ -64,7 +64,7 @@ struct WifiPsd {
   controlFailedDialog() {
      if(this.ControlFailedDialog){
        this.failedDialog.close()
-       this.ControlFailedDialog =false
+       this.ControlFailedDialog = false;
      }
   }
 
@@ -164,8 +164,8 @@ struct WifiPsd {
                   .margin({ left: $r('app.float.wh_value_6') })
                   .align(Alignment.Center)
                   .backgroundColor($r('sys.color.ohos_id_color_button_normal'))
-                  .opacity(this.userInputs.length === 0 ? $r('sys.float.ohos_fa_alpha_disabled') : 1)
-                  .onClick(this.userInputs.length === 0 ?
+                  .opacity(this.userInputs.length < miniPassWordSize ? $r('sys.float.ohos_fa_alpha_disabled') : 1)
+                  .onClick(this.userInputs.length < miniPassWordSize ?
                     () => {
                       LogUtil.info(MODULE_TAG + 'no text input in passwd page');
                     }
@@ -230,15 +230,7 @@ struct WifiPsd {
       });
     }
     this.initTextInputHint();
-    this.isConnectedBefore = wifi.isConnected();
 
-    if (this.isConnectedBefore) {
-      LogUtil.info(MODULE_TAG + 'start task');
-      this.startLinkedInfoTask();
-    } else {
-      LogUtil.info(MODULE_TAG + 'start observer');
-      this.registerObserver();
-    }
     this.tobeConnectedAp = params.apInfo;
     this.tobeConnectedSSID = this.tobeConnectedAp.ssid;
     if (deviceTypeInfo === 'phone') {
@@ -250,6 +242,16 @@ struct WifiPsd {
 
   onPageShow() {
     LogUtil.info(MODULE_TAG + 'on page show');
+
+    this.isConnectedBefore = wifi.isConnected();
+
+    if (this.isConnectedBefore) {
+      LogUtil.info(MODULE_TAG + 'start task');
+      this.startLinkedInfoTask();
+    } else {
+      LogUtil.info(MODULE_TAG + 'start observer');
+      this.registerObserver();
+    }
   }
 
   onPageHide(): void {
@@ -282,7 +284,11 @@ struct WifiPsd {
     WifiModel.registerWiFiConnectionObserver((code: Number) => {
       LogUtil.info(MODULE_TAG + 'wifi connection code : ' + code);
       // 0: disconnected, 1: connected
+      if(!this.toConnected){
+        return;
+      }
       if (code === 0) {
+        this.toConnected = false;
         this.connectDialog.close()
         this.failedDialog.open()
         WifiModel.removeDeviceConfig(this.tobeConnectedAp);

@@ -23,6 +23,8 @@ import Router from '@system.router';
 @Entry
 @Component
 struct EditLanguage {
+  @State deleteFlag: boolean = false;
+  @State deleteItem: string = '';
   private TAG = `${ConfigData.TAG} EditLanguage`;
 
   build() {
@@ -39,9 +41,9 @@ struct EditLanguage {
           });
 
           Column() {
-            HeadComponent({headName: $r('app.string.editLanguage')});
+            HeadComponent({headName: $r('app.string.editLanguage'), deleteFlag: $deleteFlag, deleteItem: $deleteItem,});
             Column(){
-              EditList();
+              EditList({deleteFlag: $deleteFlag, deleteItem: $deleteItem,});
             }.margin({top:$r("app.float.distance_8")})
           }
           .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
@@ -91,11 +93,14 @@ struct EditLanguage {
 @Component
 struct EditList {
   @StorageLink('addedLanguages') addedLanguages:Array<string> = LanguageAndRegionModel.getAddedLanguages();
-  @State touchedItem:string = ''
+  @State maddedLanguages: Array<string> = this.addedLanguages;
+  @Link deleteFlag: boolean;
+  @Link deleteItem: string;
+  @State touchedItem:string = '';
 
   build(){
     List(){
-      ForEach(this.addedLanguages, (item) => {
+      ForEach((this.deleteFlag ? this.maddedLanguages : this.addedLanguages) , (item) => {
         ListItem(){
           Flex({justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center}){
             Row(){
@@ -131,7 +136,7 @@ struct EditList {
               .height($r('app.float.wh_value_24'))
               .objectFit(ImageFit.Contain)
               .onClick(() => {
-                if(this.addedLanguages.length <= 1){
+                if(this.maddedLanguages.length <= 1){
                   AlertDialog.show({
                     message: $r("app.string.saveLanguage"),
                     confirm: {
@@ -142,7 +147,10 @@ struct EditList {
                     }
                   })
                 }else{
-                  LanguageAndRegionModel.deleteLanguage(item);
+                  this.deleteFlag = true;
+                  this.deleteItem = item;
+                  let deleteItemIndex = this.maddedLanguages.indexOf(this.deleteItem);
+                  this.maddedLanguages.splice(deleteItemIndex, 1)
                 }
               });
           }
@@ -185,6 +193,8 @@ struct EditList {
 struct HeadComponent {
   private headName: string | Resource = '';
   @State isTouch: boolean= false;
+  @Link deleteFlag: boolean;
+  @Link deleteItem: string;
 
   build() {
     Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
@@ -196,6 +206,7 @@ struct HeadComponent {
           .margin({ right: $r('app.float.wh_value_16'), top: $r('app.float.wh_value_16'), bottom: $r('app.float.wh_value_16')})
           .backgroundColor(this.isTouch ? $r('app.color.color_E3E3E3_grey') : $r('app.color.color_00000000_transparent'))
           .onClick(()=>{
+            this.deleteFlag = false;
             Router.back();
           })
           .onTouch((event: TouchEvent) => {
@@ -221,7 +232,15 @@ struct HeadComponent {
         .width($r('app.float.wh_value_24'))
         .height($r('app.float.wh_value_24'))
         .fillColor($r("sys.color.ohos_id_color_primary"))
-        .objectFit(ImageFit.Contain);
+        .opacity(this.deleteFlag ? 1 : $r('sys.float.ohos_fa_alpha_disabled'))
+        .objectFit(ImageFit.Contain)
+        .onClick(() => {
+          if (this.deleteFlag) {
+            LanguageAndRegionModel.deleteLanguage(this.deleteItem)
+            Router.back();
+            this.deleteFlag = false;
+          }
+        })
     }
     .width(ConfigData.WH_100_100)
     .padding({left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end')})
