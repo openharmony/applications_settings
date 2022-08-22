@@ -18,6 +18,7 @@ import ConfigData from '../../../../../../../../../common/utils/src/main/ets/def
 import LanguageAndRegionModel from '../../../../model/systemImpl/languageSettings/LanguageAndRegionModel'
 import ResourceUtil from '../../../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import {SubHeader} from '../../../../../../../../../common/component/src/main/ets/default/textComponent';
+import router from '@system.router';
 
 /**
  * Home Page Of LanguageAndRegion Settings
@@ -25,6 +26,7 @@ import {SubHeader} from '../../../../../../../../../common/component/src/main/et
 @Entry
 @Component
 struct LanguageAndRegion {
+  @StorageLink('addedLanguages') addedLanguages:Array<string> = LanguageAndRegionModel.getAddedLanguages();
   private TAG = `${ConfigData.TAG} LanguageAndRegion`;
 
   build() {
@@ -51,14 +53,18 @@ struct LanguageAndRegion {
                     .fontWeight(FontWeight.Medium)
                     .fontColor($r('sys.color.ohos_id_color_text_secondary'))
                     .textAlign(TextAlign.Start)
-                  Navigator({target: 'pages/system/languageSettings/languageAndRegion/editLanguage'}) {
                     Text($r("app.string.edit"))
                       .fontColor($r("app.color.font_color_007DFF"))
                       .fontSize($r("app.float.font_14"))
                       .fontWeight(FontWeight.Medium)
                       .lineHeight($r("app.float.lineHeight_19"))
                       .textAlign(TextAlign.End)
-                  }
+                      .opacity(this.addedLanguages.length == 1 ? $r('sys.float.ohos_fa_alpha_disabled') : 1)
+                      .onClick(() => {
+                        if (this.addedLanguages.length > 1) {
+                          router.push({ uri: 'pages/system/languageSettings/languageAndRegion/editLanguage' })
+                        }
+                      })
                 }
                 .margin({left: $r("sys.float.ohos_id_card_margin_start"), right: $r("sys.float.ohos_id_card_margin_end")})
                 .height($r("app.float.wh_value_48"))

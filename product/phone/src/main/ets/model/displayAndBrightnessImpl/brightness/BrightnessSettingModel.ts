@@ -87,13 +87,8 @@ export class BrightnessSettingModel extends BaseModel{
    */
   @Log
   @CatchError(undefined)
-  public setValue(brightness:number, sliderChangeMode:number){
-    if(sliderChangeMode === ConfigData.SLIDER_CHANG_MODE_MOVING){
-      this.setSystemBrightness(brightness);
-    }else{
-      LogUtil.info(`${this.TAG} setValue [brightness:${brightness}, sliderChangeMode:${sliderChangeMode}]`);
-      this.setSettingsData(brightness);
-    }
+  public setValue(brightness: number, sliderChangeMode: number) {
+    this.setSystemBrightness(brightness);
     return;
   }
 
