@@ -206,6 +206,13 @@ struct Storage {
   }
 
   aboutToAppear(): void{
+    display.getDefaultDisplay().then((display) => {
+      if (display.width > display.height) {
+        this.screenWidth = display.height / this.dpi / this.dpi
+      } else {
+        this.screenWidth = display.width / this.dpi
+      }
+    })
     // bind component and initialize
     if (this.controller) {
       this.controller.bindComponent(this)
