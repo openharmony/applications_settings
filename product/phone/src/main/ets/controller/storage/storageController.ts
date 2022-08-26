@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import StorageModel from '../../model/StorageImpl/StorageModel'
+import StorageModel from '../../model/storageImpl/StorageModel'
 import {LogAll} from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';

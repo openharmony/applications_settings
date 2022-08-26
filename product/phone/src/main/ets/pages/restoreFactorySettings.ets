@@ -14,7 +14,7 @@
  */
 
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
-import RestoreFactorySettingsController from '../controller/restoreFactorySettings/restoreFactorySettingsController'
+import RestoreFactorySettingsController from '../controller/restoreFactorySettings/RestoreFactorySettingsController'
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import Router from '@system.router';
 

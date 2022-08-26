@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import deviceInfo from '@ohos.deviceInfo';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import {DialogButtonLayout} from '../../../../../../common/component/src/main/ets/default/dialogComponent';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
@@ -25,6 +27,8 @@ import FeatureAbility from '@ohos.ability.featureAbility';
 import prompt from '@system.prompt';
 import Router from '@system.router';
 
+const deviceTypeInfo = deviceInfo.deviceType;
+
 @Entry
 @Component
 struct PasswordSetting {
@@ -37,13 +41,19 @@ struct PasswordSetting {
 
   // private Properties
   private lockUi: boolean = false // prevent continuous and multiple clicks
+  @State isPhone: boolean = false;
   @State isTouched: boolean = false;
   @State touchedItem: boolean = false;
-  @State listSpace: string = '10vp'
+  @State listSpace: string = '10vp';
   @State faceAuthFailedMessage: string = '';
 
   @Log
   aboutToAppear(): void {
+    if (deviceTypeInfo === 'phone') {
+      this.isPhone = true;
+    } else {
+      this.isPhone = false;
+    }
 
     // bind component and initialize
     this.mController.bindComponent(this)
@@ -85,7 +95,7 @@ struct PasswordSetting {
       if (this.lockUi) {
         return;
       }
-      this.lockUi = true
+      this.lockUi = true;
       globalThis.settingsAbilityContext.startAbility({
         bundleName: ConfigData.FACEAUTH_BUNDLE_NAME,
         abilityName: ConfigData.FACEAUTH_ABILITY_NAME
@@ -100,7 +110,7 @@ struct PasswordSetting {
           })
           LogUtil.error(`${this.TAG_PAGE}, ${ConfigData.FACEAUTH_BUNDLE_NAME} start failed. Cause: ${JSON.stringify(error)}`);
         })
-      this.lockUi = false
+      this.lockUi = false;
     })
   }
 
@@ -124,10 +134,10 @@ struct PasswordSetting {
       if (this.lockUi) {
         return;
       }
-      this.lockUi = true
+      this.lockUi = true;
       LogUtil.info(this.TAG_PAGE + ' disable password onclick : item = ' + JSON.stringify(item))
       this.showClosePasswordDialog(item);
-      this.lockUi = false
+      this.lockUi = false;
     });
   }
 
@@ -150,10 +160,10 @@ struct PasswordSetting {
       if (this.lockUi) {
         return;
       }
-      this.lockUi = true
+      this.lockUi = true;
       LogUtil.info(this.TAG_PAGE + ' item onclick : item = ' + JSON.stringify(item))
       this.gotoNextPage(item)
-      this.lockUi = false
+      this.lockUi = false;
     });
   }
 
@@ -185,11 +195,12 @@ struct PasswordSetting {
                 if (group[0].settingIsSectionTitle && group[0].settingShouldDisplay) {
                   ListItem() {
                     Text(group[0].settingTitle)
+                      .fontColor($r('sys.color.ohos_id_color_text_secondary'))
                       .fontSize($r("app.float.font_14"))
                       .lineHeight($r("app.float.lineHeight_19"))
                       .textAlign(TextAlign.Start)
                       .margin({ top: $r("app.float.distance_9_5") })
-                      .padding({ left: $r('app.float.distance_24'), right: $r('app.float.distance_24') })
+                      .padding({ left: $r('app.float.distance_12'), right: $r('app.float.distance_12') })
                       .width(ConfigData.WH_100_100);
                   }
                 }
@@ -223,7 +234,6 @@ struct PasswordSetting {
                   .width(ConfigData.WH_100_100)
                   .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
                   .borderRadius($r('app.float.radius_24'))
-                  .padding($r('app.float.distance_4'))
                   .divider({
                     strokeWidth: $r('app.float.divider_wh'),
                     color: $r('app.color.color_E3E3E3_grey'),
@@ -237,7 +247,10 @@ struct PasswordSetting {
             .width(ConfigData.WH_100_100)
           }
           .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
+          .margin({
+            left: $r('sys.float.ohos_id_card_margin_start'),
+            right: $r('sys.float.ohos_id_card_margin_end')
+          })
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
           .useSizeType({
@@ -267,15 +280,15 @@ struct PasswordSetting {
 
   //------------------------------ Router ---------------------------
   /**
-     * Go to password page
-     *
-     * @param uri : page uri
-     * @param pageRequestCode : page request code
-     */
+   * Go to password page
+   *
+   * @param uri : page uri
+   * @param pageRequestCode : page request code
+   */
   @Log
   gotoNextPage(item: PasswordSettingItem) {
     if (!item.settingUri) {
-      return
+      return;
     }
     Router.push({
       uri: item.settingUri,
@@ -289,9 +302,9 @@ struct PasswordSetting {
 
   //------------------------------ Dialog ---------------------------
   /**
-     * Close password dialog
-     * @param item password setting item
-     */
+   * Close password dialog
+   * @param item password setting item
+   */
   @Log
   showClosePasswordDialog(delItem: PasswordSettingItem) {
     AlertDialog.show({
@@ -315,8 +328,8 @@ struct PasswordSetting {
         LogUtil.info(this.TAG_PAGE + 'ClosePasswordDialog Closed callbacks')
       },
       autoCancel: true,
-      alignment: DialogAlignment.Bottom,
-      offset: ({ dx: 0, dy: '-16dp' })
+      alignment: this.isPhone ? DialogAlignment.Bottom : DialogAlignment.Center,
+      offset: ({ dx: 0, dy: this.isPhone ? '-16dp' : 0 })
     })
   }
 }

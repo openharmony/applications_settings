@@ -24,7 +24,8 @@ import OuterComponent from './OuterComponent';
 
 const VOLUME_MIN_VALUE = 0;
 const VOLUME_MAX_VALUE = 15;
-const deviceTypeInfo = deviceInfo.deviceType
+const deviceTypeInfo = deviceInfo.deviceType;
+
 /**
  * Volume control
  */
@@ -49,7 +50,7 @@ export struct VolumeControl {
       VolumeControlComponent();
     }
     .width(ConfigData.WH_100_100)
-    .height(ConfigData.WH_100_100);
+    .height(ConfigData.WH_100_100)
   }
 
   build() {
@@ -59,7 +60,7 @@ export struct VolumeControl {
       })
     }
     .width(ConfigData.WH_100_100)
-    .height(ConfigData.WH_100_100);
+    .height(ConfigData.WH_100_100)
   }
 
   @Log
@@ -87,9 +88,8 @@ struct AudioRingerModeComponent {
   private ringerNormalModel: RingerModel = new RingerModel(Audio.AudioRingMode.RINGER_MODE_NORMAL);
   private TAG = ConfigData.TAG + ' AudioRingerModeComponent ';
 
-
   build() {
-       Flex({direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween}) {
+       Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween }) {
          RowSplit() {
            AudioRingerModeItem({
              checked: $ringerModeNormal,
@@ -97,6 +97,7 @@ struct AudioRingerModeComponent {
              image: $r("app.media.ic_ring"),
              text: $r('app.string.soundModeSound')
            });
+
            AudioRingerModeItem({
              checked: $ringerModeSilent,
              audioRingerModel: this.ringerSilentModel,
@@ -105,17 +106,16 @@ struct AudioRingerModeComponent {
            });
          }
          .resizeable(false)
-         .colorBlend($r("sys.color.ohos_id_color_list_separator"))
+         .colorBlend($r("sys.color.ohos_id_color_panel_bg"))
        }
     .borderRadius($r('app.float.radius_24'))
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
     .width(ConfigData.WH_100_100)
     .height($r('app.float.wh_value_119'))
     .padding({
-      top: $r('app.float.distance_16'),
-      bottom: $r('app.float.distance_16')
+      top: $r('app.float.distance_14'),
+      bottom: $r('app.float.distance_14')
     })
-
   }
 
   @Log
@@ -131,7 +131,6 @@ struct AudioRingerModeComponent {
   }
 }
 
-
 /**
  * AudioRingerMode item
  */
@@ -141,13 +140,13 @@ struct AudioRingerModeItem {
   private audioRingerModel: RingerModel;
   private image;
   private text: string | Resource;
-  @State isRk: boolean = true
+  @State isRk: boolean = true;
 
   aboutToAppear() {
     if (deviceTypeInfo === 'default') {
-      this.isRk = true
+      this.isRk = true;
     } else {
-      this.isRk = false
+      this.isRk = false;
     }
   }
   build() {
@@ -156,34 +155,34 @@ struct AudioRingerModeItem {
         .width($r('app.float.wh_value_24'))
         .height($r('app.float.wh_value_24'))
         .objectFit(ImageFit.Contain)
-        .fillColor($r("sys.color.ohos_id_color_primary"))
+        .fillColor($r("sys.color.ohos_fa_icon_secondary"))
+
       Text(this.text)
-        .fontColor($r("sys.color.ohos_id_color_text_primary"))
+        .fontColor($r("app.color.font_color_182431"))
         .fontSize($r("sys.float.ohos_id_text_size_body2"))
         .lineHeight($r("app.float.lineHeight_19"))
         .fontWeight(FontWeight.Regular)
         .textAlign(TextAlign.Center)
-        .margin({top:$r('app.float.wh_4')});
+        .margin({top:$r('app.float.distance_8')});
 
       Radio({ value: '', group: '' })
-        .width(this.isRk?$r('app.float.distance_8'):$r('app.float.wh_value_30'))
-        .height(this.isRk?$r('app.float.distance_8'):$r('app.float.wh_value_30'))
-        .margin({top: $r('app.float.distance_8')})
+        .width(this.isRk ? $r('app.float.distance_8') : $r('app.float.wh_value_24'))
+        .height(this.isRk ? $r('app.float.distance_8') : $r('app.float.wh_value_24'))
+        .margin({top: $r('app.float.distance_4')})
         .checked(this.checked)
-        .enabled(false)
     }
-    .padding({left: $r("app.float.distance_12"), right: $r("app.float.distance_12")})
+    .padding({
+      left: $r("app.float.distance_12"),
+      right: $r("app.float.distance_12")})
     .alignItems(HorizontalAlign.Center)
     .width(ConfigData.WH_50_100)
     .height(ConfigData.WH_100_100)
     .onClick(() => {
-      LogUtil.info(ConfigData.TAG + 'AudioRingerModeItem : item is clicked')
+      LogUtil.info(ConfigData.TAG + 'AudioRingerModeItem : item is clicked');
       this.audioRingerModel.setRingerMode();
     });
   }
 }
-
-
 
 /**
  * Volume control component
@@ -202,17 +201,18 @@ struct VolumeControlComponent {
 
   build() {
     Column() {
-
       VolumeControlItem({
         image: this.volumeRingTone === 0 ? $r("app.media.ic_ring_off") : $r("app.media.ic_ring"),
         volumeValue: $volumeRingTone,
         volumeModel: this.ringtoneModel,
         text: $r("app.string.volumeControlRing")})
+
       VolumeControlItem({
         image: $r("app.media.ic_media"),
         volumeValue: $volumeMedia,
         volumeModel: this.mediaModel,
         text: $r("app.string.volumeControlMedia")})
+
       VolumeControlItem({
         image: $r("app.media.ic_call"),
         volumeValue: $volumeVoiceCall,
@@ -243,7 +243,6 @@ struct VolumeControlComponent {
   }
 }
 
-
 /**
  * Volume control item
  */
@@ -260,7 +259,7 @@ struct VolumeControlItem {
         Image(this.image)
           .width($r('app.float.wh_value_20'))
           .height($r('app.float.wh_value_20'))
-          .fillColor($r("sys.color.ohos_id_color_primary"))
+          .fillColor($r("sys.color.ohos_fa_icon_secondary"))
           .objectFit(ImageFit.Contain)
 
         Text(this.text)
@@ -274,6 +273,7 @@ struct VolumeControlItem {
       .margin({  bottom: $r('app.float.distance_1')})
       .width(ConfigData.WH_100_100)
       .align(Alignment.Center);
+
       Slider({
         value: this.volumeValue,
         min: VOLUME_MIN_VALUE,

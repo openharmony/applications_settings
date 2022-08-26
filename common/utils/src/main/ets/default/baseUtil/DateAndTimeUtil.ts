@@ -17,33 +17,24 @@
  */
 
 import ConfigData from './ConfigData';
+import i18n from '@ohos.i18n';
+import Intl from "@ohos.intl";
 
 export class DateAndTimeUtil {
   getSystemTime(isUsing24hFormat: boolean) {
     let datetime = new Date();
-    let hours = datetime.getHours();
-    let minutes = datetime.getMinutes();
 
-    let time : Resource | string = this.concatTime(hours, minutes)
-    if (isUsing24hFormat === false) {
-      if (hours < 12) {
-        time = $r("app.string.timeMorning", this.concatTime(hours, minutes));
-      } else if (hours === 12) {
-        time = $r("app.string.timeMorning", this.concatTime(hours, minutes));
-      } else {
-        time = $r("app.string.timeAfternoon",this.concatTime((hours % 12), minutes)) ;
-      }
-    }
-    return time;
+    // @ts-ignore
+    var datefmt= new Intl.DateTimeFormat(i18n.getSystemLanguage(), { timeStyle: 'short' });
+    return datefmt.format(datetime);
   }
 
   getSystemDate() {
-    let dateTime = new Date();
-    let year = dateTime.getFullYear();
-    let month = dateTime.getMonth() + 1;
-    let day = dateTime.getDate();
-    let date = this.concatDate(year, month, day)
-    return date
+    let datetime = new Date();
+
+    // @ts-ignore
+    var datefmt= new Intl.DateTimeFormat(i18n.getSystemLanguage(), { dateStyle: 'long' });
+    return datefmt.format(datetime);
   }
 
   fill(value) {
