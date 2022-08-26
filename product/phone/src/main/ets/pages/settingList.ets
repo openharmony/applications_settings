@@ -163,9 +163,9 @@ const SETTINGS_LIST = [
 @Component
 struct SettingList {
   @State placeholder: string= ''; // for search
-  @State placeholdersize: string = '22'
-  @State listSpaces: string = '12vp'
-  @State isPhone: boolean = false
+  @State placeholdersize: string = '22';
+  @State listSpaces: string = '12vp';
+  @State isPhone: boolean = false;
 
   @Builder NavigationTitle() {
     Column() {
@@ -396,7 +396,8 @@ struct EntryComponent {
       .flexShrink(1)
       .width(ConfigData.WH_100_100)
       .alignSelf(ItemAlign.Start);
-    }.margin({
+    }
+    .margin({
       left: $r('sys.float.ohos_id_card_margin_start'),
       right: $r('sys.float.ohos_id_card_margin_end')
     })
