@@ -19,7 +19,7 @@ import {TitleText} from '../../../../../../common/component/src/main/ets/default
 import {DialogButtonLayout, DialogButtonLayoutWithState} from '../../../../../../common/component/src/main/ets/default/dialogComponent';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import SystemAccountController from '../model/usersAndAccounts/systemAccountController';
+import SystemAccountController from '../model/usersAndAccounts/SystemAccountController';
 import SystemAccountModel from '../model/usersAndAccounts/systemAccountModel';
 import { MAX_LENGTH } from '../model/usersAndAccounts/systemAccountModel';
 import account_osAccount from '@ohos.account.osAccount';
