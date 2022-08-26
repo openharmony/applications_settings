@@ -17,7 +17,7 @@ import HeadComponent from '../../../../../../common/component/src/main/ets/defau
 import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import {PinSubType} from '../model/passwordImpl/PasswordModel';
-import PasswordCheckController from '../controller/password/PasswordCheckController'
+import PasswordCheckController from '../controller/password/PasswordCheckController';
 import Router from '@system.router';
 import InputMethod from '@ohos.inputmethod';
 
@@ -31,32 +31,31 @@ struct PasswordCheck {
   private mController: PasswordCheckController = new PasswordCheckController()
 
   // bind Properties
-  private pinToken: string = undefined
+  private pinToken: string = undefined;
   @State @Watch("freezeView")
-  private freezingTime: number = 0
+  private freezingTime: number = 0;
   @State @Watch("updateView")
-  private remainTimes: number = -1
+  private remainTimes: number = -1;
 
   // handler
   private passwordOnChangeHandler: (value: string) => void;
   private okOnClickHandler: (event?: ClickEvent) => void;
 
   // private Properties
-  private pageRequestCode: number = -1
-  private prevPageUri: string = undefined
-  private pinChallenge: string = undefined
-  @State private passwordType: number = -1
-  @State private promptMessage: string | Resource = ''
-  @State private buttonVisibility: Visibility = Visibility.Visible
+  private pageRequestCode: number = -1;
+  private prevPageUri: string = undefined;
+  private pinChallenge: string = undefined;
+  @State private passwordType: number = -1;
+  @State private promptMessage: string | Resource = '';
+  @State private buttonVisibility: Visibility = Visibility.Visible;
   @State private freezingTimeForView: number = -1;
-  @State private password: string = ''
-  private timerId: number = -1
-  @State isTouchedLeft: boolean = false
-  @State isTouchedRight: boolean = false
+  @State private password: string = '';
+  private timerId: number = -1;
+  @State isTouchedLeft: boolean = false;
+  @State isTouchedRight: boolean = false;
 
   @Log
   aboutToAppear(): void {
-
     this.getRouterParam();
 
     // bind event handlers
@@ -79,11 +78,11 @@ struct PasswordCheck {
   }
 
   /**
-     * Get the params from router
-     */
+   * Get the params from router
+   */
   @Log
   getRouterParam() {
-    param = Router.getParams()
+    param = Router.getParams();
     if (!param) {
       return;
     }
@@ -185,6 +184,7 @@ struct PasswordCheck {
                     right: $r('sys.float.ohos_id_card_margin_end')
                   })
                   .color($r("sys.color.ohos_id_color_list_separator"))
+
                 // prompt message
                 Text(this.promptMessage)
                   .fontSize($r('sys.float.ohos_id_text_size_body2'))
@@ -193,6 +193,7 @@ struct PasswordCheck {
                   .align(Alignment.Center)
                   .textAlign(TextAlign.Center)
                   .margin({ top: $r('app.float.distance_14'), bottom: $r('app.float.distance_32') })
+                  .visibility(this.remainTimes === 0 ? Visibility.Hidden : Visibility.Visible)
 
                 // button
                 Row() {
@@ -220,6 +221,7 @@ struct PasswordCheck {
                   Column()
                     .width( $r('app.float.distance_12'))
                     .height($r('app.float.application_button_height'))
+
                   Text($r('app.string.next'))
                     .fontSize($r('app.float.font_16'))
                     .fontWeight(FontWeight.Medium)
@@ -250,7 +252,6 @@ struct PasswordCheck {
                 })
                 .margin({ top: $r('app.float.distance_66') })
                 .visibility(this.buttonVisibility)
-
               }
             }
           }
@@ -285,8 +286,8 @@ struct PasswordCheck {
 
   // --------------------------- updateView -----------------------
   /**
-     * Update view
-     */
+   * Update view
+   */
   @Log
   updateView() {
     this.promptMessage = this.getPromptMessage();
@@ -294,60 +295,60 @@ struct PasswordCheck {
   }
 
   /**
-     * Get prompt message
-     *
-     * @return : message
-     */
+   * Get prompt message
+   *
+   * @return : message
+   */
   @Log
   getPromptMessage(): string | Resource {
     return (this.remainTimes > 0 && this.remainTimes < DEFAULT_TIMES) ? $r('app.string.password_message_incorrect', this.remainTimes) : '';
   }
 
   /**
-     * Get button visibility
-     *
-     * @return : button visibility
-     */
+   * Get button visibility
+   *
+   * @return : button visibility
+   */
   @Log
   getButtonVisibility(): Visibility {
-    return this.passwordType == PinSubType.PIN_SIX ? Visibility.Hidden : Visibility.Visible
+    return this.passwordType == PinSubType.PIN_SIX ? Visibility.Hidden : Visibility.Visible;
   }
 
   /**
-     * When freezing time is greater than 0, start count down view.
-     *
-     * @return : button visibility
-     */
+   * When freezing time is greater than 0, start count down view.
+   *
+   * @return : button visibility
+   */
   @Log
   freezeView() {
     if (this.freezingTime <= 0) {
-      this.stopCountDown()
+      this.stopCountDown();
       return;
     }
     this.freezingTimeForView = this.freezingTime / 1000;
     LogUtil.info(this.TAG_PAGE + `freezeView freezingTimeForView = ${this.freezingTimeForView}`);
     this.timerId = setInterval(() => {
       if (this.freezingTimeForView <= 0) {
-        this.stopCountDown()
-        this.timerId = -1
-        this.freezingTimeForView = 0
-        this.freezingTime = 0
-        this.updateView()
+        this.stopCountDown();
+        this.timerId = -1;
+        this.freezingTimeForView = 0;
+        this.freezingTime = 0;
+        this.updateView();
       } else {
-        this.freezingTimeForView -= 1
+        this.freezingTimeForView -= 1;
       }
     }, 1000)
   }
 
   /**
-     * Stop count down view.
-     */
+   * Stop count down view.
+   */
   @Log
   stopCountDown() {
     // for freezing view
     if (this.timerId > 0) {
-      clearTimeout(this.timerId)
-      clearInterval(this.freezingTimeForView)
+      clearTimeout(this.timerId);
+      clearInterval(this.freezingTimeForView);
     }
   }
 }
