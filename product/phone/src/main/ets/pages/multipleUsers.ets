@@ -382,7 +382,7 @@ struct CurrentDialogBuilder {
           LogUtil.info("Click to modify user image.")
           let chooseImageDialog = new CustomDialogController({
             builder: ChooseImageDialog(),
-            alignment: DialogAlignment.Bottom,
+            alignment: DialogAlignment.Center,
             offset: ({ dx: 0, dy: '-24dp' }),
           });
           chooseImageDialog.open();

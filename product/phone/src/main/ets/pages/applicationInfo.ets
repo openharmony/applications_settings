@@ -69,7 +69,7 @@ struct ApplicationInfo {
               Image(appInfo.settingIcon)
                 .width($r('app.float.wh_value_64'))
                 .height($r('app.float.wh_value_64'))
-                .margin({ right: $r('app.float.distance_16'), left: $r('app.float.distance_24') })
+                .margin({ right: $r('app.float.distance_16'), left:$r('sys.float.ohos_id_card_margin_start') })
 
               Column() {
                 Text(appInfo.settingTitle)
@@ -92,24 +92,14 @@ struct ApplicationInfo {
             .margin({ top: $r("app.float.distance_8") })
 
             Row() {
-              Text($r('app.string.uninstall'))
+              Button($r('app.string.uninstall'))
                 .fontSize($r('app.float.application_button_subtitle_size'))
-                .lineHeight($r('app.float.wh_value_22'))
                 .fontColor($r('app.color.font_color_007DFF'))
-                .textAlign(TextAlign.Center)
                 .layoutWeight(1)
                 .height($r('app.float.application_button_height'))
                 .visibility(this.isRemovableBundle ? Visibility.Visible : Visibility.Hidden)
                 .borderRadius($r('app.float.radius_20'))
-                .backgroundColor(!this.isTouchedLeft ? $r("app.color.color_D8D8D8_grey") : $r("sys.color.ohos_id_color_foreground_contrary"))
-                .onTouch((event: TouchEvent) => {
-                  if (event.type === TouchType.Down) {
-                    this.isTouchedLeft = true;
-                  }
-                  if (event.type === TouchType.Up) {
-                    this.isTouchedLeft = false;
-                  }
-                })
+                .backgroundColor($r('sys.color.ohos_id_color_button_normal'))
                 .onClick(() => {
                   this.showDialog.open();
                 })
@@ -118,23 +108,13 @@ struct ApplicationInfo {
                 .width($r('app.float.distance_24'))
                 .height($r('app.float.application_button_height'))
 
-              Text($r('app.string.forcedStop'))
+              Button($r('app.string.forcedStop'))
                 .fontSize($r('app.float.application_button_subtitle_size'))
-                .lineHeight($r('app.float.wh_value_22'))
                 .fontColor($r('app.color.font_color_007DFF'))
-                .textAlign(TextAlign.Center)
                 .layoutWeight(1)
                 .height($r('app.float.application_button_height'))
                 .borderRadius($r('app.float.radius_20'))
-                .backgroundColor(!this.isTouchedRight ? $r("app.color.color_D8D8D8_grey") : $r("sys.color.ohos_id_color_foreground_contrary"))
-                .onTouch((event: TouchEvent) => {
-                  if (event.type === TouchType.Down) {
-                    this.isTouchedRight = true;
-                  }
-                  if (event.type === TouchType.Up) {
-                    this.isTouchedRight = false;
-                  }
-                })
+                .backgroundColor($r('sys.color.ohos_id_color_button_normal'))
                 .onClick(() => {
                   this.showPromptDialog(this.controller.killProcessesByBundleName.bind(this, appInfo.settingBundleName));
                 })
@@ -161,7 +141,7 @@ struct ApplicationInfo {
                 valueFontSize: $r('app.float.font_14')
               })
             }
-            .padding($r('app.float.distance_4'))
+            .padding({top:$r('app.float.distance_4'),bottom:$r('app.float.distance_4')})
             .borderRadius($r('sys.float.ohos_id_corner_radius_default_l'))
             .backgroundColor($r('app.color.white_bg_color'))
             .onClick(() => {

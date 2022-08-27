@@ -65,7 +65,9 @@ export struct TitleText {
       }
       .height($r("app.float.wh_value_56"))
       .width(ComponentConfig.WH_100_100)
-      .padding({ left: $r('app.float.wh_20'), right: $r('app.float.wh_20') })
+      .padding({
+        left: $r('sys.float.ohos_id_card_margin_start'),
+        right: $r('sys.float.ohos_id_card_margin_end')})
       .borderRadius($r("app.float.radius_24"))
       .linearGradient(this.isTouched ? {
                                          angle: 90,
@@ -114,7 +116,6 @@ export struct TextComponentWithEndText {
           .fontSize($r('app.float.font_16'))
           .fontColor($r('app.color.font_color_182431'))
           .fontWeight(FontWeight.Medium)
-          .margin({ left: $r('app.float.wh_24') })
           .textAlign(TextAlign.Start);
       }
 
@@ -127,11 +128,14 @@ export struct TextComponentWithEndText {
         Image('/res/image/ic_settings_arrow.svg')
           .width($r('app.float.wh_value_12'))
           .height($r('app.float.wh_value_24'))
-          .margin({ right: $r('app.float.wh_24') })
           .fillColor($r("sys.color.ohos_id_color_primary"))
           .opacity($r("app.float.opacity_0_2"))
       }
     }
+    .padding({
+      left: $r('sys.float.ohos_id_card_margin_start'),
+      right: $r('sys.float.ohos_id_card_margin_end')
+    })
     .height($r('app.float.wh_value_48'))
     .width(ComponentConfig.WH_100_100)
     .borderRadius($r('app.float.radius_24'))
