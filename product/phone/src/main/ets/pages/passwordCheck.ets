@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
@@ -28,7 +29,7 @@ const DEFAULT_TIMES = 5;
 @Component
 struct PasswordCheck {
   private TAG_PAGE = ConfigData.TAG + 'PasswordCheck page ';
-  private mController: PasswordCheckController = new PasswordCheckController()
+  private mController: PasswordCheckController = new PasswordCheckController();
 
   // bind Properties
   private pinToken: string = undefined;
@@ -196,17 +197,19 @@ struct PasswordCheck {
                   .visibility(this.remainTimes === 0 ? Visibility.Hidden : Visibility.Visible)
 
                 // button
-                Row() {
-                  Text($r('app.string.cancel'))
-                    .fontSize($r('app.float.font_16'))
-                    .fontWeight(FontWeight.Medium)
-                    .lineHeight($r('app.float.wh_value_22'))
-                    .fontColor($r('app.color.font_color_007DFF'))
-                    .textAlign(TextAlign.Center)
+                Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+                  Row() {
+                    Button({ type: ButtonType.Capsule, stateEffect: true }) {
+                      Text($r('app.string.cancel'))
+                        .fontSize($r('app.float.font_16'))
+                        .fontWeight(FontWeight.Medium)
+                        .lineHeight($r('app.float.wh_value_22'))
+                        .fontColor($r('app.color.font_color_007DFF'))
+                        .textAlign(TextAlign.Center)
+                        .height($r('app.float.application_button_height'))
+                    }
                     .layoutWeight(1)
-                    .height($r('app.float.application_button_height'))
-                    .borderRadius($r('app.float.radius_20'))
-                    .backgroundColor(!this.isTouchedLeft ? '#E6E9EB' : $r("sys.color.ohos_id_color_foreground_contrary"))
+                    .backgroundColor(!this.isTouchedLeft ? $r("sys.color.ohos_id_color_button_normal") : $r("sys.color.ohos_id_color_foreground_contrary"))
                     .onTouch((event: TouchEvent) => {
                       if (event.type === TouchType.Down) {
                         this.isTouchedLeft = true;
@@ -218,19 +221,21 @@ struct PasswordCheck {
                     .onClick(() => {
                       Router.back();
                     })
-                  Column()
-                    .width( $r('app.float.distance_12'))
-                    .height($r('app.float.application_button_height'))
 
-                  Text($r('app.string.next'))
-                    .fontSize($r('app.float.font_16'))
-                    .fontWeight(FontWeight.Medium)
-                    .lineHeight($r('app.float.wh_value_22'))
-                    .fontColor($r('app.color.font_color_007DFF'))
-                    .textAlign(TextAlign.Center)
+                    Column()
+                      .width( $r('app.float.distance_12'))
+                      .height($r('app.float.application_button_height'))
+
+                    Button({ type: ButtonType.Capsule, stateEffect: true }) {
+                      Text($r('app.string.next'))
+                        .fontSize($r('app.float.font_16'))
+                        .fontWeight(FontWeight.Medium)
+                        .lineHeight($r('app.float.wh_value_22'))
+                        .fontColor($r('app.color.font_color_007DFF'))
+                        .height($r('app.float.application_button_height'))
+                        .textAlign(TextAlign.Center)
+                    }
                     .layoutWeight(1)
-                    .height($r('app.float.application_button_height'))
-                    .borderRadius($r('app.float.radius_20'))
                     .backgroundColor(!this.isTouchedLeft ? '#E6E9EB' : $r("sys.color.ohos_id_color_foreground_contrary"))
                     .onTouch((event: TouchEvent) => {
                       if (event.type === TouchType.Down) {
@@ -241,22 +246,24 @@ struct PasswordCheck {
                       }
                     })
                     .onClick(this.okOnClickHandler)
+                  }
+                  .alignItems(VerticalAlign.Center)
+                  .width(ConfigData.WH_100_100)
+                  .padding({
+                    top: $r('app.float.distance_24'),
+                    bottom: $r('app.float.distance_36'),
+                  })
+                  .margin({ top: $r('app.float.distance_66') })
+                  .visibility(this.buttonVisibility)
                 }
-                .alignItems(VerticalAlign.Center)
-                .width(ConfigData.WH_100_100)
-                .padding({
-                  top: $r('app.float.distance_24'),
-                  bottom: $r('app.float.distance_36'),
-                  left: $r('app.float.distance_24'),
-                  right: $r('app.float.distance_24')
-                })
-                .margin({ top: $r('app.float.distance_66') })
-                .visibility(this.buttonVisibility)
               }
             }
           }
           .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
+          .padding({
+            left: $r('sys.float.ohos_id_card_margin_start'),
+            right: $r('sys.float.ohos_id_card_margin_end')
+          })
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
           .useSizeType({

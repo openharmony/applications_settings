@@ -14,7 +14,7 @@
  */
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
-import AboutDeviceModel from '../model/aboutDeviceImpl/AboutDeviceModel'
+import AboutDeviceModel from '../model/aboutDeviceImpl/AboutDeviceModel';
 import {SubEntryComponentWithEndText} from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 
@@ -25,8 +25,8 @@ import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUti
 @Component
 struct Index {
   @State systemName: string  = AboutDeviceModel.getSystemName();
-  private deviceInfo: any = ''
-  private aboutDeviceList: any[] = []
+  private deviceInfo: any = '';
+  private aboutDeviceList: any[] = [];
 
   build() {
     Column() {
@@ -57,7 +57,9 @@ struct Index {
               });
             }
             .width(ConfigData.WH_100_100)
-            .margin({ bottom: $r("app.float.distance_12"), top: $r("app.float.distance_8") })
+            .margin({ bottom: $r("app.float.distance_12"),
+              top: $r("app.float.distance_8")
+            })
 
             List() {
               ForEach(this.aboutDeviceList, (item) => {
@@ -71,12 +73,15 @@ struct Index {
                       .padding({ top: $r('app.float.distance_12'), bottom: $r('app.float.distance_12') })
                       .fontColor($r("app.color.font_color_182431"))
                       .textAlign(TextAlign.Start);
+
                     Text(item.settingValue)
                       .fontSize($r("app.float.font_16"))
                       .lineHeight($r("app.float.wh_value_22"))
                       .fontWeight(FontWeight.Regular)
                       .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-                      .padding({ top: $r('app.float.distance_12'), bottom: $r('app.float.distance_12') })
+                      .padding({
+                        top: $r('app.float.distance_12'),
+                        bottom: $r('app.float.distance_12') })
                       .textAlign(TextAlign.End);
                   }
                   .width(ConfigData.WH_100_100)
@@ -94,7 +99,10 @@ struct Index {
             .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
           }
           .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .padding({ left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end') })
+          .padding({
+            left: $r('sys.float.ohos_id_card_margin_start'),
+            right: $r('sys.float.ohos_id_card_margin_end')
+          })
           .width(ConfigData.WH_100_100)
           .height(ConfigData.WH_100_100)
           .useSizeType({
@@ -125,22 +133,26 @@ struct Index {
   private getDeviceInfo(): void {
     for (let key in this.aboutDeviceList) {
       let value = this.aboutDeviceList[key].settingAlias;
+
       if ('model' === value) {
         this.aboutDeviceList[key].settingValue = this.deviceInfo.productModel;
         this.aboutDeviceList[key].settingTitle = $r('app.string.model');
-      }
+      };
+
       if ('companyInfo' === value) {
         this.aboutDeviceList[key].settingValue = this.deviceInfo.manufacture;
         this.aboutDeviceList[key].settingTitle = $r('app.string.companyInfo');
-      }
+      };
+
       if ('deviceId' === value) {
         this.aboutDeviceList[key].settingValue = this.deviceInfo.serial;
         this.aboutDeviceList[key].settingTitle = $r('app.string.deviceId');
-      }
+      };
+
       if ('softwareVersion' === value) {
         this.aboutDeviceList[key].settingValue = this.deviceInfo.displayVersion;
         this.aboutDeviceList[key].settingTitle = $r('app.string.softwareVersion');
-      }
+      };
     }
   }
 

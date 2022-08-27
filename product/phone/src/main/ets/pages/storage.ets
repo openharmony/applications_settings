@@ -21,30 +21,30 @@ import mediaquery from '@ohos.mediaquery';
 /**
  * Storage
  */
-let portraitFunc = null
+let portraitFunc = null;
 
 @Entry
 @Component
 struct Storage {
-  listener = mediaquery.matchMediaSync('(orientation: landscape)')
+  listener = mediaquery.matchMediaSync('(orientation: landscape)');
   @State storageList: any[] = [];
   private usedSpace: any = '';
   private totalSpace: any = '';
   private freeBytes: any = '';
   @State proportion: number = 0;
   @State usedSpaceList: any[] = [];
-  @State screenWidth: number= 360
-  private dpi: number= vp2px(this.screenWidth) / this.screenWidth
+  @State screenWidth: number= 360;
+  private dpi: number= vp2px(this.screenWidth) / this.screenWidth;
   private controller: StorageController = new StorageController();
 
   onPortrait(mediaQueryResult) {
     if (mediaQueryResult.matches) {
       display.getDefaultDisplay().then((disp) => {
-        this.screenWidth = disp.height / this.dpi / this.dpi
+        this.screenWidth = disp.height / this.dpi / this.dpi;
       })
     } else {
       display.getDefaultDisplay().then((disp) => {
-        this.screenWidth = disp.width / this.dpi
+        this.screenWidth = disp.width / this.dpi;
       })
     }
   }
@@ -69,6 +69,7 @@ struct Storage {
 
           Column() {
             HeadComponent({ headName: $r('app.string.storageTab'), isActive: true });
+
             Stack({ alignContent: Alignment.Center }) {
               Column() {
                 Progress({ value: this.usedSpaceList[0], type: ProgressType.Ring })
@@ -86,12 +87,14 @@ struct Storage {
               Column() {
                 Row() {
                   Blank()
-                }.layoutWeight(1)
+                }
+                .layoutWeight(1)
 
                 Row() {
                   Column() {
                     Blank()
-                  }.layoutWeight(1)
+                  }
+                  .layoutWeight(1)
 
                   Text(`${this.proportion}`)
                     .fontSize($r("app.float.dataPanel_proportion_font_size_1"))
@@ -150,7 +153,6 @@ struct Storage {
                         .fontSize($r('sys.float.ohos_id_text_size_body2'))
                         .fontColor($r('sys.color.ohos_id_color_secondary'))
                         .fontWeight(FontWeight.Regular)
-                        .height($r('app.float.wh_value_40'))
                         .margin({ left: $r('sys.float.ohos_id_elements_margin_horizontal_l') })
                         .align(Alignment.End);
                     }
@@ -162,7 +164,7 @@ struct Storage {
                 });
               }
               .padding({
-                left: $r("app.float.distance_16"),
+                left: $r("sys.float.ohos_id_card_margin_start"),
                 right: $r('sys.float.ohos_id_card_margin_end')
               })
               .divider({
@@ -176,7 +178,10 @@ struct Storage {
             .padding({ top: $r('app.float.distance_4'), bottom: $r('app.float.distance_4') })
           }
           .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
+          .padding({
+            left: $r('sys.float.ohos_id_card_margin_start'),
+            right: $r('sys.float.ohos_id_card_margin_end')
+          })
           .align(Alignment.Start)
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
@@ -211,8 +216,8 @@ struct Storage {
       this.controller.bindComponent(this)
         .bindProperties(["storageList", "totalSpace", "freeBytes", "usedSpace", "proportion", "usedSpaceList"])
         .initData();
-      portraitFunc = this.onPortrait.bind(this)
-      this.listener.on('change', portraitFunc)
+      portraitFunc = this.onPortrait.bind(this);
+      this.listener.on('change', portraitFunc);
     }
   }
 }

@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 
@@ -38,11 +39,9 @@ export default struct OuterComponent {
           });
 
           Column() {
-
               if(this.mContentComponent){
                 this.mContentComponent()
               }
-
           }
           .align(Alignment.Center)
           .height(ConfigData.WH_100_100)
@@ -67,13 +66,8 @@ export default struct OuterComponent {
       .width(ConfigData.WH_100_100)
       .height(ConfigData.WH_100_100);
     }
-    .padding({
-      left: $r('sys.float.ohos_id_card_margin_start'),
-      right: $r('sys.float.ohos_id_card_margin_end')
-    })
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
     .height(ConfigData.WH_100_100);
   }
-
 }

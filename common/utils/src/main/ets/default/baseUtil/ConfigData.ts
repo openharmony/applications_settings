@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import settings from '@ohos.settings';
 
 export class ConfigData {
@@ -28,21 +29,21 @@ export class ConfigData {
 
   BRIGHTNESS_DEFAULT_VALUE = 50;
   DEFAULT_BUNDLE_NAME = 'com.ohos.settings';
-  DATE_AND_TIME_YEAR='DATE_AND_TIME_YEAR'
-  DATE_AND_TIME_MONTH='DATE_AND_TIME_MONTH'
-  DATE_AND_TIME_DAY='DATE_AND_TIME_DAY'
-  TAG='Settings '
+  DATE_AND_TIME_YEAR = 'DATE_AND_TIME_YEAR';
+  DATE_AND_TIME_MONTH = 'DATE_AND_TIME_MONTH';
+  DATE_AND_TIME_DAY = 'DATE_AND_TIME_DAY';
+  TAG = 'Settings ';
 
   // page request
-  PAGE_REQUEST_CODE_KEY = 'pageRequestCode'
-  PAGE_RESULT_KEY = 'pageResult'
-  PAGE_RESULT_OK = -1
-  PAGE_RESULT_NG = 0
+  PAGE_REQUEST_CODE_KEY = 'pageRequestCode';
+  PAGE_RESULT_KEY = 'pageResult';
+  PAGE_RESULT_OK = -1;
+  PAGE_RESULT_NG = 0;
 
   // password request code
-  PAGE_REQUEST_CODE_PASSWORD_CREATE = 20001
-  PAGE_REQUEST_CODE_PASSWORD_CHANGE = 20003
-  PAGE_REQUEST_CODE_PASSWORD_DISABLE = 20004
+  PAGE_REQUEST_CODE_PASSWORD_CREATE = 20001;
+  PAGE_REQUEST_CODE_PASSWORD_CHANGE = 20003;
+  PAGE_REQUEST_CODE_PASSWORD_DISABLE = 20004;
 
   WH_100_100 = '100%';
   WH_25_100 = '25%';
@@ -67,8 +68,6 @@ export class ConfigData {
 
   TIME_FORMAT_24 = "24";
   TIME_FORMAT_12 = "12";
-  TIME_PREFIX_MORNING = "上午" ;
-  TIME_PREFIX_AFTERNOON = "下午";
   TIME_FORMAT_URI = "dataability:///com.ohos.settingsdata.DataAbility";
   TIME_FORMAT_KEY = settings.date.TIME_FORMAT;
   SETTINGSDATA_DEVICE_NAME = settings.general.DEVICE_NAME;
@@ -94,19 +93,6 @@ export class ConfigData {
   SOFTWARE_UPDATES_ABILITY_NAME = 'com.hmos.ouc.MainAbility';
 
   DEVICE_NAME = 'OpenHarmony 2.0 Canary';
-
-  // NFC states
-  // NFC is off
-  STATE_OFF = 1;
-  // NFC is turning on
-  STATE_TURNING_ON = 2;
-  // NFC is on
-  STATE_ON = 3;
-  // NFC is turning off
-  STATE_TURN_OFF = 4;
-
-  NFC_OPEN = '已开启';
-  NFC_CLOSE = '已关闭';
 }
 
 let configData = new ConfigData();

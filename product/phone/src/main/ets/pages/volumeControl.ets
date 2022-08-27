@@ -39,16 +39,20 @@ export struct VolumeControl {
       //head
       HeadComponent({ headName: $r('app.string.volumeControlTab') });
 
-      SubHeader({ titleContent: $r('app.string.soundMode') })
+      SubHeader({ titleContent: $r('app.string.soundMode') });
 
       // sound mode
       AudioRingerModeComponent();
 
-      SubHeader({ titleContent: $r('app.string.volumeControl') })
+      SubHeader({ titleContent: $r('app.string.volumeControl') });
 
       // volume control
       VolumeControlComponent();
     }
+    .padding({
+      left: $r('sys.float.ohos_id_card_margin_start'),
+      right: $r('sys.float.ohos_id_card_margin_end')
+    })
     .width(ConfigData.WH_100_100)
     .height(ConfigData.WH_100_100)
   }
@@ -149,6 +153,7 @@ struct AudioRingerModeItem {
       this.isRk = false;
     }
   }
+
   build() {
    Column() {
       Image(this.image)
@@ -171,9 +176,6 @@ struct AudioRingerModeItem {
         .margin({top: $r('app.float.distance_4')})
         .checked(this.checked)
     }
-    .padding({
-      left: $r("app.float.distance_12"),
-      right: $r("app.float.distance_12")})
     .alignItems(HorizontalAlign.Center)
     .width(ConfigData.WH_50_100)
     .height(ConfigData.WH_100_100)
@@ -191,8 +193,8 @@ struct AudioRingerModeItem {
 struct VolumeControlComponent {
   @StorageLink('volume_ringtone') volumeRingTone: number = 2;
   @StorageLink('volume_media') volumeMedia: number = 2;
-
   @StorageLink('volume_voicecall') volumeVoiceCall: number = 2;
+
   private voiceCallModel:VolumeModel = new VolumeModel(Audio.AudioVolumeType.VOICE_CALL);
   private ringtoneModel:VolumeModel = new VolumeModel(Audio.AudioVolumeType.RINGTONE);
   private mediaModel:VolumeModel = new VolumeModel(Audio.AudioVolumeType.MEDIA);
@@ -222,12 +224,7 @@ struct VolumeControlComponent {
     .width(ConfigData.WH_100_100)
     .borderRadius($r('app.float.radius_24'))
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
-    .padding({
-      top: $r('app.float.distance_12'),
-      left: $r('app.float.distance_12'),
-      right: $r('app.float.distance_12'),
-      bottom: $r('app.float.distance_24')
-    })
+    .padding($r('app.float.distance_12'))
   }
 
   @Log

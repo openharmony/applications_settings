@@ -14,7 +14,7 @@
  */
 
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
-import ViewModel from '../model/locationServicesImpl/LocationViewModel'
+import ViewModel from '../model/locationServicesImpl/LocationViewModel';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 
@@ -55,22 +55,17 @@ struct LocationServices {
 
           Column() {
             HeadComponent({ headName: $r('app.string.locationServicesTab'), isActive: true });
+
             Flex({
               direction: FlexDirection.Row,
               justifyContent: FlexAlign.SpaceBetween,
               alignItems: ItemAlign.Center
             }) {
-              Row() {
-                Text($r('app.string.positionInformation'))
-                  .fontColor($r("app.color.font_color_182431"))
-                  .fontStyle(FontStyle.Normal)
-                  .fontSize($r("app.float.location_font_size"))
-                  .margin({
-                    left: $r('app.float.distance_24'),
-                    top: $r('app.float.distance_8'),
-                    bottom: $r('app.float.distance_8')
-                  })
-              }
+              Text($r('app.string.positionInformation'))
+                .fontColor($r("app.color.font_color_182431"))
+                .fontStyle(FontStyle.Normal)
+                .fontSize($r("app.float.location_font_size"))
+                .margin({ left: $r('app.float.distance_12') })
 
               Toggle({ type: ToggleType.Switch, isOn: this.locationServiceStatus })
                 .margin({ right: $r('app.float.wh_value_6') })
@@ -92,7 +87,10 @@ struct LocationServices {
             .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
           }
           .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
+          .padding({
+            left: $r('sys.float.ohos_id_card_margin_start'),
+            right: $r('sys.float.ohos_id_card_margin_end')
+          })
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
           .useSizeType({

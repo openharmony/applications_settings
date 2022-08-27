@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
@@ -25,10 +26,9 @@ import InputMethod from '@ohos.inputmethod';
 import deviceInfo from '@ohos.deviceInfo';
 
 const deviceTypeInfo = deviceInfo.deviceType;
-const MODULE_TAG = ConfigData.TAG + 'PasswdSetting.PasswdInput -> ';
+const TAG = ConfigData.TAG + 'PasswdSetting.PasswdInput -> ';
 
 let param;
-console.log('settings_20220424 passwordInput page in');
 
 @Entry
 @Component
@@ -91,6 +91,7 @@ struct PasswordInput {
       .subscribe();
 
     this.updateView();
+
     if (deviceTypeInfo === 'phone') {
       this.isPhone = true;
     } else {
@@ -104,8 +105,8 @@ struct PasswordInput {
   }
 
   /**
-     * Get the params from router
-     */
+   * Get the params from router
+   */
   @Log
   getRouterParam() {
     param = Router.getParams()
@@ -139,7 +140,7 @@ struct PasswordInput {
 
           Column() {
             // head
-            HeadComponent({ headName: this.pageTitle, isActive: true })
+            HeadComponent({ headName: this.pageTitle, isActive: true });
 
             Column() {
               // input message
@@ -165,23 +166,24 @@ struct PasswordInput {
                       .margin({bottom:$r('app.float.wh_value_8')})
                       .onChange((value: string) => {
                         if (value.length > 6) {
-                          return
+                          return;
                         }
                         let length = value.length
                         for (let i = 0;i < 6; i++) {
                           if (i < length) {
-                            this.passwordCircle[i] = value[i]
+                            this.passwordCircle[i] = value[i];
                           } else {
-                            this.passwordCircle[i] = ''
+                            this.passwordCircle[i] = '';
                           }
                         }
-                        this.passwordOnChangeHandler(value)
+                        this.passwordOnChangeHandler(value);
                       })
                       .onSubmit((enterKey) => {
                         InputMethod.getInputMethodController().stopInput().then((ret) => {
                           LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
                         })
                       });
+
                     List({ space: 24 }) {
                       ForEach(this.passwordCircle, (item) => {
                         ListItem() {
@@ -193,7 +195,8 @@ struct PasswordInput {
                             .margin({ top: $r('app.float.wh_value_12') })
                         }
                       })
-                    }.listDirection(Axis.Horizontal)
+                    }
+                    .listDirection(Axis.Horizontal)
                   }
                   .margin({ top: $r('app.float.wh_value_20'),bottom:$r('app.float.wh_value_12') })
                   .width(ConfigData.WH_100_100)
@@ -203,7 +206,6 @@ struct PasswordInput {
                 Column() {
                   Row() {
                     TextInput({ placeholder: '', text: this.password })
-                      .margin({ right: $r("app.float.distance_16") })
                       .width(ConfigData.WH_100_100)
                       .height(ConfigData.WH_100_100)
                       .placeholderFont({
@@ -224,10 +226,9 @@ struct PasswordInput {
                         });
                       })
                       .onFocus(() => {
-                        LogUtil.info(MODULE_TAG + "text input is focused");
+                        LogUtil.info(TAG + "text input is focused");
                         this.isFocused = true;
                       })
-
                   }
 
                   Divider()
@@ -236,7 +237,6 @@ struct PasswordInput {
                 .height($r("app.float.wh_value_48"))
                 .padding({ top: $r("app.float.distance_8"), bottom: $r("app.float.distance_6") })
               }
-
 
               CheckText();
 
@@ -253,24 +253,22 @@ struct PasswordInput {
               }
               .backgroundColor("rgba(0,0,0,0)")
               .onClick(() => {
-                this.chooseUnlockMethodDialog.open()
+                this.chooseUnlockMethodDialog.open();
               })
-
             }
-            .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
-
 
             // button
             Flex({ justifyContent: FlexAlign.SpaceBetween }) {
               Row() {
                 Button({ type: ButtonType.Capsule, stateEffect: true }) {
                   Text($r('app.string.cancel'))
+                    .fontWeight(FontWeight.Medium)
                     .fontSize($r('app.float.application_button_subtitle_size'))
                     .lineHeight($r('app.float.wh_value_22'))
                     .fontColor($r('app.color.font_color_007DFF'))
+                    .height($r('app.float.application_button_height'))
                     .textAlign(TextAlign.Center)
                 }
-                .margin({ right: "12vp" })
                 .layoutWeight(1)
                 .backgroundColor(!this.isTouchedLeft ? $r("sys.color.ohos_id_color_button_normal") : $r("sys.color.ohos_id_color_foreground_contrary"))
                 .onTouch((event: TouchEvent) => {
@@ -285,41 +283,43 @@ struct PasswordInput {
                   Router.back();
                 })
 
+                Column()
+                  .width( $r('app.float.distance_12'))
+                  .height($r('app.float.application_button_height'))
 
                 Button({ type: ButtonType.Capsule, stateEffect: true }) {
                   Text(this.isInputFirstTime ? $r('app.string.continue_') : $r('app.string.confirm'))
+                    .fontWeight(FontWeight.Medium)
                     .fontSize($r('app.float.application_button_subtitle_size'))
                     .lineHeight($r('app.float.wh_value_22'))
                     .fontColor($r('app.color.font_color_007DFF'))
+                    .height($r('app.float.application_button_height'))
                     .textAlign(TextAlign.Center)
                 }
                 .layoutWeight(1)
                 .backgroundColor(!this.isTouchedRight ? $r("sys.color.ohos_id_color_button_normal") : $r("sys.color.ohos_id_color_foreground_contrary"))
                 .onTouch((event: TouchEvent) => {
-
                   if (event.type === TouchType.Down) {
                     this.isTouchedRight = true;
                   }
                   if (event.type === TouchType.Up) {
                     this.isTouchedRight = false;
-                    console.log("isFocused0000000000")
-                    this.isFocused = false
-
+                    this.isFocused = false;
                   }
                 })
                 .onClick(this.okOnClickHandler)
-
               }
               .alignItems(this.isFocused === false ? VerticalAlign.Bottom : VerticalAlign.Top)
               .height(this.passwordType == PinSubType.PIN_MIXED ? "63%" : "65%")
-              .padding(this.isFocused === false ?
-                { bottom: 24 } :
-                { top: (this.passwordType == PinSubType.PIN_MIXED ? "14%" : "16%") })
+              .padding(this.isFocused === false ? { bottom: 24 } : { top: (this.passwordType == PinSubType.PIN_MIXED ? "14%" : "16%") })
             }
             .width(ConfigData.WH_100_100)
             .visibility(this.buttonVisibility)
-            .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           }
+          .padding({
+            left: $r('sys.float.ohos_id_card_margin_start'),
+            right: $r('sys.float.ohos_id_card_margin_end')
+          })
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
           .useSizeType({
@@ -342,10 +342,6 @@ struct PasswordInput {
       .width(ConfigData.WH_100_100)
       .height(ConfigData.WH_100_100);
     }
-    .padding({
-      left: $r('sys.float.ohos_id_card_margin_start'),
-      right: $r('sys.float.ohos_id_card_margin_end')
-    })
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
     .height(ConfigData.WH_100_100);
@@ -353,8 +349,8 @@ struct PasswordInput {
 
   // --------------------------- updateView -----------------------
   /**
-     * Update view data
-     */
+   * Update view data
+   */
   @Log
   clearViewData() {
     AppStorage.SetOrCreate("checkMessage", '');
@@ -365,8 +361,8 @@ struct PasswordInput {
   }
 
   /**
-     * Update view
-     */
+   * Update view
+   */
   @Log
   updateView() {
     this.pageTitle = this.getPageTitle();
@@ -376,10 +372,10 @@ struct PasswordInput {
   }
 
   /**
-     * Get page title
-     *
-     * @return : page title
-     */
+   * Get page title
+   *
+   * @return : page title
+   */
   @Log
   getPageTitle(): string | Resource {
     let title: Resource = $r('app.string.password_enter_password');
@@ -396,10 +392,10 @@ struct PasswordInput {
   }
 
   /**
-     * Get input message
-     *
-     * @return : message
-     */
+   * Get input message
+   *
+   * @return : message
+   */
   @Log
   getInputMessage(): string | Resource {
     let inputMessage: string | Resource = '';
@@ -424,28 +420,31 @@ struct PasswordInput {
   }
 
   /**
-     * Get unlock method list.
-     *
-     * @return : unlock method list
-     */
+   * Get unlock method list.
+   *
+   * @return : unlock method list
+   */
   @Log
   getUnlockMethodList(): RadioListItem[] {
     var list: RadioListItem[] = [];
     if (!this.isInputFirstTime) {
       return list;
     }
+
     if (this.passwordType != PinSubType.PIN_SIX) {
       list.push({
         settingType: PinSubType.PIN_SIX,
         settingTitle: $r('app.string.password_item_text_number_6')
       })
     }
+
     if (this.passwordType != PinSubType.PIN_NUMBER) {
       list.push({
         settingType: PinSubType.PIN_NUMBER,
         settingTitle: $r('app.string.password_item_text_custom')
       })
     }
+
     if (this.passwordType != PinSubType.PIN_MIXED) {
       list.push({
         settingType: PinSubType.PIN_MIXED,
@@ -456,16 +455,16 @@ struct PasswordInput {
   }
 
   /**
-     * Get button visibility
-     *
-     * @return : button visibility
-     *
-     */
+   * Get button visibility
+   *
+   * @return : button visibility
+   */
   @Log
   getButtonVisibility(): Visibility {
-    return this.passwordType == PinSubType.PIN_SIX ? Visibility.Hidden : Visibility.Visible
+    return this.passwordType == PinSubType.PIN_SIX ? Visibility.Hidden : Visibility.Visible;
   }
 }
+
 // The check message need to change real time, put it in child component, so parent component does not refresh.
 @Component
 struct CheckText {
