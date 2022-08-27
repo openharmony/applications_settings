@@ -36,7 +36,6 @@ const deviceTypeInfo = deviceInfo.deviceType
 struct Bluetooth {
   private PAGE_TAG = ConfigData.TAG + 'Bluetooth page '
   private deviceController: BluetoothDeviceController = new BluetoothDeviceController();
-  @State isPhone: boolean = false
   @StorageLink('bluetoothIsOn') isOn: boolean = false;
   @StorageLink('bluetoothToggleEnabled') isEnabled: boolean = true;
   @StorageLink('bluetoothLocalName') localName: string = '';
@@ -48,11 +47,6 @@ struct Bluetooth {
       .initData()
       .subscribe();
     LogUtil.log(this.PAGE_TAG + 'aboutToAppear out : isOn = ' + this.isOn)
-    if (deviceTypeInfo === 'phone') {
-      this.isPhone = true
-    } else {
-      this.isPhone = false
-    }
   }
 
   @Log
@@ -69,117 +63,82 @@ struct Bluetooth {
 
   build() {
     Column() {
-      GridContainer({
-        columns: 12,
-        sizeType: SizeType.Auto,
-        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
-        margin: vp2px(1) === 2 ? '24vp' : '0vp'
-      }) {
-        Row() {
-          Column() {
+      GridContainer({ gutter: 12, margin: 12 }) {
+        Column() {
+          HeadComponent({ headName: $r('app.string.bluetoothTab'), isActive: true });
+
+          Row() {
+            Text($r("app.string.bluetoothTab"))
+              .fontColor($r('sys.color.ohos_fa_text_primary'))
+              .fontSize($r("app.float.font_16"))
+              .fontWeight(FontWeight.Medium)
+            Blank()
+
+            Stack({ alignContent: Alignment.Start }) {
+              Toggle({ type: ToggleType.Switch, isOn: this.isOn })
+                .width('36vp')
+                .height('20vp')
+                .selectedColor('#007DFF')
+                .margin({ left: $r('app.float.wh_value_6') })
+                .onChange(() => {
+                  LogUtil.log(this.PAGE_TAG + 'Toggle onClick: isOn = ' + this.isOn + ', enabled = ' + this.isEnabled)
+                  if (!this.isEnabled) return;
+                  this.deviceController.toggleValue(!this.isOn);
+                });
+            }
+            .width($r('app.float.wh_value_48'))
           }
           .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
-            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
-          });
-          Column() {
-            HeadComponent({ headName: $r('app.string.bluetoothTab'), isActive: true });
+          .height($r('app.float.wh_value_56'))
+          .backgroundColor($r("app.color.white_bg_color"))
+          .borderRadius($r('app.float.wh_value_28'))
+          .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_12') })
+          .alignItems(VerticalAlign.Center)
+          .borderRadius($r('app.float.distance_24'))
 
-            Row() {
-              Text($r("app.string.bluetoothTab"))
-                .fontColor($r('sys.color.ohos_fa_text_primary'))
-                .fontSize($r("app.float.font_16"))
-                .fontWeight(FontWeight.Medium)
-              Blank()
-
-              Stack({ alignContent: Alignment.Start }) {
-                Toggle({ type: ToggleType.Switch, isOn: this.isOn })
-                  .width('36vp')
-                  .height('20vp')
-                  .selectedColor('#007DFF')
-                  .margin({ left: $r('app.float.wh_value_6') })
-                  .onChange(() => {
-                    LogUtil.log(this.PAGE_TAG + 'Toggle onClick: isOn = ' + this.isOn + ', enabled = ' + this.isEnabled)
-                    if (!this.isEnabled) return;
-                    this.deviceController.toggleValue(!this.isOn);
-                  });
-              }
-              .width($r('app.float.wh_value_48'))
-            }
+          Text($r('app.string.bluetooth_visible_to_nearby'))
             .width(ConfigData.WH_100_100)
-            .height($r('app.float.wh_value_56'))
-            .backgroundColor($r("app.color.white_bg_color"))
-            .borderRadius($r('app.float.wh_value_28'))
-            .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_12') })
-            .alignItems(VerticalAlign.Center)
-            .borderRadius($r('app.float.distance_24'))
+            .fontSize($r('app.float.font_14'))
+            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+            .visibility(this.isOn ? Visibility.Visible : Visibility.None)
+            .height($r("app.float.wh_value_48"))
+            .padding({
+              left: $r('app.float.wh_24'),
+              top: $r('app.float.distance_8'), bottom: $r('app.float.distance_24')
+            })
+          Scroll() {
+            Column() {
 
-            Text($r('app.string.bluetooth_visible_to_nearby'))
-              .width(ConfigData.WH_100_100)
-              .fontSize($r('app.float.font_14'))
-              .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-              .visibility(this.isOn ? Visibility.Visible : Visibility.None)
-              .height($r("app.float.wh_value_48"))
-              .padding({
-                left: $r('app.float.wh_24'),
-                top: $r('app.float.distance_8'), bottom: $r('app.float.distance_24')
+              DeviceNameComponent({
+                isEnabled: $isOn,
+                localName: $localName
               })
-            Scroll() {
-              Column() {
 
-                DeviceNameComponent({
-                  isEnabled: $isOn,
-                  localName: $localName
+              if (this.isOn) {
+
+                PairedDeviceComponent({
+                  controller: this.deviceController
                 })
 
-                if (this.isOn) {
+                AvailableDeviceComponent({
+                  controller: this.deviceController,
+                })
 
-                  PairedDeviceComponent({
-                    controller: this.deviceController
-                  })
-
-                  AvailableDeviceComponent({
-                    controller: this.deviceController,
-                    isPhone: this.isPhone
-                  })
-
-                }
               }
-              .width(ConfigData.WH_100_100)
             }
-            .scrollBarWidth(0)
             .width(ConfigData.WH_100_100)
-            .align(Alignment.TopStart)
-            .layoutWeight(1)
           }
-          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .padding({
-            left: $r('app.float.wh_24'),
-            right: $r('app.float.wh_24'),
-          })
+          .scrollBarWidth(0)
           .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
-            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
-          });
-
-          Column() {
-          }
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
-            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
-          })
+          .align(Alignment.TopStart)
+          .layoutWeight(1)
         }
-        .width(ConfigData.WH_100_100)
-        .height(ConfigData.WH_100_100);
+        .useSizeType({
+          sm: { span: 4, offset: 0 },
+          md: { span: 6, offset: 1 },
+          lg: { span: 8, offset: 2 }
+        });
       }
-      .width(ConfigData.WH_100_100)
-      .height(ConfigData.WH_100_100);
     }
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
@@ -448,8 +407,8 @@ struct PairedDeviceComponent {
           callback();
         }
       },
-      alignment: DialogAlignment.Bottom,
-      offset:({dx:0,dy:'-16dp'}),
+      alignment: deviceTypeInfo === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
+      offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' ? '-16dp' : 0 }),
     })
   }
 }
@@ -481,7 +440,6 @@ struct AvailableDeviceComponent {
   @StorageLink('bluetoothAvailableDevices') availableDevices: BluetoothDevice[] = [];
   @State pairPinCode: string = '';
   private pairingDevice: BluetoothDevice = undefined;
-  private isPhone: boolean = false;
   @StorageLink("controlPairing") controlPairing: boolean = true ;
   pairDialog: CustomDialogController = new CustomDialogController({
     builder: PairDialog({
@@ -491,8 +449,8 @@ struct AvailableDeviceComponent {
         this.confirmPairing(accept);
       }
     }),
-    alignment:this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
-    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
+    alignment:deviceTypeInfo === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' ? '-16dp' : 0 }),
     autoCancel: true,
   });
 
@@ -516,6 +474,7 @@ struct AvailableDeviceComponent {
           .fontSize($r('app.float.font_14'))
           .fontColor($r('sys.color.ohos_id_color_text_secondary'))
           .width(ConfigData.WH_100_100)
+          .height($r('app.float.distance_19'))
           .fontWeight(500)
           .margin({
             left: $r('app.float.wh_24'),
@@ -648,7 +607,8 @@ struct AvailableDeviceComponent {
           LogUtil.info(this.TAG_PAGE + `AlertDialog success:`);
         }
       },
-      alignment: DialogAlignment.Bottom
+      alignment:deviceTypeInfo === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
+      offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' ? '-16dp' : 0 }),
     })
   }
 
@@ -789,7 +749,8 @@ struct PairDialog {
         right: $r('app.float.distance_24')
       })
     }
-    .width(ConfigData.WH_100_100);
+    .width(deviceTypeInfo==='phone' ? ConfigData.WH_100_100 : $r("app.float.wh_value_410"))
+    .padding(deviceTypeInfo==='phone' ? { left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12")} : {})
   }
 }
 
@@ -831,7 +792,8 @@ function showDialog(dialogTitle: string | Resource, dialogMessage: string | Reso
   AlertDialog.show({
     title: dialogTitle,
     message: dialogMessage,
-    offset: ({ dx: 0, dy: -16 }),
+    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' ? '-16dp' : 0 }),
+    alignment: deviceTypeInfo === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
     confirm: {
       value: buttonValue,
       action: () => {
@@ -840,8 +802,7 @@ function showDialog(dialogTitle: string | Resource, dialogMessage: string | Reso
     },
     cancel: () => {
       LogUtil.info(ConfigData.TAG + 'Bluetooth page showDialog : Closed callbacks');
-    },
-    alignment: DialogAlignment.Bottom
+    }
   })
   LogUtil.info(ConfigData.TAG + 'Bluetooth page showDialog out.');
 }

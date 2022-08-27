@@ -40,73 +40,44 @@ struct BluetoothPairedDeviceInfo {
 
   build() {
     Column() {
-      GridContainer({
-        columns: 12,
-        sizeType: SizeType.Auto,
-        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
-        margin: vp2px(1) === 2 ? '24vp' : '0vp'
-      }) {
-        Row({}) {
-          Column() {
-          }
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
-            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
-          });
-          Column() {
-            HeadComponent({ headName: this.bluetoothDevice.deviceName, isActive: true });
-            Blank()
-            Row() {
-              Button() {
-                Text($r("app.string.cancelPairing"))
-                  .fontSize($r('app.float.application_button_subtitle_size'))
-                  .fontColor(Color.Blue)
+      GridContainer({ gutter: 12, margin: 12 }) {
+        Column() {
+          HeadComponent({ headName: this.bluetoothDevice.deviceName, isActive: true });
+          Blank()
+          Row() {
+            Button() {
+              Text($r("app.string.cancelPairing"))
+                .fontSize($r('app.float.application_button_subtitle_size'))
+                .fontColor(Color.Blue)
+            }
+            .backgroundColor($r('app.color.color_E3E3E3_grey'))
+            .width($r("app.float.paired_device_button_width"))
+            .height($r("app.float.wh_value_40"))
+            .align(Alignment.Center)
+            .onTouch((event: TouchEvent) => {
+              if (event.type === TouchType.Down) {
+                this.isTouched = true;
               }
-              .backgroundColor($r('app.color.color_E3E3E3_grey'))
-              .width($r("app.float.paired_device_button_width"))
-              .height($r("app.float.wh_value_40"))
-              .align(Alignment.Center)
-              .onTouch((event: TouchEvent) => {
-                if (event.type === TouchType.Down) {
-                  this.isTouched = true;
-                }
-                if (event.type === TouchType.Up) {
-                  this.isTouched = false;
-                }
-              })
-              .onClick(() => {
-                LogUtil.log(ConfigData.TAG + "unpair onClick");
-                if (this.controller.unpair(this.bluetoothDevice.deviceId)) {
-                  Router.back();
-                }
-              })
-            }.margin({ bottom: $r('app.float.distance_24'), top: $r("app.float.distance_8") });
-          }
-          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
-          .height(ConfigData.WH_100_100)
-          .width(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
-            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
-          });
-
-          Column() {
-          }
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
-            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
-          })
+              if (event.type === TouchType.Up) {
+                this.isTouched = false;
+              }
+            })
+            .onClick(() => {
+              LogUtil.log(ConfigData.TAG + "unpair onClick");
+              if (this.controller.unpair(this.bluetoothDevice.deviceId)) {
+                Router.back();
+              }
+            })
+          }.margin({ bottom: $r('app.float.distance_24'), top: $r("app.float.distance_8") });
         }
         .width(ConfigData.WH_100_100)
-        .height(ConfigData.WH_100_100);
+        .height(ConfigData.WH_100_100)
+        .useSizeType({
+          sm: { span: 4, offset: 0 },
+          md: { span: 6, offset: 1 },
+          lg: { span: 8, offset: 2 }
+        });
       }
-      .width(ConfigData.WH_100_100)
-      .height(ConfigData.WH_100_100);
     }
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)

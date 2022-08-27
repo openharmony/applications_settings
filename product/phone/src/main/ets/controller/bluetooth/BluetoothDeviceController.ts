@@ -20,6 +20,7 @@ import ConfigData from '../../../../../../../common/utils/src/main/ets/default/b
 import ISettingsController from '../../../../../../../common/component/src/main/ets/default/controller/ISettingsController';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import AboutDeviceModel from '../../model/aboutDeviceImpl/AboutDeviceModel'
+import deviceInfo from '@ohos.deviceInfo'
 
 const DISCOVERY_DURING_TIME: number = 30000;    // 30'
 const DISCOVERY_INTERVAL_TIME: number = 3000;   // 3'
@@ -489,7 +490,8 @@ export default class BluetoothDeviceController extends BaseSettingsController {
             cancel: () => {
                 LogUtil.info('Closed callbacks')
             },
-            alignment: DialogAlignment.Bottom
+          offset: ({ dx: 0, dy: deviceInfo.deviceType === 'phone' ? '-16dp' : 0 }),
+          alignment: deviceInfo.deviceType === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
         })
 
   }
