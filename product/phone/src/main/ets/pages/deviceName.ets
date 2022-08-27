@@ -35,124 +35,89 @@ struct DeviceName {
 
   build() {
     Column() {
-      GridContainer({
-        columns: 12,
-        sizeType: SizeType.Auto,
-        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
-        margin: vp2px(1) === 2 ? '24vp' : '0vp'
-      }) {
-        Row({}) {
-          Column() {
-          }
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
-            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
-          });
+      GridContainer({ gutter: 12, margin: 12 }) {
+        Column() {
+          HeadComponent({ headName: $r('app.string.deviceName'), isActive: true })
 
-          Column() {
-            Column() {
-              HeadComponent({ headName: $r('app.string.deviceName'), isActive: true })
-            }
-
-            TextInput({ text: this.deviceName })
-              .placeholderFont({ size: $r("app.float.font_18"), weight: FontWeight.Normal, style: FontStyle.Normal })
-              .type(InputType.Normal)
-              .enterKeyType(EnterKeyType.Done)
-              .caretColor($r('app.color.font_color_007DFF'))
-              .maxLength(30)
-              .fontColor($r("sys.color.ohos_id_color_primary"))
-              .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
-              .height($r("app.float.wh_value_40"))
-              .borderRadius(0)
-              .margin({ top: $r("app.float.distance_8") })
-              .backgroundColor($r('app.color.color_00000000_transparent'))
-              .onFocus(() => {
-                this.isFocused = true;
-              })
-              .onChange((value: string) => {
-                LogUtil.debug(ConfigData.TAG + 'device name changed to: ' + JSON.stringify(value));
-                if(value.trim().length != 0){
-                  this.deviceName = value;
-                  this.confirmsButton = true
-                } else {
-                  this.deviceName = value.trim();
-                  this.confirmsButton = false
-                }
-                if (this.deviceName.length == 30) {
-                  this.isFocused = false
-                  ResourceUtil.getString($r("app.string.Input_Reached_Limited")).then(value => {
-                    prompt.showToast({
-                      message:value,
-                      duration: 2000,
-                      bottom: 1000
-                    })
-                  })
-                }
-              })
-              .onSubmit((enterKey) => {
-                InputMethod.getInputMethodController().stopInput().then((ret) => {
-                  LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
-                });
-              })
-            Divider()
-              .strokeWidth(1)
-              .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
-              .color($r("sys.color.ohos_id_color_primary"))
-              .opacity($r('sys.float.ohos_id_alpha_content_secondary'))
-            Row() {
-              Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-                Row() {
-                  ButtonComponent({ text: $r("app.string.cancel"),deviceName : $deviceName ,buttonFlag : $cancelButton, onClickEvent: () => {
-                    Router.back();
-                  } })
-                }
-                .width($r("app.float.deviceName_button_width"))
-
-                .margin({ right: $r("app.float.distance_12") })
-
-                Row() {
-                  ButtonComponent({ text: $r("app.string.confirm"),deviceName : $deviceName ,buttonFlag : $confirmsButton,onClickEvent: () => {
-                    if(this.deviceName.length >0){
-                      AboutDeviceModel.setSystemName(this.deviceName)
-                      Router.back();
-                    } else {
-                      return
-                    }
-
-                  }})
-                }
-                .width($r("app.float.deviceName_button_width"))
+          TextInput({ text: this.deviceName })
+            .placeholderFont({ size: $r("app.float.font_18"), weight: FontWeight.Normal, style: FontStyle.Normal })
+            .type(InputType.Normal)
+            .enterKeyType(EnterKeyType.Done)
+            .caretColor($r('app.color.font_color_007DFF'))
+            .maxLength(30)
+            .fontColor($r("sys.color.ohos_id_color_primary"))
+            .height($r("app.float.wh_value_40"))
+            .borderRadius(0)
+            .margin({ top: $r("app.float.distance_8") })
+            .backgroundColor($r('app.color.color_00000000_transparent'))
+            .onFocus(() => {
+              this.isFocused = true;
+            })
+            .onChange((value: string) => {
+              LogUtil.debug(ConfigData.TAG + 'device name changed to: ' + JSON.stringify(value));
+              if(value.trim().length != 0){
+                this.deviceName = value;
+                this.confirmsButton = true
+              } else {
+                this.deviceName = value.trim();
+                this.confirmsButton = false
               }
-            }
-            .alignItems(this.isFocused ? VerticalAlign.Top : VerticalAlign.Bottom)
-            .height('100%')
-            .padding(this.isFocused ? { top: $r("app.float.wh_value_212") } : { bottom: $r('app.float.wh_padding_128') })
-          }
-          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
-            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
-          });
+              if (this.deviceName.length == 30) {
+                this.isFocused = false
+                ResourceUtil.getString($r("app.string.Input_Reached_Limited")).then(value => {
+                  prompt.showToast({
+                    message:value,
+                    duration: 2000,
+                    bottom: 1000
+                  })
+                })
+              }
+            })
+            .onSubmit((enterKey) => {
+              InputMethod.getInputMethodController().stopInput().then((ret) => {
+                LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
+              });
+            })
+          Divider()
+            .strokeWidth(1)
+            .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_12') })
+            .color($r("sys.color.ohos_id_color_primary"))
+            .opacity($r('sys.float.ohos_id_alpha_content_secondary'))
+          Row() {
+            Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+              Row() {
+                ButtonComponent({ text: $r("app.string.cancel"),deviceName : $deviceName ,buttonFlag : $cancelButton, onClickEvent: () => {
+                  Router.back();
+                } })
+              }
+              .width($r("app.float.deviceName_button_width"))
 
-          Column() {
+              .margin({ right: $r("app.float.distance_12") })
+
+              Row() {
+                ButtonComponent({ text: $r("app.string.confirm"),deviceName : $deviceName ,buttonFlag : $confirmsButton,onClickEvent: () => {
+                  if(this.deviceName.length >0){
+                    AboutDeviceModel.setSystemName(this.deviceName)
+                    Router.back();
+                  } else {
+                    return
+                  }
+
+                }})
+              }
+              .width($r("app.float.deviceName_button_width"))
+            }
           }
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
-            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
-          })
+          .alignItems(this.isFocused ? VerticalAlign.Top : VerticalAlign.Bottom)
+          .height('100%')
+          .padding(this.isFocused ? { top: $r("app.float.wh_value_212") } : { bottom: $r('app.float.wh_padding_128') })
         }
-        .width(ConfigData.WH_100_100)
-        .height(ConfigData.WH_100_100);
+        .useSizeType({
+          sm: { span: 4, offset: 0 },
+          md: { span: 6, offset: 1 },
+          lg: { span: 8, offset: 2 }
+        });
       }
-      .width(ConfigData.WH_100_100)
-      .height(ConfigData.WH_100_100);
     }
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
