@@ -26,7 +26,7 @@ import deviceInfo from '@ohos.deviceInfo';
 import parameter from '@ohos.systemparameter';
 
 const PAGE_SEARCH = 'pages/searchPage'; // for search
-const deviceTypeInfo = deviceInfo.deviceType
+const deviceTypeInfo = deviceInfo.deviceType;
 const SETTINGS_LIST = [
   [
     {
@@ -156,6 +156,7 @@ const SETTINGS_LIST = [
     }
   ]
 ];
+
 /**
  * setting home page
  */
@@ -172,7 +173,7 @@ struct SettingList {
       Text($r('app.string.settings'))
         .width(ConfigData.WH_100_100)
         .height($r('app.float.wh_value_56'))
-        .fontColor($r("sys.color.ohos_id_color_primary"))
+        .fontColor($r("sys.color.ohos_id_color_text_primary"))
         .fontSize($r('app.float.font_30'))
         .fontWeight(FontWeight.Medium)
     }
@@ -241,33 +242,37 @@ struct SettingList {
 
   aboutToAppear() {
     LogUtil.info('settings SettingList aboutToAppear enter');
-    ResourceUtil.getString($r("app.string.searchHint")).then(value => this.placeholder = value) // for search
+    ResourceUtil.getString($r("app.string.searchHint")).then(value => this.placeholder = value);// for search
     ResourceUtil.getString($r("app.float.search_placeholder_font")).then(value => this.placeholdersize = value);
     ResourceUtil.getString($r('app.float.distance_12')).then(value => this.listSpaces = value);
+
     let nYear = GlobalResourceManager.getStringByResource($r('app.string.year'));
     nYear.then(resp => AppStorage.SetOrCreate(ConfigData.DATE_AND_TIME_YEAR, resp));
+
     let nMonth = GlobalResourceManager.getStringByResource($r('app.string.month'));
     nMonth.then(resp => AppStorage.SetOrCreate(ConfigData.DATE_AND_TIME_MONTH, resp));
+
     let nDay = GlobalResourceManager.getStringByResource($r('app.string.day'));
     nDay.then(resp => AppStorage.SetOrCreate(ConfigData.DATE_AND_TIME_DAY, resp));
-    LogUtil.info('settings SettingList aboutToAppear end');
+
     if (deviceTypeInfo === 'phone') {
-      this.isPhone = true
+      this.isPhone = true;
     } else {
-      this.isPhone = false
+      this.isPhone = false;
     }
+    LogUtil.info('settings SettingList aboutToAppear end');
   }
 
   onPageShow() {
     FeatureAbility.getWant().then((want) => {
       if (want.uri === "wifi") {
-        Router.replace({ uri: "pages/wifi" })
+        Router.replace({ uri: "pages/wifi" });
       } else if (want.uri === "bluetooth") {
-        Router.replace({ uri: "pages/bluetooth" })
+        Router.replace({ uri: "pages/bluetooth" });
       } else if (want.uri === "volumeControl") {
-        Router.replace({ uri: "pages/volumeControl" })
+        Router.replace({ uri: "pages/volumeControl" });
       } else if (want.uri === "locationServices") {
-        Router.replace({ uri: "pages/locationServices" })
+        Router.replace({ uri: "pages/locationServices" });
       }
     })
   }
@@ -289,7 +294,7 @@ struct EntryComponent {
     }
     LogUtil.info('settings SettingList nfc canUse' + this.nfcInfo);
     if (!this.nfcInfo) {
-      this.settingsList[0].pop()
+      this.settingsList[0].pop();
     }
   }
 
@@ -297,6 +302,8 @@ struct EntryComponent {
     Column() {
       if (!this.isPhone) {
         Text($r('app.string.settings'))
+          .height($r("app.float.wh_value_56"))
+          .fontColor($r("sys.color.ohos_id_color_text_primary"))
           .fontSize($r("app.float.font_30"))
           .lineHeight($r("app.float.lineHeight_41"))
           .fontWeight(FontWeight.Bold)
@@ -304,11 +311,12 @@ struct EntryComponent {
           .textAlign(TextAlign.Start)
           .width(ConfigData.WH_100_100)
           .padding({
-            left: $r('app.float.distance_26'),
-            top: $r('app.float.distance_12'),
-            bottom: $r('app.float.distance_17')
+            left: $r('app.float.distance_24'),
+            top: $r('app.float.distance_7'),
+            bottom: $r('app.float.distance_8')
           })
       }
+
       List({ space: this.listSpaces }) {
         // for search
         ListItem() {
@@ -328,8 +336,7 @@ struct EntryComponent {
                 .lineHeight($r("app.float.lineHeight_21"))
                 .fontWeight(FontWeight.Regular)
                 .fontFamily('HarmonyHeiTi')
-                .fontColor($r("sys.color.ohos_id_color_primary"))
-                .opacity($r("app.float.opacity_0_2"))
+                .fontColor($r("sys.color.ohos_id_color_text_secondary"))
                 .align(Alignment.Start)
                 .margin({
                   left: $r("app.float.distance_6"),
@@ -342,17 +349,13 @@ struct EntryComponent {
               color: $r("sys.color.ohos_id_color_fourth"),
               radius: $r('app.float.wh_value_20')
             })
-            .margin({
-              left: $r("app.float.distance_1"),
-              right: $r("app.float.distance_1"),
-              bottom: $r("app.float.distance_4")
-            })
             .height($r("app.float.wh_value_40"))
             .width(ConfigData.WH_100_100)
             .alignItems(VerticalAlign.Center)
             .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
           }
-
+          .height($r("app.float.wh_value_56"))
+          .padding($r("app.float.wh_value_8"))
         }
         .width(ConfigData.WH_100_100)
         .onClick(() => {
@@ -368,13 +371,13 @@ struct EntryComponent {
               ForEach(eachBlock, (eachitem) => {
                 ListItem() {
                   if (eachitem.settingAlias === 'wlanTab') {
-                    wifiItemComponent({ item: eachitem })
+                    wifiItemComponent({ item: eachitem });
                   } else if (eachitem.settingAlias === 'blueToothTab') {
                     if (BluetoothModel.canUse) {
-                      bluetoothItemComponent({ item: eachitem })
+                      bluetoothItemComponent({ item: eachitem });
                     }
                   } else {
-                    ItemComponent({ item: eachitem })
+                    ItemComponent({ item: eachitem });
                   }
                 }
               })
@@ -397,7 +400,7 @@ struct EntryComponent {
       .width(ConfigData.WH_100_100)
       .alignSelf(ItemAlign.Start);
     }
-    .margin({
+    .padding({
       left: $r('sys.float.ohos_id_card_margin_start'),
       right: $r('sys.float.ohos_id_card_margin_end')
     })

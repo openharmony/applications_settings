@@ -129,7 +129,7 @@ struct developerOptions {
                         .fontSize($r("sys.float.ohos_id_text_size_body1"))
                     }
                     .alignItems(HorizontalAlign.Start)
-                    .margin({ left: $r('app.float.wh_24') })
+                    .margin({ left:  $r('sys.float.ohos_id_card_margin_start') })
 
                     Blank()
                     Row() {
@@ -143,7 +143,7 @@ struct developerOptions {
                         .margin({ right: $r('app.float.distance_8') })
                         .fillColor($r("sys.color.ohos_id_color_primary"))
                         .opacity($r("app.float.opacity_0_2"))
-                        .margin({ right: $r('app.float.wh_24') })
+                        .margin({ right: $r('sys.float.ohos_id_card_margin_end')})
                     }
                     .onClick(() => {
                       this.AnimationScalingDialog.open()
@@ -179,10 +179,7 @@ struct developerOptions {
             }.margin({ top: $r("app.float.distance_12") })
           }
           .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .padding({
-            left: this.isPhone ? $r("app.float.wh_value_12") : $r('app.float.wh_24'),
-            right: this.isPhone ? $r("app.float.wh_value_12") : $r('app.float.wh_24')
-          })
+          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
           .height(ConfigData.WH_100_100)
           .width(ConfigData.WH_100_100)
           .useSizeType({

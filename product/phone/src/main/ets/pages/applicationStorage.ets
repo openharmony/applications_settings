@@ -58,7 +58,7 @@ struct ApplicationStorage {
               Image(appInfo.settingIcon)
                 .width($r('app.float.wh_value_64'))
                 .height($r('app.float.wh_value_64'))
-                .margin({ right: $r('app.float.distance_16'), left: $r('app.float.distance_24') })
+                .margin({ right: $r('app.float.distance_16'), left: $r('sys.float.ohos_id_card_margin_start') })
               Column() {
                 Text(appInfo.settingTitle)
                   .fontColor($r('app.color.font_color_182431'))
@@ -110,7 +110,6 @@ struct ApplicationStorage {
             }
             .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
             .backgroundColor($r("app.color.white_bg_color"))
-            .padding($r('app.float.distance_4'))
 
             ButtonComponent({ text: $r("app.string.deleteDataTab"), onClickEvent: () => {
               this.showDialog(this.controller.clearUpApplicationData.bind(this, appInfo.settingBundleName));
@@ -245,24 +244,14 @@ struct ButtonComponent {
 
   build() {
     Column() {
-      Text(this.text)
+      Button(this.text)
         .fontSize($r('app.float.application_button_subtitle_size'))
-        .lineHeight($r('app.float.wh_value_22'))
         .fontColor($r('app.color.font_color_007DFF'))
-        .textAlign(TextAlign.Center)
         .width($r('app.float.component_button_width'))
         .height($r('app.float.application_button_height'))
         .margin({ top: $r("app.float.wh_value_24"), bottom: $r("app.float.wh_value_32") })
         .borderRadius($r('app.float.radius_20'))
-        .backgroundColor(!this.isTouched ? $r("app.color.color_D8D8D8_grey") : $r("sys.color.ohos_id_color_foreground_contrary"))
-        .onTouch((event: TouchEvent) => {
-          if (event.type === TouchType.Down) {
-            this.isTouched = true;
-          }
-          if (event.type === TouchType.Up) {
-            this.isTouched = false;
-          }
-        })
+        .backgroundColor($r('sys.color.ohos_id_color_button_normal'))
         .onClick(() => {
           this.onClickEvent();
         })
