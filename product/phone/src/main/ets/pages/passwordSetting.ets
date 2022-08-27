@@ -247,7 +247,7 @@ struct PasswordSetting {
             .width(ConfigData.WH_100_100)
           }
           .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .margin({
+          .padding({
             left: $r('sys.float.ohos_id_card_margin_start'),
             right: $r('sys.float.ohos_id_card_margin_end')
           })

@@ -55,7 +55,7 @@ export default struct SwitchComponent {
             .margin({ top: $r('sys.float.ohos_id_text_margin_vertical') })
         }
       }
-      .margin({ left: $r('app.float.wh_24') })
+      .margin({ left:$r('sys.float.ohos_id_card_margin_start')})
       .alignItems(HorizontalAlign.Start)
 
       Blank()
@@ -72,7 +72,7 @@ export default struct SwitchComponent {
             this.toggleValue(this.isOn);
           });
       }
-      .margin({ right: $r('app.float.wh_24') })
+      .margin({ right:$r('sys.float.ohos_id_card_margin_end')})
       .width($r('app.float.wh_value_48'))
       .height($r('app.float.wh_value_56'))
     }

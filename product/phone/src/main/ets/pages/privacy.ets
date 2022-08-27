@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import prompt from '@system.prompt';
 import FeatureAbility from '@ohos.ability.featureAbility';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
@@ -48,16 +49,20 @@ struct PrivacySettings {
           });
 
           Column() {
-            HeadComponent({ headName: $r('app.string.privacy'), isActive: true })
+            HeadComponent({ headName: $r('app.string.privacy'), isActive: true });
+
             Column({ space: this.columnMargin }) {
-              PermissionComponent()
-              SubEntryComponent({ targetPage: 'pages/locationServices', title: $r('app.string.locationServicesTab') })
+              PermissionComponent();
+              SubEntryComponent({ targetPage: 'pages/locationServices', title: $r('app.string.locationServicesTab') });
             }
             .margin({ top: $r("app.float.distance_8") })
             .width(ConfigData.WH_100_100)
           }
           .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
+          .padding({
+            left: $r('sys.float.ohos_id_card_margin_start'),
+            right: $r('sys.float.ohos_id_card_margin_end')
+          })
           .width(ConfigData.WH_100_100)
           .height(ConfigData.WH_100_100)
           .useSizeType({
@@ -96,7 +101,6 @@ struct PrivacySettings {
     LogUtil.info(`${this.TAG} aboutToDisappear out`);
   }
 }
-
 
 /**
  * Permission Manager Component
