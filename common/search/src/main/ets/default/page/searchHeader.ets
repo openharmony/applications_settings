@@ -30,7 +30,8 @@ export default struct SearchHeader {
   @Link inputKeyword: string
   @State placeholderSize: string = ''
   @State placeholder: string = ''
-  @State isTouch: boolean= false;
+  @State icBackIsTouch: boolean= false;
+  @State cancelIsTouch: boolean= false;
 
   build() {
     Row() {
@@ -40,23 +41,24 @@ export default struct SearchHeader {
         .fillColor($r("sys.color.ohos_id_color_primary"))
         .margin({ right: $r('app.float.wh_value_16') })
         .borderRadius($r("app.float.sys_corner_radius_clicked"))
-        .backgroundColor(this.isTouch ? $r("app.color.color_E3E3E3_grey") : $r("app.color.color_00000000_transparent"))
+        .backgroundColor(this.icBackIsTouch ? $r("app.color.color_E3E3E3_grey") : $r("app.color.color_00000000_transparent"))
         .onClick(() => {
           Router.back();
         })
         .onTouch((event: TouchEvent) => {
           if (event.type === TouchType.Down) {
-            this.isTouch = true;
+            this.icBackIsTouch = true;
           }
           if (event.type === TouchType.Up) {
-            this.isTouch = false;
+            this.icBackIsTouch = false;
           }
         });
       Stack({ alignContent: Alignment.Start }) {
         TextInput({ placeholder: this.placeholder, text: this.inputKeyword })
+          .placeholderColor($r("sys.color.ohos_id_color_text_secondary"))
           .placeholderFont({ size: this.placeholderSize, weight: FontWeight.Normal, style: FontStyle.Normal })
           .type(InputType.Normal)
-          .caretColor('#007DFF')
+          .caretColor($r("sys.color.ohos_id_color_text_primary_activated"))
           .enterKeyType(EnterKeyType.Search)
           .backgroundColor($r("app.color.white_bg_color"))
           .padding({left:$r('app.float.wh_padding_35')})
@@ -78,17 +80,28 @@ export default struct SearchHeader {
             .height($r('app.float.wh_value_18'))
             .objectFit(ImageFit.Contain)
             .margin({ left: $r('app.float.distance_11') })
-          Image($r("app.media.ic_public_cancel"))
-            .width($r('app.float.wh_value_18'))
-            .height($r('app.float.wh_value_18'))
-            .objectFit(ImageFit.Contain)
-            .fillColor($r("sys.color.ohos_id_color_primary"))
-            .opacity(0.6)
-            .margin({ right: $r('app.float.distance_11') })
-            .align(Alignment.End)
-            .onClick(() => {
-              this.inputKeyword = ''
-            })
+          if(this.inputKeyword != '') {
+            Image($r("app.media.ic_public_cancel"))
+              .width($r('app.float.wh_value_18'))
+              .height($r('app.float.wh_value_18'))
+              .objectFit(ImageFit.Contain)
+              .fillColor($r("sys.color.ohos_id_color_primary"))
+              .opacity(0.6)
+              .margin({ right: $r('app.float.distance_11') })
+              .align(Alignment.End)
+              .backgroundColor(this.cancelIsTouch ? $r("app.color.color_E3E3E3_grey") : $r("app.color.color_00000000_transparent"))
+              .onClick(() => {
+                this.inputKeyword = ''
+              })
+              .onTouch((event: TouchEvent) => {
+              if (event.type === TouchType.Down) {
+                this.cancelIsTouch = true;
+              }
+              if (event.type === TouchType.Up) {
+                this.cancelIsTouch = false;
+              }
+            });
+          }
         }
       }
       .width('100%')
