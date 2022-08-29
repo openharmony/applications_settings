@@ -182,7 +182,7 @@
     },
     {
       "name": "wh_value_160",
-      "value": "144vp"
+      "value": "160vp"
     },
     {
       "name": "wh_value_200",
@@ -194,7 +194,7 @@
     },
     {
       "name": "wh_value_212",
-      "value": "280vp"
+      "value": "212vp"
     },
     {
       "name": "wh_value_216",
@@ -234,7 +234,7 @@
     },
     {
       "name": "wh_value_410",
-      "value": "336vp"
+      "value": "410vp"
     },
     {
       "name": "wh_value_620",
@@ -866,7 +866,7 @@
     },
     {
       "name": "deviceName_button_width",
-      "value": "150vp"
+      "value": "192vp"
     },
     {
       "name": "applicationInfo_button_width",
@@ -882,7 +882,7 @@
     },
     {
       "name": "dialog_118",
-      "value": "92vp"
+      "value": "118vp"
     },
     {
       "name": "wh_4",
@@ -973,6 +973,10 @@
       "value": "128vp"
     },
     {
+      "name": "wh_padding_136",
+      "value": "136vp"
+    },
+    {
       "name": "wh_padding_212",
       "value": "272vp"
     },
@@ -1015,6 +1019,14 @@
     {
       "name": "search_no_result_padding",
       "value": "8vp"
+    },
+    {
+      "name": "customDialog_dx_offset",
+      "value": "0"
+    },
+    {
+      "name": "customDialog_dy_offset",
+      "value": "-16vp"
     }
   ]
 }
