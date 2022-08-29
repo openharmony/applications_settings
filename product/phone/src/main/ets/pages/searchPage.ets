@@ -110,12 +110,16 @@ struct SearchPage {
                   Image($r("app.media.img_search_no_result"))
                     .width($r("app.float.search_no_result_image_size"))
                     .height($r("app.float.search_no_result_image_size"))
+                    .margin({ bottom: $r("app.float.distance_8") })
+
 
                   // search no match
                   Text($r("app.string.searchNoResult"))
+                    .fontFamily('HarmonyHeiTi')
                     .fontSize($r("app.float.search_no_result_text_font_size"))
-                    .fontColor($r("app.color.font_color_182431"))
-                    .fontWeight(FontWeight.Medium)
+                    .fontColor($r("sys.color.ohos_id_color_tertiary"))
+                    .fontWeight(FontWeight.Regular)
+                    .lineHeight($r('app.float.wh_value_19'))
                     .alignSelf(ItemAlign.Center);
                 }
                 .alignItems(HorizontalAlign.Center)
@@ -144,7 +148,8 @@ struct SearchPage {
         .height(ConfigData.WH_100_100);
       }
       .width(ConfigData.WH_100_100)
-      .height(ConfigData.WH_100_100);
+      .height(ConfigData.WH_100_100)
+      .margin({left: $r("sys.float.ohos_id_max_padding_start"), right: $r("sys.float.ohos_id_max_padding_end"), bottom: $r("sys.float.ohos_id_default_padding_bottom_fixed")});
     }
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
