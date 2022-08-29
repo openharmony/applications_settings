@@ -490,7 +490,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
             cancel: () => {
                 LogUtil.info('Closed callbacks')
             },
-          offset: ({ dx: 0, dy: deviceInfo.deviceType === 'phone' ? '-16dp' : 0 }),
+          offset: ({ dx: $r("app.float.customDialog_dx_offset"), dy: $r("app.float.customDialog_dy_offset") }),
           alignment: deviceInfo.deviceType === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
         })
 

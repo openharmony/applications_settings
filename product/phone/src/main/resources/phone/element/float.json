@@ -1019,6 +1019,14 @@
     {
       "name": "search_no_result_padding",
       "value": "8vp"
+    },
+    {
+      "name": "customDialog_dx_offset",
+      "value": "0"
+    },
+    {
+      "name": "customDialog_dy_offset",
+      "value": "-16vp"
     }
   ]
 }

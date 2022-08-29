@@ -107,7 +107,7 @@ struct Index {
       apInfo: this.userSelectedApInfo,
     }),
     alignment: deviceTypeInfo === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' ? '-16dp' : 0 }),
+    offset: ({ dx: $r("app.float.customDialog_dx_offset"), dy: $r("app.float.customDialog_dy_offset") }),
     autoCancel: true,
     customStyle: true
   });
@@ -120,7 +120,7 @@ struct Index {
       }
     }),
     alignment: deviceTypeInfo === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' ? '-16dp' : 0 }),
+    offset: ({ dx: $r("app.float.customDialog_dx_offset"), dy: $r("app.float.customDialog_dy_offset") }),
     autoCancel: true,
     customStyle: true
   });
