@@ -408,7 +408,7 @@ struct PairedDeviceComponent {
         }
       },
       alignment: deviceTypeInfo === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
-      offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' ? '-16dp' : 0 }),
+      offset: ({ dx: $r("app.float.customDialog_dx_offset"), dy: $r("app.float.customDialog_dy_offset") }),
     })
   }
 }
@@ -450,7 +450,7 @@ struct AvailableDeviceComponent {
       }
     }),
     alignment:deviceTypeInfo === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' ? '-16dp' : 0 }),
+    offset: ({ dx: $r("app.float.customDialog_dx_offset"), dy: $r("app.float.customDialog_dy_offset") }),
     autoCancel: true,
   });
 
@@ -608,7 +608,7 @@ struct AvailableDeviceComponent {
         }
       },
       alignment:deviceTypeInfo === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
-      offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' ? '-16dp' : 0 }),
+      offset: ({ dx: $r("app.float.customDialog_dx_offset"), dy: $r("app.float.customDialog_dy_offset") }),
     })
   }
 
@@ -792,7 +792,7 @@ function showDialog(dialogTitle: string | Resource, dialogMessage: string | Reso
   AlertDialog.show({
     title: dialogTitle,
     message: dialogMessage,
-    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' ? '-16dp' : 0 }),
+    offset: ({ dx: $r("app.float.customDialog_dx_offset"), dy: $r("app.float.customDialog_dy_offset") }),
     alignment: deviceTypeInfo === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
     confirm: {
       value: buttonValue,

@@ -48,14 +48,14 @@ struct WifiPsd {
       ssid: this.tobeConnectedSSID,
     }),
     alignment: deviceInfo.deviceType === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: deviceInfo.deviceType === 'phone' ? '-16dp' : 0 }),
+    offset: ({ dx: $r("app.float.customDialog_dx_offset"), dy: $r("app.float.customDialog_dy_offset") }),
     autoCancel: false,
     customStyle: true
   });
   private failedDialog: CustomDialogController = new CustomDialogController({
     builder: connectFailedDialog({ControlFailedDialog:$ControlFailedDialog}),
     alignment: deviceInfo.deviceType === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: deviceInfo.deviceType === 'phone' ? '-16dp' : 0 }),
+    offset: ({ dx: $r("app.float.customDialog_dx_offset"), dy: $r("app.float.customDialog_dy_offset") }),
     autoCancel: true,
     customStyle: true
   });
@@ -94,7 +94,7 @@ struct WifiPsd {
               this.isFocused = true;
             })
             .onFocusMove(() => {
-              LogUtil.info(MODULE_TAG + "text input is 0000000000000000000000000000000000 moved");
+              LogUtil.info(MODULE_TAG + "text input is moved");
               this.isFocused = false;
             })
             .onChange((inputs: string) => {
