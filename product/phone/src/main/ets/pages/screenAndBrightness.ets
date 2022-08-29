@@ -180,7 +180,7 @@ export struct ScreenModelComponent {
           Image('/res/image/ic_settings_arrow.svg')
             .width($r('app.float.wh_value_12'))
             .height($r('app.float.wh_value_24'))
-            .margin({ right: $r('app.float.distance_8') })
+            .margin({ right: $r('app.float.distance_12') })
             .fillColor($r("sys.color.ohos_id_color_primary"))
             .opacity($r("sys.float.ohos_fa_alpha_content_fourth"))
         }

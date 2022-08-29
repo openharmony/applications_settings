@@ -1011,6 +1011,10 @@
     {
       "name": "animationScalingInformation_h_value",
       "value": "456vp"
+    },
+    {
+      "name": "search_no_result_padding",
+      "value": "8vp"
     }
   ]
 }
