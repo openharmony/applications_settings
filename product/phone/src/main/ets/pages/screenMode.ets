@@ -63,24 +63,29 @@ struct ScreenMode {
               ForEach(this.supportedScreenModes, (item: BaseData) => {
                 ListItem() {
                   Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-                    Column() {
-                      Text(`${this.screenModeModel.getScreenModeWidth(item)} x ${this.screenModeModel.getScreenModeHeight(item)}`)
-                        .fontColor($r('sys.color.ohos_id_color_text_primary'))
-                        .fontSize($r("app.float.font_16"))
-                        .lineHeight($r("app.float.lineHeight_22"))
-                        .fontWeight(FontWeight.Medium)
-                        .margin({ top: $r('app.float.distance_13'), bottom: $r('app.float.distance_13') })
-                        .textAlign(TextAlign.Start);
-
-                    }
-                    .alignItems(HorizontalAlign.Start)
+                    Text(`${this.screenModeModel.getScreenModeWidth(item)} x ${this.screenModeModel.getScreenModeHeight(item)}`)
+                      .fontColor($r('sys.color.ohos_id_color_text_primary'))
+                      .fontSize($r("app.float.font_16"))
+                      .lineHeight($r("app.float.lineHeight_22"))
+                      .fontWeight(FontWeight.Medium)
+                      .margin({ top: $r('app.float.distance_8'), bottom: $r("app.float.distance_8") })
+                      .textAlign(TextAlign.Start);
 
                     Radio({ value: this.TAG, group: '' })
+                      .padding(
+                        {
+                          left:$r("app.float.distance_2"),
+                          right:$r("app.float.distance_2"),
+                          top:$r("app.float.distance_2"),
+                          bottom:$r("app.float.distance_2")
+                        }
+                      )
                       .colorBlend($r("sys.color.ohos_id_color_switch_bg_off"))
                       .width('20vp')
                       .height('20vp')
-                      .enabled(false)
+                      .enabled(true)
                       .checked(this.screenModeModel.isSysScreenMode(item))
+                      .margin({ top: $r("app.float.distance_12"), bottom: $r("app.float.distance_12")})
                       .onClick(() => {
                         LogUtil.info('settings RadioListComponent : onChange: settingValue = ' + item.settingValue)
                         this.screenModeModel.setSysScreenMode(0);
