@@ -20,6 +20,8 @@ import PasswordModel, {ResultCode} from '../../model/passwordImpl/PasswordModel'
 import Router from '@system.router';
 import Prompt from '@system.prompt';
 
+const OPEN_SESSION_FAILED = '0';
+
 export default class PasswordCheckController extends BaseSettingsController {
   private TAG = ConfigData.TAG + 'PasswordCheckController ';
   private pageRequestCode: number = -1;
@@ -39,11 +41,20 @@ export default class PasswordCheckController extends BaseSettingsController {
   }
 
   subscribe(): ISettingsController {
+    PasswordModel.openSession((data) => {
+      if (data === OPEN_SESSION_FAILED) {
+        LogUtil.info(`${this.TAG}subscribe->openSession failed`);
+      } else {
+        LogUtil.info(`${this.TAG}subscribe->openSession success`);
+      }
+      this.pinChallenge = data;
+    });
     PasswordModel.registerInputer();
     return this;
   };
 
   unsubscribe(): ISettingsController {
+    PasswordModel.closeSession();
     PasswordModel.unregisterInputer();
     return this;
   };

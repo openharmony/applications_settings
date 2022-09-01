@@ -20,7 +20,6 @@ import ConfigData from '../../../../../../../common/utils/src/main/ets/default/b
 import ISettingsController from '../../../../../../../common/component/src/main/ets/default/controller/ISettingsController';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import AboutDeviceModel from '../../model/aboutDeviceImpl/AboutDeviceModel'
-import deviceInfo from '@ohos.deviceInfo'
 
 const DISCOVERY_DURING_TIME: number = 30000;    // 30'
 const DISCOVERY_INTERVAL_TIME: number = 3000;   // 3'
@@ -165,7 +164,12 @@ export default class BluetoothDeviceController extends BaseSettingsController {
    */
   confirmPairing(deviceId: string, accept: boolean): void {
     if (accept) {
-      this.getAvailableDevice(deviceId).connectionState = BondState.BOND_STATE_BONDING;
+      try {
+        this.getAvailableDevice(deviceId).connectionState = BondState.BOND_STATE_BONDING;
+      } catch (err) {
+        LogUtil.error(this.TAG + 'confirmPairing =' + JSON.stringify(err));
+      }
+
       this.forceRefresh(this.availableDevices);
       AppStorage.SetOrCreate('bluetoothAvailableDevices', this.availableDevices);
     }
@@ -490,8 +494,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
             cancel: () => {
                 LogUtil.info('Closed callbacks')
             },
-          offset: ({ dx: $r("app.float.customDialog_dx_offset"), dy: $r("app.float.customDialog_dy_offset") }),
-          alignment: deviceInfo.deviceType === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
+            alignment: DialogAlignment.Bottom
         })
 
   }
