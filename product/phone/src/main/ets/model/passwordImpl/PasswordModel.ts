@@ -187,7 +187,7 @@ export class PasswordModel extends BaseModel {
         "settingUri": "pages/passwordCheck"
       }
     ]
-  ]
+  ];
 
   /**
    * constructor

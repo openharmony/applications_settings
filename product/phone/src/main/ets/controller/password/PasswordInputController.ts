@@ -23,6 +23,7 @@ import Router from '@system.router';
 
 const PASSWORD_SIX_LENGTH = 6;
 const AUTH_SUB_TYPE_DEFAULT = PinSubType.PIN_SIX;
+const OPEN_SESSION_FAILED = '0';
 
 export default class PasswordInputController extends BaseSettingsController {
   private TAG = ConfigData.TAG + 'PasswordInputController ';
@@ -52,11 +53,20 @@ export default class PasswordInputController extends BaseSettingsController {
   }
 
   subscribe(): ISettingsController {
+    PasswordModel.openSession((data) => {
+      if (data === OPEN_SESSION_FAILED) {
+        LogUtil.info(`${this.TAG}subscribe->openSession failed`);
+      } else {
+        LogUtil.info(`${this.TAG}subscribe->openSession success`);
+      }
+      this.pinChallenge = data;
+    });
     PasswordModel.registerInputer();
     return this;
   };
 
   unsubscribe(): ISettingsController {
+    PasswordModel.closeSession();
     PasswordModel.unregisterInputer();
     return this;
   };
