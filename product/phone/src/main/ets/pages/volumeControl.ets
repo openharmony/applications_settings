@@ -175,6 +175,9 @@ struct AudioRingerModeItem {
         .height(this.isRk ? $r('app.float.distance_8') : $r('app.float.wh_value_24'))
         .margin({top: $r('app.float.distance_4')})
         .checked(this.checked)
+        .onChange((vue) => {
+          this.audioRingerModel.setRingerMode();
+        })
     }
     .alignItems(HorizontalAlign.Center)
     .width(ConfigData.WH_50_100)

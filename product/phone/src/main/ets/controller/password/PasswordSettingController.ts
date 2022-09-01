@@ -27,20 +27,10 @@ export default class PasswordSettingController extends BaseSettingsController {
   private passwordList: PasswordSettingItem[][] = [];
 
   subscribe(): ISettingsController {
-    PasswordModel.closeSession();
-    PasswordModel.openSession((data) => {
-      if (data === '0') {
-        LogUtil.info(`${this.TAG}subscribe->openSession failed`);
-      } else {
-        LogUtil.info(`${this.TAG}subscribe->openSession success`);
-      }
-      this.pinChallenge = data;
-    });
     return this;
   };
 
   unsubscribe(): ISettingsController {
-    PasswordModel.closeSession();
     return this;
   };
 
