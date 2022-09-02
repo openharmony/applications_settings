@@ -101,7 +101,9 @@ export default class BluetoothDeviceController extends BaseSettingsController {
       BluetoothModel.enableBluetooth();
     } else {
       BluetoothModel.disableBluetooth();
-      this.availableDevices = []
+
+      // remove all elements from availableDevices array
+      this.availableDevices.splice(0, this.availableDevices.length)
     }
   }
 

@@ -649,7 +649,7 @@ struct AvailableDeviceComponent {
  * AvailableDevicesDataSource For Lazy Loading
  */
 class AvailableDevicesDataSource extends BasicDataSource {
-  private availableDevicesArray: BluetoothDevice[] = [];
+  private availableDevicesArray: BluetoothDevice[] = null;
 
   constructor(availableDevicesArray:BluetoothDevice[]){
     super();
@@ -657,10 +657,17 @@ class AvailableDevicesDataSource extends BasicDataSource {
   }
 
   public totalCount(): number {
-    return this.availableDevicesArray.length;
+    if(this.availableDevicesArray) {
+      return this.availableDevicesArray.length;
+    }
+    return 0;
   }
 
-  public getData(index: number): any {
+  public getData(index: number): BluetoothDevice {
+    if(index < 0 || index >= this.totalCount()) {
+      LogUtil.log(ConfigData.TAG + 'index out of range.');
+      return null;
+    }
     return this.availableDevicesArray[index];
   }
 }
