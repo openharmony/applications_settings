@@ -12,7 +12,9 @@
     "component": {
         "name": "settings_standard",
         "subsystem": "applications",
-        "syscap": [],
+        "syscap": [
+            "SystemCapability.Applications.settings.Core"
+        ],
         "features": [],
         "adapted_system_type": [
             "standard"
