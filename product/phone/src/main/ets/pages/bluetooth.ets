@@ -664,6 +664,10 @@ class AvailableDevicesDataSource extends BasicDataSource {
   }
 
   public getData(index: number): BluetoothDevice {
+    if(!this.availableDevicesArray) {
+      LogUtil.log(ConfigData.TAG + 'array is null.');
+      return null;
+    }
     if(index < 0 || index >= this.totalCount()) {
       LogUtil.log(ConfigData.TAG + 'index out of range.');
       return null;
