@@ -24,6 +24,7 @@ import Router from '@system.router';
 import BluetoothDeviceController from '../controller/bluetooth/BluetoothDeviceController';
 import BluetoothDevice from '../model/bluetoothImpl/BluetoothDevice'
 import { DeviceType, ProfileConnectionState, BondState } from '../model/bluetoothImpl/BluetoothModel';
+import BasicDataSource from '../../../../../../common/utils/src/main/ets/default/model/BasicDataSource';
 import deviceInfo from '@ohos.deviceInfo'
 
 const PAIRED_ITEM_NUMBER = 3;
@@ -98,12 +99,14 @@ struct Bluetooth {
 
           Text($r('app.string.bluetooth_visible_to_nearby'))
             .width(ConfigData.WH_100_100)
+            .fontFamily("HarmonyHeiTi")
             .fontSize($r('app.float.font_14'))
             .fontColor($r('sys.color.ohos_id_color_text_secondary'))
             .visibility(this.isOn ? Visibility.Visible : Visibility.None)
-            .height($r("app.float.wh_value_48"))
+            .height($r("app.float.wh_value_52"))
+            .lineHeight($r("app.float.wh_value_20"))
             .padding({
-              left: $r('app.float.wh_24'),
+              left: $r('app.float.wh_value_12'),
               top: $r('app.float.distance_8'), bottom: $r('app.float.distance_24')
             })
           Scroll() {
@@ -213,12 +216,12 @@ struct PairedDeviceComponent {
           Text($r('app.string.bluetooth_paired_devices'))
             .width(ConfigData.WH_100_100)
             .fontSize($r('app.float.font_14'))
-            .fontWeight(500)
+            .fontWeight(FontWeight.Medium)
             .fontColor($r('sys.color.ohos_id_color_text_secondary'))
         }
         .width(ConfigData.WH_100_100)
         .padding({
-          left: $r('app.float.wh_24'),
+          left: $r('app.float.wh_value_12'),
           top: $r('app.float.distance_19_5'),
           bottom: $r('app.float.distance_9_5')
         })
@@ -422,8 +425,8 @@ struct DiscoveringAnimatorComponent {
     Column() {
       Row() {
         ImageAnimatorComponent({
-          imageWidth: $r('app.float.wh_value_40'),
-          imageHeight: $r('app.float.wh_value_40') })
+          imageWidth: $r('app.float.wh_value_24'),
+          imageHeight: $r('app.float.wh_value_24') })
       }
     }
   }
@@ -438,6 +441,7 @@ struct AvailableDeviceComponent {
   private controller: BluetoothDeviceController;
   @State isDeviceDiscovering: boolean = false;
   @StorageLink('bluetoothAvailableDevices') availableDevices: BluetoothDevice[] = [];
+  private availableDevicesList: AvailableDevicesDataSource = new AvailableDevicesDataSource(this.availableDevices);
   @State pairPinCode: string = '';
   private pairingDevice: BluetoothDevice = undefined;
   @StorageLink("controlPairing") controlPairing: boolean = true ;
@@ -469,18 +473,18 @@ struct AvailableDeviceComponent {
   build() {
     Column() {
       Row() {
-        // available devices title
-        Text($r('app.string.bluetooth_available_devices'))
-          .fontSize($r('app.float.font_14'))
-          .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-          .width(ConfigData.WH_100_100)
-          .height($r('app.float.distance_19'))
-          .fontWeight(500)
-          .margin({
-            left: $r('app.float.wh_24'),
-            top: $r('app.float.distance_19_5'),
-            bottom: $r('app.float.distance_9_5')
-          })
+        Row() {
+          // available devices title
+          Text($r('app.string.bluetooth_available_devices'))
+            .fontSize($r('app.float.font_14'))
+            .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+            .height($r('app.float.distance_19'))
+            .fontWeight(FontWeight.Medium)
+        }
+        .padding({
+          top: $r('app.float.distance_19_5'),
+          bottom: $r('app.float.distance_9_5')
+        })
 
         Blank()
 
@@ -489,12 +493,17 @@ struct AvailableDeviceComponent {
           DiscoveringAnimatorComponent()
         }
       }
+      .height($r("app.float.wh_value_48"))
       .width(ConfigData.WH_100_100)
+      .padding({
+        left: $r('app.float.wh_value_12'),
+        right: $r('app.float.wh_value_12')
+      })
 
       if (this.availableDevices && this.availableDevices.length >= 1) {
         List() {
           // paired devices list
-          ForEach(this.availableDevices, (item: BluetoothDevice) => {
+          LazyForEach(this.availableDevicesList, (item: BluetoothDevice) => {
             ListItem() {
               Row() {
                 EntryComponent({
@@ -633,6 +642,37 @@ struct AvailableDeviceComponent {
     $r("app.string.pairing_failed_message"),
     $r("app.string.bluetooth_know_button")
     );
+  }
+}
+
+/**
+ * AvailableDevicesDataSource For Lazy Loading
+ */
+class AvailableDevicesDataSource extends BasicDataSource {
+  private availableDevicesArray: BluetoothDevice[] = null;
+
+  constructor(availableDevicesArray:BluetoothDevice[]){
+    super();
+    this.availableDevicesArray = availableDevicesArray;
+  }
+
+  public totalCount(): number {
+    if(this.availableDevicesArray) {
+      return this.availableDevicesArray.length;
+    }
+    return 0;
+  }
+
+  public getData(index: number): BluetoothDevice {
+    if(!this.availableDevicesArray) {
+      LogUtil.log(ConfigData.TAG + 'array is null.');
+      return null;
+    }
+    if(index < 0 || index >= this.totalCount()) {
+      LogUtil.log(ConfigData.TAG + 'index out of range.');
+      return null;
+    }
+    return this.availableDevicesArray[index];
   }
 }
 

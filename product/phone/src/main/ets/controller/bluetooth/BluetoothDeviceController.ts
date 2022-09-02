@@ -68,10 +68,6 @@ export default class BluetoothDeviceController extends BaseSettingsController {
     this.subscribeBluetoothDeviceFind();
     this.subscribeBondStateChange();
     this.subscribeDeviceConnectStateChange();
-
-    if (this.isOn) {
-      this.startBluetoothDiscovery();
-    }
     return this;
   }
 
@@ -104,7 +100,10 @@ export default class BluetoothDeviceController extends BaseSettingsController {
     if (isOn) {
       BluetoothModel.enableBluetooth();
     } else {
-      BluetoothModel.disableBluetooth()
+      BluetoothModel.disableBluetooth();
+
+      // remove all elements from availableDevices array
+      this.availableDevices.splice(0, this.availableDevices.length)
     }
   }
 
