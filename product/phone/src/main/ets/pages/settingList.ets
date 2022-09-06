@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,150 +12,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import SettingListModel from '../model/settingListImpl/SettingListModel';
-import WifiModel from '../model/wifiImpl/WifiModel';
-import BluetoothModel from '../model/bluetoothImpl/BluetoothModel';
-import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
-import GlobalResourceManager from '../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalResourceManager';
+
 import Router from '@system.router';
-import FeatureAbility from '@ohos.ability.featureAbility';
-import { BaseData } from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
 import deviceInfo from '@ohos.deviceInfo';
 import parameter from '@ohos.systemparameter';
+import FeatureAbility from '@ohos.ability.featureAbility';
+import WifiModel from '../model/wifiImpl/WifiModel';
+import BluetoothModel from '../model/bluetoothImpl/BluetoothModel';
+import SettingListModel from '../model/settingListImpl/SettingListModel';
+import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
+import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
+import {SettingItemComponent} from '../../../../../../common/component/src/main/ets/default/settingItemComponent';
+import GlobalResourceManager from '../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalResourceManager';
+import {OuterLayoutComponentNoParam} from '../../../../../../common/component/src/main/ets/default/outerLayoutComponent';
 
-const PAGE_SEARCH = 'pages/searchPage'; // for search
 const deviceTypeInfo = deviceInfo.deviceType;
-const SETTINGS_LIST = [
-  [
-    {
-      "settingIcon": "/res/image/wlan.svg",
-      "settingTitle": $r('app.string.wifiTab'),
-      "settingAlias": 'wlanTab',
-      "settingValue": "",
-      "settingArrow": "/res/image/ic_settings_arrow.svg",
-      "settingSummary": "",
-      "settingUri": "pages/wifi"
-    },
-    {
-      "settingIcon": "/res/image/blueTooth.svg",
-      "settingTitle": $r('app.string.bluetoothTab'),
-      "settingAlias": 'blueToothTab',
-      "settingValue": "",
-      "settingArrow": "/res/image/ic_settings_arrow.svg",
-      "settingSummary": "",
-      "settingUri": "pages/bluetooth"
-    },
-    {
-      "settingIcon": "/res/image/mobileData.svg",
-      "settingTitle": $r('app.string.mobileData'),
-      "settingAlias": "mobileDataTab",
-      "settingValue": "",
-      "settingArrow": "/res/image/ic_settings_arrow.svg",
-      "settingSummary": "",
-      "settingUri": ""
-    },
-    {
-      "settingIcon": "/res/image/ic_settings_more_connections.svg",
-      "settingTitle": $r('app.string.moreConnectionsTab'),
-      "settingAlias": "moreConnectionsTab",
-      "settingValue": "",
-      "settingArrow": "/res/image/ic_settings_arrow.svg",
-      "settingSummary": "",
-      "settingUri": "pages/moreConnections"
-    }
-  ],
-  [
-    {
-      "settingIcon": "/res/image/displayAndBrightness.svg",
-      "settingTitle": $r('app.string.brightnessTab'),
-      "settingAlias": '',
-      "settingValue": "",
-      "settingArrow": "/res/image/ic_settings_arrow.svg",
-      "settingSummary": "",
-      "settingUri": "pages/screenAndBrightness"
-    }
-  ],
-  [
-    {
-      "settingIcon": "/res/image/volume.svg",
-      "settingTitle": $r('app.string.volumeControlTab'),
-      "settingAlias": '',
-      "settingValue": "",
-      "settingArrow": "/res/image/ic_settings_arrow.svg",
-      "settingSummary": "",
-      "settingUri": "pages/volumeControl"
-    }
-  ],
-  [
-    {
-      "settingIcon": "/res/image/biometricsAndPassword.svg",
-      "settingTitle": $r('app.string.biometricsAndPassword'),
-      "settingAlias": '',
-      "settingValue": "",
-      "settingArrow": "/res/image/ic_settings_arrow.svg",
-      "settingSummary": "",
-      "settingUri": "pages/passwordSetting"
-    },
-    {
-      "settingIcon": "res/image/application.svg",
-      "settingTitle": $r('app.string.applyTab'),
-      "settingAlias": '',
-      "settingValue": "",
-      "settingArrow": "res/image/ic_settings_arrow.svg",
-      "settingSummary": "",
-      "settingUri": "pages/application"
-    },
-    {
-      "settingIcon": "/res/image/storage.svg",
-      "settingTitle": $r('app.string.storageTab'),
-      "settingAlias": '',
-      "settingValue": "",
-      "settingArrow": "/res/image/ic_settings_arrow.svg",
-      "settingSummary": "",
-      "settingUri": "pages/storage"
-    },
-    {
-      "settingIcon": "/res/image/privacy.svg",
-      "settingTitle": $r('app.string.privacy'),
-      "settingAlias": '',
-      "settingValue": "",
-      "settingArrow": "/res/image/ic_settings_arrow.svg",
-      "settingSummary": "",
-      "settingUri": "pages/privacy"
-    }
-  ],
-  [
-    {
-      "settingIcon": "/res/image/userAccounts.svg",
-      "settingTitle": $r("app.string.usersAccountsTab"),
-      "settingAlias": '',
-      "settingValue": "",
-      "settingArrow": "/res/image/ic_settings_arrow.svg",
-      "settingSummary": "",
-      "settingUri": "pages/usersAccounts"
-    },
-    {
-      "settingIcon": "/res/image/system.svg",
-      "settingTitle": $r('app.string.systemTab'),
-      "settingAlias": '',
-      "settingValue": "",
-      "settingArrow": "/res/image/ic_settings_arrow.svg",
-      "settingSummary": "",
-      "settingUri": "pages/system/homePage"
-    },
-    {
-      "settingIcon": "/res/image/aboutDevice.svg",
-      "settingTitle": $r('app.string.aboutTab'),
-      "settingAlias": '',
-      "settingValue": "",
-      "settingArrow": "/res/image/ic_settings_arrow.svg",
-      "settingSummary": "",
-      "settingUri": "pages/aboutDevice"
-    }
-  ]
-];
+
+@Extend(ListItem) function settingListItemFancy() {
+  .width(ConfigData.WH_100_100)
+  .borderRadius($r("app.float.radius_24"))
+  .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
+  .padding($r('app.float.distance_4'))
+}
+
+@Extend(List) function settingListItemDividerFancy() {
+  .divider({
+    strokeWidth: $r('app.float.divider_wh'),
+    color: $r('sys.color.ohos_id_color_list_separator'),
+    startMargin: $r('app.float.wh_value_48'),
+    endMargin: $r('app.float.wh_value_8')
+  })
+}
 
 /**
  * setting home page
@@ -164,9 +52,25 @@ const SETTINGS_LIST = [
 @Component
 struct SettingList {
   @State placeholder: string= ''; // for search
-  @State placeholdersize: string = '22';
+  @State placeholderSize: string = '22';
   @State listSpaces: string = '12vp';
   @State isPhone: boolean = false;
+
+  @Builder mSettingList() {
+    Column() {
+      if (this.isPhone) {
+        Navigation() {
+          EntryComponent({ listSpaces: this.listSpaces, isPhone: this.isPhone })
+        }
+        .title(this.NavigationTitle)
+        .titleMode(NavigationTitleMode.Free)
+        .hideTitleBar(false)
+        .hideBackButton(true)
+      } else {
+        EntryComponent({ listSpaces: this.listSpaces })
+      }
+    }
+  }
 
   @Builder NavigationTitle() {
     Column() {
@@ -180,70 +84,17 @@ struct SettingList {
   }
 
   build() {
-    Column() {
-      GridContainer({
-        columns: 12,
-        sizeType: SizeType.Auto,
-        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
-        margin: vp2px(1) === 2 ? '24vp' : '0vp'
-      }) {
-        Row({}) {
-          Column() {
-          }
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
-            md: { span: 0, offset: 0 }, lg: { span: 0, offset: 0 }
-          })
-
-          Column() {
-            if (this.isPhone) {
-              Navigation() {
-                EntryComponent({ listSpaces: this.listSpaces, isPhone: this.isPhone })
-              }
-              .title(this.NavigationTitle)
-              .titleMode(NavigationTitleMode.Free)
-              .hideTitleBar(false)
-              .hideBackButton(true)
-            } else {
-              EntryComponent({ listSpaces: this.listSpaces })
-            }
-          }
-          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .align(Alignment.Start)
-          .alignItems(HorizontalAlign.Start)
-          .height(ConfigData.WH_100_100)
-          .width(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
-            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
-          })
-
-          Column() {
-          }
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
-            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
-          })
-        }
-        .width(ConfigData.WH_100_100)
-        .height(ConfigData.WH_100_100);
-      }
-      .width(ConfigData.WH_100_100)
-      .height(ConfigData.WH_100_100);
+    Column(){
+      OuterLayoutComponentNoParam({
+        mContentComponentNoParam: this.mSettingList
+      })
     }
-    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-    .width(ConfigData.WH_100_100)
-    .height(ConfigData.WH_100_100);
   }
 
   aboutToAppear() {
     LogUtil.info('settings SettingList aboutToAppear enter');
     ResourceUtil.getString($r("app.string.searchHint")).then(value => this.placeholder = value);// for search
-    ResourceUtil.getString($r("app.float.search_placeholder_font")).then(value => this.placeholdersize = value);
+    ResourceUtil.getString($r("app.float.search_placeholder_font")).then(value => this.placeholderSize = value);
     ResourceUtil.getString($r('app.float.distance_12')).then(value => this.listSpaces = value);
 
     let nYear = GlobalResourceManager.getStringByResource($r('app.string.year'));
@@ -280,22 +131,23 @@ struct SettingList {
 
 @Component
 struct EntryComponent {
-  private settingsList: BaseData[][] = SETTINGS_LIST;
+  @StorageLink('wifiStatus') wifiStatus: boolean = WifiModel.isWiFiActive();
+  @StorageLink('bluetoothIsOn') bluetoothIsOn: boolean = false;
   private nfcInfo: boolean;
   private listSpaces: string = '12vp';
   private isPhone: boolean = false;
+  private info: string;
 
   aboutToAppear() {
-    let info: string = parameter.getSync("const.SystemCapability.Communication.NFC.Core" ,"false");
-    if (info === 'true') {
-      this.nfcInfo = true;
-    } else {
-      this.nfcInfo = false;
-    }
-    LogUtil.info('settings SettingList nfc canUse' + this.nfcInfo);
-    if (!this.nfcInfo) {
-      this.settingsList[0].pop();
-    }
+    LogUtil.info('settings SettingList EntryComponent aboutToAppear in');
+    SettingListModel.registerObserver();
+    this.bluetoothIsOn = BluetoothModel.isStateOn();
+    BluetoothModel.subscribeStateChange((isOn: boolean) => {
+      AppStorage.SetOrCreate('bluetoothIsOn', isOn);
+    });
+
+    this.info = parameter.getSync("const.SystemCapability.Communication.NFC.Core" ,"false");
+    LogUtil.info('settings SettingList EntryComponent aboutToAppear out');
   }
 
   build() {
@@ -311,14 +163,14 @@ struct EntryComponent {
           .textAlign(TextAlign.Start)
           .width(ConfigData.WH_100_100)
           .padding({
-            left: $r('app.float.distance_24'),
+            left: $r('app.float.distance_12'),
             top: $r('app.float.distance_7'),
             bottom: $r('app.float.distance_8')
           })
       }
 
       List({ space: this.listSpaces }) {
-        // for search
+        // search
         ListItem() {
           Column() {
             Row() {
@@ -331,6 +183,7 @@ struct EntryComponent {
                   top: $r('app.float.distance_11'),
                   bottom: $r('app.float.distance_11')
                 });
+
               Text($r("app.string.searchHint"))
                 .fontSize($r("app.float.font_16"))
                 .lineHeight($r("app.float.lineHeight_21"))
@@ -355,316 +208,171 @@ struct EntryComponent {
             .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
           }
           .height($r("app.float.wh_value_56"))
-          .padding($r("app.float.wh_value_8"))
+          .padding({ top: $r("app.float.wh_value_8"), bottom: $r("app.float.wh_value_8") })
         }
         .width(ConfigData.WH_100_100)
         .onClick(() => {
           LogUtil.info('On click the search editText.');
           Router.push({
-            uri: PAGE_SEARCH
+            uri: 'pages/searchPage'
           })
         })
 
-        ForEach(this.settingsList, (eachBlock) => {
-          ListItem() {
-            List() {
-              ForEach(eachBlock, (eachitem) => {
-                ListItem() {
-                  if (eachitem.settingAlias === 'wlanTab') {
-                    wifiItemComponent({ item: eachitem });
-                  } else if (eachitem.settingAlias === 'blueToothTab') {
-                    if (BluetoothModel.canUse) {
-                      bluetoothItemComponent({ item: eachitem });
-                    }
-                  } else {
-                    ItemComponent({ item: eachitem });
-                  }
-                }
+        ListItem() {
+          List() {
+            ListItem(){
+              // WLAN
+              SettingItemComponent({
+                targetPage: "pages/wifi",
+                settingTitle: $r("app.string.wifiTab"),
+                settingEndText: this.wifiStatus ? $r("app.string.enabled") : $r("app.string.disabled"),
+                settingIcon: "/res/image/wlan.svg",
               })
             }
-            .width(ConfigData.WH_100_100)
-            .divider({
-              strokeWidth: $r('app.float.divider_wh'),
-              color: $r('sys.color.ohos_id_color_list_separator'),
-              startMargin: $r('app.float.wh_value_48'),
-              endMargin: $r('app.float.wh_value_8')
-            })
+
+            ListItem(){
+              // blueTooth
+              SettingItemComponent({
+                targetPage: "pages/bluetooth",
+                settingTitle: $r("app.string.bluetoothTab"),
+                settingEndText: this.bluetoothIsOn ? $r("app.string.enabled") : $r("app.string.disabled"),
+                settingIcon: "/res/image/blueTooth.svg",
+              })
+            }
+
+            ListItem(){
+              // mobileData
+              SettingItemComponent({
+                targetPage: "",
+                settingTitle: $r("app.string.mobileData"),
+                settingEndText: '',
+                settingIcon: "/res/image/mobileData.svg",
+              })
+            }
+
+            if (this.info === 'true') {
+              ListItem(){
+                // moreConnections
+                SettingItemComponent({
+                  targetPage: "pages/moreConnections",
+                  settingTitle: $r("app.string.moreConnectionsTab"),
+                  settingEndText: '',
+                  settingIcon: "/res/image/ic_settings_more_connections.svg",
+                })
+              }
+            }
           }
-          .width(ConfigData.WH_100_100)
-          .borderRadius($r("app.float.radius_24"))
-          .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
-          .padding($r('app.float.distance_4'))
-        });
+          .settingListItemDividerFancy()
+        }
+        .settingListItemFancy()
+
+        ListItem() {
+          // displayAndBrightness
+          SettingItemComponent({
+            targetPage: "pages/screenAndBrightness",
+            settingTitle: $r("app.string.brightnessTab"),
+            settingEndText: '',
+            settingIcon: "/res/image/displayAndBrightness.svg",
+          })
+        }
+        .settingListItemFancy()
+
+        ListItem() {
+          // volumeControl
+          SettingItemComponent({
+            targetPage: "pages/volumeControl",
+            settingTitle: $r("app.string.volumeControlTab"),
+            settingEndText: '',
+            settingIcon: "/res/image/volume.svg",
+          })
+        }
+        .settingListItemFancy()
+
+        ListItem() {
+          List() {
+            ListItem(){
+              // biometricsAndPassword
+              SettingItemComponent({
+                targetPage: "pages/passwordSetting",
+                settingTitle: $r("app.string.biometricsAndPassword"),
+                settingEndText: '',
+                settingIcon: "/res/image/biometricsAndPassword.svg",
+              })
+            }
+
+            ListItem(){
+              // application
+              SettingItemComponent({
+                targetPage: "pages/application",
+                settingTitle: $r("app.string.applyTab"),
+                settingEndText: '',
+                settingIcon: "/res/image/application.svg",
+              })
+            }
+
+            ListItem(){
+              // storage
+              SettingItemComponent({
+                targetPage: "pages/storage",
+                settingTitle: $r("app.string.storageTab"),
+                settingEndText: '',
+                settingIcon: "/res/image/storage.svg",
+              })
+            }
+
+            ListItem(){
+              // privacy
+              SettingItemComponent({
+                targetPage: "pages/privacy",
+                settingTitle: $r("app.string.privacy"),
+                settingEndText: '',
+                settingIcon: "/res/image/privacy.svg",
+              })
+            }
+          }
+          .settingListItemDividerFancy()
+        }
+        .settingListItemFancy()
+
+        ListItem() {
+          List() {
+            ListItem(){
+              // usersAccounts
+              SettingItemComponent({
+                targetPage: "pages/usersAccounts",
+                settingTitle: $r("app.string.usersAccountsTab"),
+                settingEndText: '',
+                settingIcon: "/res/image/userAccounts.svg",
+              })
+            }
+
+            ListItem(){
+              // system
+              SettingItemComponent({
+                targetPage: "pages/system/homePage",
+                settingTitle: $r("app.string.systemTab"),
+                settingEndText: '',
+                settingIcon: "/res/image/system.svg",
+              })
+            }
+
+            ListItem(){
+              // aboutDevice
+              SettingItemComponent({
+                targetPage: "pages/aboutDevice",
+                settingTitle: $r("app.string.aboutTab"),
+                settingEndText: '',
+                settingIcon: "/res/image/aboutDevice.svg",
+              })
+            }
+          }
+          .settingListItemDividerFancy()
+        }
+        .settingListItemFancy()
       }
       .flexShrink(1)
       .width(ConfigData.WH_100_100)
       .alignSelf(ItemAlign.Start);
     }
-    .padding({
-      left: $r('sys.float.ohos_id_card_margin_start'),
-      right: $r('sys.float.ohos_id_card_margin_end')
-    })
-  }
-}
-
-@Component
-struct ItemComponent {
-  @State isTouched: boolean = false;
-  private item;
-
-  build() {
-    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-      Row() {
-        Image(this.item.settingIcon)
-          .width($r("app.float.wh_value_24"))
-          .height($r("app.float.wh_value_24"))
-          .margin({
-            left: $r("app.float.distance_8"),
-            top: $r("app.float.distance_15"),
-            bottom: $r("app.float.distance_17")
-          })
-
-        Text(this.item.settingTitle)
-          .fontSize($r("app.float.font_16"))
-          .lineHeight($r("app.float.lineHeight_22"))
-          .fontWeight(FontWeight.Medium)
-          .fontFamily('HarmonyHeiTi')
-          .fontColor($r("sys.color.ohos_id_color_text_primary"))
-          .align(Alignment.Start)
-          .margin({
-            left: $r("app.float.distance_16"),
-            top: $r("app.float.distance_17"),
-            bottom: $r("app.float.distance_17")
-          })
-      }
-      .align(Alignment.Start)
-      .height(ConfigData.WH_100_100)
-
-      Row() {
-        Image(this.item.settingArrow)
-          .width($r("app.float.wh_value_12"))
-          .height($r("app.float.wh_value_24"))
-          .margin({
-            left: $r("app.float.distance_4"),
-            right: $r("app.float.distance_8"),
-            top: $r("app.float.distance_16"),
-            bottom: $r("app.float.distance_16")
-          })
-          .fillColor($r("sys.color.ohos_id_color_fourth"))
-      }
-      .align(Alignment.End)
-      .height(ConfigData.WH_100_100);
-    }
-    .width(ConfigData.WH_100_100)
-    .height($r("app.float.wh_value_56"))
-    .borderRadius($r("app.float.radius_20"))
-    .linearGradient(this.isTouched ? {
-                                       angle: 90,
-                                       direction: GradientDirection.Right,
-                                       colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-                                     } : {
-                                           angle: 90,
-                                           direction: GradientDirection.Right,
-                                           colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-                                         })
-    .onTouch((event: TouchEvent) => {
-      if (event.type === TouchType.Down) {
-        this.isTouched = true;
-      }
-      if (event.type === TouchType.Up) {
-        this.isTouched = false;
-      }
-    })
-    .onClick(() => {
-      SettingListModel.onClick(this.item);
-    })
-  }
-}
-
-
-@Component
-struct wifiItemComponent {
-  @StorageLink('wifiStatus') wifiStatus: boolean = WifiModel.isWiFiActive();
-  @State isTouched: boolean = false;
-  private item;
-
-  build() {
-    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-      Row() {
-        Image(this.item.settingIcon)
-          .width($r("app.float.wh_value_24"))
-          .height($r("app.float.wh_value_24"))
-          .margin({
-            left: $r("app.float.distance_8"),
-            top: $r("app.float.distance_15"),
-            bottom: $r("app.float.distance_17")
-          })
-
-        Text(this.item.settingTitle)
-          .fontSize($r("app.float.font_16"))
-          .lineHeight($r("app.float.lineHeight_22"))
-          .fontWeight(FontWeight.Medium)
-          .fontFamily('HarmonyHeiTi')
-          .fontColor($r("sys.color.ohos_id_color_text_primary"))
-          .align(Alignment.Start)
-          .margin({
-            left: $r("app.float.distance_16"),
-            top: $r("app.float.distance_17"),
-            bottom: $r("app.float.distance_17")
-          })
-      }
-      .align(Alignment.Start)
-      .height(ConfigData.WH_100_100)
-
-      Row() {
-        Text(this.wifiStatus ? $r("app.string.enabled") : $r("app.string.disabled"))
-          .fontSize($r("app.float.font_14"))
-          .lineHeight($r("app.float.lineHeight_19"))
-          .align(Alignment.End)
-          .fontWeight(FontWeight.Regular)
-          .fontFamily('HarmonyHeiTi')
-          .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-          .margin({ top: $r("app.float.distance_19"), bottom: $r("app.float.distance_18") });
-        Image(this.item.settingArrow)
-          .width($r("app.float.wh_value_12"))
-          .height($r("app.float.wh_value_24"))
-          .margin({
-            left: $r("app.float.distance_4"),
-            right: $r("app.float.distance_8"),
-            top: $r("app.float.distance_16"),
-            bottom: $r("app.float.distance_16")
-          })
-          .fillColor($r("sys.color.ohos_id_color_fourth"))
-      }
-      .align(Alignment.End)
-      .height(ConfigData.WH_100_100);
-    }
-    .width(ConfigData.WH_100_100)
-    .height($r("app.float.wh_value_56"))
-    .borderRadius($r("app.float.radius_20"))
-    .linearGradient(this.isTouched ? {
-                                       angle: 90,
-                                       direction: GradientDirection.Right,
-                                       colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-                                     } : {
-                                           angle: 90,
-                                           direction: GradientDirection.Right,
-                                           colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-                                         })
-    .onTouch((event: TouchEvent) => {
-      if (event.type === TouchType.Down) {
-        this.isTouched = true;
-      }
-      if (event.type === TouchType.Up) {
-        this.isTouched = false;
-      }
-    })
-    .onClick(() => {
-      SettingListModel.onClick(this.item);
-    })
-  }
-
-  aboutToAppear() {
-    LogUtil.info('settings SettingList wifiItem aboutToAppear');
-    SettingListModel.registerObserver();
-    LogUtil.info('settings SettingList  wifiItem aboutToAppear end');
-  }
-}
-
-@Component
-struct bluetoothItemComponent {
-  @StorageLink('bluetoothIsOn') bluetoothIsOn: boolean = false;
-  @State isTouched: boolean = false;
-  private item;
-
-  build() {
-    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-      Row() {
-        Image(this.item.settingIcon)
-          .width($r("app.float.wh_value_24"))
-          .height($r("app.float.wh_value_24"))
-          .margin({
-            left: $r("app.float.distance_8"),
-            top: $r("app.float.distance_15"),
-            bottom: $r("app.float.distance_17")
-          })
-
-        Text(this.item.settingTitle)
-          .fontSize($r("app.float.font_16"))
-          .lineHeight($r("app.float.lineHeight_22"))
-          .fontWeight(FontWeight.Medium)
-          .fontFamily('HarmonyHeiTi')
-          .fontColor($r("sys.color.ohos_id_color_text_primary"))
-          .align(Alignment.Start)
-          .margin({
-            left: $r("app.float.distance_16"),
-            top: $r("app.float.distance_17"),
-            bottom: $r("app.float.distance_17")
-          })
-      }
-      .align(Alignment.Start)
-      .height(ConfigData.WH_100_100)
-
-      Row() {
-        Text(this.bluetoothIsOn ? $r("app.string.enabled") : $r("app.string.disabled"))
-          .fontSize($r("app.float.font_14"))
-          .lineHeight($r("app.float.lineHeight_19"))
-          .align(Alignment.End)
-          .fontWeight(FontWeight.Regular)
-          .fontFamily('HarmonyHeiTi')
-          .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-          .margin({ top: $r("app.float.distance_19"), bottom: $r("app.float.distance_18") });
-        Image(this.item.settingArrow)
-          .width($r("app.float.wh_value_12"))
-          .height($r("app.float.wh_value_24"))
-          .margin({
-            left: $r("app.float.distance_4"),
-            right: $r("app.float.distance_8"),
-            top: $r("app.float.distance_16"),
-            bottom: $r("app.float.distance_16")
-          })
-          .fillColor($r("sys.color.ohos_id_color_fourth"))
-      }
-      .align(Alignment.End)
-      .height(ConfigData.WH_100_100);
-    }
-    .width(ConfigData.WH_100_100)
-    .height($r("app.float.wh_value_56"))
-    .borderRadius($r("app.float.radius_20"))
-    .linearGradient(this.isTouched ? {
-                                       angle: 90,
-                                       direction: GradientDirection.Right,
-                                       colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-                                     } : {
-                                           angle: 90,
-                                           direction: GradientDirection.Right,
-                                           colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-                                         })
-    .onTouch((event: TouchEvent) => {
-      if (event.type === TouchType.Down) {
-        this.isTouched = true;
-      }
-      if (event.type === TouchType.Up) {
-        this.isTouched = false;
-      }
-    })
-    .onClick(() => {
-      SettingListModel.onClick(this.item);
-    })
-  }
-
-  aboutToAppear() {
-    LogUtil.info('settings SettingList bluetoothItem aboutToAppear in');
-    this.bluetoothIsOn = BluetoothModel.isStateOn();
-    BluetoothModel.subscribeStateChange((isOn: boolean) => {
-      AppStorage.SetOrCreate('bluetoothIsOn', isOn);
-    });
-    LogUtil.info('settings SettingList bluetoothItem aboutToAppear end');
-  }
-
-  aboutToDisappear() {
-    LogUtil.info('settings SettingList bluetoothItem aboutToDisappear in');
-    BluetoothModel.unsubscribeStateChange();
-    LogUtil.info('settings SettingList bluetoothItem aboutToDisappear end');
   }
 }
