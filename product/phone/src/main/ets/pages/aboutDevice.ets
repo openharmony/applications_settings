@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,122 +12,86 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import AboutDeviceModel from '../model/aboutDeviceImpl/AboutDeviceModel';
+import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
-import AboutDeviceModel from '../model/aboutDeviceImpl/AboutDeviceModel';
-import {SubEntryComponentWithEndText} from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
-import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { SubEntryComponentWithEndText } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
+import { OuterLayoutComponentWithParam } from '../../../../../../common/component/src/main/ets/default/outerLayoutComponent';
 
 /**
  * about phone
  */
 @Entry
 @Component
-struct Index {
+struct AboutDevice {
   @State systemName: string  = AboutDeviceModel.getSystemName();
   private deviceInfo: any = '';
   private aboutDeviceList: any[] = [];
 
-  build() {
+  @Builder mAboutDevice(aboutDeviceList: any) {
     Column() {
-      GridContainer({
-        columns: 12,
-        sizeType: SizeType.Auto,
-        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
-        margin: vp2px(1) === 2 ? '24vp' : '0vp'
-      }) {
-        Row({}) {
-          Column() {
-          }
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
-            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
-          });
+      HeadComponent({ headName: $r('app.string.aboutTab'), isActive: true })
 
-          Column() {
-            HeadComponent({ headName: $r('app.string.aboutTab'), isActive: true })
-
-            Row() {
-              SubEntryComponentWithEndText({
-                targetPage: "pages/deviceName",
-                title: $r("app.string.deviceName"),
-                endText: this.systemName
-              });
-            }
-            .width(ConfigData.WH_100_100)
-            .margin({ bottom: $r("app.float.distance_12"),
-              top: $r("app.float.distance_8")
-            })
-
-            List() {
-              ForEach(this.aboutDeviceList, (item) => {
-                ListItem() {
-                  Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-                    Text(item.settingTitle)
-                      .fontSize($r("app.float.font_16"))
-                      .lineHeight($r("app.float.wh_value_22"))
-                      .fontWeight(FontWeight.Medium)
-                      .fontColor($r('sys.color.ohos_id_color_text_primary'))
-                      .padding({ top: $r('app.float.distance_12'), bottom: $r('app.float.distance_12') })
-                      .fontColor($r("app.color.font_color_182431"))
-                      .textAlign(TextAlign.Start);
-
-                    Text(item.settingValue)
-                      .fontSize($r("app.float.font_16"))
-                      .lineHeight($r("app.float.wh_value_22"))
-                      .fontWeight(FontWeight.Regular)
-                      .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-                      .padding({
-                        top: $r('app.float.distance_12'),
-                        bottom: $r('app.float.distance_12') })
-                      .textAlign(TextAlign.End);
-                  }
-                  .width(ConfigData.WH_100_100)
-                }
-              })
-            }
-            .divider({ strokeWidth: $r('app.float.divider_wh'), color: $r('sys.color.ohos_id_color_list_separator') })
-            .padding({
-              left: $r('sys.float.ohos_id_card_margin_start'),
-              right: $r('sys.float.ohos_id_card_margin_start'),
-              top: $r('app.float.distance_4'),
-              bottom: $r('app.float.distance_4')
-            })
-            .borderRadius($r('app.float.distance_24'))
-            .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
-          }
-          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .padding({
-            left: $r('sys.float.ohos_id_card_margin_start'),
-            right: $r('sys.float.ohos_id_card_margin_end')
-          })
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
-            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
-          });
-
-          Column() {
-          }
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
-            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
-          });
-        }
-        .width(ConfigData.WH_100_100)
-        .height(ConfigData.WH_100_100);
+      Row() {
+        SubEntryComponentWithEndText({
+          targetPage: "pages/deviceName",
+          title: $r("app.string.deviceName"),
+          endText: this.systemName
+        });
       }
       .width(ConfigData.WH_100_100)
-      .height(ConfigData.WH_100_100);
+      .margin({
+        bottom: $r("app.float.distance_12"),
+        top: $r("app.float.distance_8")
+      })
+
+      List() {
+        ForEach(aboutDeviceList, (item) => {
+          ListItem() {
+            Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+              Text(item.settingTitle)
+                .fontSize($r("app.float.font_16"))
+                .lineHeight($r("app.float.wh_value_22"))
+                .fontWeight(FontWeight.Medium)
+                .fontColor($r('sys.color.ohos_id_color_text_primary'))
+                .padding({ top: $r('app.float.distance_12'), bottom: $r('app.float.distance_12') })
+                .fontColor($r("app.color.font_color_182431"))
+                .textAlign(TextAlign.Start);
+
+              Text(item.settingValue)
+                .fontSize($r("app.float.font_16"))
+                .lineHeight($r("app.float.wh_value_22"))
+                .fontWeight(FontWeight.Regular)
+                .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+                .padding({
+                  top: $r('app.float.distance_12'),
+                  bottom: $r('app.float.distance_12') })
+                .textAlign(TextAlign.End);
+            }
+            .width(ConfigData.WH_100_100)
+          }
+        })
+      }
+      .divider({ strokeWidth: $r('app.float.divider_wh'), color: $r('sys.color.ohos_id_color_list_separator') })
+      .padding({
+        left: $r('sys.float.ohos_id_card_margin_start'),
+        right: $r('sys.float.ohos_id_card_margin_start'),
+        top: $r('app.float.distance_4'),
+        bottom: $r('app.float.distance_4')
+      })
+      .borderRadius($r('app.float.distance_24'))
+      .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
     }
-    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-    .width(ConfigData.WH_100_100)
-    .height(ConfigData.WH_100_100);
+  }
+
+  build() {
+    Column(){
+      OuterLayoutComponentWithParam({
+        mContentComponentWithParam: this.mAboutDevice(this.aboutDeviceList)
+      })
+    }
   }
 
   private getDeviceInfo(): void {
@@ -158,17 +122,14 @@ struct Index {
 
   aboutToAppear(): void {
     LogUtil.info(ConfigData.TAG + 'settings get device info come in');
+
     this.deviceInfo = AboutDeviceModel.setOnAboutDeviceListener();
     this.aboutDeviceList = AboutDeviceModel.getAboutDeviceInfoListener();
     this.getDeviceInfo();
     LogUtil.info(ConfigData.TAG + 'settings get device info' +
     JSON.stringify(AboutDeviceModel.setOnAboutDeviceListener()));
-    LogUtil.info(ConfigData.TAG + 'settings get device info end in');
-  }
 
-  onBackPress() {
-    LogUtil.info(ConfigData.TAG + 'settings get device onBackPress in');
-    LogUtil.info(ConfigData.TAG + 'settings get device onBackPress out');
+    LogUtil.info(ConfigData.TAG + 'settings get device info end in');
   }
 
   onPageShow() {

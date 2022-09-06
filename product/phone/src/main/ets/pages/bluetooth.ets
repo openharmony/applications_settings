@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,28 +14,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import Router from '@system.router';
+import deviceInfo from '@ohos.deviceInfo';
+import BluetoothDevice from '../model/bluetoothImpl/BluetoothDevice';
+import BluetoothDeviceController from '../controller/bluetooth/BluetoothDeviceController';
+import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
+import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import EntryComponent from '../../../../../../common/component/src/main/ets/default/entryComponent';
-import ImageAnimatorComponent from '../../../../../../common/component/src/main/ets/default/imageAnimatorComponent';
-import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
-import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import Router from '@system.router';
-import BluetoothDeviceController from '../controller/bluetooth/BluetoothDeviceController';
-import BluetoothDevice from '../model/bluetoothImpl/BluetoothDevice'
 import { DeviceType, ProfileConnectionState, BondState } from '../model/bluetoothImpl/BluetoothModel';
 import BasicDataSource from '../../../../../../common/utils/src/main/ets/default/model/BasicDataSource';
-import deviceInfo from '@ohos.deviceInfo'
+import ImageAnimatorComponent from '../../../../../../common/component/src/main/ets/default/imageAnimatorComponent';
 
 const PAIRED_ITEM_NUMBER = 3;
 const PAGE_URI_DEVICE_NAME = 'pages/deviceName';
 const PAGE_URI_BLUETOOTH_PAIRED_DEVICE_INFO = 'pages/bluetoothPairedDeviceInfo';
-const deviceTypeInfo = deviceInfo.deviceType
+const deviceTypeInfo = deviceInfo.deviceType;
 
 @Entry
 @Component
 struct Bluetooth {
-  private PAGE_TAG = ConfigData.TAG + 'Bluetooth page '
+  private PAGE_TAG = ConfigData.TAG + 'Bluetooth page ';
   private deviceController: BluetoothDeviceController = new BluetoothDeviceController();
   @StorageLink('bluetoothIsOn') isOn: boolean = false;
   @StorageLink('bluetoothToggleEnabled') isEnabled: boolean = true;
@@ -64,7 +65,7 @@ struct Bluetooth {
 
   build() {
     Column() {
-      GridContainer({ gutter: 12, margin: 12 }) {
+      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
         Column() {
           HeadComponent({ headName: $r('app.string.bluetoothTab'), isActive: true });
 
@@ -73,6 +74,7 @@ struct Bluetooth {
               .fontColor($r('sys.color.ohos_fa_text_primary'))
               .fontSize($r("app.float.font_16"))
               .fontWeight(FontWeight.Medium)
+
             Blank()
 
             Stack({ alignContent: Alignment.Start }) {
@@ -89,6 +91,7 @@ struct Bluetooth {
             }
             .width($r('app.float.wh_value_48'))
           }
+          .margin({ top: $r("app.float.distance_8") })
           .width(ConfigData.WH_100_100)
           .height($r('app.float.wh_value_56'))
           .backgroundColor($r("app.color.white_bg_color"))
@@ -99,7 +102,6 @@ struct Bluetooth {
 
           Text($r('app.string.bluetooth_visible_to_nearby'))
             .width(ConfigData.WH_100_100)
-            .fontFamily("HarmonyHeiTi")
             .fontSize($r('app.float.font_14'))
             .fontColor($r('sys.color.ohos_id_color_text_secondary'))
             .visibility(this.isOn ? Visibility.Visible : Visibility.None)
@@ -107,18 +109,18 @@ struct Bluetooth {
             .lineHeight($r("app.float.wh_value_20"))
             .padding({
               left: $r('app.float.wh_value_12'),
-              top: $r('app.float.distance_8'), bottom: $r('app.float.distance_24')
+              top: $r('app.float.distance_8'), 
+	      bottom: $r('app.float.distance_24')
             })
+
           Scroll() {
             Column() {
-
               DeviceNameComponent({
                 isEnabled: $isOn,
                 localName: $localName
               })
 
               if (this.isOn) {
-
                 PairedDeviceComponent({
                   controller: this.deviceController
                 })
@@ -126,7 +128,6 @@ struct Bluetooth {
                 AvailableDeviceComponent({
                   controller: this.deviceController,
                 })
-
               }
             }
             .width(ConfigData.WH_100_100)
@@ -134,14 +135,20 @@ struct Bluetooth {
           .scrollBarWidth(0)
           .width(ConfigData.WH_100_100)
           .align(Alignment.TopStart)
-          .layoutWeight(1)
+          .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
         }
+        .padding({
+          left: $r('sys.float.ohos_id_card_margin_start'),
+          right: $r('sys.float.ohos_id_card_margin_end')
+        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
           lg: { span: 8, offset: 2 }
         });
       }
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100);
     }
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
@@ -172,6 +179,7 @@ struct DeviceNameComponent {
         fontSize: ($r('app.float.font_16'))
       })
     }
+    .padding($r("app.float.distance_4"))
     .margin({ top: this.isEnabled ? $r('app.float.wh_value_0') : $r('app.float.wh_value_12') })
     .width(ConfigData.WH_100_100)
     .height($r('app.float.wh_value_56'))
@@ -199,7 +207,6 @@ struct PairedDeviceComponent {
   @Log
   aboutToAppear(): void{
     if (this.controller) {
-
       // bind component and initialize
       this.controller.bindComponent(this)
         .bindProperties(["pairedDevices"])
@@ -209,7 +216,6 @@ struct PairedDeviceComponent {
 
   build() {
     Column() {
-
       if (this.pairedDevices && this.pairedDevices.length > 0) {
         // paired devices title
         Row() {
@@ -243,7 +249,7 @@ struct PairedDeviceComponent {
                     settingUri: '',
                     titleFontColor: this.isHeadPhoneConnected(item) ? $r("app.color.bluetooth_text_color_highlight") : $r("sys.color.ohos_id_color_text_primary"),
                     image_wh: $r('app.float.wh_value_24'),
-                    heights: this.getConnectionStateText(item) == '' ? $r('app.float.wh_value_56') : ($r('app.float.wh_value_64')),
+                    heights: this.getConnectionStateText(item) == '' ? $r('app.float.wh_value_48') : ($r('app.float.wh_value_56')),
                     fontSize: ($r('app.float.font_16')),
                     onArrowClick: () => {
                       LogUtil.info(this.TAG_PAGE + 'item go detail');
@@ -291,6 +297,7 @@ struct PairedDeviceComponent {
             }
           }, item => JSON.stringify(item));
         }
+        .padding($r("app.float.distance_4"))
         .divider({
           strokeWidth: $r('app.float.divider_wh'),
           color: $r('app.color.color_E3E3E3_grey'),
@@ -302,10 +309,11 @@ struct PairedDeviceComponent {
       }
     }
   }
+
   /**
-    * Get connection state text
-    * @param device
-    */
+   * Get connection state text
+   * @param device
+   */
   getConnectionStateText(device: BluetoothDevice): string | Resource {
     let stateText: string | Resource = '';
     switch (device.connectionState) {
@@ -364,7 +372,6 @@ struct PairedDeviceComponent {
    */
   private itemClicked(item: BluetoothDevice) {
     switch (item.connectionState) {
-
       case ProfileConnectionState.STATE_CONNECTED:
         this.showDisconnectDialog(item.deviceName, () => {
           this.controller.disconnect(item.deviceId)
@@ -482,6 +489,8 @@ struct AvailableDeviceComponent {
             .fontWeight(FontWeight.Medium)
         }
         .padding({
+          left: $r('sys.float.ohos_id_card_margin_start'),
+          right: $r('sys.float.ohos_id_card_margin_end'),
           top: $r('app.float.distance_19_5'),
           bottom: $r('app.float.distance_9_5')
         })
@@ -495,10 +504,6 @@ struct AvailableDeviceComponent {
       }
       .height($r("app.float.wh_value_48"))
       .width(ConfigData.WH_100_100)
-      .padding({
-        left: $r('app.float.wh_value_12'),
-        right: $r('app.float.wh_value_12')
-      })
 
       if (this.availableDevices && this.availableDevices.length >= 1) {
         List() {
@@ -524,15 +529,16 @@ struct AvailableDeviceComponent {
               .backgroundColor($r("app.color.white_bg_color"))
               .onClick(() => {
                 LogUtil.info(this.TAG_PAGE + 'item on click');
-                if(this.controlPairing){
-                  this.pairDevice(item)
+                if ( this.controlPairing ) {
+                  this.pairDevice(item);
                 } else {
-                  return
+                  return;
                 }
               })
             }
           }, item => JSON.stringify(item));
         }
+        .padding($r("app.float.distance_4"))
         .backgroundColor($r("app.color.white_bg_color"))
         .borderRadius($r("app.float.radius_24"))
         .divider({
@@ -541,7 +547,6 @@ struct AvailableDeviceComponent {
           startMargin: $r('app.float.wh_48'),
           endMargin: $r('app.float.wh_value_12')
         })
-
       } else {
         Row() {
           // Scanning...
@@ -555,6 +560,7 @@ struct AvailableDeviceComponent {
       }
     }
   }
+
   /**
    * Get pair state text
    * @param device
@@ -562,6 +568,7 @@ struct AvailableDeviceComponent {
   getPairStateText(device: BluetoothDevice): string | Resource {
     return device.connectionState == BondState.BOND_STATE_BONDING ? $r('app.string.bluetooth_state_pairing') : '';
   }
+
   /**
    * Pair device
    * @param device
@@ -570,12 +577,12 @@ struct AvailableDeviceComponent {
     this.controller.pair(device.deviceId, (pinCode: string) => {
       LogUtil.info(this.TAG_PAGE + 'pairDevice success callback : pinCode = ' + pinCode);
       // show pair pin dialog
-      this.pairPinCode = pinCode
+      this.pairPinCode = pinCode;
       this.pairingDevice = device;
       this.pairDialog.open();
     }, () => {
       LogUtil.info(this.TAG_PAGE + 'pairDevice error callback');
-      this.showPairFailedDialog()
+      this.showPairFailedDialog();
     })
   }
 
@@ -593,7 +600,7 @@ struct AvailableDeviceComponent {
    */
   @Log
   showPairFailedDialog() {
-    this.showPairingFailedDialog()
+    this.showPairingFailedDialog();
   }
 
   /**
@@ -704,6 +711,7 @@ struct PairDialog {
           top: $r('app.float.distance_14'),
           bottom: $r('app.float.distance_14')
         })
+
       Column() {
         if (this.pinCode) {
           Text($r('app.string.bluetooth_pairing_intelligent_device_hit', this.deviceName, this.deviceName))
@@ -711,9 +719,8 @@ struct PairDialog {
             .fontColor($r("sys.color.ohos_id_color_primary"))
             .width(ConfigData.WH_100_100)
             .fontWeight(FontWeight.Regular)
-            .margin({
-              bottom: $r('app.float.distance_16')
-            })
+            .margin({ bottom: $r('app.float.distance_16') })
+
           Text(`${this.pinCode}`)
             .fontSize($r('app.float.pinCode_font_size'))
             .fontWeight(500)
@@ -729,9 +736,7 @@ struct PairDialog {
             .fontSize($r('app.float.font_16'))
             .fontColor($r("sys.color.ohos_id_color_primary"))
             .width(ConfigData.WH_100_100)
-            .margin({
-              bottom: $r('app.float.switch_summary_margin')
-            })
+            .margin({ bottom: $r('app.float.switch_summary_margin') })
 
           Text(this.deviceName)
             .fontSize($r('app.float.font_16'))
@@ -741,7 +746,6 @@ struct PairDialog {
 
         // button
         Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-
           Button() {
             Text($r('app.string.cancel'))
               .fontSize($r('app.float.font_16'))
@@ -829,6 +833,7 @@ function getDeviceIconPath(deviceType: string): string {
  */
 function showDialog(dialogTitle: string | Resource, dialogMessage: string | Resource, buttonValue: string | Resource) {
   LogUtil.info(ConfigData.TAG + 'Bluetooth page showDialog in.');
+
   AlertDialog.show({
     title: dialogTitle,
     message: dialogMessage,
@@ -844,5 +849,6 @@ function showDialog(dialogTitle: string | Resource, dialogMessage: string | Reso
       LogUtil.info(ConfigData.TAG + 'Bluetooth page showDialog : Closed callbacks');
     }
   })
+
   LogUtil.info(ConfigData.TAG + 'Bluetooth page showDialog out.');
 }

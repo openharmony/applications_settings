@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
-import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
-import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import {PinSubType} from '../model/passwordImpl/PasswordModel';
-import PasswordCheckController from '../controller/password/PasswordCheckController';
 import Router from '@system.router';
 import InputMethod from '@ohos.inputmethod';
+import { PinSubType } from '../model/passwordImpl/PasswordModel';
+import PasswordCheckController from '../controller/password/PasswordCheckController';
+import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
+import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
+import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 
 let param;
 const DEFAULT_TIMES = 5;
@@ -46,12 +46,13 @@ struct PasswordCheck {
   private pageRequestCode: number = -1;
   private prevPageUri: string = undefined;
   private pinChallenge: string = undefined;
+  private timerId: number = -1;
+
   @State private passwordType: number = -1;
   @State private promptMessage: string | Resource = '';
   @State private buttonVisibility: Visibility = Visibility.Visible;
   @State private freezingTimeForView: number = -1;
   @State private password: string = '';
-  private timerId: number = -1;
   @State isTouchedLeft: boolean = false;
   @State isTouchedRight: boolean = false;
 
@@ -95,200 +96,174 @@ struct PasswordCheck {
 
   build() {
     Column() {
-      GridContainer({
-        columns: 12,
-        sizeType: SizeType.Auto,
-        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
-        margin: vp2px(1) === 2 ? '24vp' : '0vp'
-      }) {
-        Row({}) {
-          Column() {
-          }
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
-            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
-          });
+      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
+        Column() {
+          // head
+          HeadComponent({ headName: $r('app.string.password_enter_password'), isActive: true })
 
-          Column() {
-            // head
-            HeadComponent({ headName: $r('app.string.password_enter_password'), isActive: true })
+          // freeze view
+          if (this.freezingTimeForView > 0) {
+            Row() {
+              // attempt seconds
+              Text($r('app.string.password_remain_times', this.freezingTimeForView))
+                .fontSize($r('app.float.font_28'))
+                .fontColor(Color.Blue)
+                .textCase(TextCase.UpperCase)
+                .margin({
+                  top: $r('app.float.password_input_message_vertical_margin'),
+                  bottom: $r('app.float.password_input_message_vertical_margin')
+                })
+                .padding({
+                  left: $r('app.float.item_common_horizontal_margin'),
+                  right: $r('app.float.item_common_horizontal_margin')
+                })
+                .align(Alignment.Center)
+            }
+            .backgroundColor(Color.Gray)
+            .margin({
+              left: $r('app.float.password_count_down_view_vertical_margin'),
+              right: $r('app.float.password_count_down_view_vertical_margin')
+            })
 
-            // freeze view
-            if (this.freezingTimeForView > 0) {
+            // input
+          } else {
+            Column() {
+              // input message
+              Text(' ')
+                .fontSize($r('sys.float.ohos_id_text_size_sub_title2'))
+                .fontWeight(FontWeight.Medium)
+                .fontColor($r('sys.color.ohos_id_color_foreground'))
+                .margin({ top: $r('app.float.item_common_horizontal_margin') })
+                .align(Alignment.Center)
+                .visibility(Visibility.Hidden)
+
+              // input password
               Row() {
-                // attempt seconds
-                Text($r('app.string.password_remain_times', this.freezingTimeForView))
-                  .fontSize($r('app.float.font_28'))
-                  .fontColor(Color.Blue)
-                  .textCase(TextCase.UpperCase)
-                  .margin({
-                    top: $r('app.float.password_input_message_vertical_margin'),
-                    bottom: $r('app.float.password_input_message_vertical_margin')
+                TextInput({ placeholder: '', text: this.password })
+                  .placeholderFont({
+                    size: $r("app.float.font_18"),
+                    weight: FontWeight.Normal,
+                    style: FontStyle.Normal
                   })
-                  .padding({
-                    left: $r('app.float.item_common_horizontal_margin'),
-                    right: $r('app.float.item_common_horizontal_margin')
-                  })
-                  .align(Alignment.Center)
-              }
-              .backgroundColor(Color.Gray)
-              .margin({
-                left: $r('app.float.password_count_down_view_vertical_margin'),
-                right: $r('app.float.password_count_down_view_vertical_margin')
-              })
-
-              // input
-            } else {
-              Column() {
-                // input message
-                Text(' ')
-                  .fontSize($r('sys.float.ohos_id_text_size_sub_title2'))
-                  .fontWeight(FontWeight.Medium)
-                  .fontColor($r('sys.color.ohos_id_color_foreground'))
-                  .margin({ top: $r('app.float.item_common_horizontal_margin') })
-                  .align(Alignment.Center)
-                  .visibility(Visibility.Hidden)
-
-                // input password
-                Row() {
-                  TextInput({ placeholder: '', text: this.password })
-                    .placeholderFont({
-                      size: $r("app.float.font_18"),
-                      weight: FontWeight.Normal,
-                      style: FontStyle.Normal
-                    })
-                    .type(InputType.Password)
-                    .enterKeyType(EnterKeyType.Done)
-                    .caretColor(Color.Blue)
-                    .padding({
-                      left: $r('sys.float.ohos_id_card_margin_start'),
-                      right: $r('sys.float.ohos_id_card_margin_end')
-                    })
-                    .margin({ top: $r('app.float.wh_value_50') })
-                    .height($r("app.float.wh_value_40"))
-                    .layoutWeight(1)
-                    .borderRadius(0)
-                    .backgroundColor($r('app.color.color_00000000_transparent'))
-                    .onChange(this.passwordOnChangeHandler)
-                    .onSubmit((enterKey) => {
-                      InputMethod.getInputMethodController().stopInput().then((ret) => {
-                        LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
-                      });
-                    })
-                }
-
-                Divider()
+                  .type(InputType.Password)
+                  .enterKeyType(EnterKeyType.Done)
+                  .caretColor(Color.Blue)
                   .padding({
                     left: $r('sys.float.ohos_id_card_margin_start'),
                     right: $r('sys.float.ohos_id_card_margin_end')
                   })
-                  .color($r("sys.color.ohos_id_color_list_separator"))
-
-                // prompt message
-                Text(this.promptMessage)
-                  .fontSize($r('sys.float.ohos_id_text_size_body2'))
-                  .fontWeight(FontWeight.Medium)
-                  .fontColor($r('sys.color.ohos_id_color_warning'))
-                  .align(Alignment.Center)
-                  .textAlign(TextAlign.Center)
-                  .margin({ top: $r('app.float.distance_14'), bottom: $r('app.float.distance_32') })
-                  .visibility(this.remainTimes === 0 ? Visibility.Hidden : Visibility.Visible)
-
-                // button
-                Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-                  Row() {
-                    Button({ type: ButtonType.Capsule, stateEffect: true }) {
-                      Text($r('app.string.cancel'))
-                        .fontSize($r('app.float.font_16'))
-                        .fontWeight(FontWeight.Medium)
-                        .lineHeight($r('app.float.wh_value_22'))
-                        .fontColor($r('app.color.font_color_007DFF'))
-                        .textAlign(TextAlign.Center)
-                        .height($r('app.float.application_button_height'))
-                    }
-                    .layoutWeight(1)
-                    .backgroundColor(!this.isTouchedLeft ? $r("sys.color.ohos_id_color_button_normal") : $r("sys.color.ohos_id_color_foreground_contrary"))
-                    .onTouch((event: TouchEvent) => {
-                      if (event.type === TouchType.Down) {
-                        this.isTouchedLeft = true;
-                      }
-                      if (event.type === TouchType.Up) {
-                        this.isTouchedLeft = false;
-                      }
-                    })
-                    .onClick(() => {
-                      Router.back();
-                    })
-
-                    Column()
-                      .width( $r('app.float.distance_12'))
-                      .height($r('app.float.application_button_height'))
-
-                    Button({ type: ButtonType.Capsule, stateEffect: true }) {
-                      Text($r('app.string.next'))
-                        .fontSize($r('app.float.font_16'))
-                        .fontWeight(FontWeight.Medium)
-                        .lineHeight($r('app.float.wh_value_22'))
-                        .fontColor($r('app.color.font_color_007DFF'))
-                        .height($r('app.float.application_button_height'))
-                        .textAlign(TextAlign.Center)
-                    }
-                    .layoutWeight(1)
-                    .backgroundColor(!this.isTouchedLeft ? '#E6E9EB' : $r("sys.color.ohos_id_color_foreground_contrary"))
-                    .onTouch((event: TouchEvent) => {
-                      if (event.type === TouchType.Down) {
-                        this.isTouchedRight = true;
-                      }
-                      if (event.type === TouchType.Up) {
-                        this.isTouchedRight = false;
-                      }
-                    })
-                    .onClick(this.okOnClickHandler)
-                  }
-                  .alignItems(VerticalAlign.Center)
-                  .width(ConfigData.WH_100_100)
-                  .padding({
-                    top: $r('app.float.distance_24'),
-                    bottom: $r('app.float.distance_36'),
+                  .margin({ top: $r('app.float.wh_value_50') })
+                  .height($r("app.float.wh_value_40"))
+                  .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
+                  .borderRadius(0)
+                  .backgroundColor($r('app.color.color_00000000_transparent'))
+                  .onChange(this.passwordOnChangeHandler)
+                  .onSubmit((enterKey) => {
+                    InputMethod.getInputMethodController().stopInput()
+                      .then((ret) => {
+                        LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
+                      });
                   })
-                  .margin({ top: $r('app.float.distance_66') })
-                  .visibility(this.buttonVisibility)
+              }
+
+              Divider()
+                .padding({
+                  left: $r('sys.float.ohos_id_card_margin_start'),
+                  right: $r('sys.float.ohos_id_card_margin_end')
+                })
+                .color($r("sys.color.ohos_id_color_list_separator"))
+
+              // prompt message
+              Text(this.promptMessage)
+                .fontSize($r('sys.float.ohos_id_text_size_body2'))
+                .fontWeight(FontWeight.Medium)
+                .fontColor($r('sys.color.ohos_id_color_warning'))
+                .align(Alignment.Center)
+                .textAlign(TextAlign.Center)
+                .margin({ top: $r('app.float.distance_14'), bottom: $r('app.float.distance_32') })
+                .visibility(this.remainTimes === 0 ? Visibility.Hidden : Visibility.Visible)
+
+              // button
+              Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+                Row() {
+                  Button({ type: ButtonType.Capsule, stateEffect: true }) {
+                    Text($r('app.string.cancel'))
+                      .fontSize($r('app.float.font_16'))
+                      .fontWeight(FontWeight.Medium)
+                      .lineHeight($r('app.float.wh_value_22'))
+                      .fontColor($r('app.color.font_color_007DFF'))
+                      .textAlign(TextAlign.Center)
+                      .height($r('app.float.application_button_height'))
+                  }
+                  .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
+                  .backgroundColor(!this.isTouchedLeft ? $r("sys.color.ohos_id_color_button_normal") : $r("sys.color.ohos_id_color_foreground_contrary"))
+                  .onTouch((event: TouchEvent) => {
+                    if (event.type === TouchType.Down) {
+                      this.isTouchedLeft = true;
+                    }
+
+                    if (event.type === TouchType.Up) {
+                      this.isTouchedLeft = false;
+                    }
+                  })
+                  .onClick(() => {
+                    Router.back();
+                  })
+
+                  Column()
+                    .width( $r('app.float.distance_12'))
+                    .height($r('app.float.application_button_height'))
+
+                  Button({ type: ButtonType.Capsule, stateEffect: true }) {
+                    Text($r('app.string.next'))
+                      .fontSize($r('app.float.font_16'))
+                      .fontWeight(FontWeight.Medium)
+                      .lineHeight($r('app.float.wh_value_22'))
+                      .fontColor($r('app.color.font_color_007DFF'))
+                      .height($r('app.float.application_button_height'))
+                      .textAlign(TextAlign.Center)
+                  }
+                  .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
+                  .backgroundColor(!this.isTouchedLeft ? '#E6E9EB' : $r("sys.color.ohos_id_color_foreground_contrary"))
+                  .onTouch((event: TouchEvent) => {
+                    if (event.type === TouchType.Down) {
+                      this.isTouchedRight = true;
+                    }
+
+                    if (event.type === TouchType.Up) {
+                      this.isTouchedRight = false;
+                    }
+                  })
+                  .onClick(this.okOnClickHandler)
                 }
+                .alignItems(VerticalAlign.Center)
+                .width(ConfigData.WH_100_100)
+                .padding({
+                  top: $r('app.float.distance_24'),
+                  bottom: $r('app.float.distance_36'),
+                })
+                .margin({ top: $r('app.float.distance_66') })
+                .visibility(this.buttonVisibility)
               }
             }
           }
-          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .padding({
-            left: $r('sys.float.ohos_id_card_margin_start'),
-            right: $r('sys.float.ohos_id_card_margin_end')
-          })
-          .height(ConfigData.WH_100_100)
-          .width(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
-            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
-          });
-
-          Column() {
-          }
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
-            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
-          })
         }
-        .width(ConfigData.WH_100_100)
-        .height(ConfigData.WH_100_100);
+        .padding({
+          left: $r('sys.float.ohos_id_card_margin_start'),
+          right: $r('sys.float.ohos_id_card_margin_end')
+        })
+        .useSizeType({
+          sm: { span: 4, offset: 0 },
+          md: { span: 6, offset: 1 },
+          lg: { span: 8, offset: 2 }
+        })
       }
       .width(ConfigData.WH_100_100)
-      .height(ConfigData.WH_100_100);
+      .height(ConfigData.WH_100_100)
     }
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
-    .height(ConfigData.WH_100_100);
+    .height(ConfigData.WH_100_100)
   }
 
   // --------------------------- updateView -----------------------
@@ -332,6 +307,7 @@ struct PasswordCheck {
       this.stopCountDown();
       return;
     }
+
     this.freezingTimeForView = this.freezingTime / 1000;
     LogUtil.info(this.TAG_PAGE + `freezeView freezingTimeForView = ${this.freezingTimeForView}`);
     this.timerId = setInterval(() => {
