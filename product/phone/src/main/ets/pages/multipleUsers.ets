@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,64 +13,54 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import router from '@system.router';
+import deviceInfo from '@ohos.deviceInfo';
+import InputMethod from '@ohos.inputmethod';
+import account_osAccount from '@ohos.account.osAccount';
+import { MAX_LENGTH } from '../model/usersAndAccounts/systemAccountModel';
+import SystemAccountModel from '../model/usersAndAccounts/systemAccountModel';
+import SystemAccountController from '../model/usersAndAccounts/SystemAccountController';
+import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { TitleText } from '../../../../../../common/component/src/main/ets/default/textComponent';
+import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
-import {TitleText} from '../../../../../../common/component/src/main/ets/default/textComponent';
-import {DialogButtonLayout, DialogButtonLayoutWithState} from '../../../../../../common/component/src/main/ets/default/dialogComponent';
-import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import SystemAccountController from '../model/usersAndAccounts/SystemAccountController';
-import SystemAccountModel from '../model/usersAndAccounts/systemAccountModel';
-import { MAX_LENGTH } from '../model/usersAndAccounts/systemAccountModel';
-import account_osAccount from '@ohos.account.osAccount';
-import router from '@system.router';
-import InputMethod from '@ohos.inputmethod';
-import deviceInfo from '@ohos.deviceInfo'
-const deviceTypeInfo = deviceInfo.deviceType
+import { DialogButtonLayout, DialogButtonLayoutWithState } from '../../../../../../common/component/src/main/ets/default/dialogComponent';
+
+const deviceTypeInfo = deviceInfo.deviceType;
 
 @Entry
 @Component
 struct MultipleUsers {
   @StorageLink("isShowAddUser") isShowAddUser: boolean = false;
   @StorageLink("isShowAddGuest") isShowAddGuest: boolean = false;
-  @StorageLink("systemAccoutList") userList: account_osAccount.OsAccountInfo[] = [];
+  @StorageLink("systemAccountList") userList: account_osAccount.OsAccountInfo[] = [];
   @StorageLink("isShowDelete") isShowDelete: boolean = false;
-  @State isPhone: boolean = false
+  @State isPhone: boolean = false;
+
   private addUserDialogController: CustomDialogController = new CustomDialogController({
     builder: AddUserDialog({
       controller: this.addUserDialogController,
       account: {},
       confirm: this.onConfirm.bind(this)
     }),
-    alignment: this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
-    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
+    alignment: this.isPhone ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhone ? '-16dp' : 0 }),
     autoCancel: true
   });
+
   private waitDialogController: CustomDialogController = new CustomDialogController({
     builder: WaitDialog({ controller: this.waitDialogController, content: $r("app.string.isCreatingUser") }),
     autoCancel: false,
-    alignment: this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
-    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
+    alignment: this.isPhone ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhone ? '-16dp' : 0 }),
   });
 
   build() {
     Column() {
-      GridContainer({
-        columns: 12,
-        sizeType: SizeType.Auto,
-        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
-        margin: vp2px(1) === 2 ? '24vp' : '0vp'
-      }) {
-        Row({}) {
-          Column() {
-          }
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
-            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
-          });
-
+      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
+        Column() {
           Flex({
             direction: FlexDirection.Column,
             alignItems: Alignment.Center,
@@ -84,7 +74,7 @@ struct MultipleUsers {
               List() {
                 ForEach(this.userList, userItem => {
                   ListItem() {
-                    UserItem({ user: userItem })
+                    UserItem({ user: userItem });
                   }
                 })
               }
@@ -111,10 +101,10 @@ struct MultipleUsers {
               })
 
               /**
-         * Add guest, shown with conditions:
-         * 1. Current user is administrator
-         * 2. Guest is not created.
-         */
+               * Add guest, shown with conditions:
+               * 1. Current user is administrator
+               * 2. Guest is not created.
+               */
               TitleText({
                 title: $r("app.string.addGuest"),
                 color: $r("app.color.font_color_007DFF"),
@@ -139,7 +129,7 @@ struct MultipleUsers {
                       }
                     },
                     cancel: () => {
-                      LogUtil.info("Cancel dialog.")
+                      LogUtil.info("Cancel dialog.");
                     }
                   })
                 }).bind(this)
@@ -156,6 +146,7 @@ struct MultipleUsers {
                   .width($r("app.float.wh_value_40"))
                   .fillColor($r("sys.color.ohos_id_color_primary"))
                   .margin({ top: $r("app.float.wh_value_20"), bottom: $r("app.float.wh_value_10") })
+
                 Text($r("app.string.deleteButton"))
                   .fontSize($r("app.float.font_20"))
                   .fontColor($r("app.color.font_color_182431"))
@@ -183,35 +174,23 @@ struct MultipleUsers {
               })
             }
           }
-          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .height(ConfigData.WH_100_100)
-          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
-          .align(Alignment.Center)
-          .height(ConfigData.WH_100_100)
-          .width(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
-            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
-          });
-
-          Column() {
-          }
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
-            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
-          })
         }
-        .width(ConfigData.WH_100_100)
-        .height(ConfigData.WH_100_100);
+        .padding({
+          left: $r('sys.float.ohos_id_card_margin_start'),
+          right: $r('sys.float.ohos_id_card_margin_end')
+        })
+        .useSizeType({
+          sm: { span: 4, offset: 0 },
+          md: { span: 6, offset: 1 },
+          lg: { span: 8, offset: 2 }
+        })
       }
       .width(ConfigData.WH_100_100)
-      .height(ConfigData.WH_100_100);
+      .height(ConfigData.WH_100_100)
     }
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
-    .height(ConfigData.WH_100_100);
+    .height(ConfigData.WH_100_100)
   }
 
   onConfirm(localName: string) {
@@ -235,18 +214,20 @@ struct MultipleUsers {
           }
         },
         cancel: () => {
-          LogUtil.info("Cancel dialog.")
+          LogUtil.info("Cancel dialog.");
         }
       })
     }));
   }
+
   aboutToAppear(): void {
     if (deviceTypeInfo === 'phone') {
-      this.isPhone = true
+      this.isPhone = true;
     } else {
-      this.isPhone = false
+      this.isPhone = false;
     }
   }
+
   onPageShow() {
     LogUtil.info("Multiple user list about to appear.")
     SystemAccountController.refreshSystemAccountList();
@@ -255,7 +236,7 @@ struct MultipleUsers {
 
   aboutToDisappear() {
     LogUtil.info('multiple user about to disappear.');
-    AppStorage.SetOrCreate("systemAccoutList", []);
+    AppStorage.SetOrCreate("systemAccountList", []);
   }
 
   onBackPress() {
@@ -267,11 +248,12 @@ struct MultipleUsers {
 struct UserItem {
   private user: account_osAccount.OsAccountInfo;
   @State isTouched: boolean = false;
+
   private dialogController: CustomDialogController = new CustomDialogController({
     builder: UserItemDialog({ dialogController: this.dialogController, user: this.user }),
     autoCancel: false,
-    alignment: this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
-    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
+    alignment: this.isPhone ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhone ? '-16dp' : 0 }),
   });
 
   build() {
@@ -281,12 +263,14 @@ struct UserItem {
           .width($r("app.float.wh_value_40"))
           .height($r("app.float.wh_value_40"))
           .margin({ left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") })
+
         Column() {
           Text(this.user.localName)
             .fontSize($r("app.float.font_16"))
             .fontWeight(FontWeight.Medium)
             .fontSize($r('sys.float.ohos_id_text_size_body1'))
             .margin({ bottom: $r('sys.float.ohos_id_text_margin_vertical') })
+
           if (SystemAccountController.isShowIdentity(this.user)) {
             Text(SystemAccountModel.getIdentityFromMap(this.user.type))
               .fontSize($r('sys.float.ohos_id_text_size_body2'))
@@ -305,10 +289,10 @@ struct UserItem {
         .opacity($r("app.float.opacity_0_2"))
     }
     .height($r("app.float.wh_value_80"))
-    .onClick(event => {
+    .onClick((event) => {
       LogUtil.info("Click the multiple user item.");
-      if (SystemAccountController.isCurrentAdministrator() || SystemAccountController.isCurrentUser(this.user)
-      && !SystemAccountController.isGuestAccount(this.user)) {
+      if (SystemAccountController.isCurrentAdministrator() ||
+      SystemAccountController.isCurrentUser(this.user) && !SystemAccountController.isGuestAccount(this.user)) {
         this.dialogController.open();
         return;
       }
@@ -344,6 +328,7 @@ struct UserItem {
       if (event.type === TouchType.Down) {
         this.isTouched = true;
       }
+
       if (event.type === TouchType.Up) {
         this.isTouched = false;
       }
@@ -387,30 +372,37 @@ struct CurrentDialogBuilder {
           });
           chooseImageDialog.open();
         })
+
       Text($r("app.string.addUserImage"))
         .fontSize($r("app.float.font_16"))
         .fontColor($r("sys.color.ohos_id_color_primary"))
         .fontWeight(FontWeight.Medium)
         .margin({ bottom: $r("app.float.wh_value_8") })
+
       TextInput({ text: this.user.localName })
         .placeholderColor($r("app.color.font_color_182431"))
-        .placeholderFont({ size: $r("app.float.font_16"), weight: FontWeight.Normal, style: FontStyle.Normal })
+        .placeholderFont({
+          size: $r("app.float.font_16"),
+          weight: FontWeight.Normal,
+          style: FontStyle.Normal
+        })
         .width(ConfigData.WH_100_100)
         .height($r("app.float.wh_value_48"))
         .borderRadius($r("app.float.search_input_border_radius"))
         .maxLength(MAX_LENGTH)
         .padding({ left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") })
         .backgroundColor($r('app.color.color_00000000_transparent'))
-
         .onChange((value: string) => {
           LogUtil.info("Set current account name, name: " + value);
           this.tempName = value;
         })
         .onSubmit((enterKey) => {
-          InputMethod.getInputMethodController().stopInput().then((ret) => {
-            LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
-          });
+          InputMethod.getInputMethodController().stopInput()
+            .then((ret) => {
+              LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
+            });
         })
+
       Divider()
         .margin({
           left: $r("app.float.wh_value_12"),
@@ -418,6 +410,7 @@ struct CurrentDialogBuilder {
           bottom: $r("app.float.distance_9")
         })
         .color($r("sys.color.ohos_id_color_list_separator"))
+
       DialogButtonLayout({
         firstClickEvent: () => {
           LogUtil.info("Cancel current user modify dialog.");
@@ -441,7 +434,10 @@ struct UserDialogBuilder {
   private controller: CustomDialogController;
   private user: account_osAccount.OsAccountInfo;
   private waitController: CustomDialogController = new CustomDialogController({
-    builder: WaitDialog({ controller: this.waitController, content: $r("app.string.isRemoving") }),
+    builder: WaitDialog({
+      controller: this.waitController,
+      content: $r("app.string.isRemoving")
+    }),
     autoCancel: false
   });
 
@@ -530,13 +526,13 @@ struct AddUserDialog {
         .width(ConfigData.WH_100_100)
         .textAlign(TextAlign.Start)
         .padding({ right: $r("app.float.wh_value_12"), left: $r("app.float.wh_value_12") })
+
       Image("/res/image/ic_user_camera.svg")
         .width($r("app.float.wh_value_40"))
         .height($r("app.float.wh_value_40"))
         .margin({ bottom: $r("app.float.wh_value_32") })
-      TextInput({
-        placeholder: this.hintText
-      })
+
+      TextInput({ placeholder: this.hintText })
         .placeholderFont({ size: $r("app.float.font_16") })
         .placeholderColor($r("app.color.font_color_182431"))
         .borderRadius($r("app.float.search_input_border_radius"))
@@ -553,13 +549,16 @@ struct AddUserDialog {
           LogUtil.info("Set the user name, name: " + this.account.localName);
         })
         .onSubmit((enterKey) => {
-          InputMethod.getInputMethodController().stopInput().then((ret) => {
-            LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
-          });
+          InputMethod.getInputMethodController().stopInput()
+            .then((ret) => {
+              LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
+            });
         })
+
       Divider()
         .margin({ right: $r("app.float.wh_value_12"), left: $r("app.float.wh_value_12") })
         .color($r("sys.color.ohos_id_color_list_separator"))
+
       if (this.isWarn) {
         Text($r("app.string.userCreatedWarn"))
           .fontSize($r("app.float.font_14"))
@@ -584,6 +583,7 @@ struct AddUserDialog {
             left: $r("app.float.wh_value_12")
           })
       }
+
       DialogButtonLayoutWithState({
         firstClickEvent: () => {
           LogUtil.info("Cancel add new user.");
@@ -619,6 +619,7 @@ struct ChooseImageDialog {
         .onClick(() => {
           router.push({ uri: "" });
         })
+
       Text($r("app.string.chooseFromShop"))
         .fontSize($r("app.float.font_16"))
         .fontColor($r("app.color.font_color_182431"))

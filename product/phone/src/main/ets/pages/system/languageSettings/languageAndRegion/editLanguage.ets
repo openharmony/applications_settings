@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import Router from '@system.router';
 import LogUtil from '../../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import LanguageAndRegionModel from '../../../../model/systemImpl/languageSettings/LanguageAndRegionModel'
-import Router from '@system.router';
+import LanguageAndRegionModel from '../../../../model/systemImpl/languageSettings/LanguageAndRegionModel';
 
 /**
  * Home Page Of EditLanguage
@@ -28,63 +29,38 @@ struct EditLanguage {
   private TAG = `${ConfigData.TAG} EditLanguage`;
 
   build() {
-    Column(){
-      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
-        Row({}) {
-          Column() {
-          }
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
-            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
-          });
+    Column() {
+      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
+        Column() {
+          HeadComponent({ headName: $r('app.string.editLanguage'), deleteFlag: $deleteFlag, deleteItem: $deleteItem});
 
-          Column() {
-            HeadComponent({headName: $r('app.string.editLanguage'), deleteFlag: $deleteFlag, deleteItem: $deleteItem,});
-            Column(){
-              EditList({deleteFlag: $deleteFlag, deleteItem: $deleteItem,});
-            }.margin({top:$r("app.float.distance_8")})
+          Column(){
+            EditList({ deleteFlag: $deleteFlag, deleteItem: $deleteItem });
           }
-          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
-          .height(ConfigData.WH_100_100)
-          .width(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
-            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
-          });
-
-          Column() {
-          }
-          .width(ConfigData.WH_100_100)
-          .height(ConfigData.WH_100_100)
-          .useSizeType({
-            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
-            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
-          })
+          .margin({top:$r("app.float.distance_8")})
         }
-        .width(ConfigData.WH_100_100)
-        .height(ConfigData.WH_100_100);
+        .padding({
+          left: $r('sys.float.ohos_id_card_margin_start'),
+          right: $r('sys.float.ohos_id_card_margin_end')
+        })
+        .useSizeType({
+          sm: { span: 4, offset: 0 },
+          md: { span: 6, offset: 1 },
+          lg: { span: 8, offset: 2 }
+        })
       }
       .width(ConfigData.WH_100_100)
-      .height(ConfigData.WH_100_100);
+      .height(ConfigData.WH_100_100)
     }
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
-    .height(ConfigData.WH_100_100);
+    .height(ConfigData.WH_100_100)
   }
 
   aboutToAppear(){
     LogUtil.info(`${this.TAG} aboutToAppear in`);
     LogUtil.info(`${this.TAG} aboutToAppear out`);
   }
-
-  aboutToDisappear(){
-    LogUtil.info(`${this.TAG} aboutToDisappear in`);
-    LogUtil.info(`${this.TAG} aboutToDisappear out`);
-  }
-
 }
 
 /**
@@ -93,14 +69,14 @@ struct EditLanguage {
 @Component
 struct EditList {
   @StorageLink('addedLanguages') addedLanguages:Array<string> = LanguageAndRegionModel.getAddedLanguages();
-  @State maddedLanguages: Array<string> = this.addedLanguages;
+  @State mAddedLanguages: Array<string> = this.addedLanguages;
   @Link deleteFlag: boolean;
   @Link deleteItem: string;
   @State touchedItem:string = '';
 
   build(){
     List(){
-      ForEach((this.deleteFlag ? this.maddedLanguages : this.addedLanguages) , (item) => {
+      ForEach((this.deleteFlag ? this.mAddedLanguages : this.addedLanguages), (item) => {
         ListItem(){
           Flex({justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center}){
             Row(){
@@ -118,7 +94,8 @@ struct EditList {
                   .fontWeight(FontWeight.Medium)
                   .margin(LanguageAndRegionModel.isSystemLanguage(item) ? {top: $r("app.float.distance_20"), bottom: $r("app.float.distance_22_5")}: {top: $r("app.float.distance_10"), bottom: $r("app.float.distance_2")})
                   .fontColor(LanguageAndRegionModel.isSystemLanguage(item) ? $r("app.color.font_color_007DFF") : $r("app.color.font_color_182431"))
-                  .textAlign(TextAlign.Start);
+                  .textAlign(TextAlign.Start)
+
                 Text(LanguageAndRegionModel.getDisplayLanguage(item))
                   .fontSize($r("app.float.font_14"))
                   .height($r("app.float.wh_value_19"))
@@ -136,7 +113,7 @@ struct EditList {
               .height($r('app.float.wh_value_24'))
               .objectFit(ImageFit.Contain)
               .onClick(() => {
-                if(this.maddedLanguages.length <= 1){
+                if ( this.mAddedLanguages.length <= 1 ){
                   AlertDialog.show({
                     message: $r("app.string.saveLanguage"),
                     confirm: {
@@ -146,11 +123,11 @@ struct EditList {
                       }
                     }
                   })
-                }else{
+                } else {
                   this.deleteFlag = true;
                   this.deleteItem = item;
-                  let deleteItemIndex = this.maddedLanguages.indexOf(this.deleteItem);
-                  this.maddedLanguages.splice(deleteItemIndex, 1)
+                  let deleteItemIndex = this.mAddedLanguages.indexOf(this.deleteItem);
+                  this.mAddedLanguages.splice(deleteItemIndex, 1)
                 }
               });
           }
@@ -179,10 +156,15 @@ struct EditList {
     }
     .flexShrink(1)
     .padding($r("app.float.distance_4"))
-    .margin({top:$r("app.float.distance_8")})
+    .margin({ top:$r("app.float.distance_8") })
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
     .borderRadius($r("app.float.radius_24"))
-    .divider({strokeWidth:$r('app.float.divider_wh'),  color: $r('sys.color.ohos_id_color_list_separator'), startMargin: $r("sys.float.ohos_id_card_margin_start"), endMargin: $r("sys.float.ohos_id_card_margin_end")})
+    .divider({
+      strokeWidth:$r('app.float.divider_wh'),
+      color: $r('sys.color.ohos_id_color_list_separator'),
+      startMargin: $r("sys.float.ohos_id_card_margin_start"),
+      endMargin: $r("sys.float.ohos_id_card_margin_end")
+    })
   }
 }
 
@@ -217,6 +199,7 @@ struct HeadComponent {
               this.isTouch = false;
             }
           });
+
         Text(this.headName)
           .fontSize($r('app.float.font_20'))
           .lineHeight($r('app.float.wh_value_28'))
@@ -225,7 +208,7 @@ struct HeadComponent {
           .maxLines(ConfigData.MAX_LINES_1)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
           .textAlign(TextAlign.Start)
-          .margin({top: $r('app.float.wh_value_13'), bottom: $r('app.float.wh_value_15')});
+          .margin({ top: $r('app.float.wh_value_13'), bottom: $r('app.float.wh_value_15') });
       }
 
       Image($r("app.media.ic_ok"))
@@ -236,14 +219,14 @@ struct HeadComponent {
         .objectFit(ImageFit.Contain)
         .onClick(() => {
           if (this.deleteFlag) {
-            LanguageAndRegionModel.deleteLanguage(this.deleteItem)
+            LanguageAndRegionModel.deleteLanguage(this.deleteItem);
             Router.back();
             this.deleteFlag = false;
           }
         })
     }
     .width(ConfigData.WH_100_100)
-    .padding({left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end')})
+    .padding({ left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end') })
     .height($r('app.float.wh_value_56'));
   }
 }
