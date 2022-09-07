@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -41,14 +41,14 @@ export class SystemAccountController {
    */
   async refreshSystemAccountList() {
     LogUtil.info("Refresh system account list.");
-    AppStorage.SetOrCreate("systemAccoutList", []);
+    AppStorage.SetOrCreate("systemAccountList", []);
     this.accountList = await account_osAccount.getAccountManager().queryAllCreatedOsAccounts();
     LogUtil.info("before sort account list, length: " + this.accountList.length + ", list: " + JSON.stringify(this.accountList));
     this.currentAccount = SystemAccountModel.getCurrentAccount(this.accountList);
     LogUtil.info("Current account localId: " + this.currentAccount.localId);
     this.accountList.sort(SystemAccountModel.sortAccount.bind(this));
     LogUtil.info("Successfully sort account list, length: " + this.accountList.length);
-    AppStorage.SetOrCreate("systemAccoutList", this.accountList);
+    AppStorage.SetOrCreate("systemAccountList", this.accountList);
     AppStorage.SetOrCreate("isShowAddUser", this.isShowAddUser());
     AppStorage.SetOrCreate("isShowAddGuest", this.isShowAddQuest());
     AppStorage.SetOrCreate("isShowDelete",!this.isCurrentAdministrator());

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -90,6 +90,7 @@ export struct TitleText {
     }
     .width(ComponentConfig.WH_100_100)
     .margin({ top: $r("app.float.distance_12") })
+    .padding($r("app.float.distance_4"))
     .borderRadius($r("app.float.radius_24"))
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
     .visibility(this.visible);
