@@ -35,10 +35,10 @@ ohos_shared_library("settings") {
   external_deps = [
     "ability_base:zuri",
     "bundle_framework:appexecfwk_base",
+    "c_utils:utils",
     "hiviewdfx_hilog_native:libhilog",
     "relational_store:native_dataability",
     "relational_store:native_rdb",
-    "utils_base:utils",
   ]
 
   relative_install_dir = "module"
