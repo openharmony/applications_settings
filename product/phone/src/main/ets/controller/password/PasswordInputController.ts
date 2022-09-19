@@ -276,5 +276,4 @@ export default class PasswordInputController extends BaseSettingsController {
       }
     });
   }
-
 }

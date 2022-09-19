@@ -51,20 +51,12 @@ struct BluetoothPairedDeviceInfo {
             Button() {
               Text($r("app.string.cancelPairing"))
                 .fontSize($r('app.float.application_button_subtitle_size'))
-                .fontColor(Color.Blue)
+                .fontColor($r("app.color.font_color_007DFF"))
             }
-            .backgroundColor($r('app.color.color_E3E3E3_grey'))
-            .width($r("app.float.paired_device_button_width"))
+            .backgroundColor($r('sys.color.ohos_id_color_button_normal'))
+            .width($r("app.float.component_button_width"))
             .height($r("app.float.wh_value_40"))
             .align(Alignment.Center)
-            .onTouch((event: TouchEvent) => {
-              if (event.type === TouchType.Down) {
-                this.isTouched = true;
-              }
-              if (event.type === TouchType.Up) {
-                this.isTouched = false;
-              }
-            })
             .onClick(() => {
               LogUtil.log(ConfigData.TAG + "unpair onClick");
               if (this.controller.unpair(this.bluetoothDevice.deviceId)) {
@@ -74,6 +66,7 @@ struct BluetoothPairedDeviceInfo {
           }
           .margin({ bottom: $r('app.float.distance_24'), top: $r("app.float.distance_8") });
         }
+        .height(ConfigData.WH_100_100)
         .padding({
           left: $r('sys.float.ohos_id_card_margin_start'),
           right: $r('sys.float.ohos_id_card_margin_end')

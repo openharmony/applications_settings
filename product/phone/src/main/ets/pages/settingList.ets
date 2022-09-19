@@ -25,7 +25,6 @@ import ConfigData from '../../../../../../common/utils/src/main/ets/default/base
 import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import {SettingItemComponent} from '../../../../../../common/component/src/main/ets/default/settingItemComponent';
 import GlobalResourceManager from '../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalResourceManager';
-import {OuterLayoutComponentNoParam} from '../../../../../../common/component/src/main/ets/default/outerLayoutComponent';
 
 const deviceTypeInfo = deviceInfo.deviceType;
 
@@ -56,22 +55,6 @@ struct SettingList {
   @State listSpaces: string = '12vp';
   @State isPhone: boolean = false;
 
-  @Builder mSettingList() {
-    Column() {
-      if (this.isPhone) {
-        Navigation() {
-          EntryComponent({ listSpaces: this.listSpaces, isPhone: this.isPhone })
-        }
-        .title(this.NavigationTitle)
-        .titleMode(NavigationTitleMode.Free)
-        .hideTitleBar(false)
-        .hideBackButton(true)
-      } else {
-        EntryComponent({ listSpaces: this.listSpaces })
-      }
-    }
-  }
-
   @Builder NavigationTitle() {
     Column() {
       Text($r('app.string.settings'))
@@ -84,11 +67,37 @@ struct SettingList {
   }
 
   build() {
-    Column(){
-      OuterLayoutComponentNoParam({
-        mContentComponentNoParam: this.mSettingList
-      })
+    Column() {
+      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
+        Column() {
+          if (this.isPhone) {
+            Navigation() {
+              EntryComponent({ listSpaces: this.listSpaces, isPhone: this.isPhone })
+            }
+            .title(this.NavigationTitle)
+            .titleMode(NavigationTitleMode.Free)
+            .hideTitleBar(false)
+            .hideBackButton(true)
+          } else {
+            EntryComponent({ listSpaces: this.listSpaces })
+          }
+        }
+        .padding({
+          left: $r('sys.float.ohos_id_card_margin_start'),
+          right: $r('sys.float.ohos_id_card_margin_end')
+        })
+        .useSizeType({
+          sm: { span: 4, offset: 0 },
+          md: { span: 6, offset: 1 },
+          lg: { span: 8, offset: 2 }
+        })
+      }
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100)
     }
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100)
   }
 
   aboutToAppear() {

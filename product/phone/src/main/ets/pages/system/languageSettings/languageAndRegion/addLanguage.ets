@@ -15,6 +15,7 @@
 
 import router from '@system.router';
 import prompt from '@system.prompt';
+import deviceInfo from '@ohos.deviceInfo';
 import LogUtil from '../../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import { SubHeader } from '../../../../../../../../../common/component/src/main/ets/default/textComponent';
 import ConfigData from '../../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
@@ -22,7 +23,8 @@ import LanguageAndRegionModel from '../../../../model/systemImpl/languageSetting
 import HeadComponent from '../../../../../../../../../common/component/src/main/ets/default/headComponent';
 import ResourceUtil from '../../../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import BasicDataSource from '../../../../../../../../../common/utils/src/main/ets/default/model/BasicDataSource';
-import { OuterLayoutComponentNoParam } from '../../../../../../../../../common/component/src/main/ets/default/outerLayoutComponent';
+
+const deviceTypeInfo = deviceInfo.deviceType;
 
 /**
  * Home Page Of AddLanguage
@@ -32,38 +34,48 @@ import { OuterLayoutComponentNoParam } from '../../../../../../../../../common/c
 struct AddLanguage {
   private TAG = `${ConfigData.TAG} AddLanguage`;
 
-  @Builder mAddLanguage() {
-    Column() {
-      HeadComponent({ headName: $r('app.string.addLanguage'), isActive: true });
-
-      List(){
-        ListItem() {
-          SubHeader({ titleContent: $r('app.string.addedLanguage') })
-        }
-
-        ListItem() {
-          AddedLanguagesList();
-        }
-
-        ListItem() {
-          SubHeader({ titleContent: $r('app.string.allLanguage') });
-        }
-
-        ListItem() {
-          AllLanguagesList();
-        }
-      }
-      .flexShrink(1)
-      .edgeEffect(EdgeEffect.Spring);
-    }
-  }
-
   build() {
-    Column(){
-      OuterLayoutComponentNoParam({
-        mContentComponentNoParam: this.mAddLanguage
-      })
+    Column() {
+      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
+        Column() {
+          HeadComponent({ headName: $r('app.string.addLanguage'), isActive: true });
+
+          List(){
+            ListItem() {
+              SubHeader({ titleContent: $r('app.string.addedLanguage') })
+            }
+
+            ListItem() {
+              AddedLanguagesList();
+            }
+
+            ListItem() {
+              SubHeader({ titleContent: $r('app.string.allLanguage') });
+            }
+
+            ListItem() {
+              AllLanguagesList();
+            }
+          }
+          .flexShrink(1)
+          .edgeEffect(EdgeEffect.Spring);
+        }
+        .padding({
+          left: $r('sys.float.ohos_id_card_margin_start'),
+          right: $r('sys.float.ohos_id_card_margin_end')
+        })
+        .useSizeType({
+          sm: { span: 4, offset: 0 },
+          md: { span: 6, offset: 1 },
+          lg: { span: 8, offset: 2 }
+        })
+      }
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100)
     }
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100)
   }
 
   aboutToAppear(){
@@ -71,7 +83,6 @@ struct AddLanguage {
     LogUtil.info(`${this.TAG} aboutToAppear out`);
   }
 }
-
 
 /**
  * List Of Added Language
@@ -212,6 +223,8 @@ struct AllLanguagesList {
                     LogUtil.info(ConfigData.TAG + 'callback when first button clicked');
                   }
                 },
+                alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+                offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
                 cancel: () => {
                   LogUtil.info(ConfigData.TAG + 'cancel');
                 }

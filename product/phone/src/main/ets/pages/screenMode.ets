@@ -58,10 +58,9 @@ struct ScreenMode {
                     .textAlign(TextAlign.Start);
 
                   Radio({ value: this.TAG, group: '' })
-                    .padding($r("app.float.distance_2"))
                     .colorBlend($r("sys.color.ohos_id_color_switch_bg_off"))
-                    .width('20vp')
-                    .height('20vp')
+                    .height($r("app.float.wh_value_24"))
+                    .width($r("app.float.wh_value_24"))
                     .enabled(true)
                     .checked(this.screenModeModel.isSysScreenMode(item))
                     .margin({ top: $r("app.float.distance_12"), bottom: $r("app.float.distance_12")})
@@ -70,14 +69,14 @@ struct ScreenMode {
                       this.screenModeModel.setSysScreenMode(0);
                     })
                 }
+                .height($r('app.float.wh_value_48'))
+                .width(ConfigData.WH_100_100)
               }
-              .height($r('app.float.wh_value_48'))
-              .width(ConfigData.WH_100_100)
             }, item => JSON.stringify(item));
           }
           .padding({
             left: $r('app.float.wh_value_12'),
-            right: $r('app.float.wh_value_12'),
+            right: $r('app.float.wh_value_4'),
             top: $r('app.float.distance_4'),
             bottom: $r('app.float.distance_4')
           })

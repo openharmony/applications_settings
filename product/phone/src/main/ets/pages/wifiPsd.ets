@@ -50,16 +50,16 @@ struct WifiPsd {
     builder: connectProgressDialog({
       ssid: this.tobeConnectedSSID,
     }),
-    alignment: deviceInfo.deviceType === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: $r("app.float.customDialog_dx_offset"), dy: $r("app.float.customDialog_dy_offset") }),
+    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
     autoCancel: false,
     customStyle: true
   });
 
   private failedDialog: CustomDialogController = new CustomDialogController({
     builder: connectFailedDialog({ControlFailedDialog:$ControlFailedDialog}),
-    alignment: deviceInfo.deviceType === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: $r("app.float.customDialog_dx_offset"), dy: $r("app.float.customDialog_dy_offset") }),
+    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
     autoCancel: true,
     customStyle: true
   });

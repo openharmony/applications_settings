@@ -60,7 +60,7 @@ export class ConfigData {
   GRID_CONTAINER_GUTTER_24 = 24;
   GRID_CONTAINER_MARGIN_24 = 24;
 
-  LAYOUT_WEIGHT_1 = 1 ;
+  LAYOUT_WEIGHT_1 = 1;
 
   value_20 = 20;
   font_20 = 20;
