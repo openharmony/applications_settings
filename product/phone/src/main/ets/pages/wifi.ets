@@ -104,6 +104,7 @@ struct Index {
   @StorageLink('slWiFiLists') scanWiFiResults: [] = [];
   @StorageLink('slConnectedWifi') connectedWiFi: any = [];
   @State isWiFiEnabled: boolean = false;
+  @State isPhoneOrRK: boolean = false;
   @State userSelectedApInfo: WifiScanInfo = {
     ssid: '',
     bssid: '',
@@ -121,8 +122,8 @@ struct Index {
     builder: apInfoDialog({
       apInfo: this.userSelectedApInfo,
     }),
-    alignment: deviceTypeInfo === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: $r("app.float.customDialog_dx_offset"), dy: $r("app.float.customDialog_dy_offset") }),
+    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
     autoCancel: true,
     customStyle: true
   });
@@ -135,8 +136,8 @@ struct Index {
         WifiModel.refreshApScanResults();
       }
     }),
-    alignment: deviceTypeInfo === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: $r("app.float.customDialog_dx_offset"), dy: $r("app.float.customDialog_dy_offset") }),
+    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
     autoCancel: true,
     customStyle: true
   });
@@ -562,8 +563,8 @@ struct apInfoDialog {
       .borderRadius($r("app.float.radius_32"))
       .backgroundColor($r("app.color.white_bg_color"))
     }
-    .width(deviceTypeInfo === 'phone' ? ConfigData.WH_100_100 : $r("app.float.wh_value_410"))
-    .padding(deviceTypeInfo === 'phone' ? { left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") } : {})
+    .width(deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? ConfigData.WH_100_100 : $r("app.float.wh_value_410"))
+    .padding(deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? { left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") } : {})
   }
 
   aboutToAppear(): void {

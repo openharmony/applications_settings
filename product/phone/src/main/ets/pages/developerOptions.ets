@@ -40,7 +40,7 @@ struct developerOptions {
   @State controllerLayoutBoundariesIsOn: boolean = false;
   @State controllerOverdrawIsOn: boolean = false;
   @State controllerDebugIsOn: boolean = false;
-  @State isPhone: boolean = deviceTypeInfo === "phone";
+  @State isPhoneOrRK: boolean = false;
   @State getAnimationMultiplier: string =  parameter.getSync(ARKUI_ANIMATION_SCALE_NAME);
 
   private controller: UsbDebuggingController = new UsbDebuggingController();
@@ -53,16 +53,23 @@ struct developerOptions {
       AnimationMultiplier: this.AnimationMultiplier,
       AnimationText: $AnimationText,
       checked: $checked,
-      isPhone: $isPhone
+      isPhoneOrRK: $isPhoneOrRK
     }),
-    alignment: this.isPhone ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: 0 }),
+    alignment: this.isPhoneOrRK ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhoneOrRK ? '-24dp' : 0 }),
     autoCancel: true,
     customStyle: true
   });
 
   aboutToAppear() {
     LogUtil.info(MODULE_TAG + "aboutToAppear");
+
+    if (deviceTypeInfo === 'phone' || deviceTypeInfo === 'default') {
+      this.isPhoneOrRK = true;
+    } else {
+      this.isPhoneOrRK = false;
+    }
+
     this.AnimationText = this.getAnimationMultiplier === "" ? $r("app.string.Animation_Zooms") :
       (this.getAnimationMultiplier === "0" ? $r("app.string.Close_Animation") : $r("app.string.Animation_Multiplier", this.getAnimationMultiplier));
     this.checked = this.getAnimationMultiplier === "" ? "1" : this.getAnimationMultiplier;
@@ -195,7 +202,7 @@ struct developerOptions {
 struct AnimationScalingInformation {
   controller: CustomDialogController;
   private AnimationMultiplier;
-  @Link isPhone : boolean ;
+  @Link isPhoneOrRK : boolean ;
   @Link AnimationText: string | Resource;
   @Link checked: string;
 
@@ -288,7 +295,7 @@ struct AnimationScalingInformation {
       .backgroundColor($r("app.color.white_bg_color"))
       .borderRadius($r("app.float.radius_24"))
     }
-    .width(this.isPhone ? ConfigData.WH_100_100 : $r("app.float.wh_value_410"))
-    .padding(this.isPhone ? { left: $r("app.float.distance_12"), right: $r("app.float.distance_12")} : {})
+    .width(this.isPhoneOrRK ? ConfigData.WH_100_100 : $r("app.float.wh_value_410"))
+    .padding(this.isPhoneOrRK ? { left: $r("app.float.distance_12"), right: $r("app.float.distance_12")} : {})
   }
 }

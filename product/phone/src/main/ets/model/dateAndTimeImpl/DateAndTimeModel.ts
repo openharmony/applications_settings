@@ -12,13 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
 import BaseParseConfModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseParseConfModel';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import SystemTime from '@ohos.systemTime';
 import settings from '@ohos.settings';
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 import CatchError from '../../../../../../../common/utils/src/main/ets/default/baseUtil/CatchError';
 import i18n from '@ohos.i18n';
 
@@ -86,14 +87,19 @@ export class DateAndTimeModel extends BaseModel {
     if (format != ConfigData.TIME_FORMAT_12 && format != ConfigData.TIME_FORMAT_24) {
       return false;
     }
+
     if (format === this.timeFormat) {
       return true;
     }
-    if(format === ConfigData.TIME_FORMAT_24){
-      i18n.set24HourClock(true)
+
+    let ret24HourClock;
+    if (format === ConfigData.TIME_FORMAT_24) {
+      ret24HourClock = i18n.set24HourClock(true)
     } else {
-      i18n.set24HourClock(false)
+      ret24HourClock = i18n.set24HourClock(false)
     }
+    LogUtil.info(ConfigData.TAG + 'DateAndTimeModel i18n set24HourClock ' + JSON.stringify(ret24HourClock));
+
     let ret = settings.setValueSync(this.dataAbilityHelper, ConfigData.TIME_FORMAT_KEY, format);
     if (ret === true) {
       this.timeFormat = format;
@@ -118,7 +124,7 @@ export class DateAndTimeModel extends BaseModel {
    */
   public unregisterObserver() {
     LogUtil.info(`${ConfigData.TAG} unregisterObserver`);
-    this.dataAbilityHelper.off("dataChange", this.urivar, (err)=>{
+    this.dataAbilityHelper.off("dataChange", this.urivar, (err) => {
       LogUtil.info(`${ConfigData.TAG} unregisterObserver success`);
     })
     return;
@@ -126,5 +132,4 @@ export class DateAndTimeModel extends BaseModel {
 }
 
 let dateAndTimeModel = new DateAndTimeModel();
-export default dateAndTimeModel as DateAndTimeModel
-;
+export default dateAndTimeModel as DateAndTimeModel;

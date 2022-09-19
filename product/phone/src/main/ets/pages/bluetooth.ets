@@ -417,8 +417,8 @@ struct PairedDeviceComponent {
           callback();
         }
       },
-      alignment: deviceTypeInfo === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
-      offset: ({ dx: $r("app.float.customDialog_dx_offset"), dy: $r("app.float.customDialog_dy_offset") }),
+      alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+      offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 })
     })
   }
 }
@@ -460,8 +460,8 @@ struct AvailableDeviceComponent {
         this.confirmPairing(accept);
       }
     }),
-    alignment:deviceTypeInfo === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: $r("app.float.customDialog_dx_offset"), dy: $r("app.float.customDialog_dy_offset") }),
+    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
     autoCancel: true,
   });
 
@@ -623,8 +623,8 @@ struct AvailableDeviceComponent {
           LogUtil.info(this.TAG_PAGE + `AlertDialog success:`);
         }
       },
-      alignment:deviceTypeInfo === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
-      offset: ({ dx: $r("app.float.customDialog_dx_offset"), dy: $r("app.float.customDialog_dy_offset") }),
+      alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+      offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 })
     })
   }
 
@@ -793,8 +793,8 @@ struct PairDialog {
         right: $r('app.float.distance_24')
       })
     }
-    .width(deviceTypeInfo==='phone' ? ConfigData.WH_100_100 : $r("app.float.wh_value_410"))
-    .padding(deviceTypeInfo==='phone' ? { left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12")} : {})
+    .width(deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? ConfigData.WH_100_100 : $r("app.float.wh_value_410"))
+    .padding(deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? { left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12")} : {})
   }
 }
 
@@ -837,8 +837,8 @@ function showDialog(dialogTitle: string | Resource, dialogMessage: string | Reso
   AlertDialog.show({
     title: dialogTitle,
     message: dialogMessage,
-    offset: ({ dx: $r("app.float.customDialog_dx_offset"), dy: $r("app.float.customDialog_dy_offset") }),
-    alignment: deviceTypeInfo === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
+    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
     confirm: {
       value: buttonValue,
       action: () => {

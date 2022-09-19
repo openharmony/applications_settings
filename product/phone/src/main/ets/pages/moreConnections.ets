@@ -20,7 +20,6 @@ import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUti
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import { SubEntryComponentWithEndText } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
-import { OuterLayoutComponentWithParam } from '../../../../../../common/component/src/main/ets/default/outerLayoutComponent';
 
 const TAG = ConfigData.TAG + 'MoreConnections: ';
 const deviceTypeInfo = deviceInfo.deviceType;
@@ -37,23 +36,33 @@ struct MoreConnections {
   private nfcImageWidth;
   private nfcImageHeight;
 
-  @Builder mMoreConnections(nfcStatus) {
-    Column() {
-      HeadComponent({ headName: $r('app.string.moreConnectionsTab'), isActive: true });
-
-      Column(){
-        SubEntryComponentWithEndText({ targetPage:'pages/nfc', title: $r('app.string.NFC'), endText: nfcStatus ? $r("app.string.enabled") : $r("app.string.disabled") })
-      }
-      .margin({ top: $r("app.float.distance_8") })
-    }
-  }
-
   build() {
-    Column(){
-      OuterLayoutComponentWithParam({
-        mContentComponentWithParam: this.mMoreConnections(this.nfcStatus)
-      })
+    Column() {
+      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
+        Column() {
+          HeadComponent({ headName: $r('app.string.moreConnectionsTab'), isActive: true });
+
+          Column(){
+            SubEntryComponentWithEndText({ targetPage:'pages/nfc', title: $r('app.string.NFC'), endText: this.nfcStatus ? $r("app.string.enabled") : $r("app.string.disabled") })
+          }
+          .margin({ top: $r("app.float.distance_8") })
+        }
+        .padding({
+          left: $r('sys.float.ohos_id_card_margin_start'),
+          right: $r('sys.float.ohos_id_card_margin_end')
+        })
+        .useSizeType({
+          sm: { span: 4, offset: 0 },
+          md: { span: 6, offset: 1 },
+          lg: { span: 8, offset: 2 }
+        })
+      }
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100)
     }
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100)
   }
 
   aboutToAppear(){
