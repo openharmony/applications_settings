@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,16 +13,15 @@
  * limitations under the License.
  */
 
-import Router from '@system.router';
-import BluetoothDevice from '../model/bluetoothImpl/BluetoothDevice';
-import BluetoothDeviceController from '../controller/bluetooth/BluetoothDeviceController';
-import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
+import Router from '@system.router';
+import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import BluetoothDevice from '../model/bluetoothImpl/BluetoothDevice';
+import BluetoothDeviceController from '../controller/bluetooth/BluetoothDeviceController'
+import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 
 let param;
-
 /**
  * BluetoothPairedDeviceInfo
  */
@@ -30,8 +29,8 @@ let param;
 @Component
 struct BluetoothPairedDeviceInfo {
   @State bluetoothDevice: BluetoothDevice = undefined;
-  @State isTouched: boolean = false;
   private controller: BluetoothDeviceController = new BluetoothDeviceController()
+  @State isTouched: boolean = false;
 
   @Log
   aboutToAppear() {
@@ -41,12 +40,10 @@ struct BluetoothPairedDeviceInfo {
 
   build() {
     Column() {
-      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
+      GridContainer({ gutter: 12, margin: 12 }) {
         Column() {
           HeadComponent({ headName: this.bluetoothDevice.deviceName, isActive: true });
-
           Blank()
-
           Row() {
             Button() {
               Text($r("app.string.cancelPairing"))
@@ -71,24 +68,22 @@ struct BluetoothPairedDeviceInfo {
                 Router.back();
               }
             })
-          }
-          .margin({ bottom: $r('app.float.distance_24'), top: $r("app.float.distance_8") });
+          }.margin({ bottom: $r('app.float.distance_24'), top: $r("app.float.distance_8") });
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
+        .width(ConfigData.WH_100_100)
+        .height(ConfigData.WH_100_100)
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
           lg: { span: 8, offset: 2 }
-        })
+        });
       }
-      .width(ConfigData.WH_100_100)
-      .height(ConfigData.WH_100_100);
     }
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
     .height(ConfigData.WH_100_100);
   }
 }
+
+
+

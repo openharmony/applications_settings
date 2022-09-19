@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,9 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import ComponentConfig from './ComponentConfig';
-import SwitchController from './controller/SwitchController';
+import SwitchController from './controller/SwitchController'
 import Log from '../../../../../utils/src/main/ets/default/baseUtil/LogDecorator';
 
 /**
@@ -45,7 +44,6 @@ export default struct SwitchComponent {
           .fontColor($r('sys.color.ohos_fa_text_primary'))
           .fontSize($r("app.float.font_16"))
           .fontWeight(FontWeight.Medium)
-
         if (this.summary) {
           Text(this.summary)
             .fontColor($r('sys.color.ohos_fa_text_secondary'))
@@ -57,15 +55,16 @@ export default struct SwitchComponent {
             .margin({ top: $r('sys.float.ohos_id_text_margin_vertical') })
         }
       }
+      .margin({ left:$r('sys.float.ohos_id_card_margin_start')})
       .alignItems(HorizontalAlign.Start)
 
       Blank()
 
-      Stack({ alignContent: Alignment.Start }) {
+      Stack({ alignContent: Alignment.Center }) {
         Toggle({ type: ToggleType.Switch, isOn: this.isOn })
           .width('36vp')
           .height('20vp')
-          .margin({ left: $r('app.float.wh_value_6') })
+          .margin({ left: '6vp' })
           .selectedColor('#007DFF')
           .onChange((isOn: boolean) => {
             if (!this.isEnabled) return;
@@ -73,8 +72,10 @@ export default struct SwitchComponent {
             this.toggleValue(this.isOn);
           });
       }
+      .margin({ right:$r('sys.float.ohos_id_card_margin_end')})
+      .width($r('app.float.wh_value_48'))
+      .height($r('app.float.wh_value_56'))
     }
-    .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_6') })
     .width(ComponentConfig.WH_100_100)
     .height(this.switchHeight)
     .backgroundColor($r("app.color.white_bg_color"))

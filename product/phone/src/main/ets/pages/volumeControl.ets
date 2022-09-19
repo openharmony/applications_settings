@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,16 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import Audio from '@ohos.multimedia.audio';
-import deviceInfo from '@ohos.deviceInfo';
+import {VolumeModel, RingerModel, registerObserver} from '../model/volumeControlImpl/VolumeControlModel';
+import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
+import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
-import { SubHeader } from '../../../../../../common/component/src/main/ets/default/textComponent';
-import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
-import { VolumeModel, RingerModel, registerObserver } from '../model/volumeControlImpl/VolumeControlModel';
-import { OuterLayoutComponentNoParam } from '../../../../../../common/component/src/main/ets/default/outerLayoutComponent';
+import Audio from '@ohos.multimedia.audio';
+import {SubHeader} from '../../../../../../common/component/src/main/ets/default/textComponent';
+import deviceInfo from '@ohos.deviceInfo';
+import OuterComponent from './OuterComponent';
 
 const VOLUME_MIN_VALUE = 0;
 const VOLUME_MAX_VALUE = 15;
@@ -50,14 +49,22 @@ export struct VolumeControl {
       // volume control
       VolumeControlComponent();
     }
+    .padding({
+      left: $r('sys.float.ohos_id_card_margin_start'),
+      right: $r('sys.float.ohos_id_card_margin_end')
+    })
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100)
   }
 
   build() {
     Column(){
-      OuterLayoutComponentNoParam({
-        mContentComponentNoParam: this.mVolumeControlComponent
+      OuterComponent({
+        mContentComponent: this.mVolumeControlComponent
       })
     }
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100)
   }
 
   @Log
@@ -65,6 +72,12 @@ export struct VolumeControl {
     LogUtil.info(`${this.TAG} aboutToAppear in`);
     registerObserver();
     LogUtil.info(`${this.TAG} aboutToAppear out`);
+  }
+
+  @Log
+  aboutToDisappear(): void {
+    LogUtil.info(`${this.TAG} aboutToDisappear in`);
+    LogUtil.info(`${this.TAG} aboutToDisappear out`);
   }
 }
 
@@ -80,25 +93,25 @@ struct AudioRingerModeComponent {
   private TAG = ConfigData.TAG + ' AudioRingerModeComponent ';
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween }) {
-      RowSplit() {
-        AudioRingerModeItem({
-          checked: $ringerModeNormal,
-          audioRingerModel: this.ringerNormalModel,
-          image: $r("app.media.ic_ring"),
-          text: $r('app.string.soundModeSound')
-        });
+       Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween }) {
+         RowSplit() {
+           AudioRingerModeItem({
+             checked: $ringerModeNormal,
+             audioRingerModel: this.ringerNormalModel,
+             image: $r("app.media.ic_ring"),
+             text: $r('app.string.soundModeSound')
+           });
 
-        AudioRingerModeItem({
-          checked: $ringerModeSilent,
-          audioRingerModel: this.ringerSilentModel,
-          image: $r("app.media.ic_ring_off"),
-          text: $r('app.string.soundModeSilent')
-        });
-      }
-      .resizeable(false)
-      .colorBlend($r("sys.color.ohos_id_color_panel_bg"))
-    }
+           AudioRingerModeItem({
+             checked: $ringerModeSilent,
+             audioRingerModel: this.ringerSilentModel,
+             image: $r("app.media.ic_ring_off"),
+             text: $r('app.string.soundModeSilent')
+           });
+         }
+         .resizeable(false)
+         .colorBlend($r("sys.color.ohos_id_color_panel_bg"))
+       }
     .borderRadius($r('app.float.radius_24'))
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
     .width(ConfigData.WH_100_100)
@@ -113,6 +126,12 @@ struct AudioRingerModeComponent {
   aboutToAppear() {
     LogUtil.info(`${this.TAG} aboutToAppear in`);
     LogUtil.info(`${this.TAG} aboutToAppear out`);
+  }
+
+  @Log
+  aboutToDisappear(): void {
+    LogUtil.info(`${this.TAG} aboutToDisappear in`);
+    LogUtil.info(`${this.TAG} aboutToDisappear out`);
   }
 }
 
@@ -178,10 +197,12 @@ struct VolumeControlComponent {
   @StorageLink('volume_ringtone') volumeRingTone: number = 2;
   @StorageLink('volume_media') volumeMedia: number = 2;
   @StorageLink('volume_voicecall') volumeVoiceCall: number = 2;
+
   private voiceCallModel:VolumeModel = new VolumeModel(Audio.AudioVolumeType.VOICE_CALL);
   private ringtoneModel:VolumeModel = new VolumeModel(Audio.AudioVolumeType.RINGTONE);
   private mediaModel:VolumeModel = new VolumeModel(Audio.AudioVolumeType.MEDIA);
   private TAG = ConfigData.TAG + ' VolumeControlComponent ';
+
 
   build() {
     Column() {
@@ -192,7 +213,7 @@ struct VolumeControlComponent {
         text: $r("app.string.volumeControlRing")})
 
       VolumeControlItem({
-        image: this.volumeMedia === 0 ? $r("app.media.ic_media_off") : $r("app.media.ic_media"),
+        image: $r("app.media.ic_media"),
         volumeValue: $volumeMedia,
         volumeModel: this.mediaModel,
         text: $r("app.string.volumeControlMedia")})
@@ -210,9 +231,15 @@ struct VolumeControlComponent {
   }
 
   @Log
-  aboutToAppear(): void {
+  aboutToAppear(): void{
     LogUtil.info(`${this.TAG} aboutToAppear in`);
     LogUtil.info(`${this.TAG} aboutToAppear out`);
+  }
+
+  @Log
+  aboutToDisappear(): void{
+    LogUtil.info(`${this.TAG} aboutToDisappear in`);
+    LogUtil.info(`${this.TAG} aboutToDisappear out`);
   }
 }
 
@@ -243,7 +270,7 @@ struct VolumeControlItem {
           .margin({left: $r('app.float.distance_12')})
           .width(ConfigData.WH_100_100);
       }
-      .margin({ bottom: $r('app.float.distance_1') })
+      .margin({  bottom: $r('app.float.distance_1')})
       .width(ConfigData.WH_100_100)
       .align(Alignment.Center);
 
@@ -261,7 +288,7 @@ struct VolumeControlItem {
           this.volumeModel.setVolume(value);
         });
     }
-    .margin({ top: $r("app.float.distance_12") })
+    .margin({top: $r("app.float.distance_12")})
     .width(ConfigData.WH_100_100);
   }
 }

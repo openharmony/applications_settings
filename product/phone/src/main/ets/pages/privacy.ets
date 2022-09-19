@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,12 +14,12 @@
  */
 
 import prompt from '@system.prompt';
+import FeatureAbility from '@ohos.ability.featureAbility';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
+import {SubEntryComponent} from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
 import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
-import { SubEntryComponent } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
-import { OuterLayoutComponentNoParam } from '../../../../../../common/component/src/main/ets/default/outerLayoutComponent';
 
 /**
  * Home Page Of Privacy Settings
@@ -27,33 +27,78 @@ import { OuterLayoutComponentNoParam } from '../../../../../../common/component/
 @Entry
 @Component
 struct PrivacySettings {
-  private TAG = `${ConfigData.TAG} PrivacySettings `;
-
-  @Builder mPrivacySettings() {
-    Column() {
-      HeadComponent({ headName: $r('app.string.privacy'), isActive: true });
-
-      Column() {
-        PermissionComponent()
-          .margin({ bottom: $r('sys.float.ohos_id_card_margin_start') })
-
-        SubEntryComponent({ targetPage: 'pages/locationServices', title: $r('app.string.locationServicesTab') });
-      }
-      .margin({ top: $r("app.float.distance_8") })
-    }
-  }
+  private TAG = `${ConfigData.TAG} PrivacySettings`;
+  @State columnMargin: string = '12vp';
 
   build() {
-    Column(){
-      OuterLayoutComponentNoParam({
-        mContentComponentNoParam: this.mPrivacySettings
-      })
+    Column() {
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
+        Row({}) {
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
+            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
+          });
+
+          Column() {
+            HeadComponent({ headName: $r('app.string.privacy'), isActive: true });
+
+            Column({ space: this.columnMargin }) {
+              PermissionComponent();
+              SubEntryComponent({ targetPage: 'pages/locationServices', title: $r('app.string.locationServicesTab') });
+            }
+            .margin({ top: $r("app.float.distance_8") })
+            .width(ConfigData.WH_100_100)
+          }
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+          .padding({
+            left: $r('sys.float.ohos_id_card_margin_start'),
+            right: $r('sys.float.ohos_id_card_margin_end')
+          })
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
+            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
+          });
+
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
+            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
+          })
+        }
+        .width(ConfigData.WH_100_100)
+        .height(ConfigData.WH_100_100);
+      }
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100);
     }
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100);
   }
 
   aboutToAppear() {
     LogUtil.info(`${this.TAG} aboutToAppear in`);
+    ResourceUtil.getString($r('app.float.distance_12')).then(value => this.columnMargin = value);
     LogUtil.info(`${this.TAG} aboutToAppear out`);
+  }
+
+  aboutToDisappear() {
+    LogUtil.info(`${this.TAG} aboutToDisappear in`);
+    LogUtil.info(`${this.TAG} aboutToDisappear out`);
   }
 }
 
@@ -62,7 +107,7 @@ struct PrivacySettings {
  */
 @Component
 export struct PermissionComponent {
-  private TAG = `${ConfigData.TAG} PrivacySettings PermissionComponent `;
+  private TAG = `${ConfigData.TAG} PrivacySettings PermissionComponent`;
   @State isTouched: boolean = false;
 
   build() {
@@ -101,7 +146,6 @@ export struct PermissionComponent {
         if (event.type === TouchType.Down) {
           this.isTouched = true;
         }
-
         if (event.type === TouchType.Up) {
           this.isTouched = false;
         }

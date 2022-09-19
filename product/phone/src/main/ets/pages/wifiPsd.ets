@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,21 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 // @ts-nocheck
-import wifi from '@ohos.wifi';
-import router from '@system.router';
-import deviceInfo from '@ohos.deviceInfo';
-import InputMethod from '@ohos.inputmethod';
+import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
+import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
+import ImageAnimatorComponent from '../../../../../../common/component/src/main/ets/default/imageAnimatorComponent';
+import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import WifiModel from '../model/wifiImpl/WifiModel';
 import { WifiScanInfo } from '../model/wifiImpl/WifiModel';
+import wifi from '@ohos.wifi';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
-import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
-import ImageAnimatorComponent from '../../../../../../common/component/src/main/ets/default/imageAnimatorComponent';
-
-const deviceTypeInfo = deviceInfo.deviceType;
+import router from '@system.router'
+import InputMethod from '@ohos.inputmethod';
+import deviceInfo from '@ohos.deviceInfo'
+const deviceTypeInfo = deviceInfo.deviceType
 const miniPassWordSize = 8;
 const MODULE_TAG = ConfigData.TAG + 'WifiModel.WifiPasswd -> ';
 
@@ -45,7 +43,6 @@ struct WifiPsd {
   private taskId: number = -1;
   private toConnected: boolean = false;
   @State @Watch("controlFailedDialog") ControlFailedDialog : boolean = false;
-
   private connectDialog: CustomDialogController = new CustomDialogController({
     builder: connectProgressDialog({
       ssid: this.tobeConnectedSSID,
@@ -55,7 +52,6 @@ struct WifiPsd {
     autoCancel: false,
     customStyle: true
   });
-
   private failedDialog: CustomDialogController = new CustomDialogController({
     builder: connectFailedDialog({ControlFailedDialog:$ControlFailedDialog}),
     alignment: deviceInfo.deviceType === 'phone' ? DialogAlignment.Bottom : DialogAlignment.Center,
@@ -65,15 +61,15 @@ struct WifiPsd {
   });
 
   controlFailedDialog() {
-    if(this.ControlFailedDialog){
-      this.failedDialog.close();
-      this.ControlFailedDialog = false;
-    }
+     if(this.ControlFailedDialog){
+       this.failedDialog.close()
+       this.ControlFailedDialog = false;
+     }
   }
 
   build() {
     Column() {
-      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
+      GridContainer({ gutter: 12, margin: 12 }) {
         Column() {
           HeadComponent({
             icBackIsVisibility: true,
@@ -85,11 +81,9 @@ struct WifiPsd {
             .type(InputType.Password)
             .placeholderColor($r('sys.color.ohos_id_color_text_hint'))
             .caretColor("red")
-            .placeholderFont({
-              size: $r("app.float.font_16"),
+            .placeholderFont({ size: $r("app.float.font_16"),
               weight: $r("sys.string.ohos_id_text_font_family_regular"),
-              family: "sans-serif", style: FontStyle.Normal
-            })
+              family: "sans-serif", style: FontStyle.Normal })
             .caretColor($r('sys.color.ohos_id_color_text_primary_activated'))
             .backgroundColor($r('app.color.color_00000000_transparent'))
             .height($r('app.float.wh_value_48'))
@@ -107,12 +101,10 @@ struct WifiPsd {
               this.userInputs = inputs;
             })
             .onSubmit((enterKey) => {
-              InputMethod.getInputMethodController().stopInput()
-                .then((ret) => {
-                  LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
-                })
+              InputMethod.getInputMethodController().stopInput().then((ret) => {
+                LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
+              })
             });
-
           Divider()
             .color($r("sys.color.ohos_id_color_primary"))
             .strokeWidth($r('app.float.wh_value_1'))
@@ -121,66 +113,58 @@ struct WifiPsd {
               left: $r('sys.float.ohos_id_default_padding_start'),
               right: $r('sys.float.ohos_id_default_padding_end')
             })
-
-          // Button
-          Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-            Row() {
-              Button({ type: ButtonType.Capsule, stateEffect: true }) {
-                Text($r('app.string.cancel'))
-                  .fontSize($r('sys.float.ohos_id_text_size_body1'))
-                  .fontColor($r('sys.color.ohos_id_color_text_primary_activated'))
-                  .fontWeight(FontWeight.Medium)
-              }
-              .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
-              .height($r('app.float.wh_value_40'))
-              .backgroundColor($r('sys.color.ohos_id_color_button_normal'))
-              .onClick(() => {
-                router.back();
-              });
-
-              Column()
-                .width( $r('app.float.distance_12'))
-                .height($r('app.float.application_button_height'))
-
-              Button({ type: ButtonType.Capsule, stateEffect: true }) {
-                Text($r('app.string.wifiButtonConnect'))
-                  .fontSize($r('sys.float.ohos_id_text_size_body1'))
-                  .fontColor($r('sys.color.ohos_id_color_text_primary_activated'))
-                  .fontWeight(FontWeight.Medium)
-              }
-              .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
-              .height($r('app.float.wh_value_40'))
-              .backgroundColor($r('sys.color.ohos_id_color_button_normal'))
-              .opacity(this.userInputs.length < miniPassWordSize ? $r('sys.float.ohos_fa_alpha_disabled') : 1)
-              .onClick(this.userInputs.length < miniPassWordSize ?
-                () => { LogUtil.info(MODULE_TAG + 'no text input in passwd page') } :
-                () => {
-                  WifiModel.setUserSelectedAp(this.tobeConnectedAp);
-                  WifiModel.connectWiFi(this.userInputs);
-                  this.toConnected = true;
-                  this.connectDialog.open();
-                });
+          Row() {
+            Button() {
+              Text($r('app.string.cancel'))
+                .fontSize($r('sys.float.ohos_id_text_size_body1'))
+                .fontColor($r('sys.color.ohos_id_color_text_primary_activated'))
+                .fontWeight(FontWeight.Medium)
             }
-            .height(ConfigData.WH_100_100)
-            .padding(this.isFocused === false ? { bottom: $r("app.float.wh_padding_136") } : { top: $r("app.float.wh_padding_212") })
-            .alignItems(this.isFocused === false ? VerticalAlign.Bottom : VerticalAlign.Top)
+            .height($r('app.float.wh_value_40'))
+            .width($r('app.float.deviceName_button_width'))
+            .margin({ right: $r('app.float.wh_value_12') })
+            .backgroundColor($r('sys.color.ohos_id_color_button_normal'))
+            .onClick(() => {
+              router.back();
+            });
+            Button() {
+              Text($r('app.string.wifiButtonConnect'))
+                .fontSize($r('sys.float.ohos_id_text_size_body1'))
+                .fontColor($r('sys.color.ohos_id_color_text_primary_activated'))
+                .fontWeight(FontWeight.Medium)
+            }
+            .height($r('app.float.wh_value_40'))
+            .width($r('app.float.deviceName_button_width'))
+            .backgroundColor($r('sys.color.ohos_id_color_button_normal'))
+            .opacity(this.userInputs.length < miniPassWordSize ? $r('sys.float.ohos_fa_alpha_disabled') : 1)
+            .onClick(this.userInputs.length < miniPassWordSize ?
+              () => {
+                LogUtil.info(MODULE_TAG + 'no text input in passwd page');
+              }
+                                                  :
+              () => {
+                WifiModel.setUserSelectedAp(this.tobeConnectedAp);
+                WifiModel.connectWiFi(this.userInputs);
+                this.toConnected = true;
+                this.connectDialog.open();
+            });
           }
-          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .padding(this.isFocused === false ?
+            { bottom: $r("app.float.wh_padding_136") } :
+            { top: $r("app.float.wh_padding_212") })
+          .alignItems(this.isFocused === false ? VerticalAlign.Bottom : VerticalAlign.Top)
+          .justifyContent(FlexAlign.Center);
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
+        .height(ConfigData.WH_100_100)
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
           lg: { span: 8, offset: 2 }
         });
       }
-      .width(ConfigData.WH_100_100)
-      .height(ConfigData.WH_100_100)
     }
-    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+    .backgroundColor('#F1F3F5')
     .width(ConfigData.WH_100_100)
     .height(ConfigData.WH_100_100);
   }
@@ -195,12 +179,14 @@ struct WifiPsd {
       });
     }
     this.initTextInputHint();
+
     this.tobeConnectedAp = params.apInfo;
     this.tobeConnectedSSID = this.tobeConnectedAp.ssid;
   }
 
   onPageShow() {
     LogUtil.info(MODULE_TAG + 'on page show');
+
     this.isConnectedBefore = wifi.isConnected();
 
     if (this.isConnectedBefore) {
@@ -216,7 +202,6 @@ struct WifiPsd {
     LogUtil.info(MODULE_TAG + 'on page hide');
     this.connectDialog.close();
     this.failedDialog.close();
-
     if (this.isConnectedBefore) {
       this.clearLinkedInfoTask();
     } else {
@@ -246,14 +231,12 @@ struct WifiPsd {
       if(!this.toConnected){
         return;
       }
-
       if (code === 0) {
         this.toConnected = false;
         this.connectDialog.close()
         this.failedDialog.open()
         WifiModel.removeDeviceConfig(this.tobeConnectedAp);
       }
-
       if (code === 1) {
         this.connectDialog.close();
         router.back({
@@ -277,7 +260,6 @@ struct WifiPsd {
           LogUtil.info(MODULE_TAG + 'get linked info failed');
           return;
         }
-
         // 1: Connecting, 4: Connected, 6: Disconnected
         if (result.ssid === this.tobeConnectedSSID && result.connState === 4) {
           this.connectDialog.close();
@@ -286,7 +268,6 @@ struct WifiPsd {
           });
           WifiModel.refreshApScanResults();
         }
-
         if (result.connState === 6 && this.toConnected) {
           this.toConnected = false;
           this.connectDialog.close()
@@ -337,22 +318,22 @@ struct connectProgressDialog {
         .alignItems(VerticalAlign.Center)
         .height($r("app.float.wh_value_48"))
         .width($r(ConfigData.WH_100_100))
-        .margin($r("app.float.wh_value_24"))
+        .margin({ top: $r("app.float.wh_value_24"), bottom: $r("app.float.wh_value_24"),
+          left: $r("app.float.wh_value_24"), right: $r("app.float.wh_value_24") })
       }
       .height($r("app.float.wh_value_96"))
       .borderRadius($r("app.float.radius_32"))
       .backgroundColor($r("app.color.white_bg_color"))
     }
-    .width(deviceTypeInfo === 'phone' ? ConfigData.WH_100_100 : $r("app.float.wh_value_410"))
-    .padding(deviceTypeInfo === 'phone' ? { left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12")} : {})
+    .width(deviceTypeInfo==='phone' ? ConfigData.WH_100_100 : $r("app.float.wh_value_410"))
+    .padding(deviceTypeInfo==='phone' ? { left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12")} : {})
   }
 }
 
 @CustomDialog
 struct connectFailedDialog {
-  controller: CustomDialogController;
-  @Link ControlFailedDialog: boolean;
-
+  controller: CustomDialogController ;
+  @Link ControlFailedDialog : boolean ;
   build() {
     Column() {
       Column() {
@@ -369,7 +350,7 @@ struct connectFailedDialog {
             .fontColor($r('sys.color.ohos_id_color_text_primary_activated'))
             .fontWeight(FontWeight.Medium)
             .onClick(() => {
-              this.ControlFailedDialog = true;
+              this.ControlFailedDialog = true
             })
         }
         .alignItems(VerticalAlign.Top)
@@ -383,7 +364,7 @@ struct connectFailedDialog {
       .alignItems(HorizontalAlign.Center)
       .backgroundColor($r("app.color.white_bg_color"))
     }
-    .width(deviceTypeInfo === 'phone' ? ConfigData.WH_100_100 : $r("app.float.wh_value_410"))
-    .padding(deviceTypeInfo === 'phone' ? { left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") } : {})
+    .width(deviceTypeInfo==='phone' ? ConfigData.WH_100_100 : $r("app.float.wh_value_410"))
+    .padding(deviceTypeInfo==='phone' ? { left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12")} : {})
   }
 }

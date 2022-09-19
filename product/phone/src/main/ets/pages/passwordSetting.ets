@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,17 +13,19 @@
  * limitations under the License.
  */
 
-import prompt from '@system.prompt';
-import Router from '@system.router';
 import deviceInfo from '@ohos.deviceInfo';
-import PasswordListController from '../controller/password/PasswordSettingController';
+import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
+import {DialogButtonLayout} from '../../../../../../common/component/src/main/ets/default/dialogComponent';
+import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
-import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
+import PasswordListController from '../controller/password/PasswordSettingController';
 import EntryComponent from '../../../../../../common/component/src/main/ets/default/entryComponent';
-import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import { PasswordSettingItem } from '../../../../../../common/utils/src/main/ets/default/bean/PasswordSettingItem';
+import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
+import FeatureAbility from '@ohos.ability.featureAbility';
+import prompt from '@system.prompt';
+import Router from '@system.router';
 
 const deviceTypeInfo = deviceInfo.deviceType;
 
@@ -38,7 +40,7 @@ struct PasswordSetting {
   private pinChallenge: string = '';
 
   // private Properties
-  private lockUi: boolean = false; // prevent continuous and multiple clicks
+  private lockUi: boolean = false // prevent continuous and multiple clicks
   @State isPhone: boolean = false;
   @State isTouched: boolean = false;
   @State touchedItem: boolean = false;
@@ -133,7 +135,7 @@ struct PasswordSetting {
         return;
       }
       this.lockUi = true;
-      LogUtil.info(this.TAG_PAGE + ' disable password onclick : item = ' + JSON.stringify(item));
+      LogUtil.info(this.TAG_PAGE + ' disable password onclick : item = ' + JSON.stringify(item))
       this.showClosePasswordDialog(item);
       this.lockUi = false;
     });
@@ -159,86 +161,121 @@ struct PasswordSetting {
         return;
       }
       this.lockUi = true;
-      LogUtil.info(this.TAG_PAGE + ' item onclick : item = ' + JSON.stringify(item));
-      this.gotoNextPage(item);
+      LogUtil.info(this.TAG_PAGE + ' item onclick : item = ' + JSON.stringify(item))
+      this.gotoNextPage(item)
       this.lockUi = false;
     });
   }
 
   build() {
     Column() {
-      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
-        Column() {
-          HeadComponent({ headName: $r('app.string.biometricsAndPassword'), isActive: true });
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
+        Row({}) {
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
+            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
+          });
 
-          List({ space: this.listSpace }) {
-            ForEach(this.passwordList, (group: PasswordSettingItem[]) => {
+          Column() {
+            HeadComponent({ headName: $r('app.string.biometricsAndPassword'), isActive: true })
 
-              // section title
-              if (group[0].settingIsSectionTitle && group[0].settingShouldDisplay) {
-                ListItem() {
-                  Text(group[0].settingTitle)
-                    .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-                    .fontSize($r("app.float.font_14"))
-                    .lineHeight($r("app.float.lineHeight_19"))
-                    .textAlign(TextAlign.Start)
-                    .margin({ top: $r("app.float.distance_9_5") })
-                    .padding({ left: $r('app.float.distance_12'), right: $r('app.float.distance_12') })
-                    .width(ConfigData.WH_100_100);
+            List({ space: this.listSpace }) {
+              ForEach(this.passwordList, (group: PasswordSettingItem[]) => {
+
+                // section title
+                if (group[0].settingIsSectionTitle && group[0].settingShouldDisplay) {
+                  ListItem() {
+                    Text(group[0].settingTitle)
+                      .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+                      .fontSize($r("app.float.font_14"))
+                      .lineHeight($r("app.float.lineHeight_19"))
+                      .textAlign(TextAlign.Start)
+                      .margin({ top: $r("app.float.distance_9_5") })
+                      .padding({ left: $r('app.float.distance_12'), right: $r('app.float.distance_12') })
+                      .width(ConfigData.WH_100_100);
+                  }
                 }
-              }
 
-              ListItem() {
-                List() {
-                  // item 0 is section title
-                  ForEach(group, (item: PasswordSettingItem, index: number) => {
-                    if (index > 0 && item.settingShouldDisplay) {
-                      ListItem() {
-                        if (item.settingAlias == "face_recognition") {
-                          // face recognition item
-                          this.FaceAuthItem();
-                        } else if (item.settingAlias == 'password_disable_password') {
-                          // disable password item
-                          this.DisablePasswordItem(item);
-                        } else {
-                          // normal item
-                          this.NormalItem(item);
+                ListItem() {
+                  List() { // item 0 is section title
+                    ForEach(group, (item: PasswordSettingItem, index: number) => {
+
+                      if (index > 0 && item.settingShouldDisplay) {
+
+                        ListItem() {
+                          if (item.settingAlias == "face_recognition") {
+
+                            // face recognition item
+                            this.FaceAuthItem();
+
+                          } else if (item.settingAlias == 'password_disable_password') {
+
+                            // disable password item
+                            this.DisablePasswordItem(item);
+
+                          } else {
+
+                            // normal item
+                            this.NormalItem(item);
+                          }
                         }
                       }
-                    }
-                  });
+                    });
+                  }
+                  .width(ConfigData.WH_100_100)
+                  .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
+                  .borderRadius($r('app.float.radius_24'))
+                  .divider({
+                    strokeWidth: $r('app.float.divider_wh'),
+                    color: $r('app.color.color_E3E3E3_grey'),
+                    startMargin: $r('app.float.wh_value_15'),
+                    endMargin: $r('app.float.wh_value_15')
+                  })
                 }
-                .padding($r('app.float.distance_4'))
-                .width(ConfigData.WH_100_100)
-                .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
-                .borderRadius($r('app.float.radius_24'))
-                .divider({
-                  strokeWidth: $r('app.float.divider_wh'),
-                  color: $r('app.color.color_E3E3E3_grey'),
-                  startMargin: $r('app.float.wh_value_15'),
-                  endMargin: $r('app.float.wh_value_15')
-                })
-              }
-            });
+              });
+            }
+            .margin({ top: $r('app.float.wh_value_8') })
+            .width(ConfigData.WH_100_100)
           }
-          .margin({ top: $r('app.float.wh_value_8') })
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+          .padding({
+            left: $r('sys.float.ohos_id_card_margin_start'),
+            right: $r('sys.float.ohos_id_card_margin_end')
+          })
+          .height(ConfigData.WH_100_100)
+          .width(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
+            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
+          });
+
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
+            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
+          })
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
-        .useSizeType({
-          sm: { span: 4, offset: 0 },
-          md: { span: 6, offset: 1 },
-          lg: { span: 8, offset: 2 }
-        })
+        .width(ConfigData.WH_100_100)
+        .height(ConfigData.WH_100_100);
       }
       .width(ConfigData.WH_100_100)
-      .height(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100);
     }
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
-    .height(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100);
   }
 
   //------------------------------ Router ---------------------------
@@ -277,18 +314,18 @@ struct PasswordSetting {
       primaryButton: {
         value: $r('app.string.cancel'),
         action: () => {
-          LogUtil.info(this.TAG_PAGE + 'ClosePasswordDialog cancel click callback.');
+          LogUtil.info(this.TAG_PAGE + 'ClosePasswordDialog cancel click callback.')
         }
       },
       secondaryButton: {
         value: $r('app.string.disable_'),
         action: () => {
-          LogUtil.info(this.TAG_PAGE + 'ClosePasswordDialog disable click callback.');
+          LogUtil.info(this.TAG_PAGE + 'ClosePasswordDialog disable click callback.')
           this.gotoNextPage(delItem);
         }
       },
       cancel: () => {
-        LogUtil.info(this.TAG_PAGE + 'ClosePasswordDialog Closed callbacks');
+        LogUtil.info(this.TAG_PAGE + 'ClosePasswordDialog Closed callbacks')
       },
       autoCancel: true,
       alignment: this.isPhone ? DialogAlignment.Bottom : DialogAlignment.Center,
