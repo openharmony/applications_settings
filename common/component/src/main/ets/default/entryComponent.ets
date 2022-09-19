@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,9 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import ComponentConfig from './ComponentConfig';
-import ConfigData from '../../../../../utils/src/main/ets/default/baseUtil/ConfigData';
 
 /**
  * item custom component
@@ -83,7 +81,7 @@ export default struct EntryComponent {
       .flexShrink(0)
       .alignItems(VerticalAlign.Center)
       .align(Alignment.Start)
-      .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
+      .layoutWeight(1)
 
       Row() {
         Text(this.settingValue)
@@ -100,7 +98,7 @@ export default struct EntryComponent {
             .visibility('' === this.settingArrow ? Visibility.None : Visibility.Visible)
             .width($r("app.float.wh_value_12"))
             .height($r("app.float.wh_value_24"))
-            .margin({ right: $r('app.float.wh_value_8') })
+            .margin({ right: $r('app.float.wh_value_12') })
             .fillColor($r("sys.color.ohos_id_color_primary"))
             .opacity($r("app.float.opacity_0_2"))
         } else if (this.settingArrow) {
@@ -109,7 +107,7 @@ export default struct EntryComponent {
             .fillColor($r("sys.color.ohos_id_color_primary"))
             .width($r('app.float.wh_value_24'))
             .height($r('app.float.wh_value_24'))
-            .margin({ right: $r('app.float.wh_value_12') })
+            .margin({ right: $r('app.float.wh_24') })
             .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
             .onClick(this.onArrowClick)
 
@@ -121,7 +119,7 @@ export default struct EntryComponent {
     .opacity(this.isEnabled?1:$r('sys.float.ohos_id_alpha_disabled'))
     .height(this.heights)
     .width(ComponentConfig.WH_100_100)
-    .padding({ left: $r('sys.float.ohos_id_card_margin_start') })
+    .padding({ left: $r('sys.float.ohos_id_default_padding_start') })
     .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
     .linearGradient((this.isEnabled && this.isTouched) ? {
                                                          angle: 90,

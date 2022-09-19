@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,37 +12,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import deviceInfo from '@ohos.deviceInfo';
-import CommonEvent from '@ohos.commonEvent';
-import DateAndTimeModel from '../model/dateAndTimeImpl/DateAndTimeModel';
-import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import { BaseData } from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
-import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
-import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
+import {TextComponentWithEndText} from '../../../../../../common/component/src/main/ets/default/textComponent';
+import {DialogButtonLayout} from '../../../../../../common/component/src/main/ets/default/dialogComponent';
+import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import DateAndTime from '../../../../../../common/utils/src/main/ets/default/baseUtil/DateAndTimeUtil';
-import { DialogButtonLayout } from '../../../../../../common/component/src/main/ets/default/dialogComponent';
-import { TextComponentWithEndText } from '../../../../../../common/component/src/main/ets/default/textComponent';
-
+import DateAndTimeModel from '../model/dateAndTimeImpl/DateAndTimeModel'
+import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
+import { BaseData } from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
+import CommonEvent from '@ohos.commonEvent';
+import deviceInfo from '@ohos.deviceInfo'
 const MODULE_TAG = ConfigData.TAG + '.dateAndTime -> ';
-const deviceTypeInfo = deviceInfo.deviceType;
-
+const deviceTypeInfo = deviceInfo.deviceType
 /**
  * date and time
  */
 @Entry
 @Component
 struct dateAndTime {
-  @State dateAndTimeList: BaseData[] = [];
-  @State isPhone: boolean = false;
   private date: string = '';
   private time: Resource | string = '';
   private image: string | Resource = '';
   private dateMark: string = 'date';
   private timeMark: string = 'time';
-  private subscriber;
-  private headName: string = '';
   private commonEventSubscribeInfo = {
     events: [
       CommonEvent.Support.COMMON_EVENT_TIME_CHANGED,
@@ -51,113 +44,135 @@ struct dateAndTime {
       CommonEvent.Support.COMMON_EVENT_DATE_CHANGED,
     ]
   };
-
+  private subscriber;
+  private headName: string = '';
+  @State dateAndTimeList: BaseData[] = [];
+  @State isPhone: boolean = false
   timeDialogController: CustomDialogController = new CustomDialogController({
     builder: TimeDialog24H({ action: this.onAccept }),
     cancel: this.existApp,
     autoCancel: true,
-    alignment: this.isPhone ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: this.isPhone ? '-16dp' : 0 }),
+    alignment:this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
   });
-
   dateDialogController: CustomDialogController = new CustomDialogController({
     builder: DateDialog({ action: this.onAccept }),
     cancel: this.existApp,
     autoCancel: true,
-    alignment: this.isPhone ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: this.isPhone ? '-16dp' : 0 }),
+    alignment: this.isPhone?DialogAlignment.Bottom:DialogAlignment.Center,
+    offset: ({ dx: 0, dy: this.isPhone?'-16dp':0 }),
   });
 
   build() {
     Column() {
-      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
-        Column() {
-          HeadComponent({ headName: $r('app.string.dateAndTimeTab'), isActive: true });
-
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-            Text($r('app.string.timeFormat'))
-              .fontSize($r('app.float.font_16'))
-              .fontColor($r('app.color.font_color_182431'))
-              .fontWeight(FontWeight.Medium)
-              .textAlign(TextAlign.Start)
-              .margin({
-                top: $r("app.float.wh_value_4"),
-                bottom: $r("app.float.wh_value_4"),
-                left: $r("app.float.wh_value_12")
-              })
-
-            Toggle({ type: ToggleType.Switch, isOn: this.is24hTimeFormat() })
-              .margin({ right: $r('app.float.wh_value_6') })
-              .width('36vp')
-              .height('20vp')
-              .selectedColor('#007DFF')
-              .onChange((isOn: boolean) => {
-                if (this.is24hTimeFormat()) {
-                  this.setTimeFormatAs12H();
-                } else {
-                  this.setTimeFormatAs24H();
-                }
-              });
+      GridContainer({
+        columns: 12,
+        sizeType: SizeType.Auto,
+        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+        margin: vp2px(1) === 2 ? '24vp' : '0vp'
+      }) {
+        Row({}) {
+          Column() {
           }
-          .height($r('app.float.wh_value_56'))
           .width(ConfigData.WH_100_100)
-          .backgroundColor($r("app.color.white_bg_color"))
-          .margin({ bottom: $r("app.float.wh_value_12"), top: $r("app.float.distance_8") })
-          .borderRadius($r('app.float.radius_24'));
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
+            md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 }
+          });
 
-          List() {
-            ForEach(this.dateAndTimeList, (item) => {
-              ListItem() {
-                TextComponentWithEndText({ title: item.settingTitle, endText: item.settingValue, clickEvent: () => {
-                  LogUtil.info(MODULE_TAG + 'dialog come in' + JSON.stringify(item));
-                  if (item.settingAlias === 'date') {
-                    LogUtil.info(MODULE_TAG + 'date dialog come in');
-                    this.dateDialogController.open();
+          Column() {
+            HeadComponent({ headName: $r('app.string.dateAndTimeTab'), isActive: true })
+            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Text($r('app.string.timeFormat'))
+                .fontSize($r('app.float.font_16'))
+                .fontColor($r('app.color.font_color_182431'))
+                .fontWeight(FontWeight.Medium)
+                .textAlign(TextAlign.Start)
+                .margin({
+                  top: $r("app.float.wh_value_4"),
+                  bottom: $r("app.float.wh_value_4"),
+                  left: $r("app.float.wh_value_12")
+                })
+              Toggle({ type: ToggleType.Switch, isOn: this.is24hTimeFormat() })
+                .margin({ right: $r('app.float.wh_value_6') })
+                .width('36vp')
+                .height('20vp')
+                .selectedColor('#007DFF')
+                .onChange((isOn: boolean) => {
+                  if (this.is24hTimeFormat()) {
+                    this.setTimeFormatAs12H();
+                  } else {
+                    this.setTimeFormatAs24H();
                   }
-                  if (item.settingAlias === 'time') {
-                    LogUtil.info(MODULE_TAG + 'time dialog come in');
-                    this.timeDialogController.open();
-                  }
-                } });
-              }
-            }, item => JSON.stringify(item))
+                });
+            }
+            .height($r('app.float.wh_value_56'))
+            .width(ConfigData.WH_100_100)
+            .backgroundColor($r("app.color.white_bg_color"))
+            .margin({ bottom: $r("app.float.wh_value_12"), top: $r("app.float.distance_8") })
+            .borderRadius($r('app.float.radius_24'));
+
+            List() {
+              ForEach(this.dateAndTimeList, (item) => {
+                ListItem() {
+                  TextComponentWithEndText({ title: item.settingTitle, endText: item.settingValue, clickEvent: () => {
+                    LogUtil.info(MODULE_TAG + 'dialog come in' + JSON.stringify(item))
+                    if (item.settingAlias === 'date') {
+                      LogUtil.info(MODULE_TAG + 'date dialog come in')
+                      this.dateDialogController.open()
+                    }
+                    if (item.settingAlias === 'time') {
+                      LogUtil.info(MODULE_TAG + 'time dialog come in')
+                      this.timeDialogController.open()
+                    }
+                  } });
+                }
+              }, item => JSON.stringify(item))
+            }
+            .padding({ top: $r('app.float.wh_value_4'), bottom: $r('app.float.wh_value_4') })
+            .divider({ strokeWidth: $r('app.float.divider_wh'), color: $r('sys.color.ohos_id_color_list_separator'),
+              startMargin: $r('app.float.wh_value_15'), endMargin: $r('app.float.wh_value_15') })
+            .borderRadius($r("app.float.radius_24"))
+            .backgroundColor($r("app.color.white_bg_color"))
+            .visibility(this.dateAndTimeList.length > 0 ? Visibility.Visible : Visibility.None)
           }
-          .padding({ top: $r('app.float.wh_value_4'), bottom: $r('app.float.wh_value_4') })
-          .divider({
-            strokeWidth: $r('app.float.divider_wh'),
-            color: $r('sys.color.ohos_id_color_list_separator'),
-            startMargin: $r('app.float.wh_value_15'),
-            endMargin: $r('app.float.wh_value_15')
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+          .height(ConfigData.WH_100_100)
+          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
+          .align(Alignment.Center)
+          .height(ConfigData.WH_100_100)
+          .width(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
+            md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
+          });
+
+          Column() {
+          }
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .useSizeType({
+            xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
+            md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
           })
-          .borderRadius($r("app.float.radius_24"))
-          .backgroundColor($r("app.color.white_bg_color"))
-          .visibility(this.dateAndTimeList.length > 0 ? Visibility.Visible : Visibility.None)
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
-        .useSizeType({
-          sm: { span: 4, offset: 0 },
-          md: { span: 6, offset: 1 },
-          lg: { span: 8, offset: 2 }
-        })
+        .width(ConfigData.WH_100_100)
+        .height(ConfigData.WH_100_100);
       }
       .width(ConfigData.WH_100_100)
       .height(ConfigData.WH_100_100);
     }
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
-    .height(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100);
   }
-
   /**
    * Successfully built Dialog
    */
   onAccept() {
     LogUtil.info(MODULE_TAG + 'onAccept');
   }
-
   /**
    * Cancel Dialog
    */
@@ -189,18 +204,16 @@ struct dateAndTime {
 
   aboutToAppear(): void {
     if (deviceTypeInfo === 'phone') {
-      this.isPhone = true;
+      this.isPhone = true
     } else {
-      this.isPhone = false;
+      this.isPhone = false
     }
-
     this.image = "/res/image/ic_settings_arrow.svg";
     this.time = DateAndTime.getSystemTime(this.is24hTimeFormat());
     this.date = DateAndTime.getSystemDate();
     this.changeValue();
     this.getNowTime();
-    DateAndTimeModel.registerObserver(this.getNowTime.bind(this));
-
+    DateAndTimeModel.registerObserver(this.getNowTime.bind(this))
     CommonEvent.createSubscriber(this.commonEventSubscribeInfo)
       .then(subscriber => {
         this.subscriber = subscriber;
@@ -228,6 +241,9 @@ struct dateAndTime {
       LogUtil.info(`${MODULE_TAG}, CommonEvent unSubscribe callback in, error: ${error}, commonEventData: ${commonEventData}`);
     });
     DateAndTimeModel.unregisterObserver();
+  }
+
+  onBackPress() {
   }
 
   private setTimeFormatAs24H() {
@@ -268,7 +284,6 @@ struct TimeDialog24H {
           .fontSize($r('app.float.font_20'))
           .fontColor($r("sys.color.ohos_id_color_primary"))
           .fontWeight(FontWeight.Medium);
-
         TimePicker({ selected: this.currentTime })
           .useMilitaryTime(this.isNeedMilitaryTime())
           .onChange((date: TimePickerResult) => {
@@ -277,8 +292,7 @@ struct TimeDialog24H {
           })
           .width(ConfigData.WH_100_100)
           .height($r('app.float.wh_value_200'))
-      }
-      .padding({ left: $r('sys.float.ohos_id_max_padding_start'), right: $r('app.float.wh_value_21') })
+      }.padding({ left: $r('sys.float.ohos_id_max_padding_start'), right: $r('app.float.wh_value_21') })
 
       DialogButtonLayout({
         firstClickEvent: () => {
@@ -337,7 +351,6 @@ struct DateDialog {
             .fontSize($r('app.float.font_20'))
             .fontWeight(500)
             .fontColor($r("sys.color.ohos_id_color_primary"))
-
           Text(this.day)
             .fontSize($r('app.float.font_20'))
             .fontWeight(500)

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
@@ -29,6 +28,7 @@ import FeatureAbility from '@ohos.ability.featureAbility';
 export class SettingListModel extends BaseModel {
   private TAG = `${ConfigData.TAG} SettingListModel`;
 
+
   /**
    * Get settingsList
    */
@@ -41,11 +41,11 @@ export class SettingListModel extends BaseModel {
    * Item on click
    */
   @Log
-  onSettingItemClick(targetPage): void{
-    if(targetPage === ''){
+  onClick(item): void{
+    if(item.settingAlias === 'mobileDataTab'){
       globalThis.settingsAbilityContext.startAbility({
-        bundleName: ConfigData.MOBILE_DATA_BUNDLE_NAME,
-        abilityName: ConfigData.MOBILE_DATA_ABILITY_NAME,
+          bundleName: ConfigData.MOBILE_DATA_BUNDLE_NAME,
+          abilityName: ConfigData.MOBILE_DATA_ABILITY_NAME,
       })
         .then((data) => {
           LogUtil.info(`${this.TAG}, ${ConfigData.MOBILE_DATA_BUNDLE_NAME} start successful. Data: ${JSON.stringify(data)}`);
@@ -61,7 +61,7 @@ export class SettingListModel extends BaseModel {
         })
     } else {
       Router.push({
-        uri: targetPage,
+        uri: item.settingUri,
       });
     }
   }
@@ -75,7 +75,9 @@ export class SettingListModel extends BaseModel {
       AppStorage.SetOrCreate('wifiStatus', wifi.isWifiActive());
     })
   }
+
 }
 
 let settingListModel = new SettingListModel();
+
 export default settingListModel as SettingListModel;

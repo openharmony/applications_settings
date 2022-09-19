@@ -12,29 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
-import {SubEntryComponent} from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
-import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 
-/**
- * Application
- */
+import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
+import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
+
 @Entry
 @Component
-struct Application {
-  @State columnMargin: string = '24vp';
-  private TAG = `${ConfigData.TAG} Application`;
+export default struct OuterComponent {
+  private isActive: boolean= true;
+  private icBackIsVisibility: boolean= true;
+  private headName: string | Resource = '';
+
+  @BuilderParam mContentComponent?: () => void;
 
   build() {
-    Column() {
-      GridContainer({
-        columns: 12,
-        sizeType: SizeType.Auto,
-        gutter: vp2px(1) === 2 ? '12vp' : '0vp',
-        margin: vp2px(1) === 2 ? '24vp' : '0vp'
-      }) {
+    Column(){
+      GridContainer({columns:12, sizeType: SizeType.Auto, gutter: vp2px(1) === 2 ? '12vp' : '0vp', margin: vp2px(1) === 2 ? '24vp' : '0vp'}) {
         Row({}) {
           Column() {
           }
@@ -46,17 +39,13 @@ struct Application {
           });
 
           Column() {
-            HeadComponent({ headName: $r('app.string.applyTab'), isActive: true })
-            Column({ space: this.columnMargin }) {
-              SubEntryComponent({ targetPage: 'pages/appManagement', title: $r('app.string.appManagement') })
-            }
-            .margin({ top: $r("app.float.distance_8") })
-            .width(ConfigData.WH_100_100)
+              if(this.mContentComponent){
+                this.mContentComponent()
+              }
           }
-          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-          .padding({ left: $r('app.float.wh_24'), right: $r('app.float.wh_24') })
-          .width(ConfigData.WH_100_100)
+          .align(Alignment.Center)
           .height(ConfigData.WH_100_100)
+          .width(ConfigData.WH_100_100)
           .useSizeType({
             xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
             md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 }
@@ -69,7 +58,7 @@ struct Application {
           .useSizeType({
             xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
             md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 }
-          });
+          })
         }
         .width(ConfigData.WH_100_100)
         .height(ConfigData.WH_100_100);
@@ -80,12 +69,5 @@ struct Application {
     .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     .width(ConfigData.WH_100_100)
     .height(ConfigData.WH_100_100);
-
-  }
-
-  aboutToAppear() {
-    LogUtil.info(`${this.TAG} aboutToAppear in`);
-    ResourceUtil.getString($r('app.float.distance_24')).then(value => this.columnMargin = value);
-    LogUtil.info(`${this.TAG} aboutToAppear out`);
   }
 }
