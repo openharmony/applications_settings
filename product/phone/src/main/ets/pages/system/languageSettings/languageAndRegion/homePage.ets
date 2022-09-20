@@ -127,7 +127,7 @@ struct AddedList {
                 .fontSize($r("sys.float.ohos_id_text_size_body1"))
                 .lineHeight($r("app.float.wh_value_22"))
                 .fontWeight(FontWeight.Medium)
-                .padding(LanguageAndRegionModel.isSystemLanguage(item) ? {top: $r("app.float.distance_21"), bottom: $r("app.float.distance_17")} : {top: $r("app.float.distance_10"), bottom: $r("app.float.distance_2")})
+                .padding(LanguageAndRegionModel.isSystemLanguage(item) ? {top: $r("app.float.distance_21"), bottom: $r("app.float.distance_21")} : {top: $r("app.float.distance_10"), bottom: $r("app.float.distance_2")})
                 .fontColor(LanguageAndRegionModel.isSystemLanguage(item) ? $r("app.color.font_color_007DFF") : $r("app.color.font_color_182431"))
                 .textAlign(TextAlign.Start)
 

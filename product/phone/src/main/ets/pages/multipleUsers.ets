@@ -37,24 +37,23 @@ struct MultipleUsers {
   @StorageLink("isShowAddGuest") isShowAddGuest: boolean = false;
   @StorageLink("systemAccountList") userList: account_osAccount.OsAccountInfo[] = [];
   @StorageLink("isShowDelete") isShowDelete: boolean = false;
-  @State isPhone: boolean = false;
 
   private addUserDialogController: CustomDialogController = new CustomDialogController({
     builder: AddUserDialog({
       controller: this.addUserDialogController,
       account: {},
-      confirm: this.onConfirm.bind(this)
+      confirm: this.onConfirm.bind(this),
     }),
-    alignment: this.isPhone ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: this.isPhone ? '-16dp' : 0 }),
+    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
     autoCancel: true
   });
 
   private waitDialogController: CustomDialogController = new CustomDialogController({
     builder: WaitDialog({ controller: this.waitDialogController, content: $r("app.string.isCreatingUser") }),
     autoCancel: false,
-    alignment: this.isPhone ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: this.isPhone ? '-16dp' : 0 }),
+    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
   });
 
   build() {
@@ -128,6 +127,8 @@ struct MultipleUsers {
                         }).bind(this));
                       }
                     },
+                    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+                    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
                     cancel: () => {
                       LogUtil.info("Cancel dialog.");
                     }
@@ -169,7 +170,9 @@ struct MultipleUsers {
                       LogUtil.info("Confirm delete user.");
                       SystemAccountController.removeAccount();
                     }
-                  }
+                  },
+                  alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+                  offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 })
                 });
               })
             }
@@ -213,19 +216,13 @@ struct MultipleUsers {
             SystemAccountController.switchToCreatedAccount();
           }
         },
+        alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+        offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
         cancel: () => {
           LogUtil.info("Cancel dialog.");
         }
       })
     }));
-  }
-
-  aboutToAppear(): void {
-    if (deviceTypeInfo === 'phone') {
-      this.isPhone = true;
-    } else {
-      this.isPhone = false;
-    }
   }
 
   onPageShow() {
@@ -252,8 +249,8 @@ struct UserItem {
   private dialogController: CustomDialogController = new CustomDialogController({
     builder: UserItemDialog({ dialogController: this.dialogController, user: this.user }),
     autoCancel: false,
-    alignment: this.isPhone ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: this.isPhone ? '-16dp' : 0 }),
+    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 })
   });
 
   build() {
@@ -310,7 +307,9 @@ struct UserItem {
             action: () => {
               SystemAccountController.switchUser(this.user.localId);
             }
-          }
+          },
+          alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+          offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 })
         });
       }
     })
@@ -344,9 +343,15 @@ struct UserItemDialog {
 
   build() {
     if (SystemAccountController.isCurrentUser(this.user)) {
-      CurrentDialogBuilder({ controller: this.dialogController, user: this.user });
+      CurrentDialogBuilder({
+        controller: this.dialogController,
+        user: this.user
+      });
     } else {
-      UserDialogBuilder({ controller: this.dialogController, user: this.user });
+      UserDialogBuilder({
+        controller: this.dialogController,
+        user: this.user
+      });
     }
   }
 }
@@ -362,19 +367,21 @@ struct CurrentDialogBuilder {
       Image("/res/image/ic_user_portrait.svg")
         .width($r("app.float.wh_value_40"))
         .height($r("app.float.wh_value_40"))
-        .margin({ top: $r("app.float.wh_value_24"), bottom: $r("app.float.wh_value_16") })
+        .margin({ top: $r("app.float.wh_value_24"), bottom: $r("app.float.wh_value_13") })
         .onClick((event) => {
           LogUtil.info("Click to modify user image.")
           let chooseImageDialog = new CustomDialogController({
             builder: ChooseImageDialog(),
-            alignment: DialogAlignment.Center,
-            offset: ({ dx: 0, dy: '-24dp' }),
+            alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+            offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 })
           });
           chooseImageDialog.open();
         })
 
       Text($r("app.string.addUserImage"))
+        .fontFamily('HarmonyHeiTi')
         .fontSize($r("app.float.font_16"))
+        .height($r("app.float.wh_value_22"))
         .fontColor($r("sys.color.ohos_id_color_primary"))
         .fontWeight(FontWeight.Medium)
         .margin({ bottom: $r("app.float.wh_value_8") })
@@ -383,7 +390,7 @@ struct CurrentDialogBuilder {
         .placeholderColor($r("app.color.font_color_182431"))
         .placeholderFont({
           size: $r("app.float.font_16"),
-          weight: FontWeight.Normal,
+          weight: FontWeight.Regular,
           style: FontStyle.Normal
         })
         .width(ConfigData.WH_100_100)
@@ -422,7 +429,8 @@ struct CurrentDialogBuilder {
           SystemAccountController.setAccountName(this.user.localId, this.tempName);
         }
       })
-    }.padding({ left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") })
+    }
+    .padding({ left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") })
     .borderRadius('24vp')
     .height('220vp')
   }
@@ -438,6 +446,8 @@ struct UserDialogBuilder {
       controller: this.waitController,
       content: $r("app.string.isRemoving")
     }),
+    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
     autoCancel: false
   });
 
@@ -487,6 +497,8 @@ struct UserDialogBuilder {
                 });
               }
             },
+            alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+            offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 })
           });
           this.controller.close();
         })

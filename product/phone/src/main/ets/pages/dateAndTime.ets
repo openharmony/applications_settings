@@ -35,7 +35,6 @@ const deviceTypeInfo = deviceInfo.deviceType;
 @Component
 struct dateAndTime {
   @State dateAndTimeList: BaseData[] = [];
-  @State isPhone: boolean = false;
   private date: string = '';
   private time: Resource | string = '';
   private image: string | Resource = '';
@@ -56,16 +55,16 @@ struct dateAndTime {
     builder: TimeDialog24H({ action: this.onAccept }),
     cancel: this.existApp,
     autoCancel: true,
-    alignment: this.isPhone ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: this.isPhone ? '-16dp' : 0 }),
+    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
   });
 
   dateDialogController: CustomDialogController = new CustomDialogController({
     builder: DateDialog({ action: this.onAccept }),
     cancel: this.existApp,
     autoCancel: true,
-    alignment: this.isPhone ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: this.isPhone ? '-16dp' : 0 }),
+    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
   });
 
   build() {
@@ -122,7 +121,7 @@ struct dateAndTime {
               }
             }, item => JSON.stringify(item))
           }
-          .padding({ top: $r('app.float.wh_value_4'), bottom: $r('app.float.wh_value_4') })
+          .padding($r('app.float.wh_value_4'))
           .divider({
             strokeWidth: $r('app.float.divider_wh'),
             color: $r('sys.color.ohos_id_color_list_separator'),
@@ -188,12 +187,6 @@ struct dateAndTime {
   }
 
   aboutToAppear(): void {
-    if (deviceTypeInfo === 'phone') {
-      this.isPhone = true;
-    } else {
-      this.isPhone = false;
-    }
-
     this.image = "/res/image/ic_settings_arrow.svg";
     this.time = DateAndTime.getSystemTime(this.is24hTimeFormat());
     this.date = DateAndTime.getSystemDate();

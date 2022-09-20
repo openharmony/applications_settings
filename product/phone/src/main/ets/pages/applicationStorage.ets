@@ -14,6 +14,7 @@
  */
 
 import Router from '@system.router';
+import deviceInfo from '@ohos.deviceInfo';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import { SubHeader } from '../../../../../../common/component/src/main/ets/default/textComponent';
@@ -23,6 +24,7 @@ import HeadComponent from '../../../../../../common/component/src/main/ets/defau
 import EntryComponent from '../../../../../../common/component/src/main/ets/default/entryComponent';
 
 let appInfo;
+const deviceTypeInfo = deviceInfo.deviceType;
 
 /**
  * Application storage
@@ -30,6 +32,7 @@ let appInfo;
 @Entry
 @Component
 struct ApplicationStorage {
+  @State isPhoneOrRK: boolean = false;
   @State cacheValue: number = 0;
   @State storageList: any[]= [];
   @State isTouched: boolean = false;
@@ -172,6 +175,12 @@ struct ApplicationStorage {
 
   @Log
   aboutToAppear() {
+    if (deviceTypeInfo === 'phone' || deviceTypeInfo === 'default') {
+      this.isPhoneOrRK = true;
+    } else {
+      this.isPhoneOrRK = false;
+    }
+
     // bind component and initialize
     if (this.controller) {
       this.controller.bindComponent(this)
@@ -209,7 +218,8 @@ struct ApplicationStorage {
           LogUtil.info(ConfigData.TAG + `callback success:`);
         }
       },
-      alignment: DialogAlignment.Center
+      alignment: this.isPhoneOrRK ? DialogAlignment.Bottom : DialogAlignment.Center,
+      offset: ({ dx: 0, dy: this.isPhoneOrRK ? '-24dp' : 0 })
     })
   }
 }

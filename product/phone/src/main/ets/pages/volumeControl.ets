@@ -14,18 +14,15 @@
  */
 
 import Audio from '@ohos.multimedia.audio';
-import deviceInfo from '@ohos.deviceInfo';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import { SubHeader } from '../../../../../../common/component/src/main/ets/default/textComponent';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import { VolumeModel, RingerModel, registerObserver } from '../model/volumeControlImpl/VolumeControlModel';
-import { OuterLayoutComponentNoParam } from '../../../../../../common/component/src/main/ets/default/outerLayoutComponent';
 
 const VOLUME_MIN_VALUE = 0;
 const VOLUME_MAX_VALUE = 15;
-const deviceTypeInfo = deviceInfo.deviceType;
 
 /**
  * Volume control
@@ -35,29 +32,39 @@ const deviceTypeInfo = deviceInfo.deviceType;
 export struct VolumeControl {
   private TAG = ConfigData.TAG + ' VolumeControl ';
 
-  @Builder mVolumeControlComponent() {
-    Column() {
-      //head
-      HeadComponent({ headName: $r('app.string.volumeControlTab') });
-
-      SubHeader({ titleContent: $r('app.string.soundMode') });
-
-      // sound mode
-      AudioRingerModeComponent();
-
-      SubHeader({ titleContent: $r('app.string.volumeControl') });
-
-      // volume control
-      VolumeControlComponent();
-    }
-  }
-
   build() {
-    Column(){
-      OuterLayoutComponentNoParam({
-        mContentComponentNoParam: this.mVolumeControlComponent
-      })
+    Column() {
+      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
+        Column() {
+          //head
+          HeadComponent({ headName: $r('app.string.volumeControlTab') });
+
+          SubHeader({ titleContent: $r('app.string.soundMode') });
+
+          // sound mode
+          AudioRingerModeComponent();
+
+          SubHeader({ titleContent: $r('app.string.volumeControl') });
+
+          // volume control
+          VolumeControlComponent();
+        }
+        .padding({
+          left: $r('sys.float.ohos_id_card_margin_start'),
+          right: $r('sys.float.ohos_id_card_margin_end')
+        })
+        .useSizeType({
+          sm: { span: 4, offset: 0 },
+          md: { span: 6, offset: 1 },
+          lg: { span: 8, offset: 2 }
+        })
+      }
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100)
     }
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100)
   }
 
   @Log
@@ -80,8 +87,10 @@ struct AudioRingerModeComponent {
   private TAG = ConfigData.TAG + ' AudioRingerModeComponent ';
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween }) {
-      RowSplit() {
+    Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceAround }) {
+      Row() {
+        Blank()
+
         AudioRingerModeItem({
           checked: $ringerModeNormal,
           audioRingerModel: this.ringerNormalModel,
@@ -89,15 +98,25 @@ struct AudioRingerModeComponent {
           text: $r('app.string.soundModeSound')
         });
 
+        Blank()
+
+        Divider()
+          .vertical(true)
+          .margin({ bottom: 14 })
+          .color($r('sys.color.ohos_id_color_list_separator'))
+
+        Blank()
+
         AudioRingerModeItem({
           checked: $ringerModeSilent,
           audioRingerModel: this.ringerSilentModel,
           image: $r("app.media.ic_ring_off"),
           text: $r('app.string.soundModeSilent')
         });
+
+        Blank()
       }
-      .resizeable(false)
-      .colorBlend($r("sys.color.ohos_id_color_panel_bg"))
+      .width(ConfigData.WH_100_100)
     }
     .borderRadius($r('app.float.radius_24'))
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
@@ -105,7 +124,7 @@ struct AudioRingerModeComponent {
     .height($r('app.float.wh_value_119'))
     .padding({
       top: $r('app.float.distance_14'),
-      bottom: $r('app.float.distance_14')
+      bottom: $r('app.float.distance_2')
     })
   }
 
@@ -125,18 +144,9 @@ struct AudioRingerModeItem {
   private audioRingerModel: RingerModel;
   private image;
   private text: string | Resource;
-  @State isRk: boolean = true;
-
-  aboutToAppear() {
-    if (deviceTypeInfo === 'default') {
-      this.isRk = true;
-    } else {
-      this.isRk = false;
-    }
-  }
 
   build() {
-   Column() {
+    Column() {
       Image(this.image)
         .width($r('app.float.wh_value_24'))
         .height($r('app.float.wh_value_24'))
@@ -149,20 +159,18 @@ struct AudioRingerModeItem {
         .lineHeight($r("app.float.lineHeight_19"))
         .fontWeight(FontWeight.Regular)
         .textAlign(TextAlign.Center)
-        .margin({top:$r('app.float.distance_8')});
+        .margin({ top: $r('app.float.distance_8') });
 
       Radio({ value: '', group: '' })
-        .width(this.isRk ? $r('app.float.distance_8') : $r('app.float.wh_value_24'))
-        .height(this.isRk ? $r('app.float.distance_8') : $r('app.float.wh_value_24'))
-        .margin({top: $r('app.float.distance_4')})
+        .width($r('app.float.wh_value_24'))
+        .height($r('app.float.wh_value_24'))
+        .margin({ top: $r('app.float.distance_4') })
         .checked(this.checked)
         .onChange((vue) => {
           this.audioRingerModel.setRingerMode();
         })
     }
     .alignItems(HorizontalAlign.Center)
-    .width(ConfigData.WH_50_100)
-    .height(ConfigData.WH_100_100)
     .onClick(() => {
       LogUtil.info(ConfigData.TAG + 'AudioRingerModeItem : item is clicked');
       this.audioRingerModel.setRingerMode();

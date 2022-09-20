@@ -20,7 +20,6 @@ import ConfigData from '../../../../../../common/utils/src/main/ets/default/base
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import { SubHeader } from '../../../../../../common/component/src/main/ets/default/textComponent';
 import { BrightnessSettingModel } from '../model/displayAndBrightnessImpl/brightness/BrightnessSettingModel';
-import { OuterLayoutComponentWithParam } from '../../../../../../common/component/src/main/ets/default/outerLayoutComponent';
 
 const BRIGHTNESS_STEP_VALUE = 1;
 
@@ -33,64 +32,74 @@ struct BrightnessSettings {
   @State brightnessSettingModel: BrightnessSettingModel = new BrightnessSettingModel();
   private TAG = ConfigData.TAG + 'BrightnessSettings ';
 
-  @Builder mBrightnessSettings(brightnessSettingModel) {
-    Column() {
-      HeadComponent({ headName: $r('app.string.brightnessTab'), isActive: true });
-
-      SubHeader({ titleContent: $r('app.string.brightness') });
-
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        Image($r('app.media.ic_settings_brightness_maximum'))
-          .padding("3vp")
-          .width($r('app.float.wh_value_24'))
-          .height($r('app.float.wh_value_24'))
-          .objectFit(ImageFit.Contain)
-          .fillColor($r("sys.color.ohos_id_color_primary"))
-          .opacity($r("sys.float.ohos_fa_alpha_content_secondary"))
-
-        Slider({
-          value: brightnessSettingModel.getValue(),
-          min: brightnessSettingModel.getMinBrightness(),
-          max: brightnessSettingModel.getMaxBrightness(),
-          step: BRIGHTNESS_STEP_VALUE,
-          style: SliderStyle.InSet
-        })
-          .selectedColor($r('app.color.font_color_007DFF'))
-          .blockColor(Color.White)
-          .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
-          .padding({ left: $r('app.float.distance_12'), right: $r('app.float.distance_12') })
-          .onChange((number, mode: SliderChangeMode) => {
-            brightnessSettingModel.setValue(number, mode);
-          });
-
-        Image($r('app.media.ic_settings_brightness_maximum'))
-          .width($r('app.float.wh_value_24'))
-          .height($r('app.float.wh_value_24'))
-          .objectFit(ImageFit.Contain)
-          .fillColor($r("sys.color.ohos_id_color_primary"))
-          .opacity($r("sys.float.ohos_fa_alpha_content_secondary"))
-      }
-      .padding({
-        left: $r('sys.float.ohos_id_card_margin_start'),
-        right: $r("sys.float.ohos_id_card_margin_end")
-      })
-      .height($r('app.float.distance_64'))
-      .width(ConfigData.WH_100_100)
-      .borderRadius($r('app.float.radius_24'))
-      .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
-
-      SubHeader({ titleContent: $r('app.string.screen') })
-
-      ScreenModelComponent()
-    }
-  }
-
   build() {
-    Column(){
-      OuterLayoutComponentWithParam({
-        mContentComponentWithParam: this.mBrightnessSettings(this.brightnessSettingModel)
-      })
+    Column() {
+      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
+        Column() {
+          HeadComponent({ headName: $r('app.string.brightnessTab'), isActive: true });
+
+          SubHeader({ titleContent: $r('app.string.brightness') });
+
+          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Image($r('app.media.ic_settings_brightness_maximum'))
+              .padding("3vp")
+              .width($r('app.float.wh_value_24'))
+              .height($r('app.float.wh_value_24'))
+              .objectFit(ImageFit.Contain)
+              .fillColor($r("sys.color.ohos_id_color_primary"))
+              .opacity($r("sys.float.ohos_fa_alpha_content_secondary"))
+
+            Slider({
+              value: this.brightnessSettingModel.getValue(),
+              min: this.brightnessSettingModel.getMinBrightness(),
+              max: this.brightnessSettingModel.getMaxBrightness(),
+              step: BRIGHTNESS_STEP_VALUE,
+              style: SliderStyle.InSet
+            })
+              .selectedColor($r('app.color.font_color_007DFF'))
+              .blockColor(Color.White)
+              .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
+              .padding({ left: $r('app.float.distance_12'), right: $r('app.float.distance_12') })
+              .onChange((number, mode: SliderChangeMode) => {
+                this.brightnessSettingModel.setValue(number, mode);
+              });
+
+            Image($r('app.media.ic_settings_brightness_maximum'))
+              .width($r('app.float.wh_value_24'))
+              .height($r('app.float.wh_value_24'))
+              .objectFit(ImageFit.Contain)
+              .fillColor($r("sys.color.ohos_id_color_primary"))
+              .opacity($r("sys.float.ohos_fa_alpha_content_secondary"))
+          }
+          .padding({
+            left: $r('sys.float.ohos_id_card_margin_start'),
+            right: $r("sys.float.ohos_id_card_margin_end")
+          })
+          .height($r('app.float.distance_64'))
+          .width(ConfigData.WH_100_100)
+          .borderRadius($r('app.float.radius_24'))
+          .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
+
+          SubHeader({ titleContent: $r('app.string.screen') })
+
+          ScreenModelComponent()
+        }
+        .padding({
+          left: $r('sys.float.ohos_id_card_margin_start'),
+          right: $r('sys.float.ohos_id_card_margin_end')
+        })
+        .useSizeType({
+          sm: { span: 4, offset: 0 },
+          md: { span: 6, offset: 1 },
+          lg: { span: 8, offset: 2 }
+        })
+      }
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100)
     }
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100)
   }
 
   @Log

@@ -160,6 +160,7 @@ struct ButtonComponent {
   build() {
     Button({ type: ButtonType.Capsule, stateEffect: true }) {
       Text(this.text)
+        .width(ConfigData.WH_100_100)
         .fontSize($r('app.float.font_16'))
         .fontWeight(FontWeight.Medium)
         .lineHeight($r('app.float.wh_value_22'))
