@@ -1,6 +1,6 @@
 //@ts-nocheck
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import ComponentConfig from './ComponentConfig';
 
 /**
@@ -60,12 +61,13 @@ export struct DialogButtonLayoutWithState {
         .fontWeight(FontWeight.Medium)
         .width(ComponentConfig.WH_50_100)
         .onClick((event) => this.firstClickEvent(event))
-        .height($r("app.float.wh_value_22"))
+        .height($r("app.float.wh_value_40"))
+
       Divider()
         .strokeWidth($r("app.float.wh_value_1"))
         .color($r("sys.color.ohos_id_color_list_separator"))
         .vertical(true)
-        .height($r("app.float.wh_value_22"))
+        .height($r("app.float.wh_value_40"))
         .opacity($r("app.float.opacity_0_2"))
 
       Button(this.secondTitle)
@@ -77,10 +79,8 @@ export struct DialogButtonLayoutWithState {
         .enabled(this.secondButtonState)
         .opacity(this.secondButtonState ? 1 : 0.5)
         .onClick(event => this.secondClickEvent(event))
-        .height($r("app.float.wh_value_22"))
+        .height($r("app.float.wh_value_40"))
     }
-    .height($r("app.float.wh_value_40"))
     .margin({ bottom: $r("app.float.wh_value_16") })
-    .padding({ top: $r("app.float.distance_9") })
   }
 }

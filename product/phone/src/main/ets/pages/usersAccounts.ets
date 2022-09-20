@@ -15,10 +15,10 @@
 
 import SystemAccount from '../model/usersAndAccounts/systemAccountModel';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import { SubHeader } from '../../../../../../common/component/src/main/ets/default/textComponent';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import { SubEntryComponentWithEndText } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
-import { OuterLayoutComponentNoParam } from '../../../../../../common/component/src/main/ets/default/outerLayoutComponent';
 
 /**
 * System account home page.
@@ -28,28 +28,38 @@ import { OuterLayoutComponentNoParam } from '../../../../../../common/component/
 struct UsersAccounts {
   @State accountName: string = "";
 
-  @Builder mUsersAccounts() {
-    Column() {
-      // head
-      HeadComponent({ headName: $r("app.string.usersAccountsTab"), isActive: true });
-
-      SubHeader({ titleContent: $r('app.string.user') });
-
-      // current user subEntry
-      SubEntryComponentWithEndText({
-        targetPage: "pages/multipleUsers",
-        title: $r("app.string.currentLogin"),
-        endText: this.accountName
-      });
-    }
-  }
-
   build() {
-    Column(){
-      OuterLayoutComponentNoParam({
-        mContentComponentNoParam: this.mUsersAccounts
-      })
+    Column() {
+      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
+        Column() {
+          // head
+          HeadComponent({ headName: $r("app.string.usersAccountsTab"), isActive: true });
+
+          SubHeader({ titleContent: $r('app.string.user') });
+
+          // current user subEntry
+          SubEntryComponentWithEndText({
+            targetPage: "pages/multipleUsers",
+            title: $r("app.string.currentLogin"),
+            endText: this.accountName
+          });
+        }
+        .padding({
+          left: $r('sys.float.ohos_id_card_margin_start'),
+          right: $r('sys.float.ohos_id_card_margin_end')
+        })
+        .useSizeType({
+          sm: { span: 4, offset: 0 },
+          md: { span: 6, offset: 1 },
+          lg: { span: 8, offset: 2 }
+        })
+      }
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100)
     }
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100)
   }
 
   onPageShow() {

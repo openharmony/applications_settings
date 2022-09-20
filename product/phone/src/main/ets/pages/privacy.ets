@@ -19,7 +19,6 @@ import ConfigData from '../../../../../../common/utils/src/main/ets/default/base
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import { SubEntryComponent } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
-import { OuterLayoutComponentNoParam } from '../../../../../../common/component/src/main/ets/default/outerLayoutComponent';
 
 /**
  * Home Page Of Privacy Settings
@@ -29,26 +28,36 @@ import { OuterLayoutComponentNoParam } from '../../../../../../common/component/
 struct PrivacySettings {
   private TAG = `${ConfigData.TAG} PrivacySettings `;
 
-  @Builder mPrivacySettings() {
-    Column() {
-      HeadComponent({ headName: $r('app.string.privacy'), isActive: true });
-
-      Column() {
-        PermissionComponent()
-          .margin({ bottom: $r('sys.float.ohos_id_card_margin_start') })
-
-        SubEntryComponent({ targetPage: 'pages/locationServices', title: $r('app.string.locationServicesTab') });
-      }
-      .margin({ top: $r("app.float.distance_8") })
-    }
-  }
-
   build() {
-    Column(){
-      OuterLayoutComponentNoParam({
-        mContentComponentNoParam: this.mPrivacySettings
-      })
+    Column() {
+      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
+        Column() {
+          HeadComponent({ headName: $r('app.string.privacy'), isActive: true });
+
+          Column() {
+            PermissionComponent()
+              .margin({ bottom: $r('sys.float.ohos_id_card_margin_start') })
+
+            SubEntryComponent({ targetPage: 'pages/locationServices', title: $r('app.string.locationServicesTab') });
+          }
+          .margin({ top: $r("app.float.distance_8") })
+        }
+        .padding({
+          left: $r('sys.float.ohos_id_card_margin_start'),
+          right: $r('sys.float.ohos_id_card_margin_end')
+        })
+        .useSizeType({
+          sm: { span: 4, offset: 0 },
+          md: { span: 6, offset: 1 },
+          lg: { span: 8, offset: 2 }
+        })
+      }
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100)
     }
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100)
   }
 
   aboutToAppear() {

@@ -17,7 +17,6 @@ import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUti
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import { SubEntryComponent } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
-import { OuterLayoutComponentNoParam } from '../../../../../../common/component/src/main/ets/default/outerLayoutComponent';
 
 /**
  * Application
@@ -27,23 +26,33 @@ import { OuterLayoutComponentNoParam } from '../../../../../../common/component/
 struct Application {
   private TAG = `${ConfigData.TAG} Application `;
 
-  @Builder mApplication() {
-    Column() {
-      HeadComponent({ headName: $r('app.string.applyTab'), isActive: true })
-
-      Column() {
-        SubEntryComponent({ targetPage: 'pages/appManagement', title: $r('app.string.appManagement') })
-      }
-      .margin({ top: $r("app.float.distance_8") })
-    }
-  }
-
   build() {
-    Column(){
-      OuterLayoutComponentNoParam({
-        mContentComponentNoParam: this.mApplication
-      })
+    Column() {
+      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
+        Column() {
+          HeadComponent({ headName: $r('app.string.applyTab'), isActive: true })
+
+          Column() {
+            SubEntryComponent({ targetPage: 'pages/appManagement', title: $r('app.string.appManagement') })
+          }
+          .margin({ top: $r("app.float.distance_8") })
+        }
+        .padding({
+          left: $r('sys.float.ohos_id_card_margin_start'),
+          right: $r('sys.float.ohos_id_card_margin_end')
+        })
+        .useSizeType({
+          sm: { span: 4, offset: 0 },
+          md: { span: 6, offset: 1 },
+          lg: { span: 8, offset: 2 }
+        })
+      }
+      .width(ConfigData.WH_100_100)
+      .height(ConfigData.WH_100_100)
     }
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100)
   }
 
   aboutToAppear() {

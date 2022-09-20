@@ -39,7 +39,7 @@ struct PasswordSetting {
 
   // private Properties
   private lockUi: boolean = false; // prevent continuous and multiple clicks
-  @State isPhone: boolean = false;
+  @State isPhoneOrRK: boolean = false;
   @State isTouched: boolean = false;
   @State touchedItem: boolean = false;
   @State listSpace: string = '10vp';
@@ -47,10 +47,10 @@ struct PasswordSetting {
 
   @Log
   aboutToAppear(): void {
-    if (deviceTypeInfo === 'phone') {
-      this.isPhone = true;
+    if (deviceTypeInfo === 'phone' || deviceTypeInfo === 'default') {
+      this.isPhoneOrRK = true;
     } else {
-      this.isPhone = false;
+      this.isPhoneOrRK = false;
     }
 
     // bind component and initialize
@@ -291,8 +291,8 @@ struct PasswordSetting {
         LogUtil.info(this.TAG_PAGE + 'ClosePasswordDialog Closed callbacks');
       },
       autoCancel: true,
-      alignment: this.isPhone ? DialogAlignment.Bottom : DialogAlignment.Center,
-      offset: ({ dx: 0, dy: this.isPhone ? '-16dp' : 0 })
+      alignment: this.isPhoneOrRK ? DialogAlignment.Bottom : DialogAlignment.Center,
+      offset: ({ dx: 0, dy: this.isPhoneOrRK ? '-24dp' : 0 })
     })
   }
 }

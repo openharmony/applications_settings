@@ -55,7 +55,6 @@ struct PasswordInput {
   @State isTouchedLeft: boolean = false;
   @State isTouchedRight: boolean = false;
   @State isFocused: boolean = false;
-  @State isPhone: boolean = false;
 
   // handler
   private passwordOnChangeHandler: (value: string) => void;
@@ -73,8 +72,8 @@ struct PasswordInput {
       }
     }),
     autoCancel: true,
-    alignment: this.isPhone ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: this.isPhone ? '-16dp' : 0 }),
+    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 })
   });
 
   @Log
@@ -93,12 +92,6 @@ struct PasswordInput {
       .subscribe();
 
     this.updateView();
-
-    if (deviceTypeInfo === 'phone') {
-      this.isPhone = true;
-    } else {
-      this.isPhone = false;
-    }
   }
 
   @Log
@@ -305,7 +298,7 @@ struct PasswordInput {
               .onClick(this.okOnClickHandler)
             }
             .alignItems(this.isFocused === false ? VerticalAlign.Bottom : VerticalAlign.Top)
-            .height(this.passwordType == PinSubType.PIN_MIXED ? "63%" : "65%")
+            .height(this.passwordType == PinSubType.PIN_MIXED && (deviceTypeInfo === 'phone' || deviceTypeInfo === 'default') ? "58%" : "66%")
             .padding(this.isFocused === false ? { bottom: 24 } : { top: (this.passwordType == PinSubType.PIN_MIXED ? "14%" : "16%") })
           }
           .width(ConfigData.WH_100_100)

@@ -14,6 +14,7 @@
  */
 
 import Router from '@system.router';
+import deviceInfo from '@ohos.deviceInfo';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ApplicationInfoController from '../controller/application/ApplicationInfoController';
 import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
@@ -23,6 +24,7 @@ import EntryComponent from '../../../../../../common/component/src/main/ets/defa
 import { DialogButtonLayout } from '../../../../../../common/component/src/main/ets/default/dialogComponent';
 
 const MODULE_TAG = ConfigData.TAG + 'application-> ';
+const deviceTypeInfo = deviceInfo.deviceType;
 let appInfo;
 
 /**
@@ -32,6 +34,7 @@ let appInfo;
 @Component
 struct ApplicationInfo {
   private controller: ApplicationInfoController = new ApplicationInfoController();
+  @State isPhoneOrRK: boolean = false;
   @State isRemovableBundle: boolean = true;
   @State isTouchedLeft: boolean = false;
   @State isTouchedRight: boolean = false;
@@ -41,8 +44,9 @@ struct ApplicationInfo {
         this.controller.uninstall(appInfo.settingBundleName);
       }
     }),
-    alignment: DialogAlignment.Center,
-    autoCancel: true
+    alignment: this.isPhoneOrRK ? DialogAlignment.Bottom : DialogAlignment.Center,
+    autoCancel: true,
+    offset: ({ dx: 0, dy: this.isPhoneOrRK ? '-24dp' : 0 })
   });
 
   build() {
@@ -156,6 +160,12 @@ struct ApplicationInfo {
 
   @Log
   aboutToAppear(): void{
+    if (deviceTypeInfo === 'phone' || deviceTypeInfo === 'default') {
+      this.isPhoneOrRK = true;
+    } else {
+      this.isPhoneOrRK = false;
+    }
+
     appInfo = Router.getParams();
     LogUtil.info('settings ApplicationInfo aboutToAppear this.item:' + JSON.stringify(appInfo));
     this.updateRemovableStatus(appInfo.settingBundleName);
@@ -186,7 +196,8 @@ struct ApplicationInfo {
           callback();
         }
       },
-      alignment: DialogAlignment.Center
+      alignment: this.isPhoneOrRK ? DialogAlignment.Bottom : DialogAlignment.Center,
+      offset: ({ dx: 0, dy: this.isPhoneOrRK ? '-24dp' : 0 })
     })
   }
 

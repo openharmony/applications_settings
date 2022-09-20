@@ -17,7 +17,6 @@ import NfcModel from '../model/moreConnectionsImpl/NfcModel';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
-import { OuterLayoutComponentWithParam } from '../../../../../../common/component/src/main/ets/default/outerLayoutComponent';
 
 const TAG = ConfigData.TAG + 'Nfc: ';
 
@@ -29,58 +28,68 @@ struct Nfc {
   @StorageLink('nfcImageWidth') nfcImageHeight: number = null;
   private switchDebounceFlag = undefined;
 
-  @Builder mNfc(isNfcEnabled: boolean) {
+  build() {
     Column() {
-      HeadComponent({ headName: $r('app.string.NFC'), isActive: true });
+      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
+        Column() {
+          HeadComponent({ headName: $r('app.string.NFC'), isActive: true });
 
-      Image($r("app.media.ic_nfc"))
-        .width(this.nfcImageWidth + "px")
-        .height(this.nfcImageHeight + "px")
+          Image($r("app.media.ic_nfc"))
+            .width(this.nfcImageWidth + "px")
+            .height(this.nfcImageHeight + "px")
 
-      Text($r("app.string.nfcTips"))
-        .fontFamily('HarmonyHeiTi')
-        .fontWeight(FontWeight.Regular)
-        .fontSize($r("app.float.font_14"))
-        .lineHeight($r("app.float.lineHeight_19"))
-        .fontColor($r("app.color.font_color_182431"))
-        .margin({ bottom: $r("app.float.distance_36"), top: $r("app.float.distance_24"), left: $r("app.float.distance_12"), right: $r("app.float.distance_12") })
-        .opacity($r("app.float.opacity_100_60"))
-        .textAlign(TextAlign.Center)
+          Text($r("app.string.nfcTips"))
+            .fontFamily('HarmonyHeiTi')
+            .fontWeight(FontWeight.Regular)
+            .fontSize($r("app.float.font_14"))
+            .lineHeight($r("app.float.lineHeight_19"))
+            .fontColor($r("app.color.font_color_182431"))
+            .margin({ bottom: $r("app.float.distance_36"), top: $r("app.float.distance_24"), left: $r("app.float.distance_12"), right: $r("app.float.distance_12") })
+            .opacity($r("app.float.opacity_100_60"))
+            .textAlign(TextAlign.Center)
 
-      Row() {
-        Text($r('app.string.NFC'))
-          .fontSize($r('sys.float.ohos_id_text_size_body1'))
-          .fontColor($r('sys.color.ohos_id_color_text_primary'))
-          .fontWeight(FontWeight.Medium)
+          Row() {
+            Text($r('app.string.NFC'))
+              .fontSize($r('sys.float.ohos_id_text_size_body1'))
+              .fontColor($r('sys.color.ohos_id_color_text_primary'))
+              .fontWeight(FontWeight.Medium)
 
-        Blank()
+            Blank()
 
-        Stack({ alignContent: Alignment.Start }) {
-          Toggle({ type: ToggleType.Switch, isOn: isNfcEnabled })
-            .width('36vp')
-            .height('20vp')
-            .selectedColor($r("app.color.toggle_selected_color_007DFF"))
-            .margin({ left: $r('app.float.wh_value_6') })
-            .onChange((isOn: boolean) => {
-              this.switchNfcActiveStatus();
-            });
+            Stack({ alignContent: Alignment.Start }) {
+              Toggle({ type: ToggleType.Switch, isOn: this.isNfcEnabled })
+                .width('36vp')
+                .height('20vp')
+                .selectedColor($r("app.color.toggle_selected_color_007DFF"))
+                .margin({ left: $r('app.float.wh_value_6') })
+                .onChange((isOn: boolean) => {
+                  this.switchNfcActiveStatus();
+                });
+            }
+          }
+          .width(ConfigData.WH_100_100)
+          .height($r('app.float.wh_value_56'))
+          .backgroundColor($r("app.color.white_bg_color"))
+          .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_6') })
+          .alignItems(VerticalAlign.Center)
+          .borderRadius($r('app.float.radius_24'))
         }
+        .padding({
+          left: $r('sys.float.ohos_id_card_margin_start'),
+          right: $r('sys.float.ohos_id_card_margin_end')
+        })
+        .useSizeType({
+          sm: { span: 4, offset: 0 },
+          md: { span: 6, offset: 1 },
+          lg: { span: 8, offset: 2 }
+        })
       }
       .width(ConfigData.WH_100_100)
-      .height($r('app.float.wh_value_56'))
-      .backgroundColor($r("app.color.white_bg_color"))
-      .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_6') })
-      .alignItems(VerticalAlign.Center)
-      .borderRadius($r('app.float.radius_24'))
+      .height(ConfigData.WH_100_100)
     }
-  }
-
-  build() {
-    Column(){
-      OuterLayoutComponentWithParam({
-        mContentComponentWithParam: this.mNfc(this.isNfcEnabled)
-      })
-    }
+    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100)
   }
 
   switchNfcActiveStatus() {
