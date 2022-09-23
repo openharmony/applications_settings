@@ -86,7 +86,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
     BluetoothModel.unsubscribeBluetoothDeviceFind();
     BluetoothModel.unsubscribeBondStateChange();
     BluetoothModel.unsubscribeDeviceStateChange();
-        AppStorage.Delete('BluetoothFailedDialogFlag');
+    AppStorage.Delete('BluetoothFailedDialogFlag');
     return this;
   }
 
@@ -111,7 +111,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
    * Get Local Name
    */
   getLocalName() {
-        AppStorage.SetOrCreate('bluetoothLocalName', AboutDeviceModel.getSystemName());
+    AppStorage.SetOrCreate('bluetoothLocalName', AboutDeviceModel.getSystemName());
   }
 
   /**
@@ -171,10 +171,11 @@ export default class BluetoothDeviceController extends BaseSettingsController {
 
       this.forceRefresh(this.availableDevices);
       AppStorage.SetOrCreate('bluetoothAvailableDevices', this.availableDevices);
-    }
 
+    }
     // set paring confirmation
     BluetoothModel.setDevicePairingConfirmation(deviceId, accept);
+
   }
 
   /**
@@ -204,7 +205,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
    * @param deviceId device id
    */
   unpair(deviceId: string): boolean {
-        AppStorage.SetOrCreate('BluetoothFailedDialogFlag', false);
+    AppStorage.SetOrCreate('BluetoothFailedDialogFlag', false);
     const result = BluetoothModel.unpairDevice(deviceId);
     LogUtil.log(this.TAG + 'bluetooth paired device unpair. result = ' + result)
     this.refreshPairedDevices()
@@ -335,18 +336,18 @@ export default class BluetoothDeviceController extends BaseSettingsController {
         }
         this.forceRefresh(this.availableDevices);
         AppStorage.SetOrCreate('bluetoothAvailableDevices', this.availableDevices);
-                let showFlag = AppStorage.Get('BluetoothFailedDialogFlag');
-                if (showFlag == false) {
-                    AppStorage.SetOrCreate('BluetoothFailedDialogFlag', true);
-                    return;
-                }
-                this.showConnectFailedDialog(this.getDevice(data.deviceId).deviceName);
-            } else if (data.bondState == BondState.BOND_STATE_BONDED) {
-                // case success
-                LogUtil.log(this.TAG + 'bluetooth bonded : remove device.');
-                this.removeAvailableDevice(data.deviceId);
-                BluetoothModel.connectDevice(data.deviceId);
-            }
+        let showFlag = AppStorage.Get('BluetoothFailedDialogFlag');
+        if (showFlag == false) {
+          AppStorage.SetOrCreate('BluetoothFailedDialogFlag', true);
+          return;
+        }
+        this.showConnectFailedDialog(this.getDevice(data.deviceId).deviceName);
+      } else if (data.bondState == BondState.BOND_STATE_BONDED) {
+        // case success
+        LogUtil.log(this.TAG + 'bluetooth bonded : remove device.');
+        this.removeAvailableDevice(data.deviceId);
+        BluetoothModel.connectDevice(data.deviceId);
+      }
 
     });
   }
@@ -361,7 +362,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
       profileConnectionState: number;
     }) => {
       LogUtil.log(this.TAG + 'device connection state changed. profileId:' + JSON.stringify(data.profileId)
-        +' profileConnectionState: ' + JSON.stringify(data.profileConnectionState));
+      +' profileConnectionState: ' + JSON.stringify(data.profileConnectionState));
       for (let device of this.pairedDevices) {
         if (device.deviceId === data.deviceId) {
           device.setProfile(data);
@@ -372,9 +373,9 @@ export default class BluetoothDeviceController extends BaseSettingsController {
         }
       };
       LogUtil.log(this.TAG + 'device connection state changed. pairedDevices length = '
-        + JSON.stringify(this.pairedDevices.length))
+      + JSON.stringify(this.pairedDevices.length))
       LogUtil.log(this.TAG + 'device connection state changed. availableDevices length = '
-        + JSON.stringify(this.availableDevices.length))
+      + JSON.stringify(this.availableDevices.length))
       this.removeAvailableDevice(data.deviceId);
     });
   }
@@ -393,15 +394,15 @@ export default class BluetoothDeviceController extends BaseSettingsController {
     return device;
   }
 
-/**
-   * Force refresh array.
-   * Note: the purpose of this function is just trying to fix page (ets) level's bug below,
-   *   and should be useless if fixed by the future sdk.
-   * Bug Details:
-   *   @State is not supported well for Array<CustomClass> type.
-   *   In the case that the array item's field value changed, while not its length,
-   *   the build method on page will not be triggered!
-   */
+  /**
+     * Force refresh array.
+     * Note: the purpose of this function is just trying to fix page (ets) level's bug below,
+     *   and should be useless if fixed by the future sdk.
+     * Bug Details:
+     *   @State is not supported well for Array<CustomClass> type.
+     *   In the case that the array item's field value changed, while not its length,
+     *   the build method on page will not be triggered!
+     */
   protected forceRefresh(arr: BluetoothDevice[]): void {
     arr.push(new BluetoothDevice())
     arr.pop();
@@ -433,9 +434,9 @@ export default class BluetoothDeviceController extends BaseSettingsController {
     }, DISCOVERY_INTERVAL_TIME);
   }
 
-   /**
-   * Stop bluetooth discovery.
-   */
+  /**
+  * Stop bluetooth discovery.
+  */
   private mStopBluetoothDiscovery() {
     this.isDeviceDiscovering = false;
     BluetoothModel.stopBluetoothDiscovery();
@@ -477,24 +478,24 @@ export default class BluetoothDeviceController extends BaseSettingsController {
     LogUtil.log(this.TAG + 'removeAvailableDevice : after : availableDevices length = ' + this.availableDevices.length);
   }
 
-    /**
-     * Connect Failed Dialog
-     */
-    private showConnectFailedDialog(deviceName: string) {
-        AlertDialog.show({
-            title: $r("app.string.bluetooth_connect_failed"),
-            message: $r("app.string.bluetooth_connect_failed_msg", deviceName),
-            confirm: {
-                value: $r("app.string.bluetooth_know_button"),
-                action: () => {
-                    LogUtil.info('Button-clicking callback')
-                }
-            },
-            cancel: () => {
-                LogUtil.info('Closed callbacks')
-            },
-            alignment: DialogAlignment.Bottom
-        })
+  /**
+   * Connect Failed Dialog
+   */
+  private showConnectFailedDialog(deviceName: string) {
+    AlertDialog.show({
+      title: $r("app.string.bluetooth_connect_failed"),
+      message: $r("app.string.bluetooth_connect_failed_msg", deviceName),
+      confirm: {
+        value: $r("app.string.bluetooth_know_button"),
+        action: () => {
+          LogUtil.info('Button-clicking callback')
+        }
+      },
+      cancel: () => {
+        LogUtil.info('Closed callbacks')
+      },
+      alignment: DialogAlignment.Bottom
+    })
 
   }
 }
