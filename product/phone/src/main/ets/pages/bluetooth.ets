@@ -839,8 +839,6 @@ function showDialog(dialogTitle: string | Resource, dialogMessage: string | Reso
   AlertDialog.show({
     title: dialogTitle,
     message: dialogMessage,
-    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
     confirm: {
       value: buttonValue,
       action: () => {
