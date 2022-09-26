@@ -32,11 +32,7 @@ struct LocationServices {
         Column() {
           HeadComponent({ headName: $r('app.string.locationServicesTab'), isActive: true });
 
-          Flex({
-            direction: FlexDirection.Row,
-            justifyContent: FlexAlign.SpaceBetween,
-            alignItems: ItemAlign.Center
-          }) {
+          Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
             Text($r('app.string.positionInformation'))
               .fontColor($r("app.color.font_color_182431"))
               .fontStyle(FontStyle.Normal)

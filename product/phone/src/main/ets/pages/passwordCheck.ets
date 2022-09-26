@@ -167,10 +167,7 @@ struct PasswordCheck {
               }
 
               Divider()
-                .padding({
-                  left: $r('sys.float.ohos_id_card_margin_start'),
-                  right: $r('sys.float.ohos_id_card_margin_end')
-                })
+                .padding({ left: $r('sys.float.ohos_id_card_margin_start'), right: $r('sys.float.ohos_id_card_margin_end') })
                 .color($r("sys.color.ohos_id_color_list_separator"))
 
               // prompt message

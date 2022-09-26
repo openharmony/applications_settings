@@ -77,26 +77,23 @@ struct Bluetooth {
 
             Blank()
 
-            Stack({ alignContent: Alignment.Start }) {
-              Toggle({ type: ToggleType.Switch, isOn: this.isOn })
-                .width('36vp')
-                .height('20vp')
-                .selectedColor('#007DFF')
-                .margin({ left: $r('app.float.wh_value_6') })
-                .onChange(() => {
-                  LogUtil.log(this.PAGE_TAG + 'Toggle onClick: isOn = ' + this.isOn + ', enabled = ' + this.isEnabled)
-                  if (!this.isEnabled) return;
-                  this.deviceController.toggleValue(!this.isOn);
-                });
-            }
-            .width($r('app.float.wh_value_48'))
+            Toggle({ type: ToggleType.Switch, isOn: this.isOn })
+              .width('36vp')
+              .height('20vp')
+              .selectedColor('#007DFF')
+              .margin({ left: $r('app.float.wh_value_6') })
+              .onChange(() => {
+                LogUtil.log(this.PAGE_TAG + 'Toggle onClick: isOn = ' + this.isOn + ', enabled = ' + this.isEnabled)
+                if (!this.isEnabled) return;
+                this.deviceController.toggleValue(!this.isOn);
+              });
           }
           .margin({ top: $r("app.float.distance_8") })
           .width(ConfigData.WH_100_100)
           .height($r('app.float.wh_value_56'))
           .backgroundColor($r("app.color.white_bg_color"))
           .borderRadius($r('app.float.wh_value_28'))
-          .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_12') })
+          .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_6') })
           .alignItems(VerticalAlign.Center)
           .borderRadius($r('app.float.distance_24'))
 
@@ -430,11 +427,9 @@ struct PairedDeviceComponent {
 struct DiscoveringAnimatorComponent {
   build() {
     Column() {
-      Row() {
-        ImageAnimatorComponent({
-          imageWidth: $r('app.float.wh_value_24'),
-          imageHeight: $r('app.float.wh_value_24') })
-      }
+      ImageAnimatorComponent({
+        imageWidth: $r('app.float.wh_value_24'),
+        imageHeight: $r('app.float.wh_value_24') })
     }
   }
 }
@@ -548,15 +543,13 @@ struct AvailableDeviceComponent {
           endMargin: $r('app.float.wh_value_12')
         })
       } else {
-        Row() {
-          // Scanning...
-          Text($r('app.string.scanning'))
-            .fontSize($r('sys.float.ohos_id_text_size_body2'))
-            .textCase(TextCase.UpperCase)
-            .fontWeight(FontWeight.Medium)
-            .fontColor($r("sys.color.ohos_id_color_primary"))
-        }
-        .height($r('app.float.wh_value_48'))
+        // Scanning...
+        Text($r('app.string.scanning'))
+          .fontSize($r('sys.float.ohos_id_text_size_body2'))
+          .textCase(TextCase.UpperCase)
+          .fontWeight(FontWeight.Medium)
+          .fontColor($r("sys.color.ohos_id_color_primary"))
+          .height($r('app.float.wh_value_48'))
       }
     }
   }
@@ -691,7 +684,6 @@ class AvailableDevicesDataSource extends BasicDataSource {
     this.notifyDataDelete(index)
   }
 }
-
 
 /**
  * Pair dialog

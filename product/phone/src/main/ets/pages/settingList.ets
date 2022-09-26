@@ -181,44 +181,42 @@ struct EntryComponent {
       List({ space: this.listSpaces }) {
         // search
         ListItem() {
-          Column() {
-            Row() {
-              Image($r("app.media.ic_search"))
-                .width($r('app.float.wh_value_18'))
-                .height($r('app.float.wh_value_18'))
-                .objectFit(ImageFit.Contain)
-                .margin({
-                  left: $r("app.float.distance_11"),
-                  top: $r('app.float.distance_11'),
-                  bottom: $r('app.float.distance_11')
-                });
+          Row() {
+            Image($r("app.media.ic_search"))
+              .width($r('app.float.wh_value_18'))
+              .height($r('app.float.wh_value_18'))
+              .objectFit(ImageFit.Contain)
+              .margin({
+                left: $r("app.float.distance_11"),
+                top: $r('app.float.distance_11'),
+                bottom: $r('app.float.distance_11')
+              });
 
-              Text($r("app.string.searchHint"))
-                .fontSize($r("app.float.font_16"))
-                .lineHeight($r("app.float.lineHeight_21"))
-                .fontWeight(FontWeight.Regular)
-                .fontFamily('HarmonyHeiTi')
-                .fontColor($r("sys.color.ohos_id_color_text_secondary"))
-                .align(Alignment.Start)
-                .margin({
-                  left: $r("app.float.distance_6"),
-                  top: $r('app.float.distance_9'),
-                  bottom: $r('app.float.distance_9')
-                });
-            }
-            .border({
-              width: $r('app.float.wh_value_1_5'),
-              color: $r("sys.color.ohos_id_color_fourth"),
-              radius: $r('app.float.wh_value_20')
-            })
-            .height($r("app.float.wh_value_40"))
-            .width(ConfigData.WH_100_100)
-            .alignItems(VerticalAlign.Center)
-            .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
+            Text($r("app.string.searchHint"))
+              .fontSize($r("app.float.font_16"))
+              .lineHeight($r("app.float.lineHeight_21"))
+              .fontWeight(FontWeight.Regular)
+              .fontFamily('HarmonyHeiTi')
+              .fontColor($r("sys.color.ohos_id_color_text_secondary"))
+              .align(Alignment.Start)
+              .margin({
+                left: $r("app.float.distance_6"),
+                top: $r('app.float.distance_9'),
+                bottom: $r('app.float.distance_9')
+              });
           }
-          .height($r("app.float.wh_value_56"))
-          .padding({ top: $r("app.float.wh_value_8"), bottom: $r("app.float.wh_value_8") })
+          .border({
+            width: $r('app.float.wh_value_1_5'),
+            color: $r("sys.color.ohos_id_color_fourth"),
+            radius: $r('app.float.wh_value_20')
+          })
+          .height($r("app.float.wh_value_40"))
+          .width(ConfigData.WH_100_100)
+          .alignItems(VerticalAlign.Center)
+          .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
         }
+        .height($r("app.float.wh_value_56"))
+        .padding({ top: $r("app.float.wh_value_8"), bottom: $r("app.float.wh_value_8") })
         .width(ConfigData.WH_100_100)
         .onClick(() => {
           LogUtil.info('On click the search editText.');

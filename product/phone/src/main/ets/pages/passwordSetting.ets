@@ -125,7 +125,7 @@ struct PasswordSetting {
         titleFontColor: $r("app.color.font_color_007DFF"),
         heights: $r('app.float.password_list_item_height'),
         fontSize: $r('app.float.font_16')
-      });
+      })
     }
     .width(ConfigData.WH_100_100)
     .onClick(() => {
@@ -151,7 +151,7 @@ struct PasswordSetting {
         settingUri: item.settingUri,
         heights: $r('app.float.password_list_item_height'),
         fontSize: $r('app.float.font_16')
-      });
+      })
     }
     .width(ConfigData.WH_100_100)
     .onClick(() => {
