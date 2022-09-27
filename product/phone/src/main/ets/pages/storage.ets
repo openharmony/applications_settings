@@ -82,6 +82,7 @@ struct Storage {
                     .fontSize($r("app.float.dataPanel_percent_font_size_1"))
                     .fontWeight(FontWeight.Medium)
                     .fontColor($r("sys.color.ohos_id_color_secondary"))
+
                   Text(' ')
                     .fontSize($r("app.float.dataPanel_proportion_font_size"))
                 }

@@ -470,7 +470,8 @@ struct UserDialogBuilder {
           SystemAccountController.switchUser(this.user.localId);
         })
 
-      Divider().color($r("sys.color.ohos_id_color_list_separator"))
+      Divider()
+        .color($r("sys.color.ohos_id_color_list_separator"))
 
       Text($r("app.string.removeUser"))
         .fontSize($r("app.float.font_16"))
@@ -615,7 +616,8 @@ struct AddUserDialog {
   }
 
   aboutToAppear() {
-    ResourceUtil.getString($r("app.string.nickname")).then(value => this.hintText = value);
+    ResourceUtil.getString($r("app.string.nickname"))
+      .then(value => this.hintText = value);
   }
 }
 

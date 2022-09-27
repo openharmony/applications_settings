@@ -87,21 +87,19 @@ struct SoftwareUpdateComponent {
 
   build(){
     Row(){
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
-        Row() {
-          Text(this.title)
-            .fontSize($r('app.float.font_16'))
-            .lineHeight($r('app.float.wh_value_22'))
-            .fontWeight(FontWeight.Medium)
-            .fontColor($r('app.color.font_color_182431'))
-            .margin({left: $r('app.float.distance_8')})
-            .textAlign(TextAlign.Start);
-        }
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+        Text(this.title)
+          .fontSize($r('app.float.font_16'))
+          .lineHeight($r('app.float.wh_value_22'))
+          .fontWeight(FontWeight.Medium)
+          .fontColor($r('app.color.font_color_182431'))
+          .margin({ left: $r('app.float.distance_8') })
+          .textAlign(TextAlign.Start);
 
         Image('/res/image/ic_settings_arrow.svg')
           .width($r('app.float.wh_value_12'))
           .height($r('app.float.wh_value_24'))
-          .margin({right: $r('app.float.distance_8')})
+          .margin({ right: $r('app.float.distance_8') })
           .fillColor($r("sys.color.ohos_id_color_primary"))
           .opacity($r("app.float.opacity_0_2"))
       }

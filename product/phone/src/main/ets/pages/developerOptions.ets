@@ -94,16 +94,14 @@ struct developerOptions {
         Column() {
           HeadComponent({ headName: $r("app.string.developerOptionsTab"), isActive: true });
 
-          Column() {
-            SwitchComponent({
-              title: $r("app.string.usbDebugging"),
-              summary: $r("app.string.locationServicesPromptInfo"),
-              isOn: $controllerDebugIsOn,
-              controller: this.controller,
-              switchHeight:$r("app.float.wh_value_72")
-            })
-          }
-          .margin({ top: $r("app.float.distance_8") })
+          SwitchComponent({
+            title: $r("app.string.usbDebugging"),
+            summary: $r("app.string.locationServicesPromptInfo"),
+            isOn: $controllerDebugIsOn,
+            controller: this.controller,
+            switchHeight: $r("app.float.wh_value_72")
+          })
+            .margin({ top: $r("app.float.distance_8") })
 
           Column() {
             List() {
@@ -168,16 +166,14 @@ struct developerOptions {
             bottom:$r("app.float.distance_4")
           })
 
-          Column() {
-            SwitchComponent({
-              title: $r("app.string.Debug_GPU_OverDraw"),
-              summary: "",
-              isOn: $controllerOverdrawIsOn,
-              controller: this.controllerOverdraw,
-              switchHeight:$r("app.float.wh_value_56")
-            })
-          }
-          .margin({ top: $r("app.float.distance_12") })
+          SwitchComponent({
+            title: $r("app.string.Debug_GPU_OverDraw"),
+            summary: "",
+            isOn: $controllerOverdrawIsOn,
+            controller: this.controllerOverdraw,
+            switchHeight: $r("app.float.wh_value_56")
+          })
+            .margin({ top: $r("app.float.distance_12") })
         }
         .padding({
           left: $r('sys.float.ohos_id_card_margin_start'),
@@ -213,58 +209,53 @@ struct AnimationScalingInformation {
   build() {
     Column(){
       Column() {
-        Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-          Text($r("app.string.Excessive_animation_scaling"))
-            .fontFamily("HarmonyHeiTi")
-            .fontSize($r("sys.float.ohos_id_text_size_headline8"))
-            .fontWeight(FontWeight.Medium)
-        }
-        .height($r("app.float.wh_value_56"))
+        Text($r("app.string.Excessive_animation_scaling"))
+          .fontFamily("HarmonyHeiTi")
+          .fontSize($r("sys.float.ohos_id_text_size_headline8"))
+          .fontWeight(FontWeight.Medium)
+          .height($r("app.float.wh_value_56"))
+          .alignSelf(ItemAlign.Start)
 
         List() {
           ForEach(this.AnimationMultiplier, (item, index) => {
             ListItem() {
               Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-                Column() {
-                  Text(item === "0" ? $r("app.string.Close_Animation") : $r("app.string.Animation_Multiplier", item))
-                    .fontFamily("HarmonyHeiTi")
-                    .fontSize($r("sys.float.ohos_id_text_size_body1"))
-                    .fontWeight(FontWeight.Medium)
-                }
+                Text(item === "0" ? $r("app.string.Close_Animation") : $r("app.string.Animation_Multiplier", item))
+                  .fontFamily("HarmonyHeiTi")
+                  .fontSize($r("sys.float.ohos_id_text_size_body1"))
+                  .fontWeight(FontWeight.Medium)
 
-                Row() {
-                  Radio({ value: "", group: 'radioGroup' })
-                    .checked(this.checked === this.AnimationMultiplier[index] ? true : false)
-                    .height($r("app.float.wh_value_24"))
-                    .width($r("app.float.wh_value_24"))
-                    .onChange((value: boolean) => {
-                      this.controller.close();
-                      if (item === "0") {
-                        this.AnimationText = $r("app.string.Close_Animation");
-                        parameter.set(GRAPHIC_ANIMATION_SCALE_NAME, "0");
-                        parameter.set(ARKUI_ANIMATION_SCALE_NAME, "0");
-                        LogUtil.info(MODULE_TAG + "close animation success");
-                      } else {
-                        this.AnimationText = $r("app.string.Animation_Multiplier", item);
-                        parameter.set(GRAPHIC_ANIMATION_SCALE_NAME, item)
-                          .then(() => {
-                            LogUtil.info(MODULE_TAG + "set graphic parameter success");
-                          })
-                          .catch((err) => {
-                            LogUtil.info(MODULE_TAG + "catch graphic parameter error" + JSON.stringify(err));
-                          })
+                Radio({ value: "", group: 'radioGroup' })
+                  .checked(this.checked === this.AnimationMultiplier[index] ? true : false)
+                  .height($r("app.float.wh_value_24"))
+                  .width($r("app.float.wh_value_24"))
+                  .onChange((value: boolean) => {
+                    this.controller.close();
+                    if (item === "0") {
+                      this.AnimationText = $r("app.string.Close_Animation");
+                      parameter.set(GRAPHIC_ANIMATION_SCALE_NAME, "0");
+                      parameter.set(ARKUI_ANIMATION_SCALE_NAME, "0");
+                      LogUtil.info(MODULE_TAG + "close animation success");
+                    } else {
+                      this.AnimationText = $r("app.string.Animation_Multiplier", item);
+                      parameter.set(GRAPHIC_ANIMATION_SCALE_NAME, item)
+                        .then(() => {
+                          LogUtil.info(MODULE_TAG + "set graphic parameter success");
+                        })
+                        .catch((err) => {
+                          LogUtil.info(MODULE_TAG + "catch graphic parameter error" + JSON.stringify(err));
+                        })
 
-                        parameter.set(ARKUI_ANIMATION_SCALE_NAME, item)
-                          .then(() => {
-                            LogUtil.info(MODULE_TAG + "set arkui parameter success");
-                          })
-                          .catch((err) => {
-                            LogUtil.info(MODULE_TAG + "catch arkui parameter error" + JSON.stringify(err));
-                          })
-                      }
-                      this.checked = item;
-                    })
-                }
+                      parameter.set(ARKUI_ANIMATION_SCALE_NAME, item)
+                        .then(() => {
+                          LogUtil.info(MODULE_TAG + "set arkui parameter success");
+                        })
+                        .catch((err) => {
+                          LogUtil.info(MODULE_TAG + "catch arkui parameter error" + JSON.stringify(err));
+                        })
+                    }
+                    this.checked = item;
+                  })
               }
               .height($r("app.float.wh_value_48"))
             }
@@ -272,19 +263,16 @@ struct AnimationScalingInformation {
           })
         }
 
-        Column() {
-          Text($r("app.string.Cancel_Animation"))
-            .fontSize($r("sys.float.ohos_id_text_size_button1"))
-            .fontColor($r("sys.color.ohos_id_color_text_primary_activated"))
-        }
-        .justifyContent(FlexAlign.Center)
-        .width($r("app.float.cancel_animation_button_w_value"))
-        .height($r("app.float.wh_value_40"))
-        .margin({ top: $r("app.float.distance_8") })
-        .backgroundColor($r("app.color.white_bg_color"))
-        .onClick(() => {
-          this.controller.close();
-        })
+        Text($r("app.string.Cancel_Animation"))
+          .fontSize($r("sys.float.ohos_id_text_size_button1"))
+          .fontColor($r("sys.color.ohos_id_color_text_primary_activated"))
+          .alignSelf(ItemAlign.Center)
+          .width($r("app.float.cancel_animation_button_w_value"))
+          .height($r("app.float.wh_value_40"))
+          .margin({ top: $r("app.float.distance_8") })
+          .onClick(() => {
+            this.controller.close();
+          })
       }
       .padding({
         left: $r("app.float.padding_24"),

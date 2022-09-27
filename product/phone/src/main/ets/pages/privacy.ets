@@ -34,13 +34,10 @@ struct PrivacySettings {
         Column() {
           HeadComponent({ headName: $r('app.string.privacy'), isActive: true });
 
-          Column() {
-            PermissionComponent()
-              .margin({ bottom: $r('sys.float.ohos_id_card_margin_start') })
+          PermissionComponent()
+            .margin({ top: $r("app.float.distance_8"), bottom: $r('sys.float.ohos_id_card_margin_start') })
 
-            SubEntryComponent({ targetPage: 'pages/locationServices', title: $r('app.string.locationServicesTab') });
-          }
-          .margin({ top: $r("app.float.distance_8") })
+          SubEntryComponent({ targetPage: 'pages/locationServices', title: $r('app.string.locationServicesTab') });
         }
         .padding({
           left: $r('sys.float.ohos_id_card_margin_start'),
@@ -77,15 +74,13 @@ export struct PermissionComponent {
   build() {
     Column() {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        Row() {
-          Text($r('app.string.permissionManager'))
-            .fontSize($r('app.float.font_16'))
-            .lineHeight($r('app.float.wh_value_22'))
-            .fontColor($r('app.color.font_color_182431'))
-            .fontWeight(FontWeight.Medium)
-            .margin({ left: $r('app.float.distance_8') })
-            .textAlign(TextAlign.Start);
-        }
+        Text($r('app.string.permissionManager'))
+          .fontSize($r('app.float.font_16'))
+          .lineHeight($r('app.float.wh_value_22'))
+          .fontColor($r('app.color.font_color_182431'))
+          .fontWeight(FontWeight.Medium)
+          .margin({ left: $r('app.float.distance_8') })
+          .textAlign(TextAlign.Start);
 
         Image('/res/image/ic_settings_arrow.svg')
           .width($r('app.float.wh_value_12'))

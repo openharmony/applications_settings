@@ -56,16 +56,14 @@ struct Nfc {
 
             Blank()
 
-            Stack({ alignContent: Alignment.Start }) {
-              Toggle({ type: ToggleType.Switch, isOn: this.isNfcEnabled })
-                .width('36vp')
-                .height('20vp')
-                .selectedColor($r("app.color.toggle_selected_color_007DFF"))
-                .margin({ left: $r('app.float.wh_value_6') })
-                .onChange((isOn: boolean) => {
-                  this.switchNfcActiveStatus();
-                });
-            }
+            Toggle({ type: ToggleType.Switch, isOn: this.isNfcEnabled })
+              .width('36vp')
+              .height('20vp')
+              .selectedColor($r("app.color.toggle_selected_color_007DFF"))
+              .margin({ left: $r('app.float.wh_value_6') })
+              .onChange((isOn: boolean) => {
+                this.switchNfcActiveStatus();
+              });
           }
           .width(ConfigData.WH_100_100)
           .height($r('app.float.wh_value_56'))
