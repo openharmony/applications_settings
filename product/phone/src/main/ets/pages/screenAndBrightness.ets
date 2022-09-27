@@ -130,15 +130,13 @@ export struct ScreenModelComponent {
   build() {
     Navigator({ target: "pages/screenMode" }) {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        Row() {
-          Text($r("app.string.screenResolution"))
-            .fontSize($r('app.float.font_16'))
-            .lineHeight($r('app.float.wh_value_22'))
-            .fontWeight(FontWeight.Medium)
-            .fontColor($r("sys.color.ohos_id_color_text_primary"))
-            .margin({ left: $r('app.float.distance_8') })
-            .textAlign(TextAlign.Start);
-        }
+        Text($r("app.string.screenResolution"))
+          .fontSize($r('app.float.font_16'))
+          .lineHeight($r('app.float.wh_value_22'))
+          .fontWeight(FontWeight.Medium)
+          .fontColor($r("sys.color.ohos_id_color_text_primary"))
+          .margin({ left: $r('app.float.distance_8') })
+          .textAlign(TextAlign.Start);
 
         Row() {
           Text(this.sysScreenModeText)

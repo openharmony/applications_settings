@@ -57,17 +57,14 @@ struct ApplicationStorage {
                 .fontSize($r('app.float.font_16'))
                 .maxLines(ConfigData.MAX_LINES_3)
                 .margin({ top: $r('app.float.wh_value_10'), bottom: $r('app.float.wh_value_5') })
-                .alignSelf(ItemAlign.Start);
 
-              Row() {
-                Text(appInfo.settingSummary)
-                  .fontColor($r('app.color.font_color_182431'))
-                  .fontSize($r('app.float.font_14'))
-                  .maxLines(ConfigData.MAX_LINES_1)
-                  .margin({ bottom: $r('app.float.distance_11') });
-              }
-              .alignSelf(ItemAlign.Start)
+              Text(appInfo.settingSummary)
+                .fontColor($r('app.color.font_color_182431'))
+                .fontSize($r('app.float.font_14'))
+                .maxLines(ConfigData.MAX_LINES_1)
+                .margin({ bottom: $r('app.float.distance_11') })
             }
+            .alignItems(HorizontalAlign.Start)
             .width(ConfigData.WH_100_100)
             .height($r('app.float.wh_value_64'))
           }
@@ -77,31 +74,29 @@ struct ApplicationStorage {
           SubHeader({ titleContent: $r('app.string.senior') })
 
           // body
-          Row() {
-            List() {
-              ForEach(this.storageList, (item) => {
-                ListItem() {
-                  EntryComponent({
-                    settingIcon: '',
-                    settingTitle: item.settingTitle,
-                    settingSummary: item.settingSummary,
-                    settingValue: item.settingValue,
-                    settingArrow: item.settingArrow,
-                    settingArrowStyle: '',
-                    settingUri: '',
-                    heights: $r('app.float.wh_value_48'),
-                    fontSize: $r('app.float.font_16')
-                  });
-                }
-              });
-            }
-            .divider({
-              strokeWidth: $r('app.float.divider_wh'),
-              color: $r('app.color.color_E3E3E3_grey'),
-              startMargin: $r('app.float.storage_common_margin'),
-              endMargin: $r('app.float.storage_common_margin')
-            })
+          List() {
+            ForEach(this.storageList, (item) => {
+              ListItem() {
+                EntryComponent({
+                  settingIcon: '',
+                  settingTitle: item.settingTitle,
+                  settingSummary: item.settingSummary,
+                  settingValue: item.settingValue,
+                  settingArrow: item.settingArrow,
+                  settingArrowStyle: '',
+                  settingUri: '',
+                  heights: $r('app.float.wh_value_48'),
+                  fontSize: $r('app.float.font_16')
+                });
+              }
+            });
           }
+          .divider({
+            strokeWidth: $r('app.float.divider_wh'),
+            color: $r('app.color.color_E3E3E3_grey'),
+            startMargin: $r('app.float.storage_common_margin'),
+            endMargin: $r('app.float.storage_common_margin')
+          })
           .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
           .backgroundColor($r("app.color.white_bg_color"))
 
