@@ -32,19 +32,17 @@ struct restoreFactorySettings {
         Column() {
           HeadComponent({ headName: $r("app.string.resetPhone"), isActive: true });
 
-          Row() {
-            Text($r("app.string.resetPhonePromptInfo"))
-              .fontFamily('HarmonyHeiTi')
-              .fontWeight(FontWeight.Medium)
-              .fontSize($r("app.float.font_18"))
-              .align(Alignment.Start)
-              .margin({
-                left: $r('app.float.distance_12'),
-                right: $r("app.float.distance_18"),
-                top: $r("app.float.distance_24"),
-              })
-          }
-          .width(ConfigData.WH_100_100)
+          Text($r("app.string.resetPhonePromptInfo"))
+            .fontFamily('HarmonyHeiTi')
+            .fontWeight(FontWeight.Medium)
+            .fontSize($r("app.float.font_18"))
+            .align(Alignment.Start)
+            .margin({
+              left: $r('app.float.distance_12'),
+              right: $r("app.float.distance_18"),
+              top: $r("app.float.distance_24"),
+            })
+            .width(ConfigData.WH_100_100)
 
           Blank()
 

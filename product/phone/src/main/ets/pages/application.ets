@@ -32,10 +32,8 @@ struct Application {
         Column() {
           HeadComponent({ headName: $r('app.string.applyTab'), isActive: true })
 
-          Column() {
-            SubEntryComponent({ targetPage: 'pages/appManagement', title: $r('app.string.appManagement') })
-          }
-          .margin({ top: $r("app.float.distance_8") })
+          SubEntryComponent({ targetPage: 'pages/appManagement', title: $r('app.string.appManagement') })
+            .margin({ top: $r("app.float.distance_8") })
         }
         .padding({
           left: $r('sys.float.ohos_id_card_margin_start'),
