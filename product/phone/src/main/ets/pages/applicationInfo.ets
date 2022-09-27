@@ -65,18 +65,15 @@ struct ApplicationInfo {
               Text(appInfo.settingTitle)
                 .fontColor($r('app.color.font_color_182431'))
                 .fontSize($r('app.float.font_16'))
-                .alignSelf(ItemAlign.Start)
                 .margin({ top: $r('app.float.wh_value_10'), bottom: $r('app.float.wh_value_5') })
 
-              Row() {
-                Text(appInfo.settingSummary)
-                  .fontColor($r('app.color.font_color_182431'))
-                  .fontSize($r('app.float.font_14'))
-                  .maxLines(ConfigData.MAX_LINES_1)
-                  .margin({ bottom: $r('app.float.distance_11') });
-              }
-              .alignSelf(ItemAlign.Start)
+              Text(appInfo.settingSummary)
+                .fontColor($r('app.color.font_color_182431'))
+                .fontSize($r('app.float.font_14'))
+                .maxLines(ConfigData.MAX_LINES_1)
+                .margin({ bottom: $r('app.float.distance_11') });
             }
+            .alignItems(HorizontalAlign.Start)
             .width(ConfigData.WH_100_100)
             .height($r('app.float.wh_value_64'))
           }

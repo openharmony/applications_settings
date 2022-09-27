@@ -47,23 +47,21 @@ struct BluetoothPairedDeviceInfo {
 
           Blank()
 
-          Row() {
-            Button() {
-              Text($r("app.string.cancelPairing"))
-                .fontSize($r('app.float.application_button_subtitle_size'))
-                .fontColor($r("app.color.font_color_007DFF"))
-            }
-            .backgroundColor($r('sys.color.ohos_id_color_button_normal'))
-            .width($r("app.float.component_button_width"))
-            .height($r("app.float.wh_value_40"))
-            .align(Alignment.Center)
-            .onClick(() => {
-              LogUtil.log(ConfigData.TAG + "unpair onClick");
-              if (this.controller.unpair(this.bluetoothDevice.deviceId)) {
-                Router.back();
-              }
-            })
+          Button() {
+            Text($r("app.string.cancelPairing"))
+              .fontSize($r('app.float.application_button_subtitle_size'))
+              .fontColor($r("app.color.font_color_007DFF"))
           }
+          .backgroundColor($r('sys.color.ohos_id_color_button_normal'))
+          .width($r("app.float.component_button_width"))
+          .height($r("app.float.wh_value_40"))
+          .align(Alignment.Center)
+          .onClick(() => {
+            LogUtil.log(ConfigData.TAG + "unpair onClick");
+            if (this.controller.unpair(this.bluetoothDevice.deviceId)) {
+              Router.back();
+            }
+          })
           .margin({ bottom: $r('app.float.distance_24'), top: $r("app.float.distance_8") });
         }
         .height(ConfigData.WH_100_100)

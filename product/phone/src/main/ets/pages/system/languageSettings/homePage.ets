@@ -32,13 +32,11 @@ struct LanguageSettings {
         Column() {
           HeadComponent({ headName: $r('app.string.setlanguage'), isActive: true });
 
-          Column() {
-            SubEntryComponent({
-              targetPage: 'pages/system/languageSettings/languageAndRegion/homePage',
-              title: $r("app.string.languageAndRegion")
-            })
-          }
-          .margin({top:$r("app.float.distance_8")})
+          SubEntryComponent({
+            targetPage: 'pages/system/languageSettings/languageAndRegion/homePage',
+            title: $r("app.string.languageAndRegion")
+          })
+            .margin({ top: $r("app.float.distance_8") })
         }
         .padding({
           left: $r('sys.float.ohos_id_card_margin_start'),

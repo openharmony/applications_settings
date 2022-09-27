@@ -329,10 +329,8 @@ struct connectProgressDialog {
 
           Blank()
 
-          Column() {
-            ImageAnimatorComponent({ imageWidth: $r('app.float.wh_value_24'),
-              imageHeight: $r('app.float.wh_value_24') })
-          }
+          ImageAnimatorComponent({ imageWidth: $r('app.float.wh_value_24'),
+            imageHeight: $r('app.float.wh_value_24') })
         }
         .alignItems(VerticalAlign.Center)
         .height($r("app.float.wh_value_48"))
