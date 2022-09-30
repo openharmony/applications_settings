@@ -21,7 +21,6 @@
 #include "napi/native_api.h"
 #include "napi/native_common.h"
 #include "napi/native_node_api.h"
-#include "running_process_info.h"
 #include "uri.h"
 
 #define ARGS_ONE 1
