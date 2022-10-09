@@ -26,7 +26,6 @@ ohos_shared_library("settings") {
   ]
 
   deps = [
-    "//foundation/ability/ability_runtime/frameworks/native/ability/native:abilitykit_native",
     "//foundation/ability/ability_runtime/frameworks/native/ability/native:data_ability_helper",
     "//foundation/ability/ability_runtime/interfaces/inner_api/ability_manager:ability_manager",
     "//foundation/arkui/napi:ace_napi",
@@ -34,7 +33,6 @@ ohos_shared_library("settings") {
 
   external_deps = [
     "ability_base:zuri",
-    "bundle_framework:appexecfwk_base",
     "c_utils:utils",
     "hiviewdfx_hilog_native:libhilog",
     "relational_store:native_dataability",
