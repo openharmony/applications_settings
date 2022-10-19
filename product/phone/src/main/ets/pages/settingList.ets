@@ -328,6 +328,15 @@ struct EntryComponent {
                 settingIcon: "/res/image/storage.svg",
               })
             }
+            ListItem(){
+              // storage
+              SettingItemComponent({
+                targetPage: "security",
+                settingTitle: $r("app.string.security"),
+                settingEndText: '',
+                settingIcon: "/res/image/security.svg",
+              })
+            }
 
             ListItem(){
               // privacy
