@@ -327,7 +327,7 @@ struct EntryComponent {
               })
             }
             ListItem(){
-              // storage
+              // security
               SettingItemComponent({
                 targetPage: "security",
                 settingTitle: $r("app.string.security"),
