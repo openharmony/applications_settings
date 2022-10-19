@@ -109,8 +109,8 @@ struct Bluetooth {
             .lineHeight($r("app.float.wh_value_20"))
             .padding({
               left: $r('app.float.wh_value_12'),
-              top: $r('app.float.distance_8'), 
-	      bottom: $r('app.float.distance_24')
+              top: $r('app.float.distance_8'),
+              bottom: $r('app.float.distance_24')
             })
 
           Scroll() {
@@ -448,7 +448,7 @@ struct AvailableDeviceComponent {
   private controller: BluetoothDeviceController;
   @State isDeviceDiscovering: boolean = false;
   @StorageLink('bluetoothAvailableDevices') availableDevices: BluetoothDevice[] = [];
-  private availableDevicesList: AvailableDevicesDataSource = new AvailableDevicesDataSource(this.availableDevices);
+  @State availableDevicesList: AvailableDevicesDataSource = new AvailableDevicesDataSource(this.availableDevices);
   @State pairPinCode: string = '';
   private pairingDevice: BluetoothDevice = undefined;
   @StorageLink("controlPairing") controlPairing: boolean = true ;
@@ -593,6 +593,9 @@ struct AvailableDeviceComponent {
   confirmPairing(accept: boolean) {
     LogUtil.info(this.TAG_PAGE + 'confirmPairing pairingDevice');
     this.controller.confirmPairing(this.pairingDevice.deviceId, accept);
+    this.availableDevicesList.delData(this.pairingDevice);
+
+
   }
 
   /**
@@ -680,6 +683,12 @@ class AvailableDevicesDataSource extends BasicDataSource {
       return null;
     }
     return this.availableDevicesArray[index];
+  }
+
+  public delData (device:BluetoothDevice):void{
+    let index  = this.availableDevicesArray.indexOf(device);
+    this.availableDevicesArray.splice(index,1)
+    this.notifyDataDelete(index)
   }
 }
 

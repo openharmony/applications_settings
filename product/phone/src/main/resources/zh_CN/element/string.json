@@ -605,6 +605,14 @@
       "value": "存储"
     },
     {
+      "name": "security",
+      "value": "安全"
+    },
+    {
+      "name": "securityFailed",
+      "value": "安全启动失败，请确定该功能是否可用"
+    },
+    {
       "name": "totalSpace",
       "value": "总空间"
     },
