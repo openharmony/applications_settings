@@ -601,6 +601,14 @@
       "value": "Storage"
     },
     {
+      "name": "security",
+      "value": "security"
+    },
+    {
+      "name": "securityFailed",
+      "value": "security failed to start, please make sure the function is available."
+    },
+    {
       "name": "totalSpace",
       "value": "totalSpace"
     },
