@@ -279,11 +279,12 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
     }
 }
 
-std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, const napi_value context, const bool stageMode){
+std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, const napi_value context, const bool stageMode)
+{
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
     std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
     std::string strProxyUri = "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true";
-     OHOS::Uri proxyUri(strProxyUri);
+    OHOS::Uri proxyUri(strProxyUri);
     HILOG_INFO("getDataShareHelper called");
     auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
 
@@ -312,7 +313,7 @@ void GetValueExecuteExt(napi_env env, void *data)
     }
 
     HILOG_INFO("settingsnapi : GetValueExecuteExt start");
-    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+    AsyncCallbackInfo* asyncCallbackInfo = reinterpret_cast<AsyncCallbackInfo*>data;
 
     std::vector<std::string> columns;
     columns.push_back(SETTINGS_DATA_FIELD_VALUE);
@@ -360,7 +361,7 @@ void DeleteCallbackInfo(napi_env env, AsyncCallbackInfo *asyncCallbackInfo)
 
 void CompleteCall(napi_env env, napi_status status, void *data, const napi_value retVaule)
 {
-    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+    AsyncCallbackInfo* asyncCallbackInfo = reinterpret_cast<AsyncCallbackInfo*>data;
     napi_value result[PARAM2] = {0};
     if (status == napi_ok && asyncCallbackInfo->status == napi_ok) {
         napi_get_undefined(env, &result[PARAM0]);
@@ -381,9 +382,10 @@ void CompleteCall(napi_env env, napi_status status, void *data, const napi_value
     HILOG_INFO("settingsnapi : callback change callback complete");
 }
 
-void CompletePromise(napi_env env, napi_status status, void *data, const napi_value retVaule){
+void CompletePromise(napi_env env, napi_status status, void *data, const napi_value retVaule)
+{
     HILOG_INFO("settingsnapi : promise async end called callback");
-    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+    AsyncCallbackInfo* asyncCallbackInfo = reinterpret_cast<AsyncCallbackInfo*>data;
     napi_value result = nullptr;
     if (status == napi_ok && asyncCallbackInfo->status == napi_ok) {
         napi_resolve_deferred(env, asyncCallbackInfo->deferred, retVaule);
@@ -401,7 +403,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
         return;
     }
     HILOG_INFO("settingsnapi : execute start");
-    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+    AsyncCallbackInfo* asyncCallbackInfo = reinterpret_cast<AsyncCallbackInfo*>data;
 
     OHOS::DataShare::DataShareValuesBucket val;
     val.Put(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
@@ -469,7 +471,7 @@ napi_value napi_get_value_sync(napi_env env, napi_callback_info info)
         napi_value retVal = nullptr;
         if(asyncCallbackInfo->value.size() <= 0){
             retVal = args[PARAM2];
-        }else{
+        } else {
             retVal = wrap_string_to_js(env, asyncCallbackInfo->value);
         }
         delete asyncCallbackInfo;
@@ -748,7 +750,7 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
     napi_value resource = nullptr;
     NAPI_CALL(env, napi_create_string_utf8(env, "getValue", NAPI_AUTO_LENGTH, &resource));
 
-    if(argc == ARGS_THREE){
+    if (argc == ARGS_THREE) {
         napi_create_reference(env, args[PARAM2], 1, &asyncCallbackInfo->callbackRef);
         napi_create_async_work(
             env,
@@ -766,7 +768,7 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
         NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
         HILOG_INFO("settingsnapi : callback end async work");
         return wrap_void_to_js(env);
-    }else{
+    } else {
         napi_value promise;
         napi_deferred deferred;
         NAPI_CALL(env, napi_create_promise(env, &deferred, &promise));
