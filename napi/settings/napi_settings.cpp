@@ -313,7 +313,7 @@ void GetValueExecuteExt(napi_env env, void *data)
     }
 
     HILOG_INFO("settingsnapi : GetValueExecuteExt start");
-    AsyncCallbackInfo* asyncCallbackInfo = reinterpret_cast<AsyncCallbackInfo*>data;
+    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
 
     std::vector<std::string> columns;
     columns.push_back(SETTINGS_DATA_FIELD_VALUE);
@@ -361,7 +361,7 @@ void DeleteCallbackInfo(napi_env env, AsyncCallbackInfo *asyncCallbackInfo)
 
 void CompleteCall(napi_env env, napi_status status, void *data, const napi_value retVaule)
 {
-    AsyncCallbackInfo* asyncCallbackInfo = reinterpret_cast<AsyncCallbackInfo*>data;
+    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
     napi_value result[PARAM2] = {0};
     if (status == napi_ok && asyncCallbackInfo->status == napi_ok) {
         napi_get_undefined(env, &result[PARAM0]);
@@ -385,7 +385,7 @@ void CompleteCall(napi_env env, napi_status status, void *data, const napi_value
 void CompletePromise(napi_env env, napi_status status, void *data, const napi_value retVaule)
 {
     HILOG_INFO("settingsnapi : promise async end called callback");
-    AsyncCallbackInfo* asyncCallbackInfo = reinterpret_cast<AsyncCallbackInfo*>data;
+    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
     napi_value result = nullptr;
     if (status == napi_ok && asyncCallbackInfo->status == napi_ok) {
         napi_resolve_deferred(env, asyncCallbackInfo->deferred, retVaule);
@@ -403,7 +403,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
         return;
     }
     HILOG_INFO("settingsnapi : execute start");
-    AsyncCallbackInfo* asyncCallbackInfo = reinterpret_cast<AsyncCallbackInfo*>data;
+    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
 
     OHOS::DataShare::DataShareValuesBucket val;
     val.Put(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
