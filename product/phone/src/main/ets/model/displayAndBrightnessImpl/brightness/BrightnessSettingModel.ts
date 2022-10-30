@@ -19,7 +19,7 @@ import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/b
 import Log from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import settings from '@ohos.settings';
 import Brightness from '@ohos.brightness';
-import featureAbility from '@ohos.ability.featureAbility';
+import data_dataShare from '@ohos.data.dataShare';
 import CatchError from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/CatchError';
 import systemParameter from '@ohos.systemparameter';
 
@@ -29,18 +29,24 @@ import systemParameter from '@ohos.systemparameter';
  * @param brightnessValue - Brightness value
  */
 export class BrightnessSettingModel extends BaseModel{
-  private dataAbilityHelper;
-  private urivar:string;
+  private dataShareHelper;
   private brightness:number = 5;
   private defaultBrightnessStr = this.getDefaultBrightness().toString();
   private TAG = `${ConfigData.TAG} BrightnessSettingModel `;
-  private readonly uri = 'dataability:///com.ohos.settingsdata.DataAbility';
+  private readonly uriShare: string = 'datashare:///com.ohos.settingsdata.DataAbility';
+  private readonly listenUri = 'datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' + ConfigData.SETTINGSDATA_BRIGHTNESS;
 
   constructor() {
     super();
-    this.urivar = this.getUri();
-    // @ts-ignore
-    this.dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.settingsAbilityContext, this.uri);
+    data_dataShare.createDataShareHelper(globalThis.settingsAbilityContext, this.uriShare)
+      .then((dataHelper) => {
+        this.dataShareHelper = dataHelper;
+        LogUtil.info("createDataShareHelper success");
+        this.dataShareHelper.on("dataChange", this.listenUri, (error) => {
+          LogUtil.info("dataChange success");
+          this.updateValue();
+        })
+      })
     this.updateValue();
   }
 
@@ -48,9 +54,8 @@ export class BrightnessSettingModel extends BaseModel{
    * Get Uri
    */
   @Log
-  @CatchError(`dataability:///com.ohos.settingsdata.DataAbility/${ConfigData.SETTINGSDATA_BRIGHTNESS}`)
   public getUri(){
-    return settings.getUriSync(ConfigData.SETTINGSDATA_BRIGHTNESS);
+    return this.listenUri;
   }
 
   /**
@@ -100,7 +105,7 @@ export class BrightnessSettingModel extends BaseModel{
   private setSettingsData(brightness:number){
     LogUtil.info(`${this.TAG} setSettingsData [brightness:${brightness}]`);
     this.brightness = brightness;
-    settings.setValueSync(this.dataAbilityHelper, ConfigData.SETTINGSDATA_BRIGHTNESS, brightness.toString());
+    settings.setValueSync(globalThis.settingsAbilityContext, ConfigData.SETTINGSDATA_BRIGHTNESS, brightness.toString());
     LogUtil.info(`${this.TAG} setSettingsData success`);
   }
 
@@ -121,7 +126,7 @@ export class BrightnessSettingModel extends BaseModel{
   @CatchError(undefined)
   private updateValue(){
     LogUtil.info(`${this.TAG} updateValue`);
-    this.brightness = parseInt(settings.getValueSync(this.dataAbilityHelper, ConfigData.SETTINGSDATA_BRIGHTNESS, this.defaultBrightnessStr));
+    this.brightness = parseInt(settings.getValueSync(globalThis.settingsAbilityContext, ConfigData.SETTINGSDATA_BRIGHTNESS, this.defaultBrightnessStr));
     LogUtil.info(`${this.TAG} updateValue success, [brightness:${this.brightness}]`);
     return;
   }
@@ -131,12 +136,6 @@ export class BrightnessSettingModel extends BaseModel{
    */
   @Log
   public registerObserver(){
-    LogUtil.info(`${this.TAG} registerObserver`);
-    this.dataAbilityHelper.on("dataChange", this.urivar, (err)=>{
-      this.updateValue();
-    })
-    LogUtil.info(`${this.TAG} registerObserver success`);
-    return;
   }
 
   /**
@@ -145,7 +144,7 @@ export class BrightnessSettingModel extends BaseModel{
   @Log
   public unregisterObserver() {
     LogUtil.info(`${this.TAG} unregisterObserver`);
-    this.dataAbilityHelper.off("dataChange", this.urivar, (err)=>{
+    this.dataShareHelper.off("dataChange", this.listenUri, (err)=>{
       LogUtil.info(`${this.TAG} unregisterObserver success`);
     })
     return;
