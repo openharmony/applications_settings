@@ -38,9 +38,6 @@ export class DateAndTimeModel extends BaseModel {
       .then((dataHelper) => {
         this.dataShareHelper = dataHelper;
         LogUtil.info("createDataShareHelper success");
-        this.dataShareHelper.on("dataChange", this.listenUri, (error) => {
-          LogUtil.info("dataChange success");
-        })
       });
   }
 

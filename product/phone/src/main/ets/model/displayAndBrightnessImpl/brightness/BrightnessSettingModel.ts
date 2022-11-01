@@ -23,6 +23,7 @@ import data_dataShare from '@ohos.data.dataShare';
 import CatchError from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/CatchError';
 import systemParameter from '@ohos.systemparameter';
 
+var mBrightnessValue = AppStorage.SetAndLink('BrightnessValue', 100);
 /**
  * Brightness setting
  *
@@ -115,6 +116,7 @@ export class BrightnessSettingModel extends BaseModel{
   @Log
   private setSystemBrightness(brightness:number){
     this.brightness = brightness;
+    mBrightnessValue.set(brightness);
     Brightness.setValue(brightness);
     return;
   }
@@ -127,6 +129,7 @@ export class BrightnessSettingModel extends BaseModel{
   private updateValue(){
     LogUtil.info(`${this.TAG} updateValue`);
     this.brightness = parseInt(settings.getValueSync(globalThis.settingsAbilityContext, ConfigData.SETTINGSDATA_BRIGHTNESS, this.defaultBrightnessStr));
+    mBrightnessValue.set(this.brightness);
     LogUtil.info(`${this.TAG} updateValue success, [brightness:${this.brightness}]`);
     return;
   }
