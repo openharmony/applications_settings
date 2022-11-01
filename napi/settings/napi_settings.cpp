@@ -288,7 +288,7 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, const napi_val
     HILOG_INFO("getDataShareHelper called");
     auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
 
-    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS, strProxyUri);
+    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri);
     HILOG_INFO("getDataShareHelper called");
 
     DataSharePredicates predicates;
@@ -298,7 +298,7 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, const napi_val
         HILOG_INFO("getDataShareHelper dataShareHelper = nullptr");
     }
     if (dataShareHelper == nullptr || dataShareHelper->Query(proxyUri, predicates, columns) == nullptr) {
-        dataShareHelper =  OHOS::DataShare::DataShareHelper::Creator(contextS, strUri);
+        dataShareHelper =  OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
         return dataShareHelper;
     }
     
