@@ -19,7 +19,7 @@ import ConfigData from '../../../../../../../common/utils/src/main/ets/default/b
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import SystemTime from '@ohos.systemTime';
 import settings from '@ohos.settings';
-import featureAbility from '@ohos.ability.featureAbility';
+import data_dataShare from '@ohos.data.dataShare';
 import CatchError from '../../../../../../../common/utils/src/main/ets/default/baseUtil/CatchError';
 import i18n from '@ohos.i18n';
 
@@ -28,23 +28,24 @@ import i18n from '@ohos.i18n';
  */
 export class DateAndTimeModel extends BaseModel {
   private timeFormat = '';
-  private urivar = '';
-  private dataAbilityHelper;
-  private readonly uri = 'dataability:///com.ohos.settingsdata.DataAbility';
+  private dataShareHelper;
+  private readonly uriShare: string = 'datashare:///com.ohos.settingsdata.DataAbility';
+  private readonly listenUri = 'datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' + ConfigData.TIME_FORMAT_KEY;
 
   constructor() {
     super();
-    this.urivar = this.getUri();
-    // @ts-ignore
-    this.dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.settingsAbilityContext, this.uri);
+    data_dataShare.createDataShareHelper(globalThis.settingsAbilityContext, this.uriShare)
+      .then((dataHelper) => {
+        this.dataShareHelper = dataHelper;
+        LogUtil.info("createDataShareHelper success");
+      });
   }
 
   /**
    * Get Uri
    */
-  @CatchError(`dataability:///com.ohos.settingsdata.DataAbility/${ConfigData.TIME_FORMAT_KEY}`)
   public getUri(){
-    return settings.getUriSync(ConfigData.TIME_FORMAT_KEY);
+    return this.listenUri;
   }
 
   setTime(time) {
@@ -62,7 +63,7 @@ export class DateAndTimeModel extends BaseModel {
   @CatchError('24')
   getTimeFormat() : string {
     if (i18n.is24HourClock()) {
-      this.timeFormat = settings.getValueSync(this.dataAbilityHelper, ConfigData.TIME_FORMAT_KEY, ConfigData.TIME_FORMAT_24);
+      this.timeFormat = settings.getValueSync(globalThis.settingsAbilityContext, ConfigData.TIME_FORMAT_KEY, ConfigData.TIME_FORMAT_24);
       LogUtil.info(ConfigData.TAG + 'DateAndTimeModel get time format is ' + this.timeFormat);
     }
     return this.timeFormat;
@@ -100,7 +101,7 @@ export class DateAndTimeModel extends BaseModel {
     }
     LogUtil.info(ConfigData.TAG + 'DateAndTimeModel i18n set24HourClock ' + JSON.stringify(ret24HourClock));
 
-    let ret = settings.setValueSync(this.dataAbilityHelper, ConfigData.TIME_FORMAT_KEY, format);
+    let ret = settings.setValueSync(globalThis.settingsAbilityContext, ConfigData.TIME_FORMAT_KEY, format);
     if (ret === true) {
       this.timeFormat = format;
     }
@@ -111,11 +112,6 @@ export class DateAndTimeModel extends BaseModel {
    * Register observer
    */
   public registerObserver(callback: () => {}){
-    LogUtil.info(`${ConfigData.TAG} registerObserver`);
-    this.dataAbilityHelper.on("dataChange", this.urivar, (err)=>{
-      callback();
-    })
-    LogUtil.info(`${ConfigData.TAG} registerObserver success`);
     return;
   }
 
@@ -124,7 +120,7 @@ export class DateAndTimeModel extends BaseModel {
    */
   public unregisterObserver() {
     LogUtil.info(`${ConfigData.TAG} unregisterObserver`);
-    this.dataAbilityHelper.off("dataChange", this.urivar, (err) => {
+    this.dataShareHelper.off("dataChange", this.listenUri, (err) => {
       LogUtil.info(`${ConfigData.TAG} unregisterObserver success`);
     })
     return;
