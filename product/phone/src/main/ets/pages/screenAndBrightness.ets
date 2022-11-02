@@ -30,6 +30,7 @@ const BRIGHTNESS_STEP_VALUE = 1;
 @Component
 struct BrightnessSettings {
   @State brightnessSettingModel: BrightnessSettingModel = new BrightnessSettingModel();
+  @StorageLink('BrightnessValue') brightnessValue: number = 0;
   private TAG = ConfigData.TAG + 'BrightnessSettings ';
 
   build() {
@@ -50,7 +51,7 @@ struct BrightnessSettings {
               .opacity($r("sys.float.ohos_fa_alpha_content_secondary"))
 
             Slider({
-              value: this.brightnessSettingModel.getValue(),
+              value: this.brightnessValue,
               min: this.brightnessSettingModel.getMinBrightness(),
               max: this.brightnessSettingModel.getMaxBrightness(),
               step: BRIGHTNESS_STEP_VALUE,
