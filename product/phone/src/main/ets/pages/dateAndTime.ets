@@ -91,11 +91,15 @@ struct dateAndTime {
               .height('20vp')
               .selectedColor('#007DFF')
               .onChange((isOn: boolean) => {
+                let timeFormat :boolean = this.is24hTimeFormat();
+                LogUtil.info(MODULE_TAG + 'Toggle come onChange timeFormat ' + timeFormat);
                 if (this.is24hTimeFormat()) {
                   this.setTimeFormatAs12H();
                 } else {
                   this.setTimeFormatAs24H();
                 }
+                this.time = DateAndTime.getSystemTime(timeFormat);
+                this.changeValue();
               });
           }
           .height($r('app.float.wh_value_56'))

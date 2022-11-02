@@ -18,45 +18,37 @@ import LogUtil from '../../../../../../../common/utils/src/main/ets/default/base
 import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import deviceInfo from '@ohos.deviceInfo';
 import settings from '@ohos.settings';
-import featureAbility from '@ohos.ability.featureAbility';
 import CatchError from '../../../../../../../common/utils/src/main/ets/default/baseUtil/CatchError';
 
 /**
  * about device service class
  */
 export class AboutDeviceModel extends BaseModel {
-  private dataAbilityHelper;
-  private urivar;
-  private readonly uri = 'dataability:///com.ohos.settingsdata.DataAbility';
-  
   private deviceInfo: BaseModel[] = [
-      {
-        settingAlias: "model",
-        settingTitle: "",
-        settingValue: ""
-      },
-      {
-        settingAlias: "companyInfo",
-        settingTitle: "",
-        settingValue: ""
-      },
-      {
-        settingAlias: "deviceId",
-        settingTitle: "",
-        settingValue: "00000000000000"
-      },
-      {
-        settingAlias: "softwareVersion",
-        settingTitle: "",
-        settingValue: ""
-      }
-    ]
+    {
+      settingAlias: "model",
+      settingTitle: "",
+      settingValue: ""
+    },
+    {
+      settingAlias: "companyInfo",
+      settingTitle: "",
+      settingValue: ""
+    },
+    {
+      settingAlias: "deviceId",
+      settingTitle: "",
+      settingValue: "00000000000000"
+    },
+    {
+      settingAlias: "softwareVersion",
+      settingTitle: "",
+      settingValue: ""
+    }
+  ]
 
   constructor(){
     super();
-    this.urivar = this.getUri();
-    // @ts-ignore
-    this.dataAbilityHelper = featureAbility.acquireDataAbilityHelper(globalThis.settingsAbilityContext, this.uri);
   }
 
   /**
@@ -93,7 +85,7 @@ export class AboutDeviceModel extends BaseModel {
   @Log
   @CatchError(ConfigData.DEVICE_NAME)
   getSystemName(){
-    let deviceName = settings.getValueSync(this.dataAbilityHelper, ConfigData.SETTINGSDATA_DEVICE_NAME, ConfigData.DEVICE_NAME);
+    let deviceName = settings.getValueSync(globalThis.settingsAbilityContext, ConfigData.SETTINGSDATA_DEVICE_NAME, ConfigData.DEVICE_NAME);
     return deviceName;
   }
 
@@ -103,7 +95,7 @@ export class AboutDeviceModel extends BaseModel {
   @Log
   @CatchError(undefined)
   setSystemName(name: string){
-    settings.setValueSync(this.dataAbilityHelper, ConfigData.SETTINGSDATA_DEVICE_NAME, name);
+    settings.setValueSync(globalThis.settingsAbilityContext, ConfigData.SETTINGSDATA_DEVICE_NAME, name);
     return;
   }
 }
