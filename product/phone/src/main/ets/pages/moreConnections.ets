@@ -42,10 +42,12 @@ struct MoreConnections {
         Column() {
           HeadComponent({ headName: $r('app.string.moreConnectionsTab'), isActive: true });
 
-          Column(){
-            SubEntryComponentWithEndText({ targetPage:'pages/nfc', title: $r('app.string.NFC'), endText: this.nfcStatus ? $r("app.string.enabled") : $r("app.string.disabled") })
-          }
-          .margin({ top: $r("app.float.distance_8") })
+          SubEntryComponentWithEndText({
+            targetPage: 'pages/nfc',
+            title: $r('app.string.NFC'),
+            endText: this.nfcStatus ? $r("app.string.enabled") : $r("app.string.disabled")
+          })
+            .margin({ top: $r("app.float.distance_8") })
         }
         .padding({
           left: $r('sys.float.ohos_id_card_margin_start'),

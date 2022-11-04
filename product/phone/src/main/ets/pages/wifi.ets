@@ -189,8 +189,8 @@ struct Index {
                 .padding({
                   left: $r('app.float.wh_value_12'),
                   top: $r('app.float.distance_19_5'),
-                  bottom: $r('app.float.distance_9_5') 
-		})
+                  bottom: $r('app.float.distance_9_5')
+                })
                 .justifyContent(FlexAlign.Start);
 
                 Column() {
@@ -202,7 +202,7 @@ struct Index {
                     settingArrow: this.connectedWiFi.settingArrow,
                     settingUri: this.connectedWiFi.settingUri,
                     titleFontColor: "activated"
-                  });
+                  })
                 }
                 .height($r("app.float.wh_value_64"))
                 .borderRadius($r("app.float.radius_24"))
@@ -219,18 +219,19 @@ struct Index {
 
               Column() {
                 Row() {
-                  Row() {
-                    Text($r("app.string.wifiTipValidWLAN"))
-                      .fontSize($r('sys.float.ohos_id_text_size_body2'))
-                      .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-                      .fontWeight(FontWeight.Medium)
-                      .height($r('app.float.wh_value_19'));
-                  }
-                  .padding({ top: $r('app.float.distance_19_5'), bottom: $r('app.float.distance_9_5') });
+                  Text($r("app.string.wifiTipValidWLAN"))
+                    .fontSize($r('sys.float.ohos_id_text_size_body2'))
+                    .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+                    .fontWeight(FontWeight.Medium)
+                    .height($r('app.float.wh_value_19'))
+                    .margin({ top: $r('app.float.distance_19_5'), bottom: $r('app.float.distance_9_5') });
 
                   Blank()
 
-                  ImageAnimatorComponent({ imageWidth: $r('app.float.wh_value_24'), imageHeight: $r('app.float.wh_value_24') })
+                  ImageAnimatorComponent({
+                    imageWidth: $r('app.float.wh_value_24'),
+                    imageHeight: $r('app.float.wh_value_24')
+                  })
                 }
                 .height($r("app.float.wh_value_48"))
                 .width(ConfigData.WH_100_100)
