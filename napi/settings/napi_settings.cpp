@@ -18,15 +18,19 @@
 #include <pthread.h>
 #include <unistd.h>
 
-#include "ability.h"
 #include "abs_shared_result_set.h"
-#include "context.h"
 #include "data_ability_helper.h"
 #include "data_ability_predicates.h"
 #include "hilog_wrapper.h"
 #include "values_bucket.h"
 
+#include "napi_base_context.h"
+#include "datashare_helper.h"
+#include "datashare_predicates.h"
+
+
 using namespace OHOS::AppExecFwk;
+using namespace OHOS::DataShare;
 
 namespace ohos {
 namespace settings {
@@ -127,6 +131,7 @@ struct AsyncCallbackInfo {
     std::string value;
     std::string uri;
     int status;
+    std::shared_ptr<DataShareHelper> dataShareHelper = nullptr;
 };
 
 /**
@@ -274,6 +279,156 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
     }
 }
 
+std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, const napi_value context, const bool stageMode)
+{
+    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
+    std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
+    std::string strProxyUri = "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true";
+    OHOS::Uri proxyUri(strProxyUri);
+    HILOG_INFO("getDataShareHelper called");
+    auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
+
+    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri);
+    HILOG_INFO("getDataShareHelper called");
+
+    DataSharePredicates predicates;
+    predicates.Limit(1, 0);
+    std::vector<std::string> columns;
+    if (dataShareHelper == nullptr) {
+        HILOG_INFO("getDataShareHelper dataShareHelper = nullptr");
+    }
+    if (dataShareHelper == nullptr || dataShareHelper->Query(proxyUri, predicates, columns) == nullptr) {
+        dataShareHelper =  OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
+        return dataShareHelper;
+    }
+    
+    return dataShareHelper;
+}
+
+void GetValueExecuteExt(napi_env env, void *data)
+{
+    if (data == nullptr) {
+        HILOG_INFO("settingsnapi : execute data is null");
+        return;
+    }
+
+    HILOG_INFO("settingsnapi : GetValueExecuteExt start");
+    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+
+    std::vector<std::string> columns;
+    columns.push_back(SETTINGS_DATA_FIELD_VALUE);
+
+    OHOS::DataShare::DataSharePredicates predicates;
+    predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
+
+    std::string strUri = "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=" + asyncCallbackInfo->key;
+    OHOS::Uri uri(strUri);
+
+    std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultset = nullptr;
+    resultset = asyncCallbackInfo->dataShareHelper->Query(uri, predicates, columns);
+
+    int numRows = 0;
+    if (resultset != nullptr) {
+        HILOG_INFO("settingsnapi : GetValueExecuteExt called... resultset is NOT empty");
+        resultset->GetRowCount(numRows);
+    }
+
+    if (resultset == nullptr || numRows == 0) {
+        HILOG_INFO("settingsnapi : GetValueExecuteExt called... return error");
+        asyncCallbackInfo->status = -1;
+        return;
+    }
+    
+    std::string val;
+    int32_t columnIndex = 0;
+    resultset->GoToFirstRow();
+
+    resultset->GetString(columnIndex, val);
+    HILOG_INFO("napi_get_value_ext called... %{public}s", val.c_str());
+    asyncCallbackInfo->value = val;
+    asyncCallbackInfo->status = napi_ok;
+}
+
+void DeleteCallbackInfo(napi_env env, AsyncCallbackInfo *asyncCallbackInfo)
+{
+    if (env != nullptr) {
+        napi_delete_reference(env, asyncCallbackInfo->callbackRef);
+        napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
+    }
+    asyncCallbackInfo->dataShareHelper = nullptr;
+    delete asyncCallbackInfo;
+}
+
+void CompleteCall(napi_env env, napi_status status, void *data, const napi_value retVaule)
+{
+    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+    napi_value result[PARAM2] = {0};
+    if (status == napi_ok && asyncCallbackInfo->status == napi_ok) {
+        napi_get_undefined(env, &result[PARAM0]);
+        result[PARAM1] = retVaule;
+    } else {
+        napi_value message = nullptr;
+        napi_create_string_utf8(env, "async call failed", NAPI_AUTO_LENGTH, &message);
+        napi_create_error(env, nullptr, message, &result[PARAM0]);
+        napi_get_undefined(env, &result[PARAM1]);
+    }
+    HILOG_INFO("settingsnapi : callback aysnc end called");
+    napi_value callback = nullptr;
+    napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
+    napi_value returnValue;
+    napi_call_function(env, nullptr, callback, PARAM2, result, &returnValue);
+    HILOG_INFO("settingsnapi : callback aysnc end called");
+    DeleteCallbackInfo(env, asyncCallbackInfo);
+    HILOG_INFO("settingsnapi : callback change callback complete");
+}
+
+void CompletePromise(napi_env env, napi_status status, void *data, const napi_value retVaule)
+{
+    HILOG_INFO("settingsnapi : promise async end called callback");
+    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+    napi_value result = nullptr;
+    if (status == napi_ok && asyncCallbackInfo->status == napi_ok) {
+        napi_resolve_deferred(env, asyncCallbackInfo->deferred, retVaule);
+    } else {
+        napi_get_undefined(env, &result);
+        napi_reject_deferred(env, asyncCallbackInfo->deferred, result);
+    }
+    DeleteCallbackInfo(env, asyncCallbackInfo);
+}
+
+void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
+{
+    if (data == nullptr) {
+        HILOG_INFO("settingsnapi : SetValueExecuteExt data is null");
+        return;
+    }
+    HILOG_INFO("settingsnapi : execute start");
+    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+
+    OHOS::DataShare::DataShareValuesBucket val;
+    val.Put(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
+    val.Put(SETTINGS_DATA_FIELD_VALUE, setValue);
+
+    std::string strUri = "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=" + asyncCallbackInfo->key;
+    HILOG_INFO("strUri = %{public}s", strUri.c_str());
+    OHOS::Uri uri(strUri);
+
+    OHOS::DataShare::DataSharePredicates predicates;
+    predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
+
+    int retInt = 0;
+    if (asyncCallbackInfo->status == -1 || asyncCallbackInfo->value.size() <= 0) {
+        HILOG_INFO("napi_set_value_ext called... before Insert");
+        retInt = asyncCallbackInfo->dataShareHelper->Insert(uri, val);
+        HILOG_INFO("napi_set_value_ext called... after Insert");
+    } else {
+        HILOG_INFO("napi_set_value_ext called... before Update");
+        retInt = asyncCallbackInfo->dataShareHelper->Update(uri, predicates, val);
+        HILOG_INFO("napi_set_value_ext called... after Update");
+    }
+    asyncCallbackInfo->status = retInt;
+}
+
 /**
  * @brief getValue NAPI implementation.
  *
@@ -302,6 +457,26 @@ napi_value napi_get_value_sync(napi_env env, napi_callback_info info)
     NAPI_ASSERT(env, valueType == napi_string, "Wrong argument[1] type. String expected.");
     NAPI_CALL(env, napi_typeof(env, args[PARAM2], &valueType));
     NAPI_ASSERT(env, valueType == napi_string, "Wrong argument[2] type. String expected.");
+
+    bool stageMode = false;
+    napi_status status = OHOS::AbilityRuntime::IsStageContext(env, args[PARAM0], stageMode);
+    if (status == napi_ok) {
+        HILOG_INFO("argv[0] is a context, Stage Model: %{public}d", stageMode);
+        AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo();
+        asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
+        std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
+        asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode);
+        GetValueExecuteExt(env, (void*)asyncCallbackInfo);
+        HILOG_INFO("settingsnapi : napi_get_value_sync called... return  %{public}s", asyncCallbackInfo->value.c_str());
+        napi_value retVal = nullptr;
+        if(asyncCallbackInfo->value.size() <= 0){
+            retVal = args[PARAM2];
+        } else {
+            retVal = wrap_string_to_js(env, asyncCallbackInfo->value);
+        }
+        delete asyncCallbackInfo;
+        return retVal;
+    }
 
     std::shared_ptr<Uri> uri = std::make_shared<Uri>(SETTINGS_DATA_BASE_URI);
     DataAbilityHelper *dataAbilityHelper = nullptr;
@@ -377,6 +552,14 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
     // Check the value type of the arguments
     napi_valuetype valueType;
     NAPI_CALL(env, napi_typeof(env, args[PARAM0], &valueType));
+
+    bool stageMode = false;
+    napi_status status = OHOS::AbilityRuntime::IsStageContext(env, args[PARAM0], stageMode);
+    if (status == napi_ok) {
+        HILOG_INFO("argv[0] is a context, Stage Model: %{public}d", stageMode);
+        return napi_get_value_ext(env, info, stageMode);
+    }
+
     NAPI_ASSERT(env, valueType == napi_object, "Wrong argument[0], type. Object expected");
     NAPI_CALL(env, napi_typeof(env, args[PARAM1], &valueType));
     NAPI_ASSERT(env, valueType == napi_string, "Wrong argument[1], type. String expected");
@@ -526,7 +709,7 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
             napi_value result = wrap_string_to_js(env, asyncCallbackInfo->value);
             napi_resolve_deferred(asyncCallbackInfo->env, asyncCallbackInfo->deferred, result);
             napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
-            asyncCallbackInfo->dataAbilityHelper = nullptr;  
+            asyncCallbackInfo->dataAbilityHelper = nullptr; 
             delete asyncCallbackInfo;
         },
         (void*)asyncCallbackInfo,
@@ -535,6 +718,80 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
         return promise;
     }
 }
+
+// api9
+napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool stageMode)
+{
+    HILOG_INFO("settingsnapi : napi_get_value_ext start");
+    AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
+        .env = env,
+        .asyncWork = nullptr,
+        .deferred = nullptr,
+        .callbackRef = nullptr,
+        .dataAbilityHelper = nullptr,
+        .key = "",
+        .value = "",
+        .uri = "",
+        .status = false,
+    };
+
+    HILOG_INFO("napi_get_value_ext called");
+    size_t argc = ARGS_THREE;
+    napi_value args[ARGS_THREE] = {nullptr};
+    NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
+    std::string strUri = "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true";
+    OHOS::Uri uri(strUri);
+
+    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
+    asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode);
+
+    asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
+
+    napi_value resource = nullptr;
+    NAPI_CALL(env, napi_create_string_utf8(env, "getValue", NAPI_AUTO_LENGTH, &resource));
+
+    if (argc == ARGS_THREE) {
+        napi_create_reference(env, args[PARAM2], 1, &asyncCallbackInfo->callbackRef);
+        napi_create_async_work(
+            env,
+            nullptr,
+            resource,
+            GetValueExecuteExt,
+            [](napi_env env, napi_status status, void* data) {
+                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+                napi_value result = wrap_string_to_js(env, asyncCallbackInfo->value);
+                CompleteCall(env, status, data, result);
+            },
+            (void*)asyncCallbackInfo,
+            &asyncCallbackInfo->asyncWork
+        );
+        NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
+        HILOG_INFO("settingsnapi : callback end async work");
+        return wrap_void_to_js(env);
+    } else {
+        napi_value promise;
+        napi_deferred deferred;
+        NAPI_CALL(env, napi_create_promise(env, &deferred, &promise));
+        asyncCallbackInfo->deferred = deferred;
+        napi_create_async_work(
+            env,
+            nullptr,
+            resource,
+            GetValueExecuteExt,
+            [](napi_env env, napi_status status, void* data) {
+                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+                napi_value result = nullptr;
+                result = wrap_string_to_js(env, asyncCallbackInfo->value);
+                CompletePromise(env, status, data, result);
+            },
+            (void*)asyncCallbackInfo,
+            &asyncCallbackInfo->asyncWork
+        );
+        NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
+        return promise;
+    }
+}
+
 
 /**
  * @brief setValue NAPI implementation.
@@ -564,6 +821,21 @@ napi_value napi_set_value_sync(napi_env env, napi_callback_info info)
     NAPI_ASSERT(env, valueType == napi_string, "Wrong argument[1] type. String expected.");
     NAPI_CALL(env, napi_typeof(env, args[PARAM2], &valueType));
     NAPI_ASSERT(env, valueType == napi_string, "Wrong argument[2] type. String expected.");
+
+    bool stageMode = false;
+    napi_status status = OHOS::AbilityRuntime::IsStageContext(env, args[PARAM0], stageMode);
+    if (status == napi_ok) {
+        HILOG_INFO("argv[0] is a context, Stage Model: %{public}d", stageMode);
+        AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo();
+        asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
+        std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
+        asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode);
+        GetValueExecuteExt(env, (void*)asyncCallbackInfo);
+        SetValueExecuteExt(env, (void*)asyncCallbackInfo, unwrap_string_from_js(env, args[PARAM2]));
+        napi_value result = wrap_bool_to_js(env, asyncCallbackInfo->status != 0);
+        delete asyncCallbackInfo;
+        return result;
+    }
 
     DataAbilityHelper *dataAbilityHelper = nullptr;
     NAPI_CALL(env, napi_unwrap(env, args[PARAM0], reinterpret_cast<void **>(&dataAbilityHelper)));
@@ -800,6 +1072,15 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
     HILOG_INFO("settingsnapi : set  after create aysnc call back info");
     napi_valuetype valueType;
     NAPI_CALL(env, napi_typeof(env, args[PARAM0], &valueType));
+
+    // api9 napi_set_value_ext
+    bool stageMode = false;
+    napi_status status = OHOS::AbilityRuntime::IsStageContext(env, args[PARAM0], stageMode);
+    if (status == napi_ok) {
+        HILOG_INFO("argv[0] is a context, Stage Model: %{public}d", stageMode);
+        return napi_set_value_ext(env, info, stageMode);
+    }
+
     NAPI_ASSERT(env, valueType == napi_object, "Wrong argument[0], type. Object expected");
     NAPI_CALL(env, napi_typeof(env, args[PARAM1], &valueType));
     NAPI_ASSERT(env, valueType == napi_string, "Wrong argument[1], type. String expected");
@@ -825,6 +1106,83 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
     return ret;
 }
 
+napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool stageMode)
+{
+    const size_t paramOfCallback = ARGS_FOUR;
+
+    AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
+        .env = env,
+        .asyncWork = nullptr,
+        .deferred = nullptr,
+        .callbackRef = nullptr,
+        .dataAbilityHelper = nullptr,
+        .key = "",
+        .value = "",
+        .uri = "",
+        .status = false,
+    };
+
+    size_t argc = ARGS_FOUR;
+    napi_value args[ARGS_FOUR] = {nullptr};
+    NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
+
+    asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode);
+    asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
+    asyncCallbackInfo->uri = unwrap_string_from_js(env, args[PARAM2]); //temp
+    napi_value resource = nullptr;
+    NAPI_CALL(env, napi_create_string_utf8(env, "napi_set_value_ext", NAPI_AUTO_LENGTH, &resource));
+
+    if (argc == paramOfCallback) {
+        napi_create_reference(env, args[PARAM3], 1, &asyncCallbackInfo->callbackRef);
+        napi_create_async_work(
+            env,
+            nullptr,
+            resource,
+            [](napi_env env, void* data) {
+                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+                GetValueExecuteExt(env, (void*)asyncCallbackInfo);
+                SetValueExecuteExt(env, (void*)asyncCallbackInfo, asyncCallbackInfo->uri);
+            },
+            [](napi_env env, napi_status status, void* data) {
+                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+                napi_value result = wrap_bool_to_js(env, asyncCallbackInfo->status != 0);
+                asyncCallbackInfo->status = napi_ok;
+                CompleteCall(env, status, data, result);
+            },
+            (void*)asyncCallbackInfo,
+            &asyncCallbackInfo->asyncWork
+        );
+        NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
+        HILOG_INFO("settingsnapi : callback end async work");
+        return wrap_void_to_js(env);
+    } else {
+        napi_value promise;
+        napi_deferred deferred;
+        NAPI_CALL(env, napi_create_promise(env, &deferred, &promise));
+        asyncCallbackInfo->deferred = deferred;
+        napi_create_async_work(
+            env,
+            nullptr,
+            resource,
+            [](napi_env env, void* data) {
+                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+                GetValueExecuteExt(env, (void*)asyncCallbackInfo);
+                SetValueExecuteExt(env, (void*)asyncCallbackInfo, asyncCallbackInfo->uri);
+            },
+            [](napi_env env, napi_status status, void* data) {
+                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+                napi_value result = wrap_bool_to_js(env, asyncCallbackInfo->status != 0);
+                asyncCallbackInfo->status = napi_ok;
+                CompletePromise(env, status, data, result);
+            },
+            (void*)asyncCallbackInfo,
+            &asyncCallbackInfo->asyncWork
+        );
+        NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
+        return promise;
+    }
+    return wrap_void_to_js(env);
+}
 /**
  * @brief enableAirplaneMode NAPI implementation.
  * @param env the environment that the Node-API call is invoked under

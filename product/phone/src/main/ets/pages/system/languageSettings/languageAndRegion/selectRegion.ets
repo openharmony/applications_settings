@@ -120,34 +120,33 @@ struct CurrentRegion {
 
   build() {
     Column() {
-      Row() {
-        Text(this.currentRegion)
-          .fontSize($r('app.float.font_16'))
-          .lineHeight($r('app.float.wh_value_22'))
-          .fontWeight(FontWeight.Medium)
-          .fontColor($r("app.color.font_color_007DFF"))
-          .margin({left: $r('app.float.distance_8')})
-          .textAlign(TextAlign.Start);
-      }
-      .height(ConfigData.WH_100_100)
-      .width(ConfigData.WH_100_100)
-      .borderRadius($r('app.float.radius_20'))
-      .linearGradient(this.isTouched ? {
-         angle: 90,
-         direction: GradientDirection.Right,
-         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-         } : {
-         angle: 90,
-         direction: GradientDirection.Right,
-         colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
-      .onTouch((event: TouchEvent) => {
-        if (event.type === TouchType.Down) {
-          this.isTouched = true;
-        }
-        if (event.type === TouchType.Up) {
-          this.isTouched = false;
-        }
-      });
+      Text(this.currentRegion)
+        .fontSize($r('app.float.font_16'))
+        .lineHeight($r('app.float.wh_value_22'))
+        .fontWeight(FontWeight.Medium)
+        .fontColor($r("app.color.font_color_007DFF"))
+        .margin({ left: $r('app.float.distance_8') })
+        .textAlign(TextAlign.Start)
+        .height(ConfigData.WH_100_100)
+        .width(ConfigData.WH_100_100)
+        .borderRadius($r('app.float.radius_20'))
+        .linearGradient(this.isTouched ? {
+                                           angle: 90,
+                                           direction: GradientDirection.Right,
+                                           colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+                                         } : {
+                                               angle: 90,
+                                               direction: GradientDirection.Right,
+                                               colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+                                             })
+        .onTouch((event: TouchEvent) => {
+          if (event.type === TouchType.Down) {
+            this.isTouched = true;
+          }
+          if (event.type === TouchType.Up) {
+            this.isTouched = false;
+          }
+        });
     }
     .padding($r('app.float.distance_4'))
     .height($r('app.float.wh_value_56'))

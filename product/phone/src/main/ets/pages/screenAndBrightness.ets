@@ -30,6 +30,7 @@ const BRIGHTNESS_STEP_VALUE = 1;
 @Component
 struct BrightnessSettings {
   @State brightnessSettingModel: BrightnessSettingModel = new BrightnessSettingModel();
+  @StorageLink('BrightnessValue') brightnessValue: number = 0;
   private TAG = ConfigData.TAG + 'BrightnessSettings ';
 
   build() {
@@ -50,7 +51,7 @@ struct BrightnessSettings {
               .opacity($r("sys.float.ohos_fa_alpha_content_secondary"))
 
             Slider({
-              value: this.brightnessSettingModel.getValue(),
+              value: this.brightnessValue,
               min: this.brightnessSettingModel.getMinBrightness(),
               max: this.brightnessSettingModel.getMaxBrightness(),
               step: BRIGHTNESS_STEP_VALUE,
@@ -130,15 +131,13 @@ export struct ScreenModelComponent {
   build() {
     Navigator({ target: "pages/screenMode" }) {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        Row() {
-          Text($r("app.string.screenResolution"))
-            .fontSize($r('app.float.font_16'))
-            .lineHeight($r('app.float.wh_value_22'))
-            .fontWeight(FontWeight.Medium)
-            .fontColor($r("sys.color.ohos_id_color_text_primary"))
-            .margin({ left: $r('app.float.distance_8') })
-            .textAlign(TextAlign.Start);
-        }
+        Text($r("app.string.screenResolution"))
+          .fontSize($r('app.float.font_16'))
+          .lineHeight($r('app.float.wh_value_22'))
+          .fontWeight(FontWeight.Medium)
+          .fontColor($r("sys.color.ohos_id_color_text_primary"))
+          .margin({ left: $r('app.float.distance_8') })
+          .textAlign(TextAlign.Start);
 
         Row() {
           Text(this.sysScreenModeText)

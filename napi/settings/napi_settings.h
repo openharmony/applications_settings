@@ -21,7 +21,6 @@
 #include "napi/native_api.h"
 #include "napi/native_common.h"
 #include "napi/native_node_api.h"
-#include "running_process_info.h"
 #include "uri.h"
 
 #define ARGS_ONE 1
@@ -59,6 +58,7 @@ napi_value napi_get_uri_sync(napi_env env, napi_callback_info info);
  * @return napi_value the return value from NAPI C++ to JS for the module.
  */
 napi_value napi_get_value(napi_env env, napi_callback_info info);
+napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool stageMode);
 
 /**
  * @brief getValueSync NAPI implementation.
@@ -75,6 +75,7 @@ napi_value napi_get_value_sync(napi_env env, napi_callback_info info);
  * @return napi_value the return value from NAPI C++ to JS for the module.
  */
 napi_value napi_set_value(napi_env env, napi_callback_info info);
+napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool stageMode);
 
 /**
  * @brief setValueSync NAPI implementation.

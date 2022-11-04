@@ -185,33 +185,31 @@ struct PasswordInput {
               }
             } else {
               Column() {
-                Row() {
-                  TextInput({ placeholder: '', text: this.password })
-                    .width(ConfigData.WH_100_100)
-                    .height(ConfigData.WH_100_100)
-                    .placeholderFont({
-                      size: $r("app.float.font_18"),
-                      weight: FontWeight.Normal,
-                      style: FontStyle.Normal
-                    })
-                    .type(InputType.Password)
-                    .enterKeyType(EnterKeyType.Done)
-                    .caretColor($r('sys.color.ohos_id_color_text_primary_activated'))
-                    .borderRadius(0)
-                    .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
-                    .backgroundColor($r('app.color.color_00000000_transparent'))
-                    .onChange(this.passwordOnChangeHandler)
-                    .onSubmit((enterKey) => {
-                      InputMethod.getInputMethodController().stopInput()
-                        .then((ret) => {
-                          LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
-                        });
-                    })
-                    .onFocus(() => {
-                      LogUtil.info(TAG + "text input is focused");
-                      this.isFocused = true;
-                    })
-                }
+                TextInput({ placeholder: '', text: this.password })
+                  .width(ConfigData.WH_100_100)
+                  .height(ConfigData.WH_100_100)
+                  .placeholderFont({
+                    size: $r("app.float.font_18"),
+                    weight: FontWeight.Normal,
+                    style: FontStyle.Normal
+                  })
+                  .type(InputType.Password)
+                  .enterKeyType(EnterKeyType.Done)
+                  .caretColor($r('sys.color.ohos_id_color_text_primary_activated'))
+                  .borderRadius(0)
+                  .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
+                  .backgroundColor($r('app.color.color_00000000_transparent'))
+                  .onChange(this.passwordOnChangeHandler)
+                  .onSubmit((enterKey) => {
+                    InputMethod.getInputMethodController().stopInput()
+                      .then((ret) => {
+                        LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
+                      });
+                  })
+                  .onFocus(() => {
+                    LogUtil.info(TAG + "text input is focused");
+                    this.isFocused = true;
+                  })
 
                 Divider()
               }
@@ -449,15 +447,13 @@ struct CheckText {
   private checkMessage: string | Resource = '';
 
   build() {
-    Row() {
-      Text(this.checkMessage ? this.checkMessage : $r('app.string.password_set_prompt'))
-        .fontSize($r('sys.float.ohos_id_text_size_body2'))
-        .fontWeight(FontWeight.Medium)
-        .fontColor($r('sys.color.ohos_id_color_warning'))
-        .align(Alignment.Center)
-        .textAlign(TextAlign.Center)
-    }
-    .margin({ top: $r('app.float.distance_4'), bottom: $r('app.float.distance_24') })
+    Text(this.checkMessage ? this.checkMessage : $r('app.string.password_set_prompt'))
+      .fontSize($r('sys.float.ohos_id_text_size_body2'))
+      .fontWeight(FontWeight.Medium)
+      .fontColor($r('sys.color.ohos_id_color_warning'))
+      .align(Alignment.Center)
+      .textAlign(TextAlign.Center)
+      .margin({ top: $r('app.float.distance_4'), bottom: $r('app.float.distance_24') })
   }
 }
 
@@ -480,65 +476,59 @@ struct chooseUnlockMethodDialog {
 
   build() {
     Column() {
-      Row() {
-        Text(this.dialogTitle)
-          .height($r('app.float.wh_value_56'))
-          .margin({ left: $r('app.float.wh_value_24') })
-          .width(ConfigData.WH_100_100)
-          .fontSize($r('app.float.font_20'))
-          .fontColor($r("sys.color.ohos_id_color_primary"))
-          .fontWeight(500)
-      }
+      Text(this.dialogTitle)
+        .height($r('app.float.wh_value_56'))
+        .margin({ left: $r('app.float.wh_value_24') })
+        .width(ConfigData.WH_100_100)
+        .fontSize($r('app.float.font_20'))
+        .fontColor($r("sys.color.ohos_id_color_primary"))
+        .fontWeight(500)
 
-      Row() {
-        RadioListComponent({
-          dataList: this.dataList,
-          checkedValue: this.checkedValue,
-          showRadio: false,
-          onChange: (item: RadioListItem) => {
-            if (this.chosenAction != null) {
-              LogUtil.info(ConfigData.TAG + 'chooseUnlockMethodDialog : onCheckedAction : call back');
-              this.chosenAction(item.settingType);
-            }
-            this.closeDialog();
+      RadioListComponent({
+        dataList: this.dataList,
+        checkedValue: this.checkedValue,
+        showRadio: false,
+        onChange: (item: RadioListItem) => {
+          if (this.chosenAction != null) {
+            LogUtil.info(ConfigData.TAG + 'chooseUnlockMethodDialog : onCheckedAction : call back');
+            this.chosenAction(item.settingType);
+          }
+          this.closeDialog();
+        }
+      })
+
+      Text($r('app.string.cancel'))
+        .fontSize($r('app.float.application_button_subtitle_size'))
+        .fontColor($r('sys.color.ohos_id_color_focused_bg'))
+        .textAlign(TextAlign.Center)
+        .fontWeight(500)
+        .width(ConfigData.WH_100_100)
+        .height($r("app.float.wh_value_56"))
+        .margin({ top: $r("app.float.wh_value_6") })
+        .padding({ top: $r("app.float.wh_value_12"), bottom: $r("app.float.wh_value_6") })
+        .borderRadius($r('app.float.radius_20'))
+        .linearGradient(this.isTouched ? {
+                                           angle: 90,
+                                           direction: GradientDirection.Right,
+                                           colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+                                         } : {
+                                               angle: 90,
+                                               direction: GradientDirection.Right,
+                                               colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+                                             })
+        .onTouch((event: TouchEvent) => {
+          if (event.type === TouchType.Down) {
+            this.isTouched = true;
+          }
+
+          if (event.type === TouchType.Up) {
+            this.isTouched = false;
           }
         })
-      }
-
-      Column() {
-        Text($r('app.string.cancel'))
-          .fontSize($r('app.float.application_button_subtitle_size'))
-          .fontColor($r('sys.color.ohos_id_color_focused_bg'))
-          .textAlign(TextAlign.Center)
-          .fontWeight(500)
-          .width(ConfigData.WH_100_100)
-          .height($r("app.float.wh_value_56"))
-          .margin({ top: $r("app.float.wh_value_6") })
-          .padding({ top: $r("app.float.wh_value_12"), bottom: $r("app.float.wh_value_6") })
-          .borderRadius($r('app.float.radius_20'))
-          .linearGradient(this.isTouched ? {
-                                             angle: 90,
-                                             direction: GradientDirection.Right,
-                                             colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-                                           } : {
-                                                 angle: 90,
-                                                 direction: GradientDirection.Right,
-                                                 colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-                                               })
-          .onTouch((event: TouchEvent) => {
-            if (event.type === TouchType.Down) {
-              this.isTouched = true;
-            }
-
-            if (event.type === TouchType.Up) {
-              this.isTouched = false;
-            }
-          })
-          .onClick(() => {
-            this.closeDialog();
-          });
-      }
-      .align(Alignment.Center);
+        .onClick(() => {
+          this.closeDialog();
+        })
+        .alignSelf(ItemAlign.Center)
     }
   }
 }

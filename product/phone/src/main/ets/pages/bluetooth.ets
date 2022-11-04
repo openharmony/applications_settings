@@ -77,26 +77,23 @@ struct Bluetooth {
 
             Blank()
 
-            Stack({ alignContent: Alignment.Start }) {
-              Toggle({ type: ToggleType.Switch, isOn: this.isOn })
-                .width('36vp')
-                .height('20vp')
-                .selectedColor('#007DFF')
-                .margin({ left: $r('app.float.wh_value_6') })
-                .onChange(() => {
-                  LogUtil.log(this.PAGE_TAG + 'Toggle onClick: isOn = ' + this.isOn + ', enabled = ' + this.isEnabled)
-                  if (!this.isEnabled) return;
-                  this.deviceController.toggleValue(!this.isOn);
-                });
-            }
-            .width($r('app.float.wh_value_48'))
+            Toggle({ type: ToggleType.Switch, isOn: this.isOn })
+              .width('36vp')
+              .height('20vp')
+              .selectedColor('#007DFF')
+              .margin({ left: $r('app.float.wh_value_6') })
+              .onChange(() => {
+                LogUtil.log(this.PAGE_TAG + 'Toggle onClick: isOn = ' + this.isOn + ', enabled = ' + this.isEnabled)
+                if (!this.isEnabled) return;
+                this.deviceController.toggleValue(!this.isOn);
+              });
           }
           .margin({ top: $r("app.float.distance_8") })
           .width(ConfigData.WH_100_100)
           .height($r('app.float.wh_value_56'))
           .backgroundColor($r("app.color.white_bg_color"))
           .borderRadius($r('app.float.wh_value_28'))
-          .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_12') })
+          .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_6') })
           .alignItems(VerticalAlign.Center)
           .borderRadius($r('app.float.distance_24'))
 
@@ -109,8 +106,8 @@ struct Bluetooth {
             .lineHeight($r("app.float.wh_value_20"))
             .padding({
               left: $r('app.float.wh_value_12'),
-              top: $r('app.float.distance_8'), 
-	      bottom: $r('app.float.distance_24')
+              top: $r('app.float.distance_8'),
+              bottom: $r('app.float.distance_24')
             })
 
           Scroll() {
@@ -430,11 +427,9 @@ struct PairedDeviceComponent {
 struct DiscoveringAnimatorComponent {
   build() {
     Column() {
-      Row() {
-        ImageAnimatorComponent({
-          imageWidth: $r('app.float.wh_value_24'),
-          imageHeight: $r('app.float.wh_value_24') })
-      }
+      ImageAnimatorComponent({
+        imageWidth: $r('app.float.wh_value_24'),
+        imageHeight: $r('app.float.wh_value_24') })
     }
   }
 }
@@ -448,7 +443,7 @@ struct AvailableDeviceComponent {
   private controller: BluetoothDeviceController;
   @State isDeviceDiscovering: boolean = false;
   @StorageLink('bluetoothAvailableDevices') availableDevices: BluetoothDevice[] = [];
-  private availableDevicesList: AvailableDevicesDataSource = new AvailableDevicesDataSource(this.availableDevices);
+  @State availableDevicesList: AvailableDevicesDataSource = new AvailableDevicesDataSource(this.availableDevices);
   @State pairPinCode: string = '';
   private pairingDevice: BluetoothDevice = undefined;
   @StorageLink("controlPairing") controlPairing: boolean = true ;
@@ -508,7 +503,7 @@ struct AvailableDeviceComponent {
       if (this.availableDevices && this.availableDevices.length >= 1) {
         List() {
           // paired devices list
-          LazyForEach(this.availableDevicesList, (item: BluetoothDevice) => {
+          ForEach(this.availableDevices, (item: BluetoothDevice) => {
             ListItem() {
               Row() {
                 EntryComponent({
@@ -548,15 +543,13 @@ struct AvailableDeviceComponent {
           endMargin: $r('app.float.wh_value_12')
         })
       } else {
-        Row() {
-          // Scanning...
-          Text($r('app.string.scanning'))
-            .fontSize($r('sys.float.ohos_id_text_size_body2'))
-            .textCase(TextCase.UpperCase)
-            .fontWeight(FontWeight.Medium)
-            .fontColor($r("sys.color.ohos_id_color_primary"))
-        }
-        .height($r('app.float.wh_value_48'))
+        // Scanning...
+        Text($r('app.string.scanning'))
+          .fontSize($r('sys.float.ohos_id_text_size_body2'))
+          .textCase(TextCase.UpperCase)
+          .fontWeight(FontWeight.Medium)
+          .fontColor($r("sys.color.ohos_id_color_primary"))
+          .height($r('app.float.wh_value_48'))
       }
     }
   }
@@ -593,6 +586,9 @@ struct AvailableDeviceComponent {
   confirmPairing(accept: boolean) {
     LogUtil.info(this.TAG_PAGE + 'confirmPairing pairingDevice');
     this.controller.confirmPairing(this.pairingDevice.deviceId, accept);
+//    this.availableDevicesList.delData(this.pairingDevice);
+
+
   }
 
   /**
@@ -680,6 +676,12 @@ class AvailableDevicesDataSource extends BasicDataSource {
       return null;
     }
     return this.availableDevicesArray[index];
+  }
+
+  public delData (device:BluetoothDevice):void{
+    let index  = this.availableDevicesArray.indexOf(device);
+    this.availableDevicesArray.splice(index,1)
+    this.notifyDataDelete(index)
   }
 }
 
@@ -837,8 +839,6 @@ function showDialog(dialogTitle: string | Resource, dialogMessage: string | Reso
   AlertDialog.show({
     title: dialogTitle,
     message: dialogMessage,
-    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
     confirm: {
       value: buttonValue,
       action: () => {

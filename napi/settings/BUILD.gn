@@ -17,6 +17,7 @@ ohos_shared_library("settings") {
   include_dirs = [
     "//foundation/arkui/napi/interfaces/kits",
     "//third_party/node/src",
+    "//foundation/distributeddatamgr/data_share/interfaces/inner_api/common/include",
   ]
 
   sources = [
@@ -26,7 +27,6 @@ ohos_shared_library("settings") {
   ]
 
   deps = [
-    "//foundation/ability/ability_runtime/frameworks/native/ability/native:abilitykit_native",
     "//foundation/ability/ability_runtime/frameworks/native/ability/native:data_ability_helper",
     "//foundation/ability/ability_runtime/interfaces/inner_api/ability_manager:ability_manager",
     "//foundation/arkui/napi:ace_napi",
@@ -34,8 +34,10 @@ ohos_shared_library("settings") {
 
   external_deps = [
     "ability_base:zuri",
-    "bundle_framework:appexecfwk_base",
+    "ability_runtime:napi_base_context",
     "c_utils:utils",
+    "data_share:datashare_common",
+    "data_share:datashare_consumer",
     "hiviewdfx_hilog_native:libhilog",
     "relational_store:native_dataability",
     "relational_store:native_rdb",

@@ -32,12 +32,10 @@ struct EditLanguage {
     Column() {
       GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
         Column() {
-          HeadComponent({ headName: $r('app.string.editLanguage'), deleteFlag: $deleteFlag, deleteItem: $deleteItem});
+          HeadComponent({ headName: $r('app.string.editLanguage'), deleteFlag: $deleteFlag, deleteItem: $deleteItem });
 
-          Column(){
-            EditList({ deleteFlag: $deleteFlag, deleteItem: $deleteItem });
-          }
-          .margin({top:$r("app.float.distance_8")})
+          EditList({ deleteFlag: $deleteFlag, deleteItem: $deleteItem })
+            .margin({ top: $r("app.float.distance_8") })
         }
         .padding({
           left: $r('sys.float.ohos_id_card_margin_start'),

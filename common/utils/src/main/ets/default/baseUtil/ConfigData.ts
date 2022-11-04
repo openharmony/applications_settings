@@ -96,6 +96,8 @@ export class ConfigData {
   MOBILE_DATA_ABILITY_NAME = 'com.ohos.mobiledatasettings.MainAbility';
   SOFTWARE_UPDATES_BUNDLE_NAME = 'com.hmos.ouc';
   SOFTWARE_UPDATES_ABILITY_NAME = 'com.hmos.ouc.MainAbility';
+  SECURITY_BUNDLE_NAME = 'com.ohos.certmanager';
+  SECURITY_ABILITY_NAME = 'MainAbility';
 
   DEVICE_NAME = 'OpenHarmony 2.0 Canary';
 }
