@@ -34,12 +34,11 @@ export class BrightnessSettingModel extends BaseModel{
   private brightness:number = 5;
   private defaultBrightnessStr = this.getDefaultBrightness().toString();
   private TAG = `${ConfigData.TAG} BrightnessSettingModel `;
-  private readonly uriShare: string = 'datashare:///com.ohos.settingsdata.DataAbility';
   private readonly listenUri = 'datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' + ConfigData.SETTINGSDATA_BRIGHTNESS;
 
   constructor() {
     super();
-    data_dataShare.createDataShareHelper(globalThis.settingsAbilityContext, this.uriShare)
+    data_dataShare.createDataShareHelper(globalThis.settingsAbilityContext, this.listenUri)
       .then((dataHelper) => {
         this.dataShareHelper = dataHelper;
         LogUtil.info("createDataShareHelper success");
@@ -118,6 +117,7 @@ export class BrightnessSettingModel extends BaseModel{
     this.brightness = brightness;
     mBrightnessValue.set(brightness);
     Brightness.setValue(brightness);
+    this.setSettingsData(brightness);
     return;
   }
 
