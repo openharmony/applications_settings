@@ -171,8 +171,6 @@ export default class BluetoothDeviceController extends BaseSettingsController {
       } catch (err) {
         LogUtil.error(this.TAG + 'confirmPairing =' + JSON.stringify(err));
       }
-//      this.forceRefresh(this.availableDevices);
-//      AppStorage.SetOrCreate('bluetoothAvailableDevices', this.availableDevices);
     }
     // set paring confirmation
     BluetoothModel.setDevicePairingConfirmation(deviceId, accept);
@@ -326,8 +324,6 @@ export default class BluetoothDeviceController extends BaseSettingsController {
         if(this.getAvailableDevice(data.deviceId) != null){
           this.getAvailableDevice(data.deviceId).connectionState = ProfileConnectionState.STATE_CONNECTING;
         }
-//        this.forceRefresh(this.availableDevices);
-//        AppStorage.SetOrCreate('bluetoothAvailableDevices', this.availableDevices);
 
       } else if (data.bondState == BondState.BOND_STATE_INVALID) {
         AppStorage.SetOrCreate("controlPairing", true)
@@ -367,7 +363,6 @@ export default class BluetoothDeviceController extends BaseSettingsController {
       for (let device of this.pairedDevices) {
         if (device.deviceId === data.deviceId) {
           device.setProfile(data);
-//          this.forceRefresh(this.pairedDevices);
           this.sortPairedDevices();
           AppStorage.SetOrCreate('bluetoothPairedDevices', this.pairedDevices);
           break;
