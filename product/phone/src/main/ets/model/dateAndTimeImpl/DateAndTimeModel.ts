@@ -29,12 +29,11 @@ import i18n from '@ohos.i18n';
 export class DateAndTimeModel extends BaseModel {
   private timeFormat = '';
   private dataShareHelper;
-  private readonly uriShare: string = 'datashare:///com.ohos.settingsdata.DataAbility';
   private readonly listenUri = 'datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' + ConfigData.TIME_FORMAT_KEY;
 
   constructor() {
     super();
-    data_dataShare.createDataShareHelper(globalThis.settingsAbilityContext, this.uriShare)
+    data_dataShare.createDataShareHelper(globalThis.settingsAbilityContext, this.listenUri)
       .then((dataHelper) => {
         this.dataShareHelper = dataHelper;
         LogUtil.info("createDataShareHelper success");
