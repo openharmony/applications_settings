@@ -452,6 +452,7 @@ napi_value napi_get_value_sync(napi_env env, napi_callback_info info)
     // Check the value type of the arguments
     napi_valuetype valueType;
     NAPI_CALL(env, napi_typeof(env, args[PARAM0], &valueType));
+    NAPI_ASSERT(env, valueType == napi_object, "Wrong argument[0] type. Object expected.");
     NAPI_CALL(env, napi_typeof(env, args[PARAM1], &valueType));
     NAPI_ASSERT(env, valueType == napi_string, "Wrong argument[1] type. String expected.");
     NAPI_CALL(env, napi_typeof(env, args[PARAM2], &valueType));
@@ -558,7 +559,8 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
         HILOG_INFO("argv[0] is a context, Stage Model: %{public}d", stageMode);
         return napi_get_value_ext(env, info, stageMode);
     }
-
+    
+    NAPI_ASSERT(env, valueType == napi_object, "Wrong argument[0] type. Object expected.");
     NAPI_CALL(env, napi_typeof(env, args[PARAM1], &valueType));
     NAPI_ASSERT(env, valueType == napi_string, "Wrong argument[1], type. String expected");
     
@@ -814,6 +816,7 @@ napi_value napi_set_value_sync(napi_env env, napi_callback_info info)
     // Check the value type of the arguments
     napi_valuetype valueType;
     NAPI_CALL(env, napi_typeof(env, args[PARAM0], &valueType));
+    NAPI_ASSERT(env, valueType == napi_object, "Wrong argument[0] type. Object expected.");
     NAPI_CALL(env, napi_typeof(env, args[PARAM1], &valueType));
     NAPI_ASSERT(env, valueType == napi_string, "Wrong argument[1] type. String expected.");
     NAPI_CALL(env, napi_typeof(env, args[PARAM2], &valueType));
@@ -1077,7 +1080,8 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
         HILOG_INFO("argv[0] is a context, Stage Model: %{public}d", stageMode);
         return napi_set_value_ext(env, info, stageMode);
     }
-
+    
+    NAPI_ASSERT(env, valueType == napi_object, "Wrong argument[0] type. Object expected.");
     NAPI_CALL(env, napi_typeof(env, args[PARAM1], &valueType));
     NAPI_ASSERT(env, valueType == napi_string, "Wrong argument[1], type. String expected");
     NAPI_CALL(env, napi_typeof(env, args[PARAM2], &valueType));
