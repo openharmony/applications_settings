@@ -391,14 +391,14 @@ export default class BluetoothDeviceController extends BaseSettingsController {
   }
 
   /**
-     * Force refresh array.
-     * Note: the purpose of this function is just trying to fix page (ets) level's bug below,
-     *   and should be useless if fixed by the future sdk.
-     * Bug Details:
-     *   @State is not supported well for Array<CustomClass> type.
-     *   In the case that the array item's field value changed, while not its length,
-     *   the build method on page will not be triggered!
-     */
+   * Force refresh array.
+   * Note: the purpose of this function is just trying to fix page (ets) level's bug below,
+   *   and should be useless if fixed by the future sdk.
+   * Bug Details:
+   *   @State is not supported well for Array<CustomClass> type.
+   *   In the case that the array item's field value changed, while not its length,
+   *   the build method on page will not be triggered!
+   */
   protected forceRefresh(arr: BluetoothDevice[]): void {
     arr.push(new BluetoothDevice())
     arr.pop();
@@ -491,7 +491,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
         LogUtil.info('Closed callbacks')
       },
       alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 })
+      offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 })
     })
 
   }
