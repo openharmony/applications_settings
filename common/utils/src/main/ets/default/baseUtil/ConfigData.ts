@@ -73,7 +73,6 @@ export class ConfigData {
 
   TIME_FORMAT_24 = "24";
   TIME_FORMAT_12 = "12";
-  TIME_FORMAT_URI = "dataability:///com.ohos.settingsdata.DataAbility";
   TIME_FORMAT_KEY = settings.date.TIME_FORMAT;
   SETTINGSDATA_DEVICE_NAME = settings.general.DEVICE_NAME;
   SETTINGSDATA_BRIGHTNESS = settings.display.SCREEN_BRIGHTNESS_STATUS;
