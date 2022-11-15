@@ -49,7 +49,7 @@ struct PasswordCheck {
   private timerId: number = -1;
 
   @State private passwordType: number = -1;
-  @State private promptMessage: string | Resource = '';
+  @State private promptMessage: any = '';
   @State private buttonVisibility: Visibility = Visibility.Visible;
   @State private freezingTimeForView: number = -1;
   @State private password: string = '';
