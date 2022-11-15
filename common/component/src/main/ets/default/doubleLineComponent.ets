@@ -23,17 +23,17 @@ export default struct DoubleLineComponent {
   @Prop settingTitle: string;
   @Prop settingSummary: string;
   @Prop settingValue: string;
-  @State settingArrow: string | PixelMap | Resource = '';
+  @State settingArrow: any = '';
   @Prop settingArrowStyle: string;
   @Prop settingUri: string;
-  @State titleFontColor: Color | number | string | Resource = $r('sys.color.ohos_id_color_text_primary');
+  @State titleFontColor: any = $r('sys.color.ohos_id_color_text_primary');
   private isEnabled: boolean = true;
   private onArrowClick?: () => void;
   @State isTouched: boolean = false;
-  @State heights: string | Resource = $r('app.float.wh_value_72');
-  @State image_wh: string | Resource = $r('app.float.wh_value_40');
-  @State fontSize: string | Resource = $r('sys.float.ohos_id_text_size_body1');
-  @State valueFontSize: string | Resource = $r('sys.float.ohos_id_text_size_body2');
+  @State heights: any = $r('app.float.wh_value_72');
+  @State image_wh: any = $r('app.float.wh_value_40');
+  @State fontSize: any = $r('sys.float.ohos_id_text_size_body1');
+  @State valueFontSize: any = $r('sys.float.ohos_id_text_size_body2');
 
   build() {
     Row() {
