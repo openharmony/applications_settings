@@ -287,8 +287,8 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, const napi_val
     OHOS::Uri proxyUri(strProxyUri);
     HILOG_INFO("getDataShareHelper called");
     auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
-    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS, strProxyUri);
 
+    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS, strProxyUri);
     HILOG_INFO("getDataShareHelper called");
 
     DataSharePredicates predicates;
