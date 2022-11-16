@@ -1,0 +1,86 @@
+{
+  "app": {
+    "compileSdkVersion": 9,
+    "compatibleSdkVersion": 9,
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "release"
+      }
+    ],
+  },
+  "modules": [
+    {
+      "name": "phone",
+      "srcPath": "./product/phone",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+    //    {
+    //      "name": "wearable",
+    //      "srcPath": "./product/wearable",
+    //      "targets": [
+    //        {
+    //          "name": "default",
+    //          "applyToProducts": [
+    //            "default"
+    //          ]
+    //        }
+    //      ]
+    //    },
+    //    {
+    //      "name": "component",
+    //      "srcPath": "./common/component",
+    //      "targets": [
+    //        {
+    //          "name": "default",
+    //          "applyToProducts": [
+    //            "default"
+    //          ]
+    //        }
+    //      ]
+    //    },
+    //    {
+    //      "name": "search",
+    //      "srcPath": "./common/search",
+    //      "targets": [
+    //        {
+    //          "name": "default",
+    //          "applyToProducts": [
+    //            "default"
+    //          ]
+    //        }
+    //      ]
+    //    },
+    //    {
+    //      "name": "settingsBase",
+    //      "srcPath": "./common/settingsBase",
+    //      "targets": [
+    //        {
+    //          "name": "default",
+    //          "applyToProducts": [
+    //            "default"
+    //          ]
+    //        }
+    //      ]
+    //    },
+    //    {
+    //      "name": "utils",
+    //      "srcPath": "./common/utils",
+    //      "targets": [
+    //        {
+    //          "name": "default",
+    //          "applyToProducts": [
+    //            "default"
+    //          ]
+    //        }
+    //      ]
+    //    }
+  ]
+}
