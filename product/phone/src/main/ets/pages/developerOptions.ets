@@ -35,7 +35,7 @@ const ARKUI_ANIMATION_SCALE_NAME = "persist.sys.arkui.animationscale";
 @Component
 struct developerOptions {
   @State columnMargin: string = '24vp';
-  @State AnimationText: string | Resource = " ";
+  @State AnimationText: any = " ";
   @State checked: string = "1";
   @State controllerLayoutBoundariesIsOn: boolean = false;
   @State controllerOverdrawIsOn: boolean = false;
@@ -199,7 +199,7 @@ struct AnimationScalingInformation {
   controller: CustomDialogController;
   private AnimationMultiplier;
   @Link isPhoneOrRK : boolean ;
-  @Link AnimationText: string | Resource;
+  @Link AnimationText: any;
   @Link checked: string;
 
   aboutToAppear() {
