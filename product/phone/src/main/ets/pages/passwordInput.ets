@@ -48,8 +48,8 @@ struct PasswordInput {
   private prevPageUri: string = undefined;
   private pinChallenge: string = undefined;
   private pinToken: string = undefined;
-  @State private pageTitle: string | Resource = '';
-  @State private inputMessage: string | Resource = '';
+  @State private pageTitle: any = '';
+  @State private inputMessage: any = '';
   @State private unlockMethodList: RadioListItem[] = [];
   @State private buttonVisibility: Visibility = Visibility.Visible;
   @State isTouchedLeft: boolean = false;

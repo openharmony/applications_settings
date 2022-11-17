@@ -503,7 +503,7 @@ struct AvailableDeviceComponent {
       if (this.availableDevices && this.availableDevices.length >= 1) {
         List() {
           // paired devices list
-          LazyForEach(this.availableDevicesList, (item: BluetoothDevice) => {
+          ForEach(this.availableDevices, (item: BluetoothDevice) => {
             ListItem() {
               Row() {
                 EntryComponent({
@@ -586,9 +586,6 @@ struct AvailableDeviceComponent {
   confirmPairing(accept: boolean) {
     LogUtil.info(this.TAG_PAGE + 'confirmPairing pairingDevice');
     this.controller.confirmPairing(this.pairingDevice.deviceId, accept);
-    this.availableDevicesList.delData(this.pairingDevice);
-
-
   }
 
   /**
