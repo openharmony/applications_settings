@@ -25,12 +25,12 @@ export default struct EntryComponent {
   @Prop settingIcon: string;
   @State endTextIsShow: Boolean= true;
   private settingTitle: string | Resource;
-  @State settingSummary: string | Resource = '';
+  @State settingSummary: any = '';
   private settingValue: string;
-  @State settingArrow: string | PixelMap | Resource = '';
+  @State settingArrow: any = '';
   @Prop settingArrowStyle: string;
   private settingUri: string;
-  @State titleFontColor: Color | number | string | Resource = $r('sys.color.ohos_id_color_text_primary');
+  @State titleFontColor: any = $r('sys.color.ohos_id_color_text_primary');
   private isEnabled: boolean = true;
   private onArrowClick?: () => void;
   @State isTouched: boolean = false;
