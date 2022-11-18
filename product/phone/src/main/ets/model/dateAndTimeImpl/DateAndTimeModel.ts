@@ -100,11 +100,9 @@ export class DateAndTimeModel extends BaseModel {
     }
     LogUtil.info(ConfigData.TAG + 'DateAndTimeModel i18n set24HourClock ' + JSON.stringify(ret24HourClock));
 
-    let ret = settings.setValueSync(globalThis.settingsAbilityContext, ConfigData.TIME_FORMAT_KEY, format);
-    if (ret === true) {
-      this.timeFormat = format;
-    }
-    return ret;
+    settings.setValueSync(globalThis.settingsAbilityContext, ConfigData.TIME_FORMAT_KEY, format);
+    this.timeFormat = format;
+    return true;
   }
 
   /**
