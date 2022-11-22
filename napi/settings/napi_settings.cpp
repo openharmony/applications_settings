@@ -325,8 +325,9 @@ void GetValueExecuteExt(napi_env env, void *data)
     OHOS::Uri uri(strUri);
 
     std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultset = nullptr;
-    resultset = asyncCallbackInfo->dataShareHelper->Query(uri, predicates, columns);
-
+    if (asyncCallbackInfo->dataShareHelper != nullptr) {
+        resultset = asyncCallbackInfo->dataShareHelper->Query(uri, predicates, columns);
+    }
     int numRows = 0;
     if (resultset != nullptr) {
         HILOG_INFO("settingsnapi : GetValueExecuteExt called... resultset is NOT empty");
@@ -419,11 +420,15 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     int retInt = 0;
     if (asyncCallbackInfo->status == -1 || asyncCallbackInfo->value.size() <= 0) {
         HILOG_INFO("napi_set_value_ext called... before Insert");
-        retInt = asyncCallbackInfo->dataShareHelper->Insert(uri, val);
+        if (asyncCallbackInfo->dataShareHelper != nullptr) {
+            retInt = asyncCallbackInfo->dataShareHelper->Insert(uri, val);
+        }
         HILOG_INFO("napi_set_value_ext called... after Insert");
     } else {
         HILOG_INFO("napi_set_value_ext called... before Update");
-        retInt = asyncCallbackInfo->dataShareHelper->Update(uri, predicates, val);
+        if (asyncCallbackInfo->dataShareHelper != nullptr) {
+            retInt = asyncCallbackInfo->dataShareHelper->Update(uri, predicates, val);
+        }
         HILOG_INFO("napi_set_value_ext called... after Update");
     }
     asyncCallbackInfo->status = retInt;
