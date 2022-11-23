@@ -320,7 +320,7 @@ struct TimeDialog24H {
 struct DateDialog {
   controller: CustomDialogController;
   action: () => void;
-  private minDate: Date = new Date('2008-01-01');
+  private minDate: Date = new Date('1970-01-01');
   private maxDate: Date = new Date('2037-12-31');
   private selectedDate: Date = this.initValidDate();
   @State date: string = '';
