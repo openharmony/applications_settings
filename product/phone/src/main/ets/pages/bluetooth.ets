@@ -135,10 +135,6 @@ struct Bluetooth {
           .align(Alignment.TopStart)
           .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
         }
-//        .padding({
-//          left: $r('sys.float.ohos_id_card_margin_start'),
-//          right: $r('sys.float.ohos_id_card_margin_end')
-//        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
@@ -443,7 +439,6 @@ struct AvailableDeviceComponent {
   private TAG_PAGE = ConfigData.TAG + 'AvailableDeviceComponent ';
   private controller: BluetoothDeviceController;
   @State isDeviceDiscovering: boolean = false;
-//  @StorageLink('bluetoothAvailableDevices') availableDevices: BluetoothDevice[] = [];
   @StorageLink('bluetoothAvailableDevices') @Watch("availableDevicesChange") availableDevices: BluetoothDevice[] = [];
   @State availableDevicesList: AvailableDevicesDataSource = new AvailableDevicesDataSource(this.availableDevices);
   @State pairPinCode: string = '';
