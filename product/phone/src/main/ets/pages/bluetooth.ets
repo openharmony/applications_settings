@@ -26,6 +26,7 @@ import HeadComponent from '../../../../../../common/component/src/main/ets/defau
 import EntryComponent from '../../../../../../common/component/src/main/ets/default/entryComponent';
 import { DeviceType, ProfileConnectionState, BondState } from '../model/bluetoothImpl/BluetoothModel';
 import BasicDataSource from '../../../../../../common/utils/src/main/ets/default/model/BasicDataSource';
+import DeviceNameEntryComponent from '../../../../../../common/component/src/main/ets/default/deviceNameEntryComponent';
 import ImageAnimatorComponent from '../../../../../../common/component/src/main/ets/default/imageAnimatorComponent';
 
 const PAIRED_ITEM_NUMBER = 3;
@@ -134,10 +135,6 @@ struct Bluetooth {
           .align(Alignment.TopStart)
           .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
@@ -163,11 +160,11 @@ struct DeviceNameComponent {
 
   build() {
     Row() {
-      EntryComponent({
+      DeviceNameEntryComponent({
         settingIcon: '',
         settingTitle: $r('app.string.bluetooth_device_name'),
         settingSummary: '',
-        settingValue: this.localName,
+        settingValue: $localName,
         settingArrow: $r("app.media.ic_settings_arrow"),
         settingArrowStyle: '',
         settingUri: '',
@@ -442,7 +439,7 @@ struct AvailableDeviceComponent {
   private TAG_PAGE = ConfigData.TAG + 'AvailableDeviceComponent ';
   private controller: BluetoothDeviceController;
   @State isDeviceDiscovering: boolean = false;
-  @StorageLink('bluetoothAvailableDevices') availableDevices: BluetoothDevice[] = [];
+  @StorageLink('bluetoothAvailableDevices') @Watch("availableDevicesChange") availableDevices: BluetoothDevice[] = [];
   @State availableDevicesList: AvailableDevicesDataSource = new AvailableDevicesDataSource(this.availableDevices);
   @State pairPinCode: string = '';
   private pairingDevice: BluetoothDevice = undefined;
@@ -459,6 +456,11 @@ struct AvailableDeviceComponent {
     offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
     autoCancel: true,
   });
+
+  availableDevicesChange() {
+    this.availableDevicesList.setData(this.availableDevices)
+    this.availableDevicesList.notifyDataReload()
+  }
 
   @Log
   aboutToAppear(): void{
@@ -654,6 +656,10 @@ class AvailableDevicesDataSource extends BasicDataSource {
   constructor(availableDevicesArray:BluetoothDevice[]){
     super();
     this.availableDevicesArray = availableDevicesArray;
+  }
+
+  public setData(data: BluetoothDevice[]) {
+    this.availableDevicesArray = data;
   }
 
   public totalCount(): number {
