@@ -106,7 +106,6 @@ export struct TitleText {
 export struct TextComponentWithEndText {
   private title: string | Resource;
   private clickEvent: (event?: ClickEvent) => void;
-//  @Prop endText: string;
   @State endText: string = "";
   @State isTouched: boolean = false;
 
