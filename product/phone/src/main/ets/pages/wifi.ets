@@ -344,7 +344,6 @@ struct Index {
 
   switchWiFiActiveStatus(isOn: boolean) {
     // make the ui change quickly
-//    this.isWiFiEnabled = !this.isWiFiEnabled;
     this.isWiFiEnabled = isOn;
     LogUtil.info(MODULE_TAG + 'curr enable status : ' + this.isWiFiEnabled);
 
@@ -422,8 +421,6 @@ struct Index {
 
 @Component
 export default struct ApInfoComponent {
-//  @Prop label: string;
-//  @Prop value: string;
   @State label: string = "";
   @State value: string = "";
 
@@ -743,12 +740,6 @@ struct apInfoDetailsDialog {
 
 @Component
 struct WiFiEntryComponent {
-//  @Prop settingIcon: string; // 空白
-//  @Prop settingTitle: string; // SSID
-//  @Prop settingValue: string; // 空白
-//  @Prop settingArrow: string; // WiFi图标
-//  @Prop settingUri: string; // 空白
-//  @Prop titleFontColor: string; // 字体颜色
   @State settingIcon: string = "";
   @State settingTitle: string = "";
   @State settingValue: string = "";
