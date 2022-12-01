@@ -49,10 +49,10 @@ export struct VolumeControl {
           // volume control
           VolumeControlComponent();
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
+//        .padding({
+//          left: $r('sys.float.ohos_id_card_margin_start'),
+//          right: $r('sys.float.ohos_id_card_margin_end')
+//        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
@@ -167,7 +167,9 @@ struct AudioRingerModeItem {
         .margin({ top: $r('app.float.distance_4') })
         .checked(this.checked)
         .onChange((vue) => {
-          this.audioRingerModel.setRingerMode();
+          if(vue) {
+            this.audioRingerModel.setRingerMode();
+          }
         })
     }
     .alignItems(HorizontalAlign.Center)

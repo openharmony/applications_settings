@@ -62,7 +62,7 @@ struct Nfc {
               .selectedColor($r("app.color.toggle_selected_color_007DFF"))
               .margin({ left: $r('app.float.wh_value_6') })
               .onChange((isOn: boolean) => {
-                this.switchNfcActiveStatus();
+                this.switchNfcActiveStatus(isOn);
               });
           }
           .width(ConfigData.WH_100_100)
@@ -72,10 +72,10 @@ struct Nfc {
           .alignItems(VerticalAlign.Center)
           .borderRadius($r('app.float.radius_24'))
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
+//        .padding({
+//          left: $r('sys.float.ohos_id_card_margin_start'),
+//          right: $r('sys.float.ohos_id_card_margin_end')
+//        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
@@ -90,9 +90,10 @@ struct Nfc {
     .height(ConfigData.WH_100_100)
   }
 
-  switchNfcActiveStatus() {
+  switchNfcActiveStatus(isOn: boolean) {
     // make the ui change quickly
-    this.isNfcEnabled = !this.isNfcEnabled;
+//    this.isNfcEnabled = !this.isNfcEnabled;
+    this.isNfcEnabled = isOn;
     LogUtil.info(TAG + 'current enable status: ' + this.isNfcEnabled);
 
     // delay the nfc status change event

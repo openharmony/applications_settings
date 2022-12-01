@@ -20,21 +20,18 @@ import ConfigData from '../../../../../utils/src/main/ets/default/baseUtil/Confi
  * item custom component
  */
 @Component
-export default struct EntryComponent {
+export default struct DeviceNameEntryComponent {
   @State isShow: Boolean = true;
-//  @Prop settingIcon: string;
   @State settingIcon: string = "";
   @State endTextIsShow: Boolean= true;
   private settingTitle: string | Resource;
   @State settingSummary: any = '';
-//  private settingValue: string;
-  @State settingValue: string = "";
+  @Link settingValue: string;
   @State settingArrow: any = '';
-//  @Prop settingArrowStyle: string;
   @State settingArrowStyle: string = "";
   private settingUri: string;
   @State titleFontColor: any = $r('sys.color.ohos_id_color_text_primary');
-  private isEnabled: boolean = true;
+  private isEnabled: boolean = true
   private onArrowClick?: () => void;
   @State isTouched: boolean = false;
   private heights ?= $r('app.float.wh_value_70');
@@ -96,7 +93,7 @@ export default struct EntryComponent {
           .fontWeight('HwChinese-medium')
           .height($r('app.float.wh_value_40'))
           .margin({ left: $r('sys.float.ohos_id_elements_margin_horizontal_l'), right: $r('app.float.wh_value_4') })
-          .align(Alignment.End);
+          .align(Alignment.End)
 
         if (!this.settingArrowStyle && this.settingArrow) {
           Image(this.settingArrow)

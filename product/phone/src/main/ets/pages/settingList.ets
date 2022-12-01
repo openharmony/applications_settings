@@ -54,6 +54,7 @@ struct SettingList {
   @State placeholderSize: string = '22';
   @State listSpaces: string = '12vp';
   @State isPhone: boolean = false;
+  @StorageLink('bluetoothIsOn') bluetoothIsOn: boolean = false;
 
   @Builder NavigationTitle() {
     Column() {
@@ -82,10 +83,6 @@ struct SettingList {
             EntryComponent({ listSpaces: this.listSpaces })
           }
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
@@ -101,7 +98,7 @@ struct SettingList {
   }
 
   aboutToAppear() {
-    LogUtil.info('settings SettingList aboutToAppear enter');
+    LogUtil.info('CCCC settings SettingList aboutToAppear enter');
     ResourceUtil.getString($r("app.string.searchHint")).then(value => this.placeholder = value);// for search
     ResourceUtil.getString($r("app.float.search_placeholder_font")).then(value => this.placeholderSize = value);
     ResourceUtil.getString($r('app.float.distance_12')).then(value => this.listSpaces = value);
@@ -120,10 +117,11 @@ struct SettingList {
     } else {
       this.isPhone = false;
     }
-    LogUtil.info('settings SettingList aboutToAppear end');
+    LogUtil.info('CCCC settings SettingList aboutToAppear end');
   }
 
   onPageShow() {
+    LogUtil.info('CCCC settings SettingList onPageShow enter');
     FeatureAbility.getWant().then((want) => {
       if (want.uri === "wifi") {
         Router.replace({ uri: "pages/wifi" });
@@ -135,20 +133,31 @@ struct SettingList {
         Router.replace({ uri: "pages/locationServices" });
       }
     })
+    LogUtil.info('CCCC settings SettingList onPageShow end');
   }
 }
 
 @Component
 struct EntryComponent {
-  @StorageLink('wifiStatus') wifiStatus: boolean = WifiModel.isWiFiActive();
-  @StorageLink('bluetoothIsOn') bluetoothIsOn: boolean = false;
+  @StorageLink('wifiStatus') @Watch("wifiStatusChange") wifiStatus: boolean = WifiModel.isWiFiActive();
+  @StorageLink('bluetoothIsOn') @Watch("bluetoothIsOnChange") bluetoothIsOn: boolean = false;
+  @StorageLink("wifiStatusInfo") wifiStatusInfo: Resource = WifiModel.isWiFiActive() ? $r("app.string.enabled") : $r("app.string.disabled");
+  @StorageLink("bluetoothStatusInfo") bluetoothStatusInfo: Resource = $r("app.string.disabled");
   private nfcInfo: boolean;
   private listSpaces: string = '12vp';
   private isPhone: boolean = false;
   private info: string;
 
+  wifiStatusChange() {
+    AppStorage.SetOrCreate("wifiStatusInfo", this.wifiStatus ? $r("app.string.enabled") : $r("app.string.disabled"))
+  }
+
+  bluetoothIsOnChange() {
+    AppStorage.SetOrCreate("bluetoothStatusInfo", this.bluetoothIsOn ? $r("app.string.enabled") : $r("app.string.disabled"))
+  }
+
   aboutToAppear() {
-    LogUtil.info('settings SettingList EntryComponent aboutToAppear in');
+    LogUtil.info('CCCC settings SettingList EntryComponent aboutToAppear in');
     SettingListModel.registerObserver();
     this.bluetoothIsOn = BluetoothModel.isStateOn();
     BluetoothModel.subscribeStateChange((isOn: boolean) => {
@@ -156,7 +165,7 @@ struct EntryComponent {
     });
 
     this.info = parameter.getSync("const.SystemCapability.Communication.NFC.Core" ,"false");
-    LogUtil.info('settings SettingList EntryComponent aboutToAppear out');
+    LogUtil.info('CCCC settings SettingList EntryComponent aboutToAppear out');
   }
 
   build() {
@@ -232,7 +241,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "pages/wifi",
                 settingTitle: $r("app.string.wifiTab"),
-                settingEndText: this.wifiStatus ? $r("app.string.enabled") : $r("app.string.disabled"),
+                settingEndText: $wifiStatusInfo,
                 settingIcon: "/res/image/wlan.svg",
               })
             }
@@ -242,7 +251,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "pages/bluetooth",
                 settingTitle: $r("app.string.bluetoothTab"),
-                settingEndText: this.bluetoothIsOn ? $r("app.string.enabled") : $r("app.string.disabled"),
+                settingEndText: $bluetoothStatusInfo,
                 settingIcon: "/res/image/blueTooth.svg",
               })
             }
@@ -252,7 +261,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "",
                 settingTitle: $r("app.string.mobileData"),
-                settingEndText: '',
+                //                settingEndText: '',
                 settingIcon: "/res/image/mobileData.svg",
               })
             }
@@ -263,7 +272,7 @@ struct EntryComponent {
                 SettingItemComponent({
                   targetPage: "pages/moreConnections",
                   settingTitle: $r("app.string.moreConnectionsTab"),
-                  settingEndText: '',
+                  //                  settingEndText: '',
                   settingIcon: "/res/image/ic_settings_more_connections.svg",
                 })
               }
@@ -278,7 +287,7 @@ struct EntryComponent {
           SettingItemComponent({
             targetPage: "pages/screenAndBrightness",
             settingTitle: $r("app.string.brightnessTab"),
-            settingEndText: '',
+            //            settingEndText: '',
             settingIcon: "/res/image/displayAndBrightness.svg",
           })
         }
@@ -289,7 +298,7 @@ struct EntryComponent {
           SettingItemComponent({
             targetPage: "pages/volumeControl",
             settingTitle: $r("app.string.volumeControlTab"),
-            settingEndText: '',
+            //            settingEndText: '',
             settingIcon: "/res/image/volume.svg",
           })
         }
@@ -302,7 +311,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "pages/passwordSetting",
                 settingTitle: $r("app.string.biometricsAndPassword"),
-                settingEndText: '',
+                //                settingEndText: '',
                 settingIcon: "/res/image/biometricsAndPassword.svg",
               })
             }
@@ -312,7 +321,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "pages/application",
                 settingTitle: $r("app.string.applyTab"),
-                settingEndText: '',
+                //                settingEndText: '',
                 settingIcon: "/res/image/application.svg",
               })
             }
@@ -322,7 +331,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "pages/storage",
                 settingTitle: $r("app.string.storageTab"),
-                settingEndText: '',
+                //                settingEndText: '',
                 settingIcon: "/res/image/storage.svg",
               })
             }
@@ -331,7 +340,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "security",
                 settingTitle: $r("app.string.security"),
-                settingEndText: '',
+                //                settingEndText: '',
                 settingIcon: "/res/image/security.svg",
               })
             }
@@ -341,7 +350,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "pages/privacy",
                 settingTitle: $r("app.string.privacy"),
-                settingEndText: '',
+                //                settingEndText: '',
                 settingIcon: "/res/image/privacy.svg",
               })
             }
@@ -357,7 +366,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "pages/usersAccounts",
                 settingTitle: $r("app.string.usersAccountsTab"),
-                settingEndText: '',
+                //                settingEndText: '',
                 settingIcon: "/res/image/userAccounts.svg",
               })
             }
@@ -367,7 +376,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "pages/system/homePage",
                 settingTitle: $r("app.string.systemTab"),
-                settingEndText: '',
+                //                settingEndText: '',
                 settingIcon: "/res/image/system.svg",
               })
             }
@@ -377,7 +386,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "pages/aboutDevice",
                 settingTitle: $r("app.string.aboutTab"),
-                settingEndText: '',
+                //                settingEndText: '',
                 settingIcon: "/res/image/aboutDevice.svg",
               })
             }
@@ -390,5 +399,7 @@ struct EntryComponent {
       .width(ConfigData.WH_100_100)
       .alignSelf(ItemAlign.Start);
     }
+    .width(ConfigData.WH_100_100)
+    .height(ConfigData.WH_100_100)
   }
 }
