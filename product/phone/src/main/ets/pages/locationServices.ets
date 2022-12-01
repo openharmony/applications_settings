@@ -46,10 +46,15 @@ struct LocationServices {
               .selectedColor('#007DFF')
               .onChange((isOn: boolean) => {
                 LogUtil.info(ConfigData.TAG + 'location service status is :' + this.locationServiceStatus);
-                if ( this.locationServiceStatus === true ) {
-                  ViewModel.disableLocation();
-                } else {
+//                if ( this.locationServiceStatus === true ) {
+//                  ViewModel.disableLocation();
+//                } else {
+//                  ViewModel.enableLocation();
+//                }
+                if (isOn) {
                   ViewModel.enableLocation();
+                } else {
+                  ViewModel.disableLocation();
                 }
               });
           }
@@ -58,10 +63,10 @@ struct LocationServices {
           .backgroundColor($r("app.color.white_bg_color"))
           .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
+//        .padding({
+//          left: $r('sys.float.ohos_id_card_margin_start'),
+//          right: $r('sys.float.ohos_id_card_margin_end')
+//        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },

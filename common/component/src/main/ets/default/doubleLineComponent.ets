@@ -19,13 +19,19 @@ import ComponentConfig from './ComponentConfig';
  */
 @Component
 export default struct DoubleLineComponent {
-  @Prop settingIcon: string;
-  @Prop settingTitle: string;
-  @Prop settingSummary: string;
-  @Prop settingValue: string;
+//  @Prop settingIcon: string;
+  @State settingIcon: string = "";
+//  @Prop settingTitle: string;
+  @State settingTitle: string = "";
+//  @Prop settingSummary: string;
+  @State settingSummary: string = "";
+//  @Prop settingValue: string;
+  @State settingValue: string = "";
   @State settingArrow: any = '';
-  @Prop settingArrowStyle: string;
-  @Prop settingUri: string;
+//  @Prop settingArrowStyle: string;
+  @State settingArrowStyle: string = "";
+//  @Prop settingUri: string;
+  @State settingUri: string = "";
   @State titleFontColor: any = $r('sys.color.ohos_id_color_text_primary');
   private isEnabled: boolean = true;
   private onArrowClick?: () => void;

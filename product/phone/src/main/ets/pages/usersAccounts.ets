@@ -26,7 +26,8 @@ import { SubEntryComponentWithEndText } from '../../../../../../common/component
 @Entry
 @Component
 struct UsersAccounts {
-  @State accountName: string = "";
+//  @State accountName: string = "";
+  @StorageLink("accountName") accountName: string = "";
 
   build() {
     Column() {
@@ -41,13 +42,14 @@ struct UsersAccounts {
           SubEntryComponentWithEndText({
             targetPage: "pages/multipleUsers",
             title: $r("app.string.currentLogin"),
-            endText: this.accountName
+//            endText: this.accountName
+            endText: $accountName
           });
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
+//        .padding({
+//          left: $r('sys.float.ohos_id_card_margin_start'),
+//          right: $r('sys.float.ohos_id_card_margin_end')
+//        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
@@ -65,7 +67,8 @@ struct UsersAccounts {
   onPageShow() {
     LogUtil.info("User account page on show.");
     SystemAccount.updateAccountName(name => {
-      this.accountName = name;
+//      this.accountName = name;
+      AppStorage.SetOrCreate("accountName", name)
     });
   }
 }

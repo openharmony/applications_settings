@@ -20,7 +20,7 @@ import ComponentConfig from './ComponentConfig';
  */
 @Component
 export struct SubHeader {
-  private titleContent: string | Resource;
+  @State titleContent: any = '';
 
   build() {
     Row() {
@@ -93,7 +93,6 @@ export struct TitleText {
     .padding($r("app.float.distance_4"))
     .borderRadius($r("app.float.radius_24"))
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
-    .visibility(this.visible);
 
   }
 }
@@ -107,7 +106,8 @@ export struct TitleText {
 export struct TextComponentWithEndText {
   private title: string | Resource;
   private clickEvent: (event?: ClickEvent) => void;
-  @Prop endText: string;
+//  @Prop endText: string;
+  @State endText: string = "";
   @State isTouched: boolean = false;
 
   build() {

@@ -39,10 +39,10 @@ struct PrivacySettings {
 
           SubEntryComponent({ targetPage: 'pages/locationServices', title: $r('app.string.locationServicesTab') });
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
+//        .padding({
+//          left: $r('sys.float.ohos_id_card_margin_start'),
+//          right: $r('sys.float.ohos_id_card_margin_end')
+//        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },

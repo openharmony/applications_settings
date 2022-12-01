@@ -40,7 +40,8 @@ struct PasswordInput {
   private isInputFirstTime: boolean = true;
   @State @Watch("clearViewData")
   private passwordType: number = -1;
-  private password: string = '';
+//  private password: string = '';
+  @State password: string = '';
   @State passwordCircle: string[]= ["", "", "", "", "", ""];
 
   // private Properties
@@ -145,6 +146,7 @@ struct PasswordInput {
                     .maxLength(6)
                     .margin({bottom:$r('app.float.wh_value_8')})
                     .onChange((value: string) => {
+                      this.password = value;
                       if (value.length > 6) {
                         return;
                       }
@@ -177,6 +179,7 @@ struct PasswordInput {
                       }
                     })
                   }
+                  .hitTestBehavior(HitTestMode.Transparent)
                   .listDirection(Axis.Horizontal)
                 }
                 .margin({ top: $r('app.float.wh_value_20'),bottom:$r('app.float.wh_value_12') })
@@ -302,10 +305,10 @@ struct PasswordInput {
           .width(ConfigData.WH_100_100)
           .visibility(this.buttonVisibility)
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
+//        .padding({
+//          left: $r('sys.float.ohos_id_card_margin_start'),
+//          right: $r('sys.float.ohos_id_card_margin_end')
+//        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
