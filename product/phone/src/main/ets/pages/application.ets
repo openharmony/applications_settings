@@ -35,10 +35,6 @@ struct Application {
           SubEntryComponent({ targetPage: 'pages/appManagement', title: $r('app.string.appManagement') })
             .margin({ top: $r("app.float.distance_8") })
         }
-//        .padding({
-//          left: $r('sys.float.ohos_id_card_margin_start'),
-//          right: $r('sys.float.ohos_id_card_margin_end')
-//        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
