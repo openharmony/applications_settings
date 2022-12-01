@@ -45,7 +45,7 @@ class LanguageAndRegionModel extends BaseModel {
   @Log
   getAddedLanguages():Array<string>{
     if (!AppStorage.Has(this.addStr)) {
-      AppStorage.SetOrCreate(this.addStr, [i18n.getSystemLanguage()]);
+      AppStorage.SetOrCreate(this.addStr, [i18n.System.getSystemLanguage()]);
     }
     LogUtil.info(`${this.TAG} getAddedLanguages`);
     console.info("gshhshs" + AppStorage.Get(this.addStr))
@@ -58,7 +58,7 @@ class LanguageAndRegionModel extends BaseModel {
   @Log
   getAllLanguages():Array<string>{
     LogUtil.info(`${this.TAG} getAllLanguages`);
-    return i18n.getSystemLanguages();
+    return i18n.System.getSystemLanguages();
   }
 
   /**
@@ -70,7 +70,7 @@ class LanguageAndRegionModel extends BaseModel {
     LogUtil.info(`${this.TAG} initAppStorage in` + JSON.stringify(this.storage));
     if(!(await this.storage.has(this.addStr))){
       LogUtil.info(`${this.TAG} initStorage addStr` + !await this.storage.has(this.addStr));
-      await this.storage.put(this.addStr, JSON.stringify([i18n.getSystemLanguage()]))
+      await this.storage.put(this.addStr, JSON.stringify([i18n.System.getSystemLanguage()]))
       await this.storage.flush();
       LogUtil.info(`${this.TAG} initStorage addStr sucess` + JSON.stringify(this.addStr));
     }
@@ -95,7 +95,7 @@ class LanguageAndRegionModel extends BaseModel {
     this.addedLanguages = this.getAddedLanguages();
     this.addedLanguages.splice(this.addedLanguages.indexOf(language), 1);
     this.addedLanguages.unshift(language);
-    i18n.setSystemLanguage(language);
+    i18n.System.setSystemLanguage(language);
     AppStorage.Set(this.regionStr, this.getSysDisplayRegion());
     AppStorage.Set(this.addStr, this.addedLanguages);
     await this.storage.put(this.addStr, JSON.stringify(AppStorage.Get(this.addStr)));
@@ -141,7 +141,7 @@ class LanguageAndRegionModel extends BaseModel {
   @Log
   getSysDisplayLanguage(language:string){
     LogUtil.info(`${this.TAG} getSysDisplayLanguage`);
-    return i18n.getDisplayLanguage(language, i18n.getSystemLanguage(), true);
+    return i18n.System.getDisplayLanguage(language, i18n.System.getSystemLanguage(), true);
   }
 
   /**
@@ -150,7 +150,7 @@ class LanguageAndRegionModel extends BaseModel {
   @Log
   getDisplayLanguage(language:string):string{
     LogUtil.info(`${this.TAG} getDisplayLanguage`);
-    return i18n.getDisplayLanguage(language, language, true);
+    return i18n.System.getDisplayLanguage(language, language, true);
   }
 
   /**
@@ -159,7 +159,7 @@ class LanguageAndRegionModel extends BaseModel {
   @Log
   getDisplayRegion(country:string):string{
     LogUtil.info(`${this.TAG} getDisplayRegion`);
-    return i18n.getDisplayCountry(country, i18n.getSystemLanguage(),true);
+    return i18n.System.getDisplayCountry(country, i18n.System.getSystemLanguage(),true);
   }
 
   /**
@@ -168,7 +168,7 @@ class LanguageAndRegionModel extends BaseModel {
   @Log
   getSysDisplayRegion():string{
     LogUtil.info(`${this.TAG} getSysDisplayRegion`);
-    return i18n.getDisplayCountry(i18n.getSystemRegion(), i18n.getSystemLanguage(),true);
+    return i18n.System.getDisplayCountry(i18n.System.getSystemRegion(), i18n.System.getSystemLanguage(),true);
   }
 
   /**
@@ -177,7 +177,7 @@ class LanguageAndRegionModel extends BaseModel {
   @Log
   getSystemCountries():Array<string>{
     LogUtil.info(`${this.TAG} getSystemCountries`);
-    return i18n.getSystemCountries(i18n.getSystemLanguage());
+    return i18n.System.getSystemCountries(i18n.System.getSystemLanguage());
   }
 
   /**
@@ -186,7 +186,7 @@ class LanguageAndRegionModel extends BaseModel {
   @Log
   setSystemRegion(region:string):void{
     LogUtil.info(`${this.TAG} setSystemRegion`);
-    i18n.setSystemRegion(region);
+    i18n.System.setSystemRegion(region);
     AppStorage.Set(this.regionStr, this.getSysDisplayRegion());
     return;
   }
@@ -196,7 +196,7 @@ class LanguageAndRegionModel extends BaseModel {
      */
   @Log
   isSystemLanguage(language:string):boolean{
-    return language === i18n.getSystemLanguage();
+    return language === i18n.System.getSystemLanguage();
   }
 
   /**
@@ -217,7 +217,7 @@ class LanguageAndRegionModel extends BaseModel {
      */
   @Log
   isSystemRegion(region:string):boolean{
-    return region === i18n.getSystemRegion();
+    return region === i18n.System.getSystemRegion();
   }
 
 }

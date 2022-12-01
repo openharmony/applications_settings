@@ -33,11 +33,19 @@ struct Storage {
   @State usedSpaceList: any[] = [];
   @State screenWidth: number = 360;
 
-  private usedSpace: any = '';
-  private totalSpace: any = '';
-  private freeBytes: any = '';
+  @State @Watch("usedSpaceChange") usedSpace: string = '';
+  @State @Watch("totalSpaceChange") totalSpace: string = '';
+  @State @Watch("totalSpaceChange") freeBytes: string = '';
   private dpi: number = vp2px(this.screenWidth) / this.screenWidth;
   private controller: StorageController = new StorageController();
+
+  usedSpaceChange() {
+    console.error(`usedSpaceChange usedSpace: ${this.usedSpace}`)
+  }
+
+  totalSpaceChange() {
+    console.error(`totalSpaceChange totalSpace: ${this.totalSpace}`)
+  }
 
   build() {
     Column() {
@@ -155,10 +163,6 @@ struct Storage {
           .backgroundColor($r("app.color.white_bg_color"))
           .padding({ top: $r('app.float.distance_4'), bottom: $r('app.float.distance_4') })
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
