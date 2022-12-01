@@ -222,7 +222,6 @@ struct AnimationScalingInformation {
                   .fontWeight(FontWeight.Medium)
 
                 Radio({ value: "", group: 'radioGroup' })
-//                  .checked(this.checked === this.AnimationMultiplier[index] ? true : false)
                   .checked(this.checked === item ? true : false)
                   .height($r("app.float.wh_value_24"))
                   .width($r("app.float.wh_value_24"))
