@@ -127,7 +127,6 @@ export class ScreenModeModel extends BaseModel{
    */
   @Log
   public isSysScreenMode(screenModeInfo): boolean{
-//    return JSON.stringify(this.sysScreenMode) === JSON.stringify(screenModeInfo);
     return JSON.stringify(AppStorage.Get("sysScreenMode")) === JSON.stringify(screenModeInfo);
   }
 
