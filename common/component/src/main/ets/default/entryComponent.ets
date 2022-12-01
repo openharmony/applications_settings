@@ -22,15 +22,12 @@ import ConfigData from '../../../../../utils/src/main/ets/default/baseUtil/Confi
 @Component
 export default struct EntryComponent {
   @State isShow: Boolean = true;
-//  @Prop settingIcon: string;
   @State settingIcon: string = "";
   @State endTextIsShow: Boolean= true;
   private settingTitle: string | Resource;
   @State settingSummary: any = '';
-//  private settingValue: string;
   @State settingValue: string = "";
   @State settingArrow: any = '';
-//  @Prop settingArrowStyle: string;
   @State settingArrowStyle: string = "";
   private settingUri: string;
   @State titleFontColor: any = $r('sys.color.ohos_id_color_text_primary');
