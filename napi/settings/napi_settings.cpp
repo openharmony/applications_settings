@@ -288,7 +288,7 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, const napi_val
     HILOG_INFO("getDataShareHelper called");
     auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
 
-    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS, strProxyUri);
+    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri);
     HILOG_INFO("getDataShareHelper called");
 
     DataSharePredicates predicates;
@@ -298,7 +298,7 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, const napi_val
         HILOG_INFO("getDataShareHelper dataShareHelper = nullptr");
     }
     if (dataShareHelper == nullptr || dataShareHelper->Query(proxyUri, predicates, columns) == nullptr) {
-        dataShareHelper =  OHOS::DataShare::DataShareHelper::Creator(contextS, strUri);
+        dataShareHelper =  OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
         return dataShareHelper;
     }
     
@@ -328,7 +328,6 @@ void GetValueExecuteExt(napi_env env, void *data)
     if (asyncCallbackInfo->dataShareHelper != nullptr) {
         resultset = asyncCallbackInfo->dataShareHelper->Query(uri, predicates, columns);
     }
-
     int numRows = 0;
     if (resultset != nullptr) {
         HILOG_INFO("settingsnapi : GetValueExecuteExt called... resultset is NOT empty");
@@ -428,7 +427,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     } else {
         HILOG_INFO("napi_set_value_ext called... before Update");
         if (asyncCallbackInfo->dataShareHelper != nullptr) {
-             retInt = asyncCallbackInfo->dataShareHelper->Update(uri, predicates, val);
+            retInt = asyncCallbackInfo->dataShareHelper->Update(uri, predicates, val);
         }
         HILOG_INFO("napi_set_value_ext called... after Update");
     }
