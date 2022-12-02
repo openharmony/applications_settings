@@ -162,7 +162,7 @@ struct Index {
               .height('20vp')
               .selectedColor('#007DFF')
               .onChange((isOn: boolean) => {
-                this.switchWiFiActiveStatus();
+                this.switchWiFiActiveStatus(isOn);
               });
           }
           .height($r('app.float.wh_value_56'))
@@ -194,13 +194,8 @@ struct Index {
                 .justifyContent(FlexAlign.Start);
 
                 Column() {
-                  WiFiEntryComponent({
-                    settingIcon: this.connectedWiFi.settingIcon,
-                    settingTitle: this.connectedWiFi.settingTitle,
-                    settingSummary: genWiFiStatusSummary(this.connectedWiFi.settingSummary),
-                    settingValue: this.connectedWiFi.settingValue,
-                    settingArrow: this.connectedWiFi.settingArrow,
-                    settingUri: this.connectedWiFi.settingUri,
+                  ConnectedWiFiEntryComponent({
+                    connectedWiFi: $connectedWiFi,
                     titleFontColor: "activated"
                   })
                 }
@@ -282,10 +277,6 @@ struct Index {
           .scrollable(ScrollDirection.Vertical)
           .scrollBar(BarState.Off)
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
@@ -351,9 +342,9 @@ struct Index {
     }, 5000)
   }
 
-  switchWiFiActiveStatus() {
+  switchWiFiActiveStatus(isOn: boolean) {
     // make the ui change quickly
-    this.isWiFiEnabled = !this.isWiFiEnabled;
+    this.isWiFiEnabled = isOn;
     LogUtil.info(MODULE_TAG + 'curr enable status : ' + this.isWiFiEnabled);
 
     // delay the wifi status change event
@@ -430,8 +421,8 @@ struct Index {
 
 @Component
 export default struct ApInfoComponent {
-  @Prop label: string;
-  @Prop value: string;
+  @State label: string = "";
+  @State value: string = "";
 
   build() {
     Row() {
@@ -728,8 +719,10 @@ struct apInfoDetailsDialog {
     let intensity = WifiModel.getSignalIntensity(this.apInfo);
     let encryptType = WifiModel.getEncryptMethod(this.apInfo);
     let linkInfo = WifiModel.getLinkInfo();
-    this.speed = linkInfo.linkSpeed + 'Mbps';
-    this.frequency = (linkInfo.frequency / 1000).toFixed(1).toString() + 'GHz';
+    if (linkInfo != undefined) {
+      this.speed = linkInfo.linkSpeed + 'Mbps';
+      this.frequency = (linkInfo.frequency / 1000).toFixed(1).toString() + 'GHz';
+    }
     this.dataList = [
       { key: $r('app.string.wifiInfoTitleStatus'),
         value: $r('app.string.wifiSummaryConnected') },
@@ -747,12 +740,12 @@ struct apInfoDetailsDialog {
 
 @Component
 struct WiFiEntryComponent {
-  @Prop settingIcon: string; // 空白
-  @Prop settingTitle: string; // SSID
-  @Prop settingValue: string; // 空白
-  @Prop settingArrow: string; // WiFi图标
-  @Prop settingUri: string; // 空白
-  @Prop titleFontColor: string; // 字体颜色
+  @State settingIcon: string = "";
+  @State settingTitle: string = "";
+  @State settingValue: string = "";
+  @State settingArrow: string = "";
+  @State settingUri: string = "";
+  @State titleFontColor: string = "";
   private settingSummary: string | Resource; // 状态描述
   @State isTouched: boolean = false;
 
@@ -778,6 +771,56 @@ struct WiFiEntryComponent {
       Blank()
 
       Image(this.settingArrow)
+        .fillColor($r("sys.color.ohos_id_color_primary"))
+        .width($r('app.float.wh_value_24'))
+        .height($r('app.float.wh_value_24'))
+        .margin({ right: $r("app.float.wh_value_12") });
+    }
+    .height($r('app.float.wh_value_64'))
+    .width(ConfigData.WH_100_100)
+    .borderRadius($r("app.float.radius_24"))
+    .alignItems(VerticalAlign.Center)
+    .backgroundColor(this.isTouched ? $r("app.color.color_D8D8D8_grey") : $r("sys.color.ohos_id_color_foreground_contrary"))
+    .onTouch((event: TouchEvent) => {
+      if (event.type === TouchType.Down) {
+        this.isTouched = true;
+      }
+
+      if (event.type === TouchType.Up) {
+        this.isTouched = false;
+      }
+    })
+  }
+}
+
+@Component
+struct ConnectedWiFiEntryComponent {
+  @Link connectedWiFi: any;
+  @State titleFontColor: string = "";
+  @State isTouched: boolean = false;
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.connectedWiFi.settingTitle)
+          .fontSize($r('sys.float.ohos_id_text_size_body1'))
+          .fontColor(this.titleFontColor === "activated" ?
+          $r('sys.color.ohos_id_color_text_primary_activated') : $r('sys.color.ohos_id_color_text_primary'))
+          .fontWeight(FontWeight.Medium);
+
+        Text(genWiFiStatusSummary(this.connectedWiFi.settingSummary))
+          .fontSize($r('sys.float.ohos_id_text_size_body2'))
+          .fontColor(this.titleFontColor === "activated" ?
+          $r('sys.color.ohos_id_color_text_primary') : $r('sys.color.ohos_id_color_text_secondary'))
+          .fontWeight(FontWeight.Regular)
+          .margin({ top: $r('app.float.wh_value_8')});
+      }
+      .margin({ left: $r("app.float.wh_value_12") })
+      .alignItems(HorizontalAlign.Start)
+
+      Blank()
+
+      Image(this.connectedWiFi.settingArrow)
         .fillColor($r("sys.color.ohos_id_color_primary"))
         .width($r('app.float.wh_value_24'))
         .height($r('app.float.wh_value_24'))

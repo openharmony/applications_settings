@@ -89,52 +89,56 @@ struct MultipleUsers {
               .visibility(this.userList.length > 0 ? Visibility.Visible : Visibility.None)
 
               // Add user, shown when is administrator
-              TitleText({
-                title: $r("app.string.addUser"),
-                color: $r("app.color.font_color_007DFF"),
-                visible: this.isShowAddUser ? Visibility.Visible : Visibility.None,
-                clickEvent: (event => {
-                  LogUtil.info("Add user.");
-                  this.addUserDialogController.open();
+              if (this.isShowAddUser) {
+                TitleText({
+                  title: $r("app.string.addUser"),
+                  color: $r("app.color.font_color_007DFF"),
+                  visible: this.isShowAddUser ? Visibility.Visible : Visibility.None,
+                  clickEvent: (event => {
+                    LogUtil.info("Add user.");
+                    this.addUserDialogController.open();
+                  })
                 })
-              })
+              }
 
               /**
                * Add guest, shown with conditions:
                * 1. Current user is administrator
                * 2. Guest is not created.
                */
-              TitleText({
-                title: $r("app.string.addGuest"),
-                color: $r("app.color.font_color_007DFF"),
-                visible: this.isShowAddGuest ? Visibility.Visible : Visibility.None,
-                clickEvent: ((event) => {
-                  AlertDialog.show({
-                    message: $r("app.string.askAddGuest"),
-                    primaryButton: {
-                      value: $r("app.string.cancel"),
-                      action: () => {
-                        LogUtil.info("Cancel add guest.");
+              if (this.isShowAddGuest) {
+                TitleText({
+                  title: $r("app.string.addGuest"),
+                  color: $r("app.color.font_color_007DFF"),
+                  visible: this.isShowAddGuest ? Visibility.Visible : Visibility.None,
+                  clickEvent: ((event) => {
+                    AlertDialog.show({
+                      message: $r("app.string.askAddGuest"),
+                      primaryButton: {
+                        value: $r("app.string.cancel"),
+                        action: () => {
+                          LogUtil.info("Cancel add guest.");
+                        }
+                      },
+                      secondaryButton: {
+                        value: $r("app.string.confirm"),
+                        action: () => {
+                          LogUtil.info("Confirm add guest user.");
+                          this.waitDialogController.open();
+                          SystemAccountController.createQuest((() => {
+                            this.waitDialogController.close();
+                          }).bind(this));
+                        }
+                      },
+                      alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+                      offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
+                      cancel: () => {
+                        LogUtil.info("Cancel dialog.");
                       }
-                    },
-                    secondaryButton: {
-                      value: $r("app.string.confirm"),
-                      action: () => {
-                        LogUtil.info("Confirm add guest user.");
-                        this.waitDialogController.open();
-                        SystemAccountController.createQuest((() => {
-                          this.waitDialogController.close();
-                        }).bind(this));
-                      }
-                    },
-                    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
-                    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
-                    cancel: () => {
-                      LogUtil.info("Cancel dialog.");
-                    }
-                  })
-                }).bind(this)
-              })
+                    })
+                  }).bind(this)
+                })
+              }
             }
             .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
             .height(ConfigData.WH_90_100)
@@ -178,10 +182,6 @@ struct MultipleUsers {
             }
           }
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },

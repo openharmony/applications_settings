@@ -180,6 +180,8 @@ export default class PasswordCheckController extends BaseSettingsController {
         LogUtil.info(`${this.TAG}check password correct success`);
       } else {
         LogUtil.info(`${this.TAG}check password correct failed`);
+        this.password = '';
+        LogUtil.info(`${this.TAG} password set empty`);
       }
       successCallback(result, extraInfo)
     });

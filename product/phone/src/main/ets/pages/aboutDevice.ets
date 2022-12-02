@@ -25,7 +25,7 @@ import { SubEntryComponentWithEndText } from '../../../../../../common/component
 @Entry
 @Component
 struct AboutDevice {
-  @State systemName: string  = AboutDeviceModel.getSystemName();
+  @StorageLink("systemName") systemName: string = AboutDeviceModel.getSystemName();
   private deviceInfo: any = '';
   private aboutDeviceList: any[] = [];
 
@@ -77,10 +77,6 @@ struct AboutDevice {
           .borderRadius($r('app.float.distance_24'))
           .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
@@ -134,6 +130,6 @@ struct AboutDevice {
   }
 
   onPageShow() {
-    this.systemName = AboutDeviceModel.getSystemName();
+    AppStorage.SetOrCreate("systemName", AboutDeviceModel.getSystemName())
   }
 }
