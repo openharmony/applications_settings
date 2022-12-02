@@ -89,7 +89,6 @@ export default struct ResultComponent {
         .margin({ left: $r('app.float.sys_elements_margin_horizontal_m') })
         .fillColor($r("sys.color.ohos_id_color_fourth"))
     }
-//    .height($r('app.float.search_item_height'))
     .padding({
       left: $r('sys.float.ohos_id_card_margin_start'),
       right: $r('sys.float.ohos_id_card_margin_end')

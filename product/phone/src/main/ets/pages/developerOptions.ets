@@ -175,10 +175,6 @@ struct developerOptions {
           })
             .margin({ top: $r("app.float.distance_12") })
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
@@ -226,35 +222,37 @@ struct AnimationScalingInformation {
                   .fontWeight(FontWeight.Medium)
 
                 Radio({ value: "", group: 'radioGroup' })
-                  .checked(this.checked === this.AnimationMultiplier[index] ? true : false)
+                  .checked(this.checked === item ? true : false)
                   .height($r("app.float.wh_value_24"))
                   .width($r("app.float.wh_value_24"))
                   .onChange((value: boolean) => {
-                    this.controller.close();
-                    if (item === "0") {
-                      this.AnimationText = $r("app.string.Close_Animation");
-                      parameter.set(GRAPHIC_ANIMATION_SCALE_NAME, "0");
-                      parameter.set(ARKUI_ANIMATION_SCALE_NAME, "0");
-                      LogUtil.info(MODULE_TAG + "close animation success");
-                    } else {
-                      this.AnimationText = $r("app.string.Animation_Multiplier", item);
-                      parameter.set(GRAPHIC_ANIMATION_SCALE_NAME, item)
-                        .then(() => {
-                          LogUtil.info(MODULE_TAG + "set graphic parameter success");
-                        })
-                        .catch((err) => {
-                          LogUtil.info(MODULE_TAG + "catch graphic parameter error" + JSON.stringify(err));
-                        })
+                    if(value) {
+                      this.controller.close();
+                      if (item === "0") {
+                        this.AnimationText = $r("app.string.Close_Animation");
+                        parameter.set(GRAPHIC_ANIMATION_SCALE_NAME, "0");
+                        parameter.set(ARKUI_ANIMATION_SCALE_NAME, "0");
+                        LogUtil.info(MODULE_TAG + "close animation success");
+                      } else {
+                        this.AnimationText = $r("app.string.Animation_Multiplier", item);
+                        parameter.set(GRAPHIC_ANIMATION_SCALE_NAME, item)
+                          .then(() => {
+                            LogUtil.info(MODULE_TAG + "set graphic parameter success");
+                          })
+                          .catch((err) => {
+                            LogUtil.info(MODULE_TAG + "catch graphic parameter error" + JSON.stringify(err));
+                          })
 
-                      parameter.set(ARKUI_ANIMATION_SCALE_NAME, item)
-                        .then(() => {
-                          LogUtil.info(MODULE_TAG + "set arkui parameter success");
-                        })
-                        .catch((err) => {
-                          LogUtil.info(MODULE_TAG + "catch arkui parameter error" + JSON.stringify(err));
-                        })
+                        parameter.set(ARKUI_ANIMATION_SCALE_NAME, item)
+                          .then(() => {
+                            LogUtil.info(MODULE_TAG + "set arkui parameter success");
+                          })
+                          .catch((err) => {
+                            LogUtil.info(MODULE_TAG + "catch arkui parameter error" + JSON.stringify(err));
+                          })
+                      }
+                      this.checked = item;
                     }
-                    this.checked = item;
                   })
               }
               .height($r("app.float.wh_value_48"))

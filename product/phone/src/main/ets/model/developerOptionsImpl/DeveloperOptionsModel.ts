@@ -29,7 +29,7 @@ export class DeveloperOptionsModel extends BaseModel {
    * @return state
    */
   getUsbCurrentFunctions() {
-    return //usb.getCurrentFunctions() //USB TAG: module is temporarily unavailable
+    return usb.getCurrentFunctions()
   }
 
   /**
@@ -38,15 +38,15 @@ export class DeveloperOptionsModel extends BaseModel {
    */
   setCurrentFunctions(usbDebuggingState) {
     let funcs;
-//    if (usbDebuggingState) {
-//      funcs = ConfigData.FUNCTION_TYPE_HDC | this.getUsbCurrentFunctions()
-//    } else {
-//      funcs = (ConfigData.FUNCTION_TYPE_HDC | this.getUsbCurrentFunctions()) - ConfigData.FUNCTION_TYPE_HDC
-//    }
-//    usb.setCurrentFunctions(funcs).then((val) => {
-//    }).catch((err) => {
-//      LogUtil.info(ConfigData.TAG + `setCurrentFunctions fail:` + err);
-//    }) //USB TAG: module is temporarily unavailable
+    if (usbDebuggingState) {
+      funcs = ConfigData.FUNCTION_TYPE_HDC | this.getUsbCurrentFunctions()
+    } else {
+      funcs = (ConfigData.FUNCTION_TYPE_HDC | this.getUsbCurrentFunctions()) - ConfigData.FUNCTION_TYPE_HDC
+    }
+    usb.setCurrentFunctions(funcs).then((val) => {
+    }).catch((err) => {
+      LogUtil.info(ConfigData.TAG + `setCurrentFunctions fail:` + err);
+    })
   }
 }
 

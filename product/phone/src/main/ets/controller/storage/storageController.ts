@@ -33,9 +33,12 @@ enum Space {
 @LogAll
 export default class storageController  extends BaseSettingsController {
   private storageList: any[] = [];
-  private totalSpace: any = '';
-  private freeBytes: any = '';
-  private usedSpace: any = '';
+  private totalSpaceNumber: number = 0;
+  private totalSpace: string = '';
+  private freeBytesNumber: number = 0;
+  private freeBytes: string = '';
+  private usedSpaceNumber: number = 0;
+  private usedSpace: string = '';
   private proportion: number = 0;
   private usedSpaceList:any = [];
 
@@ -49,63 +52,63 @@ export default class storageController  extends BaseSettingsController {
    * get TotalSpace
    */
   getTotalSpace() {
-      let filesDir = globalThis.settingsAbilityContext.filesDir;
-      LogUtil.info(ConfigData.TAG + 'getStorageDataDir data: ' + JSON.stringify(filesDir));
-      if (filesDir && filesDir.length > 0) {
-        StorageModel.getTotalSpace(filesDir, (err, data) => {
-          LogUtil.info(ConfigData.TAG + 'getTotalSpace err: ' + JSON.stringify(err));
-          LogUtil.info(ConfigData.TAG + 'getTotalSpace data: ' + JSON.stringify(data));
-          if (data && data >= 0) {
-            LogUtil.info(ConfigData.TAG + 'getTotalSpace success');
-            this.totalSpace = data;
-            LogUtil.info(ConfigData.TAG + 'getTotalSpace this.totalSpace*********: ' + JSON.stringify(this.totalSpace));
-            this.getFreeBytes();
-          }
-         })
-       }
+    let filesDir = globalThis.settingsAbilityContext.filesDir;
+    LogUtil.info(ConfigData.TAG + 'getStorageDataDir data: ' + JSON.stringify(filesDir));
+    if (filesDir && filesDir.length > 0) {
+      StorageModel.getTotalSpace(filesDir, (err, data) => {
+        LogUtil.info(ConfigData.TAG + 'getTotalSpace err: ' + JSON.stringify(err));
+        LogUtil.info(ConfigData.TAG + 'getTotalSpace data: ' + JSON.stringify(data));
+        if (data && data >= 0) {
+          LogUtil.info(ConfigData.TAG + 'getTotalSpace success');
+          this.totalSpaceNumber = data;
+          LogUtil.info(ConfigData.TAG + 'getTotalSpace this.totalSpace*********: ' + JSON.stringify(this.totalSpace));
+          this.getFreeBytes();
+        }
+      })
+    }
   }
 
   /**
    * get RemainingSpace
    */
   getFreeBytes() {
-     let filesDir = globalThis.settingsAbilityContext.filesDir;
-      LogUtil.info(ConfigData.TAG + 'getStorageDataDir data: ' + JSON.stringify(filesDir));
-      if (filesDir && filesDir.length > 0) {
-        StorageModel.getFreeBytes(filesDir, (err, data) => {
-          LogUtil.info(ConfigData.TAG + 'getFreeBytes err: ' + JSON.stringify(err));
-          LogUtil.info(ConfigData.TAG + 'getFreeBytes data: ' + JSON.stringify(data));
-          if (data && data >= 0) {
-            LogUtil.info(ConfigData.TAG + 'getFreeBytes success');
-            this.freeBytes = data;
-            // get UsedSpace
-            this.getUsedSpace();
-            // get space proportion
-            this.getSpaceProportion();
-            // format data
-            this.totalSpace = this.formatData(this.totalSpace)
-            this.freeBytes = this.formatData(this.freeBytes)
-            this.usedSpace = this.formatData(this.usedSpace)
-            // set value for storage List
-            this.storageList = [];
-            this.storageList = this.getStorageList();
-          }
-        });
-      }
+    let filesDir = globalThis.settingsAbilityContext.filesDir;
+    LogUtil.info(ConfigData.TAG + 'getStorageDataDir data: ' + JSON.stringify(filesDir));
+    if (filesDir && filesDir.length > 0) {
+      StorageModel.getFreeBytes(filesDir, (err, data) => {
+        LogUtil.info(ConfigData.TAG + 'getFreeBytes err: ' + JSON.stringify(err));
+        LogUtil.info(ConfigData.TAG + 'getFreeBytes data: ' + JSON.stringify(data));
+        if (data && data >= 0) {
+          LogUtil.info(ConfigData.TAG + 'getFreeBytes success');
+          this.freeBytesNumber = data;
+          // get UsedSpace
+          this.getUsedSpace();
+          // get space proportion
+          this.getSpaceProportion();
+          // format data
+          this.totalSpace = this.formatData(this.totalSpaceNumber)
+          this.freeBytes = this.formatData(this.freeBytesNumber)
+          this.usedSpace = this.formatData(this.usedSpaceNumber)
+          // set value for storage List
+          this.storageList = [];
+          this.storageList = this.getStorageList();
+        }
+      });
+    }
   }
 
   /**
    * get UsedSpace
    */
   getUsedSpace(){
-    this.usedSpace = this.totalSpace - this.freeBytes;
+    this.usedSpaceNumber = this.totalSpaceNumber - this.freeBytesNumber;
   }
 
   /**
    * get space proportion
    */
   getSpaceProportion() {
-    this.proportion = new Number((this.usedSpace / this.totalSpace * 100).toFixed(0)).valueOf();
+    this.proportion = new Number((this.usedSpaceNumber / this.totalSpaceNumber * 100).toFixed(0)).valueOf();
     this.usedSpaceList.push(this.proportion);
   }
 
