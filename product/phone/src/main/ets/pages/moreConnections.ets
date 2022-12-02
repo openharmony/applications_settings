@@ -30,11 +30,16 @@ const deviceTypeInfo = deviceInfo.deviceType;
 @Entry
 @Component
 struct MoreConnections {
-  @StorageLink('nfcStatus') nfcStatus: boolean = false;
+  @StorageLink('nfcStatus') @Watch("nfcStatusChange") nfcStatus: boolean = false;
+  @StorageLink('nfcStatusInfo') nfcStatusInfo: Resource = $r("app.string.disabled");
   private maxScreenWidth;
   private maxScreenHeight;
   private nfcImageWidth;
   private nfcImageHeight;
+
+  nfcStatusChange() {
+    AppStorage.SetOrCreate("nfcStatusInfo", this.nfcStatus ? $r("app.string.enabled") : $r("app.string.disabled"))
+  }
 
   build() {
     Column() {
@@ -45,14 +50,10 @@ struct MoreConnections {
           SubEntryComponentWithEndText({
             targetPage: 'pages/nfc',
             title: $r('app.string.NFC'),
-            endText: this.nfcStatus ? $r("app.string.enabled") : $r("app.string.disabled")
+            endText: $nfcStatusInfo
           })
             .margin({ top: $r("app.float.distance_8") })
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },

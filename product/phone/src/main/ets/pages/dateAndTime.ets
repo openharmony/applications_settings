@@ -136,10 +136,6 @@ struct dateAndTime {
           .backgroundColor($r("app.color.white_bg_color"))
           .visibility(this.dateAndTimeList.length > 0 ? Visibility.Visible : Visibility.None)
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
@@ -320,7 +316,7 @@ struct TimeDialog24H {
 struct DateDialog {
   controller: CustomDialogController;
   action: () => void;
-  private minDate: Date = new Date('2008-01-01');
+  private minDate: Date = new Date('1970-01-01');
   private maxDate: Date = new Date('2037-12-31');
   private selectedDate: Date = this.initValidDate();
   @State date: string = '';

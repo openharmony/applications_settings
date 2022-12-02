@@ -37,17 +37,18 @@ struct AppManagement {
         Column() {
           HeadComponent({ headName: $r('app.string.appManagement'), isActive: true });
 
-          ImageAnimatorComponent({
-            imageWidth: $r('app.float.wh_value_80'),
-            imageHeight: $r('app.float.wh_value_80'), whtl: this.whtl
-          })
-            .margin({ top: $r("app.float.distance_8") })
-            .zIndex(1)
-            .visibility(this.appList.length > 0 ? Visibility.None : Visibility.Visible)
-            .align(Alignment.Center)
-            .padding({ top: ConfigData.WH_35_100 })
-            .width(ConfigData.WH_100_100)
-            .height(ConfigData.WH_100_100);
+          if (this.appList.length <= 0) {
+            ImageAnimatorComponent({
+              imageWidth: $r('app.float.wh_value_80'),
+              imageHeight: $r('app.float.wh_value_80'), whtl: this.whtl
+            })
+              .margin({ top: $r("app.float.distance_8") })
+              .zIndex(1)
+              .align(Alignment.Center)
+              .padding({ top: ConfigData.WH_35_100 })
+              .width(ConfigData.WH_100_100)
+              .height(ConfigData.WH_100_100);
+          }
 
           Column() {
             List() {
@@ -85,10 +86,6 @@ struct AppManagement {
           .backgroundColor($r("app.color.white_bg_color"))
           .padding($r('app.float.distance_4'))
         }
-        .padding({
-          left: $r('sys.float.ohos_id_card_margin_start'),
-          right: $r('sys.float.ohos_id_card_margin_end')
-        })
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
