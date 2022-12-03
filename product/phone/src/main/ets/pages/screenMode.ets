@@ -58,12 +58,11 @@ struct ScreenMode {
                     .textAlign(TextAlign.Start);
 
                   Radio({ value: this.TAG, group: '' })
-                    .colorBlend($r("sys.color.ohos_id_color_switch_bg_off"))
                     .height($r("app.float.wh_value_24"))
                     .width($r("app.float.wh_value_24"))
                     .enabled(true)
                     .checked(this.screenModeModel.isSysScreenMode(item))
-                    .margin({ top: $r("app.float.distance_12"), bottom: $r("app.float.distance_12")})
+                    .margin({ top: $r("app.float.distance_12"), bottom: $r("app.float.distance_12"), right: $r("app.float.distance_12")})
                     .onClick(() => {
                       LogUtil.info('settings RadioListComponent : onChange: settingValue = ' + item.settingValue);
                       this.screenModeModel.setSysScreenMode(0);
