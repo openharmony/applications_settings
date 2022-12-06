@@ -66,7 +66,7 @@ struct PasswordCheck {
 
     // bind component and initialize
     this.mController.bindComponent(this)
-      .bindProperties(["freezingTime", "remainTimes", "pinToken"])
+      .bindProperties(["freezingTime", "remainTimes", "pinToken", "password"])
       .initData()
       .subscribe();
 
