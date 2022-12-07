@@ -21,6 +21,7 @@ import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUti
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
+import bluetooth from '@ohos.bluetooth';
 
 /**
  * about phone
@@ -117,6 +118,10 @@ struct DeviceName {
                 onClickEvent: () => {
                   if (this.deviceName.length > 0) {
                     AboutDeviceModel.setSystemName(this.deviceName);
+                    let name = bluetooth.getLocalName();
+                    if (name != this.deviceName) {
+                      bluetooth.setLocalName(this.deviceName);
+                    }
                     Router.back();
                   } else {
                     return;
