@@ -83,10 +83,10 @@ struct Bluetooth {
               .height('20vp')
               .selectedColor('#007DFF')
               .margin({ left: $r('app.float.wh_value_6') })
-              .onChange(() => {
-                LogUtil.log(this.PAGE_TAG + 'Toggle onClick: isOn = ' + this.isOn + ', enabled = ' + this.isEnabled)
+              .onChange((isOn: boolean) => {
+                LogUtil.log(this.PAGE_TAG + 'Toggle onClick: isOn = ' + isOn + ', enabled = ' + this.isEnabled)
                 if (!this.isEnabled) return;
-                this.deviceController.toggleValue(!this.isOn);
+                this.deviceController.toggleValue(isOn);
               });
           }
           .margin({ top: $r("app.float.distance_8") })
