@@ -1211,6 +1211,10 @@
     {
       "name": "Input_Reached_Limited",
       "value": "Input has reached the upper limit"
+    },
+    {
+      "name": "endTextEmpty",
+      "value": " "
     }
   ]
 }
