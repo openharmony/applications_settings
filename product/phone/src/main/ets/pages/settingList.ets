@@ -143,6 +143,7 @@ struct EntryComponent {
   @StorageLink('bluetoothIsOn') @Watch("bluetoothIsOnChange") bluetoothIsOn: boolean = false;
   @StorageLink("wifiStatusInfo") wifiStatusInfo: Resource = WifiModel.isWiFiActive() ? $r("app.string.enabled") : $r("app.string.disabled");
   @StorageLink("bluetoothStatusInfo") bluetoothStatusInfo: Resource = $r("app.string.disabled");
+  @StorageLink("endTextEmpty") endTextEmpty: any = $r("app.string.endTextEmpty");
   private nfcInfo: boolean;
   private listSpaces: string = '12vp';
   private isPhone: boolean = false;
@@ -261,7 +262,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "",
                 settingTitle: $r("app.string.mobileData"),
-                //                settingEndText: '',
+                settingEndText:$endTextEmpty,
                 settingIcon: "/res/image/mobileData.svg",
               })
             }
@@ -272,7 +273,7 @@ struct EntryComponent {
                 SettingItemComponent({
                   targetPage: "pages/moreConnections",
                   settingTitle: $r("app.string.moreConnectionsTab"),
-                  //                  settingEndText: '',
+                  settingEndText:$endTextEmpty,
                   settingIcon: "/res/image/ic_settings_more_connections.svg",
                 })
               }
@@ -287,7 +288,7 @@ struct EntryComponent {
           SettingItemComponent({
             targetPage: "pages/screenAndBrightness",
             settingTitle: $r("app.string.brightnessTab"),
-            //            settingEndText: '',
+            settingEndText:$endTextEmpty,
             settingIcon: "/res/image/displayAndBrightness.svg",
           })
         }
@@ -298,7 +299,7 @@ struct EntryComponent {
           SettingItemComponent({
             targetPage: "pages/volumeControl",
             settingTitle: $r("app.string.volumeControlTab"),
-            //            settingEndText: '',
+            settingEndText:$endTextEmpty,
             settingIcon: "/res/image/volume.svg",
           })
         }
@@ -311,7 +312,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "pages/passwordSetting",
                 settingTitle: $r("app.string.biometricsAndPassword"),
-                //                settingEndText: '',
+                settingEndText:$endTextEmpty,
                 settingIcon: "/res/image/biometricsAndPassword.svg",
               })
             }
@@ -321,7 +322,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "pages/application",
                 settingTitle: $r("app.string.applyTab"),
-                //                settingEndText: '',
+                settingEndText:$endTextEmpty,
                 settingIcon: "/res/image/application.svg",
               })
             }
@@ -331,7 +332,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "pages/storage",
                 settingTitle: $r("app.string.storageTab"),
-                //                settingEndText: '',
+                settingEndText:$endTextEmpty,
                 settingIcon: "/res/image/storage.svg",
               })
             }
@@ -340,7 +341,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "security",
                 settingTitle: $r("app.string.security"),
-                //                settingEndText: '',
+                settingEndText:$endTextEmpty,
                 settingIcon: "/res/image/security.svg",
               })
             }
@@ -350,7 +351,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "pages/privacy",
                 settingTitle: $r("app.string.privacy"),
-                //                settingEndText: '',
+                settingEndText:$endTextEmpty,
                 settingIcon: "/res/image/privacy.svg",
               })
             }
@@ -366,7 +367,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "pages/usersAccounts",
                 settingTitle: $r("app.string.usersAccountsTab"),
-                //                settingEndText: '',
+                settingEndText:$endTextEmpty,
                 settingIcon: "/res/image/userAccounts.svg",
               })
             }
@@ -376,7 +377,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "pages/system/homePage",
                 settingTitle: $r("app.string.systemTab"),
-                //                settingEndText: '',
+                settingEndText:$endTextEmpty,
                 settingIcon: "/res/image/system.svg",
               })
             }
@@ -386,7 +387,7 @@ struct EntryComponent {
               SettingItemComponent({
                 targetPage: "pages/aboutDevice",
                 settingTitle: $r("app.string.aboutTab"),
-                //                settingEndText: '',
+                settingEndText:$endTextEmpty,
                 settingIcon: "/res/image/aboutDevice.svg",
               })
             }
