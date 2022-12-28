@@ -1215,6 +1215,10 @@
     {
       "name": "Input_Reached_Limited",
       "value": "输入已达上限"
+    },
+    {
+      "name": "endTextEmpty",
+      "value": " "
     }
   ]
 }
