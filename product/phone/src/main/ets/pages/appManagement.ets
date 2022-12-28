@@ -72,6 +72,7 @@ struct AppManagement {
                 .height($r('app.float.wh_value_72'));
               }, item => JSON.stringify(item));
             }
+            .borderRadius($r("app.float.radius_24"))
             .divider({
               strokeWidth: 1,
               color: $r('app.color.color_E3E3E3_grey'),
