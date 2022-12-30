@@ -22,6 +22,8 @@ import ConfigData from '../../../../../../common/utils/src/main/ets/default/base
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import EntryComponent from '../../../../../../common/component/src/main/ets/default/entryComponent';
 import { DialogButtonLayout } from '../../../../../../common/component/src/main/ets/default/dialogComponent';
+import Bundle from '@ohos.bundle';
+import AppManagementModel from '../model/appManagementImpl/AppManagementModel';
 
 const MODULE_TAG = ConfigData.TAG + 'application-> ';
 const deviceTypeInfo = deviceInfo.deviceType;
@@ -33,15 +35,17 @@ let appInfo;
 @Entry
 @Component
 struct ApplicationInfo {
+  tag: string = "ApplicationInfoSettings";
   private controller: ApplicationInfoController = new ApplicationInfoController();
   @State isPhoneOrRK: boolean = false;
   @State isRemovableBundle: boolean = true;
   @State isTouchedLeft: boolean = false;
   @State isTouchedRight: boolean = false;
+  private bundleName: string = " ";
   showDialog: CustomDialogController = new CustomDialogController({
     builder: ShowDialog({
       action: () => {
-        this.controller.uninstall(appInfo.settingBundleName);
+        this.controller.uninstall(this.bundleName);
       }
     }),
     alignment: this.isPhoneOrRK ? DialogAlignment.Bottom : DialogAlignment.Center,
@@ -105,7 +109,7 @@ struct ApplicationInfo {
               .borderRadius($r('app.float.radius_20'))
               .backgroundColor($r('sys.color.ohos_id_color_button_normal'))
               .onClick(() => {
-                this.showPromptDialog(this.controller.killProcessesByBundleName.bind(this, appInfo.settingBundleName));
+                this.showPromptDialog(this.controller.killProcessesByBundleName.bind(this, this.bundleName));
               })
           }
           .alignItems(VerticalAlign.Center)
@@ -153,15 +157,45 @@ struct ApplicationInfo {
 
   @Log
   aboutToAppear(): void{
+    LogUtil.info(this.tag + " aboutToAppear start ");
     if (deviceTypeInfo === 'phone' || deviceTypeInfo === 'default') {
       this.isPhoneOrRK = true;
     } else {
       this.isPhoneOrRK = false;
     }
 
+    this.getBundleName();
+    this.updateRemovableStatus(this.bundleName);
+    LogUtil.info(this.tag + " aboutToAppear end ");
+  }
+
+  getBundleName(): void {
     appInfo = Router.getParams();
-    LogUtil.info('settings ApplicationInfo aboutToAppear this.item:' + JSON.stringify(appInfo));
-    this.updateRemovableStatus(appInfo.settingBundleName);
+    LogUtil.info(this.tag + " aboutToAppear appInfo: " + JSON.stringify(appInfo));
+    if (appInfo) {
+      this.bundleName = appInfo.settingBundleName;
+      LogUtil.info(this.tag + " aboutToAppear appInfo bundleName: " + JSON.stringify(this.bundleName));
+    }
+
+    if (this.bundleName == " ") {
+      LogUtil.info(this.tag + " Router params bundleName invalid " + JSON.stringify(appInfo));
+      if (globalThis.abilityWant?.action == "action.settings.app.info") {
+        this.bundleName = globalThis.abilityWant?.parameters?.settingsParamBundleName;
+        LogUtil.info(this.tag + " want bundleName: " + JSON.stringify(this.bundleName));
+
+        let bundleList: any[] = [];
+        let mBundleInfoList: any[] = [];
+        Bundle.getBundleInfo(this.bundleName, Bundle.BundleFlag.GET_BUNDLE_WITH_ABILITIES)
+          .then((data) => {
+            LogUtil.info(this.tag + " getBundleInfo start");
+            bundleList[0] = data;
+            AppManagementModel.getResourceItem(0, 1, bundleList);
+            mBundleInfoList = AppStorage.Get('appManagementList');
+            appInfo = mBundleInfoList[0];
+            LogUtil.info(this.tag + ' appInfo ' + JSON.stringify(appInfo));
+          });
+      }
+    }
   }
 
   @Log
