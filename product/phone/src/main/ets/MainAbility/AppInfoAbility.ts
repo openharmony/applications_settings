@@ -15,7 +15,7 @@
 
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.application.Ability';
 
 export default class MainAbility extends Ability {
     tag: string  = "ApplicationInfoSettings";
