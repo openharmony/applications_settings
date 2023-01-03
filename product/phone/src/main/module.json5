@@ -40,6 +40,24 @@
         ],
         "startWindowIcon": "$media:app_icon",
         "startWindowBackground": "$color:white",
+      },
+      {
+        "name": "com.ohos.settings.AppInfoAbility",
+        "srcEntrance": "./ets/MainAbility/AppInfoAbility.ts",
+        "description": "$string:applicationInfo",
+        "icon": "$media:app_icon",
+        "label": "$string:applicationInfo",
+        "visible": true,
+        "launchType": "singleton",
+        "skills": [
+          {
+            "actions": [
+              "action.settings.app.info"
+            ]
+          }
+        ],
+        "startWindowIcon": "$media:app_icon",
+        "startWindowBackground": "$color:white",
       }
     ],
     "requestPermissions": [
