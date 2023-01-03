@@ -22,10 +22,11 @@ import ConfigData from '../../../../../../common/utils/src/main/ets/default/base
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import EntryComponent from '../../../../../../common/component/src/main/ets/default/entryComponent';
 import { DialogButtonLayout } from '../../../../../../common/component/src/main/ets/default/dialogComponent';
+import Bundle from '@ohos.bundle';
+import AppManagementModel from '../model/appManagementImpl/AppManagementModel';
 
 const MODULE_TAG = ConfigData.TAG + 'application-> ';
 const deviceTypeInfo = deviceInfo.deviceType;
-let appInfo;
 
 /**
  * Application Info
@@ -33,15 +34,28 @@ let appInfo;
 @Entry
 @Component
 struct ApplicationInfo {
+  tag: string = "ApplicationInfoSettings";
+  @StorageLink('appInformation') appInfo: any = {
+    settingIcon: "",
+    settingTitle: "",
+    settingValue: "",
+    settingArrow: "",
+    settingSummary: "",
+    settingBundleName: "",
+    settingIconId: "",
+    settingUri: ""
+  };
+  @StorageLink('appManagement') mBundleInfoList: any[] = [];
   private controller: ApplicationInfoController = new ApplicationInfoController();
   @State isPhoneOrRK: boolean = false;
   @State isRemovableBundle: boolean = true;
   @State isTouchedLeft: boolean = false;
   @State isTouchedRight: boolean = false;
+  private bundleName: string = " ";
   showDialog: CustomDialogController = new CustomDialogController({
     builder: ShowDialog({
       action: () => {
-        this.controller.uninstall(appInfo.settingBundleName);
+        this.controller.uninstall(this.bundleName);
       }
     }),
     alignment: this.isPhoneOrRK ? DialogAlignment.Bottom : DialogAlignment.Center,
@@ -56,18 +70,18 @@ struct ApplicationInfo {
           HeadComponent({ headName: $r('app.string.applicationInfo'), isActive: true });
 
           Row() {
-            Image(appInfo.settingIcon)
+            Image(this.appInfo.settingIcon)
               .width($r('app.float.wh_value_64'))
               .height($r('app.float.wh_value_64'))
               .margin({ right: $r('app.float.distance_16'), left: $r('sys.float.ohos_id_card_margin_start') })
 
             Column() {
-              Text(appInfo.settingTitle)
+              Text(this.appInfo.settingTitle)
                 .fontColor($r('app.color.font_color_182431'))
                 .fontSize($r('app.float.font_16'))
                 .margin({ top: $r('app.float.wh_value_10'), bottom: $r('app.float.wh_value_5') })
 
-              Text(appInfo.settingSummary)
+              Text(this.appInfo.settingSummary)
                 .fontColor($r('app.color.font_color_182431'))
                 .fontSize($r('app.float.font_14'))
                 .maxLines(ConfigData.MAX_LINES_1)
@@ -105,7 +119,7 @@ struct ApplicationInfo {
               .borderRadius($r('app.float.radius_20'))
               .backgroundColor($r('sys.color.ohos_id_color_button_normal'))
               .onClick(() => {
-                this.showPromptDialog(this.controller.killProcessesByBundleName.bind(this, appInfo.settingBundleName));
+                this.showPromptDialog(this.controller.killProcessesByBundleName.bind(this, this.bundleName));
               })
           }
           .alignItems(VerticalAlign.Center)
@@ -134,7 +148,7 @@ struct ApplicationInfo {
           .borderRadius($r('sys.float.ohos_id_corner_radius_default_l'))
           .backgroundColor($r('app.color.white_bg_color'))
           .onClick(() => {
-            Router.push({ uri: 'pages/applicationStorage', params: appInfo });
+            Router.push({ uri: 'pages/applicationStorage', params: this.appInfo });
           })
         }
         .useSizeType({
@@ -153,15 +167,43 @@ struct ApplicationInfo {
 
   @Log
   aboutToAppear(): void{
+    LogUtil.info(this.tag + " aboutToAppear start ");
     if (deviceTypeInfo === 'phone' || deviceTypeInfo === 'default') {
       this.isPhoneOrRK = true;
     } else {
       this.isPhoneOrRK = false;
     }
 
-    appInfo = Router.getParams();
-    LogUtil.info('settings ApplicationInfo aboutToAppear this.item:' + JSON.stringify(appInfo));
-    this.updateRemovableStatus(appInfo.settingBundleName);
+    this.getBundleName();
+    this.updateRemovableStatus(this.bundleName);
+    LogUtil.info(this.tag + " aboutToAppear end ");
+  }
+
+  getBundleName(): void {
+    let param;
+    param = Router.getParams();
+    if (param) {
+      this.bundleName = param.settingBundleName;
+      this.appInfo = param;
+      AppStorage.SetOrCreate('appInformation', param);
+    }
+
+    if (this.bundleName == " ") {
+      if (globalThis.abilityWant?.action == "action.settings.app.info") {
+        this.bundleName = globalThis.abilityWant?.parameters?.settingsParamBundleName;
+        let bundleList: any[] = [];
+        Bundle.getBundleInfo(this.bundleName, Bundle.BundleFlag.GET_BUNDLE_WITH_ABILITIES)
+          .then((data) => {
+            bundleList[0] = data;
+            AppManagementModel.getResourceItem(0, 1, bundleList)
+            .then(() => {
+                this.mBundleInfoList = AppStorage.Get('appManagementList');
+                this.appInfo = this.mBundleInfoList[0];
+                AppStorage.SetOrCreate('appInformation', this.mBundleInfoList[0]);
+            })
+          });
+      }
+    }
   }
 
   @Log
@@ -216,10 +258,20 @@ struct ShowDialog {
   dialogController: CustomDialogController;
   action: () => void;
   private uirBack: string = 'pages/appManagement';
+  @StorageLink('appInformation') appInfo: any = {
+    settingIcon: "",
+    settingTitle: "",
+    settingValue: "",
+    settingArrow: "",
+    settingSummary: "",
+    settingBundleName: "",
+    settingIconId: "",
+    settingUri: ""
+  };
 
   build() {
     Column() {
-      Image(`${appInfo.settingIcon}`)
+      Image(`${this.appInfo.settingIcon}`)
         .height($r("app.float.application_common_size"))
         .width($r("app.float.application_common_size"))
         .margin({
@@ -227,7 +279,7 @@ struct ShowDialog {
           bottom: $r('app.float.item_common_vertical_margin')
         })
 
-      Text(`${appInfo.settingTitle}`)
+      Text(`${this.appInfo.settingTitle}`)
         .fontSize($r('app.float.font_18'))
         .align(Alignment.Center)
         .margin({ bottom: $r('app.float.item_common_vertical_margin') })
