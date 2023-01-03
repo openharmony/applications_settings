@@ -27,7 +27,6 @@ import AppManagementModel from '../model/appManagementImpl/AppManagementModel';
 
 const MODULE_TAG = ConfigData.TAG + 'application-> ';
 const deviceTypeInfo = deviceInfo.deviceType;
-let appInfo;
 
 /**
  * Application Info
@@ -36,6 +35,17 @@ let appInfo;
 @Component
 struct ApplicationInfo {
   tag: string = "ApplicationInfoSettings";
+  @StorageLink('appInformation') appInfo: any = {
+    settingIcon: "",
+    settingTitle: "",
+    settingValue: "",
+    settingArrow: "",
+    settingSummary: "",
+    settingBundleName: "",
+    settingIconId: "",
+    settingUri: ""
+  };
+  @StorageLink('appManagement') mBundleInfoList: any[] = [];
   private controller: ApplicationInfoController = new ApplicationInfoController();
   @State isPhoneOrRK: boolean = false;
   @State isRemovableBundle: boolean = true;
@@ -60,18 +70,18 @@ struct ApplicationInfo {
           HeadComponent({ headName: $r('app.string.applicationInfo'), isActive: true });
 
           Row() {
-            Image(appInfo.settingIcon)
+            Image(this.appInfo.settingIcon)
               .width($r('app.float.wh_value_64'))
               .height($r('app.float.wh_value_64'))
               .margin({ right: $r('app.float.distance_16'), left: $r('sys.float.ohos_id_card_margin_start') })
 
             Column() {
-              Text(appInfo.settingTitle)
+              Text(this.appInfo.settingTitle)
                 .fontColor($r('app.color.font_color_182431'))
                 .fontSize($r('app.float.font_16'))
                 .margin({ top: $r('app.float.wh_value_10'), bottom: $r('app.float.wh_value_5') })
 
-              Text(appInfo.settingSummary)
+              Text(this.appInfo.settingSummary)
                 .fontColor($r('app.color.font_color_182431'))
                 .fontSize($r('app.float.font_14'))
                 .maxLines(ConfigData.MAX_LINES_1)
@@ -138,7 +148,7 @@ struct ApplicationInfo {
           .borderRadius($r('sys.float.ohos_id_corner_radius_default_l'))
           .backgroundColor($r('app.color.white_bg_color'))
           .onClick(() => {
-            Router.push({ uri: 'pages/applicationStorage', params: appInfo });
+            Router.push({ uri: 'pages/applicationStorage', params: this.appInfo });
           })
         }
         .useSizeType({
@@ -170,29 +180,27 @@ struct ApplicationInfo {
   }
 
   getBundleName(): void {
-    appInfo = Router.getParams();
-    LogUtil.info(this.tag + " aboutToAppear appInfo: " + JSON.stringify(appInfo));
-    if (appInfo) {
-      this.bundleName = appInfo.settingBundleName;
-      LogUtil.info(this.tag + " aboutToAppear appInfo bundleName: " + JSON.stringify(this.bundleName));
+    let param;
+    param = Router.getParams();
+    if (param) {
+      this.bundleName = param.settingBundleName;
+      this.appInfo = param;
+      AppStorage.SetOrCreate('appInformation', param);
     }
 
     if (this.bundleName == " ") {
-      LogUtil.info(this.tag + " Router params bundleName invalid " + JSON.stringify(appInfo));
       if (globalThis.abilityWant?.action == "action.settings.app.info") {
         this.bundleName = globalThis.abilityWant?.parameters?.settingsParamBundleName;
-        LogUtil.info(this.tag + " want bundleName: " + JSON.stringify(this.bundleName));
-
         let bundleList: any[] = [];
-        let mBundleInfoList: any[] = [];
         Bundle.getBundleInfo(this.bundleName, Bundle.BundleFlag.GET_BUNDLE_WITH_ABILITIES)
           .then((data) => {
-            LogUtil.info(this.tag + " getBundleInfo start");
             bundleList[0] = data;
-            AppManagementModel.getResourceItem(0, 1, bundleList);
-            mBundleInfoList = AppStorage.Get('appManagementList');
-            appInfo = mBundleInfoList[0];
-            LogUtil.info(this.tag + ' appInfo ' + JSON.stringify(appInfo));
+            AppManagementModel.getResourceItem(0, 1, bundleList)
+            .then(() => {
+                this.mBundleInfoList = AppStorage.Get('appManagementList');
+                this.appInfo = this.mBundleInfoList[0];
+                AppStorage.SetOrCreate('appInformation', this.mBundleInfoList[0]);
+            })
           });
       }
     }
@@ -250,10 +258,20 @@ struct ShowDialog {
   dialogController: CustomDialogController;
   action: () => void;
   private uirBack: string = 'pages/appManagement';
+  @StorageLink('appInformation') appInfo: any = {
+    settingIcon: "",
+    settingTitle: "",
+    settingValue: "",
+    settingArrow: "",
+    settingSummary: "",
+    settingBundleName: "",
+    settingIconId: "",
+    settingUri: ""
+  };
 
   build() {
     Column() {
-      Image(`${appInfo.settingIcon}`)
+      Image(`${this.appInfo.settingIcon}`)
         .height($r("app.float.application_common_size"))
         .width($r("app.float.application_common_size"))
         .margin({
@@ -261,7 +279,7 @@ struct ShowDialog {
           bottom: $r('app.float.item_common_vertical_margin')
         })
 
-      Text(`${appInfo.settingTitle}`)
+      Text(`${this.appInfo.settingTitle}`)
         .fontSize($r('app.float.font_18'))
         .align(Alignment.Center)
         .margin({ bottom: $r('app.float.item_common_vertical_margin') })
