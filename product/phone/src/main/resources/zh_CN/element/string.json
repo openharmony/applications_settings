@@ -1145,6 +1145,10 @@
       "value": "发现蓝牙"
     },
     {
+      "name": "LOCATION",
+      "value": "定位蓝牙"
+    },
+    {
       "name": "MANAGE_BLUETOOTH",
       "value": "管理蓝牙"
     },

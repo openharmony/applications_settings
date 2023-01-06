@@ -1141,6 +1141,10 @@
       "value": "Discover Bluetooth"
     },
     {
+      "name": "LOCATION",
+      "value": "Location Bluetooth"
+    },
+    {
       "name": "MANAGE_BLUETOOTH",
       "value": "Managing Bluetooth"
     },
