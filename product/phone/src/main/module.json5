@@ -136,6 +136,10 @@
         "reason": "$string:DISCOVER_BLUETOOTH"
       },
       {
+        "name": "ohos.permission.LOCATION",
+        "reason": "$string:LOCATION"
+      },
+      {
         "name": "ohos.permission.MANAGE_BLUETOOTH",
         "reason": "$string:MANAGE_BLUETOOTH"
       },
