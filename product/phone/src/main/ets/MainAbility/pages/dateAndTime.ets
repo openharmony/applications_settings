@@ -22,6 +22,7 @@ import LogUtil from '../../../../../../../common/utils/src/main/ets/default/base
 import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import { BaseData } from '../../../../../../../common/utils/src/main/ets/default/bean/BaseData';
 import CommonEvent from '@ohos.commonevent';
+import Router from '@system.router';
 
 const MODULE_TAG = ConfigData.TAG + '.dateAndTime -> ';
 
@@ -215,7 +216,7 @@ struct dateAndTime {
   }
 
   onBackPress() {
-    Navigator().active(true);
+    Router.back();
   }
 
   private setTimeFormatAs24H() {
