@@ -222,7 +222,7 @@ struct DeviceNameComponent {
 @Component
 struct PairedDeviceComponent {
   private TAG_PAGE = ConfigData.TAG + 'PairedDeviceComponent ';
-  private controller: BluetoothDeviceController;
+  private controller: BluetoothDeviceController = new BluetoothDeviceController();
   @StorageLink('bluetoothPairedDevices') pairedDevices: BluetoothDevice[] = [];
   @State isTouched: boolean = false;
   @State hide: boolean = true;
@@ -470,7 +470,7 @@ struct DiscoveringAnimatorComponent {
 @Component
 struct AvailableDeviceComponent {
   private TAG_PAGE = ConfigData.TAG + 'AvailableDeviceComponent ';
-  private controller: BluetoothDeviceController;
+  private controller: BluetoothDeviceController = new BluetoothDeviceController();
   @State isDeviceDiscovering: boolean = false;
   @StorageLink('bluetoothAvailableDevices') availableDevices: BluetoothDevice[] = [];
   @State pairPinCode: string = '';

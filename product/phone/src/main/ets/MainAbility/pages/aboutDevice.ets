@@ -17,6 +17,7 @@ import HeadComponent from '../../../../../../../common/component/src/main/ets/de
 import AboutDeviceModel from '../model/aboutDeviceImpl/AboutDeviceModel'
 import {SubEntryComponentWithEndText} from '../../../../../../../common/component/src/main/ets/default/subEntryComponent';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import Router from '@system.router';
 
 /**
  * about phone
@@ -141,7 +142,7 @@ struct Index {
 
   onBackPress() {
     LogUtil.info(ConfigData.TAG + 'settings get device onBackPress in');
-    Navigator().active(true);
+    Router.back();
     LogUtil.info(ConfigData.TAG + 'settings get device onBackPress out');
   }
 
