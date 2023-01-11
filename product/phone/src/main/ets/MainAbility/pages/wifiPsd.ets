@@ -43,7 +43,7 @@ struct WifiPsd {
 
   private connectDialog: CustomDialogController = new CustomDialogController({
     builder: connectProgressDialog({
-      ssid: $tobeConnectedSSID,
+      ssid: this.tobeConnectedSSID,
     }),
     autoCancel: false,
     customStyle: true
