@@ -46,7 +46,7 @@ struct ScreenMode {
             .width(ConfigData.WH_100_100)
 
           List() {
-            ForEach(this.supportedScreenModes, (item: BaseData) => {
+            ForEach(this.supportedScreenModes, (item: BaseData,index?:number) => {
               ListItem() {
                 Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
                   Text(`${this.screenModeModel.getScreenModeWidth(item)} x ${this.screenModeModel.getScreenModeHeight(item)}`)
@@ -65,7 +65,7 @@ struct ScreenMode {
                     .margin({ top: $r("app.float.distance_12"), bottom: $r("app.float.distance_12"), right: $r("app.float.distance_12")})
                     .onClick(() => {
                       LogUtil.info('settings RadioListComponent : onChange: settingValue = ' + item.settingValue);
-                      this.screenModeModel.setSysScreenMode(0);
+                      this.screenModeModel.setSysScreenMode(index);
                     })
                 }
                 .height($r('app.float.wh_value_48'))
