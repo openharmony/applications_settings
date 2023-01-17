@@ -77,7 +77,7 @@ struct DeviceName {
                     prompt.showToast({
                       message: value,
                       duration: 2000,
-                      bottom: 1000
+                      bottom: 100
                     })
                   })
               }
