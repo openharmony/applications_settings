@@ -103,6 +103,7 @@ export default struct SearchHeader {
             });
           }
         }
+        .hitTestBehavior(HitTestMode.Transparent)
       }
       .width('100%')
     }
