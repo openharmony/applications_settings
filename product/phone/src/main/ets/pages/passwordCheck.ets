@@ -47,6 +47,7 @@ struct PasswordCheck {
   private prevPageUri: string = undefined;
   private pinChallenge: string = undefined;
   private timerId: number = -1;
+  private freezingTimeFlag = undefined;
 
   @State private passwordType: number = -1;
   @State private promptMessage: any = '';
@@ -303,6 +304,9 @@ struct PasswordCheck {
 
     this.freezingTimeForView = this.freezingTime / 1000;
     LogUtil.info(this.TAG_PAGE + `freezeView freezingTimeForView = ${this.freezingTimeForView}`);
+    this.freezingTimeFlag = setTimeOut(() => {
+      this.freezingTimeForView = 0;
+    }, this.freezingTime);
     this.timerId = setInterval(() => {
       if (this.freezingTimeForView <= 0) {
         this.stopCountDown();
@@ -323,8 +327,8 @@ struct PasswordCheck {
   stopCountDown() {
     // for freezing view
     if (this.timerId > 0) {
-      clearTimeout(this.timerId);
-      clearInterval(this.freezingTimeForView);
+      clearTimeout(this.freezingTimeFlag);
+      clearInterval(this.timerId);
     }
   }
 }
