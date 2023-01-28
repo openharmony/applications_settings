@@ -304,7 +304,7 @@ struct PasswordCheck {
 
     this.freezingTimeForView = this.freezingTime / 1000;
     LogUtil.info(this.TAG_PAGE + `freezeView freezingTimeForView = ${this.freezingTimeForView}`);
-    this.freezingTimeFlag = setTimeOut(() => {
+    this.freezingTimeFlag = setTimeout(() => {
       this.freezingTimeForView = 0;
     }, this.freezingTime);
     this.timerId = setInterval(() => {
