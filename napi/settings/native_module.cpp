@@ -20,7 +20,7 @@
 #include "napi/native_api.h"
 #include "napi/native_node_api.h"
 
-#include "hilog_wrapper.h"
+#include "napi_settings_log.h"
 
 namespace ohos {
 namespace settings {
@@ -30,7 +30,7 @@ EXTERN_C_START
  */
 static napi_value Init(napi_env env, napi_value exports)
 {
-    HILOG_INFO("napi_moudule Init start...");
+    LOG_INFO("napi_moudule Init start...");
 
     napi_property_descriptor desc[] = {
         DECLARE_NAPI_FUNCTION("getURI", napi_get_uri),
@@ -46,7 +46,7 @@ static napi_value Init(napi_env env, napi_value exports)
     // init settings class
     NAPI_CALL(env, napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc));
     InitNapiClass(env, exports);
-    HILOG_INFO("napi_moudule Init end...");
+    LOG_INFO("napi_moudule Init end...");
     return exports;
 }
 EXTERN_C_END
