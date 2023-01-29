@@ -50,6 +50,18 @@ export async function registerObserver(){
       AppStorage.SetOrCreate('volume_media', data.volume);
     }
   })
+
+  audioManager.on('deviceChange', () => {
+   audioManager.getVolume(Audio.AudioVolumeType.RINGTONE,(err,data)=>{
+    AppStorage.SetOrCreate('volume_ringtone', data);
+   })
+   audioManager.getVolume(Audio.AudioVolumeType.VOICE_CALL,(err,data)=>{
+    AppStorage.SetOrCreate('volume_voicecall', data);
+   })
+   audioManager.getVolume(Audio.AudioVolumeType.MEDIA,(err,data)=>{
+    AppStorage.SetOrCreate('volume_media', data);
+   })
+  })
 }
 
 
