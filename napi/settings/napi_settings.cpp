@@ -21,7 +21,6 @@
 #include "abs_shared_result_set.h"
 #include "data_ability_helper.h"
 #include "data_ability_predicates.h"
-#include "hilog_wrapper.h"
 #include "napi_settings_log.h"
 #include "values_bucket.h"
 
