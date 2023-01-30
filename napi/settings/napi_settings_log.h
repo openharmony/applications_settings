@@ -41,7 +41,8 @@
 #undef LOG_ERROR
 #endif
 
-namespace OHOS::Settings {
+namespace ohos {
+namespace settings {
     static const OHOS::HiviewDFX::HiLogLabel SETTINGS_LABEL = {LOG_CORE,0xd01900,"Settings"};
     #define __FILENAME__ (__builtin_strrchr(__FILE__,'/') ? __builtin_strrchr (__FILE__,'/')+1:__FILE__) 
     #define LOG_DEBUG(fmt,...)\
@@ -59,5 +60,6 @@ namespace OHOS::Settings {
     #define LOG_ERROR(fmt,...)\
     (void)OHOS::HiviewDFX::HiLog::Error(\
     SETTINGS_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
+}  // namespace settings
 }  // namespace OHOS
 #endif  //  NAPI_SETTINGS_LOG_H
