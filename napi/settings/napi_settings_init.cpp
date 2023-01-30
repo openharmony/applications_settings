@@ -15,7 +15,6 @@
 #include <map>
 #include <string>
 #include "napi_settings.h"
-#include "hilog_wrapper.h"
 #include "napi_settings_log.h"
 
 namespace ohos {
