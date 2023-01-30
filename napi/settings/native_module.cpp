@@ -19,7 +19,6 @@
 #include "napi_settings.h"
 #include "napi/native_api.h"
 #include "napi/native_node_api.h"
-#include "hilog_wrapper.h"
 #include "napi_settings_log.h"
 
 namespace ohos {
