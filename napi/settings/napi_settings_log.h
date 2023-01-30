@@ -15,11 +15,11 @@
 
 #ifndef NAPI_SETTINGS_LOG_H
 #define NAPI_SETTINGS_LOG_H
-#include "hilog/log.h"
 
-#ifdef SETTINGS_LABEL
-#undef SETTINGS_LABEL
-#endif
+
+#define CONFIG_HILOG
+#ifdef CONFIG_HILOG
+#include "hilog/log.h"
 
 #ifdef LOG_DEBUG
 #undef LOG_DEBUG
@@ -41,25 +41,37 @@
 #undef LOG_ERROR
 #endif
 
-namespace ohos {
-namespace settings {
-    static const OHOS::HiviewDFX::HiLogLabel SETTINGS_LABEL = {LOG_CORE,0xd01900,"Settings"};
-    #define __FILENAME__ (__builtin_strrchr(__FILE__,'/') ? __builtin_strrchr (__FILE__,'/')+1:__FILE__) 
-    #define LOG_DEBUG(fmt,...)\
-    (void)OHOS::HiviewDFX::HiLog::Debug(\
-    SETTINGS_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
-    #define LOG_INFO(fmt,...)\
-    (void)OHOS::HiviewDFX::HiLog::Info(\
-    SETTINGS_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
-    #define LOG_WARN(fmt,...)\
-    (void)OHOS::HiviewDFX::HiLog::Warn(\
-    SETTINGS_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
-    #define LOG_FATAL(fmt,...)\
-    (void)OHOS::HiviewDFX::HiLog::Fatal(\
-    SETTINGS_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
-    #define LOG_ERROR(fmt,...)\
-    (void)OHOS::HiviewDFX::HiLog::Error(\
-    SETTINGS_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
-}  // namespace settings
-}  // namespace OHOS
-#endif  //  NAPI_SETTINGS_LOG_H
+#ifdef LOG_LABEL
+#undef LOG_LABEL
+#endif
+
+static constexpr OHOS::HiviewDFX::HiLogLabel LOG_LABEL = {LOG_CORE,0xD01900,"Settings"};
+#define __FILENAME__ (__builtin_strrchr(__FILE__,'/') ? __builtin_strrchr (__FILE__,'/')+1:__FILE__) 
+#define LOG_DEBUG(fmt,...)\
+(void)OHOS::HiviewDFX::HiLog::Debug(\
+LOG_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
+#define LOG_INFO(fmt,...)\
+(void)OHOS::HiviewDFX::HiLog::Info(\
+LOG_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
+#define LOG_WARN(fmt,...)\
+(void)OHOS::HiviewDFX::HiLog::Warn(\
+LOG_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
+#define LOG_FATAL(fmt,...)\
+(void)OHOS::HiviewDFX::HiLog::Fatal(\
+LOG_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
+#define LOG_ERROR(fmt,...)\
+(void)OHOS::HiviewDFX::HiLog::Error(\
+LOG_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
+
+#else
+
+#define LOG_DEBUG(...)
+#define LOG_INFO(...)
+#define LOG_WARN(...)
+#define LOG_FATAL(...)
+#define LOG_ERROR(...)
+#endif //CONFIG_HILOG
+
+#endif //NAPI_SETTINGS_LOG_H
+
+
