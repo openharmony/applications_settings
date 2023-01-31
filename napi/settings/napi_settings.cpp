@@ -76,7 +76,7 @@ std::string unwrap_string_from_js(napi_env env, napi_value param)
 
     char *buf = new (std::nothrow) char[size + 1];
     if (buf == nullptr) {
-        SETTINGS_LOG_INFO("settingsnapi : unwarp");
+        SETTING_LOG_INFO("settingsnapi : unwarp");
         return value;
     }
     memset_s(buf, size + 1, 0, size + 1);
@@ -90,7 +90,7 @@ std::string unwrap_string_from_js(napi_env env, napi_value param)
 
     delete[] buf;
     buf = nullptr;
-    SETTINGS_LOG_INFO("settingsnapi : unwarp string is : %{public}s", value.c_str());
+    SETTING_LOG_INFO("settingsnapi : unwarp string is : %{public}s", value.c_str());
     return value;
 }
 
@@ -144,7 +144,7 @@ struct AsyncCallbackInfo {
  */
 napi_value napi_get_uri_sync(napi_env env, napi_callback_info info)
 {
-    SETTINGS_LOG_INFO("napi_get_uri called...");
+    SETTING_LOG_INFO("napi_get_uri called...");
 
     napi_value retUri = nullptr;
 
@@ -153,7 +153,7 @@ napi_value napi_get_uri_sync(napi_env env, napi_callback_info info)
     napi_value args[ARGS_ONE] = {nullptr};
     NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
     if (argc != ARGS_ONE) {
-        SETTINGS_LOG_ERROR("%{public}s, wrong number of arguments.", __func__);
+        SETTING_LOG_ERROR("%{public}s, wrong number of arguments.", __func__);
         return wrap_void_to_js(env);
     }
 
@@ -171,19 +171,19 @@ napi_value napi_get_uri_sync(napi_env env, napi_callback_info info)
 
 napi_value napi_get_uri(napi_env env, napi_callback_info info)
 {
-    SETTINGS_LOG_INFO("settingsnapi : uri napi_set_value called...");
+    SETTING_LOG_INFO("settingsnapi : uri napi_set_value called...");
     // Check the number of the arguments
     size_t argc = ARGS_TWO;
     napi_value args[ARGS_TWO] = {nullptr};
     NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
     if (argc != ARGS_ONE && argc != ARGS_TWO) {
-        SETTINGS_LOG_ERROR("settingsnapi : uri %{public}s, wrong number of arguments, expect 1 or 2 but get %{public}zd",
+        SETTING_LOG_ERROR("settingsnapi : uri %{public}s, wrong number of arguments, expect 1 or 2 but get %{public}zd",
             __func__, argc);
         return wrap_void_to_js(env);
     }
 
-    SETTINGS_LOG_INFO("settingsnapi : uri arg count is %{public}zd", argc);
-    SETTINGS_LOG_INFO("settingsnapi : uri start create aysnc call back info");
+    SETTING_LOG_INFO("settingsnapi : uri arg count is %{public}zd", argc);
+    SETTING_LOG_INFO("settingsnapi : uri start create aysnc call back info");
     AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
         .env = env,
         .asyncWork = nullptr,
@@ -204,14 +204,14 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
     std::string uriArgStr = unwrap_string_from_js(env, args[PARAM0]);
     uriArgStr = uriArgStr.empty() ? SETTINGS_DATA_BASE_URI : (SETTINGS_DATA_BASE_URI + "/" + uriArgStr);
     asyncCallbackInfo->uri = uriArgStr;
-    SETTINGS_LOG_INFO("settingsnapi : uri after uri is %{public}s", asyncCallbackInfo->uri.c_str());
-    SETTINGS_LOG_INFO("settingsnapi : uri after create aysnc call back info");
+    SETTING_LOG_INFO("settingsnapi : uri after uri is %{public}s", asyncCallbackInfo->uri.c_str());
+    SETTING_LOG_INFO("settingsnapi : uri after create aysnc call back info");
 
     napi_value resource = nullptr;
     NAPI_CALL(env, napi_create_string_utf8(env, "getUri", NAPI_AUTO_LENGTH, &resource));
 
     if (argc == 2) {
-        SETTINGS_LOG_INFO("settingsnapi : uri do callback");
+        SETTING_LOG_INFO("settingsnapi : uri do callback");
         napi_create_reference(env, args[PARAM1], 1, &asyncCallbackInfo->callbackRef);
 
         napi_create_async_work(
@@ -219,14 +219,14 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
             nullptr,
             resource,
             [](napi_env env, void* data) {
-                SETTINGS_LOG_INFO("settingsnapi : uri callback async execute callback");
+                SETTING_LOG_INFO("settingsnapi : uri callback async execute callback");
             },
             [](napi_env env, napi_status status, void* data) {
                 if (data == nullptr) {
-                    SETTINGS_LOG_INFO("settingsnapi : uri callback async end data is null");
+                    SETTING_LOG_INFO("settingsnapi : uri callback async end data is null");
                     return;
                 }
-                SETTINGS_LOG_INFO("settingsnapi : uri callback async end called callback");
+                SETTING_LOG_INFO("settingsnapi : uri callback async end called callback");
                 AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
                 napi_value undefine;
                 napi_get_undefined(env, &undefine);
@@ -237,18 +237,18 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
                 napi_delete_reference(env, asyncCallbackInfo->callbackRef);
                 napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
                 delete asyncCallbackInfo;
-                SETTINGS_LOG_INFO("settingsnapi : uri callback change callback complete");
+                SETTING_LOG_INFO("settingsnapi : uri callback change callback complete");
             },
             (void*)asyncCallbackInfo,
             &asyncCallbackInfo->asyncWork
         );
 
-        SETTINGS_LOG_INFO("settingsnapi : uri callback start async work");
+        SETTING_LOG_INFO("settingsnapi : uri callback start async work");
         NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
-        SETTINGS_LOG_INFO("settingsnapi : uri callback end async work");
+        SETTING_LOG_INFO("settingsnapi : uri callback end async work");
         return wrap_void_to_js(env);
     } else {
-        SETTINGS_LOG_INFO("settingsnapi : uri do promise");
+        SETTING_LOG_INFO("settingsnapi : uri do promise");
         napi_value promise;
         napi_deferred deferred;
         NAPI_CALL(env, napi_create_promise(env, &deferred, &promise));
@@ -260,13 +260,13 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
             resource,
             // aysnc executed task
             [](napi_env env, void* data) {
-                SETTINGS_LOG_INFO("settingsnapi : uri promise async execute callback");
+                SETTING_LOG_INFO("settingsnapi : uri promise async execute callback");
             },
             // async end called callback
             [](napi_env env, napi_status status, void* data) {
-                SETTINGS_LOG_INFO("settingsnapi : uri promise async end called callback");
+                SETTING_LOG_INFO("settingsnapi : uri promise async end called callback");
                 AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-                SETTINGS_LOG_INFO("settingsnapi : uri promise end get callback value is %{public}s", asyncCallbackInfo->uri.c_str());
+                SETTING_LOG_INFO("settingsnapi : uri promise end get callback value is %{public}s", asyncCallbackInfo->uri.c_str());
                 napi_value result = wrap_string_to_js(env, asyncCallbackInfo->uri);
                 napi_resolve_deferred(asyncCallbackInfo->env, asyncCallbackInfo->deferred, result);
                 napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
@@ -275,7 +275,7 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
             (void*)asyncCallbackInfo,
             &asyncCallbackInfo->asyncWork);
         napi_queue_async_work(env, asyncCallbackInfo->asyncWork);
-        SETTINGS_LOG_INFO("settingsnapi: uri promise end sync work");
+        SETTING_LOG_INFO("settingsnapi: uri promise end sync work");
         return promise;
     }
 }
@@ -286,17 +286,17 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, const napi_val
     std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
     std::string strProxyUri = "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true";
     OHOS::Uri proxyUri(strProxyUri);
-    SETTINGS_LOG_INFO("getDataShareHelper called");
+    SETTING_LOG_INFO("getDataShareHelper called");
     auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
 
     dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri);
-    SETTINGS_LOG_INFO("getDataShareHelper called");
+    SETTING_LOG_INFO("getDataShareHelper called");
 
     DataSharePredicates predicates;
     predicates.Limit(1, 0);
     std::vector<std::string> columns;
     if (dataShareHelper == nullptr) {
-        SETTINGS_LOG_INFO("getDataShareHelper dataShareHelper = nullptr");
+        SETTING_LOG_INFO("getDataShareHelper dataShareHelper = nullptr");
     }
     if (dataShareHelper == nullptr || dataShareHelper->Query(proxyUri, predicates, columns) == nullptr) {
         dataShareHelper =  OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
@@ -309,11 +309,11 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, const napi_val
 void GetValueExecuteExt(napi_env env, void *data)
 {
     if (data == nullptr) {
-        SETTINGS_LOG_INFO("settingsnapi : execute data is null");
+        SETTING_LOG_INFO("settingsnapi : execute data is null");
         return;
     }
 
-    SETTINGS_LOG_INFO("settingsnapi : GetValueExecuteExt start");
+    SETTING_LOG_INFO("settingsnapi : GetValueExecuteExt start");
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
 
     std::vector<std::string> columns;
@@ -331,12 +331,12 @@ void GetValueExecuteExt(napi_env env, void *data)
     }
     int numRows = 0;
     if (resultset != nullptr) {
-        SETTINGS_LOG_INFO("settingsnapi : GetValueExecuteExt called... resultset is NOT empty");
+        SETTING_LOG_INFO("settingsnapi : GetValueExecuteExt called... resultset is NOT empty");
         resultset->GetRowCount(numRows);
     }
 
     if (resultset == nullptr || numRows == 0) {
-        SETTINGS_LOG_INFO("settingsnapi : GetValueExecuteExt called... return error");
+        SETTING_LOG_INFO("settingsnapi : GetValueExecuteExt called... return error");
         asyncCallbackInfo->status = -1;
         return;
     }
@@ -346,7 +346,7 @@ void GetValueExecuteExt(napi_env env, void *data)
     resultset->GoToFirstRow();
 
     resultset->GetString(columnIndex, val);
-    SETTINGS_LOG_INFO("napi_get_value_ext called... %{public}s", val.c_str());
+    SETTING_LOG_INFO("napi_get_value_ext called... %{public}s", val.c_str());
     asyncCallbackInfo->value = val;
     asyncCallbackInfo->status = napi_ok;
 }
@@ -374,19 +374,19 @@ void CompleteCall(napi_env env, napi_status status, void *data, const napi_value
         napi_create_error(env, nullptr, message, &result[PARAM0]);
         napi_get_undefined(env, &result[PARAM1]);
     }
-    SETTINGS_LOG_INFO("settingsnapi : callback aysnc end called");
+    SETTING_LOG_INFO("settingsnapi : callback aysnc end called");
     napi_value callback = nullptr;
     napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
     napi_value returnValue;
     napi_call_function(env, nullptr, callback, PARAM2, result, &returnValue);
-    SETTINGS_LOG_INFO("settingsnapi : callback aysnc end called");
+    SETTING_LOG_INFO("settingsnapi : callback aysnc end called");
     DeleteCallbackInfo(env, asyncCallbackInfo);
-    SETTINGS_LOG_INFO("settingsnapi : callback change callback complete");
+    SETTING_LOG_INFO("settingsnapi : callback change callback complete");
 }
 
 void CompletePromise(napi_env env, napi_status status, void *data, const napi_value retVaule)
 {
-    SETTINGS_LOG_INFO("settingsnapi : promise async end called callback");
+    SETTING_LOG_INFO("settingsnapi : promise async end called callback");
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
     napi_value result = nullptr;
     if (status == napi_ok && asyncCallbackInfo->status == napi_ok) {
@@ -401,10 +401,10 @@ void CompletePromise(napi_env env, napi_status status, void *data, const napi_va
 void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
 {
     if (data == nullptr) {
-        SETTINGS_LOG_INFO("settingsnapi : SetValueExecuteExt data is null");
+        SETTING_LOG_INFO("settingsnapi : SetValueExecuteExt data is null");
         return;
     }
-    SETTINGS_LOG_INFO("settingsnapi : execute start");
+    SETTING_LOG_INFO("settingsnapi : execute start");
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
 
     OHOS::DataShare::DataShareValuesBucket val;
@@ -412,7 +412,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     val.Put(SETTINGS_DATA_FIELD_VALUE, setValue);
 
     std::string strUri = "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=" + asyncCallbackInfo->key;
-    SETTINGS_LOG_INFO("strUri = %{public}s", strUri.c_str());
+    SETTING_LOG_INFO("strUri = %{public}s", strUri.c_str());
     OHOS::Uri uri(strUri);
 
     OHOS::DataShare::DataSharePredicates predicates;
@@ -420,17 +420,17 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
 
     int retInt = 0;
     if (asyncCallbackInfo->status == -1 || asyncCallbackInfo->value.size() <= 0) {
-        SETTINGS_LOG_INFO("napi_set_value_ext called... before Insert");
+        SETTING_LOG_INFO("napi_set_value_ext called... before Insert");
         if (asyncCallbackInfo->dataShareHelper != nullptr) {
             retInt = asyncCallbackInfo->dataShareHelper->Insert(uri, val);
         }
-        SETTINGS_LOG_INFO("napi_set_value_ext called... after Insert");
+        SETTING_LOG_INFO("napi_set_value_ext called... after Insert");
     } else {
-        SETTINGS_LOG_INFO("napi_set_value_ext called... before Update");
+        SETTING_LOG_INFO("napi_set_value_ext called... before Update");
         if (asyncCallbackInfo->dataShareHelper != nullptr) {
             retInt = asyncCallbackInfo->dataShareHelper->Update(uri, predicates, val);
         }
-        SETTINGS_LOG_INFO("napi_set_value_ext called... after Update");
+        SETTING_LOG_INFO("napi_set_value_ext called... after Update");
     }
     asyncCallbackInfo->status = retInt;
 }
@@ -444,14 +444,14 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
  */
 napi_value napi_get_value_sync(napi_env env, napi_callback_info info)
 {
-    SETTINGS_LOG_INFO("napi_get_value called...");
+    SETTING_LOG_INFO("napi_get_value called...");
 
     // Check the number of the arguments
     size_t argc = ARGS_THREE;
     napi_value args[ARGS_THREE] = {nullptr};
     NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
     if (argc != ARGS_THREE) {
-        SETTINGS_LOG_ERROR("%{public}s, wrong number of arguments.", __func__);
+        SETTING_LOG_ERROR("%{public}s, wrong number of arguments.", __func__);
         return wrap_void_to_js(env);
     }
 
@@ -467,13 +467,13 @@ napi_value napi_get_value_sync(napi_env env, napi_callback_info info)
     bool stageMode = false;
     napi_status status = OHOS::AbilityRuntime::IsStageContext(env, args[PARAM0], stageMode);
     if (status == napi_ok) {
-        SETTINGS_LOG_INFO("argv[0] is a context, Stage Model: %{public}d", stageMode);
+        SETTING_LOG_INFO("argv[0] is a context, Stage Model: %{public}d", stageMode);
         AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo();
         asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
         std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
         asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode);
         GetValueExecuteExt(env, (void*)asyncCallbackInfo);
-        SETTINGS_LOG_INFO("settingsnapi : napi_get_value_sync called... return  %{public}s", asyncCallbackInfo->value.c_str());
+        SETTING_LOG_INFO("settingsnapi : napi_get_value_sync called... return  %{public}s", asyncCallbackInfo->value.c_str());
         napi_value retVal = nullptr;
         if(asyncCallbackInfo->value.size() <= 0){
             retVal = args[PARAM2];
@@ -493,24 +493,24 @@ napi_value napi_get_value_sync(napi_env env, napi_callback_info info)
     OHOS::NativeRdb::DataAbilityPredicates predicates;
     predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, unwrap_string_from_js(env, args[PARAM1]));
 
-    SETTINGS_LOG_INFO("napi_get_value called... before dataAbilityHelper->Query");
+    SETTING_LOG_INFO("napi_get_value called... before dataAbilityHelper->Query");
     std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultset =
         dataAbilityHelper->Query(*uri, columns, predicates);
-    SETTINGS_LOG_INFO("napi_get_value called... after dataAbilityHelper->Query");
+    SETTING_LOG_INFO("napi_get_value called... after dataAbilityHelper->Query");
 
     napi_value retVal = nullptr;
     int numRows = 0;
 
     if (resultset != nullptr) {
-        SETTINGS_LOG_INFO("napi_get_value called... resultset is NOT empty");
+        SETTING_LOG_INFO("napi_get_value called... resultset is NOT empty");
         resultset->GetRowCount(numRows);
     }
 
     if (resultset == nullptr || numRows == 0) {
-        SETTINGS_LOG_INFO("napi_get_value called... return default value");
+        SETTING_LOG_INFO("napi_get_value called... return default value");
         retVal = args[PARAM2];
     } else {
-        SETTINGS_LOG_INFO("napi_get_value called... return value from resultset");
+        SETTING_LOG_INFO("napi_get_value called... return value from resultset");
         std::string val;
         int32_t columnIndex = 0;
         resultset->GoToFirstRow();
@@ -522,7 +522,7 @@ napi_value napi_get_value_sync(napi_env env, napi_callback_info info)
         resultset->Close();
     }
     dataAbilityHelper = nullptr;
-    SETTINGS_LOG_INFO("napi_get_value called... END!");
+    SETTING_LOG_INFO("napi_get_value called... END!");
     return retVal;
 }
 
@@ -536,13 +536,13 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
     napi_value args[ARGS_THREE] = {nullptr};
     NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
     if (argc != paramOfCallback && argc != paramOfPromise) {
-        SETTINGS_LOG_ERROR("settingsnapi : %{public}s, wrong number of arguments, expect 2 or 3 but get %{public}zd",
+        SETTING_LOG_ERROR("settingsnapi : %{public}s, wrong number of arguments, expect 2 or 3 but get %{public}zd",
             __func__, argc);
         return wrap_void_to_js(env);
     }
 
-    SETTINGS_LOG_INFO("settingsnapi : napi_get_value arg count is %{public}zd", argc);
-    SETTINGS_LOG_INFO("settingsnapi : napi_get_value start create aysnc call back info");
+    SETTING_LOG_INFO("settingsnapi : napi_get_value arg count is %{public}zd", argc);
+    SETTING_LOG_INFO("settingsnapi : napi_get_value start create aysnc call back info");
     AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
         .env = env,
         .asyncWork = nullptr,
@@ -554,7 +554,7 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
         .uri = "",
         .status = false,
     };
-    SETTINGS_LOG_INFO("settingsnapi : after create aysnc call back info");
+    SETTING_LOG_INFO("settingsnapi : after create aysnc call back info");
     // Check the value type of the arguments
     napi_valuetype valueType;
     NAPI_CALL(env, napi_typeof(env, args[PARAM0], &valueType));
@@ -562,7 +562,7 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
     bool stageMode = false;
     napi_status status = OHOS::AbilityRuntime::IsStageContext(env, args[PARAM0], stageMode);
     if (status == napi_ok) {
-        SETTINGS_LOG_INFO("argv[0] is a context, Stage Model: %{public}d", stageMode);
+        SETTING_LOG_INFO("argv[0] is a context, Stage Model: %{public}d", stageMode);
         return napi_get_value_ext(env, info, stageMode);
     }
     
@@ -571,16 +571,16 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
     NAPI_ASSERT(env, valueType == napi_string, "Wrong argument[1], type. String expected");
     
     NAPI_CALL(env, napi_unwrap(env, args[PARAM0], reinterpret_cast<void **>(&asyncCallbackInfo->dataAbilityHelper)));
-    SETTINGS_LOG_INFO("settingsnapi : input paramter is (DataAbilityHelper)");
+    SETTING_LOG_INFO("settingsnapi : input paramter is (DataAbilityHelper)");
 
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
-    SETTINGS_LOG_INFO("settingsnapi : input parameter is : (key %{public}s", asyncCallbackInfo->key.c_str());
+    SETTING_LOG_INFO("settingsnapi : input parameter is : (key %{public}s", asyncCallbackInfo->key.c_str());
 
     napi_value resource = nullptr;
     NAPI_CALL(env, napi_create_string_utf8(env, "getValue", NAPI_AUTO_LENGTH, &resource));
 
     if (argc == paramOfCallback) {
-        SETTINGS_LOG_INFO("settingsnapi : do callback");
+        SETTING_LOG_INFO("settingsnapi : do callback");
 
         napi_create_reference(env, args[PARAM2], 1, &asyncCallbackInfo->callbackRef);
 
@@ -591,10 +591,10 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
             // aysnc executed task
             [](napi_env env, void* data) {
                 if (data == nullptr) {
-                    SETTINGS_LOG_INFO("settingsnapi : callback async execute data is null");
+                    SETTING_LOG_INFO("settingsnapi : callback async execute data is null");
                     return;
                 }
-                SETTINGS_LOG_INFO("settingsnapi : callback async execute callback");
+                SETTING_LOG_INFO("settingsnapi : callback async execute callback");
                 AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
                 
                 std::vector<std::string> columns;
@@ -603,25 +603,25 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
                 predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
 
                 std::shared_ptr<Uri> uri = std::make_shared<Uri>(SETTINGS_DATA_BASE_URI);
-                SETTINGS_LOG_INFO("settingsnapi : callback napi_get_value called... before dataAbilityHelper->Query");
+                SETTING_LOG_INFO("settingsnapi : callback napi_get_value called... before dataAbilityHelper->Query");
                 std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultset =
                     asyncCallbackInfo->dataAbilityHelper->Query(*uri, columns, predicates);
-                SETTINGS_LOG_INFO("settingsnapi : callback napi_get_value called... after dataAbilityHelper->Query");
+                SETTING_LOG_INFO("settingsnapi : callback napi_get_value called... after dataAbilityHelper->Query");
 
                 int numRows = 0;
                 if (resultset != nullptr) {
-                    SETTINGS_LOG_INFO("settingsnapi : callback napi_get_value called... resultset is NOT empty");
+                    SETTING_LOG_INFO("settingsnapi : callback napi_get_value called... resultset is NOT empty");
                     resultset->GetRowCount(numRows);
                 }
                 if (resultset == nullptr || numRows == 0) {
-                    SETTINGS_LOG_INFO("settingsnapi : callback napi_get_value called... return default value");
+                    SETTING_LOG_INFO("settingsnapi : callback napi_get_value called... return default value");
                 } else {
-                    SETTINGS_LOG_INFO("settingsnapi : callback napi_get_value called... return value from resultset");
+                    SETTING_LOG_INFO("settingsnapi : callback napi_get_value called... return value from resultset");
                     std::string val;
                     int32_t columnIndex = 0;
                     resultset->GoToFirstRow();
                     resultset->GetString(columnIndex, val);
-                    SETTINGS_LOG_INFO("settingsnapi : callback retVal is %{public}s", val.c_str());
+                    SETTING_LOG_INFO("settingsnapi : callback retVal is %{public}s", val.c_str());
                     asyncCallbackInfo->value = val;
                 }
                 if (resultset != nullptr) {
@@ -631,36 +631,36 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
             // async end called callback
             [](napi_env env, napi_status status, void* data) {
                 if (data == nullptr) {
-                    SETTINGS_LOG_INFO("settingsnapi : callback async end data is null");
+                    SETTING_LOG_INFO("settingsnapi : callback async end data is null");
                     return;
                 }
-                SETTINGS_LOG_INFO("settingsnapi : callback async end called callback");
+                SETTING_LOG_INFO("settingsnapi : callback async end called callback");
                 AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
                 napi_value undefine;
                 napi_get_undefined(env, &undefine);
-                SETTINGS_LOG_INFO("settingsnapi : callback aysnc end called");
+                SETTING_LOG_INFO("settingsnapi : callback aysnc end called");
                 napi_value callback = nullptr;
                 napi_value result = wrap_string_to_js(env, asyncCallbackInfo->value);
-                SETTINGS_LOG_INFO("settingsnapi : callback aysnc end called");
+                SETTING_LOG_INFO("settingsnapi : callback aysnc end called");
                 napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
                 napi_call_function(env, nullptr, callback, 1, &result, &undefine);
-                SETTINGS_LOG_INFO("settingsnapi : callback aysnc end called");
+                SETTING_LOG_INFO("settingsnapi : callback aysnc end called");
                 napi_delete_reference(env, asyncCallbackInfo->callbackRef);
                 napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
                 asyncCallbackInfo->dataAbilityHelper = nullptr;
                 delete asyncCallbackInfo;
-                SETTINGS_LOG_INFO("settingsnapi : callback change callback complete");
+                SETTING_LOG_INFO("settingsnapi : callback change callback complete");
             },
             (void*)asyncCallbackInfo,
             &asyncCallbackInfo->asyncWork
         );
 
-        SETTINGS_LOG_INFO("settingsnapi :  callback start async work");
+        SETTING_LOG_INFO("settingsnapi :  callback start async work");
         NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
-        SETTINGS_LOG_INFO("settingsnapi : callback end async work");
+        SETTING_LOG_INFO("settingsnapi : callback end async work");
         return wrap_void_to_js(env);
     } else {
-        SETTINGS_LOG_INFO("settingsnapi : do promise");
+        SETTING_LOG_INFO("settingsnapi : do promise");
         napi_value promise;
         napi_deferred deferred;
         NAPI_CALL(env, napi_create_promise(env, &deferred, &promise));
@@ -672,10 +672,10 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
         resource,
         // aysnc executed task
         [](napi_env env, void* data) {
-            SETTINGS_LOG_INFO("settingsnapi : promise async execute callback");
+            SETTING_LOG_INFO("settingsnapi : promise async execute callback");
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-            SETTINGS_LOG_INFO("settingsnapi : promise get callback key is %{public}s", asyncCallbackInfo->key.c_str());
-            SETTINGS_LOG_INFO("settingsnapi : promise get callback value is %{public}s", asyncCallbackInfo->value.c_str());
+            SETTING_LOG_INFO("settingsnapi : promise get callback key is %{public}s", asyncCallbackInfo->key.c_str());
+            SETTING_LOG_INFO("settingsnapi : promise get callback value is %{public}s", asyncCallbackInfo->value.c_str());
 
             std::vector<std::string> columns;
             columns.push_back(SETTINGS_DATA_FIELD_VALUE);
@@ -683,20 +683,20 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
             predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
 
             std::shared_ptr<Uri> uri = std::make_shared<Uri>(SETTINGS_DATA_BASE_URI);
-            SETTINGS_LOG_INFO("settingsnapi : promise napi_get_value called... before dataAbilityHelper->Query");
+            SETTING_LOG_INFO("settingsnapi : promise napi_get_value called... before dataAbilityHelper->Query");
             std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultset =
                 asyncCallbackInfo->dataAbilityHelper->Query(*uri, columns, predicates);
-            SETTINGS_LOG_INFO("settingsnapi : promise napi_get_value called... after dataAbilityHelper->Query");
+            SETTING_LOG_INFO("settingsnapi : promise napi_get_value called... after dataAbilityHelper->Query");
 
             int numRows = 0;
             if (resultset != nullptr) {
-                SETTINGS_LOG_INFO("settingsnapi : promise napi_get_value called... resultset is NOT empty");
+                SETTING_LOG_INFO("settingsnapi : promise napi_get_value called... resultset is NOT empty");
                 resultset->GetRowCount(numRows);
             }
             if (resultset == nullptr || numRows == 0) {
-                SETTINGS_LOG_INFO("settingsnapi : promise napi_get_value called... return default value");
+                SETTING_LOG_INFO("settingsnapi : promise napi_get_value called... return default value");
             } else {
-                SETTINGS_LOG_INFO("settingsnapi : promise napi_get_value called... return value from resultset");
+                SETTING_LOG_INFO("settingsnapi : promise napi_get_value called... return value from resultset");
                 std::string val;
                 int32_t columnIndex = 0;
                 resultset->GoToFirstRow();
@@ -709,9 +709,9 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
         },
         // async end called callback
         [](napi_env env, napi_status status, void* data) {
-            SETTINGS_LOG_INFO("settingsnapi : promise async end called callback");
+            SETTING_LOG_INFO("settingsnapi : promise async end called callback");
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-            SETTINGS_LOG_INFO("settingsnapi : promise end get callback value is %{public}s", asyncCallbackInfo->value.c_str());
+            SETTING_LOG_INFO("settingsnapi : promise end get callback value is %{public}s", asyncCallbackInfo->value.c_str());
             napi_value result = wrap_string_to_js(env, asyncCallbackInfo->value);
             napi_resolve_deferred(asyncCallbackInfo->env, asyncCallbackInfo->deferred, result);
             napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
@@ -728,7 +728,7 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
 // api9
 napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool stageMode)
 {
-    SETTINGS_LOG_INFO("settingsnapi : napi_get_value_ext start");
+    SETTING_LOG_INFO("settingsnapi : napi_get_value_ext start");
     AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
         .env = env,
         .asyncWork = nullptr,
@@ -741,7 +741,7 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
         .status = false,
     };
 
-    SETTINGS_LOG_INFO("napi_get_value_ext called");
+    SETTING_LOG_INFO("napi_get_value_ext called");
     size_t argc = ARGS_THREE;
     napi_value args[ARGS_THREE] = {nullptr};
     NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
@@ -772,7 +772,7 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
             &asyncCallbackInfo->asyncWork
         );
         NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
-        SETTINGS_LOG_INFO("settingsnapi : callback end async work");
+        SETTING_LOG_INFO("settingsnapi : callback end async work");
         return wrap_void_to_js(env);
     } else {
         napi_value promise;
@@ -808,14 +808,14 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
  */
 napi_value napi_set_value_sync(napi_env env, napi_callback_info info)
 {
-    SETTINGS_LOG_INFO("napi_set_value called...");
+    SETTING_LOG_INFO("napi_set_value called...");
 
     // Check the number of the arguments
     size_t argc = ARGS_THREE;
     napi_value args[ARGS_THREE] = {nullptr};
     NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
     if (argc != ARGS_THREE) {
-        SETTINGS_LOG_ERROR("%{public}s, wrong number of arguments.", __func__);
+        SETTING_LOG_ERROR("%{public}s, wrong number of arguments.", __func__);
         return wrap_void_to_js(env);
     }
 
@@ -831,7 +831,7 @@ napi_value napi_set_value_sync(napi_env env, napi_callback_info info)
     bool stageMode = false;
     napi_status status = OHOS::AbilityRuntime::IsStageContext(env, args[PARAM0], stageMode);
     if (status == napi_ok) {
-        SETTINGS_LOG_INFO("argv[0] is a context, Stage Model: %{public}d", stageMode);
+        SETTING_LOG_INFO("argv[0] is a context, Stage Model: %{public}d", stageMode);
         AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo();
         asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
         std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
@@ -859,55 +859,55 @@ napi_value napi_set_value_sync(napi_env env, napi_callback_info info)
     predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, argsName);
 
     std::shared_ptr<Uri> uri = std::make_shared<Uri>(SETTINGS_DATA_BASE_URI);
-    SETTINGS_LOG_INFO("napi_set_value called... before dataAbilityHelper->Query");
+    SETTING_LOG_INFO("napi_set_value called... before dataAbilityHelper->Query");
     std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultset =
         dataAbilityHelper->Query(*uri, columns, predicates);
-    SETTINGS_LOG_INFO("napi_set_value called... after dataAbilityHelper->Query");
+    SETTING_LOG_INFO("napi_set_value called... after dataAbilityHelper->Query");
 
     int retInt = 0;
     int numRows = 0;
 
     if (resultset != nullptr) {
-        SETTINGS_LOG_INFO("napi_set_value called... resultset is NOT empty");
+        SETTING_LOG_INFO("napi_set_value called... resultset is NOT empty");
         resultset->GetRowCount(numRows);
     }
 
     // insert
     if (resultset == nullptr || numRows == 0) {
-        SETTINGS_LOG_INFO("napi_set_value called... before Insert");
+        SETTING_LOG_INFO("napi_set_value called... before Insert");
         retInt = dataAbilityHelper->Insert(*uri, val);
-        SETTINGS_LOG_INFO("napi_set_value called... after Insert");
+        SETTING_LOG_INFO("napi_set_value called... after Insert");
     // update
     } else {
-        SETTINGS_LOG_INFO("napi_set_value called... before Update");
+        SETTING_LOG_INFO("napi_set_value called... before Update");
         retInt = dataAbilityHelper->Update(*uri, val, predicates);
-        SETTINGS_LOG_INFO("napi_set_value called... after Update");
+        SETTING_LOG_INFO("napi_set_value called... after Update");
     }
     // notify change
     if (retInt != 0) {
-        SETTINGS_LOG_INFO("napi_set_value called... retInt is NOT zero");
+        SETTING_LOG_INFO("napi_set_value called... retInt is NOT zero");
         std::string uriWithNameStr =
             argsName.empty() ? SETTINGS_DATA_BASE_URI : (SETTINGS_DATA_BASE_URI + "/" + argsName);
         std::shared_ptr<Uri> uriWithName = std::make_shared<Uri>(uriWithNameStr);
         dataAbilityHelper->NotifyChange(*uriWithName);
-        SETTINGS_LOG_INFO("napi_set_value called... after NotifyChange with uri: %{public}s", uriWithNameStr.c_str());
+        SETTING_LOG_INFO("napi_set_value called... after NotifyChange with uri: %{public}s", uriWithNameStr.c_str());
     }
 
     if (resultset != nullptr) {
         resultset->Close();
     }
 
-    SETTINGS_LOG_INFO("napi_set_value called... END!");
+    SETTING_LOG_INFO("napi_set_value called... END!");
     return wrap_bool_to_js(env, retInt != 0);
 }
 
 void SetValueExecuteCB(napi_env env, void *data)
 {
     if (data == nullptr) {
-        SETTINGS_LOG_INFO("settingsnapi : execute data is null");
+        SETTING_LOG_INFO("settingsnapi : execute data is null");
         return;
     }
-    SETTINGS_LOG_INFO("settingsnapi : execute start");
+    SETTING_LOG_INFO("settingsnapi : execute start");
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
 
     std::string argsName = asyncCallbackInfo->key;
@@ -923,49 +923,49 @@ void SetValueExecuteCB(napi_env env, void *data)
     predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, argsName);
 
     std::shared_ptr<Uri> uri = std::make_shared<Uri>(SETTINGS_DATA_BASE_URI);
-    SETTINGS_LOG_INFO("settingsnapi : execute... before dataAbilityHelper->Query");
+    SETTING_LOG_INFO("settingsnapi : execute... before dataAbilityHelper->Query");
     std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultset =
         asyncCallbackInfo->dataAbilityHelper->Query(*uri, columns, predicates);
-    SETTINGS_LOG_INFO("settingsnapi : execute... after dataAbilityHelper->Query");
+    SETTING_LOG_INFO("settingsnapi : execute... after dataAbilityHelper->Query");
 
     int retInt = 0;
     int numRows = 0;
     if (resultset != nullptr) {
-        SETTINGS_LOG_INFO("settingsnapi : execute... resultset is NOT empty");
+        SETTING_LOG_INFO("settingsnapi : execute... resultset is NOT empty");
         resultset->GetRowCount(numRows);
     }
     // insert
     if (resultset == nullptr || numRows == 0) {
-        SETTINGS_LOG_INFO("settingsnapi : execute... before Insert");
+        SETTING_LOG_INFO("settingsnapi : execute... before Insert");
         retInt = asyncCallbackInfo->dataAbilityHelper->Insert(*uri, val);
-        SETTINGS_LOG_INFO("settingsnapi : execute... after Insert");
+        SETTING_LOG_INFO("settingsnapi : execute... after Insert");
     // update
     } else {
-        SETTINGS_LOG_INFO("settingsnapi : execute... before Update");
+        SETTING_LOG_INFO("settingsnapi : execute... before Update");
         retInt = asyncCallbackInfo->dataAbilityHelper->Update(*uri, val, predicates);
-        SETTINGS_LOG_INFO("settingsnapi : execute... after Update");
+        SETTING_LOG_INFO("settingsnapi : execute... after Update");
     }
     // notify change
     if (retInt != 0) {
-        SETTINGS_LOG_INFO("settingsnapi : execute... retInt is NOT zero");
+        SETTING_LOG_INFO("settingsnapi : execute... retInt is NOT zero");
         std::string uriWithNameStr =
             argsName.empty() ? SETTINGS_DATA_BASE_URI : (SETTINGS_DATA_BASE_URI + "/" + argsName);
         std::shared_ptr<Uri> uriWithName = std::make_shared<Uri>(uriWithNameStr);
         asyncCallbackInfo->dataAbilityHelper->NotifyChange(*uriWithName);
-        SETTINGS_LOG_INFO(
+        SETTING_LOG_INFO(
             "settingsnapi : execute... after NotifyChange with uri: %{public}s",
             uriWithNameStr.c_str());
     }
     if (resultset != nullptr) {
         resultset->Close();
     }
-    SETTINGS_LOG_INFO("settingsnapi : execute... END!");
+    SETTING_LOG_INFO("settingsnapi : execute... END!");
     asyncCallbackInfo->status = retInt;
 }
 
 napi_value SetValueAsync(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
 {
-    SETTINGS_LOG_INFO("settingsnapi : set do callback");
+    SETTING_LOG_INFO("settingsnapi : set do callback");
     napi_value resource = nullptr;
     NAPI_CALL(env, napi_create_string_utf8(env, __func__, NAPI_AUTO_LENGTH, &resource));
 
@@ -976,38 +976,38 @@ napi_value SetValueAsync(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
         SetValueExecuteCB,
         [](napi_env env, napi_status status, void* data) {
             if (data == nullptr) {
-                SETTINGS_LOG_INFO("settingsnapi : callback set async end data is null");
+                SETTING_LOG_INFO("settingsnapi : callback set async end data is null");
                 return;
             }
-            SETTINGS_LOG_INFO("settingsnapi : callback set async end called callback");
+            SETTING_LOG_INFO("settingsnapi : callback set async end called callback");
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
             napi_value undefine;
             napi_get_undefined(env, &undefine);
-            SETTINGS_LOG_INFO("settingsnapi : callback set aysnc end called");
+            SETTING_LOG_INFO("settingsnapi : callback set aysnc end called");
             napi_value callback = nullptr;
             napi_value result = wrap_bool_to_js(env, asyncCallbackInfo->status != 0);
-            SETTINGS_LOG_INFO("settingsnapi : callback set aysnc end called");
+            SETTING_LOG_INFO("settingsnapi : callback set aysnc end called");
             napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
             napi_call_function(env, nullptr, callback, 1, &result, &undefine);
-            SETTINGS_LOG_INFO("settingsnapi : callback set aysnc end called");
+            SETTING_LOG_INFO("settingsnapi : callback set aysnc end called");
             napi_delete_reference(env, asyncCallbackInfo->callbackRef);
             napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
             asyncCallbackInfo->dataAbilityHelper = nullptr;
             delete asyncCallbackInfo;
-            SETTINGS_LOG_INFO("settingsnapi : callback set change callback complete");
+            SETTING_LOG_INFO("settingsnapi : callback set change callback complete");
         },
         (void*)asyncCallbackInfo,
         &asyncCallbackInfo->asyncWork
     );
-    SETTINGS_LOG_INFO("settingsnapi : callback set start async work");
+    SETTING_LOG_INFO("settingsnapi : callback set start async work");
     NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
-    SETTINGS_LOG_INFO("settingsnapi : callback set end async work");
+    SETTING_LOG_INFO("settingsnapi : callback set end async work");
     return wrap_void_to_js(env);
 }
 
 napi_value SetValuePromise(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
 {
-    SETTINGS_LOG_INFO("settingsnapi : set  do promise");
+    SETTING_LOG_INFO("settingsnapi : set  do promise");
     napi_value promise;
     napi_deferred deferred;
     NAPI_CALL(env, napi_create_promise(env, &deferred, &promise));
@@ -1022,9 +1022,9 @@ napi_value SetValuePromise(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
         resource,
         SetValueExecuteCB,
         [](napi_env env, napi_status status, void* data) {
-            SETTINGS_LOG_INFO("settingsnapi : promise set async end called callback");
+            SETTING_LOG_INFO("settingsnapi : promise set async end called callback");
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-            SETTINGS_LOG_INFO("settingsnapi : promise set end get callback value is %{public}d", asyncCallbackInfo->status);
+            SETTING_LOG_INFO("settingsnapi : promise set end get callback value is %{public}d", asyncCallbackInfo->status);
             napi_value result = wrap_bool_to_js(env, asyncCallbackInfo->status != 0);
             napi_resolve_deferred(asyncCallbackInfo->env, asyncCallbackInfo->deferred, result);
             napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
@@ -1046,7 +1046,7 @@ napi_value SetValuePromise(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
  */
 napi_value napi_set_value(napi_env env, napi_callback_info info)
 {
-    SETTINGS_LOG_INFO("settingsnapi : set  napi_set_value called...");
+    SETTING_LOG_INFO("settingsnapi : set  napi_set_value called...");
 
     // getValue api need 3 parameters when Promise mode and need 4 parameters when callback mode
     const size_t paramOfPromise = ARGS_THREE;
@@ -1056,13 +1056,13 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
     napi_value args[ARGS_FOUR] = {nullptr};
     NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
     if (argc != paramOfPromise && argc != paramOfCallback) {
-        SETTINGS_LOG_ERROR("settingsnapi : set  %{public}s, wrong number of arguments, expect 3 or 4 but get %{public}zd",
+        SETTING_LOG_ERROR("settingsnapi : set  %{public}s, wrong number of arguments, expect 3 or 4 but get %{public}zd",
             __func__, argc);
         return wrap_void_to_js(env);
     }
 
-    SETTINGS_LOG_INFO("settingsnapi : set  arg count is %{public}zd", argc);
-    SETTINGS_LOG_INFO("settingsnapi : set  start create aysnc call back info");
+    SETTING_LOG_INFO("settingsnapi : set  arg count is %{public}zd", argc);
+    SETTING_LOG_INFO("settingsnapi : set  start create aysnc call back info");
     // Check the value type of the arguments
     AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
         .env = env,
@@ -1075,7 +1075,7 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
         .uri = "",
         .status = false,
     };
-    SETTINGS_LOG_INFO("settingsnapi : set  after create aysnc call back info");
+    SETTING_LOG_INFO("settingsnapi : set  after create aysnc call back info");
     napi_valuetype valueType;
     NAPI_CALL(env, napi_typeof(env, args[PARAM0], &valueType));
 
@@ -1083,7 +1083,7 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
     bool stageMode = false;
     napi_status status = OHOS::AbilityRuntime::IsStageContext(env, args[PARAM0], stageMode);
     if (status == napi_ok) {
-        SETTINGS_LOG_INFO("argv[0] is a context, Stage Model: %{public}d", stageMode);
+        SETTING_LOG_INFO("argv[0] is a context, Stage Model: %{public}d", stageMode);
         return napi_set_value_ext(env, info, stageMode);
     }
     
@@ -1094,11 +1094,11 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
     NAPI_ASSERT(env, valueType == napi_string, "Wrong argument[2], type. String expected");
 
     NAPI_CALL(env, napi_unwrap(env, args[PARAM0], reinterpret_cast<void **>(&asyncCallbackInfo->dataAbilityHelper)));
-    SETTINGS_LOG_INFO("settingsnapi : input paramter is (DataAbilityHelper)");
+    SETTING_LOG_INFO("settingsnapi : input paramter is (DataAbilityHelper)");
 
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
     asyncCallbackInfo->value = unwrap_string_from_js(env, args[PARAM2]);
-    SETTINGS_LOG_INFO("settingsnapi : set  input parameter is : (key %{public}s, value %{public}s)",
+    SETTING_LOG_INFO("settingsnapi : set  input parameter is : (key %{public}s, value %{public}s)",
         asyncCallbackInfo->key.c_str(), asyncCallbackInfo->value.c_str());
 
     napi_value ret = nullptr;
@@ -1108,7 +1108,7 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
     } else {
         ret = SetValuePromise(env, asyncCallbackInfo);
     }
-    SETTINGS_LOG_INFO("settingsnapi : set  value end");
+    SETTING_LOG_INFO("settingsnapi : set  value end");
     return ret;
 }
 
@@ -1159,7 +1159,7 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
             &asyncCallbackInfo->asyncWork
         );
         NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
-        SETTINGS_LOG_INFO("settingsnapi : callback end async work");
+        SETTING_LOG_INFO("settingsnapi : callback end async work");
         return wrap_void_to_js(env);
     } else {
         napi_value promise;
@@ -1204,13 +1204,13 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
     napi_value args[ARGS_TWO] = {nullptr};
     NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
     if (argc != paramOfCallback && argc != paramOfPromise) {
-        SETTINGS_LOG_ERROR("settingsnapi : %{public}s, wrong number of arguments, expect 1 or 2 but get %{public}zd",
+        SETTING_LOG_ERROR("settingsnapi : %{public}s, wrong number of arguments, expect 1 or 2 but get %{public}zd",
             __func__, argc);
         return wrap_void_to_js(env);
     }
 
-    SETTINGS_LOG_INFO("settingsnapi : napi_enable_airplane_mode arg count is %{public}zd", argc);
-    SETTINGS_LOG_INFO("settingsnapi : napi_enable_airplane_mode start create aysnc call back info");
+    SETTING_LOG_INFO("settingsnapi : napi_enable_airplane_mode arg count is %{public}zd", argc);
+    SETTING_LOG_INFO("settingsnapi : napi_enable_airplane_mode start create aysnc call back info");
     AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
         .env = env,
         .asyncWork = nullptr,
@@ -1222,7 +1222,7 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
         .uri = "",
         .status = 0,
     };
-    SETTINGS_LOG_INFO("settingsnapi : after create aysnc call back info");
+    SETTING_LOG_INFO("settingsnapi : after create aysnc call back info");
 
     napi_valuetype valueType;
     NAPI_CALL(env, napi_typeof(env, args[PARAM0], &valueType));
@@ -1232,7 +1232,7 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
     NAPI_CALL(env, napi_create_string_utf8(env, "enableAirplaneMode", NAPI_AUTO_LENGTH, &resource));
 
     if (argc == paramOfCallback) {
-        SETTINGS_LOG_INFO("%{public}s, asyncCallback.", __func__);
+        SETTING_LOG_INFO("%{public}s, asyncCallback.", __func__);
 
         napi_create_reference(env, args[PARAM1], 1, &asyncCallbackInfo->callbackRef);
         napi_create_async_work(
@@ -1242,7 +1242,7 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
             [](napi_env env, void* data) {},
             [](napi_env env, napi_status status, void* data) {
                 if (data == nullptr) {
-                    SETTINGS_LOG_INFO("settingsnapi : callback async end data is null");
+                    SETTING_LOG_INFO("settingsnapi : callback async end data is null");
                     return;
                 }
                 AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
@@ -1266,12 +1266,12 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
                 napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
                 napi_value callResult;
                 napi_call_function(env, undefined, callback, PARAM2, result, &callResult);
-                SETTINGS_LOG_INFO("settingsnapi : callback aysnc end called");
+                SETTING_LOG_INFO("settingsnapi : callback aysnc end called");
 
                 napi_delete_reference(env, asyncCallbackInfo->callbackRef);
                 napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
                 delete asyncCallbackInfo;
-                SETTINGS_LOG_INFO("settingsnapi : callback change callback complete");
+                SETTING_LOG_INFO("settingsnapi : callback change callback complete");
             },
             (void*)asyncCallbackInfo,
             &asyncCallbackInfo->asyncWork
@@ -1279,7 +1279,7 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
         NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
         return wrap_void_to_js(env);
     } else {
-        SETTINGS_LOG_INFO("%{public}s, promise.", __func__);
+        SETTING_LOG_INFO("%{public}s, promise.", __func__);
         napi_deferred deferred;
         napi_value promise;
         NAPI_CALL(env, napi_create_promise(env, &deferred, &promise));
@@ -1291,7 +1291,7 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
             resource,
             [](napi_env env, void *data) {},
             [](napi_env env, napi_status status, void *data) {
-                SETTINGS_LOG_INFO("%{public}s, promise complete", __func__);
+                SETTING_LOG_INFO("%{public}s, promise complete", __func__);
                 AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
 
                 napi_value result;
@@ -1329,13 +1329,13 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
     napi_value args[PARAM1] = {nullptr};
     NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
     if (argc != paramOfCallback && argc != paramOfPromise) {
-        SETTINGS_LOG_ERROR("settingsnapi : %{public}s, wrong number of arguments, expect 0 or 1 but get %{public}zd",
+        SETTING_LOG_ERROR("settingsnapi : %{public}s, wrong number of arguments, expect 0 or 1 but get %{public}zd",
             __func__, argc);
         return wrap_void_to_js(env);
     }
 
-    SETTINGS_LOG_INFO("settingsnapi : napi_enable_airplane_mode arg count is %{public}zd", argc);
-    SETTINGS_LOG_INFO("settingsnapi : napi_enable_airplane_mode start create aysnc call back info");
+    SETTING_LOG_INFO("settingsnapi : napi_enable_airplane_mode arg count is %{public}zd", argc);
+    SETTING_LOG_INFO("settingsnapi : napi_enable_airplane_mode start create aysnc call back info");
     AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
         .env = env,
         .asyncWork = nullptr,
@@ -1347,13 +1347,13 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
         .uri = "",
         .status = 0,
     };
-    SETTINGS_LOG_INFO("settingsnapi : after create aysnc call back info");
+    SETTING_LOG_INFO("settingsnapi : after create aysnc call back info");
 
     napi_value resource = nullptr;  
     NAPI_CALL(env, napi_create_string_utf8(env, "enableAirplaneMode", NAPI_AUTO_LENGTH, &resource));
 
     if (argc == paramOfCallback) {
-        SETTINGS_LOG_INFO("%{public}s, asyncCallback.", __func__);
+        SETTING_LOG_INFO("%{public}s, asyncCallback.", __func__);
 
         napi_create_reference(env, args[PARAM0], 1, &asyncCallbackInfo->callbackRef);
         napi_create_async_work(
@@ -1363,7 +1363,7 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
             [](napi_env env, void* data) {},
             [](napi_env env, napi_status status, void* data) {
                 if (data == nullptr) {
-                    SETTINGS_LOG_INFO("settingsnapi : callback async end data is null");
+                    SETTING_LOG_INFO("settingsnapi : callback async end data is null");
                     return;
                 }
                 AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
@@ -1387,12 +1387,12 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
                 napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
                 napi_value callResult;
                 napi_call_function(env, undefined, callback, PARAM2, result, &callResult);
-                SETTINGS_LOG_INFO("settingsnapi : callback aysnc end called");
+                SETTING_LOG_INFO("settingsnapi : callback aysnc end called");
 
                 napi_delete_reference(env, asyncCallbackInfo->callbackRef);
                 napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
                 delete asyncCallbackInfo;
-                SETTINGS_LOG_INFO("settingsnapi : callback change callback complete");
+                SETTING_LOG_INFO("settingsnapi : callback change callback complete");
             },
             (void*)asyncCallbackInfo,
             &asyncCallbackInfo->asyncWork
@@ -1400,7 +1400,7 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
         NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
         return wrap_void_to_js(env);
     } else {
-        SETTINGS_LOG_INFO("%{public}s, promise.", __func__);
+        SETTING_LOG_INFO("%{public}s, promise.", __func__);
         napi_deferred deferred;
         napi_value promise;
         NAPI_CALL(env, napi_create_promise(env, &deferred, &promise));
@@ -1412,7 +1412,7 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
             resource,
             [](napi_env env, void *data) {},
             [](napi_env env, napi_status status, void *data) {
-                SETTINGS_LOG_INFO("%{public}s, promise complete", __func__);
+                SETTING_LOG_INFO("%{public}s, promise complete", __func__);
                 AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
 
                 napi_value result;
