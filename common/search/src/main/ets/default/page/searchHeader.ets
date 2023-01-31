@@ -18,7 +18,7 @@ import LogUtil from '../../../../../../utils/src/main/ets/default/baseUtil/LogUt
 import Log from '../../../../../../utils/src/main/ets/default/baseUtil/LogDecorator';
 import ConfigData from '../../../../../../utils/src/main/ets/default/baseUtil/ConfigData';
 import Router from '@system.router'
-import InputMethod from '@ohos.inputmethod';
+import InputMethod from '@ohos.inputMethod';
 
 let SEARCH_INPUT_MAX_LENGTH = 100;
 
