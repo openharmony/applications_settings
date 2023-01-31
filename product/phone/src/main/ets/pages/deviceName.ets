@@ -15,7 +15,7 @@
 
 import prompt from "@ohos.prompt";
 import Router from '@system.router';
-import InputMethod from '@ohos.inputmethod';
+import InputMethod from '@ohos.inputMethod';
 import AboutDeviceModel from '../model/aboutDeviceImpl/AboutDeviceModel';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
