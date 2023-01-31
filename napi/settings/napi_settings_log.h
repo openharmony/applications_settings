@@ -41,27 +41,27 @@
 #undef SETTING_LOG_ERROR
 #endif
 
-#ifdef SETTING_LOG_LABEL
-#undef SETTING_LOG_LABEL
+#ifdef SETTING_LABEL
+#undef SETTING_LABEL
 #endif
 
-static constexpr OHOS::HiviewDFX::HiLogLabel SETTING_LOG_LABEL = {LOG_CORE,0xD001900,"Settings"};
+static constexpr OHOS::HiviewDFX::HiLogLabel SETTING_LABEL = {LOG_CORE,0xD190,"Settings"};
 #define __FILENAME__ (__builtin_strrchr(__FILE__,'/') ? __builtin_strrchr (__FILE__,'/')+1:__FILE__) 
 #define SETTING_LOG_DEBUG(fmt,...)\
 (void)OHOS::HiviewDFX::HiLog::Debug(\
-SETTING_LOG_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
+SETTING_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
 #define SETTING_LOG_INFO(fmt,...)\
 (void)OHOS::HiviewDFX::HiLog::Info(\
-SETTING_LOG_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
+SETTING_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
 #define SETTING_LOG_WARN(fmt,...)\
 (void)OHOS::HiviewDFX::HiLog::Warn(\
-SETTING_LOG_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
+SETTING_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
 #define SETTING_LOG_FATAL(fmt,...)\
 (void)OHOS::HiviewDFX::HiLog::Fatal(\
-SETTING_LOG_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
+SETTING_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
 #define SETTING_LOG_ERROR(fmt,...)\
 (void)OHOS::HiviewDFX::HiLog::Error(\
-SETTING_LOG_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
+SETTING_LABEL,"[%{public}s(%{public}s:%{public}d)]" fmt,__FILENAME__,__FUNCTION__,__LINE__,##__VA_ARGS__)
 
 #else
 
