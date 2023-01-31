@@ -45,7 +45,7 @@
 #undef LOG_LABEL
 #endif
 
-static constexpr OHOS::HiviewDFX::HiLogLabel LOG_LABEL = {LOG_CORE,0xD01900,"Settings"};
+static constexpr OHOS::HiviewDFX::HiLogLabel LOG_LABEL = {LOG_CORE,0xD001900,"Settings"};
 #define __FILENAME__ (__builtin_strrchr(__FILE__,'/') ? __builtin_strrchr (__FILE__,'/')+1:__FILE__) 
 #define LOG_DEBUG(fmt,...)\
 (void)OHOS::HiviewDFX::HiLog::Debug(\
