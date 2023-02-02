@@ -17,8 +17,8 @@
 #include "napi_settings.h"
 #include "napi_settings_log.h"
 
-namespace ohos {
-namespace settings {
+namespace OHOS {
+namespace Settings {
 class Date
 {
 public:
