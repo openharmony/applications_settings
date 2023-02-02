@@ -33,8 +33,8 @@
 using namespace OHOS::AppExecFwk;
 using namespace OHOS::DataShare;
 
-namespace ohos {
-namespace settings {
+namespace OHOS {
+namespace Settings {
 const std::string SETTINGS_DATA_BASE_URI = "dataability:///com.ohos.settingsdata.DataAbility";
 const std::string SETTINGS_DATA_FIELD_KEYWORD = "KEYWORD";
 const std::string SETTINGS_DATA_FIELD_VALUE = "VALUE";
