@@ -42,6 +42,6 @@ static const OHOS::HiviewDFX::HiLogLabel SETTINGS_LABEL = { LOG_CORE, 0xD001900,
 #define SETTING_LOG_FATAL(fmt, ...) \
     (void)OHOS::HiviewDFX::HiLog::Fatal(SETTINGS_LABEL, \
     "[%{public}s(%{public}s:%{public}d)]" fmt, __FILENAME__, __FUNCTION__, __LINE__, ##__VA_ARGS__)
-} // namespace OHOS::DataShare
+} // namespace OHOS::Settings
 #endif
 
