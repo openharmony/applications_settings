@@ -21,8 +21,8 @@
 #include "napi/native_node_api.h"
 #include "napi_settings_log.h"
 
-namespace ohos {
-namespace settings {
+namespace OHOS {
+namespace Settings {
 EXTERN_C_START
 /*
  * function for module exports
