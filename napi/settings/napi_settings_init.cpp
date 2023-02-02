@@ -728,5 +728,5 @@ napi_value InitNapiClass(napi_env env, napi_value exports)
     return exports;
 }
 
-} // settings
-} // ohos
+} // Settings
+} // OHOS
