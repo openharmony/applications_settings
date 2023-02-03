@@ -19,18 +19,17 @@
 #include "napi_settings.h"
 #include "napi/native_api.h"
 #include "napi/native_node_api.h"
+#include "napi_settings_log.h"
 
-#include "hilog_wrapper.h"
-
-namespace ohos {
-namespace settings {
+namespace OHOS {
+namespace Settings {
 EXTERN_C_START
 /*
  * function for module exports
  */
 static napi_value Init(napi_env env, napi_value exports)
 {
-    HILOG_INFO("napi_moudule Init start...");
+    SETTING_LOG_INFO("napi_moudule Init start...");
 
     napi_property_descriptor desc[] = {
         DECLARE_NAPI_FUNCTION("getURI", napi_get_uri),
@@ -46,7 +45,7 @@ static napi_value Init(napi_env env, napi_value exports)
     // init settings class
     NAPI_CALL(env, napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc));
     InitNapiClass(env, exports);
-    HILOG_INFO("napi_moudule Init end...");
+    SETTING_LOG_INFO("napi_moudule Init end...");
     return exports;
 }
 EXTERN_C_END
