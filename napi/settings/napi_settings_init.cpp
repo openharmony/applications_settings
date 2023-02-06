@@ -15,10 +15,10 @@
 #include <map>
 #include <string>
 #include "napi_settings.h"
-#include "hilog_wrapper.h"
+#include "napi_settings_log.h"
 
-namespace ohos {
-namespace settings {
+namespace OHOS {
+namespace Settings {
 class Date
 {
 public:
@@ -235,7 +235,7 @@ const std::string WIRELESS_CLASS_NAME = "wireless";
 
 napi_value ClassConstructor(napi_env env, napi_callback_info info)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
     size_t argc = 0;
     napi_value argv = nullptr;
     napi_value thisArg = nullptr;
@@ -244,13 +244,13 @@ napi_value ClassConstructor(napi_env env, napi_callback_info info)
 
     napi_value global = 0;
     napi_get_global(env, &global);
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is end", __FUNCTION__);
     return thisArg;
 }
 
 void InitDateMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
     napi_value dateFormat = nullptr;
     napi_create_string_utf8(env,
         Date::DATE_FORMAT.c_str(), NAPI_AUTO_LENGTH, &dateFormat);
@@ -271,12 +271,12 @@ void InitDateMap(napi_env env, std::map<const char*, napi_value>& paramMap)
         Date::AUTO_GAIN_TIME_ZONE.c_str(), NAPI_AUTO_LENGTH, &autoGainTimeZone);
     paramMap["AUTO_GAIN_TIME_ZONE"] = autoGainTimeZone;
 
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 void InitDisplayMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
     napi_value fontScale = nullptr;
     napi_create_string_utf8(env,
         Display::FONT_SCALE.c_str(), NAPI_AUTO_LENGTH, &fontScale);
@@ -332,12 +332,12 @@ void InitDisplayMap(napi_env env, std::map<const char*, napi_value>& paramMap)
         Display::DISPLAY_INVERSION_STATUS.c_str(), NAPI_AUTO_LENGTH, &displayInversionStatus);
     paramMap["DISPLAY_INVERSION_STATUS"] = displayInversionStatus;
 
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 void InitGeneralMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
     napi_value setupWizFinished = nullptr;
     napi_create_string_utf8(env,
         General::SETUP_WIZARD_FINISHED.c_str(), NAPI_AUTO_LENGTH, &setupWizFinished);
@@ -428,12 +428,12 @@ void InitGeneralMap(napi_env env, std::map<const char*, napi_value>& paramMap)
         General::TOUCH_EXPLORATION_STATUS.c_str(), NAPI_AUTO_LENGTH, &touchExplorationStatus);
     paramMap["TOUCH_EXPLORATION_STATUS"] = touchExplorationStatus;
 
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 void InitInputMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
 
     napi_value defInputMethod = nullptr;
     napi_create_string_utf8(env,
@@ -475,12 +475,12 @@ void InitInputMap(napi_env env, std::map<const char*, napi_value>& paramMap)
             Input::SHOW_PASSWORD_TEXT_INPUT.c_str(), NAPI_AUTO_LENGTH, &showPassword);
     paramMap["SHOW_PASSWORD_TEXT_INPUT"] = showPassword;
 
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 void InitNetworkMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
 
     napi_value dataRoamingStatus = nullptr;
     napi_create_string_utf8(env,
@@ -497,24 +497,24 @@ void InitNetworkMap(napi_env env, std::map<const char*, napi_value>& paramMap)
             Network::NETWORK_PREFERENCE_USAGE.c_str(), NAPI_AUTO_LENGTH, &networkPrefUsage);
     paramMap["NETWORK_PREFERENCE_USAGE"] = networkPrefUsage;
 
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 void InitPhoneMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
 
     napi_value rttCallingStatus = nullptr;
     napi_create_string_utf8(env,
         Phone::RTT_CALLING_STATUS.c_str(), NAPI_AUTO_LENGTH, &rttCallingStatus);
     paramMap["RTT_CALLING_STATUS"] = rttCallingStatus;
 
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 void InitSoundMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
 
     napi_value vibrateWhileRinging = nullptr;
     napi_create_string_utf8(env,
@@ -571,12 +571,12 @@ void InitSoundMap(napi_env env, std::map<const char*, napi_value>& paramMap)
         Sound::VIBRATE_STATUS.c_str(), NAPI_AUTO_LENGTH, &vibrateStatus);
     paramMap["VIBRATE_STATUS"] = vibrateStatus;
 
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 void InitTTSMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
 
     napi_value defTTSPitch = nullptr;
     napi_create_string_utf8(env,
@@ -598,12 +598,12 @@ void InitTTSMap(napi_env env, std::map<const char*, napi_value>& paramMap)
         TTS::ENABLED_TTS_PLUGINS.c_str(), NAPI_AUTO_LENGTH, &enableTTSPlugins);
     paramMap["ENABLED_TTS_PLUGINS"] = enableTTSPlugins;
 
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 void InitWirelessMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
 
     napi_value bluetoothRadio = nullptr;
     napi_create_string_utf8(env,
@@ -670,12 +670,12 @@ void InitWirelessMap(napi_env env, std::map<const char*, napi_value>& paramMap)
         Wireless::OWNER_LOCKDOWN_WIFI_CFG.c_str(), NAPI_AUTO_LENGTH, &ownerLockdownWifiCfg);
     paramMap["OWNER_LOCKDOWN_WIFI_CFG"] = ownerLockdownWifiCfg;
 
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 void InitConstClassByName(napi_env env, napi_value exports, std::string name)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
     std::map<const char*, napi_value> propertyMap;
     if (name == DATE_CLASS_NAME) {
         InitDateMap(env, propertyMap);
@@ -709,12 +709,12 @@ void InitConstClassByName(napi_env env, napi_value exports, std::string name)
     napi_define_class(env, name.c_str(), NAPI_AUTO_LENGTH, ClassConstructor, nullptr,
         sizeof(descriptors) / sizeof(*descriptors), descriptors, &result);
     napi_set_named_property(env, exports, name.c_str(), result);
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 napi_value InitNapiClass(napi_env env, napi_value exports)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
     InitConstClassByName(env, exports, DATE_CLASS_NAME);
     InitConstClassByName(env, exports, DISPLAY_CLASS_NAME);
     InitConstClassByName(env, exports, GENERAL_CLASS_NAME);
@@ -724,9 +724,9 @@ napi_value InitNapiClass(napi_env env, napi_value exports)
     InitConstClassByName(env, exports, SOUND_CLASS_NAME);
     InitConstClassByName(env, exports, TTS_CLASS_NAME);
     InitConstClassByName(env, exports, WIRELESS_CLASS_NAME);
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
+    SETTING_LOG_INFO("%{public}s is end", __FUNCTION__);
     return exports;
 }
 
-} // settings
-} // ohos
+} // Settings
+} // OHOS

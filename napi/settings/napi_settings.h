@@ -33,8 +33,8 @@
 #define PARAM2 2
 #define PARAM3 3
 
-namespace ohos {
-namespace settings {
+namespace OHOS {
+namespace Settings {
 /**
  * @brief getUri NAPI implementation.
  * @param env the environment that the Node-API call is invoked under
