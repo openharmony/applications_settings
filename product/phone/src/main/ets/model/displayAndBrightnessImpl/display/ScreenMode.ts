@@ -144,7 +144,7 @@ export class ScreenModeModel extends BaseModel{
   @Log
   public registerObserver(){
     LogUtil.info(`${this.TAG} registerObserver.`);
-    ScreenManager.on('screenChangeEvent', (ScreenEvent) => {
+    ScreenManager.on('change', (ScreenEvent) => {
       this.init();
     })
     LogUtil.info(`${this.TAG} registerObserver success.`);
@@ -157,7 +157,7 @@ export class ScreenModeModel extends BaseModel{
   @Log
   public unregisterObserver() {
     LogUtil.info(`${this.TAG} unregisterObserver.`);
-    ScreenManager.off('screenChangeEvent', (ScreenEvent) => {
+    ScreenManager.off('change', (ScreenEvent) => {
       LogUtil.info(`${this.TAG} unregisterObserver success.`);
     })
     return;
