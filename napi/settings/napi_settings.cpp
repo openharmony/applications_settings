@@ -29,7 +29,6 @@
 #include "datashare_predicates.h"
 
 
-
 using namespace OHOS::AppExecFwk;
 using namespace OHOS::DataShare;
 
@@ -266,7 +265,8 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
             [](napi_env env, napi_status status, void* data) {
                 SETTING_LOG_INFO("settingsnapi : uri promise async end called callback");
                 AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-                SETTING_LOG_INFO("settingsnapi : uri promise end get callback value is %{public}s", asyncCallbackInfo->uri.c_str());
+                SETTING_LOG_INFO("settingsnapi : uri promise end get callback value is %{public}s", 
+                    asyncCallbackInfo->uri.c_str());
                 napi_value result = wrap_string_to_js(env, asyncCallbackInfo->uri);
                 napi_resolve_deferred(asyncCallbackInfo->env, asyncCallbackInfo->deferred, result);
                 napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
@@ -473,7 +473,8 @@ napi_value napi_get_value_sync(napi_env env, napi_callback_info info)
         std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
         asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode);
         GetValueExecuteExt(env, (void*)asyncCallbackInfo);
-        SETTING_LOG_INFO("settingsnapi : napi_get_value_sync called... return  %{public}s", asyncCallbackInfo->value.c_str());
+        SETTING_LOG_INFO("settingsnapi : napi_get_value_sync called... return  %{public}s",
+            asyncCallbackInfo->value.c_str());
         napi_value retVal = nullptr;
         if(asyncCallbackInfo->value.size() <= 0){
             retVal = args[PARAM2];
@@ -675,7 +676,8 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
             SETTING_LOG_INFO("settingsnapi : promise async execute callback");
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
             SETTING_LOG_INFO("settingsnapi : promise get callback key is %{public}s", asyncCallbackInfo->key.c_str());
-            SETTING_LOG_INFO("settingsnapi : promise get callback value is %{public}s", asyncCallbackInfo->value.c_str());
+            SETTING_LOG_INFO("settingsnapi : promise get callback value is %{public}s", 
+                asyncCallbackInfo->value.c_str());
 
             std::vector<std::string> columns;
             columns.push_back(SETTINGS_DATA_FIELD_VALUE);
@@ -711,7 +713,8 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
         [](napi_env env, napi_status status, void* data) {
             SETTING_LOG_INFO("settingsnapi : promise async end called callback");
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-            SETTING_LOG_INFO("settingsnapi : promise end get callback value is %{public}s", asyncCallbackInfo->value.c_str());
+            SETTING_LOG_INFO("settingsnapi : promise end get callback value is %{public}s",
+                asyncCallbackInfo->value.c_str());
             napi_value result = wrap_string_to_js(env, asyncCallbackInfo->value);
             napi_resolve_deferred(asyncCallbackInfo->env, asyncCallbackInfo->deferred, result);
             napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
@@ -1024,7 +1027,8 @@ napi_value SetValuePromise(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
         [](napi_env env, napi_status status, void* data) {
             SETTING_LOG_INFO("settingsnapi : promise set async end called callback");
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-            SETTING_LOG_INFO("settingsnapi : promise set end get callback value is %{public}d", asyncCallbackInfo->status);
+            SETTING_LOG_INFO("settingsnapi : promise set end get callback value is %{public}d",
+                asyncCallbackInfo->status);
             napi_value result = wrap_bool_to_js(env, asyncCallbackInfo->status != 0);
             napi_resolve_deferred(asyncCallbackInfo->env, asyncCallbackInfo->deferred, result);
             napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
@@ -1056,7 +1060,7 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
     napi_value args[ARGS_FOUR] = {nullptr};
     NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
     if (argc != paramOfPromise && argc != paramOfCallback) {
-        SETTING_LOG_ERROR("settingsnapi : set  %{public}s, wrong number of arguments, expect 3 or 4 but get %{public}zd",
+        SETTING_LOG_ERROR("settingsnapi : set %{public}s, wrong number of arguments, expect 3 or 4 but get %{public}zd",
             __func__, argc);
         return wrap_void_to_js(env);
     }
