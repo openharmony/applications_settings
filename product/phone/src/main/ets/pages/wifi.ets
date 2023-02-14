@@ -276,6 +276,7 @@ struct Index {
           .borderRadius($r("app.float.radius_24"))
           .scrollable(ScrollDirection.Vertical)
           .scrollBar(BarState.Off)
+          .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
         }
         .useSizeType({
           sm: { span: 4, offset: 0 },
