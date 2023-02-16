@@ -277,6 +277,7 @@ struct Index {
           .scrollable(ScrollDirection.Vertical)
           .scrollBar(BarState.Off)
           .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
+          .align(Alignment.Top);
         }
         .useSizeType({
           sm: { span: 4, offset: 0 },
