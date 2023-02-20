@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-import account_osAccount from '@ohos.account.osAccount';
+import osAccount from '@ohos.account.osAccount';
 import featureAbility from '@ohos.ability.featureAbility';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import GlobalResourceManager from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalResourceManager';
-import {TYPE_ADMIN, TYPE_NORMAL, TYPE_GUEST, MAX_ACCOUNT} from './systemAccountModel'
+import { MAX_ACCOUNT} from './systemAccountModel'
 import SystemAccountModel from './systemAccountModel'
 
 export class SystemAccountController {
-  private currentAccount: account_osAccount.OsAccountInfo;
-  private accountList: account_osAccount.OsAccountInfo[] = [];
+  private currentAccount: osAccount.OsAccountInfo;
+  private accountList: osAccount.OsAccountInfo[] = [];
   private static instance: SystemAccountController;
 
   public static getInstance(): SystemAccountController {
@@ -42,7 +42,7 @@ export class SystemAccountController {
   async refreshSystemAccountList() {
     LogUtil.info("Refresh system account list.");
     AppStorage.SetOrCreate("systemAccountList", []);
-    this.accountList = await account_osAccount.getAccountManager().queryAllCreatedOsAccounts();
+    this.accountList = await osAccount.getAccountManager().queryAllCreatedOsAccounts();
     LogUtil.info("before sort account list, length: " + this.accountList.length + ", list: " + JSON.stringify(this.accountList));
     this.currentAccount = SystemAccountModel.getCurrentAccount(this.accountList);
     LogUtil.info("Current account localId: " + this.currentAccount.localId);
@@ -60,7 +60,7 @@ export class SystemAccountController {
    * @return true if current account is administrator.
    */
   isShowIdentity(accountInfo) {
-    return accountInfo.type.ADMIN == TYPE_ADMIN;
+    return accountInfo.type == osAccount.OsAccountType.ADMIN;
   }
 
   /**
@@ -71,7 +71,7 @@ export class SystemAccountController {
   isHasQuest() {
     for (let index = 0; index < this.accountList.length; index++) {
       LogUtil.info("Is show add quest, system account type: " + this.accountList[index].type);
-      if (this.accountList[index].type.GUEST == TYPE_GUEST) {
+      if (this.accountList[index].type == osAccount.OsAccountType.GUEST) {
         return true;
       }
     }
@@ -84,7 +84,7 @@ export class SystemAccountController {
    * @return true if current user is administrator.
    */
   isShowAddUser() {
-    return this.currentAccount.type.ADMIN == TYPE_ADMIN && this.accountList.length < (this.isHasQuest() ? MAX_ACCOUNT : (MAX_ACCOUNT - 1));
+    return this.currentAccount.type == osAccount.OsAccountType.ADMIN && this.accountList.length < (this.isHasQuest() ? MAX_ACCOUNT : (MAX_ACCOUNT - 1));
   }
 
   /**
@@ -93,7 +93,7 @@ export class SystemAccountController {
    * @return true when created account list no contains quest account.
    */
   isShowAddQuest() {
-    return this.currentAccount.type.ADMIN == TYPE_ADMIN && !this.isHasQuest() && this.accountList.length < MAX_ACCOUNT;
+    return this.currentAccount.type == osAccount.OsAccountType.ADMIN && !this.isHasQuest() && this.accountList.length < MAX_ACCOUNT;
   }
 
   /**
@@ -113,7 +113,7 @@ export class SystemAccountController {
    */
   isCurrentAdministrator() {
     LogUtil.info("Is current user administrator.")
-    return this.currentAccount.type.ADMIN == TYPE_ADMIN;
+    return this.currentAccount.type == osAccount.OsAccountType.ADMIN;
   }
 
   /**
@@ -122,7 +122,7 @@ export class SystemAccountController {
    * @return true when current account type is quest.
    */
   isCurrentQuest() {
-    return this.currentAccount.type.GUEST == TYPE_GUEST;
+    return this.currentAccount.type == osAccount.OsAccountType.GUEST;
   }
 
   /**
@@ -131,7 +131,7 @@ export class SystemAccountController {
    * @param account input system account.
    */
   isGuestAccount(account: any) {
-    return account.type.GUEST == TYPE_GUEST;
+    return account.type == osAccount.OsAccountType.GUEST;
   }
 
   /**
@@ -155,7 +155,7 @@ export class SystemAccountController {
     LogUtil.info("Create quest account.");
     let localName = GlobalResourceManager.getStringByResource($r("app.string.quest"));
     localName.then(name => {
-      account_osAccount.getAccountManager().createOsAccount(name, TYPE_GUEST).then((accountInfo) => {
+      osAccount.getAccountManager().createOsAccount(name, osAccount.OsAccountType.GUEST).then((accountInfo) => {
         LogUtil.info("Create quest system account.");
         this.refreshSystemAccountList();
         callback(accountInfo);
@@ -170,7 +170,7 @@ export class SystemAccountController {
    */
   async createSystemAccount(localName: string, callback?: (account: any) => void) {
     LogUtil.info("Create system account.");
-    account_osAccount.getAccountManager().createOsAccount(localName, TYPE_NORMAL).then(accountInfo => {
+    osAccount.getAccountManager().createOsAccount(localName, osAccount.OsAccountType.NORMAL).then(accountInfo => {
       this.refreshSystemAccountList();
       callback(accountInfo);
     });
@@ -199,7 +199,7 @@ export class SystemAccountController {
    */
   async setAccountName(localId: number, name: string) {
     LogUtil.info("Set system account name.");
-    account_osAccount.getAccountManager().setOsAccountName(localId, name).then(() => {
+    osAccount.getAccountManager().setOsAccountName(localId, name).then(() => {
       this.refreshSystemAccountList();
     });
   }
@@ -211,7 +211,7 @@ export class SystemAccountController {
    */
   switchUser(localId: number) {
     LogUtil.info("Switch system account.");
-    account_osAccount.getAccountManager().activateOsAccount(localId).then(() => {
+    osAccount.getAccountManager().activateOsAccount(localId).then(() => {
       LogUtil.info("Successfully switched to account: " + localId);
       this.refreshSystemAccountList();
       setTimeout(this.startLockScreenAbility(), 500);
@@ -226,7 +226,7 @@ export class SystemAccountController {
   async removeAccount(localId?: number, callback: () => void) {
     let removeId = localId ? localId : this.currentAccount.localId;
     LogUtil.info("Remove system account, local Id: " + removeId);
-    account_osAccount.getAccountManager().removeOsAccount(removeId).then(() => {
+    osAccount.getAccountManager().removeOsAccount(removeId).then(() => {
       this.refreshSystemAccountList();
       callback();
     });
