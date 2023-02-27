@@ -250,7 +250,6 @@ napi_value ClassConstructor(napi_env env, napi_callback_info info)
 
 void InitDateMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
     napi_value dateFormat = nullptr;
     napi_create_string_utf8(env,
         Date::DATE_FORMAT.c_str(), NAPI_AUTO_LENGTH, &dateFormat);
@@ -270,13 +269,10 @@ void InitDateMap(napi_env env, std::map<const char*, napi_value>& paramMap)
     napi_create_string_utf8(env,
         Date::AUTO_GAIN_TIME_ZONE.c_str(), NAPI_AUTO_LENGTH, &autoGainTimeZone);
     paramMap["AUTO_GAIN_TIME_ZONE"] = autoGainTimeZone;
-
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 void InitDisplayMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
     napi_value fontScale = nullptr;
     napi_create_string_utf8(env,
         Display::FONT_SCALE.c_str(), NAPI_AUTO_LENGTH, &fontScale);
@@ -331,13 +327,10 @@ void InitDisplayMap(napi_env env, std::map<const char*, napi_value>& paramMap)
     napi_create_string_utf8(env,
         Display::DISPLAY_INVERSION_STATUS.c_str(), NAPI_AUTO_LENGTH, &displayInversionStatus);
     paramMap["DISPLAY_INVERSION_STATUS"] = displayInversionStatus;
-
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 void InitGeneralMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
     napi_value setupWizFinished = nullptr;
     napi_create_string_utf8(env,
         General::SETUP_WIZARD_FINISHED.c_str(), NAPI_AUTO_LENGTH, &setupWizFinished);
@@ -427,14 +420,10 @@ void InitGeneralMap(napi_env env, std::map<const char*, napi_value>& paramMap)
     napi_create_string_utf8(env,
         General::TOUCH_EXPLORATION_STATUS.c_str(), NAPI_AUTO_LENGTH, &touchExplorationStatus);
     paramMap["TOUCH_EXPLORATION_STATUS"] = touchExplorationStatus;
-
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 void InitInputMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
-
     napi_value defInputMethod = nullptr;
     napi_create_string_utf8(env,
             Input::DEFAULT_INPUT_METHOD.c_str(), NAPI_AUTO_LENGTH, &defInputMethod);
@@ -474,8 +463,6 @@ void InitInputMap(napi_env env, std::map<const char*, napi_value>& paramMap)
     napi_create_string_utf8(env,
             Input::SHOW_PASSWORD_TEXT_INPUT.c_str(), NAPI_AUTO_LENGTH, &showPassword);
     paramMap["SHOW_PASSWORD_TEXT_INPUT"] = showPassword;
-
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 void InitNetworkMap(napi_env env, std::map<const char*, napi_value>& paramMap)
@@ -514,7 +501,6 @@ void InitPhoneMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 
 void InitSoundMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
 
     napi_value vibrateWhileRinging = nullptr;
     napi_create_string_utf8(env,
@@ -571,13 +557,10 @@ void InitSoundMap(napi_env env, std::map<const char*, napi_value>& paramMap)
         Sound::VIBRATE_STATUS.c_str(), NAPI_AUTO_LENGTH, &vibrateStatus);
     paramMap["VIBRATE_STATUS"] = vibrateStatus;
 
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 void InitTTSMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
-
     napi_value defTTSPitch = nullptr;
     napi_create_string_utf8(env,
         TTS::DEFAULT_TTS_PITCH.c_str(), NAPI_AUTO_LENGTH, &defTTSPitch);
@@ -597,14 +580,10 @@ void InitTTSMap(napi_env env, std::map<const char*, napi_value>& paramMap)
     napi_create_string_utf8(env,
         TTS::ENABLED_TTS_PLUGINS.c_str(), NAPI_AUTO_LENGTH, &enableTTSPlugins);
     paramMap["ENABLED_TTS_PLUGINS"] = enableTTSPlugins;
-
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 void InitWirelessMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
-
     napi_value bluetoothRadio = nullptr;
     napi_create_string_utf8(env,
         Wireless::BLUETOOTH_RADIO.c_str(), NAPI_AUTO_LENGTH, &bluetoothRadio);
@@ -669,13 +648,10 @@ void InitWirelessMap(napi_env env, std::map<const char*, napi_value>& paramMap)
     napi_create_string_utf8(env,
         Wireless::OWNER_LOCKDOWN_WIFI_CFG.c_str(), NAPI_AUTO_LENGTH, &ownerLockdownWifiCfg);
     paramMap["OWNER_LOCKDOWN_WIFI_CFG"] = ownerLockdownWifiCfg;
-
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 void InitConstClassByName(napi_env env, napi_value exports, std::string name)
 {
-    HILOG_INFO("%{public}s is called", __FUNCTION__);
     std::map<const char*, napi_value> propertyMap;
     if (name == DATE_CLASS_NAME) {
         InitDateMap(env, propertyMap);
@@ -709,7 +685,6 @@ void InitConstClassByName(napi_env env, napi_value exports, std::string name)
     napi_define_class(env, name.c_str(), NAPI_AUTO_LENGTH, ClassConstructor, nullptr,
         sizeof(descriptors) / sizeof(*descriptors), descriptors, &result);
     napi_set_named_property(env, exports, name.c_str(), result);
-    HILOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 napi_value InitNapiClass(napi_env env, napi_value exports)
