@@ -17,7 +17,7 @@ import BaseModel from '../../../../../../../common/utils/src/main/ets/default/mo
 import {LogAll} from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import { BaseData } from '../../../../../../../common/utils/src/main/ets/default/bean/BaseData';
 import storage from '@ohos.statfs';
-import Environment from '@ohos.environment'
+import Environment from '@ohos.file.environment'
 
 /**
   * read local file

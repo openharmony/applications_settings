@@ -15,7 +15,7 @@
 
 import Router from '@system.router';
 import deviceInfo from '@ohos.deviceInfo';
-import InputMethod from '@ohos.inputmethod';
+import InputMethod from '@ohos.inputMethod';
 import { PinSubType } from '../model/passwordImpl/PasswordModel';
 import PasswordInputController from '../controller/password/PasswordInputController';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
