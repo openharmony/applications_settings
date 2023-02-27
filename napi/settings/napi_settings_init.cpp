@@ -556,7 +556,6 @@ void InitSoundMap(napi_env env, std::map<const char*, napi_value>& paramMap)
     napi_create_string_utf8(env,
         Sound::VIBRATE_STATUS.c_str(), NAPI_AUTO_LENGTH, &vibrateStatus);
     paramMap["VIBRATE_STATUS"] = vibrateStatus;
-
 }
 
 void InitTTSMap(napi_env env, std::map<const char*, napi_value>& paramMap)
