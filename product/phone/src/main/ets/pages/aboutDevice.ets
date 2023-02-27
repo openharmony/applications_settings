@@ -38,7 +38,7 @@ struct AboutDevice {
           SubEntryComponentWithEndText({
             targetPage: "pages/deviceName",
             title: $r("app.string.deviceName"),
-            endText: this.systemName
+            endText: $systemName
           })
             .width(ConfigData.WH_100_100)
             .margin({ bottom: $r("app.float.distance_12"), top: $r("app.float.distance_8") })
