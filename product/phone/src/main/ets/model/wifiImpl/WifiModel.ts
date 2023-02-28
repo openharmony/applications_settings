@@ -511,16 +511,13 @@ export class WifiModel extends BaseModel {
     }
 
     this.scanTaskId = setInterval(() => {
-      if (this.isWiFiActive() === true && this.isScanning === true) {
-        this.refreshApScanResults();
-        return;
-      }
-      if (this.isWiFiActive() === true && this.scanWiFi() === true) {
+      if (this.isWiFiActive() === true) {
         LogUtil.info(MODULE_TAG + 'scan wifi started');
+        this.scanWiFi();
         this.isScanning = true;
         this.refreshApScanResults();
       }
-    }, 3000);
+    }, 10000);
   }
 
   stopScanTask() {
