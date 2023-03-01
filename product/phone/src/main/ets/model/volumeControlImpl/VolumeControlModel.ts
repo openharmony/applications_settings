@@ -17,6 +17,7 @@ import LogUtil from '../../../../../../../common/utils/src/main/ets/default/base
 import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import Audio from '@ohos.multimedia.audio';
+const groupId = Audio.DEFAULT_VOLUME_GROUP_ID;
 
 function getAudioManager() {
   if (!globalThis['audioManager']) {
@@ -25,9 +26,17 @@ function getAudioManager() {
   return globalThis['audioManager'];
 }
 
-export function registerObserver(){
+function audioVolumeGroupManager() {
+  if (!globalThis['audioVolumeGroupManager']) {
+    globalThis['audioVolumeGroupManager'] = getAudioManager().getVolumeManager().getVolumeGroupManager(groupId);
+  }
+  return globalThis['audioVolumeGroupManager'];
+}
+
+export async function registerObserver(){
   let audioManager = getAudioManager();
-  audioManager.on('ringerModeChange', (mode)=>{
+  let getaudioVolumeGroupManager = await audioVolumeGroupManager();
+  getaudioVolumeGroupManager.on('ringerModeChange', (mode)=>{
     AppStorage.SetOrCreate('ringerModeSilent', mode === Audio.AudioRingMode.RINGER_MODE_SILENT);
     AppStorage.SetOrCreate('ringerModeNormal', mode === Audio.AudioRingMode.RINGER_MODE_NORMAL);
   })
@@ -109,12 +118,10 @@ export class VolumeModel extends BaseModel{
 
 export class RingerModel extends BaseModel{
   private modeTag;
-  private audioManager;
   private TAG = ConfigData.TAG + 'RingerModel ';
 
   constructor(mode){
     super();
-    this.audioManager = getAudioManager();
     this.modeTag = mode;
     this.initState();
   }
@@ -123,8 +130,9 @@ export class RingerModel extends BaseModel{
    * Update ringer Mode
    */
   @Log
-  public initState(){
-    this.audioManager.getRingerMode((error, action) => {
+  public async initState(){
+    let getaudioVolumeGroupManager = await audioVolumeGroupManager();
+    getaudioVolumeGroupManager.getRingerMode((error, action) => {
       LogUtil.info(`${this.TAG} updateMode.`);
       if (error) {
         return;
@@ -139,8 +147,9 @@ export class RingerModel extends BaseModel{
    * Set  ringer mode
    */
   @Log
-  public setRingerMode(): void{
-    this.audioManager.setRingerMode(this.modeTag, (err, data) => {
+  public async setRingerMode(){
+    let getaudioVolumeGroupManager = await audioVolumeGroupManager();
+    getaudioVolumeGroupManager.setRingerMode(this.modeTag, (err, data) => {
       LogUtil.info(`${this.TAG} setRingerMode.`);
       LogUtil.info(`${this.TAG} setRingerMode sucess.`);
     });
