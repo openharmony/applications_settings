@@ -17,6 +17,7 @@ import LogUtil from '../../../../../../../common/utils/src/main/ets/default/base
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import bluetooth from '@ohos.bluetooth';
+import bluetoothManager from '@ohos.bluetoothManager';
 
 export enum ProfileCode {
   CODE_BT_PROFILE_A2DP_SINK = 0,
@@ -100,13 +101,13 @@ export class BluetoothModel extends BaseModel {
     super();
     try{
       LogUtil.info('bluetooth.getProfile start')
-      let ProfileId = bluetooth.ProfileId;
+      let ProfileId = bluetoothManager.ProfileId;
       this.profiles[ProfileId.PROFILE_A2DP_SOURCE]
-        = bluetooth.getProfile(ProfileId.PROFILE_A2DP_SOURCE);
+        = bluetoothManager.getProfileInstance(ProfileId.PROFILE_A2DP_SOURCE);
       this.profiles[ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY]
-        = bluetooth.getProfile(ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+        = bluetoothManager.getProfileInstance(ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
       this.profiles[ProfileId.PROFILE_HID_HOST]
-        = bluetooth.getProfile(ProfileId.PROFILE_HID_HOST);
+        = bluetoothManager.getProfileInstance(ProfileId.PROFILE_HID_HOST);
       LogUtil.info('bluetooth.getProfile end')
       this.canUse = true;
       }
@@ -451,7 +452,13 @@ export class BluetoothModel extends BaseModel {
     for (let i = 0;i < this.profiles.length; i++) {
       if (this.profiles[i]) {
         let profile = this.profiles[i];
-        let connectRet = profile.connect(deviceId);
+        let connectRet = true;
+        try {
+          profile.connect(deviceId);
+        } catch (BusinessError) {
+          LogUtil.info(`${this.TAG} connect failed. BusinessError is  ` + JSON.stringify(BusinessError));
+          connectRet = false;
+        }
         result.push({
           profileId: i,
           connectRet: connectRet
@@ -478,8 +485,12 @@ export class BluetoothModel extends BaseModel {
         let disconnectRet = true;
         LogUtil.info(`${this.TAG} disconnectDevice , connectionState = ${profileConnectionState}`);
         if (profileConnectionState === 2) {
-        disconnectRet = profile.disconnect(deviceId);
-        LogUtil.info(`${this.TAG} disconnectDevice call disconnect over. api return =  ${disconnectRet}`);
+          try {
+            profile.disconnect(deviceId);
+          } catch (BusinessError) {
+            LogUtil.info(`${this.TAG} disconnect failed. BusinessError is  ` + JSON.stringify(BusinessError));
+            disconnectRet = false;
+          }
         }
         result.push({
           profileId: i,
