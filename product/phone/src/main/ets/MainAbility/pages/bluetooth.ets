@@ -606,7 +606,9 @@ struct AvailableDeviceComponent {
   @Log
   confirmPairing(accept: boolean) {
     LogUtil.info(this.TAG_PAGE + 'confirmPairing pairingDevice');
-    this.controller.confirmPairing(this.pairingDevice.deviceId, accept);
+    if (this.controller) {
+      this.controller.confirmPairing(this.pairingDevice.deviceId, accept);
+    }
   }
 
   /**
