@@ -517,7 +517,7 @@ export class WifiModel extends BaseModel {
         this.isScanning = true;
         this.refreshApScanResults();
       }
-    }, 10000);
+    }, 5000);
   }
 
   stopScanTask() {
