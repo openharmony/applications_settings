@@ -17,7 +17,7 @@
 import router from '@system.router';
 import deviceInfo from '@ohos.deviceInfo';
 import InputMethod from '@ohos.inputmethod';
-import account_osAccount from '@ohos.account.osAccount';
+import osAccount from '@ohos.account.osAccount';
 import { MAX_LENGTH } from '../model/usersAndAccounts/systemAccountModel';
 import SystemAccountModel from '../model/usersAndAccounts/systemAccountModel';
 import SystemAccountController from '../model/usersAndAccounts/SystemAccountController';
@@ -35,7 +35,7 @@ const deviceTypeInfo = deviceInfo.deviceType;
 struct MultipleUsers {
   @StorageLink("isShowAddUser") isShowAddUser: boolean = false;
   @StorageLink("isShowAddGuest") isShowAddGuest: boolean = false;
-  @StorageLink("systemAccountList") userList: account_osAccount.OsAccountInfo[] = [];
+  @StorageLink("systemAccountList") userList: osAccount.OsAccountInfo[] = [];
   @StorageLink("isShowDelete") isShowDelete: boolean = false;
 
   private addUserDialogController: CustomDialogController = new CustomDialogController({
@@ -243,7 +243,7 @@ struct MultipleUsers {
 
 @Component
 struct UserItem {
-  private user: account_osAccount.OsAccountInfo;
+  private user: osAccount.OsAccountInfo;
   @State isTouched: boolean = false;
 
   private dialogController: CustomDialogController = new CustomDialogController({
@@ -338,7 +338,7 @@ struct UserItem {
 // Current user item dialog, allow user to set user name and profile image.
 @CustomDialog
 struct UserItemDialog {
-  private user: account_osAccount.OsAccountInfo;
+  private user: osAccount.OsAccountInfo;
   private dialogController: CustomDialogController;
 
   build() {
@@ -440,7 +440,7 @@ struct CurrentDialogBuilder {
 @Component
 struct UserDialogBuilder {
   private controller: CustomDialogController;
-  private user: account_osAccount.OsAccountInfo;
+  private user: osAccount.OsAccountInfo;
   private waitController: CustomDialogController = new CustomDialogController({
     builder: WaitDialog({
       controller: this.waitController,
