@@ -219,8 +219,9 @@ struct dateAndTime {
   aboutToDisappear(): void {
     CommonEvent.unsubscribe(this.subscriber, (error, commonEventData) => {
       LogUtil.info(`${MODULE_TAG}, CommonEvent unSubscribe callback in, error: ${error}, commonEventData: ${commonEventData}`);
+      DateAndTimeModel.unregisterObserver();
     });
-    DateAndTimeModel.unregisterObserver();
+   
   }
 
   private setTimeFormatAs24H() {
