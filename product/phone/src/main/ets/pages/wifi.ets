@@ -368,7 +368,7 @@ struct Index {
       }
       this.switchDebounceFlag = undefined;
       this.timeLimits();
-    }, 2000);
+    }, 500);
   }
 
   aboutToAppear(): void {
