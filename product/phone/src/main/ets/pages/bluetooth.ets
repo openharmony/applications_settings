@@ -574,7 +574,9 @@ struct AvailableDeviceComponent {
       // show pair pin dialog
       this.pairPinCode = pinCode;
       this.pairingDevice = device;
-      this.pairDialog.open();
+      if (this.pairDialog) {
+        this.pairDialog.open();
+      }
     }, () => {
       LogUtil.info(this.TAG_PAGE + 'pairDevice error callback');
       this.showPairFailedDialog();
