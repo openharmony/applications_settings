@@ -13,12 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import account_osAccount from '@ohos.account.osAccount';
+import osAccount from '@ohos.account.osAccount';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 
-export const TYPE_ADMIN: number = 0;
-export const TYPE_NORMAL: number = 1;
-export const TYPE_GUEST: number = 2;
 export const MAX_LENGTH: number = 30;
 export const MAX_ACCOUNT: number = 5;
 
@@ -30,7 +27,7 @@ export class SystemAccoutModel {
    */
   updateAccountName(callback: (name: string) => void) {
     LogUtil.info("Update account name.");
-    account_osAccount.getAccountManager().queryAllCreatedOsAccounts().then(list => {
+    osAccount.getAccountManager().queryAllCreatedOsAccounts().then(list => {
       let info = this.getCurrentAccount(list);
       LogUtil.info("Current os name: " + info.localName);
       callback(info.localName);
@@ -65,12 +62,12 @@ export class SystemAccoutModel {
     if (info1.localId == this.currentAccount.localId || info2.localId == this.currentAccount.localId) {
       LogUtil.info("Sort current account, info: " + info1.localName);
       return info1.localId == this.currentAccount.localId ? -1 : 1;
-    } else if (info1.type.ADMIN == TYPE_ADMIN || info2.type.ADMIN == TYPE_ADMIN) {
+    } else if (info1.type == osAccount.OsAccountType.ADMIN || info2.type == osAccount.OsAccountType.ADMIN) {
       LogUtil.info("Sort administrator account, info: " + info1.localName);
-      return info1.type.ADMIN == TYPE_ADMIN ? -1 : 1;
-    } else if ( info1.type.GUEST == TYPE_GUEST || info2.type.GUEST == TYPE_GUEST) {
+      return info1.type == osAccount.OsAccountType.ADMIN ? -1 : 1;
+    } else if ( info1.type == osAccount.OsAccountType.GUEST || info2.type == osAccount.OsAccountType.GUEST) {
       LogUtil.info("Sort quest account, info: " + info1.localName);
-      return info1.type.GUEST == TYPE_GUEST ? 1 : -1;
+      return info1.type == osAccount.OsAccountType.GUEST ? 1 : -1;
     } else {
       return info2.localId - info1.localId;
     }
@@ -84,11 +81,11 @@ export class SystemAccoutModel {
    */
   getIdentityFromMap(accountType: any): string | Resource {
     LogUtil.info("Get identity from map, type: " + JSON.stringify(accountType));
-    if (accountType.ADMIN == TYPE_ADMIN) {
+    if (accountType == osAccount.OsAccountType.ADMIN) {
       return $r("app.string.administrator");
-    } else if (accountType.NORMAL == TYPE_NORMAL) {
+    } else if (accountType == osAccount.OsAccountType.NORMAL) {
       return "";
-    } else if (accountType.GUEST == TYPE_GUEST) {
+    } else if (accountType == osAccount.OsAccountType.GUEST) {
       return $r("app.string.quest");
     } else {
       LogUtil.info("Unknown system account type.")
