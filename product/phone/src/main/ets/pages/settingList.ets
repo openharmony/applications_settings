@@ -84,6 +84,7 @@ struct SettingList {
           }
         }
         .useSizeType({
+          xs: { span: 2, offset: 0 },
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
           lg: { span: 8, offset: 2 }
