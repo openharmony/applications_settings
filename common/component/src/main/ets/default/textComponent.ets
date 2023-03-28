@@ -20,8 +20,7 @@ import ComponentConfig from './ComponentConfig';
  */
 @Component
 export struct SubHeader {
-  @State titleContent: any = '';
-
+  @State titleContent:Resource =  $r("app.string.endTextEmpty");
   build() {
     Row() {
       Text(this.titleContent)

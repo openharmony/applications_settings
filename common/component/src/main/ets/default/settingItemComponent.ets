@@ -21,7 +21,7 @@ import prompt from "@ohos.prompt"
 export struct SettingItemComponent {
   private targetPage: string;
   private settingTitle: string | Resource;
-  @Link settingEndText: any;
+  @Link settingEndText: string;
   private settingIcon: string | Resource;
   @State isTouched: boolean = false;
 
