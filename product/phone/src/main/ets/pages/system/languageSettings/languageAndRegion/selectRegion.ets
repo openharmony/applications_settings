@@ -85,6 +85,7 @@ struct SelectRegion {
           }
           .flexShrink(1)
           .width(ConfigData.WH_100_100)
+          .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
         }
         .useSizeType({
           sm: { span: 4, offset: 0 },
