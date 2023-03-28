@@ -25,12 +25,12 @@ export default struct DeviceNameEntryComponent {
   @State settingIcon: string = "";
   @State endTextIsShow: Boolean= true;
   private settingTitle: string | Resource;
-  @State settingSummary: any = '';
+  @State settingSummary: Resource  = $r("app.string.endTextEmpty");
   @Link settingValue: string;
-  @State settingArrow: any = '';
+  @State settingArrow: Resource  = $r("app.string.endTextEmpty");
   @State settingArrowStyle: string = "";
   private settingUri: string;
-  @State titleFontColor: any = $r('sys.color.ohos_id_color_text_primary');
+  @State titleFontColor: Resource = $r('sys.color.ohos_id_color_text_primary');
   private isEnabled: boolean = true
   private onArrowClick?: () => void;
   @State isTouched: boolean = false;
@@ -74,7 +74,7 @@ export default struct DeviceNameEntryComponent {
               .textAlign(TextAlign.Start)
               .maxLines(ComponentConfig.MAX_LINES_1)
               .textOverflow({ overflow: TextOverflow.Ellipsis })
-              .visibility('' === this.settingSummary || undefined === this.settingSummary ? Visibility.None : Visibility.Visible)
+              .visibility($r("app.string.endTextEmpty") === this.settingSummary || undefined === this.settingSummary ? Visibility.None : Visibility.Visible)
               .margin({ top: $r('sys.float.ohos_id_text_margin_vertical') });
           }
         }
@@ -97,7 +97,7 @@ export default struct DeviceNameEntryComponent {
 
         if (!this.settingArrowStyle && this.settingArrow) {
           Image(this.settingArrow)
-            .visibility('' === this.settingArrow ? Visibility.None : Visibility.Visible)
+            .visibility($r("app.string.endTextEmpty") === this.settingArrow ? Visibility.None : Visibility.Visible)
             .width($r("app.float.wh_value_12"))
             .height($r("app.float.wh_value_24"))
             .margin({ right: $r('app.float.wh_value_8') })
@@ -105,7 +105,7 @@ export default struct DeviceNameEntryComponent {
             .opacity($r("app.float.opacity_0_2"))
         } else if (this.settingArrow) {
           Image(this.settingArrow)
-            .visibility('' === this.settingArrow ? Visibility.None : Visibility.Visible)
+            .visibility($r("app.string.endTextEmpty") === this.settingArrow ? Visibility.None : Visibility.Visible)
             .fillColor($r("sys.color.ohos_id_color_primary"))
             .width($r('app.float.wh_value_24'))
             .height($r('app.float.wh_value_24'))

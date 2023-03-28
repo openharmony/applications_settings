@@ -23,17 +23,17 @@ export default struct DoubleLineComponent {
   @State settingTitle: string = "";
   @State settingSummary: string = "";
   @State settingValue: string = "";
-  @State settingArrow: any = '';
+  @State settingArrow: Resource  = $r("app.string.endTextEmpty");
   @State settingArrowStyle: string = "";
   @State settingUri: string = "";
-  @State titleFontColor: any = $r('sys.color.ohos_id_color_text_primary');
+  @State titleFontColor: Resource = $r('sys.color.ohos_id_color_text_primary');
   private isEnabled: boolean = true;
   private onArrowClick?: () => void;
   @State isTouched: boolean = false;
-  @State heights: any = $r('app.float.wh_value_72');
-  @State image_wh: any = $r('app.float.wh_value_40');
-  @State fontSize: any = $r('sys.float.ohos_id_text_size_body1');
-  @State valueFontSize: any = $r('sys.float.ohos_id_text_size_body2');
+  @State heights: Resource = $r('app.float.wh_value_72');
+  @State image_wh: Resource = $r('app.float.wh_value_40');
+  @State fontSize: Resource = $r('sys.float.ohos_id_text_size_body1');
+  @State valueFontSize: Resource = $r('sys.float.ohos_id_text_size_body2');
 
   build() {
     Row() {
@@ -98,7 +98,7 @@ export default struct DoubleLineComponent {
         .width($r('app.float.wh_value_48'))
         .height($r('app.float.wh_value_48'))
         .margin({ left: $r('app.float.wh_value_4') })
-        .visibility('' === this.settingArrow ? Visibility.None : Visibility.Visible)
+        .visibility($r("app.string.endTextEmpty") === this.settingArrow ? Visibility.None : Visibility.Visible)
         .onClick(this.onArrowClick);
       }
       .align(Alignment.End);

@@ -22,7 +22,7 @@ export class PasswordSettingItem {
   settingTitle?: string | Resource;
   settingAlias?: string;
   settingValue?: string;
-  settingArrow?: string | Resource;
+  settingArrow?: Resource;
   settingRequestCode?: number;
   settingUri?: string
 }

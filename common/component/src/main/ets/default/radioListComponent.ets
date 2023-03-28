@@ -23,7 +23,7 @@ import { RadioListItem } from '../../../../../utils/src/main/ets/default/bean/Ra
 @Component
 export default struct RadioListComponent {
   @State dataList: RadioListItem[] = [];
-  @State checkedValue: any = '';
+  @State checkedValue: string = '';
   private showRadio: boolean = true;
   private onChange?: (item: RadioListItem) => void;
 
