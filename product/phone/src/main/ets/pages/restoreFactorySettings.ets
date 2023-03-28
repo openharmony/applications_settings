@@ -26,7 +26,7 @@ import RestoreFactorySettingsController from '../controller/restoreFactorySettin
 struct restoreFactorySettings {
   private controller: RestoreFactorySettingsController = new RestoreFactorySettingsController();
   @State isTouched: boolean = false;
-  @State textContent: any = $r("app.string.resetPhonePromptDetails")
+  @State textContent: Resource = $r("app.string.resetPhonePromptDetails")
 
   build() {
     Column() {

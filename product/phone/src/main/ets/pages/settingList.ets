@@ -144,7 +144,7 @@ struct EntryComponent {
   @StorageLink('bluetoothIsOn') @Watch("bluetoothIsOnChange") bluetoothIsOn: boolean = false;
   @StorageLink("wifiStatusInfo") wifiStatusInfo: Resource = WifiModel.isWiFiActive() ? $r("app.string.enabled") : $r("app.string.disabled");
   @StorageLink("bluetoothStatusInfo") bluetoothStatusInfo: Resource = $r("app.string.disabled");
-  @StorageLink("endTextEmpty") endTextEmpty: any = $r("app.string.endTextEmpty");
+  @StorageLink("endTextEmpty") endTextEmpty: Resource = $r("app.string.endTextEmpty");
   private nfcInfo: boolean;
   private listSpaces: string = '12vp';
   private isPhone: boolean = false;

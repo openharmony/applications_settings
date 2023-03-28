@@ -163,7 +163,7 @@ struct DeviceNameComponent {
       DeviceNameEntryComponent({
         settingIcon: '',
         settingTitle: $r('app.string.bluetooth_device_name'),
-        settingSummary: '',
+        settingSummary: $r("app.string.endTextEmpty"),
         settingValue: $localName,
         settingArrow: $r("app.media.ic_settings_arrow"),
         settingArrowStyle: '',
@@ -243,7 +243,7 @@ struct PairedDeviceComponent {
                     settingUri: '',
                     titleFontColor: this.isHeadPhoneConnected(item) ? $r("app.color.bluetooth_text_color_highlight") : $r("sys.color.ohos_id_color_text_primary"),
                     image_wh: $r('app.float.wh_value_24'),
-                    heights: this.getConnectionStateText(item) == '' ? $r('app.float.wh_value_48') : ($r('app.float.wh_value_56')),
+                    heights: this.getConnectionStateText(item) == $r("app.string.endTextEmpty") ? $r('app.float.wh_value_48') : ($r('app.float.wh_value_56')),
                     fontSize: ($r('app.float.font_16')),
                     onArrowClick: () => {
                       LogUtil.info(this.TAG_PAGE + 'item go detail');
@@ -308,11 +308,11 @@ struct PairedDeviceComponent {
    * Get connection state text
    * @param device
    */
-  getConnectionStateText(device: BluetoothDevice): string | Resource {
-    let stateText: string | Resource = '';
+  getConnectionStateText(device: BluetoothDevice): Resource {
+    let stateText: Resource =  $r("app.string.endTextEmpty");
     switch (device.connectionState) {
       case ProfileConnectionState.STATE_DISCONNECTED:
-        stateText = '';
+        stateText = $r("app.string.endTextEmpty");
         break;
 
       case ProfileConnectionState.STATE_CONNECTING:
@@ -323,7 +323,7 @@ struct PairedDeviceComponent {
         if (device.deviceType === DeviceType.HEADPHONE) {
           stateText = $r('app.string.bluetooth_state_connected');
         } else {
-          stateText = '';
+          stateText = $r("app.string.endTextEmpty");
         }
         break;
 
@@ -513,11 +513,11 @@ struct AvailableDeviceComponent {
                   settingTitle: item.deviceName ? item.deviceName : item.deviceId,
                   settingSummary: this.getPairStateText(item),
                   settingValue: '',
-                  settingArrow: '',
+                  settingArrow: $r("app.string.endTextEmpty"),
                   settingArrowStyle: '',
                   settingUri: '',
                   image_wh: $r('app.float.wh_value_24'),
-                  heights: this.getPairStateText(item) == '' ? $r('app.float.wh_value_56') : ($r('app.float.wh_value_64')),
+                  heights: this.getPairStateText(item) == $r("app.string.endTextEmpty") ? $r('app.float.wh_value_56') : ($r('app.float.wh_value_64')),
                   fontSize: ($r('app.float.font_16')),
                 });
               }
@@ -560,8 +560,8 @@ struct AvailableDeviceComponent {
    * Get pair state text
    * @param device
    */
-  getPairStateText(device: BluetoothDevice): string | Resource {
-    return device.connectionState == BondState.BOND_STATE_BONDING ? $r('app.string.bluetooth_state_pairing') : '';
+  getPairStateText(device: BluetoothDevice): Resource {
+    return device.connectionState == BondState.BOND_STATE_BONDING ? $r('app.string.bluetooth_state_pairing') : $r("app.string.endTextEmpty");
   }
 
   /**

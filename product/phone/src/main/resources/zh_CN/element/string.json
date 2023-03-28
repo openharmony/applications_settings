@@ -1223,6 +1223,10 @@
     {
       "name": "endTextEmpty",
       "value": " "
+    },
+    {
+      "name": "ic_settings_arrow",
+      "value": "/res/image/ic_settings_arrow.svg"
     }
   ]
 }
