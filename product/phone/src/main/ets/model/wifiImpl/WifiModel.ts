@@ -136,7 +136,8 @@ export class ApScanResult {
     this.isSaved = status;
   }
 
-  renderToListModel(): any {
+  renderToListModel(): {settingIcon: string,settingSummary:number,settingTitle: string,settingValue: string,
+  settingArrow: string,settingArrowStyle: string,settingUri: string,apInfo: any } {
     function generateArrow(that: ApScanResult): string {
       let signalLevel: string = that.getSignalLevel().toString();
       let lockPrefix: string = 'lock_';

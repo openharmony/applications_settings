@@ -102,7 +102,9 @@ function genWiFiStatusSummary(statusEnum: number) {
 struct Index {
   scroller: Scroller = new Scroller();
   @StorageLink('slWiFiLists') scanWiFiResults: [] = [];
-  @StorageLink('slConnectedWifi') connectedWiFi: any = [];
+  @StorageLink('slConnectedWifi') connectedWiFi: {settingIcon: string,settingSummary:number,settingTitle: string,settingValue: string,
+  settingArrow: string,settingArrowStyle: string,settingUri: string,apInfo: any } = {settingIcon: '',settingSummary:0,settingTitle: '',
+  settingValue:'', settingArrow:'',settingArrowStyle:'',settingUri:'',apInfo:{} };
   @State isWiFiEnabled: boolean = false;
   @State isPhoneOrRK: boolean = false;
   @State userSelectedApInfo: WifiScanInfo = {
@@ -797,7 +799,8 @@ struct WiFiEntryComponent {
 
 @Component
 struct ConnectedWiFiEntryComponent {
-  @Link connectedWiFi: any;
+  @Link connectedWiFi: {settingIcon: string,settingSummary:number,settingTitle:  string,settingValue:  string,
+  settingArrow:  string,settingArrowStyle:  string,settingUri:  string,apInfo: any };
   @State titleFontColor: string = "";
   @State isTouched: boolean = false;
 

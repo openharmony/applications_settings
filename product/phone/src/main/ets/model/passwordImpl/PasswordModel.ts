@@ -182,7 +182,7 @@ export class PasswordModel extends BaseModel {
         "settingShouldDisplay": false,
         "settingTitle": $r('app.string.password_disable_password'),
         "settingAlias": "password_disable_password",
-        "settingArrow": "",
+        "settingArrow": $r("app.string.endTextEmpty"),
         "settingRequestCode": ConfigData.PAGE_REQUEST_CODE_PASSWORD_DISABLE,
         "settingUri": "pages/passwordCheck"
       }
