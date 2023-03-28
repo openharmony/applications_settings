@@ -78,7 +78,7 @@ export struct SubEntryComponent {
 @Component
 export struct SubEntryComponentWithEndText {
   @State isTouched: boolean = false;
-  @Link endText: any;
+  @Link endText: string;
   private targetPage: string;
   private title: string | Resource;
 
