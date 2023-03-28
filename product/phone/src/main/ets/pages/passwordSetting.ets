@@ -79,9 +79,9 @@ struct PasswordSetting {
       EntryComponent({
         settingIcon: '',
         settingTitle: $r('app.string.face_recognition'),
-        settingSummary: '',
+        settingSummary: $r("app.string.endTextEmpty"),
         settingValue: '',
-        settingArrow: '/res/image/ic_settings_arrow.svg',
+        settingArrow: $r("app.string.ic_settings_arrow"),
         settingArrowStyle: '',
         settingUri: '',
         heights: $r('app.float.password_list_item_height'),
@@ -117,7 +117,7 @@ struct PasswordSetting {
       EntryComponent({
         settingIcon: '',
         settingTitle: item.settingTitle,
-        settingSummary: '',
+        settingSummary: $r("app.string.endTextEmpty"),
         settingValue: item.settingValue,
         settingArrow: item.settingArrow,
         settingUri: item.settingUri,
@@ -144,7 +144,7 @@ struct PasswordSetting {
       EntryComponent({
         settingIcon: '',
         settingTitle: item.settingTitle,
-        settingSummary: '',
+        settingSummary: $r("app.string.endTextEmpty"),
         settingValue: item.settingValue,
         settingArrow: item.settingArrow,
         settingArrowStyle: '',

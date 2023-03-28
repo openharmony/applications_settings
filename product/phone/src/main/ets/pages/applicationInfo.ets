@@ -28,6 +28,16 @@ import AppManagementModel from '../model/appManagementImpl/AppManagementModel';
 const MODULE_TAG = ConfigData.TAG + 'application-> ';
 const deviceTypeInfo = deviceInfo.deviceType;
 
+class AppInfoData {
+    settingIcon: string = "";
+    settingTitle:string = "";
+    settingValue: string = "";
+    settingArrow: string = "";
+    settingSummary: string = "";
+    settingBundleName:string = "";
+    settingIconId: string = "";
+    settingUri:string = "";
+}
 /**
  * Application Info
  */
@@ -35,7 +45,7 @@ const deviceTypeInfo = deviceInfo.deviceType;
 @Component
 struct ApplicationInfo {
   tag: string = "ApplicationInfoSettings";
-  @StorageLink('appInformation') appInfo: any = {
+  @StorageLink('appInformation') appInfo: AppInfoData = {
     settingIcon: "",
     settingTitle: "",
     settingValue: "",
@@ -137,7 +147,7 @@ struct ApplicationInfo {
               settingTitle: $r('app.string.storageTab'),
               settingSummary: $r('app.string.store_description_information', ''),
               settingValue: '',
-              settingArrow: '/res/image/ic_settings_arrow.svg',
+              settingArrow: $r("app.string.ic_settings_arrow"),
               settingArrowStyle: '',
               settingUri: '',
               fontSize: $r('app.float.font_16'),
@@ -258,7 +268,7 @@ struct ShowDialog {
   dialogController: CustomDialogController;
   action: () => void;
   private uirBack: string = 'pages/appManagement';
-  @StorageLink('appInformation') appInfo: any = {
+  @StorageLink('appInformation') appInfo: AppInfoData = {
     settingIcon: "",
     settingTitle: "",
     settingValue: "",
