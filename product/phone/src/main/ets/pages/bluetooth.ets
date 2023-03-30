@@ -444,9 +444,8 @@ struct AvailableDeviceComponent {
   @State pairPinCode: string = '';
   private pairingDevice: BluetoothDevice = undefined;
   @StorageLink("controlPairing") controlPairing: boolean = true ;
-  @StorageLink("pinRequiredParam") @Watch("pinRequiredParamChange") pinRequiredParam:  {deviceId: string; pinCode: string} = {deviceId: '',pinCode: ''} ;
   @StorageLink("pairData") pairData: BluetoothDevice = null ;
-
+  @StorageLink("pinRequiredParam") @Watch("pinRequiredParamChange") pinRequiredParam:  {deviceId: string; pinCode: string} = {deviceId: '',pinCode: ''} ;
   pairDialog: CustomDialogController = new CustomDialogController({
     builder: PairDialog({
       deviceName: this.pairingDevice.deviceName,
