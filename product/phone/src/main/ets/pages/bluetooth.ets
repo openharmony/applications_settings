@@ -444,6 +444,9 @@ struct AvailableDeviceComponent {
   @State pairPinCode: string = '';
   private pairingDevice: BluetoothDevice = undefined;
   @StorageLink("controlPairing") controlPairing: boolean = true ;
+  @StorageLink("pinRequiredParam") @Watch("pinRequiredParamChange") pinRequiredParam:  {deviceId: string; pinCode: string} = {deviceId: '',pinCode: ''} ;
+  @StorageLink("pairData") pairData: BluetoothDevice = null ;
+
   pairDialog: CustomDialogController = new CustomDialogController({
     builder: PairDialog({
       deviceName: this.pairingDevice.deviceName,
@@ -556,6 +559,7 @@ struct AvailableDeviceComponent {
     }
   }
 
+
   /**
    * Get pair state text
    * @param device
@@ -564,6 +568,15 @@ struct AvailableDeviceComponent {
     return device.connectionState == BondState.BOND_STATE_BONDING ? $r('app.string.bluetooth_state_pairing') : $r("app.string.endTextEmpty");
   }
 
+  pinRequiredParamChange(){
+    this.pairPinCode = this.pinRequiredParam.pinCode;
+        this.pairingDevice = this.pairData;
+        if (this.pairDialog) {
+          this.pairDialog.open();
+        }() => {
+        this.showPairFailedDialog();
+      }
+  }
   /**
    * Pair device
    * @param device
