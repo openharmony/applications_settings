@@ -559,7 +559,6 @@ struct AvailableDeviceComponent {
     }
   }
 
-
   /**
    * Get pair state text
    * @param device
