@@ -36,6 +36,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
 
   // paired devices
   private pairedDevices: BluetoothDevice[] = [];
+  
   // available devices
   private isDeviceDiscovering: boolean = false;
   private availableDevices: BluetoothDevice[] = [];
