@@ -71,6 +71,16 @@ export default class BluetoothDeviceController extends BaseSettingsController {
     this.subscribeBluetoothDeviceFind();
     this.subscribeBondStateChange();
     this.subscribeDeviceConnectStateChange();
+    BluetoothModel.subscribePinRequired((pinRequiredParam: {
+      deviceId: string;
+      pinCode: string;
+    }) => {
+       LogUtil.log(this.TAG + 'bluetooth subscribePinRequired callback. pinRequiredParam = ' + pinRequiredParam.pinCode);
+       let pairData = this.getAvailableDevice(pinRequiredParam.deviceId);
+       this.pairPinCode = pinRequiredParam.pinCode;
+       AppStorage.SetOrCreate('pairData', pairData);
+       AppStorage.SetOrCreate('pinRequiredParam', pinRequiredParam);
+     })
     return this;
   }
 
