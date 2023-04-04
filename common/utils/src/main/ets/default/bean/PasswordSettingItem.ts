@@ -19,10 +19,10 @@ export class PasswordSettingItem {
 
   settingIsSectionTitle?: boolean;
   settingShouldDisplay?: boolean;
-  settingTitle?: string | Resource;
+  settingTitle?: string;
   settingAlias?: string;
   settingValue?: string;
-  settingArrow?: Resource;
+  settingArrow?: string;
   settingRequestCode?: number;
   settingUri?: string
 }

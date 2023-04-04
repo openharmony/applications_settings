@@ -145,9 +145,9 @@ struct ApplicationInfo {
             EntryComponent({
               settingIcon: '',
               settingTitle: $r('app.string.storageTab'),
-              settingSummary: $r('app.string.store_description_information', ''),
+              settingSummary: $r('app.string.store_description_information', '').toString(),
               settingValue: '',
-              settingArrow: $r("app.string.ic_settings_arrow"),
+              settingArrow: $r("app.string.ic_settings_arrow").toString(),
               settingArrowStyle: '',
               settingUri: '',
               fontSize: $r('app.float.font_16'),
