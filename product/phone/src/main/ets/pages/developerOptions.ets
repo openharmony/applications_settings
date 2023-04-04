@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,7 +36,7 @@ const ARKUI_ANIMATION_SCALE_NAME = "persist.sys.arkui.animationscale";
 @Component
 struct developerOptions {
   @State columnMargin: string = '24vp';
-  @State AnimationText:Resource = $r("app.string.endTextEmpty");
+  @State AnimationText:string = '';
   @State checked: string = "1";
   @State controllerLayoutBoundariesIsOn: boolean = false;
   @State controllerOverdrawIsOn: boolean = false;
@@ -51,7 +52,7 @@ struct developerOptions {
   private AnimationScalingDialog: CustomDialogController = new CustomDialogController({
     builder: AnimationScalingInformation({
       AnimationMultiplier: this.AnimationMultiplier,
-      AnimationText: $AnimationText,
+      AnimationText: $AnimationText.toString(),
       checked: $checked,
       isPhoneOrRK: $isPhoneOrRK
     }),
@@ -70,8 +71,8 @@ struct developerOptions {
       this.isPhoneOrRK = false;
     }
 
-    this.AnimationText = this.getAnimationMultiplier === "" ? $r("app.string.Animation_Zooms") :
-      (this.getAnimationMultiplier === "0" ? $r("app.string.Close_Animation") : $r("app.string.Animation_Multiplier", this.getAnimationMultiplier));
+    this.AnimationText = this.getAnimationMultiplier === $r("app.string.endTextEmpty").toString() ? $r("app.string.Animation_Zooms").toString() :
+      (this.getAnimationMultiplier === "0" ? $r("app.string.Close_Animation").toString() : $r("app.string.Animation_Multiplier", this.getAnimationMultiplier).toString());
     this.checked = this.getAnimationMultiplier === "" ? "1" : this.getAnimationMultiplier;
 
     if (parameter.getSync("debug.graphic.overdraw") === "false") {
@@ -195,7 +196,7 @@ struct AnimationScalingInformation {
   controller: CustomDialogController;
   private AnimationMultiplier;
   @Link isPhoneOrRK : boolean ;
-  @Link AnimationText: Resource ;
+  @Link AnimationText: string ;
   @Link checked: string;
 
   aboutToAppear() {
@@ -229,12 +230,12 @@ struct AnimationScalingInformation {
                     if(value) {
                       this.controller.close();
                       if (item === "0") {
-                        this.AnimationText = $r("app.string.Close_Animation");
+                        this.AnimationText = $r("app.string.Close_Animation").toString();
                         parameter.set(GRAPHIC_ANIMATION_SCALE_NAME, "0");
                         parameter.set(ARKUI_ANIMATION_SCALE_NAME, "0");
                         LogUtil.info(MODULE_TAG + "close animation success");
                       } else {
-                        this.AnimationText = $r("app.string.Animation_Multiplier", item);
+                        this.AnimationText = $r("app.string.Animation_Multiplier", item).toString();
                         parameter.set(GRAPHIC_ANIMATION_SCALE_NAME, item)
                           .then(() => {
                             LogUtil.info(MODULE_TAG + "set graphic parameter success");

@@ -141,48 +141,48 @@ export class PasswordModel extends BaseModel {
       {
         "settingIsSectionTitle": true,
         "settingShouldDisplay": false,
-        "settingTitle": $r('app.string.biometrics'),
+        "settingTitle": $r('app.string.biometrics').toString(),
         "settingAlias": "biometrics_section_title"
       },
       {
         "settingIsSectionTitle": false,
         "settingShouldDisplay": true,
-        "settingTitle": $r('app.string.face_recognition'),
+        "settingTitle": $r('app.string.face_recognition').toString(),
         "settingAlias": "face_recognition",
-        "settingArrow": $r("app.media.ic_settings_arrow"),
+        "settingArrow": $r("app.media.ic_settings_arrow").toString(),
       }
     ],
     [
       {
         "settingIsSectionTitle": true,
         "settingShouldDisplay": false,
-        "settingTitle": $r('app.string.password'),
+        "settingTitle": $r('app.string.password').toString(),
         "settingAlias": "password_section_title"
       },
       {
         "settingIsSectionTitle": false,
         "settingShouldDisplay": true,
-        "settingTitle": $r('app.string.password_lock_screen'),
+        "settingTitle": $r('app.string.password_lock_screen').toString(),
         "settingAlias": "password_lock_screen",
-        "settingArrow": $r("app.media.ic_settings_arrow"),
+        "settingArrow": $r("app.media.ic_settings_arrow").toString(),
         "settingRequestCode": ConfigData.PAGE_REQUEST_CODE_PASSWORD_CREATE,
         "settingUri": "pages/passwordInput"
       },
       {
         "settingIsSectionTitle": false,
         "settingShouldDisplay": false,
-        "settingTitle": $r('app.string.password_change_password'),
+        "settingTitle": $r('app.string.password_change_password').toString(),
         "settingAlias": "password_change_password",
-        "settingArrow": $r("app.media.ic_settings_arrow"),
+        "settingArrow": $r("app.media.ic_settings_arrow").toString(),
         "settingRequestCode": ConfigData.PAGE_REQUEST_CODE_PASSWORD_CHANGE,
         "settingUri": "pages/passwordCheck"
       },
       {
         "settingIsSectionTitle": false,
         "settingShouldDisplay": false,
-        "settingTitle": $r('app.string.password_disable_password'),
+        "settingTitle": $r('app.string.password_disable_password').toString(),
         "settingAlias": "password_disable_password",
-        "settingArrow": $r("app.string.endTextEmpty"),
+        "settingArrow": '',
         "settingRequestCode": ConfigData.PAGE_REQUEST_CODE_PASSWORD_DISABLE,
         "settingUri": "pages/passwordCheck"
       }
