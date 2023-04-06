@@ -19,7 +19,7 @@ export class PasswordSettingItem {
 
   settingIsSectionTitle?: boolean;
   settingShouldDisplay?: boolean;
-  settingTitle?: string;
+  settingTitle?: string|Resource;
   settingAlias?: string;
   settingValue?: string;
   settingArrow?: string;
