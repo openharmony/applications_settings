@@ -49,8 +49,8 @@ struct PasswordInput {
   private prevPageUri: string = undefined;
   private pinChallenge: string = undefined;
   private pinToken: string = undefined;
-  @State private pageTitle: string = '';
-  @State private inputMessage:string = '';
+  @State private pageTitle: Resource = $r("app.string.endTextEmpty");
+  @State private inputMessage: Resource = $r("app.string.endTextEmpty");
   @State private unlockMethodList: RadioListItem[] = [];
   @State private buttonVisibility: Visibility = Visibility.Visible;
   @State isTouchedLeft: boolean = false;
@@ -349,17 +349,17 @@ struct PasswordInput {
    * @return : page title
    */
   @Log
-  getPageTitle(): string {
-    let title: string = $r('app.string.password_enter_password').toString();
+  getPageTitle(): Resource {
+    let title: Resource = $r('app.string.password_enter_password');
     switch (this.passwordType) {
       case PinSubType.PIN_SIX:
 
       case PinSubType.PIN_NUMBER:
-        title = $r('app.string.password_title_number').toString();
+        title = $r('app.string.password_title_number');
         break;
 
       case PinSubType.PIN_MIXED:
-        title = $r('app.string.password_title_character').toString();
+        title = $r('app.string.password_title_character');
         break;
     }
     return title;
@@ -371,24 +371,24 @@ struct PasswordInput {
    * @return : message
    */
   @Log
-  getInputMessage(): string {
-    let inputMessage:string = ''
+  getInputMessage(): Resource {
+    let inputMessage: Resource = $r("app.string.endTextEmpty");
     if (this.isInputFirstTime) {
       switch (this.passwordType) {
         case PinSubType.PIN_SIX:
-          inputMessage = $r('app.string.password_message_number_6').toString();
+          inputMessage = $r('app.string.password_message_number_6');
           break;
 
         case PinSubType.PIN_NUMBER:
-          inputMessage = $r('app.string.password_message_custom').toString();
+          inputMessage = $r('app.string.password_message_custom');
           break;
 
         case PinSubType.PIN_MIXED:
-          inputMessage = $r('app.string.password_message_character').toString();
+          inputMessage = $r('app.string.password_message_character');
           break;
       }
     } else {
-      inputMessage = $r('app.string.password_message_repeat').toString();
+      inputMessage = $r('app.string.password_message_repeat');
     }
     return inputMessage;
   }

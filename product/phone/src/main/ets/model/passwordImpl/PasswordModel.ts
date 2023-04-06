@@ -141,13 +141,13 @@ export class PasswordModel extends BaseModel {
       {
         "settingIsSectionTitle": true,
         "settingShouldDisplay": false,
-        "settingTitle": $r('app.string.biometrics').toString(),
+        "settingTitle": $r('app.string.biometrics'),
         "settingAlias": "biometrics_section_title"
       },
       {
         "settingIsSectionTitle": false,
         "settingShouldDisplay": true,
-        "settingTitle": $r('app.string.face_recognition').toString(),
+        "settingTitle": $r('app.string.face_recognition'),
         "settingAlias": "face_recognition",
         "settingArrow": $r("app.media.ic_settings_arrow").toString(),
       }
@@ -156,13 +156,13 @@ export class PasswordModel extends BaseModel {
       {
         "settingIsSectionTitle": true,
         "settingShouldDisplay": false,
-        "settingTitle": $r('app.string.password').toString(),
+        "settingTitle": $r('app.string.password'),
         "settingAlias": "password_section_title"
       },
       {
         "settingIsSectionTitle": false,
         "settingShouldDisplay": true,
-        "settingTitle": $r('app.string.password_lock_screen').toString(),
+        "settingTitle": $r('app.string.password_lock_screen'),
         "settingAlias": "password_lock_screen",
         "settingArrow": $r("app.media.ic_settings_arrow").toString(),
         "settingRequestCode": ConfigData.PAGE_REQUEST_CODE_PASSWORD_CREATE,
@@ -171,7 +171,7 @@ export class PasswordModel extends BaseModel {
       {
         "settingIsSectionTitle": false,
         "settingShouldDisplay": false,
-        "settingTitle": $r('app.string.password_change_password').toString(),
+        "settingTitle": $r('app.string.password_change_password'),
         "settingAlias": "password_change_password",
         "settingArrow": $r("app.media.ic_settings_arrow").toString(),
         "settingRequestCode": ConfigData.PAGE_REQUEST_CODE_PASSWORD_CHANGE,
@@ -180,7 +180,7 @@ export class PasswordModel extends BaseModel {
       {
         "settingIsSectionTitle": false,
         "settingShouldDisplay": false,
-        "settingTitle": $r('app.string.password_disable_password').toString(),
+        "settingTitle": $r('app.string.password_disable_password'),
         "settingAlias": "password_disable_password",
         "settingArrow": '',
         "settingRequestCode": ConfigData.PAGE_REQUEST_CODE_PASSWORD_DISABLE,
