@@ -50,7 +50,7 @@ struct AddLanguage {
             }
 
             ListItem() {
-              SubHeader({ titleContent: $r('app.string.allLanguage') });
+              SubHeader({ titleContent: $r('app.string.allLanguage')});
             }
 
             ListItem() {

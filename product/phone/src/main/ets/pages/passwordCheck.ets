@@ -50,7 +50,7 @@ struct PasswordCheck {
   private freezingTimeFlag = undefined;
 
   @State private passwordType: number = -1;
-  @State private promptMessage:Resource = $r("app.string.endTextEmpty")
+  @State private promptMessage:string = ''
   @State private buttonVisibility: Visibility = Visibility.Visible;
   @State private freezingTimeForView: number = -1;
   @State private password: string = '';
@@ -276,8 +276,8 @@ struct PasswordCheck {
    * @return : message
    */
   @Log
-  getPromptMessage(): Resource {
-    return (this.remainTimes > 0 && this.remainTimes < DEFAULT_TIMES) ? $r('app.string.password_message_incorrect', this.remainTimes) : $r("app.string.endTextEmpty");
+  getPromptMessage(): string {
+    return (this.remainTimes > 0 && this.remainTimes < DEFAULT_TIMES) ? $r('app.string.password_message_incorrect', this.remainTimes).toString() : '';
   }
 
   /**
