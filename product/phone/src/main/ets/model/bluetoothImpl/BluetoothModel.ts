@@ -423,11 +423,15 @@ export class BluetoothModel extends BaseModel {
     let result = [];
     for (let i = 0;i < this.profiles.length; i++) {
       if (this.profiles[i]) {
-        let state = this.profiles[i].getDeviceState(deviceId);
-        result.push({
-          profileId: i,
-          profileConnectionState: state
-        });
+        try {
+          let state = this.profiles[i].getDeviceState(deviceId);
+          result.push({
+            profileId: i,
+            profileConnectionState: state
+          });
+        } catch (BusinessError) {
+          LogUtil.error("Bluetooth getDevicesState failed , Business Error is " + JSON.stringify(BusinessError));
+        }
       }
     }
     return result;
