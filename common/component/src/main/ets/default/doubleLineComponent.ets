@@ -23,7 +23,7 @@ export default struct DoubleLineComponent {
   @State settingTitle: string = "";
   @State settingSummary: string = "";
   @State settingValue: string = "";
-  @State settingArrow: Resource  = $r("app.string.endTextEmpty");
+  @State settingArrow: string  = '';
   @State settingArrowStyle: string = "";
   @State settingUri: string = "";
   @State titleFontColor: Resource = $r('sys.color.ohos_id_color_text_primary');
@@ -98,7 +98,7 @@ export default struct DoubleLineComponent {
         .width($r('app.float.wh_value_48'))
         .height($r('app.float.wh_value_48'))
         .margin({ left: $r('app.float.wh_value_4') })
-        .visibility($r("app.string.endTextEmpty") === this.settingArrow ? Visibility.None : Visibility.Visible)
+        .visibility('' === this.settingArrow ? Visibility.None : Visibility.Visible)
         .onClick(this.onArrowClick);
       }
       .align(Alignment.End);

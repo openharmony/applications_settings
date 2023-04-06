@@ -149,7 +149,7 @@ export class PasswordModel extends BaseModel {
         "settingShouldDisplay": true,
         "settingTitle": $r('app.string.face_recognition'),
         "settingAlias": "face_recognition",
-        "settingArrow": $r("app.media.ic_settings_arrow"),
+        "settingArrow": $r("app.media.ic_settings_arrow").toString(),
       }
     ],
     [
@@ -164,7 +164,7 @@ export class PasswordModel extends BaseModel {
         "settingShouldDisplay": true,
         "settingTitle": $r('app.string.password_lock_screen'),
         "settingAlias": "password_lock_screen",
-        "settingArrow": $r("app.media.ic_settings_arrow"),
+        "settingArrow": $r("app.media.ic_settings_arrow").toString(),
         "settingRequestCode": ConfigData.PAGE_REQUEST_CODE_PASSWORD_CREATE,
         "settingUri": "pages/passwordInput"
       },
@@ -173,7 +173,7 @@ export class PasswordModel extends BaseModel {
         "settingShouldDisplay": false,
         "settingTitle": $r('app.string.password_change_password'),
         "settingAlias": "password_change_password",
-        "settingArrow": $r("app.media.ic_settings_arrow"),
+        "settingArrow": $r("app.media.ic_settings_arrow").toString(),
         "settingRequestCode": ConfigData.PAGE_REQUEST_CODE_PASSWORD_CHANGE,
         "settingUri": "pages/passwordCheck"
       },
@@ -182,7 +182,7 @@ export class PasswordModel extends BaseModel {
         "settingShouldDisplay": false,
         "settingTitle": $r('app.string.password_disable_password'),
         "settingAlias": "password_disable_password",
-        "settingArrow": $r("app.string.endTextEmpty"),
+        "settingArrow": '',
         "settingRequestCode": ConfigData.PAGE_REQUEST_CODE_PASSWORD_DISABLE,
         "settingUri": "pages/passwordCheck"
       }

@@ -49,8 +49,8 @@ struct PasswordInput {
   private prevPageUri: string = undefined;
   private pinChallenge: string = undefined;
   private pinToken: string = undefined;
-  @State private pageTitle: Resource = $r("app.string.endTextEmpty")
-  @State private inputMessage:Resource = $r("app.string.endTextEmpty")
+  @State private pageTitle: Resource = $r("app.string.endTextEmpty");
+  @State private inputMessage: Resource = $r("app.string.endTextEmpty");
   @State private unlockMethodList: RadioListItem[] = [];
   @State private buttonVisibility: Visibility = Visibility.Visible;
   @State isTouchedLeft: boolean = false;
@@ -349,7 +349,7 @@ struct PasswordInput {
    * @return : page title
    */
   @Log
-  getPageTitle():  Resource {
+  getPageTitle(): Resource {
     let title: Resource = $r('app.string.password_enter_password');
     switch (this.passwordType) {
       case PinSubType.PIN_SIX:
@@ -372,7 +372,7 @@ struct PasswordInput {
    */
   @Log
   getInputMessage(): Resource {
-    let inputMessage:Resource = $r("app.string.endTextEmpty")
+    let inputMessage: Resource = $r("app.string.endTextEmpty");
     if (this.isInputFirstTime) {
       switch (this.passwordType) {
         case PinSubType.PIN_SIX:
