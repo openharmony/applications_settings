@@ -72,7 +72,7 @@ struct developerOptions {
     }
 
     this.AnimationText = this.getAnimationMultiplier === "" ? $r("app.string.Animation_Zooms") :
-      (this.getAnimationMultiplier === "0" ? $r("app.string.Close_Animation") : $r("app.string.Animation_Multiplier", this.getAnimationMultiplier);
+      (this.getAnimationMultiplier === "0" ? $r("app.string.Close_Animation") : $r("app.string.Animation_Multiplier", this.getAnimationMultiplier));
     this.checked = this.getAnimationMultiplier === "" ? "1" : this.getAnimationMultiplier;
 
     if (parameter.getSync("debug.graphic.overdraw") === "false") {
