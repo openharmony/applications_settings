@@ -145,7 +145,7 @@ struct ApplicationInfo {
             EntryComponent({
               settingIcon: '',
               settingTitle: $r('app.string.storageTab'),
-              settingSummary: $r('app.string.store_description_information', '').toString(),
+              settingSummary: JSON.parse(JSON.stringify($r('app.string.store_description_information', ''))),
               settingValue: '',
               settingArrow: $r("app.string.ic_settings_arrow").toString(),
               settingArrowStyle: '',
