@@ -36,7 +36,7 @@ const ARKUI_ANIMATION_SCALE_NAME = "persist.sys.arkui.animationscale";
 @Component
 struct developerOptions {
   @State columnMargin: string = '24vp';
-  @State AnimationText:string = '';
+  @State AnimationText:Resource = $r("app.string.endTextEmpty");
   @State checked: string = "1";
   @State controllerLayoutBoundariesIsOn: boolean = false;
   @State controllerOverdrawIsOn: boolean = false;
@@ -52,7 +52,7 @@ struct developerOptions {
   private AnimationScalingDialog: CustomDialogController = new CustomDialogController({
     builder: AnimationScalingInformation({
       AnimationMultiplier: this.AnimationMultiplier,
-      AnimationText: $AnimationText.toString(),
+      AnimationText: $AnimationText,
       checked: $checked,
       isPhoneOrRK: $isPhoneOrRK
     }),
@@ -71,8 +71,8 @@ struct developerOptions {
       this.isPhoneOrRK = false;
     }
 
-    this.AnimationText = this.getAnimationMultiplier === $r("app.string.endTextEmpty").toString() ? $r("app.string.Animation_Zooms").toString() :
-      (this.getAnimationMultiplier === "0" ? $r("app.string.Close_Animation").toString() : $r("app.string.Animation_Multiplier", this.getAnimationMultiplier).toString());
+    this.AnimationText = this.getAnimationMultiplier === "" ? $r("app.string.Animation_Zooms") :
+      (this.getAnimationMultiplier === "0" ? $r("app.string.Close_Animation") : $r("app.string.Animation_Multiplier", this.getAnimationMultiplier));
     this.checked = this.getAnimationMultiplier === "" ? "1" : this.getAnimationMultiplier;
 
     if (parameter.getSync("debug.graphic.overdraw") === "false") {
@@ -196,7 +196,7 @@ struct AnimationScalingInformation {
   controller: CustomDialogController;
   private AnimationMultiplier;
   @Link isPhoneOrRK : boolean ;
-  @Link AnimationText: string ;
+  @Link AnimationText: Resource ;
   @Link checked: string;
 
   aboutToAppear() {
@@ -230,12 +230,12 @@ struct AnimationScalingInformation {
                     if(value) {
                       this.controller.close();
                       if (item === "0") {
-                        this.AnimationText = $r("app.string.Close_Animation").toString();
+                        this.AnimationText = $r("app.string.Close_Animation");
                         parameter.set(GRAPHIC_ANIMATION_SCALE_NAME, "0");
                         parameter.set(ARKUI_ANIMATION_SCALE_NAME, "0");
                         LogUtil.info(MODULE_TAG + "close animation success");
                       } else {
-                        this.AnimationText = $r("app.string.Animation_Multiplier", item).toString();
+                        this.AnimationText = $r("app.string.Animation_Multiplier", item);
                         parameter.set(GRAPHIC_ANIMATION_SCALE_NAME, item)
                           .then(() => {
                             LogUtil.info(MODULE_TAG + "set graphic parameter success");
