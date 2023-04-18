@@ -277,7 +277,7 @@ struct PasswordCheck {
    */
   @Log
   getPromptMessage(): string {
-    return (this.remainTimes > 0 && this.remainTimes < DEFAULT_TIMES) ? $r('app.string.password_message_incorrect', this.remainTimes).toString() : '';
+    return (this.remainTimes > 0 && this.remainTimes < DEFAULT_TIMES) ? JSON.parse(JSON.stringify($r('app.string.password_message_incorrect', this.remainTimes))) : '';
   }
 
   /**
