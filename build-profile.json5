@@ -21,6 +21,22 @@
           ]
         }
       ]
+    },
+    {
+      "name": "component",
+      "srcPath": "./common/component",
+    },
+    {
+      "name": "search",
+      "srcPath": "./common/search",
+    },
+    {
+      "name": "settingsBase",
+      "srcPath": "./common/settingsBase",
+    },
+    {
+      "name": "utils",
+      "srcPath": "./common/utils",
     }
   ]
 }

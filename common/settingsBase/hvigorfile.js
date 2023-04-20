@@ -12,4 +12,4 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-module.exports = require('@ohos/hvigor-ohos-plugin').legacyHapTasks
+module.exports = require('@ohos/hvigor-ohos-plugin').harTasks
