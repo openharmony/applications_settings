@@ -1,6 +1,6 @@
 {
   "module": {
-    "name": "utils",
+    "name": "search",
     "type": "har",
     "deviceType": [
       "default",
