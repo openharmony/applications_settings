@@ -1,12 +1,7 @@
 {
 	"license":"ISC",
 	"devDependencies":{},
-	"name":"component",
-	"ohos":{
-		"org":"huawei",
-		"directoryLevel":"module",
-		"buildTool":"hvigor"
-	},
+	"name":"settingsBase",
 	"description":"example description",
 	"repository":{},
 	"version":"1.0.0",
