@@ -8,20 +8,6 @@
         "signingConfig": "release"
       }
     ],
-    "signingConfigs": [
-      {
-        "name": "release",
-        "material": {
-          "certpath": "D:/tool/signature/OpenHarmonyApplication.cer",
-          "storePassword": "000000167DB03A5294A07D8F45B3750BD485C88984107BA1C827DEE5B37BD6E46C5E8832165F",
-          "keyAlias": "OpenHarmony Application Release",
-          "keyPassword": "000000162421959196E0853E82DDEA11EC20DBDF5722B6D5E28E0843C1AB39C4FD6D964B0818",
-          "profile": "D:/tool/signature/settings.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "D:/tool/signature/OpenHarmony.p12"
-        }
-      }
-    ]
   },
   "modules": [
     {
