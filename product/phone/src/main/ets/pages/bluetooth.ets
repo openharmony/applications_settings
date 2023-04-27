@@ -448,7 +448,7 @@ struct AvailableDeviceComponent {
   @StorageLink("pinRequiredParam") @Watch("pinRequiredParamChange") pinRequiredParam:  {deviceId: string; pinCode: string} = {deviceId: '',pinCode: ''} ;
   pairDialog: CustomDialogController = new CustomDialogController({
     builder: PairDialog({
-      deviceName: this.pairingDevice.deviceName,
+      deviceName: this.pairingDevice?this.pairingDevice.deviceName:"",
       pinCode: this.pairPinCode,
       action: (accept: boolean) => {
         this.confirmPairing(accept);
