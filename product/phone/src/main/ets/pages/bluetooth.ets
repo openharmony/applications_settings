@@ -7,8 +7,8 @@
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or
-    {
-      "name": "bluetoothTab", agreed to in writing, software
+ {
+ "name": "bluetoothTab", agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
@@ -238,7 +238,7 @@ struct PairedDeviceComponent {
                     settingTitle: item.deviceName,
                     settingSummary: this.getConnectionStateText(item),
                     settingValue: '',
-                    settingArrow: $r("app.media.ic_public_settings").toString(),
+                    settingArrow: JSON.parse(JSON.stringify($r("app.media.ic_public_settings"))),
                     settingArrowStyle: 'bluetooth',
                     settingUri: '',
                     titleFontColor: this.isHeadPhoneConnected(item) ? $r("app.color.bluetooth_text_color_highlight") : $r("sys.color.ohos_id_color_text_primary"),
@@ -316,19 +316,19 @@ struct PairedDeviceComponent {
         break;
 
       case ProfileConnectionState.STATE_CONNECTING:
-        stateText = $r('app.string.bluetooth_state_connecting').toString();
+        stateText = JSON.parse(JSON.stringify($r('app.string.bluetooth_state_connecting')));
         break;
 
       case ProfileConnectionState.STATE_CONNECTED:
         if (device.deviceType === DeviceType.HEADPHONE) {
-          stateText = $r('app.string.bluetooth_state_connected').toString();
+          stateText = JSON.parse(JSON.stringify($r('app.string.bluetooth_state_connected')));
         } else {
           stateText = '';
         }
         break;
 
       case ProfileConnectionState.STATE_DISCONNECTING:
-        stateText = $r('app.string.bluetooth_state_disconnecting').toString();
+        stateText = JSON.parse(JSON.stringify($r('app.string.bluetooth_state_disconnecting')));
         break;
 
     }
@@ -385,9 +385,9 @@ struct PairedDeviceComponent {
    */
   private showConnectFailedDialog(deviceName: string) {
     showDialog(
-    $r("app.string.bluetooth_connect_failed"),
-    $r("app.string.bluetooth_connect_failed_msg", deviceName),
-    $r("app.string.bluetooth_know_button")
+      $r("app.string.bluetooth_connect_failed"),
+      $r("app.string.bluetooth_connect_failed_msg", deviceName),
+      $r("app.string.bluetooth_know_button")
     );
   }
 
@@ -448,7 +448,7 @@ struct AvailableDeviceComponent {
   @StorageLink("pinRequiredParam") @Watch("pinRequiredParamChange") pinRequiredParam:  {deviceId: string; pinCode: string} = {deviceId: '',pinCode: ''} ;
   pairDialog: CustomDialogController = new CustomDialogController({
     builder: PairDialog({
-      deviceName: this.pairingDevice.deviceName,
+      deviceName: this.pairingDevice?this.pairingDevice.deviceName:"",
       pinCode: this.pairPinCode,
       action: (accept: boolean) => {
         this.confirmPairing(accept);
@@ -563,17 +563,17 @@ struct AvailableDeviceComponent {
    * @param device
    */
   getPairStateText(device: BluetoothDevice): string {
-    return device.connectionState == BondState.BOND_STATE_BONDING ? $r('app.string.bluetooth_state_pairing').toString() : '';
+    return device.connectionState == BondState.BOND_STATE_BONDING ? JSON.parse(JSON.stringify($r('app.string.bluetooth_state_pairing'))) : '';
   }
 
   pinRequiredParamChange(){
     this.pairPinCode = this.pinRequiredParam.pinCode;
-        this.pairingDevice = this.pairData;
-        if (this.pairDialog) {
-          this.pairDialog.open();
-        }() => {
-        this.showPairFailedDialog();
-      }
+    this.pairingDevice = this.pairData;
+    if (this.pairDialog) {
+      this.pairDialog.open();
+    }() => {
+      this.showPairFailedDialog();
+    }
   }
   /**
    * Pair device
@@ -641,9 +641,9 @@ struct AvailableDeviceComponent {
    */
   private showConnectFailedDialog(deviceName: string) {
     showDialog(
-    $r("app.string.bluetooth_connect_failed"),
-    $r("app.string.bluetooth_connect_failed_msg", deviceName),
-    $r("app.string.bluetooth_know_button")
+      $r("app.string.bluetooth_connect_failed"),
+      $r("app.string.bluetooth_connect_failed_msg", deviceName),
+      $r("app.string.bluetooth_know_button")
     );
   }
 
@@ -653,9 +653,9 @@ struct AvailableDeviceComponent {
   @Log
   private showPairingFailedDialog() {
     showDialog(
-    $r("app.string.pairing_failed_title"),
-    $r("app.string.pairing_failed_message"),
-    $r("app.string.bluetooth_know_button")
+      $r("app.string.pairing_failed_title"),
+      $r("app.string.pairing_failed_message"),
+      $r("app.string.bluetooth_know_button")
     );
   }
 }
