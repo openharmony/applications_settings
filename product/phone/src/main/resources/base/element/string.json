@@ -1227,6 +1227,38 @@
     {
       "name": "ic_settings_arrow",
       "value": "/res/image/ic_settings_arrow.svg"
+    },
+    {
+      "name": "OpenHarmony_Compatibility_Assessment",
+      "value": "OpenHarmony兼容性测评"
+    },
+    {
+      "name": "assessmentPassed",
+      "value": "通过"
+    },
+    {
+      "name": "assessmentPassFailed",
+      "value": "未通过"
+    },
+    {
+      "name": "assessmentQueryFailed",
+      "value": "查询失败"
+    },
+    {
+      "name": "assessmentPassedText",
+      "value": "该产品已通过OpenHarmony兼容性测评"
+    },
+    {
+      "name": "assessmentPassFailedText",
+      "value": "该产品未通过OpenHarmony兼容性测评"
+    },
+    {
+      "name": "assessmentQueryFailedText",
+      "value": "暂未查到兼容性测评结果，请稍后再试"
+    },
+    {
+      "name": "assessmentIntroduction",
+      "value": "OpenHarmony兼容性测评是由OpenHarmony社区面向设备厂商提供的测评服务，以保障OpenHarmony生态设备的应用兼容性、分布式兼容性和基础用户体验，实现OpenHarmony设备和应用生态统一。\n\n\n\n通过OpenHarmony兼容性测评的设备，由OpenHarmony项目群工作委员会授予OpenHarmony生态产品兼容性证书，并授权使用Powered By OpenHarmony兼容性标识。\n\n\n\n 您可以访问openHarmony.cn官网兼容性专区获取更多信息。"
     }
   ]
 }

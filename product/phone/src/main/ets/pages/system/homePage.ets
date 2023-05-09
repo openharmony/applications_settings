@@ -101,7 +101,7 @@ struct SoftwareUpdateComponent {
       }
       .height(ConfigData.WH_100_100)
       .width(ConfigData.WH_100_100)
-      .borderRadius($r('app.float.radius_20'))
+      .borderRadius($r('app.float.radius_16'))
       .linearGradient(this.isTouched ? {
          angle: 90,
          direction: GradientDirection.Right,
@@ -121,7 +121,7 @@ struct SoftwareUpdateComponent {
     }
     .padding($r('app.float.distance_4'))
     .height($r('app.float.wh_value_56'))
-    .borderRadius($r('app.float.radius_24'))
+    .borderRadius($r('app.float.radius_16'))
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
     .onClick(() => {
       globalThis.settingsAbilityContext.startAbility({
