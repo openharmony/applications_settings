@@ -103,13 +103,13 @@ struct compatibilityAssessment {
           this.assessmentImage = '/res/image/assessmentPassed-light.svg'
           this.assessmentResultText = JSON.parse(JSON.stringify($r("app.string.assessmentPassedText")))
         }else if(authResult == -2&&softwareResult == -2){
-          this.assessmentResult =JSON.parse(JSON.stringify($r("app.string.assessmentPassFailed")))
-          this.assessmentImage = '/res/image/assessmentPassFailed-light.svg'
-          this.assessmentResultText = JSON.parse(JSON.stringify($r("app.string.assessmentPassFailedText")))
-        }else{
           this.assessmentResult =JSON.parse(JSON.stringify($r("app.string.assessmentQueryFailed")))
           this.assessmentImage = '/res/image/assessmentQueryFailed-light.svg'
           this.assessmentResultText = JSON.parse(JSON.stringify($r("app.string.assessmentQueryFailedText")))
+        }else{
+          this.assessmentResult =JSON.parse(JSON.stringify($r("app.string.assessmentPassFailed")))
+          this.assessmentImage = '/res/image/assessmentPassFailed-light.svg'
+          this.assessmentResultText = JSON.parse(JSON.stringify($r("app.string.assessmentPassFailedText")))
         }
         LogUtil.info(MODULE_TAG + "attestResultInfo success"+JSON.stringify(attestResultInfo));
       })
