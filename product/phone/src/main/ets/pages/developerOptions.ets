@@ -23,6 +23,7 @@ import ConfigData from '../../../../../../common/utils/src/main/ets/default/base
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import LayoutBoundariesController from '../controller/developerOptions/LayoutBoundariesController';
 import SwitchComponent from '../../../../../../common/component/src/main/ets/default/switchComponent';
+import { SubEntryComponent } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
 
 const deviceTypeInfo = deviceInfo.deviceType;
 const MODULE_TAG = ConfigData.TAG + '.developerOptions -> ';
@@ -112,7 +113,7 @@ struct developerOptions {
                   summary: $r("app.string.Show_boundaries_Margin"),
                   isOn: $controllerLayoutBoundariesIsOn,
                   controller: this.controllerLayoutBoundaries,
-                  switchHeight:$r("app.float.wh_value_64")
+                  switchHeight: $r("app.float.wh_value_64")
                 })
               }
 
@@ -163,8 +164,8 @@ struct developerOptions {
           .width(ConfigData.WH_100_100)
           .margin({ top: $r("app.float.distance_12") })
           .padding({
-            top:$r("app.float.distance_4"),
-            bottom:$r("app.float.distance_4")
+            top: $r("app.float.distance_4"),
+            bottom: $r("app.float.distance_4")
           })
 
           SwitchComponent({
@@ -173,6 +174,12 @@ struct developerOptions {
             isOn: $controllerOverdrawIsOn,
             controller: this.controllerOverdraw,
             switchHeight: $r("app.float.wh_value_56")
+          })
+            .margin({ top: $r("app.float.distance_12") })
+
+          SubEntryComponent({
+            targetPage: "pages/compatibilityAssessment",
+            title: $r("app.string.OpenHarmony_Compatibility_Assessment")
           })
             .margin({ top: $r("app.float.distance_12") })
         }
