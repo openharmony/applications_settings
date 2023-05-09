@@ -505,6 +505,10 @@
       "value": "12vp"
     },
     {
+      "name": "radius_16",
+      "value": "16vp"
+    },
+    {
       "name": "radius_20",
       "value": "20vp"
     },

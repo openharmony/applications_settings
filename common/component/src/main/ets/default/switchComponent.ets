@@ -79,7 +79,7 @@ export default struct SwitchComponent {
     .height(this.switchHeight)
     .backgroundColor($r("app.color.white_bg_color"))
     .alignItems(VerticalAlign.Center)
-    .borderRadius($r("app.float.wh_value_24"))
+    .borderRadius($r("app.float.wh_value_16"))
   }
 
   @Log
