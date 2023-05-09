@@ -34,6 +34,7 @@
     "pages/bluetoothPairedDeviceInfo",
     "pages/screenMode",
     "pages/moreConnections",
-    "pages/nfc"
+    "pages/nfc",
+    "pages/compatibilityAssessment"
   ]
 }
