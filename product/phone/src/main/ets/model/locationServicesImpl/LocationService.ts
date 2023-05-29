@@ -50,13 +50,25 @@ export class LocationService {
 
   enableLocation() {
     LogUtil.info(ConfigData.TAG + 'enable location')
-    geolocation.enableLocation()
-      .then((res) => LogUtil.info(ConfigData.TAG + `enable location, result: ${JSON.stringify(res)}`));
+    try{
+      geolocation.enableLocation()
+        .then((res) => LogUtil.info(ConfigData.TAG + `enable location, result: ${JSON.stringify(res)}`))
+        .catch(error=> LogUtil.info(ConfigData.TAG + `enable location, result: ${error}`))
+    }catch(err){
+       LogUtil.info(ConfigData.TAG + `enable location, result: ${err}`)
+    }
+
   }
 
   disableLocation() {
     LogUtil.info(ConfigData.TAG + 'disable location')
-    geolocation.disableLocation();
+    try{
+      geolocation.disableLocation()
+        .then((res) => LogUtil.info(ConfigData.TAG + `disenable location, result: ${JSON.stringify(res)}`))
+        .catch(error=> LogUtil.info(ConfigData.TAG + `disenable location, result: ${error}`))
+    }catch(err){
+      LogUtil.info(ConfigData.TAG + `disenable location, result: ${err}`)
+    }
   }
 }
 

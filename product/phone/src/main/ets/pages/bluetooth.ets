@@ -448,7 +448,7 @@ struct AvailableDeviceComponent {
   @StorageLink("pinRequiredParam") @Watch("pinRequiredParamChange") pinRequiredParam:  {deviceId: string; pinCode: string} = {deviceId: '',pinCode: ''} ;
   pairDialog: CustomDialogController = new CustomDialogController({
     builder: PairDialog({
-      deviceName: this.pairingDevice?this.pairingDevice.deviceName:"",
+      deviceName: (this.pairingDevice && this.pairingDevice.hasOwnProperty('deviceName'))?this.pairingDevice.deviceName:undefined,
       pinCode: this.pairPinCode,
       action: (accept: boolean) => {
         this.confirmPairing(accept);
@@ -600,7 +600,13 @@ struct AvailableDeviceComponent {
   @Log
   confirmPairing(accept: boolean) {
     LogUtil.info(this.TAG_PAGE + 'confirmPairing pairingDevice');
-    this.controller.confirmPairing(this.pairingDevice.deviceId, accept);
+    try{
+      if(this.pairingDevice && this.pairingDevice.deviceId!=null ){
+        this.controller.confirmPairing(this.pairingDevice.deviceId, accept);
+      }
+    }catch(err){
+      LogUtil.info(this.TAG_PAGE + `confirmPairing pairingDevice error ${err}`);
+    }
   }
 
   /**
