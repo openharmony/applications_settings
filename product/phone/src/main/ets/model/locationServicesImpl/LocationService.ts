@@ -64,8 +64,6 @@ export class LocationService {
     LogUtil.info(ConfigData.TAG + 'disable location')
     try{
       geolocation.disableLocation()
-        .then((res) => LogUtil.info(ConfigData.TAG + `disenable location, result: ${JSON.stringify(res)}`))
-        .catch(error=> LogUtil.info(ConfigData.TAG + `disenable location, result: ${error}`))
     }catch(err){
       LogUtil.info(ConfigData.TAG + `disenable location, result: ${err}`)
     }
