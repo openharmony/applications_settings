@@ -21,7 +21,6 @@ import HeadComponent from '../../../../../../../common/component/src/main/ets/de
 import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import { SubEntryComponent } from '../../../../../../../common/component/src/main/ets/default/subEntryComponent';
 
-
 /**
  * Home Page Of System Settings
  */
