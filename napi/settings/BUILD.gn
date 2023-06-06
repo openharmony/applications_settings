@@ -38,9 +38,6 @@ ohos_shared_library("settings") {
     "napi:ace_napi",
     "relational_store:native_dataability",
     "relational_store:native_rdb",
-    "ability_runtime:data_ability_helper",
-    "ability_runtime:ability_manager",
-    "napi:ace_napi",
   ]
 
   relative_install_dir = "module"
