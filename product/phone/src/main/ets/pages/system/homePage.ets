@@ -141,5 +141,5 @@ struct SoftwareUpdateComponent {
           })
         })
     })
- }
+  }
 }
