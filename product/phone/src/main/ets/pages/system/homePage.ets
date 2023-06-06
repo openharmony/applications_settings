@@ -27,7 +27,7 @@ import { SubEntryComponent } from '../../../../../../../common/component/src/mai
 @Component
 struct SystemSettings {
   @State touchedItem: boolean = false;
-  @State disallowModifyDateTime :boolean = false;
+  private TAG = `${ConfigData.TAG} SystemSettings `;
   build() {
     Column() {
       GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
