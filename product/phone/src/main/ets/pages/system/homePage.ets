@@ -14,7 +14,6 @@
  */
 
 import prompt from '@system.prompt';
-import dateTimeManager from '@ohos.enterprise.dateTimeManager';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent';
@@ -29,7 +28,7 @@ import { SubEntryComponent } from '../../../../../../../common/component/src/mai
 struct SystemSettings {
   @State touchedItem: boolean = false;
   private TAG = `${ConfigData.TAG} SystemSettings `;
-  @State disallowModifyDateTime :boolean = false;
+
   build() {
     Column() {
       GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
@@ -48,7 +47,6 @@ struct SystemSettings {
 
             SubEntryComponent({ targetPage: "pages/dateAndTime", title: $r("app.string.dateAndTimeTab") })
               .margin({ bottom: $r('sys.float.ohos_id_card_margin_start') })
-              .visibility(this.disallowModifyDateTime===true?Visibility.None:Visibility.Visible)
 
             SubEntryComponent({ targetPage: "pages/developerOptions", title: $r("app.string.developerOptionsTab") })
           }
@@ -71,18 +69,6 @@ struct SystemSettings {
   aboutToAppear(){
     LogUtil.info(`${this.TAG} aboutToAppear in`);
     LogUtil.info(`${this.TAG} aboutToAppear out`);
-    let wantTemp = null;
-    dateTimeManager.isModifyDateTimeDisallowed(wantTemp).then((res) => {
-      LogUtil.info(`${this.TAG} eisModifyDateTimeDisallowed"+${res}`);
-      if(res){
-        this.disallowModifyDateTime = true
-      }else{
-        this.disallowModifyDateTime = false
-      }
-    }).catch((error) => {
-      this.disallowModifyDateTime = false
-      LogUtil.info(`${this.TAG} error code: eisModifyDateTimeDisallowed ${error}`);
-    })
   }
 }
 

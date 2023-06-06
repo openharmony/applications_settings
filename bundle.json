@@ -1,5 +1,5 @@
 {
-    "name": "@ohos/settings_standard",
+    "name": "@ohos/settings",
     "description": "Settings app for standard system.",
     "version": "3.1",
     "license": "Apache License 2.0",
@@ -10,7 +10,7 @@
     "dirs": {},
     "scripts": {},
     "component": {
-        "name": "settings_standard",
+        "name": "settings",
         "subsystem": "applications",
         "syscap": [
             "SystemCapability.Applications.settings.Core"
@@ -29,7 +29,7 @@
                 "data_share",
                 "hiviewdfx_hilog_native",
                 "relational_store",
-                "napi:ace_napi"
+                "napi"
             ],
             "third_party": []
         },
