@@ -26,12 +26,6 @@ ohos_shared_library("settings") {
     "./native_module.cpp",
   ]
 
-  deps = [
-    "//foundation/ability/ability_runtime/frameworks/native/ability/native:data_ability_helper",
-    "//foundation/ability/ability_runtime/interfaces/inner_api/ability_manager:ability_manager",
-    "//foundation/arkui/napi:ace_napi",
-  ]
-
   external_deps = [
     "ability_base:zuri",
     "ability_runtime:napi_base_context",
