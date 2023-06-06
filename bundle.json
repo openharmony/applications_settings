@@ -22,7 +22,15 @@
         "rom": "",
         "ram": "",
         "deps": {
-            "components": [],
+            "components": [
+                "ability_base",
+                "ability_runtime",
+                "c_utils",
+                "data_share",
+                "hiviewdfx_hilog_native",
+                "relational_store",
+                "napi:ace_napi"
+            ],
             "third_party": []
         },
         "build": {
