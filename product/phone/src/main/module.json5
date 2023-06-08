@@ -188,7 +188,11 @@
       {
         "name": "ohos.permission.MODIFY_AUDIO_SETTINGS",
         "reason": "$string:MODIFY_AUDIO_SETTINGS"
-      }
+      }, {
+        "name": "ohos.permission.ENTERPRISE_SET_DATETIME",
+        "reason": "$string:ENTERPRISE_SET_DATETIME"
+      },
+
     ]
   }
 }

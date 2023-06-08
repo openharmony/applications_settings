@@ -1181,6 +1181,10 @@
       "value": "修改音频设置"
     },
     {
+      "name": "ENTERPRISE_SET_DATETIME",
+      "value": "修改系統时间"
+    },
+    {
       "name": "Debug_GPU_OverDraw",
       "value": "调试 GPU 过度绘制"
     },
