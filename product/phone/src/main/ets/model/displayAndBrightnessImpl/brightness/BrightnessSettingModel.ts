@@ -38,6 +38,10 @@ export class BrightnessSettingModel extends BaseModel{
 
   constructor() {
     super();
+    if(!globalThis.settingsAbilityContext){
+      LogUtil.info("globalThis.settingsAbilityContext is null");
+      return;
+    }
     data_dataShare.createDataShareHelper(globalThis.settingsAbilityContext, this.listenUri)
       .then((dataHelper) => {
         this.dataShareHelper = dataHelper;
