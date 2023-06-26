@@ -17,6 +17,7 @@ import LogUtil from '../../../../../../../common/utils/src/main/ets/default/base
 import Bundle from '@ohos.bundle';
 import appManager from '@ohos.application.appManager'
 import osAccount from '@ohos.account.osAccount';
+import bundleManager from '@ohos.bundle.bundleManager'
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import { LogAll } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 
@@ -58,7 +59,7 @@ export class AppManagementModel extends BaseModel {
      */
     setAppManagementListener() {
         this.mBundleInfoList = [];
-        Bundle.getAllBundleInfo(IS_INCLUDE_ABILITY_INFO)
+        bundleManager.getAllBundleInfo(bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION)
             .then((data) => {
                 LogUtil.info('settings AppManagementModel setAppManagementListener getBundleInfos() start ');
                 LogUtil.info('settings AppManagementModel data.length: ' + data.length + ' data: ' + JSON.stringify(data));
