@@ -33,6 +33,10 @@ export class DateAndTimeModel extends BaseModel {
 
   constructor() {
     super();
+    if(!globalThis.settingsAbilityContext){
+      return;
+      LogUtil.info("globalThis.settingsAbilityContext is null");
+    }
     data_dataShare.createDataShareHelper(globalThis.settingsAbilityContext, this.listenUri)
       .then((dataHelper) => {
         this.dataShareHelper = dataHelper;
@@ -117,6 +121,10 @@ export class DateAndTimeModel extends BaseModel {
    */
   public unregisterObserver() {
     LogUtil.info(`${ConfigData.TAG} unregisterObserver`);
+    if(!this.dataShareHelper){
+      LogUtil.info(`${ConfigData.TAG} this.dataShareHelper is null`);
+      return;
+    }
     this.dataShareHelper.off("dataChange", this.listenUri, (err) => {
       LogUtil.info(`${ConfigData.TAG} unregisterObserver success`);
     })
