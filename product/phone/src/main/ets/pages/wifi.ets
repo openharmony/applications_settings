@@ -723,7 +723,9 @@ struct apInfoDetailsDialog {
     let linkInfo = WifiModel.getLinkInfo();
     if (linkInfo != undefined) {
       this.speed = linkInfo.linkSpeed + 'Mbps';
-      this.frequency = (linkInfo.frequency / 1000).toFixed(1).toString() + 'GHz';
+      //5.0GHz limit:[5180MHz,5825MHz],2.4GHz limit:[2412MHz,2484MHz]
+      LogUtil.info(MODULE_TAG + 'get frequency: ' + linkInfo.frequency);
+      this.frequency = linkInfo.frequency > 3500 ? "5GHz":"2.4GHz";
     }
     this.dataList = [
       { key: $r('app.string.wifiInfoTitleStatus'),
