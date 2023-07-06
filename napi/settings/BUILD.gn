@@ -38,7 +38,7 @@ ohos_shared_library("settings") {
     "c_utils:utils",
     "data_share:datashare_common",
     "data_share:datashare_consumer",
-    "hiviewdfx_hilog_native:libhilog",
+    "hilog:libhilog",
     "relational_store:native_dataability",
     "relational_store:native_rdb",
   ]
