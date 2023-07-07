@@ -383,8 +383,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
           AppStorage.SetOrCreate('bluetoothPairedDevices', this.pairedDevices);
           break;
         }
-      }
-      ;
+      };
       LogUtil.log(this.TAG + 'device connection state changed. pairedDevices length = '
       + JSON.stringify(this.pairedDevices.length))
       LogUtil.log(this.TAG + 'device connection state changed. availableDevices length = '
