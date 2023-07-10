@@ -398,6 +398,12 @@ struct Index {
 
   aboutToDisappear(): void {
     LogUtil.info(MODULE_TAG + 'about to disappear');
+    if (this.timerId != -1) {
+      clearTimeout(this.timerId);
+    }
+    if (this.switchDebounceFlag) {
+      clearTimeout(this.switchDebounceFlag);
+    }
     WifiModel.destroyWiFiModelData();
   }
 
