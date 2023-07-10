@@ -250,11 +250,11 @@ struct ApplicationInfo {
     this.controller.getBundleInfo(bundleName, (err, result) => {
       if (err) {
         LogUtil.info(MODULE_TAG + 'get system bundle info failed');
-      }
-      LogUtil.info(MODULE_TAG + `${bundleName} is removeable = ${result.appInfo.removable}`);
-
-      if (result.appInfo.removable !== true) {
-        this.isRemovableBundle = false;
+      }else{
+        LogUtil.info(MODULE_TAG + `${bundleName} is removeable = ${result.appInfo.removable}`);
+        if (result.appInfo.removable !== true) {
+          this.isRemovableBundle = false;
+        }
       }
     });
   }
