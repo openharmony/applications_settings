@@ -26,25 +26,22 @@ ohos_shared_library("settings") {
     "./native_module.cpp",
   ]
 
-  deps = [
-    "//foundation/ability/ability_runtime/frameworks/native/ability/native:data_ability_helper",
-    "//foundation/ability/ability_runtime/interfaces/inner_api/ability_manager:ability_manager",
-    "//foundation/arkui/napi:ace_napi",
-  ]
-
   external_deps = [
     "ability_base:zuri",
+    "ability_runtime:ability_manager",
+    "ability_runtime:data_ability_helper",
     "ability_runtime:napi_base_context",
     "c_utils:utils",
     "data_share:datashare_common",
     "data_share:datashare_consumer",
-    "hilog:libhilog",
+    "hiviewdfx_hilog_native:libhilog",
+    "napi:ace_napi",
     "relational_store:native_dataability",
     "relational_store:native_rdb",
   ]
 
   relative_install_dir = "module"
 
-  subsystem_name = "settingsnapi"
+  subsystem_name = "applications"
   part_name = "settings_standard"
 }
