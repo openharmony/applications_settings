@@ -124,7 +124,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
         // remove all elements from availableDevices array
         this.availableDevices.splice(0, this.availableDevices.length)
       }
-    })
+    },600)
   }
 
   /**
