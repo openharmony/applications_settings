@@ -26,6 +26,7 @@ import AboutDeviceModel from '../../model/aboutDeviceImpl/AboutDeviceModel'
 const deviceTypeInfo = deviceInfo.deviceType;
 const DISCOVERY_DURING_TIME: number = 30000;    // 30'
 const DISCOVERY_INTERVAL_TIME: number = 3000;   // 3'
+let debounceTimer = null;
 
 export default class BluetoothDeviceController extends BaseSettingsController {
   private TAG = ConfigData.TAG + 'BluetoothDeviceController '
@@ -107,17 +108,23 @@ export default class BluetoothDeviceController extends BaseSettingsController {
    * Set toggle value
    */
   toggleValue(isOn: boolean) {
-    this.enabled = false
-    AppStorage.SetOrCreate('bluetoothToggleEnabled', this.enabled);
-    LogUtil.log(this.TAG + 'afterCurrentValueChanged bluetooth state isOn = ' + this.isOn)
-    if (isOn) {
-      BluetoothModel.enableBluetooth();
-    } else {
-      BluetoothModel.disableBluetooth();
-
-      // remove all elements from availableDevices array
-      this.availableDevices.splice(0, this.availableDevices.length)
-    }
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      let curState = BluetoothModel.getState();
+      if ((curState === 2) === isOn) {
+        return;
+      }
+      this.enabled = false
+      AppStorage.SetOrCreate('bluetoothToggleEnabled', this.enabled);
+      LogUtil.log(this.TAG + 'afterCurrentValueChanged bluetooth state isOn = ' + this.isOn)
+      if (isOn) {
+        BluetoothModel.enableBluetooth();
+      } else {
+        BluetoothModel.disableBluetooth();
+        // remove all elements from availableDevices array
+        this.availableDevices.splice(0, this.availableDevices.length)
+      }
+    },500)
   }
 
   /**
