@@ -26,7 +26,7 @@ import AboutDeviceModel from '../../model/aboutDeviceImpl/AboutDeviceModel'
 const deviceTypeInfo = deviceInfo.deviceType;
 const DISCOVERY_DURING_TIME: number = 30000;    // 30'
 const DISCOVERY_INTERVAL_TIME: number = 3000;   // 3'
-let debounceTimer = null;
+let debounceTimer: null = null;
 
 export default class BluetoothDeviceController extends BaseSettingsController {
   private TAG = ConfigData.TAG + 'BluetoothDeviceController '
