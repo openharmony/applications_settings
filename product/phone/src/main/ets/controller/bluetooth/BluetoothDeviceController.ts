@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import deviceInfo from '@ohos.deviceInfo';
 import BaseSettingsController from '../../../../../../../common/component/src/main/ets/default/controller/BaseSettingsController';
 import BluetoothModel, { BondState, ProfileConnectionState } from '../../model/bluetoothImpl/BluetoothModel';
@@ -24,8 +24,9 @@ import LogUtil from '../../../../../../../common/utils/src/main/ets/default/base
 import AboutDeviceModel from '../../model/aboutDeviceImpl/AboutDeviceModel'
 
 const deviceTypeInfo = deviceInfo.deviceType;
-const DISCOVERY_DURING_TIME: number = 30000;    // 30'
-const DISCOVERY_INTERVAL_TIME: number = 3000;   // 3'
+const DISCOVERY_DURING_TIME: number = 30000; // 30'
+const DISCOVERY_INTERVAL_TIME: number = 3000; // 3'
+let debounceTimer = null;
 
 export default class BluetoothDeviceController extends BaseSettingsController {
   private TAG = ConfigData.TAG + 'BluetoothDeviceController '
@@ -36,12 +37,11 @@ export default class BluetoothDeviceController extends BaseSettingsController {
 
   // paired devices
   private pairedDevices: BluetoothDevice[] = [];
-  
+
   // available devices
   private isDeviceDiscovering: boolean = false;
   private availableDevices: BluetoothDevice[] = [];
   private pairPinCode: string = '';
-
   private discoveryStartTimeoutId: number;
   private discoveryStopTimeoutId: number;
 
@@ -49,7 +49,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
     LogUtil.log(this.TAG + 'start to initData bluetooth');
     super.initData();
     let isOn = BluetoothModel.isStateOn();
-    LogUtil.log(this.TAG + 'initData bluetooth state isOn ' + isOn + ', typeof isOn = ' + typeof(isOn))
+    LogUtil.log(this.TAG + 'initData bluetooth state isOn ' + isOn + ', typeof isOn = ' + typeof (isOn))
     if (isOn) {
       this.refreshPairedDevices();
     }
@@ -75,12 +75,12 @@ export default class BluetoothDeviceController extends BaseSettingsController {
       deviceId: string;
       pinCode: string;
     }) => {
-       LogUtil.log(this.TAG + 'bluetooth subscribePinRequired callback. pinRequiredParam = ' + pinRequiredParam.pinCode);
-       let pairData = this.getAvailableDevice(pinRequiredParam.deviceId);
-       this.pairPinCode = pinRequiredParam.pinCode;
-       AppStorage.SetOrCreate('pairData', pairData);
-       AppStorage.SetOrCreate('pinRequiredParam', pinRequiredParam);
-     })
+      LogUtil.log(this.TAG + 'bluetooth subscribePinRequired callback. pinRequiredParam = ' + pinRequiredParam.pinCode);
+      let pairData = this.getAvailableDevice(pinRequiredParam.deviceId);
+      this.pairPinCode = pinRequiredParam.pinCode;
+      AppStorage.SetOrCreate('pairData', pairData);
+      AppStorage.SetOrCreate('pinRequiredParam', pinRequiredParam);
+    })
     return this;
   }
 
@@ -107,17 +107,23 @@ export default class BluetoothDeviceController extends BaseSettingsController {
    * Set toggle value
    */
   toggleValue(isOn: boolean) {
-    this.enabled = false
-    AppStorage.SetOrCreate('bluetoothToggleEnabled', this.enabled);
-    LogUtil.log(this.TAG + 'afterCurrentValueChanged bluetooth state isOn = ' + this.isOn)
-    if (isOn) {
-      BluetoothModel.enableBluetooth();
-    } else {
-      BluetoothModel.disableBluetooth();
-
-      // remove all elements from availableDevices array
-      this.availableDevices.splice(0, this.availableDevices.length)
-    }
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      let curState = BluetoothModel.getState();
+      if ((curState === 2) === isOn) {
+        return;
+      }
+      this.enabled = false
+      AppStorage.SetOrCreate('bluetoothToggleEnabled', this.enabled);
+      LogUtil.log(this.TAG + 'afterCurrentValueChanged bluetooth state isOn = ' + this.isOn)
+      if (isOn) {
+        BluetoothModel.enableBluetooth();
+      } else {
+        BluetoothModel.disableBluetooth();
+        // remove all elements from availableDevices array
+        this.availableDevices.splice(0, this.availableDevices.length)
+      }
+    },500)
   }
 
   /**
@@ -331,14 +337,14 @@ export default class BluetoothDeviceController extends BaseSettingsController {
         // case bonding
         // do nothing and still listening
         LogUtil.log(this.TAG + 'bluetooth continue listening bondStateChange.');
-        if(this.getAvailableDevice(data.deviceId) != null){
+        if (this.getAvailableDevice(data.deviceId) != null) {
           this.getAvailableDevice(data.deviceId).connectionState = ProfileConnectionState.STATE_CONNECTING;
         }
 
       } else if (data.bondState == BondState.BOND_STATE_INVALID) {
         AppStorage.SetOrCreate("controlPairing", true)
         // case failed
-        if(this.getAvailableDevice(data.deviceId) != null){
+        if (this.getAvailableDevice(data.deviceId) != null) {
           this.getAvailableDevice(data.deviceId).connectionState = ProfileConnectionState.STATE_DISCONNECTED;
         }
         this.forceRefresh(this.availableDevices);
@@ -369,7 +375,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
       profileConnectionState: number;
     }) => {
       LogUtil.log(this.TAG + 'device connection state changed. profileId:' + JSON.stringify(data.profileId)
-      +' profileConnectionState: ' + JSON.stringify(data.profileConnectionState));
+      + ' profileConnectionState: ' + JSON.stringify(data.profileConnectionState));
       for (let device of this.pairedDevices) {
         if (device.deviceId === data.deviceId) {
           device.setProfile(data);
@@ -463,8 +469,8 @@ export default class BluetoothDeviceController extends BaseSettingsController {
    */
   private getAvailableDevice(deviceIds: string): BluetoothDevice {
     LogUtil.log(this.TAG + 'getAvailableDevice  length = ' + this.availableDevices.length);
-    let temp =  this.availableDevices;
-    for(let i = 0; i < temp.length; i++){
+    let temp = this.availableDevices;
+    for (let i = 0; i < temp.length; i++) {
       if (temp[i].deviceId === deviceIds) {
         return temp[i];
       }
@@ -501,7 +507,9 @@ export default class BluetoothDeviceController extends BaseSettingsController {
         LogUtil.info('Closed callbacks')
       },
       alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 })
+      offset: ({
+        dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0
+      })
     })
 
   }
