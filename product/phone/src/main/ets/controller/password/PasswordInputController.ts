@@ -53,14 +53,19 @@ export default class PasswordInputController extends BaseSettingsController {
   }
 
   subscribe(): ISettingsController {
-    PasswordModel.openSession((data) => {
-      if (data === OPEN_SESSION_FAILED) {
-        LogUtil.info(`${this.TAG}subscribe->openSession failed`);
-      } else {
-        LogUtil.info(`${this.TAG}subscribe->openSession success`);
-      }
-      this.pinChallenge = data;
-    });
+
+    if(this.pinToken){
+      LogUtil.info(`${this.TAG}subscribe->password change dont openSession`);
+    }else{
+      PasswordModel.openSession((data) => {
+        if (data === OPEN_SESSION_FAILED) {
+          LogUtil.info(`${this.TAG}subscribe->openSession failed`);
+        } else {
+          LogUtil.info(`${this.TAG}subscribe->openSession success`);
+        }
+        this.pinChallenge = data;
+      });
+    }
     PasswordModel.registerInputer();
     return this;
   };
