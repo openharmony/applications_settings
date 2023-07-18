@@ -196,6 +196,10 @@
       {
         "name": "ohos.permission.GET_INSTALLED_BUNDLE_LIST",
         "reason": "$string:GET_INSTALLED_BUNDLE_LIST"
+      },
+      {
+        "name": "ohos.permission.WRITE_ACCESSIBILITY_CONFIG",
+        "reason": "$string:WRITE_ACCESSIBILITY_CONFIG_PERMISSION"
       }
     ]
   }
