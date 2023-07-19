@@ -265,7 +265,7 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
             [](napi_env env, napi_status status, void* data) {
                 SETTING_LOG_INFO("settingsnapi : uri promise async end called callback");
                 AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-                SETTING_LOG_INFO("settingsnapi : uri promise end get callback value is %{public}s", 
+                SETTING_LOG_INFO("settingsnapi : uri promise end get callback value is %{public}s",
                     asyncCallbackInfo->uri.c_str());
                 napi_value result = wrap_string_to_js(env, asyncCallbackInfo->uri);
                 napi_resolve_deferred(asyncCallbackInfo->env, asyncCallbackInfo->deferred, result);
@@ -676,7 +676,7 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
             SETTING_LOG_INFO("settingsnapi : promise async execute callback");
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
             SETTING_LOG_INFO("settingsnapi : promise get callback key is %{public}s", asyncCallbackInfo->key.c_str());
-            SETTING_LOG_INFO("settingsnapi : promise get callback value is %{public}s", 
+            SETTING_LOG_INFO("settingsnapi : promise get callback value is %{public}s",
                 asyncCallbackInfo->value.c_str());
 
             std::vector<std::string> columns;
