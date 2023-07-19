@@ -501,7 +501,6 @@ void InitPhoneMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 
 void InitSoundMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-
     napi_value vibrateWhileRinging = nullptr;
     napi_create_string_utf8(env,
         Sound::VIBRATE_WHILE_RINGING.c_str(), NAPI_AUTO_LENGTH, &vibrateWhileRinging);
