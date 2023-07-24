@@ -33,7 +33,7 @@ const PAIRED_ITEM_NUMBER = 3;
 const PAGE_URI_DEVICE_NAME = 'pages/deviceName';
 const PAGE_URI_BLUETOOTH_PAIRED_DEVICE_INFO = 'pages/bluetoothPairedDeviceInfo';
 const deviceTypeInfo = deviceInfo.deviceType;
-
+let pinRequiredTIimer = null;
 @Entry
 @Component
 struct Bluetooth {
@@ -567,13 +567,16 @@ struct AvailableDeviceComponent {
   }
 
   pinRequiredParamChange(){
-    this.pairPinCode = this.pinRequiredParam.pinCode;
-    this.pairingDevice = this.pairData;
-    if (this.pairDialog) {
-      this.pairDialog.open();
-    }() => {
-      this.showPairFailedDialog();
-    }
+    clearTimeout(pinRequiredTIimer);
+    pinRequiredTIimer = setTimeout(()=>{
+      this.pairPinCode = this.pinRequiredParam.pinCode;
+      this.pairingDevice = this.pairData;
+      if (this.pairDialog) {
+        this.pairDialog.open();
+      }() => {
+        this.showPairFailedDialog();
+      }
+    },1000)
   }
   /**
    * Pair device
