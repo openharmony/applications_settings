@@ -583,18 +583,7 @@ struct AvailableDeviceComponent {
    * @param device
    */
   pairDevice(device: BluetoothDevice) {
-    this.controller.pair(device.deviceId, (pinCode: string) => {
-      LogUtil.info(this.TAG_PAGE + 'pairDevice success callback : pinCode = ' + pinCode);
-      // show pair pin dialog
-      this.pairPinCode = pinCode;
-      this.pairingDevice = device;
-      if (this.pairDialog) {
-        this.pairDialog.open();
-      }
-    }, () => {
-      LogUtil.info(this.TAG_PAGE + 'pairDevice error callback');
-      this.showPairFailedDialog();
-    })
+    this.controller.pair(device.deviceId)
   }
 
   /**
