@@ -33,7 +33,7 @@ const PAIRED_ITEM_NUMBER = 3;
 const PAGE_URI_DEVICE_NAME = 'pages/deviceName';
 const PAGE_URI_BLUETOOTH_PAIRED_DEVICE_INFO = 'pages/bluetoothPairedDeviceInfo';
 const deviceTypeInfo = deviceInfo.deviceType;
-
+let pinRequiredTIimer = null;
 @Entry
 @Component
 struct Bluetooth {
@@ -567,31 +567,23 @@ struct AvailableDeviceComponent {
   }
 
   pinRequiredParamChange(){
-    this.pairPinCode = this.pinRequiredParam.pinCode;
-    this.pairingDevice = this.pairData;
-    if (this.pairDialog) {
-      this.pairDialog.open();
-    }() => {
-      this.showPairFailedDialog();
-    }
+    clearTimeout(pinRequiredTIimer);
+    pinRequiredTIimer = setTimeout(()=>{
+      this.pairPinCode = this.pinRequiredParam.pinCode;
+      this.pairingDevice = this.pairData;
+      if (this.pairDialog) {
+        this.pairDialog.open();
+      }() => {
+        this.showPairFailedDialog();
+      }
+    },1000)
   }
   /**
    * Pair device
    * @param device
    */
   pairDevice(device: BluetoothDevice) {
-    this.controller.pair(device.deviceId, (pinCode: string) => {
-      LogUtil.info(this.TAG_PAGE + 'pairDevice success callback : pinCode = ' + pinCode);
-      // show pair pin dialog
-      this.pairPinCode = pinCode;
-      this.pairingDevice = device;
-      if (this.pairDialog) {
-        this.pairDialog.open();
-      }
-    }, () => {
-      LogUtil.info(this.TAG_PAGE + 'pairDevice error callback');
-      this.showPairFailedDialog();
-    })
+    this.controller.pair(device.deviceId)
   }
 
   /**
