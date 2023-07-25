@@ -27,7 +27,6 @@ export class LocationService {
     }
     LogUtil.info(ConfigData.TAG + 'start location service')
     this.mIsStart = true;
-    this.getServiceState();
     geolocation.on('locationEnabledChange', (isChanged: boolean) => {
       LogUtil.info(ConfigData.TAG + `start location service isChanged: ${JSON.stringify(isChanged)}`)
       this.getServiceState();
@@ -41,11 +40,16 @@ export class LocationService {
     this.mListener = listener;
   }
 
-  getServiceState() {
+  async getServiceState() {
     LogUtil.info(ConfigData.TAG + 'get location state')
-    let state = geolocation.isLocationEnabled();
-    LogUtil.info(ConfigData.TAG + `get location state, data: ${JSON.stringify(state)}`)
-    this.mListener?.updateServiceState(state);
+    try{
+      let state = await geolocation.isLocationEnabled();
+      LogUtil.info(ConfigData.TAG + `get location state, data: ${JSON.stringify(state)}`)
+      this.mListener?.updateServiceState(state);
+    }catch(error){
+      LogUtil.info(ConfigData.TAG + `get location state, data: ${error}`)
+    }
+
   }
 
   enableLocation() {

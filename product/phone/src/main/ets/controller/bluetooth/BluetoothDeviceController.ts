@@ -146,30 +146,8 @@ export default class BluetoothDeviceController extends BaseSettingsController {
       LogUtil.log(this.TAG + `bluetooth no Aavailable device or device is already pairing.`)
       return;
     }
-
-    // start listening pinCode
-    BluetoothModel.subscribePinRequired((pinRequiredParam: {
-      deviceId: string;
-      pinCode: string;
-    }) => {
-      LogUtil.log(this.TAG + 'bluetooth subscribePinRequired callback. pinRequiredParam = ' + pinRequiredParam.pinCode);
-      this.pairPinCode = pinRequiredParam.pinCode;
-
-      BluetoothModel.unsubscribePinRequired(() => LogUtil.log(this.TAG + 'available pinRequired unsubscribed.'));
-      if (success) {
-        success(this.pairPinCode);
-      }
-    })
-
     // start pairing
-    const result = BluetoothModel.pairDevice(deviceId);
-    LogUtil.log(this.TAG + 'bluetooth pairDevice result = ' + result);
-    if (!result) {
-      BluetoothModel.unsubscribePinRequired(() => LogUtil.log(this.TAG + 'available pinRequired unsubscribed.'));
-      if (error) {
-        error();
-      }
-    }
+     BluetoothModel.pairDevice(deviceId);
   }
 
   /**
