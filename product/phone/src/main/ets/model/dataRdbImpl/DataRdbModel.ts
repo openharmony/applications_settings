@@ -59,6 +59,8 @@ class DataRdbModel {
       result.key = resultSet.getString(resultSet.getColumnIndex(Stable.Global.key))
       results.push(result)
     }
+    resultSet.close();
+    resultSet = null;
     LogUtil.info(ConfigData.TAG + 'get data queryAllData end' + JSON.stringify(results))
     callback(results)
   }
@@ -127,6 +129,8 @@ class DataRdbModel {
       result.key = resultSet.getString(resultSet.getColumnIndex(Stable.Global.key));
       results.push(result);
     }
+    resultSet.close();
+    resultSet = null;
     LogUtil.info(ConfigData.TAG + 'get data querySingleData results ' + JSON.stringify(results));
     callback(results);
   }
