@@ -37,6 +37,7 @@ export struct SettingItemComponent {
     Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
       Row() {
         Image(this.settingIcon)
+          .visibility(this.targetPage === 'mobileData' ? Visibility.None : Visibility.Visible)
           .width($r("app.float.wh_value_24"))
           .height($r("app.float.wh_value_24"))
           .margin({

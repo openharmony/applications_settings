@@ -981,6 +981,14 @@
       "value": "移动数据"
     },
     {
+      "name": "mobileNetwork",
+      "value": "移动网络"
+    },
+    {
+      "name": "flightMode",
+      "value": "飞行模式"
+    },
+    {
       "name": "mobileDataFailed",
       "value": "移动数据启动失败，请确定该功能是否可用"
     },
@@ -1223,6 +1231,10 @@
     {
       "name": "Input_Reached_Limited",
       "value": "输入已达上限"
+    },
+    {
+      "name": "CONNECTIVITY_INTERNAL",
+      "value": "内部连接性"
     },
     {
       "name": "endTextEmpty",

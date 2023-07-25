@@ -35,6 +35,7 @@
     "pages/screenMode",
     "pages/moreConnections",
     "pages/nfc",
-    "pages/compatibilityAssessment"
+    "pages/compatibilityAssessment",
+    "pages/mobileNetwork"
   ]
 }
