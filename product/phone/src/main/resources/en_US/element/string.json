@@ -1263,6 +1263,114 @@
     {
       "name": "GET_INSTALLED_BUNDLE_LIST",
       "value":"Get installed bundle list"
+    },
+    {
+      "name": "WRITE_ACCESSIBILITY_CONFIG_PERMISSION",
+      "value":"Accessibility Config Write Permission"
+    },
+    {
+      "name": "accessibility",
+      "value": "Accessibility features"
+    },
+    {
+      "name": "visual_accessibility",
+      "value": "VISUAL AIDS"
+    },
+    {
+      "name": "audio_accessibility",
+      "value": "AUDITORY AIDS"
+    },
+    {
+      "name": "highContrast_text",
+      "value": "High contrast text"
+    },
+    {
+      "name": "single_audio",
+      "value": "Mono audio"
+    },
+    {
+      "name": "audio_balance",
+      "value": "Balance"
+    },
+    {
+      "name": "left",
+      "value": "Left"
+    },
+    {
+      "name": "right",
+      "value": "Right"
+    },
+    {
+      "name": "audio_balance_suggestion",
+      "value": "Adjust the volume balance between left and right channels."
+    },
+    {
+      "name":"user_approval_remain_times",
+      "value":"Grant Access (%dS)"
+    },
+    {
+      "name": "extension_service",
+      "value": "Services"
+    },
+    {
+      "name": "installed_service",
+      "value": "Installed services"
+    },
+    {
+      "name": "service_number",
+      "value": "%d"
+    },
+    {
+      "name": "no_service",
+      "value": "None"
+    },
+    {
+      "name": "more_settings",
+      "value": "More settings"
+    },
+    {
+      "name": "help",
+      "value": "HELP AND FEEDBACK"
+    },
+    {
+      "name": "no_description_provided",
+      "value": "No description"
+    },
+    {
+      "name": "accessibility_on",
+      "value": "On"
+    },
+    {
+      "name": "accessibility_off",
+      "value": "Off"
+    },
+    {
+      "name": "accessibility_security_notification",
+      "value": "Security alert"
+    },
+    {
+      "name": "accessibility_notify_content",
+      "value": "Accessibility is a highly sensitive permission. Granting this permission may put your private information and property at risk."
+    },
+    {
+      "name": "accessibility_risk_detail",
+      "value": "This app will be able to:"
+    },
+    {
+      "name": "accessibility_risk_content",
+      "value": " • Read everything on the screen and display content on top of other apps.\n • Track your behavior in each app and control apps on your behalf."
+    },
+    {
+      "name": "accessibility_user_approval",
+      "value": "I'm aware of and willing to assume these risks."
+    },
+    {
+      "name": "accessibility_enable",
+      "value": "Grant access"
+    },
+    {
+      "name": "accessibility_disable",
+      "value": "Cancel"
     }
   ]
 }
