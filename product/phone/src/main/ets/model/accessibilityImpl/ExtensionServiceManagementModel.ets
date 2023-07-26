@@ -1,0 +1,185 @@
+/**
+ * Copyright (c) 2023-2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import Bundle from '@ohos.bundle';
+import appManager from '@ohos.application.appManager';
+import bundleManager from '@ohos.bundle.bundleManager';
+import accessibility from '@ohos.accessibility';
+import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
+import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
+
+const INDEX = 0;
+const URI_PAGE = 'pages/accessibilityServiceInfo';
+let icon_arrow = $r('app.media.ic_settings_arrow');
+let icon_default = "ohos_app_icon";
+let icon_default_str = "";
+
+const MODULE_TAG = ConfigData.TAG + 'extensionService-> ';
+
+/**
+ * app management service class
+ */
+export class ExtensionServiceManagementModel extends BaseModel {
+  private mBundleInfoList: any[] = [];
+  private serviceInfoList: any[] = [];
+
+  constructor() {
+    super();
+    try {
+      globalThis.settingsAbilityContext.resourceManager.getMediaBase64ByName(icon_default).then((res) => {
+          icon_default_str = res;
+          LogUtil.info(MODULE_TAG + 'getResourceManager init defaultIcon res:' + JSON.stringify(icon_default_str));
+        }).catch((err) => {
+          icon_default_str = '';
+          LogUtil.info(MODULE_TAG + 'getResourceManager init defaultIcon error:' + JSON.stringify(err));
+        });
+    } catch (err) {
+      icon_default_str = '';
+      LogUtil.info(MODULE_TAG + 'getResourceManager init defaultIcon error:' + JSON.stringify(err));
+    }
+
+  }
+  /**
+   * get extensionService data
+   */
+  setExtensionServiceManagementListener() {
+    this.serviceInfoList = [];
+    accessibility.getAccessibilityExtensionList('all', 'install').then((data) => {
+      LogUtil.info(MODULE_TAG + 'extensionService data.length: ' + data.length + 'data: ' + JSON.stringify(data));
+      this.getResourceItemAndState(INDEX, data.length, data);
+    }).catch((err) => {
+      LogUtil.error(MODULE_TAG + 'getExtensionServiceList failed, err: ' + JSON.stringify(err));
+    });
+  }
+
+  /**
+   * get resource information according to resource id
+   *
+   * @param index - array position
+   * @param count - array length
+   * @param data - data
+   */
+  async getResourceItemAndState(index, count, data) {
+    LogUtil.info(MODULE_TAG + 'getIconItem start data.length: ' + data.length);
+    let imageValue = '';
+    let description: ResourceStr;
+    let enabledServiceList: Array<accessibility.AccessibilityAbilityInfo> = await accessibility.getAccessibilityExtensionList('all', 'enable');
+    for (let serviceInfo of data) {
+      if (!serviceInfo || !serviceInfo.id) {
+        continue;
+      }
+      LogUtil.info(MODULE_TAG + 'extensionService name :' + JSON.stringify(serviceInfo.id));
+      let serviceState: boolean = false;
+      for (let enabledService of enabledServiceList) {
+        if (enabledService.id && enabledService.id === serviceInfo.id) {
+          serviceState = true;
+          break;
+        }
+      }
+      LogUtil.info(MODULE_TAG + JSON.stringify(serviceInfo.name) + ': ' + JSON.stringify(serviceState));
+      let bundleFlag: number = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY;
+      let bundleInfo: bundleManager.BundleInfo = await bundleManager.getBundleInfo(serviceInfo.bundleName, bundleFlag);
+      imageValue = await this.loadIcon(bundleInfo);
+      description = await this.loadDescription(bundleInfo, serviceInfo.name);
+      LogUtil.info(MODULE_TAG + 'getResourceManager getMediaBase64() value:' + imageValue);
+      this.serviceInfoList.push({
+        serviceIcon: imageValue,
+        serviceTitle: serviceInfo.name,
+        serviceArrow: icon_arrow,
+        serviceSummary: description,
+        serviceEndText: serviceState ? $r('app.string.enabled') : $r('app.string.disabled'),
+        serviceState: serviceState,
+        serviceId: serviceInfo.id,
+        serviceBundleName: serviceInfo.bundleName,
+        serviceUri: URI_PAGE,
+      });
+    }
+    AppStorage.SetOrCreate('extensionServiceManagementList', this.serviceInfoList);
+    LogUtil.info(MODULE_TAG + 'loadExtensionService end');
+  }
+
+  /**
+   * Load icon of AccessibilityService
+   */
+  async loadIcon(bundleInfo: bundleManager.BundleInfo): Promise<string> {
+    let appInfo = bundleInfo.appInfo;
+    let imageValue = '';
+    let context = globalThis.settingsAbilityContext;
+    LogUtil.info(MODULE_TAG + 'getResourceManager appInfo.iconResource:' + JSON.stringify(appInfo.iconResource));
+    if (appInfo.iconResource.id > 0) {
+      imageValue = await context.resourceManager.getMediaBase64(appInfo.iconResource);
+      if (!imageValue) {
+        LogUtil.warn(MODULE_TAG + 'load icon invalid');
+        imageValue = icon_default_str;
+      }
+      LogUtil.info(MODULE_TAG + 'getResourceManager loadIcon end');
+      return imageValue;
+    }
+    imageValue = icon_default_str;
+    return imageValue;
+  }
+
+  /**
+   * Load description of AccessibilityService
+   */
+  async loadDescription(bundleInfo: bundleManager.BundleInfo, serviceName: string): Promise<ResourceStr> {
+    let description: ResourceStr = $r('app.string.no_description_provided');
+    let context = globalThis.settingsAbilityContext;
+    let moduleInfo: Array<bundleManager.HapModuleInfo> = bundleInfo.hapModulesInfo;
+    if (moduleInfo.length > 0) {
+      for (let hapInfo of moduleInfo) {
+        for (let ability of hapInfo.extensionAbilitiesInfo) {
+          if (ability.name === serviceName && ability.descriptionId > 0) {
+            description = await context.resourceManager.getString(ability.descriptionId);
+            if (!description) {
+              LogUtil.warn(MODULE_TAG + 'load description invalid');
+              description = $r('app.string.no_description_provided');
+            }
+            LogUtil.info(MODULE_TAG + 'load description end');
+            return description;
+          }
+        }
+      }
+    }
+    return description;
+  }
+
+  /**
+   * Clear up application data by bundle name
+   * @param bundleName bundle name
+   */
+  clearUpExtensionServiceData(bundleName: string, callback) {
+    appManager.clearUpApplicationData(bundleName, callback);
+  }
+
+  /**
+   * Clears cache data of a specified application.
+   * @param bundleName bundle name
+   */
+  cleanBundleCacheFiles(bundleName: string, callback) {
+    Bundle.cleanBundleCacheFiles(bundleName, callback);
+  }
+
+  getBundleInfo(bundleName, callback) {
+    LogUtil.info(MODULE_TAG + 'start get bundle info');
+    Bundle.getBundleInfo(bundleName, Bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION, callback);
+    LogUtil.info(MODULE_TAG + 'end get bundle info');
+  }
+}
+
+let extensionServiceManagementModel = new ExtensionServiceManagementModel();
+
+export default extensionServiceManagementModel as ExtensionServiceManagementModel;
