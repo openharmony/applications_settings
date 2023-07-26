@@ -14,12 +14,14 @@
  */
 
 import config from '@ohos.accessibility.config';
+import accessibility from '@ohos.accessibility';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import { SubHeader } from '../../../../../../common/component/src/main/ets/default/textComponent';
 import { AccessibilitySettingModel } from '../model/accessibilityImpl/AccessibilitySettingModel';
+import { SubEntryComponentWithText } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
 
 const AUDIO_BALANCE_STEP_VALUE: number = 1;
 const AUDIO_BALANCE_MIN_VALUE: number = -100;
@@ -34,6 +36,7 @@ struct AccessibilitySettings {
   @State highContrastTextIsOn: boolean = false;
   @State audioMonoIsOn: boolean = false;
   @State inSetValueAudioBalance: number = 0;
+  @State serviceNum: number = 0;
   private TAG = ConfigData.TAG + 'AccessibilitySettings ';
 
   build() {
@@ -162,7 +165,7 @@ struct AccessibilitySettings {
           }
           .width(ConfigData.WH_100_100)
           .borderRadius($r('app.float.radius_24'))
-          .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
+          .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'));
 
           Text($r('app.string.audio_balance_suggestion'))
             .width(ConfigData.WH_100_100)
@@ -175,6 +178,25 @@ struct AccessibilitySettings {
               top: $r('app.float.distance_4'),
               bottom: $r('app.float.distance_24'),
             });
+
+          SubHeader({ titleContent: $r('app.string.extension_service') });
+
+          if (this.serviceNum > 0) {
+            SubEntryComponentWithText({
+              targetPage: 'pages/serviceManagement',
+              title: $r('app.string.installed_service'),
+              endStateText: $r('app.string.service_number', this.serviceNum)
+            })
+              .margin({ top: $r("app.float.distance_8") })
+          } else {
+            SubEntryComponentWithText({
+              targetPage: 'pages/serviceManagement',
+              title: $r('app.string.installed_service'),
+              endStateText: $r('app.string.no_service')
+            })
+              .margin({ top: $r("app.float.distance_8") })
+              .enabled(false);
+          }
         }
         .useSizeType({
           sm: { span: 4, offset: 0 },
@@ -220,7 +242,7 @@ struct AccessibilitySettings {
   }
 
   @Log
-  aboutToAppear(): void{
+  aboutToAppear(): void {
     LogUtil.info(this.TAG + 'aboutToAppear in');
     config.highContrastText.get().then((data) => {
       LogUtil.info(this.TAG + 'get highContrastText switch success');
@@ -243,6 +265,14 @@ struct AccessibilitySettings {
       LogUtil.error(this.TAG + 'failed to get audioBalance, because ' + JSON.stringify(err));
     });
 
+    accessibility.getAccessibilityExtensionList('all', 'install').then((data) => {
+      LogUtil.info(this.TAG + 'get accessibilityAbilityList success, service length: ' + JSON.stringify(data.length));
+      if (data.length > 0) {
+        this.serviceNum = data.length;
+      }
+    }).catch((err) => {
+      LogUtil.error(this.TAG + 'failed to get accessibilityAbilityList, because ' + JSON.stringify(err));
+    })
     LogUtil.info(this.TAG + 'aboutToAppear out');
   }
 
