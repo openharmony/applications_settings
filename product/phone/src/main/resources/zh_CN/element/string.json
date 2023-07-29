@@ -1318,7 +1318,7 @@
     },
     {
       "name": "service_number",
-      "value": "%d项服务"
+      "value": "%d 项服务"
     },
     {
       "name": "no_service",
