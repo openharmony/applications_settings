@@ -18,10 +18,10 @@ import accessibility from '@ohos.accessibility';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
+import ComponentConfig from '../../../../../../common/component/src/main/ets/default/ComponentConfig';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import { SubHeader } from '../../../../../../common/component/src/main/ets/default/textComponent';
 import { AccessibilitySettingModel } from '../model/accessibilityImpl/AccessibilitySettingModel';
-import { SubEntryComponentWithText } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
 
 const AUDIO_BALANCE_STEP_VALUE: number = 1;
 const AUDIO_BALANCE_MIN_VALUE: number = -100;
@@ -37,6 +37,9 @@ struct AccessibilitySettings {
   @State audioMonoIsOn: boolean = false;
   @State inSetValueAudioBalance: number = 0;
   @State serviceNum: number = 0;
+  @State serviceStateText: Resource = $r('app.string.no_service');
+  @State isTouched: boolean = false;
+  @State serviceNumChanged: boolean = true;
   private TAG = ConfigData.TAG + 'AccessibilitySettings ';
 
   build() {
@@ -180,22 +183,52 @@ struct AccessibilitySettings {
             });
 
           SubHeader({ titleContent: $r('app.string.extension_service') });
+          if (this.serviceNumChanged || !this.serviceNumChanged) {
+            Navigator({ target: 'pages/serviceManagement' }) {
+              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+                Row() {
+                  Text($r('app.string.installed_service'))
+                    .fontSize($r('app.float.font_16'))
+                    .fontWeight(FontWeight.Medium)
+                    .fontColor($r('app.color.font_color_182431'))
+                    .lineHeight($r('app.float.wh_value_22'))
+                    .margin({ left: $r('app.float.distance_8') })
+                    .textAlign(TextAlign.Start);
+                }
 
-          if (this.serviceNum > 0) {
-            SubEntryComponentWithText({
-              targetPage: 'pages/serviceManagement',
-              title: $r('app.string.installed_service'),
-              endStateText: $r('app.string.service_number', this.serviceNum)
-            })
-              .margin({ top: $r("app.float.distance_8") })
-          } else {
-            SubEntryComponentWithText({
-              targetPage: 'pages/serviceManagement',
-              title: $r('app.string.installed_service'),
-              endStateText: $r('app.string.no_service')
-            })
-              .margin({ top: $r("app.float.distance_8") })
-              .enabled(false);
+                Row() {
+                  Text(this.serviceStateText)
+                    .fontSize($r('app.float.font_14'))
+                    .lineHeight($r('app.float.wh_value_19'))
+                    .fontWeight(FontWeight.Regular)
+                    .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+                    .textAlign(TextAlign.End)
+                    .margin({ right: $r('app.float.distance_4') });
+                  Image('/res/image/ic_settings_arrow.svg')
+                    .height($r('app.float.wh_value_24'))
+                    .width($r('app.float.wh_value_12'))
+                    .fillColor($r('sys.color.ohos_id_color_primary'))
+                    .margin({ right: $r('app.float.distance_8') })
+                    .opacity($r("app.float.opacity_0_2"));
+                }
+              }
+              .onTouch((event: TouchEvent) => {
+                if (event.type === TouchType.Down) {
+                  this.isTouched = true;
+                }
+                if (event.type === TouchType.Up) {
+                  this.isTouched = false;
+                }
+              })
+              .height(ComponentConfig.WH_100_100)
+              .width(ComponentConfig.WH_100_100)
+              .borderRadius($r('app.float.radius_20'));
+            }
+            .padding($r('app.float.distance_4'))
+            .height($r('app.float.wh_value_56'))
+            .borderRadius($r('app.float.radius_24'))
+            .enabled(this.serviceNum > 0 ? true : false)
+            .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
           }
         }
         .useSizeType({
@@ -241,6 +274,27 @@ struct AccessibilitySettings {
     }
   }
 
+  async getAbilityList(): Promise<void> {
+    await accessibility.getAccessibilityExtensionList('all', 'install').then((data) => {
+      LogUtil.info(this.TAG + 'get accessibilityAbilityList success, service length: ' + JSON.stringify(data.length));
+      if (data.length > 0) {
+        this.serviceStateText = $r('app.string.service_number', this.serviceNum);
+        this.serviceNum = data.length;
+        LogUtil.info(this.TAG + 'serviceNumber: ' + JSON.stringify(this.serviceNum));
+      } else {
+        this.serviceStateText = $r('app.string.no_service');
+        this.serviceNum = 0;
+      }
+      this.serviceNumChanged = !this.serviceNumChanged;
+    }).catch((err) => {
+      LogUtil.error(this.TAG + 'failed to get accessibilityAbilityList, because ' + JSON.stringify(err));
+      this.serviceStateText = $r('app.string.no_service');
+      this.serviceNum = 0;
+      this.serviceNumChanged = !this.serviceNumChanged;
+    })
+    LogUtil.info(this.TAG + 'aboutToAppear out');
+  }
+
   @Log
   aboutToAppear(): void {
     LogUtil.info(this.TAG + 'aboutToAppear in');
@@ -265,19 +319,18 @@ struct AccessibilitySettings {
       LogUtil.error(this.TAG + 'failed to get audioBalance, because ' + JSON.stringify(err));
     });
 
-    accessibility.getAccessibilityExtensionList('all', 'install').then((data) => {
-      LogUtil.info(this.TAG + 'get accessibilityAbilityList success, service length: ' + JSON.stringify(data.length));
-      if (data.length > 0) {
-        this.serviceNum = data.length;
-      }
-    }).catch((err) => {
-      LogUtil.error(this.TAG + 'failed to get accessibilityAbilityList, because ' + JSON.stringify(err));
-    })
-    LogUtil.info(this.TAG + 'aboutToAppear out');
+    this.getAbilityList();
   }
 
   @Log
   aboutToDisappear(): void{
     LogUtil.info(this.TAG + 'aboutToDisappear');
+  }
+
+  @Log
+  onPageShow(): void {
+    LogUtil.info(this.TAG + 'onPageShow in');
+    this.getAbilityList();
+    LogUtil.info(this.TAG + 'onPageShow out');
   }
 }

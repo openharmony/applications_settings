@@ -1322,7 +1322,7 @@
     },
     {
       "name": "service_number",
-      "value": "%d项服务"
+      "value": "%d 项服务"
     },
     {
       "name": "no_service",
@@ -1379,10 +1379,6 @@
     {
       "name": "accessibility_label",
       "value": "辅助应用"
-    },
-    {
-      "name": "accessibility_desc",
-      "value": "未提供说明"
     }
   ]
 }
