@@ -20,7 +20,7 @@ import config from '@ohos.accessibility.config';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
+import LongHeadComponent from '../../../../../../common/component/src/main/ets/default/longHeadComponent';
 import ComponentConfig from '../../../../../../common/component/src/main/ets/default/ComponentConfig';
 
 const MODULE_TAG = ConfigData.TAG + 'service-> ';
@@ -79,42 +79,47 @@ struct AccessibilityServiceInfo {
     Column() {
       GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
         Column() {
-          HeadComponent({ headName: this.serviceInfo.serviceTitle, isActive: true });
+          LongHeadComponent({ longHeadName: this.serviceInfo.serviceTitle, isActive: true });
 
           Column() {
-            Row() {
-              Text(this.serviceInfo.serviceTitle)
-                .fontSize($r('sys.float.ohos_id_text_size_body1'))
-                .fontColor($r('sys.color.ohos_id_color_text_primary'))
-                .fontWeight(FontWeight.Medium)
-                .textAlign(TextAlign.Start);
+            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Row() {
+                Text(this.serviceInfo.serviceTitle)
+                  .fontSize($r('sys.float.ohos_id_text_size_body1'))
+                  .fontColor($r('sys.color.ohos_id_color_text_primary'))
+                  .fontWeight(FontWeight.Medium)
+                  .maxLines(ComponentConfig.MAX_LINES_3)
+                  .textOverflow({ overflow: TextOverflow.Ellipsis })
+                  .width('90%')
+                  .textAlign(TextAlign.Start);
 
-              Blank();
+                Blank()
 
-              if (this.pageChanged) {
-                Toggle({ type: ToggleType.Switch, isOn: this.serviceIsOn })
-                  .width('36vp')
-                  .height('20vp')
-                  .selectedColor('#007DFF')
-                  .onChange((isOn: boolean) => {
-                    this.setExtensionServiceState(isOn);
-                  });
-              } else {
-                Toggle({ type: ToggleType.Switch, isOn: this.serviceIsOn })
-                  .width('36vp')
-                  .height('20vp')
-                  .selectedColor('#007DFF')
-                  .onChange((isOn: boolean) => {
-                    this.setExtensionServiceState(isOn);
-                  });
+                if (this.pageChanged) {
+                  Toggle({ type: ToggleType.Switch, isOn: this.serviceIsOn })
+                    .width('36vp')
+                    .height('20vp')
+                    .selectedColor('#007DFF')
+                    .onChange((isOn: boolean) => {
+                      this.setExtensionServiceState(isOn);
+                    });
+                } else {
+                  Toggle({ type: ToggleType.Switch, isOn: this.serviceIsOn })
+                    .width('36vp')
+                    .height('20vp')
+                    .selectedColor('#007DFF')
+                    .onChange((isOn: boolean) => {
+                      this.setExtensionServiceState(isOn);
+                    });
+                }
               }
+              .height($r('app.float.wh_value_56'))
+              .width(ConfigData.WH_100_100)
+              .alignItems(VerticalAlign.Center)
+              .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_6') })
+              .backgroundColor($r('app.color.white_bg_color'))
+              .borderRadius($r('app.float.radius_24'));
             }
-            .height($r('app.float.wh_value_56'))
-            .width(ConfigData.WH_100_100)
-            .alignItems(VerticalAlign.Center)
-            .padding({ left: $r( 'app.float.wh_value_12'), right: $r('app.float.wh_value_6') })
-            .backgroundColor($r('app.color.white_bg_color'))
-            .borderRadius($r('app.float.radius_24'));
 
             Blank(4);
 
@@ -204,7 +209,6 @@ struct AccessibilityServiceInfo {
       this.serviceIsOn = param.serviceState;
       AppStorage.SetOrCreate('ServiceInformation', param);
     }
-    LogUtil.error(this.tag + 'param is invalid');
   }
 
   setExtensionServiceState(isOn: boolean): void {
