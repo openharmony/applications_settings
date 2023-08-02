@@ -22,10 +22,13 @@ import ComponentConfig from '../../../../../../common/component/src/main/ets/def
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import { SubHeader } from '../../../../../../common/component/src/main/ets/default/textComponent';
 import { AccessibilitySettingModel } from '../model/accessibilityImpl/AccessibilitySettingModel';
+import { SubEntryComponentWithEndText } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
 
 const AUDIO_BALANCE_STEP_VALUE: number = 1;
 const AUDIO_BALANCE_MIN_VALUE: number = -100;
 const AUDIO_BALANCE_MAX_VALUE: number = 100;
+const BASIC_ABILITY_HIGH_CONTRAST_TEXT = 'HIGH_CONTRAST_TEXT';
+const BASIC_ABILITY_SINGLE_AUDIO = 'AUDIO_MONO';
 
 /**
  * accessibility setting
@@ -33,6 +36,8 @@ const AUDIO_BALANCE_MAX_VALUE: number = 100;
 @Entry
 @Component
 struct AccessibilitySettings {
+  @State shortKeyIsOn: boolean = false;
+  @State shortKeyStatusText: string = '';
   @State highContrastTextIsOn: boolean = false;
   @State audioMonoIsOn: boolean = false;
   @State inSetValueAudioBalance: number = 0;
@@ -182,6 +187,15 @@ struct AccessibilitySettings {
               bottom: $r('app.float.distance_24'),
             });
 
+          SubHeader({ titleContent: $r('app.string.operate_accessibility') });
+          SubEntryComponentWithEndText({
+            targetPage: "pages/accessibilityShortKey",
+            title: $r("app.string.accessibility_shortcuts"),
+            endText: $shortKeyStatusText
+          })
+            .width(ConfigData.WH_100_100)
+            .margin({ bottom: $r("app.float.distance_12"), top: $r("app.float.distance_8") })
+
           SubHeader({ titleContent: $r('app.string.extension_service') });
           if (this.serviceNumChanged || !this.serviceNumChanged) {
             Navigator({ target: 'pages/serviceManagement' }) {
@@ -244,6 +258,26 @@ struct AccessibilitySettings {
     .width(ConfigData.WH_100_100)
     .height(ConfigData.WH_100_100);
   };
+
+  setShortKeyText(status: boolean, text: string): void {
+    LogUtil.info(this.TAG + 'shortKeyState: ' + JSON.stringify(status));
+    if (text === 'none') {
+      this.shortKeyStatusText = (Object) ($r('app.string.disabled'));
+      return;
+    }
+    if (status) {
+      if (text === BASIC_ABILITY_HIGH_CONTRAST_TEXT) {
+        this.shortKeyStatusText = (Object) ($r('app.string.highContrast_text'));
+      } else if (text === BASIC_ABILITY_SINGLE_AUDIO) {
+        this.shortKeyStatusText = (Object) ($r('app.string.single_audio'));
+      } else {
+        this.shortKeyStatusText = text.split('/')[1];
+      }
+    } else {
+      this.shortKeyStatusText = (Object) ($r('app.string.disabled'));
+    }
+    LogUtil.info(this.TAG + 'set shortKeyStateText: ' + this.shortKeyStatusText);
+  }
 
   setHighContrastTextState(isOn: boolean): void {
     LogUtil.info(this.TAG + 'setHighContrastTextState ' + isOn);
@@ -318,8 +352,27 @@ struct AccessibilitySettings {
     }).catch((err) => {
       LogUtil.error(this.TAG + 'failed to get audioBalance, because ' + JSON.stringify(err));
     });
-
+    this.getShortKeyStateAndTargetByStatus();
     this.getAbilityList();
+    LogUtil.info(this.TAG + 'aboutToAppear out');
+  }
+
+  async getShortKeyStateAndTargetByStatus(): Promise<void> {
+    await config.shortkey.get().then((data) => {
+      this.shortKeyIsOn = data;
+      LogUtil.info(this.TAG + 'get shortKeyIsOn success : ' +  data);
+    }).catch((err) => {
+      LogUtil.error(this.TAG + 'failed to get shortKeyIsOn, because ' + JSON.stringify(err));
+    });
+
+    await config.shortkeyTarget.get().then((data) => {
+      this.shortKeyStatusText = data;
+      LogUtil.info(this.TAG + 'get shortkeyTarget success: ' + data);
+    }).catch((err) => {
+      LogUtil.error(this.TAG + 'failed to get shortkeyTarget, because ' + JSON.stringify(err));
+    });
+
+    this.setShortKeyText(this.shortKeyIsOn, this.shortKeyStatusText);
   }
 
   @Log
@@ -330,6 +383,7 @@ struct AccessibilitySettings {
   @Log
   onPageShow(): void {
     LogUtil.info(this.TAG + 'onPageShow in');
+    this.getShortKeyStateAndTargetByStatus();
     this.getAbilityList();
     LogUtil.info(this.TAG + 'onPageShow out');
   }
