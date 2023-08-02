@@ -27,8 +27,8 @@ import { SubEntryComponentWithEndText } from '../../../../../../common/component
 const AUDIO_BALANCE_STEP_VALUE: number = 1;
 const AUDIO_BALANCE_MIN_VALUE: number = -100;
 const AUDIO_BALANCE_MAX_VALUE: number = 100;
-const BASIC_ABILITY_HIGH_CONTRAST_TEXT = 'highContrast_text';
-const BASIC_ABILITY_SINGLE_AUDIO = 'audioMono';
+const BASIC_ABILITY_HIGH_CONTRAST_TEXT = 'HIGH_CONTRAST_TEXT';
+const BASIC_ABILITY_SINGLE_AUDIO = 'AUDIO_MONO';
 
 /**
  * accessibility setting
@@ -37,12 +37,11 @@ const BASIC_ABILITY_SINGLE_AUDIO = 'audioMono';
 @Component
 struct AccessibilitySettings {
   @State shortKeyIsOn: boolean = false;
-  @State shortKeyStatusText: string = $r('app.string.disabled').toString();
+  @State shortKeyStatusText: string = '';
   @State highContrastTextIsOn: boolean = false;
   @State audioMonoIsOn: boolean = false;
   @State inSetValueAudioBalance: number = 0;
   @State serviceNum: number = 0;
-  @State configStateChanged: boolean = false;
   @State serviceStateText: Resource = $r('app.string.no_service');
   @State isTouched: boolean = false;
   @State serviceNumChanged: boolean = true;
@@ -262,13 +261,17 @@ struct AccessibilitySettings {
 
   setShortKeyText(status: boolean, text: string): void {
     LogUtil.info(this.TAG + 'shortKeyState: ' + JSON.stringify(status));
+    if (text === 'none') {
+      this.shortKeyStatusText = (Object) ($r('app.string.disabled'));
+      return;
+    }
     if (status) {
       if (text === BASIC_ABILITY_HIGH_CONTRAST_TEXT) {
         this.shortKeyStatusText = (Object) ($r('app.string.highContrast_text'));
       } else if (text === BASIC_ABILITY_SINGLE_AUDIO) {
         this.shortKeyStatusText = (Object) ($r('app.string.single_audio'));
       } else {
-        this.shortKeyStatusText = text;
+        this.shortKeyStatusText = text.split('/')[1];
       }
     } else {
       this.shortKeyStatusText = (Object) ($r('app.string.disabled'));
@@ -370,7 +373,6 @@ struct AccessibilitySettings {
     });
 
     this.setShortKeyText(this.shortKeyIsOn, this.shortKeyStatusText);
-    this.configStateChanged = !this.configStateChanged;
   }
 
   @Log
