@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-import Bundle from '@ohos.bundle';
-import appManager from '@ohos.application.appManager';
 import bundleManager from '@ohos.bundle.bundleManager';
 import accessibility from '@ohos.accessibility';
 import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
@@ -141,9 +139,18 @@ export class ExtensionServiceManagementModel extends BaseModel {
     let moduleInfo: Array<bundleManager.HapModuleInfo> = bundleInfo.hapModulesInfo;
     if (moduleInfo.length > 0) {
       for (let hapInfo of moduleInfo) {
+        let bundleContext: Context = context.createBundleContext(bundleInfo.name, hapInfo.name);
         for (let ability of hapInfo.extensionAbilitiesInfo) {
           if (ability.name === serviceName && ability.descriptionId > 0) {
-            description = await context.resourceManager.getString(ability.descriptionId);
+            LogUtil.info(MODULE_TAG + 'descriptionId: ' + JSON.stringify(ability.descriptionId));
+            await bundleContext.resourceManager.getStringValue(ability.descriptionId)
+              .then((res) => {
+                description = res;
+                LogUtil.info(MODULE_TAG + 'description: ' + JSON.stringify(description));
+              })
+              .catch((err) => {
+                LogUtil.info(MODULE_TAG + 'get description error: ' + JSON.stringify(err));
+              });
             if (!description) {
               LogUtil.warn(MODULE_TAG + 'load description invalid');
               description = $r('app.string.no_description_provided');
@@ -155,28 +162,6 @@ export class ExtensionServiceManagementModel extends BaseModel {
       }
     }
     return description;
-  }
-
-  /**
-   * Clear up application data by bundle name
-   * @param bundleName bundle name
-   */
-  clearUpExtensionServiceData(bundleName: string, callback) {
-    appManager.clearUpApplicationData(bundleName, callback);
-  }
-
-  /**
-   * Clears cache data of a specified application.
-   * @param bundleName bundle name
-   */
-  cleanBundleCacheFiles(bundleName: string, callback) {
-    Bundle.cleanBundleCacheFiles(bundleName, callback);
-  }
-
-  getBundleInfo(bundleName, callback) {
-    LogUtil.info(MODULE_TAG + 'start get bundle info');
-    Bundle.getBundleInfo(bundleName, Bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION, callback);
-    LogUtil.info(MODULE_TAG + 'end get bundle info');
   }
 }
 
