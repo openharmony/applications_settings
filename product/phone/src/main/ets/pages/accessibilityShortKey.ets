@@ -19,16 +19,15 @@ import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUti
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import { AccessibilitySettingModel } from '../model/accessibilityImpl/AccessibilitySettingModel';
-import BasicDataSource from '../../../../../../common/utils/src/main/ets/default/model/BasicDataSource';
 const TAG = ConfigData.TAG + 'Accessibility ShortKey: ';
-const BASIC_ABILITY_HIGH_CONTRAST_TEXT = 'highContrast_text';
-const BASIC_ABILITY_SINGLE_AUDIO = 'audioMono';
+const BASIC_ABILITY_HIGH_CONTRAST_TEXT = 'HIGH_CONTRAST_TEXT';
+const BASIC_ABILITY_SINGLE_AUDIO = 'AUDIO_MONO';
 
 @Entry
 @Component
 struct AccessibilityShortKey {
   @State shortKeyIsOn: boolean = false;
-  @State shortKeyStatusText: string = $r('app.string.disabled').toString();
+  @State shortKeyStatusText: string = '';
   @State checked: string = '';
   @State extAbilityNameList: string[] = [];
   @State AllAbilityNameList: string[] = [];
@@ -178,17 +177,23 @@ struct AccessibilityShortKey {
     });
 
     await config.shortkeyTarget.get().then((data) => {
-      this.shortKeyStatusText = data;
+      LogUtil.info(TAG + 'get shortkeyTarget success: ' + data);
+      if (data === 'none') {
+        this.shortKeyStatusText = (Object) ($r('app.string.disabled'));
+        return;
+      }
       if (data === BASIC_ABILITY_HIGH_CONTRAST_TEXT) {
+        this.checked = BASIC_ABILITY_HIGH_CONTRAST_TEXT;
         this.shortKeyStatusText = (Object) ($r('app.string.highContrast_text'));
       } else if (data === BASIC_ABILITY_SINGLE_AUDIO) {
+        this.checked = BASIC_ABILITY_SINGLE_AUDIO;
         this.shortKeyStatusText = (Object) ($r('app.string.single_audio'));
       } else {
-        this.shortKeyStatusText = data;
+        this.checked = data;
+        this.shortKeyStatusText = data.split('/')[1];
       }
-      LogUtil.info(TAG + 'get shortkeyTarget success: ' + data);
     }).catch((err) => {
-      LogUtil.error(TAG + 'failed to get shortkeyTarget, because ' + JSON.stringify(err));
+      LogUtil.error(TAG + 'failed to get shortKeyTarget, because ' + JSON.stringify(err));
     });
   }
 
@@ -198,7 +203,7 @@ struct AccessibilityShortKey {
     accessibility.getAccessibilityExtensionList('all', 'install').then((data) => {
       LogUtil.info(TAG + 'get accessibilityAbilityList success, service length: ' + JSON.stringify(data.length));
       if (data.length > 0) {
-        data.forEach(item => this.extAbilityNameList.push(item.name));
+        data.forEach(item => this.extAbilityNameList.push(item.id));
       }
     }).catch((err) => {
       LogUtil.error(TAG + 'failed to get accessibilityAbilityList, because ' + JSON.stringify(err));
@@ -225,15 +230,6 @@ struct SelectAbilityScalingInformation {
     LogUtil.info(JSON.stringify(this.AllAbilityNameList))
   }
 
-  getText(text: string): string {
-    if (text === BASIC_ABILITY_HIGH_CONTRAST_TEXT || text === BASIC_ABILITY_SINGLE_AUDIO) {
-      return $r(text).toString();
-    } else {
-      return text;
-    }
-  }
-
-
   build() {
     Column(){
       Column() {
@@ -249,7 +245,7 @@ struct SelectAbilityScalingInformation {
             ListItem() {
               Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
                 Text((item === BASIC_ABILITY_HIGH_CONTRAST_TEXT) ? $r('app.string.highContrast_text') :
-                  ((item === BASIC_ABILITY_SINGLE_AUDIO) ? $r('app.string.single_audio') : item))
+                  ((item === BASIC_ABILITY_SINGLE_AUDIO) ? $r('app.string.single_audio') : item.split('/')[1]))
                   .fontFamily("HarmonyHeiTi")
                   .fontSize($r("sys.float.ohos_id_text_size_body1"))
                   .fontWeight(FontWeight.Medium)
@@ -313,7 +309,7 @@ struct SelectAbilityScalingInformation {
     } else if (text === BASIC_ABILITY_SINGLE_AUDIO) {
       this.shortKeyStatusText = (Object) ($r('app.string.single_audio'));
     } else {
-      this.shortKeyStatusText = text;
+      this.shortKeyStatusText = text.split('/')[1];
     }
   }
 }
