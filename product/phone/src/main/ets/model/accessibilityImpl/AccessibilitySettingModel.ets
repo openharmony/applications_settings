@@ -89,4 +89,13 @@ export class AccessibilitySettingModel {
       LogUtil.error(`${TAG} accessibilityConfigSetting config fail: ${audioBalance} err: ${JSON.stringify(err)}`);
     });
   }
+
+  static accessibilityShortKeyStateSet(targetName: string): void {
+    LogUtil.info(`${TAG} accessibilityshortkeyTargete config begin: ${targetName}`);
+    config.shortkeyTarget.set(targetName).then(() => {
+      LogUtil.info(`${TAG} accessibilityshortkeyTargete config success: ${targetName}`);
+    }).catch((err) => {
+      LogUtil.error(`${TAG} accessibilityshortkeyTargete config fail: ${targetName} err: ${JSON.stringify(err)}`);
+    });
+  }
 }

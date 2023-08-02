@@ -1307,6 +1307,22 @@
     {
       "name": "audio_balance_suggestion",
       "value": "向左或右滑动，可调节相应声道的音量大小"
+    },
+    {
+      "name": "operate_accessibility",
+      "value": "操作輔助"
+    },
+    {
+      "name": "accessibility_shortcuts",
+      "value": "辅助功能快捷键"
+    },
+    {
+      "name": "accessibility_shortcuts_tips",
+      "value": "开启后，连续按电源键三下，可启动无障碍快捷方式"
+    },
+    {
+      "name": "accessibility_select_ability",
+      "value": "选择功能"
     }
   ]
 }

@@ -21,11 +21,13 @@ import ConfigData from '../../../../../../common/utils/src/main/ets/default/base
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import { SubHeader } from '../../../../../../common/component/src/main/ets/default/textComponent';
 import { AccessibilitySettingModel } from '../model/accessibilityImpl/AccessibilitySettingModel';
-import { SubEntryComponentWithText } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
+import { SubEntryComponentWithText, SubEntryComponentWithEndText } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
 
 const AUDIO_BALANCE_STEP_VALUE: number = 1;
 const AUDIO_BALANCE_MIN_VALUE: number = -100;
 const AUDIO_BALANCE_MAX_VALUE: number = 100;
+const BASIC_ABILITY_HIGH_CONTRAST_TEXT = 'highContrast_text';
+const BASIC_ABILITY_SINGLE_AUDIO = 'audioMono';
 
 /**
  * accessibility setting
@@ -33,10 +35,13 @@ const AUDIO_BALANCE_MAX_VALUE: number = 100;
 @Entry
 @Component
 struct AccessibilitySettings {
+  @State shortKeyIsOn: boolean = false;
+  @State shortKeyStatusText: string = $r('app.string.disabled').toString();
   @State highContrastTextIsOn: boolean = false;
   @State audioMonoIsOn: boolean = false;
   @State inSetValueAudioBalance: number = 0;
   @State serviceNum: number = 0;
+  @State configStateChanged: boolean = false;
   private TAG = ConfigData.TAG + 'AccessibilitySettings ';
 
   build() {
@@ -179,6 +184,15 @@ struct AccessibilitySettings {
               bottom: $r('app.float.distance_24'),
             });
 
+          SubHeader({ titleContent: $r('app.string.operate_accessibility') });
+          SubEntryComponentWithEndText({
+            targetPage: "pages/accessibilityShortKey",
+            title: $r("app.string.accessibility_shortcuts"),
+            endText: $shortKeyStatusText
+          })
+            .width(ConfigData.WH_100_100)
+            .margin({ bottom: $r("app.float.distance_12"), top: $r("app.float.distance_8") })
+
           SubHeader({ titleContent: $r('app.string.extension_service') });
 
           if (this.serviceNum > 0) {
@@ -211,6 +225,22 @@ struct AccessibilitySettings {
     .width(ConfigData.WH_100_100)
     .height(ConfigData.WH_100_100);
   };
+
+  setShortKeyText(status: boolean, text: string): void {
+    LogUtil.info(this.TAG + 'shortKeyState: ' + JSON.stringify(status));
+    if (status) {
+      if (text === BASIC_ABILITY_HIGH_CONTRAST_TEXT) {
+        this.shortKeyStatusText = (Object) ($r('app.string.highContrast_text'));
+      } else if (text === BASIC_ABILITY_SINGLE_AUDIO) {
+        this.shortKeyStatusText = (Object) ($r('app.string.single_audio'));
+      } else {
+        this.shortKeyStatusText = text;
+      }
+    } else {
+      this.shortKeyStatusText = (Object) ($r('app.string.disabled'));
+    }
+    LogUtil.info(this.TAG + 'set shortKeyStateText: ' + this.shortKeyStatusText);
+  }
 
   setHighContrastTextState(isOn: boolean): void {
     LogUtil.info(this.TAG + 'setHighContrastTextState ' + isOn);
@@ -265,6 +295,8 @@ struct AccessibilitySettings {
       LogUtil.error(this.TAG + 'failed to get audioBalance, because ' + JSON.stringify(err));
     });
 
+    this.getShortKeyStateAndTargetByStatus();
+
     accessibility.getAccessibilityExtensionList('all', 'install').then((data) => {
       LogUtil.info(this.TAG + 'get accessibilityAbilityList success, service length: ' + JSON.stringify(data.length));
       if (data.length > 0) {
@@ -276,8 +308,32 @@ struct AccessibilitySettings {
     LogUtil.info(this.TAG + 'aboutToAppear out');
   }
 
+  async getShortKeyStateAndTargetByStatus(): Promise<void> {
+    await config.shortkey.get().then((data) => {
+      this.shortKeyIsOn = data;
+      LogUtil.info(this.TAG + 'get shortKeyIsOn success : ' +  data);
+    }).catch((err) => {
+      LogUtil.error(this.TAG + 'failed to get shortKeyIsOn, because ' + JSON.stringify(err));
+    });
+
+    await config.shortkeyTarget.get().then((data) => {
+      this.shortKeyStatusText = data;
+      LogUtil.info(this.TAG + 'get shortkeyTarget success: ' + data);
+    }).catch((err) => {
+      LogUtil.error(this.TAG + 'failed to get shortkeyTarget, because ' + JSON.stringify(err));
+    });
+
+    this.setShortKeyText(this.shortKeyIsOn, this.shortKeyStatusText);
+    this.configStateChanged = !this.configStateChanged;
+  }
+
   @Log
   aboutToDisappear(): void{
     LogUtil.info(this.TAG + 'aboutToDisappear');
+  }
+
+  @Log
+  onPageShow(): void {
+    this.getShortKeyStateAndTargetByStatus();
   }
 }
