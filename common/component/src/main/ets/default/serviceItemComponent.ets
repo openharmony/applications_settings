@@ -14,9 +14,10 @@
  */
 
 import Router from '@system.router';
+import prompt from '@ohos.prompt'
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import SettingListModel from '../../../../../../product/phone/src/main/ets/model/settingListImpl/SettingListModel';
-import prompt from '@ohos.prompt'
+import ComponentConfig from './ComponentConfig';
 
 @Component
 export struct ServiceItemComponent {
@@ -48,19 +49,20 @@ export struct ServiceItemComponent {
 
         Text(this.serviceTitle)
           .fontSize($r('app.float.font_16'))
-          .lineHeight($r('app.float.lineHeight_22'))
+          .fontColor($r('sys.color.ohos_id_color_text_primary'))
           .fontWeight(FontWeight.Medium)
           .fontFamily('HarmonyHeiTi')
-          .fontColor($r('sys.color.ohos_id_color_text_primary'))
-          .align(Alignment.Start)
+          .maxLines(ComponentConfig.MAX_LINES_3)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
+          .width('90%')
           .margin({
-            left: $r('app.float.distance_16'),
-            top: $r('app.float.distance_17'),
-            bottom: $r('app.float.distance_17')
+            left: $r('app.float.distance_16')
           })
+          .textAlign(TextAlign.Start);
       }
       .align(Alignment.Start)
       .height(ConfigData.WH_100_100)
+      .width('70%')
 
       Row() {
         Text(this.serviceEndText)
