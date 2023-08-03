@@ -1375,10 +1375,6 @@
     {
       "name": "accessibility_disable",
       "value": "不开启"
-    },
-    {
-      "name": "accessibility_label",
-      "value": "辅助应用"
     }
   ]
 }
