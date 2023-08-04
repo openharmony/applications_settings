@@ -25,8 +25,7 @@ import SwitchComponent from '../../../../../../common/component/src/main/ets/def
 import { SettingItemComponent } from '../../../../../../common/component/src/main/ets/default/settingItemComponent';
 import MobileNetworkController from '../controller/mobileNetwork/MobileNetworkController';
 
-const TAG = ConfigData.TAG + '.mobileNetwork -> ';
-
+const MODULE_TAG = ConfigData.TAG + '.mobileNetwork -> ';
 
 /**
  * mobile Network
@@ -39,7 +38,7 @@ struct mobileNetwork {
   private mobileNetworkController: MobileNetworkController = new MobileNetworkController();
   private subscriber;
   private subscribeInfo = {
-    events: [CommonEvent.Support.COMMON_EVENT_AIRPLANE_MODE_CHANGED,]
+    events: [CommonEvent.Support.COMMON_EVENT_AIRPLANE_MODE_CHANGED]
   };
 
   build() {
@@ -101,45 +100,34 @@ struct mobileNetwork {
   }
 
   aboutToAppear() {
-    try {
-      if (!globalThis.settingsAbilityContext) {
-        return;
-      }
-      console.info("createSubscriber 231"+settings.getValueSync(globalThis.settingsAbilityContext, 'settings.telephony.airplanemode', '0'));
-      if (settings.getValueSync(globalThis.settingsAbilityContext, 'settings.telephony.airplanemode', '0')) {
-        this.controllerMobileNetworkIsOn = true;
 
-      } else {
-        this.controllerMobileNetworkIsOn = false;
-        console.info("createSubscriber");
-      }
-      console.info("createSubscriber controllerMobileNetworkIsOn"+ this.controllerMobileNetworkIsOn);
-    } catch (err) {
-      LogUtil.info(`${TAG} getValueSync failed, code is ${err.code}, message is ${err.message}`);
+    if (!globalThis.settingsAbilityContext) {
+      return;
     }
-    try {
-      CommonEventManager.createSubscriber(this.subscribeInfo).then((err, commonEventSubscriber) => {
+    LogUtil.info(MODULE_TAG + "settings.getValueSync " + settings.getValueSync(globalThis.settingsAbilityContext, 'settings.telephony.airplanemode', '0'));
+    if (settings.getValueSync(globalThis.settingsAbilityContext, 'settings.telephony.airplanemode', '0') == 1) {
+      this.controllerMobileNetworkIsOn = true;
+    } else {
+      this.controllerMobileNetworkIsOn = false;
+    }
+
+    CommonEventManager.createSubscriber(this.subscribeInfo).then((commonEventSubscriber) => {
+      this.subscriber = commonEventSubscriber;
+      //订阅公共事件
+      CommonEventManager.subscribe(this.subscriber, (err, data) => {
+        LogUtil.info(MODULE_TAG + `subscribe data is  ` + JSON.stringify(data));
         if (err) {
-          LogUtil.info(`${TAG} createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+          LogUtil.info(MODULE_TAG + `subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
-          console.info("createSubscriber");
-          this.subscriber = commonEventSubscriber;
-          //订阅公共事件
-          try {
-            CommonEventManager.subscribe(this.subscriber, (err, data) => {
-              if (err) {
-                LogUtil.info(`${TAG} subscribe failed, code is ${err.code}, message is ${err.message}`);
-              } else {
-                LogUtil.info(`${TAG} subscribe ${data}}`);
-              }
-            });
-          } catch (err) {
-            LogUtil.info(`${TAG} subscribe failed, code is ${err.code}, message is ${err.message}`);
+          if (data.code == 1) {
+            this.controllerMobileNetworkIsOn = true;
+          } else {
+            this.controllerMobileNetworkIsOn = false;
           }
         }
-      })
-    } catch (err) {
-      LogUtil.info(`${TAG} createSubscriber failed, code is ${err.code}, message is ${err.message}`);
-    }
+      });
+    }).catch((err) => {
+      console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+    });
   }
 }
