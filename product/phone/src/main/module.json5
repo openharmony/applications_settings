@@ -194,6 +194,10 @@
         "reason": "$string:ENTERPRISE_SET_DATETIME"
       },
       {
+        "name": "ohos.permission.CONNECTIVITY_INTERNAL",
+        "reason": "$string:CONNECTIVITY_INTERNAL"
+      },
+      {
         "name": "ohos.permission.GET_INSTALLED_BUNDLE_LIST",
         "reason": "$string:GET_INSTALLED_BUNDLE_LIST"
       },
