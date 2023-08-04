@@ -14,12 +14,15 @@
  */
 import connection from '@ohos.net.connection';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import ISettingsController from '../../../../../../../common/component/src/main/ets/default/controller/ISettingsController'
+import ISettingsController
+    from '../../../../../../../common/component/src/main/ets/default/controller/ISettingsController'
 import SwitchController from '../../../../../../../common/component/src/main/ets/default/controller/SwitchController'
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import {LogAll} from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
+import { LogAll } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import parameter from '@ohos.systemparameter';
-const MODULE_TAG = ConfigData.TAG + '.OverdrawController -> ';
+
+const MODULE_TAG = ConfigData.TAG + '.mobileNetworkController -> ';
+
 @LogAll
 export default class mobileNetworkController extends SwitchController {
     /**
@@ -45,17 +48,14 @@ export default class mobileNetworkController extends SwitchController {
      * After current value changed event
      */
     afterCurrentValueChanged() {
-        if(this.isOn){
-            connection.enableAirplaneMode().then(function (error) {
-                LogUtil.info(MODULE_TAG + 1111+JSON.stringify(error))
-            }).catch((err)=>{
-                LogUtil.info(MODULE_TAG +2222+ JSON.stringify(err))
+        LogUtil.info(MODULE_TAG + 'fff1111 isOn' + this.isOn);
+        if (this.isOn) {
+            connection.enableAirplaneMode().catch((err) => {
+                LogUtil.info(MODULE_TAG + 'set enableAirplaneMode error' + JSON.stringify(err))
             })
         } else {
-            connection.disableAirplaneMode().then(function (error) {
-                LogUtil.info(MODULE_TAG +3333+ JSON.stringify(error))
-            }).catch((err)=>{
-                LogUtil.info(MODULE_TAG +4444+ JSON.stringify(err))
+            connection.disableAirplaneMode().catch((err) => {
+                LogUtil.info(MODULE_TAG + 'set disableAirplaneMode error' + JSON.stringify(err))
             })
         }
     }
