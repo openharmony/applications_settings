@@ -39,6 +39,7 @@
     "pages/moreConnections",
     "pages/nfc",
     "pages/compatibilityAssessment",
+    "pages/mobileNetwork",
     "pages/accessibilityShortKey"
   ]
 }

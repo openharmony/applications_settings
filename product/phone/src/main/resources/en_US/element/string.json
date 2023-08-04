@@ -977,6 +977,14 @@
       "value": "Mobile Data"
     },
     {
+      "name": "mobileNetwork",
+      "value": "Mobile Network"
+    },
+    {
+      "name": "flightMode",
+      "value": "Flight Mode"
+    },
+    {
       "name": "mobileDataFailed",
       "value": "Mobile data failed to start, please make sure the function is available."
     },
@@ -1219,6 +1227,10 @@
     {
       "name": "Input_Reached_Limited",
       "value": "Input has reached the upper limit"
+    },
+    {
+      "name": "CONNECTIVITY_INTERNAL",
+      "value": "CONNECTIVITY_INTERNAL"
     },
     {
       "name": "endTextEmpty",
