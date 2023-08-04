@@ -362,6 +362,17 @@ struct EntryComponent {
         .settingListItemFancy()
 
         ListItem() {
+          // accessibility
+          SettingItemComponent({
+            targetPage: "pages/accessibility",
+            settingTitle: $r("app.string.accessibility"),
+            settingEndText:$endTextEmpty,
+            settingIcon: "/res/image/ic_accessibility.svg",
+          })
+        }
+        .settingListItemFancy()
+
+        ListItem() {
           List() {
             ListItem(){
               // usersAccounts
