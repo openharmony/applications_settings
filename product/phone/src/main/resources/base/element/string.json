@@ -1307,6 +1307,74 @@
     {
       "name": "audio_balance_suggestion",
       "value": "向左或右滑动，可调节相应声道的音量大小"
+    },
+    {
+      "name":"user_approval_remain_times",
+      "value":"开启 (%d秒)"
+    },
+    {
+      "name": "extension_service",
+      "value": "扩展服务"
+    },
+    {
+      "name": "installed_service",
+      "value": "已安装服务"
+    },
+    {
+      "name": "service_number",
+      "value": "%d 项服务"
+    },
+    {
+      "name": "no_service",
+      "value": "无服务"
+    },
+    {
+      "name": "more_settings",
+      "value": "更多设置"
+    },
+    {
+      "name": "help",
+      "value": "帮助"
+    },
+    {
+      "name": "no_description_provided",
+      "value": "未提供说明"
+    },
+    {
+      "name": "accessibility_on",
+      "value": "已开启"
+    },
+    {
+      "name": "accessibility_off",
+      "value": "已关闭"
+    },
+    {
+      "name": "accessibility_security_notification",
+      "value": "安全提醒"
+    },
+    {
+      "name": "accessibility_notify_content",
+      "value": "无障碍为高度敏感权限，授予应用该权限，您的隐私信息可能会泄露，财产安全将受到威胁。授权后，应用可进行的行为有："
+    },
+    {
+      "name": "accessibility_risk_detail",
+      "value": "风险详情"
+    },
+    {
+      "name": "accessibility_risk_content",
+      "value": "• 可读取屏幕上的所有内容：并允许其在其他应用上层显示内容\n• 可跟踪您使用各应用的行为，并代替您操控应用。"
+    },
+    {
+      "name": "accessibility_user_approval",
+      "value": "我已知晓如上风险，并自愿承担可能导致的后果。"
+    },
+    {
+      "name": "accessibility_enable",
+      "value": "开启"
+    },
+    {
+      "name": "accessibility_disable",
+      "value": "不开启"
     }
   ]
 }
