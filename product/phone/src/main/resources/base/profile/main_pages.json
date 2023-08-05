@@ -7,6 +7,8 @@
     "pages/applicationInfo",
     "pages/applicationStorage",
     "pages/accessibility",
+    "pages/accessibilityServiceInfo",
+    "pages/serviceManagement",
     "pages/screenAndBrightness",
     "pages/aboutDevice",
     "pages/deviceName",
