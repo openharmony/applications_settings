@@ -42,7 +42,7 @@ export class SettingListModel extends BaseModel {
    */
   @Log
   onSettingItemClick(targetPage): void{
-    if(targetPage === ''){
+    if(targetPage === 'mobileData'){
       globalThis.settingsAbilityContext.startAbility({
         bundleName: ConfigData.MOBILE_DATA_BUNDLE_NAME,
         abilityName: ConfigData.MOBILE_DATA_ABILITY_NAME,
