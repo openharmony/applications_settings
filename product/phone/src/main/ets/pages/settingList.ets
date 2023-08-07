@@ -261,8 +261,8 @@ struct EntryComponent {
             ListItem(){
               // mobileData
               SettingItemComponent({
-                targetPage: "",
-                settingTitle: $r("app.string.mobileData"),
+                targetPage: "pages/mobileNetwork",
+                settingTitle: $r("app.string.mobileNetwork"),
                 settingEndText:$endTextEmpty,
                 settingIcon: "/res/image/mobileData.svg",
               })

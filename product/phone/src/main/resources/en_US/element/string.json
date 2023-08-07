@@ -977,6 +977,14 @@
       "value": "Mobile Data"
     },
     {
+      "name": "mobileNetwork",
+      "value": "Mobile Network"
+    },
+    {
+      "name": "flightMode",
+      "value": "Flight Mode"
+    },
+    {
       "name": "mobileDataFailed",
       "value": "Mobile data failed to start, please make sure the function is available."
     },
@@ -1221,6 +1229,10 @@
       "value": "Input has reached the upper limit"
     },
     {
+      "name": "CONNECTIVITY_INTERNAL",
+      "value": "CONNECTIVITY_INTERNAL"
+    },
+    {
       "name": "endTextEmpty",
       "value": " "
     },
@@ -1371,6 +1383,22 @@
     {
       "name": "accessibility_disable",
       "value": "Cancel"
+    },
+    {
+      "name": "operate_accessibility",
+      "value": "操作輔助"
+    },
+    {
+      "name": "accessibility_shortcuts",
+      "value": "辅助功能快捷键"
+    },
+    {
+      "name": "accessibility_shortcuts_tips",
+      "value": "开启后，连续按电源键三下，可启动无障碍快捷方式"
+    },
+    {
+      "name": "accessibility_select_ability",
+      "value": "选择功能"
     }
   ]
 }
