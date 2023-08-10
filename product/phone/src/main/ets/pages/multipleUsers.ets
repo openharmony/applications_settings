@@ -16,7 +16,7 @@
 
 import router from '@system.router';
 import deviceInfo from '@ohos.deviceInfo';
-import InputMethod from '@ohos.inputmethod';
+import InputMethod from '@ohos.inputMethod';
 import osAccount from '@ohos.account.osAccount';
 import { MAX_LENGTH } from '../model/usersAndAccounts/systemAccountModel';
 import SystemAccountModel from '../model/usersAndAccounts/systemAccountModel';
