@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import ComponentConfig from './ComponentConfig';
-import InputMethod from '@ohos.inputmethod';
+import InputMethod from '@ohos.inputMethod';
 
 /**
  * TextInput component

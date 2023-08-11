@@ -17,7 +17,7 @@
 import wifi from '@ohos.wifi';
 import router from '@system.router';
 import deviceInfo from '@ohos.deviceInfo';
-import InputMethod from '@ohos.inputmethod';
+import InputMethod from '@ohos.inputMethod';
 import WifiModel from '../model/wifiImpl/WifiModel';
 import { WifiScanInfo } from '../model/wifiImpl/WifiModel';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
