@@ -30,7 +30,7 @@ const deviceTypeInfo = deviceInfo.deviceType;
 
 @Extend(ListItem) function settingListItemFancy() {
   .width(ConfigData.WH_100_100)
-  .borderRadius($r("app.float.radius_24"))
+  .borderRadius($r("app.float.radius_16"))
   .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
   .padding($r('app.float.distance_4'))
 }

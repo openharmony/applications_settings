@@ -67,6 +67,7 @@ struct mobileNetwork {
                   settingIcon: '',
                 })
               }
+              .padding({left:$r("app.float.distance_4"),right:$r("app.float.distance_4")})
             }
             .width(ConfigData.WH_100_100)
             .divider({
@@ -75,7 +76,7 @@ struct mobileNetwork {
               startMargin: $r('app.float.wh_value_15'),
               endMargin: $r('app.float.wh_value_15') })
           }
-          .borderRadius($r("app.float.wh_value_24"))
+          .borderRadius($r("app.float.radius_16"))
           .backgroundColor($r("app.color.white_bg_color"))
           .width(ConfigData.WH_100_100)
           .margin({ top: $r("app.float.distance_12") })
