@@ -289,7 +289,7 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, const napi_val
     SETTING_LOG_INFO("getDataShareHelper called");
     auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
 
-    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri);
+    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri, strUri);
     SETTING_LOG_INFO("getDataShareHelper called");
 
     DataSharePredicates predicates;
