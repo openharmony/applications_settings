@@ -54,7 +54,7 @@ export struct SettingItemComponent {
           .fontColor($r("sys.color.ohos_id_color_text_primary"))
           .align(Alignment.Start)
           .margin({
-            left: $r("app.float.distance_16"),
+            left:this.targetPage === 'mobileData' ?  $r("app.float.distance_8"): $r("app.float.distance_16"),
             top: $r("app.float.distance_17"),
             bottom: $r("app.float.distance_17")
           })
@@ -88,7 +88,7 @@ export struct SettingItemComponent {
     }
     .width(ConfigData.WH_100_100)
     .height($r("app.float.wh_value_56"))
-    .borderRadius($r("app.float.radius_20"))
+    .borderRadius($r("app.float.radius_16"))
     .linearGradient(this.isTouched ? {
                                        angle: 90,
                                        direction: GradientDirection.Right,

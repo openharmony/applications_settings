@@ -74,12 +74,12 @@ export default struct SwitchComponent {
           });
       }
     }
-    .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_6') })
+    .padding({ left: $r('app.float.distance_12'), right: $r('app.float.distance_8') })
     .width(ComponentConfig.WH_100_100)
     .height(this.switchHeight)
     .backgroundColor($r("app.color.white_bg_color"))
     .alignItems(VerticalAlign.Center)
-    .borderRadius($r("app.float.wh_value_16"))
+    .borderRadius($r("app.float.radius_16"))
   }
 
   @Log
