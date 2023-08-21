@@ -742,7 +742,7 @@
     },
     {
       "name":"password_message_character",
-      "value":"密码由4-32字符字组成，需至少包含1个字母"
+      "value":"密码由6-32字符字组成，需至少包含1个字母"
     },
     {
       "name":"password_message_repeat",
@@ -790,7 +790,7 @@
     },
     {
       "name":"password_PIN_check_min_error",
-      "value":"数字密码至少应为 4 位"
+      "value":"数字密码至少应为 6 位"
     },
 	{
       "name":"password_PIN_must_be_numbers",
@@ -806,7 +806,7 @@
     },
     {
       "name":"password_check_min_error",
-      "value":"混合密码必须至少包含 4 个字符"
+      "value":"混合密码必须至少包含 6 个字符"
     },
     {
       "name":"password_check_max_error",
