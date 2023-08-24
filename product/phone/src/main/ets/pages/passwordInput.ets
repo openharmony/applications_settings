@@ -139,7 +139,7 @@ struct PasswordInput {
                   TextInput({ placeholder: '', text: this.password })
                     .height($r('app.float.distance_36'))
                     .width($r('app.float.wh_192'))
-                    .opacity(1)
+                    .opacity(0)
                     .fontColor(('rgba(0,0,0,0)'))
                     .backgroundColor(('rgba(0,0,0,0)'))
                     .caretColor(('rgba(0,0,0,0)'))
