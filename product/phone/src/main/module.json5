@@ -204,6 +204,10 @@
       {
         "name": "ohos.permission.WRITE_ACCESSIBILITY_CONFIG",
         "reason": "$string:WRITE_ACCESSIBILITY_CONFIG_PERMISSION"
+      },
+      {
+        "name": "ohos.permission.START_INVISIBLE_ABILITY",
+        "reason": "$string:START_INVISIBLE_ABILITY"
       }
     ]
   }
