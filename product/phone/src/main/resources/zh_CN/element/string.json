@@ -1399,6 +1399,10 @@
     {
       "name": "accessibility_select_ability",
       "value": "选择功能"
+    },
+    {
+      "name": "START_INVISIBLE_ABILITY",
+      "value": "跨应用启动"
     }
   ]
 }
