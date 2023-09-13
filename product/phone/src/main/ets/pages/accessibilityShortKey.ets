@@ -19,6 +19,8 @@ import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUti
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import { AccessibilitySettingModel } from '../model/accessibilityImpl/AccessibilitySettingModel';
+import { BusinessError } from '@ohos.base';
+
 const TAG = ConfigData.TAG + 'Accessibility ShortKey: ';
 const BASIC_ABILITY_HIGH_CONTRAST_TEXT = 'HIGH_CONTRAST_TEXT';
 const BASIC_ABILITY_SINGLE_AUDIO = 'AUDIO_MONO';
@@ -172,7 +174,7 @@ struct AccessibilityShortKey {
     await config.shortkey.get().then((data) => {
       this.shortKeyIsOn = data;
       LogUtil.info(TAG + 'get shortKeyIsOn success : ' +  data);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       LogUtil.error(TAG + 'failed to get shortKeyIsOn, because ' + JSON.stringify(err));
     });
 
@@ -192,7 +194,7 @@ struct AccessibilityShortKey {
         this.checked = data;
         this.shortKeyStatusText = data.split('/')[1];
       }
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       LogUtil.error(TAG + 'failed to get shortKeyTarget, because ' + JSON.stringify(err));
     });
   }
@@ -205,7 +207,7 @@ struct AccessibilityShortKey {
       if (data.length > 0) {
         data.forEach(item => this.extAbilityNameList.push(item.id));
       }
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       LogUtil.error(TAG + 'failed to get accessibilityAbilityList, because ' + JSON.stringify(err));
     })
     LogUtil.info(TAG + 'aboutToAppear out');
@@ -218,7 +220,7 @@ struct AccessibilityShortKey {
 
 @CustomDialog
 struct SelectAbilityScalingInformation {
-  controller: CustomDialogController;
+  controller?: CustomDialogController;
   @Link shortKeyStatusText: string;
   @Link checked: string;
   @Link extAbilityNameList: Array<string>;
@@ -241,7 +243,7 @@ struct SelectAbilityScalingInformation {
           .alignSelf(ItemAlign.Start)
 
         List() {
-          ForEach(this.AllAbilityNameList, (item, index) => {
+          ForEach(this.AllAbilityNameList, (item: string, index) => {
             ListItem() {
               Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
                 Text((item === BASIC_ABILITY_HIGH_CONTRAST_TEXT) ? $r('app.string.highContrast_text') :
@@ -256,7 +258,7 @@ struct SelectAbilityScalingInformation {
                   .width($r("app.float.wh_value_24"))
                   .onChange((value: boolean) => {
                     if (value) {
-                      this.controller.close();
+                      this.controller?.close();
                       this.setAbilityText(item);
                       this.setShortKeyStatusText(item);
                       this.checked = item;
@@ -277,7 +279,7 @@ struct SelectAbilityScalingInformation {
           .height($r("app.float.wh_value_40"))
           .margin({ top: $r("app.float.distance_8") })
           .onClick(() => {
-            this.controller.close();
+            this.controller?.close();
           })
       }
       .padding({

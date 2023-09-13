@@ -27,7 +27,6 @@ import RadioListComponent from '../../../../../../common/component/src/main/ets/
 
 const deviceTypeInfo = deviceInfo.deviceType;
 const TAG = ConfigData.TAG + 'PasswdSetting.PasswdInput -> ';
-let param;
 
 @Entry
 @Component
@@ -46,9 +45,9 @@ struct PasswordInput {
 
   // private Properties
   private pageRequestCode: number = -1;
-  private prevPageUri: string = undefined;
-  private pinChallenge: string = undefined;
-  private pinToken: string = undefined;
+  private prevPageUri: string = '';
+  private pinChallenge: string = '';
+  private pinToken: string = '';
   @State private pageTitle: Resource = $r("app.string.endTextEmpty");
   @State private inputMessage: Resource = $r("app.string.endTextEmpty");
   @State private unlockMethodList: RadioListItem[] = [];
@@ -58,9 +57,9 @@ struct PasswordInput {
   @State isFocused: boolean = false;
 
   // handler
-  private passwordOnChangeHandler: (value: string) => void;
-  private okOnClickHandler: (event?: ClickEvent) => void;
-  private unlockMethodChosenHandler: (value: number) => void;
+  private passwordOnChangeHandler: (value: string) => void = () => {};
+  private okOnClickHandler: (event?: ClickEvent) => void = () => {};
+  private unlockMethodChosenHandler: (value: number) => void = () => {};
 
   //dialog
   private chooseUnlockMethodDialog: CustomDialogController = new CustomDialogController({
@@ -77,14 +76,13 @@ struct PasswordInput {
     offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 })
   });
 
-  @Log
   aboutToAppear(): void {
     this.getRouterParam();
 
     // bind event handlers
-    this.passwordOnChangeHandler = this.mController.passwordOnChange.bind(this.mController);
-    this.okOnClickHandler = this.mController.inputFinish.bind(this.mController);
-    this.unlockMethodChosenHandler = this.mController.changePasswordType.bind(this.mController);
+    this.passwordOnChangeHandler = (value: string):void => this.mController.passwordOnChange(value);
+    this.okOnClickHandler = ():void => this.mController.inputFinish();
+    this.unlockMethodChosenHandler = (value: number):void => this.mController.changePasswordType(value);
 
     // bind component and initialize
     this.mController.bindComponent(this)
@@ -95,7 +93,6 @@ struct PasswordInput {
     this.updateView();
   }
 
-  @Log
   aboutToDisappear(): void {
     this.mController.unsubscribe();
   }
@@ -103,17 +100,16 @@ struct PasswordInput {
   /**
    * Get the params from router
    */
-  @Log
   getRouterParam() {
-    param = Router.getParams()
+    let param = Router.getParams()
     if (!param) {
       return;
     }
-    this.pageRequestCode = param.pageRequestCode;
-    this.prevPageUri = param.prevPageUri;
-    this.pinChallenge = param.pinChallenge;
-    this.pinToken = param.pinToken;
-    this.passwordType = param.passwordType;
+    this.pageRequestCode = param.pageRequestCode as number;
+    this.prevPageUri = param.prevPageUri as string;
+    this.pinChallenge = param.pinChallenge as string;
+    this.pinToken = param.pinToken as string;
+    this.passwordType = param.passwordType as number;
   }
 
   build() {
@@ -168,7 +164,7 @@ struct PasswordInput {
                     });
 
                   List({ space: 24 }) {
-                    ForEach(this.passwordCircle, (item) => {
+                    ForEach(this.passwordCircle, (item: string) => {
                       ListItem() {
                         Column()
                           .width($r('app.float.wh_value_12'))
@@ -258,12 +254,12 @@ struct PasswordInput {
               }
               .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
               .backgroundColor(!this.isTouchedLeft ? $r("sys.color.ohos_id_color_button_normal") : $r("sys.color.ohos_id_color_foreground_contrary"))
-              .onTouch((event: TouchEvent) => {
-                if (event.type === TouchType.Down) {
+              .onTouch((event?: TouchEvent) => {
+                if (event?.type === TouchType.Down) {
                   this.isTouchedLeft = true;
                 }
 
-                if (event.type === TouchType.Up) {
+                if (event?.type === TouchType.Up) {
                   this.isTouchedLeft = false;
                 }
               })
@@ -286,12 +282,12 @@ struct PasswordInput {
               }
               .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
               .backgroundColor(!this.isTouchedRight ? $r("sys.color.ohos_id_color_button_normal") : $r("sys.color.ohos_id_color_foreground_contrary"))
-              .onTouch((event: TouchEvent) => {
-                if (event.type === TouchType.Down) {
+              .onTouch((event?: TouchEvent) => {
+                if (event?.type === TouchType.Down) {
                   this.isTouchedRight = true;
                 }
 
-                if (event.type === TouchType.Up) {
+                if (event?.type === TouchType.Up) {
                   this.isTouchedRight = false;
                   this.isFocused = false;
                 }
@@ -323,7 +319,6 @@ struct PasswordInput {
   /**
    * Update view data
    */
-  @Log
   clearViewData() {
     AppStorage.SetOrCreate("checkMessage", '');
     this.password = '';
@@ -335,7 +330,6 @@ struct PasswordInput {
   /**
    * Update view
    */
-  @Log
   updateView() {
     this.pageTitle = this.getPageTitle();
     this.inputMessage = this.getInputMessage();
@@ -348,7 +342,6 @@ struct PasswordInput {
    *
    * @return : page title
    */
-  @Log
   getPageTitle(): Resource {
     let title: Resource = $r('app.string.password_enter_password');
     switch (this.passwordType) {
@@ -370,7 +363,6 @@ struct PasswordInput {
    *
    * @return : message
    */
-  @Log
   getInputMessage(): Resource {
     let inputMessage: Resource = $r("app.string.endTextEmpty");
     if (this.isInputFirstTime) {
@@ -398,9 +390,8 @@ struct PasswordInput {
    *
    * @return : unlock method list
    */
-  @Log
   getUnlockMethodList(): RadioListItem[] {
-    var list: RadioListItem[] = [];
+    let list: RadioListItem[] = [];
     if (!this.isInputFirstTime) {
       return list;
     }
@@ -433,7 +424,6 @@ struct PasswordInput {
    *
    * @return : button visibility
    */
-  @Log
   getButtonVisibility(): Visibility {
     return this.passwordType == PinSubType.PIN_SIX ? Visibility.Hidden : Visibility.Visible;
   }
@@ -461,16 +451,15 @@ struct CheckText {
  */
 @CustomDialog
 struct chooseUnlockMethodDialog {
-  controller: CustomDialogController;
-  private dataList: RadioListItem[];
-  private checkedValue: string;
-  private dialogTitle: string | Resource= "";
-  private chosenAction: (value: number) => void;
+  controller?: CustomDialogController;
+  private dataList: RadioListItem[] = [];
+  private checkedValue: string = '';
+  private dialogTitle: string | Resource = "";
+  private chosenAction: (value: number) => void = () => {};
   @State isTouched: Boolean = false;
 
-  @Log
   closeDialog() {
-    this.controller.close();
+    this.controller?.close();
   }
 
   build() {
@@ -490,7 +479,7 @@ struct chooseUnlockMethodDialog {
         onChange: (item: RadioListItem) => {
           if (this.chosenAction != null) {
             LogUtil.info(ConfigData.TAG + 'chooseUnlockMethodDialog : onCheckedAction : call back');
-            this.chosenAction(item.settingType);
+            this.chosenAction(item.settingType? item.settingType : 0);
           }
           this.closeDialog();
         }
@@ -515,12 +504,12 @@ struct chooseUnlockMethodDialog {
                                                direction: GradientDirection.Right,
                                                colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
                                              })
-        .onTouch((event: TouchEvent) => {
-          if (event.type === TouchType.Down) {
+        .onTouch((event?: TouchEvent) => {
+          if (event?.type === TouchType.Down) {
             this.isTouched = true;
           }
 
-          if (event.type === TouchType.Up) {
+          if (event?.type === TouchType.Up) {
             this.isTouched = false;
           }
         })
