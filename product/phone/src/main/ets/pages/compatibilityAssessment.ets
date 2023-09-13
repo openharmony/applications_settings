@@ -17,6 +17,7 @@ import deviceAttest from '@ohos.deviceAttest'
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { BusinessError } from '@ohos.base';
 
 const MODULE_TAG = ConfigData.TAG + '.compatibilityAssessment -> ';
 /**
@@ -113,7 +114,7 @@ struct compatibilityAssessment {
         }
         LogUtil.info(MODULE_TAG + "attestResultInfo success"+JSON.stringify(attestResultInfo));
       })
-        .catch((error) => {
+        .catch((error: BusinessError) => {
           this.assessmentResult =JSON.parse(JSON.stringify($r("app.string.assessmentQueryFailed")))
           this.assessmentImage = '/res/image/assessmentQueryFailed-light.svg'
           this.assessmentResultText = JSON.parse(JSON.stringify($r("app.string.assessmentQueryFailedText")))
