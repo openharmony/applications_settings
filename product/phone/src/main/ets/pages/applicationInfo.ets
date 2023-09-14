@@ -15,6 +15,7 @@
 
 import Router from '@system.router';
 import deviceInfo from '@ohos.deviceInfo';
+import {BaseData} from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ApplicationInfoController from '../controller/application/ApplicationInfoController';
 import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
@@ -28,16 +29,6 @@ import AppManagementModel from '../model/appManagementImpl/AppManagementModel';
 const MODULE_TAG = ConfigData.TAG + 'application-> ';
 const deviceTypeInfo = deviceInfo.deviceType;
 
-class AppInfoData {
-    settingIcon: string = "";
-    settingTitle:string = "";
-    settingValue: string = "";
-    settingArrow: string = "";
-    settingSummary: string = "";
-    settingBundleName:string = "";
-    settingIconId: string = "";
-    settingUri:string = "";
-}
 /**
  * Application Info
  */
@@ -45,7 +36,7 @@ class AppInfoData {
 @Component
 struct ApplicationInfo {
   tag: string = "ApplicationInfoSettings";
-  @StorageLink('appInformation') appInfo: AppInfoData = {
+  @StorageLink('appInformation') appInfo: BaseData = {
     settingIcon: "",
     settingTitle: "",
     settingValue: "",
@@ -55,7 +46,7 @@ struct ApplicationInfo {
     settingIconId: "",
     settingUri: ""
   };
-  @StorageLink('appManagement') mBundleInfoList: any[] = [];
+  @StorageLink('appManagement') mBundleInfoList: BaseData[] = [];
   private controller: ApplicationInfoController = new ApplicationInfoController();
   @State isPhoneOrRK: boolean = false;
   @State isRemovableBundle: boolean = true;
@@ -175,7 +166,6 @@ struct ApplicationInfo {
     .height(ConfigData.WH_100_100)
   }
 
-  @Log
   aboutToAppear(): void{
     LogUtil.info(this.tag + " aboutToAppear start ");
     if (deviceTypeInfo === 'phone' || deviceTypeInfo === 'default') {
@@ -190,10 +180,9 @@ struct ApplicationInfo {
   }
 
   getBundleName(): void {
-    let param;
-    param = Router.getParams();
+    let param = Router.getParams();
     if (param) {
-      this.bundleName = param.settingBundleName;
+      this.bundleName = param.settingBundleName.toString();
       this.appInfo = param;
       AppStorage.SetOrCreate('appInformation', param);
     }
@@ -206,17 +195,16 @@ struct ApplicationInfo {
           .then((data) => {
             bundleList[0] = data;
             AppManagementModel.getResourceItem(0, 1, bundleList)
-            .then(() => {
+              .then(() => {
                 this.mBundleInfoList = AppStorage.Get('appManagementList');
                 this.appInfo = this.mBundleInfoList[0];
                 AppStorage.SetOrCreate('appInformation', this.mBundleInfoList[0]);
-            })
+              })
           });
       }
     }
   }
 
-  @Log
   onBackPress() {
     LogUtil.info('settings ApplicationInfo onBackPress');
   }
@@ -224,7 +212,6 @@ struct ApplicationInfo {
   /**
    * Stop exception prompt Dialog
    */
-  @Log
   showPromptDialog(callback) {
     AlertDialog.show({
       message: $r("app.string.Stop_exception_prompt"),
@@ -246,8 +233,8 @@ struct ApplicationInfo {
     })
   }
 
-  updateRemovableStatus(bundleName) {
-    this.controller.getBundleInfo(bundleName, (err, result) => {
+  updateRemovableStatus(bundleName:string) {
+    this.controller.getBundleInfo(bundleName, (err:Error, result) => {
       if (err) {
         LogUtil.info(MODULE_TAG + 'get system bundle info failed');
       }else{
@@ -265,10 +252,10 @@ struct ApplicationInfo {
  */
 @CustomDialog
 struct ShowDialog {
-  dialogController: CustomDialogController;
-  action: () => void;
+  dialogController?: CustomDialogController;
+  action?: () => void;
   private uirBack: string = 'pages/appManagement';
-  @StorageLink('appInformation') appInfo: AppInfoData = {
+  @StorageLink('appInformation') appInfo: BaseData = {
     settingIcon: "",
     settingTitle: "",
     settingValue: "",
@@ -303,11 +290,15 @@ struct ShowDialog {
       DialogButtonLayout({
         secondTitle: $r('app.string.uninstall'),
         firstClickEvent: () => {
-          this.dialogController.close();
+          if(this.dialogController){
+            this.dialogController.close();
+          }
         },
         secondClickEvent: () => {
           this.action();
-          this.dialogController.close();
+          if(this.dialogController){
+            this.dialogController.close();
+          }
           Router.back({ uri: this.uirBack });
         }
       })

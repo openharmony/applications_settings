@@ -33,7 +33,7 @@ const PAIRED_ITEM_NUMBER = 3;
 const PAGE_URI_DEVICE_NAME = 'pages/deviceName';
 const PAGE_URI_BLUETOOTH_PAIRED_DEVICE_INFO = 'pages/bluetoothPairedDeviceInfo';
 const deviceTypeInfo = deviceInfo.deviceType;
-let pinRequiredTIimer = null;
+let pinRequiredTIimer :number|undefined= undefined;
 @Entry
 @Component
 struct Bluetooth {
@@ -43,7 +43,6 @@ struct Bluetooth {
   @StorageLink('bluetoothToggleEnabled') isEnabled: boolean = true;
   @StorageLink('bluetoothLocalName') localName: string = '';
 
-  @Log
   aboutToAppear(): void {
     LogUtil.log(this.PAGE_TAG + 'aboutToAppear in : isOn = ' + this.isOn)
     this.deviceController
@@ -52,14 +51,12 @@ struct Bluetooth {
     LogUtil.log(this.PAGE_TAG + 'aboutToAppear out : isOn = ' + this.isOn)
   }
 
-  @Log
   onPageShow(): void {
     LogUtil.log(this.PAGE_TAG + 'onPageShow in : localName = ' + this.localName)
     this.deviceController.getLocalName();
     LogUtil.log(this.PAGE_TAG + 'onPageShow out : localName = ' + this.localName)
   }
 
-  @Log
   aboutToDisappear(): void {
     this.deviceController.unsubscribe();
   }
@@ -198,7 +195,6 @@ struct PairedDeviceComponent {
   @State isTouched: boolean = false;
   @State hide: boolean = true;
 
-  @Log
   aboutToAppear(): void{
     if (this.controller) {
       // bind component and initialize
@@ -261,7 +257,7 @@ struct PairedDeviceComponent {
             }
 
             if ((this.hide && index === PAIRED_ITEM_NUMBER) || //more
-            (!this.hide && index >= PAIRED_ITEM_NUMBER && index == this.pairedDevices.length - 1)) { //put_away
+              (!this.hide && index >= PAIRED_ITEM_NUMBER && index == this.pairedDevices.length - 1)) { //put_away
               ListItem() {
                 Stack({ alignContent: Alignment.Center }) {
                   Stack({ alignContent: Alignment.Center }) {
@@ -330,7 +326,6 @@ struct PairedDeviceComponent {
       case ProfileConnectionState.STATE_DISCONNECTING:
         stateText = JSON.parse(JSON.stringify($r('app.string.bluetooth_state_disconnecting')));
         break;
-
     }
     return stateText;
   }
@@ -350,12 +345,12 @@ struct PairedDeviceComponent {
    */
   private gotoPairedDeviceInfo(item: BluetoothDevice) {
     if (item.connectionState != ProfileConnectionState.STATE_CONNECTING
-    && item.connectionState != ProfileConnectionState.STATE_DISCONNECTING) {
+      && item.connectionState != ProfileConnectionState.STATE_DISCONNECTING) {
       LogUtil.info(this.TAG_PAGE + 'item right icon on click.');
-      let param = { 'bluetoothDevice': JSON.stringify(item) }
+      // let param = { 'bluetoothDevice': JSON.stringify(item) }
       Router.push({
         uri: PAGE_URI_BLUETOOTH_PAIRED_DEVICE_INFO,
-        params: param
+        params: JSON.stringify(item)
       });
     }
   }
@@ -464,7 +459,6 @@ struct AvailableDeviceComponent {
     this.availableDevicesList.notifyDataReload()
   }
 
-  @Log
   aboutToAppear(): void{
     if (this.controller) {
       // bind component and initialize
@@ -589,7 +583,7 @@ struct AvailableDeviceComponent {
   /**
    * Confirm pairing
    */
-  @Log
+
   confirmPairing(accept: boolean) {
     LogUtil.info(this.TAG_PAGE + 'confirmPairing pairingDevice');
     try{

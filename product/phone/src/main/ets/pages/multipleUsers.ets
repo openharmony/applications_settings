@@ -18,17 +18,27 @@ import router from '@system.router';
 import deviceInfo from '@ohos.deviceInfo';
 import InputMethod from '@ohos.inputMethod';
 import osAccount from '@ohos.account.osAccount';
-import { MAX_LENGTH } from '../model/usersAndAccounts/systemAccountModel';
-import SystemAccountModel from '../model/usersAndAccounts/systemAccountModel';
+import SystemAccountModel, { MAX_LENGTH } from '../model/usersAndAccounts/systemAccountModel';
 import SystemAccountController from '../model/usersAndAccounts/SystemAccountController';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import { TitleText } from '../../../../../../common/component/src/main/ets/default/textComponent';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
-import { DialogButtonLayout, DialogButtonLayoutWithState } from '../../../../../../common/component/src/main/ets/default/dialogComponent';
+import {
+  DialogButtonLayout,
+  DialogButtonLayoutWithState
+} from '../../../../../../common/component/src/main/ets/default/dialogComponent';
 
 const deviceTypeInfo = deviceInfo.deviceType;
+
+class AccountInfo {
+  localId: number = 0;
+  localName: string = '';
+
+  constructor() {
+  }
+}
 
 @Entry
 @Component
@@ -37,18 +47,16 @@ struct MultipleUsers {
   @StorageLink("isShowAddGuest") isShowAddGuest: boolean = false;
   @StorageLink("systemAccountList") userList: osAccount.OsAccountInfo[] = [];
   @StorageLink("isShowDelete") isShowDelete: boolean = false;
-
   private addUserDialogController: CustomDialogController = new CustomDialogController({
     builder: AddUserDialog({
       controller: this.addUserDialogController,
-      account: {},
+      account: new AccountInfo(),
       confirm: this.onConfirm.bind(this),
     }),
     alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
     offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
     autoCancel: true
   });
-
   private waitDialogController: CustomDialogController = new CustomDialogController({
     builder: WaitDialog({ controller: this.waitDialogController, content: $r("app.string.isCreatingUser") }),
     autoCancel: false,
@@ -62,7 +70,7 @@ struct MultipleUsers {
         Column() {
           Flex({
             direction: FlexDirection.Column,
-            alignItems: Alignment.Center,
+            alignItems: ItemAlign.Center,
             justifyContent: FlexAlign.SpaceBetween
           }) {
             Column() {
@@ -71,7 +79,7 @@ struct MultipleUsers {
 
               // user list
               List() {
-                ForEach(this.userList, userItem => {
+                ForEach(this.userList, (userItem: osAccount.OsAccountInfo) => {
                   ListItem() {
                     UserItem({ user: userItem });
                   }
@@ -111,7 +119,7 @@ struct MultipleUsers {
                   title: $r("app.string.addGuest"),
                   color: $r("app.color.font_color_007DFF"),
                   visible: this.isShowAddGuest ? Visibility.Visible : Visibility.None,
-                  clickEvent: ((event) => {
+                  clickEvent: ((event: ClickEvent | undefined) => {
                     AlertDialog.show({
                       message: $r("app.string.askAddGuest"),
                       primaryButton: {
@@ -199,7 +207,7 @@ struct MultipleUsers {
   onConfirm(localName: string) {
     LogUtil.info("Open creating wait dialog");
     this.waitDialogController.open();
-    SystemAccountController.createSystemAccount(localName, ((account) => {
+    SystemAccountController.createSystemAccount(localName, (() => {
       this.waitDialogController.close();
       AlertDialog.show({
         message: $r("app.string.askSwitchUser"),
@@ -243,9 +251,8 @@ struct MultipleUsers {
 
 @Component
 struct UserItem {
-  private user: osAccount.OsAccountInfo;
   @State isTouched: boolean = false;
-
+  private user: osAccount.OsAccountInfo | null = null;
   private dialogController: CustomDialogController = new CustomDialogController({
     builder: UserItemDialog({ dialogController: this.dialogController, user: this.user }),
     autoCancel: false,
@@ -262,14 +269,14 @@ struct UserItem {
           .margin({ left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") })
 
         Column() {
-          Text(this.user.localName)
+          Text(this.user?.localName)
             .fontSize($r("app.float.font_16"))
             .fontWeight(FontWeight.Medium)
             .fontSize($r('sys.float.ohos_id_text_size_body1'))
             .margin({ bottom: $r('sys.float.ohos_id_text_margin_vertical') })
 
           if (SystemAccountController.isShowIdentity(this.user)) {
-            Text(SystemAccountModel.getIdentityFromMap(this.user.type))
+            Text(SystemAccountModel.getIdentityFromMap(this.user?.type))
               .fontSize($r('sys.float.ohos_id_text_size_body2'))
               .fontWeight(FontWeight.Regular)
               .fontColor($r('sys.color.ohos_id_color_text_secondary'))
@@ -289,7 +296,7 @@ struct UserItem {
     .onClick((event) => {
       LogUtil.info("Click the multiple user item.");
       if (SystemAccountController.isCurrentAdministrator() ||
-      SystemAccountController.isCurrentUser(this.user) && !SystemAccountController.isGuestAccount(this.user)) {
+        SystemAccountController.isCurrentUser(this.user) && !SystemAccountController.isGuestAccount(this.user)) {
         this.dialogController.open();
         return;
       }
@@ -305,7 +312,7 @@ struct UserItem {
           secondaryButton: {
             value: $r("app.string.confirm"),
             action: () => {
-              SystemAccountController.switchUser(this.user.localId);
+              SystemAccountController.switchUser(this.user?.localId);
             }
           },
           alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
@@ -315,20 +322,20 @@ struct UserItem {
     })
     .borderRadius($r('app.float.radius_20'))
     .linearGradient(this.isTouched ? {
-                                       angle: 90,
-                                       direction: GradientDirection.Right,
-                                       colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-                                     } : {
-                                           angle: 90,
-                                           direction: GradientDirection.Right,
-                                           colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-                                         })
-    .onTouch((event: TouchEvent) => {
-      if (event.type === TouchType.Down) {
+      angle: 90,
+      direction: GradientDirection.Right,
+      colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+    } : {
+      angle: 90,
+      direction: GradientDirection.Right,
+      colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+    })
+    .onTouch((event?: TouchEvent | undefined) => {
+      if (event?.type === TouchType.Down) {
         this.isTouched = true;
       }
 
-      if (event.type === TouchType.Up) {
+      if (event?.type === TouchType.Up) {
         this.isTouched = false;
       }
     });
@@ -338,7 +345,7 @@ struct UserItem {
 // Current user item dialog, allow user to set user name and profile image.
 @CustomDialog
 struct UserItemDialog {
-  private user: osAccount.OsAccountInfo;
+  private user: osAccount.OsAccountInfo | null = null;
   private dialogController: CustomDialogController;
 
   build() {
@@ -358,9 +365,9 @@ struct UserItemDialog {
 
 @Component
 struct CurrentDialogBuilder {
-  private controller: CustomDialogController;
-  private user: UserData;
-  private tempName: string = "";
+  private controller: CustomDialogController | null = null;
+  private user: AccountInfo | null = null;
+  private tempName: string = '';
 
   build() {
     Column() {
@@ -368,7 +375,7 @@ struct CurrentDialogBuilder {
         .width($r("app.float.wh_value_40"))
         .height($r("app.float.wh_value_40"))
         .margin({ top: $r("app.float.wh_value_24"), bottom: $r("app.float.wh_value_13") })
-        .onClick((event) => {
+        .onClick((event: ClickEvent | undefined) => {
           LogUtil.info("Click to modify user image.")
           let chooseImageDialog = new CustomDialogController({
             builder: ChooseImageDialog(),
@@ -386,7 +393,7 @@ struct CurrentDialogBuilder {
         .fontWeight(FontWeight.Medium)
         .margin({ bottom: $r("app.float.wh_value_8") })
 
-      TextInput({ text: this.user.localName })
+      TextInput({ text: this.user?.localName })
         .placeholderColor($r("app.color.font_color_182431"))
         .placeholderFont({
           size: $r("app.float.font_16"),
@@ -421,12 +428,14 @@ struct CurrentDialogBuilder {
       DialogButtonLayout({
         firstClickEvent: () => {
           LogUtil.info("Cancel current user modify dialog.");
-          this.controller.close();
+          this.controller?.close();
         },
         secondClickEvent: () => {
           LogUtil.info("Confirm current user modify dialog.");
-          this.controller.close();
-          SystemAccountController.setAccountName(this.user.localId, this.tempName);
+          this.controller?.close();
+          if (this.user?.localId) {
+            SystemAccountController.setAccountName(this.user.localId, this.tempName);
+          }
         }
       })
     }
@@ -439,8 +448,8 @@ struct CurrentDialogBuilder {
 // Current user item dialog, allow user to set user name and profile image.
 @Component
 struct UserDialogBuilder {
-  private controller: CustomDialogController;
-  private user: osAccount.OsAccountInfo;
+  private controller: CustomDialogController | null = null;
+  private user: osAccount.OsAccountInfo | null = null;
   private waitController: CustomDialogController = new CustomDialogController({
     builder: WaitDialog({
       controller: this.waitController,
@@ -453,7 +462,7 @@ struct UserDialogBuilder {
 
   build() {
     Column() {
-      Text(this.user.localName)
+      Text(this.user?.localName)
         .fontSize($r("app.float.font_20"))
         .fontWeight(FontWeight.Medium)
         .fontColor($r("app.color.font_color_182431"))
@@ -466,8 +475,8 @@ struct UserDialogBuilder {
         .width(ConfigData.WH_100_100)
         .textAlign(TextAlign.Start)
         .onClick((event) => {
-          this.controller.close();
-          SystemAccountController.switchUser(this.user.localId);
+          this.controller?.close();
+          SystemAccountController.switchUser(this.user?.localId);
         })
 
       Divider()
@@ -493,7 +502,7 @@ struct UserDialogBuilder {
               action: () => {
                 LogUtil.info("Confirm delete user.");
                 this.waitController.open();
-                SystemAccountController.removeAccount(this.user.localId, () => {
+                SystemAccountController.removeAccount(this.user?.localId, () => {
                   this.waitController.close();
                 });
               }
@@ -501,7 +510,7 @@ struct UserDialogBuilder {
             alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
             offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 })
           });
-          this.controller.close();
+          this.controller?.close();
         })
 
       Button($r("app.string.cancel"))
@@ -512,7 +521,7 @@ struct UserDialogBuilder {
         .width(ConfigData.WH_100_100)
         .onClick(() => {
           LogUtil.info("Cancel user operation dialog.");
-          this.controller.close();
+          this.controller?.close();
         })
     }
     .alignItems(HorizontalAlign.Start)
@@ -526,8 +535,7 @@ struct AddUserDialog {
   @State hintText: string = '';
   @State isWarn: boolean = false;
   private controller: CustomDialogController;
-  private confirm: (localName: string) => void;
-  private account;
+  private account: AccountInfo = new AccountInfo();
 
   build() {
     Column() {
@@ -600,17 +608,17 @@ struct AddUserDialog {
       DialogButtonLayoutWithState({
         firstClickEvent: () => {
           LogUtil.info("Cancel add new user.");
-          this.controller.close();
+          this.controller?.close();
         },
         secondClickEvent: () => {
           LogUtil.info("Confirm Add new user.");
-          this.controller.close();
+          this.controller?.close();
           this.confirm(this.account.localName);
         },
         secondButtonState: this.buttonState
       })
     }
-    .borderRadius($r("app.float.wh_value_24") )
+    .borderRadius($r("app.float.wh_value_24"))
     .height($r("app.float.wh_value_260"))
     .margin({ left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") })
   }
@@ -619,6 +627,9 @@ struct AddUserDialog {
     ResourceUtil.getString($r("app.string.nickname"))
       .then(value => this.hintText = value);
   }
+
+  private confirm: (localName: string) => void = () => {
+  };
 }
 
 @CustomDialog
@@ -647,7 +658,7 @@ struct ChooseImageDialog {
 @CustomDialog
 struct WaitDialog {
   private controller: CustomDialogController;
-  private content: string | Resource;
+  private content: string | Resource = '';
 
   build() {
     Row() {
