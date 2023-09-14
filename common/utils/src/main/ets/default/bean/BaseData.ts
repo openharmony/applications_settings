@@ -23,6 +23,8 @@ export class BaseData {
   settingValue?: string | Resource;
   settingArrow?: string | Resource ;
   settingSummary?: string;
+  settingBundleName?: string;
+  settingIconId?: string;
   settingUri?: string;
   settingPriority?: string;
 }
