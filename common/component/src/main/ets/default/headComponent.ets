@@ -12,18 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ComponentConfig from './ComponentConfig';
 import Router from '@system.router';
+import ComponentConfig from './ComponentConfig';
 
 /**
  * head custom component
  */
 @Component
 export default struct HeadComponent {
-  private isActive: boolean= true;
-  private icBackIsVisibility: boolean= true;
+  @State isTouch: boolean = false;
+  private isActive: boolean = true;
+  private icBackIsVisibility: boolean = true;
   private headName: string | Resource = '';
-  @State isTouch: boolean= false;
 
   build() {
     Row() {
@@ -39,11 +39,11 @@ export default struct HeadComponent {
       .onClick(() => {
         Router.back();
       })
-      .onTouch((event: TouchEvent) => {
-        if (event.type === TouchType.Down) {
+      .onTouch((event?: TouchEvent | undefined) => {
+        if (event?.type === TouchType.Down) {
           this.isTouch = true;
         }
-        if (event.type === TouchType.Up) {
+        if (event?.type === TouchType.Up) {
           this.isTouch = false;
         }
       });

@@ -72,13 +72,15 @@ struct restoreFactorySettings {
           .margin({ top: $r("app.float.distance_16"), bottom: $r("app.float.distance_24") })
           .backgroundColor(!this.isTouched ? '#E6E9EB' : $r("sys.color.ohos_id_color_foreground_contrary"))
           .onClick(this.getRestoreFactory)
-          .onTouch((event: TouchEvent) => {
-            if (event.type === TouchType.Down) {
-              this.isTouched = true;
-            }
+          .onTouch((event?: TouchEvent) => {
+            if(event){
+              if (event.type === TouchType.Down) {
+                this.isTouched = true;
+              }
 
-            if (event.type === TouchType.Up) {
-              this.isTouched = false;
+              if (event.type === TouchType.Up) {
+                this.isTouched = false;
+              }
             }
           })
         }
@@ -104,10 +106,12 @@ struct restoreFactorySettings {
   /**
    * Get restoreFactory
    */
-  private getRestoreFactory = (event) => {
-    let existPassword = false;
-    if (!existPassword) {
-      Router.push({ uri: 'pages/resetPhone' });
+  private getRestoreFactory = (event?: ClickEvent) => {
+    if(event){
+      let existPassword = false;
+      if (!existPassword) {
+        Router.push({ uri: 'pages/resetPhone' });
+      }
     }
   }
 }
