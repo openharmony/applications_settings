@@ -21,7 +21,6 @@ import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/Lo
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 
-let param;
 
 /**
  * BluetoothPairedDeviceInfo
@@ -29,21 +28,21 @@ let param;
 @Entry
 @Component
 struct BluetoothPairedDeviceInfo {
-  @State bluetoothDevice: BluetoothDevice = undefined;
+  @State bluetoothDevice: BluetoothDevice | undefined= undefined;
   @State isTouched: boolean = false;
   private controller: BluetoothDeviceController = new BluetoothDeviceController()
 
-  @Log
   aboutToAppear() {
-    param = Router.getParams();
-    this.bluetoothDevice = JSON.parse(param.bluetoothDevice);
+    let param = Router.getParams();
+    this.bluetoothDevice = JSON.parse(JSON.stringify(param));
+    LogUtil.log(ConfigData.TAG + " this.bluetoothDevice"+ this.bluetoothDevice);
   }
 
   build() {
     Column() {
       GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
         Column() {
-          HeadComponent({ headName: this.bluetoothDevice.deviceName, isActive: true });
+          HeadComponent({ headName: this.bluetoothDevice != undefined?this.bluetoothDevice.deviceName:"", isActive: true });
 
           Blank()
 
@@ -58,7 +57,7 @@ struct BluetoothPairedDeviceInfo {
           .align(Alignment.Center)
           .onClick(() => {
             LogUtil.log(ConfigData.TAG + "unpair onClick");
-            if (this.controller.unpair(this.bluetoothDevice.deviceId)) {
+            if (this.controller.unpair(this.bluetoothDevice != undefined ? this.bluetoothDevice.deviceId:'')) {
               Router.back();
             }
           })

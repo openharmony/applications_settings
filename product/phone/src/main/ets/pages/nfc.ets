@@ -24,9 +24,9 @@ const TAG = ConfigData.TAG + 'Nfc: ';
 @Component
 struct Nfc {
   @StorageLink('isNfcEnabled') isNfcEnabled: boolean = false;
-  @StorageLink('nfcImageWidth') nfcImageWidth: number = null;
-  @StorageLink('nfcImageWidth') nfcImageHeight: number = null;
-  private switchDebounceFlag = undefined;
+  @StorageLink('nfcImageWidth') nfcImageWidth: number = 0;
+  @StorageLink('nfcImageWidth') nfcImageHeight: number = 0;
+  private switchDebounceFlag : number|undefined = undefined;
 
   build() {
     Column() {
@@ -88,7 +88,7 @@ struct Nfc {
 
   switchNfcActiveStatus(isOn: boolean) {
     // make the ui change quickly
-//    this.isNfcEnabled = !this.isNfcEnabled;
+    //    this.isNfcEnabled = !this.isNfcEnabled;
     this.isNfcEnabled = isOn;
     LogUtil.info(TAG + 'current enable status: ' + this.isNfcEnabled);
 
@@ -112,7 +112,7 @@ struct Nfc {
   aboutToAppear() {
     LogUtil.info(TAG + 'aboutToAppear in');
     if (!this.switchDebounceFlag) {
-      NfcModel.registerNfcStatusObserver((code) => {
+      NfcModel.registerNfcStatusObserver((code:boolean) => {
         LogUtil.info(TAG + 'NFC status code: ' + code);
       })
     }

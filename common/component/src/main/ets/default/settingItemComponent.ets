@@ -13,17 +13,17 @@
  * limitations under the License.
  */
 
+import prompt from '@ohos.prompt'
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import SettingListModel from '../../../../../../product/phone/src/main/ets/model/settingListImpl/SettingListModel';
-import prompt from "@ohos.prompt"
 
 @Component
 export struct SettingItemComponent {
-  private targetPage: string;
-  private settingTitle: string | Resource;
   @Link settingEndText: string;
-  private settingIcon: string | Resource;
   @State isTouched: boolean = false;
+  private targetPage: string = '';
+  private settingTitle: string | Resource = '';
+  private settingIcon: string | Resource = '';
 
   onPageShow() {
     console.info(`CCCC onPageShow: ${this.targetPage}`)
@@ -54,7 +54,7 @@ export struct SettingItemComponent {
           .fontColor($r("sys.color.ohos_id_color_text_primary"))
           .align(Alignment.Start)
           .margin({
-            left:this.targetPage === 'mobileData' ?  $r("app.float.distance_8"): $r("app.float.distance_16"),
+            left: this.targetPage === 'mobileData' ? $r("app.float.distance_8") : $r("app.float.distance_16"),
             top: $r("app.float.distance_17"),
             bottom: $r("app.float.distance_17")
           })
@@ -90,19 +90,19 @@ export struct SettingItemComponent {
     .height($r("app.float.wh_value_56"))
     .borderRadius($r("app.float.radius_16"))
     .linearGradient(this.isTouched ? {
-                                       angle: 90,
-                                       direction: GradientDirection.Right,
-                                       colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-                                     } : {
-                                           angle: 90,
-                                           direction: GradientDirection.Right,
-                                           colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-                                         })
-    .onTouch((event: TouchEvent) => {
-      if (event.type === TouchType.Down) {
+      angle: 90,
+      direction: GradientDirection.Right,
+      colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+    } : {
+      angle: 90,
+      direction: GradientDirection.Right,
+      colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+    })
+    .onTouch((event?: TouchEvent | undefined) => {
+      if (event?.type === TouchType.Down) {
         this.isTouched = true;
       }
-      if (event.type === TouchType.Up) {
+      if (event?.type === TouchType.Up) {
         this.isTouched = false;
       }
     })
