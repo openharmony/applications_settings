@@ -18,6 +18,16 @@ import LogUtil from '../../../../../../utils/src/main/ets/default/baseUtil/LogUt
 import Log from '../../../../../../utils/src/main/ets/default/baseUtil/LogDecorator';
 import ConfigData from '../../../../../../utils/src/main/ets/default/baseUtil/ConfigData';
 
+interface Info {
+  type: number;
+  text: string;
+}
+
+interface InfoItem {
+  index: number;
+  data: Info;
+}
+
 /**
  * result component
  */
@@ -30,24 +40,26 @@ export default struct ResultComponent {
   @State data: SearchData = new SearchData()
   @State columnSpace: string = '2vp';
 
-  @Builder HighlightText(
-    spans: string[],
+  @Builder
+  HighlightText(
+    spans: Info[],
     fontColor: Color | Resource,
     fontSize: Resource,
     highlightFontColor: Color | Resource) {
 
     Text() {
-      ForEach(spans.map((item1, index1) => {
-        return { index: index1, data: item1 };
-      }), item => {
-
+      ForEach(spans.map((item1: Info, index1: number) => {
+        let tmpItem: InfoItem = { index: index1, data: item1 };
+        return tmpItem;
+      }), (item: InfoItem) => {
         if (item.data.type == this.TEXT_TYPE_NORMAL) {
           Span(item.data.text).fontColor(fontColor).fontSize(fontSize).fontWeight(FontWeight.Medium)
         } else if (item.data.type == this.TEXT_TYPE_KEYWORD) {
           Span(item.data.text).fontColor(highlightFontColor).fontSize(fontSize).fontWeight(FontWeight.Regular)
         }
       },
-        item => item.index)
+        (item: InfoItem) => item.index.toString()
+      )
     }
     .textAlign(TextAlign.Start)
     .maxLines(3)
@@ -63,7 +75,7 @@ export default struct ResultComponent {
         .visibility(this.icon ? Visibility.Visible : Visibility.Hidden)
         .objectFit(ImageFit.Contain);
 
-      Column({space: this.columnSpace}){
+      Column({ space: this.columnSpace }) {
         this.HighlightText(
           this.splitToHighlightText(this.data.keyword),
           $r('app.color.search_result_text_color'),
@@ -89,7 +101,7 @@ export default struct ResultComponent {
         .margin({ left: $r('app.float.sys_elements_margin_horizontal_m') })
         .fillColor($r("sys.color.ohos_id_color_fourth"))
     }
-//    .height($r('app.float.search_item_height'))
+    //    .height($r('app.float.search_item_height'))
     .padding({
       left: $r('sys.float.ohos_id_card_margin_start'),
       right: $r('sys.float.ohos_id_card_margin_end')
@@ -99,8 +111,7 @@ export default struct ResultComponent {
     .align(Alignment.Start)
   }
 
-  @Log
-  aboutToAppear(){
+  aboutToAppear() {
     ResourceUtil.getString($r('app.float.distance_2')).then(value => this.columnSpace = value);
   }
 
@@ -108,33 +119,32 @@ export default struct ResultComponent {
    * split to highlight text
    * @param text
    */
-  @Log
-  splitToHighlightText(text: string): any[] {
-    let spans: any[] = []
+  splitToHighlightText(text: string): Info[] {
+    let spans: Info[] = []
 
-    var lowerSpans: string[] = text.toLowerCase().split(this.highlightKeyword.toLowerCase())
-    var keywordStartIndex = 0
-    var keywordLength = this.highlightKeyword.length
+    let lowerSpans: string[] = text.toLowerCase().split(this.highlightKeyword.toLowerCase())
+    let keywordStartIndex = 0
+    let keywordLength = this.highlightKeyword.length
 
-    for (var i = 0; i < lowerSpans.length; i++) {
-      var normalText = text.substr(keywordStartIndex, lowerSpans[i].length)
+    for (let i = 0; i < lowerSpans.length; i++) {
+      let normalText = text.substr(keywordStartIndex, lowerSpans[i].length)
       spans.push({
         type: this.TEXT_TYPE_NORMAL,
         text: normalText
       })
       LogUtil.debug(ConfigData.TAG + 'ResultComponent splitToHighlightText : i = [' + i + '] push normal : ' +
-        JSON.stringify(normalText));
+      JSON.stringify(normalText));
 
       // if not at last, append highlight keyword
       if (i != lowerSpans.length - 1) {
         keywordStartIndex += lowerSpans[i].length
-        var keywordText = text.substr(keywordStartIndex, keywordLength)
+        let keywordText = text.substr(keywordStartIndex, keywordLength)
         spans.push({
           type: this.TEXT_TYPE_KEYWORD,
           text: keywordText
         })
         LogUtil.debug(ConfigData.TAG + 'ResultComponent splitToHighlightText : i = [' + i + '] push keyword : ' +
-          JSON.stringify(keywordText));
+        JSON.stringify(keywordText));
         keywordStartIndex += keywordLength
       }
     }
