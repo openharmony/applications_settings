@@ -298,16 +298,16 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, const napi_val
     std::vector<std::string> columns;
     if (dataShareHelper == nullptr) {
         SETTING_LOG_INFO("getDataShareHelper dataShareHelper = nullptr");
-         dataShareHelper =  OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
+        dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
         return dataShareHelper;
     }
   
-     resultset =  dataShareHelper->Query(proxyUri, predicates, columns);
+    resultset = dataShareHelper->Query(proxyUri, predicates, columns);
     if (resultset == nullptr) {
         dataShareHelper =  OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
         return dataShareHelper;
     }
-    resultset->Close()
+    resultset->Close();
     return dataShareHelper;
 }
 
