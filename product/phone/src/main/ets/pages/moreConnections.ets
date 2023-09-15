@@ -19,7 +19,9 @@ import NfcModel from '../model/moreConnectionsImpl/NfcModel';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
-import { SubEntryComponentWithEndText } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
+import {
+  SubEntryComponentWithEndText
+} from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
 
 const TAG = ConfigData.TAG + 'MoreConnections: ';
 const deviceTypeInfo = deviceInfo.deviceType;
@@ -32,10 +34,10 @@ const deviceTypeInfo = deviceInfo.deviceType;
 struct MoreConnections {
   @StorageLink('nfcStatus') @Watch("nfcStatusChange") nfcStatus: boolean = false;
   @StorageLink('nfcStatusInfo') nfcStatusInfo: Resource = $r("app.string.disabled");
-  private maxScreenWidth;
-  private maxScreenHeight;
-  private nfcImageWidth;
-  private nfcImageHeight;
+  private maxScreenWidth: number = 0;
+  private maxScreenHeight: number = 0;
+  private nfcImageWidth: number = 0;
+  private nfcImageHeight: number = 0;
 
   nfcStatusChange() {
     AppStorage.SetOrCreate("nfcStatusInfo", this.nfcStatus ? $r("app.string.enabled") : $r("app.string.disabled"))
@@ -68,7 +70,7 @@ struct MoreConnections {
     .height(ConfigData.WH_100_100)
   }
 
-  aboutToAppear(){
+  aboutToAppear() {
     LogUtil.info(TAG + 'aboutToAppear in');
 
     try {
@@ -79,7 +81,7 @@ struct MoreConnections {
       LogUtil.error(TAG + 'check nfcStatus api failed');
     }
 
-    NfcModel.registerNfcStatusObserver((code) => {
+    NfcModel.registerNfcStatusObserver((code: boolean) => {
       LogUtil.info(TAG + 'NFC state code: ' + code);
     })
 

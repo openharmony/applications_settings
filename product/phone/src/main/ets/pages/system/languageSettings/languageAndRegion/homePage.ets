@@ -63,13 +63,13 @@ struct LanguageAndRegion {
                 right: $r("sys.float.ohos_id_card_margin_end")
               })
               .height($r("app.float.wh_value_48"))
-              .padding({top:$r('app.float.distance_19_5'),bottom:$r('app.float.distance_9_5')})
+              .padding({ top: $r('app.float.distance_19_5'), bottom: $r('app.float.distance_9_5') })
             }
 
             ListItem() {
               AddedList();
             }
-            .margin({ bottom:$r("app.float.distance_12") })
+            .margin({ bottom: $r("app.float.distance_12") })
 
             ListItem() {
               AddText();
@@ -99,7 +99,7 @@ struct LanguageAndRegion {
     .height(ConfigData.WH_100_100)
   }
 
-  aboutToAppear(){
+  aboutToAppear() {
     LogUtil.info(`${this.TAG} aboutToAppear in`);
     LogUtil.info(`${this.TAG} aboutToAppear out`);
   }
@@ -111,19 +111,22 @@ struct LanguageAndRegion {
 @Component
 struct AddedList {
   @StorageLink('addedLanguages') addedLanguages: Array<string> = LanguageAndRegionModel.getAddedLanguages();
-  @State touchedItem:string = '';
+  @State touchedItem: string = '';
 
-  build(){
-    List(){
-      ForEach(this.addedLanguages, (item) => {
-        ListItem(){
-          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems:ItemAlign.Center }) {
-            Column(){
+  build() {
+    List() {
+      ForEach(this.addedLanguages, (item: string) => {
+        ListItem() {
+          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Column() {
               Text(LanguageAndRegionModel.getSysDisplayLanguage(item))
                 .fontSize($r("sys.float.ohos_id_text_size_body1"))
                 .lineHeight($r("app.float.wh_value_22"))
                 .fontWeight(FontWeight.Medium)
-                .padding(LanguageAndRegionModel.isSystemLanguage(item) ? {top: $r("app.float.distance_21"), bottom: $r("app.float.distance_21")} : {top: $r("app.float.distance_10"), bottom: $r("app.float.distance_2")})
+                .padding(LanguageAndRegionModel.isSystemLanguage(item) ? {
+                  top: $r("app.float.distance_21"),
+                  bottom: $r("app.float.distance_21")
+                } : { top: $r("app.float.distance_10"), bottom: $r("app.float.distance_2") })
                 .fontColor(LanguageAndRegionModel.isSystemLanguage(item) ? $r("app.color.font_color_007DFF") : $r("app.color.font_color_182431"))
                 .textAlign(TextAlign.Start)
 
@@ -148,27 +151,28 @@ struct AddedList {
               .visibility(LanguageAndRegionModel.isSystemLanguage(item) ? Visibility.Visible : Visibility.None);
           }
           .height($r('app.float.wh_value_64'))
-          .padding({left: $r("app.float.distance_8"), right: $r("app.float.distance_8")})
+          .padding({ left: $r("app.float.distance_8"), right: $r("app.float.distance_8") })
         }
         .align(Alignment.Start)
         .borderRadius($r("app.float.radius_20"))
         .linearGradient(item === this.touchedItem ? {
-           angle: 90,
-           direction: GradientDirection.Right,
-           colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-           } : {
-           angle: 90,
-           direction: GradientDirection.Right,
-           colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
+          angle: 90,
+          direction: GradientDirection.Right,
+          colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+        } : {
+          angle: 90,
+          direction: GradientDirection.Right,
+          colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+        })
         .width(ConfigData.WH_100_100)
         .onClick(() => {
           LanguageAndRegionModel.setSystemLanguage(item);
         })
-        .onTouch((event: TouchEvent) => {
-          if (event.type === TouchType.Down) {
+        .onTouch((event?: TouchEvent | undefined) => {
+          if (event?.type === TouchType.Down) {
             this.touchedItem = item;
           }
-          if (event.type === TouchType.Up) {
+          if (event?.type === TouchType.Up) {
             this.touchedItem = '';
           }
         })
@@ -179,7 +183,7 @@ struct AddedList {
     .divider({
       strokeWidth: $r('app.float.divider_wh'),
       color: $r('sys.color.ohos_id_color_list_separator'),
-      startMargin: $r("app.float.distance_8"), 
+      startMargin: $r("app.float.distance_8"),
       endMargin: $r("app.float.distance_8")
     })
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
@@ -192,7 +196,7 @@ struct AddedList {
  */
 @Component
 struct AddText {
-  @State isTouched:boolean = false;
+  @State isTouched: boolean = false;
 
   build() {
     Navigator({ target: 'pages/system/languageSettings/languageAndRegion/addLanguage' }) {
@@ -207,19 +211,19 @@ struct AddText {
         .width(ConfigData.WH_100_100)
         .borderRadius($r('app.float.radius_20'))
         .linearGradient(this.isTouched ? {
-                                           angle: 90,
-                                           direction: GradientDirection.Right,
-                                           colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-                                         } : {
-                                               angle: 90,
-                                               direction: GradientDirection.Right,
-                                               colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-                                             })
-        .onTouch((event: TouchEvent) => {
-          if (event.type === TouchType.Down) {
+          angle: 90,
+          direction: GradientDirection.Right,
+          colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+        } : {
+          angle: 90,
+          direction: GradientDirection.Right,
+          colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+        })
+        .onTouch((event?: TouchEvent | undefined) => {
+          if (event?.type === TouchType.Down) {
             this.isTouched = true;
           }
-          if (event.type === TouchType.Up) {
+          if (event?.type === TouchType.Up) {
             this.isTouched = false;
           }
         });
@@ -270,18 +274,19 @@ struct Region {
       .width(ConfigData.WH_100_100)
       .borderRadius($r('app.float.radius_20'))
       .linearGradient(this.isTouched ? {
-         angle: 90,
-         direction: GradientDirection.Right,
-         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-         } : {
-         angle: 90,
-         direction: GradientDirection.Right,
-         colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
-      .onTouch((event: TouchEvent) => {
-        if (event.type === TouchType.Down) {
+        angle: 90,
+        direction: GradientDirection.Right,
+        colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+      } : {
+        angle: 90,
+        direction: GradientDirection.Right,
+        colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+      })
+      .onTouch((event?: TouchEvent | undefined) => {
+        if (event?.type === TouchType.Down) {
           this.isTouched = true;
         }
-        if (event.type === TouchType.Up) {
+        if (event?.type === TouchType.Up) {
           this.isTouched = false;
         }
       });

@@ -19,9 +19,9 @@ import ComponentConfig from './ComponentConfig';
  */
 @Component
 export struct SubEntryComponent {
-  private targetPage: string;
-  private title: string | Resource;
   @State isTouched: boolean = false;
+  private targetPage: string = '';
+  private title: string | Resource = '';
 
   build() {
     Navigator({ target: this.targetPage }) {
@@ -47,19 +47,19 @@ export struct SubEntryComponent {
       .width(ComponentConfig.WH_100_100)
       .borderRadius($r('app.float.radius_16'))
       .linearGradient(this.isTouched ? {
-                                         angle: 90,
-                                         direction: GradientDirection.Right,
-                                         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-                                       } : {
-                                             angle: 90,
-                                             direction: GradientDirection.Right,
-                                             colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-                                           })
-      .onTouch((event: TouchEvent) => {
-        if (event.type === TouchType.Down) {
+        angle: 90,
+        direction: GradientDirection.Right,
+        colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+      } : {
+        angle: 90,
+        direction: GradientDirection.Right,
+        colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+      })
+      .onTouch((event?: TouchEvent | undefined) => {
+        if (event?.type === TouchType.Down) {
           this.isTouched = true;
         }
-        if (event.type === TouchType.Up) {
+        if (event?.type === TouchType.Up) {
           this.isTouched = false;
         }
       })
@@ -79,8 +79,8 @@ export struct SubEntryComponent {
 export struct SubEntryComponentWithEndText {
   @State isTouched: boolean = false;
   @Link endText: string;
-  private targetPage: string;
-  private title: string | Resource;
+  private targetPage: string = '';
+  private title: string | Resource = '';
 
   build() {
     Navigator({ target: this.targetPage }) {
@@ -115,19 +115,19 @@ export struct SubEntryComponentWithEndText {
       .width(ComponentConfig.WH_100_100)
       .borderRadius($r('app.float.radius_20'))
       .linearGradient(this.isTouched ? {
-                                         angle: 90,
-                                         direction: GradientDirection.Right,
-                                         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-                                       } : {
-                                             angle: 90,
-                                             direction: GradientDirection.Right,
-                                             colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-                                           })
-      .onTouch((event: TouchEvent) => {
-        if (event.type === TouchType.Down) {
+        angle: 90,
+        direction: GradientDirection.Right,
+        colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+      } : {
+        angle: 90,
+        direction: GradientDirection.Right,
+        colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+      })
+      .onTouch((event?: TouchEvent | undefined) => {
+        if (event?.type === TouchType.Down) {
           this.isTouched = true;
         }
-        if (event.type === TouchType.Up) {
+        if (event?.type === TouchType.Up) {
           this.isTouched = false;
         }
       });

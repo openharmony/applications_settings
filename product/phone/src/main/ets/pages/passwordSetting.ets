@@ -18,7 +18,6 @@ import Router from '@system.router';
 import deviceInfo from '@ohos.deviceInfo';
 import PasswordListController from '../controller/password/PasswordSettingController';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import EntryComponent from '../../../../../../common/component/src/main/ets/default/entryComponent';
@@ -30,22 +29,19 @@ const deviceTypeInfo = deviceInfo.deviceType;
 @Entry
 @Component
 struct PasswordSetting {
-  private TAG_PAGE = ConfigData.TAG + 'PasswordSetting page ';
-  private mController: PasswordListController = new PasswordListController();
-
-  // bind Properties
-  @State private passwordList: PasswordSettingItem[][] = [];
-  private pinChallenge: string = '';
-
-  // private Properties
-  private lockUi: boolean = false; // prevent continuous and multiple clicks
   @State isPhoneOrRK: boolean = false;
   @State isTouched: boolean = false;
   @State touchedItem: boolean = false;
   @State listSpace: string = '10vp';
   @State faceAuthFailedMessage: string = '';
+  private TAG_PAGE = ConfigData.TAG + 'PasswordSetting page ';
+  private mController: PasswordListController = new PasswordListController();
+  // bind Properties
+  @State private passwordList: PasswordSettingItem[][] = [];
+  private pinChallenge: string = '';
+  // private Properties
+  private lockUi: boolean = false; // prevent continuous and multiple clicks
 
-  @Log
   aboutToAppear(): void {
     if (deviceTypeInfo === 'phone' || deviceTypeInfo === 'default') {
       this.isPhoneOrRK = true;
@@ -63,18 +59,17 @@ struct PasswordSetting {
     ResourceUtil.getString($r("app.string.face_auth_failed")).then(value => this.faceAuthFailedMessage = value);
   }
 
-  @Log
   aboutToDisappear(): void {
     this.mController.unsubscribe();
   }
 
-  @Log
   onPageShow(): void {
     this.lockUi = false;
     this.mController.loadData();
   }
 
-  @Builder FaceAuthItem() {
+  @Builder
+  FaceAuthItem() {
     Stack() {
       EntryComponent({
         settingIcon: '',
@@ -101,7 +96,7 @@ struct PasswordSetting {
         .then((data) => {
           LogUtil.info(`${this.TAG_PAGE}, ${ConfigData.FACEAUTH_BUNDLE_NAME} start successful. Data: ${JSON.stringify(data)}`);
         })
-        .catch((error) => {
+        .catch((error: Error) => {
           prompt.showToast({
             message: this.faceAuthFailedMessage,
             duration: 2000
@@ -112,14 +107,15 @@ struct PasswordSetting {
     })
   }
 
-  @Builder DisablePasswordItem(item: PasswordSettingItem) {
+  @Builder
+  DisablePasswordItem(item: PasswordSettingItem) {
     Stack() {
       EntryComponent({
         settingIcon: '',
         settingTitle: item.settingTitle,
         settingSummary: '',
         settingValue: item.settingValue,
-        settingArrow: item.settingArrow.toString(),
+        settingArrow: item.settingArrow?.toString(),
         settingUri: item.settingUri,
         settingArrowStyle: '',
         titleFontColor: $r("app.color.font_color_007DFF"),
@@ -139,14 +135,15 @@ struct PasswordSetting {
     });
   }
 
-  @Builder NormalItem(item: PasswordSettingItem) {
+  @Builder
+  NormalItem(item: PasswordSettingItem) {
     Stack() {
       EntryComponent({
         settingIcon: '',
         settingTitle: item.settingTitle,
         settingSummary: '',
         settingValue: item.settingValue,
-        settingArrow: item.settingArrow.toString(),
+        settingArrow: item.settingArrow?.toString(),
         settingArrowStyle: '',
         settingUri: item.settingUri,
         heights: $r('app.float.password_list_item_height'),
@@ -248,7 +245,6 @@ struct PasswordSetting {
    * @param uri : page uri
    * @param pageRequestCode : page request code
    */
-  @Log
   gotoNextPage(item: PasswordSettingItem) {
     if (!item.settingUri) {
       return;
@@ -268,7 +264,6 @@ struct PasswordSetting {
    * Close password dialog
    * @param item password setting item
    */
-  @Log
   showClosePasswordDialog(delItem: PasswordSettingItem) {
     AlertDialog.show({
       title: $r("app.string.password_disable_password"),

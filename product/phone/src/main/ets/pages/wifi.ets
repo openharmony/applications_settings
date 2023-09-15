@@ -16,13 +16,19 @@
 import prompt from '@system.prompt';
 import router from '@system.router';
 import deviceInfo from '@ohos.deviceInfo';
-import WifiModel from '../model/wifiImpl/WifiModel';
+import WifiModel, {
+  ApScanResult,
+  WiFiEncryptMethodMap,
+  WiFiIntensityMap,
+  WifiScanInfo,
+  WiFiSummaryMap
+} from '../model/wifiImpl/WifiModel';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import ImageAnimatorComponent from '../../../../../../common/component/src/main/ets/default/imageAnimatorComponent';
-import { WifiScanInfo, ApScanResult, WiFiSummaryMap, WiFiIntensityMap, WiFiEncryptMethodMap } from '../model/wifiImpl/WifiModel';
+import wifi from '@ohos.wifi';
 
 const MODULE_TAG = ConfigData.TAG + 'WifiModel.wifi -> ';
 const deviceTypeInfo = deviceInfo.deviceType;
@@ -97,14 +103,50 @@ function genWiFiStatusSummary(statusEnum: number) {
   return $r("app.string.wifiSummaryConnected");
 }
 
+export interface WiFiMenuModel {
+  settingIcon: string;
+  settingSummary: number;
+  settingTitle: string;
+  settingValue: string;
+  settingArrow: string;
+  settingArrowStyle: string;
+  settingUri: string;
+  apInfo: WifiScanInfo;
+}
+
+export class apParam {
+  apInfo: WifiScanInfo;
+  isConnected: Boolean;
+
+  constructor(apInfo: WifiScanInfo, isConnected: boolean) {
+    this.apInfo = apInfo;
+    this.isConnected = isConnected;
+  }
+}
+
 @Entry
 @Component
 struct Index {
   scroller: Scroller = new Scroller();
-  @StorageLink('slWiFiLists') scanWiFiResults: [] = [];
-  @StorageLink('slConnectedWifi') connectedWiFi: {settingIcon: string,settingSummary:number,settingTitle: string,settingValue: string,
-  settingArrow: string,settingArrowStyle: string,settingUri: string,apInfo: any } = {settingIcon: '',settingSummary:0,settingTitle: '',
-  settingValue:'', settingArrow:'',settingArrowStyle:'',settingUri:'',apInfo:{} };
+  @StorageLink('slWiFiLists') scanWiFiResults: WiFiMenuModel[] = [];
+  @StorageLink('slConnectedWifi') connectedWiFi: WiFiMenuModel = {
+    settingIcon: '',
+    settingSummary: 0,
+    settingTitle: '',
+    settingValue: '',
+    settingArrow: '',
+    settingArrowStyle: '',
+    settingUri: '',
+    apInfo: {
+      ssid: '',
+      bssid: '',
+      rssi: -100,
+      band: 0,
+      frequency: 0,
+      timestamp: 0,
+      securityType: 1,
+    },
+  };
   @State isWiFiEnabled: boolean = false;
   @State isPhoneOrRK: boolean = false;
   @State userSelectedApInfo: WifiScanInfo = {
@@ -119,7 +161,6 @@ struct Index {
   private switchDebounceFlag = undefined;
   private timerId: number = -1;
   private errorMessage: string = "";
-
   private clickApInfoDialog: CustomDialogController = new CustomDialogController({
     builder: apInfoDialog({
       apInfo: this.userSelectedApInfo,
@@ -129,7 +170,6 @@ struct Index {
     autoCancel: true,
     customStyle: true
   });
-
   private clickApInfoDetailsDialog: CustomDialogController = new CustomDialogController({
     builder: apInfoDetailsDialog({
       apInfo: this.userSelectedApInfo,
@@ -237,7 +277,7 @@ struct Index {
 
                 Column() {
                   List() {
-                    ForEach(this.scanWiFiResults, (item) => {
+                    ForEach(this.scanWiFiResults, (item: WiFiMenuModel) => {
                       ListItem() {
                         WiFiEntryComponent({
                           settingIcon: item.settingIcon,
@@ -300,7 +340,7 @@ struct Index {
       return false;
     }
 
-    if (typeof this.connectedWiFi["settingTitle"] === 'undefined') {
+    if (typeof this.connectedWiFi.settingTitle === 'undefined') {
       return false;
     }
     // as the ConnectionStateChange event is diff with the getLinkInfo callback,
@@ -320,10 +360,7 @@ struct Index {
       WifiModel.connectWiFi('');
       return;
     }
-    let params = {
-      apInfo: apInfo,
-      isConnected: false
-    };
+    let params: apParam = new apParam(apInfo, false);
     router.push({
       uri: 'pages/wifiPsd',
       params: params,
@@ -332,7 +369,7 @@ struct Index {
 
   timeLimits() {
     this.timerId = setTimeout(() => {
-      if(this.isWiFiEnabled == WifiModel.isWiFiActive()) {
+      if (this.isWiFiEnabled == WifiModel.isWiFiActive()) {
         this.timerId = -1;
         return;
       }
@@ -382,7 +419,7 @@ struct Index {
     } catch (error) {
       LogUtil.error(MODULE_TAG + 'get errorMessage String error:' + JSON.stringify(error));
     }
-    WifiModel.registerWiFiStatusObserver((code) => {
+    WifiModel.registerWiFiStatusObserver((code: number) => {
       LogUtil.info(MODULE_TAG + 'wifi status code : ' + code + ' taskId : ' + this.switchDebounceFlag);
       if ((!this.switchDebounceFlag) && (code == 0 || code == 1)) {
         this.isWiFiEnabled = Boolean(code);
@@ -395,7 +432,8 @@ struct Index {
     });
     // init wifi active status
     this.isWiFiEnabled = WifiModel.isWiFiActive();
-    AppStorage.SetOrCreate('slConnectedWifi', (new ApScanResult()).renderToListModel());
+    let wifiDefaultModel: WiFiMenuModel = (new ApScanResult()).renderToListModel();
+    AppStorage.SetOrCreate('slConnectedWifi', wifiDefaultModel);
   }
 
   aboutToDisappear(): void {
@@ -411,7 +449,7 @@ struct Index {
 
   onPageShow() {
     LogUtil.info(MODULE_TAG + 'on page show');
-    WifiModel.registerWiFiConnectionObserver((code) => {
+    WifiModel.registerWiFiConnectionObserver((code: number) => {
       LogUtil.info(MODULE_TAG + 'wifi connection code : ' + code);
       WifiModel.refreshApScanResults();
     });
@@ -457,28 +495,39 @@ export default struct ApInfoComponent {
   }
 }
 
+export interface WifiDialogData {
+  key: ResourceStr;
+  value: ResourceStr;
+}
+
+export interface WifiButton {
+  summary: ResourceStr;
+  opType: number;
+}
+
 /**
  * Choose Unlock Method Dialog
  */
 @CustomDialog
 struct apInfoDialog {
   controller: CustomDialogController;
-  private apInfo: WifiScanInfo;
-  @State dataList: any[] = [{ key: $r('app.string.wifiInfoTitleIntensity'),
-                              value: $r('app.string.wifiSigIntensityBad') },
-                            { key: $r('app.string.wifiInfoTitleEncryptMethod'),
-                              value: $r('app.string.wifiEncryptMethodOpen') }];
-
+  @State dataList: WifiDialogData[] = [
+    { key: $r('app.string.wifiInfoTitleIntensity'), value: $r('app.string.wifiSigIntensityBad') },
+    { key: $r('app.string.wifiInfoTitleEncryptMethod'), value: $r('app.string.wifiEncryptMethodOpen') }
+  ];
+  private apInfo: WifiScanInfo | null = null;
   // 0 is cancel, 1 is delete, 2 is connect
-  private buttons: any[] = [{ summary: $r('app.string.wifiButtonCancel'), opType: 0 },
-                            { summary: $r('app.string.wifiButtonDelete'), opType: 1 },
-                            { summary: $r('app.string.wifiButtonConnect'), opType: 2 }];
+  private buttons: WifiButton[] = [
+    { summary: $r('app.string.wifiButtonCancel'), opType: 0 },
+    { summary: $r('app.string.wifiButtonDelete'), opType: 1 },
+    { summary: $r('app.string.wifiButtonConnect'), opType: 2 }
+  ];
 
   build() {
     Column() {
       Column() {
         Row() {
-          Text(this.apInfo.ssid)
+          Text(this.apInfo?.ssid)
             .fontSize($r('app.float.font_20'))
             .fontColor($r('sys.color.ohos_id_color_text_primary'))
             .fontWeight(FontWeight.Medium)
@@ -489,11 +538,11 @@ struct apInfoDialog {
         .padding({ left: $r("app.float.wh_value_24"), right: $r("app.float.wh_value_24") })
 
         List() {
-          ForEach(this.dataList, (item) => {
+          ForEach(this.dataList, (item: WifiDialogData) => {
             ListItem() {
               ApInfoComponent({
-                label: item.key,
-                value: item.value
+                label: item.key as string,
+                value: item.value as string,
               });
             }
             .height($r('app.float.wh_value_48'))
@@ -509,7 +558,7 @@ struct apInfoDialog {
         })
 
         List() {
-          ForEach(this.buttons, (item) => {
+          ForEach(this.buttons, (item: WifiButton) => {
             ListItem() {
               Row() {
                 Text(item.summary)
@@ -532,17 +581,21 @@ struct apInfoDialog {
 
               if (item.opType === 1) {
                 LogUtil.info(MODULE_TAG + 'clicked ap info delete');
-                WifiModel.removeDeviceConfig(this.apInfo);
+                if (this.apInfo) {
+                  WifiModel.removeDeviceConfig(this.apInfo);
+                }
                 WifiModel.refreshApScanResults();
               }
 
               if (item.opType === 2) {
                 LogUtil.info(MODULE_TAG + 'clicked ap info connect');
                 WifiModel.disconnectWiFi();
-                WifiModel.connectByDeviceConfig(this.apInfo);
+                if (this.apInfo) {
+                  WifiModel.connectByDeviceConfig(this.apInfo);
+                }
                 WifiModel.refreshApScanResults();
               }
-              this.controller.close();
+              this.controller?.close();
             })
           })
         }
@@ -566,13 +619,16 @@ struct apInfoDialog {
       .backgroundColor($r("app.color.white_bg_color"))
     }
     .width(deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? ConfigData.WH_100_100 : $r("app.float.wh_value_410"))
-    .padding(deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? { left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") } : {})
+    .padding(deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? {
+      left: $r("app.float.wh_value_12"),
+      right: $r("app.float.wh_value_12")
+    } : {})
   }
 
   aboutToAppear(): void {
     // gen wifi signal level
-    let intensity = WifiModel.getSignalIntensity(this.apInfo);
-    let encryptType = WifiModel.getEncryptMethod(this.apInfo);
+    let intensity = this.apInfo ? WifiModel.getSignalIntensity(this.apInfo) : WiFiIntensityMap.BAD;
+    let encryptType = this.apInfo ? WifiModel.getEncryptMethod(this.apInfo) : WiFiEncryptMethodMap.OPEN;
     this.dataList = [
       { key: $r('app.string.wifiInfoTitleIntensity'),
         value: genWiFiIntensity(intensity) },
@@ -585,12 +641,11 @@ struct apInfoDialog {
 @CustomDialog
 struct apInfoDetailsDialog {
   controller: CustomDialogController;
-  private apInfo: WifiScanInfo;
-  private disconnectAction: () => void;
+  private apInfo: WifiScanInfo | null = null;
   private value: string = '';
   private frequency: string = '2.4GHz';
   private speed: string = '144Mbps';
-  @State dataList: any[] = [
+  @State dataList: WifiDialogData[] = [
     { key: $r('app.string.wifiInfoTitleStatus'),
       value: $r('app.string.wifiSummaryConnected') },
     { key: $r('app.string.wifiInfoTitleIntensity'),
@@ -602,8 +657,7 @@ struct apInfoDetailsDialog {
     { key: $r('app.string.wifiInfoTitleEncryptMethod'),
       value: $r("app.string.wifiEncryptMethodOpen") }
   ];
-
-  private buttons: any[] = [
+  private buttons: WifiButton[] = [
     { summary: $r('app.string.wifiButtonCancel'), opType: 0 },
     { summary: $r('app.string.wifiButtonDelete'), opType: 2 }
   ];
@@ -621,7 +675,7 @@ struct apInfoDetailsDialog {
         .alignItems(HorizontalAlign.Center);
 
         Row() {
-          Text(this.apInfo.ssid)
+          Text(this.apInfo?.ssid)
             .width(ConfigData.WH_100_100)
             .fontSize($r('app.float.font_24'))
             .fontColor($r('sys.color.ohos_id_color_text_primary'))
@@ -645,11 +699,11 @@ struct apInfoDetailsDialog {
         .margin({ top: $r("app.float.wh_value_6") });
 
         List() {
-          ForEach(this.dataList, (item) => {
+          ForEach(this.dataList, (item: WifiDialogData) => {
             ListItem() {
               ApInfoComponent({
-                label: item.key,
-                value: item.value
+                label: item.key as string,
+                value: item.value as string
               });
             }
             .height($r('app.float.wh_value_48'))
@@ -669,7 +723,7 @@ struct apInfoDetailsDialog {
         })
 
         List() {
-          ForEach(this.buttons, (item) => {
+          ForEach(this.buttons, (item: WifiButton) => {
             ListItem() {
               Row() {
                 Text(item.summary)
@@ -692,10 +746,12 @@ struct apInfoDetailsDialog {
               if (item.opType === 2) {
                 LogUtil.info(MODULE_TAG + 'clicked ap info to disconnect');
                 WifiModel.disconnectWiFi();
-                WifiModel.removeDeviceConfig(this.apInfo);
+                if (this.apInfo) {
+                  WifiModel.removeDeviceConfig(this.apInfo);
+                }
                 WifiModel.refreshApScanResults();
               }
-              this.controller.close();
+              this.controller?.close();
             })
           })
         }
@@ -721,19 +777,22 @@ struct apInfoDetailsDialog {
       .backgroundColor($r("app.color.white_bg_color"))
     }
     .width(deviceInfo.deviceType === 'phone' ? ConfigData.WH_100_100 : $r("app.float.wh_value_410"))
-    .padding(deviceInfo.deviceType === 'phone' ? { left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") }: {})
+    .padding(deviceInfo.deviceType === 'phone' ? {
+      left: $r("app.float.wh_value_12"),
+      right: $r("app.float.wh_value_12")
+    } : {})
   }
 
   aboutToAppear(): void {
     // gen wifi signal level
-    let intensity = WifiModel.getSignalIntensity(this.apInfo);
-    let encryptType = WifiModel.getEncryptMethod(this.apInfo);
-    let linkInfo = WifiModel.getLinkInfo();
+    let intensity = this.apInfo ? WifiModel.getSignalIntensity(this.apInfo) : WiFiIntensityMap.BAD;
+    let encryptType = this.apInfo ? WifiModel.getEncryptMethod(this.apInfo) : WiFiEncryptMethodMap.OPEN;
+    let linkInfo: wifi.WifiLinkedInfo = WifiModel.getLinkInfo();
     if (linkInfo != undefined) {
       this.speed = linkInfo.linkSpeed + 'Mbps';
       //5.0GHz limit:[5180MHz,5825MHz],2.4GHz limit:[2412MHz,2484MHz]
       LogUtil.info(MODULE_TAG + 'get frequency: ' + linkInfo.frequency);
-      this.frequency = linkInfo.frequency > 3500 ? "5GHz":"2.4GHz";
+      this.frequency = linkInfo.frequency > 3500 ? "5GHz" : "2.4GHz";
     }
     this.dataList = [
       { key: $r('app.string.wifiInfoTitleStatus'),
@@ -748,6 +807,9 @@ struct apInfoDetailsDialog {
         value: genWiFiEncryptMethod(encryptType) }
     ];
   }
+
+  private disconnectAction: () => void = () => {
+  };
 }
 
 @Component
@@ -758,8 +820,8 @@ struct WiFiEntryComponent {
   @State settingArrow: string = "";
   @State settingUri: string = "";
   @State titleFontColor: string = "";
-  private settingSummary: string | Resource; // 状态描述
   @State isTouched: boolean = false;
+  private settingSummary: string | Resource = ''; // 状态描述
 
   build() {
     Row() {
@@ -775,7 +837,7 @@ struct WiFiEntryComponent {
           .fontColor(this.titleFontColor === "activated" ?
           $r('sys.color.ohos_id_color_text_primary') : $r('sys.color.ohos_id_color_text_secondary'))
           .fontWeight(FontWeight.Regular)
-          .margin({ top: $r('app.float.wh_value_8')});
+          .margin({ top: $r('app.float.wh_value_8') });
       }
       .margin({ left: $r("app.float.wh_value_12") })
       .alignItems(HorizontalAlign.Start)
@@ -793,12 +855,12 @@ struct WiFiEntryComponent {
     .borderRadius($r("app.float.radius_24"))
     .alignItems(VerticalAlign.Center)
     .backgroundColor(this.isTouched ? $r("app.color.color_D8D8D8_grey") : $r("sys.color.ohos_id_color_foreground_contrary"))
-    .onTouch((event: TouchEvent) => {
-      if (event.type === TouchType.Down) {
+    .onTouch((event?: TouchEvent | undefined) => {
+      if (event?.type === TouchType.Down) {
         this.isTouched = true;
       }
 
-      if (event.type === TouchType.Up) {
+      if (event?.type === TouchType.Up) {
         this.isTouched = false;
       }
     })
@@ -807,8 +869,7 @@ struct WiFiEntryComponent {
 
 @Component
 struct ConnectedWiFiEntryComponent {
-  @Link connectedWiFi: {settingIcon: string,settingSummary:number,settingTitle:  string,settingValue:  string,
-  settingArrow:  string,settingArrowStyle:  string,settingUri:  string,apInfo: any };
+  @Link connectedWiFi: WiFiMenuModel;
   @State titleFontColor: string = "";
   @State isTouched: boolean = false;
 
@@ -826,7 +887,7 @@ struct ConnectedWiFiEntryComponent {
           .fontColor(this.titleFontColor === "activated" ?
           $r('sys.color.ohos_id_color_text_primary') : $r('sys.color.ohos_id_color_text_secondary'))
           .fontWeight(FontWeight.Regular)
-          .margin({ top: $r('app.float.wh_value_8')});
+          .margin({ top: $r('app.float.wh_value_8') });
       }
       .margin({ left: $r("app.float.wh_value_12") })
       .alignItems(HorizontalAlign.Start)
@@ -844,12 +905,11 @@ struct ConnectedWiFiEntryComponent {
     .borderRadius($r("app.float.radius_24"))
     .alignItems(VerticalAlign.Center)
     .backgroundColor(this.isTouched ? $r("app.color.color_D8D8D8_grey") : $r("sys.color.ohos_id_color_foreground_contrary"))
-    .onTouch((event: TouchEvent) => {
-      if (event.type === TouchType.Down) {
+    .onTouch((event?: TouchEvent | undefined) => {
+      if (event?.type === TouchType.Down) {
         this.isTouched = true;
       }
-
-      if (event.type === TouchType.Up) {
+      if (event?.type === TouchType.Up) {
         this.isTouched = false;
       }
     })

@@ -24,7 +24,7 @@ import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/Lo
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import EntryComponent from '../../../../../../common/component/src/main/ets/default/entryComponent';
-import { DeviceType, ProfileConnectionState, BondState } from '../model/bluetoothImpl/BluetoothModel';
+import { BondState, DeviceType, ProfileConnectionState } from '../model/bluetoothImpl/BluetoothModel';
 import BasicDataSource from '../../../../../../common/utils/src/main/ets/default/model/BasicDataSource';
 import DeviceNameEntryComponent from '../../../../../../common/component/src/main/ets/default/deviceNameEntryComponent';
 import ImageAnimatorComponent from '../../../../../../common/component/src/main/ets/default/imageAnimatorComponent';
@@ -33,17 +33,17 @@ const PAIRED_ITEM_NUMBER = 3;
 const PAGE_URI_DEVICE_NAME = 'pages/deviceName';
 const PAGE_URI_BLUETOOTH_PAIRED_DEVICE_INFO = 'pages/bluetoothPairedDeviceInfo';
 const deviceTypeInfo = deviceInfo.deviceType;
-let pinRequiredTIimer = null;
+let pinRequiredTIimer: number | undefined = undefined;
+
 @Entry
 @Component
 struct Bluetooth {
-  private PAGE_TAG = ConfigData.TAG + 'Bluetooth page ';
-  private deviceController: BluetoothDeviceController = new BluetoothDeviceController();
   @StorageLink('bluetoothIsOn') isOn: boolean = false;
   @StorageLink('bluetoothToggleEnabled') isEnabled: boolean = true;
   @StorageLink('bluetoothLocalName') localName: string = '';
+  private PAGE_TAG = ConfigData.TAG + 'Bluetooth page ';
+  private deviceController: BluetoothDeviceController = new BluetoothDeviceController();
 
-  @Log
   aboutToAppear(): void {
     LogUtil.log(this.PAGE_TAG + 'aboutToAppear in : isOn = ' + this.isOn)
     this.deviceController
@@ -52,14 +52,12 @@ struct Bluetooth {
     LogUtil.log(this.PAGE_TAG + 'aboutToAppear out : isOn = ' + this.isOn)
   }
 
-  @Log
   onPageShow(): void {
     LogUtil.log(this.PAGE_TAG + 'onPageShow in : localName = ' + this.localName)
     this.deviceController.getLocalName();
     LogUtil.log(this.PAGE_TAG + 'onPageShow out : localName = ' + this.localName)
   }
 
-  @Log
   aboutToDisappear(): void {
     this.deviceController.unsubscribe();
   }
@@ -165,7 +163,7 @@ struct DeviceNameComponent {
         settingTitle: $r('app.string.bluetooth_device_name'),
         settingSummary: '',
         settingValue: $localName,
-        settingArrow:"",
+        settingArrow: "",
         settingArrowStyle: '',
         settingUri: '',
         isEnabled: this.isEnabled,
@@ -192,14 +190,13 @@ struct DeviceNameComponent {
  */
 @Component
 struct PairedDeviceComponent {
-  private TAG_PAGE = ConfigData.TAG + 'PairedDeviceComponent ';
-  private controller: BluetoothDeviceController;
   @StorageLink('bluetoothPairedDevices') pairedDevices: BluetoothDevice[] = [];
   @State isTouched: boolean = false;
   @State hide: boolean = true;
+  private TAG_PAGE = ConfigData.TAG + 'PairedDeviceComponent ';
+  private controller: BluetoothDeviceController;
 
-  @Log
-  aboutToAppear(): void{
+  aboutToAppear(): void {
     if (this.controller) {
       // bind component and initialize
       this.controller.bindComponent(this)
@@ -261,7 +258,7 @@ struct PairedDeviceComponent {
             }
 
             if ((this.hide && index === PAIRED_ITEM_NUMBER) || //more
-            (!this.hide && index >= PAIRED_ITEM_NUMBER && index == this.pairedDevices.length - 1)) { //put_away
+              (!this.hide && index >= PAIRED_ITEM_NUMBER && index == this.pairedDevices.length - 1)) { //put_away
               ListItem() {
                 Stack({ alignContent: Alignment.Center }) {
                   Stack({ alignContent: Alignment.Center }) {
@@ -312,7 +309,7 @@ struct PairedDeviceComponent {
     let stateText: string = '';
     switch (device.connectionState) {
       case ProfileConnectionState.STATE_DISCONNECTED:
-        stateText ='';
+        stateText = '';
         break;
 
       case ProfileConnectionState.STATE_CONNECTING:
@@ -330,9 +327,33 @@ struct PairedDeviceComponent {
       case ProfileConnectionState.STATE_DISCONNECTING:
         stateText = JSON.parse(JSON.stringify($r('app.string.bluetooth_state_disconnecting')));
         break;
-
     }
     return stateText;
+  }
+
+  /**
+   * Disconnect Dialog
+   */
+  showDisconnectDialog(deviceName, callback) {
+    AlertDialog.show({
+      title: $r('app.string.bluetooth_disconnect'),
+      message: $r("app.string.bluetooth_disconnect_device", deviceName),
+      primaryButton: {
+        value: $r('app.string.cancel'),
+        action: () => {
+          LogUtil.info(ConfigData.TAG + 'Closed callbacks');
+        }
+      },
+      secondaryButton: {
+        value: $r('app.string.confirm'),
+        action: () => {
+          LogUtil.info(ConfigData.TAG + `AlertDialog success:`);
+          callback();
+        }
+      },
+      alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+      offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 })
+    })
   }
 
   /**
@@ -350,12 +371,12 @@ struct PairedDeviceComponent {
    */
   private gotoPairedDeviceInfo(item: BluetoothDevice) {
     if (item.connectionState != ProfileConnectionState.STATE_CONNECTING
-    && item.connectionState != ProfileConnectionState.STATE_DISCONNECTING) {
+      && item.connectionState != ProfileConnectionState.STATE_DISCONNECTING) {
       LogUtil.info(this.TAG_PAGE + 'item right icon on click.');
-      let param = { 'bluetoothDevice': JSON.stringify(item) }
+      // let param = { 'bluetoothDevice': JSON.stringify(item) }
       Router.push({
         uri: PAGE_URI_BLUETOOTH_PAIRED_DEVICE_INFO,
-        params: param
+        params: JSON.stringify(item)
       });
     }
   }
@@ -390,31 +411,6 @@ struct PairedDeviceComponent {
       $r("app.string.bluetooth_know_button")
     );
   }
-
-  /**
-   * Disconnect Dialog
-   */
-  showDisconnectDialog(deviceName, callback) {
-    AlertDialog.show({
-      title: $r('app.string.bluetooth_disconnect'),
-      message: $r("app.string.bluetooth_disconnect_device", deviceName),
-      primaryButton: {
-        value: $r('app.string.cancel'),
-        action: () => {
-          LogUtil.info(ConfigData.TAG + 'Closed callbacks');
-        }
-      },
-      secondaryButton: {
-        value: $r('app.string.confirm'),
-        action: () => {
-          LogUtil.info(ConfigData.TAG + `AlertDialog success:`);
-          callback();
-        }
-      },
-      alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
-      offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 })
-    })
-  }
 }
 
 /**
@@ -436,19 +432,22 @@ struct DiscoveringAnimatorComponent {
  */
 @Component
 struct AvailableDeviceComponent {
-  private TAG_PAGE = ConfigData.TAG + 'AvailableDeviceComponent ';
-  private controller: BluetoothDeviceController;
   @State isDeviceDiscovering: boolean = false;
   @StorageLink('bluetoothAvailableDevices') @Watch("availableDevicesChange") availableDevices: BluetoothDevice[] = [];
   @State availableDevicesList: AvailableDevicesDataSource = new AvailableDevicesDataSource(this.availableDevices);
   @State pairPinCode: string = '';
+  @StorageLink("controlPairing") controlPairing: boolean = true;
+  @StorageLink("pairData") pairData: BluetoothDevice = null;
+  @StorageLink("pinRequiredParam") @Watch("pinRequiredParamChange") pinRequiredParam: {
+    deviceId: string;
+    pinCode: string
+  } = { deviceId: '', pinCode: '' };
+  private TAG_PAGE = ConfigData.TAG + 'AvailableDeviceComponent ';
+  private controller: BluetoothDeviceController;
   private pairingDevice: BluetoothDevice = undefined;
-  @StorageLink("controlPairing") controlPairing: boolean = true ;
-  @StorageLink("pairData") pairData: BluetoothDevice = null ;
-  @StorageLink("pinRequiredParam") @Watch("pinRequiredParamChange") pinRequiredParam:  {deviceId: string; pinCode: string} = {deviceId: '',pinCode: ''} ;
   pairDialog: CustomDialogController = new CustomDialogController({
     builder: PairDialog({
-      deviceName: (this.pairingDevice && this.pairingDevice.hasOwnProperty('deviceName'))?this.pairingDevice.deviceName:undefined,
+      deviceName: (this.pairingDevice && this.pairingDevice.hasOwnProperty('deviceName')) ? this.pairingDevice.deviceName : undefined,
       pinCode: this.pairPinCode,
       action: (accept: boolean) => {
         this.confirmPairing(accept);
@@ -464,8 +463,7 @@ struct AvailableDeviceComponent {
     this.availableDevicesList.notifyDataReload()
   }
 
-  @Log
-  aboutToAppear(): void{
+  aboutToAppear(): void {
     if (this.controller) {
       // bind component and initialize
       this.controller.bindComponent(this)
@@ -528,7 +526,7 @@ struct AvailableDeviceComponent {
               .backgroundColor($r("app.color.white_bg_color"))
               .onClick(() => {
                 LogUtil.info(this.TAG_PAGE + 'item on click');
-                if ( this.controlPairing ) {
+                if (this.controlPairing) {
                   this.pairDevice(item);
                 } else {
                   return;
@@ -566,18 +564,20 @@ struct AvailableDeviceComponent {
     return device.connectionState == BondState.BOND_STATE_BONDING ? JSON.parse(JSON.stringify($r('app.string.bluetooth_state_pairing'))) : '';
   }
 
-  pinRequiredParamChange(){
+  pinRequiredParamChange() {
     clearTimeout(pinRequiredTIimer);
-    pinRequiredTIimer = setTimeout(()=>{
+    pinRequiredTIimer = setTimeout(() => {
       this.pairPinCode = this.pinRequiredParam.pinCode;
       this.pairingDevice = this.pairData;
       if (this.pairDialog) {
         this.pairDialog.open();
-      }() => {
+      }
+      () => {
         this.showPairFailedDialog();
       }
-    },1000)
+    }, 1000)
   }
+
   /**
    * Pair device
    * @param device
@@ -589,14 +589,14 @@ struct AvailableDeviceComponent {
   /**
    * Confirm pairing
    */
-  @Log
+
   confirmPairing(accept: boolean) {
     LogUtil.info(this.TAG_PAGE + 'confirmPairing pairingDevice');
-    try{
-      if(this.pairingDevice && this.pairingDevice.deviceId!=null ){
+    try {
+      if (this.pairingDevice && this.pairingDevice.deviceId != null) {
         this.controller.confirmPairing(this.pairingDevice.deviceId, accept);
       }
-    }catch(err){
+    } catch (err) {
       LogUtil.info(this.TAG_PAGE + `confirmPairing pairingDevice error ${err}`);
     }
   }
@@ -664,7 +664,7 @@ struct AvailableDeviceComponent {
 class AvailableDevicesDataSource extends BasicDataSource {
   private availableDevicesArray: BluetoothDevice[] = null;
 
-  constructor(availableDevicesArray:BluetoothDevice[]){
+  constructor(availableDevicesArray: BluetoothDevice[]) {
     super();
     this.availableDevicesArray = availableDevicesArray;
   }
@@ -674,27 +674,27 @@ class AvailableDevicesDataSource extends BasicDataSource {
   }
 
   public totalCount(): number {
-    if(this.availableDevicesArray) {
+    if (this.availableDevicesArray) {
       return this.availableDevicesArray.length;
     }
     return 0;
   }
 
   public getData(index: number): BluetoothDevice {
-    if(!this.availableDevicesArray) {
+    if (!this.availableDevicesArray) {
       LogUtil.log(ConfigData.TAG + 'array is null.');
       return null;
     }
-    if(index < 0 || index >= this.totalCount()) {
+    if (index < 0 || index >= this.totalCount()) {
       LogUtil.log(ConfigData.TAG + 'index out of range.');
       return null;
     }
     return this.availableDevicesArray[index];
   }
 
-  public delData (device:BluetoothDevice):void{
-    let index  = this.availableDevicesArray.indexOf(device);
-    this.availableDevicesArray.splice(index,1)
+  public delData(device: BluetoothDevice): void {
+    let index = this.availableDevicesArray.indexOf(device);
+    this.availableDevicesArray.splice(index, 1)
     this.notifyDataDelete(index)
   }
 }
@@ -810,7 +810,10 @@ struct PairDialog {
       })
     }
     .width(deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? ConfigData.WH_100_100 : $r("app.float.wh_value_410"))
-    .padding(deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? { left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12")} : {})
+    .padding(deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? {
+      left: $r("app.float.wh_value_12"),
+      right: $r("app.float.wh_value_12")
+    } : {})
   }
 }
 
