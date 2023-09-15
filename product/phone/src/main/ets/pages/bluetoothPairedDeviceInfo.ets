@@ -35,14 +35,17 @@ struct BluetoothPairedDeviceInfo {
   aboutToAppear() {
     let param = Router.getParams();
     this.bluetoothDevice = JSON.parse(JSON.stringify(param));
-    LogUtil.log(ConfigData.TAG + " this.bluetoothDevice"+ this.bluetoothDevice);
+    LogUtil.log(ConfigData.TAG + " this.bluetoothDevice" + this.bluetoothDevice);
   }
 
   build() {
     Column() {
       GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
         Column() {
-          HeadComponent({ headName: this.bluetoothDevice != undefined?this.bluetoothDevice.deviceName:"", isActive: true });
+          HeadComponent({
+            headName: this.bluetoothDevice != undefined ? this.bluetoothDevice.deviceName : "",
+            isActive: true
+          });
 
           Blank()
 
@@ -57,7 +60,7 @@ struct BluetoothPairedDeviceInfo {
           .align(Alignment.Center)
           .onClick(() => {
             LogUtil.log(ConfigData.TAG + "unpair onClick");
-            if (this.controller.unpair(this.bluetoothDevice != undefined ? this.bluetoothDevice.deviceId:'')) {
+            if (this.controller.unpair(this.bluetoothDevice != undefined ? this.bluetoothDevice.deviceId : '')) {
               Router.back();
             }
           })

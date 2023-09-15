@@ -33,12 +33,12 @@ interface InfoItem {
  */
 @Component
 export default struct ResultComponent {
-  private TEXT_TYPE_NORMAL = 1
-  private TEXT_TYPE_KEYWORD = 2
   @Link highlightKeyword: string
   @State icon: string = ''
   @State data: SearchData = new SearchData()
   @State columnSpace: string = '2vp';
+  private TEXT_TYPE_NORMAL = 1
+  private TEXT_TYPE_KEYWORD = 2
 
   @Builder
   HighlightText(

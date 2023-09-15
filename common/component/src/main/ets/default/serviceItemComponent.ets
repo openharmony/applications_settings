@@ -21,11 +21,11 @@ import ComponentConfig from './ComponentConfig';
 
 @Component
 export struct ServiceItemComponent {
+  @State touched: boolean = false;
   private targetPage: string = '';
   private serviceTitle: string | Resource = '';
   private serviceEndText: string = '';
   private serviceIcon: string | Resource = '';
-  @State touched: boolean = false;
 
   onPageShow() {
     console.info(`onPageShow: ${this.targetPage}`)

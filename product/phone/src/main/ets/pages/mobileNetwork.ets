@@ -67,7 +67,7 @@ struct mobileNetwork {
                   settingIcon: '',
                 })
               }
-              .padding({left:$r("app.float.distance_4"),right:$r("app.float.distance_4")})
+              .padding({ left: $r("app.float.distance_4"), right: $r("app.float.distance_4") })
             }
             .width(ConfigData.WH_100_100)
             .divider({
@@ -127,7 +127,7 @@ struct mobileNetwork {
           }
         }
       });
-    }).catch((err:Base.BusinessError) => {
+    }).catch((err: Base.BusinessError) => {
       console.error(`createSubscriber failed, code is ${err?.code}, message is ${err.message}`);
     });
   }

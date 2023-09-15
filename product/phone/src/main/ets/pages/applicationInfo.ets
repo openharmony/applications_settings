@@ -15,7 +15,7 @@
 
 import Router from '@system.router';
 import deviceInfo from '@ohos.deviceInfo';
-import {BaseData} from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
+import { BaseData } from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ApplicationInfoController from '../controller/application/ApplicationInfoController';
 import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
@@ -47,11 +47,11 @@ struct ApplicationInfo {
     settingUri: ""
   };
   @StorageLink('appManagement') mBundleInfoList: BaseData[] = [];
-  private controller: ApplicationInfoController = new ApplicationInfoController();
   @State isPhoneOrRK: boolean = false;
   @State isRemovableBundle: boolean = true;
   @State isTouchedLeft: boolean = false;
   @State isTouchedRight: boolean = false;
+  private controller: ApplicationInfoController = new ApplicationInfoController();
   private bundleName: string = " ";
   showDialog: CustomDialogController = new CustomDialogController({
     builder: ShowDialog({
@@ -166,7 +166,7 @@ struct ApplicationInfo {
     .height(ConfigData.WH_100_100)
   }
 
-  aboutToAppear(): void{
+  aboutToAppear(): void {
     LogUtil.info(this.tag + " aboutToAppear start ");
     if (deviceTypeInfo === 'phone' || deviceTypeInfo === 'default') {
       this.isPhoneOrRK = true;
@@ -233,11 +233,11 @@ struct ApplicationInfo {
     })
   }
 
-  updateRemovableStatus(bundleName:string) {
-    this.controller.getBundleInfo(bundleName, (err:Error, result) => {
+  updateRemovableStatus(bundleName: string) {
+    this.controller.getBundleInfo(bundleName, (err: Error, result) => {
       if (err) {
         LogUtil.info(MODULE_TAG + 'get system bundle info failed');
-      }else{
+      } else {
         LogUtil.info(MODULE_TAG + `${bundleName} is removeable = ${result.appInfo.removable}`);
         if (result.appInfo.removable !== true) {
           this.isRemovableBundle = false;
@@ -254,7 +254,6 @@ struct ApplicationInfo {
 struct ShowDialog {
   dialogController?: CustomDialogController;
   action?: () => void;
-  private uirBack: string = 'pages/appManagement';
   @StorageLink('appInformation') appInfo: BaseData = {
     settingIcon: "",
     settingTitle: "",
@@ -265,6 +264,7 @@ struct ShowDialog {
     settingIconId: "",
     settingUri: ""
   };
+  private uirBack: string = 'pages/appManagement';
 
   build() {
     Column() {
@@ -290,13 +290,13 @@ struct ShowDialog {
       DialogButtonLayout({
         secondTitle: $r('app.string.uninstall'),
         firstClickEvent: () => {
-          if(this.dialogController){
+          if (this.dialogController) {
             this.dialogController.close();
           }
         },
         secondClickEvent: () => {
           this.action();
-          if(this.dialogController){
+          if (this.dialogController) {
             this.dialogController.close();
           }
           Router.back({ uri: this.uirBack });

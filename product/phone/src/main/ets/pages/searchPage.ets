@@ -25,10 +25,11 @@ import ResourceUtil from '../../../../../../common/search/src/main/ets/default/c
 import ResultComponent from '../../../../../../common/search/src/main/ets/default/page/resultComponent';
 
 
-interface  SearchDataItem {
-  index: number ;
-  data: SearchData ;
+interface SearchDataItem {
+  index: number;
+  data: SearchData;
 }
+
 /**
  * search page
  */
@@ -39,8 +40,8 @@ struct SearchPage {
   @State @Watch('doSearch') searchKeyword: string = '';
   @State searchResultList: SearchData[][] = [];
   @State data: SearchData = new SearchData();
-  private searchModel?: SearchModel;
   @State listSpace: string = '12vp';
+  private searchModel?: SearchModel;
 
   build() {
     Column() {
@@ -53,14 +54,14 @@ struct SearchPage {
             if (this.searchResultList && this.searchResultList.length > 0) {
               List({ space: this.listSpace }) {
                 // search result list
-                ForEach(this.searchResultList, (eachBlock:SearchData[]) => {
+                ForEach(this.searchResultList, (eachBlock: SearchData[]) => {
                   ListItem() {
                     List() {
                       // item
-                      ForEach(eachBlock.map((item2:SearchData, index2:number) => {
-                        let searchDataItem:SearchDataItem =  { index: index2, data: item2 }
-                        return searchDataItem ;
-                      }), (item:SearchDataItem) => {
+                      ForEach(eachBlock.map((item2: SearchData, index2: number) => {
+                        let searchDataItem: SearchDataItem = { index: index2, data: item2 }
+                        return searchDataItem;
+                      }), (item: SearchDataItem) => {
                         ListItem() {
                           Flex({ alignItems: ItemAlign.Center }) {
                             Navigator({ target: item.data.uri }) {
@@ -161,7 +162,7 @@ struct SearchPage {
    * search
    */
   doSearch() {
-    if(this.searchModel){
+    if (this.searchModel) {
       this.searchModel.search(this.searchKeyword)
         .then((result: SearchData[]) => {
           LogUtil.debug(ConfigData.TAG + 'searchPage doSearch : search : searchKeyword = ' +
@@ -179,11 +180,11 @@ struct SearchPage {
    * @param result Search result
    * @return Data for show to view
    */
-  makeViewData(result: SearchData[]): SearchData[][]  {
+  makeViewData(result: SearchData[]): SearchData[][] {
     let list: SearchData[][] = [];
     let group: SearchData[] = [];
 
-    let lastUri:string = '';
+    let lastUri: string = '';
     for (let i = 0; i < result.length; i++) {
       let data = result[i];
 
