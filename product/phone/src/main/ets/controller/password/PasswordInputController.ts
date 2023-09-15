@@ -82,7 +82,7 @@ export default class PasswordInputController extends BaseSettingsController {
    *
    * @param value : password type
    */
-  changePasswordType(value) {
+  changePasswordType(value: number):void {
     this.passwordType = value;
   }
 

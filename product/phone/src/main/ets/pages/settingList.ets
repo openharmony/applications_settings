@@ -145,10 +145,10 @@ struct EntryComponent {
   @StorageLink("wifiStatusInfo") wifiStatusInfo: Resource = WifiModel.isWiFiActive() ? $r("app.string.enabled") : $r("app.string.disabled");
   @StorageLink("bluetoothStatusInfo") bluetoothStatusInfo: Resource = $r("app.string.disabled");
   @StorageLink("endTextEmpty") endTextEmpty: Resource = $r("app.string.endTextEmpty");
-  private nfcInfo: boolean;
+  private nfcInfo: boolean = false;
   private listSpaces: string = '12vp';
   private isPhone: boolean = false;
-  private info: string;
+  private info: string = 'false';
 
   wifiStatusChange() {
     AppStorage.SetOrCreate("wifiStatusInfo", this.wifiStatus ? $r("app.string.enabled") : $r("app.string.disabled"))

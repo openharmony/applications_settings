@@ -19,6 +19,7 @@ import ConfigData from '../../../../../../common/utils/src/main/ets/default/base
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import { SubEntryComponent } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
+import { BusinessError } from '@ohos.base';
 
 /**
  * Home Page Of Privacy Settings
@@ -97,12 +98,12 @@ export struct PermissionComponent {
                                              direction: GradientDirection.Right,
                                              colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
                                            })
-      .onTouch((event: TouchEvent) => {
-        if (event.type === TouchType.Down) {
+      .onTouch((event?: TouchEvent) => {
+        if (event?.type === TouchType.Down) {
           this.isTouched = true;
         }
 
-        if (event.type === TouchType.Up) {
+        if (event?.type === TouchType.Up) {
           this.isTouched = false;
         }
       })
@@ -119,7 +120,7 @@ export struct PermissionComponent {
         .then((data) => {
           LogUtil.info(`${this.TAG}, ${ConfigData.PERMISSION_MANAGER_BUNDLE_NAME} start successful. Data: ${JSON.stringify(data)}`);
         })
-        .catch((error) => {
+        .catch((error: BusinessError) => {
           ResourceUtil.getString($r("app.string.permissionFailed")).then(value => {
             prompt.showToast({
               message: value,

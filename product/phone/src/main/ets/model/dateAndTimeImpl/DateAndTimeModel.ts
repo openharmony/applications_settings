@@ -112,7 +112,7 @@ export class DateAndTimeModel extends BaseModel {
   /**
    * Register observer
    */
-  public registerObserver(callback: () => {}){
+  public registerObserver(callback: () => void): void {
     return;
   }
 
