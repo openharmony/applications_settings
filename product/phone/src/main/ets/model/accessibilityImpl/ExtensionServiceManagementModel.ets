@@ -24,42 +24,61 @@ const URI_PAGE = 'pages/accessibilityServiceInfo';
 let icon_arrow = $r('app.media.ic_settings_arrow');
 let icon_default = "ohos_app_icon";
 let icon_default_str = "";
-
 const MODULE_TAG = ConfigData.TAG + 'extensionService-> ';
+
+class serviceItem {
+  serviceIcon?: string;
+  serviceTitle?: string;
+  serviceArrow?: Resource;
+  serviceSummary?: ResourceStr;
+  serviceEndText?: Resource;
+  serviceState?: boolean;
+  serviceId?: number | string;
+  serviceBundleName?: string;
+  serviceUri?: string
+}
+
+class serviceInfo {
+  name?: string;
+  id?: number | string;
+  bundleName?: string
+}
 
 /**
  * app management service class
  */
 export class ExtensionServiceManagementModel extends BaseModel {
-  private mBundleInfoList: any[] = [];
-  private serviceInfoList: any[] = [];
+  private serviceInfoList: serviceItem[] = [];
 
   constructor() {
     super();
     try {
-      globalThis.settingsAbilityContext.resourceManager.getMediaBase64ByName(icon_default).then((res) => {
+      globalThis.settingsAbilityContext.resourceManager.getMediaBase64ByName(icon_default)
+        .then((res: string) => {
           icon_default_str = res;
-          LogUtil.info(MODULE_TAG + 'getResourceManager init defaultIcon res:' + JSON.stringify(icon_default_str));
-        }).catch((err) => {
+          LogUtil.info(`${MODULE_TAG} getResourceManager init defaultIcon res: ${JSON.stringify(icon_default_str)}`);
+        })
+        .catch((err: object) => {
           icon_default_str = '';
-          LogUtil.info(MODULE_TAG + 'getResourceManager init defaultIcon error:' + JSON.stringify(err));
+          LogUtil.info(`${MODULE_TAG} getResourceManager init defaultIcon error: ${JSON.stringify(err)}`);
         });
     } catch (err) {
       icon_default_str = '';
-      LogUtil.info(MODULE_TAG + 'getResourceManager init defaultIcon error:' + JSON.stringify(err));
+      LogUtil.info(`${MODULE_TAG} getResourceManager init defaultIcon error: ${JSON.stringify(err)}`);
     }
 
   }
+
   /**
    * get extensionService data
    */
   setExtensionServiceManagementListener() {
     this.serviceInfoList = [];
     accessibility.getAccessibilityExtensionList('all', 'install').then((data) => {
-      LogUtil.info(MODULE_TAG + 'extensionService data.length: ' + data.length + 'data: ' + JSON.stringify(data));
+      LogUtil.info(`${MODULE_TAG} extensionService data.length:  ${data.length} data: ${JSON.stringify(data)}`);
       this.getResourceItemAndState(INDEX, data.length, data);
-    }).catch((err) => {
-      LogUtil.error(MODULE_TAG + 'getExtensionServiceList failed, err: ' + JSON.stringify(err));
+    }).catch((err: object) => {
+      LogUtil.error(`${MODULE_TAG} getExtensionServiceList failed, err: ${JSON.stringify(err)}`);
     });
   }
 
@@ -70,8 +89,8 @@ export class ExtensionServiceManagementModel extends BaseModel {
    * @param count - array length
    * @param data - data
    */
-  async getResourceItemAndState(index, count, data) {
-    LogUtil.info(MODULE_TAG + 'getIconItem start data.length: ' + data.length);
+  async getResourceItemAndState(index: number, count: number, data: serviceInfo[]) {
+    LogUtil.info(`${MODULE_TAG} getIconItem start data.length: ${data.length}`);
     let imageValue = '';
     let description: ResourceStr;
     let enabledServiceList: Array<accessibility.AccessibilityAbilityInfo> = await accessibility.getAccessibilityExtensionList('all', 'enable');
@@ -79,7 +98,7 @@ export class ExtensionServiceManagementModel extends BaseModel {
       if (!serviceInfo || !serviceInfo.id) {
         continue;
       }
-      LogUtil.info(MODULE_TAG + 'extensionService name :' + JSON.stringify(serviceInfo.id));
+      LogUtil.info(`${MODULE_TAG} extensionService name : ${JSON.stringify(serviceInfo.id)}`);
       let serviceState: boolean = false;
       for (let enabledService of enabledServiceList) {
         if (enabledService.id && enabledService.id === serviceInfo.id) {
@@ -87,12 +106,12 @@ export class ExtensionServiceManagementModel extends BaseModel {
           break;
         }
       }
-      LogUtil.info(MODULE_TAG + JSON.stringify(serviceInfo.name) + ': ' + JSON.stringify(serviceState));
+      LogUtil.info(`${MODULE_TAG} + ${JSON.stringify(serviceInfo.name)} : ${JSON.stringify(serviceState)}`);
       let bundleFlag: number = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY;
-      let bundleInfo: bundleManager.BundleInfo = await bundleManager.getBundleInfo(serviceInfo.bundleName, bundleFlag);
+      let bundleInfo: bundleManager.BundleInfo = await bundleManager.getBundleInfo(serviceInfo.bundleName as string, bundleFlag);
       imageValue = await this.loadIcon(bundleInfo);
-      description = await this.loadDescription(bundleInfo, serviceInfo.name);
-      LogUtil.info(MODULE_TAG + 'getResourceManager getMediaBase64() value:' + imageValue);
+      description = await this.loadDescription(bundleInfo, serviceInfo.name as string);
+      LogUtil.info(`${MODULE_TAG} getResourceManager getMediaBase64() value: ${imageValue}`);
       this.serviceInfoList.push({
         serviceIcon: imageValue,
         serviceTitle: serviceInfo.name,
@@ -106,7 +125,7 @@ export class ExtensionServiceManagementModel extends BaseModel {
       });
     }
     AppStorage.SetOrCreate('extensionServiceManagementList', this.serviceInfoList);
-    LogUtil.info(MODULE_TAG + 'loadExtensionService end');
+    LogUtil.info(`${MODULE_TAG} loadExtensionService end`);
   }
 
   /**
@@ -116,14 +135,14 @@ export class ExtensionServiceManagementModel extends BaseModel {
     let appInfo = bundleInfo.appInfo;
     let imageValue = '';
     let context = globalThis.settingsAbilityContext;
-    LogUtil.info(MODULE_TAG + 'getResourceManager appInfo.iconResource:' + JSON.stringify(appInfo.iconResource));
+    LogUtil.info(`${MODULE_TAG} getResourceManager appInfo.iconResource: ${JSON.stringify(appInfo.iconResource)}`);
     if (appInfo.iconResource.id > 0) {
       imageValue = await context.resourceManager.getMediaBase64(appInfo.iconResource);
       if (!imageValue) {
-        LogUtil.warn(MODULE_TAG + 'load icon invalid');
+        LogUtil.warn(`${MODULE_TAG} load icon invalid`);
         imageValue = icon_default_str;
       }
-      LogUtil.info(MODULE_TAG + 'getResourceManager loadIcon end');
+      LogUtil.info(`${MODULE_TAG} + getResourceManager loadIcon end`);
       return imageValue;
     }
     imageValue = icon_default_str;
@@ -142,20 +161,20 @@ export class ExtensionServiceManagementModel extends BaseModel {
         let bundleContext: Context = context.createBundleContext(bundleInfo.name, hapInfo.name);
         for (let ability of hapInfo.extensionAbilitiesInfo) {
           if (ability.name === serviceName && ability.descriptionId > 0) {
-            LogUtil.info(MODULE_TAG + 'descriptionId: ' + JSON.stringify(ability.descriptionId));
+            LogUtil.info(`${MODULE_TAG} descriptionId: ${JSON.stringify(ability.descriptionId)}`);
             await bundleContext.resourceManager.getStringValue(ability.descriptionId)
               .then((res) => {
                 description = res;
-                LogUtil.info(MODULE_TAG + 'description: ' + JSON.stringify(description));
+                LogUtil.info(`${MODULE_TAG} description: ${JSON.stringify(description)}`);
               })
-              .catch((err) => {
-                LogUtil.info(MODULE_TAG + 'get description error: ' + JSON.stringify(err));
+              .catch((err: object) => {
+                LogUtil.info(`${MODULE_TAG} get description error: ${JSON.stringify(err)}`);
               });
             if (!description) {
-              LogUtil.warn(MODULE_TAG + 'load description invalid');
+              LogUtil.warn(`${MODULE_TAG} load description invalid`);
               description = $r('app.string.no_description_provided');
             }
-            LogUtil.info(MODULE_TAG + 'load description end');
+            LogUtil.info(`${MODULE_TAG} load description end`);
             return description;
           }
         }
