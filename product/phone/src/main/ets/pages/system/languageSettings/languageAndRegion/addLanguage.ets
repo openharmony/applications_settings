@@ -40,7 +40,7 @@ struct AddLanguage {
         Column() {
           HeadComponent({ headName: $r('app.string.addLanguage'), isActive: true });
 
-          List(){
+          List() {
             ListItem() {
               SubHeader({ titleContent: $r('app.string.addedLanguage') })
             }
@@ -50,7 +50,7 @@ struct AddLanguage {
             }
 
             ListItem() {
-              SubHeader({ titleContent: $r('app.string.allLanguage')});
+              SubHeader({ titleContent: $r('app.string.allLanguage') });
             }
 
             ListItem() {
@@ -74,7 +74,7 @@ struct AddLanguage {
     .height(ConfigData.WH_100_100)
   }
 
-  aboutToAppear(){
+  aboutToAppear() {
     LogUtil.info(`${this.TAG} aboutToAppear in`);
     LogUtil.info(`${this.TAG} aboutToAppear out`);
   }
@@ -85,19 +85,19 @@ struct AddLanguage {
  */
 @Component
 struct AddedLanguagesList {
-  @StorageLink('addedLanguages') addedLanguages:Array<string> = LanguageAndRegionModel.getAddedLanguages();
-  @State touchedItem:string = '';
+  @StorageLink('addedLanguages') addedLanguages: Array<string> = LanguageAndRegionModel.getAddedLanguages();
+  @State touchedItem: string = '';
 
-  build(){
-    List(){
-      ForEach(this.addedLanguages, (item) => {
-        ListItem(){
-          Column(){
+  build() {
+    List() {
+      ForEach(this.addedLanguages, (item: string) => {
+        ListItem() {
+          Column() {
             Text(LanguageAndRegionModel.getSysDisplayLanguage(item))
               .fontSize($r("app.float.font_16"))
               .height($r("app.float.wh_value_22"))
               .fontWeight(FontWeight.Medium)
-              .margin({top: $r("app.float.distance_10"), bottom: $r("app.float.distance_2")})
+              .margin({ top: $r("app.float.distance_10"), bottom: $r("app.float.distance_2") })
               .fontColor($r("app.color.font_color_182431"))
               .textAlign(TextAlign.Start);
 
@@ -105,7 +105,7 @@ struct AddedLanguagesList {
               .fontSize($r("app.float.font_14"))
               .height($r("app.float.wh_value_19"))
               .fontWeight(FontWeight.Regular)
-              .margin({bottom: $r("app.float.distance_11")})
+              .margin({ bottom: $r("app.float.distance_11") })
               .fontColor($r('sys.color.ohos_id_color_primary'))
               .opacity($r('sys.float.ohos_fa_alpha_content_secondary'))
               .textAlign(TextAlign.Start);
@@ -114,32 +114,35 @@ struct AddedLanguagesList {
         }
         .align(Alignment.Start)
         .width(ConfigData.WH_100_100)
-        .padding({left: $r("app.float.distance_8"), right: $r("app.float.distance_8")})
+        .padding({ left: $r("app.float.distance_8"), right: $r("app.float.distance_8") })
         .borderRadius($r("app.float.radius_20"))
         .linearGradient(item === this.touchedItem ? {
-           angle: 90,
-           direction: GradientDirection.Right,
-           colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-           } : {
-           angle: 90,
-           direction: GradientDirection.Right,
-           colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
-        .onTouch((event: TouchEvent) => {
-          if (event.type === TouchType.Down) {
+          angle: 90,
+          direction: GradientDirection.Right,
+          colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+        } : {
+          angle: 90,
+          direction: GradientDirection.Right,
+          colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+        })
+        .onTouch((event?: TouchEvent | undefined) => {
+          if (event?.type === TouchType.Down) {
             this.touchedItem = item;
           }
-          if (event.type === TouchType.Up) {
+          if (event?.type === TouchType.Up) {
             this.touchedItem = '';
           }
         })
-      }, item => item);
+      }, (item: string) => {
+        return item;
+      });
     }
     .padding($r("app.float.distance_4"))
     .borderRadius($r("app.float.radius_24"))
     .divider({
       strokeWidth: $r('app.float.divider_wh'),
       color: $r('sys.color.ohos_id_color_list_separator'),
-      startMargin: $r("app.float.distance_8"), 
+      startMargin: $r("app.float.distance_8"),
       endMargin: $r("app.float.distance_8")
     })
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
@@ -151,19 +154,19 @@ struct AddedLanguagesList {
  */
 @Component
 struct AllLanguagesList {
+  @State touchedItem: string = '';
   private allLanguages: AllLanguages = new AllLanguages(LanguageAndRegionModel.getAllLanguages());
-  @State touchedItem:string = '';
 
-  build(){
-    List(){
-      LazyForEach(this.allLanguages, (item) => {
-        ListItem(){
-          Column(){
+  build() {
+    List() {
+      LazyForEach(this.allLanguages, (item: string) => {
+        ListItem() {
+          Column() {
             Text(LanguageAndRegionModel.getSysDisplayLanguage(item))
               .fontSize($r("app.float.font_16"))
               .height($r("app.float.wh_value_22"))
               .fontWeight(FontWeight.Medium)
-              .margin({top: $r("app.float.distance_10"), bottom: $r("app.float.distance_2")})
+              .margin({ top: $r("app.float.distance_10"), bottom: $r("app.float.distance_2") })
               .fontColor($r("app.color.font_color_182431"))
               .textAlign(TextAlign.Start);
 
@@ -171,7 +174,7 @@ struct AllLanguagesList {
               .fontSize($r("app.float.font_14"))
               .height($r("app.float.wh_value_19"))
               .fontWeight(FontWeight.Regular)
-              .margin({bottom: $r("app.float.distance_11")})
+              .margin({ bottom: $r("app.float.distance_11") })
               .fontColor($r('sys.color.ohos_id_color_primary'))
               .opacity($r('sys.float.ohos_fa_alpha_content_secondary'))
               .textAlign(TextAlign.Start);
@@ -180,40 +183,41 @@ struct AllLanguagesList {
         }
         .align(Alignment.Start)
         .width(ConfigData.WH_100_100)
-        .padding({left: $r("app.float.distance_8"), right: $r("app.float.distance_8")})
+        .padding({ left: $r("app.float.distance_8"), right: $r("app.float.distance_8") })
         .borderRadius($r("app.float.radius_20"))
         .linearGradient(item === this.touchedItem ? {
-           angle: 90,
-           direction: GradientDirection.Right,
-           colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-           } : {
-           angle: 90,
-           direction: GradientDirection.Right,
-           colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
-        .onTouch((event: TouchEvent) => {
-          if (event.type === TouchType.Down) {
+          angle: 90,
+          direction: GradientDirection.Right,
+          colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+        } : {
+          angle: 90,
+          direction: GradientDirection.Right,
+          colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+        })
+        .onTouch((event?: TouchEvent | undefined) => {
+          if (event?.type === TouchType.Down) {
             this.touchedItem = item;
           }
-          if (event.type === TouchType.Up) {
+          if (event?.type === TouchType.Up) {
             this.touchedItem = '';
           }
         })
         .onClick(() => {
-          if(! LanguageAndRegionModel.isInAddedLanguage(item)){
+          if (!LanguageAndRegionModel.isInAddedLanguage(item)) {
             LanguageAndRegionModel.addLanguage(item);
             AlertDialog.show(
               {
                 message: $r("app.string.changeLanguage", LanguageAndRegionModel.getSysDisplayLanguage(item)),
-                primaryButton:{
+                primaryButton: {
                   value: $r("app.string.keepCurrent"),
-                  action:() => {
+                  action: () => {
                     router.back();
                     LogUtil.info(ConfigData.TAG + 'callback when first button clicked');
                   }
                 },
-                secondaryButton:{
+                secondaryButton: {
                   value: $r("app.string.change"),
-                  action:() => {
+                  action: () => {
                     LanguageAndRegionModel.setSystemLanguage(item);
                     router.back();
                     LogUtil.info(ConfigData.TAG + 'callback when first button clicked');
@@ -235,7 +239,9 @@ struct AllLanguagesList {
             })
           }
         })
-      }, item => item);
+      }, (item: string) => {
+        return item;
+      });
     }
     .padding($r("app.float.distance_4"))
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
@@ -255,7 +261,7 @@ struct AllLanguagesList {
 class AllLanguages extends BasicDataSource {
   private languagesArray: string[] = [];
 
-  constructor(languagesArray:string[]){
+  constructor(languagesArray: string[]) {
     super();
     this.languagesArray = languagesArray;
   }

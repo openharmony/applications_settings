@@ -14,15 +14,17 @@
  */
 
 export class BaseData {
-  constructor() {
-  }
-
   settingIcon?: string;
   settingTitle?: string | Resource;
   settingAlias?: string;
   settingValue?: string | Resource;
-  settingArrow?: string | Resource ;
+  settingArrow?: string | Resource;
   settingSummary?: string;
+  settingBundleName?: string;
+  settingIconId?: string;
   settingUri?: string;
   settingPriority?: string;
+
+  constructor() {
+  }
 }

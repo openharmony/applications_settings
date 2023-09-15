@@ -37,7 +37,7 @@ export default struct RadioListComponent {
               showRadio: this.showRadio,
               isChecked: (this.checkedValue == item.settingValue),
               onChange: () => {
-                this.checkedValue = item.settingValue;
+                this.checkedValue = item.settingValue as string;
                 if (this.onChange) {
                   LogUtil.info('settings RadioListComponent : onChange: settingValue = ' + item.settingValue)
                   this.onChange(item);
@@ -66,7 +66,7 @@ export default struct RadioListComponent {
  */
 @Component
 struct RadioComponent {
-  private radioItem: RadioListItem;
+  private radioItem: RadioListItem = new RadioListItem();
   private isChecked: boolean = false;
   private onChange?: () => void;
   private showRadio: boolean = true;
@@ -105,7 +105,7 @@ struct RadioComponent {
       .align(Alignment.Start);
 
       Row() {
-        Radio({ value: this.radioItem.settingValue, group: '' })
+        Radio({ value: this.radioItem.settingValue as string, group: '' })
           .height($r('app.float.radio_component_height'))
           .margin({ right: $r('app.float.radio_component_margin_bottom_right') })
           .align(Alignment.End)

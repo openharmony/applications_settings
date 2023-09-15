@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Base from '@ohos.base';
 import settings from '@ohos.settings';
 import parameter from '@ohos.systemparameter';
 import CommonEventManager from '@ohos.commonEventManager';
@@ -67,7 +67,7 @@ struct mobileNetwork {
                   settingIcon: '',
                 })
               }
-              .padding({left:$r("app.float.distance_4"),right:$r("app.float.distance_4")})
+              .padding({ left: $r("app.float.distance_4"), right: $r("app.float.distance_4") })
             }
             .width(ConfigData.WH_100_100)
             .divider({
@@ -106,7 +106,7 @@ struct mobileNetwork {
       return;
     }
     LogUtil.info(MODULE_TAG + "settings.getValueSync " + settings.getValueSync(globalThis.settingsAbilityContext, 'settings.telephony.airplanemode', '0'));
-    if (settings.getValueSync(globalThis.settingsAbilityContext, 'settings.telephony.airplanemode', '0') == 1) {
+    if (settings.getValueSync(globalThis.settingsAbilityContext, 'settings.telephony.airplanemode', '0') == "1") {
       this.controllerMobileNetworkIsOn = true;
     } else {
       this.controllerMobileNetworkIsOn = false;
@@ -127,8 +127,8 @@ struct mobileNetwork {
           }
         }
       });
-    }).catch((err) => {
-      console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+    }).catch((err: Base.BusinessError) => {
+      console.error(`createSubscriber failed, code is ${err?.code}, message is ${err.message}`);
     });
   }
 }

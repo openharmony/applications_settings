@@ -17,7 +17,11 @@ import AboutDeviceModel from '../model/aboutDeviceImpl/AboutDeviceModel';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
-import { SubEntryComponentWithEndText } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
+import {
+  SubEntryComponentWithEndText
+} from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
+import deviceInfo from '@ohos.deviceInfo';
+import { BaseData } from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
 
 /**
  * about phone
@@ -26,8 +30,7 @@ import { SubEntryComponentWithEndText } from '../../../../../../common/component
 @Component
 struct AboutDevice {
   @StorageLink("systemName") systemName: string = AboutDeviceModel.getSystemName();
-  private deviceInfo: any = '';
-  private aboutDeviceList: any[] = [];
+  private aboutDeviceList: BaseData[] = [];
 
   build() {
     Column() {
@@ -44,7 +47,7 @@ struct AboutDevice {
             .margin({ bottom: $r("app.float.distance_12"), top: $r("app.float.distance_8") })
 
           List() {
-            ForEach(this.aboutDeviceList, (item) => {
+            ForEach(this.aboutDeviceList, (item: BaseData) => {
               ListItem() {
                 Flex({ justifyContent: FlexAlign.SpaceBetween }) {
                   Text(item.settingTitle)
@@ -91,36 +94,8 @@ struct AboutDevice {
     .height(ConfigData.WH_100_100)
   }
 
-  private getDeviceInfo(): void {
-    for (let key in this.aboutDeviceList) {
-      let value = this.aboutDeviceList[key].settingAlias;
-
-      if ('model' === value) {
-        this.aboutDeviceList[key].settingValue = this.deviceInfo.productModel;
-        this.aboutDeviceList[key].settingTitle = $r('app.string.model');
-      };
-
-      if ('companyInfo' === value) {
-        this.aboutDeviceList[key].settingValue = this.deviceInfo.manufacture;
-        this.aboutDeviceList[key].settingTitle = $r('app.string.companyInfo');
-      };
-
-      if ('deviceId' === value) {
-        this.aboutDeviceList[key].settingValue = this.deviceInfo.serial;
-        this.aboutDeviceList[key].settingTitle = $r('app.string.deviceId');
-      };
-
-      if ('softwareVersion' === value) {
-        this.aboutDeviceList[key].settingValue = this.deviceInfo.displayVersion;
-        this.aboutDeviceList[key].settingTitle = $r('app.string.softwareVersion');
-      };
-    }
-  }
-
   aboutToAppear(): void {
     LogUtil.info(ConfigData.TAG + 'settings get device info come in');
-
-    this.deviceInfo = AboutDeviceModel.setOnAboutDeviceListener();
     this.aboutDeviceList = AboutDeviceModel.getAboutDeviceInfoListener();
     this.getDeviceInfo();
     LogUtil.info(ConfigData.TAG + 'settings get device info' +
@@ -131,5 +106,35 @@ struct AboutDevice {
 
   onPageShow() {
     AppStorage.SetOrCreate("systemName", AboutDeviceModel.getSystemName())
+  }
+
+  private getDeviceInfo(): void {
+    for (let item of this.aboutDeviceList) {
+      let value = item.settingAlias;
+
+      if ('model' === value) {
+        item.settingValue = deviceInfo.productModel;
+        item.settingTitle = $r('app.string.model');
+      }
+      ;
+
+      if ('companyInfo' === value) {
+        item.settingValue = deviceInfo.manufacture;
+        item.settingTitle = $r('app.string.companyInfo');
+      }
+      ;
+
+      if ('deviceId' === value) {
+        item.settingValue = deviceInfo.serial;
+        item.settingTitle = $r('app.string.deviceId');
+      }
+      ;
+
+      if ('softwareVersion' === value) {
+        item.settingValue = deviceInfo.displayVersion;
+        item.settingTitle = $r('app.string.softwareVersion');
+      }
+      ;
+    }
   }
 }
