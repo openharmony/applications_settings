@@ -24,16 +24,16 @@ export default struct DeviceNameEntryComponent {
   @State isShow: Boolean = true;
   @State settingIcon: string = "";
   @State endTextIsShow: Boolean = true;
-  private settingTitle: string | Resource = '';
   @State settingSummary: string = "";
   @Link settingValue: string;
   @State settingArrow: string = "";
   @State settingArrowStyle: string = "";
-  private settingUri: string = '';
   @State titleFontColor: Resource = $r('sys.color.ohos_id_color_text_primary');
+  @State isTouched: boolean = false;
+  private settingTitle: string | Resource = '';
+  private settingUri: string = '';
   private isEnabled: boolean = true
   private onArrowClick?: () => void;
-  @State isTouched: boolean = false;
   private heights = $r('app.float.wh_value_70');
   private image_wh = $r('app.float.wh_value_50');
   private fontSize = $r('sys.float.ohos_id_text_size_body1');

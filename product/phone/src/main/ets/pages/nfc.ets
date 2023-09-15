@@ -26,7 +26,7 @@ struct Nfc {
   @StorageLink('isNfcEnabled') isNfcEnabled: boolean = false;
   @StorageLink('nfcImageWidth') nfcImageWidth: number = 0;
   @StorageLink('nfcImageWidth') nfcImageHeight: number = 0;
-  private switchDebounceFlag : number|undefined = undefined;
+  private switchDebounceFlag: number | undefined = undefined;
 
   build() {
     Column() {
@@ -44,7 +44,12 @@ struct Nfc {
             .fontSize($r("app.float.font_14"))
             .lineHeight($r("app.float.lineHeight_19"))
             .fontColor($r("app.color.font_color_182431"))
-            .margin({ bottom: $r("app.float.distance_36"), top: $r("app.float.distance_24"), left: $r("app.float.distance_12"), right: $r("app.float.distance_12") })
+            .margin({
+              bottom: $r("app.float.distance_36"),
+              top: $r("app.float.distance_24"),
+              left: $r("app.float.distance_12"),
+              right: $r("app.float.distance_12")
+            })
             .opacity($r("app.float.opacity_100_60"))
             .textAlign(TextAlign.Center)
 
@@ -112,7 +117,7 @@ struct Nfc {
   aboutToAppear() {
     LogUtil.info(TAG + 'aboutToAppear in');
     if (!this.switchDebounceFlag) {
-      NfcModel.registerNfcStatusObserver((code:boolean) => {
+      NfcModel.registerNfcStatusObserver((code: boolean) => {
         LogUtil.info(TAG + 'NFC status code: ' + code);
       })
     }

@@ -27,13 +27,13 @@ export default struct DoubleLineComponent {
   @State settingArrowStyle: string = "";
   @State settingUri: string = "";
   @State titleFontColor: Resource = $r('sys.color.ohos_id_color_text_primary');
-  private isEnabled: boolean = true;
-  private onArrowClick?: () => void;
   @State isTouched: boolean = false;
   @State heights: Resource = $r('app.float.wh_value_72');
   @State image_wh: Resource = $r('app.float.wh_value_40');
   @State fontSize: Resource = $r('sys.float.ohos_id_text_size_body1');
   @State valueFontSize: Resource = $r('sys.float.ohos_id_text_size_body2');
+  private isEnabled: boolean = true;
+  private onArrowClick?: () => void;
 
   build() {
     Row() {

@@ -24,9 +24,9 @@ import RestoreFactorySettingsController from '../controller/restoreFactorySettin
 @Entry
 @Component
 struct restoreFactorySettings {
-  private controller: RestoreFactorySettingsController = new RestoreFactorySettingsController();
   @State isTouched: boolean = false;
   @State textContent: Resource = $r("app.string.resetPhonePromptDetails")
+  private controller: RestoreFactorySettingsController = new RestoreFactorySettingsController();
 
   build() {
     Column() {
@@ -73,7 +73,7 @@ struct restoreFactorySettings {
           .backgroundColor(!this.isTouched ? '#E6E9EB' : $r("sys.color.ohos_id_color_foreground_contrary"))
           .onClick(this.getRestoreFactory)
           .onTouch((event?: TouchEvent) => {
-            if(event){
+            if (event) {
               if (event.type === TouchType.Down) {
                 this.isTouched = true;
               }
@@ -107,7 +107,7 @@ struct restoreFactorySettings {
    * Get restoreFactory
    */
   private getRestoreFactory = (event?: ClickEvent) => {
-    if(event){
+    if (event) {
       let existPassword = false;
       if (!existPassword) {
         Router.push({ uri: 'pages/resetPhone' });

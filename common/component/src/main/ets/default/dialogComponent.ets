@@ -24,10 +24,6 @@ export struct DialogButtonLayout {
   @State secondButtonState: boolean = true;
   private firstTitle: string | Resource = $r("app.string.cancel");
   private secondTitle: string | Resource = $r("app.string.confirm");
-  private firstClickEvent: (event: ClickEvent) => void = (event: ClickEvent) => {
-  };
-  private secondClickEvent: (event: ClickEvent) => void = (event: ClickEvent) => {
-  };
 
   build() {
     DialogButtonLayoutWithState({
@@ -38,6 +34,12 @@ export struct DialogButtonLayout {
       secondButtonState: this.secondButtonState,
     })
   }
+
+  private firstClickEvent: (event: ClickEvent) => void = (event: ClickEvent) => {
+  };
+
+  private secondClickEvent: (event: ClickEvent) => void = (event: ClickEvent) => {
+  };
 }
 
 /**
@@ -47,13 +49,9 @@ export struct DialogButtonLayout {
  */
 @Component
 export struct DialogButtonLayoutWithState {
+  @Prop secondButtonState: boolean;
   private firstTitle: string | Resource = $r("app.string.cancel");
   private secondTitle: string | Resource = $r("app.string.add");
-  private firstClickEvent: (event: ClickEvent) => void = (event: ClickEvent) => {
-  };
-  private secondClickEvent: (event: ClickEvent) => void = (event: ClickEvent) => {
-  };
-  @Prop secondButtonState: boolean;
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
@@ -86,4 +84,10 @@ export struct DialogButtonLayoutWithState {
     }
     .margin({ bottom: $r("app.float.wh_value_16") })
   }
+
+  private firstClickEvent: (event: ClickEvent) => void = (event: ClickEvent) => {
+  };
+
+  private secondClickEvent: (event: ClickEvent) => void = (event: ClickEvent) => {
+  };
 }

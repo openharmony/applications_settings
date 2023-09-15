@@ -558,7 +558,7 @@ struct apInfoDialog {
         })
 
         List() {
-          ForEach(this.buttons, (item : WifiButton) => {
+          ForEach(this.buttons, (item: WifiButton) => {
             ListItem() {
               Row() {
                 Text(item.summary)
@@ -642,8 +642,6 @@ struct apInfoDialog {
 struct apInfoDetailsDialog {
   controller: CustomDialogController;
   private apInfo: WifiScanInfo | null = null;
-  private disconnectAction: () => void = () => {
-  };
   private value: string = '';
   private frequency: string = '2.4GHz';
   private speed: string = '144Mbps';
@@ -809,6 +807,9 @@ struct apInfoDetailsDialog {
         value: genWiFiEncryptMethod(encryptType) }
     ];
   }
+
+  private disconnectAction: () => void = () => {
+  };
 }
 
 @Component

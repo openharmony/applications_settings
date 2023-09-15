@@ -17,7 +17,7 @@ import Router from '@system.router';
 import AppManagementModel from '../model/appManagementImpl/AppManagementModel';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import {BaseData} from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
+import { BaseData } from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import DoubleLineComponent from '../../../../../../common/component/src/main/ets/default/doubleLineComponent';
@@ -54,7 +54,7 @@ struct AppManagement {
 
           Column() {
             List() {
-              ForEach(this.appList, (item:BaseData) => {
+              ForEach(this.appList, (item: BaseData) => {
                 ListItem() {
                   DoubleLineComponent({
                     settingIcon: item.settingIcon,
@@ -69,12 +69,12 @@ struct AppManagement {
                   });
                 }
                 .onClick(() => {
-                  if(item.settingUri){
+                  if (item.settingUri) {
                     Router.push({ uri: item.settingUri, params: item });
                   }
                 })
                 .height($r('app.float.wh_value_72'));
-              }, (item:BaseData) => JSON.stringify(item));
+              }, (item: BaseData) => JSON.stringify(item));
             }
             .borderRadius($r("app.float.radius_24"))
             .divider({
@@ -105,7 +105,7 @@ struct AppManagement {
     .height(ConfigData.WH_100_100)
   }
 
-  aboutToAppear(): void{
+  aboutToAppear(): void {
     LogUtil.info('settings AppManagement aboutToAppear in');
 
     AppStorage.SetOrCreate('appManagementList', []);
@@ -116,7 +116,7 @@ struct AppManagement {
     LogUtil.info('settings AppManagement aboutToAppear out');
   }
 
-  aboutToDisappear(): void{
+  aboutToDisappear(): void {
     LogUtil.info('settings AppManagement aboutToDisappear in');
     AppStorage.Delete('appManagementList');
     LogUtil.info('settings AppManagement aboutToDisappear out');

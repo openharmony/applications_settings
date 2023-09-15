@@ -33,7 +33,6 @@ struct Storage {
   @State proportion: number = 0;
   @State usedSpaceList: number[] = [];
   @State screenWidth: number = 360;
-
   @State @Watch("usedSpaceChange") usedSpace: string = '';
   @State @Watch("totalSpaceChange") totalSpace: string = '';
   @State @Watch("totalSpaceChange") freeBytes: string = '';
@@ -121,7 +120,7 @@ struct Storage {
 
           Row() {
             List() {
-              ForEach(this.storageList, (item:BaseData) => {
+              ForEach(this.storageList, (item: BaseData) => {
                 ListItem() {
                   Row() {
                     Circle()
@@ -192,7 +191,7 @@ struct Storage {
     }
   }
 
-  aboutToAppear(): void{
+  aboutToAppear(): void {
     display.getDefaultDisplay()
       .then((display) => {
         if (display.width > display.height) {
