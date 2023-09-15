@@ -28,7 +28,7 @@ import HeadComponent from '../../../../../../common/component/src/main/ets/defau
 @Entry
 @Component
 struct BluetoothPairedDeviceInfo {
-  @State bluetoothDevice: BluetoothDevice | null = null;
+  @State bluetoothDevice: BluetoothDevice = new BluetoothDevice();
   @State isTouched: boolean = false;
   private controller: BluetoothDeviceController = new BluetoothDeviceController()
 
@@ -43,7 +43,7 @@ struct BluetoothPairedDeviceInfo {
       GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
         Column() {
           HeadComponent({
-            headName: this.bluetoothDevice != undefined ? this.bluetoothDevice.deviceName : "",
+            headName: this.bluetoothDevice ? this.bluetoothDevice.deviceName : '',
             isActive: true
           });
 
@@ -60,7 +60,7 @@ struct BluetoothPairedDeviceInfo {
           .align(Alignment.Center)
           .onClick(() => {
             LogUtil.log(ConfigData.TAG + "unpair onClick");
-            if (this.controller.unpair(this.bluetoothDevice != undefined ? this.bluetoothDevice.deviceId : '')) {
+            if (this.controller.unpair(this.bluetoothDevice ? this.bluetoothDevice.deviceId : '')) {
               Router.back();
             }
           })
