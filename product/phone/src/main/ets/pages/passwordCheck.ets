@@ -22,7 +22,6 @@ import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/Lo
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 
-let param;
 const DEFAULT_TIMES = 5;
 
 @Entry
@@ -32,22 +31,22 @@ struct PasswordCheck {
   private mController: PasswordCheckController = new PasswordCheckController();
 
   // bind Properties
-  private pinToken: string = undefined;
+  private pinToken: string = '';
   @State @Watch("freezeView")
   private freezingTime: number = 0;
   @State @Watch("updateView")
   private remainTimes: number = -1;
 
   // handler
-  private passwordOnChangeHandler: (value: string) => void;
-  private okOnClickHandler: (event?: ClickEvent) => void;
+  private passwordOnChangeHandler: (value: string) => void = () => {};
+  private okOnClickHandler: (event?: ClickEvent) => void = () => {};
 
   // private Properties
   private pageRequestCode: number = -1;
-  private prevPageUri: string = undefined;
-  private pinChallenge: string = undefined;
+  private prevPageUri: string = '';
+  private pinChallenge: string = '';
   private timerId: number = -1;
-  private freezingTimeFlag = undefined;
+  private freezingTimeFlag: number = 0;
 
   @State private passwordType: number = -1;
   @State private promptMessage:string = ''
@@ -57,13 +56,12 @@ struct PasswordCheck {
   @State isTouchedLeft: boolean = false;
   @State isTouchedRight: boolean = false;
 
-  @Log
   aboutToAppear(): void {
     this.getRouterParam();
 
     // bind event handlers
-    this.passwordOnChangeHandler = this.mController.passwordOnChange.bind(this.mController);
-    this.okOnClickHandler = this.mController.inputFinish.bind(this.mController);
+    this.passwordOnChangeHandler = (value: string):void => this.mController.passwordOnChange(value);
+    this.okOnClickHandler = (event?: ClickEvent):void => this.mController.inputFinish(event);
 
     // bind component and initialize
     this.mController.bindComponent(this)
@@ -74,7 +72,6 @@ struct PasswordCheck {
     this.updateView();
   }
 
-  @Log
   aboutToDisappear(): void {
     this.mController.unsubscribe();
     this.stopCountDown();
@@ -83,16 +80,15 @@ struct PasswordCheck {
   /**
    * Get the params from router
    */
-  @Log
   getRouterParam() {
-    param = Router.getParams();
+    let param = Router.getParams();
     if (!param) {
       return;
     }
-    this.pageRequestCode = param.pageRequestCode;
-    this.prevPageUri = param.prevPageUri;
-    this.pinChallenge = param.pinChallenge;
-    this.passwordType = param.passwordType;
+    this.pageRequestCode = param.pageRequestCode as number;
+    this.prevPageUri = param.prevPageUri as string;
+    this.pinChallenge = param.pinChallenge as string;
+    this.passwordType = param.passwordType as number;
   }
 
   build() {
@@ -195,12 +191,12 @@ struct PasswordCheck {
                   }
                   .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
                   .backgroundColor(!this.isTouchedLeft ? $r("sys.color.ohos_id_color_button_normal") : $r("sys.color.ohos_id_color_foreground_contrary"))
-                  .onTouch((event: TouchEvent) => {
-                    if (event.type === TouchType.Down) {
+                  .onTouch((event?: TouchEvent) => {
+                    if (event?.type === TouchType.Down) {
                       this.isTouchedLeft = true;
                     }
 
-                    if (event.type === TouchType.Up) {
+                    if (event?.type === TouchType.Up) {
                       this.isTouchedLeft = false;
                     }
                   })
@@ -223,12 +219,12 @@ struct PasswordCheck {
                   }
                   .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
                   .backgroundColor(!this.isTouchedLeft ? '#E6E9EB' : $r("sys.color.ohos_id_color_foreground_contrary"))
-                  .onTouch((event: TouchEvent) => {
-                    if (event.type === TouchType.Down) {
+                  .onTouch((event?: TouchEvent) => {
+                    if (event?.type === TouchType.Down) {
                       this.isTouchedRight = true;
                     }
 
-                    if (event.type === TouchType.Up) {
+                    if (event?.type === TouchType.Up) {
                       this.isTouchedRight = false;
                     }
                   })
@@ -264,7 +260,6 @@ struct PasswordCheck {
   /**
    * Update view
    */
-  @Log
   updateView() {
     this.promptMessage = this.getPromptMessage();
     this.buttonVisibility = this.getButtonVisibility();
@@ -275,7 +270,6 @@ struct PasswordCheck {
    *
    * @return : message
    */
-  @Log
   getPromptMessage(): string {
     return (this.remainTimes > 0 && this.remainTimes < DEFAULT_TIMES) ? JSON.parse(JSON.stringify($r('app.string.password_message_incorrect', this.remainTimes))) : '';
   }
@@ -285,7 +279,6 @@ struct PasswordCheck {
    *
    * @return : button visibility
    */
-  @Log
   getButtonVisibility(): Visibility {
     return this.passwordType == PinSubType.PIN_SIX ? Visibility.Hidden : Visibility.Visible;
   }
@@ -295,7 +288,6 @@ struct PasswordCheck {
    *
    * @return : button visibility
    */
-  @Log
   freezeView() {
     if (this.freezingTime <= 0) {
       this.stopCountDown();
@@ -323,7 +315,6 @@ struct PasswordCheck {
   /**
    * Stop count down view.
    */
-  @Log
   stopCountDown() {
     // for freezing view
     if (this.timerId > 0) {

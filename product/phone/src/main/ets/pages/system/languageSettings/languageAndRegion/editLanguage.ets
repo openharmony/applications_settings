@@ -70,7 +70,7 @@ struct EditList {
 
   build(){
     List(){
-      ForEach((this.deleteFlag ? this.mAddedLanguages : this.addedLanguages), (item) => {
+      ForEach((this.deleteFlag ? this.mAddedLanguages : this.addedLanguages), (item: string) => {
         ListItem(){
           Flex({justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center}){
             Row(){
@@ -138,15 +138,15 @@ struct EditList {
            angle: 90,
            direction: GradientDirection.Right,
            colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
-        .onTouch((event: TouchEvent) => {
-          if (event.type === TouchType.Down) {
+        .onTouch((event?: TouchEvent) => {
+          if (event?.type === TouchType.Down) {
             this.touchedItem = item;
           }
-          if (event.type === TouchType.Up) {
+          if (event?.type === TouchType.Up) {
             this.touchedItem = '';
           }
         })
-      }, item => item);
+      }, (item: string) => item);
     }
     .flexShrink(1)
     .padding($r("app.float.distance_4"))
@@ -185,11 +185,11 @@ struct HeadComponent {
             this.deleteFlag = false;
             Router.back();
           })
-          .onTouch((event: TouchEvent) => {
-            if (event.type === TouchType.Down) {
+          .onTouch((event?: TouchEvent) => {
+            if (event?.type === TouchType.Down) {
               this.isTouch = true;
             }
-            if (event.type === TouchType.Up) {
+            if (event?.type === TouchType.Up) {
               this.isTouch = false;
             }
           });

@@ -26,7 +26,7 @@ import HeadComponent from '../../../../../../common/component/src/main/ets/defau
 @Entry
 @Component
 struct ScreenMode {
-  @StorageLink('supportedScreenModes') supportedScreenModes: [] = [];
+  @StorageLink('supportedScreenModes') supportedScreenModes: Object[] = [];
   @State screenModeModel: ScreenModeModel = new ScreenModeModel();
   private TAG = ConfigData.TAG + 'ScreenMode ';
 
@@ -65,13 +65,13 @@ struct ScreenMode {
                     .margin({ top: $r("app.float.distance_12"), bottom: $r("app.float.distance_12"), right: $r("app.float.distance_12")})
                     .onClick(() => {
                       LogUtil.info('settings RadioListComponent : onChange: settingValue = ' + item.settingValue);
-                      this.screenModeModel.setSysScreenMode(index);
+                      this.screenModeModel.setSysScreenMode(index? index : 0);
                     })
                 }
                 .height($r('app.float.wh_value_48'))
                 .width(ConfigData.WH_100_100)
               }
-            }, item => JSON.stringify(item));
+            }, (item: BaseData) => JSON.stringify(item));
           }
           .padding({
             left: $r('app.float.wh_value_12'),
@@ -97,14 +97,12 @@ struct ScreenMode {
     .height(ConfigData.WH_100_100)
   }
 
-  @Log
   aboutToAppear(): void{
     LogUtil.info(this.TAG + 'aboutToAppear in');
     this.screenModeModel.registerObserver();
     LogUtil.info(this.TAG + 'aboutToAppear out');
   }
 
-  @Log
   aboutToDisappear(): void{
     LogUtil.info(this.TAG + 'aboutToDisappear in');
     this.screenModeModel.unregisterObserver();

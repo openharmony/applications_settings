@@ -19,6 +19,7 @@ import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUti
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import { AccessibilitySettingModel } from '../model/accessibilityImpl/AccessibilitySettingModel';
+import { BusinessError } from '@ohos.base';
 
 const TAG = ConfigData.TAG + 'Accessibility ShortKey: ';
 const BASIC_ABILITY_HIGH_CONTRAST_TEXT = 'HIGH_CONTRAST_TEXT';
@@ -177,9 +178,9 @@ struct AccessibilityShortKey {
   async getShortKeyStateAndTarget(): Promise<void> {
     await config.shortkey.get().then((data) => {
       this.shortKeyIsOn = data;
-      LogUtil.info(`${TAG} get shortKeyIsOn success : ${data}`);
-    }).catch((err: object) => {
-      LogUtil.error(`${TAG} failed to get shortKeyIsOn, because ${JSON.stringify(err)}`);
+      LogUtil.info(TAG + 'get shortKeyIsOn success : ' +  data);
+    }).catch((err: BusinessError) => {
+      LogUtil.error(TAG + 'failed to get shortKeyIsOn, because ' + JSON.stringify(err));
     });
 
     await config.shortkeyTarget.get().then((data) => {
@@ -198,8 +199,8 @@ struct AccessibilityShortKey {
         this.checked = data;
         this.shortKeyStatusText = data.split('/')[1];
       }
-    }).catch((err: object) => {
-      LogUtil.error(`${TAG} failed to get shortKeyTarget, because ${JSON.stringify(err)}`);
+    }).catch((err: BusinessError) => {
+      LogUtil.error(TAG + 'failed to get shortKeyTarget, because ' + JSON.stringify(err));
     });
   }
 
@@ -211,8 +212,8 @@ struct AccessibilityShortKey {
       if (data.length > 0) {
         data.forEach(item => this.extAbilityNameList.push(item.id));
       }
-    }).catch((err: object) => {
-      LogUtil.error(`${TAG} failed to get accessibilityAbilityList, because ${JSON.stringify(err)}`);
+    }).catch((err: BusinessError) => {
+      LogUtil.error(TAG + 'failed to get accessibilityAbilityList, because ' + JSON.stringify(err));
     })
     LogUtil.info(`${TAG} aboutToAppear out`);
   }
@@ -262,9 +263,7 @@ struct SelectAbilityScalingInformation {
                   .width($r("app.float.wh_value_24"))
                   .onChange((value: boolean) => {
                     if (value) {
-                      if (this.controller) {
-                        this.controller.close();
-                      }
+                      this.controller?.close();
                       this.setAbilityText(item);
                       this.setShortKeyStatusText(item);
                       this.checked = item;
@@ -285,9 +284,7 @@ struct SelectAbilityScalingInformation {
           .height($r("app.float.wh_value_40"))
           .margin({ top: $r("app.float.distance_8") })
           .onClick(() => {
-            if (this.controller) {
-              this.controller.close();
-            }
+            this.controller?.close();
           })
       }
       .padding({

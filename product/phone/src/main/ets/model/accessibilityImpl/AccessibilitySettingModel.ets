@@ -15,6 +15,7 @@
 
 import config from '@ohos.accessibility.config';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { BusinessError } from '@ohos.base';
 
 const TAG = 'AccessibilitySettingModel : ';
 
@@ -30,49 +31,49 @@ export class AccessibilitySettingModel {
       case 'highContrastText':
         config.highContrastText.set(isOn).then(() => {
           LogUtil.info(`${TAG} highContrastText set ${isOn} success`);
-        }).catch((err: object) => {
+        }).catch((err: BusinessError) => {
           LogUtil.error(`${TAG} highContrastText set ${isOn} err: ${JSON.stringify(err)}`);
         });
         break;
       case 'invertColor':
         config.invertColor.set(isOn).then(() => {
           LogUtil.info(`${TAG} invertColor set ${isOn} success`);
-        }).catch((err: object) => {
+        }).catch((err: BusinessError) => {
           LogUtil.error(`${TAG} invertColor set ${isOn} err: ${JSON.stringify(err)}`);
         });
         break;
       case 'animationOff':
         config.animationOff.set(isOn).then(() => {
           LogUtil.info(`${TAG} animationOff set ${isOn} success`);
-        }).catch((err: object) => {
+        }).catch((err: BusinessError) => {
           LogUtil.error(`${TAG} animationOff set ${isOn} err: ${JSON.stringify(err)}`);
         });
         break;
       case 'audioMono':
         config.audioMono.set(isOn).then(() => {
           LogUtil.info(`${TAG} audioMono set ${isOn} success`);
-        }).catch((err: object) => {
+        }).catch((err: BusinessError) => {
           LogUtil.error(`${TAG} audioMono set ${isOn} err: ${JSON.stringify(err)}`);
         });
         break;
       case 'mouseKey':
         config.mouseKey.set(isOn).then(() => {
           LogUtil.info(`${TAG} mouseKey set ${isOn} success`);
-        }).catch((err: object) => {
+        }).catch((err: BusinessError) => {
           LogUtil.error(`${TAG} mouseKey set ${isOn} err: ${JSON.stringify(err)}`);
         });
         break;
       case 'shortKey':
         config.shortkey.set(isOn).then(() => {
           LogUtil.info(`${TAG} shortkey set ${isOn} success`);
-        }).catch((err: object) => {
+        }).catch((err: BusinessError) => {
           LogUtil.error(`${TAG} shortkey set ${isOn} err: ${JSON.stringify(err)}`);
         });
         break;
       case 'captions':
         config.captions.set(isOn).then(() => {
           LogUtil.info(`${TAG} captions set ${isOn} success`);
-        }).catch((err: object) => {
+        }).catch((err: BusinessError) => {
           LogUtil.error(`${TAG} captions set ${isOn} err: ${JSON.stringify(err)}`);
         });
         break;
@@ -85,7 +86,7 @@ export class AccessibilitySettingModel {
     LogUtil.info(`${TAG} accessibilityConfigSetting config begin: ${audioBalance}`);
     config.audioBalance.set(audioBalance).then(() => {
       LogUtil.info(`${TAG} accessibilityConfigSetting config success: ${audioBalance}`);
-    }).catch((err: object) => {
+    }).catch((err: BusinessError) => {
       LogUtil.error(`${TAG} accessibilityConfigSetting config fail: ${audioBalance} err: ${JSON.stringify(err)}`);
     });
   }
@@ -94,7 +95,7 @@ export class AccessibilitySettingModel {
     LogUtil.info(`${TAG} accessibilityshortkeyTargete config begin: ${targetName}`);
     config.shortkeyTarget.set(targetName).then(() => {
       LogUtil.info(`${TAG} accessibilityshortkeyTargete config success: ${targetName}`);
-    }).catch((err: object) => {
+    }).catch((err: BusinessError) => {
       LogUtil.error(`${TAG} accessibilityshortkeyTargete config fail: ${targetName} err: ${JSON.stringify(err)}`);
     });
   }
