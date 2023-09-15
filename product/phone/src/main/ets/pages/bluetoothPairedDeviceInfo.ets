@@ -28,7 +28,7 @@ import HeadComponent from '../../../../../../common/component/src/main/ets/defau
 @Entry
 @Component
 struct BluetoothPairedDeviceInfo {
-  @State bluetoothDevice: BluetoothDevice | undefined= undefined;
+  @State bluetoothDevice: BluetoothDevice | null = null;
   @State isTouched: boolean = false;
   private controller: BluetoothDeviceController = new BluetoothDeviceController()
 
