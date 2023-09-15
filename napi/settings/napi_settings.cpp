@@ -283,6 +283,7 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
 std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, const napi_value context, const bool stageMode)
 {
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
+    std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultset = nullptr;
     std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
     std::string strProxyUri = "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true";
     OHOS::Uri proxyUri(strProxyUri);
@@ -297,12 +298,16 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, const napi_val
     std::vector<std::string> columns;
     if (dataShareHelper == nullptr) {
         SETTING_LOG_INFO("getDataShareHelper dataShareHelper = nullptr");
-    }
-    if (dataShareHelper == nullptr || dataShareHelper->Query(proxyUri, predicates, columns) == nullptr) {
-        dataShareHelper =  OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
+        dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
         return dataShareHelper;
     }
-    
+  
+    resultset = dataShareHelper->Query(proxyUri, predicates, columns);
+    if (resultset == nullptr) {
+        dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
+        return dataShareHelper;
+    }
+    resultset->Close();
     return dataShareHelper;
 }
 
