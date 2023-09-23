@@ -7,20 +7,6 @@
         "name": "default",
         "signingConfig": "release"
       }
-    ],
-    "signingConfigs": [
-      {
-        "name": "release",
-        "material": {
-          "certpath": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_release_applications_settings_com.ohos.settings.cer",
-          "storePassword": "0000001B8BB7DEA7DFCFD7555780C99AFDA5A805BE9E589C013C3B4117BCCF09AF7FA2C93C18D1E85C7944",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001B20FC40B5F6A0C7D9C9CB39D1CF40A91EB3170DA07CA071E7872D52B43BD343F2D2E4285E0DE8CB",
-          "profile": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_release_applications_settings_com.ohos.settings.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\Administrator\\.ohos\\config\\openharmony\\auto_ohos_release_applications_settings_com.ohos.settings.p12"
-        }
-      }
     ]
   },
   "modules": [
