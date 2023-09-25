@@ -12,10 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import ConfigData from '../../../../../../utils/src/main/ets/default/baseUtil/ConfigData';
 import Log from '../../../../../../utils/src/main/ets/default/baseUtil/LogDecorator';
 import { BaseData } from '../../../../../../utils/src/main/ets/default/bean/BaseData';
 import LogUtil from '../../../../../../utils/src/main/ets/default/baseUtil/LogUtil';
+import { GlobalContext } from '../../../../../../utils/src/main/ets/default/baseUtil/GlobalContext';
 import SearchConfig from '../common/SearchConfig';
 import SearchData from '../model/SearchData';
 import SearchDataProvider from '../provider/SearchDataProvider';
@@ -32,27 +34,6 @@ export default class SearchModel {
 
   constructor(configData: Array<Object>) {
     this.searchDataConfig = configData;
-  }
-
-  /**
-   * Initialize rdb
-   */
-  @Log
-  private async initRdb(): Promise<void> {
-    LogUtil.log('settings initRdb.');
-
-    if (!this.rdbStore) {
-      LogUtil.log('settings RDB has not been initialized yet.');
-
-      // database init
-      const STORE_CONFIG = { name: SearchConfig.RDB_NAME};
-      this.rdbStore = await ohosDataRdb.getRdbStore(globalThis.settingsAbilityContext, STORE_CONFIG, 1);
-      LogUtil.log('settings SettingsSearch.db is ready.');
-
-      // table SEARCH_DATA init
-      await this.rdbStore.executeSql(SearchConfig.search.DDL_TABLE_CREATE, null);
-      LogUtil.log('settings table SEARCH_DATA is ready.');
-    }
   }
 
   /**
@@ -85,12 +66,12 @@ export default class SearchModel {
       .orderByAsc(SearchConfig.search.FIELD_URI);
 
     let resultSet = await this.rdbStore.query(predicates, [
-        SearchConfig.search.FIELD_ICON,
-        SearchConfig.search.FIELD_TITLE,
-        SearchConfig.search.FIELD_KEYWORD,
-        SearchConfig.search.FIELD_SUMMARY,
-        SearchConfig.search.FIELD_URI
-      ]);
+    SearchConfig.search.FIELD_ICON,
+    SearchConfig.search.FIELD_TITLE,
+    SearchConfig.search.FIELD_KEYWORD,
+    SearchConfig.search.FIELD_SUMMARY,
+    SearchConfig.search.FIELD_URI
+    ]);
 
     // build search data from resultSet
     let searchData: SearchData[] = [];
@@ -107,6 +88,30 @@ export default class SearchModel {
     resultSet = null;
 
     return searchData;
+  }
+
+  /**
+   * Initialize rdb
+   */
+  @Log
+  private async initRdb(): Promise<void> {
+    LogUtil.log('settings initRdb.');
+
+    if (!this.rdbStore) {
+      LogUtil.log('settings RDB has not been initialized yet.');
+
+      // database init
+      const STORE_CONFIG = {
+        name: SearchConfig.RDB_NAME
+      };
+      let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as Context;
+      this.rdbStore = await ohosDataRdb.getRdbStore(context, STORE_CONFIG, 1);
+      LogUtil.log('settings SettingsSearch.db is ready.');
+
+      // table SEARCH_DATA init
+      await this.rdbStore.executeSql(SearchConfig.search.DDL_TABLE_CREATE, null);
+      LogUtil.log('settings table SEARCH_DATA is ready.');
+    }
   }
 
   /**
@@ -207,10 +212,11 @@ export default class SearchModel {
 
     // get child page search
     for (const setting of settingList) {
-      const icon = settingIcon ? settingIcon : setting.settingIcon;  // higher priority for parent icon
+      const icon = settingIcon ? settingIcon : setting.settingIcon; // higher priority for parent icon
       const childData = await this.getSearchData(setting.settingUri, icon, uriConfigMapping);
       searchProviderData = searchProviderData.concat(childData);
-    };
+    }
+    ;
 
     return searchProviderData;
   }
@@ -236,5 +242,4 @@ export default class SearchModel {
 
     return result;
   }
-
 }

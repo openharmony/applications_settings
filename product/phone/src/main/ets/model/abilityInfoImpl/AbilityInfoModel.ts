@@ -12,12 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import BaseModel from '../../../../../../common/utils/src/main/ets/default/model/BaseModel';
+
+import common from '@ohos.app.ability.common';
 import Bundle from '@ohos.bundle';
-//import ResMgr from '@ohos.resourceManager';
-import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import {BaseData} from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
-import {MetaDataModel} from './MetaDataModel';
+import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
+import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
+import { BaseData } from '../../../../../../../common/utils/src/main/ets/default/bean/BaseData';
+import { MetaDataModel } from './MetaDataModel';
 
 let icon_arrow = $r('app.media.ic_settings_arrow');
 let icon_default = $r('app.media.icon_default');
@@ -27,8 +29,9 @@ let metaName = 'meta-app';
  * Obtain meta-data Information
  */
 export class AbilityInfoModel extends BaseModel {
-  public mAbilityInfoList: BaseData[]= [];
-  private metaDatas: string[]= [];
+  public mAbilityInfoList: BaseData[] = [];
+  private metaDatas: string[] = [];
+
   /**
    * Obtain meta-data Information
    * @param bundleName - bundleName
@@ -56,7 +59,7 @@ export class AbilityInfoModel extends BaseModel {
       }
       LogUtil.info('settings getAbilityInfoListener ability MetaData :' + JSON.stringify(abilityMetaData));
       if ('' !== abilityMetaData && undefined !== abilityMetaData
-      && [] !== abilityMetaData.customizeDatas && abilityMetaData.customizeDatas.length > 0) {
+        && [] !== abilityMetaData.customizeDatas && abilityMetaData.customizeDatas.length > 0) {
         LogUtil.info('settings getAbilityInfoListener ability Custom:' + JSON.stringify(abilityMetaData.customizeDatas));
         let extra;
         for (let i = 0, len = abilityMetaData.customizeDatas.length; i < len; i++) {
@@ -88,7 +91,8 @@ export class AbilityInfoModel extends BaseModel {
         label = metaBase.labelName;
       } else {
         if (metaBase.labelId > 0) {
-            globalThis.settingsAbilityContext.resourceManager.getString(parseInt(metaBase.labelId), (error, value) => {
+          let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+          context.resourceManager.getString(parseInt(metaBase.labelId), (error, value) => {
             if (error != null) {
               LogUtil.info('settings getAbilityInfoListener getString error:' + error);
               label = '';
@@ -107,7 +111,8 @@ export class AbilityInfoModel extends BaseModel {
         }
       }
       LogUtil.info('settings getAbilityInfoListener getResourceManager getString() finish label:' + label);
-      globalThis.settingsAbilityContext.resourceManager.getMediaBase64(parseInt(metaBase.iconId), (error, value) => {
+      let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+      context.resourceManager.getMediaBase64(parseInt(metaBase.iconId), (error, value) => {
         if (error != null) {
           LogUtil.info('settings getAbilityInfoListener getMediaBase64 error:' + error);
           imageValue = deaultAppIcon;
@@ -129,6 +134,7 @@ export class AbilityInfoModel extends BaseModel {
     }
     LogUtil.info('settings getAbilityInfoListener getIconItem end');
   }
+
   /**
    * @param label - title
    * @param imageValue - image

@@ -102,7 +102,11 @@ struct ApplicationStorage {
 
           ButtonComponent({ text: $r("app.string.deleteDataTab"), onClickEvent: () => {
             if (appInfo && appInfo.settingBundleName) {
-              this.showDialog(this.controller.clearUpApplicationData.bind(this, appInfo.settingBundleName));
+              this.showDialog(() => {
+                if (appInfo && appInfo.settingBundleName) { // codelint无法检测匿名函数变量，因此再判断一次
+                  this.controller.clearUpApplicationData(appInfo.settingBundleName);
+                }
+              });
             }
           } })
 
