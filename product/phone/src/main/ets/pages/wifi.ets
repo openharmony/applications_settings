@@ -158,7 +158,7 @@ struct Index {
     timestamp: 0,
     securityType: 1,
   };
-  private switchDebounceFlag = undefined;
+  private switchDebounceFlag: number | undefined = undefined;
   private timerId: number = -1;
   private errorMessage: string = "";
   private clickApInfoDialog: CustomDialogController = new CustomDialogController({
@@ -510,7 +510,7 @@ export interface WifiButton {
  */
 @CustomDialog
 struct apInfoDialog {
-  controller: CustomDialogController;
+  controller?: CustomDialogController;
   @State dataList: WifiDialogData[] = [
     { key: $r('app.string.wifiInfoTitleIntensity'), value: $r('app.string.wifiSigIntensityBad') },
     { key: $r('app.string.wifiInfoTitleEncryptMethod'), value: $r('app.string.wifiEncryptMethodOpen') }
@@ -640,7 +640,7 @@ struct apInfoDialog {
 
 @CustomDialog
 struct apInfoDetailsDialog {
-  controller: CustomDialogController;
+  controller?: CustomDialogController;
   private apInfo: WifiScanInfo | null = null;
   private value: string = '';
   private frequency: string = '2.4GHz';

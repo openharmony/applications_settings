@@ -29,6 +29,10 @@ export default abstract class SwitchController extends BaseSettingsController {
     this.afterCurrentValueChanged();
   }
 
+  onSelfToggleValueBindThis = (isOn: boolean) => {
+    this.toggleValue(isOn);
+  }
+
   /**
    * After current value changed
    */

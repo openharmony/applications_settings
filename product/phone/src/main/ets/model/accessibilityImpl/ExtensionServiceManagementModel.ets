@@ -17,6 +17,7 @@ import router from '@ohos.router';
 import config from '@ohos.accessibility.config';
 import bundleMonitor from '@ohos.bundle.bundleMonitor';
 import bundleManager from '@ohos.bundle.bundleManager';
+import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 import accessibility from '@ohos.accessibility';
 import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
@@ -56,7 +57,8 @@ export class ExtensionServiceManagementModel extends BaseModel {
   constructor() {
     super();
     try {
-      globalThis.settingsAbilityContext.resourceManager.getMediaBase64ByName(icon_default)
+      let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as Context;
+      context.resourceManager.getMediaBase64ByName(icon_default)
         .then((res: string) => {
           icon_default_str = res;
           LogUtil.info(`${MODULE_TAG} getResourceManager init defaultIcon res: ${JSON.stringify(icon_default_str)}`);
@@ -203,7 +205,7 @@ export class ExtensionServiceManagementModel extends BaseModel {
   async loadIcon(bundleInfo: bundleManager.BundleInfo): Promise<string> {
     let appInfo = bundleInfo.appInfo;
     let imageValue = '';
-    let context = globalThis.settingsAbilityContext;
+    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as Context;
     LogUtil.info(`${MODULE_TAG} getResourceManager appInfo.iconResource: ${JSON.stringify(appInfo.iconResource)}`);
     if (appInfo.iconResource.id > 0) {
       imageValue = await context.resourceManager.getMediaBase64(appInfo.iconResource);
@@ -223,7 +225,7 @@ export class ExtensionServiceManagementModel extends BaseModel {
    */
   async loadDescription(bundleInfo: bundleManager.BundleInfo, serviceName: string): Promise<ResourceStr> {
     let description: ResourceStr = $r('app.string.no_description_provided');
-    let context = globalThis.settingsAbilityContext;
+    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as Context;
     let moduleInfo: Array<bundleManager.HapModuleInfo> = bundleInfo.hapModulesInfo;
     if (moduleInfo.length > 0) {
       for (let hapInfo of moduleInfo) {

@@ -19,7 +19,6 @@ import { SubHeader } from '../../../../../../../../../common/component/src/main/
 import ConfigData from '../../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LanguageAndRegionModel from '../../../../model/systemImpl/languageSettings/LanguageAndRegionModel';
 import HeadComponent from '../../../../../../../../../common/component/src/main/ets/default/headComponent';
-import BasicDataSource from '../../../../../../../../../common/utils/src/main/ets/default/model/BasicDataSource';
 
 /**
  * Home Page of  Select Region
@@ -105,6 +104,8 @@ struct SelectRegion {
 
   aboutToAppear() {
     LogUtil.info(`${this.TAG} aboutToAppear in`);
+    // let regions: Array<string> = LanguageAndRegionModel.getSystemCountries();
+    // this.regionList.refreshData(regions);
     LogUtil.info(`${this.TAG} aboutToAppear out`);
   }
 }
@@ -157,19 +158,120 @@ struct CurrentRegion {
 /**
  * RegionDataSource For Lazy Loading
  */
-class RegionDataSource extends BasicDataSource {
+// class RegionDataSource extends BasicDataSource {
+//   private regionArray: string[] = [];
+//
+//   constructor(regionArray: string[]) {
+//     super();
+//     this.regionArray = regionArray;
+//   }
+//
+//   public totalCount(): number {
+//     return this.regionArray.length;
+//   }
+//
+//   public getData(index: number): string {
+//     return this.regionArray[index];
+//   }
+//
+//   public refreshData(dataList: string[]) {
+//     this.regionArray = dataList;
+//     this.notifyDataReload();
+//   }
+//
+//   public pushData(data: string): void {
+//     this.regionArray.push(data);
+//     this.notifyDataAdd(this.regionArray.length - 1);
+//   }
+// }
+
+export class RegionDataSource implements IDataSource {
   private regionArray: string[] = [];
+  // 数据改变监听器
+  private listeners: DataChangeListener[] = [];
 
   constructor(regionArray: string[]) {
-    super();
     this.regionArray = regionArray;
   }
 
+  /**
+   * 获取数据源列表长度
+   */
   public totalCount(): number {
     return this.regionArray.length;
   }
 
+  /**
+   * 从数据源获取指定索引值的数据项
+   *
+   * @param index 数据源索引值
+   * @return 对应索引值的数据项
+   */
   public getData(index: number): string {
     return this.regionArray[index];
+  }
+
+  public refreshData(dataList: string[]) {
+    this.regionArray = dataList;
+    this.notifyDataReload();
+  }
+
+  public pushData(data: string): void {
+    this.regionArray.push(data);
+    this.notifyDataAdd(this.regionArray.length - 1);
+  }
+
+  /**
+   * 注册数据改变的监听器
+   * @param listener
+   */
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener);
+    }
+  }
+
+  /**
+   * 注销数据改变的监听器
+   * @param listener
+   */
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  /**
+   * 通知组件重新加载所有数据
+   */
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+    })
+  }
+
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    })
+  }
+
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to);
+    })
   }
 }

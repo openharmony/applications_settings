@@ -13,15 +13,17 @@
  * limitations under the License.
  */
 
+import common from '@ohos.app.ability.common';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
 import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
+
 import wifi from '@ohos.wifi';
 import prompt from '@system.prompt';
 import Router from '@system.router';
-import FeatureAbility from '@ohos.ability.featureAbility';
 
 /**
  * app setting homepage service class
@@ -34,16 +36,17 @@ export class SettingListModel extends BaseModel {
    */
   @Log
   getSettingList() {
-//    return this.settingsList;
+    //    return this.settingsList;
   }
 
   /**
    * Item on click
    */
   @Log
-  onSettingItemClick(targetPage): void{
-    if(targetPage === 'mobileData'){
-      globalThis.settingsAbilityContext.startAbility({
+  onSettingItemClick(targetPage): void {
+    if (targetPage === 'mobileData') {
+      let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.UIAbilityContext;
+      context.startAbility({
         bundleName: ConfigData.MOBILE_DATA_BUNDLE_NAME,
         abilityName: ConfigData.MOBILE_DATA_ABILITY_NAME,
       })
@@ -59,8 +62,9 @@ export class SettingListModel extends BaseModel {
             LogUtil.error(`${this.TAG}, ${ConfigData.MOBILE_DATA_BUNDLE_NAME} start failed. Cause: ${JSON.stringify(error)}`);
           })
         })
-    }else if(targetPage === 'security'){
-      globalThis.settingsAbilityContext.startAbility({
+    } else if (targetPage === 'security') {
+      let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.UIAbilityContext;
+      context.startAbility({
         bundleName: ConfigData.SECURITY_BUNDLE_NAME,
         abilityName: ConfigData.SECURITY_ABILITY_NAME,
       })
@@ -87,7 +91,7 @@ export class SettingListModel extends BaseModel {
    * Register Observer
    */
   @Log
-  registerObserver(){
+  registerObserver() {
     wifi.on('wifiStateChange', (code) => {
       AppStorage.SetOrCreate('wifiStatus', wifi.isWifiActive());
     })
@@ -95,4 +99,5 @@ export class SettingListModel extends BaseModel {
 }
 
 let settingListModel = new SettingListModel();
+
 export default settingListModel as SettingListModel;

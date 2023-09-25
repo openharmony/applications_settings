@@ -13,17 +13,19 @@
  * limitations under the License.
  */
 
+import { Callback } from '@ohos.base';
 import Router from '@system.router';
 import deviceInfo from '@ohos.deviceInfo';
+import bundle from '@ohos.bundle.bundleManager';
+import Want from '@ohos.app.ability.Want';
 import { BaseData } from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { GlobalContext } from '../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 import ApplicationInfoController from '../controller/application/ApplicationInfoController';
-import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import EntryComponent from '../../../../../../common/component/src/main/ets/default/entryComponent';
 import { DialogButtonLayout } from '../../../../../../common/component/src/main/ets/default/dialogComponent';
-import Bundle from '@ohos.bundle';
 import AppManagementModel from '../model/appManagementImpl/AppManagementModel';
 
 const MODULE_TAG = ConfigData.TAG + 'application-> ';
@@ -120,7 +122,9 @@ struct ApplicationInfo {
               .borderRadius($r('app.float.radius_20'))
               .backgroundColor($r('sys.color.ohos_id_color_button_normal'))
               .onClick(() => {
-                this.showPromptDialog(this.controller.killProcessesByBundleName.bind(this, this.bundleName));
+                this.showPromptDialog(() => {
+                  this.controller.killProcessesByBundleName(this.bundleName);
+                });
               })
           }
           .alignItems(VerticalAlign.Center)
@@ -187,16 +191,20 @@ struct ApplicationInfo {
       AppStorage.SetOrCreate('appInformation', param);
     }
 
-    if (this.bundleName == " ") {
-      if (globalThis.abilityWant?.action == "action.settings.app.info") {
-        this.bundleName = globalThis.abilityWant?.parameters?.settingsParamBundleName;
-        let bundleList: any[] = [];
-        Bundle.getBundleInfo(this.bundleName, Bundle.BundleFlag.GET_BUNDLE_WITH_ABILITIES)
+    if (this.bundleName == ' ') {
+      let want = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_ABILITY_WANT) as Want;
+      if (want?.action === 'action.settings.app.info') {
+        this.bundleName = want?.parameters?.settingsParamBundleName as string;
+        let bundleList: bundle.BundleInfo[] = [];
+        bundle.getBundleInfo(this.bundleName, bundle.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY)
           .then((data) => {
             bundleList[0] = data;
             AppManagementModel.getResourceItem(0, 1, bundleList)
               .then(() => {
-                this.mBundleInfoList = AppStorage.Get('appManagementList');
+                let appMgrList = AppStorage.Get('appManagementList') as BaseData[];
+                if (appMgrList) {
+                  this.mBundleInfoList = appMgrList;
+                }
                 this.appInfo = this.mBundleInfoList[0];
                 AppStorage.SetOrCreate('appInformation', this.mBundleInfoList[0]);
               })
@@ -212,7 +220,7 @@ struct ApplicationInfo {
   /**
    * Stop exception prompt Dialog
    */
-  showPromptDialog(callback) {
+  showPromptDialog(callback: Callback<void>) {
     AlertDialog.show({
       message: $r("app.string.Stop_exception_prompt"),
       primaryButton: {
@@ -234,7 +242,7 @@ struct ApplicationInfo {
   }
 
   updateRemovableStatus(bundleName: string) {
-    this.controller.getBundleInfo(bundleName, (err: Error, result) => {
+    this.controller.getBundleInfo(bundleName, (err: Error, result: bundle.BundleInfo) => {
       if (err) {
         LogUtil.info(MODULE_TAG + 'get system bundle info failed');
       } else {
@@ -253,7 +261,6 @@ struct ApplicationInfo {
 @CustomDialog
 struct ShowDialog {
   dialogController?: CustomDialogController;
-  action?: () => void;
   @StorageLink('appInformation') appInfo: BaseData = {
     settingIcon: "",
     settingTitle: "",
@@ -265,6 +272,8 @@ struct ShowDialog {
     settingUri: ""
   };
   private uirBack: string = 'pages/appManagement';
+  action: () => void = () => {
+  };
 
   build() {
     Column() {
