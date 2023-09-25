@@ -65,7 +65,7 @@ struct AccessibilityServiceInfo {
   showDialog: CustomDialogController = new CustomDialogController({
     builder: ShowDialog({
       firstClickAction: () => {
-        this.enableAbility(this.serviceInfo.serviceId);
+        this.openServiceButton(this.serviceInfo.serviceId);
       },
       secondClickAction: () => {
         this.cancelButton();
@@ -247,8 +247,21 @@ struct AccessibilityServiceInfo {
     });
   }
 
+  async openServiceButton(abilityName: string):Promise<void>{
+    let enabledServiceList: Array<accessibility.AccessibilityAbilityInfo> = await accessibility.getAccessibilityExtensionList('all', 'enable')
+    if (enabledServiceList && enabledServiceList.length > 0) {
+      for (let enabledService of enabledServiceList) {
+        if (enabledService.id && enabledService.id === abilityName) {
+          this.serviceIsOn = true;
+          return;
+        }
+      }
+    }
+    this.enableAbility(abilityName)
+  }
+
   cancelButton(): void {
-    this.serviceIsOn = false;
+    this.disableAbility(this.serviceInfo.serviceId);
     this.pageChanged = !this.pageChanged;
     LogUtil.info(`${MODULE_TAG} cancel: serviceStatus ${JSON.stringify(this.serviceIsOn)}`);
   }
