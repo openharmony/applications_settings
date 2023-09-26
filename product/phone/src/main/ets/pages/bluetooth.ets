@@ -452,7 +452,7 @@ struct AvailableDeviceComponent {
   @State availableDevicesList: AvailableDevicesDataSource = new AvailableDevicesDataSource(this.availableDevices);
   @State pairPinCode: string = '';
   @StorageLink("controlPairing") controlPairing: boolean = true;
-  @StorageLink("pairData") pairData: BluetoothDevice | null = null;
+  @StorageLink("pairData") pairData: BluetoothDevice = new BluetoothDevice();
   @StorageLink("pinRequiredParam") @Watch("pinRequiredParamChange") pinRequiredParam: PinRequiredParam = {
     deviceId: '',
     pinCode: ''
