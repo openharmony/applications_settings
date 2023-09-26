@@ -14,15 +14,14 @@
  */
 
 import ConfigData from './ConfigData';
-import LogUtil from './LogUtil'
-import { GlobalContext } from './GlobalContext'
+import LogUtil from './LogUtil';
+import { GlobalContext } from './GlobalContext';
 
 //import Storage from '@ohos.data.storage';
 
 //let preference = Storage.getStorageSync(ConfigData.PREFERENCES_PATH);
 this.storage = await dataStorage.getPreferences(
-  GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT),
-  ConfigData.PREFERENCES_PATH)
+  GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT), ConfigData.PREFERENCES_PATH);
 
 export class PreferenceUtil {
   /**
