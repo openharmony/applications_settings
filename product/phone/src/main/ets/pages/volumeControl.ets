@@ -134,8 +134,8 @@ struct AudioRingerModeComponent {
 @Component
 struct AudioRingerModeItem {
   @Link checked: boolean;
-  private audioRingerModel: RingerModel;
-  private image;
+  private audioRingerModel: RingerModel | null = null;
+  private image: Resource | null = null;
   private text: string | Resource = '';
 
   build() {
@@ -161,14 +161,14 @@ struct AudioRingerModeItem {
         .checked(this.checked)
         .onChange((vue) => {
           if (vue) {
-            this.audioRingerModel.setRingerMode();
+            this.audioRingerModel?.setRingerMode();
           }
         })
     }
     .alignItems(HorizontalAlign.Center)
     .onClick(() => {
       LogUtil.info(ConfigData.TAG + 'AudioRingerModeItem : item is clicked');
-      this.audioRingerModel.setRingerMode();
+      this.audioRingerModel?.setRingerMode();
     });
   }
 }
@@ -224,8 +224,8 @@ struct VolumeControlComponent {
 @Component
 struct VolumeControlItem {
   @Link volumeValue: number;
-  private volumeModel;
-  private image;
+  private volumeModel: VolumeModel | null = null;
+  private image: Resource | null = null;
   private text: string | Resource = '';
 
   build() {
@@ -260,7 +260,7 @@ struct VolumeControlItem {
         .height($r('app.float.wh_value_40'))
         .width(ConfigData.WH_100_100)
         .onChange((value: number) => {
-          this.volumeModel.setVolume(value);
+          this.volumeModel?.setVolume(value);
         });
     }
     .margin({ top: $r("app.float.distance_12") })

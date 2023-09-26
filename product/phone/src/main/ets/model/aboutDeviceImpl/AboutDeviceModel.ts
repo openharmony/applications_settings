@@ -12,12 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import common from '@ohos.app.ability.common';
+import deviceInfo from '@ohos.deviceInfo';
+import settings from '@ohos.settings';
 import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
-import deviceInfo from '@ohos.deviceInfo';
-import settings from '@ohos.settings';
 import CatchError from '../../../../../../../common/utils/src/main/ets/default/baseUtil/CatchError';
 
 /**
@@ -47,7 +50,7 @@ export class AboutDeviceModel extends BaseModel {
     }
   ]
 
-  constructor(){
+  constructor() {
     super();
   }
 
@@ -56,7 +59,7 @@ export class AboutDeviceModel extends BaseModel {
    */
   @Log
   @CatchError(`dataability:///com.ohos.settingsdata.DataAbility/${ConfigData.SETTINGSDATA_DEVICE_NAME}`)
-  public getUri(){
+  public getUri() {
     return settings.getUriSync(ConfigData.SETTINGSDATA_BRIGHTNESS);
   }
 
@@ -71,8 +74,8 @@ export class AboutDeviceModel extends BaseModel {
   }
 
   /**
-  * Read local file
-  */
+   * Read local file
+   */
   @Log
   public getAboutDeviceInfoListener(): any[] {
     LogUtil.info('settings getAboutDeviceInfoListener come in');
@@ -80,26 +83,29 @@ export class AboutDeviceModel extends BaseModel {
   }
 
   /**
-  * Get system name from SettingsData
-  */
+   * Get system name from SettingsData
+   */
   @Log
   @CatchError(ConfigData.DEVICE_NAME)
-  getSystemName(){
-    let deviceName = settings.getValueSync(globalThis.settingsAbilityContext, ConfigData.SETTINGSDATA_DEVICE_NAME, ConfigData.DEVICE_NAME);
+  getSystemName() {
+    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+    let deviceName = settings.getValueSync(context, ConfigData.SETTINGSDATA_DEVICE_NAME, ConfigData.DEVICE_NAME);
     return deviceName;
   }
 
   /**
-  * Set system name to SettingsData
-  */
+   * Set system name to SettingsData
+   */
   @Log
   @CatchError(undefined)
-  setSystemName(name: string){
-    settings.setValueSync(globalThis.settingsAbilityContext, ConfigData.SETTINGSDATA_DEVICE_NAME, name);
+  setSystemName(name: string) {
+    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+    settings.setValueSync(context, ConfigData.SETTINGSDATA_DEVICE_NAME, name);
     return;
   }
 }
 
 let aboutDeviceModel = new AboutDeviceModel();
+
 export default aboutDeviceModel as AboutDeviceModel
 ;
