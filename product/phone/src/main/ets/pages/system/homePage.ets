@@ -14,14 +14,15 @@
  */
 
 import prompt from '@system.prompt';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
 import dateTimeManager from '@ohos.enterprise.dateTimeManager';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent';
 import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import { SubEntryComponent } from '../../../../../../../common/component/src/main/ets/default/subEntryComponent';
-import Want from '@ohos.app.ability.Want';
-
 
 /**
  * Home Page Of System Settings
@@ -145,7 +146,9 @@ struct SoftwareUpdateComponent {
     .borderRadius($r('app.float.radius_16'))
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
     .onClick(() => {
-      globalThis.settingsAbilityContext.startAbility({
+      let context = GlobalContext.getContext()
+        .getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.UIAbilityContext;
+      context.startAbility({
         bundleName: ConfigData.SOFTWARE_UPDATES_BUNDLE_NAME,
         abilityName: ConfigData.SOFTWARE_UPDATES_ABILITY_NAME,
       })

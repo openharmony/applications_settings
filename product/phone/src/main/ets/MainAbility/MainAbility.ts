@@ -13,42 +13,42 @@
  * limitations under the License.
  */
 
+import Ability from '@ohos.app.ability.UIAbility';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import Ability from '@ohos.app.ability.UIAbility'
+import { GlobalContext } from '../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 
 export default class MainAbility extends Ability {
-    onCreate(want, launchParam) {
-        LogUtil.info(ConfigData.TAG + 'Application onCreate')
-        globalThis.abilityWant = want;
-        globalThis.settingsAbilityContext =this.context
-    }
+  onCreate(want, launchParam) {
+    LogUtil.info(ConfigData.TAG + 'Application onCreate')
+    GlobalContext.getContext().setObject(GlobalContext.GLOBAL_KEY_ABILITY_WANT, want);
+    GlobalContext.getContext().setObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT, this.context);
+  }
 
-    onDestroy() {
-        AppStorage.SetOrCreate('settingsList', []);
-        LogUtil.info(ConfigData.TAG + 'Application onDestroy')
-    }
+  onDestroy() {
+    AppStorage.SetOrCreate('settingsList', []);
+    LogUtil.info(ConfigData.TAG + 'Application onDestroy')
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        LogUtil.log("[Main] MainAbility onWindowStageCreate")
+  onWindowStageCreate(windowStage) {
+    // Main window is created, set main page for this ability
+    LogUtil.log("[Main] MainAbility onWindowStageCreate")
+    windowStage.setUIContent(this.context, "pages/settingList", null)
+    GlobalContext.getContext().setObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT, this.context);
+  }
 
-        windowStage.setUIContent(this.context, "pages/settingList", null)
-        globalThis.settingsAbilityContext =this.context
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    LogUtil.log("[Main] MainAbility onWindowStageDestroy")
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        LogUtil.log("[Main] MainAbility onWindowStageDestroy")
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    LogUtil.log("[Main] MainAbility onForeground")
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        LogUtil.log("[Main] MainAbility onForeground")
-    }
-
-    onBackground() {
-        // Ability has back to background
-        LogUtil.log("[Main] MainAbility onBackground")
-    }
+  onBackground() {
+    // Ability has back to background
+    LogUtil.log("[Main] MainAbility onBackground")
+  }
 };
