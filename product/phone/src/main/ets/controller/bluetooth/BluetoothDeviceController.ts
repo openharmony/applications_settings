@@ -26,7 +26,6 @@ import AboutDeviceModel from '../../model/aboutDeviceImpl/AboutDeviceModel'
 const deviceTypeInfo = deviceInfo.deviceType;
 const DISCOVERY_DURING_TIME: number = 30000; // 30'
 const DISCOVERY_INTERVAL_TIME: number = 3000; // 3'
-let debounceTimer = null;
 
 export default class BluetoothDeviceController extends BaseSettingsController {
   private TAG = ConfigData.TAG + 'BluetoothDeviceController '
@@ -42,8 +41,9 @@ export default class BluetoothDeviceController extends BaseSettingsController {
   private isDeviceDiscovering: boolean = false;
   private availableDevices: BluetoothDevice[] = [];
   private pairPinCode: string = '';
-  private discoveryStartTimeoutId: number;
-  private discoveryStopTimeoutId: number;
+  private discoveryStartTimeoutId: number = 0;
+  private discoveryStopTimeoutId: number = 0;
+  private debounceTimer: number = 0;
 
   initData(): ISettingsController {
     LogUtil.log(this.TAG + 'start to initData bluetooth');
@@ -90,10 +90,12 @@ export default class BluetoothDeviceController extends BaseSettingsController {
 
     if (this.discoveryStartTimeoutId) {
       clearTimeout(this.discoveryStartTimeoutId);
+      this.discoveryStartTimeoutId = 0;
     }
 
     if (this.discoveryStopTimeoutId) {
       clearTimeout(this.discoveryStopTimeoutId);
+      this.discoveryStopTimeoutId = 0;
     }
 
     BluetoothModel.unsubscribeBluetoothDeviceFind();
@@ -107,10 +109,24 @@ export default class BluetoothDeviceController extends BaseSettingsController {
    * Set toggle value
    */
   toggleValue(isOn: boolean) {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
+    if(this.discoveryStartTimeoutId){
+      clearTimeout(this.discoveryStartTimeoutId);
+      this.discoveryStartTimeoutId = 0;
+    }
+    if(this.discoveryStopTimeoutId){
+      clearTimeout(this.discoveryStopTimeoutId);
+      this.discoveryStopTimeoutId = 0;
+    }
+    if(this.debounceTimer){
+      clearTimeout(this.debounceTimer);
+      this.debounceTime = 0;
+    }
+   
+    this.debounceTimer = setTimeout(() => {
       let curState = BluetoothModel.getState();
       if ((curState === 2) === isOn) {
+        clearTimeout(this.debounceTimer);
+        this.debounceTime = 0;
         return;
       }
       this.enabled = false
@@ -120,6 +136,8 @@ export default class BluetoothDeviceController extends BaseSettingsController {
         BluetoothModel.enableBluetooth();
       } else {
         BluetoothModel.disableBluetooth();
+        clearTimeout(this.debounceTimer);
+        this.debounceTime = 0;
         // remove all elements from availableDevices array
         this.availableDevices.splice(0, this.availableDevices.length)
       }
@@ -405,9 +423,14 @@ export default class BluetoothDeviceController extends BaseSettingsController {
   public startBluetoothDiscovery() {
     this.isDeviceDiscovering = true;
     BluetoothModel.startBluetoothDiscovery();
-
+    if(this.discoveryStopTimeoutId){
+      clearTimeout(this.discoveryStopTimeoutId);
+      this.discoveryStopTimeoutId = 0;
+    }
     this.discoveryStopTimeoutId = setTimeout(() => {
       this.stopBluetoothDiscovery();
+      clearTimeout(this.discoveryStopTimeoutId);
+      this.discoveryStopTimeoutId = 0;
     }, DISCOVERY_DURING_TIME);
   }
 
@@ -418,9 +441,14 @@ export default class BluetoothDeviceController extends BaseSettingsController {
   private stopBluetoothDiscovery() {
     this.isDeviceDiscovering = false;
     BluetoothModel.stopBluetoothDiscovery();
-
+    if(this.discoveryStartTimeoutId){
+      clearTimeout(this.discoveryStartTimeoutId);
+      this.discoveryStartTimeoutId = 0;
+    }
     this.discoveryStartTimeoutId = setTimeout(() => {
       this.startBluetoothDiscovery();
+      clearTimeout(this.discoveryStartTimeoutId);
+      this.discoveryStartTimeoutId = 0;
     }, DISCOVERY_INTERVAL_TIME);
   }
 
@@ -432,10 +460,12 @@ export default class BluetoothDeviceController extends BaseSettingsController {
     BluetoothModel.stopBluetoothDiscovery();
     if (this.discoveryStartTimeoutId) {
       clearTimeout(this.discoveryStartTimeoutId);
+      this.discoveryStartTimeoutId = 0;
     }
 
     if (this.discoveryStopTimeoutId) {
       clearTimeout(this.discoveryStopTimeoutId);
+      this.discoveryStopTimeoutId = 0;
     }
   }
 
