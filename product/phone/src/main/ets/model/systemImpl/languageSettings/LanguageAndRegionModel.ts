@@ -69,11 +69,11 @@ class LanguageAndRegionModel extends BaseModel {
   @Log
   async initAppStorage(): Promise<void> {
     let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
-    this.storage = await dataStorage.getPreferences(context, 'languageAndRegion')
+    this.storage = await dataStorage.getPreferences(context, 'languageAndRegion');
     LogUtil.info(`${this.TAG} initAppStorage in` + JSON.stringify(this.storage));
     if (!(await this.storage.has(this.addStr))) {
       LogUtil.info(`${this.TAG} initStorage addStr` + !await this.storage.has(this.addStr));
-      await this.storage.put(this.addStr, JSON.stringify([i18n.System.getSystemLanguage()]))
+      await this.storage.put(this.addStr, JSON.stringify([i18n.System.getSystemLanguage()]));
       await this.storage.flush();
       LogUtil.info(`${this.TAG} initStorage addStr sucess` + JSON.stringify(this.addStr));
     }
