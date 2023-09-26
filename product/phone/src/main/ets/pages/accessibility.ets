@@ -262,9 +262,9 @@ struct AccessibilitySettings {
     .height(ConfigData.WH_100_100);
   };
 
-  setShortKeyText(status: boolean, text: string): void {
+  setShortKeyText(status: boolean, text: string, flag: boolean): void {
     LogUtil.info(`${this.TAG} shortKeyState:${JSON.stringify(status)}`);
-    if (text === 'none') {
+    if (text === 'none' || flag) {
       this.shortKeyStatusText = (Object)($r('app.string.disabled'));
       return;
     }
@@ -374,7 +374,15 @@ struct AccessibilitySettings {
     }).catch((err: object) => {
       LogUtil.error(`${this.TAG}failed to get shortkeyTarget, because ${JSON.stringify(err)}`);
     });
-
+    let flag: boolean = true;
+    let installServiceList: Array<accessibility.accessibilityAccess> = await accessibility.getAccessibilityExtensionList('all', 'install')
+    if (installServiceList && installServiceList.length > 0) {
+      for (let enableService of installServiceList) {
+        if(enableService && enableService.id === this.shortKeyStatusText){
+          flag = false;
+        }
+      }
+    }
     this.setShortKeyText(this.shortKeyIsOn, this.shortKeyStatusText);
   }
 
@@ -438,7 +446,7 @@ struct AccessibilitySettings {
       LogUtil.info(`${this.TAG} failed subscribe bundleMonitor add, result: ${JSON.stringify(exception)}`);
     }
     try {
-      bundleMonitor.on('add', (bundleChangeInfo) => {
+      bundleMonitor.on('update', (bundleChangeInfo) => {
         LogUtil.info(`bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
       });
     } catch (exception) {
@@ -448,6 +456,7 @@ struct AccessibilitySettings {
       bundleMonitor.on('remove', (bundleChangeInfo) => {
         LogUtil.info(`bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
         this.getAbilityList();
+        this.getShortKeyStateAndTargetByStatus();
       });
     } catch (exception) {
       LogUtil.info(`${this.TAG} failed subscribe bundleMonitor, result: ${JSON.stringify(exception)}`);
