@@ -37,7 +37,6 @@ export struct DialogButtonLayout {
 
   private firstClickEvent: (event: ClickEvent) => void = (event: ClickEvent) => {
   };
-
   private secondClickEvent: (event: ClickEvent) => void = (event: ClickEvent) => {
   };
 }
@@ -49,7 +48,7 @@ export struct DialogButtonLayout {
  */
 @Component
 export struct DialogButtonLayoutWithState {
-  @Prop secondButtonState: boolean;
+  @Prop secondButtonState: boolean = true;
   private firstTitle: string | Resource = $r("app.string.cancel");
   private secondTitle: string | Resource = $r("app.string.add");
 
@@ -87,7 +86,6 @@ export struct DialogButtonLayoutWithState {
 
   private firstClickEvent: (event: ClickEvent) => void = (event: ClickEvent) => {
   };
-
   private secondClickEvent: (event: ClickEvent) => void = (event: ClickEvent) => {
   };
 }

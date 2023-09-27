@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import Router from '@system.router';
+import Router, { ParamsInterface } from '@system.router';
 import BluetoothDevice from '../model/bluetoothImpl/BluetoothDevice';
 import BluetoothDeviceController from '../controller/bluetooth/BluetoothDeviceController';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 
+// let param;
 
 /**
  * BluetoothPairedDeviceInfo
@@ -34,18 +34,14 @@ struct BluetoothPairedDeviceInfo {
 
   aboutToAppear() {
     let param = Router.getParams();
-    this.bluetoothDevice = JSON.parse(JSON.stringify(param));
-    LogUtil.log(ConfigData.TAG + " this.bluetoothDevice" + this.bluetoothDevice);
+    this.bluetoothDevice = JSON.parse((param as ParamsInterface).bluetoothDevice.toString());
   }
 
   build() {
     Column() {
       GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
         Column() {
-          HeadComponent({
-            headName: this.bluetoothDevice ? this.bluetoothDevice.deviceName : '',
-            isActive: true
-          });
+          HeadComponent({ headName: this.bluetoothDevice?.deviceName, isActive: true });
 
           Blank()
 
@@ -60,8 +56,10 @@ struct BluetoothPairedDeviceInfo {
           .align(Alignment.Center)
           .onClick(() => {
             LogUtil.log(ConfigData.TAG + "unpair onClick");
-            if (this.controller.unpair(this.bluetoothDevice ? this.bluetoothDevice.deviceId : '')) {
-              Router.back();
+            if (this.bluetoothDevice) {
+              if (this.controller.unpair(this.bluetoothDevice.deviceId)) {
+                Router.back();
+              }
             }
           })
           .margin({ bottom: $r('app.float.distance_24'), top: $r("app.float.distance_8") });

@@ -16,8 +16,10 @@
 import prompt from '@system.prompt';
 import Router from '@system.router';
 import deviceInfo from '@ohos.deviceInfo';
+import common from '@ohos.app.ability.common';
 import PasswordListController from '../controller/password/PasswordSettingController';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { GlobalContext } from '../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import EntryComponent from '../../../../../../common/component/src/main/ets/default/entryComponent';
@@ -89,7 +91,9 @@ struct PasswordSetting {
         return;
       }
       this.lockUi = true;
-      globalThis.settingsAbilityContext.startAbility({
+      let context = GlobalContext.getContext()
+        .getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.UIAbilityContext;
+      context.startAbility({
         bundleName: ConfigData.FACEAUTH_BUNDLE_NAME,
         abilityName: ConfigData.FACEAUTH_ABILITY_NAME
       })
@@ -188,8 +192,8 @@ struct PasswordSetting {
               ListItem() {
                 List() {
                   // item 0 is section title
-                  ForEach(group, (item: PasswordSettingItem, index: number) => {
-                    if (index > 0 && item.settingShouldDisplay) {
+                  ForEach(group, (item: PasswordSettingItem, index?: number) => {
+                    if (index && index > 0 && item.settingShouldDisplay) {
                       ListItem() {
                         if (item.settingAlias == "face_recognition") {
                           // face recognition item

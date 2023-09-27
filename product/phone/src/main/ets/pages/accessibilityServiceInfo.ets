@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import bundleMonitor from '@ohos.bundle.bundleMonitor';
 import router from '@ohos.router';
 import deviceInfo from '@ohos.deviceInfo';
 import accessibility from '@ohos.accessibility';
@@ -64,7 +65,7 @@ struct AccessibilityServiceInfo {
   showDialog: CustomDialogController = new CustomDialogController({
     builder: ShowDialog({
       firstClickAction: () => {
-        this.enableAbility(this.serviceInfo.serviceId);
+        this.openServiceButton(this.serviceInfo.serviceId);
       },
       secondClickAction: () => {
         this.cancelButton();
@@ -193,8 +194,15 @@ struct AccessibilityServiceInfo {
     } else {
       this.isPhoneOrRK = false;
     }
+    this.openExtensionServiceManagementDetailsStatusListener();
+    this.openExtensionServiceManagementDetailsApplicationListener();
     this.getServiceName();
     LogUtil.info(`${this.tag} aboutToAppear end `);
+  }
+
+  aboutToDisappear(): void {
+    LogUtil.info(`${this.tag} aboutToDisappear start`);
+    this.closeExtensionServiceManagementDetailsStatusListener();
   }
 
   getServiceName(): void {
@@ -239,10 +247,100 @@ struct AccessibilityServiceInfo {
     });
   }
 
+  async openServiceButton(abilityName: string):Promise<void>{
+    let enabledServiceList: Array<accessibility.AccessibilityAbilityInfo> = await accessibility.getAccessibilityExtensionList('all', 'enable')
+    if (enabledServiceList && enabledServiceList.length > 0) {
+      for (let enabledService of enabledServiceList) {
+        if (enabledService.id && enabledService.id === abilityName) {
+          this.serviceIsOn = true;
+          return;
+        }
+      }
+    }
+    this.enableAbility(abilityName)
+  }
+
   cancelButton(): void {
-    this.serviceIsOn = false;
+    this.disableAbility(this.serviceInfo.serviceId);
     this.pageChanged = !this.pageChanged;
     LogUtil.info(`${MODULE_TAG} cancel: serviceStatus ${JSON.stringify(this.serviceIsOn)}`);
+  }
+
+  async setExtensionServiceManagementStatusData(): Promise<void> {
+    this.serviceIsOn = false;
+    let enabledServiceList: Array<accessibility.AccessibilityAbilityInfo> = await accessibility.getAccessibilityExtensionList('all', 'enable');
+    if (!enabledServiceList || enabledServiceList.length < 1) {
+      return;
+    }
+    for (let enabledService of enabledServiceList) {
+      if (enabledService.id && enabledService.id === this.serviceInfo.serviceId) {
+        this.serviceIsOn = true;
+        break;
+      }
+    }
+  }
+
+  async setExtensionServiceManagementApplicationData(): Promise<void> {
+    let installServiceList: Array<accessibility.AccessibilityAbilityInfo> = await accessibility.getAccessibilityExtensionList('all', 'install');
+    if (!installServiceList || installServiceList.length < 1) {
+      router.back();
+      return;
+    }
+    let flag: boolean = true;
+    for (let enabledService of installServiceList) {
+      if (enabledService.id && this.serviceInfo.serviceId === enabledService.id) {
+        flag = false;
+        break;
+      }
+    }
+    if (flag) {
+      router.back();
+    }
+  }
+
+  openExtensionServiceManagementDetailsStatusListener(): void {
+    try {
+      config.on('enabledAccessibilityExtensionListChange', () => {
+        LogUtil.info(`subscribe enabled accessibility extension list change state success`);
+        this.setExtensionServiceManagementStatusData();
+      });
+    } catch (exception) {
+      LogUtil.info(`failed to subscribe enabled accessibility extension list change state, because ${JSON.stringify(exception)}`);
+    }
+  }
+
+  closeExtensionServiceManagementDetailsStatusListener(): void {
+    try {
+      config.off('enabledAccessibilityExtensionListChange', () => {
+        LogUtil.info(`Unsubscribe enabled accessibility extension list change state success`);
+      });
+    } catch (exception) {
+      LogUtil.info(`failed to Unsubscribe enabled accessibility extension list change state, because ${JSON.stringify(exception)}`);
+    }
+  }
+
+  openExtensionServiceManagementDetailsApplicationListener(): void {
+    try {
+      bundleMonitor.on('remove', (bundleChangeInfo) => {
+        LogUtil.info(`bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
+        this.setExtensionServiceManagementApplicationData();
+      });
+    } catch (exception) {
+      LogUtil.info(`${MODULE_TAG} failed subscribe bundleMonitor, result: ${JSON.stringify(exception)}`);
+    }
+  }
+
+  closeExtensionServiceManagementDetailsApplicationListener(): void {
+    try {
+      bundleMonitor.off('remove');
+    } catch (exception) {
+      LogUtil.info(`${MODULE_TAG} failed subscribe bundleMonitor, result: ${JSON.stringify(exception)}`);
+    }
+  }
+
+  onPageHide(): void {
+    LogUtil.info(`${this.tag} onPageHide start`);
+    this.closeExtensionServiceManagementDetailsApplicationListener();
   }
 }
 

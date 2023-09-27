@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -47,22 +46,39 @@ struct MultipleUsers {
   @StorageLink("isShowAddGuest") isShowAddGuest: boolean = false;
   @StorageLink("systemAccountList") userList: osAccount.OsAccountInfo[] = [];
   @StorageLink("isShowDelete") isShowDelete: boolean = false;
-  private addUserDialogController: CustomDialogController = new CustomDialogController({
-    builder: AddUserDialog({
-      controller: this.addUserDialogController,
-      account: new AccountInfo(),
-      confirm: this.onConfirm.bind(this),
-    }),
-    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
-    autoCancel: true
-  });
-  private waitDialogController: CustomDialogController = new CustomDialogController({
-    builder: WaitDialog({ controller: this.waitDialogController, content: $r("app.string.isCreatingUser") }),
-    autoCancel: false,
-    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
-  });
+  addUserDialogController?: CustomDialogController;
+  waitDialogController?: CustomDialogController;
+
+  handleClickEvent(event: ClickEvent | undefined) {
+    AlertDialog.show({
+      message: $r("app.string.askAddGuest"),
+      primaryButton: {
+        value: $r("app.string.cancel"),
+        action: () => {
+          LogUtil.info("Cancel add guest.");
+        }
+      },
+      secondaryButton: {
+        value: $r("app.string.confirm"),
+        action: () => {
+          LogUtil.info("Confirm add guest user.");
+          if (this.waitDialogController) {
+            this.waitDialogController.open();
+          }
+          SystemAccountController.createQuest((() => {
+            if (this.waitDialogController) {
+              this.waitDialogController.close();
+            }
+          }));
+        }
+      },
+      alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+      offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
+      cancel: () => {
+        LogUtil.info("Cancel dialog.");
+      }
+    })
+  }
 
   build() {
     Column() {
@@ -104,7 +120,9 @@ struct MultipleUsers {
                   visible: this.isShowAddUser ? Visibility.Visible : Visibility.None,
                   clickEvent: (event => {
                     LogUtil.info("Add user.");
-                    this.addUserDialogController.open();
+                    if (this.addUserDialogController) {
+                      this.addUserDialogController.open();
+                    }
                   })
                 })
               }
@@ -119,32 +137,9 @@ struct MultipleUsers {
                   title: $r("app.string.addGuest"),
                   color: $r("app.color.font_color_007DFF"),
                   visible: this.isShowAddGuest ? Visibility.Visible : Visibility.None,
-                  clickEvent: ((event: ClickEvent | undefined) => {
-                    AlertDialog.show({
-                      message: $r("app.string.askAddGuest"),
-                      primaryButton: {
-                        value: $r("app.string.cancel"),
-                        action: () => {
-                          LogUtil.info("Cancel add guest.");
-                        }
-                      },
-                      secondaryButton: {
-                        value: $r("app.string.confirm"),
-                        action: () => {
-                          LogUtil.info("Confirm add guest user.");
-                          this.waitDialogController.open();
-                          SystemAccountController.createQuest((() => {
-                            this.waitDialogController.close();
-                          }).bind(this));
-                        }
-                      },
-                      alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
-                      offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
-                      cancel: () => {
-                        LogUtil.info("Cancel dialog.");
-                      }
-                    })
-                  }).bind(this)
+                  clickEvent: (event: ClickEvent | undefined): void => {
+                    this.handleClickEvent(event);
+                  },
                 })
               }
             }
@@ -206,9 +201,13 @@ struct MultipleUsers {
 
   onConfirm(localName: string) {
     LogUtil.info("Open creating wait dialog");
-    this.waitDialogController.open();
+    if (this.waitDialogController) {
+      this.waitDialogController.open();
+    }
     SystemAccountController.createSystemAccount(localName, (() => {
-      this.waitDialogController.close();
+      if (this.waitDialogController) {
+        this.waitDialogController.close();
+      }
       AlertDialog.show({
         message: $r("app.string.askSwitchUser"),
         primaryButton: {
@@ -235,6 +234,24 @@ struct MultipleUsers {
 
   onPageShow() {
     LogUtil.info("Multiple user list about to appear.")
+    this.addUserDialogController = new CustomDialogController({
+      builder: AddUserDialog({
+        controller: this.addUserDialogController,
+        account: new AccountInfo(),
+        confirm: (localName: string): void => {
+          this.onConfirm(localName);
+        },
+      }),
+      alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+      offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
+      autoCancel: true
+    });
+    this.waitDialogController = new CustomDialogController({
+      builder: WaitDialog({ controller: this.waitDialogController, content: $r("app.string.isCreatingUser") }),
+      autoCancel: false,
+      alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+      offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
+    });
     SystemAccountController.refreshSystemAccountList();
     LogUtil.info("after appear.");
   }
@@ -252,13 +269,17 @@ struct MultipleUsers {
 @Component
 struct UserItem {
   @State isTouched: boolean = false;
+  dialogController?: CustomDialogController;
   private user: osAccount.OsAccountInfo | null = null;
-  private dialogController: CustomDialogController = new CustomDialogController({
-    builder: UserItemDialog({ dialogController: this.dialogController, user: this.user }),
-    autoCancel: false,
-    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 })
-  });
+
+  aboutToAppear(): void {
+    this.dialogController = new CustomDialogController({
+      builder: UserItemDialog({ dialogController: this.dialogController, user: this.user }),
+      autoCancel: false,
+      alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+      offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 })
+    });
+  }
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
@@ -297,7 +318,9 @@ struct UserItem {
       LogUtil.info("Click the multiple user item.");
       if (SystemAccountController.isCurrentAdministrator() ||
         SystemAccountController.isCurrentUser(this.user) && !SystemAccountController.isGuestAccount(this.user)) {
-        this.dialogController.open();
+        if (this.dialogController) {
+          this.dialogController.open();
+        }
         return;
       }
       if (!SystemAccountController.isCurrentQuest() || !SystemAccountController.isGuestAccount(this.user)) {
@@ -312,7 +335,9 @@ struct UserItem {
           secondaryButton: {
             value: $r("app.string.confirm"),
             action: () => {
-              SystemAccountController.switchUser(this.user?.localId);
+              if (this.user) {
+                SystemAccountController.switchUser(this.user?.localId);
+              }
             }
           },
           alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
@@ -346,7 +371,7 @@ struct UserItem {
 @CustomDialog
 struct UserItemDialog {
   private user: osAccount.OsAccountInfo | null = null;
-  private dialogController: CustomDialogController;
+  private dialogController?: CustomDialogController;
 
   build() {
     if (SystemAccountController.isCurrentUser(this.user)) {
@@ -448,17 +473,21 @@ struct CurrentDialogBuilder {
 // Current user item dialog, allow user to set user name and profile image.
 @Component
 struct UserDialogBuilder {
+  waitController?: CustomDialogController;
   private controller: CustomDialogController | null = null;
   private user: osAccount.OsAccountInfo | null = null;
-  private waitController: CustomDialogController = new CustomDialogController({
-    builder: WaitDialog({
-      controller: this.waitController,
-      content: $r("app.string.isRemoving")
-    }),
-    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
-    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
-    autoCancel: false
-  });
+
+  aboutToAppear(): void {
+    this.waitController = new CustomDialogController({
+      builder: WaitDialog({
+        controller: this.waitController,
+        content: $r("app.string.isRemoving")
+      }),
+      alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+      offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
+      autoCancel: false
+    });
+  }
 
   build() {
     Column() {
@@ -476,7 +505,9 @@ struct UserDialogBuilder {
         .textAlign(TextAlign.Start)
         .onClick((event) => {
           this.controller?.close();
-          SystemAccountController.switchUser(this.user?.localId);
+          if (this.user) {
+            SystemAccountController.switchUser(this.user?.localId);
+          }
         })
 
       Divider()
@@ -501,9 +532,13 @@ struct UserDialogBuilder {
               value: $r("app.string.deleteButton"),
               action: () => {
                 LogUtil.info("Confirm delete user.");
-                this.waitController.open();
+                if (this.waitController) {
+                  this.waitController.open();
+                }
                 SystemAccountController.removeAccount(this.user?.localId, () => {
-                  this.waitController.close();
+                  if (this.waitController) {
+                    this.waitController.close();
+                  }
                 });
               }
             },
@@ -534,7 +569,7 @@ struct AddUserDialog {
   @State buttonState: boolean = false;
   @State hintText: string = '';
   @State isWarn: boolean = false;
-  private controller: CustomDialogController;
+  private controller?: CustomDialogController;
   private account: AccountInfo = new AccountInfo();
 
   build() {
@@ -634,7 +669,7 @@ struct AddUserDialog {
 
 @CustomDialog
 struct ChooseImageDialog {
-  private controller: CustomDialogController;
+  private controller?: CustomDialogController;
 
   build() {
     Column() {
@@ -657,7 +692,7 @@ struct ChooseImageDialog {
 
 @CustomDialog
 struct WaitDialog {
-  private controller: CustomDialogController;
+  private controller?: CustomDialogController;
   private content: string | Resource = '';
 
   build() {

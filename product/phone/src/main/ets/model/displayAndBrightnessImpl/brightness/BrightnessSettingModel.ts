@@ -13,9 +13,11 @@
  * limitations under the License.
  */
 
+import common from '@ohos.app.ability.common';
 import BaseModel from '../../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
 import ConfigData from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { GlobalContext } from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 import Log from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import settings from '@ohos.settings';
 import Brightness from '@ohos.brightness';
@@ -24,25 +26,27 @@ import CatchError from '../../../../../../../../common/utils/src/main/ets/defaul
 import systemParameter from '@ohos.systemparameter';
 
 var mBrightnessValue = AppStorage.SetAndLink('BrightnessValue', 100);
+
 /**
  * Brightness setting
  *
  * @param brightnessValue - Brightness value
  */
-export class BrightnessSettingModel extends BaseModel{
+export class BrightnessSettingModel extends BaseModel {
   private dataShareHelper;
-  private brightness:number = 5;
+  private brightness: number = 5;
   private defaultBrightnessStr = this.getDefaultBrightness().toString();
   private TAG = `${ConfigData.TAG} BrightnessSettingModel `;
   private readonly listenUri = 'datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=' + ConfigData.SETTINGSDATA_BRIGHTNESS;
 
   constructor() {
     super();
-    if(!globalThis.settingsAbilityContext){
-      LogUtil.info("globalThis.settingsAbilityContext is null");
+    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+    if (!GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT)) {
+      LogUtil.info("global context settingsAbilityContext is null");
       return;
     }
-    data_dataShare.createDataShareHelper(globalThis.settingsAbilityContext, this.listenUri)
+    data_dataShare.createDataShareHelper(context, this.listenUri)
       .then((dataHelper) => {
         this.dataShareHelper = dataHelper;
         LogUtil.info("createDataShareHelper success");
@@ -58,7 +62,7 @@ export class BrightnessSettingModel extends BaseModel{
    * Get Uri
    */
   @Log
-  public getUri(){
+  public getUri() {
     return this.listenUri;
   }
 
@@ -66,28 +70,28 @@ export class BrightnessSettingModel extends BaseModel{
    * Get brightness value in the BrightnessSettingModel
    */
   @Log
-  public getValue(){
+  public getValue() {
     return this.brightness;
   }
 
   /**
    * Get min brightness value in the BrightnessSettingModel
    */
-  public getMinBrightness(){
+  public getMinBrightness() {
     return parseInt(systemParameter.getSync('const.display.brightness.min'))
   }
 
   /**
    * Get max brightness value in the BrightnessSettingModel
    */
-  public getMaxBrightness(){
+  public getMaxBrightness() {
     return parseInt(systemParameter.getSync('const.display.brightness.max'))
   }
 
   /**
    * Get default brightness value in the BrightnessSettingModel
    */
-  public getDefaultBrightness(){
+  public getDefaultBrightness() {
     return parseInt(systemParameter.getSync('const.display.brightness.default'))
   }
 
@@ -102,14 +106,34 @@ export class BrightnessSettingModel extends BaseModel{
   }
 
   /**
+   * Register observer
+   */
+  @Log
+  public registerObserver() {
+  }
+
+  /**
+   * Unregister observer
+   */
+  @Log
+  public unregisterObserver() {
+    LogUtil.info(`${this.TAG} unregisterObserver`);
+    this.dataShareHelper.off("dataChange", this.listenUri, (err) => {
+      LogUtil.info(`${this.TAG} unregisterObserver success`);
+    })
+    return;
+  }
+
+  /**
    * Set brightness value in the SettingsData
    */
   @Log
   @CatchError(undefined)
-  private setSettingsData(brightness:number){
+  private setSettingsData(brightness: number) {
     LogUtil.info(`${this.TAG} setSettingsData [brightness:${brightness}]`);
     this.brightness = brightness;
-    settings.setValueSync(globalThis.settingsAbilityContext, ConfigData.SETTINGSDATA_BRIGHTNESS, brightness.toString());
+    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+    settings.setValueSync(context, ConfigData.SETTINGSDATA_BRIGHTNESS, brightness.toString());
     LogUtil.info(`${this.TAG} setSettingsData success`);
   }
 
@@ -117,7 +141,7 @@ export class BrightnessSettingModel extends BaseModel{
    * Set system brightness value
    */
   @Log
-  private setSystemBrightness(brightness:number){
+  private setSystemBrightness(brightness: number) {
     this.brightness = brightness;
     mBrightnessValue.set(brightness);
     Brightness.setValue(brightness);
@@ -130,30 +154,12 @@ export class BrightnessSettingModel extends BaseModel{
    */
   @Log
   @CatchError(undefined)
-  private updateValue(){
+  private updateValue() {
     LogUtil.info(`${this.TAG} updateValue`);
-    this.brightness = parseInt(settings.getValueSync(globalThis.settingsAbilityContext, ConfigData.SETTINGSDATA_BRIGHTNESS, this.defaultBrightnessStr));
+    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+    this.brightness = parseInt(settings.getValueSync(context, ConfigData.SETTINGSDATA_BRIGHTNESS, this.defaultBrightnessStr));
     mBrightnessValue.set(this.brightness);
     LogUtil.info(`${this.TAG} updateValue success, [brightness:${this.brightness}]`);
-    return;
-  }
-
-  /**
-   * Register observer
-   */
-  @Log
-  public registerObserver(){
-  }
-
-  /**
-   * Unregister observer
-   */
-  @Log
-  public unregisterObserver() {
-    LogUtil.info(`${this.TAG} unregisterObserver`);
-    this.dataShareHelper.off("dataChange", this.listenUri, (err)=>{
-      LogUtil.info(`${this.TAG} unregisterObserver success`);
-    })
     return;
   }
 }
