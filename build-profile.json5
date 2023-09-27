@@ -7,7 +7,7 @@
         "name": "default",
         "signingConfig": "release"
       }
-    ],
+    ]
   },
   "modules": [
     {
@@ -21,7 +21,7 @@
           ]
         }
       ]
-    }
+    },
     //    {
     //      "name": "wearable",
     //      "srcPath": "./product/wearable",
@@ -34,53 +34,53 @@
     //        }
     //      ]
     //    },
-    //    {
-    //      "name": "component",
-    //      "srcPath": "./common/component",
-    //      "targets": [
-    //        {
-    //          "name": "default",
-    //          "applyToProducts": [
-    //            "default"
-    //          ]
-    //        }
-    //      ]
-    //    },
-    //    {
-    //      "name": "search",
-    //      "srcPath": "./common/search",
-    //      "targets": [
-    //        {
-    //          "name": "default",
-    //          "applyToProducts": [
-    //            "default"
-    //          ]
-    //        }
-    //      ]
-    //    },
-    //    {
-    //      "name": "settingsBase",
-    //      "srcPath": "./common/settingsBase",
-    //      "targets": [
-    //        {
-    //          "name": "default",
-    //          "applyToProducts": [
-    //            "default"
-    //          ]
-    //        }
-    //      ]
-    //    },
-    //    {
-    //      "name": "utils",
-    //      "srcPath": "./common/utils",
-    //      "targets": [
-    //        {
-    //          "name": "default",
-    //          "applyToProducts": [
-    //            "default"
-    //          ]
-    //        }
-    //      ]
-    //    }
+    {
+      "name": "component",
+      "srcPath": "./common/component",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "search",
+      "srcPath": "./common/search",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settingsBase",
+      "srcPath": "./common/settingsBase",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "utils",
+      "srcPath": "./common/utils",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
   ]
 }

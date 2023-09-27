@@ -12,6 +12,4 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-// Script for compiling build behavior. It is built in the build plug-in and cannot be modified currently.
-module.exports = require('@ohos/hvigor-ohos-plugin').hapTasks
+module.exports = require('@ohos/hvigor-ohos-plugin').harTasks;
