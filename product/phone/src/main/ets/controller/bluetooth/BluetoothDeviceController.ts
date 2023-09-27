@@ -119,14 +119,14 @@ export default class BluetoothDeviceController extends BaseSettingsController {
     }
     if(this.debounceTimer){
       clearTimeout(this.debounceTimer);
-      this.debounceTime = 0;
+      this.debounceTimer = 0;
     }
    
     this.debounceTimer = setTimeout(() => {
       let curState = BluetoothModel.getState();
       if ((curState === 2) === isOn) {
         clearTimeout(this.debounceTimer);
-        this.debounceTime = 0;
+        this.debounceTimer = 0;
         return;
       }
       this.enabled = false
@@ -137,7 +137,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
       } else {
         BluetoothModel.disableBluetooth();
         clearTimeout(this.debounceTimer);
-        this.debounceTime = 0;
+        this.debounceTimer = 0;
         // remove all elements from availableDevices array
         this.availableDevices.splice(0, this.availableDevices.length)
       }
