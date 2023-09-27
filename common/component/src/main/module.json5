@@ -1,6 +1,6 @@
 {
   "module": {
-    "name": "wearable",
+    "name": "component",
     "type": "har",
     "deviceTypes": [
       "default",
