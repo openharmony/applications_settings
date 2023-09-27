@@ -22,7 +22,6 @@ import ConfigData from '../../../../../../../../../common/utils/src/main/ets/def
 import LanguageAndRegionModel from '../../../../model/systemImpl/languageSettings/LanguageAndRegionModel';
 import HeadComponent from '../../../../../../../../../common/component/src/main/ets/default/headComponent';
 import ResourceUtil from '../../../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
-import BasicDataSource from '../../../../../../../../../common/utils/src/main/ets/default/model/BasicDataSource';
 
 const deviceTypeInfo = deviceInfo.deviceType;
 
@@ -258,11 +257,11 @@ struct AllLanguagesList {
 /**
  * Array Of AllLanguages For Lazy Loading
  */
-class AllLanguages extends BasicDataSource {
+class AllLanguages implements IDataSource {
   private languagesArray: string[] = [];
+  private listeners: DataChangeListener[] = [];
 
   constructor(languagesArray: string[]) {
-    super();
     this.languagesArray = languagesArray;
   }
 
@@ -272,5 +271,48 @@ class AllLanguages extends BasicDataSource {
 
   public getData(index: number): string {
     return this.languagesArray[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const position = this.listeners.indexOf(listener);
+    if (position >= 0) {
+      this.listeners.splice(position, 1);
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index);
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index);
+    })
+  }
+
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDeleted(index);
+    })
+  }
+
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMoved(from, to);
+    })
   }
 }

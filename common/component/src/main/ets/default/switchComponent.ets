@@ -24,7 +24,7 @@ export default struct SwitchComponent {
   @Link isOn: boolean;
   @State isEnabled?: boolean = true;
   private title: string | Resource = '';
-  private controller: SwitchController | null = null;
+  private controller?: SwitchController;
   private summary?: string | Resource = '';
   private switchHeight: string | number | Resource = '';
 
@@ -74,8 +74,7 @@ export default struct SwitchComponent {
 
   aboutToAppear() {
     if (this.controller) {
-      // bind event handlers
-      this.toggleValue = this.controller.toggleValue.bind(this.controller);
+      this.toggleValue = this.controller.onSelfToggleValueBindThis;
 
       // bind component and initialize
       this.controller.bindComponent(this)
