@@ -19,8 +19,9 @@ import StorageController from '../controller/storage/storageController';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import { BaseData } from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
+import { Callback } from '@ohos.base';
 
-let portraitFunc: null = null;
+let portraitFunc: null | Callback<mediaquery.MediaQueryResult> = null;
 
 /**
  * Storage
@@ -177,7 +178,7 @@ struct Storage {
     .height(ConfigData.WH_100_100)
   }
 
-  onPortrait(mediaQueryResult) {
+  onPortrait(mediaQueryResult: mediaquery.MediaQueryResult) {
     if (mediaQueryResult.matches) {
       display.getDefaultDisplay()
         .then((disp) => {
@@ -207,7 +208,9 @@ struct Storage {
         .bindProperties(["storageList", "totalSpace", "freeBytes", "usedSpace", "proportion", "usedSpaceList"])
         .initData();
 
-      portraitFunc = this.onPortrait.bind(this);
+      portraitFunc = (mediaQueryResult: mediaquery.MediaQueryResult): void => {
+        this.onPortrait(mediaQueryResult);
+      };
       this.listener.on('change', portraitFunc);
     }
   }

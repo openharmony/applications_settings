@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 
 export class MetaDataModel {
   constructor(jsonData: string) {

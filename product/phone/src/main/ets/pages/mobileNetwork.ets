@@ -14,11 +14,10 @@
  */
 import Base from '@ohos.base';
 import settings from '@ohos.settings';
-import parameter from '@ohos.systemparameter';
 import CommonEventManager from '@ohos.commonEventManager';
 import CommonEvent from '@ohos.commonEvent';
-import connection from '@ohos.net.connection';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { GlobalContext } from '../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import SwitchComponent from '../../../../../../common/component/src/main/ets/default/switchComponent';
@@ -101,12 +100,12 @@ struct mobileNetwork {
   }
 
   aboutToAppear() {
-
-    if (!globalThis.settingsAbilityContext) {
+    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as Context;
+    if (!GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT)) {
       return;
     }
-    LogUtil.info(MODULE_TAG + "settings.getValueSync " + settings.getValueSync(globalThis.settingsAbilityContext, 'settings.telephony.airplanemode', '0'));
-    if (settings.getValueSync(globalThis.settingsAbilityContext, 'settings.telephony.airplanemode', '0') == "1") {
+    LogUtil.info(MODULE_TAG + 'settings.getValueSync ' + settings.getValueSync(context, 'settings.telephony.airplanemode', '0'));
+    if (settings.getValueSync(context, 'settings.telephony.airplanemode', '0') === '1') {
       this.controllerMobileNetworkIsOn = true;
     } else {
       this.controllerMobileNetworkIsOn = false;
@@ -120,7 +119,7 @@ struct mobileNetwork {
         if (err) {
           LogUtil.info(MODULE_TAG + `subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
-          if (data.code == 1) {
+          if (data.code === 1) {
             this.controllerMobileNetworkIsOn = true;
           } else {
             this.controllerMobileNetworkIsOn = false;
