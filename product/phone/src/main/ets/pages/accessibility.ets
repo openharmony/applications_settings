@@ -435,7 +435,6 @@ struct AccessibilitySettings {
       LogUtil.info(`${this.TAG} failed subscribe audioMono, result: ${JSON.stringify(exception)}`);
     }
   }
-  
 
   openExtendedServicesListener(): void {
     try {
