@@ -15,25 +15,26 @@
  */
 
 import osAccount from '@ohos.account.osAccount';
-import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import GlobalResourceManager from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalResourceManager';
-import { MAX_ACCOUNT} from './systemAccountModel'
-import SystemAccountModel from './systemAccountModel'
+import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
+import GlobalResourceManager
+  from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalResourceManager';
+import SystemAccountModel, { MAX_ACCOUNT } from './systemAccountModel';
 
 export class SystemAccountController {
+  private static instance: SystemAccountController;
   private currentAccount: osAccount.OsAccountInfo;
   private accountList: osAccount.OsAccountInfo[] = [];
-  private static instance: SystemAccountController;
+
+  constructor() {
+  }
 
   public static getInstance(): SystemAccountController {
     if (!SystemAccountController.instance) {
       SystemAccountController.instance = new SystemAccountController();
     }
     return SystemAccountController.instance;
-  }
-
-  constructor() {
   }
 
   /**
@@ -175,7 +176,7 @@ export class SystemAccountController {
       callback(accountInfo);
     });
   }
-  
+
   /**
    * To check whether the user name is used.
    *
@@ -223,7 +224,7 @@ export class SystemAccountController {
    *
    * @param localId local id of this system account, if not set, set it current local id.
    */
-  async removeAccount(localId?: number, callback: () => void) {
+  async removeAccount(localId?: number, callback?: () => void) {
     let removeId = localId ? localId : this.currentAccount.localId;
     LogUtil.info("Remove system account, local Id: " + removeId);
     osAccount.getAccountManager().removeOsAccount(removeId).then(() => {
@@ -238,7 +239,8 @@ export class SystemAccountController {
       "abilityName": "com.ohos.screenlock.MainAbility",
       "abilityStartSetting": {}
     };
-    globalThis.settingsAbilityContext.startAbility(abilityParam)
+    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.UIAbilityContext;
+    context.startAbility(abilityParam)
       .then((data) => {
         LogUtil.info('Start lockscreen successful. Data: ' + JSON.stringify(data))
       }).catch((error) => {
@@ -248,4 +250,5 @@ export class SystemAccountController {
 }
 
 let systemAccountController = SystemAccountController.getInstance();
+
 export default systemAccountController as SystemAccountController;

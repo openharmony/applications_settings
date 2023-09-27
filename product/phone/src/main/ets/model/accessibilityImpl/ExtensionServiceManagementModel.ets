@@ -13,7 +13,11 @@
  * limitations under the License.
  */
 
+import router from '@ohos.router';
+import config from '@ohos.accessibility.config';
+import bundleMonitor from '@ohos.bundle.bundleMonitor';
 import bundleManager from '@ohos.bundle.bundleManager';
+import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 import accessibility from '@ohos.accessibility';
 import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
@@ -53,7 +57,8 @@ export class ExtensionServiceManagementModel extends BaseModel {
   constructor() {
     super();
     try {
-      globalThis.settingsAbilityContext.resourceManager.getMediaBase64ByName(icon_default)
+      let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as Context;
+      context.resourceManager.getMediaBase64ByName(icon_default)
         .then((res: string) => {
           icon_default_str = res;
           LogUtil.info(`${MODULE_TAG} getResourceManager init defaultIcon res: ${JSON.stringify(icon_default_str)}`);
@@ -66,7 +71,69 @@ export class ExtensionServiceManagementModel extends BaseModel {
       icon_default_str = '';
       LogUtil.info(`${MODULE_TAG} getResourceManager init defaultIcon error: ${JSON.stringify(err)}`);
     }
+  }
 
+  /**
+   * listen extensionService status
+   */
+  openExtensionServiceManagementStatusListener() {
+    try {
+      config.on('enabledAccessibilityExtensionListChange', () => {
+        LogUtil.info(`subscribe enabled accessibility extension list change state success`);
+        this.setExtensionServiceManagementListener();
+      });
+    } catch (exception) {
+      LogUtil.info(`failed to subscribe enabled accessibility extension list change state, because ${JSON.stringify(exception)}`);
+    }
+  }
+
+  closeExtensionServiceManagementStatusListener() {
+    try {
+      config.off('enabledAccessibilityExtensionListChange', () => {
+        LogUtil.info(`Unsubscribe enabled accessibility extension list change state success`);
+      });
+    } catch (exception) {
+      LogUtil.info(`failed to Unsubscribe enabled accessibility extension list change state, because ${JSON.stringify(exception)}`);
+    }
+  }
+
+  /**
+   * listen extensionService application
+   */
+  openExtensionServiceManagementApplicationListener() {
+    try {
+      bundleMonitor.on('add', (bundleChangeInfo) => {
+        LogUtil.info(`bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
+        this.setExtensionServiceManagementListener();
+      });
+    } catch (exception) {
+      LogUtil.info(`${MODULE_TAG} failed subscribe bundleMonitor add, result: ${JSON.stringify(exception)}`);
+    }
+    try {
+      bundleMonitor.on('update', (bundleChangeInfo) => {
+        LogUtil.info(`bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
+      });
+    } catch (exception) {
+      LogUtil.info(`${MODULE_TAG} failed subscribe bundleMonitor update, result: ${JSON.stringify(exception)}`);
+    }
+    try {
+      bundleMonitor.on('remove', (bundleChangeInfo) => {
+        LogUtil.info(`bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
+        this.setExtensionServiceManagementListener();
+      });
+    } catch (exception) {
+      LogUtil.info(`${MODULE_TAG} failed subscribe bundleMonitor remove, result: ${JSON.stringify(exception)}`);
+    }
+  }
+
+  closeExtensionServiceManagementApplicationListener() {
+    try {
+      bundleMonitor.off('add');
+      bundleMonitor.off('update');
+      bundleMonitor.off('remove');
+    } catch (exception) {
+      LogUtil.info(`${MODULE_TAG} failed subscribe bundleMonitor, result: ${JSON.stringify(exception)}`);
+    }
   }
 
   /**
@@ -76,6 +143,10 @@ export class ExtensionServiceManagementModel extends BaseModel {
     this.serviceInfoList = [];
     accessibility.getAccessibilityExtensionList('all', 'install').then((data) => {
       LogUtil.info(`${MODULE_TAG} extensionService data.length:  ${data.length} data: ${JSON.stringify(data)}`);
+      if (!data || data.length < 1) {
+        router.back();
+        return;
+      }
       this.getResourceItemAndState(INDEX, data.length, data);
     }).catch((err: object) => {
       LogUtil.error(`${MODULE_TAG} getExtensionServiceList failed, err: ${JSON.stringify(err)}`);
@@ -134,10 +205,10 @@ export class ExtensionServiceManagementModel extends BaseModel {
   async loadIcon(bundleInfo: bundleManager.BundleInfo): Promise<string> {
     let appInfo = bundleInfo.appInfo;
     let imageValue = '';
-    let context = globalThis.settingsAbilityContext;
+    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as Context;
     LogUtil.info(`${MODULE_TAG} getResourceManager appInfo.iconResource: ${JSON.stringify(appInfo.iconResource)}`);
     if (appInfo.iconResource.id > 0) {
-      imageValue = await context.resourceManager.getMediaBase64(appInfo.iconResource);
+      imageValue = await context.resourceManager.getMediaContentBase64(appInfo.iconResource);
       if (!imageValue) {
         LogUtil.warn(`${MODULE_TAG} load icon invalid`);
         imageValue = icon_default_str;
@@ -154,11 +225,11 @@ export class ExtensionServiceManagementModel extends BaseModel {
    */
   async loadDescription(bundleInfo: bundleManager.BundleInfo, serviceName: string): Promise<ResourceStr> {
     let description: ResourceStr = $r('app.string.no_description_provided');
-    let context = globalThis.settingsAbilityContext;
+    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as Context;
     let moduleInfo: Array<bundleManager.HapModuleInfo> = bundleInfo.hapModulesInfo;
     if (moduleInfo.length > 0) {
       for (let hapInfo of moduleInfo) {
-        let bundleContext: Context = context.createBundleContext(bundleInfo.name, hapInfo.name);
+        let bundleContext: Context = context.createBundleContext(bundleInfo.name);
         for (let ability of hapInfo.extensionAbilitiesInfo) {
           if (ability.name === serviceName && ability.descriptionId > 0) {
             LogUtil.info(`${MODULE_TAG} descriptionId: ${JSON.stringify(ability.descriptionId)}`);
