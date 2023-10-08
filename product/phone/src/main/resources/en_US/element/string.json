@@ -1403,6 +1403,34 @@
     {
       "name": "START_INVISIBLE_ABILITY",
       "value": "Start_Invisible_Ability"
+    },
+    {
+      "name": "APPLICATION_EXTENDED_SERVICE_ACCESS",
+      "value": "应用扩展服务访问"
+    },
+    {
+      "name": "color_correction",
+      "value": "Color correction"
+    },
+    {
+      "name": "mode_of_correction",
+      "value": "Correction mode"
+    },
+    {
+      "name": "red_amblyopia",
+      "value": "Red amblyopia (red-green)"
+    },
+    {
+      "name": "green_amblyopia",
+      "value": "Green amblyopia (red-green)"
+    },
+    {
+      "name": "blue_amblyopia",
+      "value": "Blue amblyopia (blue-yellow)"
+    },
+    {
+      "name": "none",
+      "value": "None"
     }
   ]
 }
