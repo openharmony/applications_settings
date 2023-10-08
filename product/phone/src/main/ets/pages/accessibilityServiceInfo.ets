@@ -230,7 +230,6 @@ struct AccessibilityServiceInfo {
   enableAbility(abilityName: string): void {
     config.enableAbility(abilityName, this.capabilities).then(() => {
       LogUtil.info(`${this.tag} enable accessibilityService success`);
-      this.serviceIsOn = true;
     }).catch((err: object) => {
       this.serviceIsOn = false;
       this.pageChanged = !this.pageChanged;
@@ -241,7 +240,6 @@ struct AccessibilityServiceInfo {
   disableAbility(abilityName: string): void {
     config.disableAbility(abilityName).then(() => {
       LogUtil.info(`${MODULE_TAG} disable accessibilityService success`);
-      this.serviceIsOn = false;
     }).catch((err: object) => {
       LogUtil.error(`${MODULE_TAG} disable accessibilityService failed, error: ${JSON.stringify(err)}`);
     });
@@ -262,6 +260,7 @@ struct AccessibilityServiceInfo {
 
   cancelButton(): void {
     this.disableAbility(this.serviceInfo.serviceId);
+    this.serviceIsOn = false;
     this.pageChanged = !this.pageChanged;
     LogUtil.info(`${MODULE_TAG} cancel: serviceStatus ${JSON.stringify(this.serviceIsOn)}`);
   }
