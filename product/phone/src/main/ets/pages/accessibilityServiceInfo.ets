@@ -245,7 +245,7 @@ struct AccessibilityServiceInfo {
     });
   }
 
-  async openServiceButton(abilityName: string):Promise<void>{
+  async openServiceButton(abilityName: string): Promise<void> {
     let enabledServiceList: Array<accessibility.AccessibilityAbilityInfo> = await accessibility.getAccessibilityExtensionList('all', 'enable')
     if (enabledServiceList && enabledServiceList.length > 0) {
       for (let enabledService of enabledServiceList) {
