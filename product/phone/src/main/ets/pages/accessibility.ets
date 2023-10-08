@@ -42,6 +42,7 @@ struct AccessibilitySettings {
   @State shortKeyIsOn: boolean = false;
   @State shortKeyStatusText: string = '';
   @State highContrastTextIsOn: boolean = false;
+  @State colorCorrectionStatusText: string = '';
   @State audioMonoIsOn: boolean = false;
   @State inSetValueAudioBalance: number = 0;
   @State serviceNum: number = 0;
@@ -79,11 +80,19 @@ struct AccessibilitySettings {
             .height($r('app.float.wh_value_56'))
             .width(ConfigData.WH_100_100)
             .alignItems(VerticalAlign.Center)
-            .padding({ left: $r("app.float.wh_value_12"), right: $r('app.float.wh_value_6') })
+            .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_6') })
             .backgroundColor($r("app.color.white_bg_color"))
             .borderRadius($r('app.float.radius_24'));
+
+            SubEntryComponentWithEndText({
+              targetPage: 'pages/accessibilityColorCorrection',
+              title: $r('app.string.color_correction'),
+              endText: $colorCorrectionStatusText
+            })
+              .width(ConfigData.WH_100_100)
+              .margin({ bottom: $r('app.float.distance_12'), top: $r('app.float.distance_8') });
           }
-          .height($r('app.float.wh_value_56'))
+          .height($r('app.float.wh_value_118'))
           .width(ConfigData.WH_100_100)
           .borderRadius($r('app.float.radius_24'))
           .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
@@ -192,7 +201,7 @@ struct AccessibilitySettings {
 
           SubHeader({ titleContent: $r('app.string.operate_accessibility') });
           SubEntryComponentWithEndText({
-            targetPage: "pages/accessibilityShortKey",
+            targetPage: 'pages/accessibilityShortKey',
             title: $r("app.string.accessibility_shortcuts"),
             endText: $shortKeyStatusText
           })
@@ -245,7 +254,7 @@ struct AccessibilitySettings {
             .height($r('app.float.wh_value_56'))
             .borderRadius($r('app.float.radius_24'))
             .enabled(this.serviceNum > 0 ? true : false)
-            .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
+            .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'));
           }
         }
         .useSizeType({
@@ -332,6 +341,19 @@ struct AccessibilitySettings {
     LogUtil.info(`${this.TAG} aboutToAppear out`);
   }
 
+  async getColorCorrectionState(): Promise<void> {
+    await config.daltonizationState.get().then((data) => {
+      LogUtil.info(`${this.TAG} get daltonizationState success: ${data}`);
+      if (data) {
+        this.colorCorrectionStatusText = (Object)($r('app.string.enabled'));
+      } else {
+        this.colorCorrectionStatusText = (Object)($r('app.string.disabled'));
+      }
+    }).catch((err: object) => {
+      LogUtil.error(`${this.TAG} failed to get daltonizationState, because ${JSON.stringify(err)}`);
+    });
+  }
+
   aboutToAppear(): void {
     LogUtil.info(`${this.TAG} aboutToAppear in`);
     config.highContrastText.get().then((data) => {
@@ -355,6 +377,7 @@ struct AccessibilitySettings {
       LogUtil.error(`${this.TAG} failed to get audioBalance, because ${JSON.stringify(err)}`);
     });
     this.openStatusListener();
+    this.getColorCorrectionState();
     this.getShortKeyStateAndTargetByStatus();
     this.getAbilityList();
     LogUtil.info(`${this.TAG} aboutToAppear out`);
@@ -396,6 +419,7 @@ struct AccessibilitySettings {
     LogUtil.info(`${this.TAG} onPageShow in`);
     this.getShortKeyStateAndTargetByStatus();
     this.openExtendedServicesListener();
+    this.getColorCorrectionState();
     this.getAbilityList();
     LogUtil.info(`${this.TAG} onPageShow out`);
   }

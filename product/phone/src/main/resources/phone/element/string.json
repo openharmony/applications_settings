@@ -1339,6 +1339,34 @@
     {
       "name": "START_INVISIBLE_ABILITY",
       "value": "跨应用启动"
+    },
+    {
+      "name": "APPLICATION_EXTENDED_SERVICE_ACCESS",
+      "value": "应用扩展服务访问"
+    },
+    {
+      "name": "color_correction",
+      "value": "色彩校正"
+    },
+    {
+      "name": "mode_of_correction",
+      "value": "校正模式"
+    },
+    {
+      "name": "red_amblyopia",
+      "value": "红色弱视 (红绿色)"
+    },
+    {
+      "name": "green_amblyopia",
+      "value": "绿色弱视 (红绿色)"
+    },
+    {
+      "name": "blue_amblyopia",
+      "value": "蓝色弱视 (蓝-黄)"
+    },
+    {
+      "name": "none",
+      "value": "无"
     }
   ]
 }
