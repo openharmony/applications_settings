@@ -61,7 +61,7 @@ struct AccessibilityShortKey {
             .margin({
               bottom: $r('app.float.distance_36'),
               top: $r('app.float.distance_24'),
-              left: $r("app.float.distance_12"),
+              left: $r('app.float.distance_12'),
               right: $r("app.float.distance_12"),
             })
             .opacity($r("app.float.opacity_100_60"))
