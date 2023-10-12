@@ -427,7 +427,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
 
     int retInt = 0;
-    if (asyncCallbackInfo->status == -1 || asyncCallbackInfo->value.size() <= 0) {
+    if (asyncCallbackInfo->status == -1) {
         SETTING_LOG_INFO("napi_set_value_ext called... before Insert");
         if (asyncCallbackInfo->dataShareHelper != nullptr) {
             retInt = asyncCallbackInfo->dataShareHelper->Insert(uri, val);
