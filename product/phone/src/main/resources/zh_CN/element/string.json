@@ -697,124 +697,124 @@
       "value": "生物识别"
     },
     {
-      "name":"face_recognition",
-      "value":"人脸识别"
+      "name": "face_recognition",
+      "value": "人脸识别"
     },
     {
-      "name":"password_lock_screen",
-      "value":"锁屏密码"
+      "name": "password_lock_screen",
+      "value": "锁屏密码"
     },
     {
-      "name":"password_change_password",
-      "value":"更改锁屏密码"
+      "name": "password_change_password",
+      "value": "更改锁屏密码"
     },
     {
-      "name":"password_disable_password",
-      "value":"关闭锁屏密码"
+      "name": "password_disable_password",
+      "value": "关闭锁屏密码"
     },
     {
-      "name":"password_enter_password",
-      "value":"输入锁屏密码"
+      "name": "password_enter_password",
+      "value": "输入锁屏密码"
     },
     {
-      "name":"password_change_unlock_method",
-      "value":"其他密码类型"
+      "name": "password_change_unlock_method",
+      "value": "其他密码类型"
     },
     {
-      "name":"password_select_unlock_method",
-      "value":"其他密码类型"
+      "name": "password_select_unlock_method",
+      "value": "其他密码类型"
     },
     {
-      "name":"password_title_number",
-      "value":"设置锁屏数字密码"
+      "name": "password_title_number",
+      "value": "设置锁屏数字密码"
     },
     {
-      "name":"password_title_character",
-      "value":"设置锁屏密码"
+      "name": "password_title_character",
+      "value": "设置锁屏密码"
     },
     {
-      "name":"password_message_number_6",
-      "value":"密码由6位数字组成"
+      "name": "password_message_number_6",
+      "value": "密码由6位数字组成"
     },
     {
-      "name":"password_message_custom",
-      "value":"密码由6-32位数字组成"
+      "name": "password_message_custom",
+      "value": "密码由6-32位数字组成"
     },
     {
-      "name":"password_message_character",
-      "value":"密码由6-32字符字组成，需至少包含1个字母"
+      "name": "password_message_character",
+      "value": "密码由6-32字符字组成，需至少包含1个字母"
     },
     {
-      "name":"password_message_repeat",
-      "value":"请再次输入密码"
+      "name": "password_message_repeat",
+      "value": "请再次输入密码"
     },
     {
-      "name":"password_set_prompt",
-      "value":"请牢记您的锁屏密码，忘记后无法找回"
+      "name": "password_set_prompt",
+      "value": "请牢记您的锁屏密码，忘记后无法找回"
     },
     {
-      "name":"password_message_repeat_error",
-      "value":"密码不一致，请重新输入"
+      "name": "password_message_repeat_error",
+      "value": "密码不一致，请重新输入"
     },
     {
-      "name":"password_item_text_number_4",
-      "value":"4位数字密码"
+      "name": "password_item_text_number_4",
+      "value": "4位数字密码"
     },
     {
-      "name":"password_item_text_number_6",
-      "value":"6位数字密码"
+      "name": "password_item_text_number_6",
+      "value": "6位数字密码"
     },
     {
-      "name":"password_item_text_custom",
-      "value":"自定义数字密码"
+      "name": "password_item_text_custom",
+      "value": "自定义数字密码"
     },
     {
-      "name":"password_item_text_character",
-      "value":"混合密码"
+      "name": "password_item_text_character",
+      "value": "混合密码"
     },
     {
-      "name":"password_disable_prompt",
-      "value":"关闭密码后，任何拿到此设备的人都能够查看您的数据，设备无法受到保护。是否关闭？"
+      "name": "password_disable_prompt",
+      "value": "关闭密码后，任何拿到此设备的人都能够查看您的数据，设备无法受到保护。是否关闭？"
     },
     {
-      "name":"password_message_incorrect",
-      "value":"密码错误，还可尝试 %d 次"
+      "name": "password_message_incorrect",
+      "value": "密码错误，还可尝试 %d 次"
     },
     {
-      "name":"password_remain_times",
-      "value":"请 %d秒 后重试"
+      "name": "password_remain_times",
+      "value": "请 %d秒 后重试"
     },
     {
-      "name":"password_PIN_must_be_6_numbers",
-      "value":"PIN 应为 6 位数字"
+      "name": "password_PIN_must_be_6_numbers",
+      "value": "PIN 应为 6 位数字"
     },
     {
-      "name":"password_PIN_check_min_error",
-      "value":"数字密码至少应为 6 位"
+      "name": "password_PIN_check_min_error",
+      "value": "数字密码至少应为 6 位"
     },
     {
-      "name":"password_PIN_check_max_error",
-      "value":"PIN 必须少于 33 位数"
-    },
-	{
-      "name":"password_PIN_must_be_numbers",
-      "value":"PIN 应为数字"
-    },
-	{
-      "name":"password_illegal_character",
-      "value":"混合密码包含非法字符"
+      "name": "password_PIN_check_max_error",
+      "value": "PIN 必须少于 33 位数"
     },
     {
-      "name":"password_check_min_error",
-      "value":"混合密码必须至少包含 6 个字符"
+      "name": "password_PIN_must_be_numbers",
+      "value": "PIN 应为数字"
     },
     {
-      "name":"password_check_max_error",
-      "value":"密码必须少于 33 个字符"
+      "name": "password_illegal_character",
+      "value": "混合密码包含非法字符"
     },
     {
-      "name":"password_check_char_error",
-      "value":"请至少包含 1 个字母"
+      "name": "password_check_min_error",
+      "value": "混合密码必须至少包含 6 个字符"
+    },
+    {
+      "name": "password_check_max_error",
+      "value": "密码必须少于 33 个字符"
+    },
+    {
+      "name": "password_check_char_error",
+      "value": "请至少包含 1 个字母"
     },
     {
       "name": "biometricsAndPassword",
@@ -1278,11 +1278,11 @@
     },
     {
       "name": "GET_INSTALLED_BUNDLE_LIST",
-      "value":"获取应用列表信息"
+      "value": "获取应用列表信息"
     },
     {
       "name": "WRITE_ACCESSIBILITY_CONFIG_PERMISSION",
-      "value":"无障碍设置写入权限"
+      "value": "无障碍设置写入权限"
     },
     {
       "name": "accessibility",
@@ -1290,11 +1290,11 @@
     },
     {
       "name": "visual_accessibility",
-      "value": "视觉辅助"
+      "value": "视觉"
     },
     {
       "name": "audio_accessibility",
-      "value": "听觉辅助"
+      "value": "听觉"
     },
     {
       "name": "highContrast_text",
@@ -1327,10 +1327,6 @@
     {
       "name": "installed_service",
       "value": "已安装服务"
-    },
-    {
-      "name": "service_number",
-      "value": "%d 项服务"
     },
     {
       "name": "no_service",
@@ -1386,7 +1382,7 @@
     },
     {
       "name": "operate_accessibility",
-      "value": "操作輔助"
+      "value": "操作"
     },
     {
       "name": "accessibility_shortcuts",
