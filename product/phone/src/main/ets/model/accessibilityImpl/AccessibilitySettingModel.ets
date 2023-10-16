@@ -77,6 +77,13 @@ export class AccessibilitySettingModel {
           LogUtil.error(`${TAG} captions set ${isOn} err: ${JSON.stringify(err)}`);
         });
         break;
+      case 'daltonizationState':
+        config.daltonizationState.set(isOn).then(() => {
+          LogUtil.info(`${TAG} daltonizationState set ${isOn} success`);
+        }).catch((err: BusinessError) => {
+          LogUtil.error(`${TAG} daltonizationState set ${isOn} err: ${JSON.stringify(err)}`);
+        });
+        break;
       default:
         break;
     }
@@ -97,6 +104,15 @@ export class AccessibilitySettingModel {
       LogUtil.info(`${TAG} accessibilityshortkeyTargete config success: ${targetName}`);
     }).catch((err: BusinessError) => {
       LogUtil.error(`${TAG} accessibilityshortkeyTargete config fail: ${targetName} err: ${JSON.stringify(err)}`);
+    });
+  }
+
+  static accessibilityColorCorrectionSet(targetName: config.DaltonizationColorFilter): void {
+    LogUtil.info(`${TAG} accessibilityColorCorrection config begin: ${targetName}`);
+    config.daltonizationColorFilter.set(targetName).then(() => {
+      LogUtil.info(`${TAG} daltonizationColorFilter config success`);
+    }).catch((err: object) => {
+      console.error(`${TAG} failed to set daltonizationColorFilter`);
     });
   }
 }
