@@ -25,6 +25,7 @@ import { AccessibilitySettingModel } from '../model/accessibilityImpl/Accessibil
 const TAG = ConfigData.TAG + 'Accessibility ShortKey: ';
 const BASIC_ABILITY_HIGH_CONTRAST_TEXT = 'HIGH_CONTRAST_TEXT';
 const BASIC_ABILITY_SINGLE_AUDIO = 'AUDIO_MONO';
+const BASIC_ABILITY_INVERT_COLOR = 'INVERT_COLOR';
 
 @Entry
 @Component
@@ -196,6 +197,9 @@ struct AccessibilityShortKey {
       } else if (data === BASIC_ABILITY_SINGLE_AUDIO) {
         this.checked = BASIC_ABILITY_SINGLE_AUDIO;
         this.shortKeyStatusText = (Object)($r('app.string.single_audio'));
+      } else if (data === BASIC_ABILITY_INVERT_COLOR) {
+        this.checked = BASIC_ABILITY_INVERT_COLOR;
+        this.shortKeyStatusText = (Object)($r('app.string.invert_color'));
       } else {
         this.checked = data;
         this.shortKeyStatusText = data.split('/')[1];
@@ -206,7 +210,7 @@ struct AccessibilityShortKey {
   }
 
   generateAllAbilityNameList(): Array<string> {
-    let basicAbilities = [BASIC_ABILITY_HIGH_CONTRAST_TEXT, BASIC_ABILITY_SINGLE_AUDIO];
+    let basicAbilities = [BASIC_ABILITY_HIGH_CONTRAST_TEXT, BASIC_ABILITY_SINGLE_AUDIO,BASIC_ABILITY_INVERT_COLOR];
     return basicAbilities.concat(this.extAbilityNameList);
   }
 
@@ -361,7 +365,8 @@ struct SelectAbilityScalingInformation {
             ListItem() {
               Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
                 Text((item === BASIC_ABILITY_HIGH_CONTRAST_TEXT) ? $r('app.string.highContrast_text') :
-                  ((item === BASIC_ABILITY_SINGLE_AUDIO) ? $r('app.string.single_audio') : item.split('/')[1]))
+                  ((item === BASIC_ABILITY_SINGLE_AUDIO) ? $r('app.string.single_audio') :
+                    ((item === BASIC_ABILITY_INVERT_COLOR) ? $r('app.string.invert_color') :item.split('/')[1])))
                   .fontFamily('HarmonyHeiTi')
                   .fontSize($r('sys.float.ohos_id_text_size_body1'))
                   .fontWeight(FontWeight.Medium);
@@ -424,6 +429,8 @@ struct SelectAbilityScalingInformation {
       this.shortKeyStatusText = (Object)($r('app.string.highContrast_text'));
     } else if (text === BASIC_ABILITY_SINGLE_AUDIO) {
       this.shortKeyStatusText = (Object)($r('app.string.single_audio'));
+    } else if (text === BASIC_ABILITY_INVERT_COLOR) {
+      this.shortKeyStatusText = (Object)($r('app.string.invert_color'));
     } else {
       this.shortKeyStatusText = text.split('/')[1];
     }

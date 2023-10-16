@@ -32,6 +32,7 @@ const AUDIO_BALANCE_MIN_VALUE: number = -100;
 const AUDIO_BALANCE_MAX_VALUE: number = 100;
 const BASIC_ABILITY_HIGH_CONTRAST_TEXT = 'HIGH_CONTRAST_TEXT';
 const BASIC_ABILITY_SINGLE_AUDIO = 'AUDIO_MONO';
+const BASIC_ABILITY_INVERT_COLOR = 'INVERT_COLOR';
 
 /**
  * accessibility setting
@@ -42,8 +43,9 @@ struct AccessibilitySettings {
   @State shortKeyIsOn: boolean = false;
   @State shortKeyStatusText: string = '';
   @State highContrastTextIsOn: boolean = false;
-  @State colorCorrectionStatusText: string = '';
+  @State invertColorIsOn: boolean = false;
   @State audioMonoIsOn: boolean = false;
+  @State colorCorrectionStatusText: string = '';
   @State inSetValueAudioBalance: number = 0;
   @State serviceNum: number = 0;
   @State serviceStateText: Resource = $r('app.string.no_service');
@@ -81,6 +83,40 @@ struct AccessibilitySettings {
             .width(ConfigData.WH_100_100)
             .alignItems(VerticalAlign.Center)
             .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_6') })
+            .backgroundColor($r("app.color.white_bg_color"))
+            .borderRadius($r('app.float.radius_24'));
+
+            Row() {
+              Column(){
+                Text($r('app.string.invert_color'))
+                  .fontSize($r('sys.float.ohos_id_text_size_body1'))
+                  .fontColor($r('sys.color.ohos_id_color_text_primary'))
+                  .fontWeight(FontWeight.Medium)
+                  .textAlign(TextAlign.Start);
+                Text($r('app.string.performance_may_be_affected'))
+                  .fontSize($r('sys.float.ohos_id_text_size_sub_title3'))
+                  .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+                  .fontWeight(FontWeight.Regular)
+                  .textAlign(TextAlign.Center);
+              }
+              .width($r('app.float.wh_value_160'))
+              .alignItems(HorizontalAlign.Start)
+              .justifyContent(FlexAlign.Start)
+
+              Blank();
+
+              Toggle({ type: ToggleType.Switch, isOn: this.invertColorIsOn })
+                .width('36vp')
+                .height('20vp')
+                .selectedColor('#007DFF')
+                .onChange((isOn: boolean) => {
+                  this.setInvertColorState(isOn);
+                });
+            }
+            .height($r('app.float.wh_value_56'))
+            .width(ConfigData.WH_100_100)
+            .alignItems(VerticalAlign.Center)
+            .padding({ left: $r("app.float.wh_value_12"), right: $r('app.float.wh_value_6') })
             .backgroundColor($r("app.color.white_bg_color"))
             .borderRadius($r('app.float.radius_24'));
 
@@ -282,6 +318,8 @@ struct AccessibilitySettings {
         this.shortKeyStatusText = (Object)($r('app.string.highContrast_text'));
       } else if (text === BASIC_ABILITY_SINGLE_AUDIO) {
         this.shortKeyStatusText = (Object)($r('app.string.single_audio'));
+      } else if (text === BASIC_ABILITY_INVERT_COLOR) {
+        this.shortKeyStatusText = (Object)($r('app.string.invert_color'));
       } else {
         this.shortKeyStatusText = text.split('/')[1];
       }
@@ -299,6 +337,17 @@ struct AccessibilitySettings {
     } else {
       this.highContrastTextIsOn = false;
       AccessibilitySettingModel.accessibilityConfigSetting('highContrastText', false);
+    }
+  }
+
+  setInvertColorState(isOn: boolean): void {
+    LogUtil.info(`${this.TAG} setInvertColorState ${isOn}`);
+    if (isOn) {
+      this.invertColorIsOn = true;
+      AccessibilitySettingModel.accessibilityConfigSetting('invertColor', true);
+    } else {
+      this.invertColorIsOn = false;
+      AccessibilitySettingModel.accessibilityConfigSetting('invertColor', false);
     }
   }
 
@@ -361,6 +410,13 @@ struct AccessibilitySettings {
       this.highContrastTextIsOn = data;
     }).catch((err: object) => {
       LogUtil.error(`${this.TAG} failed to get highContrastText switch, because ${JSON.stringify(err)}`);
+    });
+
+    config.invertColor.get().then((data) => {
+      LogUtil.info(`${this.TAG} get invertColor switch success`);
+      this.invertColorIsOn = data;
+    }).catch((err: object) => {
+      LogUtil.error(`${this.TAG} failed to get invertColor switch, because ${JSON.stringify(err)}`);
     });
 
     config.audioMono.get().then((data) => {
@@ -434,6 +490,14 @@ struct AccessibilitySettings {
       LogUtil.info(`${this.TAG} failed subscribe highContrastText, result: ${JSON.stringify(exception)}`);
     }
     try {
+      config.invertColor.on((data: boolean) => {
+        LogUtil.info(`${this.TAG} subscribe invertColor success, result: ${JSON.stringify(data)}`);
+        this.invertColorIsOn = data;
+      });
+    } catch (exception) {
+      LogUtil.info(`${this.TAG} failed subscribe invertColor, result: ${JSON.stringify(exception)}`);
+    }
+    try {
       config.audioMono.on((data: boolean) => {
         LogUtil.info(`${this.TAG} subscribe audioMono success, result: ${JSON.stringify(data)}`);
         this.audioMonoIsOn = data;
@@ -450,6 +514,13 @@ struct AccessibilitySettings {
       });
     } catch (exception) {
       LogUtil.info(`${this.TAG} failed subscribe highContrastText , result: ${JSON.stringify(exception)}`);
+    }
+    try {
+      config.invertColor.off((data: boolean) => {
+        LogUtil.info(`${this.TAG} Unsubscribe invertColor success, result: ${JSON.stringify(data)}`);
+      });
+    } catch (exception) {
+      LogUtil.info(`${this.TAG} failed subscribe invertColor , result: ${JSON.stringify(exception)}`);
     }
     try {
       config.audioMono.off((data: boolean) => {
