@@ -87,7 +87,7 @@ struct AccessibilitySettings {
             .borderRadius($r('app.float.radius_24'));
 
             Row() {
-              Column(){
+              Column() {
                 Text($r('app.string.invert_color'))
                   .fontSize($r('sys.float.ohos_id_text_size_body1'))
                   .fontColor($r('sys.color.ohos_id_color_text_primary'))
@@ -128,7 +128,7 @@ struct AccessibilitySettings {
               .width(ConfigData.WH_100_100)
               .margin({ bottom: $r('app.float.distance_12'), top: $r('app.float.distance_8') });
           }
-          .height($r('app.float.wh_value_118'))
+          .height($r('app.float.wh_value_160'))
           .width(ConfigData.WH_100_100)
           .borderRadius($r('app.float.radius_24'))
           .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));

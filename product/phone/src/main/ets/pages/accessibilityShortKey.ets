@@ -210,7 +210,7 @@ struct AccessibilityShortKey {
   }
 
   generateAllAbilityNameList(): Array<string> {
-    let basicAbilities = [BASIC_ABILITY_HIGH_CONTRAST_TEXT, BASIC_ABILITY_SINGLE_AUDIO,BASIC_ABILITY_INVERT_COLOR];
+    let basicAbilities = [BASIC_ABILITY_HIGH_CONTRAST_TEXT, BASIC_ABILITY_SINGLE_AUDIO, BASIC_ABILITY_INVERT_COLOR];
     return basicAbilities.concat(this.extAbilityNameList);
   }
 
@@ -366,7 +366,7 @@ struct SelectAbilityScalingInformation {
               Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
                 Text((item === BASIC_ABILITY_HIGH_CONTRAST_TEXT) ? $r('app.string.highContrast_text') :
                   ((item === BASIC_ABILITY_SINGLE_AUDIO) ? $r('app.string.single_audio') :
-                    ((item === BASIC_ABILITY_INVERT_COLOR) ? $r('app.string.invert_color') :item.split('/')[1])))
+                    ((item === BASIC_ABILITY_INVERT_COLOR) ? $r('app.string.invert_color') : item.split('/')[1])))
                   .fontFamily('HarmonyHeiTi')
                   .fontSize($r('sys.float.ohos_id_text_size_body1'))
                   .fontWeight(FontWeight.Medium);
@@ -420,7 +420,7 @@ struct SelectAbilityScalingInformation {
   }
 
   generateAllAbilityNameList(): Array<string> {
-    let basicAbilities = [BASIC_ABILITY_HIGH_CONTRAST_TEXT, BASIC_ABILITY_SINGLE_AUDIO];
+    let basicAbilities = [BASIC_ABILITY_HIGH_CONTRAST_TEXT, BASIC_ABILITY_SINGLE_AUDIO, BASIC_ABILITY_INVERT_COLOR];
     return basicAbilities.concat(this.extAbilityNameList);
   }
 
