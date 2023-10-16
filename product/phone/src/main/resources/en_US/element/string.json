@@ -1431,6 +1431,14 @@
     {
       "name": "none",
       "value": "None"
+    },
+    {
+      "name": "invert_color",
+      "value": "invert color"
+    },
+    {
+      "name": "performance_may_be_affected",
+      "value": "performance may be affected"
     }
   ]
 }
