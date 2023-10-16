@@ -1,0 +1,30 @@
+{
+  "plural":[
+    {
+      "name": "user_approval_remain_times",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "Grant access(%ds)"
+        },
+        {
+          "quantity": "other",
+          "value": "Grant access(%ds)"
+        }
+      ]
+    },
+    {
+      "name": "service_number",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d"
+        },
+        {
+          "quantity": "other",
+          "value": "%d"
+        }
+      ]
+    }
+  ]
+}
