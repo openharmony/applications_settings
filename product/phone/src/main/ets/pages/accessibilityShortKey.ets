@@ -394,7 +394,7 @@ struct SelectAbilityScalingInformation {
           .fontSize($r('sys.float.ohos_id_text_size_button1'))
           .fontColor($r('sys.color.ohos_id_color_text_primary_activated'))
           .alignSelf(ItemAlign.Center)
-          .width($r("app.float.wh_value_40"))
+          .width($r("app.float.wh_value_60"))
           .height($r("app.float.wh_value_40"))
           .margin({ top: $r("app.float.distance_8") })
           .onClick(() => {
