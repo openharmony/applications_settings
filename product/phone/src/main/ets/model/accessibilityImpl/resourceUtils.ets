@@ -21,7 +21,6 @@ export class ResourceUtils {
    *  同步返回字符串string值
    *
    * */
-
   static getStringSync(resource: ResourceStr | undefined): string {
     if (!resource) {
       return '';
@@ -40,7 +39,6 @@ export class ResourceUtils {
    *  同步返回大写字符串string值
    *
    * */
-
   static getCapitalStringSync(resource: ResourceStr): string {
     if (!resource) {
       return '';
