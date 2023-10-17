@@ -120,18 +120,56 @@ struct AccessibilitySettings {
             .backgroundColor($r("app.color.white_bg_color"))
             .borderRadius($r('app.float.radius_24'));
 
-            SubEntryComponentWithEndText({
-              targetPage: 'pages/accessibilityColorCorrection',
-              title: $r('app.string.color_correction'),
-              endText: $colorCorrectionStatusText
-            })
-              .width(ConfigData.WH_100_100)
-              .margin({ bottom: $r('app.float.distance_12'), top: $r('app.float.distance_8') });
+            Navigator({ target: 'pages/accessibilityColorCorrection' }) {
+              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+                Row() {
+                  Text($r('app.string.color_correction'))
+                    .fontSize($r('app.float.font_16'))
+                    .lineHeight($r('app.float.wh_value_22'))
+                    .fontWeight(FontWeight.Medium)
+                    .fontColor($r('app.color.font_color_182431'))
+                    .margin({ left: $r('app.float.distance_8') })
+                    .textAlign(TextAlign.Start);
+                }
+
+                Row() {
+                  Text(this.colorCorrectionStatusText)
+                    .fontSize($r('app.float.font_14'))
+                    .lineHeight($r('app.float.wh_value_19'))
+                    .fontWeight(FontWeight.Regular)
+                    .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+                    .margin({ right: $r('app.float.distance_4') })
+                    .textAlign(TextAlign.End);
+                  Image('/res/image/ic_settings_arrow.svg')
+                    .width($r('app.float.wh_value_12'))
+                    .height($r('app.float.wh_value_24'))
+                    .margin({ right: $r('app.float.distance_8') })
+                    .fillColor($r('sys.color.ohos_id_color_primary'))
+                    .opacity($r('app.float.opacity_0_2'))
+                }
+              }
+              .height(ComponentConfig.WH_100_100)
+              .width(ComponentConfig.WH_100_100)
+              .borderRadius($r('app.float.radius_20'))
+              .onTouch((event?: TouchEvent) => {
+                if (event && event.type === TouchType.Down) {
+                  this.isTouched = true;
+                }
+                if (event && event.type === TouchType.Up) {
+                  this.isTouched = false;
+                }
+              });
+            }
+            .padding($r('app.float.distance_4'))
+            .height($r('app.float.wh_value_56'))
+            .borderRadius($r('app.float.radius_24'))
+            .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'));
+
           }
           .height($r('app.float.wh_value_160'))
           .width(ConfigData.WH_100_100)
           .borderRadius($r('app.float.radius_24'))
-          .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
+          .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'));
 
           SubHeader({ titleContent: ResourceUtils.getCapitalStringSync($r('app.string.audio_accessibility')) });
 
@@ -235,14 +273,52 @@ struct AccessibilitySettings {
               bottom: $r('app.float.distance_24'),
             });
 
-          SubHeader({ titleContent: ResourceUtils.getCapitalStringSync($r('app.string.operate_accessibility')) });
-          SubEntryComponentWithEndText({
-            targetPage: 'pages/accessibilityShortKey',
-            title: $r("app.string.accessibility_shortcuts"),
-            endText: $shortKeyStatusText
-          })
-            .width(ConfigData.WH_100_100)
-            .margin({ bottom: $r("app.float.distance_12"), top: $r("app.float.distance_8") });
+          SubHeader({ titleContent: $r('app.string.operate_accessibility') });
+
+          Navigator({ target: 'pages/accessibilityShortKey' }) {
+            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Row() {
+                Text($r('app.string.accessibility_shortcuts'))
+                  .fontSize($r('app.float.font_16'))
+                  .fontWeight(FontWeight.Medium)
+                  .fontColor($r('app.color.font_color_182431'))
+                  .lineHeight($r('app.float.wh_value_22'))
+                  .margin({ left: $r('app.float.distance_8') })
+                  .textAlign(TextAlign.Start);
+              }
+
+              Row() {
+                Text(this.shortKeyStatusText)
+                  .fontSize($r('app.float.font_14'))
+                  .lineHeight($r('app.float.wh_value_19'))
+                  .fontWeight(FontWeight.Regular)
+                  .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+                  .textAlign(TextAlign.End)
+                  .margin({ right: $r('app.float.distance_4') });
+                Image('/res/image/ic_settings_arrow.svg')
+                  .height($r('app.float.wh_value_24'))
+                  .width($r('app.float.wh_value_12'))
+                  .fillColor($r('sys.color.ohos_id_color_primary'))
+                  .margin({ right: $r('app.float.distance_8') })
+                  .opacity($r('app.float.opacity_0_2'));
+              }
+            }
+            .onTouch((event?: TouchEvent) => {
+              if (event && event.type === TouchType.Down) {
+                this.isTouched = true;
+              }
+              if (event && event.type === TouchType.Up) {
+                this.isTouched = false;
+              }
+            })
+            .height(ComponentConfig.WH_100_100)
+            .width(ComponentConfig.WH_100_100)
+            .borderRadius($r('app.float.radius_20'));
+          }
+          .padding($r('app.float.distance_4'))
+          .height($r('app.float.wh_value_56'))
+          .borderRadius($r('app.float.radius_24'))
+          .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'));
 
           SubHeader({ titleContent: ResourceUtils.getCapitalStringSync($r('app.string.extension_service')) });
           if (this.serviceNumChanged || !this.serviceNumChanged) {
@@ -271,7 +347,7 @@ struct AccessibilitySettings {
                     .width($r('app.float.wh_value_12'))
                     .fillColor($r('sys.color.ohos_id_color_primary'))
                     .margin({ right: $r('app.float.distance_8') })
-                    .opacity($r("app.float.opacity_0_2"));
+                    .opacity($r('app.float.opacity_0_2'));
                 }
               }
               .onTouch((event?: TouchEvent) => {

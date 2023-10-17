@@ -73,8 +73,9 @@ struct AccessibilityServiceInfo {
       },
     }),
     alignment: this.isPhoneOrRK ? DialogAlignment.Bottom : DialogAlignment.Center,
-    autoCancel: false,
+    autoCancel: true,
     offset: ({ dx: 0, dy: this.isPhoneOrRK ? '-12dp' : 0 }),
+    cancel: this.cancelButton,
   });
 
   build() {
@@ -165,7 +166,10 @@ struct AccessibilityServiceInfo {
               .width(ConfigData.WH_100_100)
               .fontSize($r('app.float.font_14'))
               .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-              .height($r('app.float.wh_value_52'))
+              .height($r('app.float.wh_value_336'))
+              .align(Alignment.Top)
+              .maxLines(10)
+              .textOverflow({ overflow: TextOverflow.Ellipsis })
               .lineHeight($r('app.float.wh_value_20'))
               .padding({
                 left: $r('app.float.wh_value_12'),
