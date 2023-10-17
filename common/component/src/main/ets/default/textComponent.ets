@@ -20,7 +20,7 @@ import ComponentConfig from './ComponentConfig';
  */
 @Component
 export struct SubHeader {
-  private titleContent: ResourceStr = $r("app.string.endTextEmpty");
+  private titleContent: ResourceStr = $r('app.string.endTextEmpty');
 
   build() {
     Row() {
