@@ -99,7 +99,7 @@ struct AccessibilitySettings {
                   .fontWeight(FontWeight.Regular)
                   .textAlign(TextAlign.Center);
               }
-              .width($r('app.float.wh_value_160'))
+              .width($r('app.float.wh_value_230'))
               .alignItems(HorizontalAlign.Start)
               .justifyContent(FlexAlign.Start)
 
