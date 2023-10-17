@@ -1290,11 +1290,11 @@
     },
     {
       "name": "visual_accessibility",
-      "value": "视觉辅助"
+      "value": "视觉"
     },
     {
       "name": "audio_accessibility",
-      "value": "听觉辅助"
+      "value": "听觉"
     },
     {
       "name": "highContrast_text",
@@ -1322,7 +1322,7 @@
     },
     {
       "name": "operate_accessibility",
-      "value": "操作輔助"
+      "value": "操作"
     },
     {
       "name": "accessibility_shortcuts",

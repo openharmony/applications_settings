@@ -18,6 +18,7 @@ import router from '@ohos.router';
 import deviceInfo from '@ohos.deviceInfo';
 import accessibility from '@ohos.accessibility';
 import config from '@ohos.accessibility.config';
+import { ResourceUtils } from '../model/accessibilityImpl/resourceUtils';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LongHeadComponent from '../../../../../../common/component/src/main/ets/default/longHeadComponent';
@@ -355,7 +356,7 @@ struct ShowDialog {
   private countDownTime: number = 10000;
   @State freezingTimeForView: number = -1;
   @State userApproval: boolean = false;
-  @State title: Resource = $r('app.string.user_approval_remain_times', 10);
+  @State title: string = ResourceUtils.getPluralStringValueSync($r('app.plural.user_approval_remain_times'), 10);
   @State enableState: boolean = false;
 
   build() {
@@ -463,9 +464,9 @@ struct ShowDialog {
   updateButtonTitle(): void {
     this.getEnableButtonState();
     if (this.freezingTimeForView > 0) {
-      this.title = $r('app.string.user_approval_remain_times', this.freezingTimeForView);
+      this.title = ResourceUtils.getPluralStringValueSync($r('app.plural.user_approval_remain_times'), this.freezingTimeForView);
     } else {
-      this.title = $r('app.string.accessibility_enable');
+      this.title = ResourceUtils.getCapitalStringSync($r('app.string.accessibility_enable'));
     }
   }
 
