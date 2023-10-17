@@ -1286,11 +1286,11 @@
     },
     {
       "name": "visual_accessibility",
-      "value": "VISUAL AIDS"
+      "value": "Visual"
     },
     {
       "name": "audio_accessibility",
-      "value": "AUDITORY AIDS"
+      "value": "Auditory"
     },
     {
       "name": "highContrast_text",
@@ -1317,20 +1317,12 @@
       "value": "Adjust the volume balance between left and right channels."
     },
     {
-      "name":"user_approval_remain_times",
-      "value":"Grant Access (%dS)"
-    },
-    {
       "name": "extension_service",
-      "value": "Services"
+      "value": "Other"
     },
     {
       "name": "installed_service",
       "value": "Installed services"
-    },
-    {
-      "name": "service_number",
-      "value": "%d"
     },
     {
       "name": "no_service",
@@ -1342,7 +1334,7 @@
     },
     {
       "name": "help",
-      "value": "HELP AND FEEDBACK"
+      "value": "Help"
     },
     {
       "name": "no_description_provided",
@@ -1386,19 +1378,19 @@
     },
     {
       "name": "operate_accessibility",
-      "value": "操作輔助"
+      "value": "Assistance"
     },
     {
       "name": "accessibility_shortcuts",
-      "value": "辅助功能快捷键"
+      "value": "Accessibility shortcut"
     },
     {
       "name": "accessibility_shortcuts_tips",
-      "value": "开启后，连续按电源键三下，可启动无障碍快捷方式"
+      "value": "Press the Power button three times to activate a selected feature"
     },
     {
       "name": "accessibility_select_ability",
-      "value": "选择功能"
+      "value": "Select feature"
     },
     {
       "name": "START_INVISIBLE_ABILITY",
