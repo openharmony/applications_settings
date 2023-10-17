@@ -399,7 +399,7 @@ struct SelectAbilityScalingInformation {
           .margin({ top: $r('app.float.distance_8') })
           .onClick(() => {
             this.controller?.close();
-          })
+          });
       }
       .padding({
         left: $r('app.float.padding_24'),
