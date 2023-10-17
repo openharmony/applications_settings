@@ -17,7 +17,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 import config from '@ohos.accessibility.config';
 import accessibility from '@ohos.accessibility';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
+import { ResourceUtils } from '../model/accessibilityImpl/resourceUtils';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import ComponentConfig from '../../../../../../common/component/src/main/ets/default/ComponentConfig';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
@@ -59,7 +59,7 @@ struct AccessibilitySettings {
         Column() {
           HeadComponent({ headName: $r('app.string.accessibility'), isActive: true });
 
-          SubHeader({ titleContent: $r('app.string.visual_accessibility') });
+          SubHeader({ titleContent: ResourceUtils.getCapitalStringSync($r('app.string.visual_accessibility')) });
 
           Column() {
             Row() {
@@ -99,7 +99,7 @@ struct AccessibilitySettings {
                   .fontWeight(FontWeight.Regular)
                   .textAlign(TextAlign.Center);
               }
-              .width($r('app.float.wh_value_160'))
+              .width($r('app.float.wh_value_230'))
               .alignItems(HorizontalAlign.Start)
               .justifyContent(FlexAlign.Start)
 
@@ -133,7 +133,7 @@ struct AccessibilitySettings {
           .borderRadius($r('app.float.radius_24'))
           .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
 
-          SubHeader({ titleContent: $r('app.string.audio_accessibility') });
+          SubHeader({ titleContent: ResourceUtils.getCapitalStringSync($r('app.string.audio_accessibility')) });
 
           Column() {
             Row() {
@@ -235,7 +235,7 @@ struct AccessibilitySettings {
               bottom: $r('app.float.distance_24'),
             });
 
-          SubHeader({ titleContent: $r('app.string.operate_accessibility') });
+          SubHeader({ titleContent: ResourceUtils.getCapitalStringSync($r('app.string.operate_accessibility')) });
           SubEntryComponentWithEndText({
             targetPage: 'pages/accessibilityShortKey',
             title: $r("app.string.accessibility_shortcuts"),
@@ -244,7 +244,7 @@ struct AccessibilitySettings {
             .width(ConfigData.WH_100_100)
             .margin({ bottom: $r("app.float.distance_12"), top: $r("app.float.distance_8") });
 
-          SubHeader({ titleContent: $r('app.string.extension_service') });
+          SubHeader({ titleContent: ResourceUtils.getCapitalStringSync($r('app.string.extension_service')) });
           if (this.serviceNumChanged || !this.serviceNumChanged) {
             Navigator({ target: 'pages/serviceManagement' }) {
               Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
@@ -374,7 +374,7 @@ struct AccessibilitySettings {
       LogUtil.info(`${this.TAG} get accessibilityAbilityList success, service length: ${JSON.stringify(data.length)}`);
       if (data.length > 0) {
         this.serviceNum = data.length;
-        this.serviceStateText = $r('app.string.service_number', this.serviceNum);
+        this.serviceStateText = $r('app.plural.service_number', this.serviceNum, this.serviceNum);
         LogUtil.info(`${this.TAG} serviceNumber: ${JSON.stringify(this.serviceNum)}`);
       } else {
         this.serviceStateText = $r('app.string.no_service');

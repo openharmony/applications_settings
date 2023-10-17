@@ -1,0 +1,22 @@
+{
+  "plural":[
+    {
+      "name": "user_approval_remain_times",
+      "value": [
+        {
+          "quantity": "other",
+          "value": "开启 (%d秒)"
+        }
+      ]
+    },
+    {
+      "name": "service_number",
+      "value": [
+        {
+          "quantity": "other",
+          "value": "%d项服务"
+        }
+      ]
+    }
+  ]
+}
