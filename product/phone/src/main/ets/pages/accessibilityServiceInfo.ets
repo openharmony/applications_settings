@@ -52,6 +52,7 @@ struct AccessibilityServiceInfo {
   capabilities: Array<accessibility.Capability> = ['retrieve', 'keyEventObserver', 'gesture', 'zoom', 'touchGuide'];
   @State serviceIsOn: boolean = false;
   @State pageChanged: boolean = false;
+  @State serviceIsOnClick: boolean = false;
   @StorageLink('accessibilityServiceInfo') serviceInfo: ServiceInfoData = {
     serviceIcon: '',
     serviceTitle: '',
@@ -103,6 +104,9 @@ struct AccessibilityServiceInfo {
                     .width('36vp')
                     .height('20vp')
                     .selectedColor('#007DFF')
+                    .onClick(() => {
+                      this.serviceIsOnClick = true;
+                    })
                     .onChange((isOn: boolean) => {
                       this.setExtensionServiceState(isOn);
                     });
@@ -111,6 +115,9 @@ struct AccessibilityServiceInfo {
                     .width('36vp')
                     .height('20vp')
                     .selectedColor('#007DFF')
+                    .onClick(() => {
+                      this.serviceIsOnClick = true;
+                    })
                     .onChange((isOn: boolean) => {
                       this.setExtensionServiceState(isOn);
                     });
@@ -210,6 +217,11 @@ struct AccessibilityServiceInfo {
     this.closeExtensionServiceManagementDetailsStatusListener();
   }
 
+  onPageShow(): void {
+    this.openExtensionServiceManagementDetailsApplicationListener();
+    this.setExtensionServiceManagementApplicationData();
+  }
+
   getServiceName(): void {
     let param = router.getParams();
     if (param) {
@@ -226,7 +238,10 @@ struct AccessibilityServiceInfo {
     LogUtil.info(`${this.tag} setExtensionServiceState ${isOn}`);
     LogUtil.info(`${this.tag} serviceState: ${JSON.stringify(this.serviceIsOn)}`);
     if (isOn) {
-      this.showDialog.open();
+      if (this.serviceIsOnClick) {
+        this.showDialog.open();
+        this.serviceIsOnClick = false;
+      }
     } else {
       this.disableAbility(this.serviceInfo.serviceId);
     }
