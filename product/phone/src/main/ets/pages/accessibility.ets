@@ -52,6 +52,7 @@ struct AccessibilitySettings {
   @State isTouched: boolean = false;
   @State serviceNumChanged: boolean = true;
   private TAG = ConfigData.TAG + 'AccessibilitySettings ';
+  private basicList: string[] = [BASIC_ABILITY_HIGH_CONTRAST_TEXT, BASIC_ABILITY_SINGLE_AUDIO, BASIC_ABILITY_INVERT_COLOR];
 
   build() {
     Column() {
@@ -384,7 +385,10 @@ struct AccessibilitySettings {
   };
 
   setShortKeyText(status: boolean, text: string, flag: boolean): void {
-    LogUtil.info(`${this.TAG} shortKeyState: ${JSON.stringify(status)}`);
+    LogUtil.info(`${this.TAG} shortKeyState: ${JSON.stringify(status)},${JSON.stringify(text)}`);
+    if (this.basicList.includes(text)) {
+      flag = false;
+    }
     if (text === 'none' || flag) {
       this.shortKeyStatusText = (Object)($r('app.string.disabled'));
       return;
@@ -402,7 +406,7 @@ struct AccessibilitySettings {
     } else {
       this.shortKeyStatusText = (Object)($r('app.string.disabled'));
     }
-    LogUtil.info(`${this.TAG} set shortKeyStateText: ${this.shortKeyStatusText}`);
+    LogUtil.info(`${this.TAG} set shortKeyStateText: ${JSON.stringify(this.shortKeyStatusText)}`);
   }
 
   setHighContrastTextState(isOn: boolean): void {
@@ -516,6 +520,7 @@ struct AccessibilitySettings {
   }
 
   async getShortKeyStateAndTargetByStatus(): Promise<void> {
+    let text: string = '';
     await config.shortkey.get().then((data) => {
       this.shortKeyIsOn = data;
       LogUtil.info(`${this.TAG} get shortKeyIsOn success : ${data}`);
@@ -524,7 +529,7 @@ struct AccessibilitySettings {
     });
 
     await config.shortkeyTarget.get().then((data) => {
-      this.shortKeyStatusText = data;
+      text = data;
       LogUtil.info(`${this.TAG} get shortkeyTarget success: ${data}`);
     }).catch((err: object) => {
       LogUtil.error(`${this.TAG} failed to get shortkeyTarget, because ${JSON.stringify(err)}`);
@@ -533,12 +538,12 @@ struct AccessibilitySettings {
     let installServiceList: Array<accessibility.AccessibilityAbilityInfo> = await accessibility.getAccessibilityExtensionList('all', 'install');
     if (installServiceList && installServiceList.length > 0) {
       for (let enableService of installServiceList) {
-        if (enableService && enableService.id === this.shortKeyStatusText) {
+        if (enableService && enableService.id === text) {
           flag = false;
         }
       }
     }
-    this.setShortKeyText(this.shortKeyIsOn, this.shortKeyStatusText, flag);
+    this.setShortKeyText(this.shortKeyIsOn, text, flag);
   }
 
   aboutToDisappear(): void {
