@@ -62,12 +62,12 @@ export class SystemAccoutModel {
     if (info1.localId == this.currentAccount.localId || info2.localId == this.currentAccount.localId) {
       LogUtil.info("Sort current account, info: " + info1.localName);
       return info1.localId == this.currentAccount.localId ? -1 : 1;
-    } else if (info1.type == osAccount.OsAccountType.ADMIN || info2.type == osAccount.OsAccountType.ADMIN) {
+    } else if (info1.type === osAccount.OsAccountType.ADMIN || info2.type === osAccount.OsAccountType.ADMIN) {
       LogUtil.info("Sort administrator account, info: " + info1.localName);
-      return info1.type == osAccount.OsAccountType.ADMIN ? -1 : 1;
-    } else if ( info1.type == osAccount.OsAccountType.GUEST || info2.type == osAccount.OsAccountType.GUEST) {
+      return info1.type === osAccount.OsAccountType.ADMIN ? -1 : 1;
+    } else if ( info1.type === osAccount.OsAccountType.GUEST || info2.type === osAccount.OsAccountType.GUEST) {
       LogUtil.info("Sort quest account, info: " + info1.localName);
-      return info1.type == osAccount.OsAccountType.GUEST ? 1 : -1;
+      return info1.type === osAccount.OsAccountType.GUEST ? 1 : -1;
     } else {
       return info2.localId - info1.localId;
     }
@@ -81,11 +81,11 @@ export class SystemAccoutModel {
    */
   getIdentityFromMap(accountType: any): string | Resource {
     LogUtil.info("Get identity from map, type: " + JSON.stringify(accountType));
-    if (accountType == osAccount.OsAccountType.ADMIN) {
+    if (accountType === osAccount.OsAccountType.ADMIN) {
       return $r("app.string.administrator");
-    } else if (accountType == osAccount.OsAccountType.NORMAL) {
+    } else if (accountType === osAccount.OsAccountType.NORMAL) {
       return "";
-    } else if (accountType == osAccount.OsAccountType.GUEST) {
+    } else if (accountType === osAccount.OsAccountType.GUEST) {
       return $r("app.string.quest");
     } else {
       LogUtil.info("Unknown system account type.")

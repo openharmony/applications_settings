@@ -19,7 +19,7 @@ import { GlobalContext } from '../../../../../../common/utils/src/main/ets/defau
 export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     console.log("[Demo] MainAbility onCreate")
-    GlobalContext.getContext().setObject(GlobalContext.GLOBAL_KEY_ABILITY_WANT, want);
+    GlobalContext.getContext().setObject(GlobalContext.globalKeyAbilityWant, want);
   }
 
   onDestroy() {
