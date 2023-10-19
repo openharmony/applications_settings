@@ -22,7 +22,7 @@ import ConfigData from '../../../../../../common/utils/src/main/ets/default/base
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import { AccessibilitySettingModel } from '../model/accessibilityImpl/AccessibilitySettingModel';
 
-const TAG = ConfigData.TAG + 'Accessibility ShortKey: ';
+const TAG = ConfigData.TAG + 'AccessibilityShortKey: ';
 const BASIC_ABILITY_HIGH_CONTRAST_TEXT = 'HIGH_CONTRAST_TEXT';
 const BASIC_ABILITY_SINGLE_AUDIO = 'AUDIO_MONO';
 const BASIC_ABILITY_INVERT_COLOR = 'INVERT_COLOR';
@@ -210,12 +210,16 @@ struct AccessibilityShortKey {
   }
 
   generateAllAbilityNameList(): Array<string> {
+    LogUtil.info(`${TAG} generateAllAbilityNameList in`);
     let basicAbilities = [BASIC_ABILITY_HIGH_CONTRAST_TEXT, BASIC_ABILITY_SINGLE_AUDIO, BASIC_ABILITY_INVERT_COLOR];
-    return basicAbilities.concat(this.extAbilityNameList);
+    if (this.extAbilityNameList && this.extAbilityNameList.length > 0) {
+      return basicAbilities.concat(this.extAbilityNameList);
+    }
+    return basicAbilities;
   }
 
-  updateAccessibilityExtensionList() {
-    accessibility.getAccessibilityExtensionList('all', 'install').then((data) => {
+  async updateAccessibilityExtensionList(): Promise<void> {
+    await accessibility.getAccessibilityExtensionList('all', 'install').then((data) => {
       LogUtil.info(`${TAG} get accessibilityAbilityList success, service length: ${JSON.stringify(data.length)}`);
       if (data.length > 0) {
         data.forEach(item => this.extAbilityNameList.push(item.id));
@@ -226,11 +230,18 @@ struct AccessibilityShortKey {
   }
 
   aboutToAppear(): void {
-    this.openAbilitySelectListener();
     LogUtil.info(`${TAG} aboutToAppear in`);
-    this.getShortKeyStateAndTarget();
     this.updateAccessibilityExtensionList();
+    this.openAbilitySelectListener();
     LogUtil.info(`${TAG} aboutToAppear out`);
+  }
+
+  async onPageShow(): Promise<void> {
+    LogUtil.info(`${TAG} onPageShow in`);
+    await this.getShortKeyStateAndTarget();
+    this.openAbilitySelectListener();
+    this.abilitySelectListenerAdd();
+    this.abilitySelectListenerRemove();
   }
 
   aboutToDisappear(): void {
@@ -241,38 +252,47 @@ struct AccessibilityShortKey {
     this.closeAbilitySelectListener();
   }
 
+  async abilitySelectListenerAdd(): Promise<void> {
+    this.extAbilityNameList = [];
+    this.AllAbilityNameList = [];
+    await this.updateAccessibilityExtensionList();
+    this.AllAbilityNameList = this.generateAllAbilityNameList();
+    this.SelectAbilityScalingDialog.close();
+  }
+
+  async abilitySelectListenerRemove(): Promise<void> {
+    this.extAbilityNameList = [];
+    this.AllAbilityNameList = [];
+    await this.updateAccessibilityExtensionList();
+    this.AllAbilityNameList = this.generateAllAbilityNameList();
+    if (this.AllAbilityNameList.indexOf(this.checked) === -1) {
+      this.shortKeyStatusText = (Object)($r('app.string.disabled'));
+      this.setShortcutsFunctionState(false);
+      AccessibilitySettingModel.accessibilityShortKeyStateSet('none');
+    }
+    this.SelectAbilityScalingDialog.close();
+  }
+
   openAbilitySelectListener(): void {
     try {
       bundleMonitor.on('add', (bundleChangeInfo) => {
-        this.extAbilityNameList = [];
-        this.AllAbilityNameList = [];
-        this.updateAccessibilityExtensionList();
-        this.AllAbilityNameList = this.generateAllAbilityNameList();
-        LogUtil.info(`bundleName:${bundleChangeInfo.bundleName} userId:${bundleChangeInfo.userId}`);
+        this.abilitySelectListenerAdd();
+        LogUtil.info(`${TAG} bundleName:${bundleChangeInfo.bundleName} userId:${bundleChangeInfo.userId}`);
       });
     } catch (errData) {
       let message = (errData as BusinessError).message;
       let errCode = (errData as BusinessError).code;
-      LogUtil.error(`errData is errCode :${errCode} message:${message}`);
+      LogUtil.error(`${TAG} errData is errCode :${errCode} message:${message}`);
     }
     try {
       bundleMonitor.on('remove', (bundleChangeInfo) => {
-        this.extAbilityNameList = [];
-        this.AllAbilityNameList = [];
-        this.updateAccessibilityExtensionList();
-        this.AllAbilityNameList = this.generateAllAbilityNameList();
-        if (this.AllAbilityNameList.indexOf(this.shortKeyStatusText) === -1) {
-          this.shortKeyStatusText = (Object)($r('app.string.disabled'));
-          this.setShortcutsFunctionState(false);
-          this.SelectAbilityScalingDialog.close();
-          this.getShortKeyStateAndTarget();
-        }
-        LogUtil.info(`bundleName:${bundleChangeInfo.bundleName} userId:${bundleChangeInfo.userId}`);
+        this.abilitySelectListenerRemove();
+        LogUtil.info(`${TAG} bundleName:${bundleChangeInfo.bundleName} userId:${bundleChangeInfo.userId}`);
       });
     } catch (errData) {
       let message = (errData as BusinessError).message;
       let errCode = (errData as BusinessError).code;
-      LogUtil.error(`errData is errCode :${errCode} message:${message}`);
+      LogUtil.error(`${TAG} errData is errCode :${errCode} message:${message}`);
     }
   }
 
@@ -337,9 +357,6 @@ struct SelectAbilityScalingInformation {
         this.AllAbilityNameList = [];
         this.updateAccessibilityExtensionList();
         this.AllAbilityNameList = this.generateAllAbilityNameList();
-        if (this.AllAbilityNameList.indexOf(this.shortKeyStatusText) === -1) {
-          this.shortKeyStatusText = (Object)($r('app.string.disabled'));
-        }
         this.controller?.close();
         LogUtil.info(`bundleName:${bundleChangeInfo.bundleName} userId:${bundleChangeInfo.userId}`);
       })
