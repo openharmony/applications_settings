@@ -23,8 +23,8 @@ export default class MainAbility extends Ability {
 
   onCreate(want, launchParam) {
     LogUtil.info(this.tag + ' Application onCreate');
-    GlobalContext.getContext().setObject(GlobalContext.GLOBAL_KEY_ABILITY_WANT, want);
-    GlobalContext.getContext().setObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT, this.context);
+    GlobalContext.getContext().setObject(GlobalContext.globalKeyAbilityWant, want);
+    GlobalContext.getContext().setObject(GlobalContext.globalKeySettingsAbilityContext, this.context);
   }
 
   onDestroy() {
@@ -39,7 +39,7 @@ export default class MainAbility extends Ability {
   }
 
   onNewWant(want): void {
-    GlobalContext.getContext().setObject(GlobalContext.GLOBAL_KEY_ABILITY_WANT, want);
+    GlobalContext.getContext().setObject(GlobalContext.globalKeyAbilityWant, want);
     LogUtil.info(this.tag + " onNewWant is called");
     this.windowStage?.setUIContent(this.context, "pages/applicationInfo", null);
   }

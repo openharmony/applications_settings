@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import common from '@ohos.app.ability.common';
+import type common from '@ohos.app.ability.common';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
@@ -45,7 +45,7 @@ export class SettingListModel extends BaseModel {
   @Log
   onSettingItemClick(targetPage): void {
     if (targetPage === 'mobileData') {
-      let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.UIAbilityContext;
+      let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.UIAbilityContext;
       context.startAbility({
         bundleName: ConfigData.MOBILE_DATA_BUNDLE_NAME,
         abilityName: ConfigData.MOBILE_DATA_ABILITY_NAME,
@@ -63,7 +63,7 @@ export class SettingListModel extends BaseModel {
           })
         })
     } else if (targetPage === 'security') {
-      let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.UIAbilityContext;
+      let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.UIAbilityContext;
       context.startAbility({
         bundleName: ConfigData.SECURITY_BUNDLE_NAME,
         abilityName: ConfigData.SECURITY_ABILITY_NAME,
