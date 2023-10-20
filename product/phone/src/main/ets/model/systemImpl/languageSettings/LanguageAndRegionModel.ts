@@ -129,7 +129,6 @@ class LanguageAndRegionModel extends BaseModel {
   async deleteLanguage(language: string): Promise<void> {
     LogUtil.info(`${this.TAG} deleteLanguage in`);
     this.addedLanguages = AppStorage.Get(this.addStr);
-    this.addedLanguages.splice(this.addedLanguages.indexOf(language), 1);
     this.setSystemLanguage(this.addedLanguages[0]);
     AppStorage.Set(this.addStr, this.addedLanguages);
     await this.storage.put(this.addStr, JSON.stringify(AppStorage.Get(this.addStr)));
@@ -144,7 +143,9 @@ class LanguageAndRegionModel extends BaseModel {
   @Log
   getSysDisplayLanguage(language: string) {
     LogUtil.info(`${this.TAG} getSysDisplayLanguage`);
-    return i18n.System.getDisplayLanguage(language, i18n.System.getSystemLanguage(), true);
+    if(language){
+      return i18n.System.getDisplayLanguage(language, i18n.System.getSystemLanguage(), true);
+    }
   }
 
   /**
@@ -153,7 +154,9 @@ class LanguageAndRegionModel extends BaseModel {
   @Log
   getDisplayLanguage(language: string): string {
     LogUtil.info(`${this.TAG} getDisplayLanguage`);
-    return i18n.System.getDisplayLanguage(language, language, true);
+    if(language){
+      return i18n.System.getDisplayLanguage(language, language, true);
+    }
   }
 
   /**
