@@ -200,8 +200,7 @@ struct PairedDeviceComponent {
   private TAG_PAGE = ConfigData.TAG + 'PairedDeviceComponent ';
   private controller?: BluetoothDeviceController;
 
-  @Log
-  aboutToAppear(): void{
+  aboutToAppear(): void {
     if (this.controller) {
       // bind component and initialize
       this.controller.bindComponent(this)
