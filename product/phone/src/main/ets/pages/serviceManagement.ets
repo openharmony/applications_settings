@@ -131,4 +131,9 @@ struct extensionServiceManagement {
     AppStorage.Delete(MODULE_TAG + 'extensionServiceManagementList');
     LogUtil.info(`${MODULE_TAG} aboutToDisappear out`);
   }
+
+  onPageHide(): void {
+    LogUtil.info(`${MODULE_TAG} onPageHide in`);
+    ExtensionServiceManagementModel.closeExtensionServiceManagementApplicationListener();
+  }
 }

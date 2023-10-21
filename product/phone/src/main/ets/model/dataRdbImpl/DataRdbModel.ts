@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Stable from '../../../../../../common/utils/src/main/ets/default/baseUtil/Global';
-import rdbStore from '../../../../../../common/utils/src/main/ets/default/baseUtil/RdbStoreUtil';
-import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
+
+import Stable from '../../../../../../../common/utils/src/main/ets/default/baseUtil/Global';
+import rdbStore from '../../../../../../../common/utils/src/main/ets/default/baseUtil/RdbStoreUtil';
+import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 
 class DataRdbModel {
   insertValues: any[] = [
@@ -41,7 +42,7 @@ class DataRdbModel {
     }
   ]
 
-/**
+  /**
    * query
    */
   async queryAllData(tableName, callback) {
@@ -65,7 +66,7 @@ class DataRdbModel {
     callback(results)
   }
 
-/**
+  /**
    * insert
    */
   async insertDataModel(tableName, rowValue, callback) {
@@ -80,12 +81,13 @@ class DataRdbModel {
       callback(result);
     })
       .catch((err) => {
-      LogUtil.info(ConfigData.TAG + 'get data insert model err' + err);
-      callback(result);
-    })
+        LogUtil.info(ConfigData.TAG + 'get data insert model err' + err);
+        callback(result);
+      })
     LogUtil.info(ConfigData.TAG + 'get data insert model end');
   }
-/**
+
+  /**
    * delete
    */
   async deleteData(tableName, key) {
@@ -95,7 +97,8 @@ class DataRdbModel {
     rdbStore.deleteItem(predicates);
     LogUtil.info(ConfigData.TAG + 'get data delete model end ');
   }
-/**
+
+  /**
    * update
    */
   async updateData(tableName, key, rowValue) {
@@ -106,7 +109,7 @@ class DataRdbModel {
     LogUtil.info(ConfigData.TAG + 'get data update model end ');
   }
 
-/**
+  /**
    * query
    */
   async querySingleData(tableName, key, callback) {
@@ -138,4 +141,5 @@ class DataRdbModel {
 
 
 let dataRdbModel = new DataRdbModel();
+
 export default dataRdbModel;

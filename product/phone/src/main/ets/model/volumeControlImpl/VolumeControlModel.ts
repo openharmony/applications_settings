@@ -12,67 +12,73 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import Audio from '@ohos.multimedia.audio';
+
 const groupId = Audio.DEFAULT_VOLUME_GROUP_ID;
 
 function getAudioManager() {
-  if (!globalThis['audioManager']) {
-    globalThis['audioManager'] = Audio.getAudioManager();
+  let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_AUDIO_MANAGER);
+  if (!context) {
+    GlobalContext.getContext().setObject(GlobalContext.GLOBAL_KEY_AUDIO_MANAGER, Audio.getAudioManager());
   }
-  return globalThis['audioManager'];
+  return GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_AUDIO_MANAGER) as Audio.AudioManager;
 }
 
 function audioVolumeGroupManager() {
-  if (!globalThis['audioVolumeGroupManager']) {
-    globalThis['audioVolumeGroupManager'] = getAudioManager().getVolumeManager().getVolumeGroupManager(groupId);
+  let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_AUDIO_VOLUME_GROUP_MANAGER);
+  if (!context) {
+    GlobalContext.getContext().setObject(GlobalContext.GLOBAL_KEY_AUDIO_VOLUME_GROUP_MANAGER,
+      getAudioManager().getVolumeManager().getVolumeGroupManager(groupId));
   }
-  return globalThis['audioVolumeGroupManager'];
+  return GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_AUDIO_VOLUME_GROUP_MANAGER) as Audio.AudioVolumeGroupManager;
 }
 
-export async function registerObserver(){
+export async function registerObserver() {
   let audioManager = getAudioManager();
   let getaudioVolumeGroupManager = await audioVolumeGroupManager();
-  getaudioVolumeGroupManager.on('ringerModeChange', (mode)=>{
+  getaudioVolumeGroupManager.on('ringerModeChange', (mode) => {
     AppStorage.SetOrCreate('ringerModeSilent', mode === Audio.AudioRingMode.RINGER_MODE_SILENT);
     AppStorage.SetOrCreate('ringerModeNormal', mode === Audio.AudioRingMode.RINGER_MODE_NORMAL);
   })
 
   audioManager.on('volumeChange', (data) => {
-    if(data.volumeType === Audio.AudioVolumeType.RINGTONE){
+    if (data.volumeType === Audio.AudioVolumeType.RINGTONE) {
       AppStorage.SetOrCreate('volume_ringtone', data.volume);
-    } else if(data.volumeType === Audio.AudioVolumeType.VOICE_CALL){
+    } else if (data.volumeType === Audio.AudioVolumeType.VOICE_CALL) {
       AppStorage.SetOrCreate('volume_voicecall', data.volume);
-    } else if(data.volumeType === Audio.AudioVolumeType.MEDIA){
+    } else if (data.volumeType === Audio.AudioVolumeType.MEDIA) {
       AppStorage.SetOrCreate('volume_media', data.volume);
     }
   })
 
   audioManager.on('deviceChange', () => {
-   audioManager.getVolume(Audio.AudioVolumeType.RINGTONE,(err,data)=>{
-    AppStorage.SetOrCreate('volume_ringtone', data);
-   })
-   audioManager.getVolume(Audio.AudioVolumeType.VOICE_CALL,(err,data)=>{
-    AppStorage.SetOrCreate('volume_voicecall', data);
-   })
-   audioManager.getVolume(Audio.AudioVolumeType.MEDIA,(err,data)=>{
-    AppStorage.SetOrCreate('volume_media', data);
-   })
+    audioManager.getVolume(Audio.AudioVolumeType.RINGTONE, (err, data) => {
+      AppStorage.SetOrCreate('volume_ringtone', data);
+    })
+    audioManager.getVolume(Audio.AudioVolumeType.VOICE_CALL, (err, data) => {
+      AppStorage.SetOrCreate('volume_voicecall', data);
+    })
+    audioManager.getVolume(Audio.AudioVolumeType.MEDIA, (err, data) => {
+      AppStorage.SetOrCreate('volume_media', data);
+    })
   })
 }
 
 
-export class VolumeModel extends BaseModel{
+export class VolumeModel extends BaseModel {
   private volumeType;
   private audioManager;
   private volume;
   private TAG = ConfigData.TAG + 'VolumeModel ';
   private oldVolume;
 
-  constructor(volumeType){
+  constructor(volumeType) {
     super();
     this.volumeType = volumeType;
     this.audioManager = getAudioManager();
@@ -86,12 +92,12 @@ export class VolumeModel extends BaseModel{
    * Get volume value in the VolumeModel
    */
   @Log
-  public initState(volume){
-    if(this.volumeType === Audio.AudioVolumeType.RINGTONE){
+  public initState(volume) {
+    if (this.volumeType === Audio.AudioVolumeType.RINGTONE) {
       AppStorage.SetOrCreate('volume_ringtone', volume);
-    } else if(this.volumeType === Audio.AudioVolumeType.MEDIA){
+    } else if (this.volumeType === Audio.AudioVolumeType.MEDIA) {
       AppStorage.SetOrCreate('volume_media', volume);
-    } else if(this.volumeType === Audio.AudioVolumeType.VOICE_CALL){
+    } else if (this.volumeType === Audio.AudioVolumeType.VOICE_CALL) {
       AppStorage.SetOrCreate('volume_voicecall', volume);
     }
     return;
@@ -101,8 +107,8 @@ export class VolumeModel extends BaseModel{
    * Set value
    */
   @Log
-  public setVolume(volume:number){
-    if(volume === this.oldVolume){
+  public setVolume(volume: number) {
+    if (volume === this.oldVolume) {
       return;
     } else {
       LogUtil.info(`${this.TAG} setVolume start, volume: ${volume}`);
@@ -116,11 +122,11 @@ export class VolumeModel extends BaseModel{
   }
 }
 
-export class RingerModel extends BaseModel{
+export class RingerModel extends BaseModel {
   private modeTag;
   private TAG = ConfigData.TAG + 'RingerModel ';
 
-  constructor(mode){
+  constructor(mode) {
     super();
     this.modeTag = mode;
     this.initState();
@@ -130,7 +136,7 @@ export class RingerModel extends BaseModel{
    * Update ringer Mode
    */
   @Log
-  public async initState(){
+  public async initState() {
     let getaudioVolumeGroupManager = await audioVolumeGroupManager();
     getaudioVolumeGroupManager.getRingerMode((error, action) => {
       LogUtil.info(`${this.TAG} updateMode.`);
@@ -147,7 +153,7 @@ export class RingerModel extends BaseModel{
    * Set  ringer mode
    */
   @Log
-  public async setRingerMode(){
+  public async setRingerMode() {
     let getaudioVolumeGroupManager = await audioVolumeGroupManager();
     getaudioVolumeGroupManager.setRingerMode(this.modeTag, (err, data) => {
       LogUtil.info(`${this.TAG} setRingerMode.`);

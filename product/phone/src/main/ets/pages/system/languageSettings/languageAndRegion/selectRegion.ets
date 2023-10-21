@@ -187,7 +187,7 @@ struct CurrentRegion {
 
 export class RegionDataSource implements IDataSource {
   private regionArray: string[] = [];
-  // Êý¾Ý¸Ä±ä¼àÌýÆ÷
+  // æ•°æ®æ”¹å˜ç›‘å¬å™¨
   private listeners: DataChangeListener[] = [];
 
   constructor(regionArray: string[]) {
@@ -195,17 +195,17 @@ export class RegionDataSource implements IDataSource {
   }
 
   /**
-   * »ñÈ¡Êý¾ÝÔ´ÁÐ±í³¤¶È
+   * èŽ·å–æ•°æ®æºåˆ—è¡¨é•¿åº¦
    */
   public totalCount(): number {
     return this.regionArray.length;
   }
 
   /**
-   * ´ÓÊý¾ÝÔ´»ñÈ¡Ö¸¶¨Ë÷ÒýÖµµÄÊý¾ÝÏî
+   * ä»Žæ•°æ®æºèŽ·å–æŒ‡å®šç´¢å¼•å€¼çš„æ•°æ®é¡¹
    *
-   * @param index Êý¾ÝÔ´Ë÷ÒýÖµ
-   * @return ¶ÔÓ¦Ë÷ÒýÖµµÄÊý¾ÝÏî
+   * @param index æ•°æ®æºç´¢å¼•å€¼
+   * @return å¯¹åº”ç´¢å¼•å€¼çš„æ•°æ®é¡¹
    */
   public getData(index: number): string {
     return this.regionArray[index];
@@ -222,7 +222,7 @@ export class RegionDataSource implements IDataSource {
   }
 
   /**
-   * ×¢²áÊý¾Ý¸Ä±äµÄ¼àÌýÆ÷
+   * æ³¨å†Œæ•°æ®æ”¹å˜çš„ç›‘å¬å™¨
    * @param listener
    */
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -232,7 +232,7 @@ export class RegionDataSource implements IDataSource {
   }
 
   /**
-   * ×¢ÏúÊý¾Ý¸Ä±äµÄ¼àÌýÆ÷
+   * æ³¨é”€æ•°æ®æ”¹å˜çš„ç›‘å¬å™¨
    * @param listener
    */
   unregisterDataChangeListener(listener: DataChangeListener): void {
@@ -243,7 +243,7 @@ export class RegionDataSource implements IDataSource {
   }
 
   /**
-   * Í¨Öª×é¼þÖØÐÂ¼ÓÔØËùÓÐÊý¾Ý
+   * é€šçŸ¥ç»„ä»¶é‡æ–°åŠ è½½æ‰€æœ‰æ•°æ®
    */
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
