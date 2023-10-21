@@ -725,12 +725,12 @@
       "value":"密码由6位数字组成"
     },
     {
-      "name":"password_message_custom",
-      "value":"密码由4-32位数字组成"
+      "name": "password_message_custom",
+      "value": "密码由6-32位数字组成"
     },
     {
-      "name":"password_message_character",
-      "value":"密码由4-32字符字组成，需至少包含1个字母"
+      "name": "password_message_character",
+      "value": "密码由6-32字符字组成，需至少包含1个字母"
     },
     {
       "name":"password_message_repeat",
@@ -777,8 +777,8 @@
       "value":"PIN 应为 6 位数字"
     },
     {
-      "name":"password_PIN_check_min_error",
-      "value":"数字密码至少应为 4 位"
+      "name": "password_PIN_check_min_error",
+      "value": "数字密码至少应为 6 位"
     },
 	{
       "name":"password_PIN_must_be_numbers",
@@ -793,8 +793,8 @@
       "value":"PIN 必须少于 33 位数"
     },
     {
-      "name":"password_check_min_error",
-      "value":"混合密码必须至少包含 4 个字符"
+      "name": "password_check_min_error",
+      "value": "混合密码必须至少包含 6 个字符"
     },
     {
       "name":"password_check_max_error",
@@ -1321,8 +1321,8 @@
       "value": "向左或右滑动，可调节相应声道的音量大小"
     },
     {
-      "name":"user_approval_remain_times",
-      "value":"开启 (%d秒)"
+      "name": "user_approval_remain_times",
+      "value": "开启 (%d秒)"
     },
     {
       "name": "extension_service",
@@ -1411,6 +1411,14 @@
     {
       "name": "accessibility_select_ability",
       "value": "选择功能"
+    },
+    {
+      "name": "START_INVISIBLE_ABILITY",
+      "value": "跨应用启动"
+    },
+    {
+      "name": "APPLICATION_EXTENDED_SERVICE_ACCESS",
+      "value": "应用扩展服务访问"
     }
   ]
 }
