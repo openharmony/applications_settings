@@ -13,10 +13,12 @@
  * limitations under the License.
  */
 
+import common from '@ohos.app.ability.common';
 import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
 import BaseParseConfModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseParseConfModel';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 import SystemTime from '@ohos.systemTime';
 import settings from '@ohos.settings';
 import data_dataShare from '@ohos.data.dataShare';
@@ -33,11 +35,12 @@ export class DateAndTimeModel extends BaseModel {
 
   constructor() {
     super();
-    if(!globalThis.settingsAbilityContext){
+    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+    if (!GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT)) {
+      LogUtil.info("global context settingsAbilityContext is null");
       return;
-      LogUtil.info("globalThis.settingsAbilityContext is null");
     }
-    data_dataShare.createDataShareHelper(globalThis.settingsAbilityContext, this.listenUri)
+    data_dataShare.createDataShareHelper(context, this.listenUri)
       .then((dataHelper) => {
         this.dataShareHelper = dataHelper;
         LogUtil.info("createDataShareHelper success");
@@ -47,7 +50,7 @@ export class DateAndTimeModel extends BaseModel {
   /**
    * Get Uri
    */
-  public getUri(){
+  public getUri() {
     return this.listenUri;
   }
 
@@ -64,19 +67,20 @@ export class DateAndTimeModel extends BaseModel {
   }
 
   @CatchError('24')
-  getTimeFormat() : string {
+  getTimeFormat(): string {
     if (i18n.is24HourClock()) {
-      this.timeFormat = settings.getValueSync(globalThis.settingsAbilityContext, ConfigData.TIME_FORMAT_KEY, ConfigData.TIME_FORMAT_24);
+      let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+      this.timeFormat = settings.getValueSync(context, ConfigData.TIME_FORMAT_KEY, ConfigData.TIME_FORMAT_24);
       LogUtil.info(ConfigData.TAG + 'DateAndTimeModel get time format is ' + this.timeFormat);
     }
     return this.timeFormat;
   }
 
-  setTimeFormatAs12H() : boolean {
+  setTimeFormatAs12H(): boolean {
     return this.setTimeFormat(ConfigData.TIME_FORMAT_12);
   }
 
-  setTimeFormatAs24H() : boolean {
+  setTimeFormatAs24H(): boolean {
     return this.setTimeFormat(ConfigData.TIME_FORMAT_24);
   }
 
@@ -85,8 +89,30 @@ export class DateAndTimeModel extends BaseModel {
     return BaseParseConfModel.getJsonData(ConfigData.FILE_URI.concat('dateAndTime.json'));
   }
 
+  /**
+   * Register observer
+   */
+  public registerObserver(callback: () => void): void {
+    return;
+  }
+
+  /**
+   * Unregister observer
+   */
+  public unregisterObserver() {
+    LogUtil.info(`${ConfigData.TAG} unregisterObserver`);
+    if (!this.dataShareHelper) {
+      LogUtil.info(`${ConfigData.TAG} this.dataShareHelper is null`);
+      return;
+    }
+    this.dataShareHelper.off("dataChange", this.listenUri, (err) => {
+      LogUtil.info(`${ConfigData.TAG} unregisterObserver success`);
+    })
+    return;
+  }
+
   @CatchError(false)
-  private setTimeFormat(format: string) : boolean {
+  private setTimeFormat(format: string): boolean {
     LogUtil.info(ConfigData.TAG + 'DateAndTimeModel set time format to ' + format);
     if (format != ConfigData.TIME_FORMAT_12 && format != ConfigData.TIME_FORMAT_24) {
       return false;
@@ -103,34 +129,13 @@ export class DateAndTimeModel extends BaseModel {
       ret24HourClock = i18n.set24HourClock(false)
     }
     LogUtil.info(ConfigData.TAG + 'DateAndTimeModel i18n set24HourClock ' + JSON.stringify(ret24HourClock));
-
-    settings.setValueSync(globalThis.settingsAbilityContext, ConfigData.TIME_FORMAT_KEY, format);
+    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+    settings.setValueSync(context, ConfigData.TIME_FORMAT_KEY, format);
     this.timeFormat = format;
     return true;
-  }
-
-  /**
-   * Register observer
-   */
-  public registerObserver(callback: () => {}){
-    return;
-  }
-
-  /**
-   * Unregister observer
-   */
-  public unregisterObserver() {
-    LogUtil.info(`${ConfigData.TAG} unregisterObserver`);
-    if(!this.dataShareHelper){
-      LogUtil.info(`${ConfigData.TAG} this.dataShareHelper is null`);
-      return;
-    }
-    this.dataShareHelper.off("dataChange", this.listenUri, (err) => {
-      LogUtil.info(`${ConfigData.TAG} unregisterObserver success`);
-    })
-    return;
   }
 }
 
 let dateAndTimeModel = new DateAndTimeModel();
+
 export default dateAndTimeModel as DateAndTimeModel;

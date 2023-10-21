@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import bundleMonitor from '@ohos.bundle.bundleMonitor';
 import config from '@ohos.accessibility.config';
 import accessibility from '@ohos.accessibility';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
@@ -22,7 +23,9 @@ import ComponentConfig from '../../../../../../common/component/src/main/ets/def
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import { SubHeader } from '../../../../../../common/component/src/main/ets/default/textComponent';
 import { AccessibilitySettingModel } from '../model/accessibilityImpl/AccessibilitySettingModel';
-import { SubEntryComponentWithEndText } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
+import {
+  SubEntryComponentWithEndText
+} from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
 
 const AUDIO_BALANCE_STEP_VALUE: number = 1;
 const AUDIO_BALANCE_MIN_VALUE: number = -100;
@@ -83,7 +86,7 @@ struct AccessibilitySettings {
           .height($r('app.float.wh_value_56'))
           .width(ConfigData.WH_100_100)
           .borderRadius($r('app.float.radius_24'))
-          .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
+          .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
 
           SubHeader({ titleContent: $r('app.string.audio_accessibility') });
 
@@ -194,7 +197,7 @@ struct AccessibilitySettings {
             endText: $shortKeyStatusText
           })
             .width(ConfigData.WH_100_100)
-            .margin({ bottom: $r("app.float.distance_12"), top: $r("app.float.distance_8") })
+            .margin({ bottom: $r("app.float.distance_12"), top: $r("app.float.distance_8") });
 
           SubHeader({ titleContent: $r('app.string.extension_service') });
           if (this.serviceNumChanged || !this.serviceNumChanged) {
@@ -226,11 +229,11 @@ struct AccessibilitySettings {
                     .opacity($r("app.float.opacity_0_2"));
                 }
               }
-              .onTouch((event: TouchEvent) => {
-                if (event.type === TouchType.Down) {
+              .onTouch((event?: TouchEvent) => {
+                if (event && event.type === TouchType.Down) {
                   this.isTouched = true;
                 }
-                if (event.type === TouchType.Up) {
+                if (event && event.type === TouchType.Up) {
                   this.isTouched = false;
                 }
               })
@@ -248,7 +251,7 @@ struct AccessibilitySettings {
         .useSizeType({
           sm: { span: 4, offset: 0 },
           md: { span: 6, offset: 1 },
-          lg: { span: 8, offset: 2 }
+          lg: { span: 8, offset: 2 },
         });
       }
       .width(ConfigData.WH_100_100)
@@ -259,28 +262,28 @@ struct AccessibilitySettings {
     .height(ConfigData.WH_100_100);
   };
 
-  setShortKeyText(status: boolean, text: string): void {
-    LogUtil.info(this.TAG + 'shortKeyState: ' + JSON.stringify(status));
-    if (text === 'none') {
-      this.shortKeyStatusText = (Object) ($r('app.string.disabled'));
+  setShortKeyText(status: boolean, text: string, flag: boolean): void {
+    LogUtil.info(`${this.TAG} shortKeyState:${JSON.stringify(status)}`);
+    if (text === 'none' || flag) {
+      this.shortKeyStatusText = (Object)($r('app.string.disabled'));
       return;
     }
     if (status) {
       if (text === BASIC_ABILITY_HIGH_CONTRAST_TEXT) {
-        this.shortKeyStatusText = (Object) ($r('app.string.highContrast_text'));
+        this.shortKeyStatusText = (Object)($r('app.string.highContrast_text'));
       } else if (text === BASIC_ABILITY_SINGLE_AUDIO) {
-        this.shortKeyStatusText = (Object) ($r('app.string.single_audio'));
+        this.shortKeyStatusText = (Object)($r('app.string.single_audio'));
       } else {
         this.shortKeyStatusText = text.split('/')[1];
       }
     } else {
-      this.shortKeyStatusText = (Object) ($r('app.string.disabled'));
+      this.shortKeyStatusText = (Object)($r('app.string.disabled'));
     }
-    LogUtil.info(this.TAG + 'set shortKeyStateText: ' + this.shortKeyStatusText);
+    LogUtil.info(`${this.TAG} set shortKeyStateText: ${this.shortKeyStatusText}`);
   }
 
   setHighContrastTextState(isOn: boolean): void {
-    LogUtil.info(this.TAG + 'setHighContrastTextState ' + isOn);
+    LogUtil.info(`${this.TAG}setHighContrastTextState${isOn}`);
     if (isOn) {
       this.highContrastTextIsOn = true;
       AccessibilitySettingModel.accessibilityConfigSetting('highContrastText', true);
@@ -291,7 +294,7 @@ struct AccessibilitySettings {
   }
 
   setAudioMonoState(isOn: boolean): void {
-    LogUtil.info(this.TAG + 'setAudioMonoState ' + isOn);
+    LogUtil.info(`${this.TAG}setAudioMonoState ${isOn}`);
     if (isOn) {
       this.audioMonoIsOn = true;
       AccessibilitySettingModel.accessibilityConfigSetting('audioMono', true);
@@ -302,7 +305,7 @@ struct AccessibilitySettings {
   }
 
   setAudioBalanceValue(audioBalance: number, mode: SliderChangeMode): void {
-    LogUtil.info(this.TAG + 'setAudioBalanceValue ' + audioBalance + mode);
+    LogUtil.info(`${this.TAG}setAudioBalanceValue${audioBalance}${mode}`);
     if (mode == SliderChangeMode.End || mode == SliderChangeMode.Click) {
       AccessibilitySettingModel.accessibilityAudioBalanceSetting(audioBalance / 100);
     }
@@ -310,81 +313,90 @@ struct AccessibilitySettings {
 
   async getAbilityList(): Promise<void> {
     await accessibility.getAccessibilityExtensionList('all', 'install').then((data) => {
-      LogUtil.info(this.TAG + 'get accessibilityAbilityList success, service length: ' + JSON.stringify(data.length));
+      LogUtil.info(`${this.TAG}get accessibilityAbilityList success, service length: ${JSON.stringify(data.length)}`);
       if (data.length > 0) {
-        this.serviceStateText = $r('app.string.service_number', this.serviceNum);
         this.serviceNum = data.length;
-        LogUtil.info(this.TAG + 'serviceNumber: ' + JSON.stringify(this.serviceNum));
+        this.serviceStateText = $r('app.string.service_number', this.serviceNum);
+        LogUtil.info(`${this.TAG}serviceNumber: ${JSON.stringify(this.serviceNum)}`);
       } else {
         this.serviceStateText = $r('app.string.no_service');
         this.serviceNum = 0;
       }
       this.serviceNumChanged = !this.serviceNumChanged;
-    }).catch((err) => {
-      LogUtil.error(this.TAG + 'failed to get accessibilityAbilityList, because ' + JSON.stringify(err));
+    }).catch((err: object) => {
+      LogUtil.error(`${this.TAG}failed to get accessibilityAbilityList, because ${JSON.stringify(err)}`);
       this.serviceStateText = $r('app.string.no_service');
       this.serviceNum = 0;
       this.serviceNumChanged = !this.serviceNumChanged;
     })
-    LogUtil.info(this.TAG + 'aboutToAppear out');
+    LogUtil.info(`${this.TAG}aboutToAppear out`);
   }
 
-  @Log
   aboutToAppear(): void {
-    LogUtil.info(this.TAG + 'aboutToAppear in');
+    LogUtil.info(`${this.TAG}aboutToAppear in`);
     config.highContrastText.get().then((data) => {
-      LogUtil.info(this.TAG + 'get highContrastText switch success');
+      LogUtil.info(`${this.TAG}get highContrastText switch success`);
       this.highContrastTextIsOn = data;
-    }).catch((err) => {
-      LogUtil.error(this.TAG +  'failed to get highContrastText switch, because' + JSON.stringify(err));
+    }).catch((err: object) => {
+      LogUtil.error(`${this.TAG}failed to get highContrastText switch, because ${JSON.stringify(err)}`);
     });
 
     config.audioMono.get().then((data) => {
       this.audioMonoIsOn = data;
-      LogUtil.info(this.TAG + 'get audioMono success');
-    }).catch((err) => {
-      LogUtil.error(this.TAG + 'failed to get audioMono, because ' + JSON.stringify(err));
+      LogUtil.info(`${this.TAG}get audioMono success`);
+    }).catch((err: object) => {
+      LogUtil.error(`${this.TAG}failed to get audioMono, because ${JSON.stringify(err)}`);
     });
 
     config.audioBalance.get().then((data) => {
       this.inSetValueAudioBalance = data * 100;
-      LogUtil.info(this.TAG + 'get audioBalance success');
-    }).catch((err) => {
-      LogUtil.error(this.TAG + 'failed to get audioBalance, because ' + JSON.stringify(err));
+      LogUtil.info(`${this.TAG}get audioBalance success`);
+    }).catch((err: object) => {
+      LogUtil.error(`${this.TAG}failed to get audioBalance, because ${JSON.stringify(err)}`);
     });
+    this.openStatusListener();
     this.getShortKeyStateAndTargetByStatus();
     this.getAbilityList();
-    LogUtil.info(this.TAG + 'aboutToAppear out');
+    LogUtil.info(`${this.TAG}aboutToAppear out`);
   }
 
   async getShortKeyStateAndTargetByStatus(): Promise<void> {
     await config.shortkey.get().then((data) => {
       this.shortKeyIsOn = data;
-      LogUtil.info(this.TAG + 'get shortKeyIsOn success : ' +  data);
-    }).catch((err) => {
-      LogUtil.error(this.TAG + 'failed to get shortKeyIsOn, because ' + JSON.stringify(err));
+      LogUtil.info(`${this.TAG}get shortKeyIsOn success : ${data}`);
+    }).catch((err: object) => {
+      LogUtil.error(`${this.TAG}failed to get shortKeyIsOn, because ${JSON.stringify(err)}`);
     });
 
     await config.shortkeyTarget.get().then((data) => {
       this.shortKeyStatusText = data;
-      LogUtil.info(this.TAG + 'get shortkeyTarget success: ' + data);
-    }).catch((err) => {
-      LogUtil.error(this.TAG + 'failed to get shortkeyTarget, because ' + JSON.stringify(err));
+      LogUtil.info(`${this.TAG}get shortkeyTarget success: ${data}`);
+    }).catch((err: object) => {
+      LogUtil.error(`${this.TAG}failed to get shortkeyTarget, because ${JSON.stringify(err)}`);
     });
-
+    let flag: boolean = true;
+    let installServiceList: Array<accessibility.accessibilityAccess> = await accessibility.getAccessibilityExtensionList('all', 'install')
+    if (installServiceList && installServiceList.length > 0) {
+      for (let enableService of installServiceList) {
+        if(enableService && enableService.id === this.shortKeyStatusText){
+          flag = false;
+        }
+      }
+    }
     this.setShortKeyText(this.shortKeyIsOn, this.shortKeyStatusText);
   }
 
-  @Log
-  aboutToDisappear(): void{
-    LogUtil.info(this.TAG + 'aboutToDisappear');
+  aboutToDisappear(): void {
+    LogUtil.info(`${this.TAG}aboutToDisappear`);
+    this.closeExtendedServicesListener();
+    this.closeStatusListener();
   }
 
-  @Log
   onPageShow(): void {
-    LogUtil.info(this.TAG + 'onPageShow in');
+    LogUtil.info(`${this.TAG}onPageShow in`);
     this.getShortKeyStateAndTargetByStatus();
+    this.openExtendedServicesListener();
     this.getAbilityList();
-    LogUtil.info(this.TAG + 'onPageShow out');
+    LogUtil.info(`${this.TAG}onPageShow out`);
   }
 }

@@ -23,8 +23,8 @@ import RestoreFactorySettingsController from '../controller/restoreFactorySettin
 @Entry
 @Component
 struct restoreFactorySettings {
-  private controller: RestoreFactorySettingsController = new RestoreFactorySettingsController();
   @State isTouched: boolean = false;
+  private controller: RestoreFactorySettingsController = new RestoreFactorySettingsController();
 
   build() {
     Column() {
@@ -60,12 +60,12 @@ struct restoreFactorySettings {
           .onClick(() => {
             this.controller.restoreFactorySettings();
           })
-          .onTouch((event: TouchEvent) => {
-            if (event.type === TouchType.Down) {
+          .onTouch((event?: TouchEvent | undefined) => {
+            if (event?.type === TouchType.Down) {
               this.isTouched = true;
             }
 
-            if (event.type === TouchType.Up) {
+            if (event?.type === TouchType.Up) {
               this.isTouched = false;
             }
           })

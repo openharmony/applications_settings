@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,6 +23,7 @@ import HeadComponent from '../../../../../../common/component/src/main/ets/defau
 import LayoutBoundariesController from '../controller/developerOptions/LayoutBoundariesController';
 import SwitchComponent from '../../../../../../common/component/src/main/ets/default/switchComponent';
 import { SubEntryComponent } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
+import { BusinessError } from '@ohos.base';
 
 const deviceTypeInfo = deviceInfo.deviceType;
 const MODULE_TAG = ConfigData.TAG + '.developerOptions -> ';
@@ -48,7 +48,7 @@ struct developerOptions {
   private controller: UsbDebuggingController = new UsbDebuggingController();
   private controllerOverdraw: OverdrawController = new OverdrawController();
   private controllerLayoutBoundaries: LayoutBoundariesController = new LayoutBoundariesController();
-  private AnimationMultiplier: any[] = ["0", "0.5", "1", "1.5", "2", "5", "10"];
+  private AnimationMultiplier: string[] = ["0", "0.5", "1", "1.5", "2", "5", "10"];
 
   private AnimationScalingDialog: CustomDialogController = new CustomDialogController({
     builder: AnimationScalingInformation({
@@ -200,8 +200,8 @@ struct developerOptions {
 
 @CustomDialog
 struct AnimationScalingInformation {
-  controller: CustomDialogController;
-  private AnimationMultiplier;
+  controller?: CustomDialogController;
+  private AnimationMultiplier: string[] = ["0", "0.5", "1", "1.5", "2", "5", "10"];
   @Link isPhoneOrRK : boolean ;
   @Link AnimationText: Resource ;
   @Link checked: string;
@@ -221,7 +221,7 @@ struct AnimationScalingInformation {
           .alignSelf(ItemAlign.Start)
 
         List() {
-          ForEach(this.AnimationMultiplier, (item, index) => {
+          ForEach(this.AnimationMultiplier, (item: string, index) => {
             ListItem() {
               Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
                 Text(item === "0" ? $r("app.string.Close_Animation") : $r("app.string.Animation_Multiplier", item))
@@ -235,7 +235,7 @@ struct AnimationScalingInformation {
                   .width($r("app.float.wh_value_24"))
                   .onChange((value: boolean) => {
                     if(value) {
-                      this.controller.close();
+                      this.controller?.close();
                       if (item === "0") {
                         this.AnimationText = $r("app.string.Close_Animation");
                         parameter.set(GRAPHIC_ANIMATION_SCALE_NAME, "0");
@@ -247,7 +247,7 @@ struct AnimationScalingInformation {
                           .then(() => {
                             LogUtil.info(MODULE_TAG + "set graphic parameter success");
                           })
-                          .catch((err) => {
+                          .catch((err: BusinessError) => {
                             LogUtil.info(MODULE_TAG + "catch graphic parameter error" + JSON.stringify(err));
                           })
 
@@ -255,7 +255,7 @@ struct AnimationScalingInformation {
                           .then(() => {
                             LogUtil.info(MODULE_TAG + "set arkui parameter success");
                           })
-                          .catch((err) => {
+                          .catch((err: BusinessError) => {
                             LogUtil.info(MODULE_TAG + "catch arkui parameter error" + JSON.stringify(err));
                           })
                       }
@@ -277,7 +277,7 @@ struct AnimationScalingInformation {
           .height($r("app.float.wh_value_40"))
           .margin({ top: $r("app.float.distance_8") })
           .onClick(() => {
-            this.controller.close();
+            this.controller?.close();
           })
       }
       .padding({

@@ -30,7 +30,7 @@ const deviceTypeInfo = deviceInfo.deviceType;
 
 @Extend(ListItem) function settingListItemFancy() {
   .width(ConfigData.WH_100_100)
-  .borderRadius($r("app.float.radius_24"))
+  .borderRadius($r("app.float.radius_16"))
   .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
   .padding($r('app.float.distance_4'))
 }
@@ -145,10 +145,10 @@ struct EntryComponent {
   @StorageLink("wifiStatusInfo") wifiStatusInfo: Resource = WifiModel.isWiFiActive() ? $r("app.string.enabled") : $r("app.string.disabled");
   @StorageLink("bluetoothStatusInfo") bluetoothStatusInfo: Resource = $r("app.string.disabled");
   @StorageLink("endTextEmpty") endTextEmpty: Resource = $r("app.string.endTextEmpty");
-  private nfcInfo: boolean;
+  private nfcInfo: boolean = false;
   private listSpaces: string = '12vp';
   private isPhone: boolean = false;
-  private info: string;
+  private info: string = 'false';
 
   wifiStatusChange() {
     AppStorage.SetOrCreate("wifiStatusInfo", this.wifiStatus ? $r("app.string.enabled") : $r("app.string.disabled"))
