@@ -13,34 +13,34 @@
  * limitations under the License.
  */
 
-import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import Ability from '@ohos.app.ability.UIAbility';
+import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { GlobalContext } from '../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 
 export default class MainAbility extends Ability {
-    tag: string  = "ApplicationInfoSettings";
-    windowStage;
-    onCreate(want, launchParam) {
-        LogUtil.info(this.tag + ' Application onCreate');
-        globalThis.abilityWant = want;
-        globalThis.settingsAbilityContext = this.context;
-    }
+  tag: string = "ApplicationInfoSettings";
+  windowStage;
 
-    onDestroy() {
-        LogUtil.info(this.tag + 'Application onDestroy')
-    }
+  onCreate(want, launchParam) {
+    LogUtil.info(this.tag + ' Application onCreate');
+    GlobalContext.getContext().setObject(GlobalContext.GLOBAL_KEY_ABILITY_WANT, want);
+    GlobalContext.getContext().setObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT, this.context);
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        LogUtil.info(this.tag + "  onWindowStageCreate is called");
-        this.windowStage = windowStage;
-        windowStage.setUIContent(this.context, "pages/applicationInfo", null);
-    }
+  onDestroy() {
+    LogUtil.info(this.tag + 'Application onDestroy')
+  }
 
-    onNewWant(want): void {
-        globalThis.abilityWant = want;
-        LogUtil.info(this.tag + " onNewWant is called");
-        this.windowStage?.setUIContent(this.context, "pages/applicationInfo", null);
-    }
+  onWindowStageCreate(windowStage) {
+    // Main window is created, set main page for this ability
+    LogUtil.info(this.tag + "  onWindowStageCreate is called");
+    this.windowStage = windowStage;
+    windowStage.setUIContent(this.context, "pages/applicationInfo", null);
+  }
 
+  onNewWant(want): void {
+    GlobalContext.getContext().setObject(GlobalContext.GLOBAL_KEY_ABILITY_WANT, want);
+    LogUtil.info(this.tag + " onNewWant is called");
+    this.windowStage?.setUIContent(this.context, "pages/applicationInfo", null);
+  }
 };

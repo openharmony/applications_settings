@@ -24,6 +24,12 @@ import SearchHeader from '../../../../../../common/search/src/main/ets/default/p
 import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import ResultComponent from '../../../../../../common/search/src/main/ets/default/page/resultComponent';
 
+
+interface SearchDataItem {
+  index: number;
+  data: SearchData;
+}
+
 /**
  * search page
  */
@@ -34,8 +40,8 @@ struct SearchPage {
   @State @Watch('doSearch') searchKeyword: string = '';
   @State searchResultList: SearchData[][] = [];
   @State data: SearchData = new SearchData();
-  private searchModel: SearchModel;
   @State listSpace: string = '12vp';
+  private searchModel?: SearchModel;
 
   build() {
     Column() {
@@ -48,11 +54,14 @@ struct SearchPage {
             if (this.searchResultList && this.searchResultList.length > 0) {
               List({ space: this.listSpace }) {
                 // search result list
-                ForEach(this.searchResultList, (eachBlock) => {
+                ForEach(this.searchResultList, (eachBlock: SearchData[]) => {
                   ListItem() {
                     List() {
                       // item
-                      ForEach(eachBlock.map((item2, index2) => { return { index: index2, data: item2 }}), (item) => {
+                      ForEach(eachBlock.map((item2: SearchData, index2: number) => {
+                        let searchDataItem: SearchDataItem = { index: index2, data: item2 }
+                        return searchDataItem;
+                      }), (item: SearchDataItem) => {
                         ListItem() {
                           Flex({ alignItems: ItemAlign.Center }) {
                             Navigator({ target: item.data.uri }) {
@@ -94,20 +103,20 @@ struct SearchPage {
                   .width($r("app.float.search_no_result_image_size"))
                   .height($r("app.float.search_no_result_image_size"))
 
-                  // search no match
-                  Text($r("app.string.searchNoResult"))
-                    .fontFamily('HarmonyHeiTi')
-                    .fontSize($r("app.float.search_no_result_text_font_size"))
-                    .fontColor($r("sys.color.ohos_id_color_tertiary"))
-                    .fontWeight(FontWeight.Regular)
-                    .lineHeight($r('app.float.wh_value_19'))
-                    .alignSelf(ItemAlign.Center);
-                }
-                .alignItems(HorizontalAlign.Center)
-                .margin({ top: $r("app.float.search_no_result_margin_top") })
+                // search no match
+                Text($r("app.string.searchNoResult"))
+                  .fontFamily('HarmonyHeiTi')
+                  .fontSize($r("app.float.search_no_result_text_font_size"))
+                  .fontColor($r("sys.color.ohos_id_color_tertiary"))
+                  .fontWeight(FontWeight.Regular)
+                  .lineHeight($r('app.float.wh_value_19'))
+                  .alignSelf(ItemAlign.Center);
               }
+              .alignItems(HorizontalAlign.Center)
+              .margin({ top: $r("app.float.search_no_result_margin_top") })
             }
           }
+        }
         .padding({
           left: $r('sys.float.ohos_id_card_margin_start'),
           right: $r('sys.float.ohos_id_card_margin_end')
@@ -126,7 +135,6 @@ struct SearchPage {
     .height(ConfigData.WH_100_100)
   }
 
-  @Log
   aboutToAppear(): void {
     ResourceUtil.getString($r('app.float.distance_12')).then(value => this.listSpace = value);
 
@@ -139,7 +147,6 @@ struct SearchPage {
       })
   }
 
-  @Log
   onBackPress() {
     LogUtil.info('settings SearchPage onBackPress');
   }
@@ -147,7 +154,6 @@ struct SearchPage {
   /**
    * set search keyword
    */
-  @Log
   setSearchKeyword() {
     this.searchKeyword = SearchUtil.stripKeyword(this.inputKeyword).trim()
   }
@@ -155,16 +161,17 @@ struct SearchPage {
   /**
    * search
    */
-  @Log
   doSearch() {
-    this.searchModel.search(this.searchKeyword)
-      .then((result: SearchData[]) => {
-        LogUtil.debug(ConfigData.TAG + 'searchPage doSearch : search : searchKeyword = ' +
-        this.searchKeyword + '; => then data = ' + JSON.stringify(result));
-        this.searchResultList = undefined;
-        this.searchResultList = this.makeViewData(result);
-        LogUtil.debug(ConfigData.TAG + 'searchPage doSearch : searchResultList = ' + JSON.stringify(this.searchResultList));
-      })
+    if (this.searchModel) {
+      this.searchModel.search(this.searchKeyword)
+        .then((result: SearchData[]) => {
+          LogUtil.debug(ConfigData.TAG + 'searchPage doSearch : search : searchKeyword = ' +
+          this.searchKeyword + '; => then data = ' + JSON.stringify(result));
+          this.searchResultList = [];
+          this.searchResultList = this.makeViewData(result);
+          LogUtil.debug(ConfigData.TAG + 'searchPage doSearch : searchResultList = ' + JSON.stringify(this.searchResultList));
+        })
+    }
   }
 
   /**
@@ -173,13 +180,12 @@ struct SearchPage {
    * @param result Search result
    * @return Data for show to view
    */
-  @Log
-  makeViewData(result: SearchData[]): SearchData[][]  {
+  makeViewData(result: SearchData[]): SearchData[][] {
     let list: SearchData[][] = [];
-    let group: SearchData[] = undefined;
+    let group: SearchData[] = [];
 
-    let lastUri = undefined;
-    for (var i = 0; i < result.length; i++) {
+    let lastUri: string = '';
+    for (let i = 0; i < result.length; i++) {
       let data = result[i];
 
       if (data.uri !== lastUri) {

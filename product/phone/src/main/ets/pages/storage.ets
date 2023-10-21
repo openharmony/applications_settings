@@ -18,8 +18,10 @@ import mediaquery from '@ohos.mediaquery';
 import StorageController from '../controller/storage/storageController';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
+import { BaseData } from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
+import { Callback } from '@ohos.base';
 
-let portraitFunc = null;
+let portraitFunc: null | Callback<mediaquery.MediaQueryResult> = null;
 
 /**
  * Storage
@@ -28,11 +30,10 @@ let portraitFunc = null;
 @Component
 struct Storage {
   listener = mediaquery.matchMediaSync('(orientation: landscape)');
-  @State storageList: any[] = [];
+  @State storageList: BaseData[] = [];
   @State proportion: number = 0;
-  @State usedSpaceList: any[] = [];
+  @State usedSpaceList: number[] = [];
   @State screenWidth: number = 360;
-
   @State @Watch("usedSpaceChange") usedSpace: string = '';
   @State @Watch("totalSpaceChange") totalSpace: string = '';
   @State @Watch("totalSpaceChange") freeBytes: string = '';
@@ -120,7 +121,7 @@ struct Storage {
 
           Row() {
             List() {
-              ForEach(this.storageList, (item) => {
+              ForEach(this.storageList, (item: BaseData) => {
                 ListItem() {
                   Row() {
                     Circle()
@@ -177,7 +178,7 @@ struct Storage {
     .height(ConfigData.WH_100_100)
   }
 
-  onPortrait(mediaQueryResult) {
+  onPortrait(mediaQueryResult: mediaquery.MediaQueryResult) {
     if (mediaQueryResult.matches) {
       display.getDefaultDisplay()
         .then((disp) => {
@@ -191,7 +192,7 @@ struct Storage {
     }
   }
 
-  aboutToAppear(): void{
+  aboutToAppear(): void {
     display.getDefaultDisplay()
       .then((display) => {
         if (display.width > display.height) {
@@ -207,7 +208,9 @@ struct Storage {
         .bindProperties(["storageList", "totalSpace", "freeBytes", "usedSpace", "proportion", "usedSpaceList"])
         .initData();
 
-      portraitFunc = this.onPortrait.bind(this);
+      portraitFunc = (mediaQueryResult: mediaquery.MediaQueryResult): void => {
+        this.onPortrait(mediaQueryResult);
+      };
       this.listener.on('change', portraitFunc);
     }
   }

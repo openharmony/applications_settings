@@ -30,8 +30,8 @@ export default struct SearchHeader {
   @Link inputKeyword: string
   @State placeholderSize: string = ''
   @State placeholder: string = ''
-  @State icBackIsTouch: boolean= false;
-  @State cancelIsTouch: boolean= false;
+  @State icBackIsTouch: boolean = false;
+  @State cancelIsTouch: boolean = false;
 
   build() {
     Row() {
@@ -45,11 +45,11 @@ export default struct SearchHeader {
         .onClick(() => {
           Router.back();
         })
-        .onTouch((event: TouchEvent) => {
-          if (event.type === TouchType.Down) {
+        .onTouch((event?: TouchEvent) => {
+          if (event?.type === TouchType.Down) {
             this.icBackIsTouch = true;
           }
-          if (event.type === TouchType.Up) {
+          if (event?.type === TouchType.Up) {
             this.icBackIsTouch = false;
           }
         });
@@ -61,8 +61,12 @@ export default struct SearchHeader {
           .caretColor($r("sys.color.ohos_id_color_text_primary_activated"))
           .enterKeyType(EnterKeyType.Search)
           .backgroundColor($r("app.color.white_bg_color"))
-          .padding({left:$r('app.float.wh_padding_35')})
-          .border({ width: $r('app.float.wh_value_1_5'), color:$r("sys.color.ohos_id_color_fourth"), radius: $r('app.float.wh_value_20') })
+          .padding({ left: $r('app.float.wh_padding_35') })
+          .border({
+            width: $r('app.float.wh_value_1_5'),
+            color: $r("sys.color.ohos_id_color_fourth"),
+            radius: $r('app.float.wh_value_20')
+          })
           .maxLength(SEARCH_INPUT_MAX_LENGTH)
           .height($r("app.float.search_input_height"))
           .onChange((value: string) => {
@@ -80,7 +84,7 @@ export default struct SearchHeader {
             .height($r('app.float.wh_value_18'))
             .objectFit(ImageFit.Contain)
             .margin({ left: $r('app.float.distance_11') })
-          if(this.inputKeyword != '') {
+          if (this.inputKeyword != '') {
             Image($r("app.media.ic_public_cancel"))
               .width($r('app.float.wh_value_18'))
               .height($r('app.float.wh_value_18'))
@@ -93,14 +97,14 @@ export default struct SearchHeader {
               .onClick(() => {
                 this.inputKeyword = ''
               })
-              .onTouch((event: TouchEvent) => {
-              if (event.type === TouchType.Down) {
-                this.cancelIsTouch = true;
-              }
-              if (event.type === TouchType.Up) {
-                this.cancelIsTouch = false;
-              }
-            });
+              .onTouch((event?: TouchEvent) => {
+                if (event?.type === TouchType.Down) {
+                  this.cancelIsTouch = true;
+                }
+                if (event?.type === TouchType.Up) {
+                  this.cancelIsTouch = false;
+                }
+              });
           }
         }
         .hitTestBehavior(HitTestMode.Transparent)
@@ -114,7 +118,6 @@ export default struct SearchHeader {
     .align(Alignment.Start);
   }
 
-  @Log
   aboutToAppear() {
     ResourceUtil.getString($r("app.string.searchHint")).then(value => this.placeholder = value)
     ResourceUtil.getString($r("app.float.search_placeholder_font")).then(value => this.placeholderSize = value);

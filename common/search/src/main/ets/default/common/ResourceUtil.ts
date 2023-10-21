@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 import ConfigData from '../../../../../../utils/src/main/ets/default/baseUtil/ConfigData';
-//import ResMgr from '@ohos.resourceManager';
 import Log from '../../../../../../utils/src/main/ets/default/baseUtil/LogDecorator';
+import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 
 /**
  * Resource util
@@ -25,10 +25,10 @@ export class ResourceUtil {
   /**
    * Initialize ResourceManager
    */
-  @Log
   async initResourceManager(): Promise<void> {
     if (!this.resMgr) {
-      this.resMgr = await  globalThis.settingsAbilityContext.resourceManager;
+      let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as Context;
+      this.resMgr = await context.resourceManager;
     }
   }
 
@@ -37,13 +37,12 @@ export class ResourceUtil {
    *
    * @param resource - NormalResource instance
    */
-  @Log
   async getString(resource): Promise<string> {
     await this.initResourceManager();
     return await this.resMgr.getString(resource.id);
   }
-
 }
 
 let resourceUtil = new ResourceUtil();
+
 export default resourceUtil as ResourceUtil;

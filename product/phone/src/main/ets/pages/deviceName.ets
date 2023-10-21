@@ -23,6 +23,14 @@ import HeadComponent from '../../../../../../common/component/src/main/ets/defau
 import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import bluetooth from '@ohos.bluetooth';
 
+class TopMeasure {
+  top?: Resource;
+}
+class BottomMeasure {
+  bottom?: Resource;
+}
+const flexRowTop: TopMeasure = { top: $r("app.float.wh_value_212") }
+const flexRowBottom: BottomMeasure = { bottom: $r('app.float.wh_padding_128') }
 /**
  * about phone
  */
@@ -33,8 +41,8 @@ struct DeviceName {
   @State isFocused: boolean = false ;
   @State cancelButton : boolean = true;
   @State confirmsButton : boolean = false;
-  private deviceInfo: any = '';
-  private aboutDeviceList: any[] = [];
+  private deviceInfo: string = '';
+  private aboutDeviceList: string[] = [];
 
   build() {
     Column() {
@@ -132,7 +140,7 @@ struct DeviceName {
             }
             .alignItems(this.isFocused ? VerticalAlign.Top : VerticalAlign.Bottom)
             .height(ConfigData.WH_100_100)
-            .padding(this.isFocused ? { top: $r("app.float.wh_value_212") } : { bottom: $r('app.float.wh_padding_128') })
+            .padding(this.isFocused ? flexRowTop : flexRowBottom)
           }
           .width(ConfigData.WH_100_100)
         }
@@ -155,7 +163,7 @@ struct DeviceName {
 struct ButtonComponent {
   @Link deviceName: string ;
   @Link buttonFlag : boolean;
-  private text;
+  private text : ResourceStr = '';
   private onClickEvent = () => {};
 
   build() {
@@ -169,7 +177,7 @@ struct ButtonComponent {
         .textAlign(TextAlign.Center)
         .height($r("app.float.wh_value_40"))
         .borderRadius($r('app.float.radius_20'))
-        .onTouch((event: TouchEvent) => {
+        .onTouch((event?: TouchEvent) => {
           if(this.deviceName.length === 0 && this.buttonFlag != true){
             return;
           }
