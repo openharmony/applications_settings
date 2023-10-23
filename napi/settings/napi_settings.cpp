@@ -343,7 +343,7 @@ void GetValueExecuteExt(napi_env env, void *data)
     if (resultset == nullptr || numRows == 0) {
         SETTING_LOG_INFO("settingsnapi : GetValueExecuteExt called... return error");
         asyncCallbackInfo->status = -1;
-    }else{
+    } else {
         std::string val;
         int32_t columnIndex = 0;
         resultset->GoToFirstRow();

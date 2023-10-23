@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import common from '@ohos.app.ability.common';
+import type common from '@ohos.app.ability.common';
 import BaseModel from '../../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
 import ConfigData from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
@@ -41,9 +41,9 @@ export class BrightnessSettingModel extends BaseModel {
 
   constructor() {
     super();
-    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
-    if (!GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT)) {
-      LogUtil.info("global context settingsAbilityContext is null");
+    let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
+    if (!GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext)) {
+      LogUtil.info('global context settingsAbilityContext is null');
       return;
     }
     data_dataShare.createDataShareHelper(context, this.listenUri)
@@ -132,7 +132,7 @@ export class BrightnessSettingModel extends BaseModel {
   private setSettingsData(brightness: number) {
     LogUtil.info(`${this.TAG} setSettingsData [brightness:${brightness}]`);
     this.brightness = brightness;
-    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+    let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
     settings.setValueSync(context, ConfigData.SETTINGSDATA_BRIGHTNESS, brightness.toString());
     LogUtil.info(`${this.TAG} setSettingsData success`);
   }
@@ -156,7 +156,7 @@ export class BrightnessSettingModel extends BaseModel {
   @CatchError(undefined)
   private updateValue() {
     LogUtil.info(`${this.TAG} updateValue`);
-    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+    let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
     this.brightness = parseInt(settings.getValueSync(context, ConfigData.SETTINGSDATA_BRIGHTNESS, this.defaultBrightnessStr));
     mBrightnessValue.set(this.brightness);
     LogUtil.info(`${this.TAG} updateValue success, [brightness:${this.brightness}]`);

@@ -116,7 +116,7 @@ export struct PermissionComponent {
     .borderRadius($r('app.float.radius_24'))
     .onClick(() => {
       let context = GlobalContext.getContext()
-        .getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.UIAbilityContext;
+        .getObject(GlobalContext.globalKeySettingsAbilityContext) as common.UIAbilityContext;
       context.startAbility({
         bundleName: ConfigData.PERMISSION_MANAGER_BUNDLE_NAME,
         abilityName: ConfigData.PERMISSION_MANAGER_ABILITY_NAME,

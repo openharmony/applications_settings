@@ -15,7 +15,7 @@
  */
 
 import osAccount from '@ohos.account.osAccount';
-import common from '@ohos.app.ability.common';
+import type common from '@ohos.app.ability.common';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 import GlobalResourceManager
@@ -61,7 +61,7 @@ export class SystemAccountController {
    * @return true if current account is administrator.
    */
   isShowIdentity(accountInfo) {
-    return accountInfo.type == osAccount.OsAccountType.ADMIN;
+    return accountInfo.type === osAccount.OsAccountType.ADMIN;
   }
 
   /**
@@ -72,7 +72,7 @@ export class SystemAccountController {
   isHasQuest() {
     for (let index = 0; index < this.accountList.length; index++) {
       LogUtil.info("Is show add quest, system account type: " + this.accountList[index].type);
-      if (this.accountList[index].type == osAccount.OsAccountType.GUEST) {
+      if (this.accountList[index].type === osAccount.OsAccountType.GUEST) {
         return true;
       }
     }
@@ -85,7 +85,7 @@ export class SystemAccountController {
    * @return true if current user is administrator.
    */
   isShowAddUser() {
-    return this.currentAccount.type == osAccount.OsAccountType.ADMIN && this.accountList.length < (this.isHasQuest() ? MAX_ACCOUNT : (MAX_ACCOUNT - 1));
+    return this.currentAccount.type === osAccount.OsAccountType.ADMIN && this.accountList.length < (this.isHasQuest() ? MAX_ACCOUNT : (MAX_ACCOUNT - 1));
   }
 
   /**
@@ -94,7 +94,7 @@ export class SystemAccountController {
    * @return true when created account list no contains quest account.
    */
   isShowAddQuest() {
-    return this.currentAccount.type == osAccount.OsAccountType.ADMIN && !this.isHasQuest() && this.accountList.length < MAX_ACCOUNT;
+    return this.currentAccount.type === osAccount.OsAccountType.ADMIN && !this.isHasQuest() && this.accountList.length < MAX_ACCOUNT;
   }
 
   /**
@@ -104,7 +104,7 @@ export class SystemAccountController {
    */
   isCurrentUser(accountInfo: any) {
     LogUtil.info("Is current user, account id: " + accountInfo.localId);
-    return accountInfo.localId == this.currentAccount.localId;
+    return accountInfo.localId === this.currentAccount.localId;
   }
 
   /**
@@ -114,7 +114,7 @@ export class SystemAccountController {
    */
   isCurrentAdministrator() {
     LogUtil.info("Is current user administrator.")
-    return this.currentAccount.type == osAccount.OsAccountType.ADMIN;
+    return this.currentAccount.type === osAccount.OsAccountType.ADMIN;
   }
 
   /**
@@ -123,7 +123,7 @@ export class SystemAccountController {
    * @return true when current account type is quest.
    */
   isCurrentQuest() {
-    return this.currentAccount.type == osAccount.OsAccountType.GUEST;
+    return this.currentAccount.type === osAccount.OsAccountType.GUEST;
   }
 
   /**
@@ -132,7 +132,7 @@ export class SystemAccountController {
    * @param account input system account.
    */
   isGuestAccount(account: any) {
-    return account.type == osAccount.OsAccountType.GUEST;
+    return account.type === osAccount.OsAccountType.GUEST;
   }
 
   /**
@@ -224,7 +224,7 @@ export class SystemAccountController {
    *
    * @param localId local id of this system account, if not set, set it current local id.
    */
-  async removeAccount(localId?: number, callback?: () => void) {
+  async removeAccount(localId?: number, callback?: () => void): Promise<void> {
     let removeId = localId ? localId : this.currentAccount.localId;
     LogUtil.info("Remove system account, local Id: " + removeId);
     osAccount.getAccountManager().removeOsAccount(removeId).then(() => {
@@ -239,7 +239,7 @@ export class SystemAccountController {
       "abilityName": "com.ohos.screenlock.MainAbility",
       "abilityStartSetting": {}
     };
-    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.UIAbilityContext;
+    let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.UIAbilityContext;
     context.startAbility(abilityParam)
       .then((data) => {
         LogUtil.info('Start lockscreen successful. Data: ' + JSON.stringify(data))

@@ -27,7 +27,7 @@ export class GlobalResourceManager extends BaseModel {
 
   public getStringById(id: number): Promise<string> {
     let promise = new Promise<string>(resolve => {
-      let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as Context;
+      let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as Context;
       let resourceMgr = context.resourceManager;
       resourceMgr.getString(id)
         .then((resource) => {

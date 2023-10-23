@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import common from '@ohos.app.ability.common';
+import type common from '@ohos.app.ability.common';
 import Bundle from '@ohos.bundle';
 import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
@@ -91,7 +91,7 @@ export class AbilityInfoModel extends BaseModel {
         label = metaBase.labelName;
       } else {
         if (metaBase.labelId > 0) {
-          let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+          let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
           context.resourceManager.getString(parseInt(metaBase.labelId), (error, value) => {
             if (error != null) {
               LogUtil.info('settings getAbilityInfoListener getString error:' + error);
@@ -111,7 +111,7 @@ export class AbilityInfoModel extends BaseModel {
         }
       }
       LogUtil.info('settings getAbilityInfoListener getResourceManager getString() finish label:' + label);
-      let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+      let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
       context.resourceManager.getMediaBase64(parseInt(metaBase.iconId), (error, value) => {
         if (error != null) {
           LogUtil.info('settings getAbilityInfoListener getMediaBase64 error:' + error);

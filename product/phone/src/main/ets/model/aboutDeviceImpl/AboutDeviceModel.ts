@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import common from '@ohos.app.ability.common';
+import type common from '@ohos.app.ability.common';
 import deviceInfo from '@ohos.deviceInfo';
 import settings from '@ohos.settings';
 import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
@@ -88,7 +88,7 @@ export class AboutDeviceModel extends BaseModel {
   @Log
   @CatchError(ConfigData.DEVICE_NAME)
   getSystemName() {
-    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+    let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
     let deviceName = settings.getValueSync(context, ConfigData.SETTINGSDATA_DEVICE_NAME, ConfigData.DEVICE_NAME);
     return deviceName;
   }
@@ -99,7 +99,7 @@ export class AboutDeviceModel extends BaseModel {
   @Log
   @CatchError(undefined)
   setSystemName(name: string) {
-    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+    let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
     settings.setValueSync(context, ConfigData.SETTINGSDATA_DEVICE_NAME, name);
     return;
   }
