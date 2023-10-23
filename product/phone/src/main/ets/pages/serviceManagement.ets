@@ -109,7 +109,6 @@ struct extensionServiceManagement {
     LogUtil.info(`${MODULE_TAG} aboutToAppear in`);
     AppStorage.SetOrCreate('extensionServiceManagementList', []);
     ExtensionServiceManagementModel.setExtensionServiceManagementListener();
-    ExtensionServiceManagementModel.openExtensionServiceManagementStatusListener();
     ResourceUtil.getString($r('app.float.wh_value_80')).then(value => this.whtl = value);
     LogUtil.info(`${MODULE_TAG} aboutToAppear  appList: ${JSON.stringify(this.serviceList)}`);
     LogUtil.info(`${MODULE_TAG} aboutToAppear out`);
@@ -119,7 +118,6 @@ struct extensionServiceManagement {
     LogUtil.info(`${MODULE_TAG} onPageShow in`);
     AppStorage.SetOrCreate('extensionServiceManagementList', []);
     ExtensionServiceManagementModel.setExtensionServiceManagementListener();
-    ExtensionServiceManagementModel.openExtensionServiceManagementApplicationListener();
     ResourceUtil.getString($r('app.float.wh_value_80')).then(value => this.whtl = value);
     LogUtil.info(`${MODULE_TAG} onPageShow  ServiceList: ${JSON.stringify(this.serviceList)}`);
     LogUtil.info(`${MODULE_TAG} onPageShow out`);
@@ -127,13 +125,11 @@ struct extensionServiceManagement {
 
   aboutToDisappear(): void {
     LogUtil.info(`${MODULE_TAG} aboutToDisappear in`);
-    ExtensionServiceManagementModel.closeExtensionServiceManagementStatusListener();
     AppStorage.Delete(MODULE_TAG + 'extensionServiceManagementList');
     LogUtil.info(`${MODULE_TAG} aboutToDisappear out`);
   }
 
   onPageHide(): void {
     LogUtil.info(`${MODULE_TAG} onPageHide in`);
-    ExtensionServiceManagementModel.closeExtensionServiceManagementApplicationListener();
   }
 }
