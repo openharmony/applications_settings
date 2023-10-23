@@ -15,7 +15,6 @@
 
 import { ScreenModeModel } from '../model/displayAndBrightnessImpl/display/ScreenMode';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import { SubHeader } from '../../../../../../common/component/src/main/ets/default/textComponent';
@@ -99,21 +98,18 @@ struct BrightnessSettings {
     .height(ConfigData.WH_100_100)
   }
 
-  @Log
-  aboutToAppear(): void{
+  aboutToAppear(): void {
     LogUtil.info(this.TAG + 'aboutToAppear in');
     this.brightnessSettingModel.registerObserver();
     LogUtil.info(this.TAG + 'aboutToAppear out');
   }
 
-  @Log
-  aboutToDisappear(): void{
+  aboutToDisappear(): void {
     LogUtil.info(this.TAG + 'aboutToDisappear in');
     this.brightnessSettingModel.unregisterObserver();
     LogUtil.info(this.TAG + 'aboutToDisappear out');
   }
 }
-
 
 /**
  * Sub-Page Entry Component with EndText
@@ -157,20 +153,20 @@ export struct ScreenModelComponent {
       .width(ConfigData.WH_100_100)
       .borderRadius($r('app.float.radius_20'))
       .linearGradient(this.isTouched ? {
-                                         angle: 90,
-                                         direction: GradientDirection.Right,
-                                         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-                                       } : {
-                                             angle: 90,
-                                             direction: GradientDirection.Right,
-                                             colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-                                           })
-      .onTouch((event: TouchEvent) => {
-        if (event.type === TouchType.Down) {
+        angle: 90,
+        direction: GradientDirection.Right,
+        colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+      } : {
+        angle: 90,
+        direction: GradientDirection.Right,
+        colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+      })
+      .onTouch((event?: TouchEvent | undefined) => {
+        if (event?.type === TouchType.Down) {
           this.isTouched = true;
         }
 
-        if (event.type === TouchType.Up) {
+        if (event?.type === TouchType.Up) {
           this.isTouched = false;
         }
       });

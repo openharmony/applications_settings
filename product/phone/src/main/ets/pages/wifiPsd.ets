@@ -13,13 +13,11 @@
  * limitations under the License.
  */
 
-// @ts-nocheck
 import wifi from '@ohos.wifi';
 import router from '@system.router';
 import deviceInfo from '@ohos.deviceInfo';
 import InputMethod from '@ohos.inputMethod';
-import WifiModel from '../model/wifiImpl/WifiModel';
-import { WifiScanInfo } from '../model/wifiImpl/WifiModel';
+import WifiModel, { WifiScanInfo } from '../model/wifiImpl/WifiModel';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
@@ -29,6 +27,7 @@ import ImageAnimatorComponent from '../../../../../../common/component/src/main/
 const deviceTypeInfo = deviceInfo.deviceType;
 const miniPassWordSize = 8;
 const MODULE_TAG = ConfigData.TAG + 'WifiModel.WifiPasswd -> ';
+const DEFAULT_STROKE_WIDTH = '1vp';
 
 /**
  * wifi password setting page
@@ -36,16 +35,15 @@ const MODULE_TAG = ConfigData.TAG + 'WifiModel.WifiPasswd -> ';
 @Entry
 @Component
 struct WifiPsd {
-  @State userInputs: string= '';
+  @State userInputs: string = '';
   @State passwdHint: string = '';
   @State tobeConnectedSSID: string = '';
   @State isFocused: boolean = false;
-  private tobeConnectedAp: WifiScanInfo = null;
+  @State @Watch("controlFailedDialog") ControlFailedDialog: boolean = false;
+  private tobeConnectedAp: WifiScanInfo | null = null;
   private isConnectedBefore: boolean = false;
   private taskId: number = -1;
   private toConnected: boolean = false;
-  @State @Watch("controlFailedDialog") ControlFailedDialog : boolean = false;
-
   private connectDialog: CustomDialogController = new CustomDialogController({
     builder: connectProgressDialog({
       ssid: this.tobeConnectedSSID,
@@ -55,9 +53,8 @@ struct WifiPsd {
     autoCancel: false,
     customStyle: true
   });
-
   private failedDialog: CustomDialogController = new CustomDialogController({
-    builder: connectFailedDialog({ControlFailedDialog:$ControlFailedDialog}),
+    builder: connectFailedDialog({ ControlFailedDialog: $ControlFailedDialog }),
     alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
     offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
     autoCancel: true,
@@ -65,7 +62,7 @@ struct WifiPsd {
   });
 
   controlFailedDialog() {
-    if(this.ControlFailedDialog){
+    if (this.ControlFailedDialog) {
       this.failedDialog.close();
       this.ControlFailedDialog = false;
     }
@@ -87,7 +84,7 @@ struct WifiPsd {
             .caretColor("red")
             .placeholderFont({
               size: $r("app.float.font_16"),
-              weight: $r("sys.string.ohos_id_text_font_family_regular"),
+              weight: FontWeight.Regular,
               family: "sans-serif", style: FontStyle.Normal
             })
             .caretColor($r('sys.color.ohos_id_color_text_primary_activated'))
@@ -99,14 +96,14 @@ struct WifiPsd {
               LogUtil.info(MODULE_TAG + "text input is focused");
               this.isFocused = true;
             })
-            .onFocusMove(() => {
+            .onBlur(() => {
               LogUtil.info(MODULE_TAG + "text input is moved");
               this.isFocused = false;
             })
             .onChange((inputs: string) => {
               this.userInputs = inputs;
             })
-            .onSubmit((enterKey) => {
+            .onSubmit((enterKey: EnterKeyType) => {
               InputMethod.getInputMethodController().stopInput()
                 .then((ret) => {
                   LogUtil.debug(`${ConfigData.TAG}, enterType: ${enterKey}, stopInput: ${ret}`);
@@ -115,7 +112,7 @@ struct WifiPsd {
 
           Divider()
             .color($r("sys.color.ohos_id_color_primary"))
-            .strokeWidth($r('app.float.wh_value_1'))
+            .strokeWidth(DEFAULT_STROKE_WIDTH)
             .opacity($r('sys.float.ohos_id_alpha_content_secondary'))
             .padding({
               left: $r('sys.float.ohos_id_default_padding_start'),
@@ -139,7 +136,7 @@ struct WifiPsd {
               });
 
               Column()
-                .width( $r('app.float.distance_12'))
+                .width($r('app.float.distance_12'))
                 .height($r('app.float.application_button_height'))
 
               Button({ type: ButtonType.Capsule, stateEffect: true }) {
@@ -153,7 +150,9 @@ struct WifiPsd {
               .backgroundColor($r('sys.color.ohos_id_color_button_normal'))
               .opacity(this.userInputs.length < miniPassWordSize ? $r('sys.float.ohos_fa_alpha_disabled') : 1)
               .onClick(this.userInputs.length < miniPassWordSize ?
-                () => { LogUtil.info(MODULE_TAG + 'no text input in passwd page') } :
+                () => {
+                  LogUtil.info(MODULE_TAG + 'no text input in passwd page')
+                } :
                 () => {
                   WifiModel.setUserSelectedAp(this.tobeConnectedAp);
                   WifiModel.connectWiFi(this.userInputs);
@@ -162,7 +161,9 @@ struct WifiPsd {
                 });
             }
             .height(ConfigData.WH_100_100)
-            .padding(this.isFocused === false ? { bottom: $r("app.float.wh_padding_136") } : { top: $r("app.float.wh_padding_212") })
+            .padding(this.isFocused === false ? { bottom: $r("app.float.wh_padding_136") } : {
+              top: $r("app.float.wh_padding_212")
+            })
             .alignItems(this.isFocused === false ? VerticalAlign.Bottom : VerticalAlign.Top)
           }
           .width(ConfigData.WH_100_100)
@@ -191,8 +192,8 @@ struct WifiPsd {
       });
     }
     this.initTextInputHint();
-    this.tobeConnectedAp = params.apInfo;
-    this.tobeConnectedSSID = this.tobeConnectedAp.ssid;
+    this.tobeConnectedAp = params.apInfo as WifiScanInfo | null;
+    this.tobeConnectedSSID = this.tobeConnectedAp ? this.tobeConnectedAp.ssid : '';
   }
 
   onPageShow() {
@@ -239,7 +240,7 @@ struct WifiPsd {
     WifiModel.registerWiFiConnectionObserver((code: Number) => {
       LogUtil.info(MODULE_TAG + 'wifi connection code : ' + code);
       // 0: disconnected, 1: connected
-      if(!this.toConnected){
+      if (!this.toConnected) {
         return;
       }
 
@@ -247,7 +248,9 @@ struct WifiPsd {
         this.toConnected = false;
         this.connectDialog.close()
         this.failedDialog.open()
-        WifiModel.removeDeviceConfig(this.tobeConnectedAp);
+        if (this.tobeConnectedAp) {
+          WifiModel.removeDeviceConfig(this.tobeConnectedAp);
+        }
       }
 
       if (code === 1) {
@@ -285,9 +288,11 @@ struct WifiPsd {
 
         if (result.connState === 6 && this.toConnected) {
           this.toConnected = false;
-          this.connectDialog.close()
-          this.failedDialog.open()
-          WifiModel.removeDeviceConfig(this.tobeConnectedAp);
+          this.connectDialog.close();
+          this.failedDialog.open();
+          if (this.tobeConnectedAp) {
+            WifiModel.removeDeviceConfig(this.tobeConnectedAp);
+          }
           WifiModel.refreshApScanResults();
         }
       });
@@ -305,12 +310,14 @@ struct WifiPsd {
 
 @CustomDialog
 struct connectProgressDialog {
-  controller: CustomDialogController;
-  @Prop ssid: string;
-  @State message: String= ""
+  controller?: CustomDialogController;
+  @Prop ssid: string = '';
+  @State message: string = ''
 
   aboutToAppear() {
-    this.message = $r("app.string.wifiTipsConnecting", this.ssid)
+    ResourceUtil.getString($r('app.string.wifiTipsConnecting')).then((value) => {
+      this.message = value.replace('%s', this.ssid);
+    });
   }
 
   build() {
@@ -338,13 +345,14 @@ struct connectProgressDialog {
       .backgroundColor($r("app.color.white_bg_color"))
     }
     .width(deviceTypeInfo === 'phone' ? ConfigData.WH_100_100 : $r("app.float.wh_value_410"))
-    .padding(deviceTypeInfo === 'phone' ? { left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12")} : {})
+    .padding(deviceTypeInfo === 'phone' ? { left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") } : {
+    })
   }
 }
 
 @CustomDialog
 struct connectFailedDialog {
-  controller: CustomDialogController;
+  controller?: CustomDialogController;
   @Link ControlFailedDialog: boolean;
 
   build() {
@@ -378,6 +386,7 @@ struct connectFailedDialog {
       .backgroundColor($r("app.color.white_bg_color"))
     }
     .width(deviceTypeInfo === 'phone' ? ConfigData.WH_100_100 : $r("app.float.wh_value_410"))
-    .padding(deviceTypeInfo === 'phone' ? { left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") } : {})
+    .padding(deviceTypeInfo === 'phone' ? { left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") } : {
+    })
   }
 }

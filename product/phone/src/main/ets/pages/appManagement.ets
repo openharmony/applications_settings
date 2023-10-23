@@ -17,10 +17,12 @@ import Router from '@system.router';
 import AppManagementModel from '../model/appManagementImpl/AppManagementModel';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
+import { BaseData } from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import DoubleLineComponent from '../../../../../../common/component/src/main/ets/default/doubleLineComponent';
 import ImageAnimatorComponent from '../../../../../../common/component/src/main/ets/default/imageAnimatorComponent';
+
 
 /**
  * application list
@@ -28,7 +30,7 @@ import ImageAnimatorComponent from '../../../../../../common/component/src/main/
 @Entry
 @Component
 struct AppManagement {
-  @StorageLink('appManagementList') appList: any[] = [];
+  @StorageLink('appManagementList') appList: BaseData[] = [];
   private whtl: string = '80vp';
 
   build() {
@@ -52,14 +54,14 @@ struct AppManagement {
 
           Column() {
             List() {
-              ForEach(this.appList, (item) => {
+              ForEach(this.appList, (item: BaseData) => {
                 ListItem() {
                   DoubleLineComponent({
                     settingIcon: item.settingIcon,
                     settingTitle: item.settingTitle + '',
                     settingSummary: item.settingSummary,
-                    settingValue: item.settingValue,
-                    settingArrow: item.settingArrow,
+                    settingValue: item.settingValue ? item.settingValue.toString() : '',
+                    settingArrow: item.settingArrow ? item.settingArrow.toString() : '',
                     settingArrowStyle: '',
                     settingUri: item.settingUri,
                     fontSize: $r('sys.float.ohos_id_text_size_body1'),
@@ -67,10 +69,12 @@ struct AppManagement {
                   });
                 }
                 .onClick(() => {
-                  Router.push({ uri: item.settingUri, params: item });
+                  if (item.settingUri) {
+                    Router.push({ uri: item.settingUri, params: item });
+                  }
                 })
                 .height($r('app.float.wh_value_72'));
-              }, item => JSON.stringify(item));
+              }, (item: BaseData) => JSON.stringify(item));
             }
             .borderRadius($r("app.float.radius_24"))
             .divider({
@@ -101,7 +105,7 @@ struct AppManagement {
     .height(ConfigData.WH_100_100)
   }
 
-  aboutToAppear(): void{
+  aboutToAppear(): void {
     LogUtil.info('settings AppManagement aboutToAppear in');
 
     AppStorage.SetOrCreate('appManagementList', []);
@@ -112,7 +116,7 @@ struct AppManagement {
     LogUtil.info('settings AppManagement aboutToAppear out');
   }
 
-  aboutToDisappear(): void{
+  aboutToDisappear(): void {
     LogUtil.info('settings AppManagement aboutToDisappear in');
     AppStorage.Delete('appManagementList');
     LogUtil.info('settings AppManagement aboutToDisappear out');

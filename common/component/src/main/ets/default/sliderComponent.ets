@@ -19,18 +19,18 @@ import ComponentConfig from './ComponentConfig';
  */
 @Component
 export default struct SliderComponent {
-  private visible: boolean = true;
-  private min: number = 0;
-  private max: number = 100;
-  private step?: number = 1;
-  private leftImage: string = '';
-  private rightImage: string = '';
   @State clickConfirm: boolean = true;
   @State showStep: boolean = false;
   @State value: number = 0;
-  private onChange?: (value: number, mode: SliderChangeMode) => void
-  private summary: string | Resource; // Text details
   @State fontSize: number = 18; // Font size
+  private visible: boolean = true;
+  private min: number = 0;
+  private max: number = 100;
+  private step: number = 1;
+  private leftImage: string = '';
+  private rightImage: string = '';
+  private onChange?: (value: number, mode: SliderChangeMode) => void
+  private summary: string | Resource = ''; // Text details
 
   build() {
     Flex({ direction: FlexDirection.Row }) {
@@ -45,7 +45,7 @@ export default struct SliderComponent {
       .padding({ left: $r('app.float.slider_image_margin') })
       .onClick(() => {
         if (this.value != this.min && this.clickConfirm) {
-          this.value = Math.max(this.min, this.value - this.step);
+          this.value = Math.max(this.min, this.value - this?.step);
           this.onChangeHandler(this.value, SliderChangeMode.End);
         }
       })
@@ -86,7 +86,7 @@ export default struct SliderComponent {
       .padding({ right: $r('app.float.slider_image_margin') })
       .onClick(() => {
         if (this.value != this.max && this.clickConfirm) {
-          this.value = Math.min(this.max, this.value + this.step);
+          this.value = Math.min(this.max, this.value + this?.step);
           this.onChangeHandler(this.value, SliderChangeMode.End);
         }
       })
@@ -96,12 +96,12 @@ export default struct SliderComponent {
   }
 
   /**
-     * Change handler
-     *
-     * @param value - Change value
-     * @param mode - State
-     */
-  onChangeHandler(value, mode) {
+   * Change handler
+   *
+   * @param value - Change value
+   * @param mode - State
+   */
+  onChangeHandler(value: number, mode: SliderChangeMode) {
     if (this.onChange) {
       this.onChange(value, mode);
     }

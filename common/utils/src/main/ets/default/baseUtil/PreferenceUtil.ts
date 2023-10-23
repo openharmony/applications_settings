@@ -14,11 +14,14 @@
  */
 
 import ConfigData from './ConfigData';
-import LogUtil from './LogUtil'
+import LogUtil from './LogUtil';
+import { GlobalContext } from './GlobalContext';
+
 //import Storage from '@ohos.data.storage';
 
 //let preference = Storage.getStorageSync(ConfigData.PREFERENCES_PATH);
-this.storage = await dataStorage.getPreferences(globalThis.settingsAbilityContext, ConfigData.PREFERENCES_PATH)
+this.storage = await dataStorage.getPreferences(
+  GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext), ConfigData.PREFERENCES_PATH);
 
 export class PreferenceUtil {
   /**
@@ -27,7 +30,7 @@ export class PreferenceUtil {
    * @param key - key
    * @param value - value
    */
-  setStorageValue(key,value): void {
+  setStorageValue(key, value): void {
     LogUtil.info(`Set preference, key: ${key}, value: ${value}")`);
     preference.putSync(key, value);
     preference.flushSync();
@@ -47,4 +50,5 @@ export class PreferenceUtil {
 }
 
 let preferenceUtil = new PreferenceUtil();
+
 export default preferenceUtil as PreferenceUtil

@@ -12,10 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import i18n from '@ohos.i18n';
-//import data_storage from '@ohos.data.storage';
+import type common from '@ohos.app.ability.common';
 import dataStorage from '@ohos.data.preferences';
 import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { GlobalContext } from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 import BaseModel from '../../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
 import ConfigData from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import Log from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
@@ -26,13 +28,13 @@ import Log from '../../../../../../../../common/utils/src/main/ets/default/baseU
 class LanguageAndRegionModel extends BaseModel {
   private addedLanguages: Array<string> = [];
   private allLanguages: Array<string> = [];
-  private addStr  = ConfigData.ADDLANGUAGES;
+  private addStr = ConfigData.ADDLANGUAGES;
   private regionStr = ConfigData.CURRENTREGION;
   //  private storage = data_storage.getStorageSync(AppStorage.Get(ConfigData.STORAGEPATHKEY) + '/languageAndRegion');
   private storage;
   private TAG = `${ConfigData.TAG} LanguageAndRegionModel`;
 
-  constructor(){
+  constructor() {
     super();
     LogUtil.info(`${this.TAG} init in`);
     this.initAppStorage();
@@ -40,10 +42,10 @@ class LanguageAndRegionModel extends BaseModel {
   }
 
   /**
-     * Get added languages
-     */
+   * Get added languages
+   */
   @Log
-  getAddedLanguages():Array<string>{
+  getAddedLanguages(): Array<string> {
     if (!AppStorage.Has(this.addStr)) {
       AppStorage.SetOrCreate(this.addStr, [i18n.System.getSystemLanguage()]);
     }
@@ -53,31 +55,32 @@ class LanguageAndRegionModel extends BaseModel {
   }
 
   /**
-     * Get all languages
-     */
+   * Get all languages
+   */
   @Log
-  getAllLanguages():Array<string>{
+  getAllLanguages(): Array<string> {
     LogUtil.info(`${this.TAG} getAllLanguages`);
     return i18n.System.getSystemLanguages();
   }
 
   /**
-     * Init App Storage
-     */
+   * Init App Storage
+   */
   @Log
-  async initAppStorage():Promise<void>{
-    this.storage = await dataStorage.getPreferences(globalThis.settingsAbilityContext, 'languageAndRegion')
+  async initAppStorage(): Promise<void> {
+    let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
+    this.storage = await dataStorage.getPreferences(context, 'languageAndRegion');
     LogUtil.info(`${this.TAG} initAppStorage in` + JSON.stringify(this.storage));
-    if(!(await this.storage.has(this.addStr))){
+    if (!(await this.storage.has(this.addStr))) {
       LogUtil.info(`${this.TAG} initStorage addStr` + !await this.storage.has(this.addStr));
-      await this.storage.put(this.addStr, JSON.stringify([i18n.System.getSystemLanguage()]))
+      await this.storage.put(this.addStr, JSON.stringify([i18n.System.getSystemLanguage()]));
       await this.storage.flush();
       LogUtil.info(`${this.TAG} initStorage addStr sucess` + JSON.stringify(this.addStr));
     }
-    if((await this.storage.has(this.addStr))){
-      AppStorage.SetOrCreate(this.addStr, JSON.parse(<string>await this.storage.get(this.addStr, 'fail')));
+    if ((await this.storage.has(this.addStr))) {
+      AppStorage.SetOrCreate(this.addStr, JSON.parse(<string> await this.storage.get(this.addStr, 'fail')));
     }
-    if(!AppStorage.Has(this.regionStr)){
+    if (!AppStorage.Has(this.regionStr)) {
       LogUtil.info(`${this.TAG} initAppStorage currentRegion` + !AppStorage.Has(this.regionStr));
       AppStorage.SetOrCreate(this.regionStr, this.getSysDisplayRegion());
       LogUtil.info(`${this.TAG} initAppStorage currentRegion sucess`);
@@ -87,10 +90,10 @@ class LanguageAndRegionModel extends BaseModel {
   }
 
   /**
-     * Set system language
-     */
+   * Set system language
+   */
   @Log
-  async setSystemLanguage(language:string):Promise<void>{
+  async setSystemLanguage(language: string): Promise<void> {
     LogUtil.info(`${this.TAG} setSystemLanguage in`);
     this.addedLanguages = this.getAddedLanguages();
     this.addedLanguages.splice(this.addedLanguages.indexOf(language), 1);
@@ -105,11 +108,11 @@ class LanguageAndRegionModel extends BaseModel {
   }
 
   /**
-     * Add language to the addedLanguages list
-     */
+   * Add language to the addedLanguages list
+   */
   @Log
-  async addLanguage(language:string):Promise<void>{
-    LogUtil.info(`${this.TAG} addLanguage in, language: ${language}` );
+  async addLanguage(language: string): Promise<void> {
+    LogUtil.info(`${this.TAG} addLanguage in, language: ${language}`);
     this.addedLanguages = AppStorage.Get(this.addStr);
     this.addedLanguages.push(language);
     AppStorage.Set(this.addStr, this.addedLanguages);
@@ -120,10 +123,10 @@ class LanguageAndRegionModel extends BaseModel {
   }
 
   /**
-     * Remove language from the addedLanguages list
-     */
+   * Remove language from the addedLanguages list
+   */
   @Log
-  async deleteLanguage(language:string):Promise<void>{
+  async deleteLanguage(language: string): Promise<void> {
     LogUtil.info(`${this.TAG} deleteLanguage in`);
     this.addedLanguages = AppStorage.Get(this.addStr);
     this.setSystemLanguage(this.addedLanguages[0]);
@@ -135,10 +138,10 @@ class LanguageAndRegionModel extends BaseModel {
   }
 
   /**
-     * Display in the system language
-     */
+   * Display in the system language
+   */
   @Log
-  getSysDisplayLanguage(language:string){
+  getSysDisplayLanguage(language: string) {
     LogUtil.info(`${this.TAG} getSysDisplayLanguage`);
     if(language){
       return i18n.System.getDisplayLanguage(language, i18n.System.getSystemLanguage(), true);
@@ -146,10 +149,10 @@ class LanguageAndRegionModel extends BaseModel {
   }
 
   /**
-     * Display the language
-     */
+   * Display the language
+   */
   @Log
-  getDisplayLanguage(language:string):string{
+  getDisplayLanguage(language: string): string {
     LogUtil.info(`${this.TAG} getDisplayLanguage`);
     if(language){
       return i18n.System.getDisplayLanguage(language, language, true);
@@ -157,37 +160,37 @@ class LanguageAndRegionModel extends BaseModel {
   }
 
   /**
-     * Display the region
-     */
+   * Display the region
+   */
   @Log
-  getDisplayRegion(country:string):string{
+  getDisplayRegion(country: string): string {
     LogUtil.info(`${this.TAG} getDisplayRegion`);
-    return i18n.System.getDisplayCountry(country, i18n.System.getSystemLanguage(),true);
+    return i18n.System.getDisplayCountry(country, i18n.System.getSystemLanguage(), true);
   }
 
   /**
-     * Display the system region
-     */
+   * Display the system region
+   */
   @Log
-  getSysDisplayRegion():string{
+  getSysDisplayRegion(): string {
     LogUtil.info(`${this.TAG} getSysDisplayRegion`);
-    return i18n.System.getDisplayCountry(i18n.System.getSystemRegion(), i18n.System.getSystemLanguage(),true);
+    return i18n.System.getDisplayCountry(i18n.System.getSystemRegion(), i18n.System.getSystemLanguage(), true);
   }
 
   /**
-     * get system countries
-     */
+   * get system countries
+   */
   @Log
-  getSystemCountries():Array<string>{
+  getSystemCountries(): Array<string> {
     LogUtil.info(`${this.TAG} getSystemCountries`);
     return i18n.System.getSystemCountries(i18n.System.getSystemLanguage());
   }
 
   /**
-     * set system region
-     */
+   * set system region
+   */
   @Log
-  setSystemRegion(region:string):void{
+  setSystemRegion(region: string): void {
     LogUtil.info(`${this.TAG} setSystemRegion`);
     i18n.System.setSystemRegion(region);
     AppStorage.Set(this.regionStr, this.getSysDisplayRegion());
@@ -195,35 +198,35 @@ class LanguageAndRegionModel extends BaseModel {
   }
 
   /**
-     * Determine if it is the system language
-     */
+   * Determine if it is the system language
+   */
   @Log
-  isSystemLanguage(language:string):boolean{
+  isSystemLanguage(language: string): boolean {
     return language === i18n.System.getSystemLanguage();
   }
 
   /**
-     * Determine if it is in the addedLanguages
-     */
+   * Determine if it is in the addedLanguages
+   */
   @Log
-  isInAddedLanguage(language:string):boolean{
+  isInAddedLanguage(language: string): boolean {
     this.addedLanguages = AppStorage.Get(this.addStr);
-    if(this.addedLanguages.indexOf(language) === -1){
+    if (this.addedLanguages.indexOf(language) === -1) {
       return false;
-    }else{
+    } else {
       return true;
     }
   }
 
   /**
-     * Determine if it is the system region
-     */
+   * Determine if it is the system region
+   */
   @Log
-  isSystemRegion(region:string):boolean{
+  isSystemRegion(region: string): boolean {
     return region === i18n.System.getSystemRegion();
   }
-
 }
 
 let languageAndRegionModel = new LanguageAndRegionModel();
+
 export default languageAndRegionModel as LanguageAndRegionModel;

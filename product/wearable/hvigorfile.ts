@@ -13,11 +13,5 @@
  * limitations under the License.
  */
 
-import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-
-export class MetaDataModel {
-  constructor(jsonData: string) {
-    LogUtil.info('settings getAbilityInfoListener MetaDataModel jsonData: ' + JSON.stringify(JSON.parse(jsonData)));
-    return JSON.parse(jsonData);
-  }
-}
+// Script for compiling build behavior. It is built in the build plug-in and cannot be modified currently.
+module.exports = require('@ohos/hvigor-ohos-plugin').harTasks;

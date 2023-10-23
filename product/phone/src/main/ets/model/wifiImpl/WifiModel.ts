@@ -136,8 +136,8 @@ export class ApScanResult {
     this.isSaved = status;
   }
 
-  renderToListModel(): {settingIcon: string,settingSummary:number,settingTitle: string,settingValue: string,
-  settingArrow: string,settingArrowStyle: string,settingUri: string,apInfo: any } {
+  renderToListModel(): { settingIcon: string, settingSummary: number, settingTitle: string, settingValue: string,
+    settingArrow: string, settingArrowStyle: string, settingUri: string, apInfo: WifiScanInfo } {
     function generateArrow(that: ApScanResult): string {
       let signalLevel: string = that.getSignalLevel().toString();
       let lockPrefix: string = 'lock_';

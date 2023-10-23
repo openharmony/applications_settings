@@ -1,4 +1,3 @@
-//@ts-nocheck
 /**
  * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,8 +24,6 @@ export struct DialogButtonLayout {
   @State secondButtonState: boolean = true;
   private firstTitle: string | Resource = $r("app.string.cancel");
   private secondTitle: string | Resource = $r("app.string.confirm");
-  private firstClickEvent: (event: ClickEvent) => void;
-  private secondClickEvent: (event: ClickEvent) => void;
 
   build() {
     DialogButtonLayoutWithState({
@@ -37,6 +34,11 @@ export struct DialogButtonLayout {
       secondButtonState: this.secondButtonState,
     })
   }
+
+  private firstClickEvent: (event: ClickEvent) => void = (event: ClickEvent) => {
+  };
+  private secondClickEvent: (event: ClickEvent) => void = (event: ClickEvent) => {
+  };
 }
 
 /**
@@ -46,25 +48,23 @@ export struct DialogButtonLayout {
  */
 @Component
 export struct DialogButtonLayoutWithState {
+  @Prop secondButtonState: boolean = true;
   private firstTitle: string | Resource = $r("app.string.cancel");
   private secondTitle: string | Resource = $r("app.string.add");
-  private firstClickEvent: (event: ClickEvent) => void;
-  private secondClickEvent: (event: ClickEvent) => void;
-  @Prop secondButtonState: boolean;
 
   build() {
-    Flex({ direction: FlexDirection.Row, alignItems: Alignment.Center }) {
+    Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
       Button(this.firstTitle)
         .backgroundColor(Color.White)
         .fontSize($r("app.float.font_16"))
         .fontColor($r("app.color.font_color_007DFF"))
         .fontWeight(FontWeight.Medium)
         .width(ComponentConfig.WH_50_100)
-        .onClick((event) => this.firstClickEvent(event))
+        .onClick((event) => this.firstClickEvent(event as ClickEvent))
         .height($r("app.float.wh_value_40"))
 
       Divider()
-        .strokeWidth($r("app.float.wh_value_1"))
+        .strokeWidth('1vp')
         .color($r("sys.color.ohos_id_color_list_separator"))
         .vertical(true)
         .height($r("app.float.wh_value_40"))
@@ -78,9 +78,14 @@ export struct DialogButtonLayoutWithState {
         .width(ComponentConfig.WH_50_100)
         .enabled(this.secondButtonState)
         .opacity(this.secondButtonState ? 1 : 0.5)
-        .onClick(event => this.secondClickEvent(event))
+        .onClick(event => this.secondClickEvent(event as ClickEvent))
         .height($r("app.float.wh_value_40"))
     }
     .margin({ bottom: $r("app.float.wh_value_16") })
   }
+
+  private firstClickEvent: (event: ClickEvent) => void = (event: ClickEvent) => {
+  };
+  private secondClickEvent: (event: ClickEvent) => void = (event: ClickEvent) => {
+  };
 }

@@ -40,36 +40,36 @@ export class LocationService {
     this.mListener = listener;
   }
 
-  async getServiceState() {
-    LogUtil.info(ConfigData.TAG + 'get location state')
-    try{
+  async getServiceState(): Promise<void> {
+    LogUtil.info(ConfigData.TAG + 'get location state');
+    try {
       let state = await geolocation.isLocationEnabled();
-      LogUtil.info(ConfigData.TAG + `get location state, data: ${JSON.stringify(state)}`)
+      LogUtil.info(ConfigData.TAG + `get location state, data: ${JSON.stringify(state)}`);
       this.mListener?.updateServiceState(state);
-    }catch(error){
-      LogUtil.info(ConfigData.TAG + `get location state, data: ${error}`)
+    } catch (error) {
+      LogUtil.info(ConfigData.TAG + `get location state, data: ${error}`);
     }
 
   }
 
   enableLocation() {
-    LogUtil.info(ConfigData.TAG + 'enable location')
-    try{
+    LogUtil.info(ConfigData.TAG + 'enable location');
+    try {
       geolocation.enableLocation()
         .then((res) => LogUtil.info(ConfigData.TAG + `enable location, result: ${JSON.stringify(res)}`))
-        .catch(error=> LogUtil.info(ConfigData.TAG + `enable location, result: ${error}`))
-    }catch(err){
-       LogUtil.info(ConfigData.TAG + `enable location, result: ${err}`)
+        .catch(error=> LogUtil.info(ConfigData.TAG + `enable location, result: ${error}`));
+    } catch(err) {
+      LogUtil.info(ConfigData.TAG + `enable location, result: ${err}`);
     }
 
   }
 
   disableLocation() {
-    LogUtil.info(ConfigData.TAG + 'disable location')
-    try{
-      geolocation.disableLocation()
-    }catch(err){
-      LogUtil.info(ConfigData.TAG + `disenable location, result: ${err}`)
+    LogUtil.info(ConfigData.TAG + 'disable location');
+    try {
+      geolocation.disableLocation();
+    } catch(err) {
+      LogUtil.info(ConfigData.TAG + `disenable location, result: ${err}`);
     }
   }
 }

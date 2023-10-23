@@ -15,6 +15,7 @@
 
 import deviceInfo from '@ohos.deviceInfo';
 import CommonEvent from '@ohos.commonEvent';
+import CommonEventManager from '@ohos.commonEventManager';
 import DateAndTimeModel from '../model/dateAndTimeImpl/DateAndTimeModel';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import { BaseData } from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
@@ -28,6 +29,9 @@ import { TextComponentWithEndText } from '../../../../../../common/component/src
 const MODULE_TAG = ConfigData.TAG + '.dateAndTime -> ';
 const deviceTypeInfo = deviceInfo.deviceType;
 
+class commonEvents {
+  events: string[] = []
+}
 /**
  * date and time
  */
@@ -40,9 +44,10 @@ struct dateAndTime {
   private image: string | Resource = '';
   private dateMark: string = 'date';
   private timeMark: string = 'time';
-  private subscriber;
+    private subscriber: CommonEventManager.CommonEventSubscriber | null = null;
   private headName: string = '';
-  private commonEventSubscribeInfo = {
+
+  private commonEventSubscribeInfo: commonEvents = {
     events: [
       CommonEvent.Support.COMMON_EVENT_TIME_CHANGED,
       CommonEvent.Support.COMMON_EVENT_TIMEZONE_CHANGED,
@@ -109,9 +114,9 @@ struct dateAndTime {
           .borderRadius($r('app.float.radius_24'));
 
           List() {
-            ForEach(this.dateAndTimeList, (item) => {
+            ForEach(this.dateAndTimeList, (item: BaseData) => {
               ListItem() {
-                TextComponentWithEndText({ title: item.settingTitle, endText: item.settingValue, clickEvent: () => {
+                TextComponentWithEndText({ title: item.settingTitle, endText: item.settingValue?.toString(), clickEvent: () => {
                   LogUtil.info(MODULE_TAG + 'dialog come in' + JSON.stringify(item));
                   if (item.settingAlias === 'date') {
                     LogUtil.info(MODULE_TAG + 'date dialog come in');
@@ -123,7 +128,7 @@ struct dateAndTime {
                   }
                 } });
               }
-            }, item => JSON.stringify(item))
+            }, (item: BaseData) => JSON.stringify(item))
           }
           .padding($r('app.float.wh_value_4'))
           .divider({
@@ -192,7 +197,7 @@ struct dateAndTime {
     this.date = DateAndTime.getSystemDate();
     this.changeValue();
     this.getNowTime();
-    DateAndTimeModel.registerObserver(this.getNowTime.bind(this));
+    DateAndTimeModel.registerObserver(this.getNowTime);
 
     CommonEvent.createSubscriber(this.commonEventSubscribeInfo)
       .then(subscriber => {
@@ -247,10 +252,11 @@ struct dateAndTime {
 @CustomDialog
 @Component
 struct TimeDialog24H {
-  controller: CustomDialogController;
-  action: () => void;
-  private currentTime;
-  private formatTime;
+  controller?: CustomDialogController;
+  action: () => void = () => {};
+  private currentTimeString: string = '';
+  private currentTimeDate: Date = new Date();
+  private formatTime: string = '';
 
   build() {
     Column() {
@@ -263,11 +269,13 @@ struct TimeDialog24H {
           .fontColor($r("sys.color.ohos_id_color_primary"))
           .fontWeight(FontWeight.Medium);
 
-        TimePicker({ selected: this.currentTime })
+        TimePicker({ selected: this.currentTimeDate })
           .useMilitaryTime(this.isNeedMilitaryTime())
           .onChange((date: TimePickerResult) => {
-            this.currentTime = DateAndTime.concatTime(date.hour, date.minute);
-            LogUtil.info(MODULE_TAG + 'onchange currentTime' + this.currentTime);
+            this.currentTimeString = DateAndTime.concatTime(date.hour, date.minute);
+            this.currentTimeDate.setHours(date.hour? date.hour : 0);
+            this.currentTimeDate.setMinutes(date.minute? date.minute : 0);
+            LogUtil.info(MODULE_TAG + 'onchange currentTimeString' + this.currentTimeString);
           })
           .width(ConfigData.WH_100_100)
           .height($r('app.float.wh_value_200'))
@@ -276,7 +284,7 @@ struct TimeDialog24H {
 
       DialogButtonLayout({
         firstClickEvent: () => {
-          this.controller.close();
+          this.controller?.close();
           this.action();
         },
         secondClickEvent: () => {
@@ -286,12 +294,12 @@ struct TimeDialog24H {
           let m = datetime.getMonth() + 1;
           let d = datetime.getDate();
           this.formatTime = y + '-' + DateAndTime.fill(m) + '-' + DateAndTime.fill(d)
-          + 'T' + this.currentTime + ':' + '00';
+          + 'T' + this.currentTimeString + ':' + '00';
           LogUtil.info(MODULE_TAG + 'onchange format time' + this.formatTime);
           let s = (new Date(this.formatTime)).getTime();
           LogUtil.info('onchange time second' + s);
           DateAndTimeModel.setTime(s);
-          this.controller.close();
+          this.controller?.close();
           this.action();
         }
       })
@@ -315,8 +323,8 @@ struct TimeDialog24H {
 @CustomDialog
 @Component
 struct DateDialog {
-  controller: CustomDialogController;
-  action: () => void;
+  controller?: CustomDialogController;
+  action: () => void = () => {};
   private minDate: Date = new Date('1970-01-01');
   private maxDate: Date = new Date('2037-12-31');
   private selectedDate: Date = this.initValidDate();
@@ -341,12 +349,13 @@ struct DateDialog {
 
         DatePicker({ start: this.minDate, end: this.maxDate, selected: this.selectedDate })
           .onChange((result: DatePickerResult) => {
-            let fmt = result.year + '-' + DateAndTime.fill(result.month + 1) + '-' + DateAndTime.fill(result.day);
+            let month = result.month ? result.month : 1;
+            let fmt = result.year + '-' + DateAndTime.fill(month + 1) + '-' + DateAndTime.fill(result.day);
             this.selectedDate = new Date(fmt);
             LogUtil.info(MODULE_TAG + 'onchange user select date fmt is : ' + fmt);
             LogUtil.info(MODULE_TAG + 'onchange user select date is :' + this.selectedDate);
-            this.date = DateAndTime.concatDate(result.year, result.month + 1, result.day);
-            let resource = DateAndTime.convert(result.year, result.month + 1, result.day);
+            this.date = DateAndTime.concatDate(result.year, month + 1, result.day);
+            let resource = DateAndTime.convert(result.year, month + 1, result.day);
             ResourceUtil.getString(resource).then(value => {
               this.day = value;
               LogUtil.info(MODULE_TAG + 'onchange refresh the show date is : ' + this.date);
@@ -361,7 +370,7 @@ struct DateDialog {
 
       DialogButtonLayout({
         firstClickEvent: () => {
-          this.controller.close();
+          this.controller?.close();
           this.action();
         },
         secondClickEvent: () => {
@@ -376,7 +385,7 @@ struct DateDialog {
           LogUtil.info(MODULE_TAG + 'set date fmt is : ' + fmt);
           let s = (new Date(fmt)).getTime();
           DateAndTimeModel.setTime(s);
-          this.controller.close();
+          this.controller?.close();
           this.action();
         }
       })

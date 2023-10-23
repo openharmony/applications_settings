@@ -101,13 +101,13 @@ export class BluetoothModel extends BaseModel {
     super();
     try{
       LogUtil.info('bluetooth.getProfile start')
-      let ProfileId = bluetoothManager.ProfileId;
-      this.profiles[ProfileId.PROFILE_A2DP_SOURCE]
-        = bluetoothManager.getProfileInstance(ProfileId.PROFILE_A2DP_SOURCE);
-      this.profiles[ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY]
-        = bluetoothManager.getProfileInstance(ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
-      this.profiles[ProfileId.PROFILE_HID_HOST]
-        = bluetoothManager.getProfileInstance(ProfileId.PROFILE_HID_HOST);
+      let profileId = bluetoothManager.ProfileId;
+      this.profiles[profileId.PROFILE_A2DP_SOURCE] =
+        bluetoothManager.getProfileInstance(profileId.PROFILE_A2DP_SOURCE);
+      this.profiles[profileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY] =
+        bluetoothManager.getProfileInstance(profileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+      this.profiles[profileId.PROFILE_HID_HOST] =
+        bluetoothManager.getProfileInstance(profileId.PROFILE_HID_HOST);
       LogUtil.info('bluetooth.getProfile end')
       this.canUse = true;
       }
@@ -430,7 +430,7 @@ export class BluetoothModel extends BaseModel {
             profileConnectionState: state
           });
         } catch (BusinessError) {
-          LogUtil.error("Bluetooth getDeviceState failed , BusinessError is " + JSON.stringify(BusinessError))
+          LogUtil.error('Bluetooth getDeviceState failed , BusinessError is ' + JSON.stringify(BusinessError));
         }
       }
     }

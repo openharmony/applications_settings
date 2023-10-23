@@ -1,6 +1,6 @@
 {
   "module": {
-    "name": "component",
+    "name": "settingsBase",
     "type": "har",
     "deviceTypes": [
       "default",
