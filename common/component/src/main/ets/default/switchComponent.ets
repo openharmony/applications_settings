@@ -15,7 +15,6 @@
 
 import ComponentConfig from './ComponentConfig';
 import SwitchController from './controller/SwitchController';
-import Log from '../../../../../utils/src/main/ets/default/baseUtil/LogDecorator';
 
 /**
  * Toggle component
@@ -23,20 +22,11 @@ import Log from '../../../../../utils/src/main/ets/default/baseUtil/LogDecorator
 @Component
 export default struct SwitchComponent {
   @Link isOn: boolean;
-  private title: string | Resource;
-  private toggleValue: (isOn: boolean) => void;
-  private controller: SwitchController;
-  private summary?: string | Resource;
-  private switchHeight?: string | Resource;
   @State isEnabled?: boolean = true;
-  private cssValue: {
-    margin?: {
-      top?: number | string | Resource,
-      right?: number | string | Resource,
-      bottom?: number | string | Resource,
-      left?: number | string | Resource
-    } | number | string | Resource
-  };
+  private title: string | Resource = '';
+  private controller?: SwitchController;
+  private summary?: string | Resource = '';
+  private switchHeight: string | number | Resource = '';
 
   build() {
     Row() {
@@ -74,19 +64,17 @@ export default struct SwitchComponent {
           });
       }
     }
-    .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_6') })
+    .padding({ left: $r('app.float.distance_12'), right: $r('app.float.distance_8') })
     .width(ComponentConfig.WH_100_100)
     .height(this.switchHeight)
     .backgroundColor($r("app.color.white_bg_color"))
     .alignItems(VerticalAlign.Center)
-    .borderRadius($r("app.float.wh_value_16"))
+    .borderRadius($r("app.float.radius_16"))
   }
 
-  @Log
   aboutToAppear() {
     if (this.controller) {
-      // bind event handlers
-      this.toggleValue = this.controller.toggleValue.bind(this.controller);
+      this.toggleValue = this.controller.onSelfToggleValueBindThis;
 
       // bind component and initialize
       this.controller.bindComponent(this)
@@ -96,8 +84,10 @@ export default struct SwitchComponent {
     }
   }
 
-  @Log
   aboutToDisappear() {
-    this.controller.unsubscribe();
+    this.controller?.unsubscribe();
   }
+
+  private toggleValue: (isOn: boolean) => void = () => {
+  };
 }

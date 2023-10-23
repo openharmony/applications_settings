@@ -12,26 +12,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import StorageModel from '../../model/storageImpl/StorageModel'
-import {LogAll} from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
+import type common from '@ohos.app.ability.common';
+import StorageModel from '../../model/storageImpl/StorageModel';
+import { LogAll } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import BaseSettingsController from '../../../../../../../common/component/src/main/ets/default/controller/BaseSettingsController';
-import ISettingsController from '../../../../../../../common/component/src/main/ets/default/controller/ISettingsController'
+import BaseSettingsController
+  from '../../../../../../../common/component/src/main/ets/default/controller/BaseSettingsController';
+import type ISettingsController
+  from '../../../../../../../common/component/src/main/ets/default/controller/ISettingsController';
 
 enum Space {
   /**
-  * Used space
-  */
+   * Used space
+   */
   USED_SPACE = '0',
   /**
-  * Remaining space
-  */
+   * Remaining space
+   */
   REMAINING_SPACE = '1'
 }
 
 @LogAll
-export default class storageController  extends BaseSettingsController {
+export default class storageController extends BaseSettingsController {
   private storageList: any[] = [];
   private totalSpaceNumber: number = 0;
   private totalSpace: string = '';
@@ -40,9 +44,9 @@ export default class storageController  extends BaseSettingsController {
   private usedSpaceNumber: number = 0;
   private usedSpace: string = '';
   private proportion: number = 0;
-  private usedSpaceList:any = [];
+  private usedSpaceList: any = [];
 
-  initData(): ISettingsController{
+  initData(): ISettingsController {
     super.initData();
     this.getTotalSpace();
     return this;
@@ -52,7 +56,8 @@ export default class storageController  extends BaseSettingsController {
    * get TotalSpace
    */
   getTotalSpace() {
-    let filesDir = globalThis.settingsAbilityContext.filesDir;
+    let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
+    let filesDir = context.filesDir;
     LogUtil.info(ConfigData.TAG + 'getStorageDataDir data: ' + JSON.stringify(filesDir));
     if (filesDir && filesDir.length > 0) {
       StorageModel.getTotalSpace(filesDir, (err, data) => {
@@ -72,7 +77,8 @@ export default class storageController  extends BaseSettingsController {
    * get RemainingSpace
    */
   getFreeBytes() {
-    let filesDir = globalThis.settingsAbilityContext.filesDir;
+    let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
+    let filesDir = context.filesDir;
     LogUtil.info(ConfigData.TAG + 'getStorageDataDir data: ' + JSON.stringify(filesDir));
     if (filesDir && filesDir.length > 0) {
       StorageModel.getFreeBytes(filesDir, (err, data) => {
@@ -100,7 +106,7 @@ export default class storageController  extends BaseSettingsController {
   /**
    * get UsedSpace
    */
-  getUsedSpace(){
+  getUsedSpace() {
     this.usedSpaceNumber = this.totalSpaceNumber - this.freeBytesNumber;
   }
 
@@ -116,7 +122,7 @@ export default class storageController  extends BaseSettingsController {
    * Get storage List
    */
   getStorageList() {
-    let storageList =  StorageModel.getStorageItemList();
+    let storageList = StorageModel.getStorageItemList();
     for (let key in storageList) {
       LogUtil.info(ConfigData.TAG + 'Storage getStorageList key:' + key);
       switch (key) {

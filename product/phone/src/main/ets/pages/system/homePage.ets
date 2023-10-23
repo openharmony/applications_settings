@@ -14,13 +14,15 @@
  */
 
 import prompt from '@system.prompt';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
 import dateTimeManager from '@ohos.enterprise.dateTimeManager';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../../common/component/src/main/ets/default/headComponent';
 import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import { SubEntryComponent } from '../../../../../../../common/component/src/main/ets/default/subEntryComponent';
-
 
 /**
  * Home Page Of System Settings
@@ -29,8 +31,9 @@ import { SubEntryComponent } from '../../../../../../../common/component/src/mai
 @Component
 struct SystemSettings {
   @State touchedItem: boolean = false;
+  @State disallowModifyDateTime: boolean = false;
   private TAG = `${ConfigData.TAG} SystemSettings `;
-  @State disallowModifyDateTime :boolean = false;
+
   build() {
     Column() {
       GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
@@ -41,19 +44,22 @@ struct SystemSettings {
             SoftwareUpdateComponent({ title: $r("app.string.softwareUpdates") })
               .margin({ bottom: $r('sys.float.ohos_id_card_margin_start') })
 
-            SubEntryComponent({ targetPage: "pages/restoreFactorySettings", title:$r("app.string.restoreFactoryTab") })
+            SubEntryComponent({ targetPage: "pages/restoreFactorySettings", title: $r("app.string.restoreFactoryTab") })
               .margin({ bottom: $r('sys.float.ohos_id_card_margin_start') })
 
-            SubEntryComponent({ targetPage: 'pages/system/languageSettings/homePage', title: $r("app.string.setlanguage") })
+            SubEntryComponent({
+              targetPage: 'pages/system/languageSettings/homePage',
+              title: $r("app.string.setlanguage")
+            })
               .margin({ bottom: $r('sys.float.ohos_id_card_margin_start') })
 
             SubEntryComponent({ targetPage: "pages/dateAndTime", title: $r("app.string.dateAndTimeTab") })
               .margin({ bottom: $r('sys.float.ohos_id_card_margin_start') })
-              .visibility(this.disallowModifyDateTime===true?Visibility.None:Visibility.Visible)
+              .visibility(this.disallowModifyDateTime === true ? Visibility.None : Visibility.Visible)
 
             SubEntryComponent({ targetPage: "pages/developerOptions", title: $r("app.string.developerOptionsTab") })
           }
-          .margin({ top:$r("app.float.distance_8") })
+          .margin({ top: $r("app.float.distance_8") })
         }
         .useSizeType({
           sm: { span: 4, offset: 0 },
@@ -69,18 +75,18 @@ struct SystemSettings {
     .height(ConfigData.WH_100_100)
   }
 
-  aboutToAppear(){
+  aboutToAppear() {
     LogUtil.info(`${this.TAG} aboutToAppear in`);
     LogUtil.info(`${this.TAG} aboutToAppear out`);
-    let wantTemp = null;
+    let wantTemp: Want | null = null;
     dateTimeManager.isModifyDateTimeDisallowed(wantTemp).then((res) => {
       LogUtil.info(`${this.TAG} eisModifyDateTimeDisallowed"+${res}`);
-      if(res){
+      if (res) {
         this.disallowModifyDateTime = true
-      }else{
+      } else {
         this.disallowModifyDateTime = false
       }
-    }).catch((error) => {
+    }).catch((error: Error) => {
       this.disallowModifyDateTime = false
       LogUtil.info(`${this.TAG} error code: eisModifyDateTimeDisallowed ${error}`);
     })
@@ -93,11 +99,11 @@ struct SystemSettings {
 @Component
 struct SoftwareUpdateComponent {
   @State isTouched: boolean = false;
-  private title: string | Resource;
+  private title: string | Resource = '';
   private TAG = `${ConfigData.TAG} SystemSettings SoftwareUpdates `;
 
-  build(){
-    Row(){
+  build() {
+    Row() {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         Text(this.title)
           .fontSize($r('app.float.font_16'))
@@ -118,18 +124,19 @@ struct SoftwareUpdateComponent {
       .width(ConfigData.WH_100_100)
       .borderRadius($r('app.float.radius_16'))
       .linearGradient(this.isTouched ? {
-         angle: 90,
-         direction: GradientDirection.Right,
-         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-         } : {
-         angle: 90,
-         direction: GradientDirection.Right,
-         colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]})
-      .onTouch((event: TouchEvent) => {
-        if (event.type === TouchType.Down) {
+        angle: 90,
+        direction: GradientDirection.Right,
+        colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+      } : {
+        angle: 90,
+        direction: GradientDirection.Right,
+        colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+      })
+      .onTouch((event?: TouchEvent | undefined) => {
+        if (event?.type === TouchType.Down) {
           this.isTouched = true;
         }
-        if (event.type === TouchType.Up) {
+        if (event?.type === TouchType.Up) {
           this.isTouched = false;
         }
       })
@@ -139,20 +146,22 @@ struct SoftwareUpdateComponent {
     .borderRadius($r('app.float.radius_16'))
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
     .onClick(() => {
-      globalThis.settingsAbilityContext.startAbility({
-        bundleName: ConfigData.SOFTWARE_UPDATES_BUNDLE_NAME,
-        abilityName: ConfigData.SOFTWARE_UPDATES_ABILITY_NAME,
+      let context = GlobalContext.getContext()
+        .getObject(GlobalContext.globalKeySettingsAbilityContext) as common.UIAbilityContext;
+      context.startAbility({
+        bundleName: ConfigData.softWareUpDatesBundleName,
+        abilityName: ConfigData.softWareUpDatesAbilityName,
       })
         .then((data) => {
-          LogUtil.info(`${this.TAG}, ${ConfigData.SOFTWARE_UPDATES_BUNDLE_NAME} start successful. Data: ${JSON.stringify(data)}`);
+          LogUtil.info(`${this.TAG}, ${ConfigData.softWareUpDatesBundleName} start successful. Data: ${JSON.stringify(data)}`);
         })
-        .catch((error) => {
+        .catch((error: Error) => {
           ResourceUtil.getString($r("app.string.softwareUpdateFailed")).then(value => {
             prompt.showToast({
               message: value,
               duration: 2000,
             });
-            LogUtil.error(`${this.TAG}, ${ConfigData.SOFTWARE_UPDATES_BUNDLE_NAME} start failed. Cause: ${JSON.stringify(error)}`);
+            LogUtil.error(`${this.TAG}, ${ConfigData.softWareUpDatesBundleName} start failed. Cause: ${JSON.stringify(error)}`);
           })
         })
     })

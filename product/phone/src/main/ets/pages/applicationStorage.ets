@@ -16,14 +16,14 @@
 import Router from '@system.router';
 import deviceInfo from '@ohos.deviceInfo';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import Log from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
+import { BaseData } from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
 import { SubHeader } from '../../../../../../common/component/src/main/ets/default/textComponent';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import ApplicationStorageController from '../controller/application/ApplicationStorageController';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import EntryComponent from '../../../../../../common/component/src/main/ets/default/entryComponent';
 
-let appInfo;
+let appInfo: BaseData | undefined = undefined;
 const deviceTypeInfo = deviceInfo.deviceType;
 
 /**
@@ -34,7 +34,7 @@ const deviceTypeInfo = deviceInfo.deviceType;
 struct ApplicationStorage {
   @State isPhoneOrRK: boolean = false;
   @State cacheValue: number = 0;
-  @State storageList: any[]= [];
+  @State storageList: BaseData[] = [];
   @State isTouched: boolean = false;
   private controller: ApplicationStorageController = new ApplicationStorageController();
 
@@ -46,19 +46,19 @@ struct ApplicationStorage {
 
           // head
           Row() {
-            Image(appInfo.settingIcon)
+            Image(appInfo ? appInfo.settingIcon : '')
               .width($r('app.float.wh_value_64'))
               .height($r('app.float.wh_value_64'))
               .margin({ right: $r('app.float.distance_16'), left: $r('sys.float.ohos_id_card_margin_start') })
 
             Column() {
-              Text(appInfo.settingTitle)
+              Text(appInfo ? appInfo.settingTitle : "")
                 .fontColor($r('app.color.font_color_182431'))
                 .fontSize($r('app.float.font_16'))
                 .maxLines(ConfigData.MAX_LINES_3)
                 .margin({ top: $r('app.float.wh_value_10'), bottom: $r('app.float.wh_value_5') })
 
-              Text(appInfo.settingSummary)
+              Text(appInfo ? appInfo.settingSummary : "")
                 .fontColor($r('app.color.font_color_182431'))
                 .fontSize($r('app.float.font_14'))
                 .maxLines(ConfigData.MAX_LINES_1)
@@ -75,14 +75,14 @@ struct ApplicationStorage {
 
           // body
           List() {
-            ForEach(this.storageList, (item) => {
+            ForEach(this.storageList, (item: BaseData) => {
               ListItem() {
                 EntryComponent({
                   settingIcon: '',
                   settingTitle: item.settingTitle,
                   settingSummary: item.settingSummary,
-                  settingValue: item.settingValue,
-                  settingArrow: item.settingArrow,
+                  settingValue: item.settingValue ? item.settingValue.toString() : '',
+                  settingArrow: item.settingArrow ? item.settingArrow.toString() : '',
                   settingArrowStyle: '',
                   settingUri: '',
                   heights: $r('app.float.wh_value_48'),
@@ -101,7 +101,13 @@ struct ApplicationStorage {
           .backgroundColor($r("app.color.white_bg_color"))
 
           ButtonComponent({ text: $r("app.string.deleteDataTab"), onClickEvent: () => {
-            this.showDialog(this.controller.clearUpApplicationData.bind(this, appInfo.settingBundleName));
+            if (appInfo && appInfo.settingBundleName) {
+              this.showDialog(() => {
+                if (appInfo && appInfo.settingBundleName) { // codelint无法检测匿名函数变量，因此再判断一次
+                  this.controller.clearUpApplicationData(appInfo.settingBundleName);
+                }
+              });
+            }
           } })
 
           Row() {
@@ -128,12 +134,12 @@ struct ApplicationStorage {
                 });
             }
             .backgroundColor(this.isTouched ? $r("app.color.color_D8D8D8_grey") : $r("sys.color.ohos_id_color_foreground_contrary"))
-            .onTouch((event: TouchEvent) => {
-              if (event.type === TouchType.Down) {
+            .onTouch((event?: TouchEvent) => {
+              if (event && (event.type === TouchType.Down)) {
                 this.isTouched = true;
               }
 
-              if (event.type === TouchType.Up) {
+              if (event && (event.type === TouchType.Up)) {
                 this.isTouched = false;
               }
             })
@@ -147,7 +153,9 @@ struct ApplicationStorage {
           .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
 
           ButtonComponent({ text: $r("app.string.clearCacheTab"), onClickEvent: () => {
-            this.controller.cleanBundleCacheFiles(appInfo.settingBundleName);
+            if (appInfo && appInfo.settingBundleName) {
+              this.controller.cleanBundleCacheFiles(appInfo.settingBundleName);
+            }
           } })
         }
         .useSizeType({
@@ -164,7 +172,6 @@ struct ApplicationStorage {
     .height(ConfigData.WH_100_100)
   }
 
-  @Log
   aboutToAppear() {
     if (deviceTypeInfo === 'phone' || deviceTypeInfo === 'default') {
       this.isPhoneOrRK = true;
@@ -182,7 +189,6 @@ struct ApplicationStorage {
     LogUtil.info('settings ApplicationInfo aboutToAppear this.item:' + JSON.stringify(appInfo));
   }
 
-  @Log
   onBackPress() {
     LogUtil.info('settings ApplicationStorage onBackPress');
   }
@@ -190,8 +196,7 @@ struct ApplicationStorage {
   /**
    * Disconnect Dialog
    */
-  @Log
-  showDialog(callback) {
+  showDialog(callback: Function) {
     AlertDialog.show({
       title: $r('app.string.delete_data_prompt_title'),
       message: $r("app.string.delete_data_prompt"),
@@ -218,8 +223,7 @@ struct ApplicationStorage {
 @Component
 struct ButtonComponent {
   @State isTouched: boolean = false;
-  private text;
-  private onClickEvent = () => {};
+  private text: Resource = $r("app.string.endTextEmpty");
 
   build() {
     Column() {
@@ -237,4 +241,7 @@ struct ButtonComponent {
     }
     .align(Alignment.Center);
   }
+
+  private onClickEvent = () => {
+  };
 }

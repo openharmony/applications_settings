@@ -20,7 +20,8 @@ import ComponentConfig from './ComponentConfig';
  */
 @Component
 export struct SubHeader {
-  @State titleContent:Resource =  $r("app.string.endTextEmpty");
+  @State titleContent: Resource = $r("app.string.endTextEmpty");
+
   build() {
     Row() {
       Text(this.titleContent)
@@ -46,11 +47,10 @@ export struct SubHeader {
  */
 @Component
 export struct TitleText {
-  private title: string | Resource;
+  @State isTouched: boolean = false;
+  private title: string | Resource = '';
   private color: ResourceColor = $r('app.color.font_color_182431');
   private visible: Visibility = Visibility.Visible;
-  private clickEvent: (event?: ClickEvent) => void;
-  @State isTouched: boolean = false;
 
   build() {
     Row() {
@@ -66,23 +66,23 @@ export struct TitleText {
       .width(ComponentConfig.WH_100_100)
       .padding({
         left: $r('sys.float.ohos_id_card_margin_start'),
-        right: $r('sys.float.ohos_id_card_margin_end')})
+        right: $r('sys.float.ohos_id_card_margin_end') })
       .borderRadius($r("app.float.radius_24"))
       .linearGradient(this.isTouched ? {
-                                         angle: 90,
-                                         direction: GradientDirection.Right,
-                                         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-                                       } : {
-                                             angle: 90,
-                                             direction: GradientDirection.Right,
-                                             colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-                                           })
+        angle: 90,
+        direction: GradientDirection.Right,
+        colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+      } : {
+        angle: 90,
+        direction: GradientDirection.Right,
+        colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+      })
       .onClick(event => this.clickEvent(event))
-      .onTouch((event: TouchEvent) => {
-        if (event.type === TouchType.Down) {
+      .onTouch((event?: TouchEvent | undefined) => {
+        if (event?.type === TouchType.Down) {
           this.isTouched = true;
         }
-        if (event.type === TouchType.Up) {
+        if (event?.type === TouchType.Up) {
           this.isTouched = false;
         }
       })
@@ -94,6 +94,9 @@ export struct TitleText {
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
 
   }
+
+  private clickEvent: (event?: ClickEvent) => void = () => {
+  };
 }
 
 /**
@@ -103,10 +106,9 @@ export struct TitleText {
  */
 @Component
 export struct TextComponentWithEndText {
-  private title: string | Resource;
-  private clickEvent: (event?: ClickEvent) => void;
   @State endText: string = "";
   @State isTouched: boolean = false;
+  private title: string | Resource = '';
 
   build() {
     Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
@@ -140,21 +142,24 @@ export struct TextComponentWithEndText {
     .borderRadius($r('app.float.radius_24'))
     .onClick(event => this.clickEvent(event))
     .linearGradient(this.isTouched ? {
-                                       angle: 90,
-                                       direction: GradientDirection.Right,
-                                       colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-                                     } : {
-                                           angle: 90,
-                                           direction: GradientDirection.Right,
-                                           colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-                                         })
-    .onTouch((event: TouchEvent) => {
-      if (event.type === TouchType.Down) {
+      angle: 90,
+      direction: GradientDirection.Right,
+      colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+    } : {
+      angle: 90,
+      direction: GradientDirection.Right,
+      colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+    })
+    .onTouch((event?: TouchEvent | undefined) => {
+      if (event?.type === TouchType.Down) {
         this.isTouched = true;
       }
-      if (event.type === TouchType.Up) {
+      if (event?.type === TouchType.Up) {
         this.isTouched = false;
       }
     });
   }
+
+  private clickEvent: (event?: ClickEvent) => void = () => {
+  };
 }

@@ -301,6 +301,7 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, const napi_val
         dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
         return dataShareHelper;
     }
+  
     resultset = dataShareHelper->Query(proxyUri, predicates, columns);
     if (resultset == nullptr) {
         dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
@@ -342,7 +343,7 @@ void GetValueExecuteExt(napi_env env, void *data)
     if (resultset == nullptr || numRows == 0) {
         SETTING_LOG_INFO("settingsnapi : GetValueExecuteExt called... return error");
         asyncCallbackInfo->status = -1;
-    }else{
+    } else {
         std::string val;
         int32_t columnIndex = 0;
         resultset->GoToFirstRow();
@@ -350,10 +351,11 @@ void GetValueExecuteExt(napi_env env, void *data)
 
         SETTING_LOG_INFO("napi_get_value_ext called... %{public}s", val.c_str());
         asyncCallbackInfo->value = val;
-        asyncCallbackInfo->status = napi_ok;   
+        asyncCallbackInfo->status = napi_ok;
     }
-    if(resultset != nullptr){
-        resultset ->Close();
+    
+    if (resultset != nullptr) {
+        resultset->Close();
     }
 }
 

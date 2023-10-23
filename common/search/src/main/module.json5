@@ -1,6 +1,6 @@
 {
   "module": {
-    "name": "component",
+    "name": "search",
     "type": "har",
     "deviceTypes": [
       "default",

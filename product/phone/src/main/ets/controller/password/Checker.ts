@@ -16,8 +16,8 @@
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 
-const PASSWORD_MIN_LENGTH = 4
-const PASSWORD_MAX_LENGTH = 32
+const PASSWORD_MIN_LENGTH = 6;
+const PASSWORD_MAX_LENGTH = 32;
 
 /**
  * Check whether the string is legal.
@@ -54,7 +54,7 @@ export class Checker {
    */
   isNumber6(str: string): boolean {
     LogUtil.info(this.TAG + 'isNumber6 in.');
-    var reg = /^[0-9]{6}$/;
+    const reg = /^[0-9]{6}$/;
     return reg.test(str);
     LogUtil.info(this.TAG + 'isNumber6 out.');
   }
@@ -66,7 +66,7 @@ export class Checker {
    */
   containsOnlyNumbers(str: string): boolean {
     LogUtil.info(this.TAG + 'containsOnlyNumbers in.');
-    var reg = /^[0-9]{4,32}$/;
+    const reg = /^[0-9]{6,32}$/;
     return reg.test(str);
     LogUtil.info(this.TAG + 'containsOnlyNumbers out.');
   }
@@ -78,7 +78,7 @@ export class Checker {
    */
   isOnlyNumber(str: string): boolean {
     LogUtil.info(this.TAG + 'isOnlyNumber in.');
-    var reg = /^[0-9]+$/;
+    const reg = /^[0-9]+$/;
     return reg.test(str);
     LogUtil.info(this.TAG + 'isOnlyNumber out.');
   }
@@ -90,7 +90,7 @@ export class Checker {
    */
   containCharacter(str: string): boolean {
     LogUtil.info(this.TAG + 'containCharacter in.');
-    var reg = /^(?=.*[a-zA-Z])[\x20-\x7E]{4,32}$/;
+    const reg = /^(?=.*[a-zA-Z])[\x20-\x7E]{6,32}$/;
     return reg.test(str);
     LogUtil.info(this.TAG + 'containCharacter out.');
   }
@@ -102,7 +102,7 @@ export class Checker {
    */
   isContainLetters(str: string): boolean {
     LogUtil.info(this.TAG + 'isContainLetters in.');
-    var reg = /^(?=.*[a-zA-Z])/;
+    const reg = /^(?=.*[a-zA-Z])/;
     return reg.test(str);
     LogUtil.info(this.TAG + 'isContainLetters out.');
   }
@@ -114,7 +114,7 @@ export class Checker {
    */
   isContainIllegalCharacter(str: string): boolean {
     LogUtil.info(this.TAG + 'isContainIllegalCharacter in.');
-    var reg = /[^\x20-\x7E]/;
+    const reg = /[^\x20-\x7E]/;
     return reg.test(str);
     LogUtil.info(this.TAG + 'isContainIllegalCharacter out.');
   }

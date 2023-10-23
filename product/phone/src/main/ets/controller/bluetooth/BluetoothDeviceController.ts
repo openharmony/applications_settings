@@ -26,6 +26,7 @@ import AboutDeviceModel from '../../model/aboutDeviceImpl/AboutDeviceModel'
 const deviceTypeInfo = deviceInfo.deviceType;
 const DISCOVERY_DURING_TIME: number = 30000; // 30'
 const DISCOVERY_INTERVAL_TIME: number = 3000; // 3'
+const DISCOVERY_DEBOUNCE_TIME: number = 500;
 
 export default class BluetoothDeviceController extends BaseSettingsController {
   private TAG = ConfigData.TAG + 'BluetoothDeviceController '
@@ -80,7 +81,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
       this.pairPinCode = pinRequiredParam.pinCode;
       AppStorage.SetOrCreate('pairData', pairData);
       AppStorage.SetOrCreate('pinRequiredParam', pinRequiredParam);
-    })
+    });
     return this;
   }
 
@@ -109,15 +110,15 @@ export default class BluetoothDeviceController extends BaseSettingsController {
    * Set toggle value
    */
   toggleValue(isOn: boolean) {
-    if(this.discoveryStartTimeoutId){
+    if(this.discoveryStartTimeoutId) {
       clearTimeout(this.discoveryStartTimeoutId);
       this.discoveryStartTimeoutId = 0;
     }
-    if(this.discoveryStopTimeoutId){
+    if(this.discoveryStopTimeoutId) {
       clearTimeout(this.discoveryStopTimeoutId);
       this.discoveryStopTimeoutId = 0;
     }
-    if(this.debounceTimer){
+    if(this.debounceTimer) {
       clearTimeout(this.debounceTimer);
       this.debounceTimer = 0;
     }
@@ -139,9 +140,9 @@ export default class BluetoothDeviceController extends BaseSettingsController {
         clearTimeout(this.debounceTimer);
         this.debounceTimer = 0;
         // remove all elements from availableDevices array
-        this.availableDevices.splice(0, this.availableDevices.length)
+        this.availableDevices.splice(0, this.availableDevices.length);
       }
-    },500)
+    }, DISCOVERY_DEBOUNCE_TIME);
   }
 
   /**
@@ -423,7 +424,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
   public startBluetoothDiscovery() {
     this.isDeviceDiscovering = true;
     BluetoothModel.startBluetoothDiscovery();
-    if(this.discoveryStopTimeoutId){
+    if(this.discoveryStopTimeoutId) {
       clearTimeout(this.discoveryStopTimeoutId);
       this.discoveryStopTimeoutId = 0;
     }
@@ -441,7 +442,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
   private stopBluetoothDiscovery() {
     this.isDeviceDiscovering = false;
     BluetoothModel.stopBluetoothDiscovery();
-    if(this.discoveryStartTimeoutId){
+    if(this.discoveryStartTimeoutId) {
       clearTimeout(this.discoveryStartTimeoutId);
       this.discoveryStartTimeoutId = 0;
     }

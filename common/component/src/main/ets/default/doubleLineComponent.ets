@@ -23,17 +23,17 @@ export default struct DoubleLineComponent {
   @State settingTitle: string = "";
   @State settingSummary: string = "";
   @State settingValue: string = "";
-  @State settingArrow: string  = '';
+  @State settingArrow: string = '';
   @State settingArrowStyle: string = "";
   @State settingUri: string = "";
   @State titleFontColor: Resource = $r('sys.color.ohos_id_color_text_primary');
-  private isEnabled: boolean = true;
-  private onArrowClick?: () => void;
   @State isTouched: boolean = false;
   @State heights: Resource = $r('app.float.wh_value_72');
   @State image_wh: Resource = $r('app.float.wh_value_40');
   @State fontSize: Resource = $r('sys.float.ohos_id_text_size_body1');
   @State valueFontSize: Resource = $r('sys.float.ohos_id_text_size_body2');
+  private isEnabled: boolean = true;
+  private onArrowClick?: () => void;
 
   build() {
     Row() {
@@ -99,7 +99,7 @@ export default struct DoubleLineComponent {
         .height($r('app.float.wh_value_48'))
         .margin({ left: $r('app.float.wh_value_4') })
         .visibility('' === this.settingArrow ? Visibility.None : Visibility.Visible)
-        .onClick(this.onArrowClick);
+        .onClick(this.onArrowClick as ((event?: ClickEvent) => void));
       }
       .align(Alignment.End);
     }
@@ -113,20 +113,20 @@ export default struct DoubleLineComponent {
     })
     .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
     .linearGradient((this.isEnabled && this.isTouched) ? {
-                                                         angle: 90,
-                                                         direction: GradientDirection.Right,
-                                                         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-                                                       } : {
-                                                             angle: 90,
-                                                             direction: GradientDirection.Right,
-                                                             colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-                                                           })
+      angle: 90,
+      direction: GradientDirection.Right,
+      colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+    } : {
+      angle: 90,
+      direction: GradientDirection.Right,
+      colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+    })
     .alignItems(VerticalAlign.Center)
-    .onTouch((event: TouchEvent) => {
-      if (event.type === TouchType.Down) {
+    .onTouch((event?: TouchEvent) => {
+      if (event?.type === TouchType.Down) {
         this.isTouched = true;
       }
-      if (event.type === TouchType.Up) {
+      if (event?.type === TouchType.Up) {
         this.isTouched = false;
       }
     })

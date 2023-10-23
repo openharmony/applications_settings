@@ -23,21 +23,21 @@ import ConfigData from '../../../../../utils/src/main/ets/default/baseUtil/Confi
 export default struct DeviceNameEntryComponent {
   @State isShow: Boolean = true;
   @State settingIcon: string = "";
-  @State endTextIsShow: Boolean= true;
-  private settingTitle: string | Resource;
-  @State settingSummary: string  = "";
+  @State endTextIsShow: Boolean = true;
+  @State settingSummary: string = "";
   @Link settingValue: string;
-  @State settingArrow: string  = "";
+  @State settingArrow: string = "";
   @State settingArrowStyle: string = "";
-  private settingUri: string;
   @State titleFontColor: Resource = $r('sys.color.ohos_id_color_text_primary');
+  @State isTouched: boolean = false;
+  private settingTitle: string | Resource = '';
+  private settingUri: string = '';
   private isEnabled: boolean = true
   private onArrowClick?: () => void;
-  @State isTouched: boolean = false;
-  private heights ?= $r('app.float.wh_value_70');
-  private image_wh ?= $r('app.float.wh_value_50');
-  private fontSize ?= $r('sys.float.ohos_id_text_size_body1');
-  private valueFontSize ?= $r('sys.float.ohos_id_text_size_body2');
+  private heights = $r('app.float.wh_value_70');
+  private image_wh = $r('app.float.wh_value_50');
+  private fontSize = $r('sys.float.ohos_id_text_size_body1');
+  private valueFontSize = $r('sys.float.ohos_id_text_size_body2');
 
   build() {
     Row() {
@@ -111,33 +111,33 @@ export default struct DeviceNameEntryComponent {
             .height($r('app.float.wh_value_24'))
             .margin({ right: $r('app.float.wh_value_12') })
             .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
-            .onClick(this.onArrowClick)
+            .onClick(this.onArrowClick as ((event?: ClickEvent) => void))
 
         }
       }
       .alignItems(VerticalAlign.Center)
       .align(Alignment.End);
     }
-    .opacity(this.isEnabled?1:$r('sys.float.ohos_id_alpha_disabled'))
+    .opacity(this.isEnabled ? 1 : $r('sys.float.ohos_id_alpha_disabled'))
     .height(this.heights)
     .width(ComponentConfig.WH_100_100)
     .padding({ left: $r('sys.float.ohos_id_card_margin_start') })
     .borderRadius($r("sys.float.ohos_id_corner_radius_default_l"))
     .linearGradient((this.isEnabled && this.isTouched) ? {
-                                                         angle: 90,
-                                                         direction: GradientDirection.Right,
-                                                         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-                                                       } : {
-                                                             angle: 90,
-                                                             direction: GradientDirection.Right,
-                                                             colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-                                                           })
+      angle: 90,
+      direction: GradientDirection.Right,
+      colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+    } : {
+      angle: 90,
+      direction: GradientDirection.Right,
+      colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+    })
     .alignItems(VerticalAlign.Center)
-    .onTouch((event: TouchEvent) => {
-      if (event.type === TouchType.Down) {
+    .onTouch((event?: TouchEvent) => {
+      if (event?.type === TouchType.Down) {
         this.isTouched = true;
       }
-      if (event.type === TouchType.Up) {
+      if (event?.type === TouchType.Up) {
         this.isTouched = false;
       }
     })

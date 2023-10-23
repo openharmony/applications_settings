@@ -14,7 +14,10 @@
  */
 
 import prompt from '@system.prompt';
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { GlobalContext } from '../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
@@ -64,8 +67,8 @@ struct PrivacySettings {
  */
 @Component
 export struct PermissionComponent {
-  private TAG = `${ConfigData.TAG} PrivacySettings PermissionComponent `;
   @State isTouched: boolean = false;
+  private TAG = `${ConfigData.TAG} PrivacySettings PermissionComponent `;
 
   build() {
     Column() {
@@ -89,20 +92,20 @@ export struct PermissionComponent {
       .width(ConfigData.WH_100_100)
       .borderRadius($r('app.float.radius_20'))
       .linearGradient(this.isTouched ? {
-                                         angle: 90,
-                                         direction: GradientDirection.Right,
-                                         colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-                                       } : {
-                                             angle: 90,
-                                             direction: GradientDirection.Right,
-                                             colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-                                           })
-      .onTouch((event: TouchEvent) => {
-        if (event.type === TouchType.Down) {
+        angle: 90,
+        direction: GradientDirection.Right,
+        colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+      } : {
+        angle: 90,
+        direction: GradientDirection.Right,
+        colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+      })
+      .onTouch((event?: TouchEvent) => {
+        if (event?.type === TouchType.Down) {
           this.isTouched = true;
         }
 
-        if (event.type === TouchType.Up) {
+        if (event?.type === TouchType.Up) {
           this.isTouched = false;
         }
       })
@@ -112,14 +115,16 @@ export struct PermissionComponent {
     .height($r('app.float.wh_value_56'))
     .borderRadius($r('app.float.radius_24'))
     .onClick(() => {
-      globalThis.settingsAbilityContext.startAbility({
+      let context = GlobalContext.getContext()
+        .getObject(GlobalContext.globalKeySettingsAbilityContext) as common.UIAbilityContext;
+      context.startAbility({
         bundleName: ConfigData.PERMISSION_MANAGER_BUNDLE_NAME,
         abilityName: ConfigData.PERMISSION_MANAGER_ABILITY_NAME,
       })
         .then((data) => {
           LogUtil.info(`${this.TAG}, ${ConfigData.PERMISSION_MANAGER_BUNDLE_NAME} start successful. Data: ${JSON.stringify(data)}`);
         })
-        .catch((error) => {
+        .catch((error: BusinessError) => {
           ResourceUtil.getString($r("app.string.permissionFailed")).then(value => {
             prompt.showToast({
               message: value,

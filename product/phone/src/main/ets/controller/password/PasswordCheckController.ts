@@ -54,9 +54,9 @@ export default class PasswordCheckController extends BaseSettingsController {
   };
 
   unsubscribe(): ISettingsController {
-    if (this.pinToken && this.pageRequestCode == ConfigData.PAGE_REQUEST_CODE_PASSWORD_CHANGE){
+    if (this.pinToken && this.pageRequestCode === ConfigData.PAGE_REQUEST_CODE_PASSWORD_CHANGE) {
       LogUtil.info(`${this.TAG}unsubscribe->password change dont closeSession`);
-    }else{
+    } else {
       PasswordModel.closeSession();
     }
     PasswordModel.unregisterInputer();
