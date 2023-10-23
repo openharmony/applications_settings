@@ -147,13 +147,13 @@ struct SoftwareUpdateComponent {
     .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
     .onClick(() => {
       let context = GlobalContext.getContext()
-        .getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.UIAbilityContext;
+        .getObject(GlobalContext.globalKeySettingsAbilityContext) as common.UIAbilityContext;
       context.startAbility({
-        bundleName: ConfigData.SOFTWARE_UPDATES_BUNDLE_NAME,
-        abilityName: ConfigData.SOFTWARE_UPDATES_ABILITY_NAME,
+        bundleName: ConfigData.softWareUpDatesBundleName,
+        abilityName: ConfigData.softWareUpDatesAbilityName,
       })
         .then((data) => {
-          LogUtil.info(`${this.TAG}, ${ConfigData.SOFTWARE_UPDATES_BUNDLE_NAME} start successful. Data: ${JSON.stringify(data)}`);
+          LogUtil.info(`${this.TAG}, ${ConfigData.softWareUpDatesBundleName} start successful. Data: ${JSON.stringify(data)}`);
         })
         .catch((error: Error) => {
           ResourceUtil.getString($r("app.string.softwareUpdateFailed")).then(value => {
@@ -161,7 +161,7 @@ struct SoftwareUpdateComponent {
               message: value,
               duration: 2000,
             });
-            LogUtil.error(`${this.TAG}, ${ConfigData.SOFTWARE_UPDATES_BUNDLE_NAME} start failed. Cause: ${JSON.stringify(error)}`);
+            LogUtil.error(`${this.TAG}, ${ConfigData.softWareUpDatesBundleName} start failed. Cause: ${JSON.stringify(error)}`);
           })
         })
     })

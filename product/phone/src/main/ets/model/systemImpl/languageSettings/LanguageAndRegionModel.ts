@@ -14,7 +14,7 @@
  */
 
 import i18n from '@ohos.i18n';
-import common from '@ohos.app.ability.common';
+import type common from '@ohos.app.ability.common';
 import dataStorage from '@ohos.data.preferences';
 import LogUtil from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import { GlobalContext } from '../../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
@@ -68,7 +68,7 @@ class LanguageAndRegionModel extends BaseModel {
    */
   @Log
   async initAppStorage(): Promise<void> {
-    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+    let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
     this.storage = await dataStorage.getPreferences(context, 'languageAndRegion');
     LogUtil.info(`${this.TAG} initAppStorage in` + JSON.stringify(this.storage));
     if (!(await this.storage.has(this.addStr))) {

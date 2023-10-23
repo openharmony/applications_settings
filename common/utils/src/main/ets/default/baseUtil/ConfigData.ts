@@ -93,8 +93,8 @@ export class ConfigData {
   PERMISSION_MANAGER_ABILITY_NAME = 'com.ohos.permissionmanager.MainAbility';
   MOBILE_DATA_BUNDLE_NAME = 'com.ohos.callui';
   MOBILE_DATA_ABILITY_NAME = 'com.ohos.mobiledatasettings.MainAbility';
-  SOFTWARE_UPDATES_BUNDLE_NAME = 'com.ohos.updateapp';
-  SOFTWARE_UPDATES_ABILITY_NAME = 'com.ohos.updateapp.MainAbility';
+  softWareUpDatesBundleName = 'com.ohos.updateapp';
+  softWareUpDatesAbilityName = 'com.ohos.updateapp.MainAbility';
   SECURITY_BUNDLE_NAME = 'com.ohos.certmanager';
   SECURITY_ABILITY_NAME = 'MainAbility';
 

@@ -23,20 +23,20 @@ import Audio from '@ohos.multimedia.audio';
 const groupId = Audio.DEFAULT_VOLUME_GROUP_ID;
 
 function getAudioManager() {
-  let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_AUDIO_MANAGER);
+  let context = GlobalContext.getContext().getObject(GlobalContext.globalKeyAudioManager);
   if (!context) {
-    GlobalContext.getContext().setObject(GlobalContext.GLOBAL_KEY_AUDIO_MANAGER, Audio.getAudioManager());
+    GlobalContext.getContext().setObject(GlobalContext.globalKeyAudioManager, Audio.getAudioManager());
   }
-  return GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_AUDIO_MANAGER) as Audio.AudioManager;
+  return GlobalContext.getContext().getObject(GlobalContext.globalKeyAudioManager) as Audio.AudioManager;
 }
 
 function audioVolumeGroupManager() {
-  let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_AUDIO_VOLUME_GROUP_MANAGER);
+  let context = GlobalContext.getContext().getObject(GlobalContext.globalKeyAudioVolumeGroupManager);
   if (!context) {
-    GlobalContext.getContext().setObject(GlobalContext.GLOBAL_KEY_AUDIO_VOLUME_GROUP_MANAGER,
+    GlobalContext.getContext().setObject(GlobalContext.globalKeyAudioVolumeGroupManager,
       getAudioManager().getVolumeManager().getVolumeGroupManager(groupId));
   }
-  return GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_AUDIO_VOLUME_GROUP_MANAGER) as Audio.AudioVolumeGroupManager;
+  return GlobalContext.getContext().getObject(GlobalContext.globalKeyAudioVolumeGroupManager) as Audio.AudioVolumeGroupManager;
 }
 
 export async function registerObserver() {

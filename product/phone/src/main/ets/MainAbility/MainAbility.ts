@@ -21,8 +21,8 @@ import { GlobalContext } from '../../../../../../common/utils/src/main/ets/defau
 export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     LogUtil.info(ConfigData.TAG + 'Application onCreate')
-    GlobalContext.getContext().setObject(GlobalContext.GLOBAL_KEY_ABILITY_WANT, want);
-    GlobalContext.getContext().setObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT, this.context);
+    GlobalContext.getContext().setObject(GlobalContext.globalKeyAbilityWant, want);
+    GlobalContext.getContext().setObject(GlobalContext.globalKeySettingsAbilityContext, this.context);
   }
 
   onDestroy() {
@@ -34,7 +34,7 @@ export default class MainAbility extends Ability {
     // Main window is created, set main page for this ability
     LogUtil.log("[Main] MainAbility onWindowStageCreate")
     windowStage.setUIContent(this.context, "pages/settingList", null)
-    GlobalContext.getContext().setObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT, this.context);
+    GlobalContext.getContext().setObject(GlobalContext.globalKeySettingsAbilityContext, this.context);
   }
 
   onWindowStageDestroy() {

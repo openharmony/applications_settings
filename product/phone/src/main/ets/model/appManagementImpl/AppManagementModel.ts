@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import common from '@ohos.app.ability.common';
+import type common from '@ohos.app.ability.common';
 import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
@@ -40,7 +40,7 @@ export class AppManagementModel extends BaseModel {
   constructor() {
     super();
     try {
-      let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+      let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
       context.resourceManager.getMediaBase64ByName(icon_default)
         .then((res) => {
           icon_default_str = res;
@@ -85,7 +85,7 @@ export class AppManagementModel extends BaseModel {
     let that = this;
     LogUtil.info('settings AppManagementModel data[index].name :' + data[index].name);
     try {
-      let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+      let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
       let appInfo = data[index].appInfo;
       LogUtil.info('settings AppManagementModel getResourceManager appInfo.labelId:' + JSON.stringify(appInfo.labelResource));
       if (appInfo.labelResource.id > 0) {

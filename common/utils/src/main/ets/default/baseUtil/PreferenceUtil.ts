@@ -21,7 +21,7 @@ import { GlobalContext } from './GlobalContext';
 
 //let preference = Storage.getStorageSync(ConfigData.PREFERENCES_PATH);
 this.storage = await dataStorage.getPreferences(
-  GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT), ConfigData.PREFERENCES_PATH);
+  GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext), ConfigData.PREFERENCES_PATH);
 
 export class PreferenceUtil {
   /**

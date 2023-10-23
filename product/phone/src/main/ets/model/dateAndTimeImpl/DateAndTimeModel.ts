@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import common from '@ohos.app.ability.common';
+import type common from '@ohos.app.ability.common';
 import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
 import BaseParseConfModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseParseConfModel';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
@@ -35,9 +35,9 @@ export class DateAndTimeModel extends BaseModel {
 
   constructor() {
     super();
-    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
-    if (!GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT)) {
-      LogUtil.info("global context settingsAbilityContext is null");
+    let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
+    if (!GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext)) {
+      LogUtil.info('global context settingsAbilityContext is null');
       return;
     }
     data_dataShare.createDataShareHelper(context, this.listenUri)
@@ -69,7 +69,7 @@ export class DateAndTimeModel extends BaseModel {
   @CatchError('24')
   getTimeFormat(): string {
     if (i18n.is24HourClock()) {
-      let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+      let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
       this.timeFormat = settings.getValueSync(context, ConfigData.TIME_FORMAT_KEY, ConfigData.TIME_FORMAT_24);
       LogUtil.info(ConfigData.TAG + 'DateAndTimeModel get time format is ' + this.timeFormat);
     }
@@ -129,7 +129,7 @@ export class DateAndTimeModel extends BaseModel {
       ret24HourClock = i18n.set24HourClock(false)
     }
     LogUtil.info(ConfigData.TAG + 'DateAndTimeModel i18n set24HourClock ' + JSON.stringify(ret24HourClock));
-    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+    let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
     settings.setValueSync(context, ConfigData.TIME_FORMAT_KEY, format);
     this.timeFormat = format;
     return true;
