@@ -92,7 +92,7 @@ struct PasswordSetting {
       }
       this.lockUi = true;
       let context = GlobalContext.getContext()
-        .getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.UIAbilityContext;
+        .getObject(GlobalContext.globalKeySettingsAbilityContext) as common.UIAbilityContext;
       context.startAbility({
         bundleName: ConfigData.FACEAUTH_BUNDLE_NAME,
         abilityName: ConfigData.FACEAUTH_ABILITY_NAME

@@ -104,7 +104,7 @@ export default class SearchModel {
       const STORE_CONFIG = {
         name: SearchConfig.RDB_NAME
       };
-      let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as Context;
+      let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as Context;
       this.rdbStore = await ohosDataRdb.getRdbStore(context, STORE_CONFIG, 1);
       LogUtil.log('settings SettingsSearch.db is ready.');
 

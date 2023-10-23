@@ -79,8 +79,8 @@ struct AccessibilitySettings {
             .height($r('app.float.wh_value_56'))
             .width(ConfigData.WH_100_100)
             .alignItems(VerticalAlign.Center)
-            .padding({ left: $r("app.float.wh_value_12"), right: $r('app.float.wh_value_6') })
-            .backgroundColor($r("app.color.white_bg_color"))
+            .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_6') })
+            .backgroundColor($r('app.color.white_bg_color'))
             .borderRadius($r('app.float.radius_24'));
           }
           .height($r('app.float.wh_value_56'))
@@ -192,7 +192,7 @@ struct AccessibilitySettings {
 
           SubHeader({ titleContent: $r('app.string.operate_accessibility') });
           SubEntryComponentWithEndText({
-            targetPage: "pages/accessibilityShortKey",
+            targetPage: 'pages/accessibilityShortKey',
             title: $r("app.string.accessibility_shortcuts"),
             endText: $shortKeyStatusText
           })
@@ -245,7 +245,7 @@ struct AccessibilitySettings {
             .height($r('app.float.wh_value_56'))
             .borderRadius($r('app.float.radius_24'))
             .enabled(this.serviceNum > 0 ? true : false)
-            .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
+            .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'));
           }
         }
         .useSizeType({
@@ -262,9 +262,9 @@ struct AccessibilitySettings {
     .height(ConfigData.WH_100_100);
   };
 
-  setShortKeyText(status: boolean, text: string, flag: boolean): void {
+  setShortKeyText(status: boolean, text: string): void {
     LogUtil.info(`${this.TAG} shortKeyState:${JSON.stringify(status)}`);
-    if (text === 'none' || flag) {
+    if (text === 'none') {
       this.shortKeyStatusText = (Object)($r('app.string.disabled'));
       return;
     }
@@ -315,8 +315,8 @@ struct AccessibilitySettings {
     await accessibility.getAccessibilityExtensionList('all', 'install').then((data) => {
       LogUtil.info(`${this.TAG}get accessibilityAbilityList success, service length: ${JSON.stringify(data.length)}`);
       if (data.length > 0) {
-        this.serviceNum = data.length;
         this.serviceStateText = $r('app.string.service_number', this.serviceNum);
+        this.serviceNum = data.length;
         LogUtil.info(`${this.TAG}serviceNumber: ${JSON.stringify(this.serviceNum)}`);
       } else {
         this.serviceStateText = $r('app.string.no_service');
@@ -354,7 +354,6 @@ struct AccessibilitySettings {
     }).catch((err: object) => {
       LogUtil.error(`${this.TAG}failed to get audioBalance, because ${JSON.stringify(err)}`);
     });
-    this.openStatusListener();
     this.getShortKeyStateAndTargetByStatus();
     this.getAbilityList();
     LogUtil.info(`${this.TAG}aboutToAppear out`);
@@ -374,28 +373,16 @@ struct AccessibilitySettings {
     }).catch((err: object) => {
       LogUtil.error(`${this.TAG}failed to get shortkeyTarget, because ${JSON.stringify(err)}`);
     });
-    let flag: boolean = true;
-    let installServiceList: Array<accessibility.accessibilityAccess> = await accessibility.getAccessibilityExtensionList('all', 'install')
-    if (installServiceList && installServiceList.length > 0) {
-      for (let enableService of installServiceList) {
-        if(enableService && enableService.id === this.shortKeyStatusText){
-          flag = false;
-        }
-      }
-    }
     this.setShortKeyText(this.shortKeyIsOn, this.shortKeyStatusText);
   }
 
   aboutToDisappear(): void {
     LogUtil.info(`${this.TAG}aboutToDisappear`);
-    this.closeExtendedServicesListener();
-    this.closeStatusListener();
   }
 
   onPageShow(): void {
     LogUtil.info(`${this.TAG}onPageShow in`);
     this.getShortKeyStateAndTargetByStatus();
-    this.openExtendedServicesListener();
     this.getAbilityList();
     LogUtil.info(`${this.TAG}onPageShow out`);
   }

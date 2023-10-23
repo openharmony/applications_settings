@@ -27,7 +27,7 @@ export class ResourceUtil {
    */
   async initResourceManager(): Promise<void> {
     if (!this.resMgr) {
-      let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as Context;
+      let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as Context;
       this.resMgr = await context.resourceManager;
     }
   }

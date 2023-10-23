@@ -12,17 +12,4 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-export class PasswordSettingItem {
-  constructor() {
-  }
-
-  settingIsSectionTitle?: boolean;
-  settingShouldDisplay?: boolean;
-  settingTitle?: string | Resource;
-  settingAlias?: string;
-  settingValue?: string;
-  settingArrow?: string;
-  settingRequestCode?: number;
-  settingUri?: string
-}
+module.exports = require('@ohos/hvigor-ohos-plugin').harTasks;
