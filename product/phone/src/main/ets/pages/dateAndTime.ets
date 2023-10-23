@@ -15,6 +15,7 @@
 
 import deviceInfo from '@ohos.deviceInfo';
 import CommonEvent from '@ohos.commonEvent';
+import CommonEventManager from '@ohos.commonEventManager';
 import DateAndTimeModel from '../model/dateAndTimeImpl/DateAndTimeModel';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import { BaseData } from '../../../../../../common/utils/src/main/ets/default/bean/BaseData';
@@ -43,7 +44,7 @@ struct dateAndTime {
   private image: string | Resource = '';
   private dateMark: string = 'date';
   private timeMark: string = 'time';
-  private subscriber;
+    private subscriber: CommonEventManager.CommonEventSubscriber | null = null;
   private headName: string = '';
 
   private commonEventSubscribeInfo: commonEvents = {
