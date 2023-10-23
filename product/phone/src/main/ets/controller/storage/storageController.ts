@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import common from '@ohos.app.ability.common';
+import type common from '@ohos.app.ability.common';
 import StorageModel from '../../model/storageImpl/StorageModel';
 import { LogAll } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
@@ -20,7 +20,7 @@ import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/de
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import BaseSettingsController
   from '../../../../../../../common/component/src/main/ets/default/controller/BaseSettingsController';
-import ISettingsController
+import type ISettingsController
   from '../../../../../../../common/component/src/main/ets/default/controller/ISettingsController';
 
 enum Space {
@@ -56,7 +56,7 @@ export default class storageController extends BaseSettingsController {
    * get TotalSpace
    */
   getTotalSpace() {
-    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+    let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
     let filesDir = context.filesDir;
     LogUtil.info(ConfigData.TAG + 'getStorageDataDir data: ' + JSON.stringify(filesDir));
     if (filesDir && filesDir.length > 0) {
@@ -77,7 +77,7 @@ export default class storageController extends BaseSettingsController {
    * get RemainingSpace
    */
   getFreeBytes() {
-    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as common.Context;
+    let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
     let filesDir = context.filesDir;
     LogUtil.info(ConfigData.TAG + 'getStorageDataDir data: ' + JSON.stringify(filesDir));
     if (filesDir && filesDir.length > 0) {

@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2023-2023 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an 'AS IS' BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -50,20 +50,20 @@ struct AccessibilityShortKey {
     Column() {
       GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
         Column() {
-          HeadComponent({ headName: $r("app.string.accessibility_shortcuts"), isActive: true });
-          Text($r("app.string.accessibility_shortcuts_tips"))
+          HeadComponent({ headName: $r('app.string.accessibility_shortcuts'), isActive: true });
+          Text($r('app.string.accessibility_shortcuts_tips'))
             .fontFamily('HarmonyHeiTi')
             .fontWeight(FontWeight.Regular)
-            .fontSize($r("app.float.font_14"))
-            .lineHeight($r("app.float.lineHeight_19"))
-            .fontColor($r("app.color.font_color_182431"))
+            .fontSize($r('app.float.font_14'))
+            .lineHeight($r('app.float.lineHeight_19'))
+            .fontColor($r('app.color.font_color_182431'))
             .margin({
-              bottom: $r("app.float.distance_36"),
-              top: $r("app.float.distance_24"),
-              left: $r("app.float.distance_12"),
-              right: $r("app.float.distance_12"),
+              bottom: $r('app.float.distance_36'),
+              top: $r('app.float.distance_24'),
+              left: $r('app.float.distance_12'),
+              right: $r('app.float.distance_12'),
             })
-            .opacity($r("app.float.opacity_100_60"))
+            .opacity($r('app.float.opacity_100_60'))
             .textAlign(TextAlign.Center);
 
           Column() {
@@ -88,8 +88,8 @@ struct AccessibilityShortKey {
                   .height($r('app.float.wh_value_56'))
                   .width(ConfigData.WH_100_100)
                   .alignItems(VerticalAlign.Center)
-                  .padding({ left: $r("app.float.wh_value_12"), right: $r('app.float.wh_value_6') })
-                  .backgroundColor($r("app.color.white_bg_color"))
+                  .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_6') })
+                  .backgroundColor($r('app.color.white_bg_color'))
                   .borderRadius($r('app.float.radius_24'));
                 }
                 .height($r('app.float.wh_value_56'))
@@ -101,11 +101,11 @@ struct AccessibilityShortKey {
               ListItem() {
                 Row() {
                   Column() {
-                    Text($r("app.string.accessibility_select_ability"))
+                    Text($r('app.string.accessibility_select_ability'))
                       .fontColor($r('sys.color.ohos_fa_text_primary'))
                       .fontFamily('HarmonyHeiTi')
                       .fontWeight(FontWeight.Medium)
-                      .fontSize($r("sys.float.ohos_id_text_size_body1"));
+                      .fontSize($r('sys.float.ohos_id_text_size_body1'));
                   }
                   .alignItems(HorizontalAlign.Start);
 
@@ -113,7 +113,7 @@ struct AccessibilityShortKey {
 
                   Row() {
                     Text(this.shortKeyStatusText)
-                      .margin({ right: $r("app.float.distance_4") })
+                      .margin({ right: $r('app.float.distance_4') })
                       .fontSize($r('sys.float.ohos_id_text_size_body2'))
                       .fontColor($r('sys.color.ohos_fa_text_secondary'));
 
@@ -121,13 +121,13 @@ struct AccessibilityShortKey {
                       .width($r('app.float.wh_value_12'))
                       .height($r('app.float.wh_value_24'))
                       .fillColor($r('sys.color.ohos_id_color_primary'))
-                      .opacity($r("app.float.opacity_0_2"));
+                      .opacity($r('app.float.opacity_0_2'));
                   }
                 }
                 .padding({ left: $r('sys.float.ohos_id_card_margin_start'), right: $r('app.float.distance_8') })
                 .alignItems(VerticalAlign.Center)
                 .width(ConfigData.WH_100_100)
-                .height($r("app.float.wh_value_48"))
+                .height($r('app.float.wh_value_48'))
                 .onClick(() => {
                   this.SelectAbilityScalingDialog.open();
                 });
@@ -141,13 +141,13 @@ struct AccessibilityShortKey {
               endMargin: $r('app.float.wh_value_15'),
             })
           }
-          .borderRadius($r("app.float.wh_value_24"))
-          .backgroundColor($r("app.color.white_bg_color"))
+          .borderRadius($r('app.float.wh_value_24'))
+          .backgroundColor($r('app.color.white_bg_color'))
           .width(ConfigData.WH_100_100)
-          .margin({ top: $r("app.float.distance_12") })
+          .margin({ top: $r('app.float.distance_12') })
           .padding({
-            top: $r("app.float.distance_4"),
-            bottom: $r("app.float.distance_4"),
+            top: $r('app.float.distance_4'),
+            bottom: $r('app.float.distance_4'),
           });
         }
         .useSizeType({
@@ -178,9 +178,9 @@ struct AccessibilityShortKey {
   async getShortKeyStateAndTarget(): Promise<void> {
     await config.shortkey.get().then((data) => {
       this.shortKeyIsOn = data;
-      LogUtil.info(TAG + 'get shortKeyIsOn success : ' +  data);
+      LogUtil.info(`${TAG} get shortKeyIsOn success : ${data}`);
     }).catch((err: BusinessError) => {
-      LogUtil.error(TAG + 'failed to get shortKeyIsOn, because ' + JSON.stringify(err));
+      LogUtil.error(`${TAG} failed to get shortKeyIsOn, because ${JSON.stringify(err)}`);
     });
 
     await config.shortkeyTarget.get().then((data) => {
@@ -200,7 +200,7 @@ struct AccessibilityShortKey {
         this.shortKeyStatusText = data.split('/')[1];
       }
     }).catch((err: BusinessError) => {
-      LogUtil.error(TAG + 'failed to get shortKeyTarget, because ' + JSON.stringify(err));
+      LogUtil.error(`${TAG} failed to get shortKeyTarget, because ${JSON.stringify(err)}`);
     });
   }
 
@@ -240,11 +240,11 @@ struct SelectAbilityScalingInformation {
   build() {
     Column() {
       Column() {
-        Text($r("app.string.accessibility_select_ability"))
+        Text($r('app.string.accessibility_select_ability'))
           .fontFamily('HarmonyHeiTi')
           .fontSize($r('sys.float.ohos_id_text_size_headline8'))
           .fontWeight(FontWeight.Medium)
-          .height($r("app.float.wh_value_56"))
+          .height($r('app.float.wh_value_56'))
           .alignSelf(ItemAlign.Start);
 
         List() {
@@ -259,8 +259,8 @@ struct SelectAbilityScalingInformation {
 
                 Radio({ value: '', group: 'radioGroup' })
                   .checked(this.checked === item ? true : false)
-                  .height($r("app.float.wh_value_24"))
-                  .width($r("app.float.wh_value_24"))
+                  .height($r('app.float.wh_value_24'))
+                  .width($r('app.float.wh_value_24'))
                   .onChange((value: boolean) => {
                     if (value) {
                       this.controller?.close();
@@ -270,34 +270,34 @@ struct SelectAbilityScalingInformation {
                     }
                   })
               }
-              .height($r("app.float.wh_value_48"))
+              .height($r('app.float.wh_value_48'))
             }
-            .height($r("app.float.wh_value_48"))
+            .height($r('app.float.wh_value_48'))
           })
         }
 
-        Text($r("app.string.Cancel_Animation"))
+        Text($r('app.string.Cancel_Animation'))
           .fontSize($r('sys.float.ohos_id_text_size_button1'))
           .fontColor($r('sys.color.ohos_id_color_text_primary_activated'))
           .alignSelf(ItemAlign.Center)
-          .width($r("app.float.wh_value_40"))
-          .height($r("app.float.wh_value_40"))
-          .margin({ top: $r("app.float.distance_8") })
+          .width($r('app.float.wh_value_40'))
+          .height($r('app.float.wh_value_40'))
+          .margin({ top: $r('app.float.distance_8') })
           .onClick(() => {
             this.controller?.close();
           })
       }
       .padding({
-        left: $r("app.float.padding_24"),
-        right: $r("app.float.padding_24"),
+        left: $r('app.float.padding_24'),
+        right: $r('app.float.padding_24'),
       })
       .width(ConfigData.WH_100_100)
       .alignItems(HorizontalAlign.Center)
-      .backgroundColor($r("app.color.white_bg_color"))
-      .borderRadius($r("app.float.radius_24"));
+      .backgroundColor($r('app.color.white_bg_color'))
+      .borderRadius($r('app.float.radius_24'));
     }
     .width(ConfigData.WH_100_100)
-    .padding({ left: $r("app.float.distance_12"), right: $r("app.float.distance_12") });
+    .padding({ left: $r('app.float.distance_12'), right: $r('app.float.distance_12') });
   }
 
   setAbilityText(ability: string): void {

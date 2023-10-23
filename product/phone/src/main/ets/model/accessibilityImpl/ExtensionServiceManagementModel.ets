@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
-import config from '@ohos.accessibility.config';
-import bundleMonitor from '@ohos.bundle.bundleMonitor';
 import bundleManager from '@ohos.bundle.bundleManager';
 import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 import accessibility from '@ohos.accessibility';
@@ -57,7 +54,7 @@ export class ExtensionServiceManagementModel extends BaseModel {
   constructor() {
     super();
     try {
-      let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as Context;
+      let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as Context;
       context.resourceManager.getMediaBase64ByName(icon_default)
         .then((res: string) => {
           icon_default_str = res;
@@ -73,7 +70,7 @@ export class ExtensionServiceManagementModel extends BaseModel {
     }
   }
 
-  }
+
   /**
    * get extensionService data
    */
@@ -81,10 +78,6 @@ export class ExtensionServiceManagementModel extends BaseModel {
     this.serviceInfoList = [];
     accessibility.getAccessibilityExtensionList('all', 'install').then((data) => {
       LogUtil.info(`${MODULE_TAG} extensionService data.length:  ${data.length} data: ${JSON.stringify(data)}`);
-      if (!data || data.length < 1) {
-        router.back();
-        return;
-      }
       this.getResourceItemAndState(INDEX, data.length, data);
     }).catch((err: object) => {
       LogUtil.error(`${MODULE_TAG} getExtensionServiceList failed, err: ${JSON.stringify(err)}`);
@@ -143,7 +136,7 @@ export class ExtensionServiceManagementModel extends BaseModel {
   async loadIcon(bundleInfo: bundleManager.BundleInfo): Promise<string> {
     let appInfo = bundleInfo.appInfo;
     let imageValue = '';
-    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as Context;
+    let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as Context;
     LogUtil.info(`${MODULE_TAG} getResourceManager appInfo.iconResource: ${JSON.stringify(appInfo.iconResource)}`);
     if (appInfo.iconResource.id > 0) {
       imageValue = await context.resourceManager.getMediaContentBase64(appInfo.iconResource);
@@ -163,7 +156,7 @@ export class ExtensionServiceManagementModel extends BaseModel {
    */
   async loadDescription(bundleInfo: bundleManager.BundleInfo, serviceName: string): Promise<ResourceStr> {
     let description: ResourceStr = $r('app.string.no_description_provided');
-    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as Context;
+    let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as Context;
     let moduleInfo: Array<bundleManager.HapModuleInfo> = bundleInfo.hapModulesInfo;
     if (moduleInfo.length > 0) {
       for (let hapInfo of moduleInfo) {

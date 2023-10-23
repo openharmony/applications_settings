@@ -192,7 +192,7 @@ struct ApplicationInfo {
     }
 
     if (this.bundleName == ' ') {
-      let want = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_ABILITY_WANT) as Want;
+      let want = GlobalContext.getContext().getObject(GlobalContext.globalKeyAbilityWant) as Want;
       if (want?.action === 'action.settings.app.info') {
         this.bundleName = want?.parameters?.settingsParamBundleName as string;
         let bundleList: bundle.BundleInfo[] = [];

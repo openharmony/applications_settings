@@ -100,8 +100,8 @@ struct mobileNetwork {
   }
 
   aboutToAppear() {
-    let context = GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT) as Context;
-    if (!GlobalContext.getContext().getObject(GlobalContext.GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT)) {
+    let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as Context;
+    if (!GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext)) {
       return;
     }
     LogUtil.info(MODULE_TAG + 'settings.getValueSync ' + settings.getValueSync(context, 'settings.telephony.airplanemode', '0'));

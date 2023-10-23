@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import bundleMonitor from '@ohos.bundle.bundleMonitor';
 import router from '@ohos.router';
 import deviceInfo from '@ohos.deviceInfo';
 import accessibility from '@ohos.accessibility';
@@ -65,7 +64,7 @@ struct AccessibilityServiceInfo {
   showDialog: CustomDialogController = new CustomDialogController({
     builder: ShowDialog({
       firstClickAction: () => {
-        this.openServiceButton(this.serviceInfo.serviceId);
+        this.enableAbility(this.serviceInfo.serviceId);
       },
       secondClickAction: () => {
         this.cancelButton();
@@ -194,15 +193,8 @@ struct AccessibilityServiceInfo {
     } else {
       this.isPhoneOrRK = false;
     }
-    this.openExtensionServiceManagementDetailsStatusListener();
-    this.openExtensionServiceManagementDetailsApplicationListener();
     this.getServiceName();
     LogUtil.info(`${this.tag} aboutToAppear end `);
-  }
-
-  aboutToDisappear(): void {
-    LogUtil.info(`${this.tag} aboutToDisappear start`);
-    this.closeExtensionServiceManagementDetailsStatusListener();
   }
 
   getServiceName(): void {
@@ -247,21 +239,8 @@ struct AccessibilityServiceInfo {
     });
   }
 
-  async openServiceButton(abilityName: string):Promise<void>{
-    let enabledServiceList: Array<accessibility.AccessibilityAbilityInfo> = await accessibility.getAccessibilityExtensionList('all', 'enable')
-    if (enabledServiceList && enabledServiceList.length > 0) {
-      for (let enabledService of enabledServiceList) {
-        if (enabledService.id && enabledService.id === abilityName) {
-          this.serviceIsOn = true;
-          return;
-        }
-      }
-    }
-    this.enableAbility(abilityName)
-  }
-
   cancelButton(): void {
-    this.disableAbility(this.serviceInfo.serviceId);
+    this.serviceIsOn = false;
     this.pageChanged = !this.pageChanged;
     LogUtil.info(`${MODULE_TAG} cancel: serviceStatus ${JSON.stringify(this.serviceIsOn)}`);
   }
