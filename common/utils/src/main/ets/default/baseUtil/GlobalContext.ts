@@ -14,10 +14,10 @@
  */
 
 export class GlobalContext {
-  static readonly GLOBAL_KEY_SETTINGS_ABILITY_CONTEXT = 'settingsAbilityContext';
-  static readonly GLOBAL_KEY_ABILITY_WANT = 'abilityWant';
-  static readonly GLOBAL_KEY_AUDIO_MANAGER = 'audioManager';
-  static readonly GLOBAL_KEY_AUDIO_VOLUME_GROUP_MANAGER = 'audioVolumeGroupManager';
+  static readonly globalKeySettingsAbilityContext = 'settingsAbilityContext';
+  static readonly globalKeyAbilityWant = 'abilityWant';
+  static readonly globalKeyAudioManager = 'audioManager';
+  static readonly globalKeyAudioVolumeGroupManager = 'audioVolumeGroupManager';
 
   private static instance: GlobalContext;
   private context = new Map<string, Object>();
