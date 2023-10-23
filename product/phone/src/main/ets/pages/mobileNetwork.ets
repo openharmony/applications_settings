@@ -35,8 +35,8 @@ struct mobileNetwork {
   @State controllerMobileNetworkIsOn: boolean = false;
   @StorageLink("endTextEmpty") endTextEmpty: String = "";
   private mobileNetworkController: MobileNetworkController = new MobileNetworkController();
-  private subscriber;
-  private subscribeInfo = {
+  private subscriber: CommonEventManager.CommonEventSubscriber|undefined = undefined;
+  private subscribeInfo: CommonEventManager.CommonEventSubscribeInfo = {
     events: [CommonEvent.Support.COMMON_EVENT_AIRPLANE_MODE_CHANGED]
   };
 
