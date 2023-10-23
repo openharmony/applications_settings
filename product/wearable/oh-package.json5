@@ -1,5 +1,6 @@
 {
   "license": "ISC",
+  "devDependencies": {},
   "name": "phone",
   "description": "example description",
   "repository": {},
