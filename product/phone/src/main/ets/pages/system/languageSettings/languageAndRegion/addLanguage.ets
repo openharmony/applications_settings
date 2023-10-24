@@ -22,6 +22,7 @@ import ConfigData from '../../../../../../../../../common/utils/src/main/ets/def
 import LanguageAndRegionModel from '../../../../model/systemImpl/languageSettings/LanguageAndRegionModel';
 import HeadComponent from '../../../../../../../../../common/component/src/main/ets/default/headComponent';
 import ResourceUtil from '../../../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
+import BasicDataSource from '../../../../../../../../../common/utils/src/main/ets/default/model/BasicDataSource';
 
 const deviceTypeInfo = deviceInfo.deviceType;
 
@@ -116,14 +117,14 @@ struct AddedLanguagesList {
         .padding({ left: $r("app.float.distance_8"), right: $r("app.float.distance_8") })
         .borderRadius($r("app.float.radius_20"))
         .linearGradient(item === this.touchedItem ? {
-          angle: 90,
-          direction: GradientDirection.Right,
-          colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-        } : {
-          angle: 90,
-          direction: GradientDirection.Right,
-          colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-        })
+                                                      angle: 90,
+                                                      direction: GradientDirection.Right,
+                                                      colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+                                                    } : {
+                                                          angle: 90,
+                                                          direction: GradientDirection.Right,
+                                                          colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+                                                        })
         .onTouch((event?: TouchEvent | undefined) => {
           if (event?.type === TouchType.Down) {
             this.touchedItem = item;
@@ -185,14 +186,14 @@ struct AllLanguagesList {
         .padding({ left: $r("app.float.distance_8"), right: $r("app.float.distance_8") })
         .borderRadius($r("app.float.radius_20"))
         .linearGradient(item === this.touchedItem ? {
-          angle: 90,
-          direction: GradientDirection.Right,
-          colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-        } : {
-          angle: 90,
-          direction: GradientDirection.Right,
-          colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-        })
+                                                      angle: 90,
+                                                      direction: GradientDirection.Right,
+                                                      colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
+                                                    } : {
+                                                          angle: 90,
+                                                          direction: GradientDirection.Right,
+                                                          colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
+                                                        })
         .onTouch((event?: TouchEvent | undefined) => {
           if (event?.type === TouchType.Down) {
             this.touchedItem = item;
@@ -257,11 +258,11 @@ struct AllLanguagesList {
 /**
  * Array Of AllLanguages For Lazy Loading
  */
-class AllLanguages implements IDataSource {
+class AllLanguages extends BasicDataSource {
   private languagesArray: string[] = [];
-  private listeners: DataChangeListener[] = [];
 
   constructor(languagesArray: string[]) {
+    super();
     this.languagesArray = languagesArray;
   }
 
