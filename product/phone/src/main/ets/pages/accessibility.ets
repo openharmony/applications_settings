@@ -274,7 +274,7 @@ struct AccessibilitySettings {
               bottom: $r('app.float.distance_24'),
             });
 
-          SubHeader({ titleContent: $r('app.string.operate_accessibility') });
+          SubHeader({ titleContent: ResourceUtils.getCapitalStringSync($r('app.string.operate_accessibility')) });
 
           Navigator({ target: 'pages/accessibilityShortKey' }) {
             Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
