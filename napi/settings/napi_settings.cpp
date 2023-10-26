@@ -646,8 +646,6 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
         [](napi_env env, void* data) {
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
             SETTING_LOG_INFO("settingsnapi : promise get callback key is %{public}s", asyncCallbackInfo->key.c_str());
-                asyncCallbackInfo->value.c_str());
-
             std::vector<std::string> columns;
             columns.push_back(SETTINGS_DATA_FIELD_VALUE);
             OHOS::NativeRdb::DataAbilityPredicates predicates;
