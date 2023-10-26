@@ -3,7 +3,7 @@
     "products": [
       {
         "name": "default",
-        "signingConfig": "release"，
+        "signingConfig": "release",
         "compileSdkVersion": 11,
         "compatibleSdkVersion": 9
       }
