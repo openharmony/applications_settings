@@ -461,7 +461,7 @@ napi_value napi_get_value_sync(napi_env env, napi_callback_info info)
         SETTING_LOG_INFO("settingsnapi : napi_get_value_sync called... return  %{public}s",
             asyncCallbackInfo->value.c_str());
         napi_value retVal = nullptr;
-        if(asyncCallbackInfo->value.size() <= 0){
+        if (asyncCallbackInfo->value.size() <= 0) {
             retVal = args[PARAM2];
         } else {
             retVal = wrap_string_to_js(env, asyncCallbackInfo->value);
@@ -480,8 +480,8 @@ napi_value napi_get_value_sync(napi_env env, napi_callback_info info)
     predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, unwrap_string_from_js(env, args[PARAM1]));
     
     std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultset = nullptr;
-    if(dataAbilityHelper != nullptr ){
-      resultset = dataAbilityHelper->Query(*uri, columns, predicates);
+    if (dataAbilityHelper != nullptr ) {
+        resultset = dataAbilityHelper->Query(*uri, columns, predicates);
     };
     SETTING_LOG_INFO("napi_get_value called... after dataAbilityHelper->Query");
 
@@ -584,7 +584,7 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
                 std::shared_ptr<Uri> uri = std::make_shared<Uri>(SETTINGS_DATA_BASE_URI);
                 SETTING_LOG_INFO("settingsnapi : callback napi_get_value called... before dataAbilityHelper->Query");
                 std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultset = nullptr;
-                if(asyncCallbackInfo->dataAbilityHelper != nullptr){
+                if (asyncCallbackInfo->dataAbilityHelper != nullptr) {
                     resultset = asyncCallbackInfo->dataAbilityHelper->Query(*uri, columns, predicates);
                 };
 
@@ -654,7 +654,7 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
             std::shared_ptr<Uri> uri = std::make_shared<Uri>(SETTINGS_DATA_BASE_URI);
             SETTING_LOG_INFO("settingsnapi : promise napi_get_value called... before dataAbilityHelper->Query");
             std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultset = nullptr;
-            if(asyncCallbackInfo->dataAbilityHelper != nullptr){
+            if (asyncCallbackInfo->dataAbilityHelper != nullptr) {
                 resultset = asyncCallbackInfo->dataAbilityHelper->Query(*uri, columns, predicates);
             }
 
@@ -828,7 +828,7 @@ napi_value napi_set_value_sync(napi_env env, napi_callback_info info)
 
     std::shared_ptr<Uri> uri = std::make_shared<Uri>(SETTINGS_DATA_BASE_URI);
     std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultset = nullptr;
-    if(dataAbilityHelper != nullptr){
+    if (dataAbilityHelper != nullptr) {
         resultset = dataAbilityHelper->Query(*uri, columns, predicates);
     }
 
@@ -888,7 +888,7 @@ void SetValueExecuteCB(napi_env env, void *data)
     std::shared_ptr<Uri> uri = std::make_shared<Uri>(SETTINGS_DATA_BASE_URI);
     SETTING_LOG_INFO("settingsnapi : execute... before dataAbilityHelper->Query");
     std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultset = nullptr;
-    if(asyncCallbackInfo->dataAbilityHelper != nullptr){
+    if (asyncCallbackInfo->dataAbilityHelper != nullptr) {
         resultset = asyncCallbackInfo->dataAbilityHelper->Query(*uri, columns, predicates);
     }
 
