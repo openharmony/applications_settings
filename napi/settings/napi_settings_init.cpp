@@ -19,6 +19,14 @@
 
 namespace OHOS {
 namespace Settings {
+class TableName
+{
+public:
+    static const std::string GLOBAL;
+    static const std::string SYSTEM;
+    static const std::string SECURE;
+};
+
 class Date
 {
 public:
@@ -141,6 +149,10 @@ public:
     static const std::string OWNER_LOCKDOWN_WIFI_CFG;
 };
 
+const std::string TableName::GLOBAL = "global";
+const std::string TableName::SYSTEM = "system";
+const std::string TableName::SECURE = "secure";
+
 const std::string Date::DATE_FORMAT = "settings.date.date_format";
 const std::string Date::TIME_FORMAT = "settings.date.time_format";
 const std::string Date::AUTO_GAIN_TIME = "settings.date.auto_gain_time";
@@ -223,6 +235,7 @@ const std::string Wireless::WIFI_WATCHDOG_STATUS = "settings.wireless.wifi_watch
 const std::string Wireless::WIFI_RADIO = "settings.wireless.wifi_radio";
 const std::string Wireless::OWNER_LOCKDOWN_WIFI_CFG = "settings.wireless.owner_lockdown_wifi_cfg";
 
+const std::string TableName_CLASS_NAME = "tableName";
 const std::string DATE_CLASS_NAME = "date";
 const std::string DISPLAY_CLASS_NAME = "display";
 const std::string GENERAL_CLASS_NAME = "general";
@@ -246,6 +259,24 @@ napi_value ClassConstructor(napi_env env, napi_callback_info info)
     napi_get_global(env, &global);
     SETTING_LOG_INFO("%{public}s is end", __FUNCTION__);
     return thisArg;
+}
+
+void InitTableNameMap(napi_env env, std::map<const char*, napi_value> &paramMap)
+{
+    napi_value varGlobal = nullptr;
+    napi_create_string_utf8(env,
+        TableName::GLOBAL.c_str(), NAPI_AUTO_LENGTH, &varGlobal);
+    paramMap["GLOBAL"] = varGlobal;
+
+    napi_value varSystem = nullptr;
+    napi_create_string_utf8(env,
+        TableName::SYSTEM.c_str(), NAPI_AUTO_LENGTH, &varSystem);
+    paramMap["SYSTEM"] = varSystem;
+
+    napi_value varSecure = nullptr;
+    napi_create_string_utf8(env,
+        TableName::SECURE.c_str(), NAPI_AUTO_LENGTH, &varSecure);
+    paramMap["SECURE"] = varSecure;
 }
 
 void InitDateMap(napi_env env, std::map<const char*, napi_value>& paramMap)
@@ -669,6 +700,8 @@ void InitConstClassByName(napi_env env, napi_value exports, std::string name)
         InitTTSMap(env, propertyMap);
     } else if (name == WIRELESS_CLASS_NAME) {
         InitWirelessMap(env, propertyMap);
+    } else if (name == TableName_CLASS_NAME) {
+        InitTableNameMap(env, propertyMap);
     } else {
         return;
     }
@@ -688,6 +721,7 @@ void InitConstClassByName(napi_env env, napi_value exports, std::string name)
 napi_value InitNapiClass(napi_env env, napi_value exports)
 {
     SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
+    InitConstClassByName(env, exports, TableName_CLASS_NAME);
     InitConstClassByName(env, exports, DATE_CLASS_NAME);
     InitConstClassByName(env, exports, DISPLAY_CLASS_NAME);
     InitConstClassByName(env, exports, GENERAL_CLASS_NAME);
