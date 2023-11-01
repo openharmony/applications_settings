@@ -503,7 +503,8 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     int tmpId = -1;
     OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(tmpId);
     std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, std::to_string(tmpId), asyncCallbackInfo->key);
-    SETTING_LOG_INFO("settingsnapi : Set uri : %{public}s, key: %{public}s", strUri.c_str(), (asyncCallbackInfo->key).c_str());
+    SETTING_LOG_INFO(
+        "settingsnapi : Set uri : %{public}s, key: %{public}s", strUri.c_str(), (asyncCallbackInfo->key).c_str());
     OHOS::Uri uri(strUri);
 
     OHOS::DataShare::DataSharePredicates predicates;
