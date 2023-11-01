@@ -27,11 +27,13 @@
 #define ARGS_TWO 2
 #define ARGS_THREE 3
 #define ARGS_FOUR 4
+#define ARGS_FIVE 5
 
 #define PARAM0 0
 #define PARAM1 1
 #define PARAM2 2
 #define PARAM3 3
+#define PARAM4 4
 
 namespace OHOS {
 namespace Settings {
@@ -108,6 +110,11 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info);
  * @return napi_value the return value from NAPI C++ to JS for the module.
  */
 napi_value napi_can_show_floating(napi_env env, napi_callback_info info);
+std::string GetStageUriStr(std::string tableName, std::string IdStr, std::string keyStr);
+std::string GetProxyUriStr(std::string tableName, std::string IdStr);
+bool IsTableNameInvalid(std::string tableName);
+napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, napi_value* args);
+napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, napi_value* args);
 }  // namespace Settings
 }  // namespace OHOS
 #endif  //  NAPI_SETTINGS_H
