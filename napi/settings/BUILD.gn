@@ -36,6 +36,7 @@ ohos_shared_library("settings") {
     "data_share:datashare_consumer",
     "hilog:libhilog",
     "napi:ace_napi",
+    "os_account:os_account_innerkits",
     "relational_store:native_dataability",
     "relational_store:native_rdb",
   ]
