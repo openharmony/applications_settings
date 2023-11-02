@@ -190,10 +190,6 @@
         "reason": "$string:MODIFY_AUDIO_SETTINGS"
       },
       {
-        "name": "ohos.permission.ENTERPRISE_SET_DATETIME",
-        "reason": "$string:ENTERPRISE_SET_DATETIME"
-      },
-      {
         "name": "ohos.permission.CONNECTIVITY_INTERNAL",
         "reason": "$string:CONNECTIVITY_INTERNAL"
       },
