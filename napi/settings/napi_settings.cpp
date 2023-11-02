@@ -1676,7 +1676,7 @@ napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
         retVal = wrap_string_to_js(env, asyncCallbackInfo->value);
     }
     if (asyncCallbackInfo->dataShareHelper = nullptr) {
-        asyncCallbackInfo->dataShareHelper->release();
+        asyncCallbackInfo->dataShareHelper->Release();
     }
     delete asyncCallbackInfo;
     return retVal;
@@ -1711,7 +1711,7 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
     SetValueExecuteExt(env, (void *)asyncCallbackInfo, unwrap_string_from_js(env, args[PARAM2]));
     napi_value result = wrap_bool_to_js(env, asyncCallbackInfo->status != 0);
     if (asyncCallbackInfo->dataShareHelper = nullptr) {
-        asyncCallbackInfo->dataShareHelper->release();
+        asyncCallbackInfo->dataShareHelper->Release();
     }
     delete asyncCallbackInfo;
     return result;
