@@ -140,7 +140,7 @@ struct AsyncCallbackInfo {
     napi_async_work asyncWork;
     napi_deferred deferred;
     napi_ref callbackRef;
-    DataAbilityHelper *dataAbilityHelper;
+    std::shared_ptr<DataAbilityHelper> dataAbilityHelper;
     std::string key;
     std::string value;
     std::string uri;
@@ -567,8 +567,12 @@ napi_value napi_get_value_sync(napi_env env, napi_callback_info info)
     }
 
     std::shared_ptr<Uri> uri = std::make_shared<Uri>(SETTINGS_DATA_BASE_URI);
-    DataAbilityHelper *dataAbilityHelper = nullptr;
-    NAPI_CALL(env, napi_unwrap(env, args[PARAM0], reinterpret_cast<void **>(&dataAbilityHelper)));
+    std::shared_ptr<DataAbilityHelper> dataAbilityHelper = nullptr;
+    NAPIDataAbilityHelperWrapper* wrapper = nullptr;
+    NAPI_CALL(env, napi_unwrap(env, args[PARAM0], reinterpret_cast<void **>(&wrapper)));
+    if (wrapper != nullptr) {
+        dataAbilityHelper = wrapper->GetDataAbilityHelper();
+    }
 
     std::vector<std::string> columns;
     columns.push_back(SETTINGS_DATA_FIELD_VALUE);
@@ -690,7 +694,11 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
         return napi_get_value_ext(env, info, stageMode);
     }
     
-    NAPI_CALL(env, napi_unwrap(env, args[PARAM0], reinterpret_cast<void **>(&asyncCallbackInfo->dataAbilityHelper)));
+    NAPIDataAbilityHelperWrapper* wrapper = nullptr;
+    NAPI_CALL(env, napi_unwrap(env, args[PARAM0], reinterpret_cast<void **>(&wrapper)));
+    if (wrapper != nullptr) {
+        asyncCallbackInfo->dataAbilityHelper = wrapper->GetDataAbilityHelper();
+    }
     SETTING_LOG_INFO("settingsnapi : input paramter is (DataAbilityHelper)");
 
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
@@ -960,8 +968,12 @@ napi_value napi_set_value_sync(napi_env env, napi_callback_info info)
         return napi_set_value_sync_ext(stageMode, argc, env, args);
     }
 
-    DataAbilityHelper *dataAbilityHelper = nullptr;
-    NAPI_CALL(env, napi_unwrap(env, args[PARAM0], reinterpret_cast<void **>(&dataAbilityHelper)));
+    std::shared_ptr<DataAbilityHelper> dataAbilityHelper = nullptr;
+    NAPIDataAbilityHelperWrapper* wrapper = nullptr;
+    NAPI_CALL(env, napi_unwrap(env, args[PARAM0], reinterpret_cast<void **>(&wrapper)));
+    if (wrapper != nullptr) {
+        dataAbilityHelper = wrapper->GetDataAbilityHelper();
+    }
 
     std::string argsName = unwrap_string_from_js(env, args[PARAM1]);
     std::string argsDefaultValue = unwrap_string_from_js(env, args[PARAM2]);
@@ -1213,7 +1225,11 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
         return napi_set_value_ext(env, info, stageMode);
     }
 
-    NAPI_CALL(env, napi_unwrap(env, args[PARAM0], reinterpret_cast<void **>(&asyncCallbackInfo->dataAbilityHelper)));
+    NAPIDataAbilityHelperWrapper* wrapper = nullptr;
+    NAPI_CALL(env, napi_unwrap(env, args[PARAM0], reinterpret_cast<void **>(&wrapper)));
+    if (wrapper != nullptr) {
+        asyncCallbackInfo->dataAbilityHelper = wrapper->GetDataAbilityHelper();
+    }
     SETTING_LOG_INFO("settingsnapi : input paramter is (DataAbilityHelper)");
 
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
