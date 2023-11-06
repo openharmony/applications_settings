@@ -50,6 +50,7 @@ struct AccessibilityServiceInfo {
   bundleName: string = '';
   serviceName: string = '';
   capabilities: Array<accessibility.Capability> = ['retrieve', 'keyEventObserver', 'gesture', 'zoom', 'touchGuide'];
+  private scroller: Scroller = new Scroller();
   @State serviceIsOn: boolean = false;
   @State pageChanged: boolean = false;
   @State serviceIsOnClick: boolean = false;
@@ -84,111 +85,114 @@ struct AccessibilityServiceInfo {
       GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
         Column() {
           LongHeadComponent({ longHeadName: this.serviceInfo.serviceTitle, isActive: true });
+          Scroll(this.scroller) {
+            Column() {
+              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+                Row() {
+                  Text(this.serviceInfo.serviceTitle)
+                    .fontSize($r('sys.float.ohos_id_text_size_body1'))
+                    .fontColor($r('sys.color.ohos_id_color_text_primary'))
+                    .fontWeight(FontWeight.Medium)
+                    .maxLines(ComponentConfig.MAX_LINES_3)
+                    .textOverflow({ overflow: TextOverflow.Ellipsis })
+                    .width('90%')
+                    .textAlign(TextAlign.Start);
 
-          Column() {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+                  Blank();
+
+                  if (this.pageChanged) {
+                    Toggle({ type: ToggleType.Switch, isOn: this.serviceIsOn })
+                      .width('36vp')
+                      .height('20vp')
+                      .selectedColor('#007DFF')
+                      .onClick(() => {
+                        this.serviceIsOnClick = true;
+                      })
+                      .onChange((isOn: boolean) => {
+                        this.setExtensionServiceState(isOn);
+                      });
+                  } else {
+                    Toggle({ type: ToggleType.Switch, isOn: this.serviceIsOn })
+                      .width('36vp')
+                      .height('20vp')
+                      .selectedColor('#007DFF')
+                      .onClick(() => {
+                        this.serviceIsOnClick = true;
+                      })
+                      .onChange((isOn: boolean) => {
+                        this.setExtensionServiceState(isOn);
+                      });
+                  }
+                }
+                .height($r('app.float.wh_value_56'))
+                .width(ConfigData.WH_100_100)
+                .alignItems(VerticalAlign.Center)
+                .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_6') })
+                .backgroundColor($r('app.color.white_bg_color'))
+                .borderRadius($r('app.float.radius_24'));
+              }
+
+              Blank(4);
+
               Row() {
-                Text(this.serviceInfo.serviceTitle)
+                Text($r('app.string.more_settings'))
                   .fontSize($r('sys.float.ohos_id_text_size_body1'))
                   .fontColor($r('sys.color.ohos_id_color_text_primary'))
                   .fontWeight(FontWeight.Medium)
-                  .maxLines(ComponentConfig.MAX_LINES_3)
-                  .textOverflow({ overflow: TextOverflow.Ellipsis })
-                  .width('90%')
                   .textAlign(TextAlign.Start);
 
                 Blank();
-
-                if (this.pageChanged) {
-                  Toggle({ type: ToggleType.Switch, isOn: this.serviceIsOn })
-                    .width('36vp')
-                    .height('20vp')
-                    .selectedColor('#007DFF')
-                    .onClick(() => {
-                      this.serviceIsOnClick = true;
-                    })
-                    .onChange((isOn: boolean) => {
-                      this.setExtensionServiceState(isOn);
-                    });
-                } else {
-                  Toggle({ type: ToggleType.Switch, isOn: this.serviceIsOn })
-                    .width('36vp')
-                    .height('20vp')
-                    .selectedColor('#007DFF')
-                    .onClick(() => {
-                      this.serviceIsOnClick = true;
-                    })
-                    .onChange((isOn: boolean) => {
-                      this.setExtensionServiceState(isOn);
-                    });
-                }
+                Image('/res/image/ic_settings_arrow.svg')
+                  .width($r('app.float.wh_value_12'))
+                  .height($r('app.float.wh_value_24'))
+                  .margin({ right: $r('app.float.distance_8') })
+                  .fillColor($r('sys.color.ohos_id_color_primary'))
+                  .opacity($r('sys.float.ohos_fa_alpha_content_fourth'));
               }
               .height($r('app.float.wh_value_56'))
               .width(ConfigData.WH_100_100)
               .alignItems(VerticalAlign.Center)
               .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_6') })
+              .enabled(false)
               .backgroundColor($r('app.color.white_bg_color'))
               .borderRadius($r('app.float.radius_24'));
+
+              Blank(20);
+
+              Text($r('app.string.help'))
+                .width(ConfigData.WH_100_100)
+                .fontSize($r('app.float.font_14'))
+                .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+                .height($r('app.float.wh_value_52'))
+                .lineHeight($r('app.float.wh_value_20'))
+                .padding({
+                  left: $r('app.float.wh_value_12'),
+                  top: $r('app.float.distance_4'),
+                  bottom: $r('app.float.distance_24'),
+                });
+              Text(this.serviceInfo.serviceSummary)
+                .width(ConfigData.WH_100_100)
+                .fontSize($r('app.float.font_14'))
+                .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+                .height('auto')
+                .lineHeight($r('app.float.wh_value_20'))
+                .padding({
+                  left: $r('app.float.wh_value_12'),
+                  top: $r('app.float.distance_4'),
+                  bottom: $r('app.float.distance_80'),
+                });
             }
-
-            Blank(4);
-
-            Row() {
-              Text($r('app.string.more_settings'))
-                .fontSize($r('sys.float.ohos_id_text_size_body1'))
-                .fontColor($r('sys.color.ohos_id_color_text_primary'))
-                .fontWeight(FontWeight.Medium)
-                .textAlign(TextAlign.Start);
-
-              Blank();
-              Image('/res/image/ic_settings_arrow.svg')
-                .width($r('app.float.wh_value_12'))
-                .height($r('app.float.wh_value_24'))
-                .margin({ right: $r('app.float.distance_8') })
-                .fillColor($r('sys.color.ohos_id_color_primary'))
-                .opacity($r('sys.float.ohos_fa_alpha_content_fourth'));
-            }
-            .height($r('app.float.wh_value_56'))
-            .width(ConfigData.WH_100_100)
-            .alignItems(VerticalAlign.Center)
-            .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_6') })
-            .enabled(false)
-            .backgroundColor($r('app.color.white_bg_color'))
-            .borderRadius($r('app.float.radius_24'));
-
-            Blank(20);
-
-            Text($r('app.string.help'))
-              .width(ConfigData.WH_100_100)
-              .fontSize($r('app.float.font_14'))
-              .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-              .height($r('app.float.wh_value_52'))
-              .lineHeight($r('app.float.wh_value_20'))
-              .padding({
-                left: $r('app.float.wh_value_12'),
-                top: $r('app.float.distance_4'),
-                bottom: $r('app.float.distance_24'),
-              });
-            Text(this.serviceInfo.serviceSummary)
-              .width(ConfigData.WH_100_100)
-              .fontSize($r('app.float.font_14'))
-              .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-              .height($r('app.float.wh_value_336'))
-              .align(Alignment.Top)
-              .maxLines(10)
-              .textOverflow({ overflow: TextOverflow.Ellipsis })
-              .lineHeight($r('app.float.wh_value_20'))
-              .padding({
-                left: $r('app.float.wh_value_12'),
-                top: $r('app.float.distance_4'),
-                bottom: $r('app.float.distance_24'),
-              });
+            .useSizeType({
+              sm: { span: 4, offset: 0 },
+              md: { span: 6, offset: 1 },
+              lg: { span: 8, offset: 2 },
+            });
           }
-          .useSizeType({
-            sm: { span: 4, offset: 0 },
-            md: { span: 6, offset: 1 },
-            lg: { span: 8, offset: 2 },
-          })
+          .width(ConfigData.WH_100_100)
+          .height(ConfigData.WH_100_100)
+          .align(Alignment.TopStart)
+          .scrollBar(BarState.Auto)
+          .edgeEffect(EdgeEffect.Spring);
         }
       }
       .width(ConfigData.WH_100_100)
