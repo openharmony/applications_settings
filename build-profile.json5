@@ -5,7 +5,7 @@
         "name": "default",
         "signingConfig": "release",
         "compileSdkVersion": 11,
-        "compatibleSdkVersion": 9
+        "compatibleSdkVersion": 10
       }
     ]
   },
