@@ -446,7 +446,7 @@ struct ShowDialog {
         .fontSize($r("app.float.font_20"))
         .fontColor(Color.White)
         .fontWeight(FontWeight.Medium)
-        .width(ComponentConfig.WH_50_100)
+        .width(ComponentConfig.WH_90_100)
         .onClick(() => this.cancelEvent());
       Divider()
         .color($r('sys.color.ohos_id_color_list_separator'))
@@ -458,7 +458,7 @@ struct ShowDialog {
         .fontSize($r("app.float.font_20"))
         .fontColor(Color.Red)
         .fontWeight(FontWeight.Medium)
-        .width(ComponentConfig.WH_50_100)
+        .width(ComponentConfig.WH_90_100)
         .enabled(this.enableState)
         .opacity(this.enableState ? 1 : 0.5)
         .onClick(() => this.confirmEvent());
