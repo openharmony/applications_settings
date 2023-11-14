@@ -181,9 +181,14 @@ napi_value napi_get_uri_sync(napi_env env, napi_callback_info info)
         SETTING_LOG_INFO("settingsnapi : ARGS_TWO");
         std::string keyStr = unwrap_string_from_js(env, args[PARAM0]);
         // get userId string
-        int tmpId = -1;
-        OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(tmpId);
-        std::string tmpIdStr = std::to_string(tmpId);
+        std::vector<int> tmpId;
+        OHOS::AccountSA::OsAccountManager::QueryActiveOsAccountIds(tmpId);
+        std::string tmpIdStr = "100";
+        if (tmpId.size() > 0) {
+            tmpIdStr = std::to_string(tmpId[0]);
+        } else {
+            SETTING_LOG_ERROR("settingsnapi : userid is invalid, use id 100 instead");
+        }
         std::string tableName = unwrap_string_from_js(env, args[PARAM1]);
         std::string retStr = GetStageUriStr(tableName, tmpIdStr, keyStr);
         retUri = wrap_string_to_js(env, retStr);
@@ -255,9 +260,14 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
 
     std::string keyStr = unwrap_string_from_js(env, args[PARAM0]);
     // get userId string
-    int tmpId = -1;
-    OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(tmpId);
-    std::string tmpIdStr = std::to_string(tmpId);
+    std::vector<int> tmpId;
+    OHOS::AccountSA::OsAccountManager::QueryActiveOsAccountIds(tmpId);
+    std::string tmpIdStr = "100";
+    if (tmpId.size() > 0) {
+        tmpIdStr = std::to_string(tmpId[0]);
+    } else {
+        SETTING_LOG_ERROR("settingsnapi : userid is invalid, use id 100 instead");
+    }
     std::string tableName = "";
     if (callType == STAGE_CALLBACK_SPECIFIC) {
         tableName = unwrap_string_from_js(env, args[PARAM2]);
@@ -350,12 +360,18 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
 {
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
     std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultset = nullptr;
-    int tmpId = -1;
-    OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(tmpId);
+    std::vector<int> tmpId;
+    OHOS::AccountSA::OsAccountManager::QueryActiveOsAccountIds(tmpId);
+    std::string tmpIdStr = "100";
+    if (tmpId.size() > 0) {
+        tmpIdStr = std::to_string(tmpId[0]);
+    } else {
+        SETTING_LOG_ERROR("settingsnapi : userid is invalid, use id 100 instead");
+    }
     std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
-    std::string strProxyUri = GetProxyUriStr(tableName, std::to_string(tmpId));
+    std::string strProxyUri = GetProxyUriStr(tableName, tmpIdStr);
     OHOS::Uri proxyUri(strProxyUri);
-    SETTING_LOG_INFO("settingsnapi : <Ver-10-24> strProxyUri: %{public}s", strProxyUri.c_str());
+    SETTING_LOG_INFO("settingsnapi : <Ver-11-14> strProxyUri: %{public}s", strProxyUri.c_str());
     auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
 
     dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri);
@@ -402,9 +418,15 @@ void GetValueExecuteExt(napi_env env, void *data)
     OHOS::DataShare::DataSharePredicates predicates;
     predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
 
-    int tmpId = -1;
-    OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(tmpId);
-    std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, std::to_string(tmpId), asyncCallbackInfo->key);
+    std::vector<int> tmpId;
+    OHOS::AccountSA::OsAccountManager::QueryActiveOsAccountIds(tmpId);
+    std::string tmpIdStr = "100";
+    if (tmpId.size() > 0) {
+        tmpIdStr = std::to_string(tmpId[0]);
+    } else {
+        SETTING_LOG_ERROR("settingsnapi : userid is invalid, use id 100 instead");
+    }
+    std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, tmpIdStr, asyncCallbackInfo->key);
     SETTING_LOG_INFO(
         "settingsnapi : Get uri : %{public}s, key: %{public}s", strUri.c_str(), (asyncCallbackInfo->key).c_str());
     OHOS::Uri uri(strUri);
@@ -500,9 +522,15 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     val.Put(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
     val.Put(SETTINGS_DATA_FIELD_VALUE, setValue);
 
-    int tmpId = -1;
-    OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(tmpId);
-    std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, std::to_string(tmpId), asyncCallbackInfo->key);
+    std::vector<int> tmpId;
+    OHOS::AccountSA::OsAccountManager::QueryActiveOsAccountIds(tmpId);
+    std::string tmpIdStr = "100";
+    if (tmpId.size() > 0) {
+        tmpIdStr = std::to_string(tmpId[0]);
+    } else {
+        SETTING_LOG_ERROR("settingsnapi : userid is invalid, use id 100 instead");
+    }
+    std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, tmpIdStr, asyncCallbackInfo->key);
     SETTING_LOG_INFO(
         "settingsnapi : Set uri : %{public}s, key: %{public}s", strUri.c_str(), (asyncCallbackInfo->key).c_str());
     OHOS::Uri uri(strUri);
@@ -931,7 +959,6 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
         return wrap_void_to_js(env);
     }
 }
-
 
 /**
  * @brief setValue NAPI implementation.
