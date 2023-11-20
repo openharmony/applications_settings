@@ -190,10 +190,6 @@
         "reason": "$string:MODIFY_AUDIO_SETTINGS"
       },
       {
-        "name": "ohos.permission.ENTERPRISE_SET_DATETIME",
-        "reason": "$string:ENTERPRISE_SET_DATETIME"
-      },
-      {
         "name": "ohos.permission.CONNECTIVITY_INTERNAL",
         "reason": "$string:CONNECTIVITY_INTERNAL"
       },
@@ -212,6 +208,10 @@
       {
         "name": "ohos.permission.LISTEN_BUNDLE_CHANGE",
         "reason": "$string:APPLICATION_EXTENDED_SERVICE_ACCESS"
+      },
+      {
+        "name": "ohos.permission.READ_ACCESSIBILITY_CONFIG",
+        "reason": "$string:READ_ACCESSIBILITY_CONFIG_PERMISSION"
       }
     ]
   }

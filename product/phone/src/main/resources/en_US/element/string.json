@@ -1278,7 +1278,7 @@
     },
     {
       "name": "WRITE_ACCESSIBILITY_CONFIG_PERMISSION",
-      "value":"Accessibility Config Write Permission"
+      "value": "Accessibility Config Write Permission"
     },
     {
       "name": "accessibility",
@@ -1431,6 +1431,10 @@
     {
       "name": "performance_may_be_affected",
       "value": "performance may be affected"
+    },
+    {
+      "name": "READ_ACCESSIBILITY_CONFIG_PERMISSION",
+      "value": "Accessibility Config Read Permission"
     }
   ]
 }
