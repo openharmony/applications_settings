@@ -1435,6 +1435,10 @@
     {
       "name": "performance_may_be_affected",
       "value": "可能会影响性能"
+    },
+    {
+      "name": "READ_ACCESSIBILITY_CONFIG_PERMISSION",
+      "value": "无障碍设置读取权限"
     }
   ]
 }

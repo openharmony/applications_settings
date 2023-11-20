@@ -28,7 +28,7 @@ export class ResourceUtils {
     if (typeof resource === 'string') {
       return resource;
     }
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = getContext() as common.UIAbilityContext;
     if (!context.resourceManager) {
       return '';
     }
@@ -59,7 +59,7 @@ export class ResourceUtils {
       return '';
     }
     try {
-      let context = getContext(this) as common.UIAbilityContext;
+      let context = getContext() as common.UIAbilityContext;
       return context.resourceManager.getPluralStringValueSync(resource, num).toUpperCase();
     } catch (error) {
       let code = (error as BusinessError).code;
