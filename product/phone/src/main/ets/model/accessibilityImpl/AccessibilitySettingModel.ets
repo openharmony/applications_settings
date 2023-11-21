@@ -84,6 +84,13 @@ export class AccessibilitySettingModel {
           LogUtil.error(`${TAG} daltonizationState set ${isOn} err: ${JSON.stringify(err)}`);
         });
         break;
+      case 'ignoreRepeatClick':
+        config.ignoreRepeatClick.set(isOn).then(() => {
+          LogUtil.info(`${TAG} ignoreRepeatClick set ${isOn} success`);
+        }).catch((err: BusinessError) => {
+          LogUtil.error(`${TAG} ignoreRepeatClick set ${isOn} err: ${JSON.stringify(err)}`);
+        });
+        break;
       default:
         break;
     }
@@ -113,6 +120,24 @@ export class AccessibilitySettingModel {
       LogUtil.info(`${TAG} daltonizationColorFilter config success`);
     }).catch((err: object) => {
       console.error(`${TAG} failed to set daltonizationColorFilter`);
+    });
+  }
+
+  static accessibilityClickResponseTimeSet(targetName: config.ClickResponseTime): void {
+    LogUtil.info(`${TAG} accessibilityColorCorrection config begin: ${targetName}`);
+    config.clickResponseTime.set(targetName).then(() => {
+      LogUtil.info(`${TAG} clickResponseTime config success`);
+    }).catch((err: object) => {
+      console.error(`${TAG} failed to set clickResponseTime`);
+    });
+  }
+
+  static accessibilityIgnoreRepeatClickTimeSet(targetName: config.RepeatClickInterval): void {
+    LogUtil.info(`${TAG} accessibilityColorCorrection config begin: ${targetName}`);
+    config.repeatClickInterval.set(targetName).then(() => {
+      LogUtil.info(`${TAG} ignoreRepeatClickTime config success`);
+    }).catch((err: object) => {
+      console.error(`${TAG} failed to set ignoreRepeatClickTime`);
     });
   }
 }
