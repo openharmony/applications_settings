@@ -1377,6 +1377,46 @@
       "value": "可能会影响性能"
     },
     {
+      "name": "screen_touch",
+      "value": "屏幕触控"
+    },
+    {
+      "name": "click_duration",
+      "value": "点击持续时间"
+    },
+    {
+      "name": "short",
+      "value": "短 "
+    },
+    {
+      "name": "centre",
+      "value": "中"
+    },
+    {
+      "name": "long",
+      "value": "长"
+    },
+    {
+      "name": "Ignore_duplicate_clicks",
+      "value": "忽略重复点击"
+    },
+    {
+      "name": "Ignore_duplicate_clicks_illustrate",
+      "value": "在设定的时间间隔内多次点击视为单次点击"
+    },
+    {
+      "name": "default_short",
+      "value": "短 (默认)"
+    },
+    {
+      "name": "shortest",
+      "value": "最短"
+    },
+    {
+      "name": "longest",
+      "value": "最长"
+    },
+    {
       "name": "READ_ACCESSIBILITY_CONFIG_PERMISSION",
       "value": "无障碍设置读取权限"
     }
