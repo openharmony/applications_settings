@@ -1433,8 +1433,52 @@
       "value": "performance may be affected"
     },
     {
+      "name": "screen_touch",
+      "value": "Touchscreen settings"
+    },
+    {
+      "name": "click_duration",
+      "value": "Touch duration"
+    },
+    {
+      "name": "Ignore_duplicate_clicks",
+      "value": "Ignore repeated touches"
+    },
+    {
+      "name": "short",
+      "value": "Short"
+    },
+    {
+      "name": "default_short",
+      "value": "Short (default)"
+    },
+    {
+      "name": "shortest",
+      "value": "Shortest"
+    },
+    {
+      "name": "longest",
+      "value": "Longest"
+    },
+    {
+      "name": "long",
+      "value": "Long"
+    },
+    {
+      "name": "centre",
+      "value": "Medium"
+    },
+    {
+      "name": "Ignore_duplicate_clicks_illustrate",
+      "value": "Multiple touches within the set time are considered as single touches"
+    },
+    {
       "name": "READ_ACCESSIBILITY_CONFIG_PERMISSION",
       "value": "Accessibility Config Read Permission"
+    },
+    {
+      "name": "time_interval",
+      "value": "Time interval"
     }
   ]
 }

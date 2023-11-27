@@ -41,6 +41,7 @@
     "pages/compatibilityAssessment",
     "pages/mobileNetwork",
     "pages/accessibilityShortKey",
-    "pages/accessibilityColorCorrection"
+    "pages/accessibilityColorCorrection",
+    "pages/accessibilityScreenTouch"
   ]
 }

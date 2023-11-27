@@ -36,7 +36,7 @@ struct AccessibilityColorCorrection {
     builder: SelectAbilityScalingInformation({
       allModeNameList: $allModeNameList,
       colorModeStatusText: $colorModeStatusText,
-      checked: $checked
+      checked: $checked,
     }),
     alignment: DialogAlignment.Bottom,
     offset: ({ dx: 0, dy: '-12dp' }),
@@ -206,8 +206,8 @@ struct AccessibilityColorCorrection {
 struct SelectAbilityScalingInformation {
   controller?: CustomDialogController;
   @Link colorModeStatusText: string;
-  @Link checked: string;
-  @Link allModeNameList: Array<string>;
+  @Link checked: config.DaltonizationColorFilter;
+  @Link allModeNameList: Array<config.DaltonizationColorFilter>;
 
   build() {
     Column() {
