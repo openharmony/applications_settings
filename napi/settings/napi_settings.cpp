@@ -278,7 +278,7 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
     }
     std::string retStr = GetStageUriStr(tableName, tmpIdStr, keyStr);
     asyncCallbackInfo->uri = retStr;
-    SETTING_LOG_INFO("uri aft is %{public}s", a_C_B_I->uri.c_str());
+    SETTING_LOG_INFO("uri aft is %{public}s", asyncCallbackInfo->uri.c_str());
     SETTING_LOG_INFO("uri aft create aysnc c_b info");
 
     napi_value resource = nullptr;
@@ -1165,7 +1165,7 @@ napi_value SetValueAsync(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
 
 napi_value SetValuePromise(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
 {
-    SETTING_LOG_INFO("set  do promise");
+    SETTING_LOG_INFO("set do promise");
     napi_value promise;
     napi_deferred deferred;
     NAPI_CALL(env, napi_create_promise(env, &deferred, &promise));
