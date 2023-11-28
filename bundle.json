@@ -29,6 +29,7 @@
                 "data_share",
                 "hilog",
                 "relational_store",
+                "os_account",
                 "napi"
             ],
             "third_party": []
