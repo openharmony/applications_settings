@@ -27,8 +27,9 @@
                 "ability_runtime",
                 "c_utils",
                 "data_share",
-                "hiviewdfx_hilog_native",
+                "hilog",
                 "relational_store",
+                "os_account",
                 "napi"
             ],
             "third_party": []
