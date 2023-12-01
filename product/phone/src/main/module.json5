@@ -60,6 +60,18 @@
         "startWindowBackground": "$color:white",
       }
     ],
+
+    "extensionAbilities": [
+      {
+        "name": "accessibilityWindowShortKey",
+        "srcEntry": "./ets/pages/UIAbility/accessibilityWindowShortKey.ets",
+        "description": "accessibilityWindowShortKey",
+        "exported": true,
+        "visible": true,
+        "type": "sysDialog/common"
+      }
+    ],
+
     "requestPermissions": [
       {
         "name": "ohos.permission.MANAGE_LOCAL_ACCOUNTS",

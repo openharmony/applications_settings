@@ -32,14 +32,15 @@ const BASIC_ABILITY_INVERT_COLOR = 'INVERT_COLOR';
 struct AccessibilityShortKey {
   @State shortKeyIsOn: boolean = false;
   @State shortKeyStatusText: string = '';
-  @State checked: string = '';
+  // @State checked: string[] = [];
   @State extAbilityNameList: string[] = [];
   @State AllAbilityNameList: string[] = [];
+  @State selectAbilityList: string[] = [];
   private SelectAbilityScalingDialog: CustomDialogController = new CustomDialogController({
     builder: SelectAbilityScalingInformation({
       AllAbilityNameList: $AllAbilityNameList,
       shortKeyStatusText: $shortKeyStatusText,
-      checked: $checked,
+      selectAbilityList: $selectAbilityList,
       extAbilityNameList: $extAbilityNameList,
     }),
     alignment: DialogAlignment.Center,
@@ -185,28 +186,37 @@ struct AccessibilityShortKey {
       LogUtil.error(`${TAG} failed to get shortKeyIsOn, because ${JSON.stringify(err)}`);
     });
 
-    await config.shortkeyTarget.get().then((data) => {
-      LogUtil.info(`${TAG} get shortkeyTarget success: ${data}`);
-      if (data === 'none') {
+    await config.shortkeyMultiTargets.get().then((data) => {
+      LogUtil.info(`${TAG} get shortkeyTarget success: ${JSON.stringify(data)}`);
+      if (!data || data.length < 1) {
         this.shortKeyStatusText = (Object)($r('app.string.disabled'));
         return;
       }
-      if (data === BASIC_ABILITY_HIGH_CONTRAST_TEXT) {
-        this.checked = BASIC_ABILITY_HIGH_CONTRAST_TEXT;
-        this.shortKeyStatusText = (Object)($r('app.string.highContrast_text'));
-      } else if (data === BASIC_ABILITY_SINGLE_AUDIO) {
-        this.checked = BASIC_ABILITY_SINGLE_AUDIO;
-        this.shortKeyStatusText = (Object)($r('app.string.single_audio'));
-      } else if (data === BASIC_ABILITY_INVERT_COLOR) {
-        this.checked = BASIC_ABILITY_INVERT_COLOR;
-        this.shortKeyStatusText = (Object)($r('app.string.invert_color'));
-      } else {
-        this.checked = data;
-        this.shortKeyStatusText = data.split('/')[1];
-      }
+      this.selectAbilityList = JSON.parse(JSON.stringify(data));
+      this.getShortKeyStatus(data);
     }).catch((err: BusinessError) => {
       LogUtil.error(`${TAG} failed to get shortKeyTarget, because ${JSON.stringify(err)}`);
     });
+  }
+
+  getShortKeyStatus(list: string[]): void {
+    LogUtil.info(`${TAG} get getShortKeyStatus success: ${JSON.stringify(list)}`);
+    let targetName: string = '';
+    if (list[0] === BASIC_ABILITY_HIGH_CONTRAST_TEXT) {
+      targetName = (Object)($r('app.string.highContrast_text'));
+    } else if (list[0] === BASIC_ABILITY_SINGLE_AUDIO) {
+      targetName = (Object)($r('app.string.single_audio'));
+    } else if (list[0] === BASIC_ABILITY_INVERT_COLOR) {
+      targetName = (Object)($r('app.string.invert_color'));
+    } else {
+      this.shortKeyStatusText = list[0].split('/')[1];
+    }
+    if (list.length > 1) {
+      this.shortKeyStatusText = targetName + '...';
+    } else {
+      this.shortKeyStatusText = targetName;
+    }
+    LogUtil.info(`${TAG} get getShortKeyStatus success: ${this.shortKeyStatusText}`);
   }
 
   generateAllAbilityNameList(): Array<string> {
@@ -261,14 +271,26 @@ struct AccessibilityShortKey {
   }
 
   async abilitySelectListenerRemove(): Promise<void> {
+    let check: string[] = [];
     this.extAbilityNameList = [];
     this.AllAbilityNameList = [];
     await this.updateAccessibilityExtensionList();
     this.AllAbilityNameList = this.generateAllAbilityNameList();
-    if (this.AllAbilityNameList.indexOf(this.checked) === -1) {
-      this.shortKeyStatusText = (Object)($r('app.string.disabled'));
-      this.setShortcutsFunctionState(false);
-      AccessibilitySettingModel.accessibilityShortKeyStateSet('none');
+    if (this.selectAbilityList && this.selectAbilityList.length >0) {
+      for (let value of this.selectAbilityList) {
+        if (this.AllAbilityNameList.indexOf(value) !== -1) {
+          check.push(value);
+        }
+      }
+      if (check.length !== this.selectAbilityList.length) {
+        if (check.length > 0) {
+          this.getShortKeyStatus(check);
+        } else {
+          this.shortKeyStatusText = (Object)($r('app.string.disabled'));
+          this.setShortcutsFunctionState(false);
+        }
+        AccessibilitySettingModel.accessibilityShortKeyMultiTargetsSet(check);
+      }
     }
     this.SelectAbilityScalingDialog.close();
   }
@@ -318,9 +340,10 @@ struct AccessibilityShortKey {
 struct SelectAbilityScalingInformation {
   controller?: CustomDialogController;
   @Link shortKeyStatusText: string;
-  @Link checked: string;
+  // @Link checked: string[];
   @Link extAbilityNameList: Array<string>;
   @Link AllAbilityNameList: Array<string>;
+  @Link selectAbilityList: Array<string>;
 
   updateAccessibilityExtensionList() {
     accessibility.getAccessibilityExtensionList('all', 'install').then((data) => {
@@ -388,17 +411,21 @@ struct SelectAbilityScalingInformation {
                   .fontSize($r('sys.float.ohos_id_text_size_body1'))
                   .fontWeight(FontWeight.Medium);
 
-                Radio({ value: '', group: 'radioGroup' })
-                  .checked(this.checked === item ? true : false)
+                Checkbox({ name: '', group: 'checkboxGroup' })
+                  .select(this.selectAbilityList.includes(item) ? true : false)
                   .height($r('app.float.wh_value_24'))
                   .width($r('app.float.wh_value_24'))
                   .onChange((value: boolean) => {
                     if (value) {
-                      this.controller?.close();
-                      this.setAbilityText(item);
-                      this.setShortKeyStatusText(item);
-                      this.checked = item;
+                      this.selectAbilityList.push(item);
+                    } else {
+                      this.selectAbilityList = this.selectAbilityList.filter((value: string, index) => {
+                        if (value !== item) {
+                          return value;
+                        }
+                      })
                     }
+                    // this.checked = item;
                   });
               }
               .height($r('app.float.wh_value_48'));
@@ -407,16 +434,31 @@ struct SelectAbilityScalingInformation {
           })
         }
 
-        Text($r('app.string.Cancel_Animation'))
-          .fontSize($r('sys.float.ohos_id_text_size_button1'))
-          .fontColor($r('sys.color.ohos_id_color_text_primary_activated'))
-          .alignSelf(ItemAlign.Center)
-          .width($r('app.float.wh_value_60'))
-          .height($r('app.float.wh_value_40'))
-          .margin({ top: $r('app.float.distance_8') })
-          .onClick(() => {
-            this.controller?.close();
-          });
+        Row() {
+          Text($r('app.string.Cancel_Animation'))
+            .fontSize($r('sys.float.ohos_id_text_size_button1'))
+            .fontColor($r('sys.color.ohos_id_color_text_primary_activated'))
+            .alignSelf(ItemAlign.Center)
+            .width($r('app.float.wh_value_60'))
+            .height($r('app.float.wh_value_40'))
+            .margin({ top: $r('app.float.distance_8') })
+            .onClick(() => {
+              this.controller?.close();
+            });
+          Text($r('app.string.ok'))
+            .fontSize($r('sys.float.ohos_id_text_size_button1'))
+            .fontColor($r('sys.color.ohos_id_color_text_primary_activated'))
+            .alignSelf(ItemAlign.Center)
+            .width($r('app.float.wh_value_60'))
+            .height($r('app.float.wh_value_40'))
+            .margin({ top: $r('app.float.distance_8') })
+            .onClick(() => {
+              this.setAbilityList();
+            });
+        }
+        .width(ConfigData.WH_100_100)
+        .justifyContent(FlexAlign.Center);
+
       }
       .padding({
         left: $r('app.float.padding_24'),
@@ -431,9 +473,12 @@ struct SelectAbilityScalingInformation {
     .padding({ left: $r('app.float.distance_12'), right: $r('app.float.distance_12') });
   }
 
-  setAbilityText(ability: string): void {
-    LogUtil.info(`${TAG} set ability text ${ability}`);
-    AccessibilitySettingModel.accessibilityShortKeyStateSet(ability);
+  setAbilityList(): void {
+    LogUtil.info(`${TAG} set ability List ${this.selectAbilityList}`);
+    AccessibilitySettingModel.accessibilityShortKeyMultiTargetsSet(this.selectAbilityList);
+    this.getShortKeyStatus();
+    // this.checked = JSON.parse(JSON.stringify(this.selectAbilityList));
+    this.controller?.close();
   }
 
   generateAllAbilityNameList(): Array<string> {
@@ -441,15 +486,28 @@ struct SelectAbilityScalingInformation {
     return basicAbilities.concat(this.extAbilityNameList);
   }
 
-  setShortKeyStatusText(text: string): void {
-    if (text === BASIC_ABILITY_HIGH_CONTRAST_TEXT) {
-      this.shortKeyStatusText = (Object)($r('app.string.highContrast_text'));
-    } else if (text === BASIC_ABILITY_SINGLE_AUDIO) {
-      this.shortKeyStatusText = (Object)($r('app.string.single_audio'));
-    } else if (text === BASIC_ABILITY_INVERT_COLOR) {
-      this.shortKeyStatusText = (Object)($r('app.string.invert_color'));
+  getShortKeyStatus(): void {
+    if (this.selectAbilityList && this.selectAbilityList.length > 1) {
+      let targetName: string = this.setShortKeyStatusText(this.selectAbilityList[0]);
+      this.shortKeyStatusText = targetName + '...';
+    } else if (this.selectAbilityList && this.selectAbilityList.length === 1) {
+      this.shortKeyStatusText = this.setShortKeyStatusText(this.selectAbilityList[0]);
     } else {
-      this.shortKeyStatusText = text.split('/')[1];
+      this.shortKeyStatusText = (Object)($r('app.string.disabled'));
     }
+  }
+
+  setShortKeyStatusText(text: string): string {
+    let targetValue: string = '';
+    if (text === BASIC_ABILITY_HIGH_CONTRAST_TEXT) {
+      targetValue = (Object)($r('app.string.highContrast_text'));
+    } else if (text === BASIC_ABILITY_SINGLE_AUDIO) {
+      targetValue = (Object)($r('app.string.single_audio'));
+    } else if (text === BASIC_ABILITY_INVERT_COLOR) {
+      targetValue = (Object)($r('app.string.invert_color'));
+    } else {
+      targetValue = text.split('/')[1];
+    }
+    return targetValue
   }
 }
