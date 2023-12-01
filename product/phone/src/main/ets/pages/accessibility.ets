@@ -24,7 +24,7 @@ import HeadComponent from '../../../../../../common/component/src/main/ets/defau
 import { SubHeader } from '../../../../../../common/component/src/main/ets/default/textComponent';
 import { AccessibilitySettingModel } from '../model/accessibilityImpl/AccessibilitySettingModel';
 import {
-  SubEntryComponentWithEndText
+  SubEntryComponent,SubEntryComponentWithEndText
 } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
 
 const AUDIO_BALANCE_STEP_VALUE: number = 1;
@@ -276,48 +276,60 @@ struct AccessibilitySettings {
 
           SubHeader({ titleContent: ResourceUtils.getCapitalStringSync($r('app.string.operate_accessibility')) });
 
-          Navigator({ target: 'pages/accessibilityShortKey' }) {
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-              Row() {
-                Text($r('app.string.accessibility_shortcuts'))
-                  .fontSize($r('app.float.font_16'))
-                  .fontWeight(FontWeight.Medium)
-                  .fontColor($r('app.color.font_color_182431'))
-                  .lineHeight($r('app.float.wh_value_22'))
-                  .margin({ left: $r('app.float.distance_8') })
-                  .textAlign(TextAlign.Start);
-              }
-
-              Row() {
-                Text(this.shortKeyStatusText)
-                  .fontSize($r('app.float.font_14'))
-                  .lineHeight($r('app.float.wh_value_19'))
-                  .fontWeight(FontWeight.Regular)
-                  .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-                  .textAlign(TextAlign.End)
-                  .margin({ right: $r('app.float.distance_4') });
-                Image('/res/image/ic_settings_arrow.svg')
-                  .height($r('app.float.wh_value_24'))
-                  .width($r('app.float.wh_value_12'))
-                  .fillColor($r('sys.color.ohos_id_color_primary'))
-                  .margin({ right: $r('app.float.distance_8') })
-                  .opacity($r('app.float.opacity_0_2'));
-              }
-            }
-            .onTouch((event?: TouchEvent) => {
-              if (event && event.type === TouchType.Down) {
-                this.isTouched = true;
-              }
-              if (event && event.type === TouchType.Up) {
-                this.isTouched = false;
-              }
+          Column() {
+            SubEntryComponent({
+              title: $r('app.string.screen_touch'),
+              targetPage: 'pages/accessibilityScreenTouch'
             })
-            .height(ComponentConfig.WH_100_100)
-            .width(ComponentConfig.WH_100_100)
-            .borderRadius($r('app.float.radius_20'));
+              .opacity(1);
+
+            Navigator({ target: 'pages/accessibilityShortKey' }) {
+              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+                Row() {
+                  Text($r('app.string.accessibility_shortcuts'))
+                    .fontSize($r('app.float.font_16'))
+                    .fontWeight(FontWeight.Medium)
+                    .fontColor($r('app.color.font_color_182431'))
+                    .lineHeight($r('app.float.wh_value_22'))
+                    .margin({ left: $r('app.float.distance_8') })
+                    .textAlign(TextAlign.Start);
+                }
+
+                Row() {
+                  Text(this.shortKeyStatusText)
+                    .fontSize($r('app.float.font_14'))
+                    .lineHeight($r('app.float.wh_value_19'))
+                    .fontWeight(FontWeight.Regular)
+                    .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+                    .textAlign(TextAlign.End)
+                    .margin({ right: $r('app.float.distance_4') });
+                  Image('/res/image/ic_settings_arrow.svg')
+                    .height($r('app.float.wh_value_24'))
+                    .width($r('app.float.wh_value_12'))
+                    .fillColor($r('sys.color.ohos_id_color_primary'))
+                    .margin({ right: $r('app.float.distance_8') })
+                    .opacity($r('app.float.opacity_0_2'));
+                }
+              }
+              .onTouch((event?: TouchEvent) => {
+                if (event && event.type === TouchType.Down) {
+                  this.isTouched = true;
+                }
+                if (event && event.type === TouchType.Up) {
+                  this.isTouched = false;
+                }
+              })
+              .height(ComponentConfig.WH_100_100)
+              .width(ComponentConfig.WH_100_100)
+              .borderRadius($r('app.float.radius_20'));
+            }
+            .padding($r('app.float.distance_4'))
+            .height($r('app.float.wh_value_56'))
+            .borderRadius($r('app.float.radius_24'))
+            .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'));
           }
-          .padding($r('app.float.distance_4'))
-          .height($r('app.float.wh_value_56'))
+          .height($r('app.float.wh_value_96'))
+          .width(ConfigData.WH_100_100)
           .borderRadius($r('app.float.radius_24'))
           .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'));
 
@@ -385,7 +397,7 @@ struct AccessibilitySettings {
   };
 
   setShortKeyText(status: boolean, text: string, flag: boolean): void {
-    LogUtil.info(`${this.TAG} shortKeyState: ${JSON.stringify(status)},${JSON.stringify(text)}`);
+    LogUtil.info(`${this.TAG} shortKeyState: status:${JSON.stringify(status)},text:${JSON.stringify(text)},flag:${JSON.stringify(flag)}`);
     if (this.basicList.includes(text)) {
       flag = false;
     }

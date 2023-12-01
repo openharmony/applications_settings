@@ -140,4 +140,13 @@ export class AccessibilitySettingModel {
       console.error(`${TAG} failed to set ignoreRepeatClickTime`);
     });
   }
+
+  static accessibilityShortKeyMultiTargetsSet(targetList: Array<string>): void {
+    LogUtil.info(`${TAG} accessibilityColorCorrection config begin: ${JSON.stringify(targetList)}`);
+    config.shortkeyMultiTargets.set(targetList).then(() => {
+      LogUtil.info(`${TAG} shortkeyMultiTargets config success`);
+    }).catch((err: object) => {
+      console.error(`${TAG} failed to set shortkeyMultiTargets`);
+    });
+  }
 }
