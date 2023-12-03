@@ -61,16 +61,16 @@
       }
     ],
 
-    "extensionAbilities": [
-      {
-        "name": "accessibilityWindowShortKey",
-        "srcEntry": "./ets/pages/UIAbility/accessibilityWindowShortKey.ets",
-        "description": "accessibilityWindowShortKey",
-        "exported": true,
-        "visible": true,
-        "type": "sysDialog/common"
-      }
-    ],
+//    "extensionAbilities": [
+//      {
+//        "name": "accessibilityWindowShortKey",
+//        "srcEntry": "./ets/pages/UIAbility/accessibilityWindowShortKey.ets",
+//        "description": "accessibilityWindowShortKey",
+//        "exported": true,
+//        "visible": true,
+//        "type": "sysDialog/common"
+//      }
+//    ],
 
     "requestPermissions": [
       {
