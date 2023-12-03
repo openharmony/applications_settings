@@ -24,7 +24,7 @@ import HeadComponent from '../../../../../../common/component/src/main/ets/defau
 import { SubHeader } from '../../../../../../common/component/src/main/ets/default/textComponent';
 import { AccessibilitySettingModel } from '../model/accessibilityImpl/AccessibilitySettingModel';
 import {
-  SubEntryComponent,SubEntryComponentWithEndText
+  SubEntryComponent
 } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
 
 const AUDIO_BALANCE_STEP_VALUE: number = 1;
