@@ -281,7 +281,6 @@ struct AccessibilitySettings {
               title: $r('app.string.screen_touch'),
               targetPage: 'pages/accessibilityScreenTouch'
             })
-              .opacity(1);
 
             Navigator({ target: 'pages/accessibilityShortKey' }) {
               Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
