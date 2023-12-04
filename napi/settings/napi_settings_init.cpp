@@ -773,6 +773,7 @@ napi_value InitNapiClass(napi_env env, napi_value exports)
 {
     SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
     InitConstClassByName(env, exports, TableName_CLASS_NAME);
+    InitConstClassByName(env, exports, DomainName_CLASS_NAME);
     InitConstClassByName(env, exports, DATE_CLASS_NAME);
     InitConstClassByName(env, exports, DISPLAY_CLASS_NAME);
     InitConstClassByName(env, exports, GENERAL_CLASS_NAME);
