@@ -19,12 +19,12 @@
 
 namespace OHOS {
 namespace Settings {
-class TableName
+class DomainName
 {
 public:
-    static const std::string GLOBAL;
-    static const std::string SYSTEM;
-    static const std::string SECURE;
+    static const std::string DEVICE_SHARED;
+    static const std::string USER_PROPERTY;
+    static const std::string USER_SECURITY;
 };
 
 class Date
@@ -155,9 +155,9 @@ public:
     static const std::string SUSPEND_SOURCES_CFG;
 };
 
-const std::string TableName::GLOBAL = "global";
-const std::string TableName::SYSTEM = "system";
-const std::string TableName::SECURE = "secure";
+const std::string DomainName::DEVICE_SHARED = "global";
+const std::string DomainName::USER_PROPERTY = "system";
+const std::string DomainName::USER_SECURITY = "secure";
 
 const std::string Date::DATE_FORMAT = "settings.date.date_format";
 const std::string Date::TIME_FORMAT = "settings.date.time_format";
@@ -243,7 +243,7 @@ const std::string Wireless::OWNER_LOCKDOWN_WIFI_CFG = "settings.wireless.owner_l
 
 const std::string Power::SUSPEND_SOURCES_CFG = "settings.power.suspend_sources";
 
-const std::string TableName_CLASS_NAME = "tableName";
+const std::string TableName_CLASS_NAME = "domainName";
 const std::string DATE_CLASS_NAME = "date";
 const std::string DISPLAY_CLASS_NAME = "display";
 const std::string GENERAL_CLASS_NAME = "general";
@@ -274,18 +274,18 @@ void InitTableNameMap(napi_env env, std::map<const char*, napi_value> &paramMap)
 {
     napi_value varGlobal = nullptr;
     napi_create_string_utf8(env,
-        TableName::GLOBAL.c_str(), NAPI_AUTO_LENGTH, &varGlobal);
-    paramMap["GLOBAL"] = varGlobal;
+        DomainName::DEVICE_SHARED.c_str(), NAPI_AUTO_LENGTH, &varGlobal);
+    paramMap["DEVICE_SHARED"] = varGlobal;
 
     napi_value varSystem = nullptr;
     napi_create_string_utf8(env,
-        TableName::SYSTEM.c_str(), NAPI_AUTO_LENGTH, &varSystem);
-    paramMap["SYSTEM"] = varSystem;
+        DomainName::USER_SECURITY.c_str(), NAPI_AUTO_LENGTH, &varSecure);
+    paramMap["USER_SECURITY"] = varSecure;
 
     napi_value varSecure = nullptr;
     napi_create_string_utf8(env,
-        TableName::SECURE.c_str(), NAPI_AUTO_LENGTH, &varSecure);
-    paramMap["SECURE"] = varSecure;
+        DomainName::USER_SECURITY.c_str(), NAPI_AUTO_LENGTH, &varSecure);
+    paramMap["USER_SECURITY"] = varSecure;
 }
 
 void InitDateMap(napi_env env, std::map<const char*, napi_value>& paramMap)
