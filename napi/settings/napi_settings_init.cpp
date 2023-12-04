@@ -19,12 +19,17 @@
 
 namespace OHOS {
 namespace Settings {
-class DomainName
+class TableName
 {
 public:
     static const std::string GLOBAL;
     static const std::string SYSTEM;
     static const std::string SECURE;
+};
+
+class DomainName
+{
+public:
     static const std::string DEVICE_SHARED;
     static const std::string USER_PROPERTY;
     static const std::string USER_SECURITY;
