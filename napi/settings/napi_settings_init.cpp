@@ -309,8 +309,8 @@ void InitDomainNameMap(napi_env env, std::map<const char*, napi_value> &paramMap
 
     napi_value varSystem = nullptr;
     napi_create_string_utf8(env,
-        DomainName::USER_SECURITY.c_str(), NAPI_AUTO_LENGTH, &varSecure);
-    paramMap["USER_SECURITY"] = varSecure;
+        DomainName::USER_PROPERTY.c_str(), NAPI_AUTO_LENGTH, &varSystem);
+    paramMap["USER_PROPERTY"] = varSystem;
 
     napi_value varSecure = nullptr;
     napi_create_string_utf8(env,
