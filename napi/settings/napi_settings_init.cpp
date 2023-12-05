@@ -27,6 +27,14 @@ public:
     static const std::string SECURE;
 };
 
+class DomainName
+{
+public:
+    static const std::string DEVICE_SHARED;
+    static const std::string USER_PROPERTY;
+    static const std::string USER_SECURITY;
+};
+
 class Date
 {
 public:
@@ -158,6 +166,9 @@ public:
 const std::string TableName::GLOBAL = "global";
 const std::string TableName::SYSTEM = "system";
 const std::string TableName::SECURE = "secure";
+const std::string DomainName::DEVICE_SHARED = "global";
+const std::string DomainName::USER_PROPERTY = "system";
+const std::string DomainName::USER_SECURITY = "secure";
 
 const std::string Date::DATE_FORMAT = "settings.date.date_format";
 const std::string Date::TIME_FORMAT = "settings.date.time_format";
@@ -244,6 +255,7 @@ const std::string Wireless::OWNER_LOCKDOWN_WIFI_CFG = "settings.wireless.owner_l
 const std::string Power::SUSPEND_SOURCES_CFG = "settings.power.suspend_sources";
 
 const std::string TableName_CLASS_NAME = "tableName";
+const std::string DomainName_CLASS_NAME = "domainName";
 const std::string DATE_CLASS_NAME = "date";
 const std::string DISPLAY_CLASS_NAME = "display";
 const std::string GENERAL_CLASS_NAME = "general";
@@ -286,6 +298,24 @@ void InitTableNameMap(napi_env env, std::map<const char*, napi_value> &paramMap)
     napi_create_string_utf8(env,
         TableName::SECURE.c_str(), NAPI_AUTO_LENGTH, &varSecure);
     paramMap["SECURE"] = varSecure;
+}
+
+void InitDomainNameMap(napi_env env, std::map<const char*, napi_value> &paramMap)
+{
+    napi_value varGlobal = nullptr;
+    napi_create_string_utf8(env,
+        DomainName::DEVICE_SHARED.c_str(), NAPI_AUTO_LENGTH, &varGlobal);
+    paramMap["DEVICE_SHARED"] = varGlobal;
+
+    napi_value varSystem = nullptr;
+    napi_create_string_utf8(env,
+        DomainName::USER_PROPERTY.c_str(), NAPI_AUTO_LENGTH, &varSystem);
+    paramMap["USER_PROPERTY"] = varSystem;
+
+    napi_value varSecure = nullptr;
+    napi_create_string_utf8(env,
+        DomainName::USER_SECURITY.c_str(), NAPI_AUTO_LENGTH, &varSecure);
+    paramMap["USER_SECURITY"] = varSecure;
 }
 
 void InitDateMap(napi_env env, std::map<const char*, napi_value>& paramMap)
@@ -719,6 +749,8 @@ void InitConstClassByName(napi_env env, napi_value exports, std::string name)
         InitWirelessMap(env, propertyMap);
     } else if (name == TableName_CLASS_NAME) {
         InitTableNameMap(env, propertyMap);
+    } else if (name == DomainName_CLASS_NAME) {
+        InitDomainNameMap(env, propertyMap);
     } else if (name == POWER_CLASS_NAME) {
         InitPowerMap(env, propertyMap);
     } else {
@@ -741,6 +773,7 @@ napi_value InitNapiClass(napi_env env, napi_value exports)
 {
     SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
     InitConstClassByName(env, exports, TableName_CLASS_NAME);
+    InitConstClassByName(env, exports, DomainName_CLASS_NAME);
     InitConstClassByName(env, exports, DATE_CLASS_NAME);
     InitConstClassByName(env, exports, DISPLAY_CLASS_NAME);
     InitConstClassByName(env, exports, GENERAL_CLASS_NAME);

@@ -40,6 +40,8 @@ static napi_value Init(napi_env env, napi_value exports)
         DECLARE_NAPI_FUNCTION("setValueSync", napi_set_value_sync),
         DECLARE_NAPI_FUNCTION("enableAirplaneMode", napi_enable_airplane_mode),
         DECLARE_NAPI_FUNCTION("canShowFloating", napi_can_show_floating),
+        DECLARE_NAPI_FUNCTION("registerKeyObserver", napi_register_key_observer),
+        DECLARE_NAPI_FUNCTION("unregisterKeyObserver", napi_unregister_key_observer),
     };
 
     // init settings class
