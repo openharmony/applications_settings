@@ -115,6 +115,8 @@ std::string GetProxyUriStr(std::string tableName, std::string IdStr);
 bool IsTableNameInvalid(std::string tableName);
 napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, napi_value* args);
 napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, napi_value* args);
+napi_value napi_register_key_observer(napi_env env, napi_callback_info info);
+napi_value napi_unregister_key_observer(napi_env env, napi_callback_info info);
 }  // namespace Settings
 }  // namespace OHOS
 #endif  //  NAPI_SETTINGS_H

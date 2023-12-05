@@ -39,6 +39,7 @@ namespace Settings {
 const std::string SETTINGS_DATA_BASE_URI = "dataability:///com.ohos.settingsdata.DataAbility";
 const std::string SETTINGS_DATA_FIELD_KEYWORD = "KEYWORD";
 const std::string SETTINGS_DATA_FIELD_VALUE = "VALUE";
+const int USERID_HELPER_NUMBER = 100;
 
 enum CallType {
     INVALID_CALL,
@@ -1634,6 +1635,9 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
 // get uri for stage model
 std::string GetStageUriStr(std::string tableName, std::string IdStr, std::string keyStr)
 {
+    if (std::stoi(IdStr) < USERID_HELPER_NUMBER) {
+        IdStr = "100";
+    }
     if (tableName == "global") {
         std::string retStr =
             "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=" + keyStr;
@@ -1657,6 +1661,9 @@ std::string GetStageUriStr(std::string tableName, std::string IdStr, std::string
 // get proxy uri
 std::string GetProxyUriStr(std::string tableName, std::string IdStr)
 {
+    if (std::stoi(IdStr) < USERID_HELPER_NUMBER) {
+        IdStr = "100";
+    }
     if (tableName == "global") {
         // return global uri
         std::string retStr = "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true";
@@ -1760,5 +1767,14 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
     return result;
 }
 
+napi_value napi_register_key_observer(napi_env env, napi_callback_info info)
+{
+    return wrap_bool_to_js(env, true);
+}
+
+napi_value napi_unregister_key_observer(napi_env env, napi_callback_info info)
+{
+    return wrap_bool_to_js(env, true);
+}
 }  // namespace Settings
 }  // namespace OHOS
