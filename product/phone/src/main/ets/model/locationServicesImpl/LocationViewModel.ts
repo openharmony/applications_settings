@@ -30,6 +30,7 @@ export class LocationVM {
     this.mIsStart = true;
     LocationService.registerListener(this);
     LocationService.startService();
+    LocationService.getServiceState();
   }
 
   updateServiceState(state) {
