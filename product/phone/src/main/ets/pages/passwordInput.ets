@@ -149,7 +149,7 @@ struct PasswordInput {
                       let length = value.length;
                       for (let i = 0;i < 6; i++) {
                         if (i < length) {
-                          this.passwordCircle[i] = value[i];
+                          this.passwordCircle[i] = value.charAt(i);
                         } else {
                           this.passwordCircle[i] = '';
                         }
