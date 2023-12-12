@@ -1483,6 +1483,10 @@
     {
       "name": "time_interval",
       "value": "时间间隔"
+    },
+    {
+      "name": "wait",
+      "value": "等"
     }
   ]
 }
