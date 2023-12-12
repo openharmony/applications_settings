@@ -18,6 +18,7 @@ import ConfigData from '../../../../../../../common/utils/src/main/ets/default/b
 import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogDecorator';
 import bluetooth from '@ohos.bluetooth';
 import bluetoothManager from '@ohos.bluetoothManager';
+import AboutDeviceModel from '../../model/aboutDeviceImpl/AboutDeviceModel';
 
 export enum ProfileCode {
   CODE_BT_PROFILE_A2DP_SINK = 0,
@@ -157,6 +158,13 @@ export class BluetoothModel extends BaseModel {
       if (callback) {
         switch (data) {
           case BluetoothState.STATE_ON:
+            let deviceName: string = AboutDeviceModel.getSystemName();
+            let bluetoothName: string = bluetooth.getLocalName();
+            LogUtil.info(`${this.TAG} subscribeStateChange get deviceName: ${deviceName}, bluetoothName: ${bluetoothName}`);
+            if(deviceName !== bluetoothName){
+              LogUtil.info(`${this.TAG} subscribeStateChange deviceName != bluetoothName`)
+              bluetooth.setLocalName(deviceName);
+            }
             bluetooth.setBluetoothScanMode(4, 0);
             LogUtil.info(`${this.TAG} subscribeStateChange->stateChange return: true`);
             callback(true)
