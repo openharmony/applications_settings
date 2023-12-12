@@ -42,6 +42,7 @@
     "pages/mobileNetwork",
     "pages/accessibilityShortKey",
     "pages/accessibilityColorCorrection",
-    "pages/accessibilityScreenTouch"
+    "pages/accessibilityScreenTouch",
+    "pages/abilityDialog/accessibilityWindowShortKeyDialog"
   ]
 }

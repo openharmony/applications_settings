@@ -212,7 +212,7 @@ struct AccessibilityShortKey {
       targetName = list[0].split('/')[1];
     }
     if (list.length > 1) {
-      this.shortKeyStatusText = targetName + '等';
+      this.shortKeyStatusText = targetName + ResourceUtils.getStringSync($r('app.string.wait'));
     } else {
       this.shortKeyStatusText = targetName;
     }
@@ -344,6 +344,7 @@ struct SelectAbilityScalingInformation {
   @Link extAbilityNameList: Array<string>;
   @Link AllAbilityNameList: Array<string>;
   @Link selectAbilityList: Array<string>;
+  @State stagList: Array<string> = JSON.parse(JSON.stringify(this.selectAbilityList));
 
   updateAccessibilityExtensionList() {
     accessibility.getAccessibilityExtensionList('all', 'install').then((data) => {
@@ -417,13 +418,13 @@ struct SelectAbilityScalingInformation {
                   .width($r('app.float.wh_value_24'))
                   .onChange((value: boolean) => {
                     if (value) {
-                      this.selectAbilityList.push(item);
+                      this.stagList.push(item);
                       LogUtil.info(`${TAG} push item succeed: ${JSON.stringify(item)}`)
-                      LogUtil.info(`${TAG} push selectAbilityList succeed: ${JSON.stringify(this.selectAbilityList)}`);
+                      LogUtil.info(`${TAG} push selectAbilityList succeed: ${JSON.stringify(this.stagList)}`);
                     } else {
                       LogUtil.info(`${TAG} pop item succeed: ${item}`);
-                      this.selectAbilityList.splice(this.selectAbilityList.indexOf(item), 1);
-                      LogUtil.info(`${TAG} pop selectAbilityList succeed: ${JSON.stringify(this.selectAbilityList)}`);
+                      this.stagList.splice(this.stagList.indexOf(item), 1);
+                      LogUtil.info(`${TAG} pop selectAbilityList succeed: ${JSON.stringify(this.stagList)}`);
 
                     }
                   });
@@ -443,7 +444,7 @@ struct SelectAbilityScalingInformation {
             .height($r('app.float.wh_value_40'))
             .margin({ top: $r('app.float.distance_8') })
             .onClick(() => {
-              this.selectAbilityList = [];
+              this.stagList = [];
               this.controller?.close();
             });
           Text($r('app.string.ok'))
@@ -476,9 +477,9 @@ struct SelectAbilityScalingInformation {
 
   setAbilityList(): void {
     LogUtil.info(`${TAG} set ability List ${JSON.stringify(this.selectAbilityList)}`);
-    if (this.selectAbilityList && this.selectAbilityList.length > 0) {
-      AccessibilitySettingModel.accessibilityShortKeyMultiTargetsSet(this.selectAbilityList);
-    }
+      let endAbilityList: Array<string> = JSON.parse(JSON.stringify(this.stagList));
+      this.selectAbilityList = JSON.parse(JSON.stringify(this.stagList));
+      AccessibilitySettingModel.accessibilityShortKeyMultiTargetsSet(endAbilityList);
     this.getShortKeyStatus();
     this.controller?.close();
   }
@@ -492,7 +493,7 @@ struct SelectAbilityScalingInformation {
     LogUtil.info(`${TAG} getShortKeyStatus in ${JSON.stringify(this.selectAbilityList)}`);
     if (this.selectAbilityList && this.selectAbilityList.length > 1) {
       let targetName: string = this.setShortKeyStatusText(this.selectAbilityList[0]);
-      this.shortKeyStatusText = targetName + '等';
+      this.shortKeyStatusText = targetName + ResourceUtils.getStringSync($r('app.string.wait'));
     } else if (this.selectAbilityList && this.selectAbilityList.length === 1) {
       this.shortKeyStatusText = this.setShortKeyStatusText(this.selectAbilityList[0]);
     } else {
