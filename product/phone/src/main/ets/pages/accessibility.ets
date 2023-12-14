@@ -23,9 +23,6 @@ import ComponentConfig from '../../../../../../common/component/src/main/ets/def
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import { SubHeader } from '../../../../../../common/component/src/main/ets/default/textComponent';
 import { AccessibilitySettingModel } from '../model/accessibilityImpl/AccessibilitySettingModel';
-import {
-  SubEntryComponent
-} from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
 
 const AUDIO_BALANCE_STEP_VALUE: number = 1;
 const AUDIO_BALANCE_MIN_VALUE: number = -100;
@@ -52,7 +49,6 @@ struct AccessibilitySettings {
   @State isTouched: boolean = false;
   @State serviceNumChanged: boolean = true;
   private TAG = ConfigData.TAG + 'AccessibilitySettings ';
-  private basicList: string[] = [BASIC_ABILITY_HIGH_CONTRAST_TEXT, BASIC_ABILITY_SINGLE_AUDIO, BASIC_ABILITY_INVERT_COLOR];
 
   build() {
     Column() {
@@ -277,10 +273,43 @@ struct AccessibilitySettings {
           SubHeader({ titleContent: ResourceUtils.getCapitalStringSync($r('app.string.operate_accessibility')) });
 
           Column() {
-            SubEntryComponent({
-              title: $r('app.string.screen_touch'),
-              targetPage: 'pages/accessibilityScreenTouch'
-            })
+            Navigator({ target: 'pages/accessibilityScreenTouch' }) {
+              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+                Row() {
+                  Text($r('app.string.screen_touch'))
+                    .fontSize($r('app.float.font_16'))
+                    .fontWeight(FontWeight.Medium)
+                    .fontColor($r('app.color.font_color_182431'))
+                    .lineHeight($r('app.float.wh_value_22'))
+                    .margin({ left: $r('app.float.distance_8') })
+                    .textAlign(TextAlign.Start);
+                }
+
+                Row() {
+                  Image('/res/image/ic_settings_arrow.svg')
+                    .height($r('app.float.wh_value_24'))
+                    .width($r('app.float.wh_value_12'))
+                    .fillColor($r('sys.color.ohos_id_color_primary'))
+                    .margin({ right: $r('app.float.distance_8') })
+                    .opacity($r('app.float.opacity_0_2'));
+                }
+              }
+              .onTouch((event?: TouchEvent) => {
+                if (event && event.type === TouchType.Down) {
+                  this.isTouched = true;
+                }
+                if (event && event.type === TouchType.Up) {
+                  this.isTouched = false;
+                }
+              })
+              .height(ComponentConfig.WH_100_100)
+              .width(ComponentConfig.WH_100_100)
+              .borderRadius($r('app.float.radius_20'));
+            }
+            .padding($r('app.float.distance_4'))
+            .height($r('app.float.wh_value_56'))
+            .borderRadius($r('app.float.radius_24'))
+            .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'));
 
             Navigator({ target: 'pages/accessibilityShortKey' }) {
               Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
@@ -327,7 +356,7 @@ struct AccessibilitySettings {
             .borderRadius($r('app.float.radius_24'))
             .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'));
           }
-          .height($r('app.float.wh_value_96'))
+          .height($r('app.float.wh_padding_112'))
           .width(ConfigData.WH_100_100)
           .borderRadius($r('app.float.radius_24'))
           .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'));
@@ -395,27 +424,30 @@ struct AccessibilitySettings {
     .height(ConfigData.WH_100_100);
   };
 
-  setShortKeyText(status: boolean, text: string, flag: boolean): void {
-    LogUtil.info(`${this.TAG} shortKeyState: status:${JSON.stringify(status)},text:${JSON.stringify(text)},flag:${JSON.stringify(flag)}`);
-    if (this.basicList.includes(text)) {
-      flag = false;
-    }
-    if (text === 'none' || flag) {
-      this.shortKeyStatusText = (Object)($r('app.string.disabled'));
+  setShortKeyText(status: boolean, allList: Array<string>): void {
+    LogUtil.info(`${this.TAG} shortKeyState: status:${JSON.stringify(status)},text:${JSON.stringify(allList)}`);
+    if (allList.length < 1) {
+      this.shortKeyStatusText = ResourceUtils.getStringSync($r('app.string.disabled'));
       return;
     }
     if (status) {
-      if (text === BASIC_ABILITY_HIGH_CONTRAST_TEXT) {
-        this.shortKeyStatusText = (Object)($r('app.string.highContrast_text'));
-      } else if (text === BASIC_ABILITY_SINGLE_AUDIO) {
-        this.shortKeyStatusText = (Object)($r('app.string.single_audio'));
-      } else if (text === BASIC_ABILITY_INVERT_COLOR) {
-        this.shortKeyStatusText = (Object)($r('app.string.invert_color'));
+      let text: string = '';
+      if (allList[0] === BASIC_ABILITY_HIGH_CONTRAST_TEXT) {
+        text = ResourceUtils.getStringSync($r('app.string.highContrast_text'));
+      } else if (allList[0] === BASIC_ABILITY_SINGLE_AUDIO) {
+        text = ResourceUtils.getStringSync($r('app.string.single_audio'));
+      } else if (allList[0] === BASIC_ABILITY_INVERT_COLOR) {
+        text = ResourceUtils.getStringSync($r('app.string.invert_color'));
       } else {
-        this.shortKeyStatusText = text.split('/')[1];
+        text = allList[0].split('/')[1];
+      }
+      if (allList.length > 1) {
+        this.shortKeyStatusText = text + ResourceUtils.getStringSync($r('app.string.wait'));
+      } else {
+        this.shortKeyStatusText = text;
       }
     } else {
-      this.shortKeyStatusText = (Object)($r('app.string.disabled'));
+      this.shortKeyStatusText = ResourceUtils.getStringSync($r('app.string.disabled'));
     }
     LogUtil.info(`${this.TAG} set shortKeyStateText: ${JSON.stringify(this.shortKeyStatusText)}`);
   }
@@ -531,7 +563,7 @@ struct AccessibilitySettings {
   }
 
   async getShortKeyStateAndTargetByStatus(): Promise<void> {
-    let text: string = '';
+    let allList: Array<string> = [];
     await config.shortkey.get().then((data) => {
       this.shortKeyIsOn = data;
       LogUtil.info(`${this.TAG} get shortKeyIsOn success : ${data}`);
@@ -539,22 +571,13 @@ struct AccessibilitySettings {
       LogUtil.error(`${this.TAG} failed to get shortKeyIsOn, because ${JSON.stringify(err)}`);
     });
 
-    await config.shortkeyTarget.get().then((data) => {
-      text = data;
-      LogUtil.info(`${this.TAG} get shortkeyTarget success: ${data}`);
+    await config.shortkeyMultiTargets.get().then((data) => {
+      allList = JSON.parse(JSON.stringify(data));
+      LogUtil.info(`${this.TAG} get shortkeyMultiTargets success: ${data}`);
     }).catch((err: object) => {
-      LogUtil.error(`${this.TAG} failed to get shortkeyTarget, because ${JSON.stringify(err)}`);
+      LogUtil.error(`${this.TAG} failed to get shortkeyMultiTargets, because ${JSON.stringify(err)}`);
     });
-    let flag: boolean = true;
-    let installServiceList: Array<accessibility.AccessibilityAbilityInfo> = await accessibility.getAccessibilityExtensionList('all', 'install');
-    if (installServiceList && installServiceList.length > 0) {
-      for (let enableService of installServiceList) {
-        if (enableService && enableService.id === text) {
-          flag = false;
-        }
-      }
-    }
-    this.setShortKeyText(this.shortKeyIsOn, text, flag);
+    this.setShortKeyText(this.shortKeyIsOn, allList);
   }
 
   aboutToDisappear(): void {

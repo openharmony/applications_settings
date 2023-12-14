@@ -1479,6 +1479,10 @@
     {
       "name": "time_interval",
       "value": "Time interval"
+    },
+    {
+      "name": "wait",
+      "value": "Wait"
     }
   ]
 }

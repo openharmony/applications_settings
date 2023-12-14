@@ -60,17 +60,16 @@
         "startWindowBackground": "$color:white",
       }
     ],
-
-//    "extensionAbilities": [
-//      {
-//        "name": "accessibilityWindowShortKey",
-//        "srcEntry": "./ets/pages/UIAbility/accessibilityWindowShortKey.ets",
-//        "description": "accessibilityWindowShortKey",
-//        "exported": true,
-//        "visible": true,
-//        "type": "sysDialog/common"
-//      }
-//    ],
+    "extensionAbilities": [
+      {
+        "name": "AccessibilityShortKeyDialog",
+        "srcEntry": "./ets/MainAbility/AccessibilityShortKeyDialogAbility.ets",
+        "description": "AccessibilityShortKeyDialog",
+        "exported": true,
+        "visible": true,
+        "type": "sysDialog/common"
+      }
+    ],
 
     "requestPermissions": [
       {
