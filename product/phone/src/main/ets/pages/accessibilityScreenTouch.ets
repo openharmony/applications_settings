@@ -79,10 +79,10 @@ struct AccessibilityScreenTouch {
                   .opacity($r('app.float.opacity_0_2'));
               }
             }
-            .padding({ left: $r('sys.float.ohos_id_card_margin_start'), right: $r('app.float.distance_8') })
+            .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.distance_6') })
             .alignItems(VerticalAlign.Center)
             .width(ConfigData.WH_100_100)
-            .height($r('app.float.wh_value_48'))
+            .height($r('app.float.wh_value_56'))
             .onClick(() => {
               this.SelectAbilityScalingDialog.open();
             });
@@ -155,11 +155,11 @@ struct AccessibilityScreenTouch {
                     .fontWeight(FontWeight.Medium)
                     .textAlign(TextAlign.Center);
                 }
-                .height($r('app.float.wh_value_56'))
+                .height($r('app.float.wh_value_19'))
                 .width(ConfigData.WH_100_100)
                 .alignItems(VerticalAlign.Center)
                 .justifyContent(FlexAlign.Center)
-                .padding({ left: $r('app.float.wh_value_12'), right: $r('app.float.wh_value_6') })
+                .margin({top:$r('app.float.wh_value_16')})
                 .backgroundColor($r('app.color.white_bg_color'))
                 .borderRadius($r('app.float.radius_24'));
 
@@ -168,6 +168,7 @@ struct AccessibilityScreenTouch {
                     .height($r('app.float.wh_value_24'))
                     .width($r('app.float.wh_value_24'))
                     .fillColor($r('sys.color.ohos_id_color_primary'))
+                    .margin({bottom:$r('app.float.wh_value_18')})
                     .onClick(() => {
                       this.onIgnoreRepeatClickTimeChange('minus')
                     });
@@ -182,8 +183,9 @@ struct AccessibilityScreenTouch {
                     .selectedColor($r('app.color.font_color_007DFF'))
                     .blockColor(Color.Blue)
                     .showSteps(true)
-                    .height($r('app.float.wh_value_30'))
-                    .width(ConfigData.WH_90_100)
+                    .height($r('app.float.wh_value_20'))
+                    .width(ConfigData.WH_83_100)
+                    .margin({top:$r('app.float.wh_value_10'),bottom:$r('app.float.wh_value_22'),left:$r('app.float.wh_value_12'),right:$r('app.float.wh_value_12')})
                     .borderRadius($r('app.float.radius_24'))
                     .onChange((value: number, mode: SliderChangeMode) => {
                       this.setIgnoreRepeatClickTimeValue(value, mode);
@@ -193,13 +195,13 @@ struct AccessibilityScreenTouch {
                     .height($r('app.float.wh_value_24'))
                     .width($r('app.float.wh_value_24'))
                     .fillColor($r('sys.color.ohos_id_color_primary'))
+                    .margin({bottom:$r('app.float.wh_value_18')})
                     .onClick(() => {
                       this.onIgnoreRepeatClickTimeChange('add')
                     });
                 }
                 .width(ConfigData.WH_100_100)
-                .height($r('app.float.wh_value_56'))
-                .alignItems(VerticalAlign.Center)
+                .height($r('app.float.wh_value_52'))
                 .justifyContent(FlexAlign.SpaceBetween)
                 .padding({ left: $r('app.float.wh_value_6'), right: $r('app.float.wh_value_6') })
                 .backgroundColor($r("app.color.white_bg_color"))
@@ -207,7 +209,6 @@ struct AccessibilityScreenTouch {
               }
               .width(ConfigData.WH_100_100);
             }
-            .height($r('app.float.wh_value_118'))
             .width(ConfigData.WH_100_100)
             .alignItems(VerticalAlign.Center)
             .padding({ left: $r('app.float.wh_value_6'), right: $r('app.float.wh_value_6') })

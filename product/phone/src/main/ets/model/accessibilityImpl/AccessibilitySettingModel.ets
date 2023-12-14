@@ -124,7 +124,7 @@ export class AccessibilitySettingModel {
   }
 
   static accessibilityClickResponseTimeSet(targetName: config.ClickResponseTime): void {
-    LogUtil.info(`${TAG} accessibilityColorCorrection config begin: ${targetName}`);
+    LogUtil.info(`${TAG} accessibilityClickResponseTime config begin: ${targetName}`);
     config.clickResponseTime.set(targetName).then(() => {
       LogUtil.info(`${TAG} clickResponseTime config success`);
     }).catch((err: object) => {
@@ -133,7 +133,7 @@ export class AccessibilitySettingModel {
   }
 
   static accessibilityIgnoreRepeatClickTimeSet(targetName: config.RepeatClickInterval): void {
-    LogUtil.info(`${TAG} accessibilityColorCorrection config begin: ${targetName}`);
+    LogUtil.info(`${TAG} accessibilityIgnoreRepeatClickTime config begin: ${targetName}`);
     config.repeatClickInterval.set(targetName).then(() => {
       LogUtil.info(`${TAG} ignoreRepeatClickTime config success`);
     }).catch((err: object) => {
@@ -142,7 +142,7 @@ export class AccessibilitySettingModel {
   }
 
   static accessibilityShortKeyMultiTargetsSet(targetList: Array<string>): void {
-    LogUtil.info(`${TAG} accessibilityColorCorrection config begin: ${JSON.stringify(targetList)}`);
+    LogUtil.info(`${TAG} accessibilityShortKeyMultiTargets config begin: ${JSON.stringify(targetList)}`);
     config.shortkeyMultiTargets.set(targetList).then(() => {
       LogUtil.info(`${TAG} shortkeyMultiTargets config success`);
     }).catch((err: object) => {
