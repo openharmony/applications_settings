@@ -14,6 +14,7 @@
  */
 
 #include "napi_settings.h"
+#include "napi_settings.h"
 
 #include <pthread.h>
 #include <unistd.h>
