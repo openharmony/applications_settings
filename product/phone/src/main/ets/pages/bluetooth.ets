@@ -844,6 +844,10 @@ function getDeviceIconPath(deviceType: string): string {
     case DeviceType.COMPUTER:
       path = "/res/image/ic_device_matebook.svg";
       break;
+
+    case DeviceType.PERIPHERAL:
+      path = "/res/image/ic_bluetooth_device.svg";
+      break;
   }
   return path;
 }

@@ -57,7 +57,8 @@ export enum DeviceType {
   HEADPHONE = '2',
   PHONE = '3',
   COMPUTER = '4',
-  WATCH = '5'
+  WATCH = '5',
+  PERIPHERAL = '6'
 }
 
 export enum BluetoothErrorCode {
@@ -404,6 +405,9 @@ export class BluetoothModel extends BaseModel {
         break;
       case 0x0200:
         deviceType = DeviceType.PHONE;
+        break;
+      case 0x0500:
+        deviceType = DeviceType.PERIPHERAL;
         break;
       default:
         deviceType = DeviceType.BLUETOOTH;
