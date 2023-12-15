@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,3 +12,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+#ifndef NAPI_SETTINGS_OBSERVER_H
+#define NAPI_SETTINGS_OBSERVER_H
+
+#include "napi_settings.h"
+
+#include "napi/native_api.h"
+#include "napi/native_common.h"
+#include "napi/native_node_api.h"
+#include "uri.h"
+
+#include "data_ability_observer_interface.h"
+#include "data_ability_observer_stub.h"
+
+
+namespace OHOS {
+namespace Settings {
+
+class SettingsObserver : public OHOS::AAFwk::DataAbilityObserverStub {
+public:
+    SettingsObserver(AsyncCallbackInfo* callback) : cbInfo(callback) {}
+    ~SettingsObserver() {}
+    void OnChange();
+    napi_value OnChangeRet();
+    AsyncCallbackInfo* cbInfo;
+};
+
+napi_value npai_settings_register_observer(napi_env env, napi_callback_info info);
+napi_value npai_settings_unregister_observer(napi_env env, napi_callback_info info);
+
+}
+}
+
+#endif
