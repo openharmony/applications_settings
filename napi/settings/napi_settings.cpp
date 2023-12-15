@@ -14,7 +14,7 @@
  */
 
 #include "napi_settings.h"
-#include "napi_settings.h"
+#include "napi_settings_observer.h"
 
 #include <pthread.h>
 #include <unistd.h>
@@ -1770,12 +1770,12 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
 
 napi_value napi_register_key_observer(napi_env env, napi_callback_info info)
 {
-    return wrap_bool_to_js(env, true);
+    return npai_settings_register_observer(env, info);
 }
 
 napi_value napi_unregister_key_observer(napi_env env, napi_callback_info info)
 {
-    return wrap_bool_to_js(env, true);
+    return npai_settings_unregister_observer(env, info);
 }
 }  // namespace Settings
 }  // namespace OHOS
