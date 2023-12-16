@@ -32,7 +32,7 @@ namespace Settings {
 
 class SettingsObserver : public OHOS::AAFwk::DataAbilityObserverStub {
 public:
-    SettingsObserver(AsyncCallbackInfo* callback) : cbInfo(callback) {}
+    explicit SettingsObserver(AsyncCallbackInfo* callback) : cbInfo(callback) {}
     ~SettingsObserver() {}
     void OnChange();
     napi_value OnChangeRet();
