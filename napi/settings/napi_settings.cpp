@@ -1055,7 +1055,7 @@ void SetValueExecuteCB(napi_env env, void *data)
             argsName.empty() ? SETTINGS_DATA_BASE_URI : (SETTINGS_DATA_BASE_URI + "/" + argsName);
         std::shared_ptr<Uri> uriWithName = std::make_shared<Uri>(uriWithNameStr);
         asyncCallbackInfo->dataAbilityHelper->NotifyChange(*uriWithName);
-        SETTING_LOG_INFO("execute aft NotifyC with uri: %{public}s",uriWithNameStr.c_str());
+        SETTING_LOG_INFO("execute aft NotifyC with uri: %{public}s", uriWithNameStr.c_str());
     }
     if (resultset != nullptr) {
         resultset->Close();
