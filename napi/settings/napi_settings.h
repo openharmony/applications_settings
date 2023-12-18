@@ -22,6 +22,10 @@
 #include "napi/native_common.h"
 #include "napi/native_node_api.h"
 #include "uri.h"
+#include "data_ability_helper.h"
+#include "data_ability_predicates.h"
+#include "datashare_helper.h"
+#include "datashare_predicates.h"
 
 #define ARGS_ONE 1
 #define ARGS_TWO 2
@@ -34,8 +38,35 @@
 #define PARAM2 2
 #define PARAM3 3
 #define PARAM4 4
-#define PARAM4 4
 
+enum CallType {
+    INVALID_CALL,
+    STAGE_SYNC,
+    STAGE_CALLBACK,
+    STAGE_CALLBACK_SPECIFIC,
+    STAGE_PROMISE,
+    STAGE_PROMISE_SPECIFIC,
+    FA_SYNC,
+    FA_CALLBACK,
+    FA_PROMISE
+};
+ 
+struct AsyncCallbackInfo {
+    napi_env env;
+    napi_async_work asyncWork;
+    napi_deferred deferred;
+    napi_ref callbackRef;
+    std::shared_ptr<OHOS::AppExecFwk::DataAbilityHelper> dataAbilityHelper;
+    std::string key;
+    std::string value;
+    std::string uri;
+    CallType callType;
+    std::string tableName;
+    int status;
+    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
+    napi_value callbackArg;
+};
+ 
 namespace OHOS {
 namespace Settings {
 /**
