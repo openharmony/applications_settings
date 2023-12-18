@@ -120,8 +120,6 @@ namespace Settings {
         NAPI_ASSERT(env, valueType == napi_string, "Wrong argument[1] type. String expected.");
         NAPI_CALL(env, napi_typeof(env, args[PARAM2], &valueType));
         NAPI_ASSERT(env, valueType == napi_string, "Wrong argument[2] type. String expected.");
-        NAPI_CALL(env, napi_typeof(env, args[PARAM3], &valueType));
-        NAPI_ASSERT(env, valueType == napi_object, "Wrong argument[3] type. String expected.");
 
         bool stageMode = false;
         napi_status status = OHOS::AbilityRuntime::IsStageContext(env, args[PARAM0], stageMode);
