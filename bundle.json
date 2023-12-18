@@ -30,7 +30,8 @@
                 "hilog",
                 "relational_store",
                 "os_account",
-                "napi"
+                "napi",
+				"ipc"
             ],
             "third_party": []
         },
