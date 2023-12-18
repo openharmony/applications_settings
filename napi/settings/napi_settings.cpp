@@ -29,6 +29,7 @@
 #include "datashare_helper.h"
 #include "datashare_predicates.h"
 #include "os_account_manager.h"
+#include "os_account_manager.h"
 
 
 using namespace OHOS::AppExecFwk;
