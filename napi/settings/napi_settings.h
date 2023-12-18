@@ -34,6 +34,7 @@
 #define PARAM2 2
 #define PARAM3 3
 #define PARAM4 4
+#define PARAM4 4
 
 namespace OHOS {
 namespace Settings {
