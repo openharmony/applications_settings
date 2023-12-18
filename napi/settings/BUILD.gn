@@ -37,12 +37,12 @@ ohos_shared_library("settings") {
     "data_share:datashare_common",
     "data_share:datashare_consumer",
     "hilog:libhilog",
+    "ipc:ipc_core",
+    "ipc:ipc_napi_common",
     "napi:ace_napi",
     "os_account:os_account_innerkits",
     "relational_store:native_dataability",
     "relational_store:native_rdb",
-    "ipc:ipc_core",
-    "ipc:ipc_napi_common",
   ]
 
   relative_install_dir = "module"
