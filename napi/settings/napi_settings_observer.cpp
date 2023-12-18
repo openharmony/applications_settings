@@ -35,11 +35,13 @@ namespace Settings {
 
     std::map<std::string, sptr<SettingsObserver>> g_observerMap;
 
-    void SettingsObserver::OnChange() {
+    void SettingsObserver::OnChange()
+    {
         OnChangeRet();
     }
 
-    napi_value SettingsObserver::OnChangeRet() {
+    napi_value SettingsObserver::OnChangeRet()
+    {
         SETTING_LOG_INFO("%{public}s, O_C.", __func__);
         napi_value resource = nullptr;
         NAPI_CALL(cbInfo->env, napi_create_string_utf8(cbInfo->env, __func__, NAPI_AUTO_LENGTH, &resource));
@@ -128,7 +130,8 @@ namespace Settings {
         callbackInfo->tableName = unwrap_string_from_js(env, args[PARAM2]);
 		napi_create_reference(env, args[PARAM3], 1, &(callbackInfo->callbackRef));
 
-        if (g_observerMap.find(callbackInfo->key) != g_observerMap.end() && g_observerMap[callbackInfo->key] != nullptr) {
+        if (g_observerMap.find(callbackInfo->key) != g_observerMap.end() &&
+        g_observerMap[callbackInfo->key] != nullptr) {
             SETTING_LOG_INFO("%{public}s, already registered.", __func__);
 			delete callbackInfo;
             return wrap_bool_to_js(env, false);
@@ -143,7 +146,8 @@ namespace Settings {
 
         std::string strUri = GetStageUriStr(callbackInfo->tableName, GetObserverIdStr(), callbackInfo->key);
         OHOS::Uri uri(strUri);
-        sptr<SettingsObserver> settingsObserver = sptr<SettingsObserver>(new (std::nothrow)SettingsObserver(callbackInfo));		
+        sptr<SettingsObserver> settingsObserver =
+        sptr<SettingsObserver>(new (std::nothrow)SettingsObserver(callbackInfo));		
 		settingsObserver->dataShareHelper = dataShareHelper;
         g_observerMap[callbackInfo->key] = settingsObserver;		
         dataShareHelper->RegisterObserver(uri, settingsObserver);
