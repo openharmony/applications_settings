@@ -34,6 +34,7 @@ namespace OHOS {
 namespace Settings {
 
     std::map<std::string, sptr<SettingsObserver>> g_observerMap;
+    std::map<std::string, std::shared_ptr<OHOS::DataShare::DataShareHelper>> g_helperMap;
 
     void SettingsObserver::OnChange()
     {
@@ -151,6 +152,7 @@ namespace Settings {
         sptr<SettingsObserver> settingsObserver = sptr<SettingsObserver>
         (new (std::nothrow)SettingsObserver(callbackInfo));
         g_observerMap[callbackInfo->key] = settingsObserver;
+        g_helperMap[callbackInfo->key] = dataShareHelper;
         dataShareHelper->RegisterObserver(uri, settingsObserver);
         dataShareHelper->Release();
 
@@ -186,8 +188,7 @@ namespace Settings {
 
         std::string key = unwrap_string_from_js(env, args[PARAM1]);
         std::string tableName = unwrap_string_from_js(env, args[PARAM2]);
-        std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
-        dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, tableName);
+        std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = g_helperMap[key];
         if (dataShareHelper == nullptr || g_observerMap.count(key) == 0) {
             SETTING_LOG_ERROR("%{public}s, null.", __func__);
             return wrap_bool_to_js(env, false);
@@ -205,6 +206,8 @@ namespace Settings {
         delete g_observerMap[key];
         g_observerMap[key] = nullptr;
         g_observerMap.erase(key);
+        g_helperMap[key] = nullptr;
+		g_helperMap.erase(key);
 
         return wrap_bool_to_js(env, true);
     }
