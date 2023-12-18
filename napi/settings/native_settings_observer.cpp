@@ -154,7 +154,6 @@ namespace Settings {
         g_observerMap[callbackInfo->key] = settingsObserver;
         g_helperMap[callbackInfo->key] = dataShareHelper;
         dataShareHelper->RegisterObserver(uri, settingsObserver);
-        dataShareHelper->Release();
 
         return wrap_bool_to_js(env, true);
     }
