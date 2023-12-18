@@ -34,17 +34,13 @@ namespace OHOS {
 namespace Settings {
 
     std::map<std::string, sptr<SettingsObserver>> g_observerMap;
-    std::map<std::string, std::shared_ptr<OHOS::DataShare::DataShareHelper>> g_helperMap;
 
-    void SettingsObserver::OnChange()
-    {
+    void SettingsObserver::OnChange() {
         OnChangeRet();
     }
 
-    napi_value SettingsObserver::OnChangeRet()
-    {
+    napi_value SettingsObserver::OnChangeRet() {
         SETTING_LOG_INFO("%{public}s, O_C.", __func__);
-        napi_create_reference(cbInfo->env, cbInfo->callbackArg, 1, &(cbInfo->callbackRef));
         napi_value resource = nullptr;
         NAPI_CALL(cbInfo->env, napi_create_string_utf8(cbInfo->env, __func__, NAPI_AUTO_LENGTH, &resource));
         napi_create_async_work(
@@ -76,7 +72,6 @@ namespace Settings {
                 napi_value callResult;
                 napi_call_function(env, undefined, callback, PARAM2, result, &callResult);
 
-                napi_delete_reference(env, asyncCallbackInfo->callbackRef);
                 napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
                 SETTING_LOG_INFO("%{public}s, O_C complete.", __func__);
             },
@@ -131,28 +126,28 @@ namespace Settings {
         callbackInfo->env = env;
         callbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
         callbackInfo->tableName = unwrap_string_from_js(env, args[PARAM2]);
-        callbackInfo->callbackArg = args[PARAM3];
+		napi_create_reference(env, args[PARAM3], 1, &(callbackInfo->callbackRef));
 
-        if (g_observerMap.find(callbackInfo->key) != g_observerMap.end() &&
-        g_observerMap[callbackInfo->key] != nullptr) {
+        if (g_observerMap.find(callbackInfo->key) != g_observerMap.end() && g_observerMap[callbackInfo->key] != nullptr) {
             SETTING_LOG_INFO("%{public}s, already registered.", __func__);
+			delete callbackInfo;
             return wrap_bool_to_js(env, false);
         }
 
         std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
         dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, callbackInfo->tableName);
         if (dataShareHelper == nullptr) {
+			delete callbackInfo;
             return wrap_bool_to_js(env, false);
         }
 
         std::string strUri = GetStageUriStr(callbackInfo->tableName, GetObserverIdStr(), callbackInfo->key);
         OHOS::Uri uri(strUri);
-        sptr<SettingsObserver> settingsObserver = sptr<SettingsObserver>
-        (new (std::nothrow)SettingsObserver(callbackInfo));
-        g_observerMap[callbackInfo->key] = settingsObserver;
-        g_helperMap[callbackInfo->key] = dataShareHelper;
+        sptr<SettingsObserver> settingsObserver = sptr<SettingsObserver>(new (std::nothrow)SettingsObserver(callbackInfo));		
+		settingsObserver->dataShareHelper = dataShareHelper;
+        g_observerMap[callbackInfo->key] = settingsObserver;		
         dataShareHelper->RegisterObserver(uri, settingsObserver);
-
+		
         return wrap_bool_to_js(env, true);
     }
 
@@ -185,27 +180,28 @@ namespace Settings {
 
         std::string key = unwrap_string_from_js(env, args[PARAM1]);
         std::string tableName = unwrap_string_from_js(env, args[PARAM2]);
-        std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = g_helperMap[key];
-        if (dataShareHelper == nullptr || g_observerMap.count(key) == 0) {
+        
+        if (g_observerMap.find(key) == g_observerMap.end()) {
             SETTING_LOG_ERROR("%{public}s, null.", __func__);
             return wrap_bool_to_js(env, false);
         }
+		std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = g_observerMap[key]->dataShareHelper;
+		
         if (g_observerMap[key] == nullptr) {
             g_observerMap.erase(key);
             return wrap_bool_to_js(env, false);
         }
         std::string strUri = GetStageUriStr(tableName, GetObserverIdStr(), key);
         OHOS::Uri uri(strUri);
+		
+		napi_delete_reference(g_observerMap[key]->cbInfo->env, g_observerMap[key]->cbInfo->callbackRef);
         dataShareHelper->UnregisterObserver(uri, g_observerMap[key]);
-        dataShareHelper->Release();
+        dataShareHelper->Release();		
         delete g_observerMap[key]->cbInfo;
         g_observerMap[key]->cbInfo = nullptr;
-        delete g_observerMap[key];
         g_observerMap[key] = nullptr;
         g_observerMap.erase(key);
-        g_helperMap[key] = nullptr;
-        g_helperMap.erase(key);
-
+		
         return wrap_bool_to_js(env, true);
     }
 }
