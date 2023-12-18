@@ -20,14 +20,10 @@
 #include <unistd.h>
 
 #include "abs_shared_result_set.h"
-#include "data_ability_helper.h"
-#include "data_ability_predicates.h"
 #include "napi_settings_log.h"
 #include "values_bucket.h"
 
 #include "napi_base_context.h"
-#include "datashare_helper.h"
-#include "datashare_predicates.h"
 #include "os_account_manager.h"
 #include "os_account_manager.h"
 
@@ -42,18 +38,6 @@ const std::string SETTINGS_DATA_BASE_URI = "dataability:///com.ohos.settingsdata
 const std::string SETTINGS_DATA_FIELD_KEYWORD = "KEYWORD";
 const std::string SETTINGS_DATA_FIELD_VALUE = "VALUE";
 const int USERID_HELPER_NUMBER = 100;
-
-enum CallType {
-    INVALID_CALL,
-    STAGE_SYNC,
-    STAGE_CALLBACK,
-    STAGE_CALLBACK_SPECIFIC,
-    STAGE_PROMISE,
-    STAGE_PROMISE_SPECIFIC,
-    FA_SYNC,
-    FA_CALLBACK,
-    FA_PROMISE
-};
 
 /**
  * @brief Wrap void to js value.
@@ -137,21 +121,6 @@ napi_value wrap_bool_to_js(napi_env env, bool value)
     NAPI_CALL(env, napi_get_boolean(env, value, &result));
     return result;
 }
-
-struct AsyncCallbackInfo {
-    napi_env env;
-    napi_async_work asyncWork;
-    napi_deferred deferred;
-    napi_ref callbackRef;
-    std::shared_ptr<DataAbilityHelper> dataAbilityHelper;
-    std::string key;
-    std::string value;
-    std::string uri;
-    CallType callType;
-    std::string tableName;
-    int status;
-    std::shared_ptr<DataShareHelper> dataShareHelper = nullptr;
-};
 
 /**
  * @brief getUri NAPI implementation.
