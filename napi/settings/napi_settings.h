@@ -22,6 +22,7 @@
 #include "napi/native_common.h"
 #include "napi/native_node_api.h"
 #include "uri.h"
+
 #include "data_ability_helper.h"
 #include "data_ability_predicates.h"
 #include "datashare_helper.h"
@@ -50,7 +51,7 @@ enum CallType {
     FA_CALLBACK,
     FA_PROMISE
 };
- 
+
 struct AsyncCallbackInfo {
     napi_env env;
     napi_async_work asyncWork;
@@ -64,11 +65,45 @@ struct AsyncCallbackInfo {
     std::string tableName;
     int status;
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
-    napi_value callbackArg;
 };
- 
+
 namespace OHOS {
 namespace Settings {
+/**
+ * @brief Wrap void to js value.
+ * ability_context
+ * @param env the environment that the Node-API call is invoked under
+ * @return napi_value napi_value after wrapped
+ */
+napi_value wrap_void_to_js(napi_env env);
+
+/**
+ * @brief Wrap string to js value.
+ *
+ * @param env the environment that the Node-API call is invoked under
+ * @param value string value to be wrap
+ * @return napi_value js value after wrapped
+ */
+napi_value wrap_string_to_js(napi_env env, const std::string &value);
+
+/**
+ * @brief Wrap bool to js value.
+ *
+ * @param env the environment that the Node-API call is invoked under
+ * @param value bool value to be wrap
+ * @return napi_value js value after wrapped
+ */
+napi_value wrap_bool_to_js(napi_env env, bool value);
+
+/**
+ * @brief Unwrap string from js value.
+ *
+ * @param env the environment that the Node-API call is invoked under
+ * @param param js value to unwrap
+ * @return std::string string value after unwrapped
+ */
+std::string unwrap_string_from_js(napi_env env, napi_value param);
+
 /**
  * @brief getUri NAPI implementation.
  * @param env the environment that the Node-API call is invoked under
@@ -142,9 +177,11 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info);
  * @return napi_value the return value from NAPI C++ to JS for the module.
  */
 napi_value napi_can_show_floating(napi_env env, napi_callback_info info);
-std::string GetStageUriStr(std::string tableName, std::string IdStr, std::string keyStr);
-std::string GetProxyUriStr(std::string tableName, std::string IdStr);
+std::string GetStageUriStr(std::string tableName, std::string idStr, std::string keyStr);
+std::string GetProxyUriStr(std::string tableName, std::string idStr);
 bool IsTableNameInvalid(std::string tableName);
+std::shared_ptr<DataShare::DataShareHelper> getDataShareHelper(
+    napi_env env, const napi_value context, const bool stageMode, std::string tableName = "global");
 napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, napi_value* args);
 napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, napi_value* args);
 napi_value napi_register_key_observer(napi_env env, napi_callback_info info);
