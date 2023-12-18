@@ -37,7 +37,7 @@ public:
     void OnChange();
     napi_value OnChangeRet();
     AsyncCallbackInfo* cbInfo;
-	std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper;
+    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper;
 };
 
 napi_value npai_settings_register_observer(napi_env env, napi_callback_info info);
