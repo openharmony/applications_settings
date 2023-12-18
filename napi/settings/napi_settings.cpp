@@ -25,8 +25,6 @@
 
 #include "napi_base_context.h"
 #include "os_account_manager.h"
-#include "os_account_manager.h"
-
 
 using namespace OHOS::AppExecFwk;
 using namespace OHOS::DataShare;
