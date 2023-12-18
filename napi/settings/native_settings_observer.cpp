@@ -207,7 +207,7 @@ namespace Settings {
         g_observerMap[key] = nullptr;
         g_observerMap.erase(key);
         g_helperMap[key] = nullptr;
-		g_helperMap.erase(key);
+        g_helperMap.erase(key);
 
         return wrap_bool_to_js(env, true);
     }
