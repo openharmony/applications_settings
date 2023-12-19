@@ -14,19 +14,16 @@
  */
 
 #include "napi_settings.h"
+#include "napi_settings_observer.h"
 
 #include <pthread.h>
 #include <unistd.h>
 
 #include "abs_shared_result_set.h"
-#include "data_ability_helper.h"
-#include "data_ability_predicates.h"
 #include "napi_settings_log.h"
 #include "values_bucket.h"
 
 #include "napi_base_context.h"
-#include "datashare_helper.h"
-#include "datashare_predicates.h"
 #include "os_account_manager.h"
 
 
@@ -39,19 +36,8 @@ namespace Settings {
 const std::string SETTINGS_DATA_BASE_URI = "dataability:///com.ohos.settingsdata.DataAbility";
 const std::string SETTINGS_DATA_FIELD_KEYWORD = "KEYWORD";
 const std::string SETTINGS_DATA_FIELD_VALUE = "VALUE";
+const int DB_HELPER_TRIAL_NUMBER = 2;
 const int USERID_HELPER_NUMBER = 100;
-
-enum CallType {
-    INVALID_CALL,
-    STAGE_SYNC,
-    STAGE_CALLBACK,
-    STAGE_CALLBACK_SPECIFIC,
-    STAGE_PROMISE,
-    STAGE_PROMISE_SPECIFIC,
-    FA_SYNC,
-    FA_CALLBACK,
-    FA_PROMISE
-};
 
 /**
  * @brief Wrap void to js value.
@@ -135,21 +121,6 @@ napi_value wrap_bool_to_js(napi_env env, bool value)
     NAPI_CALL(env, napi_get_boolean(env, value, &result));
     return result;
 }
-
-struct AsyncCallbackInfo {
-    napi_env env;
-    napi_async_work asyncWork;
-    napi_deferred deferred;
-    napi_ref callbackRef;
-    std::shared_ptr<DataAbilityHelper> dataAbilityHelper;
-    std::string key;
-    std::string value;
-    std::string uri;
-    CallType callType;
-    std::string tableName;
-    int status;
-    std::shared_ptr<DataShareHelper> dataShareHelper = nullptr;
-};
 
 /**
  * @brief getUri NAPI implementation.
@@ -246,7 +217,6 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
     }
 
     SETTING_LOG_INFO("uri arg count is %{public}zd", argc);
-    SETTING_LOG_INFO("uri create aysnc call back info");
     AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
         .env = env,
         .asyncWork = nullptr,
@@ -280,7 +250,6 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
     std::string retStr = GetStageUriStr(tableName, tmpIdStr, keyStr);
     asyncCallbackInfo->uri = retStr;
     SETTING_LOG_INFO("uri aft is %{public}s", asyncCallbackInfo->uri.c_str());
-    SETTING_LOG_INFO("uri aft create aysnc c_b info");
 
     napi_value resource = nullptr;
     NAPI_CALL(env, napi_create_string_utf8(env, "getUri", NAPI_AUTO_LENGTH, &resource));
@@ -357,7 +326,7 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
 }
 
 std::shared_ptr<DataShareHelper> getDataShareHelper(
-    napi_env env, const napi_value context, const bool stageMode, std::string tableName = "global")
+    napi_env env, const napi_value context, const bool stageMode, std::string tableName)
 {
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
     std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultset = nullptr;
@@ -395,8 +364,13 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
     }
     SETTING_LOG_INFO("numRows %{public}d", numRows);
     if (resultset == nullptr || numRows <= 0) {
-        SETTING_LOG_INFO("g_D_S_H resultset == nullptr, strUri %{public}s", strUri.c_str());
-        dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
+        int trial = 0;
+        do {
+            SETTING_LOG_INFO("settingsnapi : getDataShareHelper resultset == nullptr, strUri %{public}s %{public}d",
+                strUri.c_str(),
+                trial);
+            dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
+        } while (trial++ < DB_HELPER_TRIAL_NUMBER && dataShareHelper == nullptr);
         return dataShareHelper;
     }
     resultset->Close();
@@ -486,12 +460,10 @@ void CompleteCall(napi_env env, napi_status status, void *data, const napi_value
         napi_create_error(env, nullptr, message, &result[PARAM0]);
         napi_get_undefined(env, &result[PARAM1]);
     }
-    SETTING_LOG_INFO("c_b aysnc end");
     napi_value callback = nullptr;
     napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
     napi_value returnValue;
     napi_call_function(env, nullptr, callback, PARAM2, result, &returnValue);
-    SETTING_LOG_INFO("c_b end");
     DeleteCallbackInfo(env, asyncCallbackInfo);
     SETTING_LOG_INFO("c_b complete");
 }
@@ -541,17 +513,13 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
 
     int retInt = 0;
     if (asyncCallbackInfo->status == -1) {
-        SETTING_LOG_INFO("a_C_B_I->status == -1");
         if (asyncCallbackInfo->dataShareHelper != nullptr) {
-            SETTING_LOG_INFO("bef in");
             retInt = asyncCallbackInfo->dataShareHelper->Insert(uri, val);
             SETTING_LOG_INFO("aft in status: %{public}d", retInt);
         }
         SETTING_LOG_INFO("n_s_v_e aft in");
     } else {
-        SETTING_LOG_INFO("a_C_B_I->status != -1");
         if (asyncCallbackInfo->dataShareHelper != nullptr) {
-            SETTING_LOG_INFO("bef up");
             retInt = asyncCallbackInfo->dataShareHelper->Update(uri, predicates, val);
             SETTING_LOG_INFO("aft up status: %{public}d", retInt);
         }
@@ -613,7 +581,6 @@ napi_value napi_get_value_sync(napi_env env, napi_callback_info info)
     if (dataAbilityHelper != nullptr) {
         resultset = dataAbilityHelper->Query(*uri, columns, predicates);
     };
-    SETTING_LOG_INFO("n_g_v aft d_A_H->Query");
 
     napi_value retVal = nullptr;
     int numRows = 0;
@@ -651,7 +618,6 @@ void get_val_CB_exe_CB(napi_env env, AsyncCallbackInfo *asyncCallbackInfo)
     predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
 
     std::shared_ptr<Uri> uri = std::make_shared<Uri>(SETTINGS_DATA_BASE_URI);
-    SETTING_LOG_INFO("c_b n_g_v bef d_A_H->Query");
     std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultset = nullptr;
     if (asyncCallbackInfo->dataAbilityHelper != nullptr) {
         resultset = asyncCallbackInfo->dataAbilityHelper->Query(*uri, columns, predicates);
@@ -666,7 +632,6 @@ void get_val_CB_exe_CB(napi_env env, AsyncCallbackInfo *asyncCallbackInfo)
     if (resultset == nullptr || numRows == 0) {
         SETTING_LOG_INFO("c_b n_g_v return def value");
     } else {
-        SETTING_LOG_INFO("c_b n_g_v return value from resultset");
         std::string val;
         int32_t columnIndex = 0;
         resultset->GoToFirstRow();
@@ -696,7 +661,6 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
     }
 
     SETTING_LOG_INFO("n_g_v arg count is %{public}zd", argc);
-    SETTING_LOG_INFO("n_g_v start create back info");
     AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
         .env = env,
         .asyncWork = nullptr,
@@ -708,7 +672,6 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
         .uri = "",
         .status = false,
     };
-    SETTING_LOG_INFO("aft create back info");
     // Check the value type of the arguments
     napi_valuetype valueType;
     NAPI_CALL(env, napi_typeof(env, args[PARAM0], &valueType));
@@ -728,7 +691,6 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
     if (wrapper != nullptr) {
         asyncCallbackInfo->dataAbilityHelper = wrapper->GetDataAbilityHelper();
     }
-    SETTING_LOG_INFO("input param is (d_A_H)");
 
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
     SETTING_LOG_INFO("input param is : (key %{public}s", asyncCallbackInfo->key.c_str());
@@ -761,17 +723,13 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
                     SETTING_LOG_INFO("c_b end data is null");
                     return;
                 }
-                SETTING_LOG_INFO("c_b end");
                 AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
                 napi_value undefine;
                 napi_get_undefined(env, &undefine);
-                SETTING_LOG_INFO("c_b c1");
                 napi_value callback = nullptr;
                 napi_value result = wrap_string_to_js(env, asyncCallbackInfo->value);
-                SETTING_LOG_INFO("c_b c2");
                 napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
                 napi_call_function(env, nullptr, callback, 1, &result, &undefine);
-                SETTING_LOG_INFO("c_b c3");
                 napi_delete_reference(env, asyncCallbackInfo->callbackRef);
                 napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
                 asyncCallbackInfo->dataAbilityHelper = nullptr;
@@ -781,7 +739,6 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
             (void *)asyncCallbackInfo,
             &asyncCallbackInfo->asyncWork);
 
-        SETTING_LOG_INFO(" c_b start async work");
         NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
         SETTING_LOG_INFO("c_b end async work");
         return wrap_void_to_js(env);
@@ -798,11 +755,9 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
         resource,
         // aysnc executed task
         [](napi_env env, void* data) {
-            SETTING_LOG_INFO("p_m async execute c_b");
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-            SETTING_LOG_INFO("p_m get c_b key is %{public}s", asyncCallbackInfo->key.c_str());
-            SETTING_LOG_INFO("p_m get c_b value is %{public}s",
-                asyncCallbackInfo->value.c_str());
+            SETTING_LOG_INFO("p_m get c_b key is %{public}s, value is: %{public}s",
+			    asyncCallbackInfo->key.c_str(), asyncCallbackInfo->value.c_str());
 
             std::vector<std::string> columns;
             columns.push_back(SETTINGS_DATA_FIELD_VALUE);
@@ -810,7 +765,6 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
             predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
 
             std::shared_ptr<Uri> uri = std::make_shared<Uri>(SETTINGS_DATA_BASE_URI);
-            SETTING_LOG_INFO("p_m n_g_v bef d_A_H->Query");
             std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultset = nullptr;
             if (asyncCallbackInfo->dataAbilityHelper != nullptr) {
                 resultset = asyncCallbackInfo->dataAbilityHelper->Query(*uri, columns, predicates);
@@ -838,7 +792,6 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
         },
         // async end called callback
         [](napi_env env, napi_status status, void* data) {
-            SETTING_LOG_INFO("p_m async end c_b");
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
             SETTING_LOG_INFO("p_m end get c_b value is %{public}s",
                 asyncCallbackInfo->value.c_str());
@@ -858,7 +811,6 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
 // api9
 napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool stageMode)
 {
-    SETTING_LOG_INFO("n_g_v_e start");
     AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
         .env = env,
         .asyncWork = nullptr,
@@ -1016,7 +968,6 @@ napi_value napi_set_value_sync(napi_env env, napi_callback_info info)
     predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, argsName);
 
     std::shared_ptr<Uri> uri = std::make_shared<Uri>(SETTINGS_DATA_BASE_URI);
-    SETTING_LOG_INFO("n_s_v bef d_A_H->Query");
     std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultset = nullptr;
     if (dataAbilityHelper != nullptr) {
         resultset = dataAbilityHelper->Query(*uri, columns, predicates);
@@ -1033,18 +984,15 @@ napi_value napi_set_value_sync(napi_env env, napi_callback_info info)
 
     // insert
     if (resultset == nullptr || numRows == 0) {
-        SETTING_LOG_INFO("n_s_v bef In");
         retInt = dataAbilityHelper->Insert(*uri, val);
         SETTING_LOG_INFO("n_s_v aft In");
     // update
     } else {
-        SETTING_LOG_INFO("n_s_v bef Up");
         retInt = dataAbilityHelper->Update(*uri, val, predicates);
         SETTING_LOG_INFO("n_s_v aft Up");
     }
     // notify change
     if (retInt != 0) {
-        SETTING_LOG_INFO("n_s_v retInt is NOT zero");
         std::string uriWithNameStr =
             argsName.empty() ? SETTINGS_DATA_BASE_URI : (SETTINGS_DATA_BASE_URI + "/" + argsName);
         std::shared_ptr<Uri> uriWithName = std::make_shared<Uri>(uriWithNameStr);
@@ -1055,8 +1003,7 @@ napi_value napi_set_value_sync(napi_env env, napi_callback_info info)
     if (resultset != nullptr) {
         resultset->Close();
     }
-
-    SETTING_LOG_INFO("n_s_v END!");
+    
     return wrap_bool_to_js(env, retInt != 0);
 }
 
@@ -1086,7 +1033,6 @@ void SetValueExecuteCB(napi_env env, void *data)
     if (asyncCallbackInfo->dataAbilityHelper != nullptr) {
         resultset = asyncCallbackInfo->dataAbilityHelper->Query(*uri, columns, predicates);
     }
-    SETTING_LOG_INFO("execute aft d_A_H->Query");
 
     int retInt = 0;
     int numRows = 0;
@@ -1096,29 +1042,25 @@ void SetValueExecuteCB(napi_env env, void *data)
     }
     // insert
     if (resultset == nullptr || numRows == 0) {
-        SETTING_LOG_INFO("execute bef In");
         retInt = asyncCallbackInfo->dataAbilityHelper->Insert(*uri, val);
         SETTING_LOG_INFO("execute aft In");
     // update
     } else {
-        SETTING_LOG_INFO("execute bef Up");
         retInt = asyncCallbackInfo->dataAbilityHelper->Update(*uri, val, predicates);
         SETTING_LOG_INFO("execute aft Up");
     }
     // notify change
     if (retInt != 0) {
-        SETTING_LOG_INFO("execute retInt is NOT zero");
         std::string uriWithNameStr =
             argsName.empty() ? SETTINGS_DATA_BASE_URI : (SETTINGS_DATA_BASE_URI + "/" + argsName);
         std::shared_ptr<Uri> uriWithName = std::make_shared<Uri>(uriWithNameStr);
         asyncCallbackInfo->dataAbilityHelper->NotifyChange(*uriWithName);
-        SETTING_LOG_INFO(
-            "execute aft NotifyChange with uri: %{public}s",
-            uriWithNameStr.c_str());
+        SETTING_LOG_INFO("execute aft NotifyC with uri: %{public}s", uriWithNameStr.c_str());
     }
     if (resultset != nullptr) {
         resultset->Close();
     }
+    SETTING_LOG_INFO("execute... END!");
     asyncCallbackInfo->status = retInt;
 }
 
@@ -1138,17 +1080,13 @@ napi_value SetValueAsync(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
                 SETTING_LOG_INFO("c_b set asy end data is null");
                 return;
             }
-            SETTING_LOG_INFO("c_b set asy end");
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
             napi_value undefine;
             napi_get_undefined(env, &undefine);
-            SETTING_LOG_INFO("c_b set asy end1");
             napi_value callback = nullptr;
             napi_value result = wrap_bool_to_js(env, asyncCallbackInfo->status != 0);
-            SETTING_LOG_INFO("c_b set asy end2");
             napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
             napi_call_function(env, nullptr, callback, 1, &result, &undefine);
-            SETTING_LOG_INFO("c_b set asy end3");
             napi_delete_reference(env, asyncCallbackInfo->callbackRef);
             napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
             asyncCallbackInfo->dataAbilityHelper = nullptr;
@@ -1158,7 +1096,6 @@ napi_value SetValueAsync(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
         (void*)asyncCallbackInfo,
         &asyncCallbackInfo->asyncWork
     );
-    SETTING_LOG_INFO("c_b set start asy work");
     NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
     SETTING_LOG_INFO("c_b set end asy work");
     return wrap_void_to_js(env);
@@ -1181,7 +1118,6 @@ napi_value SetValuePromise(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
         resource,
         SetValueExecuteCB,
         [](napi_env env, napi_status status, void* data) {
-            SETTING_LOG_INFO("p_m set asy end");
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
             SETTING_LOG_INFO("p_m set end get c_b value is %{public}d",
                 asyncCallbackInfo->status);
@@ -1223,7 +1159,6 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
     }
 
     SETTING_LOG_INFO("set  arg count is %{public}zd", argc);
-    SETTING_LOG_INFO("set  start create aysnc call back info");
     // Check the value type of the arguments
     AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
         .env = env,
@@ -1258,8 +1193,7 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
     if (wrapper != nullptr) {
         asyncCallbackInfo->dataAbilityHelper = wrapper->GetDataAbilityHelper();
     }
-    SETTING_LOG_INFO("input paramter is (d_A_H)");
-
+	
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
     asyncCallbackInfo->value = unwrap_string_from_js(env, args[PARAM2]);
     SETTING_LOG_INFO("set  input param is : (key %{public}s, value %{public}s)",
@@ -1407,7 +1341,6 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
     }
 
     SETTING_LOG_INFO("n_e_a_m arg count is %{public}zd", argc);
-    SETTING_LOG_INFO("n_e_a_m start create aysnc call back info");
     AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
         .env = env,
         .asyncWork = nullptr,
@@ -1463,7 +1396,6 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
                 napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
                 napi_value callResult;
                 napi_call_function(env, undefined, callback, PARAM2, result, &callResult);
-                SETTING_LOG_INFO("c_b aysnc end");
 
                 napi_delete_reference(env, asyncCallbackInfo->callbackRef);
                 napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
@@ -1532,7 +1464,6 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
     }
 
     SETTING_LOG_INFO("n_e_a_m arg count is %{public}zd", argc);
-    SETTING_LOG_INFO("n_e_a_m start create aysnc call back info");
     AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
         .env = env,
         .asyncWork = nullptr,
@@ -1544,7 +1475,6 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
         .uri = "",
         .status = 0,
     };
-    SETTING_LOG_INFO("aft create aysnc call back info");
 
     napi_value resource = nullptr;  
     NAPI_CALL(env, napi_create_string_utf8(env, "enableAirplaneMode", NAPI_AUTO_LENGTH, &resource));
@@ -1584,7 +1514,6 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
                 napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
                 napi_value callResult;
                 napi_call_function(env, undefined, callback, PARAM2, result, &callResult);
-                SETTING_LOG_INFO("c_b aysnc end");
 
                 napi_delete_reference(env, asyncCallbackInfo->callbackRef);
                 napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
@@ -1633,21 +1562,21 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
 }
 
 // get uri for stage model
-std::string GetStageUriStr(std::string tableName, std::string IdStr, std::string keyStr)
+std::string GetStageUriStr(std::string tableName, std::string idStr, std::string keyStr)
 {
-    if (std::stoi(IdStr) < USERID_HELPER_NUMBER) {
-        IdStr = "100";
+    if (std::stoi(idStr) < USERID_HELPER_NUMBER) {
+        idStr = "100";
     }
     if (tableName == "global") {
         std::string retStr =
             "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=" + keyStr;
         return retStr;
     } else if (tableName == "system") {
-        std::string retStr = "datashare:///com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_" + IdStr +
+        std::string retStr = "datashare:///com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_" + idStr +
                              "?Proxy=true&key=" + keyStr;
         return retStr;
     } else if (tableName == "secure") {
-        std::string retStr = "datashare:///com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_SECURE_" + IdStr +
+        std::string retStr = "datashare:///com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_SECURE_" + idStr +
                              "?Proxy=true&key=" + keyStr;
         return retStr;
     } else {
@@ -1659,10 +1588,10 @@ std::string GetStageUriStr(std::string tableName, std::string IdStr, std::string
 }
 
 // get proxy uri
-std::string GetProxyUriStr(std::string tableName, std::string IdStr)
+std::string GetProxyUriStr(std::string tableName, std::string idStr)
 {
-    if (std::stoi(IdStr) < USERID_HELPER_NUMBER) {
-        IdStr = "100";
+    if (std::stoi(idStr) < USERID_HELPER_NUMBER) {
+        idStr = "100";
     }
     if (tableName == "global") {
         // return global uri
@@ -1670,11 +1599,11 @@ std::string GetProxyUriStr(std::string tableName, std::string IdStr)
         return retStr;
     } else if (tableName == "system") {
         std::string retStr =
-            "datashare:///com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_" + IdStr + "?Proxy=true";
+            "datashare:///com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_" + idStr + "?Proxy=true";
         return retStr;
     } else {
         std::string retStr =
-            "datashare:///com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_SECURE_" + IdStr + "?Proxy=true";
+            "datashare:///com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_SECURE_" + idStr + "?Proxy=true";
         return retStr;
     }
 }
@@ -1725,9 +1654,6 @@ napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
     } else {
         retVal = wrap_string_to_js(env, asyncCallbackInfo->value);
     }
-    if (asyncCallbackInfo->dataShareHelper != nullptr) {
-        asyncCallbackInfo->dataShareHelper->Release();
-    }
     delete asyncCallbackInfo;
     return retVal;
 }
@@ -1760,21 +1686,18 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
     GetValueExecuteExt(env, (void *)asyncCallbackInfo);
     SetValueExecuteExt(env, (void *)asyncCallbackInfo, unwrap_string_from_js(env, args[PARAM2]));
     napi_value result = wrap_bool_to_js(env, asyncCallbackInfo->status != 0);
-    if (asyncCallbackInfo->dataShareHelper != nullptr) {
-        asyncCallbackInfo->dataShareHelper->Release();
-    }
     delete asyncCallbackInfo;
     return result;
 }
 
 napi_value napi_register_key_observer(napi_env env, napi_callback_info info)
 {
-    return wrap_bool_to_js(env, true);
+    return npai_settings_register_observer(env, info);
 }
 
 napi_value napi_unregister_key_observer(napi_env env, napi_callback_info info)
 {
-    return wrap_bool_to_js(env, true);
+    return npai_settings_unregister_observer(env, info);
 }
 }  // namespace Settings
 }  // namespace OHOS
