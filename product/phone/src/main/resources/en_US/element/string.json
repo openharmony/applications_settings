@@ -926,7 +926,7 @@
     },
     {
       "name": "bluetooth_pairing_intelligent_device_hit",
-      "value": "%s would like to pair with this device. Confirm that this code is also shown on th %s."
+      "value": "%s would like to pair with this device. Confirm that this code is also shown on the %s."
     },
     {
       "name": "bluetooth_disconnect",
