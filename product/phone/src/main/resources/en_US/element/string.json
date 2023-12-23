@@ -1483,6 +1483,10 @@
     {
       "name": "wait",
       "value": "Wait"
+    },
+    {
+      "name": "GET_ACCESS_UDID",
+      "value": "Permission to obtain a UDID"
     }
   ]
 }
