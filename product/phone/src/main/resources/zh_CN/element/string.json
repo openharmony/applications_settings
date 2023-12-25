@@ -1487,6 +1487,10 @@
     {
       "name": "wait",
       "value": "等"
+    },
+    {
+      "name": "GET_ACCESS_UDID",
+      "value": "获取UDID的权限"
     }
   ]
 }
