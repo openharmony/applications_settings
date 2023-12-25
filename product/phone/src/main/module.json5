@@ -223,6 +223,10 @@
       {
         "name": "ohos.permission.READ_ACCESSIBILITY_CONFIG",
         "reason": "$string:READ_ACCESSIBILITY_CONFIG_PERMISSION"
+      },
+      {
+        "name": "ohos.permission.sec.ACCESS_UDID",
+        "reason": "$string:GET_ACCESS_UDID"
       }
     ]
   }

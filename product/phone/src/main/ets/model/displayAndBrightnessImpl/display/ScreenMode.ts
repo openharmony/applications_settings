@@ -144,9 +144,13 @@ export class ScreenModeModel extends BaseModel{
   @Log
   public registerObserver(){
     LogUtil.info(`${this.TAG} registerObserver.`);
-    ScreenManager.on('change', (ScreenEvent) => {
-      this.init();
-    })
+    try {
+      ScreenManager.on('change', (ScreenEvent) => {
+        this.init();
+      })
+    } catch (err) {
+      LogUtil.error(`${this.TAG} registerObserver on change error` + err);
+    }
     LogUtil.info(`${this.TAG} registerObserver success.`);
     return;
   }
@@ -157,9 +161,13 @@ export class ScreenModeModel extends BaseModel{
   @Log
   public unregisterObserver() {
     LogUtil.info(`${this.TAG} unregisterObserver.`);
-    ScreenManager.off('change', (ScreenEvent) => {
-      LogUtil.info(`${this.TAG} unregisterObserver success.`);
-    })
+    try {
+      ScreenManager.off('change', (ScreenEvent) => {
+        LogUtil.info(`${this.TAG} unregisterObserver success.`);
+      })
+    } catch (err) {
+      LogUtil.error(`${this.TAG} unregisterObserver off change error` + err);
+    }
     return;
   }
 }
