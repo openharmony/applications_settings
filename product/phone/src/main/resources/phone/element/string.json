@@ -1419,6 +1419,10 @@
     {
       "name": "READ_ACCESSIBILITY_CONFIG_PERMISSION",
       "value": "无障碍设置读取权限"
+    },
+    {
+      "name": "GET_ACCESS_UDID",
+      "value": "获取UDID的权限"
     }
   ]
 }
