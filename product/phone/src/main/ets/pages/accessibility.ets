@@ -649,7 +649,7 @@ struct AccessibilitySettings {
   openExtendedServicesListener(): void {
     try {
       bundleMonitor.on('add', (bundleChangeInfo) => {
-        LogUtil.info(`bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
+        LogUtil.info(`${this.TAG} Add bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
         this.getAbilityList();
       });
     } catch (exception) {
@@ -657,14 +657,15 @@ struct AccessibilitySettings {
     }
     try {
       bundleMonitor.on('update', (bundleChangeInfo) => {
-        LogUtil.info(`bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
+        LogUtil.info(`${this.TAG} Update bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
+        this.getAbilityList();
       });
     } catch (exception) {
       LogUtil.info(`${this.TAG} failed subscribe bundleMonitor, result: ${JSON.stringify(exception)}`);
     }
     try {
       bundleMonitor.on('remove', (bundleChangeInfo) => {
-        LogUtil.info(`bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
+        LogUtil.info(`${this.TAG} Remove bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
         this.getAbilityList();
         this.getShortKeyStateAndTargetByStatus();
       });
