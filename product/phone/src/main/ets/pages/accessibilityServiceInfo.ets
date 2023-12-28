@@ -211,7 +211,6 @@ struct AccessibilityServiceInfo {
       this.isPhoneOrRK = false;
     }
     this.openExtensionServiceManagementDetailsStatusListener();
-    this.openExtensionServiceManagementDetailsApplicationListener();
     this.getServiceName();
     LogUtil.info(`${this.tag} aboutToAppear end `);
   }
@@ -344,20 +343,37 @@ struct AccessibilityServiceInfo {
 
   openExtensionServiceManagementDetailsApplicationListener(): void {
     try {
+      bundleMonitor.on('update', (bundleChangeInfo) => {
+        LogUtil.info(`${this.tag} Update bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
+        LogUtil.info(`${this.tag} Update localBundleName: ${this.bundleName} `);
+        if (this.bundleName === bundleChangeInfo.bundleName) {
+          router.back();
+        }
+
+      });
+    } catch (exception) {
+      LogUtil.info(`${this.tag} failed subscribe bundleMonitor, result: ${JSON.stringify(exception)}`);
+    }
+    try {
       bundleMonitor.on('remove', (bundleChangeInfo) => {
-        LogUtil.info(`bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
+        LogUtil.info(`${this.tag} Remove bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
         this.setExtensionServiceManagementApplicationData();
       });
     } catch (exception) {
-      LogUtil.info(`${MODULE_TAG} failed subscribe bundleMonitor, result: ${JSON.stringify(exception)}`);
+      LogUtil.info(`${this.tag} failed subscribe bundleMonitor, result: ${JSON.stringify(exception)}`);
     }
   }
 
   closeExtensionServiceManagementDetailsApplicationListener(): void {
     try {
+      bundleMonitor.off('update');
+    } catch (exception) {
+      LogUtil.info(`${this.tag} failed subscribe bundleMonitor, result: ${JSON.stringify(exception)}`);
+    }
+    try {
       bundleMonitor.off('remove');
     } catch (exception) {
-      LogUtil.info(`${MODULE_TAG} failed subscribe bundleMonitor, result: ${JSON.stringify(exception)}`);
+      LogUtil.info(`${this.tag} failed subscribe bundleMonitor, result: ${JSON.stringify(exception)}`);
     }
   }
 
