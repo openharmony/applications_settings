@@ -103,7 +103,7 @@ export class ExtensionServiceManagementModel extends BaseModel {
   openExtensionServiceManagementApplicationListener() {
     try {
       bundleMonitor.on('add', (bundleChangeInfo) => {
-        LogUtil.info(`bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
+        LogUtil.info(`${MODULE_TAG} Add bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
         this.setExtensionServiceManagementListener();
       });
     } catch (exception) {
@@ -111,14 +111,15 @@ export class ExtensionServiceManagementModel extends BaseModel {
     }
     try {
       bundleMonitor.on('update', (bundleChangeInfo) => {
-        LogUtil.info(`bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
+        LogUtil.info(`${MODULE_TAG} Update bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
+        this.setExtensionServiceManagementListener();
       });
     } catch (exception) {
       LogUtil.info(`${MODULE_TAG} failed subscribe bundleMonitor update, result: ${JSON.stringify(exception)}`);
     }
     try {
       bundleMonitor.on('remove', (bundleChangeInfo) => {
-        LogUtil.info(`bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
+        LogUtil.info(`${MODULE_TAG} Remove bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
         this.setExtensionServiceManagementListener();
       });
     } catch (exception) {
