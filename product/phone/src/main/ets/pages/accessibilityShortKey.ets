@@ -308,6 +308,16 @@ struct AccessibilityShortKey {
       LogUtil.error(`${TAG} errData is errCode :${errCode} message:${message}`);
     }
     try {
+      bundleMonitor.on('update', (bundleChangeInfo) => {
+        this.abilitySelectListenerAdd();
+        LogUtil.info(`${TAG} bundleName:${bundleChangeInfo.bundleName} userId:${bundleChangeInfo.userId}`);
+      });
+    } catch (errData) {
+      let message = (errData as BusinessError).message;
+      let errCode = (errData as BusinessError).code;
+      LogUtil.error(`${TAG} errData is errCode :${errCode} message:${message}`);
+    }
+    try {
       bundleMonitor.on('remove', (bundleChangeInfo) => {
         this.abilitySelectListenerRemove();
         LogUtil.info(`${TAG} bundleName:${bundleChangeInfo.bundleName} userId:${bundleChangeInfo.userId}`);
@@ -322,6 +332,13 @@ struct AccessibilityShortKey {
   closeAbilitySelectListener(): void {
     try {
       bundleMonitor.off('add');
+    } catch (errData) {
+      let message = (errData as BusinessError).message;
+      let errCode = (errData as BusinessError).code;
+      LogUtil.error(`errData is errCode :${errCode} message:${message}`);
+    }
+    try {
+      bundleMonitor.off('update');
     } catch (errData) {
       let message = (errData as BusinessError).message;
       let errCode = (errData as BusinessError).code;
@@ -345,51 +362,6 @@ struct SelectAbilityScalingInformation {
   @Link AllAbilityNameList: Array<string>;
   @Link selectAbilityList: Array<string>;
   @State stagList: Array<string> = JSON.parse(JSON.stringify(this.selectAbilityList));
-
-  updateAccessibilityExtensionList() {
-    accessibility.getAccessibilityExtensionList('all', 'install').then((data) => {
-      LogUtil.info(`${TAG} get accessibilityAbilityList success, service length: ${JSON.stringify(data.length)}`);
-      if (data.length > 0) {
-        data.forEach(item => this.extAbilityNameList.push(item.id));
-      }
-    }).catch((err: BusinessError) => {
-      LogUtil.error(`${TAG} failed to get accessibilityAbilityList, because ${JSON.stringify(err)}`);
-    });
-  }
-
-  aboutToAppear() {
-    LogUtil.info(`${TAG} aboutToAppear Accessibility Functions list`);
-    this.AllAbilityNameList = this.generateAllAbilityNameList();
-    LogUtil.info(JSON.stringify(this.AllAbilityNameList));
-    try {
-      bundleMonitor.on('add', (bundleChangeInfo) => {
-        this.extAbilityNameList = [];
-        this.AllAbilityNameList = [];
-        this.updateAccessibilityExtensionList();
-        this.AllAbilityNameList = this.generateAllAbilityNameList();
-        this.controller?.close();
-        LogUtil.info(`bundleName:${bundleChangeInfo.bundleName} userId:${bundleChangeInfo.userId}`);
-      });
-    } catch (errData) {
-      let message = (errData as BusinessError).message;
-      let errCode = (errData as BusinessError).code;
-      LogUtil.error(`errData is errCode :${errCode} message:${message}`);
-    }
-    try {
-      bundleMonitor.on('remove', (bundleChangeInfo) => {
-        this.extAbilityNameList = [];
-        this.AllAbilityNameList = [];
-        this.updateAccessibilityExtensionList();
-        this.AllAbilityNameList = this.generateAllAbilityNameList();
-        this.controller?.close();
-        LogUtil.info(`bundleName:${bundleChangeInfo.bundleName} userId:${bundleChangeInfo.userId}`);
-      })
-    } catch (errData) {
-      let message = (errData as BusinessError).message;
-      let errCode = (errData as BusinessError).code;
-      LogUtil.error(`errData is errCode :${errCode} message:${message}`);
-    }
-  }
 
   build() {
     Column() {
@@ -475,11 +447,67 @@ struct SelectAbilityScalingInformation {
     .padding({ left: $r('app.float.distance_12'), right: $r('app.float.distance_12') });
   }
 
+  aboutToAppear(): void {
+    LogUtil.info(`${TAG} aboutToAppear Accessibility Functions list`);
+    this.AllAbilityNameList = this.generateAllAbilityNameList();
+    LogUtil.info(JSON.stringify(this.AllAbilityNameList));
+    try {
+      bundleMonitor.on('add', (bundleChangeInfo) => {
+        LogUtil.info(`${TAG} Add bundleName:${bundleChangeInfo.bundleName} userId:${bundleChangeInfo.userId}`);
+        this.interceptionDataChanges();
+      });
+    } catch (errData) {
+      let message = (errData as BusinessError).message;
+      let errCode = (errData as BusinessError).code;
+      LogUtil.error(`${TAG} errData is errCode :${errCode} message:${message}`);
+    }
+    try {
+      bundleMonitor.on('update', (bundleChangeInfo) => {
+        LogUtil.info(`${TAG} Update bundleName:${bundleChangeInfo.bundleName} userId:${bundleChangeInfo.userId}`);
+        this.interceptionDataChanges();
+      })
+    } catch (errData) {
+      let message = (errData as BusinessError).message;
+      let errCode = (errData as BusinessError).code;
+      LogUtil.error(`${TAG} errData is errCode :${errCode} message:${message}`);
+    }
+    try {
+      bundleMonitor.on('remove', (bundleChangeInfo) => {
+        LogUtil.info(`${TAG} Remove bundleName:${bundleChangeInfo.bundleName} userId:${bundleChangeInfo.userId}`);
+        this.interceptionDataChanges();
+      })
+    } catch (errData) {
+      let message = (errData as BusinessError).message;
+      let errCode = (errData as BusinessError).code;
+      LogUtil.error(`${TAG} errData is errCode :${errCode} message:${message}`);
+    }
+  }
+
+  interceptionDataChanges(): void {
+    this.extAbilityNameList = [];
+    this.AllAbilityNameList = [];
+    this.updateAccessibilityExtensionList();
+    this.AllAbilityNameList = this.generateAllAbilityNameList();
+    this.controller?.close();
+    LogUtil.info(`${TAG} interceptionDataChanges end`);
+  }
+
+  updateAccessibilityExtensionList(): void {
+    accessibility.getAccessibilityExtensionList('all', 'install').then((data) => {
+      LogUtil.info(`${TAG} get accessibilityAbilityList success, service length: ${JSON.stringify(data.length)}`);
+      if (data.length > 0) {
+        data.forEach(item => this.extAbilityNameList.push(item.id));
+      }
+    }).catch((err: BusinessError) => {
+      LogUtil.error(`${TAG} failed to get accessibilityAbilityList, because ${JSON.stringify(err)}`);
+    });
+  }
+
   setAbilityList(): void {
     LogUtil.info(`${TAG} set ability List ${JSON.stringify(this.selectAbilityList)}`);
-      let endAbilityList: Array<string> = JSON.parse(JSON.stringify(this.stagList));
-      this.selectAbilityList = JSON.parse(JSON.stringify(this.stagList));
-      AccessibilitySettingModel.accessibilityShortKeyMultiTargetsSet(endAbilityList);
+    let endAbilityList: Array<string> = JSON.parse(JSON.stringify(this.stagList));
+    this.selectAbilityList = JSON.parse(JSON.stringify(this.stagList));
+    AccessibilitySettingModel.accessibilityShortKeyMultiTargetsSet(endAbilityList);
     this.getShortKeyStatus();
     this.controller?.close();
   }
