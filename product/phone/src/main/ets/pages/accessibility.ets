@@ -49,6 +49,7 @@ struct AccessibilitySettings {
   @State isTouched: boolean = false;
   @State serviceNumChanged: boolean = true;
   private TAG = ConfigData.TAG + 'AccessibilitySettings ';
+  private basicList: string[] = [BASIC_ABILITY_HIGH_CONTRAST_TEXT, BASIC_ABILITY_SINGLE_AUDIO];
 
   build() {
     Column() {
@@ -262,9 +263,12 @@ struct AccessibilitySettings {
     .height(ConfigData.WH_100_100);
   };
 
-  setShortKeyText(status: boolean, text: string): void {
-    LogUtil.info(`${this.TAG} shortKeyState:${JSON.stringify(status)}`);
-    if (text === 'none') {
+  setShortKeyText(status: boolean, text: string, flag: boolean): void {
+    LogUtil.info(`${this.TAG} shortKeyState: ${JSON.stringify(status)},${JSON.stringify(text)}`);
+    if (this.basicList.includes(text)) {
+      flag = false;
+    }
+    if (text === 'none' || flag) {
       this.shortKeyStatusText = (Object)($r('app.string.disabled'));
       return;
     }
@@ -315,8 +319,8 @@ struct AccessibilitySettings {
     await accessibility.getAccessibilityExtensionList('all', 'install').then((data) => {
       LogUtil.info(`${this.TAG}get accessibilityAbilityList success, service length: ${JSON.stringify(data.length)}`);
       if (data.length > 0) {
-        this.serviceStateText = $r('app.string.service_number', this.serviceNum);
         this.serviceNum = data.length;
+        this.serviceStateText = $r('app.string.service_number', this.serviceNum);
         LogUtil.info(`${this.TAG}serviceNumber: ${JSON.stringify(this.serviceNum)}`);
       } else {
         this.serviceStateText = $r('app.string.no_service');
@@ -354,12 +358,14 @@ struct AccessibilitySettings {
     }).catch((err: object) => {
       LogUtil.error(`${this.TAG}failed to get audioBalance, because ${JSON.stringify(err)}`);
     });
+    this.openStatusListener();
     this.getShortKeyStateAndTargetByStatus();
     this.getAbilityList();
     LogUtil.info(`${this.TAG}aboutToAppear out`);
   }
 
   async getShortKeyStateAndTargetByStatus(): Promise<void> {
+    let text: string = '';
     await config.shortkey.get().then((data) => {
       this.shortKeyIsOn = data;
       LogUtil.info(`${this.TAG}get shortKeyIsOn success : ${data}`);
@@ -368,22 +374,109 @@ struct AccessibilitySettings {
     });
 
     await config.shortkeyTarget.get().then((data) => {
-      this.shortKeyStatusText = data;
+      text = data;
       LogUtil.info(`${this.TAG}get shortkeyTarget success: ${data}`);
     }).catch((err: object) => {
       LogUtil.error(`${this.TAG}failed to get shortkeyTarget, because ${JSON.stringify(err)}`);
     });
-    this.setShortKeyText(this.shortKeyIsOn, this.shortKeyStatusText);
+
+    let flag: boolean = true;
+    let installServiceList: Array<accessibility.AccessibilityAbilityInfo> = await accessibility.getAccessibilityExtensionList('all', 'install');
+    if (installServiceList && installServiceList.length > 0) {
+      for (let enableService of installServiceList) {
+        if (enableService && enableService.id === text) {
+          flag = false;
+        }
+      }
+    }
+    this.setShortKeyText(this.shortKeyIsOn, text, flag);
   }
 
   aboutToDisappear(): void {
     LogUtil.info(`${this.TAG}aboutToDisappear`);
+    this.closeExtendedServicesListener();
+    this.closeStatusListener();
   }
 
   onPageShow(): void {
     LogUtil.info(`${this.TAG}onPageShow in`);
     this.getShortKeyStateAndTargetByStatus();
+    this.openExtendedServicesListener();
     this.getAbilityList();
     LogUtil.info(`${this.TAG}onPageShow out`);
+  }
+
+  openStatusListener(): void {
+    try {
+      config.highContrastText.on((data: boolean) => {
+        LogUtil.info(`${this.TAG}subscribe highContrastText success, result: ${JSON.stringify(data)}`);
+        this.highContrastTextIsOn = data;
+      });
+    } catch (exception) {
+      LogUtil.info(`${this.TAG}failed subscribe highContrastText, result: ${JSON.stringify(exception)}`);
+    }
+    try {
+      config.audioMono.on((data: boolean) => {
+        LogUtil.info(`${this.TAG}subscribe audioMono success, result: ${JSON.stringify(data)}`);
+        this.audioMonoIsOn = data;
+      });
+    } catch (exception) {
+      LogUtil.info(`${this.TAG}failed subscribe audioMono, result: ${JSON.stringify(exception)}`);
+    }
+  }
+
+  closeStatusListener(): void {
+    try {
+      config.highContrastText.off((data: boolean) => {
+        LogUtil.info(`${this.TAG} Unsubscribe highContrastText success, result: ${JSON.stringify(data)}`);
+      });
+    } catch (exception) {
+      LogUtil.info(`${this.TAG} failed subscribe highContrastText , result: ${JSON.stringify(exception)}`);
+    }
+    try {
+      config.audioMono.off((data: boolean) => {
+        LogUtil.info(`${this.TAG} Unsubscribe audioMono success, result: ${JSON.stringify(data)}`);
+      });
+    } catch (exception) {
+      LogUtil.info(`${this.TAG} failed subscribe audioMono, result: ${JSON.stringify(exception)}`);
+    }
+  }
+
+  openExtendedServicesListener(): void {
+    try {
+      bundleMonitor.on('add', (bundleChangeInfo) => {
+        LogUtil.info(`bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
+        this.getAbilityList();
+      });
+    } catch (exception) {
+      LogUtil.info(`${this.TAG} failed subscribe bundleMonitor add, result: ${JSON.stringify(exception)}`);
+    }
+    try {
+      bundleMonitor.on('update', (bundleChangeInfo) => {
+        LogUtil.info(`bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
+        this.getAbilityList();
+      });
+    } catch (exception) {
+      LogUtil.info(`${this.TAG} failed subscribe bundleMonitor, result: ${JSON.stringify(exception)}`);
+    }
+    try {
+      bundleMonitor.on('remove', (bundleChangeInfo) => {
+        LogUtil.info(`bundleName: ${bundleChangeInfo.bundleName} userId: ${bundleChangeInfo.userId}`);
+        this.getAbilityList();
+        this.getShortKeyStateAndTargetByStatus();
+      });
+    } catch (exception) {
+      LogUtil.info(`${this.TAG} failed subscribe bundleMonitor, result: ${JSON.stringify(exception)}`);
+    }
+  }
+
+  closeExtendedServicesListener(): void {
+    try {
+      bundleMonitor.off('add');
+      bundleMonitor.off('update');
+      bundleMonitor.off('remove');
+    } catch (exception) {
+      LogUtil.info(`${this.TAG} failed subscribe bundleMonitor, result: ${JSON.stringify(exception)}`);
+    }
   }
 }
