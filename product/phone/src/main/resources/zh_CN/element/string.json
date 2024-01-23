@@ -862,7 +862,7 @@
     },
     {
       "name": "resetPhonePromptDetails",
-      "value": "• 您的帐户\n\n\n\n• 系统及应用数据和设置\n\n\n\n• 已安装的应用\n\n\n\n• 音乐\n\n\n\n• 图片\n\n\n\n• 文件\n\n\n\n• 安全芯片中的信息（重启设备联网后自动清除）\n\n\n\n• 与帐号关联并存储在本设备上的系统、应用和个人数据\n\n\n\n• 此设备上的其他用户\n"
+      "value": "• 您的帐户\n\n• 系统及应用数据和设置\n\n• 已安装的应用\n\n• 音乐\n\n• 图片\n\n• 文件\n\n• 安全芯片中的信息（重启设备联网后自动清除）\n\n• 与帐号关联并存储在本设备上的系统、应用和个人数据\n\n• 此设备上的其他用户\n"
     },
     {
       "name": "resetPhonePromptInfo",
@@ -1274,7 +1274,7 @@
     },
     {
       "name": "assessmentIntroduction",
-      "value": "OpenHarmony兼容性测评是由OpenHarmony社区面向设备厂商提供的测评服务，以保障OpenHarmony生态设备的应用兼容性、分布式兼容性和基础用户体验，实现OpenHarmony设备和应用生态统一。\n\n\n\n通过OpenHarmony兼容性测评的设备，由OpenHarmony项目群工作委员会授予OpenHarmony生态产品兼容性证书，并授权使用Powered By OpenHarmony兼容性标识。\n\n\n\n 您可以访问openHarmony.cn官网兼容性专区获取更多信息。"
+      "value": "OpenHarmony兼容性测评是由OpenHarmony社区面向设备厂商提供的测评服务，以保障OpenHarmony生态设备的应用兼容性、分布式兼容性和基础用户体验，实现OpenHarmony设备和应用生态统一。\n\n通过OpenHarmony兼容性测评的设备，由OpenHarmony项目群工作委员会授予OpenHarmony生态产品兼容性证书，并授权使用Powered By OpenHarmony兼容性标识。\n\n 您可以访问openHarmony.cn官网兼容性专区获取更多信息。"
     },
     {
       "name": "GET_INSTALLED_BUNDLE_LIST",
