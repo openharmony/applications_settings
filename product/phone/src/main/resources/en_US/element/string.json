@@ -858,7 +858,7 @@
     },
     {
       "name": "resetPhonePromptDetails",
-      "value": "• Accounts\n\n\n\n• App data and system settings\n\n\n\n• Installed apps\n\n\n\n• Music\n\n\n\n• Photos\n\n\n\n• Files\n\n\n\n• Security chip contents(will be erased the next time the device connects to the Internet)\n\n\n\n• Locally-stored system,app,and personal data related to HUAWEIIDs\n"
+      "value": "• Accounts\n\n• App data and system settings\n\n• Installed apps\n\n• Music\n\n• Photos\n\n• Files\n\n• Security chip contents(will be erased the next time the device connects to the Internet)\n\n• Locally-stored system,app,and personal data related to HUAWEIIDs\n"
     },
     {
       "name": "resetPhonePromptInfo",
@@ -1270,7 +1270,7 @@
     },
     {
       "name": "assessmentIntroduction",
-      "value": "OpenHarmony兼容性测评是由OpenHarmony社区面向设备厂商提供的测评服务，以保障OpenHarmony生态设备的应用兼容性、分布式兼容性和基础用户体验，实现OpenHarmony设备和应用生态统一。\n\n\n\n通过OpenHarmony兼容性测评的设备，由OpenHarmony项目群工作委员会授予OpenHarmony生态产品兼容性证书，并授权使用Powered By OpenHarmony兼容性标识。\n\n\n\n 您可以访问openHarmony.cn官网兼容性专区获取更多信息。"
+      "value": "OpenHarmony兼容性测评是由OpenHarmony社区面向设备厂商提供的测评服务，以保障OpenHarmony生态设备的应用兼容性、分布式兼容性和基础用户体验，实现OpenHarmony设备和应用生态统一。\n\n通过OpenHarmony兼容性测评的设备，由OpenHarmony项目群工作委员会授予OpenHarmony生态产品兼容性证书，并授权使用Powered By OpenHarmony兼容性标识。\n\n 您可以访问openHarmony.cn官网兼容性专区获取更多信息。"
     },
     {
       "name": "GET_INSTALLED_BUNDLE_LIST",
