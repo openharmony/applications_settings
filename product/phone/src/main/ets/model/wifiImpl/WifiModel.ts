@@ -14,11 +14,16 @@
  */
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import wifi from '@ohos.wifi';
+import wifi from '@ohos.wifiManager';
 import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
+import { BusinessError } from '@ohos.base';
 
 const MODULE_TAG = ConfigData.TAG + 'WifiModel -> ';
 const Undefined_TaskId = -1;
+const Biggest_Range = 8;
+const For_Count = 4;
+const Value_256 = 256;
+const Power_Value = 2;
 export interface WifiScanInfo {
   ssid: string,
   bssid: string,
@@ -107,7 +112,7 @@ export class ApScanResult {
   }
 
   getSignalLevel(): number {
-    return wifi.getSignalLevel(this.apInfo.rssi, this.apInfo.band);;
+    return wifi.getSignalLevel(this.apInfo.rssi, this.apInfo.band);
   }
 
   isConnected(): boolean {
@@ -217,8 +222,7 @@ export class ApScanResult {
 
 export class WifiModel extends BaseModel {
   private userSelectedAp: ApScanResult = new ApScanResult();
-  private linkedApInfo: any = undefined;
-
+  private linkedApInfo: wifi.WifiLinkedInfo = null
   private scanTaskId: number = Undefined_TaskId;
   private isScanning: boolean = false;
 
@@ -245,7 +249,14 @@ export class WifiModel extends BaseModel {
 
   unregisterWiFiConnectionObserver() {
     LogUtil.info(MODULE_TAG + 'start unregister wifi connection observer');
-    wifi.off('wifiConnectionChange');
+    try {
+      if (wifi.isWifiActive()) {
+        wifi.off('wifiConnectionChange');
+      }
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      LogUtil.error(MODULE_TAG + `off failed errorCode: ${e.code},  Message: ${e.message}`);
+    }
   }
 
   setUserSelectedAp(apInfo?: any) {
@@ -282,9 +293,11 @@ export class WifiModel extends BaseModel {
       LogUtil.info(MODULE_TAG + 'wifi is already active');
       return;
     }
-    let ret: boolean = wifi.enableWifi();
-    LogUtil.info(MODULE_TAG + 'enable WiFi result is : ' + ret);
-    return ret;
+    try {
+      wifi.enableWifi();
+    }catch(error){
+      LogUtil.info(MODULE_TAG + "enable failed:" + JSON.stringify(error));
+    }
   }
 
   disableWifi() {
@@ -294,20 +307,26 @@ export class WifiModel extends BaseModel {
       LogUtil.info(MODULE_TAG + 'wifi is already inactive');
       return;
     }
-    const ret: boolean = wifi.disableWifi();
-    LogUtil.info(MODULE_TAG + 'disable WiFi result is : ' + ret);
+    try {
+      wifi.disableWifi();
+    }catch(error){
+      LogUtil.info(MODULE_TAG + "disAble failed:" + JSON.stringify(error));
+    }
   }
 
-  scanWiFi(): boolean {
-    const ret: boolean = wifi.scan();
-    LogUtil.info(MODULE_TAG + 'start scan WiFi result is : ' + ret);
-    return ret;
+  scanWiFi() {
+    try {
+      wifi.startScan()
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      LogUtil.error(MODULE_TAG + `startScan failed errorCode: ${e.code},  Message: ${e.message}`);
+    }
   }
 
   connectWiFi(password: string) {
     let apInfo = this.userSelectedAp.getApInfo();
     let ret = false;
-    let connectParam: any = {
+    let connectParam: wifi.WifiDeviceConfig = {
       "ssid": apInfo.ssid,
       "bssid": apInfo.bssid,
       "preSharedKey": password,
@@ -316,16 +335,16 @@ export class WifiModel extends BaseModel {
     };
     LogUtil.info(MODULE_TAG + 'disconnect WiFi isConnected is ' + wifi.isConnected());
     if (wifi.isConnected() === true) {
-      ret = wifi.disconnect();
+      wifi.disconnect();
       LogUtil.info(MODULE_TAG + 'disconnect WiFi ret is ' + ret);
       this.registerWiFiConnectionObserver((code: Number) => {
         if (code === 0) {
-          ret = wifi.connectToDevice(connectParam);
+          wifi.connectToDevice(connectParam);
           this.unregisterWiFiConnectionObserver();
         }
       })
-    }else{
-      ret = wifi.connectToDevice(connectParam);
+    } else {
+      wifi.connectToDevice(connectParam);
       LogUtil.info(MODULE_TAG + 'connect WiFi ret is ' + ret);
     }
     return ret;
@@ -370,6 +389,151 @@ export class WifiModel extends BaseModel {
     return this.linkedApInfo;
   }
 
+  getLinkedInfo(callback) {
+    wifi.getLinkedInfo((err, result) => {
+      if (err) {
+        LogUtil.info(MODULE_TAG + 'get linked info failed');
+        return;
+      }
+      LogUtil.info(MODULE_TAG + 'scan get linked info succeed');
+      this.linkedApInfo = result;
+      callback(result)
+    });
+  }
+
+  getSignalLevel(rssi, band) {
+    return wifi.getSignalLevel(rssi, band);
+  }
+
+  getIpInfo() {
+    LogUtil.info(MODULE_TAG + 'IpInfo : ' + JSON.stringify(wifi.getIpInfo()));
+    return wifi.getIpInfo()
+  }
+
+  getMacAddress() {
+    let macs = wifi.getDeviceMacAddress()
+    let mac
+    for (let i = 0; i < macs.length; i++) {
+      if (i = 0) {
+        mac += macs[i]
+      } else {
+        mac += (':' + macs[i])
+      }
+    }
+    return mac
+  }
+
+  getToAddress(address) {
+    let str;
+    let tt = new Array();
+    tt[0] = (address >>> 24) >>> 0;
+    tt[1] = ((address << 8) >>> 24) >>> 0;
+    tt[2] = (address << 16) >>> 24;
+    tt[3] = (address << 24) >>> 24;
+    str = String(tt[0]) + "." + String(tt[1]) + "." + String(tt[2]) + "." + String(tt[3]);
+    return str;
+  }
+
+  getAddressTo(address) {
+    let buf = address.split('.')
+    return (parseInt(buf[0]) << 24 | parseInt(buf[1]) << 16 | parseInt(buf[2]) << 8 | parseInt(buf[3])) >>> 0
+  }
+
+  setStaticIp(IpConfig:wifi.IpConfig, netId) {
+    let deviceConfigs: wifi.WifiDeviceConfig[] = wifi.getDeviceConfigs()
+    LogUtil.info(MODULE_TAG + `setStaticIp > IpConfig:${JSON.stringify(IpConfig)} DefaultIpConfig:${JSON.stringify(deviceConfigs)}`);
+    let devCfg: wifi.WifiDeviceConfig
+    for (let i = 0; i < deviceConfigs.length; i++) {
+      if (deviceConfigs[i].netId + '' == netId) {
+        deviceConfigs[i].ipType = 0
+        IpConfig.domains = deviceConfigs[i].staticIp.domains
+        if(IpConfig.dnsServers.length == 0) {
+          IpConfig.dnsServers[0] = deviceConfigs[i].staticIp.dnsServers[0]
+          IpConfig.dnsServers[1] = deviceConfigs[i].staticIp.dnsServers[1]
+        }
+        deviceConfigs[i].staticIp = IpConfig
+        devCfg = deviceConfigs[i]
+      }
+    }
+    LogUtil.info(MODULE_TAG + `setStaticIp > DefaultIpConfig:${JSON.stringify(devCfg)}`);
+    return wifi.updateNetwork(devCfg)
+  }
+
+  // ?����?��??��a???��2???����a?? 255.255.255.0/24
+  // 255.255.255.0 ?����a 24
+  netmask2CIDR(netmask) {
+    return (netmask.split('.').map(Number)
+      .map(part => (part >>> 0).toString(2))
+      .join('')).split('1').length - 1;
+  }
+
+  // 24 ?����a 255.255.255.0
+  CDIR2netmask(bitCount) {
+    var mask = [];
+    for (var i = 0; i < For_Count; i++) {
+      var n = Math.min(bitCount, Biggest_Range);
+      mask.push(Value_256 - Math.pow(Power_Value, Biggest_Range - n));
+      bitCount -= n;
+    }
+    return mask.join('.');
+  }
+
+  checkMask(netmask) {
+    let reg = new RegExp('^((128|192)|2(24|4[08]|5[245]))(\.(0|(128|192)|2((24)|(4[08])|(5[245])))){3}$')
+    if (reg.test(netmask)) {
+      return true
+    }
+    return false
+  }
+
+  cancelStaticIp(netId) {
+    let deviceConfigs: any[] = wifi.getDeviceConfigs()
+    let devCfg
+    for (let i = 0; i < deviceConfigs.length; i++) {
+      if (deviceConfigs[i].netId + '' == netId) {
+        if (deviceConfigs[i].ipType == 1) {
+          return false
+        }
+        deviceConfigs[i].ipType = 1
+        devCfg = deviceConfigs[i]
+      }
+    }
+    return wifi.updateNetwork(devCfg)
+  }
+
+  getDefaultIpConfig(netId) {
+    let deviceConfigs: wifi.WifiDeviceConfig[] = wifi.getDeviceConfigs()
+    LogUtil.info(MODULE_TAG + `getDefaultIpConfig > DefaultIpConfig:${JSON.stringify(deviceConfigs)}`);
+    let devCfg
+    for (let i = 0; i < deviceConfigs.length; i++) {
+      if (deviceConfigs[i].netId + '' == netId) {
+        devCfg = deviceConfigs[i]
+      }
+    }
+    return devCfg
+  }
+
+  getStaticIpIsEnable(netId): boolean {
+    let deviceConfigs: wifi.WifiDeviceConfig[] = wifi.getDeviceConfigs();
+    LogUtil.info(MODULE_TAG + `getStaticIpIsEnable > deviceConfigs:${JSON.stringify(deviceConfigs)}  netId:${JSON.stringify(netId)}`);
+    for (let i = 0; i < deviceConfigs.length; i++) {
+      if (deviceConfigs[i].netId + '' == netId) {
+        switch (deviceConfigs[i].ipType) {
+          case 0:
+            return true
+          case 1:
+            return false
+          default:
+            return false
+        }
+      }
+    }
+  }
+
+  // enableDeviceConfig(netid) {
+  //   wifi.enableDeviceConfig(netid)
+  // }
+
   removeDeviceConfig(apInfo: WifiScanInfo) {
     LogUtil.info(MODULE_TAG + 'start to removeDeviceConfig');
     let deviceConfigs: any[] = wifi.getDeviceConfigs();
@@ -384,8 +548,7 @@ export class WifiModel extends BaseModel {
       return;
     }
     LogUtil.info(MODULE_TAG + 'start to removeDevice');
-    let ret = wifi.removeDevice(networkId);
-    LogUtil.info(MODULE_TAG + 'remove device config : ' + ret);
+    wifi.removeDevice(networkId);
   }
 
   connectByDeviceConfig(apInfo: WifiScanInfo) {
@@ -401,7 +564,7 @@ export class WifiModel extends BaseModel {
   }
 
   refreshApScanResults() {
-    wifi.getLinkedInfo((err, result) => {
+    wifi.getLinkedInfo((err: BusinessError, result: wifi.WifiLinkedInfo) => {
       if (err) {
         LogUtil.info(MODULE_TAG + 'get linked info failed');
         return;
@@ -410,22 +573,26 @@ export class WifiModel extends BaseModel {
       this.linkedApInfo = result;
     });
 
-    wifi.getScanInfos((err, results) => {
-      if (err) {
-        LogUtil.info(MODULE_TAG + "get scan info failed");
-        return;
-      }
-      LogUtil.info(MODULE_TAG + 'get scan info succeed');
-      function removeDuplicateResults(arr: any[]): ApScanResult[] {
-        let results: ApScanResult[] = [];
-        for (let i = 0; i < arr.length; i++) {
-          let apResult = new ApScanResult(arr[i]);
-          if (apResult.isValidAp()) {
-            results.push(apResult);
-          }
+    let results: wifi.WifiScanInfo[] = wifi.getScanInfoList()
+
+    // wifi.getScanInfos((err: BusinessError, results: wifi.WifiScanInfo) => {
+    //   if (err) {
+    //     LogUtil.info(MODULE_TAG + "get scan info failed");
+    //     return;
+    //   }
+
+    LogUtil.info(MODULE_TAG + 'get scan info succeed');
+
+    function removeDuplicateResults(arr: any[]): ApScanResult[] {
+      let results: ApScanResult[] = [];
+      for (let i = 0; i < arr.length; i++) {
+        let apResult = new ApScanResult(arr[i]);
+        if (apResult.isValidAp()) {
+          results.push(apResult);
         }
-        return ApScanResult.filter(results);
-      };
+      }
+      return ApScanResult.filter(results);
+    };
 
       function removeConnectedAp(arr: ApScanResult[], needRemove: ApScanResult) {
         let index = ApScanResult.index(arr, needRemove);
@@ -483,24 +650,27 @@ export class WifiModel extends BaseModel {
       scanResults = addSavedConfigFlag(scanResults);
       scanResults.sort(ApScanResult.compare);
 
-      // step 3 : add wifi summary
-      if (this.linkedApInfo !== null && typeof this.linkedApInfo !== 'undefined') {
-        let linkInfoResult: ApScanResult = addConnectStatusFlag(scanResults, this.linkedApInfo);
-        if (linkInfoResult.isConnected()) {
-          LogUtil.info(MODULE_TAG + 'scan connected');
-          scanResults = removeConnectedAp(scanResults, linkInfoResult);
-          AppStorage.SetOrCreate('slConnectedWifi', linkInfoResult.renderToListModel());
-        } else {
-          LogUtil.info(MODULE_TAG + 'scan not connected');
-          scanResults = unshiftConnectingAp(scanResults, linkInfoResult);
-          AppStorage.SetOrCreate('slConnectedWifi', (new ApScanResult()).renderToListModel());
+    // step 3 : add wifi summary
+    if (this.linkedApInfo !== null && typeof this.linkedApInfo !== 'undefined') {
+      let linkInfoResult: ApScanResult = addConnectStatusFlag(scanResults, this.linkedApInfo);
+      if (linkInfoResult.isConnected()) {
+        if (this.linkedApInfo) {
+          AppStorage.SetOrCreate('slnetId', this.linkedApInfo.networkId + '');
         }
+        LogUtil.info(MODULE_TAG + 'scan connected');
+        scanResults = removeConnectedAp(scanResults, linkInfoResult);
+        AppStorage.SetOrCreate('slConnectedWifi', linkInfoResult.renderToListModel());
+      } else {
+        LogUtil.info(MODULE_TAG + 'scan not connected');
+        scanResults = unshiftConnectingAp(scanResults, linkInfoResult);
+        AppStorage.SetOrCreate('slConnectedWifi', (new ApScanResult()).renderToListModel());
       }
-      LogUtil.info(MODULE_TAG + 'scan list results');
-      AppStorage.SetOrCreate('slWiFiLists', scanResults.map((item) => {
-        return item.renderToListModel();
-      }));
-    });
+    }
+    LogUtil.info(MODULE_TAG + 'scan list results');
+    AppStorage.SetOrCreate('slWiFiLists', scanResults.map((item) => {
+      return item.renderToListModel();
+    }));
+    // });
   }
 
   startScanTask() {
@@ -512,6 +682,10 @@ export class WifiModel extends BaseModel {
     }
 
     this.scanTaskId = setInterval(() => {
+      if (this.isWiFiActive() === true && this.isScanning === true) {
+        this.refreshApScanResults();
+        return;
+      }
       if (this.isWiFiActive() === true) {
         LogUtil.info(MODULE_TAG + 'scan wifi started');
         this.scanWiFi();
