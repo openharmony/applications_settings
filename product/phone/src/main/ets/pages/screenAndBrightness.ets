@@ -106,7 +106,7 @@ struct BrightnessSettings {
 
   aboutToDisappear(): void {
     LogUtil.info(this.TAG + 'aboutToDisappear in');
-    this.brightnessSettingModel.unregisterObserver();
+    this.brightnessSettingModel?.unregisterObserver();
     LogUtil.info(this.TAG + 'aboutToDisappear out');
   }
 }
