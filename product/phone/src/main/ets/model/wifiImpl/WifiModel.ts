@@ -339,13 +339,23 @@ export class WifiModel extends BaseModel {
       LogUtil.info(MODULE_TAG + 'disconnect WiFi ret is ' + ret);
       this.registerWiFiConnectionObserver((code: Number) => {
         if (code === 0) {
-          wifi.connectToDevice(connectParam);
-          this.unregisterWiFiConnectionObserver();
+          try {
+            wifi.connectToDevice(connectParam);
+            this.unregisterWiFiConnectionObserver();
+          } catch (error) {
+            let e: BusinessError = error as BusinessError;
+            LogUtil.error(MODULE_TAG + `connectToDevice failed errorCode: ${e.code},  Message: ${e.message}`);
+          }
         }
       })
     } else {
-      wifi.connectToDevice(connectParam);
-      LogUtil.info(MODULE_TAG + 'connect WiFi ret is ' + ret);
+      try {
+        wifi.connectToDevice(connectParam);
+        LogUtil.info(MODULE_TAG + 'connect WiFi ret is ' + ret);
+      } catch (error) {
+        let e: BusinessError = error as BusinessError;
+        LogUtil.error(MODULE_TAG + `connectToDevice failed errorCode: ${e.code},  Message: ${e.message}`);
+      }
     }
     return ret;
   }
