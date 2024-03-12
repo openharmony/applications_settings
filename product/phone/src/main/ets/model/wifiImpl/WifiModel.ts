@@ -406,7 +406,6 @@ export class WifiModel extends BaseModel {
   }
 
   getIpInfo() {
-    LogUtil.info(MODULE_TAG + 'IpInfo : ' + JSON.stringify(wifi.getIpInfo()));
     return wifi.getIpInfo()
   }
 
@@ -439,9 +438,8 @@ export class WifiModel extends BaseModel {
     return (parseInt(buf[0]) << 24 | parseInt(buf[1]) << 16 | parseInt(buf[2]) << 8 | parseInt(buf[3])) >>> 0
   }
 
-  setStaticIp(IpConfig:wifi.IpConfig, netId) {
+  setStaticIp(IpConfig:wifi.IpConfig, netId: string) {
     let deviceConfigs: wifi.WifiDeviceConfig[] = wifi.getDeviceConfigs()
-    LogUtil.info(MODULE_TAG + `setStaticIp > IpConfig:${JSON.stringify(IpConfig)} DefaultIpConfig:${JSON.stringify(deviceConfigs)}`);
     let devCfg: wifi.WifiDeviceConfig
     for (let i = 0; i < deviceConfigs.length; i++) {
       if (deviceConfigs[i].netId + '' == netId) {
@@ -453,6 +451,7 @@ export class WifiModel extends BaseModel {
         }
         deviceConfigs[i].staticIp = IpConfig
         devCfg = deviceConfigs[i]
+        break
       }
     }
     LogUtil.info(MODULE_TAG + `setStaticIp > DefaultIpConfig:${JSON.stringify(devCfg)}`);
@@ -461,14 +460,14 @@ export class WifiModel extends BaseModel {
 
   // ?����?��??��a???��2???����a?? 255.255.255.0/24
   // 255.255.255.0 ?����a 24
-  netmask2CIDR(netmask) {
+  netmask2CIDR(netmask: string) {
     return (netmask.split('.').map(Number)
       .map(part => (part >>> 0).toString(2))
       .join('')).split('1').length - 1;
   }
 
   // 24 ?����a 255.255.255.0
-  CDIR2netmask(bitCount) {
+  CDIR2netmask(bitCount: number) {
     var mask = [];
     for (var i = 0; i < For_Count; i++) {
       var n = Math.min(bitCount, Biggest_Range);
@@ -478,7 +477,7 @@ export class WifiModel extends BaseModel {
     return mask.join('.');
   }
 
-  checkMask(netmask) {
+  checkMask(netmask: string) {
     let reg = new RegExp('^((128|192)|2(24|4[08]|5[245]))(\.(0|(128|192)|2((24)|(4[08])|(5[245])))){3}$')
     if (reg.test(netmask)) {
       return true
@@ -486,7 +485,7 @@ export class WifiModel extends BaseModel {
     return false
   }
 
-  cancelStaticIp(netId) {
+  cancelStaticIp(netId: string) {
     let deviceConfigs: any[] = wifi.getDeviceConfigs()
     let devCfg
     for (let i = 0; i < deviceConfigs.length; i++) {
@@ -501,9 +500,9 @@ export class WifiModel extends BaseModel {
     return wifi.updateNetwork(devCfg)
   }
 
-  getDefaultIpConfig(netId) {
+  getDefaultIpConfig(netId: string) {
     let deviceConfigs: wifi.WifiDeviceConfig[] = wifi.getDeviceConfigs()
-    LogUtil.info(MODULE_TAG + `getDefaultIpConfig > DefaultIpConfig:${JSON.stringify(deviceConfigs)}`);
+    LogUtil.info(MODULE_TAG + `getDefaultIpConfig > DefaultIpConfig  size is ${deviceConfigs.length}`);
     let devCfg
     for (let i = 0; i < deviceConfigs.length; i++) {
       if (deviceConfigs[i].netId + '' == netId) {
@@ -513,26 +512,15 @@ export class WifiModel extends BaseModel {
     return devCfg
   }
 
-  getStaticIpIsEnable(netId): boolean {
+  getStaticIpIsEnable(netId: string): boolean {
     let deviceConfigs: wifi.WifiDeviceConfig[] = wifi.getDeviceConfigs();
-    LogUtil.info(MODULE_TAG + `getStaticIpIsEnable > deviceConfigs:${JSON.stringify(deviceConfigs)}  netId:${JSON.stringify(netId)}`);
+    LogUtil.info(MODULE_TAG + `getStaticIpIsEnable > deviceConfigs size is ${deviceConfigs.length}`);
     for (let i = 0; i < deviceConfigs.length; i++) {
       if (deviceConfigs[i].netId + '' == netId) {
-        switch (deviceConfigs[i].ipType) {
-          case 0:
-            return true
-          case 1:
-            return false
-          default:
-            return false
-        }
+        return deviceConfigs[i].ipType == 0
       }
     }
   }
-
-  // enableDeviceConfig(netid) {
-  //   wifi.enableDeviceConfig(netid)
-  // }
 
   removeDeviceConfig(apInfo: WifiScanInfo) {
     LogUtil.info(MODULE_TAG + 'start to removeDeviceConfig');
@@ -574,13 +562,6 @@ export class WifiModel extends BaseModel {
     });
 
     let results: wifi.WifiScanInfo[] = wifi.getScanInfoList()
-
-    // wifi.getScanInfos((err: BusinessError, results: wifi.WifiScanInfo) => {
-    //   if (err) {
-    //     LogUtil.info(MODULE_TAG + "get scan info failed");
-    //     return;
-    //   }
-
     LogUtil.info(MODULE_TAG + 'get scan info succeed');
 
     function removeDuplicateResults(arr: any[]): ApScanResult[] {
@@ -651,12 +632,10 @@ export class WifiModel extends BaseModel {
       scanResults.sort(ApScanResult.compare);
 
     // step 3 : add wifi summary
-    if (this.linkedApInfo !== null && typeof this.linkedApInfo !== 'undefined') {
+    if (this.linkedApInfo) {
       let linkInfoResult: ApScanResult = addConnectStatusFlag(scanResults, this.linkedApInfo);
       if (linkInfoResult.isConnected()) {
-        if (this.linkedApInfo) {
-          AppStorage.SetOrCreate('slnetId', this.linkedApInfo.networkId + '');
-        }
+        AppStorage.SetOrCreate('slnetId', this.linkedApInfo.networkId + '');
         LogUtil.info(MODULE_TAG + 'scan connected');
         scanResults = removeConnectedAp(scanResults, linkInfoResult);
         AppStorage.SetOrCreate('slConnectedWifi', linkInfoResult.renderToListModel());
@@ -670,7 +649,6 @@ export class WifiModel extends BaseModel {
     AppStorage.SetOrCreate('slWiFiLists', scanResults.map((item) => {
       return item.renderToListModel();
     }));
-    // });
   }
 
   startScanTask() {
@@ -682,7 +660,7 @@ export class WifiModel extends BaseModel {
     }
 
     this.scanTaskId = setInterval(() => {
-      if (this.isWiFiActive() === true && this.isScanning === true) {
+      if (this.isWiFiActive() && this.isScanning) {
         this.refreshApScanResults();
         return;
       }
