@@ -56,7 +56,7 @@ struct dateAndTime {
     ]
   };
 
-  timeDialogController: CustomDialogController = new CustomDialogController({
+  timeDialogController: CustomDialogController | null = new CustomDialogController({
     builder: TimeDialog24H({ action: this.onAccept }),
     cancel: this.existApp,
     autoCancel: true,
@@ -64,7 +64,7 @@ struct dateAndTime {
     offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
   });
 
-  dateDialogController: CustomDialogController = new CustomDialogController({
+  dateDialogController: CustomDialogController | null = new CustomDialogController({
     builder: DateDialog({ action: this.onAccept }),
     cancel: this.existApp,
     autoCancel: true,
@@ -120,11 +120,11 @@ struct dateAndTime {
                   LogUtil.info(MODULE_TAG + 'dialog come in' + JSON.stringify(item));
                   if (item.settingAlias === 'date') {
                     LogUtil.info(MODULE_TAG + 'date dialog come in');
-                    this.dateDialogController.open();
+                    this.dateDialogController?.open();
                   }
                   if (item.settingAlias === 'time') {
                     LogUtil.info(MODULE_TAG + 'time dialog come in');
-                    this.timeDialogController.open();
+                    this.timeDialogController?.open();
                   }
                 } });
               }
@@ -226,7 +226,8 @@ struct dateAndTime {
       LogUtil.info(`${MODULE_TAG}, CommonEvent unSubscribe callback in, error: ${error}, commonEventData: ${commonEventData}`);
       DateAndTimeModel.unregisterObserver();
     });
-   
+    this.timeDialogController = null;
+    this.dateDialogController = null;
   }
 
   private setTimeFormatAs24H() {
