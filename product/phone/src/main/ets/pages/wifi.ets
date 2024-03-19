@@ -161,7 +161,7 @@ struct Index {
   private switchDebounceFlag: number | undefined = undefined;
   private timerId: number = -1;
   private errorMessage: string = "";
-  private clickApInfoDialog: CustomDialogController = new CustomDialogController({
+  private clickApInfoDialog: CustomDialogController | null = new CustomDialogController({
     builder: apInfoDialog({
       apInfo: this.userSelectedApInfo,
     }),
@@ -170,7 +170,7 @@ struct Index {
     autoCancel: true,
     customStyle: true
   });
-  private clickApInfoDetailsDialog: CustomDialogController = new CustomDialogController({
+  private clickApInfoDetailsDialog: CustomDialogController | null = new CustomDialogController({
     builder: apInfoDetailsDialog({
       apInfo: this.userSelectedApInfo,
       disconnectAction: () => {
@@ -248,7 +248,7 @@ struct Index {
                 .onClick(() => {
                   LogUtil.info(MODULE_TAG + 'clicked connected wifi item');
                   this.userSelectedApInfo = this.connectedWiFi.apInfo;
-                  this.clickApInfoDetailsDialog.open();
+                  this.clickApInfoDetailsDialog?.open();
                   LogUtil.info(MODULE_TAG + 'end!!!');
                 });
               }
@@ -292,7 +292,7 @@ struct Index {
                       .onClick(() => {
                         if (WifiModel.isSavedAp(item.settingTitle)) {
                           this.userSelectedApInfo = item.apInfo;
-                          this.clickApInfoDialog.open();
+                          this.clickApInfoDialog?.open();
                         } else {
                           this.jumpToConnectApPage(item.apInfo);
                         }
@@ -445,6 +445,8 @@ struct Index {
       clearTimeout(this.switchDebounceFlag);
     }
     WifiModel.destroyWiFiModelData();
+    this.clickApInfoDialog = null;
+    this.clickApInfoDetailsDialog = null;
   }
 
   onPageShow() {

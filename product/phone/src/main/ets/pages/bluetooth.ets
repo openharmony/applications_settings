@@ -460,7 +460,7 @@ struct AvailableDeviceComponent {
   private TAG_PAGE = ConfigData.TAG + 'AvailableDeviceComponent ';
   private controller: BluetoothDeviceController | null = null;
   private pairingDevice: BluetoothDevice | null = null;
-  pairDialog: CustomDialogController = new CustomDialogController({
+  pairDialog: CustomDialogController | null = new CustomDialogController({
     builder: PairDialog({
       deviceName: (this.pairingDevice && this.pairingDevice.deviceName) ? this.pairingDevice.deviceName : undefined,
       pinCode: this.pairPinCode,
@@ -487,6 +487,10 @@ struct AvailableDeviceComponent {
 
       this.controller.startBluetoothDiscovery();
     }
+  }
+
+  aboutToDisappear(): void {
+    this.pairDialog = null;
   }
 
   build() {
