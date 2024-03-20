@@ -44,7 +44,7 @@ struct WifiPsd {
   private isConnectedBefore: boolean = false;
   private taskId: number = -1;
   private toConnected: boolean = false;
-  private connectDialog: CustomDialogController = new CustomDialogController({
+  private connectDialog: CustomDialogController | null = new CustomDialogController({
     builder: connectProgressDialog({
       ssid: this.tobeConnectedSSID,
     }),
@@ -53,7 +53,7 @@ struct WifiPsd {
     autoCancel: false,
     customStyle: true
   });
-  private failedDialog: CustomDialogController = new CustomDialogController({
+  private failedDialog: CustomDialogController | null = new CustomDialogController({
     builder: connectFailedDialog({ ControlFailedDialog: $ControlFailedDialog }),
     alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
     offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
@@ -63,7 +63,7 @@ struct WifiPsd {
 
   controlFailedDialog() {
     if (this.ControlFailedDialog) {
-      this.failedDialog.close();
+      this.failedDialog?.close();
       this.ControlFailedDialog = false;
     }
   }
@@ -157,7 +157,7 @@ struct WifiPsd {
                   WifiModel.setUserSelectedAp(this.tobeConnectedAp);
                   WifiModel.connectWiFi(this.userInputs);
                   this.toConnected = true;
-                  this.connectDialog.open();
+                  this.connectDialog?.open();
                 });
             }
             .height(ConfigData.WH_100_100)
@@ -211,8 +211,8 @@ struct WifiPsd {
 
   onPageHide(): void {
     LogUtil.info(MODULE_TAG + 'on page hide');
-    this.connectDialog.close();
-    this.failedDialog.close();
+    this.connectDialog?.close();
+    this.failedDialog?.close();
 
     if (this.isConnectedBefore) {
       this.clearLinkedInfoTask();
@@ -246,15 +246,15 @@ struct WifiPsd {
 
       if (code === 0) {
         this.toConnected = false;
-        this.connectDialog.close()
-        this.failedDialog.open()
+        this.connectDialog?.close()
+        this.failedDialog?.open()
         if (this.tobeConnectedAp) {
           WifiModel.removeDeviceConfig(this.tobeConnectedAp);
         }
       }
 
       if (code === 1) {
-        this.connectDialog.close();
+        this.connectDialog?.close();
         router.back({
           uri: 'pages/wifi',
         });
@@ -279,7 +279,7 @@ struct WifiPsd {
 
         // 1: Connecting, 4: Connected, 6: Disconnected
         if (result.ssid === this.tobeConnectedSSID && result.connState === 4) {
-          this.connectDialog.close();
+          this.connectDialog?.close();
           router.back({
             uri: 'pages/wifi',
           });
@@ -288,8 +288,8 @@ struct WifiPsd {
 
         if (result.connState === 6 && this.toConnected) {
           this.toConnected = false;
-          this.connectDialog.close();
-          this.failedDialog.open();
+          this.connectDialog?.close();
+          this.failedDialog?.open();
           if (this.tobeConnectedAp) {
             WifiModel.removeDeviceConfig(this.tobeConnectedAp);
           }
