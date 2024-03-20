@@ -62,7 +62,7 @@ struct PasswordInput {
   private unlockMethodChosenHandler: (value: number) => void = () => {};
 
   //dialog
-  private chooseUnlockMethodDialog: CustomDialogController = new CustomDialogController({
+  private chooseUnlockMethodDialog: CustomDialogController | null = new CustomDialogController({
     builder: chooseUnlockMethodDialog({
       dialogTitle: $r('app.string.password_change_unlock_method'),
       dataList: this.unlockMethodList,
@@ -95,6 +95,7 @@ struct PasswordInput {
 
   aboutToDisappear(): void {
     this.mController.unsubscribe();
+    this.chooseUnlockMethodDialog = null;
   }
 
   /**
@@ -236,7 +237,7 @@ struct PasswordInput {
             }
             .backgroundColor("rgba(0,0,0,0)")
             .onClick(() => {
-              this.chooseUnlockMethodDialog.open();
+              this.chooseUnlockMethodDialog?.open();
             })
           }
 

@@ -50,7 +50,7 @@ struct developerOptions {
   private controllerLayoutBoundaries: LayoutBoundariesController = new LayoutBoundariesController();
   private AnimationMultiplier: string[] = ["0", "0.5", "1", "1.5", "2", "5", "10"];
 
-  private AnimationScalingDialog: CustomDialogController = new CustomDialogController({
+  private AnimationScalingDialog: CustomDialogController | null = new CustomDialogController({
     builder: AnimationScalingInformation({
       AnimationMultiplier: this.AnimationMultiplier,
       AnimationText: $AnimationText,
@@ -88,6 +88,10 @@ struct developerOptions {
       this.controllerLayoutBoundariesIsOn = Boolean(parameter.getSync("persist.ace.debug.boundary.enabled"));
     }
     LogUtil.info(MODULE_TAG + "aboutToAppear end");
+  }
+
+  aboutToDisappear() {
+    this.AnimationScalingDialog = null;
   }
 
   build() {
@@ -143,7 +147,7 @@ struct developerOptions {
                       .opacity($r("app.float.opacity_0_2"))
                   }
                   .onClick(() => {
-                    this.AnimationScalingDialog.open();
+                    this.AnimationScalingDialog?.open();
                   })
                 }
                 .padding({ left: $r('sys.float.ohos_id_card_margin_start'), right: $r('app.float.distance_8') })

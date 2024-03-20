@@ -256,6 +256,11 @@ struct MultipleUsers {
     LogUtil.info("after appear.");
   }
 
+  onPageHide() {
+    this.addUserDialogController = undefined;
+    this.waitDialogController = undefined;
+  }
+
   aboutToDisappear() {
     LogUtil.info('multiple user about to disappear.');
     AppStorage.SetOrCreate("systemAccountList", []);
@@ -279,6 +284,10 @@ struct UserItem {
       alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
       offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 })
     });
+  }
+
+  aboutToDisappear(): void {
+    this.dialogController = undefined;
   }
 
   build() {
@@ -487,6 +496,10 @@ struct UserDialogBuilder {
       offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
       autoCancel: false
     });
+  }
+
+  aboutToDisappear(): void {
+    this.waitController = undefined;
   }
 
   build() {
