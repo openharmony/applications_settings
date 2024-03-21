@@ -102,6 +102,8 @@ export default class BluetoothDeviceController extends BaseSettingsController {
     BluetoothModel.unsubscribeBluetoothDeviceFind();
     BluetoothModel.unsubscribeBondStateChange();
     BluetoothModel.unsubscribeDeviceStateChange();
+    BluetoothModel.unsubscribeStateChange();
+    BluetoothModel.unsubscribePinRequired();
     AppStorage.Delete('BluetoothFailedDialogFlag');
     return this;
   }
