@@ -130,4 +130,11 @@ struct mobileNetwork {
       console.error(`createSubscriber failed, code is ${err?.code}, message is ${err.message}`);
     });
   }
+
+  aboutToDisappear() {
+    if (this.subscriber) {
+      CommonEventManager.unsubscribe(this.subscriber);
+      this.subscriber = undefined;
+    }
+  }
 }
