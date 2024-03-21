@@ -445,6 +445,7 @@ struct Index {
       clearTimeout(this.switchDebounceFlag);
     }
     WifiModel.destroyWiFiModelData();
+    WifiModel.unregisterWiFiStatusObserver();
     this.clickApInfoDialog = null;
     this.clickApInfoDetailsDialog = null;
   }
