@@ -552,22 +552,7 @@ export class BluetoothModel extends BaseModel {
     for (let i = 0;i < this.profiles.length; i++) {
       if (this.profiles[i]) {
         let profile = this.profiles[i];
-        profile.off('connectionStateChange', (data) => {
-          if(data == undefined || !data){
-            LogUtil.error(`${this.TAG} unsubscribeDeviceStateChange->connectionStateChange error`);
-            return;
-          }
-          if (callback) {
-            let result = {
-              profileId: i,
-              deviceId: data.deviceId,
-              profileConnectionState: data.state
-            };
-            LogUtil.info(`${this.TAG} unsubscribeDeviceStateChange->connectionStateChange,
-              return:${result.profileId} - ${result.profileConnectionState}`);
-            callback(result);
-          }
-        })
+        profile.off('connectionStateChange');
       }
     }
   }

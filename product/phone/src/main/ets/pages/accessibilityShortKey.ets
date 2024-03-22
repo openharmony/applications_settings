@@ -36,7 +36,7 @@ struct AccessibilityShortKey {
   @State extAbilityNameList: string[] = [];
   @State AllAbilityNameList: string[] = [];
   @State selectAbilityList: Array<string> = [];
-  private SelectAbilityScalingDialog: CustomDialogController = new CustomDialogController({
+  private SelectAbilityScalingDialog: CustomDialogController | null = new CustomDialogController({
     builder: SelectAbilityScalingInformation({
       AllAbilityNameList: $AllAbilityNameList,
       shortKeyStatusText: $shortKeyStatusText,
@@ -132,7 +132,7 @@ struct AccessibilityShortKey {
                 .width(ConfigData.WH_100_100)
                 .height($r('app.float.wh_value_48'))
                 .onClick(() => {
-                  this.SelectAbilityScalingDialog.open();
+                  this.SelectAbilityScalingDialog?.open();
                 });
               }
             }
@@ -256,6 +256,7 @@ struct AccessibilityShortKey {
 
   aboutToDisappear(): void {
     LogUtil.info(`${TAG} aboutToDisappear`);
+    this.SelectAbilityScalingDialog = null;
   }
 
   onPageHide(): void {
@@ -267,7 +268,7 @@ struct AccessibilityShortKey {
     this.AllAbilityNameList = [];
     await this.updateAccessibilityExtensionList();
     this.AllAbilityNameList = this.generateAllAbilityNameList();
-    this.SelectAbilityScalingDialog.close();
+    this.SelectAbilityScalingDialog?.close();
   }
 
   async abilitySelectListenerRemove(): Promise<void> {
@@ -293,7 +294,7 @@ struct AccessibilityShortKey {
         AccessibilitySettingModel.accessibilityShortKeyMultiTargetsSet(check);
       }
     }
-    this.SelectAbilityScalingDialog.close();
+    this.SelectAbilityScalingDialog?.close();
   }
 
   openAbilitySelectListener(): void {
