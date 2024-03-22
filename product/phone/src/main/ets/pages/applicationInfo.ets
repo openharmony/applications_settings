@@ -55,7 +55,7 @@ struct ApplicationInfo {
   @State isTouchedRight: boolean = false;
   private controller: ApplicationInfoController = new ApplicationInfoController();
   private bundleName: string = " ";
-  showDialog: CustomDialogController = new CustomDialogController({
+  showDialog: CustomDialogController | null = new CustomDialogController({
     builder: ShowDialog({
       action: () => {
         this.controller.uninstall(this.bundleName);
@@ -107,7 +107,7 @@ struct ApplicationInfo {
               .borderRadius($r('app.float.radius_20'))
               .backgroundColor($r('sys.color.ohos_id_color_button_normal'))
               .onClick(() => {
-                this.showDialog.open();
+                this.showDialog?.open();
               })
 
             Column()
@@ -181,6 +181,10 @@ struct ApplicationInfo {
     this.getBundleName();
     this.updateRemovableStatus(this.bundleName);
     LogUtil.info(this.tag + " aboutToAppear end ");
+  }
+
+  aboutToDisappear(): void {
+    this.showDialog = null;
   }
 
   getBundleName(): void {
