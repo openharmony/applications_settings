@@ -65,7 +65,7 @@ struct AccessibilityServiceInfo {
     serviceBundleName: '',
     serviceUri: '',
   };
-  showDialog: CustomDialogController = new CustomDialogController({
+  showDialog: CustomDialogController | null = new CustomDialogController({
     builder: ShowDialog({
       firstClickAction: () => {
         this.openServiceButton(this.serviceInfo.serviceId);
@@ -218,6 +218,7 @@ struct AccessibilityServiceInfo {
   aboutToDisappear(): void {
     LogUtil.info(`${this.tag} aboutToDisappear start`);
     this.closeExtensionServiceManagementDetailsStatusListener();
+    this.showDialog = null;
   }
 
   onPageShow(): void {
@@ -242,7 +243,7 @@ struct AccessibilityServiceInfo {
     LogUtil.info(`${this.tag} serviceState: ${JSON.stringify(this.serviceIsOn)}`);
     if (isOn) {
       if (this.serviceIsOnClick) {
-        this.showDialog.open();
+        this.showDialog?.open();
         this.serviceIsOnClick = false;
       }
     } else {
