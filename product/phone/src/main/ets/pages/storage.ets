@@ -214,4 +214,10 @@ struct Storage {
       this.listener.on('change', portraitFunc);
     }
   }
+
+  aboutToDisappear(): void {
+    if (this.controller) {
+      this.listener.off('change');
+    }
+  }
 }
