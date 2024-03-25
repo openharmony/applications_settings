@@ -248,6 +248,16 @@ export class WifiModel extends BaseModel {
     wifi.off('wifiConnectionChange');
   }
 
+  getDeviceConfigsInfo(ssid: string): wifi.WifiDeviceConfig {
+    let deviceConfigs: wifi.WifiDeviceConfig[] = wifi.getDeviceConfigs();
+    for (let i = 0; i < deviceConfigs.length; i++) {
+      if (ssid === deviceConfigs[i].ssid) {
+        return deviceConfigs[i];
+      }
+    }
+    return null;
+  }
+
   setUserSelectedAp(apInfo?: any) {
     if (apInfo === null || typeof apInfo === 'undefined') {
       this.userSelectedAp = new ApScanResult();
