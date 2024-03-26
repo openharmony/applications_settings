@@ -97,6 +97,7 @@ export class ConfigData {
   softWareUpDatesAbilityName = 'com.ohos.updateapp.MainAbility';
   SECURITY_BUNDLE_NAME = 'com.ohos.certmanager';
   SECURITY_ABILITY_NAME = 'MainAbility';
+  PRIVACY_ABILITY_NAME = 'EntryAbility';
 
   DEVICE_NAME = 'OpenHarmony 2.0 Canary';
 }

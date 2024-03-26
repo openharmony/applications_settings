@@ -80,10 +80,24 @@ export class SettingListModel extends BaseModel {
             LogUtil.error(`${this.TAG}, ${ConfigData.SECURITY_BUNDLE_NAME} start failed. Cause: ${JSON.stringify(error)}`);
           })
         })
-    } else {
-      Router.push({
-        uri: targetPage,
-      });
+    } else if (targetPage === 'pages/privacy'){
+      let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.UIAbilityContext;
+      context.startAbility({
+        bundleName: ConfigData.SECURITY_BUNDLE_NAME,
+        abilityName: ConfigData.PRIVACY_ABILITY_NAME,
+      })
+        .then((data) => {
+          LogUtil.info(`${this.TAG}, ${ConfigData.SECURITY_BUNDLE_NAME} start successful, Data: ${JSON.stringify(data)}`);
+        })
+        .catch((error) => {
+          ResourceUtil.getString($r("app.string.securityFailed")).then(value => {
+            prompt.showToast({
+              message: value,
+              duration: 2000,
+            });
+            LogUtil.error(`${this.TAG}, ${ConfigData.SECURITY_BUNDLE_NAME} start failed. Cause: ${JSON.stringify(error)}`);
+          })
+        })
     }
   }
 
