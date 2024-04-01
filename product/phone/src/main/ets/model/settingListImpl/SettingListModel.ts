@@ -98,6 +98,10 @@ export class SettingListModel extends BaseModel {
             LogUtil.error(`${this.TAG}, ${ConfigData.SECURITY_BUNDLE_NAME} start failed. Cause: ${JSON.stringify(error)}`);
           })
         })
+    } else {
+      Router.push({
+        uri: targetPage,
+      });
     }
   }
 
