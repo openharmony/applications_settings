@@ -306,8 +306,24 @@ export default class BluetoothDeviceController extends BaseSettingsController {
           } else {
             LogUtil.log(this.TAG + 'available bluetooth new device found. availableDevices length = ' + this.availableDevices.length);
             let newDevice = this.getDevice(deviceId);
-            this.availableDevices.push(newDevice);
+            if (!!newDevice.deviceName) {
+              this.availableDevices.push(newDevice);
+            }
+
             LogUtil.log(this.TAG + 'available bluetooth new device pushed. availableDevices length = ' + this.availableDevices.length);
+          }
+        } else {
+          LogUtil.log(this.TAG + 'bluetooth already exist!');
+          let indexDeviceID = 0;
+          for (let i = 0; i < this.availableDevices.length; i++) {
+            if (this.availableDevices[i].deviceId === deviceId) {
+              indexDeviceID = i;
+              break;
+            }
+          }
+          let existDevice = this.getDevice(deviceId);
+          if(existDevice.deviceName !== this.availableDevices[indexDeviceID].deviceName){
+            this.availableDevices.splice(indexDeviceID,1,existDevice);
           }
         }
       })
