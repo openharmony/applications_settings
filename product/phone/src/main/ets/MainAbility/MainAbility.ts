@@ -19,8 +19,10 @@ import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUti
 import { GlobalContext } from '../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 
 export default class MainAbility extends Ability {
+  private funcAbilityWant;
   onCreate(want, launchParam) {
     LogUtil.info(ConfigData.TAG + 'Application onCreate')
+    this.funcAbilityWant = want;
     GlobalContext.getContext().setObject(GlobalContext.globalKeyAbilityWant, want);
     GlobalContext.getContext().setObject(GlobalContext.globalKeySettingsAbilityContext, this.context);
   }
@@ -33,7 +35,11 @@ export default class MainAbility extends Ability {
   onWindowStageCreate(windowStage) {
     // Main window is created, set main page for this ability
     LogUtil.log("[Main] MainAbility onWindowStageCreate")
-    windowStage.setUIContent(this.context, "pages/settingList", null)
+    let url = 'pages/settingList';
+    if (this.funcAbilityWant?.parameters?.router && this.funcAbilityWant.parameters.router === 'volumeControl') {
+      url = 'pages/volumeControl';
+    }
+    windowStage.setUIContent(this.context, url, null);
     GlobalContext.getContext().setObject(GlobalContext.globalKeySettingsAbilityContext, this.context);
   }
 
