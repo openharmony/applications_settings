@@ -786,6 +786,15 @@ struct apInfoDetailsDialog {
     } : {})
   }
 
+  async getScanInfo() {
+    if(this.apInfo?.ssid) {
+      const deviceConfigsInfo = WifiModel.getDeviceConfigsInfo(this.apInfo.ssid)
+      if(deviceConfigsInfo) {
+        this.value = `ssid:${deviceConfigsInfo.ssid},preSharedKey:${deviceConfigsInfo.preSharedKey}`
+      }
+    }
+  }
+
   aboutToAppear(): void {
     // gen wifi signal level
     let intensity = this.apInfo ? WifiModel.getSignalIntensity(this.apInfo) : WiFiIntensityMap.BAD;
@@ -809,6 +818,8 @@ struct apInfoDetailsDialog {
       { key: $r('app.string.wifiInfoTitleEncryptMethod'),
         value: genWiFiEncryptMethod(encryptType) }
     ];
+
+    this.getScanInfo()
   }
 
   private disconnectAction: () => void = () => {
