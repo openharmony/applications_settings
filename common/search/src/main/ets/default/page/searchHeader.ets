@@ -61,7 +61,7 @@ export default struct SearchHeader {
           .caretColor($r("sys.color.ohos_id_color_text_primary_activated"))
           .enterKeyType(EnterKeyType.Search)
           .backgroundColor($r("app.color.white_bg_color"))
-          .padding({ left: $r('app.float.wh_padding_35') })
+          .padding({ left: $r('app.float.wh_padding_35'), right: $r('app.float.wh_padding_35') })
           .border({
             width: $r('app.float.wh_value_1_5'),
             color: $r("sys.color.ohos_id_color_fourth"),
