@@ -408,6 +408,7 @@ struct EntryComponent {
         }
         .settingListItemFancy()
       }
+      .scrollBar(BarState.Off)
       .flexShrink(1)
       .width(ConfigData.WH_100_100)
       .alignSelf(ItemAlign.Start);
