@@ -266,7 +266,7 @@ struct PairedDeviceComponent {
                   Stack({ alignContent: Alignment.Center }) {
                     Stack({ alignContent: Alignment.Center }) {
                       Text(this.hide ? $r('app.string.more') : $r('app.string.put_away'))
-                        .fontColor($r('app.color.color_D8D8D8_grey'))
+                        .fontColor($r('app.color.color_333333_grey'))
                         .fontSize($r('app.float.font_14'))
                     }
                     .width(ConfigData.WH_100_100)
