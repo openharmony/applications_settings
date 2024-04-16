@@ -269,6 +269,7 @@ struct Index {
                     imageWidth: $r('app.float.wh_value_24'),
                     imageHeight: $r('app.float.wh_value_24')
                   })
+                    .visibility(this.scanWiFiResults.length === 0 ? Visibility.Visible : Visibility.None)
                 }
                 .height($r("app.float.wh_value_48"))
                 .width(ConfigData.WH_100_100)
