@@ -24,6 +24,7 @@ import ResourceUtil from '../../../../../../../common/search/src/main/ets/defaul
 import wifi from '@ohos.wifi';
 import prompt from '@system.prompt';
 import Router from '@system.router';
+import { BusinessError } from '@ohos.base';
 
 /**
  * app setting homepage service class
@@ -53,31 +54,13 @@ export class SettingListModel extends BaseModel {
         .then((data) => {
           LogUtil.info(`${this.TAG}, ${ConfigData.MOBILE_DATA_BUNDLE_NAME} start successful. Data: ${JSON.stringify(data)}`);
         })
-        .catch((error) => {
+        .catch((error: BusinessError) => {
           ResourceUtil.getString($r("app.string.mobileDataFailed")).then(value => {
             prompt.showToast({
               message: value,
               duration: 2000,
             });
-            LogUtil.error(`${this.TAG}, ${ConfigData.MOBILE_DATA_BUNDLE_NAME} start failed. Cause: ${JSON.stringify(error)}`);
-          })
-        })
-    } else if (targetPage === 'security') {
-      let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.UIAbilityContext;
-      context.startAbility({
-        bundleName: ConfigData.SECURITY_BUNDLE_NAME,
-        abilityName: ConfigData.SECURITY_ABILITY_NAME,
-      })
-        .then((data) => {
-          LogUtil.info(`${this.TAG}, ${ConfigData.SECURITY_BUNDLE_NAME} start successful. Data: ${JSON.stringify(data)}`);
-        })
-        .catch((error) => {
-          ResourceUtil.getString($r("app.string.securityFailed")).then(value => {
-            prompt.showToast({
-              message: value,
-              duration: 2000,
-            });
-            LogUtil.error(`${this.TAG}, ${ConfigData.SECURITY_BUNDLE_NAME} start failed. Cause: ${JSON.stringify(error)}`);
+            LogUtil.error(`${this.TAG}, ${ConfigData.MOBILE_DATA_BUNDLE_NAME} start failed. Cause code: ${JSON.stringify(error?.code)}, message: ${JSON.stringify(error?.message)}`);
           })
         })
     } else if (targetPage === 'pages/privacy'){
@@ -89,13 +72,13 @@ export class SettingListModel extends BaseModel {
         .then((data) => {
           LogUtil.info(`${this.TAG}, ${ConfigData.SECURITY_BUNDLE_NAME} start successful, Data: ${JSON.stringify(data)}`);
         })
-        .catch((error) => {
+        .catch((error: BusinessError) => {
           ResourceUtil.getString($r("app.string.securityFailed")).then(value => {
             prompt.showToast({
               message: value,
               duration: 2000,
             });
-            LogUtil.error(`${this.TAG}, ${ConfigData.SECURITY_BUNDLE_NAME} start failed. Cause: ${JSON.stringify(error)}`);
+            LogUtil.error(`${this.TAG}, ${ConfigData.SECURITY_BUNDLE_NAME} start failed. Cause code: ${JSON.stringify(error?.code)}, message: ${JSON.stringify(error?.message)}`);
           })
         })
     } else {

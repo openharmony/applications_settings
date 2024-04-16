@@ -337,15 +337,6 @@ struct EntryComponent {
                 settingIcon: "/res/image/storage.svg",
               })
             }
-            ListItem(){
-              // security
-              SettingItemComponent({
-                targetPage: "security",
-                settingTitle: $r("app.string.security"),
-                settingEndText:$endTextEmpty,
-                settingIcon: "/res/image/security.svg",
-              })
-            }
 
             ListItem(){
               // privacy
