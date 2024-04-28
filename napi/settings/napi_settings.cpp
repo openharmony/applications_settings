@@ -348,38 +348,14 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
     }
 }
 
-std::shared_ptr<DataShareHelper> getDataShareHelper(
-    napi_env env, const napi_value context, const bool stageMode, std::string tableName)
+void CheckDataShareHelper(napi_env env, const napi_value context,
+    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper, OHOS::Uri proxyUri proxyUri)
 {
-    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
     std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultset = nullptr;
-    std::vector<int> tmpId;
-    OHOS::AccountSA::OsAccountManager::QueryActiveOsAccountIds(tmpId);
-    std::string tmpIdStr = "100";
-    if (tmpId.size() > 0) {
-        tmpIdStr = std::to_string(tmpId[0]);
-    } else {
-        SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
-    }
     std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
-    std::string strProxyUri = GetProxyUriStr(tableName, tmpIdStr);
-    OHOS::Uri proxyUri(strProxyUri);
-    SETTING_LOG_INFO("<Ver-11-14> strProxyUri: %{public}s", strProxyUri.c_str());
-    auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
-
-    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri);
-    SETTING_LOG_INFO("g_D_S_H Creator<strProxyUri> called");
-
     DataSharePredicates predicates;
     predicates.Limit(1, 0);
     std::vector<std::string> columns;
-    if (dataShareHelper == nullptr) {
-        SETTING_LOG_INFO(
-            "g_D_S_H d_S_H = nullptr, strUri %{public}s", strUri.c_str());
-        dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
-        return dataShareHelper;
-    }
-    
     DatashareBusinessError businessError;
     resultset = dataShareHelper->Query(proxyUri, predicates, columns, &businessError);
     int numRows = 0;
@@ -406,25 +382,12 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
         return dataShareHelper;
     }
     resultset->Close();
-    return dataShareHelper;
 }
 
-void GetValueExecuteExt(napi_env env, void *data)
+std::shared_ptr<DataShareHelper> getDataShareHelper(
+    napi_env env, const napi_value context, const bool stageMode, std::string tableName)
 {
-    if (data == nullptr) {
-        SETTING_LOG_INFO("execute data is null");
-        return;
-    }
-
-    SETTING_LOG_INFO("G_V_E_E start");
-    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-
-    std::vector<std::string> columns;
-    columns.push_back(SETTINGS_DATA_FIELD_VALUE);
-
-    OHOS::DataShare::DataSharePredicates predicates;
-    predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
-
+    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
     std::vector<int> tmpId;
     OHOS::AccountSA::OsAccountManager::QueryActiveOsAccountIds(tmpId);
     std::string tmpIdStr = "100";
@@ -433,17 +396,38 @@ void GetValueExecuteExt(napi_env env, void *data)
     } else {
         SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
     }
-    std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, tmpIdStr, asyncCallbackInfo->key);
-    SETTING_LOG_INFO(
-        "Get uri : %{public}s, key: %{public}s", strUri.c_str(), (asyncCallbackInfo->key).c_str());
-    OHOS::Uri uri(strUri);
+    std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
+    std::string strProxyUri = GetProxyUriStr(tableName, tmpIdStr);
+    OHOS::Uri proxyUri(strProxyUri);
+    SETTING_LOG_INFO("<Ver-11-14> strProxyUri: %{public}s", strProxyUri.c_str());
+    auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
 
-    std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultset = nullptr;
-    DatashareBusinessError businessError;
-    if (asyncCallbackInfo->dataShareHelper != nullptr) {
-        SETTING_LOG_INFO("a_C_B_I->d_S_H != nullptr");
-        resultset = asyncCallbackInfo->dataShareHelper->Query(uri, predicates, columns, &businessError);
+    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri);
+    SETTING_LOG_INFO("g_D_S_H Creator<strProxyUri> called");
+    
+    if (dataShareHelper == nullptr) {
+        SETTING_LOG_INFO(
+            "g_D_S_H d_S_H = nullptr, strUri %{public}s", strUri.c_str());
+        dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
+        return dataShareHelper;
     }
+    
+    CheckDataShareHelper(env, context, dataShareHelper, proxyUri);
+    return dataShareHelper;
+}
+
+void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri uri)
+{
+    SETTING_LOG_INFO("a_C_B_I->d_S_H != nullptr");
+    std::vector<std::string> columns;
+    columns.push_back(SETTINGS_DATA_FIELD_VALUE);
+
+    OHOS::DataShare::DataSharePredicates predicates;
+    predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
+
+    DatashareBusinessError businessError;
+    std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultset = nullptr;
+    resultset = asyncCallbackInfo->dataShareHelper->Query(uri, predicates, columns, &businessError);
     int numRows = 0;
     if (resultset != nullptr) {
         SETTING_LOG_INFO("G_V_E_E resultset is NOT empty");
@@ -469,6 +453,37 @@ void GetValueExecuteExt(napi_env env, void *data)
     if (resultset != nullptr) {
         resultset->Close();
     }
+}
+
+void GetValueExecuteExt(napi_env env, void *data)
+{
+    if (data == nullptr) {
+        SETTING_LOG_INFO("execute data is null");
+        return;
+    }
+
+    SETTING_LOG_INFO("G_V_E_E start");
+    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+    
+    if (asyncCallbackInfo->dataShareHelper == nullptr) {
+        SETTING_LOG_ERROR("dataShareHelper is empty");
+        asyncCallbackInfo->status = false;
+    }
+
+    std::vector<int> tmpId;
+    OHOS::AccountSA::OsAccountManager::QueryActiveOsAccountIds(tmpId);
+    std::string tmpIdStr = "100";
+    if (tmpId.size() > 0) {
+        tmpIdStr = std::to_string(tmpId[0]);
+    } else {
+        SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
+    }
+    std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, tmpIdStr, asyncCallbackInfo->key);
+    SETTING_LOG_INFO(
+        "Get uri : %{public}s, key: %{public}s", strUri.c_str(), (asyncCallbackInfo->key).c_str());
+    OHOS::Uri uri(strUri);
+
+    QueryValue(env, asyncCallbackInfo, uri);
 }
 
 void DeleteCallbackInfo(napi_env env, AsyncCallbackInfo *asyncCallbackInfo)
@@ -1685,6 +1700,7 @@ napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
     napi_value retVal = nullptr;
     if (asyncCallbackInfo->value.size() <= 0) {
         retVal = args[PARAM2];
+        ThrowError(env, asyncCallbackInfo->status);
     } else {
         retVal = wrap_string_to_js(env, asyncCallbackInfo->value);
     }
