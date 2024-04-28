@@ -1118,7 +1118,7 @@ napi_value SetValueAsync(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
             napi_value undefine;
             napi_get_undefined(env, &undefine);
             napi_value callback = nullptr;
-            napi_value result = wrap_bool_to_js(env, ThrowError(env,asyncCallbackInfo->status));
+            napi_value result = wrap_bool_to_js(env, ThrowError(env, asyncCallbackInfo->status));
             napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
             napi_call_function(env, nullptr, callback, 1, &result, &undefine);
             napi_delete_reference(env, asyncCallbackInfo->callbackRef);
@@ -1155,7 +1155,7 @@ napi_value SetValuePromise(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
             SETTING_LOG_INFO("p_m set end get c_b value is %{public}d",
                 asyncCallbackInfo->status);
-            napi_value result = wrap_bool_to_js(env, ThrowError(env,asyncCallbackInfo->status));
+            napi_value result = wrap_bool_to_js(env, ThrowError(env, asyncCallbackInfo->status));
             napi_resolve_deferred(asyncCallbackInfo->env, asyncCallbackInfo->deferred, result);
             napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
             asyncCallbackInfo->dataAbilityHelper = nullptr;
@@ -1313,7 +1313,7 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
             },
             [](napi_env env, napi_status status, void* data) {
                 AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-                napi_value result = wrap_bool_to_js(env, ThrowError(env,asyncCallbackInfo->status));
+                napi_value result = wrap_bool_to_js(env, ThrowError(env, asyncCallbackInfo->status));
                 asyncCallbackInfo->status = napi_ok;
                 CompleteCall(env, status, data, result);
             },
@@ -1719,7 +1719,7 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
     asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, asyncCallbackInfo->tableName);
     GetValueExecuteExt(env, (void *)asyncCallbackInfo);
     SetValueExecuteExt(env, (void *)asyncCallbackInfo, unwrap_string_from_js(env, args[PARAM2]));
-    napi_value result = wrap_bool_to_js(env, ThrowError(env,asyncCallbackInfo->status));
+    napi_value result = wrap_bool_to_js(env, ThrowError(env, asyncCallbackInfo->status));
     delete asyncCallbackInfo;
     return result;
 }
