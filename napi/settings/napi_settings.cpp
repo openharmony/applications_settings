@@ -37,7 +37,7 @@ namespace Settings {
 const std::string SETTINGS_DATA_BASE_URI = "dataability:///com.ohos.settingsdata.DataAbility";
 const std::string SETTINGS_DATA_FIELD_KEYWORD = "KEYWORD";
 const std::string SETTINGS_DATA_FIELD_VALUE = "VALUE";
-const std::string PERMISSION_DENIED_CODE = "201 - Permission denied";
+const std::string PERMISSION_EXCEPTION = "201 - Permission denied";
 const int PERMISSION_DENIED_CODE = -2;
 const int DB_HELPER_TRIAL_NUMBER = 2;
 const int USERID_HELPER_NUMBER = 100;
@@ -57,7 +57,7 @@ bool ThrowError(napi_env env, int status)
         return true;
     }
     if (status == PERMISSION_DENIED_CODE) {
-        ThrowExistingError(env, PERMISSION_DENIED_CODE)
+        ThrowExistingError(env, PERMISSION_EXCEPTION);
     }
     return false;
 }
