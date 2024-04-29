@@ -355,6 +355,7 @@ void CheckDataShareHelper(napi_env env, const napi_value context,
     std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
     DataSharePredicates predicates;
     predicates.Limit(1, 0);
+    auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
     std::vector<std::string> columns;
     DatashareBusinessError businessError;
     resultset = dataShareHelper->Query(proxyUri, predicates, columns, &businessError);
@@ -367,7 +368,7 @@ void CheckDataShareHelper(napi_env env, const napi_value context,
         if (resultset != nullptr) {
             resultset->Close();
         }
-        return dataShareHelper;
+        return;
     } else if (resultset == nullptr || numRows <= 0) {
         int trial = 0;
         do {
@@ -379,7 +380,7 @@ void CheckDataShareHelper(napi_env env, const napi_value context,
         if (resultset != nullptr) {
             resultset->Close();
         }
-        return dataShareHelper;
+        return;
     }
     resultset->Close();
 }
