@@ -349,7 +349,7 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
 }
 
 void CheckDataShareHelper(napi_env env, const napi_value context,
-    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper, OHOS::Uri proxyUri proxyUri)
+    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper, OHOS::Uri proxyUri)
 {
     std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultset = nullptr;
     std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
@@ -468,7 +468,7 @@ void GetValueExecuteExt(napi_env env, void *data)
     
     if (asyncCallbackInfo->dataShareHelper == nullptr) {
         SETTING_LOG_ERROR("dataShareHelper is empty");
-        asyncCallbackInfo->status = false;
+        asyncCallbackInfo->status = -1;
     }
 
     std::vector<int> tmpId;
@@ -575,7 +575,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
         }
         SETTING_LOG_INFO("n_s_v_e aft Up");
     }
-    asyncCallbackInfo->status = ThrowError(env, retInt);
+    asyncCallbackInfo->status = retInt;
 }
 
 /**
@@ -1111,7 +1111,7 @@ void SetValueExecuteCB(napi_env env, void *data)
         resultset->Close();
     }
     SETTING_LOG_INFO("execute... END!");
-    asyncCallbackInfo->status = ThrowError(env, retInt);
+    asyncCallbackInfo->status = retInt;
 }
 
 napi_value SetValueAsync(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
