@@ -20,6 +20,7 @@
 #include "napi_settings_log.h"
 #include "abs_shared_result_set.h"
 #include "values_bucket.h"
+#include "uv.h"
 
 #include "napi_base_context.h"
 #include "os_account_manager.h"
