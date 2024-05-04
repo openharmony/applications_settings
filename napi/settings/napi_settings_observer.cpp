@@ -37,7 +37,60 @@ namespace Settings {
 
     void SettingsObserver::OnChange()
     {
-        OnChangeRet();
+        uv_loop_s* loop = nullptr;
+        napi_get_uv_event_loop(cbInfo->env, &loop);
+        if (loop == nullptr) {
+            SETTING_LOG_ERROR("%{public}s, fail to get uv loop.", __func__);
+            return;
+        }
+        auto work = new (std::nothrow) uv_work_t;
+        if (work == nullptr) {
+            SETTING_LOG_ERROR("%{public}s, fail to get uv work.", __func__);
+            return;
+        }
+        work->data = reinterpret_cast<void*>(cbInfo);
+        SETTING_LOG_INFO("%{public}s, uv_queue_work begin.", __func__);
+        int ret = uv_queue_work(
+            loop,
+            work,
+            [](uv_work_t *work) {},
+            [](uv_work_t *work, int status) {
+                AsyncCallbackInfo* cbInfo = reinterpret_cast<AsyncCallbackInfo*>(work->data);
+                if (cbInfo == nullptr) {
+                    SETTING_LOG_ERROR("uv_queue_work: env invalid.");
+                    delete work;
+                    return;
+                }
+                napi_value callback = nullptr;
+                napi_value undefined;
+                napi_get_undefined(cbInfo->env, &undefined);
+                // create error code
+                napi_value error = nullptr;
+                napi_create_object(cbInfo->env, &error);
+                int unSupportCode = 802;
+                napi_value errCode = nullptr;
+                napi_create_int32(env, unSupportCode, &errCode);
+                napi_set_named_property(env, error, "code", errCode);
+                napi_value result[PARAM2] = {0};
+                result[0] = error;
+                result[1] = wrap_bool_to_js(env, false);
+
+                AsyncCallbackInfo* asyncCallbackInfo = cbInfo;
+                napi_get_reference_value(cbInfo->env, asyncCallbackInfo->callbackRef, &callback);
+                napi_value callResult;
+                napi_call_function(env, undefined, callback, PARAM2, result, &callResult);
+                delete work;
+                SETTING_LOG_INFO("%{public}s, uv_queue_work over.", __func__);
+            }
+        );
+        SETTING_LOG_INFO("%{public}s, uv_queue_work over.", __func__);
+        if (ret != 0) {
+            SETTING_LOG_ERROR("%{public}s, uv_queue_work failed.", __func__);
+        }
+        if (work != nullptr) {
+            delete work;
+            work = nullptr;
+        }
     }
 
     napi_value SettingsObserver::OnChangeRet()
