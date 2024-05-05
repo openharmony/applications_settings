@@ -50,21 +50,20 @@ namespace Settings {
             return;
         }
         work->data = reinterpret_cast<void*>(cbInfo);
-        SETTING_LOG_INFO("%{public}s, uv_queue_work begin.", __func__);
         int ret = uv_queue_work(
-            loop, work, [](uv_work_t *work) {},
+            loop,
+            work,
+            [](uv_work_t *work) {},
             [](uv_work_t *work, int status) {
                 AsyncCallbackInfo* cbInfo = reinterpret_cast<AsyncCallbackInfo*>(work->data);
                 if (cbInfo == nullptr) {
-                    SETTING_LOG_ERROR("uv_work: env invalid.");
+                    SETTING_LOG_ERROR("uv_work: cbInfo invalid.");
                     delete work;
-                    work = nullptr;
                     return;
                 }
                 napi_value callback = nullptr;
                 napi_value undefined;
                 napi_get_undefined(cbInfo->env, &undefined);
-                // create error code
                 napi_value error = nullptr;
                 napi_create_object(cbInfo->env, &error);
                 int unSupportCode = 802;
@@ -77,12 +76,10 @@ namespace Settings {
                 napi_get_reference_value(cbInfo->env, cbInfo->callbackRef, &callback);
                 napi_value callResult;
                 napi_call_function(cbInfo->env, undefined, callback, PARAM2, result, &callResult);
-                delete work;
-                work = nullptr;
                 SETTING_LOG_INFO("%{public}s, uv_work success.", __func__);
+                delete work;
             }
         );
-        SETTING_LOG_INFO("%{public}s, uv_queue_work over.", __func__);
         if (ret != 0) {
             SETTING_LOG_ERROR("%{public}s, uv_queue_work failed.", __func__);
             if (work != nullptr) {
