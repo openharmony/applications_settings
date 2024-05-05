@@ -51,7 +51,8 @@ namespace Settings {
         }
         work->data = reinterpret_cast<void*>(cbInfo);
         SETTING_LOG_INFO("%{public}s, uv_queue_work begin.", __func__);
-        int ret = uv_queue_work(loop, work, [](uv_work_t *work) {},
+        int ret = uv_queue_work(
+            loop, work, [](uv_work_t *work) {},
             [](uv_work_t *work, int status) {
                 AsyncCallbackInfo* cbInfo = reinterpret_cast<AsyncCallbackInfo*>(work->data);
                 if (cbInfo == nullptr) {
