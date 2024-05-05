@@ -20,6 +20,7 @@
 #include "napi_settings_log.h"
 #include "abs_shared_result_set.h"
 #include "values_bucket.h"
+#include "uv.h"
 
 #include "napi_base_context.h"
 #include "os_account_manager.h"
@@ -37,51 +38,54 @@ namespace Settings {
 
     void SettingsObserver::OnChange()
     {
-        OnChangeRet();
-    }
-
-    napi_value SettingsObserver::OnChangeRet()
-    {
-        SETTING_LOG_INFO("%{public}s, O_C.", __func__);
-        napi_value resource = nullptr;
-        NAPI_CALL(cbInfo->env, napi_create_string_utf8(cbInfo->env, __func__, NAPI_AUTO_LENGTH, &resource));
-        napi_create_async_work(
-            cbInfo->env,
-            nullptr,
-            resource,
-            [](napi_env env, void* data) {},
-            [](napi_env env, napi_status status, void* data) {
-                if (data == nullptr) {
-                    SETTING_LOG_INFO("%{public}s, null.", __func__);
+        uv_loop_s* loop = nullptr;
+        napi_get_uv_event_loop(cbInfo->env, &loop);
+        if (loop == nullptr) {
+            SETTING_LOG_ERROR("%{public}s, fail to get uv loop.", __func__);
+            return;
+        }
+        auto work = new (std::nothrow) uv_work_t;
+        if (work == nullptr) {
+            SETTING_LOG_ERROR("%{public}s, fail to get uv work.", __func__);
+            return;
+        }
+        work->data = reinterpret_cast<void*>(cbInfo);
+        int ret = uv_queue_work(
+            loop,
+            work,
+            [](uv_work_t *work) {},
+            [](uv_work_t *work, int status) {
+                AsyncCallbackInfo* cbInfo = reinterpret_cast<AsyncCallbackInfo*>(work->data);
+                if (cbInfo == nullptr) {
+                    SETTING_LOG_ERROR("uv_work: cbInfo invalid.");
+                    delete work;
                     return;
                 }
                 napi_value callback = nullptr;
                 napi_value undefined;
-                napi_get_undefined(env, &undefined);
-                // create error code
+                napi_get_undefined(cbInfo->env, &undefined);
                 napi_value error = nullptr;
-                napi_create_object(env, &error);
+                napi_create_object(cbInfo->env, &error);
                 int unSupportCode = 802;
                 napi_value errCode = nullptr;
-                napi_create_int32(env, unSupportCode, &errCode);
-                napi_set_named_property(env, error, "code", errCode);
+                napi_create_int32(cbInfo->env, unSupportCode, &errCode);
+                napi_set_named_property(cbInfo->env, error, "code", errCode);
                 napi_value result[PARAM2] = {0};
                 result[0] = error;
-                result[1] = wrap_bool_to_js(env, false);
-
-                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-                napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
+                result[1] = wrap_bool_to_js(cbInfo->env, false);
+                napi_get_reference_value(cbInfo->env, cbInfo->callbackRef, &callback);
                 napi_value callResult;
-                napi_call_function(env, undefined, callback, PARAM2, result, &callResult);
-
-                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
-                SETTING_LOG_INFO("%{public}s, O_C complete.", __func__);
-            },
-            (void*)cbInfo,
-            &(cbInfo->asyncWork)
-        );
-        NAPI_CALL(cbInfo->env, napi_queue_async_work(cbInfo->env, cbInfo->asyncWork));
-        return wrap_void_to_js(cbInfo->env);
+                napi_call_function(cbInfo->env, undefined, callback, PARAM2, result, &callResult);
+                SETTING_LOG_INFO("%{public}s, uv_work success.", __func__);
+                delete work;
+            });
+        if (ret != 0) {
+            SETTING_LOG_ERROR("%{public}s, uv_queue_work failed.", __func__);
+            if (work != nullptr) {
+                delete work;
+                work = nullptr;
+            }
+        }
     }
 
     std::string GetObserverIdStr()
