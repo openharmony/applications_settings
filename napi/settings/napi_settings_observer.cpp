@@ -51,10 +51,7 @@ namespace Settings {
         }
         work->data = reinterpret_cast<void*>(cbInfo);
         SETTING_LOG_INFO("%{public}s, uv_queue_work begin.", __func__);
-        int ret = uv_queue_work(
-            loop,
-            work,
-            [](uv_work_t *work) {},
+        int ret = uv_queue_work(loop, work, [](uv_work_t *work) {},
             [](uv_work_t *work, int status) {
                 AsyncCallbackInfo* cbInfo = reinterpret_cast<AsyncCallbackInfo*>(work->data);
                 if (cbInfo == nullptr) {
@@ -71,16 +68,14 @@ namespace Settings {
                 napi_create_object(cbInfo->env, &error);
                 int unSupportCode = 802;
                 napi_value errCode = nullptr;
-                napi_create_int32(env, unSupportCode, &errCode);
-                napi_set_named_property(env, error, "code", errCode);
+                napi_create_int32(cbInfo->env, unSupportCode, &errCode);
+                napi_set_named_property(cbInfo->env, error, "code", errCode);
                 napi_value result[PARAM2] = {0};
                 result[0] = error;
-                result[1] = wrap_bool_to_js(env, false);
-
-                AsyncCallbackInfo* asyncCallbackInfo = cbInfo;
-                napi_get_reference_value(cbInfo->env, asyncCallbackInfo->callbackRef, &callback);
+                result[1] = wrap_bool_to_js(cbInfo->env, false);
+                napi_get_reference_value(cbInfo->env, cbInfo->callbackRef, &callback);
                 napi_value callResult;
-                napi_call_function(env, undefined, callback, PARAM2, result, &callResult);
+                napi_call_function(cbInfo->env, undefined, callback, PARAM2, result, &callResult);
                 delete work;
                 work = nullptr;
                 SETTING_LOG_INFO("%{public}s, uv_work success.", __func__);
