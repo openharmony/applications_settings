@@ -58,8 +58,9 @@ namespace Settings {
             [](uv_work_t *work, int status) {
                 AsyncCallbackInfo* cbInfo = reinterpret_cast<AsyncCallbackInfo*>(work->data);
                 if (cbInfo == nullptr) {
-                    SETTING_LOG_ERROR("uv_queue_work: env invalid.");
+                    SETTING_LOG_ERROR("uv_work: env invalid.");
                     delete work;
+                    work = nullptr;
                     return;
                 }
                 napi_value callback = nullptr;
@@ -81,61 +82,18 @@ namespace Settings {
                 napi_value callResult;
                 napi_call_function(env, undefined, callback, PARAM2, result, &callResult);
                 delete work;
-                SETTING_LOG_INFO("%{public}s, uv_queue_work over.", __func__);
+                work = nullptr;
+                SETTING_LOG_INFO("%{public}s, uv_work success.", __func__);
             }
         );
         SETTING_LOG_INFO("%{public}s, uv_queue_work over.", __func__);
         if (ret != 0) {
             SETTING_LOG_ERROR("%{public}s, uv_queue_work failed.", __func__);
+            if (work != nullptr) {
+                delete work;
+                work = nullptr;
+            }
         }
-        if (work != nullptr) {
-            delete work;
-            work = nullptr;
-        }
-    }
-
-    napi_value SettingsObserver::OnChangeRet()
-    {
-        SETTING_LOG_INFO("%{public}s, O_C.", __func__);
-        napi_value resource = nullptr;
-        NAPI_CALL(cbInfo->env, napi_create_string_utf8(cbInfo->env, __func__, NAPI_AUTO_LENGTH, &resource));
-        napi_create_async_work(
-            cbInfo->env,
-            nullptr,
-            resource,
-            [](napi_env env, void* data) {},
-            [](napi_env env, napi_status status, void* data) {
-                if (data == nullptr) {
-                    SETTING_LOG_INFO("%{public}s, null.", __func__);
-                    return;
-                }
-                napi_value callback = nullptr;
-                napi_value undefined;
-                napi_get_undefined(env, &undefined);
-                // create error code
-                napi_value error = nullptr;
-                napi_create_object(env, &error);
-                int unSupportCode = 802;
-                napi_value errCode = nullptr;
-                napi_create_int32(env, unSupportCode, &errCode);
-                napi_set_named_property(env, error, "code", errCode);
-                napi_value result[PARAM2] = {0};
-                result[0] = error;
-                result[1] = wrap_bool_to_js(env, false);
-
-                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-                napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
-                napi_value callResult;
-                napi_call_function(env, undefined, callback, PARAM2, result, &callResult);
-
-                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
-                SETTING_LOG_INFO("%{public}s, O_C complete.", __func__);
-            },
-            (void*)cbInfo,
-            &(cbInfo->asyncWork)
-        );
-        NAPI_CALL(cbInfo->env, napi_queue_async_work(cbInfo->env, cbInfo->asyncWork));
-        return wrap_void_to_js(cbInfo->env);
     }
 
     std::string GetObserverIdStr()
