@@ -78,8 +78,7 @@ namespace Settings {
                 napi_call_function(cbInfo->env, undefined, callback, PARAM2, result, &callResult);
                 SETTING_LOG_INFO("%{public}s, uv_work success.", __func__);
                 delete work;
-            }
-        );
+            });
         if (ret != 0) {
             SETTING_LOG_ERROR("%{public}s, uv_queue_work failed.", __func__);
             if (work != nullptr) {
