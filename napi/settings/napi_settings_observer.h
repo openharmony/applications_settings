@@ -35,7 +35,6 @@ public:
     explicit SettingsObserver(AsyncCallbackInfo* callback) : cbInfo(callback) {}
     ~SettingsObserver() {}
     void OnChange();
-    napi_value OnChangeRet();
     AsyncCallbackInfo* cbInfo;
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper;
 };
