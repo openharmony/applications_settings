@@ -469,6 +469,7 @@ void GetValueExecuteExt(napi_env env, void *data)
     if (asyncCallbackInfo->dataShareHelper == nullptr) {
         SETTING_LOG_ERROR("dataShareHelper is empty");
         asyncCallbackInfo->status = -1;
+        return;
     }
 
     std::vector<int> tmpId;
