@@ -303,6 +303,18 @@ export default class BluetoothDeviceController extends BaseSettingsController {
           })
           if (pairedDevice) {
             LogUtil.log(this.TAG + `available bluetooth is paried.`);
+            let indexDeviceID = 0;
+            for (let i = 0; i < this.pairedDevices.length; i++) {
+              if (this.pairedDevices[i].deviceId === deviceId) {
+                indexDeviceID = i;
+                break;
+              }
+            }
+            let existDevice = this.getDevice(deviceId);
+            if(existDevice.deviceName !== this.pairedDevices[indexDeviceID].deviceName){
+              this.pairedDevices.splice(indexDeviceID,1,existDevice);
+              AppStorage.setOrCreate('bluetoothPairedDevices', this.pairedDevices);
+            }
           } else {
             LogUtil.log(this.TAG + 'available bluetooth new device found. availableDevices length = ' + this.availableDevices.length);
             let newDevice = this.getDevice(deviceId);
