@@ -170,6 +170,10 @@ struct EntryComponent {
     LogUtil.info('CCCC settings SettingList EntryComponent aboutToAppear out');
   }
 
+  aboutToDisappear(){
+    BluetoothModel.unsubscribeStateChange();
+  }
+
   build() {
     Column() {
       if (!this.isPhone) {
