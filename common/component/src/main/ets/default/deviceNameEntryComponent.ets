@@ -32,7 +32,7 @@ export default struct DeviceNameEntryComponent {
   @State isTouched: boolean = false;
   private settingTitle: string | Resource = '';
   private settingUri: string = '';
-  private isEnabled: boolean = true
+  @Link isEnabled: boolean;
   private onArrowClick?: () => void;
   private heights = $r('app.float.wh_value_70');
   private image_wh = $r('app.float.wh_value_50');
