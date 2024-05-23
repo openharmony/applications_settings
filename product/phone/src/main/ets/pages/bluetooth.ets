@@ -166,7 +166,7 @@ struct DeviceNameComponent {
         settingArrow: "",
         settingArrowStyle: '',
         settingUri: '',
-        isEnabled: this.isEnabled,
+        isEnabled: $isEnabled,
         heights: ($r('app.float.wh_value_48')),
         fontSize: ($r('app.float.font_16'))
       })
