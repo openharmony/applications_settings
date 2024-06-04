@@ -60,6 +60,7 @@
 			   <filteritem type="filepath" name="entry/src/main/resources/base/media/.*.png" desc="self developed image"/>
 			   <filteritem type="filepath" name="figures/.*.png" desc="self developed image"/>
                 <filteritem type="filepath" name="product/phone/.*.png" desc="self developed image"/>
+                <filteritem type="filepath" name="product/wearable/.*.png" desc="self developed image"/>
                 <filteritem type="filepath" name="AppScope/resources/.*.png" desc="self developed image"/>
             </filefilter>
             <filefilter name="copyrightPolicyFilter" desc="Filters for copyright header policies">
