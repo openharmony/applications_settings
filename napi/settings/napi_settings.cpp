@@ -403,23 +403,20 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
     SETTING_LOG_INFO("<Ver-11-14> strProxyUri: %{public}s", strProxyUri.c_str());
     auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
 
-    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri);
-    SETTING_LOG_INFO("g_D_S_H Creator<strProxyUri> called");
-    
-    if (dataShareHelper == nullptr) {
-        SETTING_LOG_INFO(
-            "g_D_S_H d_S_H = nullptr, strUri %{public}s", strUri.c_str());
-        dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
-        return dataShareHelper;
-    }
-    
-    CheckDataShareHelper(env, context, dataShareHelper, proxyUri);
+    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri, strUri);
+    SETTING_LOG_INFO("g_D_S_H Creator called, valid %{public}d", dataShareHelper != nullptr);
     return dataShareHelper;
 }
 
 void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri uri)
 {
     SETTING_LOG_INFO("a_C_B_I->d_S_H != nullptr");
+    if (asyncCallbackInfo->dataShareHelper == nullptr) {
+        SETTING_LOG_ERROR("helper is null");
+        asyncCallbackInfo->status = -1;
+        return;
+    }
+    
     std::vector<std::string> columns;
     columns.push_back(SETTINGS_DATA_FIELD_VALUE);
 
@@ -541,6 +538,12 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     }
     SETTING_LOG_INFO("execute start");
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+    
+    if (asyncCallbackInfo->dataShareHelper == nullptr) {
+        SETTING_LOG_INFO("helper is null");
+        asyncCallbackInfo->status = -1;
+        return;
+    }
 
     OHOS::DataShare::DataShareValuesBucket val;
     val.Put(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
@@ -562,19 +565,13 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     OHOS::DataShare::DataSharePredicates predicates;
     predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
 
-    int retInt = 0;
-    if (asyncCallbackInfo->status == -1) {
-        if (asyncCallbackInfo->dataShareHelper != nullptr) {
-            retInt = asyncCallbackInfo->dataShareHelper->Insert(uri, val);
-            SETTING_LOG_INFO("aft in status: %{public}d", retInt);
-        }
-        SETTING_LOG_INFO("n_s_v_e aft in");
-    } else {
-        if (asyncCallbackInfo->dataShareHelper != nullptr) {
-            retInt = asyncCallbackInfo->dataShareHelper->Update(uri, predicates, val);
-            SETTING_LOG_INFO("aft up status: %{public}d", retInt);
-        }
-        SETTING_LOG_INFO("n_s_v_e aft Up");
+    // update first.
+    int retInt = asyncCallbackInfo->dataShareHelper->Update(uri, predicates, val);
+    SETTING_LOG_ERROR("update ret: %{public}d", retInt);
+    if (retInt <= 0) {
+        // retry to insert.
+        retInt = asyncCallbackInfo->dataShareHelper->Insert(uri, val);
+        SETTING_LOG_ERROR("insert ret: %{public}d", retInt);
     }
     asyncCallbackInfo->status = retInt;
 }
@@ -879,7 +876,6 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
     napi_value args[ARGS_FOUR] = {nullptr};
     NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
 
-    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
     asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode);
 
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
@@ -1065,6 +1061,12 @@ void SetValueExecuteCB(napi_env env, void *data)
         return;
     }
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+    
+    if (asyncCallbackInfo->dataAbilityHelper == nullptr) {
+        SETTING_LOG_ERROR("helper is null");
+        asyncCallbackInfo->status = -1;
+        return;
+    }
 
     std::string argsName = asyncCallbackInfo->key;
     std::string argsDefaultValue = asyncCallbackInfo->value;
@@ -1073,32 +1075,18 @@ void SetValueExecuteCB(napi_env env, void *data)
     val.PutString(SETTINGS_DATA_FIELD_KEYWORD, argsName);
     val.PutString(SETTINGS_DATA_FIELD_VALUE, argsDefaultValue);
 
-    std::vector<std::string> columns;
-    columns.push_back(SETTINGS_DATA_FIELD_VALUE);
     OHOS::NativeRdb::DataAbilityPredicates predicates;
     predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, argsName);
 
     std::shared_ptr<Uri> uri = std::make_shared<Uri>(SETTINGS_DATA_BASE_URI);
-    SETTING_LOG_INFO("execute bef d_A_H->Query");
-    std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultset = nullptr;
-    if (asyncCallbackInfo->dataAbilityHelper != nullptr) {
-        resultset = asyncCallbackInfo->dataAbilityHelper->Query(*uri, columns, predicates);
-    }
-
-    int retInt = 0;
-    int numRows = 0;
-    if (resultset != nullptr) {
-        SETTING_LOG_INFO("execute resultset is NOT empty");
-        resultset->GetRowCount(numRows);
-    }
-    // insert
-    if (resultset == nullptr || numRows == 0) {
+    SETTING_LOG_INFO("execute bef d_A_H->Update");
+    // update first
+    int retInt = asyncCallbackInfo->dataAbilityHelper->Update(*uri, val, predicates);
+    SETTING_LOG_ERROR("update ret: %{public}d", retInt);
+    if (retInt <= 0) {
+        // retry to insert
         retInt = asyncCallbackInfo->dataAbilityHelper->Insert(*uri, val);
-        SETTING_LOG_INFO("execute aft In");
-    // update
-    } else {
-        retInt = asyncCallbackInfo->dataAbilityHelper->Update(*uri, val, predicates);
-        SETTING_LOG_INFO("execute aft Up");
+        SETTING_LOG_ERROR("insert ret: %{public}d", retInt);
     }
     // notify change
     if (retInt > 0) {
@@ -1107,9 +1095,6 @@ void SetValueExecuteCB(napi_env env, void *data)
         std::shared_ptr<Uri> uriWithName = std::make_shared<Uri>(uriWithNameStr);
         asyncCallbackInfo->dataAbilityHelper->NotifyChange(*uriWithName);
         SETTING_LOG_INFO("execute aft NotifyC with uri: %{public}s", uriWithNameStr.c_str());
-    }
-    if (resultset != nullptr) {
-        resultset->Close();
     }
     SETTING_LOG_INFO("execute... END!");
     asyncCallbackInfo->status = retInt;
@@ -1325,7 +1310,6 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
             resource,
             [](napi_env env, void* data) {
                 AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-                GetValueExecuteExt(env, (void*)asyncCallbackInfo);
                 SetValueExecuteExt(env, (void*)asyncCallbackInfo, asyncCallbackInfo->uri);
             },
             [](napi_env env, napi_status status, void* data) {
@@ -1352,7 +1336,6 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
             [](napi_env env, void* data) {
                 AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
                 SETTING_LOG_INFO("in async work");
-                GetValueExecuteExt(env, (void*)asyncCallbackInfo);
                 SetValueExecuteExt(env, (void*)asyncCallbackInfo, asyncCallbackInfo->uri);
             },
             [](napi_env env, napi_status status, void* data) {
@@ -1698,7 +1681,6 @@ napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
     }
 
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
-    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
     asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, asyncCallbackInfo->tableName);
     GetValueExecuteExt(env, (void *)asyncCallbackInfo);
     SETTING_LOG_INFO(
@@ -1737,9 +1719,7 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
     } else {
         asyncCallbackInfo->tableName = "global";
     }
-    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
     asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, asyncCallbackInfo->tableName);
-    GetValueExecuteExt(env, (void *)asyncCallbackInfo);
     SetValueExecuteExt(env, (void *)asyncCallbackInfo, unwrap_string_from_js(env, args[PARAM2]));
     napi_value result = wrap_bool_to_js(env, ThrowError(env, asyncCallbackInfo->status));
     delete asyncCallbackInfo;
