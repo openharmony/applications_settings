@@ -61,6 +61,8 @@ namespace Settings {
                     delete work;
                     return;
                 }
+                napi_handle_scope scope = nullptr;
+                napi_open_handle_scope(cbInfo->env, &scope);
                 napi_value callback = nullptr;
                 napi_value undefined;
                 napi_get_undefined(cbInfo->env, &undefined);
@@ -76,6 +78,7 @@ namespace Settings {
                 napi_get_reference_value(cbInfo->env, cbInfo->callbackRef, &callback);
                 napi_value callResult;
                 napi_call_function(cbInfo->env, undefined, callback, PARAM2, result, &callResult);
+                napi_close_handle_scope(cbInfo->env, scope);
                 SETTING_LOG_INFO("%{public}s, uv_work success.", __func__);
                 delete work;
             });
