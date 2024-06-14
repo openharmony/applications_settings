@@ -50,10 +50,7 @@ namespace Settings {
             return;
         }
         work->data = reinterpret_cast<void*>(cbInfo);
-        int ret = uv_queue_work(
-            loop,
-            work,
-            [](uv_work_t *work) {},
+        int ret = uv_queue_work(loop, work, [](uv_work_t *work) {},
             [](uv_work_t *work, int status) {
                 AsyncCallbackInfo* cbInfo = reinterpret_cast<AsyncCallbackInfo*>(work->data);
                 if (cbInfo == nullptr) {
