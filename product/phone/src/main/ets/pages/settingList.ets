@@ -171,6 +171,7 @@ struct EntryComponent {
   }
 
   aboutToDisappear(){
+    SettingListModel.unRegisterObserver();
     BluetoothModel.unsubscribeStateChange();
   }
 

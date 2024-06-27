@@ -21,7 +21,7 @@ import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil
 import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
 import ResourceUtil from '../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 
-import wifi from '@ohos.wifi';
+import wifi from '@ohos.wifiManager';
 import prompt from '@system.prompt';
 import Router from '@system.router';
 
@@ -87,14 +87,35 @@ export class SettingListModel extends BaseModel {
     }
   }
 
+  private onWifiStateChange = (state: number) => {
+    // 关闭或者开启才改变状态
+    if ([0, 1].includes(state)) {
+      AppStorage.SetOrCreate('wifiStatus', wifi.isWifiActive());
+    }
+  }
+
   /**
    * Register Observer
    */
   @Log
   registerObserver() {
-    wifi.on('wifiStateChange', (code) => {
-      AppStorage.SetOrCreate('wifiStatus', wifi.isWifiActive());
-    })
+    try {
+      wifi.on('wifiStateChange', this.onWifiStateChange);
+    } catch (e) {
+      LogUtil.info(`wifiStateChange on is catch, message:${e?.message}`);
+    }
+  }
+
+  /**
+   * unRegister Observer
+   */
+  @Log
+  unRegisterObserver() {
+    try {
+      wifi.off('wifiStateChange', this.onWifiStateChange);
+    } catch (e) {
+      LogUtil.info(`wifiStateChange off is catch, message:${e?.message}`);
+    }
   }
 }
 
