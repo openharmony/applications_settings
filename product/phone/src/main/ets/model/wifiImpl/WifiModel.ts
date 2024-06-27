@@ -233,9 +233,9 @@ export class WifiModel extends BaseModel {
     wifi.on('wifiStateChange', callback);
   }
 
-  unregisterWiFiStatusObserver() {
+  unregisterWiFiStatusObserver(callback) {
     LogUtil.info(MODULE_TAG + 'start unregister wifi status observer');
-    wifi.off('wifiStateChange');
+    wifi.off('wifiStateChange', callback);
   }
 
   registerWiFiConnectionObserver(callback) {
