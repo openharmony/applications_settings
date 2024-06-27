@@ -28,7 +28,7 @@ import ConfigData from '../../../../../../common/utils/src/main/ets/default/base
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import ImageAnimatorComponent from '../../../../../../common/component/src/main/ets/default/imageAnimatorComponent';
-import wifi from '@ohos.wifi';
+import wifi from '@ohos.wifiManager';
 
 const MODULE_TAG = ConfigData.TAG + 'WifiModel.wifi -> ';
 const deviceTypeInfo = deviceInfo.deviceType;
@@ -411,6 +411,18 @@ struct Index {
     }, 500);
   }
 
+  private onWifiStateChange = (code: number) => {
+    LogUtil.info(MODULE_TAG + 'wifi status code : ' + code + ' taskId : ' + this.switchDebounceFlag);
+    if ((!this.switchDebounceFlag) && (code == 0 || code == 1)) {
+      this.isWiFiEnabled = Boolean(code);
+      LogUtil.info(MODULE_TAG + 'wifi active status code : ' + code + 'isWiFiEnabled' + this.isWiFiEnabled);
+      if (this.timerId != -1) {
+        clearTimeout(this.timerId);
+        this.timerId = -1;
+      }
+    }
+  }
+
   aboutToAppear(): void {
     LogUtil.info(MODULE_TAG + 'about to appear wifi page');
     try {
@@ -420,17 +432,7 @@ struct Index {
     } catch (error) {
       LogUtil.error(MODULE_TAG + 'get errorMessage String error:' + JSON.stringify(error));
     }
-    WifiModel.registerWiFiStatusObserver((code: number) => {
-      LogUtil.info(MODULE_TAG + 'wifi status code : ' + code + ' taskId : ' + this.switchDebounceFlag);
-      if ((!this.switchDebounceFlag) && (code == 0 || code == 1)) {
-        this.isWiFiEnabled = Boolean(code);
-        LogUtil.info(MODULE_TAG + 'wifi active status code : ' + code + " isWiFiEnabled" + this.isWiFiEnabled);
-        if (this.timerId != -1) {
-          clearTimeout(this.timerId);
-          this.timerId = -1;
-        }
-      }
-    });
+    WifiModel.registerWiFiStatusObserver(this.onWifiStateChange);
     // init wifi active status
     this.isWiFiEnabled = WifiModel.isWiFiActive();
     let wifiDefaultModel: WiFiMenuModel = (new ApScanResult()).renderToListModel();
@@ -446,7 +448,7 @@ struct Index {
       clearTimeout(this.switchDebounceFlag);
     }
     WifiModel.destroyWiFiModelData();
-    WifiModel.unregisterWiFiStatusObserver();
+    WifiModel.unregisterWiFiStatusObserver(this.onWifiStateChange);
     this.clickApInfoDialog = null;
     this.clickApInfoDetailsDialog = null;
   }
