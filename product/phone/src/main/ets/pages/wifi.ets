@@ -415,7 +415,7 @@ struct Index {
     LogUtil.info(MODULE_TAG + 'wifi status code : ' + code + ' taskId : ' + this.switchDebounceFlag);
     if ((!this.switchDebounceFlag) && (code == 0 || code == 1)) {
       this.isWiFiEnabled = Boolean(code);
-      LogUtil.info(MODULE_TAG + 'wifi active status code : ' + code + " isWiFiEnabled" + this.isWiFiEnabled);
+      LogUtil.info(MODULE_TAG + 'wifi active status code : ' + code + 'isWiFiEnabled' + this.isWiFiEnabled);
       if (this.timerId != -1) {
         clearTimeout(this.timerId);
         this.timerId = -1;
