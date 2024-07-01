@@ -79,7 +79,6 @@ namespace Settings {
                 AsyncCallbackInfo* cbInfo = reinterpret_cast<AsyncCallbackInfo*>(work->data);
                 if (cbInfo == nullptr) {
                     SETTING_LOG_ERROR("uv_work: cbInfo invalid.");
-                    napi_remove_env_cleanup_hook(env, EnvObserver, cbInfo);
                     delete work;
                     return;
                 }
