@@ -45,33 +45,6 @@ namespace Settings {
         callBackInfo->env = nullptr;
     }
 
-    void SettingsObserver::OnChange()
-    {
-        uv_loop_s* loop = nullptr;
-        napi_get_uv_event_loop(cbInfo->env, &loop);
-        if (loop == nullptr) {
-            SETTING_LOG_ERROR("%{public}s, fail to get uv loop.", __func__);
-            return;
-        }
-        auto work = new (std::nothrow) uv_work_t;
-        if (work == nullptr) {
-            SETTING_LOG_ERROR("%{public}s, fail to get uv work.", __func__);
-            return;
-        }
-
-        napi_add_env_cleanup_hook(env, EnvObserver, cbInfo);
-        work->data = reinterpret_cast<void*>(cbInfo);
-
-        int ret = OnChangeAsync(loop, work);
-        if (ret != 0) {
-            SETTING_LOG_ERROR("%{public}s, uv_queue_work failed.", __func__);
-            if (work != nullptr) {
-                delete work;
-                work = nullptr;
-            }
-        }
-    }
-
     int OnChangeAsync(uv_loop_s* loop, uv_work_t *work)
     {
         int ret = uv_queue_work(loop, work, [](uv_work_t *work) {},
@@ -109,6 +82,32 @@ namespace Settings {
                 delete work;
             });
             return ret;
+    }
+
+    void SettingsObserver::OnChange()
+    {
+        uv_loop_s* loop = nullptr;
+        napi_get_uv_event_loop(cbInfo->env, &loop);
+        if (loop == nullptr) {
+            SETTING_LOG_ERROR("%{public}s, fail to get uv loop.", __func__);
+            return;
+        }
+        auto work = new (std::nothrow) uv_work_t;
+        if (work == nullptr) {
+            SETTING_LOG_ERROR("%{public}s, fail to get uv work.", __func__);
+            return;
+        }
+
+        work->data = reinterpret_cast<void*>(cbInfo);
+
+        int ret = OnChangeAsync(loop, work);
+        if (ret != 0) {
+            SETTING_LOG_ERROR("%{public}s, uv_queue_work failed.", __func__);
+            if (work != nullptr) {
+                delete work;
+                work = nullptr;
+            }
+        }
     }
 
     std::string GetObserverIdStr()
@@ -152,6 +151,7 @@ namespace Settings {
             return wrap_bool_to_js(env, false);
         }
         AsyncCallbackInfo *callbackInfo = new AsyncCallbackInfo();
+        napi_add_env_cleanup_hook(env, EnvObserver, cbInfo);
         callbackInfo->env = env;
         callbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
         callbackInfo->tableName = unwrap_string_from_js(env, args[PARAM2]);
