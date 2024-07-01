@@ -38,11 +38,11 @@ namespace Settings {
 
     void SettingsObserver::EnvObserver(void* arg)
     {
-        AsyncCallbackInfo* cbInfo = reinterpret_cast<AsyncCallbackInfo*>(arg);
-        if (cbInfo == nullptr || cbInfo->env == nullptr) {
+        AsyncCallbackInfo* callBackInfo = reinterpret_cast<AsyncCallbackInfo*>(arg);
+        if (callBackInfo == nullptr || callBackInfo->env == nullptr) {
             return;
         }
-        cbInfo->env = nullptr;
+        callBackInfo->env = nullptr;
     }
 
     void SettingsObserver::OnChange()
