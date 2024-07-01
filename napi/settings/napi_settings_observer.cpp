@@ -36,6 +36,15 @@ namespace Settings {
 
     std::map<std::string, sptr<SettingsObserver>> g_observerMap;
 
+    void SettingsObserver::EnvObserver(void* arg)
+    {
+        AsyncCallbackInfo* cbInfo = reinterpret_cast<AsyncCallbackInfo*>(arg);
+        if (cbInfo == nullptr || cbInfo->env == nullptr) {
+            return;
+        }
+        cbInfo->env = nullptr;
+    }
+
     void SettingsObserver::OnChange()
     {
         uv_loop_s* loop = nullptr;
@@ -49,12 +58,32 @@ namespace Settings {
             SETTING_LOG_ERROR("%{public}s, fail to get uv work.", __func__);
             return;
         }
+
+        napi_add_env_cleanup_hook(env, EnvObserver, cbInfo);
         work->data = reinterpret_cast<void*>(cbInfo);
+
+        int ret = OnChangeAsync(loop, work);
+        if (ret != 0) {
+            SETTING_LOG_ERROR("%{public}s, uv_queue_work failed.", __func__);
+            if (work != nullptr) {
+                delete work;
+                work = nullptr;
+            }
+        }
+    }
+
+    int OnChangeAsync(uv_loop_s* loop, uv_work_t *work)
+    {
         int ret = uv_queue_work(loop, work, [](uv_work_t *work) {},
             [](uv_work_t *work, int status) {
                 AsyncCallbackInfo* cbInfo = reinterpret_cast<AsyncCallbackInfo*>(work->data);
                 if (cbInfo == nullptr) {
                     SETTING_LOG_ERROR("uv_work: cbInfo invalid.");
+                    napi_remove_env_cleanup_hook(env, EnvObserver, cbInfo);
+                    delete work;
+                    return;
+                }
+                if (cbInfo->env == nullptr) {
                     delete work;
                     return;
                 }
@@ -77,15 +106,10 @@ namespace Settings {
                 napi_call_function(cbInfo->env, undefined, callback, PARAM2, result, &callResult);
                 napi_close_handle_scope(cbInfo->env, scope);
                 SETTING_LOG_INFO("%{public}s, uv_work success.", __func__);
+                napi_remove_env_cleanup_hook(env, EnvObserver, cbInfo);
                 delete work;
             });
-        if (ret != 0) {
-            SETTING_LOG_ERROR("%{public}s, uv_queue_work failed.", __func__);
-            if (work != nullptr) {
-                delete work;
-                work = nullptr;
-            }
-        }
+            return ret;
     }
 
     std::string GetObserverIdStr()
