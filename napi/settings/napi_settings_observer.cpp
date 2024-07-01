@@ -78,7 +78,7 @@ namespace Settings {
                 napi_call_function(cbInfo->env, undefined, callback, PARAM2, result, &callResult);
                 napi_close_handle_scope(cbInfo->env, scope);
                 SETTING_LOG_INFO("%{public}s, uv_work success.", __func__);
-                napi_remove_env_cleanup_hook(env, EnvObserver, cbInfo);
+                napi_remove_env_cleanup_hook(cbInfo->env, SettingsObserver::EnvObserver, cbInfo);
                 delete work;
             });
             return ret;
@@ -97,7 +97,7 @@ namespace Settings {
             SETTING_LOG_ERROR("%{public}s, fail to get uv work.", __func__);
             return;
         }
-
+        napi_add_env_cleanup_hook(cbInfo->env, SettingsObserver::EnvObserver, cbInfo);
         work->data = reinterpret_cast<void*>(cbInfo);
 
         int ret = OnChangeAsync(loop, work);
@@ -151,7 +151,7 @@ namespace Settings {
             return wrap_bool_to_js(env, false);
         }
         AsyncCallbackInfo *callbackInfo = new AsyncCallbackInfo();
-        napi_add_env_cleanup_hook(env, EnvObserver, cbInfo);
+
         callbackInfo->env = env;
         callbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
         callbackInfo->tableName = unwrap_string_from_js(env, args[PARAM2]);
