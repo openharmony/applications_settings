@@ -266,10 +266,7 @@ export default struct IpsecVpnEdit {
           inputPlaceholder: $r('app.string.vpn_edit_unuse'),
           inputText: this.vpnConfig.searchDomains?.[0],
           onChange: (value: string) => {
-            let searchDomain = value.trim();
-            if (searchDomain) {
-              this.vpnConfig.searchDomains = [searchDomain];
-            }
+            this.vpnConfig.searchDomains = [value.trim()];
           }
         })
         TextWithInput({
@@ -279,9 +276,7 @@ export default struct IpsecVpnEdit {
           inputType: INPUT_TYPE_IP,
           onChange: (value: string) => {
             this.dnsAddress = value.trim();
-            if (this.dnsAddress && this.dnsAddress.length > 0) {
-              this.vpnConfig.dnsAddresses = [this.dnsAddress];
-            }
+            this.vpnConfig.dnsAddresses = [this.dnsAddress];
             this.onNonNullableParamChange();
           }
         })
