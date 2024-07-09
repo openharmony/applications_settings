@@ -176,6 +176,7 @@ export struct VpnConnect {
       }
       try {
         await vpn.addSysVpnConfig(this.vpnConfig);
+        VpnConfigModel.getInstance().setNeedUpdateVpnList(true);
         VpnConnectModel.getInstance().setUp(this.vpnConfig);
       } catch (err) {
         let message = (err as BusinessError).message;

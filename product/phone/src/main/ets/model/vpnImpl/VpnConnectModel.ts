@@ -180,6 +180,7 @@ export class VpnConnectModel {
   }
 
   destroy(callback): void {
+    this.removeTimeout();
     this.connection?.destroy((error: BusinessError) => {
       if (error) {
         LogUtil.info(MODULE_TAG + `destroy error = ${JSON.stringify(error)}`);
