@@ -83,6 +83,10 @@
     {
       "name": "white",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "FA2A2D",
+      "value": "#FA2A2D"
     }
   ]
 }

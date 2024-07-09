@@ -25,6 +25,7 @@ import ConfigData from '../../../../../../common/utils/src/main/ets/default/base
 import ResourceUtil from '../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
 import {SettingItemComponent} from '../../../../../../common/component/src/main/ets/default/settingItemComponent';
 import GlobalResourceManager from '../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalResourceManager';
+import { VpnTypeModel } from '../model/vpnImpl/VpnTypeModel';
 
 const deviceTypeInfo = deviceInfo.deviceType;
 
@@ -119,22 +120,6 @@ struct SettingList {
       this.isPhone = false;
     }
     LogUtil.info('CCCC settings SettingList aboutToAppear end');
-  }
-
-  onPageShow() {
-    LogUtil.info('CCCC settings SettingList onPageShow enter');
-    FeatureAbility.getWant().then((want) => {
-      if (want.uri === "wifi") {
-        Router.replace({ uri: "pages/wifi" });
-      } else if (want.uri === "bluetooth") {
-        Router.replace({ uri: "pages/bluetooth" });
-      } else if (want.uri === "volumeControl") {
-        Router.replace({ uri: "pages/volumeControl" });
-      } else if (want.uri === "locationServices") {
-        Router.replace({ uri: "pages/locationServices" });
-      }
-    })
-    LogUtil.info('CCCC settings SettingList onPageShow end');
   }
 }
 
@@ -272,13 +257,13 @@ struct EntryComponent {
               })
             }
 
-            if (this.info === 'true') {
-              ListItem(){
+            if (this.info === 'true' || VpnTypeModel.getInstance().isSupportVpn()) {
+              ListItem() {
                 // moreConnections
                 SettingItemComponent({
                   targetPage: "pages/moreConnections",
                   settingTitle: $r("app.string.moreConnectionsTab"),
-                  settingEndText:$endTextEmpty,
+                  settingEndText: $endTextEmpty,
                   settingIcon: "/res/image/ic_settings_more_connections.svg",
                 })
               }

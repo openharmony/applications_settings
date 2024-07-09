@@ -1,0 +1,301 @@
+/**
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { util } from '@kit.ArkTS';
+import { TextWithInput, SelectFile, INPUT_TYPE_IP } from './customComponent';
+import { IpsecVpnConfig } from '../../model/vpnImpl/VpnConfig';
+import { VpnTypeModel } from '../../model/vpnImpl/VpnTypeModel';
+import { VpnConfigModel } from '../../model/vpnImpl/VpnConfigModel';
+import VpnConstant from '../../model/vpnImpl/VpnConstant';
+import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+
+@Component
+export default struct IpsecVpnEdit {
+  onSaveBtnEnableChange: Function = (enabled: boolean) => {};
+  @State @Watch('onVpnConfigChange') vpnConfig: IpsecVpnConfig = new IpsecVpnConfig();
+  @State ipsecIdentifierVisibility: Visibility = Visibility.None;
+  @State l2tpSecretVisibility: Visibility = Visibility.None;
+  @State ipsecSecretVisibility: Visibility = Visibility.None;
+  @State userCertVisibility: Visibility = Visibility.None;
+  @State caServerCertVisibility: Visibility = Visibility.None;
+  @State advanceChecked: boolean = false;
+  @State vpnAddress: string = '';
+  @State dnsAddress: string = '';
+  vpnType: number = 0;
+  base64Util = new util.Base64Helper();
+
+  aboutToAppear() {
+    this.vpnAddress = VpnConfigModel.getInstance().getAddress(this.vpnConfig) ?? '';
+    let dnsAddresses = this.vpnConfig.dnsAddresses;
+    if (dnsAddresses) {
+      this.dnsAddress = dnsAddresses[0];
+    }
+    this.updateUI();
+  }
+
+  updateUI() {
+    this.updateIpsecIdentifierVisibility();
+    this.updateL2tpSecretVisibility();
+    this.updateIpsecSecretVisibility();
+    this.updateUserCertVisibility();
+    this.updateCaServerCertVisibility();
+  }
+
+  onVpnConfigChange() {
+    if (this.vpnType !== this.vpnConfig.vpnType) {
+      LogUtil.info('onVpnConfigChange ' + this.vpnType + '->' + this.vpnConfig.vpnType);
+      this.vpnType = this.vpnConfig.vpnType;
+      this.updateUI();
+    }
+  }
+
+  onNonNullableParamChange(): void {
+    let isNonNullParamReady = true;
+    if (!VpnConstant.REGEX_IP.test(this.vpnAddress)) {
+      isNonNullParamReady = false;
+    }
+    if (this.dnsAddress.length >0 && !VpnConstant.REGEX_IP.test(this.dnsAddress)) {
+      isNonNullParamReady = false;
+    }
+    if (this.vpnConfig.vpnType !== VpnTypeModel.TYPE_L2TP_IPSEC_PSK) {
+      if (this.ipsecIdentifierVisibility === Visibility.Visible && !this.vpnConfig.ipsecIdentifier) {
+        isNonNullParamReady = false;
+      }
+      if (this.l2tpSecretVisibility === Visibility.Visible && !this.vpnConfig.l2tpSharedKey) {
+        isNonNullParamReady = false;
+      }
+    }
+    if (this.ipsecSecretVisibility === Visibility.Visible && !this.vpnConfig.ipsecPreSharedKey) {
+      isNonNullParamReady = false;
+    }
+    this.onSaveBtnEnableChange(isNonNullParamReady);
+  }
+
+  updateIpsecIdentifierVisibility(): void {
+    switch (this.vpnConfig.vpnType) {
+      case VpnTypeModel.TYPE_IKEV2_IPSEC_MSCHAPv2:
+      case VpnTypeModel.TYPE_IKEV2_IPSEC_PSK:
+      case VpnTypeModel.TYPE_IKEV2_IPSEC_RSA:
+      case VpnTypeModel.TYPE_L2TP_IPSEC_PSK:
+      case VpnTypeModel.TYPE_IPSEC_XAUTH_PSK:
+        this.ipsecIdentifierVisibility = Visibility.Visible;
+        break;
+      default:
+        this.ipsecIdentifierVisibility = Visibility.None;
+        break;
+    }
+  }
+
+  updateL2tpSecretVisibility(): void {
+    switch (this.vpnConfig.vpnType) {
+      case VpnTypeModel.TYPE_L2TP_IPSEC_PSK:
+      case VpnTypeModel.TYPE_L2TP_IPSEC_RSA:
+        this.l2tpSecretVisibility = Visibility.Visible;
+        break;
+      default:
+        this.l2tpSecretVisibility = Visibility.None;
+        break;
+    }
+  }
+
+  updateIpsecSecretVisibility(): void {
+    switch (this.vpnConfig.vpnType) {
+      case VpnTypeModel.TYPE_IKEV2_IPSEC_PSK:
+      case VpnTypeModel.TYPE_L2TP_IPSEC_PSK:
+      case VpnTypeModel.TYPE_IPSEC_XAUTH_PSK:
+        this.ipsecSecretVisibility = Visibility.Visible;
+        break;
+      default:
+        this.ipsecSecretVisibility = Visibility.None;
+        break;
+    }
+  }
+
+  updateUserCertVisibility(): void {
+    switch (this.vpnConfig.vpnType) {
+      case VpnTypeModel.TYPE_IKEV2_IPSEC_RSA:
+      case VpnTypeModel.TYPE_L2TP_IPSEC_RSA:
+      case VpnTypeModel.TYPE_IPSEC_XAUTH_RSA:
+        this.userCertVisibility = Visibility.Visible;
+        break;
+      default:
+        this.userCertVisibility = Visibility.None;
+        break;
+    }
+  }
+
+  updateCaServerCertVisibility(): void {
+    switch (this.vpnConfig.vpnType) {
+      case VpnTypeModel.TYPE_IKEV2_IPSEC_MSCHAPv2:
+      case VpnTypeModel.TYPE_IKEV2_IPSEC_RSA:
+      case VpnTypeModel.TYPE_L2TP_IPSEC_RSA:
+      case VpnTypeModel.TYPE_IPSEC_XAUTH_RSA:
+      case VpnTypeModel.TYPE_IPSEC_HYBRID_RSA:
+        this.caServerCertVisibility = Visibility.Visible;
+        break;
+      default:
+        this.caServerCertVisibility = Visibility.None;
+        break;
+    }
+  }
+
+  build() {
+    Column() {
+      TextWithInput({
+        title: $r('app.string.vpn_edit_serveraddress'),
+        inputPlaceholder: '',
+        inputText: this.vpnAddress,
+        inputType: INPUT_TYPE_IP,
+        onChange: (value: string) => {
+          this.vpnAddress = value.trim();
+          VpnConfigModel.getInstance().setAddress(this.vpnConfig, this.vpnAddress);
+          this.onNonNullableParamChange();
+        }
+      })
+      TextWithInput({
+        title: $r('app.string.vpn_edit_ipsecidentifier'),
+        inputPlaceholder: $r('app.string.vpn_edit_unuse'),
+        inputText: this.vpnConfig.ipsecIdentifier,
+        onChange: (value: string) => {
+          this.vpnConfig.ipsecIdentifier = value.trim();
+          this.onNonNullableParamChange();
+        }
+      }).visibility(this.ipsecIdentifierVisibility)
+      TextWithInput({
+        title: $r('app.string.vpn_edit_l2tpsecret'),
+        inputPlaceholder: $r('app.string.vpn_edit_unuse'),
+        inputText: this.vpnConfig.l2tpSharedKey,
+        onChange: (value: string) => {
+          this.vpnConfig.l2tpSharedKey = value.trim();
+          this.onNonNullableParamChange();
+        }
+      }).visibility(this.l2tpSecretVisibility)
+      TextWithInput({
+        title: $r('app.string.vpn_edit_ipsecsecret'),
+        inputPlaceholder: $r('app.string.vpn_edit_unuse'),
+        inputText: this.vpnConfig.ipsecPreSharedKey,
+        onChange: (value: string) => {
+          this.vpnConfig.ipsecPreSharedKey = value.trim();
+          this.onNonNullableParamChange();
+        }
+      }).visibility(this.ipsecSecretVisibility)
+      SelectFile({
+        title: $r('app.string.vpn_edit_usercert'),
+        fileName: this.vpnConfig.ipsecPublicUserCertFilePath,
+        vpnConfig: this.vpnConfig,
+        callback: (result: string[]) => {
+          this.vpnConfig.ipsecPublicUserCertFilePath = result[0];
+          this.vpnConfig.
+          ipsecPublicUserCertConfig = this.base64Util.encodeToStringSync(
+            VpnConfigModel.getInstance().stringToUint8Array(result[1]));
+          this.onNonNullableParamChange();
+        }
+      }).margin({ top: 15 })
+        .visibility(this.userCertVisibility)
+      SelectFile({
+        title: $r('app.string.vpn_edit_user_private_cert'),
+        fileName: this.vpnConfig.ipsecPrivateUserCertFilePath,
+        vpnConfig: this.vpnConfig,
+        callback: (result: string[]) => {
+          this.vpnConfig.ipsecPrivateUserCertFilePath = result[0];
+          this.vpnConfig.
+          ipsecPrivateUserCertConfig = this.base64Util.encodeToStringSync(
+            VpnConfigModel.getInstance().stringToUint8Array(result[1]));
+          this.onNonNullableParamChange();
+        }
+      }).margin({ top: 15 })
+        .visibility(this.userCertVisibility)
+
+      SelectFile({
+        title: $r('app.string.vpn_edit_cacert'),
+        fileName: this.vpnConfig.ipsecCaCertFilePath,
+        vpnConfig: this.vpnConfig,
+        callback: (result: string[]) => {
+          this.vpnConfig.ipsecCaCertFilePath = result[0];
+          this.vpnConfig.ipsecCaCertConfig = this.base64Util.encodeToStringSync(
+            VpnConfigModel.getInstance().stringToUint8Array(result[1]));
+          this.onNonNullableParamChange();
+        }
+      }).margin({ top: 10 })
+        .visibility(this.caServerCertVisibility)
+      SelectFile({
+        title: $r('app.string.vpn_edit_servercert'),
+        fileName: this.vpnConfig.ipsecPublicServerCertFilePath,
+        vpnConfig: this.vpnConfig,
+        callback: (result: string[]) => {
+          this.vpnConfig.ipsecPublicServerCertFilePath = result[0];
+          this.vpnConfig.ipsecPublicServerCertConfig = this.base64Util.encodeToStringSync(
+            VpnConfigModel.getInstance().stringToUint8Array(result[1]));
+          this.onNonNullableParamChange();
+        }
+      }).margin({ top: 10 })
+        .visibility(this.caServerCertVisibility)
+      SelectFile({
+        title: $r('app.string.vpn_edit_server_private_cert'),
+        fileName: this.vpnConfig.ipsecPrivateServerCertFilePath,
+        vpnConfig: this.vpnConfig,
+        callback: (result: string[]) => {
+          this.vpnConfig.ipsecPrivateServerCertFilePath = result[0];
+          this.vpnConfig.ipsecPrivateServerCertConfig = this.base64Util.encodeToStringSync(
+            VpnConfigModel.getInstance().stringToUint8Array(result[1]));
+          this.onNonNullableParamChange();
+        }
+      }).margin({ top: 10, bottom: 10 })
+        .visibility(this.caServerCertVisibility)
+      Row({ space: 10 }) {
+        Checkbox().shape(CheckBoxShape.ROUNDED_SQUARE).onChange((value) => {
+          this.advanceChecked = value;
+        })
+        Text($r('app.string.vpn_edit_advanced'))
+      }.width('100%').margin({ left: 4 })
+      Column({ space: 10 }) {
+        TextWithInput({
+          title: $r('app.string.vpn_edit_searchdomains'),
+          inputPlaceholder: $r('app.string.vpn_edit_unuse'),
+          inputText: this.vpnConfig.searchDomains?.[0],
+          onChange: (value: string) => {
+            let searchDomain = value.trim();
+            if (searchDomain) {
+              this.vpnConfig.searchDomains = [searchDomain];
+            }
+          }
+        })
+        TextWithInput({
+          title: $r('app.string.vpn_edit_dnsaddresses'),
+          inputPlaceholder: $r('app.string.vpn_edit_unuse'),
+          inputText: this.dnsAddress,
+          inputType: INPUT_TYPE_IP,
+          onChange: (value: string) => {
+            this.dnsAddress = value.trim();
+            if (this.dnsAddress && this.dnsAddress.length > 0) {
+              this.vpnConfig.dnsAddresses = [this.dnsAddress];
+            }
+            this.onNonNullableParamChange();
+          }
+        })
+        TextWithInput({
+          title: $r('app.string.vpn_edit_router'),
+          inputPlaceholder: $r('app.string.vpn_edit_unuse'),
+          inputText: this.vpnConfig.forwardingRoutes,
+          onChange: (value: string) => {
+            this.vpnConfig.forwardingRoutes = value.trim();
+          }
+        })
+      }.width('100%')
+      .alignItems(HorizontalAlign.Start)
+      .visibility(this.advanceChecked ? Visibility.Visible : Visibility.None)
+    }
+  }
+}

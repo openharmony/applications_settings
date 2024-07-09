@@ -1,0 +1,29 @@
+{
+  "strarray": [
+    {
+      "name": "ovpn_auth_type",
+      "value": [
+        {
+          "value": "证书(TLS)"
+        },
+        {
+          "value": "密码"
+        },
+        {
+          "value": "证书和密码(TLS)"
+        }
+      ]
+    },
+    {
+      "name": "ovpn_protocol",
+      "value": [
+        {
+          "value": "TCP"
+        },
+        {
+          "value": "UDP"
+        }
+      ]
+    }
+  ]
+}

@@ -16,12 +16,15 @@
 import display from '@ohos.display';
 import deviceInfo from '@ohos.deviceInfo';
 import NfcModel from '../model/moreConnectionsImpl/NfcModel';
+import parameter from '@ohos.systemparameter';
 import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
 import HeadComponent from '../../../../../../common/component/src/main/ets/default/headComponent';
 import {
+  SubEntryComponent,
   SubEntryComponentWithEndText
 } from '../../../../../../common/component/src/main/ets/default/subEntryComponent';
+import { VpnTypeModel } from '../model/vpnImpl/VpnTypeModel';
 
 const TAG = ConfigData.TAG + 'MoreConnections: ';
 const deviceTypeInfo = deviceInfo.deviceType;
@@ -38,6 +41,7 @@ struct MoreConnections {
   private maxScreenHeight: number = 0;
   private nfcImageWidth: number = 0;
   private nfcImageHeight: number = 0;
+  private nfcSupport: string = 'false';
 
   nfcStatusChange() {
     AppStorage.SetOrCreate("nfcStatusInfo", this.nfcStatus ? $r("app.string.enabled") : $r("app.string.disabled"))
@@ -48,13 +52,43 @@ struct MoreConnections {
       GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
         Column() {
           HeadComponent({ headName: $r('app.string.moreConnectionsTab'), isActive: true });
-
-          SubEntryComponentWithEndText({
-            targetPage: 'pages/nfc',
-            title: $r('app.string.NFC'),
-            endText: $nfcStatusInfo
+          Column() {
+            List() {
+              // NFC
+              if (this.nfcSupport === 'true') {
+                ListItem() {
+                  SubEntryComponentWithEndText({
+                    targetPage: 'pages/nfc',
+                    title: $r('app.string.NFC'),
+                    endText: $nfcStatusInfo
+                  })
+                }
+              }
+              // vpn
+              if (VpnTypeModel.getInstance().isSupportVpn()) {
+                ListItem() {
+                  SubEntryComponent({
+                    targetPage: 'pages/vpn/vpnList',
+                    title: $r("app.string.VPN"),
+                  })
+                }
+              }
+            }
+            .width(ConfigData.WH_100_100)
+            .divider({
+              strokeWidth: $r('app.float.divider_wh'),
+              color: $r('sys.color.ohos_id_color_list_separator'),
+              startMargin: $r('app.float.wh_value_15'),
+              endMargin: $r('app.float.wh_value_15') })
+          }
+          .borderRadius($r("app.float.radius_16"))
+          .backgroundColor($r("app.color.white_bg_color"))
+          .width(ConfigData.WH_100_100)
+          .margin({ top: $r("app.float.distance_12") })
+          .padding({
+            top: $r("app.float.distance_4"),
+            bottom: $r("app.float.distance_4")
           })
-            .margin({ top: $r("app.float.distance_8") })
         }
         .useSizeType({
           sm: { span: 4, offset: 0 },
@@ -71,6 +105,15 @@ struct MoreConnections {
   }
 
   aboutToAppear() {
+    this.nfcSupport = parameter.getSync('const.SystemCapability.Communication.NFC.Core', 'false');
+    LogUtil.info(TAG + `nfcSupport ${this.nfcSupport}`);
+
+    if (this.nfcSupport === 'true') {
+      this.nfcInit();
+    }
+  }
+
+  nfcInit(){
     LogUtil.info(TAG + 'aboutToAppear in');
 
     try {
@@ -106,8 +149,7 @@ struct MoreConnections {
           this.nfcImageWidth = (this.maxScreenHeight / 2) * 0.8;
           this.nfcImageHeight = (this.maxScreenHeight / 2) * 0.8;
         }
-      }
-      else {
+      } else {
         if (this.maxScreenHeight > this.maxScreenWidth / 2) {
           this.nfcImageWidth = (this.maxScreenWidth / 2) * 0.7;
           this.nfcImageHeight = (this.maxScreenWidth / 2) * 0.7;
