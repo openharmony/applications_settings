@@ -2,7 +2,7 @@
   "module": {
     "name": "phone",
     "type": "entry",
-    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "srcEntry": "./ets/Application/AbilityStage.ts",
     "description": "$string:mainability_description",
     "mainElement": "com.ohos.settings.MainAbility",
     "deviceTypes": [
@@ -22,7 +22,7 @@
     "abilities": [
       {
         "name": "com.ohos.settings.MainAbility",
-        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "srcEntry": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:mainability_description",
         "icon": "$media:app_icon",
         "label": "$string:entry_MainAbility",
@@ -43,7 +43,7 @@
       },
       {
         "name": "com.ohos.settings.AppInfoAbility",
-        "srcEntrance": "./ets/MainAbility/AppInfoAbility.ts",
+        "srcEntry": "./ets/MainAbility/AppInfoAbility.ts",
         "description": "$string:applicationInfo",
         "icon": "$media:app_icon",
         "label": "$string:applicationInfo",
@@ -227,6 +227,9 @@
       {
         "name": "ohos.permission.sec.ACCESS_UDID",
         "reason": "$string:GET_ACCESS_UDID"
+      },
+      {
+        "name": "ohos.permission.MANAGE_VPN"
       }
     ]
   }
