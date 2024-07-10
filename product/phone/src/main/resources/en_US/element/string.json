@@ -1487,6 +1487,272 @@
     {
       "name": "GET_ACCESS_UDID",
       "value": "Permission to obtain a UDID"
+    },
+    {
+      "name": "vpn_change_alert_title",
+      "value": "Replace the existing VPN?"
+    },
+    {
+      "name": "vpn_change_alert_content",
+      "value": "You have connected to the VPN. If you want to connect to another VPN, the system will replace the existing VPN."
+    },
+    {
+      "name": "vpn_change_alert_confirm",
+      "value": "Replace"
+    },
+    {
+      "name": "vpn_connect_title",
+      "value": "Connection to %s"
+    },
+    {
+      "name": "vpn_connect_username",
+      "value": "Username"
+    },
+    {
+      "name": "vpn_connect_password",
+      "value": "Password"
+    },
+    {
+      "name": "vpn_connect_save",
+      "value": "Save Account Information"
+    },
+    {
+      "name": "vpn_connect_confirm",
+      "value": "Connect"
+    },
+    {
+      "name": "vpn_edit_title",
+      "value": "Edit VPN Network"
+    },
+    {
+      "name": "vpn_edit_alias",
+      "value": "Alias"
+    },
+    {
+      "name": "vpn_edit_type",
+      "value": "Protocol Type"
+    },
+    {
+      "name": "vpn_edit_ovpn_configfile",
+      "value": "OpenVPN Config File"
+    },
+    {
+      "name": "vpn_edit_ovpn_click_select",
+      "value": "Click Select"
+    },
+    {
+      "name": "vpn_edit_ovpn_ca_cert_file",
+      "value": "CA Certificate"
+    },
+    {
+      "name": "vpn_edit_ovpn_user_cert_file",
+      "value": "User Certificate"
+    },
+    {
+      "name": "vpn_edit_ovpn_private_key",
+      "value": "Private key"
+    },
+    {
+      "name": "vpn_edit_ovpn_private_key_psd",
+      "value": "Private key password"
+    },
+    {
+      "name": "vpn_edit_ovpn_protocol",
+      "value": "OpenVPN Protocol"
+    },
+    {
+      "name": "vpn_edit_auth_type",
+      "value": "OpenVPN Auth Type"
+    },
+    {
+      "name": "vpn_edit_serveraddress",
+        "value": "Server Address"
+    },
+    {
+      "name": "vpn_edit_ovpn_serveraddress",
+      "value": "OpenVpn Server Address"
+    },
+    {
+      "name": "vpn_edit_ovpn_port",
+      "value": "OpenVpn Server Port"
+    },
+    {
+      "name": "vpn_edit_ipsecidentifier",
+      "value": "IPSec Identifier"
+    },
+
+    {
+      "name": "vpn_edit_l2tpsecret",
+      "value": "L2TP Secret"
+    },
+    {
+      "name": "vpn_edit_ipsecsecret",
+      "value": "IPSec Secret"
+    },
+    {
+      "name": "vpn_edit_usercert",
+      "value": "IPSec User Certificate Public Key"
+    },
+    {
+      "name": "vpn_edit_user_private_cert",
+      "value": "IPSec User Certificate Private Key"
+    },
+    {
+      "name": "vpn_edit_cacert",
+      "value": "IPSec CA Certificate"
+    },
+    {
+      "name": "vpn_edit_servercert",
+      "value": "IPSec Server Certificate Public Key"
+    },
+    {
+      "name": "vpn_edit_server_private_cert",
+      "value": "IPSec Server Certificate Private Key"
+    },
+    {
+      "name": "vpn_edit_unuse",
+      "value": "not used"
+    },
+    {
+      "name": "vpn_edit_advanced",
+      "value": "Show Advanced Options"
+    },
+    {
+      "name": "vpn_edit_proxy_advanced",
+      "value": "Show Proxy Advanced Options"
+    },
+    {
+      "name": "vpn_edit_searchdomains",
+      "value": "DNS Search Domain"
+    },
+    {
+      "name": "vpn_edit_dnsaddresses",
+      "value": "DNS Server (e.g. 8.8.8.8)"
+    },
+    {
+      "name": "vpn_edit_router",
+      "value": "Forwarding Route (e.g. 10.0.0.0/8)"
+    },
+    {
+      "name": "vpn_edit_ovpn_proxy_host",
+      "value": "OpenVpn Proxy Host"
+    },
+    {
+      "name": "vpn_edit_ovpn_proxy_port",
+      "value": "OpenVpn Proxy Port"
+    },
+    {
+      "name": "vpn_edit_ovpn_proxy_username",
+      "value": "OpenVpn Proxy Username"
+    },
+    {
+      "name": "vpn_edit_ovpn_proxy_password",
+      "value": "OpenVpn Proxy Password"
+    },
+    {
+      "name": "vpn_edit_ovpn_useauth",
+      "value": "Using Basic Authentication"
+    },
+    {
+      "name": "vpn_edit_save",
+      "value": "Save"
+    },
+    {
+      "name": "vpn_edit_cert_not_specified",
+      "value": "(unspecified)"
+    },
+    {
+      "name": "vpn_edit_cert_not_verify_server",
+      "value": "(Do not verify server)"
+    },
+    {
+      "name": "vpn_edit_cert_from_server",
+      "value": "(From server)"
+    },
+    {
+      "name": "vpn_line_remove_alert_title",
+      "value": "Delete the %s vpn?"
+    },
+    {
+      "name": "vpn_line_remove_alert_confirm",
+      "value": "Delete"
+    },
+    {
+      "name": "vpn_line_disconnect_alert_title",
+      "value": "Disconnect the %s VPN?"
+    },
+    {
+      "name": "vpn_line_disconnect_alert_confirm",
+      "value": "Disconnect"
+    },
+
+    {
+      "name": "vpn_line_disconnect_operation_edit",
+      "value": "Edit VPN Network"
+    },
+    {
+      "name": "vpn_line_disconnect_operation_remove",
+      "value": "Delete VPN Network"
+    },
+
+    {
+      "name": "vpn_state_connect_ing",
+      "value": "Connecting..."
+    },
+    {
+      "name": "vpn_state_connec_success",
+      "value": "Connection successful"
+    },
+    {
+      "name": "vpn_state_connec_failed",
+      "value": "Connection failed"
+    },
+    {
+      "name": "vpn_state_disconnecting",
+      "value": "Disconnecting..."
+    },
+    {
+      "name": "vpn_state_disconnected",
+      "value": "DisConnected"
+    },
+    {
+      "name": "vpn_list_empty",
+      "value": "No VPN Network"
+    },
+    {
+      "name": "vpn_list_add",
+      "value": "Add VPN Network"
+    },    {
+      "name": "ovpn_auth_type_cert",
+      "value": "Certificate(TLS)"
+    },
+    {
+      "name": "ovpn_auth_type_pass",
+      "value": "Password"
+    },
+    {
+      "name": "ovpn_auth_type_certpass",
+      "value": "Certificate and Password(TLS)"
+    },
+    {
+      "name": "VPN",
+      "value": "VPN"
+    },
+    {
+      "name": "vpn_error_invalid_param",
+      "value": "Invalid parameter value"
+    },
+    {
+      "name": "vpn_error_operation_failed",
+      "value": "Operation failed"
+    },
+    {
+      "name": "vpn_error_system_internal",
+      "value": "System internal error"
+    },
+    {
+      "name": "vpn_error_disconnect_first",
+      "value": "Disconnect the VPN before operating"
     }
   ]
 }

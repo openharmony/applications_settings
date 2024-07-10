@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2021-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -38,6 +38,14 @@ export default class MainAbility extends Ability {
     let url = 'pages/settingList';
     if (this.funcAbilityWant?.parameters?.router && this.funcAbilityWant.parameters.router === 'volumeControl') {
       url = 'pages/volumeControl';
+    } else if (this.funcAbilityWant?.uri === "wifi") {
+      url = 'pages/wifi';
+    } else if (this.funcAbilityWant?.uri === "bluetooth") {
+      url = 'pages/bluetooth';
+    } else if (this.funcAbilityWant?.uri === "volumeControl") {
+      url = 'pages/volumeControl';
+    } else if (this.funcAbilityWant?.uri === "locationServices") {
+      url = 'pages/locationServices';
     }
     windowStage.setUIContent(this.context, url, null);
     GlobalContext.getContext().setObject(GlobalContext.globalKeySettingsAbilityContext, this.context);
