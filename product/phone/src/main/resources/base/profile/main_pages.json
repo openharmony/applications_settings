@@ -43,6 +43,9 @@
     "pages/accessibilityShortKey",
     "pages/accessibilityColorCorrection",
     "pages/accessibilityScreenTouch",
-    "pages/abilityDialog/accessibilityWindowShortKeyDialog"
+    "pages/abilityDialog/accessibilityWindowShortKeyDialog",
+    "pages/vpn/vpnList",
+    "pages/vpn/vpnEdit",
+    "pages/vpn/vpnConnect"
   ]
 }

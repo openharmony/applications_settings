@@ -1491,6 +1491,282 @@
     {
       "name": "GET_ACCESS_UDID",
       "value": "获取UDID的权限"
+    },
+    {
+      "name": "vpn_change_alert_title",
+      "value": "要替换现有VPN吗?"
+    },
+    {
+      "name": "vpn_change_alert_content",
+      "value": "您已连接到VPN,如果您要连接到其他VPN,则系统替换现有VPN."
+    },
+
+    {
+      "name": "vpn_change_alert_confirm",
+      "value": "替换"
+    },
+
+    {
+      "name": "vpn_connect_title",
+      "value": "连接到%s"
+    },
+    {
+      "name": "vpn_connect_username",
+      "value": "用户名"
+    },
+    {
+      "name": "vpn_connect_password",
+      "value": "密码"
+    },
+    {
+      "name": "vpn_connect_save",
+      "value": "保存账户信息"
+    },
+    {
+      "name": "vpn_connect_confirm",
+      "value": "连接"
+    },
+    {
+      "name": "vpn_edit_title",
+      "value": "编辑VPN网络"
+    },
+    {
+      "name": "vpn_edit_alias",
+      "value": "名称"
+    },
+    {
+      "name": "vpn_edit_type",
+      "value": "类型"
+    },
+    {
+      "name": "vpn_edit_ovpn_configfile",
+      "value": "OpenVPN 配置文件"
+    },
+    {
+      "name": "vpn_edit_ovpn_ca_cert_file",
+      "value": "CA 证书"
+    },
+    {
+      "name": "vpn_edit_ovpn_user_cert_file",
+      "value": "用户证书"
+    },
+    {
+      "name": "vpn_edit_ovpn_private_key",
+      "value": "私钥"
+    },
+    {
+      "name": "vpn_edit_ovpn_private_key_psd",
+      "value": "私钥密码"
+    },
+    {
+      "name": "vpn_edit_ovpn_username",
+      "value": "用户名"
+    },
+    {
+      "name": "vpn_edit_ovpn_password",
+      "value": "密码"
+    },
+    {
+      "name": "vpn_edit_ovpn_click_select",
+      "value": "点击选择"
+    },
+    {
+      "name": "vpn_edit_ovpn_protocol",
+      "value": "OpenVPN 协议"
+    },
+    {
+      "name": "vpn_edit_auth_type",
+      "value": "OpenVPN 认证类型"
+    },
+    {
+      "name": "vpn_edit_serveraddress",
+      "value": "服务器地址"
+    },
+    {
+      "name": "vpn_edit_ovpn_serveraddress",
+      "value": "OpenVPN 服务器地址"
+    },
+    {
+      "name": "vpn_edit_ovpn_port",
+      "value": "OpenVPN 服务器端口"
+    },
+    {
+      "name": "vpn_edit_ipsecidentifier",
+      "value": "IPSec 标识符"
+    },
+
+    {
+      "name": "vpn_edit_l2tpsecret",
+      "value": "L2TP 密钥"
+    },
+    {
+      "name": "vpn_edit_ipsecsecret",
+      "value": "IPSec 预共享密钥"
+    },
+    {
+      "name": "vpn_edit_usercert",
+      "value": "IPSec 用户证书公钥"
+    },
+    {
+      "name": "vpn_edit_user_private_cert",
+      "value": "IPSec 用户证书私钥"
+    },
+    {
+      "name": "vpn_edit_cacert",
+      "value": "IPSec CA 证书"
+    },
+    {
+      "name": "vpn_edit_servercert",
+      "value": "IPSec 服务器证书公钥"
+    },
+    {
+      "name": "vpn_edit_server_private_cert",
+      "value": "IPSec 服务器秘钥证书私钥"
+    },
+    {
+      "name": "vpn_edit_unuse",
+      "value": "未使用"
+    },
+    {
+      "name": "vpn_edit_advanced",
+      "value": "显示高级选项"
+    },
+    {
+      "name": "vpn_edit_proxy_advanced",
+      "value": "显示代理"
+    },
+    {
+      "name": "vpn_edit_searchdomains",
+      "value": "DNS 搜索域"
+    },
+    {
+      "name": "vpn_edit_dnsaddresses",
+      "value": "DNS 服务器(例如 8.8.8.8)"
+    },
+    {
+      "name": "vpn_edit_router",
+      "value": "转发路线(例如 10.0.0.0/8)"
+    },
+    {
+      "name": "vpn_edit_ovpn_proxy_host",
+      "value": "OpenVPN 代理主机"
+    },
+    {
+      "name": "vpn_edit_ovpn_proxy_port",
+      "value": "OpenVPN 代理端口"
+    },
+    {
+      "name": "vpn_edit_ovpn_proxy_username",
+      "value": "OpenVPN 代理用户名"
+    },
+    {
+      "name": "vpn_edit_ovpn_proxy_password",
+      "value": "OpenVPN 代理密码"
+    },
+    {
+      "name": "vpn_edit_ovpn_useauth",
+      "value": "使用基本身份验证"
+    },
+    {
+      "name": "vpn_edit_save",
+      "value": "保存"
+    },
+    {
+      "name": "vpn_edit_cert_not_specified",
+      "value": "(未指定)"
+    },
+    {
+      "name": "vpn_edit_cert_not_verify_server",
+      "value": "(不验证服务器)"
+    },
+    {
+      "name": "vpn_edit_cert_from_server",
+      "value": "(来自服务器)"
+    },
+    {
+      "name": "vpn_line_remove_alert_title",
+      "value": "是否删除%s网络?"
+    },
+    {
+      "name": "vpn_line_remove_alert_confirm",
+      "value": "删除"
+    },
+    {
+      "name": "vpn_line_disconnect_alert_title",
+      "value": "是否断开%s网络?"
+    },
+    {
+      "name": "vpn_line_disconnect_alert_confirm",
+      "value": "断开"
+    },
+
+    {
+      "name": "vpn_line_disconnect_operation_edit",
+      "value": "编辑VPN网络"
+    },
+    {
+      "name": "vpn_line_disconnect_operation_remove",
+      "value": "删除VPN网络"
+    },
+
+    {
+      "name": "vpn_state_connect_ing",
+      "value": "连接中..."
+    },
+    {
+      "name": "vpn_state_connec_success",
+      "value": "连接成功"
+    },
+    {
+      "name": "vpn_state_connec_failed",
+      "value": "连接失败"
+    },
+    {
+      "name": "vpn_state_disconnecting",
+      "value": "断开中..."
+    },
+    {
+      "name": "vpn_state_disconnected",
+      "value": "已断开"
+    },
+    {
+      "name": "vpn_list_empty",
+      "value": "没有VPN"
+    },
+    {
+      "name": "vpn_list_add",
+      "value": "添加VPN网络"
+    },    {
+      "name": "ovpn_auth_type_cert",
+      "value": "证书( TLS )"
+    },
+    {
+      "name": "ovpn_auth_type_pass",
+      "value": "密码"
+    },
+    {
+      "name": "ovpn_auth_type_certpass",
+      "value": "证书和密码( TLS )"
+    },
+    {
+      "name": "VPN",
+      "value": "VPN"
+    },
+    {
+      "name": "vpn_error_invalid_param",
+      "value": "参数错误"
+    },
+    {
+      "name": "vpn_error_operation_failed",
+      "value": "API调用失败"
+    },
+    {
+      "name": "vpn_error_system_internal",
+      "value": "系统内部错误"
+    },
+    {
+      "name": "vpn_error_disconnect_first",
+      "value": "请先断开VPN，再操作"
     }
   ]
 }
