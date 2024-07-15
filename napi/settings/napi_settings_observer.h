@@ -36,7 +36,6 @@ public:
     ~SettingsObserver() {}
     void OnChange();
     AsyncCallbackInfo* cbInfo;
-    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper;
     static void EnvObserver(void* arg);
 };
 

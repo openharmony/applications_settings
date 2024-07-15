@@ -163,9 +163,8 @@ namespace Settings {
             delete callbackInfo;
             return wrap_bool_to_js(env, false);
         }
-
-        std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
-        dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, callbackInfo->tableName);
+    
+        auto dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, callbackInfo->tableName);
         if (dataShareHelper == nullptr) {
             delete callbackInfo;
             return wrap_bool_to_js(env, false);
@@ -175,9 +174,9 @@ namespace Settings {
         OHOS::Uri uri(strUri);
         sptr<SettingsObserver> settingsObserver = sptr<SettingsObserver>
         (new (std::nothrow)SettingsObserver(callbackInfo));
-        settingsObserver->dataShareHelper = dataShareHelper;
         g_observerMap[callbackInfo->key] = settingsObserver;
         dataShareHelper->RegisterObserver(uri, settingsObserver);
+        dataShareHelper->Release();
 		
         return wrap_bool_to_js(env, true);
     }
@@ -216,15 +215,20 @@ namespace Settings {
             SETTING_LOG_ERROR("%{public}s, null.", __func__);
             return wrap_bool_to_js(env, false);
         }
-        std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = g_observerMap[key]->dataShareHelper;
-		
+        
         if (g_observerMap[key] == nullptr) {
             g_observerMap.erase(key);
             return wrap_bool_to_js(env, false);
         }
+    
+        auto dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, tableName);
+        if (dataShareHelper == nullptr) {
+            SETTING_LOG_ERROR("%{public}s, data share is null.", __func__);
+            return wrap_bool_to_js(env, false);
+        }
         std::string strUri = GetStageUriStr(tableName, GetObserverIdStr(), key);
         OHOS::Uri uri(strUri);
-        
+    
         napi_delete_reference(g_observerMap[key]->cbInfo->env, g_observerMap[key]->cbInfo->callbackRef);
         dataShareHelper->UnregisterObserver(uri, g_observerMap[key]);
         dataShareHelper->Release();
