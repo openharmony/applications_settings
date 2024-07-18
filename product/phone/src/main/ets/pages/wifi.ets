@@ -252,7 +252,7 @@ struct Index {
                   LogUtil.info(MODULE_TAG + 'end!!!');
                 });
               }
-              .visibility(this.isNeedRenderConnectedWiFi() ? Visibility.Visible : Visibility.None);
+              .visibility(this.isNeedRenderConnectedWiFi() && WifiModel.isWiFiConnected() ? Visibility.Visible : Visibility.None);
 
               Column() {
                 Row() {
