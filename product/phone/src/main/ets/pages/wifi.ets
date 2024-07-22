@@ -763,6 +763,7 @@ struct apInfoDetailsDialog {
             })
           })
         }
+        .scrollBar(BarState.Off)
         .margin({
           top: $r('app.float.wh_value_8'),
           bottom: $r('app.float.wh_value_16'),
