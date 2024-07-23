@@ -40,6 +40,8 @@ struct WifiPsd {
   @State tobeConnectedSSID: string = '';
   @State isFocused: boolean = false;
   @State @Watch("controlFailedDialog") ControlFailedDialog: boolean = false;
+  @State @Watch("connectingClosedDialog") ConnectingClosedDialog: boolean = false;
+  @StorageLink("wifiStatus")  @Watch("wifiStatusChange") wifiStatus: boolean = true;
   private tobeConnectedAp: WifiScanInfo | null = null;
   private isConnectedBefore: boolean = false;
   private taskId: number = -1;
@@ -61,10 +63,35 @@ struct WifiPsd {
     customStyle: true
   });
 
+  private connectingAndClosedDialog: CustomDialogController = new CustomDialogController({
+    builder: connectingClosedDialog({ ConnectingClosedDialog: $ConnectingClosedDialog }),
+    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
+    autoCancel: true,
+    customStyle: true
+  });
+
   controlFailedDialog() {
     if (this.ControlFailedDialog) {
       this.failedDialog?.close();
       this.ControlFailedDialog = false;
+    }
+  }
+
+  connectingClosedDialog() {
+    if (this.ConnectingClosedDialog) {
+      this.connectingAndClosedDialog?.close();
+      this.ConnectingClosedDialog = false;
+      router.back({
+        uri: 'pages/wifi',
+      });
+    }
+  }
+
+  wifiStatusChange() {
+    if (!this.wifiStatus) {
+      this.connectDialog?.close();
+      this.connectingAndClosedDialog?.open();
     }
   }
 
@@ -374,6 +401,47 @@ struct connectFailedDialog {
             .fontWeight(FontWeight.Medium)
             .onClick(() => {
               this.ControlFailedDialog = true;
+            })
+        }
+        .alignItems(VerticalAlign.Top)
+        .margin({ top: $r("app.float.wh_value_8") })
+        .padding({ top: $r("app.float.wh_value_9") })
+        .height($r("app.float.wh_value_56"))
+      }
+      .height($r("app.float.wh_value_109"))
+      .width(ConfigData.WH_100_100)
+      .borderRadius($r("app.float.radius_32"))
+      .alignItems(HorizontalAlign.Center)
+      .backgroundColor($r("app.color.white_bg_color"))
+    }
+    .width(deviceTypeInfo === 'phone' ? ConfigData.WH_100_100 : $r("app.float.wh_value_410"))
+    .padding(deviceTypeInfo === 'phone' ? { left: $r("app.float.wh_value_12"), right: $r("app.float.wh_value_12") } : {
+    })
+  }
+}
+
+@CustomDialog
+struct connectingClosedDialog {
+  controller?: CustomDialogController;
+  @Link ConnectingClosedDialog: boolean;
+
+  build() {
+    Column() {
+      Column() {
+        Text($r("app.string.wifiTipsConnectNetFailed"))
+          .fontSize($r('sys.float.ohos_id_text_size_body1'))
+          .fontColor($r('sys.color.ohos_id_color_text_primary'))
+          .fontWeight(FontWeight.Regular)
+          .margin({ top: $r("app.float.wh_value_24") })
+          .height($r("app.float.wh_value_21"))
+
+        Row() {
+          Text($r("app.string.wifiTipsGotIt"))
+            .fontSize($r('sys.float.ohos_id_text_size_body1'))
+            .fontColor($r('sys.color.ohos_id_color_text_primary_activated'))
+            .fontWeight(FontWeight.Medium)
+            .onClick(() => {
+              this.ConnectingClosedDialog = true;
             })
         }
         .alignItems(VerticalAlign.Top)
