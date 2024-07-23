@@ -161,6 +161,10 @@
       "value": "密码错误，连接失败。"
     },
     {
+      "name": "wifiTipsConnectNetFailed",
+      "value": "网络错误，连接失败。"
+    },
+    {
       "name": "wifiTipsConnectFailed",
       "value": "连接失败"
     },
