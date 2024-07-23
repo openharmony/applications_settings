@@ -149,6 +149,10 @@
       "value": "Password incorrect, auth failed."
     },
     {
+      "name": "wifiTipsConnectNetFailed",
+      "value": "Network incorrect, auth failed."
+    },
+    {
       "name": "wifiTipsConnectFailed",
       "value": "连接失败"
     },
