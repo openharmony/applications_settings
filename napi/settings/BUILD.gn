@@ -18,6 +18,11 @@ ohos_shared_library("settings") {
     "//foundation/arkui/napi/interfaces/kits",
     "//third_party/node/src",
     "//foundation/distributeddatamgr/data_share/interfaces/inner_api/common/include",
+    "//foundation/arkui/ace_engine/interfaces/inner_api/ace",
+    "//foundation/ability/ability_runtime/interfaces/kits/native/ability/native",
+    "//foundation/ability/ability_runtime/interfaces/kits/native/ability/native/ui_extension_ability",
+    "//foundation/ability/ability_runtime/interfaces/kits/native/ability/native/ability_runtime",
+    "./open_network_settings"
   ]
 
   sources = [
@@ -25,6 +30,7 @@ ohos_shared_library("settings") {
     "./napi_settings_init.cpp",
     "./napi_settings_observer.cpp",
     "./native_module.cpp",
+    "./open_network_settings/napi_open_network_settings.cpp"
   ]
 
   external_deps = [
@@ -43,6 +49,10 @@ ohos_shared_library("settings") {
     "os_account:os_account_innerkits",
     "relational_store:native_dataability",
     "relational_store:native_rdb",
+    "ability_runtime:runtime",
+    "ability_runtime:ui_extension",
+    "ability_base:want",
+    "ability_runtime:ability_context_native",
   ]
 
   relative_install_dir = "module"
