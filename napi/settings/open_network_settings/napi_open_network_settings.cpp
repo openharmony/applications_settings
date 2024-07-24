@@ -1,5 +1,16 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2024-2024. All rights reserved.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 #include "napi_open_network_settings.h"
@@ -9,15 +20,14 @@
 
 namespace OHOS {
 namespace Settings {
-const std::string UIEXTENSIONTYPE_KEY = "ability.want.params.uiExtensionType";
-const std::string CONTEXTTYPE_KEY = "storeKit.ability.contextType";
+const std::string UIEXTENSION_TYPE_KEY = "ability.want.params.uiExtensionType";
+const std::string CONTEXT_TYPE_KEY = "storeKit.ability.contextType";
 
-const std::string UIEXTENSIONTYPE_VALUE = "sys/commonUI";
-const std::string SETTINGS_PKG_NAME = "com.huawei.hmos.settings";
+const std::string UIEXTENSION_TYPE_VALUE = "sys/commonUI";
+const std::string SETTINGS_PACKAGE_NAME = "com.huawei.hmos.settings";
 const std::string SETTINGS_ABILITY_NAME = "OpenNetworkUIExtensionAbility";
 const std::string UI_ABILITY_CONTEXT_VALUE = "uiAbility";
 const std::string UI_EXTENSION_CONTEXT_VALUE = "uiExtension";
-
 
 bool StartUIExtensionAbility(OHOS::AAFwk::Want &request, std::shared_ptr<BaseContext> &asyncContext)
 {
@@ -78,9 +88,9 @@ OHOS::Ace::UIContent* GetUIContent(std::shared_ptr<BaseContext> &asyncContext)
 void ExecuteLoadProduct(std::shared_ptr<BaseContext> &baseContext, OHOS::AAFwk::Want &request)
 {
     SETTING_LOG_INFO("ExecuteLoadProduct called");
-    request.SetElementName(SETTINGS_PKG_NAME, SETTINGS_ABILITY_NAME);
-    request.SetParam(UIEXTENSIONTYPE_KEY, UIEXTENSIONTYPE_VALUE);
-    request.SetParam(CONTEXTTYPE_KEY,
+    request.SetElementName(SETTINGS_PACKAGE_NAME, SETTINGS_ABILITY_NAME);
+    request.SetParam(UIEXTENSION_TYPE_KEY, UIEXTENSION_TYPE_VALUE);
+    request.SetParam(CONTEXT_TYPE_KEY,
         baseContext->uiExtensionContext != nullptr ? UI_EXTENSION_CONTEXT_VALUE : UI_ABILITY_CONTEXT_VALUE);
     SETTING_LOG_INFO("ExecuteLoadProduct end");
 }
@@ -112,7 +122,6 @@ void ModalUICallback::OnRelease(int32_t releaseCode)
 {
     SETTING_LOG_INFO("OnRelease");
     this->CloseModalUI();
-
 }
 
 void ModalUICallback::OnResultForModal(int32_t resultCode, const OHOS::AAFwk::Want &result)
