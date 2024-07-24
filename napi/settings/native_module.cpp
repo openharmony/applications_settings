@@ -20,6 +20,7 @@
 #include "napi/native_api.h"
 #include "napi/native_node_api.h"
 #include "napi_settings_log.h"
+#include "napi_open_network_settings.h"
 
 namespace OHOS {
 namespace Settings {
