@@ -18,7 +18,7 @@ ohos_shared_library("settings") {
     "//foundation/arkui/napi/interfaces/kits",
     "//third_party/node/src",
     "//foundation/distributeddatamgr/data_share/interfaces/inner_api/common/include",
-    "./open_network_settings"
+    "./open_network_settings",
   ]
 
   sources = [
@@ -26,7 +26,7 @@ ohos_shared_library("settings") {
     "./napi_settings_init.cpp",
     "./napi_settings_observer.cpp",
     "./native_module.cpp",
-    "./open_network_settings/napi_open_network_settings.cpp"
+    "./open_network_settings/napi_open_network_settings.cpp",
   ]
 
   external_deps = [
