@@ -18,7 +18,6 @@ ohos_shared_library("settings") {
     "//foundation/arkui/napi/interfaces/kits",
     "//third_party/node/src",
     "//foundation/distributeddatamgr/data_share/interfaces/inner_api/common/include",
-    "//foundation/arkui/ace_engine/interfaces/inner_api/ace/",
     "./open_network_settings"
   ]
 
@@ -31,15 +30,16 @@ ohos_shared_library("settings") {
   ]
 
   external_deps = [
+    "ability_base:want",
     "ability_base:zuri",
+    "ability_runtime:ability_context_native",
     "ability_runtime:ability_manager",
     "ability_runtime:data_ability_helper",
     "ability_runtime:dataobs_manager",
     "ability_runtime:napi_base_context",
     "ability_runtime:runtime",
     "ability_runtime:ui_extension",
-    "ability_base:want",
-    "ability_runtime:ability_context_native",
+    "ace_engine:ace_uicontent",
     "c_utils:utils",
     "data_share:datashare_common",
     "data_share:datashare_consumer",
