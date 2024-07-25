@@ -199,8 +199,7 @@ napi_value SetAsyncCallback(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
             SETTING_LOG_INFO("manager change complete");
         },
         (void*)asyncCallbackInfo,
-        &asyncCallbackInfo->asyncWork
-    );
+        &asyncCallbackInfo->asyncWork);
 
     SETTING_LOG_INFO("uri c_b start asy work");
     NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
