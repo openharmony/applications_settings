@@ -29,9 +29,9 @@ const std::string SETTINGS_ABILITY_NAME = "OpenNetworkUIExtensionAbility";
 const std::string UI_ABILITY_CONTEXT_VALUE = "uiAbility";
 const std::string UI_EXTENSION_CONTEXT_VALUE = "uiExtension";
 
-bool StartUIExtensionAbility(OHOS::AAFwk::Want &request, std::shared_ptr<BaseContext> &asyncContext)
+bool StartUiExtensionAbility(OHOS::AAFwk::Want &request, std::shared_ptr<BaseContext> &asyncContext)
 {
-    SETTING_LOG_INFO("begin StartUIExtensionAbility");
+    SETTING_LOG_INFO("begin StartUiExtensionAbility");
     if (asyncContext == nullptr) {
         SETTING_LOG_ERROR("asyncContext is nullptr");
         return false;
@@ -65,7 +65,7 @@ bool StartUIExtensionAbility(OHOS::AAFwk::Want &request, std::shared_ptr<BaseCon
         return false;
     }
     callback->SetSessionId(sessionId);
-    SETTING_LOG_INFO("end StartUIExtensionAbility");
+    SETTING_LOG_INFO("end StartUiExtensionAbility");
     return true;
 }
 
@@ -245,7 +245,7 @@ napi_value opne_manager_settings(napi_env env, napi_callback_info info)
     // 处理请求信息
     OHOS::AAFwk::Want wantRequest;
     ExecuteLoadProduct(loadProductContext, wantRequest);
-    if (!StartUIExtensionAbility(wantRequest, loadProductContext)) {
+    if (!StartUiExtensionAbility(wantRequest, loadProductContext)) {
         SETTING_LOG_INFO("opne manager faild.");
         asyncCallbackInfo->status = -1;
         return wrap_void_to_js(env);
