@@ -212,7 +212,6 @@ napi_value opne_manager_settings(napi_env env, napi_callback_info info)
     SETTING_LOG_INFO("start opne manager settings.");
     size_t argc = ARGS_TWO;
     napi_value argv[ARGS_TWO] = { 0 };
-
     AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
         .env = env,
         .asyncWork = nullptr,
@@ -231,7 +230,13 @@ napi_value opne_manager_settings(napi_env env, napi_callback_info info)
         asyncCallbackInfo->status = -1;
         return wrap_void_to_js(env);
     }
-
+    // Check the value type of the arguments
+    napi_valuetype valueType;
+    NAPI_CALL(env, napi_typeof(env, argv[PARAM0], &valueType));
+    NAPI_ASSERT(env, valueType == napi_object, "Wrong argument[0] type. Object expected.");
+    NAPI_CALL(env, napi_typeof(env, argv[PARAM1], &valueType));
+    NAPI_ASSERT(env, valueType == napi_function, "Wrong argument[1] type. napi_function expected.");
+    
     napi_create_reference(env, argv[PARAM1], 1, &(asyncCallbackInfo->callbackRef));
     auto loadProductContext = std::make_shared<BaseContext>();
     if (!ParseAbilityContext(env, argv[PARAM0], loadProductContext->abilityContext,
@@ -240,7 +245,6 @@ napi_value opne_manager_settings(napi_env env, napi_callback_info info)
         asyncCallbackInfo->status = -1;
         return wrap_void_to_js(env);
     }
-
     // 处理请求信息
     OHOS::AAFwk::Want wantRequest;
     ExecuteLoadProduct(loadProductContext, wantRequest);
@@ -249,7 +253,6 @@ napi_value opne_manager_settings(napi_env env, napi_callback_info info)
         asyncCallbackInfo->status = -1;
         return wrap_void_to_js(env);
     }
-
     SetAsyncCallback(env, asyncCallbackInfo);
     SETTING_LOG_INFO("opne manager settings end.");
     return wrap_void_to_js(env);
