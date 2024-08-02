@@ -172,18 +172,23 @@ bool ParseAbilityContext(napi_env env, const napi_value &obj,
     return true;
 }
 
-napi_value SetAsyncCallback(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
+bool SetAsyncCallback(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
 {
     napi_value resource = nullptr;
-    NAPI_CALL(env, napi_create_string_utf8(env, "openNetworkManagerSettings", NAPI_AUTO_LENGTH, &resource));
-    napi_create_async_work(
+    napi_status ret = napi_ok;
+    ret = napi_create_string_utf8(env, "openNetworkManagerSettings", NAPI_AUTO_LENGTH, &resource);
+    if (ret != napi_ok) {
+        SETTING_LOG_ERROR("create string failed");
+        return false;
+    }
+    ret = napi_create_async_work(
         env,
         nullptr,
         resource,
         [](napi_env env, void* data) { },
         [](napi_env env, napi_status status, void* data) {
             if (data == nullptr) {
-                SETTING_LOG_INFO("manager data is null");
+                SETTING_LOG_ERROR("manager data is null");
                 return;
             }
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
@@ -200,11 +205,17 @@ napi_value SetAsyncCallback(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
         },
         (void*)asyncCallbackInfo,
         &asyncCallbackInfo->asyncWork);
-
-    SETTING_LOG_INFO("uri c_b start asy work");
-    NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
-    SETTING_LOG_INFO("uri c_b end asy work");
-    return wrap_void_to_js(env);
+    if (ret != napi_ok) {
+        SETTING_LOG_ERROR("create async work failed");
+        return false;
+    }
+    ret = napi_queue_async_work(env, asyncCallbackInfo->asyncWork);
+    if (ret != napi_ok) {
+        SETTING_LOG_ERROR("queue async work failed");
+        return false;
+    }
+    SETTING_LOG_INFO("queue async work success");
+    return true;
 }
 
 napi_value opne_manager_settings(napi_env env, napi_callback_info info)
@@ -223,37 +234,44 @@ napi_value opne_manager_settings(napi_env env, napi_callback_info info)
         .uri = "",
         .status = 0,
     };
-
     NAPI_CALL(env, napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr));
-    if (argc < ARGS_TWO) {
+    if (argc != ARGS_TWO && argv[PARAM0] == nullptr && argv[PARAM1] == nullptr) {
         SETTING_LOG_ERROR("Args num less than two.");
-        asyncCallbackInfo->status = -1;
+        delete asyncCallbackInfo;
         return wrap_void_to_js(env);
     }
-    // Check the value type of the arguments
+
+    // 检测入参类型
     napi_valuetype valueType;
     NAPI_CALL(env, napi_typeof(env, argv[PARAM0], &valueType));
     NAPI_ASSERT(env, valueType == napi_object, "Wrong argument[0] type. Object expected.");
     NAPI_CALL(env, napi_typeof(env, argv[PARAM1], &valueType));
     NAPI_ASSERT(env, valueType == napi_function, "Wrong argument[1] type. napi_function expected.");
-    
-    napi_create_reference(env, argv[PARAM1], 1, &(asyncCallbackInfo->callbackRef));
+
     auto loadProductContext = std::make_shared<BaseContext>();
     if (!ParseAbilityContext(env, argv[PARAM0], loadProductContext->abilityContext,
         loadProductContext->uiExtensionContext)) {
         SETTING_LOG_ERROR("context parse error.");
-        asyncCallbackInfo->status = -1;
+        delete asyncCallbackInfo;
         return wrap_void_to_js(env);
     }
+
     // 处理请求信息
     OHOS::AAFwk::Want wantRequest;
     ExecuteLoadProduct(loadProductContext, wantRequest);
     if (!StartUiExtensionAbility(wantRequest, loadProductContext)) {
-        SETTING_LOG_INFO("opne manager faild.");
-        asyncCallbackInfo->status = -1;
+        SETTING_LOG_ERROR("opne manager faild.");
+        delete asyncCallbackInfo;
         return wrap_void_to_js(env);
     }
-    SetAsyncCallback(env, asyncCallbackInfo);
+    // 返回异步处理
+    napi_create_reference(env, argv[PARAM1], 1, &(asyncCallbackInfo->callbackRef));
+    if (!SetAsyncCallback(env, asyncCallbackInfo)) {
+        SETTING_LOG_ERROR("callback set faild.");
+        napi_delete_reference(env, asyncCallbackInfo->callbackRef);
+        delete asyncCallbackInfo;
+        return wrap_void_to_js(env);
+    }
     SETTING_LOG_INFO("opne manager settings end.");
     return wrap_void_to_js(env);
 }
