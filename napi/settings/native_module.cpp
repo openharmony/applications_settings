@@ -20,6 +20,7 @@
 #include "napi/native_api.h"
 #include "napi/native_node_api.h"
 #include "napi_settings_log.h"
+#include "napi_open_network_settings.h"
 
 namespace OHOS {
 namespace Settings {
@@ -42,6 +43,7 @@ static napi_value Init(napi_env env, napi_value exports)
         DECLARE_NAPI_FUNCTION("canShowFloating", napi_can_show_floating),
         DECLARE_NAPI_FUNCTION("registerKeyObserver", napi_register_key_observer),
         DECLARE_NAPI_FUNCTION("unregisterKeyObserver", napi_unregister_key_observer),
+        DECLARE_NAPI_FUNCTION("openNetworkManagerSettings", opne_manager_settings),
     };
 
     // init settings class
