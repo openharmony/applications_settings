@@ -25,6 +25,7 @@
             "components": [
                 "ability_base",
                 "ability_runtime",
+                "ace_engine",
                 "c_utils",
                 "data_share",
                 "hilog",
