@@ -275,15 +275,6 @@ export default struct IpsecVpnEdit {
         }
       })
       TextWithInput({
-        title: $r('app.string.vpn_edit_ipsecidentifier'),
-        inputPlaceholder: $r('app.string.vpn_edit_unuse'),
-        inputText: this.vpnConfig.ipsecIdentifier,
-        onChange: (value: string) => {
-          this.vpnConfig.ipsecIdentifier = value.trim();
-          this.onNonNullableParamChange();
-        }
-      }).visibility(this.ipsecIdentifierVisibility)
-      TextWithInput({
         title: $r('app.string.vpn_edit_l2tpsecret'),
         inputPlaceholder: $r('app.string.vpn_edit_unuse'),
         inputText: this.vpnConfig.l2tpSharedKey,
@@ -294,8 +285,16 @@ export default struct IpsecVpnEdit {
         }
       }).visibility(this.l2tpSecretVisibility)
       TextWithInput({
-        title: $r('app.string.vpn_edit_ipsecsecret'),
+        title: $r('app.string.vpn_edit_ipsecidentifier'),
         inputPlaceholder: $r('app.string.vpn_edit_unuse'),
+        inputText: this.vpnConfig.ipsecIdentifier,
+        onChange: (value: string) => {
+          this.vpnConfig.ipsecIdentifier = value.trim();
+          this.onNonNullableParamChange();
+        }
+      }).visibility(this.ipsecIdentifierVisibility)
+      TextWithInput({
+        title: $r('app.string.vpn_edit_ipsecsecret'),
         inputText: this.vpnConfig.ipsecPreSharedKey,
         inputType: INPUT_TYPE_PWD,
         onChange: (value: string) => {
