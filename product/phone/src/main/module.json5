@@ -230,6 +230,12 @@
       },
       {
         "name": "ohos.permission.MANAGE_VPN"
+      },
+      {
+        "name": "ohos.permission.ACCESS_CERT_MANAGER"
+      },
+      {
+        "name": "ohos.permission.ACCESS_CERT_MANAGER_INTERNAL"
       }
     ]
   }
