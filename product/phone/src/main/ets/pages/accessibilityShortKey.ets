@@ -222,9 +222,6 @@ struct AccessibilityShortKey {
   generateAllAbilityNameList(): Array<string> {
     LogUtil.info(`${TAG} generateAllAbilityNameList in`);
     let basicAbilities = [BASIC_ABILITY_HIGH_CONTRAST_TEXT, BASIC_ABILITY_SINGLE_AUDIO, BASIC_ABILITY_INVERT_COLOR];
-    if (this.extAbilityNameList && this.extAbilityNameList.length > 0) {
-      return basicAbilities.concat(this.extAbilityNameList);
-    }
     return basicAbilities;
   }
 
@@ -515,7 +512,7 @@ struct SelectAbilityScalingInformation {
 
   generateAllAbilityNameList(): Array<string> {
     let basicAbilities = [BASIC_ABILITY_HIGH_CONTRAST_TEXT, BASIC_ABILITY_SINGLE_AUDIO, BASIC_ABILITY_INVERT_COLOR];
-    return basicAbilities.concat(this.extAbilityNameList);
+    return basicAbilities;
   }
 
   getShortKeyStatus(): void {
