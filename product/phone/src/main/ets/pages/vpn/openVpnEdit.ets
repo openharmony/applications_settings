@@ -20,14 +20,18 @@ import {
   SelectFile,
   SELECTER_OVPN_PROTOCOL,
   SELECTER_OVPN_AUTH,
+  SELECTER_CERT,
   INPUT_TYPE_IP,
-  INPUT_TYPE_PORT
+  INPUT_TYPE_PORT,
+  INPUT_TYPE_PWD
 } from './customComponent';
 import { OpenVpnConfig } from '../../model/vpnImpl/VpnConfig';
 import { VpnConfigModel } from '../../model/vpnImpl/VpnConfigModel';
 import VpnConstant from '../../model/vpnImpl/VpnConstant';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
+import { ResourceUtils } from '../../model/accessibilityImpl/resourceUtils';
+import { VpnCertItem, VpnCertMgrModel } from '../../model/vpnImpl/VpnCertMgrModel';
 
 @Component
 export default struct OpenVpnEdit {
@@ -39,11 +43,19 @@ export default struct OpenVpnEdit {
   @State ovpnProxyChecked: boolean = false;
   @State ovpnProxyHost: string = '';
   @State ovpnProxyPort: string = '';
+  @State caSheetTitles: string[] = [];
+  @State caSheetInfos: SheetInfo[] = [];
+  @State caSheetSelectedId: number = 0;
+  @State userCertSheetTitles: string[] = [];
+  @State userCertSheetInfos: SheetInfo[] = [];
+  @State userCertSheetSelectedId: number = 0;
 
   ovpnProtocolSheetTitles: string[] = [];
   ovpnProtocolSheets: SheetInfo[] = [];
   ovpnAuthSheetTitles: string[] = [];
   ovpnAuthSheets: SheetInfo[] = [];
+
+  vpnCertMgrModel: VpnCertMgrModel = new VpnCertMgrModel();
 
   aboutToAppear() {
     try {
@@ -75,12 +87,73 @@ export default struct OpenVpnEdit {
       LogUtil.error(`getStringArrayValueSync failed, error: ${JSON.stringify(error)}.`);
     }
 
+    this.initCertList();
     this.updateUI();
   }
 
   updateUI() {
     this.vpnAddress = VpnConfigModel.getInstance().getAddress(this.vpnConfig) ?? '';
     this.vpnPort = this.vpnConfig.ovpnPort ?? '';
+  }
+
+  initCertList() {
+    // init ca list
+    this.caSheetTitles = [ResourceUtils.getStringSync($r('app.string.vpn_edit_cert_not_verify_server'))];
+    this.caSheetInfos = [{
+      title: ResourceUtils.getStringSync($r('app.string.vpn_edit_cert_not_verify_server')),
+      action: () => {
+        this.vpnConfig.ovpnCaCert = '';
+        this.caSheetSelectedId = 0;
+      }
+    }];
+    // get ca list
+    this.vpnCertMgrModel.getCAList((error: number, list: VpnCertItem[]) => {
+      LogUtil.info('getCAList size:' + list?.length + ' error:' + error);
+      list?.forEach(cert => {
+        this.caSheetTitles.push(cert.certAlias);
+        this.caSheetInfos.push({
+          title: cert.certAlias,
+          action: () => {
+            LogUtil.debug('select ca cert:' + JSON.stringify(cert));
+            this.vpnConfig.ovpnCaCert = '<ca>\n' + cert.certUri + '\n</ca>';
+            this.caSheetSelectedId = list.indexOf(cert) + 1;
+          }
+        })
+        // reset selected id
+        if (this.vpnConfig.ovpnCaCert?.concat(cert.certUri)) {
+          this.caSheetSelectedId = list.indexOf(cert) + 1;
+        }
+      });
+    })
+
+    // init user cert list
+    this.userCertSheetTitles = [ResourceUtils.getStringSync($r('app.string.vpn_edit_cert_not_specified'))];
+    this.userCertSheetInfos = [{
+      title: ResourceUtils.getStringSync($r('app.string.vpn_edit_cert_not_specified')),
+      action: () => {
+        this.vpnConfig.ovpnUserCert = '';
+        this.userCertSheetSelectedId = 0;
+      }
+    }];
+    // get user cert list
+    this.vpnCertMgrModel.getUserCertList((error: number, list: VpnCertItem[]) => {
+      LogUtil.info('get user cert list size:' + list?.length + ' error:' + error);
+      list?.forEach(cert => {
+        this.userCertSheetTitles.push(cert.certAlias);
+        this.userCertSheetInfos.push({
+          title: cert.certAlias,
+          action: () => {
+            LogUtil.debug('select user cert:' + JSON.stringify(cert));
+            this.vpnConfig.ovpnUserCert = '<cert>\n' + cert.certUri + '\n</cert>';
+            this.userCertSheetSelectedId = list.indexOf(cert) + 1;
+          }
+        })
+        // reset selected id
+        if (this.vpnConfig.ovpnUserCert?.concat(cert.certUri)) {
+          this.userCertSheetSelectedId = list.indexOf(cert) + 1;
+        }
+      });
+    })
   }
 
   onNonNullableParamChange(): void {
@@ -157,23 +230,22 @@ export default struct OpenVpnEdit {
           sheetInfos: this.ovpnAuthSheets
         })
 
-        SelectFile({
+        Selector({
           title: $r('app.string.vpn_edit_ovpn_ca_cert_file'),
-          fileName: this.vpnConfig.ovpnCaCertFilePath,
           vpnConfig: this.vpnConfig,
-          callback: (result: string[]) => {
-            this.vpnConfig.ovpnCaCertFilePath = result[0];
-            this.vpnConfig.ovpnCaCert = '<ca>\n' + result[1] + '\n</ca>';
-          }
-        });
-        SelectFile({
+          type: SELECTER_CERT,
+          sheetTitles: this.caSheetTitles,
+          sheetInfos: this.caSheetInfos,
+          certSelectedId: this.caSheetSelectedId
+        })
+
+        Selector({
           title: $r('app.string.vpn_edit_ovpn_user_cert_file'),
-          fileName: this.vpnConfig.ovpnUserCertFilePath,
           vpnConfig: this.vpnConfig,
-          callback: (result: string[]) => {
-            this.vpnConfig.ovpnUserCertFilePath = result[0];
-            this.vpnConfig.ovpnUserCert = '<cert>\n' + result[1] + '\n</cert>';
-          }
+          type: SELECTER_CERT,
+          sheetTitles: this.userCertSheetTitles,
+          sheetInfos: this.userCertSheetInfos,
+          certSelectedId: this.userCertSheetSelectedId
         }).visibility(this.vpnConfig.ovpnAuthType !== VpnConstant.OVPN_AUTH_TYPE_PWD ?
           Visibility.Visible : Visibility.None);
 
@@ -192,6 +264,7 @@ export default struct OpenVpnEdit {
           title: $r('app.string.vpn_edit_ovpn_private_key_psd'),
           inputPlaceholder: '',
           inputText: this.vpnConfig.askpass,
+          inputType: INPUT_TYPE_PWD,
           onChange: (value: string) => {
             this.vpnConfig.askpass = value.trim();
           }
@@ -213,6 +286,7 @@ export default struct OpenVpnEdit {
           title: $r('app.string.vpn_edit_ovpn_password'),
           inputPlaceholder: '',
           inputText: this.vpnConfig.password,
+          inputType: INPUT_TYPE_PWD,
           maxLength: VpnConstant.VPN_PASSWORD_MAX_LENGTH,
           onChange: (value: string) => {
             this.vpnConfig.password = value.trim();
@@ -263,6 +337,7 @@ export default struct OpenVpnEdit {
             title: $r('app.string.vpn_edit_ovpn_proxy_password'),
             inputPlaceholder: $r('app.string.vpn_edit_unuse'),
             inputText: this.vpnConfig.ovpnProxyPass,
+            inputType: INPUT_TYPE_PWD,
             onChange: (value: string) => {
               this.vpnConfig.ovpnProxyPass = value.trim();
             }

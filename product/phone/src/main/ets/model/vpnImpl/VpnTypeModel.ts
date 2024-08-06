@@ -42,26 +42,33 @@ export class VpnTypeModel {
   }
 
   constructor() {
-    let supportStr: string = parameter.getSync("const.product.supportVpn", "");
-    supportStr.split(',').forEach((vpnTypeStr) => {
-      let vpnType: number = Number(vpnTypeStr);
-      switch (vpnType) {
-        case VpnTypeModel.TYPE_IKEV2_IPSEC_MSCHAPv2:
-        case VpnTypeModel.TYPE_IKEV2_IPSEC_PSK:
-        case VpnTypeModel.TYPE_IKEV2_IPSEC_RSA:
-        case VpnTypeModel.TYPE_L2TP_IPSEC_PSK:
-        case VpnTypeModel.TYPE_L2TP_IPSEC_RSA:
-        case VpnTypeModel.TYPE_IPSEC_XAUTH_PSK:
-        case VpnTypeModel.TYPE_IPSEC_XAUTH_RSA:
-        case VpnTypeModel.TYPE_IPSEC_HYBRID_RSA:
-        case VpnTypeModel.TYPE_OPENVPN:
-          this.supportVpnTypes.push(vpnType);
-          break;
-        default :
-          LogUtil.info(MODULE_TAG + supportStr + ` has unknown vpnType:` + vpnType);
-          break;
-      }
-    })
+    let supportStr: string = '';
+    try {
+      supportStr = parameter.getSync('const.product.supportVpn', '');
+    } catch (err) {
+      LogUtil.error(MODULE_TAG + `getSupportStr is failed , err : ${JSON.stringify(err)} `);
+    }
+    if (supportStr !== '') {
+      supportStr.split(',').forEach((vpnTypeStr) => {
+        let vpnType: number = Number(vpnTypeStr);
+        switch (vpnType) {
+          case VpnTypeModel.TYPE_IKEV2_IPSEC_MSCHAPv2:
+          case VpnTypeModel.TYPE_IKEV2_IPSEC_PSK:
+          case VpnTypeModel.TYPE_IKEV2_IPSEC_RSA:
+          case VpnTypeModel.TYPE_L2TP_IPSEC_PSK:
+          case VpnTypeModel.TYPE_L2TP_IPSEC_RSA:
+          case VpnTypeModel.TYPE_IPSEC_XAUTH_PSK:
+          case VpnTypeModel.TYPE_IPSEC_XAUTH_RSA:
+          case VpnTypeModel.TYPE_IPSEC_HYBRID_RSA:
+          case VpnTypeModel.TYPE_OPENVPN:
+            this.supportVpnTypes.push(vpnType);
+            break;
+          default:
+            LogUtil.info(MODULE_TAG + supportStr + ` has unknown vpnType:` + vpnType);
+            break;
+        }
+      })
+    }
     LogUtil.info(MODULE_TAG + `supportVpn ${this.supportVpnTypes}`);
   }
 
