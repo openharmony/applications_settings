@@ -17,10 +17,9 @@ import { util } from '@kit.ArkTS';
 import { TextWithInput, SelectFile, INPUT_TYPE_IP, INPUT_TYPE_PWD, Selector, SELECTER_CERT } from './customComponent';
 import { IpsecVpnConfig } from '../../model/vpnImpl/VpnConfig';
 import { VpnTypeModel } from '../../model/vpnImpl/VpnTypeModel';
-import { VpnConfigModel } from '../../model/vpnImpl/VpnConfigModel';
+import { VpnConfigModel, VpnCertItem} from '../../model/vpnImpl/VpnConfigModel';
 import VpnConstant from '../../model/vpnImpl/VpnConstant';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import { VpnCertItem, VpnCertMgrModel } from '../../model/vpnImpl/VpnCertMgrModel';
 import { ResourceUtils } from '../../model/accessibilityImpl/resourceUtils';
 
 @Component
@@ -48,8 +47,6 @@ export default struct IpsecVpnEdit {
   vpnType: number = 0;
   base64Util = new util.Base64Helper();
 
-  vpnCertMgrModel: VpnCertMgrModel = new VpnCertMgrModel();
-
   aboutToAppear() {
     this.vpnAddress = VpnConfigModel.getInstance().getAddress(this.vpnConfig) ?? '';
     let dnsAddresses = this.vpnConfig.dnsAddresses;
@@ -72,7 +69,7 @@ export default struct IpsecVpnEdit {
       }
     }];
     // get ca list
-    this.vpnCertMgrModel.getCAList((error: number, list: VpnCertItem[]) => {
+    VpnConfigModel.getInstance().getCAList((error: number, list: VpnCertItem[]) => {
       LogUtil.info('getCAList size:' + list?.length + ' error:' + error);
       list?.forEach(cert => {
         this.caSheetTitles.push(cert.certAlias);
@@ -103,7 +100,7 @@ export default struct IpsecVpnEdit {
       }
     }];
     // get user cert list
-    this.vpnCertMgrModel.getUserCertList((error: number, list: VpnCertItem[]) => {
+    VpnConfigModel.getInstance().getSystemAppCertList((error: number, list: VpnCertItem[]) => {
       LogUtil.info('get user cert list size:' + list?.length + ' error:' + error);
       list?.forEach(cert => {
         this.userCertSheetTitles.push(cert.certAlias);
@@ -134,7 +131,7 @@ export default struct IpsecVpnEdit {
       }
     }];
     // get server cert list
-    this.vpnCertMgrModel.getUserCertList((error: number, list: VpnCertItem[]) => {
+    VpnConfigModel.getInstance().getSystemAppCertList((error: number, list: VpnCertItem[]) => {
       LogUtil.info('get server cert list size:' + list?.length + ' error:' + error);
       list?.forEach(cert => {
         this.serverCertSheetTitles.push(cert.certAlias);

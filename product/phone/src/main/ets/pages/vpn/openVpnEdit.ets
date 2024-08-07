@@ -26,12 +26,11 @@ import {
   INPUT_TYPE_PWD
 } from './customComponent';
 import { OpenVpnConfig } from '../../model/vpnImpl/VpnConfig';
-import { VpnConfigModel } from '../../model/vpnImpl/VpnConfigModel';
+import { VpnConfigModel, VpnCertItem } from '../../model/vpnImpl/VpnConfigModel';
 import VpnConstant from '../../model/vpnImpl/VpnConstant';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import { GlobalContext } from '../../../../../../../common/utils/src/main/ets/default/baseUtil/GlobalContext';
 import { ResourceUtils } from '../../model/accessibilityImpl/resourceUtils';
-import { VpnCertItem, VpnCertMgrModel } from '../../model/vpnImpl/VpnCertMgrModel';
 
 @Component
 export default struct OpenVpnEdit {
@@ -54,8 +53,6 @@ export default struct OpenVpnEdit {
   ovpnProtocolSheets: SheetInfo[] = [];
   ovpnAuthSheetTitles: string[] = [];
   ovpnAuthSheets: SheetInfo[] = [];
-
-  vpnCertMgrModel: VpnCertMgrModel = new VpnCertMgrModel();
 
   aboutToAppear() {
     try {
@@ -107,7 +104,7 @@ export default struct OpenVpnEdit {
       }
     }];
     // get ca list
-    this.vpnCertMgrModel.getCAList((error: number, list: VpnCertItem[]) => {
+    VpnConfigModel.getInstance().getCAList((error: number, list: VpnCertItem[]) => {
       LogUtil.info('getCAList size:' + list?.length + ' error:' + error);
       list?.forEach(cert => {
         this.caSheetTitles.push(cert.certAlias);
@@ -136,7 +133,7 @@ export default struct OpenVpnEdit {
       }
     }];
     // get user cert list
-    this.vpnCertMgrModel.getUserCertList((error: number, list: VpnCertItem[]) => {
+    VpnConfigModel.getInstance().getSystemAppCertList((error: number, list: VpnCertItem[]) => {
       LogUtil.info('get user cert list size:' + list?.length + ' error:' + error);
       list?.forEach(cert => {
         this.userCertSheetTitles.push(cert.certAlias);
