@@ -76,7 +76,7 @@ export default struct IpsecVpnEdit {
         this.caSheetInfos.push({
           title: cert.certAlias,
           action: () => {
-              LogUtil.debug('select ca cert:' + JSON.stringify(cert));
+              LogUtil.info('select ca cert:' + cert.certAlias);
               this.vpnConfig.ipsecCaCertConfig = cert.certUri;
               this.caSheetSelectedId = list.indexOf(cert) + 1;
               this.onNonNullableParamChange();
@@ -107,7 +107,7 @@ export default struct IpsecVpnEdit {
         this.userCertSheetInfos.push({
           title: cert.certAlias,
           action: () => {
-            LogUtil.debug('select user cert:' + JSON.stringify(cert));
+            LogUtil.info('select user cert:' + cert.certAlias);
             this.vpnConfig.ipsecPublicUserCertConfig = cert.certUri;
             this.userCertSheetSelectedId = list.indexOf(cert) + 1;
             this.onNonNullableParamChange();
@@ -138,7 +138,7 @@ export default struct IpsecVpnEdit {
         this.serverCertSheetInfos.push({
           title: cert.certAlias,
           action: () => {
-            LogUtil.debug('select server cert' + JSON.stringify(cert));
+            LogUtil.info('select server cert' + cert.certAlias);
             this.vpnConfig.ipsecPublicServerCertConfig = cert.certUri;
             this.serverCertSheetSelectedId = list.indexOf(cert) + 1;
             this.onNonNullableParamChange();
