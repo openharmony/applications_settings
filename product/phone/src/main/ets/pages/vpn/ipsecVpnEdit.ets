@@ -14,12 +14,13 @@
  */
 
 import { util } from '@kit.ArkTS';
-import { TextWithInput, SelectFile, INPUT_TYPE_IP } from './customComponent';
+import { TextWithInput, SelectFile, INPUT_TYPE_IP, INPUT_TYPE_PWD, Selector, SELECTER_CERT } from './customComponent';
 import { IpsecVpnConfig } from '../../model/vpnImpl/VpnConfig';
 import { VpnTypeModel } from '../../model/vpnImpl/VpnTypeModel';
-import { VpnConfigModel } from '../../model/vpnImpl/VpnConfigModel';
+import { VpnConfigModel, VpnCertItem} from '../../model/vpnImpl/VpnConfigModel';
 import VpnConstant from '../../model/vpnImpl/VpnConstant';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
+import { ResourceUtils } from '../../model/accessibilityImpl/resourceUtils';
 
 @Component
 export default struct IpsecVpnEdit {
@@ -33,6 +34,16 @@ export default struct IpsecVpnEdit {
   @State advanceChecked: boolean = false;
   @State vpnAddress: string = '';
   @State dnsAddress: string = '';
+  @State caSheetTitles: string[] = [];
+  @State caSheetInfos: SheetInfo[] = [];
+  @State caSheetSelectedId: number = 0;
+  @State userCertSheetTitles: string[] = [];
+  @State userCertSheetInfos: SheetInfo[] = [];
+  @State userCertSheetSelectedId: number = 0;
+  @State serverCertSheetTitles: string[] = [];
+  @State serverCertSheetInfos: SheetInfo[] = [];
+  @State serverCertSheetSelectedId: number = 0;
+
   vpnType: number = 0;
   base64Util = new util.Base64Helper();
 
@@ -42,7 +53,103 @@ export default struct IpsecVpnEdit {
     if (dnsAddresses) {
       this.dnsAddress = dnsAddresses[0];
     }
+    this.initCertList();
     this.updateUI();
+  }
+
+  initCertList() {
+    // init ca list
+    this.caSheetTitles = [ResourceUtils.getStringSync($r('app.string.vpn_edit_cert_not_verify_server'))];
+    this.caSheetInfos = [{
+      title: ResourceUtils.getStringSync($r('app.string.vpn_edit_cert_not_verify_server')),
+      action: () => {
+        this.vpnConfig.ipsecCaCertConfig = '';
+        this.caSheetSelectedId = 0;
+        this.onNonNullableParamChange();
+      }
+    }];
+    // get ca list
+    VpnConfigModel.getInstance().getCAList((error: number, list: VpnCertItem[]) => {
+      LogUtil.info('getCAList size:' + list?.length + ' error:' + error);
+      list?.forEach(cert => {
+        this.caSheetTitles.push(cert.certAlias);
+        this.caSheetInfos.push({
+          title: cert.certAlias,
+          action: () => {
+              LogUtil.info('select ca cert:' + cert.certAlias);
+              this.vpnConfig.ipsecCaCertConfig = cert.certUri;
+              this.caSheetSelectedId = list.indexOf(cert) + 1;
+              this.onNonNullableParamChange();
+            }
+          })
+        // reset selected id
+        if (this.vpnConfig.ipsecCaCertConfig === cert.certUri) {
+          this.caSheetSelectedId = list.indexOf(cert) + 1;
+        }
+      });
+    })
+
+    // init user cert list
+    this.userCertSheetTitles = [ResourceUtils.getStringSync($r('app.string.vpn_edit_cert_not_specified'))];
+    this.userCertSheetInfos = [{
+      title: ResourceUtils.getStringSync($r('app.string.vpn_edit_cert_not_specified')),
+      action: () => {
+        this.vpnConfig.ipsecPublicUserCertConfig = '';
+        this.userCertSheetSelectedId = 0;
+        this.onNonNullableParamChange();
+      }
+    }];
+    // get user cert list
+    VpnConfigModel.getInstance().getSystemAppCertList((error: number, list: VpnCertItem[]) => {
+      LogUtil.info('get user cert list size:' + list?.length + ' error:' + error);
+      list?.forEach(cert => {
+        this.userCertSheetTitles.push(cert.certAlias);
+        this.userCertSheetInfos.push({
+          title: cert.certAlias,
+          action: () => {
+            LogUtil.info('select user cert:' + cert.certAlias);
+            this.vpnConfig.ipsecPublicUserCertConfig = cert.certUri;
+            this.userCertSheetSelectedId = list.indexOf(cert) + 1;
+            this.onNonNullableParamChange();
+          }
+        })
+        // reset selected id
+        if (this.vpnConfig.ipsecPublicUserCertConfig === cert.certUri) {
+          this.userCertSheetSelectedId = list.indexOf(cert) + 1;
+        }
+      });
+    })
+
+    // init server cert list
+    this.serverCertSheetTitles = [ResourceUtils.getStringSync($r('app.string.vpn_edit_cert_from_server'))];
+    this.serverCertSheetInfos = [{
+      title: ResourceUtils.getStringSync($r('app.string.vpn_edit_cert_not_verify_server')),
+      action: () => {
+        this.vpnConfig.ipsecPublicServerCertConfig = '';
+        this.serverCertSheetSelectedId = 0;
+        this.onNonNullableParamChange();
+      }
+    }];
+    // get server cert list
+    VpnConfigModel.getInstance().getSystemAppCertList((error: number, list: VpnCertItem[]) => {
+      LogUtil.info('get server cert list size:' + list?.length + ' error:' + error);
+      list?.forEach(cert => {
+        this.serverCertSheetTitles.push(cert.certAlias);
+        this.serverCertSheetInfos.push({
+          title: cert.certAlias,
+          action: () => {
+            LogUtil.info('select server cert' + cert.certAlias);
+            this.vpnConfig.ipsecPublicServerCertConfig = cert.certUri;
+            this.serverCertSheetSelectedId = list.indexOf(cert) + 1;
+            this.onNonNullableParamChange();
+          }
+        })
+        // reset selected id
+        if (this.vpnConfig.ipsecPublicServerCertConfig === cert.certUri) {
+          this.serverCertSheetSelectedId = list.indexOf(cert) + 1;
+        }
+      });
+    })
   }
 
   updateUI() {
@@ -165,6 +272,16 @@ export default struct IpsecVpnEdit {
         }
       })
       TextWithInput({
+        title: $r('app.string.vpn_edit_l2tpsecret'),
+        inputPlaceholder: $r('app.string.vpn_edit_unuse'),
+        inputText: this.vpnConfig.l2tpSharedKey,
+        inputType: INPUT_TYPE_PWD,
+        onChange: (value: string) => {
+          this.vpnConfig.l2tpSharedKey = value.trim();
+          this.onNonNullableParamChange();
+        }
+      }).visibility(this.l2tpSecretVisibility)
+      TextWithInput({
         title: $r('app.string.vpn_edit_ipsecidentifier'),
         inputPlaceholder: $r('app.string.vpn_edit_unuse'),
         inputText: this.vpnConfig.ipsecIdentifier,
@@ -174,86 +291,45 @@ export default struct IpsecVpnEdit {
         }
       }).visibility(this.ipsecIdentifierVisibility)
       TextWithInput({
-        title: $r('app.string.vpn_edit_l2tpsecret'),
-        inputPlaceholder: $r('app.string.vpn_edit_unuse'),
-        inputText: this.vpnConfig.l2tpSharedKey,
-        onChange: (value: string) => {
-          this.vpnConfig.l2tpSharedKey = value.trim();
-          this.onNonNullableParamChange();
-        }
-      }).visibility(this.l2tpSecretVisibility)
-      TextWithInput({
         title: $r('app.string.vpn_edit_ipsecsecret'),
-        inputPlaceholder: $r('app.string.vpn_edit_unuse'),
         inputText: this.vpnConfig.ipsecPreSharedKey,
+        inputType: INPUT_TYPE_PWD,
         onChange: (value: string) => {
           this.vpnConfig.ipsecPreSharedKey = value.trim();
           this.onNonNullableParamChange();
         }
       }).visibility(this.ipsecSecretVisibility)
-      SelectFile({
+
+      Selector({
         title: $r('app.string.vpn_edit_usercert'),
-        fileName: this.vpnConfig.ipsecPublicUserCertFilePath,
         vpnConfig: this.vpnConfig,
-        callback: (result: string[]) => {
-          this.vpnConfig.ipsecPublicUserCertFilePath = result[0];
-          this.vpnConfig.
-          ipsecPublicUserCertConfig = this.base64Util.encodeToStringSync(
-            VpnConfigModel.getInstance().stringToUint8Array(result[1]));
-          this.onNonNullableParamChange();
-        }
-      }).margin({ top: 15 })
-        .visibility(this.userCertVisibility)
-      SelectFile({
-        title: $r('app.string.vpn_edit_user_private_cert'),
-        fileName: this.vpnConfig.ipsecPrivateUserCertFilePath,
-        vpnConfig: this.vpnConfig,
-        callback: (result: string[]) => {
-          this.vpnConfig.ipsecPrivateUserCertFilePath = result[0];
-          this.vpnConfig.
-          ipsecPrivateUserCertConfig = this.base64Util.encodeToStringSync(
-            VpnConfigModel.getInstance().stringToUint8Array(result[1]));
-          this.onNonNullableParamChange();
-        }
+        type: SELECTER_CERT,
+        sheetTitles: this.userCertSheetTitles,
+        sheetInfos: this.userCertSheetInfos,
+        certSelectedId: this.userCertSheetSelectedId
       }).margin({ top: 15 })
         .visibility(this.userCertVisibility)
 
-      SelectFile({
+      Selector({
         title: $r('app.string.vpn_edit_cacert'),
-        fileName: this.vpnConfig.ipsecCaCertFilePath,
         vpnConfig: this.vpnConfig,
-        callback: (result: string[]) => {
-          this.vpnConfig.ipsecCaCertFilePath = result[0];
-          this.vpnConfig.ipsecCaCertConfig = this.base64Util.encodeToStringSync(
-            VpnConfigModel.getInstance().stringToUint8Array(result[1]));
-          this.onNonNullableParamChange();
-        }
+        type: SELECTER_CERT,
+        sheetTitles: this.caSheetTitles,
+        sheetInfos: this.caSheetInfos,
+        certSelectedId: this.caSheetSelectedId
       }).margin({ top: 10 })
         .visibility(this.caServerCertVisibility)
-      SelectFile({
+
+      Selector({
         title: $r('app.string.vpn_edit_servercert'),
-        fileName: this.vpnConfig.ipsecPublicServerCertFilePath,
         vpnConfig: this.vpnConfig,
-        callback: (result: string[]) => {
-          this.vpnConfig.ipsecPublicServerCertFilePath = result[0];
-          this.vpnConfig.ipsecPublicServerCertConfig = this.base64Util.encodeToStringSync(
-            VpnConfigModel.getInstance().stringToUint8Array(result[1]));
-          this.onNonNullableParamChange();
-        }
-      }).margin({ top: 10 })
-        .visibility(this.caServerCertVisibility)
-      SelectFile({
-        title: $r('app.string.vpn_edit_server_private_cert'),
-        fileName: this.vpnConfig.ipsecPrivateServerCertFilePath,
-        vpnConfig: this.vpnConfig,
-        callback: (result: string[]) => {
-          this.vpnConfig.ipsecPrivateServerCertFilePath = result[0];
-          this.vpnConfig.ipsecPrivateServerCertConfig = this.base64Util.encodeToStringSync(
-            VpnConfigModel.getInstance().stringToUint8Array(result[1]));
-          this.onNonNullableParamChange();
-        }
+        type: SELECTER_CERT,
+        sheetTitles: this.serverCertSheetTitles,
+        sheetInfos: this.serverCertSheetInfos,
+        certSelectedId: this.serverCertSheetSelectedId
       }).margin({ top: 10, bottom: 10 })
         .visibility(this.caServerCertVisibility)
+
       Row({ space: 10 }) {
         Checkbox().shape(CheckBoxShape.ROUNDED_SQUARE).onChange((value) => {
           this.advanceChecked = value;

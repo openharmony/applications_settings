@@ -15,6 +15,8 @@
 
 import util from '@ohos.util';
 import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 import VpnConfig, { IpsecVpnConfig, OpenVpnConfig } from './VpnConfig';
 import VpnConstant from './VpnConstant';
 import { VpnTypeModel } from './VpnTypeModel';
@@ -333,4 +335,74 @@ export class VpnConfigModel {
     content = content.replace(regex, '');
     config.ovpnConfig = that.encodeToStringSync(this.stringToUint8Array(content));
   }
+
+  async getCAList(callback: Function): Promise<void> {
+    LogUtil.info(MODULE_TAG + 'getCAList start');
+    try {
+      let result = await certificateManager.getAllUserTrustedCertificates();
+      let certList: VpnCertItem[] = [];
+      if (result?.certList !== undefined) {
+        LogUtil.info(MODULE_TAG + 'getCAList end size=' + result.certList.length);
+        for (let i = 0; i < result.certList.length; i++) {
+          if (String(result.certList[i].uri).indexOf('u=0;') === -1) {
+            certList.push(new VpnCertItem(
+              String(result.certList[i].certAlias), String(result.certList[i].uri)));
+          }
+        }
+        callback(CMModelErrorCode.CM_MODEL_ERROR_SUCCESS, certList);
+      } else {
+        LogUtil.error(MODULE_TAG + 'getCAList failed, undefined');
+        callback(CMModelErrorCode.CM_MODEL_ERROR_FAILED, undefined);
+      }
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      LogUtil.error(MODULE_TAG + 'getCAList err, message: ' + e.message + ', code: ' + e.code);
+      callback(CMModelErrorCode.CM_MODEL_ERROR_EXCEPTION);
+    }
+  }
+
+  async getSystemAppCertList(callback: Function): Promise<void> {
+    LogUtil.info(MODULE_TAG + 'getSystemAppCertList start');
+    try {
+      let result = await certificateManager.getAllSystemAppCertificates();
+      let certList: VpnCertItem[] = [];
+      if (result?.credentialList !== undefined) {
+        LogUtil.info(MODULE_TAG + 'getSystemAppCertList size=' + result.credentialList.length);
+        for (let i = 0; i < result.credentialList.length; i++) {
+          certList.push(new VpnCertItem(
+            String(result.credentialList[i].alias), String(result.credentialList[i].keyUri)));
+        }
+        callback(CMModelErrorCode.CM_MODEL_ERROR_SUCCESS, certList);
+      } else {
+        LogUtil.error(MODULE_TAG + 'getSystemAppCertList failed, undefined.');
+        callback(CMModelErrorCode.CM_MODEL_ERROR_FAILED, undefined);
+      }
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      LogUtil.error(MODULE_TAG + 'getSystemAppCertList failed with err, message: ' + e.message + ', code: ' + e.code);
+      callback(CMModelErrorCode.CM_MODEL_ERROR_EXCEPTION);
+    }
+  }
+}
+
+export class VpnCertItem {
+  certAlias: string;
+  certUri: string;
+
+  constructor(alias: string, uri: string) {
+    this.certAlias = alias;
+    this.certUri = uri;
+  }
+}
+
+enum CMModelErrorCode {
+  CM_MODEL_ERROR_SUCCESS = 0,
+  CM_MODEL_ERROR_FAILED = -1,
+  CM_MODEL_ERROR_EXCEPTION = -2,
+  CM_MODEL_ERROR_UNKNOWN_OPT = -3,
+  CM_MODEL_ERROR_NOT_SUPPORT = -4,
+  CM_MODEL_ERROR_NOT_FOUND = -5,
+  CM_MODEL_ERROR_INCORRECT_FORMAT = -6,
+  CM_MODEL_ERROR_MAX_QUANTITY_REACHED = -7,
+  CM_MODEL_ERROR_ALIAS_LENGTH_REACHED_LIMIT = -8
 }

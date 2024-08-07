@@ -1598,7 +1598,7 @@
     },
     {
       "name": "vpn_edit_usercert",
-      "value": "IPSec 用户证书公钥"
+      "value": "IPSec 用户证书"
     },
     {
       "name": "vpn_edit_user_private_cert",
@@ -1610,7 +1610,7 @@
     },
     {
       "name": "vpn_edit_servercert",
-      "value": "IPSec 服务器证书公钥"
+      "value": "IPSec 服务器证书"
     },
     {
       "name": "vpn_edit_server_private_cert",
@@ -1618,7 +1618,7 @@
     },
     {
       "name": "vpn_edit_unuse",
-      "value": "未使用"
+      "value": "(未使用)"
     },
     {
       "name": "vpn_edit_advanced",
