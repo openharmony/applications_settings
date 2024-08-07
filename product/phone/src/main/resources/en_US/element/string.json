@@ -1595,23 +1595,23 @@
     },
     {
       "name": "vpn_edit_usercert",
-      "value": "IPSec User Certificate Public Key"
+      "value": "IPSec user certificate"
     },
     {
       "name": "vpn_edit_user_private_cert",
-      "value": "IPSec User Certificate Private Key"
+      "value": "IPSec user certificate private key"
     },
     {
       "name": "vpn_edit_cacert",
-      "value": "IPSec CA Certificate"
+      "value": "IPSec CA certificate"
     },
     {
       "name": "vpn_edit_servercert",
-      "value": "IPSec Server Certificate Public Key"
+      "value": "IPSec server certificate"
     },
     {
       "name": "vpn_edit_server_private_cert",
-      "value": "IPSec Server Certificate Private Key"
+      "value": "IPSec server certificate private key"
     },
     {
       "name": "vpn_edit_unuse",

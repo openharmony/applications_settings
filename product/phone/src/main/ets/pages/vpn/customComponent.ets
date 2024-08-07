@@ -27,10 +27,12 @@ import LogUtil from '../../../../../../../common/utils/src/main/ets/default/base
 export const SELECTER_VPNTYPE: number = 1;
 export const SELECTER_OVPN_PROTOCOL: number = 2;
 export const SELECTER_OVPN_AUTH: number = 3;
+export const SELECTER_CERT: number = 4;
 export const deviceTypeInfo = deviceInfo.deviceType;
 
 export const INPUT_TYPE_IP: number = 1;
 export const INPUT_TYPE_PORT: number = 2;
+export const INPUT_TYPE_PWD: number = 3;
 
 const MODULE_TAG: string = 'setting_vpn:custom_component:';
 
@@ -73,22 +75,29 @@ export struct TextWithInput {
         this.onChange(value);
       }).padding({ left: 5 })
         .fontSize($r('app.float.font_16'))
+        .type(this.inputType === INPUT_TYPE_PWD ? InputType.Password : InputType.Normal)
+        .backgroundColor('#00000000')
         .showUnderline(true)
         .height(45)
         .margin({ top: 5 })
         .fontColor(this.fontColor)
         .maxLength(this.maxLength);
+      if (this.inputType === INPUT_TYPE_PWD) {
+        Divider()
+          .color($r('sys.color.ohos_id_color_list_separator'))
+      }
     }.alignItems(HorizontalAlign.Start)
   }
 }
 
 @Component
 export struct Selector {
-  title: string | Resource = '';
   @Link vpnConfig: VpnConfig;
+  @Prop sheetTitles: string[] = [];
+  @Prop sheetInfos: SheetInfo[] = [];
+  @Prop certSelectedId: number;
+  title: string | Resource = '';
   type: number = 0;
-  sheetTitles: string[] = [];
-  sheetInfos: SheetInfo[] = [];
   selectDialogController: CustomDialogController | undefined = undefined;
 
   build() {
@@ -101,7 +110,8 @@ export struct Selector {
         .textOverflow({ overflow: TextOverflow.Ellipsis })
         .textAlign(TextAlign.Start)
       Blank()
-      Text(this.sheetTitles[this.getSelectIndex(this.vpnConfig, this.type)])
+      Text(this.sheetTitles?.length > 0 ?
+          this.sheetTitles[this.getSelectIndex(this.vpnConfig, this.type)] : '')
         .padding({ right: 4 })
       Image($r('app.media.ic_settings_arrow'))
         .width($r('app.float.wh_value_12'))
@@ -129,6 +139,8 @@ export struct Selector {
     } else if (selecter === SELECTER_OVPN_AUTH) {
       let openvpn : OpenVpnConfig = vpnConfig as OpenVpnConfig;
       return openvpn.ovpnAuthType;
+    } else if (selecter === SELECTER_CERT){
+      return this.certSelectedId;
     } else {
       return 0;
     }
