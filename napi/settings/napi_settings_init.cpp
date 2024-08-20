@@ -263,7 +263,7 @@ const std::string INPUT_CLASS_NAME = "input";
 const std::string NETWORK_CLASS_NAME = "network";
 const std::string PHONE_CLASS_NAME = "phone";
 const std::string SOUND_CLASS_NAME = "sound";
-const std::string TTS_CLASS_NAME = "TTS";
+const std::string TTS_CLASS_NAME = "tts";
 const std::string WIRELESS_CLASS_NAME = "wireless";
 const std::string POWER_CLASS_NAME = "power";
 
