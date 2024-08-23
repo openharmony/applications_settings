@@ -35,7 +35,8 @@ namespace OHOS {
 namespace Settings {
     std::map<std::string, sptr<SettingsObserver>> g_observerMap;
 
-    SettingsObserver::~SettingsObserver() {
+    SettingsObserver::~SettingsObserver()
+    {
         delete this->cbInfo;
         this->cbInfo = nullptr;
     }
