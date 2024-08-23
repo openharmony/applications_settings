@@ -33,10 +33,11 @@ namespace Settings {
 class SettingsObserver : public OHOS::AAFwk::DataAbilityObserverStub {
 public:
     explicit SettingsObserver(AsyncCallbackInfo* callback) : cbInfo(callback) {}
-    ~SettingsObserver() {}
+    ~SettingsObserver();
     void OnChange();
     AsyncCallbackInfo* cbInfo;
     static void EnvObserver(void* arg);
+    bool toBeDelete = false;
 };
 
 napi_value npai_settings_register_observer(napi_env env, napi_callback_info info);
