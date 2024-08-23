@@ -33,8 +33,12 @@ using namespace OHOS::AccountSA;
 
 namespace OHOS {
 namespace Settings {
-
     std::map<std::string, sptr<SettingsObserver>> g_observerMap;
+
+    SettingsObserver::~SettingsObserver() {
+        delete this->cbInfo;
+        this->cbInfo = nullptr;
+    }
 
     void SettingsObserver::EnvObserver(void* arg)
     {
@@ -49,36 +53,38 @@ namespace Settings {
     {
         int ret = uv_queue_work(loop, work, [](uv_work_t *work) {},
             [](uv_work_t *work, int status) {
-                AsyncCallbackInfo* cbInfo = reinterpret_cast<AsyncCallbackInfo*>(work->data);
-                if (cbInfo == nullptr) {
+                SETTING_LOG_INFO("n_s_o_c_a");
+                SettingsObserver* settingsObserver = reinterpret_cast<SettingsObserver*>(work->data);
+                if (settingsObserver == nullptr || settingsObserver->cbInfo == nullptr ||
+                    settingsObserver->toBeDelete) {
                     SETTING_LOG_ERROR("uv_work: cbInfo invalid.");
                     delete work;
                     return;
                 }
-                if (cbInfo->env == nullptr) {
-                    delete work;
-                    return;
-                }
+
                 napi_handle_scope scope = nullptr;
-                napi_open_handle_scope(cbInfo->env, &scope);
+                napi_open_handle_scope(settingsObserver->cbInfo->env, &scope);
                 napi_value callback = nullptr;
                 napi_value undefined;
-                napi_get_undefined(cbInfo->env, &undefined);
+                napi_get_undefined(settingsObserver->cbInfo->env, &undefined);
                 napi_value error = nullptr;
-                napi_create_object(cbInfo->env, &error);
+                napi_create_object(settingsObserver->cbInfo->env, &error);
                 int unSupportCode = 802;
                 napi_value errCode = nullptr;
-                napi_create_int32(cbInfo->env, unSupportCode, &errCode);
-                napi_set_named_property(cbInfo->env, error, "code", errCode);
+                napi_create_int32(settingsObserver->cbInfo->env, unSupportCode, &errCode);
+                napi_set_named_property(settingsObserver->cbInfo->env, error, "code", errCode);
                 napi_value result[PARAM2] = {0};
                 result[0] = error;
-                result[1] = wrap_bool_to_js(cbInfo->env, false);
-                napi_get_reference_value(cbInfo->env, cbInfo->callbackRef, &callback);
+                result[1] = wrap_bool_to_js(settingsObserver->cbInfo->env, false);
+                napi_get_reference_value(settingsObserver->cbInfo->env, settingsObserver->cbInfo->callbackRef,
+                    &callback);
                 napi_value callResult;
-                napi_call_function(cbInfo->env, undefined, callback, PARAM2, result, &callResult);
-                napi_close_handle_scope(cbInfo->env, scope);
+                napi_call_function(settingsObserver->cbInfo->env, undefined, callback, PARAM2, result,
+                    &callResult);
+                napi_close_handle_scope(settingsObserver->cbInfo->env, scope);
                 SETTING_LOG_INFO("%{public}s, uv_work success.", __func__);
-                napi_remove_env_cleanup_hook(cbInfo->env, SettingsObserver::EnvObserver, cbInfo);
+                napi_remove_env_cleanup_hook(settingsObserver->cbInfo->env, SettingsObserver::EnvObserver,
+                    settingsObserver->cbInfo);
                 delete work;
             });
             return ret;
@@ -86,6 +92,11 @@ namespace Settings {
 
     void SettingsObserver::OnChange()
     {
+        SETTING_LOG_INFO("n_s_o_c");
+        if (this->cbInfo == nullptr) {
+            SETTING_LOG_ERROR("%{public}s, cbInfo is null.", __func__);
+            return;
+        }
         uv_loop_s* loop = nullptr;
         napi_get_uv_event_loop(cbInfo->env, &loop);
         if (loop == nullptr) {
@@ -97,8 +108,8 @@ namespace Settings {
             SETTING_LOG_ERROR("%{public}s, fail to get uv work.", __func__);
             return;
         }
-        napi_add_env_cleanup_hook(cbInfo->env, SettingsObserver::EnvObserver, cbInfo);
-        work->data = reinterpret_cast<void*>(cbInfo);
+        napi_add_env_cleanup_hook(cbInfo->env, SettingsObserver::EnvObserver, this);
+        work->data = reinterpret_cast<void*>(this);
 
         int ret = OnChangeAsync(loop, work);
         if (ret != 0) {
@@ -232,8 +243,7 @@ namespace Settings {
         napi_delete_reference(g_observerMap[key]->cbInfo->env, g_observerMap[key]->cbInfo->callbackRef);
         dataShareHelper->UnregisterObserver(uri, g_observerMap[key]);
         dataShareHelper->Release();
-        delete g_observerMap[key]->cbInfo;
-        g_observerMap[key]->cbInfo = nullptr;
+        g_observerMap[key]->toBeDelete = true;
         g_observerMap[key] = nullptr;
         g_observerMap.erase(key);
 		
