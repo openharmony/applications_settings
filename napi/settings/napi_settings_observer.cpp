@@ -172,6 +172,7 @@ namespace Settings {
         if (g_observerMap.find(callbackInfo->key) != g_observerMap.end() &&
         g_observerMap[callbackInfo->key] != nullptr) {
             SETTING_LOG_INFO("%{public}s, already registered.", __func__);
+            napi_delete_reference(env, callbackInfo->callbackRef);
             delete callbackInfo;
             return wrap_bool_to_js(env, false);
         }
