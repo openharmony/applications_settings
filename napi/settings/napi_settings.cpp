@@ -1164,8 +1164,8 @@ napi_value SetValueAsync(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
         (void*)asyncCallbackInfo,
         &asyncCallbackInfo->asyncWork
     );
-    if (api_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
-        SETTING_LOG_ERROR("api_queue_async_work error");
+    if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
+        SETTING_LOG_ERROR("napi_queue_async_work error");
         if (asyncCallbackInfo != nullptr) {
             delete asyncCallbackInfo;
         }
@@ -1202,8 +1202,8 @@ napi_value SetValuePromise(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
         },
         (void*)asyncCallbackInfo,
         &asyncCallbackInfo->asyncWork);
-    if (api_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
-        SETTING_LOG_ERROR("api_queue_async_work error");
+    if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
+        SETTING_LOG_ERROR("napi_queue_async_work error");
         if (asyncCallbackInfo != nullptr) {
             delete asyncCallbackInfo;
         }
@@ -1363,8 +1363,8 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
             (void*)asyncCallbackInfo,
             &asyncCallbackInfo->asyncWork
         );
-        if (api_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
-            SETTING_LOG_ERROR("api_queue_async_work error");
+        if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
+            SETTING_LOG_ERROR("napi_queue_async_work error");
             if (asyncCallbackInfo != nullptr) {
                 delete asyncCallbackInfo;
                 asyncCallbackInfo = nullptr
