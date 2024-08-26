@@ -402,6 +402,10 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
     OHOS::Uri proxyUri(strProxyUri);
     SETTING_LOG_INFO("<Ver-11-14> strProxyUri: %{public}s", strProxyUri.c_str());
     auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
+    if (contextS == nullptr) {
+        SETTING_LOG_ERROR("get context is error.");
+        return dataShareHelper;
+    }
 
     dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri, strUri);
     SETTING_LOG_INFO("g_D_S_H Creator called, valid %{public}d", dataShareHelper != nullptr);
@@ -787,7 +791,14 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
             (void *)asyncCallbackInfo,
             &asyncCallbackInfo->asyncWork);
 
-        NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
+        if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
+            SETTING_LOG_ERROR("napi_queue_async_work error");
+            GET_AND_THROW_LAST_ERROR(env);
+            if (asyncCallbackInfo != nullptr) {
+                delete asyncCallbackInfo;
+                asyncCallbackInfo = nullptr;
+            }
+        }
         SETTING_LOG_INFO("c_b end async work");
         return wrap_void_to_js(env);
     } else {
@@ -874,7 +885,15 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
     SETTING_LOG_INFO("n_g_v_e called");
     size_t argc = ARGS_FOUR;
     napi_value args[ARGS_FOUR] = {nullptr};
-    NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
+    if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
+        SETTING_LOG_ERROR("napi_get_cb_info error");
+        GET_AND_THROW_LAST_ERROR(env);
+        if (asyncCallbackInfo != nullptr) {
+            delete asyncCallbackInfo;
+            asyncCallbackInfo = nullptr;
+        }
+        return wrap_void_to_js(env);
+    }
 
     asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode);
 
@@ -1132,7 +1151,13 @@ napi_value SetValueAsync(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
         (void*)asyncCallbackInfo,
         &asyncCallbackInfo->asyncWork
     );
-    NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
+    if (api_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
+        SETTING_LOG_ERROR("api_queue_async_work error");
+        GET_AND_THROW_LAST_ERROR(env);
+        if (asyncCallbackInfo != nullptr) {
+            delete asyncCallbackInfo;
+        }
+    }
     SETTING_LOG_INFO("c_b set end asy work");
     return wrap_void_to_js(env);
 }
@@ -1165,7 +1190,13 @@ napi_value SetValuePromise(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
         },
         (void*)asyncCallbackInfo,
         &asyncCallbackInfo->asyncWork);
-    napi_queue_async_work(env, asyncCallbackInfo->asyncWork);
+    if (api_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
+        SETTING_LOG_ERROR("api_queue_async_work error");
+        GET_AND_THROW_LAST_ERROR(env);
+        if (asyncCallbackInfo != nullptr) {
+            delete asyncCallbackInfo;
+        }
+    }
     return promise;
 }
 
@@ -1321,7 +1352,14 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
             (void*)asyncCallbackInfo,
             &asyncCallbackInfo->asyncWork
         );
-        NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
+        if (api_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
+            SETTING_LOG_ERROR("api_queue_async_work error");
+            GET_AND_THROW_LAST_ERROR(env);
+            if (asyncCallbackInfo != nullptr) {
+                delete asyncCallbackInfo;
+                asyncCallbackInfo = nullptr
+            }
+        }
         SETTING_LOG_INFO("c_b end async work");
         return wrap_void_to_js(env);
     } else if (asyncCallbackInfo->callType != INVALID_CALL) {
@@ -1393,7 +1431,15 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
     NAPI_ASSERT(env, valueType == napi_boolean, "Wrong argument[0], type. Boolean expected");
 
     napi_value resource = nullptr;  
-    NAPI_CALL(env, napi_create_string_utf8(env, "enableAirplaneMode", NAPI_AUTO_LENGTH, &resource));
+    if (napi_create_string_utf8(env, "enableAirplaneMode", NAPI_AUTO_LENGTH, &resource) != napi_ok) {
+        SETTING_LOG_ERROR("set enableAirplaneMode error");
+        GET_AND_THROW_LAST_ERROR(env);
+        if (asyncCallbackInfo != nullptr) {
+            delete asyncCallbackInfo;
+            asyncCallbackInfo = nullptr;
+        }
+        return wrap_void_to_js(env);
+    }
 
     if (argc == paramOfCallback) {
         SETTING_LOG_INFO("%{public}s, asyncCallback.", __func__);
@@ -1439,7 +1485,14 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
             (void*)asyncCallbackInfo,
             &asyncCallbackInfo->asyncWork
         );
-        NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
+        if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
+            SETTING_LOG_ERROR("napi_queue_async_work error");
+            GET_AND_THROW_LAST_ERROR(env);
+            if (asyncCallbackInfo != nullptr) {
+                delete asyncCallbackInfo;
+                asyncCallbackInfo = nullptr;
+            }
+        }
         return wrap_void_to_js(env);
     } else {
         SETTING_LOG_INFO("%{public}s, promise.", __func__);
@@ -1511,7 +1564,15 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
     };
 
     napi_value resource = nullptr;  
-    NAPI_CALL(env, napi_create_string_utf8(env, "enableAirplaneMode", NAPI_AUTO_LENGTH, &resource));
+    if (napi_create_string_utf8(env, "enableAirplaneMode", NAPI_AUTO_LENGTH, &resource) != napi_ok) {
+        SETTING_LOG_ERROR("set enableAirplaneMode error");
+        GET_AND_THROW_LAST_ERROR(env);
+        if (asyncCallbackInfo != nullptr) {
+            delete asyncCallbackInfo;
+            asyncCallbackInfo = nullptr;
+        }
+        return wrap_void_to_js(env);
+    }
 
     if (argc == paramOfCallback) {
         SETTING_LOG_INFO("%{public}s, a_C_B.", __func__);
@@ -1557,7 +1618,14 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
             (void*)asyncCallbackInfo,
             &asyncCallbackInfo->asyncWork
         );
-        NAPI_CALL(env, napi_queue_async_work(env, asyncCallbackInfo->asyncWork));
+        if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
+            SETTING_LOG_ERROR("napi_queue_async_work error");
+            GET_AND_THROW_LAST_ERROR(env);
+            if (asyncCallbackInfo != nullptr) {
+                delete asyncCallbackInfo;
+                asyncCallbackInfo = nullptr;
+            }
+        }
         return wrap_void_to_js(env);
     } else {
         SETTING_LOG_INFO("%{public}s, promise.", __func__);
@@ -1665,7 +1733,15 @@ napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
     // define table name
     if (argc == ARGS_FOUR) {
         // check whether tableName is ok
-        NAPI_CALL(env, napi_typeof(env, args[PARAM3], &valueType));
+        if (napi_typeof(env, args[PARAM3], &valueType) != napi_ok) {
+            SETTING_LOG_ERROR("napi_typeof error");
+            GET_AND_THROW_LAST_ERROR(env);
+            if (asyncCallbackInfo != nullptr) {
+                delete asyncCallbackInfo;
+                asyncCallbackInfo = nullptr;
+            }
+            return wrap_void_to_js(env);
+        }
         if (valueType != napi_string) {
             SETTING_LOG_ERROR("tableName IS NOT STRING");
             return wrap_void_to_js(env);
