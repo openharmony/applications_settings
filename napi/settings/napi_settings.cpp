@@ -320,10 +320,8 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
         napi_deferred deferred;
         if (napi_create_promise(env, &deferred, &promise) != napi_ok) {
             SETTING_LOG_ERROR("napi_create_promise error");
-            if (asyncCallbackInfo != nullptr) {
-                delete asyncCallbackInfo;
-                asyncCallbackInfo = nullptr;
-            }
+            delete asyncCallbackInfo;
+            asyncCallbackInfo = nullptr;
             return wrap_void_to_js(env);
         }
 
@@ -352,10 +350,8 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
             &asyncCallbackInfo->asyncWork);
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
             SETTING_LOG_ERROR("napi_queue_async_work error");
-            if (asyncCallbackInfo != nullptr) {
-                delete asyncCallbackInfo;
-                asyncCallbackInfo = nullptr;
-            }
+            delete asyncCallbackInfo;
+            asyncCallbackInfo = nullptr;
         }
         SETTING_LOG_INFO("uri p_m end asy work");
         return promise;
