@@ -179,6 +179,7 @@ namespace Settings {
     
         auto dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, callbackInfo->tableName);
         if (dataShareHelper == nullptr) {
+            napi_delete_reference(env, callbackInfo->callbackRef);
             delete callbackInfo;
             return wrap_bool_to_js(env, false);
         }
