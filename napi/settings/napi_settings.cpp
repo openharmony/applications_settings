@@ -1367,7 +1367,7 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
             SETTING_LOG_ERROR("napi_queue_async_work error");
             if (asyncCallbackInfo != nullptr) {
                 delete asyncCallbackInfo;
-                asyncCallbackInfo = nullptr
+                asyncCallbackInfo = nullptr;
             }
         }
         SETTING_LOG_INFO("c_b end async work");
