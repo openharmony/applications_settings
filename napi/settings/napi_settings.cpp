@@ -322,9 +322,8 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
             SETTING_LOG_ERROR("napi_create_promise error");
             delete asyncCallbackInfo;
             asyncCallbackInfo = nullptr;
-            return wrap_void_to_js(env);
+            return nullptr;
         }
-
         asyncCallbackInfo->deferred = deferred;
 
         napi_create_async_work(
