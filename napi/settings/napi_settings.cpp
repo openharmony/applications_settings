@@ -313,10 +313,8 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
         SETTING_LOG_INFO("uri c_b start asy work");
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
             SETTING_LOG_ERROR("napi_queue_async_work error");
-            if (asyncCallbackInfo != nullptr) {
-                delete asyncCallbackInfo;
-                asyncCallbackInfo = nullptr;
-            }
+            delete asyncCallbackInfo;
+            asyncCallbackInfo = nullptr;
         }
         SETTING_LOG_INFO("uri c_b end asy work");
         return wrap_void_to_js(env);
