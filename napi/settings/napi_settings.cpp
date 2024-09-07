@@ -313,6 +313,8 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
         SETTING_LOG_INFO("uri c_b start asy work");
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
             SETTING_LOG_ERROR("napi_queue_async_work error");
+            napi_delete_reference(env, asyncCallbackInfo->callbackRef);
+            napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
             delete asyncCallbackInfo;
             asyncCallbackInfo = nullptr;
         }
@@ -353,6 +355,7 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
             &asyncCallbackInfo->asyncWork);
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
             SETTING_LOG_ERROR("napi_queue_async_work error");
+            napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
             delete asyncCallbackInfo;
             asyncCallbackInfo = nullptr;
         }
@@ -808,6 +811,9 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
             SETTING_LOG_ERROR("napi_queue_async_work error");
             if (asyncCallbackInfo != nullptr) {
+                napi_delete_reference(env, asyncCallbackInfo->callbackRef);
+                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
+                asyncCallbackInfo->dataAbilityHelper = nullptr;
                 delete asyncCallbackInfo;
                 asyncCallbackInfo = nullptr;
             }
@@ -878,6 +884,8 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
             SETTING_LOG_ERROR("napi_queue_async_work error");
             if (asyncCallbackInfo != nullptr) {
+                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
+                asyncCallbackInfo->dataAbilityHelper = nullptr;
                 delete asyncCallbackInfo;
                 asyncCallbackInfo = nullptr;
             }
@@ -962,7 +970,7 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
             SETTING_LOG_ERROR("napi_queue_async_work error");
             if (asyncCallbackInfo != nullptr) {
-                delete asyncCallbackInfo;
+                DeleteCallbackInfo(env, asyncCallbackInfo);
                 asyncCallbackInfo = nullptr;
             }
         }
@@ -990,7 +998,7 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
             SETTING_LOG_ERROR("napi_queue_async_work error");
             if (asyncCallbackInfo != nullptr) {
-                delete asyncCallbackInfo;
+                DeleteCallbackInfo(env, asyncCallbackInfo);
                 asyncCallbackInfo = nullptr;
             }
         }
@@ -1182,7 +1190,11 @@ napi_value SetValueAsync(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
     if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
         SETTING_LOG_ERROR("napi_queue_async_work error");
         if (asyncCallbackInfo != nullptr) {
+            napi_delete_reference(env, asyncCallbackInfo->callbackRef);
+            napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
+            asyncCallbackInfo->dataAbilityHelper = nullptr;
             delete asyncCallbackInfo;
+            asyncCallbackInfo = nullptr;
         }
     }
     SETTING_LOG_INFO("c_b set end asy work");
@@ -1232,7 +1244,10 @@ napi_value SetValuePromise(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
     if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
         SETTING_LOG_ERROR("napi_queue_async_work error");
         if (asyncCallbackInfo != nullptr) {
+            napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
+            asyncCallbackInfo->dataAbilityHelper = nullptr;
             delete asyncCallbackInfo;
+            asyncCallbackInfo = nullptr;
         }
     }
     return promise;
@@ -1395,7 +1410,7 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
             SETTING_LOG_ERROR("napi_queue_async_work error");
             if (asyncCallbackInfo != nullptr) {
-                delete asyncCallbackInfo;
+                DeleteCallbackInfo(env, asyncCallbackInfo);
                 asyncCallbackInfo = nullptr;
             }
         }
@@ -1427,7 +1442,7 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
             SETTING_LOG_ERROR("napi_queue_async_work error");
             if (asyncCallbackInfo != nullptr) {
-                delete asyncCallbackInfo;
+                DeleteCallbackInfo(env, asyncCallbackInfo);
                 asyncCallbackInfo = nullptr;
             }
         }
@@ -1525,6 +1540,8 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
             SETTING_LOG_ERROR("napi_queue_async_work error");
             if (asyncCallbackInfo != nullptr) {
+                napi_delete_reference(env, asyncCallbackInfo->callbackRef);
+                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
                 delete asyncCallbackInfo;
                 asyncCallbackInfo = nullptr;
             }
@@ -1564,6 +1581,7 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
             SETTING_LOG_ERROR("napi_queue_async_work error");
             if (asyncCallbackInfo != nullptr) {
+                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
                 delete asyncCallbackInfo;
                 asyncCallbackInfo = nullptr;
             }
@@ -1655,6 +1673,8 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
             SETTING_LOG_ERROR("napi_queue_async_work error");
             if (asyncCallbackInfo != nullptr) {
+                napi_delete_reference(env, asyncCallbackInfo->callbackRef);
+                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
                 delete asyncCallbackInfo;
                 asyncCallbackInfo = nullptr;
             }
@@ -1701,6 +1721,7 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
             SETTING_LOG_ERROR("napi_queue_async_work error");
             if (asyncCallbackInfo != nullptr) {
+                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
                 delete asyncCallbackInfo;
                 asyncCallbackInfo = nullptr;
             }
