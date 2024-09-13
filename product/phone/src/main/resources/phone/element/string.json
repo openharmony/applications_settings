@@ -1334,7 +1334,7 @@
     },
     {
       "name": "accessibility_shortcuts_tips",
-      "value": "开启后，连续按电源键三下，可启动无障碍快捷方式"
+      "value": "开启后，同时按下音量上下键三秒，可启动无障碍快捷方式"
     },
     {
       "name": "accessibility_select_ability",
