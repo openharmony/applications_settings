@@ -77,7 +77,7 @@ sptr<NormalSettingObserver> GetSettingObserver(const std::string &key, const std
     SETTING_LOG_INFO("GetSettingObserver start");
     std::map<std::string, sptr<NormalSettingObserver>> *tmpMap = nullptr;
     
-    if (tableName == DEVICE_SHARE_TABLE) {
+    if (tableName == DEVICE_SHARED_TABLE) {
         tmpMap = &settingDataObserverMap_;
     } else if (tableName == USER_PROPERTY_TABLE) {
         tmpMap = &settingUserDataObserverMap_;
@@ -100,7 +100,7 @@ sptr<NormalSettingObserver> GetSettingObserver(const std::string &key, const std
 void SetSettingObserver(const std::string &key, const std::string &tableName, sptr<NormalSettingObserver> observer)
 {
     SETTING_LOG_INFO("SetSettingObserver start");
-    if (tableName == DEVICE_SHARE_TABLE) {
+    if (tableName == DEVICE_SHARED_TABLE) {
         std::lock_guard<std::mutex> lockGuard(observerMapMutex_);
         settingDataObserverMap_[key] = observer;
     } else if (tableName == USER_PROPERTY_TABLE) {
@@ -119,7 +119,7 @@ void SetSettingObserver(const std::string &key, const std::string &tableName, sp
 void ReleaseSettingObserver(const std::string &key, const std::string &tableName)
 {
     SETTING_LOG_INFO("ReleaseSettingObserver start");
-    if (tableName == DEVICE_SHARE_TABLE) {
+    if (tableName == DEVICE_SHARED_TABLE) {
         std::lock_guard<std::mutex> lockGuard(observerMapMutex_);
         settingDataObserverMap_.erase(key);
     } else if (tableName == USER_PROPERTY_TABLE) {
@@ -159,7 +159,7 @@ std::string GetSettingUri(const std::string &key, const std::string &tableName)
     if (tableName == USER_SECURITY_TABLE) {
         curUri = "datashare:///com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_SECURE_" +
             curUserId + "?Proxy=true&key=" + key;
-    } else if (ableName == DEVICE_SHARE_TABLE) {
+    } else if (tableName == DEVICE_SHARE_TABLE) {
         curUri = "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=" + key;
     } else if (tableName == USER_PROPERTY_TABLE) {
         curUri = "datashare:///com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_" +
@@ -259,7 +259,7 @@ bool SettingsSetValue(const std::string &key, const std::string &tableName, cons
         return false;
     }
     
-    OHOS::DataShare::DataShareValueBucket bucketVal;
+    OHOS::DataShare::DataShareValuesBucket bucketVal;
     bucketVal.Put(SETTINGS_DATA_FIELD_KEYWORD, key);
     bucketVal.Put(SETTINGS_DATA_FIELD_VALUE, val);
     

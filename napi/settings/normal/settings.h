@@ -28,7 +28,7 @@ public:
     NormalSettingObserver();
     ~NormalSettingObserver() override;
     void OnChange() override;
-    
+
     // using ObserverCallback = std::function<void()>;
     // void SetObserverCallback(ObserverCallback &observerCallback);
     using ObserverCallback = std::function<void(std::string)>;
@@ -40,7 +40,7 @@ private:
     std::string observerTableName;
 };
 
-#define DEVICE_SHARE_TABLE "global"
+#define DEVICE_SHARED_TABLE "global"
 #define USER_PROPERTY_TABLE "system"
 #define USER_SECURITY_TABLE "secure"
 
