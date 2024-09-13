@@ -85,7 +85,7 @@ sptr<NormalSettingObserver> GetSettingObserver(const std::string &key, const std
         tmpMap = &settingUserSecureObserverMap_;
     } else {
         SETTING_LOG_ERROR("GetSettingObserver table is error, key %{public}s, table %{public}s",
-             key.c_str(), tableName.c_str());
+            key.c_str(), tableName.c_str());
         return nullptr;
     }
     std::lock_guard<std::mutex> lockGuard(observerMapMutex_);
@@ -159,7 +159,7 @@ std::string GetSettingUri(const std::string &key, const std::string &tableName)
     if (tableName == USER_SECURITY_TABLE) {
         curUri = "datashare:///com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_SECURE_" +
             curUserId + "?Proxy=true&key=" + key;
-    } else if (tableName == DEVICE_SHARE_TABLE) {
+    } else if (tableName == DEVICE_SHARED_TABLE) {
         curUri = "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=" + key;
     } else if (tableName == USER_PROPERTY_TABLE) {
         curUri = "datashare:///com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_" +
