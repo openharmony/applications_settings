@@ -19,6 +19,7 @@ ohos_shared_library("settings") {
     "//third_party/node/src",
     "//foundation/distributeddatamgr/data_share/interfaces/inner_api/common/include",
     "./open_network_settings",
+    "./normal",
   ]
 
   sources = [
@@ -27,6 +28,7 @@ ohos_shared_library("settings") {
     "./napi_settings_observer.cpp",
     "./native_module.cpp",
     "./open_network_settings/napi_open_network_settings.cpp",
+    "./normal/settings.cpp",
   ]
 
   external_deps = [
