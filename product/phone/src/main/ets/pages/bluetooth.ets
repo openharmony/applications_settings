@@ -452,6 +452,7 @@ struct AvailableDeviceComponent {
   @State availableDevicesList: AvailableDevicesDataSource = new AvailableDevicesDataSource(this.availableDevices);
   @State pairPinCode: string = '';
   @StorageLink("controlPairing") controlPairing: boolean = true;
+  @StorageLink("cancelPairFlag") @Watch("cancelPairFlagChange") cancelPairFlag: boolean = false;
   @StorageLink("pairData") pairData: BluetoothDevice = new BluetoothDevice();
   @StorageLink("pinRequiredParam") @Watch("pinRequiredParamChange") pinRequiredParam: PinRequiredParam = {
     deviceId: '',
@@ -583,6 +584,14 @@ struct AvailableDeviceComponent {
    */
   getPairStateText(device: BluetoothDevice): string {
     return device.connectionState == BondState.BOND_STATE_BONDING ? JSON.parse(JSON.stringify($r('app.string.bluetooth_state_pairing'))) : '';
+  }
+
+  cancelPairFlagChange() {
+    console.log(`cancelPairFlagChange, controlPairing:${this.controlPairing}`)
+    if (this.controlPairing && this.pairDialog) {
+      this.pairDialog.close();
+      this.showPairFailedDialog();
+    }
   }
 
   pinRequiredParamChange() {
@@ -853,7 +862,11 @@ function getDeviceIconPath(deviceType: string): string {
  * @param dialogMessage Dialog message
  * @param buttonValue Dialog buttonValue
  */
-function showDialog(dialogTitle: string | Resource, dialogMessage: string | Resource, buttonValue: string | Resource) {
+function showDialog(dialogTitle: string | Resource,
+                    dialogMessage: string | Resource,
+                    buttonValue: string | Resource,
+                    autoCancel?: boolean
+) {
   LogUtil.info(ConfigData.TAG + 'Bluetooth page showDialog in.');
 
   AlertDialog.show({
@@ -867,7 +880,11 @@ function showDialog(dialogTitle: string | Resource, dialogMessage: string | Reso
     },
     cancel: () => {
       LogUtil.info(ConfigData.TAG + 'Bluetooth page showDialog : Closed callbacks');
-    }
+    },
+    alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
+    offset: ({
+      dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0
+    })
   })
 
   LogUtil.info(ConfigData.TAG + 'Bluetooth page showDialog out.');

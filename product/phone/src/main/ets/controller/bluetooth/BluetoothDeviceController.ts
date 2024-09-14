@@ -380,7 +380,12 @@ export default class BluetoothDeviceController extends BaseSettingsController {
           AppStorage.SetOrCreate('BluetoothFailedDialogFlag', true);
           return;
         }
-        this.showConnectFailedDialog(this.getDevice(data.deviceId).deviceName);
+        let cancelPairFlag = AppStorage.Get("cancelPairFlag");
+        if (cancelPairFlag) {
+          AppStorage.SetOrCreate('cancelPairFlag', false);
+        } else {
+          AppStorage.SetOrCreate('cancelPairFlag', true);
+        }
       } else if (data.bondState == BondState.BOND_STATE_BONDED) {
         // case success
         LogUtil.log(this.TAG + 'bluetooth bonded : remove device.');
