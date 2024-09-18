@@ -211,7 +211,9 @@ export class SwanCtlModel {
           if (error !== null && error !== undefined) {
             LogUtil.log(MODULE_TAG + 'readRawFile faile, error:' + error);
           } else {
-            pathMap.set(key, this.uint8ArrayToString(value));
+            let valStr: string = this.uint8ArrayToString(value);
+            let contentStr: string = valStr.replace(/\r\n/g, '\n');
+            pathMap.set(key, contentStr);
           }
         });
       });
