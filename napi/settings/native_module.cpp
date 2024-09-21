@@ -30,7 +30,7 @@ EXTERN_C_START
  */
 static napi_value Init(napi_env env, napi_value exports)
 {
-    SETTING_LOG_INFO("napi_moudule Init start...");
+    SETTING_LOG_INFO("napi_module Init start...");
 
     napi_property_descriptor desc[] = {
         DECLARE_NAPI_FUNCTION("getURI", napi_get_uri),
@@ -49,7 +49,7 @@ static napi_value Init(napi_env env, napi_value exports)
     // init settings class
     NAPI_CALL(env, napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc));
     InitNapiClass(env, exports);
-    SETTING_LOG_INFO("napi_moudule Init end...");
+    SETTING_LOG_INFO("napi_module Init end...");
     return exports;
 }
 EXTERN_C_END

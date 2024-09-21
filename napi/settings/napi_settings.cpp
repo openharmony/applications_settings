@@ -251,7 +251,10 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
         .uri = "",
         .status = false,
     };
-
+    if (asyncCallbackInfo == nullptr) {
+        SETTING_LOG_ERROR("asyncCallbackInfo is null");
+        return wrap_void_to_js(env);
+    }
     std::string keyStr = unwrap_string_from_js(env, args[PARAM0]);
     // get userId string
     std::vector<int> tmpId;
@@ -759,7 +762,10 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
         .uri = "",
         .status = false,
     };
-
+    if (asyncCallbackInfo == nullptr) {
+        SETTING_LOG_ERROR("asyncCallbackInfo is null");
+        return wrap_void_to_js(env);
+    }
     if (wrapper != nullptr) {
         asyncCallbackInfo->dataAbilityHelper = wrapper->GetDataAbilityHelper();
     }
@@ -915,7 +921,10 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
         .uri = "",
         .status = false,
     };
-
+    if (asyncCallbackInfo == nullptr) {
+        SETTING_LOG_ERROR("asyncCallbackInfo is null");
+        return wrap_void_to_js(env);
+    }
     asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode);
 
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
@@ -1311,7 +1320,10 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
         .uri = "",
         .status = false,
     };
-
+    if (asyncCallbackInfo == nullptr) {
+        SETTING_LOG_ERROR("asyncCallbackInfo is null");
+        return wrap_void_to_js(env);
+    }
     if (wrapper != nullptr) {
         asyncCallbackInfo->dataAbilityHelper = wrapper->GetDataAbilityHelper();
     }
@@ -1351,7 +1363,10 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
         .uri = "",
         .status = false,
     };
-
+    if (asyncCallbackInfo == nullptr) {
+        SETTING_LOG_ERROR("asyncCallbackInfo is null");
+        return wrap_void_to_js(env);
+    }
     asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode);
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
     asyncCallbackInfo->uri = unwrap_string_from_js(env, args[PARAM2]); //temp
@@ -1492,7 +1507,10 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
         .uri = "",
         .status = 0,
     };
-
+    if (asyncCallbackInfo == nullptr) {
+        SETTING_LOG_ERROR("asyncCallbackInfo is null");
+        return wrap_void_to_js(env);
+    }
     if (argc == paramOfCallback) {
         SETTING_LOG_INFO("%{public}s, asyncCallback.", __func__);
 
@@ -1622,7 +1640,10 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
         .uri = "",
         .status = 0,
     };
-
+    if (asyncCallbackInfo == nullptr) {
+        SETTING_LOG_ERROR("asyncCallbackInfo is null");
+        return wrap_void_to_js(env);
+    }
     napi_value resource = nullptr;  
     NAPI_CALL(env, napi_create_string_utf8(env, "enableAirplaneMode", NAPI_AUTO_LENGTH, &resource));
 
@@ -1846,6 +1867,10 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
 {
     SETTING_LOG_INFO("argv[0] is a context, Stage Model: %{public}d", stageMode);
     AsyncCallbackInfo *asyncCallbackInfo = new AsyncCallbackInfo();
+    if (asyncCallbackInfo == nullptr) {
+        SETTING_LOG_ERROR("asyncCallbackInfo is null");
+        return wrap_void_to_js(env);
+    }
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
     napi_valuetype valueType;
 
