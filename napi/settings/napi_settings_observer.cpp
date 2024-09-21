@@ -34,9 +34,13 @@ using namespace OHOS::AccountSA;
 namespace OHOS {
 namespace Settings {
     std::map<std::string, sptr<SettingsObserver>> g_observerMap;
+    std::mutex g_observerMapMutex;
 
     SettingsObserver::~SettingsObserver()
     {
+        if (this->cbInfo == nullptr) {
+            return;
+        }
         delete this->cbInfo;
         this->cbInfo = nullptr;
     }
@@ -163,12 +167,17 @@ namespace Settings {
             return wrap_bool_to_js(env, false);
         }
         AsyncCallbackInfo *callbackInfo = new AsyncCallbackInfo();
+        if (callbackInfo == nullptr) {
+            SETTING_LOG_ERROR("%{public}s, failed to get callbackInfo.", __func__);
+            return wrap_bool_to_js(env, false);
+        }
 
         callbackInfo->env = env;
         callbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
         callbackInfo->tableName = unwrap_string_from_js(env, args[PARAM2]);
         napi_create_reference(env, args[PARAM3], 1, &(callbackInfo->callbackRef));
 
+        std::lock_guard<std::mutex> lockGuard(g_observerMapMutex);
         if (g_observerMap.find(callbackInfo->key) != g_observerMap.end() &&
         g_observerMap[callbackInfo->key] != nullptr) {
             SETTING_LOG_INFO("%{public}s, already registered.", __func__);
@@ -225,6 +234,7 @@ namespace Settings {
         std::string key = unwrap_string_from_js(env, args[PARAM1]);
         std::string tableName = unwrap_string_from_js(env, args[PARAM2]);
         
+        std::lock_guard<std::mutex> lockGuard(g_observerMapMutex);
         if (g_observerMap.find(key) == g_observerMap.end()) {
             SETTING_LOG_ERROR("%{public}s, null.", __func__);
             return wrap_bool_to_js(env, false);
