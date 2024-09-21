@@ -272,7 +272,8 @@ export default class PasswordInputController extends BaseSettingsController {
   updatePassword() {
     PasswordModel.registerInputer();
     PasswordModel.updateCredential(this.passwordType, this.password, this.pinToken, (result, extraInfo) => {
-      LogUtil.info(`${this.TAG}update password result: ${result}`);      if (result === ResultCode.SUCCESS) {
+      LogUtil.info(`${this.TAG}update password result: ${result}`);      
+      if (result === ResultCode.SUCCESS) {
         LogUtil.info(`${this.TAG}update password success`);
         this.goBackCorrect();
       } else {
