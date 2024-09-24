@@ -38,7 +38,8 @@
         },
         "build": {
             "sub_component": [
-                "//applications/standard/settings/napi/settings:settings"
+                "//applications/standard/settings/napi/settings:settings",
+                "//applications/standard/settings/cj/settings:cj_settings_ffi"
             ],
             "inner_kits": [],
             "test": []
