@@ -45,15 +45,6 @@ namespace Settings {
         this->cbInfo = nullptr;
     }
 
-    void SettingsObserver::EnvObserver(void* arg)
-    {
-        AsyncCallbackInfo* callBackInfo = reinterpret_cast<AsyncCallbackInfo*>(arg);
-        if (callBackInfo == nullptr || callBackInfo->env == nullptr) {
-            return;
-        }
-        callBackInfo->env = nullptr;
-    }
-
     int OnChangeAsync(uv_loop_s* loop, uv_work_t *work)
     {
         int ret = uv_queue_work(loop, work, [](uv_work_t *work) {},
