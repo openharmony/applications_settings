@@ -88,8 +88,6 @@ namespace Settings {
                     &callResult);
                 napi_close_handle_scope(settingsObserver->cbInfo->env, scope);
                 SETTING_LOG_INFO("%{public}s, uv_work success.", __func__);
-                napi_remove_env_cleanup_hook(settingsObserver->cbInfo->env, SettingsObserver::EnvObserver,
-                    settingsObserver->cbInfo);
                 delete work;
             });
             return ret;
@@ -113,7 +111,6 @@ namespace Settings {
             SETTING_LOG_ERROR("%{public}s, fail to get uv work.", __func__);
             return;
         }
-        napi_add_env_cleanup_hook(cbInfo->env, SettingsObserver::EnvObserver, this);
         work->data = reinterpret_cast<void*>(this);
 
         int ret = OnChangeAsync(loop, work);
