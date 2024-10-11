@@ -45,21 +45,24 @@
 #### 配置码云ssh
 1. 安装Git
 2. 生成公钥，[参考链接](https://gitee.com/help/articles/4181#article-header0)
-3. 在码云个人设置-安全设置-ssh公钥中配置公钥
+3. 在码云个人设置-安全设置-ssh公钥中配置公钥，[参考链接](https://gitee.com/help/articles/4191)
+
 
 #### 下载代码
 1. 打开码云Settings地址，[下载地址](https://gitee.com/openharmony/applications_settings)
 2. 选择克隆/下载 - https方式 -复制下载地址
 3. 本机git bash 中执行：
  ```
- git clone '复制的下载地址'
+ git clone 'https://gitee.com/openharmony/applications_settings.git'
  ```
 
 ### 环境搭建
 1. 安装DevEco Studio
-2. 按照操作指引安装OpenHarmony SDK
+2. 按照操作配置DevEco Studio
+3. 替换full-SDK,[参考链接](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)
 
-## 基础开发说明
+
+
 ### 系统接口调用
 #### NAPI接口集成
 - 导入指定模块
@@ -205,7 +208,7 @@ hilog │ grep Label
 
 2. 在本地新建 Settings 目录，在 Settings 目录中执行如下命令
    ```
-   git clone 步骤1中复制的地址
+   git clone 'https://gitee.com/openharmony/applications_settings.git'
    ```
 
 3. 修改代码。
@@ -227,6 +230,6 @@ hilog │ grep Label
 ## 相关仓<a name="section1371113476307"></a>
 
 系统应用
+[applications_settings](https://gitee.com/openharmony/applications_settings.git/)
 
-**applications\_settings**
 
