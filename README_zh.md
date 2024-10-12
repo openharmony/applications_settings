@@ -162,6 +162,7 @@ reboot
 > hdc  shell rm -rf  /data/misc_de/0/mdds/0/default/bundle_manager_service
 > hdc  shell rm -rf  /data/accounts
 > ```
+> 请确保在执行上述命令前，设备已备份重要数据，避免数据丢失。
 ### 应用调试
 ### log打印
 - 在程序中添加 log
@@ -204,7 +205,7 @@ hilog │ grep Label
 3. Fork 成功之后，会在自己的账号下看见 fork 的代码仓库。
 
 ### 提交代码
-1. 访问在码云上我们fork的代码仓库，定位至“克隆/下载”区域，选取SSH或HTTPS协议，执行复制操作。
+1. 在码云上访问我们分叉的代码仓库，找到“克隆/下载”区域，选择SSH或HTTPS协议，进行复制操作。
 
 2. 在本地新建 Settings 目录，在 Settings 目录中执行如下命令
    ```
@@ -219,7 +220,7 @@ hilog │ grep Label
    > 关于代码提交的这部分内容涉及 git 的使用，可以参照 [git官网](https://git-scm.com/) 的内容，在此不再赘述。
 
 ### 发起 Pull Request (PR)
-在将代码提交到 fork 仓库之后，我们可以通过发起合并请求（MR）的方式来为 OpenHarmony 的相关项目贡献代码。
+在将代码提交到 fork 仓库之后，我们可以通过发起合并请求（Pull Request）的方式来为 OpenHarmony 的相关项目贡献代码。
 
 1. 打开 fork 仓库。选择 `Pull Requests` → `新建 Pull Request`
 
