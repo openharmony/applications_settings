@@ -157,7 +157,7 @@ hdc shell
 reboot
 （不可以直接执行hdc reboot，命令是无效的)
 ```
-> 注意，如果设备之前安装过系统应用，则需要执行如下两条命令清除设备中存储的应用信息，以便在设备重启时能正常加载我们新安装的hap包。
+> 注意，如果设备之前安装过系统应用，则需要执行如下两条命令以清除设备中存储的应用信息，确保在设备重启时能正常加载新安装的hap包。
 > ```
 > hdc  shell rm -rf  /data/misc_de/0/mdds/0/default/bundle_manager_service
 > hdc  shell rm -rf  /data/accounts
@@ -205,7 +205,7 @@ hilog │ grep Label
 3. Fork 成功之后，会在自己的账号下看见 fork 的代码仓库。
 
 ### 提交代码
-1. 在码云上访问我们分叉的代码仓库，找到“克隆/下载”区域，选择SSH或HTTPS协议，进行复制操作。
+1. 在码云上访问我们分叉的代码仓库，找到“克隆/下载”区域，选择SSH或HTTPS协议，进行克隆操作。
 
 2. 在本地新建 Settings 目录，在 Settings 目录中执行如下命令
    ```
