@@ -157,7 +157,7 @@ hdc shell
 reboot
 （不可以直接执行hdc reboot，命令是无效的)
 ```
-> 注意，如果设备之前安装过系统应用，则需要执行如下两条命令清除设备中存储的应用信息才能够在设备重启的时候将我们装入设备的新 hap 包正常拉起。
+> 注意，如果设备之前安装过系统应用，则需要执行如下两条命令清除设备中存储的应用信息，以便在设备重启时能正常加载我们新安装的hap包。
 > ```
 > hdc  shell rm -rf  /data/misc_de/0/mdds/0/default/bundle_manager_service
 > hdc  shell rm -rf  /data/accounts
@@ -204,7 +204,7 @@ hilog │ grep Label
 3. Fork 成功之后，会在自己的账号下看见 fork 的代码仓库。
 
 ### 提交代码
-1. 访问我们自己在码云账号上 fork 的代码仓库，点击“克隆/下载”按钮，选择 SSH/HTTPS，点击“复制”按钮。
+1. 访问在码云上我们fork的代码仓库，定位至“克隆/下载”区域，选取SSH或HTTPS协议，执行复制操作。
 
 2. 在本地新建 Settings 目录，在 Settings 目录中执行如下命令
    ```
@@ -215,11 +215,11 @@ hilog │ grep Label
 
    > 将代码引入工程，以及编译工程等相关内容请参见 **3. 代码使用** 部分的相关内容。
 4. 提交代码到 fork 仓库。
-   > 修改后的代码，首先执行 `git add` 命令，然后执行 `git commit` 命令与 `git push` 命令，将代码 push 到我们自己的 fork 仓中。
+   > 修改后的代码，首先运行 `git add` 命令，接着执行 `git commit` 命令和 `git push` 命令，将代码提交至我们自己的 fork 仓库。
    > 关于代码提交的这部分内容涉及 git 的使用，可以参照 [git官网](https://git-scm.com/) 的内容，在此不再赘述。
 
 ### 发起 Pull Request (PR)
-在将代码提交到 fork 仓之后，我们可以通过发起 Pull Request（PR）的方式来为 OpenHarmony 的相关项目贡献代码。
+在将代码提交到 fork 仓库之后，我们可以通过发起合并请求（MR）的方式来为 OpenHarmony 的相关项目贡献代码。
 
 1. 打开 fork 仓库。选择 `Pull Requests` → `新建 Pull Request`
 
