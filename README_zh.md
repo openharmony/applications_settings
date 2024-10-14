@@ -218,7 +218,7 @@ hilog │ grep Label
    > 关于代码提交的这部分内容涉及 git 的使用，可以参照 [git官网](https://git-scm.com/) 的内容，在此不再赘述。
 
 ### 发起 Pull Request (PR)
-在将代码提交到 fork 仓库之后，我们可以通过发起合并请求（MR）的方式来为 OpenHarmony 的相关项目贡献代码。
+在将代码提交到 fork 仓库之后，我们可以通过发起合并请求的方式来为 OpenHarmony 的相关项目贡献代码。
 
 1. 打开 fork 仓库。选择 `Pull Requests` → `新建 Pull Request`
 
