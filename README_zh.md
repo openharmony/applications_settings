@@ -205,18 +205,15 @@ hilog │ grep Label
 3. Fork 成功之后，会在自己的账号下看见 fork 的代码仓库。
 
 ### 提交代码
-1. 在码云上访问我们分支的代码仓库，找到“克隆/下载”按钮，选择SSH或HTTPS协议，执行仓库的克隆操作。
-// 此行代码已修改，避免使用可能产生歧义的描述
-
-2. 在本地新建 Settings 目录，在 Settings 目录中执行如下命令
+1. 在本地新建 Settings 目录，在 Settings 目录中执行如下命令
    ```
    git clone 'https://gitee.com/openharmony/applications_settings.git'
    ```
 
-3. 修改代码。
+2. 修改代码。
 
    > 将代码引入工程，以及编译工程等相关内容请参见 **3. 代码使用** 部分的相关内容。
-4. 提交代码到 fork 仓库。
+3. 提交代码到 fork 仓库。
    > 修改后的代码，首先运行 `git add` 命令，接着执行 `git commit` 命令和 `git push` 命令，将代码提交至我们自己的 fork 仓库。
    > 关于代码提交的这部分内容涉及 git 的使用，可以参照 [git官网](https://git-scm.com/) 的内容，在此不再赘述。
 
