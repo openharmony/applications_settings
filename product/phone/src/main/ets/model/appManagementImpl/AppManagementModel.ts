@@ -175,7 +175,7 @@ export class AppManagementModel extends BaseModel {
    * @param bundleName bundle name
    */
   cleanBundleCacheFiles(bundleName: string, callback) {
-    Bundle.cleanBundleCacheFiles(bundleName, callback);
+    bundleManager.cleanBundleCacheFiles(bundleName, callback);
   }
 
   /**
