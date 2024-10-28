@@ -153,6 +153,7 @@ struct ApplicationStorage {
           .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
 
           ButtonComponent({ text: $r("app.string.clearCacheTab"), onClickEvent: () => {
+            LogUtil.info('settings ApplicationStorage clearCache');
             if (appInfo && appInfo.settingBundleName) {
               this.controller.cleanBundleCacheFiles(appInfo.settingBundleName);
             }
