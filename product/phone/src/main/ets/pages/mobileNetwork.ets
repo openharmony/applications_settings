@@ -47,15 +47,6 @@ struct mobileNetwork {
           HeadComponent({ headName: $r("app.string.mobileNetwork"), isActive: true });
           Column() {
             List() {
-              ListItem() {
-                SwitchComponent({
-                  title: $r("app.string.flightMode"),
-                  summary: "",
-                  isOn: $controllerMobileNetworkIsOn,
-                  controller: this.mobileNetworkController,
-                  switchHeight: $r("app.float.wh_value_56")
-                })
-              }
 
               ListItem() {
                 // mobileData
