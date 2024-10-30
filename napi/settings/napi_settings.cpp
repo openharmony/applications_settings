@@ -394,7 +394,7 @@ void CheckDataShareHelper(napi_env env, const napi_value context,
             SETTING_LOG_INFO("settingsnapi : getDataShareHelper resultset == nullptr, strUri %{public}s %{public}d",
                 strUri.c_str(),
                 trial);
-            dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
+            dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri, waitTime = 5);
         } while (trial++ < DB_HELPER_TRIAL_NUMBER && dataShareHelper == nullptr);
         if (resultset != nullptr) {
             resultset->Close();
@@ -426,7 +426,7 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
         return dataShareHelper;
     }
 
-    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri, strUri);
+    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri, strUri, waitTime = 5);
     SETTING_LOG_INFO("g_D_S_H Creator called, valid %{public}d", dataShareHelper != nullptr);
     return dataShareHelper;
 }
