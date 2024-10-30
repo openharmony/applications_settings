@@ -52,11 +52,10 @@ char* TransformFromString(std::string str, int32_t* ret)
 
 bool CheckoutStatus(int32_t status, int32_t* result)
 {
+    *result = 0;
     if (status >= 0) {
-        *result = 0;
         return true;
     }
-    *result = status;
     if (status == PERMISSION_DENIED_CODE) {
         *result = PERMISSION_EXCEPTION_CODE;
     }
@@ -265,6 +264,9 @@ char* Settings::GetValue(
     int64_t len = info.value.size();
     if (len <= 0) {
         CheckoutStatus(info.status, ret);
+        if (*ret == 0) {
+            return TransformFromString(value, ret);
+        }
         return nullptr;
     }
     return TransformFromString(info.value, ret);
