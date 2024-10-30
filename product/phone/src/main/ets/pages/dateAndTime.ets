@@ -350,7 +350,7 @@ struct DateDialog {
 
         DatePicker({ start: this.minDate, end: this.maxDate, selected: this.selectedDate })
           .onChange((result: DatePickerResult) => {
-            let month = result.month ? result.month : 1;
+            let month = result.month ? result.month : 0;
             let fmt = result.year + '-' + DateAndTime.fill(month + 1) + '-' + DateAndTime.fill(result.day);
             this.selectedDate = new Date(fmt);
             LogUtil.info(MODULE_TAG + 'onchange user select date fmt is : ' + fmt);
