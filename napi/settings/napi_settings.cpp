@@ -41,7 +41,7 @@ const std::string PERMISSION_EXCEPTION = "201 - Permission denied";
 const int PERMISSION_DENIED_CODE = -2;
 const int DB_HELPER_TRIAL_NUMBER = 2;
 const int USERID_HELPER_NUMBER = 100;
-const int WAIT_TIME = 5;
+const int WAIT_TIME = 2;
 
 void ThrowExistingError(napi_env env, std::string errorMessage)
 {
@@ -395,7 +395,7 @@ void CheckDataShareHelper(napi_env env, const napi_value context,
             SETTING_LOG_INFO("settingsnapi : getDataShareHelper resultset == nullptr, strUri %{public}s %{public}d",
                 strUri.c_str(),
                 trial);
-            dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri, WAIT_TIME);
+            dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri, strUri, WAIT_TIME);
         } while (trial++ < DB_HELPER_TRIAL_NUMBER && dataShareHelper == nullptr);
         if (resultset != nullptr) {
             resultset->Close();
