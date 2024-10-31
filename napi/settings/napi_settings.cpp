@@ -178,10 +178,11 @@ napi_value napi_get_uri_sync(napi_env env, napi_callback_info info)
         std::string keyStr = unwrap_string_from_js(env, args[PARAM0]);
         // get userId string
         std::vector<int> tmpId;
-        OHOS::AccountSA::OsAccountManager::QueryActiveOsAccountIds(tmpId);
+        int currentUserId = -1;
+        OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(currentUserId);
         std::string tmpIdStr = "100";
-        if (tmpId.size() > 0) {
-            tmpIdStr = std::to_string(tmpId[0]);
+        if (currentUserId >= 0) {
+            tmpIdStr = std::to_string(currentUserId);
         } else {
             SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
         }
@@ -259,10 +260,11 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
     std::string keyStr = unwrap_string_from_js(env, args[PARAM0]);
     // get userId string
     std::vector<int> tmpId;
-    OHOS::AccountSA::OsAccountManager::QueryActiveOsAccountIds(tmpId);
+    int currentUserId = -1;
+    OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(currentUserId);
     std::string tmpIdStr = "100";
-    if (tmpId.size() > 0) {
-        tmpIdStr = std::to_string(tmpId[0]);
+    if (currentUserId >= 0) {
+        tmpIdStr = std::to_string(currentUserId);
     } else {
         SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
     }
@@ -411,10 +413,12 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
 {
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
     std::vector<int> tmpId;
-    OHOS::AccountSA::OsAccountManager::QueryActiveOsAccountIds(tmpId);
+    int currentUserId
+    int currentUserId = -1;
+    OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(currentUserId);
     std::string tmpIdStr = "100";
-    if (tmpId.size() > 0) {
-        tmpIdStr = std::to_string(tmpId[0]);
+    if (currentUserId >= 0) {
+        tmpIdStr = std::to_string(currentUserId);
     } else {
         SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
     }
@@ -495,10 +499,11 @@ void GetValueExecuteExt(napi_env env, void *data)
     }
 
     std::vector<int> tmpId;
-    OHOS::AccountSA::OsAccountManager::QueryActiveOsAccountIds(tmpId);
+    int currentUserId = -1;
+    OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(currentUserId);
     std::string tmpIdStr = "100";
-    if (tmpId.size() > 0) {
-        tmpIdStr = std::to_string(tmpId[0]);
+    if (currentUserId >= 0) {
+        tmpIdStr = std::to_string(currentUserId);
     } else {
         SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
     }
@@ -575,10 +580,11 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     val.Put(SETTINGS_DATA_FIELD_VALUE, setValue);
 
     std::vector<int> tmpId;
-    OHOS::AccountSA::OsAccountManager::QueryActiveOsAccountIds(tmpId);
+    int currentUserId = -1;
+    OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(currentUserId);
     std::string tmpIdStr = "100";
-    if (tmpId.size() > 0) {
-        tmpIdStr = std::to_string(tmpId[0]);
+    if (currentUserId >= 0) {
+        tmpIdStr = std::to_string(currentUserId);
     } else {
         SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
     }
