@@ -413,7 +413,6 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
 {
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
     std::vector<int> tmpId;
-    int currentUserId
     int currentUserId = -1;
     OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(currentUserId);
     std::string tmpIdStr = "100";
