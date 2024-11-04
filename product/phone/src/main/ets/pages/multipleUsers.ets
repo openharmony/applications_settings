@@ -687,20 +687,36 @@ struct ChooseImageDialog {
   build() {
     Column() {
       Text($r("app.string.takePhoto"))
-        .fontSize($r("app.float.font_24"))
-        .fontColor($r("app.color.font_color_182431"))
+        .fontFamily('HarmonyHeiTi')
+        .fontSize($r("app.float.font_16"))
+        .height($r("app.float.wh_value_40"))
+        .fontColor($r("sys.color.ohos_id_color_primary"))
+        .fontWeight(FontWeight.Medium)
+        .margin({ bottom: $r("app.float.wh_value_8"), top: $r("app.float.wh_value_8") })
         .onClick(() => {
           router.push({ uri: "" });
         })
+      Divider()
+        .margin({
+          left: $r("app.float.wh_value_12"),
+          right: $r("app.float.wh_value_12"),
+          bottom: $r("app.float.distance_9")
+        })
+        .color($r("sys.color.ohos_id_color_list_separator"))
 
       Text($r("app.string.chooseFromShop"))
+        .fontFamily('HarmonyHeiTi')
         .fontSize($r("app.float.font_16"))
-        .fontColor($r("app.color.font_color_182431"))
+        .height($r("app.float.wh_value_40"))
+        .fontColor($r("sys.color.ohos_id_color_primary"))
+        .fontWeight(FontWeight.Medium)
+        .margin({ bottom: $r("app.float.wh_value_8") })
         .onClick(() => {
           router.push({ uri: "" })
         })
     }
   }
+
 }
 
 @CustomDialog
