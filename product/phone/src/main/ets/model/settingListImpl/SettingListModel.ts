@@ -36,9 +36,7 @@ export class SettingListModel extends BaseModel {
    * Get settingsList
    */
   @Log
-  getSettingList() {
-    //    return this.settingsList;
-  }
+  getSettingList() {}
 
   /**
    * Item on click
