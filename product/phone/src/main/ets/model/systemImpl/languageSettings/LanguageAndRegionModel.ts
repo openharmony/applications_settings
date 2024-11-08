@@ -30,7 +30,6 @@ class LanguageAndRegionModel extends BaseModel {
   private allLanguages: Array<string> = [];
   private addStr = ConfigData.ADDLANGUAGES;
   private regionStr = ConfigData.CURRENTREGION;
-  //  private storage = data_storage.getStorageSync(AppStorage.Get(ConfigData.STORAGEPATHKEY) + '/languageAndRegion');
   private storage;
   private TAG = `${ConfigData.TAG} LanguageAndRegionModel`;
 
