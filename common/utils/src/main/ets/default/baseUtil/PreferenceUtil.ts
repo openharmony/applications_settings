@@ -19,6 +19,7 @@ import { GlobalContext } from './GlobalContext';
 
 //import Storage from '@ohos.data.storage';
 
+// let preference = Storage.getStorageSync(ConfigData.PREFERENCES_PATH);
 this.storage = await dataStorage.getPreferences(
   GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext), ConfigData.PREFERENCES_PATH);
 
