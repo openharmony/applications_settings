@@ -23,7 +23,7 @@
 #include "hilog/log.h"
 
 namespace OHOS::Settings {
-static const OHOS::HiviewDFX::HiLogLabel SETTINGS_LABEL = { LOG_CORE, 0xD000501, "Settings" };
+const OHOS::HiviewDFX::HiLogLabel SETTINGS_LABEL = { LOG_CORE, 0xD000501, "Settings" };
 
 #define __FILENAME__ (__builtin_strrchr(__FILE__, '/') ? __builtin_strrchr(__FILE__, '/') + 1 : __FILE__)
 
