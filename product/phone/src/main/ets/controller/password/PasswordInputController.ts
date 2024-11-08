@@ -236,17 +236,6 @@ export default class PasswordInputController extends BaseSettingsController {
   gotoRepeatPage() {
     this.inputPassword = this.password;
     this.isInputFirstTime = false;
-//    Router.replace({
-//      uri: 'pages/passwordRepeat',
-//      params: {
-//        'prevPageUri': this.prevPageUri,
-//        'pageRequestCode': this.pageRequestCode,
-//        'pinChallenge': this.pinChallenge,
-//        'pinToken': this.pinToken,
-//        'inputPassword': this.password,
-//        'passwordType': this.passwordType
-//      }
-//    });
   }
 
   //------------------------------ api ---------------------------
