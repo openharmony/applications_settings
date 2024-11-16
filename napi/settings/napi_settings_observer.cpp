@@ -46,6 +46,7 @@ namespace Settings {
     }
 
     bool IsExistObserver(SettingsObserver* settingsObserver) {
+        std::lock_guard<std::mutex> lockGuard(g_observerMapMutex);
         for (auto it = g_observerMap.begin(); it != g_observerMap.end(); ++it) {
             if (&(*(it->second)) == settingsObserver) {
                 return true;
