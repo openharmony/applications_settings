@@ -35,6 +35,7 @@ namespace OHOS {
 namespace Settings {
     std::map<std::string, sptr<SettingsObserver>> g_observerMap;
     std::mutex g_observerMapMutex;
+    bool g_observerFlag = false;
 
     SettingsObserver::~SettingsObserver()
     {
@@ -51,7 +52,7 @@ namespace Settings {
             [](uv_work_t *work, int status) {
                 SETTING_LOG_INFO("n_s_o_c_a");
                 SettingsObserver* settingsObserver = reinterpret_cast<SettingsObserver*>(work->data);
-                if (settingsObserver == nullptr || settingsObserver->cbInfo == nullptr ||
+                if (!g_observerFlag || settingsObserver == nullptr || settingsObserver->cbInfo == nullptr ||
                     settingsObserver->toBeDelete) {
                     SETTING_LOG_ERROR("uv_work: cbInfo invalid.");
                     delete work;
@@ -184,6 +185,7 @@ namespace Settings {
 
         std::string strUri = GetStageUriStr(callbackInfo->tableName, GetObserverIdStr(), callbackInfo->key);
         OHOS::Uri uri(strUri);
+        g_observerFlag = true;
         sptr<SettingsObserver> settingsObserver = sptr<SettingsObserver>
         (new (std::nothrow)SettingsObserver(callbackInfo));
         g_observerMap[callbackInfo->key] = settingsObserver;
@@ -246,6 +248,7 @@ namespace Settings {
         dataShareHelper->UnregisterObserver(uri, g_observerMap[key]);
         dataShareHelper->Release();
         g_observerMap[key]->toBeDelete = true;
+        g_observerFlag = false;
         g_observerMap[key] = nullptr;
         g_observerMap.erase(key);
 		
