@@ -183,11 +183,11 @@ napi_value napi_get_uri_sync(napi_env env, napi_callback_info info)
         std::string tmpIdStr = "100";
         if (currentUserId > 0) {
             tmpIdStr = std::to_string(currentUserId);
-            SETTING_LOG_INFO("userId is %d", currentUserId);
+            SETTING_LOG_INFO("userId is %{public}s", tmpIdStr.c_str());
         } else if (currentUserId == 0) {
             OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
             tmpIdStr = std::to_string(currentUserId);
-            SETTING_LOG_INFO("user0 userId is %d", currentUserId);
+            SETTING_LOG_INFO("user0 userId is %{public}s", tmpIdStr.c_str());
         } else {
             SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
         }
@@ -270,11 +270,11 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
     std::string tmpIdStr = "100";
     if (currentUserId > 0) {
         tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("userId is %d", currentUserId);
+        SETTING_LOG_INFO("userId is %{public}s", tmpIdStr.c_str());
     } else if (currentUserId == 0) {
         OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
         tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("user0 userId is %d", currentUserId);
+        SETTING_LOG_INFO("user0 userId is %{public}s", tmpIdStr.c_str());
     } else {
         SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
     }
@@ -428,11 +428,11 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
     std::string tmpIdStr = "100";
     if (currentUserId > 0) {
         tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("userId is %d", currentUserId);
+        SETTING_LOG_INFO("userId is %{public}s", tmpIdStr.c_str());
     } else if (currentUserId == 0) {
         OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
         tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("user0 userId is %d", currentUserId);
+        SETTING_LOG_INFO("user0 userId is %{public}s", tmpIdStr.c_str());
     } else {
         SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
     }
@@ -518,11 +518,11 @@ void GetValueExecuteExt(napi_env env, void *data)
     std::string tmpIdStr = "100";
     if (currentUserId > 0) {
         tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("userId is %d", currentUserId);
+        SETTING_LOG_INFO("userId is %{public}s", tmpIdStr.c_str());
     } else if (currentUserId == 0) {
         OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
         tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("user0 userId is %d", currentUserId);
+        SETTING_LOG_INFO("user0 userId is %{public}s", tmpIdStr.c_str());
     } else {
         SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
     }
@@ -604,11 +604,11 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     std::string tmpIdStr = "100";
     if (currentUserId > 0) {
         tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("userId is %d", currentUserId);
+        SETTING_LOG_INFO("userId is %{public}s", tmpIdStr.c_str());
     } else if (currentUserId == 0) {
         OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
         tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("user0 userId is %d", currentUserId);
+        SETTING_LOG_INFO("user0 userId is %{public}s", tmpIdStr.c_str());
     } else {
         SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
     }
