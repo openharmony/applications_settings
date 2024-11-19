@@ -132,11 +132,11 @@ namespace Settings {
         std::string tmpIdStr = "100";
         if (currentUserId > 0) {
             tmpIdStr = std::to_string(currentUserId);
-            SETTING_LOG_INFO("userId is %d", currentUserId);
+            SETTING_LOG_INFO("userId is %{public}s", tmpIdStr.c_str());
         } else if (currentUserId == 0) {
             OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
             tmpIdStr = std::to_string(currentUserId);
-            SETTING_LOG_INFO("user0 userId is %d", currentUserId);
+            SETTING_LOG_INFO("user0 userId is %{public}s", tmpIdStr.c_str());
         } else {
             SETTING_LOG_INFO("%{public}s, user id 100.", __func__);
         }
