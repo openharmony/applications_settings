@@ -68,6 +68,22 @@
         "exported": true,
         "visible": true,
         "type": "sysDialog/common"
+      },
+      {
+        "name": "bluetooth",
+        "srcEntry": "./ets/MainAbility/BluetoothAbility.ets",
+        "description": "bluetooth",
+        "exported": true,
+        "visible": true,
+        "type": "sysDialog/common"
+      },
+      {
+        "name": "BluetoothPairDialog",
+        "srcEntry": "./ets/MainAbility/BluetoothPairDialogAbility.ets",
+        "description": "BluetoothPairDialog",
+        "exported": true,
+        "visible": true,
+        "type": "sysDialog/common"
       }
     ],
 

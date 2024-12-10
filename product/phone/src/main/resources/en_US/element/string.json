@@ -1757,6 +1757,86 @@
     {
       "name": "vpn_error_disconnect_first",
       "value": "Disconnect the VPN before operating"
+    },
+    {
+      "name": "bluetooth_state",
+      "value": "bluetooth is closed"
+    },
+    {
+      "name": "bluetooth_app",
+      "value": "%s want to open bluetooth"
+    },
+    {
+      "name": "refuse",
+      "value": "refuse"
+    },
+    {
+      "name": "open",
+      "value": "open"
+    },
+    {
+      "name": "media_audio",
+      "value": "Media audio"
+    },
+    {
+      "name": "call_audio",
+      "value": "Call audio"
+    },
+    {
+      "name": "input_device",
+      "value": "Input device"
+    },
+    {
+      "name": "bluetooth_sharing_and_call_history",
+      "value": "Share contacts & call history"
+    },
+    {
+      "name": "bluetooth_read_info_auth",
+      "value": "Allow access to SMS messages"
+    },
+    {
+      "name": "bluetooth_name_and_numbers_only",
+      "value": "Name and number only"
+    },
+    {
+      "name": "bluetooth_fulls_details",
+      "value": "All information"
+    },
+    {
+      "name": "bluetooth_not_share",
+      "value": "Do not share"
+    },
+    {
+      "name": "bluetooth_pin_required_code_title",
+      "value": "Pairing code:"
+    },
+    {
+      "name": "bluetooth_pin_required_please_enter_message",
+      "value": "Enter the pairing code then press Return or Enter."
+    },
+    {
+      "name": "bluetooth_usually_message",
+      "value": "Usually 0000 or 1234"
+    },
+    {
+      "name": "bluetooth_PinConsist_message",
+      "value": "PIN contains letters or symbols"
+    },
+    {
+      "name": "bluetooth_pinCode_required_message",
+      "value": "You may also need to enter this PIN on the other device."
+    },
+    {
+      "name": "access_permission_full_stop",
+      "value": "Allow access to contacts call logs after pairing"
+    },
+    {
+      "name": "access_permission_stop",
+      "value": "Allow this device to access contacts"
+    },
+    {
+      "name": "bt_pair_required_message",
+      "value": "%s would like to pair with you. Confirm that thia code is also shown on %s before pairing."
     }
   ]
 }

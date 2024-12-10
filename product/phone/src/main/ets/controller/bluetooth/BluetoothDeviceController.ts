@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,6 +22,8 @@ import ConfigData from '../../../../../../../common/utils/src/main/ets/default/b
 import ISettingsController from '../../../../../../../common/component/src/main/ets/default/controller/ISettingsController';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import AboutDeviceModel from '../../model/aboutDeviceImpl/AboutDeviceModel'
+import { emitter } from '@kit.BasicServicesKit';
+import constant from '@ohos.bluetooth.constant';
 
 const deviceTypeInfo = deviceInfo.deviceType;
 const DISCOVERY_DURING_TIME: number = 30000; // 30'
@@ -45,6 +47,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
   private discoveryStartTimeoutId: number = 0;
   private discoveryStopTimeoutId: number = 0;
   private debounceTimer: number = 0;
+  private eventData: emitter.EventData = {};
 
   initData(): ISettingsController {
     LogUtil.log(this.TAG + 'start to initData bluetooth');
@@ -211,6 +214,36 @@ export default class BluetoothDeviceController extends BaseSettingsController {
     disconnectRet: boolean;
   }> {
     return BluetoothModel.disconnectDevice(deviceId);
+  }
+
+  /**
+   * get Profile State
+   * @param deviceId device id
+   * @param profileId profile id
+   */
+  getProfileState(deviceId: string, profileId: number): {
+    isOn: boolean,
+    isEnable: boolean,
+    description: string | ResourceStr
+  } {
+    return BluetoothModel.getProfileState(deviceId, profileId);
+  }
+
+  /**
+   * Connect profile.
+   * @param deviceId device id
+   * @param profileId profile id
+   */
+  connectProfile(deviceId: string, profileId: number): void {
+    BluetoothModel.connectProfile(deviceId, profileId);
+  }
+  /**
+   * disconnect profile.
+   * @param deviceId device id
+   * @param profileId profile id
+   */
+  disconnectProfile(deviceId: string, profileId: number): void {
+    BluetoothModel.disconnectProfile(deviceId, profileId);
   }
 
   /**
@@ -407,6 +440,31 @@ export default class BluetoothDeviceController extends BaseSettingsController {
           device.setProfile(data);
           this.sortPairedDevices();
           AppStorage.SetOrCreate('bluetoothPairedDevices', this.pairedDevices);
+          if (data.profileId === constant.ProfileId.PROFILE_A2DP_SOURCE) {
+            let innerEvent: emitter.InnerEvent = {
+              eventId: constant.ProfileId.PROFILE_A2DP_SOURCE
+            };
+            LogUtil.info('constant.ProfileId.PROFILE_A2DP_SOURCE,data.profileConnectionState,eventData')
+            this.setProfileEventData(data.profileConnectionState);
+            emitter.emit(innerEvent, this.eventData)
+          }
+          else if (data.profileId === constant.ProfileId.PROFILE_HANDSFREE_AUDIO_GATEWAY) {
+            let innerEvent: emitter.InnerEvent = {
+              eventId: constant.ProfileId.PROFILE_HANDSFREE_AUDIO_GATEWAY
+            };
+            this.setProfileEventData(data.profileConnectionState);
+            LogUtil.info('constant.ProfileId.PROFILE_A2DP_SOURCE,data.profileConnectionState,eventData')
+            emitter.emit(innerEvent, this.eventData)
+          }
+          else if (data.profileId === constant.ProfileId.PROFILE_HID_HOST) {
+            let innerEvent: emitter.InnerEvent = {
+              eventId: constant.ProfileId.PROFILE_HID_HOST
+            };
+            this.setProfileEventData(data.profileConnectionState);
+            emitter.emit(innerEvent, this.eventData)
+          } else {
+            // Do nothing
+          }
           break;
         }
       };
@@ -433,14 +491,14 @@ export default class BluetoothDeviceController extends BaseSettingsController {
   }
 
   /**
-     * Force refresh array.
-     * Note: the purpose of this function is just trying to fix page (ets) level's bug below,
-     *   and should be useless if fixed by the future sdk.
-     * Bug Details:
-     *   @State is not supported well for Array<CustomClass> type.
-     *   In the case that the array item's field value changed, while not its length,
-     *   the build method on page will not be triggered!
-     */
+   * Force refresh array.
+   * Note: the purpose of this function is just trying to fix page (ets) level's bug below,
+   *   and should be useless if fixed by the future sdk.
+   * Bug Details:
+   *   @State is not supported well for Array<CustomClass> type.
+   *   In the case that the array item's field value changed, while not its length,
+   *   the build method on page will not be triggered!
+   */
   protected forceRefresh(arr: BluetoothDevice[]): void {
     arr.push(new BluetoothDevice())
     arr.pop();
@@ -483,8 +541,8 @@ export default class BluetoothDeviceController extends BaseSettingsController {
   }
 
   /**
-  * Stop bluetooth discovery.
-  */
+   * Stop bluetooth discovery.
+   */
   private mStopBluetoothDiscovery() {
     this.isDeviceDiscovering = false;
     BluetoothModel.stopBluetoothDiscovery();
@@ -550,5 +608,48 @@ export default class BluetoothDeviceController extends BaseSettingsController {
       })
     })
 
+  }
+
+  private setProfileEventData(state: number) {
+    switch (state) {
+      case ProfileConnectionState.STATE_DISCONNECTED:
+        this.eventData = {
+          data: {
+            'State': false,
+            'Enable': true,
+            'Description': ''
+          }
+        }
+        break;
+      case ProfileConnectionState.STATE_CONNECTING:
+        this.eventData = {
+          data: {
+            'State': true,
+            'Enable': false,
+            'Description': $r('app.string.bluetooth_state_connecting')
+          }
+        }
+        break;
+      case ProfileConnectionState.STATE_CONNECTED:
+        this.eventData = {
+          data: {
+            'State': true,
+            'Enable': true,
+            'Description': $r('app.string.bluetooth_state_connected')
+          }
+        }
+        break;
+      case ProfileConnectionState.STATE_DISCONNECTING:
+        this.eventData = {
+          data: {
+            'State': false,
+            'Enable': false,
+            'Description': $r('app.string.bluetooth_state_connected')
+          }
+        }
+        break;
+      default:
+        LogUtil.info('eventData has no value')
+    }
   }
 }

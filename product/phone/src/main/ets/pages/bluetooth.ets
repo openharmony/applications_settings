@@ -453,7 +453,7 @@ struct AvailableDeviceComponent {
   @State pairPinCode: string = '';
   @StorageLink("controlPairing") controlPairing: boolean = true;
   @StorageLink("pairData") pairData: BluetoothDevice = new BluetoothDevice();
-  @StorageLink("pinRequiredParam") @Watch("pinRequiredParamChange") pinRequiredParam: PinRequiredParam = {
+  @StorageLink("pinRequiredParam") pinRequiredParam: PinRequiredParam = {
     deviceId: '',
     pinCode: ''
   };
