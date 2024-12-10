@@ -44,6 +44,8 @@
     "pages/accessibilityColorCorrection",
     "pages/accessibilityScreenTouch",
     "pages/abilityDialog/accessibilityWindowShortKeyDialog",
+    "pages/abilityDialog/BluetoothDialog",
+    "pages/abilityDialog/BluetoothPairDialog",
     "pages/vpn/vpnList",
     "pages/vpn/vpnEdit",
     "pages/vpn/vpnConnect"

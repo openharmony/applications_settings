@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import BaseModel from '../../../../../../../common/utils/src/main/ets/default/model/BaseModel';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import ConfigData from '../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
@@ -19,6 +20,8 @@ import Log from '../../../../../../../common/utils/src/main/ets/default/baseUtil
 import bluetooth from '@ohos.bluetooth';
 import bluetoothManager from '@ohos.bluetoothManager';
 import AboutDeviceModel from '../../model/aboutDeviceImpl/AboutDeviceModel';
+import constant from '@ohos.bluetooth.constant';
+import { emitter } from '@kit.BasicServicesKit';
 
 export enum ProfileCode {
   CODE_BT_PROFILE_A2DP_SINK = 0,
@@ -429,7 +432,7 @@ export class BluetoothModel extends BaseModel {
     profileConnectionState: number;
   }> {
     let result = [];
-    for (let i = 0;i < this.profiles.length; i++) {
+    for (let i = 0; i < this.profiles.length; i++) {
       if (this.profiles[i]) {
         try {
           let state = this.profiles[i].getDeviceState(deviceId);
@@ -461,7 +464,7 @@ export class BluetoothModel extends BaseModel {
   }> {
     LogUtil.info('bluetooth.connectDevice start');
     let result = [];
-    for (let i = 0;i < this.profiles.length; i++) {
+    for (let i = 0; i < this.profiles.length; i++) {
       if (this.profiles[i]) {
         let profile = this.profiles[i];
         let connectRet = true;
@@ -490,7 +493,7 @@ export class BluetoothModel extends BaseModel {
   }> {
     LogUtil.info('bluetooth.disconnectDevice start');
     let result = [];
-    for (let i = 0;i < this.profiles.length; i++) {
+    for (let i = 0; i < this.profiles.length; i++) {
       let profile = this.profiles[i];
       if (this.profiles[i]) {
         let profileConnectionState = profile.getDeviceState(deviceId);
@@ -512,6 +515,128 @@ export class BluetoothModel extends BaseModel {
     }
     LogUtil.info('bluetooth.connectDevice end, return:' + result);
     return result;
+  }
+
+  /**
+   * Get profile state
+   */
+  getProfileState(deviceId: string, profileId: number): {
+    isOn: boolean,
+    isEnable: boolean,
+    description: string | ResourceStr
+  } {
+    let profileState: {
+      isOn: boolean,
+      isEnable: boolean,
+      description: string | ResourceStr
+    } = { isOn: false, isEnable: true, description: '' };
+
+    if (this.profiles[profileId]) {
+      try {
+        let state = this.profiles[profileId].getDeviceState(deviceId)
+        if (state === constant.ProfileConnectionState.STATE_DISCONNECTED) {
+          profileState.isOn = false;
+          profileState.isEnable = true;
+          profileState.description = '';
+        } else if (state === constant.ProfileConnectionState.STATE_CONNECTING) {
+          profileState.isOn = true;
+          profileState.isEnable = false;
+          profileState.description = $r('app.string.bluetooth_state_connecting');
+        } else if (state === constant.ProfileConnectionState.STATE_CONNECTED) {
+          profileState.isOn = true;
+          profileState.isEnable = true;
+          profileState.description = $r('app.string.bluetooth_state_connected');
+        } else if (state === constant.ProfileConnectionState.STATE_DISCONNECTING) {
+          profileState.isOn = true;
+          profileState.isEnable = false;
+          profileState.description = $r('app.string.bluetooth_state_connected');
+        }
+      } catch (BusinessError) {
+        LogUtil.error('Bluetooth getDeviceState failed , BusinessError is ' + JSON.stringify(BusinessError));
+      }
+    }
+    return profileState
+  }
+
+  /**
+   * Connect profile
+   */
+  connectProfile(deviceId: string, profileId: number): void {
+    LogUtil.info('bluetooth.connectProfile start');
+    LogUtil.info('this.profiles[profileId] = ' + !!this.profiles[profileId])
+    if (this.profiles[profileId]) {
+      let profile = this.profiles[profileId];
+      let profileConnectionState = profile.getDeviceState(deviceId);
+      LogUtil.info(`${this.TAG} connectProfile , connectionState = ${profileConnectionState}`);
+      if (profileConnectionState === 0) {
+        try {
+          profile.connect(deviceId);
+        } catch (BusinessError) {
+          LogUtil.info(`${this.TAG} connect failed. BusinessError is  ` + JSON.stringify(BusinessError));
+          let innerEvent: emitter.InnerEvent = {
+            eventId: profileId
+          };
+          let eventData: emitter.EventData = {
+            data: {
+              'State': true,
+              'Enable': false,
+              'Description': $r('app.string.bluetooth_state_connecting')
+            }
+          }
+          emitter.emit(innerEvent, eventData)
+          setTimeout(() => {
+            eventData = {
+              data: {
+                'State': false,
+                'Enable': true,
+                'Description': ''
+              }
+            }
+            emitter.emit(innerEvent, eventData)
+          }, 500)
+        }
+      }
+    }
+  }
+
+  /**
+   * Disconnect profile
+   */
+  disconnectProfile(deviceId: string, profileId: number): void {
+    LogUtil.info('bluetooth.disconnectProfile start');
+    if (this.profiles[profileId]) {
+      let profile = this.profiles[profileId];
+      let profileConnectionState = profile.getDeviceState(deviceId);
+      LogUtil.info(`${this.TAG} disconnectProfile , connectionState = ${profileConnectionState}`);
+      if (profileConnectionState === 2) {
+        try {
+          profile.disconnect(deviceId);
+        } catch (BusinessError) {
+          LogUtil.info(`${this.TAG} disconnect failed. BusinessError is  ` + JSON.stringify(BusinessError));
+          let innerEvent: emitter.InnerEvent = {
+            eventId: profileId
+          };
+          let eventData: emitter.EventData = {
+            data: {
+              'State': false,
+              'Enable': false,
+              'Description': ''
+            }
+          }
+          emitter.emit(innerEvent, eventData)
+          setTimeout(() => {
+            eventData = {
+              data: {
+                'State': true,
+                'Enable': true,
+                'Description': $r('app.string.bluetooth_state_connected')
+              }
+            }
+            emitter.emit(innerEvent, eventData)
+          }, 500)
+        }
+      }
+    }
   }
 
   /**
