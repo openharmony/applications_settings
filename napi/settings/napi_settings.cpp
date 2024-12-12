@@ -554,7 +554,7 @@ void CompleteCall(napi_env env, napi_status status, void *data, const napi_value
     result[PARAM1] = retVaule;
     if (asyncCallbackInfo->status > 0) {
         napi_get_undefined(env, &result[PARAM0]);
-    } else if (asyncCallbackInfo->status == -2) {
+    } else if (asyncCallbackInfo->status == PERMISSION_DENIED_CODE) {
         napi_create_string_utf8(env, PERMISSION_EXCEPTION.c_str(), NAPI_AUTO_LENGTH, &message);
         napi_create_string_utf8(env, PERMISSION_EXCEPTION_CODE.c_str(), NAPI_AUTO_LENGTH, &code);
         napi_create_error(env, code, message, &result[PARAM0]);
@@ -580,7 +580,7 @@ void CompletePromise(napi_env env, napi_status status, void *data, const napi_va
     napi_value result = nullptr;
     if (asyncCallbackInfo->status > 0) {
         napi_resolve_deferred(env, asyncCallbackInfo->deferred, retVaule);
-    } else if (asyncCallbackInfo->status == -2) {
+    } else if (asyncCallbackInfo->status == PERMISSION_DENIED_CODE) {
         napi_create_string_utf8(env, PERMISSION_EXCEPTION.c_str(), NAPI_AUTO_LENGTH, &message);
         napi_create_string_utf8(env, PERMISSION_EXCEPTION_CODE.c_str(), NAPI_AUTO_LENGTH, &code);
         napi_create_error(env, code, message, &result);
