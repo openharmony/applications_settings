@@ -37,7 +37,8 @@ namespace Settings {
 const std::string SETTINGS_DATA_BASE_URI = "dataability:///com.ohos.settingsdata.DataAbility";
 const std::string SETTINGS_DATA_FIELD_KEYWORD = "KEYWORD";
 const std::string SETTINGS_DATA_FIELD_VALUE = "VALUE";
-const std::string PERMISSION_EXCEPTION = "201 - Permission denied";
+const std::string PERMISSION_EXCEPTION = "Permission denied";
+const std::string PERMISSION_EXCEPTION_CODE = "201";
 const int PERMISSION_DENIED_CODE = -2;
 const int DB_HELPER_TRIAL_NUMBER = 2;
 const int USERID_HELPER_NUMBER = 100;
@@ -546,17 +547,23 @@ void DeleteCallbackInfo(napi_env env, AsyncCallbackInfo *asyncCallbackInfo)
 
 void CompleteCall(napi_env env, napi_status status, void *data, const napi_value retVaule)
 {
+    napi_value message = nullptr;
+    napi_value code = nullptr;
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
     napi_value result[PARAM2] = {0};
-    if (status == napi_ok && asyncCallbackInfo->status == napi_ok) {
+    napi_get_undefined(env, &result[PARAM0]);
+    result[PARAM1] = retVaule;
+    if (asyncCallbackInfo->status > 0) {
         napi_get_undefined(env, &result[PARAM0]);
-        result[PARAM1] = retVaule;
+    } else if (asyncCallbackInfo->status == PERMISSION_DENIED_CODE) {
+        napi_create_string_utf8(env, PERMISSION_EXCEPTION.c_str(), NAPI_AUTO_LENGTH, &message);
+        napi_create_string_utf8(env, PERMISSION_EXCEPTION_CODE.c_str(), NAPI_AUTO_LENGTH, &code);
+        napi_create_error(env, code, message, &result[PARAM0]);
     } else {
-        napi_value message = nullptr;
         napi_create_string_utf8(env, "async call failed", NAPI_AUTO_LENGTH, &message);
         napi_create_error(env, nullptr, message, &result[PARAM0]);
-        napi_get_undefined(env, &result[PARAM1]);
     }
+
     napi_value callback = nullptr;
     napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
     napi_value returnValue;
@@ -568,10 +575,17 @@ void CompleteCall(napi_env env, napi_status status, void *data, const napi_value
 void CompletePromise(napi_env env, napi_status status, void *data, const napi_value retVaule)
 {
     SETTING_LOG_INFO("p_m asy end  c_b");
+    napi_value message = nullptr;
+    napi_value code = nullptr;
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
     napi_value result = nullptr;
-    if (status == napi_ok && asyncCallbackInfo->status == napi_ok) {
+    if (asyncCallbackInfo->status > 0) {
         napi_resolve_deferred(env, asyncCallbackInfo->deferred, retVaule);
+    } else if (asyncCallbackInfo->status == PERMISSION_DENIED_CODE) {
+        napi_create_string_utf8(env, PERMISSION_EXCEPTION.c_str(), NAPI_AUTO_LENGTH, &message);
+        napi_create_string_utf8(env, PERMISSION_EXCEPTION_CODE.c_str(), NAPI_AUTO_LENGTH, &code);
+        napi_create_error(env, code, message, &result);
+        napi_reject_deferred(env, asyncCallbackInfo->deferred, result);
     } else {
         napi_get_undefined(env, &result);
         napi_reject_deferred(env, asyncCallbackInfo->deferred, result);
@@ -1447,8 +1461,7 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
             },
             [](napi_env env, napi_status status, void* data) {
                 AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-                napi_value result = wrap_bool_to_js(env, ThrowError(env, asyncCallbackInfo->status));
-                asyncCallbackInfo->status = napi_ok;
+                napi_value result = wrap_bool_to_js(env, asyncCallbackInfo->status > 0);
                 CompleteCall(env, status, data, result);
             },
             (void*)asyncCallbackInfo,
@@ -1479,8 +1492,7 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
             },
             [](napi_env env, napi_status status, void* data) {
                 AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-                napi_value result = wrap_bool_to_js(env, asyncCallbackInfo->status != 0);
-                asyncCallbackInfo->status = napi_ok;
+                napi_value result = wrap_bool_to_js(env, asyncCallbackInfo->status > 0);
                 CompletePromise(env, status, data, result);
             },
             (void*)asyncCallbackInfo,
