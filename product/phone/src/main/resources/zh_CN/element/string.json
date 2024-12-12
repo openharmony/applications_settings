@@ -1759,6 +1759,86 @@
     {
       "name": "vpn_error_disconnect_first",
       "value": "请先断开VPN，再操作"
+    },
+    {
+      "name": "bluetooth_state",
+      "value": "当前蓝牙已关闭"
+    },
+    {
+      "name": "bluetooth_app",
+      "value": "%s想要开启蓝牙"
+    },
+    {
+      "name": "refuse",
+      "value": "禁止"
+    },
+    {
+      "name": "open",
+      "value": "开启"
+    },
+    {
+      "name": "media_audio",
+      "value": "媒体音频"
+    },
+    {
+      "name": "call_audio",
+      "value": "通话音频"
+    },
+    {
+      "name": "input_device",
+      "value": "输入设备"
+    },
+    {
+      "name": "bluetooth_sharing_and_call_history",
+      "value": "共享联系人和呼叫历史记录"
+    },
+    {
+      "name": "bluetooth_read_info_auth",
+      "value": "授权读取信息"
+    },
+    {
+      "name": "bluetooth_name_and_numbers_only",
+      "value": "仅姓名和号码"
+    },
+    {
+      "name": "bluetooth_fulls_details",
+      "value": "全部详情"
+    },
+    {
+      "name": "bluetooth_not_share",
+      "value": "不共享"
+    },
+    {
+      "name": "bluetooth_pin_required_code_title",
+      "value": "配对码："
+    },
+    {
+      "name": "bluetooth_pin_required_please_enter_message",
+      "value": "请输入配对码，然后按回车键。"
+    },
+    {
+      "name": "bluetooth_usually_message",
+      "value": "通常是 0000 或 1234"
+    },
+    {
+      "name": "bluetooth_PinConsist_message",
+      "value": "PIN 码由字母或符号组成"
+    },
+    {
+      "name": "bluetooth_pinCode_required_message",
+      "value": "您可能还需要在另一台设备上输入此 PIN 码。"
+    },
+    {
+      "name": "access_permission_full_stop",
+      "value": "配对之后，向所配对设备授予通讯录和通话记录的访问权限。"
+    },
+    {
+      "name": "access_permission_stop",
+      "value": "配对之后，向所配对设备授予通讯录的访问权限。"
+    },
+    {
+      "name": "bt_pair_required_message",
+      "value": "“%s”要与您配对。请确认此配对码已在“%s”上直接显示，而不是手动输入的。"
     }
   ]
 }
