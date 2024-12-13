@@ -38,18 +38,21 @@ const std::string SETTINGS_DATA_BASE_URI = "dataability:///com.ohos.settingsdata
 const std::string SETTINGS_DATA_FIELD_KEYWORD = "KEYWORD";
 const std::string SETTINGS_DATA_FIELD_VALUE = "VALUE";
 const std::string PERMISSION_EXCEPTION = "Permission denied";
-const std::string PERMISSION_EXCEPTION_CODE = "201";
+const int PERMISSION_EXCEPTION_CODE = 201;
+const int QUERY_SUCCESS_CODE = 1;
 const int PERMISSION_DENIED_CODE = -2;
 const int DB_HELPER_TRIAL_NUMBER = 2;
 const int USERID_HELPER_NUMBER = 100;
 const int WAIT_TIME = 2;
 
-void ThrowExistingError(napi_env env, std::string errorMessage)
+void ThrowExistingError(napi_env env, int errorCode, std::string errorMessage)
 {
+    napi_value code;
     napi_value message;
     napi_value error;
+    napi_create_uint32(env, errorCode, &code);
     napi_create_string_utf8(env, errorMessage.c_str(), NAPI_AUTO_LENGTH, &message);
-    napi_create_error(env, NULL, message, &error);
+    napi_create_error(env, code, message, &error);
     napi_throw(env, error);
 }
 
@@ -59,7 +62,7 @@ bool ThrowError(napi_env env, int status)
         return true;
     }
     if (status == PERMISSION_DENIED_CODE) {
-        ThrowExistingError(env, PERMISSION_EXCEPTION);
+        ThrowExistingError(env, PERMISSION_EXCEPTION_CODE, PERMISSION_EXCEPTION);
     }
     return false;
 }
@@ -489,7 +492,7 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
 
         SETTING_LOG_INFO("n_g_v_e %{public}s", val.c_str());
         asyncCallbackInfo->value = val;
-        asyncCallbackInfo->status = napi_ok;
+        asyncCallbackInfo->status = QUERY_SUCCESS_CODE;
     }
     
     if (resultset != nullptr) {
@@ -551,13 +554,12 @@ void CompleteCall(napi_env env, napi_status status, void *data, const napi_value
     napi_value code = nullptr;
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
     napi_value result[PARAM2] = {0};
-    napi_get_undefined(env, &result[PARAM0]);
     result[PARAM1] = retVaule;
     if (asyncCallbackInfo->status > 0) {
         napi_get_undefined(env, &result[PARAM0]);
     } else if (asyncCallbackInfo->status == PERMISSION_DENIED_CODE) {
         napi_create_string_utf8(env, PERMISSION_EXCEPTION.c_str(), NAPI_AUTO_LENGTH, &message);
-        napi_create_string_utf8(env, PERMISSION_EXCEPTION_CODE.c_str(), NAPI_AUTO_LENGTH, &code);
+        napi_create_uint32(env, PERMISSION_EXCEPTION_CODE, &code);
         napi_create_error(env, code, message, &result[PARAM0]);
     } else {
         napi_create_string_utf8(env, "async call failed", NAPI_AUTO_LENGTH, &message);
@@ -583,7 +585,7 @@ void CompletePromise(napi_env env, napi_status status, void *data, const napi_va
         napi_resolve_deferred(env, asyncCallbackInfo->deferred, retVaule);
     } else if (asyncCallbackInfo->status == PERMISSION_DENIED_CODE) {
         napi_create_string_utf8(env, PERMISSION_EXCEPTION.c_str(), NAPI_AUTO_LENGTH, &message);
-        napi_create_string_utf8(env, PERMISSION_EXCEPTION_CODE.c_str(), NAPI_AUTO_LENGTH, &code);
+        napi_create_uint32(env, PERMISSION_EXCEPTION_CODE, &code);
         napi_create_error(env, code, message, &result);
         napi_reject_deferred(env, asyncCallbackInfo->deferred, result);
     } else {
@@ -887,7 +889,7 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
         [](napi_env env, void* data) {
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
             SETTING_LOG_INFO("p_m get c_b key is %{public}s, value is: %{public}s",
-			    asyncCallbackInfo->key.c_str(), asyncCallbackInfo->value.c_str());
+                asyncCallbackInfo->key.c_str(), asyncCallbackInfo->value.c_str());
 
             std::vector<std::string> columns;
             columns.push_back(SETTINGS_DATA_FIELD_VALUE);
@@ -1856,10 +1858,6 @@ napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
 {
     SETTING_LOG_INFO("argv[0] is a context, Stage Model: %{public}d", stageMode);
     AsyncCallbackInfo *asyncCallbackInfo = new AsyncCallbackInfo();
-    if (asyncCallbackInfo == nullptr) {
-        SETTING_LOG_ERROR("asyncCallbackInfo is null");
-        return wrap_void_to_js(env);
-    }
     napi_valuetype valueType;
 
     // define table name
