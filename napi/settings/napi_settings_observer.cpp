@@ -46,7 +46,6 @@ namespace Settings {
     }
 
     bool IsExistObserver(SettingsObserver* settingsObserver) {
-        std::lock_guard<std::mutex> lockGuard(g_observerMapMutex);
         for (auto it = g_observerMap.begin(); it != g_observerMap.end(); ++it) {
             if (&(*(it->second)) == settingsObserver) {
                 return true;
@@ -60,6 +59,7 @@ namespace Settings {
         int ret = uv_queue_work(loop, work, [](uv_work_t *work) {},
             [](uv_work_t *work, int status) {
                 SETTING_LOG_INFO("n_s_o_c_a");
+                std::lock_guard<std::mutex> lockGuard(g_observerMapMutex);
                 SettingsObserver* settingsObserver = reinterpret_cast<SettingsObserver*>(work->data);
                 if (!IsExistObserver(settingsObserver) || settingsObserver == nullptr || settingsObserver->cbInfo == nullptr ||
                     settingsObserver->toBeDelete) {
