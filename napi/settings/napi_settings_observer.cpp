@@ -46,7 +46,6 @@ namespace Settings {
     }
 
     bool IsExistObserver(SettingsObserver* settingsObserver) {
-
         for (auto it = g_observerMap.begin(); it != g_observerMap.end(); ++it) {
             if (&(*(it->second)) == settingsObserver) {
                 return true;

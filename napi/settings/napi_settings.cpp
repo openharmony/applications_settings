@@ -1862,6 +1862,10 @@ napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
 {
     SETTING_LOG_INFO("argv[0] is a context, Stage Model: %{public}d", stageMode);
     AsyncCallbackInfo *asyncCallbackInfo = new AsyncCallbackInfo();
+    if (asyncCallbackInfo == nullptr) {
+        SETTING_LOG_ERROR("asyncCallbackInfo is null");
+        return wrap_void_to_js(env);
+    }
     napi_valuetype valueType;
 
     // define table name
