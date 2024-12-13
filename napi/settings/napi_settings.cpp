@@ -40,6 +40,7 @@ const std::string SETTINGS_DATA_FIELD_VALUE = "VALUE";
 const std::string PERMISSION_EXCEPTION = "Permission denied";
 const int PERMISSION_EXCEPTION_CODE = 201;
 const int QUERY_SUCCESS_CODE = 1;
+const int STATUS_ERROR_CODE = -1;
 const int PERMISSION_DENIED_CODE = -2;
 const int DB_HELPER_TRIAL_NUMBER = 2;
 const int USERID_HELPER_NUMBER = 100;
@@ -460,7 +461,7 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
     SETTING_LOG_INFO("a_C_B_I->d_S_H != nullptr");
     if (asyncCallbackInfo->dataShareHelper == nullptr) {
         SETTING_LOG_ERROR("helper is null");
-        asyncCallbackInfo->status = -1;
+        asyncCallbackInfo->status = STATUS_ERROR_CODE;
         return;
     }
     
@@ -478,12 +479,15 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
         SETTING_LOG_INFO("G_V_E_E resultset is NOT empty");
         resultset->GetRowCount(numRows);
     }
-    SETTING_LOG_INFO("numRows %{public}d, error code %{public}d", numRows, businessError.GetCode());
-    if (businessError.GetCode() != 0) {
-        asyncCallbackInfo->status = businessError.GetCode();
+    int datashareErrorCode = businessError.GetCode();
+    SETTING_LOG_INFO("numRows %{public}d, error code %{public}d", numRows, datashareErrorCode);
+    if (datashareErrorCode != 0 && datashareErrorCode != PERMISSION_DENIED_CODE) {
+        asyncCallbackInfo->status = STATUS_ERROR_CODE;
+    } else if (datashareErrorCode == PERMISSION_DENIED_CODE) {
+        asyncCallbackInfo->status = PERMISSION_DENIED_CODE;
     } else if (resultset == nullptr || numRows <= 0) {
         SETTING_LOG_INFO("G_V_E_E value is empty");
-        asyncCallbackInfo->status = -1;
+        asyncCallbackInfo->status = STATUS_ERROR_CODE;
     } else {
         std::string val;
         int32_t columnIndex = 0;
@@ -512,7 +516,7 @@ void GetValueExecuteExt(napi_env env, void *data)
     
     if (asyncCallbackInfo->dataShareHelper == nullptr) {
         SETTING_LOG_ERROR("dataShareHelper is empty");
-        asyncCallbackInfo->status = -1;
+        asyncCallbackInfo->status = STATUS_ERROR_CODE;
         return;
     }
 
@@ -555,7 +559,7 @@ void CompleteCall(napi_env env, napi_status status, void *data, const napi_value
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
     napi_value result[PARAM2] = {0};
     result[PARAM1] = retVaule;
-    if (asyncCallbackInfo->status > 0) {
+    if (asyncCallbackInfo->status > 0 && status == napi_ok) {
         napi_get_undefined(env, &result[PARAM0]);
     } else if (asyncCallbackInfo->status == PERMISSION_DENIED_CODE) {
         napi_create_string_utf8(env, PERMISSION_EXCEPTION.c_str(), NAPI_AUTO_LENGTH, &message);
@@ -581,7 +585,7 @@ void CompletePromise(napi_env env, napi_status status, void *data, const napi_va
     napi_value code = nullptr;
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
     napi_value result = nullptr;
-    if (asyncCallbackInfo->status > 0) {
+    if (asyncCallbackInfo->status > 0 && status == napi_ok) {
         napi_resolve_deferred(env, asyncCallbackInfo->deferred, retVaule);
     } else if (asyncCallbackInfo->status == PERMISSION_DENIED_CODE) {
         napi_create_string_utf8(env, PERMISSION_EXCEPTION.c_str(), NAPI_AUTO_LENGTH, &message);
@@ -606,7 +610,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     
     if (asyncCallbackInfo->dataShareHelper == nullptr) {
         SETTING_LOG_INFO("helper is null");
-        asyncCallbackInfo->status = -1;
+        asyncCallbackInfo->status = STATUS_ERROR_CODE;
         return;
     }
 
@@ -889,7 +893,7 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
         [](napi_env env, void* data) {
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
             SETTING_LOG_INFO("p_m get c_b key is %{public}s, value is: %{public}s",
-			    asyncCallbackInfo->key.c_str(), asyncCallbackInfo->value.c_str());
+                asyncCallbackInfo->key.c_str(), asyncCallbackInfo->value.c_str());
 
             std::vector<std::string> columns;
             columns.push_back(SETTINGS_DATA_FIELD_VALUE);
@@ -1170,7 +1174,7 @@ void SetValueExecuteCB(napi_env env, void *data)
     
     if (asyncCallbackInfo->dataAbilityHelper == nullptr) {
         SETTING_LOG_ERROR("helper is null");
-        asyncCallbackInfo->status = -1;
+        asyncCallbackInfo->status = STATUS_ERROR_CODE;
         return;
     }
 
@@ -1858,10 +1862,6 @@ napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
 {
     SETTING_LOG_INFO("argv[0] is a context, Stage Model: %{public}d", stageMode);
     AsyncCallbackInfo *asyncCallbackInfo = new AsyncCallbackInfo();
-    if (asyncCallbackInfo == nullptr) {
-        SETTING_LOG_ERROR("asyncCallbackInfo is null");
-        return wrap_void_to_js(env);
-    }
     napi_valuetype valueType;
 
     // define table name
