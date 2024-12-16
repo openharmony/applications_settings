@@ -1801,6 +1801,14 @@
       "value": "输入设备"
     },
     {
+      "name": "bt_state_connecting",
+      "value": "正在连接…"
+    },
+    {
+      "name": "bt_state_connected",
+      "value": "已连接"
+    },
+    {
       "name": "bluetooth_sharing_and_call_history",
       "value": "共享联系人和呼叫历史记录"
     },
@@ -1851,6 +1859,10 @@
     {
       "name": "bt_pair_required_message",
       "value": "“%s”要与您配对。请确认此配对码已在“%s”上直接显示，而不是手动输入的。"
+    },
+    {
+      "name": "pair_cancel",
+      "value": "取消"
     }
   ]
 }
