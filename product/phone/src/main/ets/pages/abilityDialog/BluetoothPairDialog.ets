@@ -97,7 +97,7 @@ export struct PairDialogComponent {
   pairDialogController?: PairDialogController;
   controller?: CustomDialogController;
   private isOnClick: boolean = false;
-  @State dialogWidth: number | string = deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? 328 : 400
+  @State dialogWidth: number | string = deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? 400 : 400
   @State paddingValue: ResourceStr | number = deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? $r('sys.float.padding_level8') : 0
 
   build() {
@@ -141,6 +141,7 @@ export struct PairDialogComponent {
       })
       this.buttonBuilder()
     }
+    .margin({bottom: 24})
     .backgroundColor($r('sys.color.ohos_id_color_dialog_bg'))
     .backgroundBlurStyle(BlurStyle.COMPONENT_ULTRA_THICK)
     .saturate(0.9)
@@ -408,7 +409,7 @@ export struct PairDialogComponent {
   buttonBuilder() {
     Row() {
       Button() {
-        Text($r('app.string.cancel'))
+        Text($r('app.string.pair_cancel'))
           .fontFamily('HarmonyHeiTi')
           .fontWeight(FontWeight.Medium)
           .fontSize($r('sys.float.Body_L'))

@@ -626,7 +626,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
           data: {
             'State': true,
             'Enable': false,
-            'Description': $r('app.string.bluetooth_state_connecting')
+            'Description': $r('app.string.bt_state_connecting')
           }
         }
         break;
@@ -635,7 +635,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
           data: {
             'State': true,
             'Enable': true,
-            'Description': $r('app.string.bluetooth_state_connected')
+            'Description': $r('app.string.bt_state_connected')
           }
         }
         break;
@@ -644,7 +644,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
           data: {
             'State': false,
             'Enable': false,
-            'Description': $r('app.string.bluetooth_state_connected')
+            'Description': $r('app.string.bt_state_connected')
           }
         }
         break;

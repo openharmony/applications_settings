@@ -1,0 +1,112 @@
+{
+  "string": [
+    {
+      "name": "bluetooth_state",
+      "value": "མིག་སྔར་སོ་སྔོན་ཁ་བརྒྱབ་ཟིན།"
+    },
+    {
+      "name": "bluetooth_app",
+      "value": "༼%s༽ཡིས་སོ་སྔོན་ཁ་འབྱེད་འདོད"
+    },
+    {
+      "name": "refuse",
+      "value": "དང་ལེན་མི་བྱེད།"
+    },
+    {
+      "name": "open",
+      "value": "ཆོག་པ།"
+    },
+    {
+      "name": "media_audio",
+      "value": "སྨྱན་གཟུགས་སྒྲ་ཟློས།"
+    },
+    {
+      "name": "call_audio",
+      "value": "ཁ་པར་གཏོང་ལེན་གྱི་སྒྲ་ཟློས།"
+    },
+    {
+      "name": "input_device",
+      "value": "ནང་འཇུག་སྒྲིག་ཆས།"
+    },
+    {
+      "name": "bluetooth_sharing_and_call_history",
+      "value": "འབྲེལ་གཏུག་མི་སྣ་དང་ཁ་པར་བཏང་བའི་ལོ་རྒྱུས་མཉམ་སྤྱོད།"
+    },
+    {
+      "name": "bluetooth_read_info_auth",
+      "value": "ཆ་འཕྲིན་དབང་སྤྲོད།"
+    },
+    {
+      "name": "bt_state_connecting",
+      "value": "སྦྲེལ་བཞིན་པ།"
+    },
+    {
+      "name": "bt_state_connected",
+      "value": "སྦྲེལ་མཐུད་བྱས་ཟིན།"
+    },
+    {
+      "name": "bluetooth_name_and_numbers_only",
+      "value": "རུས་མིང་དང་ཨང་གྲངས་ཁོ་ན།"
+    },
+    {
+      "name": "bluetooth_fulls_details",
+      "value": "ཞིབ་ཕྲའི་གནས་ཚུལ་ཚང་མ།"
+    },
+    {
+      "name": "bluetooth_not_share",
+      "value": " མཉམ་སྤྱོད་མི་བྱེད།"
+    },
+    {
+      "name": "cancelPairing",
+      "value": "ཆ་བསྒྲིགས་པ་འདོར་བ།"
+    },
+    {
+      "name": "bluetooth_pin_required_code_title",
+      "value": "ལྟོས་ཟླའི་རྟགས།"
+    },
+    {
+      "name": "bluetooth_pin_required_please_enter_message",
+      "value": "ཆ་མཐུན་གྱི་ཨང་ཀི་ནང་དུ་བཅུག་རྗེས།  Enterའཐེབ་མནོན་་མནོན་ཅིག།"
+    },
+    {
+      "name": "bluetooth_usually_message",
+      "value": "རྒྱུན་དུ་0000ཡང་ན་1234ཡིན།"
+    },
+    {
+      "name": "bluetooth_PinConsist_message",
+      "value": "PINནི་ཡིག་འབྲུའམ་ཨང་རྟགས་ཀྱིས་གྲུབ་པ།"
+    },
+    {
+      "name": "bluetooth_pinCode_required_message",
+      "value": "ཁྱེད་ཀྱི་སྒྲིག་ཆས་གཞན་ཞིག་གི་ཐོག་PINའཇུག་དགོས་ཀྱང་སྲིད།"
+    },
+    {
+      "name": "access_permission_full_stop",
+      "value": "ཆ་འགྲིག་རྗེས། ཆ་འགྲིག་བྱ་ཡུལ་གྱི་སྒྲིག་ཆས་ལ་ཁ་པར་ཐོ་དེབ་དང་ཁ་པར་གཏོང་ལེན་ཟིན་ཐོའི་ལྟ་སྤྱོད་དབང་ཚད་སྤྲོད།"
+    },
+    {
+      "name": "access_permission_stop",
+      "value": "ཆ་འགྲིགས་རྗེས། ཆ་འགྲིག་བྱ་ཡུལ་གྱི་སྒྲིག་ཆས་ལ་ཁ་པར་ཐོ་དེབ་ཀྱི་ལྟ་སྤྱོད་དབང་ཚད་སྤྲོད།"
+    },
+    {
+      "name": "bt_pair_required_message",
+      "value": "༼%1$s༽ཁྱེད་དང་ཆ་འགྲིག་བྱེད་འདོད། ཁྱེད་ཀྱིས་ཆ་འགྲིག་ཨང་རྟགས་༼%2$s༽ཐོག་ཏུ་ཐད་ཀར་འཆར་ཐུབ་པ་མ་ཟད་ལག་པས་ནང་འཇུག་བྱས་པ་མ་ཡིན་པ་གཏན་འཁེལ་གནང་རོགས།"
+    },
+    {
+      "name": "bluetooth_pairing_request",
+      "value": "སོ་སྔོན་ཆ་སྒྲིག་གི་རེ་ཞུ།"
+    },
+    {
+      "name": "bluetooth_pairing_media_device_hit",
+      "value": "གཤམ་གསལ་སྒྲིག་ཆས་དང་ཆ་སྒྲིག་བྱེད་དགོས་ཏེ།"
+    },
+    {
+      "name": "pair_cancel",
+      "value": "འདོར་བ།"
+    },
+    {
+      "name": "bluetooth_pair_button",
+      "value": "ཆ་སྒྲིག"
+    }
+  ]
+}
