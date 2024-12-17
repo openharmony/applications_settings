@@ -22,8 +22,8 @@
 #include "ui_extension_context.h"
 #include "../napi_settings_log.h"
 
-const int settingsParamErrorCode = 14800000;
-const int settingsOriginalServiceError = 1480010;
+const int SETTINGS_PARAM_ERROR_CODE = 14800000;
+const int SETTINGS_ORIGINAL_SERVICE_ERROR = 1480010;
 
 enum SettingsCode {
     SETTINGS_SUCCESS = 0,
@@ -41,8 +41,8 @@ struct SettingsError {
     std::string message;
 };
 
-const SettingsError settingsError1 = {settingsParamErrorCode, "Parameter error."};
-const SettingsError settingsError2 = {settingsOriginalServiceError, "Original service error."};
+const SettingsError settingsError1 = {SETTINGS_PARAM_ERROR_CODE, "Parameter error."};
+const SettingsError settingsError2 = {SETTINGS_ORIGINAL_SERVICE_ERROR, "Original service error."};
 const std::map<SettingsCode, SettingsError> g_errorMap = {
     {SETTINGS_PARAM_ERROR, settingsError1},
     {SETTINGS_ORIGINAL_SERVICE_ERROR, settingsError2}
