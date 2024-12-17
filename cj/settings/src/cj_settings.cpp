@@ -37,7 +37,7 @@ const int32_t MEMORY_CODE = 14700104;
 
 char* TransformFromString(std::string str, int32_t* ret)
 {
-    int64_t len = str.size() + 1;
+    uint64_t len = str.size() + 1;
     char* retValue = static_cast<char *>(malloc(len));
     if (retValue == nullptr) {
         *ret = MEMORY_CODE;
@@ -261,7 +261,7 @@ char* Settings::GetValue(
     info.key = name;
     info.dataShareHelper = GetDataShareHelper(context, info.tableName);
     GetValueExecuteExt(&info);
-    int64_t len = info.value.size();
+    uint64_t len = info.value.size();
     if (len <= 0) {
         CheckoutStatus(info.status, ret);
         if (*ret == 0) {
