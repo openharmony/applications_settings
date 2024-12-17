@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef NAPI_OPEN_NETWORK_SETTINGS_H
 #define NAPI_OPEN_NETWORK_SETTINGS_H
- 
+
 #include <map>
 #include "napi/native_api.h"
 #include "ability.h"
@@ -58,11 +58,11 @@ public:
     void OnReceive(const OHOS::AAFwk::WantParams &request);
     void OnError(int32_t code, const std::string &name, const std::string &message);
     void SetSessionId(int32_t sessionId);
- 
+
 private:
     int32_t sessionId_ = 0;
     std::shared_ptr<BaseContext> baseContext = nullptr;
- 
+
     void CloseModalUI();
 };
 
@@ -73,5 +73,5 @@ OHOS::Ace::UIContent* GetUIContent(std::shared_ptr<BaseContext> &asyncContext);
 napi_value opne_manager_settings(napi_env env, napi_callback_info info);
 }
 }
- 
+
 #endif
