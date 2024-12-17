@@ -16,6 +16,7 @@
 #ifndef NAPI_OPEN_NETWORK_SETTINGS_H
 #define NAPI_OPEN_NETWORK_SETTINGS_H
 
+#include <map>
 #include "napi/native_api.h"
 #include "ability.h"
 #include "ui_extension_context.h"
