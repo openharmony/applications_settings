@@ -12,23 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #include "napi_open_network_settings.h"
 #include "../napi_settings.h"
 #include "napi_base_context.h"
 #include "ui_content.h"
- 
+
 namespace OHOS {
 namespace Settings {
 const std::string UIEXTENSION_TYPE_KEY = "ability.want.params.uiExtensionType";
 const std::string CONTEXT_TYPE_KEY = "storeKit.ability.contextType";
- 
+
 const std::string UIEXTENSION_TYPE_VALUE = "sys/commonUI";
 const std::string SETTINGS_PACKAGE_NAME = "com.huawei.hmos.settings";
 const std::string SETTINGS_ABILITY_NAME = "OpenNetworkUIExtensionAbility";
 const std::string UI_ABILITY_CONTEXT_VALUE = "uiAbility";
 const std::string UI_EXTENSION_CONTEXT_VALUE = "uiExtension";
- 
+
 bool StartUiExtensionAbility(OHOS::AAFwk::Want &request, std::shared_ptr<BaseContext> &asyncContext)
 {
     SETTING_LOG_INFO("begin StartUiExtensionAbility");
@@ -36,12 +36,12 @@ bool StartUiExtensionAbility(OHOS::AAFwk::Want &request, std::shared_ptr<BaseCon
         SETTING_LOG_ERROR("asyncContext is nullptr");
         return false;
     }
- 
+
     if (asyncContext->abilityContext == nullptr && asyncContext->uiExtensionContext == nullptr) {
         SETTING_LOG_ERROR("abilityContext is nullptr");
         return false;
     }
- 
+
     auto uiContent = GetUIContent(asyncContext);
     if (uiContent == nullptr) {
         SETTING_LOG_ERROR("UIContent is nullptr");
@@ -56,7 +56,7 @@ bool StartUiExtensionAbility(OHOS::AAFwk::Want &request, std::shared_ptr<BaseCon
         std::bind(&ModalUICallback::OnError, callback, std::placeholders::_1, std::placeholders::_2,
             std::placeholders::_3),
     };
- 
+
     OHOS::Ace::ModalUIExtensionConfig config;
     config.isProhibitBack = false;
     int32_t sessionId = uiContent->CreateModalUIExtension(request, extensionCallbacks, config);
@@ -68,7 +68,7 @@ bool StartUiExtensionAbility(OHOS::AAFwk::Want &request, std::shared_ptr<BaseCon
     SETTING_LOG_INFO("end StartUiExtensionAbility");
     return true;
 }
- 
+
 OHOS::Ace::UIContent* GetUIContent(std::shared_ptr<BaseContext> &asyncContext)
 {
     OHOS::Ace::UIContent* uiContent = nullptr;
@@ -81,10 +81,10 @@ OHOS::Ace::UIContent* GetUIContent(std::shared_ptr<BaseContext> &asyncContext)
     } else {
         SETTING_LOG_INFO("get uiContext failed.");
     }
- 
+
     return uiContent;
 }
- 
+
 void ExecuteLoadProduct(std::shared_ptr<BaseContext> &baseContext, OHOS::AAFwk::Want &request)
 {
     SETTING_LOG_INFO("ExecuteLoadProduct called");
@@ -94,13 +94,13 @@ void ExecuteLoadProduct(std::shared_ptr<BaseContext> &baseContext, OHOS::AAFwk::
         baseContext->uiExtensionContext != nullptr ? UI_EXTENSION_CONTEXT_VALUE : UI_ABILITY_CONTEXT_VALUE);
     SETTING_LOG_INFO("ExecuteLoadProduct end");
 }
- 
+
 ModalUICallback::ModalUICallback(std::shared_ptr<BaseContext> baseContext)
 {
     this->baseContext = baseContext;
     SETTING_LOG_INFO("constructor ModalUICallback");
 }
- 
+
 void ModalUICallback::CloseModalUI()
 {
     SETTING_LOG_INFO("CloseModalUI");
@@ -111,34 +111,34 @@ void ModalUICallback::CloseModalUI()
     }
     uiContent->CloseModalUIExtension(this->sessionId_);
 }
- 
+
 void ModalUICallback::SetSessionId(int32_t sessionId)
 {
     this->sessionId_ = sessionId;
     SETTING_LOG_INFO("Set sessionId %{public}d", sessionId);
 }
- 
+
 void ModalUICallback::OnRelease(int32_t releaseCode)
 {
     SETTING_LOG_INFO("OnRelease");
     this->CloseModalUI();
 }
- 
+
 void ModalUICallback::OnResultForModal(int32_t resultCode, const OHOS::AAFwk::Want &result)
 {
     SETTING_LOG_INFO("ModalUICallback::OnResultForModal");
 }
- 
+
 void ModalUICallback::OnReceive(const OHOS::AAFwk::WantParams &request)
 {
     SETTING_LOG_INFO("ModalUICallback::OnReceive");
 }
- 
+
 void ModalUICallback::OnError(int32_t code, const std::string &name, const std::string &message)
 {
     SETTING_LOG_INFO("ModalUICallback::OnError %{public}s", message.c_str());
 }
- 
+
 bool ParseAbilityContext(napi_env env, const napi_value &obj,
     std::shared_ptr<OHOS::AbilityRuntime::AbilityContext> &abilityContext,
     std::shared_ptr<OHOS::AbilityRuntime::UIExtensionContext> &uiExtensionContext)
@@ -150,25 +150,25 @@ bool ParseAbilityContext(napi_env env, const napi_value &obj,
         SETTING_LOG_ERROR("it is not a stage mode");
         return false;
     }
- 
+
     auto context = OHOS::AbilityRuntime::GetStageModeContext(env, obj);
     if (context == nullptr) {
         SETTING_LOG_ERROR("get context failed");
         return false;
     }
- 
+
     abilityContext = OHOS::AbilityRuntime::Context::ConvertTo<OHOS::AbilityRuntime::AbilityContext>(context);
     if (abilityContext != nullptr) {
         return true;
     }
     SETTING_LOG_ERROR("get stage model ability context failed");
- 
+
     uiExtensionContext = OHOS::AbilityRuntime::Context::ConvertTo<OHOS::AbilityRuntime::UIExtensionContext>(context);
     if (uiExtensionContext == nullptr) {
         SETTING_LOG_ERROR("get uiExtensionContext failed");
         return false;
     }
- 
+
     return true;
 }
 
@@ -290,7 +290,7 @@ bool CheckParam(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, napi_callbac
     if (ret != napi_ok) {
         return false;
     }
-    
+
     if (argc == ARGS_ONE) {
         ret = napi_typeof(env, argv[PARAM0], &valueType);
         if (ret != napi_ok || valueType != napi_object) {
@@ -333,7 +333,7 @@ napi_value opne_manager_settings(napi_env env, napi_callback_info info)
         NAPI_ASSERT(env, isInvalid, "14800000 - Parameter error.");
         return wrap_void_to_js(env);
     }
-     
+
     auto loadProductContext = std::make_shared<BaseContext>();
     if (!ParseAbilityContext(env, argv[PARAM0], loadProductContext->abilityContext,
         loadProductContext->uiExtensionContext)) {
