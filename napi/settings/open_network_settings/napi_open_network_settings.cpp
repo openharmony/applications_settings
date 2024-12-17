@@ -176,7 +176,7 @@ napi_value CreateError(napi_env env, int code, std::string message)
 {
     napi_value error;
     napi_value tempCode;
-    napi_value tempMessage;;
+    napi_value tempMessage;
     napi_create_string_utf8(env, message.c_str(), NAPI_AUTO_LENGTH, &tempMessage);
     napi_create_uint32(env, code, &tempCode);
     napi_create_error(env, tempCode, tempMessage, &error);
@@ -285,8 +285,7 @@ bool CheckParam(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, napi_callbac
     size_t &argc, napi_value* argv)
 {
     napi_valuetype valueType;
-    napi_status ret;
-    ret = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+    napi_status ret = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     if (ret != napi_ok) {
         return false;
     }
