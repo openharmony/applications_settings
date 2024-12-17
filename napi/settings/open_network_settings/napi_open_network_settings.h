@@ -12,24 +12,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ 
 #ifndef NAPI_OPEN_NETWORK_SETTINGS_H
 #define NAPI_OPEN_NETWORK_SETTINGS_H
-
+ 
 #include <map>
 #include "napi/native_api.h"
 #include "ability.h"
 #include "ui_extension_context.h"
 #include "../napi_settings_log.h"
 
+const int SETTINGS_PARAM_ERROR_CODE = 14800000;
+const int SETTINGS_ORIGINAL_SERVICE_ERROR_CODE = 1480000;
 
-namespace OHOS {
-namespace Settings {
+enum SettingsCode {
+    SETTINGS_SUCCESS = 0,
+    SETTINGS_PARAM_ERROR,
+    SETTINGS_ORIGINAL_SERVICE_ERROR
+};
 
 struct BaseContext {
     std::shared_ptr<OHOS::AbilityRuntime::AbilityContext> abilityContext = nullptr;
     std::shared_ptr<OHOS::AbilityRuntime::UIExtensionContext> uiExtensionContext = nullptr;
 };
+
+struct SettingsError {
+    int errorCode;
+    std::string message;
+};
+const SettingsError settingsError1 = {SETTINGS_PARAM_ERROR_CODE, "Parameter error."};
+const SettingsError settingsError2 = {SETTINGS_ORIGINAL_SERVICE_ERROR, "Original service error."};
+const std::map<SettingsCode, SettingsError> g_errorMap = {
+    {SETTINGS_PARAM_ERROR, settingsError1},
+    {SETTINGS_ORIGINAL_SERVICE_ERROR, settingsError2}
+};
+
+namespace OHOS {
+namespace Settings {
 
 class ModalUICallback {
 public:
@@ -39,11 +58,11 @@ public:
     void OnReceive(const OHOS::AAFwk::WantParams &request);
     void OnError(int32_t code, const std::string &name, const std::string &message);
     void SetSessionId(int32_t sessionId);
-
+ 
 private:
     int32_t sessionId_ = 0;
     std::shared_ptr<BaseContext> baseContext = nullptr;
-
+ 
     void CloseModalUI();
 };
 
@@ -54,5 +73,5 @@ OHOS::Ace::UIContent* GetUIContent(std::shared_ptr<BaseContext> &asyncContext);
 napi_value opne_manager_settings(napi_env env, napi_callback_info info);
 }
 }
-
+ 
 #endif
