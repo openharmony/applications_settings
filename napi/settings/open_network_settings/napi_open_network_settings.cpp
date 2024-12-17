@@ -68,7 +68,7 @@ bool StartUiExtensionAbility(OHOS::AAFwk::Want &request, std::shared_ptr<BaseCon
     SETTING_LOG_INFO("end StartUiExtensionAbility");
     return true;
 }
-
+ssss
 OHOS::Ace::UIContent* GetUIContent(std::shared_ptr<BaseContext> &asyncContext)
 {
     OHOS::Ace::UIContent* uiContent = nullptr;
