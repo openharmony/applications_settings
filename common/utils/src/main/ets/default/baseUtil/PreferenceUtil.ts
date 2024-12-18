@@ -17,8 +17,6 @@ import ConfigData from './ConfigData';
 import LogUtil from './LogUtil';
 import { GlobalContext } from './GlobalContext';
 
-//import Storage from '@ohos.data.storage';
-
 this.storage = await dataStorage.getPreferences(
   GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext), ConfigData.PREFERENCES_PATH);
 
@@ -50,4 +48,4 @@ export class PreferenceUtil {
 
 let preferenceUtil = new PreferenceUtil();
 
-export default preferenceUtil as PreferenceUtil
+export default preferenceUtil as PreferenceUtil;
