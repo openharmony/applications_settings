@@ -23,7 +23,7 @@
 #include "../napi_settings_log.h"
 
 const int SETTINGS_PARAM_ERROR_CODE = 14800000;
-const int SETTINGS_ORIGINAL_SERVICE_ERROR = 1480010;
+const int SETTINGS_ORIGINAL_SERVICE_CODE = 1480010;
 
 enum SettingsCode {
     SETTINGS_SUCCESS = 0,
@@ -43,7 +43,7 @@ struct SettingsError {
 
 const SettingsError SETTINGS_ERROR_PARAM = {SETTINGS_PARAM_ERROR_CODE, "Parameter error."};
 const SettingsError SETTINGS_ERROR_ORIGINAL_SERVICE = {SETTINGS_ORIGINAL_SERVICE_CODE, "Original service error."};
-const std::map<SettingsCode, SettingsError> g_errorMap = {
+const std::map<SettingsCode, SettingsError> ERROR_MAP = {
     {SETTINGS_PARAM_ERROR, SETTINGS_ERROR_PARAM},
     {SETTINGS_ORIGINAL_SERVICE_ERROR, SETTINGS_ERROR_ORIGINAL_SERVICE}
 };
