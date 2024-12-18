@@ -302,7 +302,7 @@ bool CheckParam(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, napi_callbac
             return false;
         }
         ret = napi_typeof(env, argv[PARAM1], &valueType);
-        if (ret != napi_ok || valueType != napi_object) {
+        if (ret != napi_ok || valueType != napi_function) {
             return false;
         }
         ret = napi_create_reference(env, argv[PARAM1], 1, &asyncCallbackInfo->callbackRef);
