@@ -16,19 +16,40 @@
 #ifndef NAPI_OPEN_NETWORK_SETTINGS_H
 #define NAPI_OPEN_NETWORK_SETTINGS_H
 
+#include <map>
 #include "napi/native_api.h"
 #include "ability.h"
 #include "ui_extension_context.h"
 #include "../napi_settings_log.h"
 
+const int SETTINGS_PARAM_ERROR_CODE = 14800000;
+const int SETTINGS_ORIGINAL_SERVICE_CODE = 1480010;
 
-namespace OHOS {
-namespace Settings {
+enum SettingsCode {
+    SETTINGS_SUCCESS = 0,
+    SETTINGS_PARAM_ERROR,
+    SETTINGS_ORIGINAL_SERVICE_ERROR
+};
 
 struct BaseContext {
     std::shared_ptr<OHOS::AbilityRuntime::AbilityContext> abilityContext = nullptr;
     std::shared_ptr<OHOS::AbilityRuntime::UIExtensionContext> uiExtensionContext = nullptr;
 };
+
+struct SettingsError {
+    int errorCode;
+    std::string message;
+};
+
+const SettingsError SETTINGS_ERROR_PARAM = {SETTINGS_PARAM_ERROR_CODE, "Parameter error."};
+const SettingsError SETTINGS_ERROR_ORIGINAL_SERVICE = {SETTINGS_ORIGINAL_SERVICE_CODE, "Original service error."};
+const std::map<SettingsCode, SettingsError> g_errorMap = {
+    {SETTINGS_PARAM_ERROR, SETTINGS_ERROR_PARAM},
+    {SETTINGS_ORIGINAL_SERVICE_ERROR, SETTINGS_ERROR_ORIGINAL_SERVICE}
+};
+
+namespace OHOS {
+namespace Settings {
 
 class ModalUICallback {
 public:
