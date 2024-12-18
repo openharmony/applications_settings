@@ -30,7 +30,7 @@ struct SettingsInfo {
     std::string value;
     std::string uri;
     std::string tableName;
-    int32_t status;
+    int32_t status = 0;
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
 };
 } // namespace CJSettings
