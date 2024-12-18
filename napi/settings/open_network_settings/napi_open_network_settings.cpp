@@ -185,7 +185,7 @@ napi_value CreateError(napi_env env, int code, std::string message)
 
 SettingsError ReadErrorMessage(int code)
 {
-    for (auto it = ERROR_MAP.begin(); it != ERROR_MAP.end(); it++) {
+    for (auto it = g_errorMap.begin(); it != g_errorMap.end(); it++) {
         if (it->first == code) {
             return it->second;
         }
