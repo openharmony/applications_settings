@@ -97,7 +97,7 @@ export struct PairDialogComponent {
   pairDialogController?: PairDialogController;
   controller?: CustomDialogController;
   private isOnClick: boolean = false;
-  @State dialogWidth: number | string = deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? 400 : 400
+  @State dialogWidth: number | string = 400
   @State paddingValue: ResourceStr | number = deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? $r('sys.float.padding_level8') : 0
 
   build() {
