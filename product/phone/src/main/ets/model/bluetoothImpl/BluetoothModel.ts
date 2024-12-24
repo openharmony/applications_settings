@@ -541,15 +541,15 @@ export class BluetoothModel extends BaseModel {
         } else if (state === constant.ProfileConnectionState.STATE_CONNECTING) {
           profileState.isOn = true;
           profileState.isEnable = false;
-          profileState.description = $r('app.string.bluetooth_state_connecting');
+          profileState.description = $r('app.string.bt_state_connecting');
         } else if (state === constant.ProfileConnectionState.STATE_CONNECTED) {
           profileState.isOn = true;
           profileState.isEnable = true;
-          profileState.description = $r('app.string.bluetooth_state_connected');
+          profileState.description = $r('app.string.bt_state_connected');
         } else if (state === constant.ProfileConnectionState.STATE_DISCONNECTING) {
           profileState.isOn = true;
           profileState.isEnable = false;
-          profileState.description = $r('app.string.bluetooth_state_connected');
+          profileState.description = $r('app.string.bt_state_connected');
         }
       } catch (BusinessError) {
         LogUtil.error('Bluetooth getDeviceState failed , BusinessError is ' + JSON.stringify(BusinessError));
@@ -580,7 +580,7 @@ export class BluetoothModel extends BaseModel {
             data: {
               'State': true,
               'Enable': false,
-              'Description': $r('app.string.bluetooth_state_connecting')
+              'Description': $r('app.string.bt_state_connecting')
             }
           }
           emitter.emit(innerEvent, eventData)
@@ -629,7 +629,7 @@ export class BluetoothModel extends BaseModel {
               data: {
                 'State': true,
                 'Enable': true,
-                'Description': $r('app.string.bluetooth_state_connected')
+                'Description': $r('app.string.bt_state_connected')
               }
             }
             emitter.emit(innerEvent, eventData)

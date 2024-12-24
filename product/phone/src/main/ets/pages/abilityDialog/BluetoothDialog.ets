@@ -17,7 +17,7 @@ import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSessi
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import access from '@ohos.bluetooth.access';
 
-const TAG = 'BluetoothDialog :';
+const TAG = 'BluetoothDialog : 1';
 
 @Entry
 @Component

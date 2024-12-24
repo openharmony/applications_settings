@@ -1,0 +1,112 @@
+{
+  "string": [
+    {
+      "name": "bluetooth_state",
+      "value": "目前藍牙已停用"
+    },
+    {
+      "name": "bluetooth_app",
+      "value": "%s想要啟用藍牙"
+    },
+    {
+      "name": "refuse",
+      "value": "拒絕"
+    },
+    {
+      "name": "open",
+      "value": "允許"
+    },
+    {
+      "name": "media_audio",
+      "value": "媒體音訊"
+    },
+    {
+      "name": "call_audio",
+      "value": "通話音訊"
+    },
+    {
+      "name": "input_device",
+      "value": "輸入裝置"
+    },
+    {
+      "name": "bluetooth_sharing_and_call_history",
+      "value": "共享聯絡人和通話記錄"
+    },
+    {
+      "name": "bluetooth_read_info_auth",
+      "value": "資訊授權"
+    },
+    {
+      "name": "bt_state_connecting",
+      "value": "連線中…"
+    },
+    {
+      "name": "bt_state_connected",
+      "value": "已連線  "
+    },
+    {
+      "name": "bluetooth_name_and_numbers_only",
+      "value": "僅姓名和號碼"
+    },
+    {
+      "name": "bluetooth_fulls_details",
+      "value": "全部詳細資料"
+    },
+    {
+      "name": "bluetooth_not_share",
+      "value": "不共享"
+    },
+    {
+      "name": "cancelPairing",
+      "value": "取消配對"
+    },
+    {
+      "name": "bluetooth_pin_required_code_title",
+      "value": "配對碼："
+    },
+    {
+      "name": "bluetooth_pin_required_please_enter_message",
+      "value": "請輸入配對碼，然後按 Enter 鍵。"
+    },
+    {
+      "name": "bluetooth_usually_message",
+      "value": "通常為 0000 或 1234"
+    },
+    {
+      "name": "bluetooth_PinConsist_message",
+      "value": "PIN 碼由字母或符號組成"
+    },
+    {
+      "name": "bluetooth_pinCode_required_message",
+      "value": "您可能也需要在另一台裝置上輸入此 PIN 碼。"
+    },
+    {
+      "name": "access_permission_full_stop",
+      "value": "配對之後，會授予所配對裝置存取聯絡人和通話記錄的權限。"
+    },
+    {
+      "name": "access_permission_stop",
+      "value": "配對之後，向所配對的裝置授予聯絡人的存取權限。"
+    },
+    {
+      "name": "bt_pair_required_message",
+      "value": "「%1$s」要與您配對。請確認此配對碼已直接顯示在「%2$s」上，而不是手動輸入。"
+    },
+    {
+      "name": "bluetooth_pairing_request",
+      "value": "蓝牙配对请求"
+    },
+    {
+      "name": "bluetooth_pairing_media_device_hit",
+      "value": "要與以下裝置配對："
+    },
+    {
+      "name": "pair_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "bluetooth_pair_button",
+      "value": "配對"
+    }
+  ]
+}
