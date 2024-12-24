@@ -1787,6 +1787,14 @@
       "value": "Input device"
     },
     {
+      "name": "bt_state_connecting",
+      "value": "Connecting…"
+    },
+    {
+      "name": "bt_state_connected",
+      "value": "Connected"
+    },
+    {
       "name": "bluetooth_sharing_and_call_history",
       "value": "Share contacts & call history"
     },
@@ -1837,6 +1845,10 @@
     {
       "name": "bt_pair_required_message",
       "value": "%s would like to pair with you. Confirm that thia code is also shown on %s before pairing."
+    },
+    {
+      "name": "pair_cancel",
+      "value": "Cancel"
     }
   ]
 }

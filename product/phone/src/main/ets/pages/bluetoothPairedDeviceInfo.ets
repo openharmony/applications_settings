@@ -311,14 +311,14 @@ struct BluetoothPairedDeviceInfo {
                 }
               }
             }
-            .borderRadius($r('app.float.wh_value_28'))
-            .margin({
-              top: $r("app.float.distance_8"),
-              left: $r("app.float.distance_12"),
-              right: $r("app.float.distance_12")
+            .margin({ top: $r("app.float.distance_8") })
+            .borderRadius($r('app.float.wh_value_20'))
+            .padding({
+              left: $r("app.float.distance_4"),
+              right: $r("app.float.distance_4"),
+              top: $r("app.float.distance_4"),
+              bottom: $r("app.float.distance_4")
             })
-            .borderRadius($r('app.float.wh_value_28'))
-            .padding($r("app.float.distance_4"))
             .backgroundColor($r("app.color.white_bg_color"))
             .divider({
               strokeWidth: $r('app.float.divider_wh'),
@@ -336,7 +336,7 @@ struct BluetoothPairedDeviceInfo {
               .fontColor($r("app.color.font_color_007DFF"))
           }
           .backgroundColor($r('sys.color.ohos_id_color_button_normal'))
-          .width($r("app.float.component_button_width"))
+          .width(ConfigData.WH_100_100)
           .height($r("app.float.wh_value_40"))
           .align(Alignment.Center)
           .onClick(() => {
@@ -347,7 +347,12 @@ struct BluetoothPairedDeviceInfo {
               }
             }
           })
-          .margin({ bottom: $r('app.float.distance_24'), top: $r("app.float.distance_8") });
+          .margin({
+            bottom: $r('app.float.distance_24'),
+            top: $r("app.float.distance_8"),
+            left: $r("app.float.distance_16"),
+            right: $r("app.float.distance_16")
+          })
         }
         .height(ConfigData.WH_100_100)
         .useSizeType({
@@ -372,6 +377,7 @@ struct BluetoothPairedDeviceInfo {
         symbolEndIcon: this.shareType === ShareType.SHARE_NAME_AND_PHONE_NUMBER ? this.selectIconModifier : null
       })
         .height(48)
+        .borderRadius($r('app.float.wh_value_16'))
         .selected(this.shareType === ShareType.SHARE_NAME_AND_PHONE_NUMBER)
         .onChange((selected: boolean) => {
           if (selected) {
@@ -384,6 +390,7 @@ struct BluetoothPairedDeviceInfo {
         symbolEndIcon: this.shareType === ShareType.SHARE_ALL ? this.selectIconModifier : null
       })
         .height(48)
+        .borderRadius($r('app.float.wh_value_16'))
         .selected(this.shareType === ShareType.SHARE_ALL)
         .onChange((selected: boolean) => {
           if (selected) {
@@ -396,6 +403,7 @@ struct BluetoothPairedDeviceInfo {
         symbolEndIcon: this.shareType === ShareType.SHARE_NOTHING ? this.selectIconModifier : null
       })
         .height(48)
+        .borderRadius($r('app.float.wh_value_16'))
         .selected(this.shareType === ShareType.SHARE_NOTHING)
         .onChange((selected: boolean) => {
           if (selected) {
