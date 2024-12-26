@@ -117,18 +117,18 @@ struct BluetoothSwitchDialog {
             .fontWeight(FontWeight.Medium)
             .fontSize($r('sys.float.Body_L'))
             .fontColor($r('sys.color.font_emphasize'))
-            .onClick(() => {
-              let state = access.getState();
-              if (state == 2) {
-                this.onDialogClose();
-              } else {
-                LogUtil.info(`${TAG} enableBluetooth open 1`);
-                access.enableBluetooth();
-                LogUtil.info(`${TAG} enableBluetooth open 2`);
-                this.onDialogClose();
-              }
-            })
         }
+        .onClick(() => {
+          let state = access.getState();
+          if (state == 2) {
+            this.onDialogClose();
+          } else {
+            LogUtil.info(`${TAG} enableBluetooth before open `);
+            access.enableBluetooth();
+            LogUtil.info(`${TAG} enableBluetooth after open `);
+            this.onDialogClose();
+          }
+        })
         .layoutWeight(1)
         .backgroundColor(Color.Transparent)
         .width(140)
