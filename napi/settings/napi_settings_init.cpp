@@ -22,145 +22,145 @@ namespace Settings {
 class TableName
 {
 public:
-    static const std::string GLOBAL = 'global';
-    static const std::string SYSTEM = 'system';
-    static const std::string SECURE = 'secure';
+    static const std::string GLOBAL = "global";
+    static const std::string SYSTEM = "system";
+    static const std::string SECURE = "secure";
 };
 
 class DomainName
 {
 public:
-    static const std::string DEVICE_SHARED = 'global';
-    static const std::string USER_PROPERTY = 'system';
-    static const std::string USER_SECURITY = 'secure';
+    static const std::string DEVICE_SHARED = "global";
+    static const std::string USER_PROPERTY = "system";
+    static const std::string USER_SECURITY = "secure";
 };
 
 class Date
 {
 public:
-    static const std::string DATE_FORMAT = 'settings.date.date_format';
-    static const std::string TIME_FORMAT = 'settings.date.time_format';
-    static const std::string AUTO_GAIN_TIME = 'settings.date.auto_gain_time';
-    static const std::string AUTO_GAIN_TIME_ZONE = 'settings.date.auto_gain_time_zone';
+    static const std::string DATE_FORMAT = "settings.date.date_format";
+    static const std::string TIME_FORMAT = "settings.date.time_format";
+    static const std::string AUTO_GAIN_TIME = "settings.date.auto_gain_time";
+    static const std::string AUTO_GAIN_TIME_ZONE = "settings.date.auto_gain_time_zone";
 };
 
 class Display
 {
 public:
-    static const std::string FONT_SCALE = 'settings.display.font_scale';
-    static const std::string SCREEN_BRIGHTNESS_STATUS = 'settings.display.screen_brightness_status';
-    static const std::string AUTO_SCREEN_BRIGHTNESS = 'settings.display.auto_screen_brightness';
+    static const std::string FONT_SCALE = "settings.display.font_scale";
+    static const std::string SCREEN_BRIGHTNESS_STATUS = "settings.display.screen_brightness_status";
+    static const std::string AUTO_SCREEN_BRIGHTNESS = "settings.display.auto_screen_brightness";
     static const int AUTO_SCREEN_BRIGHTNESS_MODE = 1;
     static const int MANUAL_SCREEN_BRIGHTNESS_MODE = 0;
-    static const std::string SCREEN_OFF_TIMEOUT = 'settings.display.screen_off_timeout';
-    static const std::string DEFAULT_SCREEN_ROTATION = 'settings.display.default_screen_rotation';
-    static const std::string ANIMATOR_DURATION_SCALE = 'settings.display.animator_duration_scale';
-    static const std::string TRANSITION_ANIMATION_SCALE = 'settings.display.transition_animation_scale';
-    static const std::string WINDOW_ANIMATION_SCALE = 'settings.display.window_animation_scale';
-    static const std::string DISPLAY_INVERSION_STATUS = 'settings.display.display_inversion_status';
+    static const std::string SCREEN_OFF_TIMEOUT = "settings.display.screen_off_timeout";
+    static const std::string DEFAULT_SCREEN_ROTATION = "settings.display.default_screen_rotation";
+    static const std::string ANIMATOR_DURATION_SCALE = "settings.display.animator_duration_scale";
+    static const std::string TRANSITION_ANIMATION_SCALE = "settings.display.transition_animation_scale";
+    static const std::string WINDOW_ANIMATION_SCALE = "settings.display.window_animation_scale";
+    static const std::string DISPLAY_INVERSION_STATUS = "settings.display.display_inversion_status";
 };
 
 class General
 {
 public:
-    static const std::string SETUP_WIZARD_FINISHED = 'settings.general.setup_wizard_finished';
-    static const std::string END_BUTTON_ACTION = 'settings.general.end_button_action';
-    static const std::string AIRPLANE_MODE_STATUS = 'settings.general.airplane_mode_status';
-    static const std::string ACCELEROMETER_ROTATION_STATUS = 'settings.general.accelerometer_rotation_status';
-    static const std::string DEVICE_PROVISION_STATUS = 'settings.general.device_provision_status';
-    static const std::string HDC_STATUS = 'settings.general.hdc_status';
-    static const std::string BOOT_COUNTING = 'settings.general.boot_counting';
-    static const std::string CONTACT_METADATA_SYNC_STATUS = 'settings.general.contact_metadata_sync_status';
-    static const std::string DEVELOPMENT_SETTINGS_STATUS = 'settings.general.development_settings_status';
-    static const std::string DEVICE_NAME = 'settings.general.device_name';
-    static const std::string USB_STORAGE_STATUS = 'settings.general.usb_storage_status';
-    static const std::string DEBUGGER_WAITING = 'settings.general.debugger_waiting';
-    static const std::string DEBUG_APP_PACKAGE = 'settings.general.debug_app_package';
-    static const std::string ACCESSIBILITY_STATUS = 'settings.general.accessibility_status';
-    static const std::string ACTIVATED_ACCESSIBILITY_SERVICES = 'settings.general.activated_accessibility_services';
-    static const std::string GEOLOCATION_ORIGINS_ALLOWED = 'settings.general.geolocation_origins_allowed';
-    static const std::string SKIP_USE_HINTS = 'settings.general.skip_use_hints';
-    static const std::string TOUCH_EXPLORATION_STATUS = 'settings.general.touch_exploration_status';
+    static const std::string SETUP_WIZARD_FINISHED = "settings.general.setup_wizard_finished";
+    static const std::string END_BUTTON_ACTION = "settings.general.end_button_action";
+    static const std::string AIRPLANE_MODE_STATUS = "settings.general.airplane_mode_status";
+    static const std::string ACCELEROMETER_ROTATION_STATUS = "settings.general.accelerometer_rotation_status";
+    static const std::string DEVICE_PROVISION_STATUS = "settings.general.device_provision_status";
+    static const std::string HDC_STATUS = "settings.general.hdc_status";
+    static const std::string BOOT_COUNTING = "settings.general.boot_counting";
+    static const std::string CONTACT_METADATA_SYNC_STATUS = "settings.general.contact_metadata_sync_status";
+    static const std::string DEVELOPMENT_SETTINGS_STATUS = "settings.general.development_settings_status";
+    static const std::string DEVICE_NAME = "settings.general.device_name";
+    static const std::string USB_STORAGE_STATUS = "settings.general.usb_storage_status";
+    static const std::string DEBUGGER_WAITING = "settings.general.debugger_waiting";
+    static const std::string DEBUG_APP_PACKAGE = "settings.general.debug_app_package";
+    static const std::string ACCESSIBILITY_STATUS = "settings.general.accessibility_status";
+    static const std::string ACTIVATED_ACCESSIBILITY_SERVICES = "settings.general.activated_accessibility_services";
+    static const std::string GEOLOCATION_ORIGINS_ALLOWED = "settings.general.geolocation_origins_allowed";
+    static const std::string SKIP_USE_HINTS = "settings.general.skip_use_hints";
+    static const std::string TOUCH_EXPLORATION_STATUS = "settings.general.touch_exploration_status";
 };
 
 class Input
 {
 public:
-    static const std::string DEFAULT_INPUT_METHOD = 'settings.input.default_input_method';
-    static const std::string ACTIVATED_INPUT_METHOD_SUB_MODE = 'settings.input.activated_input_method_submode';
-    static const std::string ACTIVATED_INPUT_METHODS = 'settings.input.activated_input_methods';
-    static const std::string SELECTOR_VISIBILITY_FOR_INPUT_METHOD = 'settings.input.selector_visibility_for_input_method';
-    static const std::string AUTO_CAPS_TEXT_INPUT = 'settings.input.auto_caps_text_input';
-    static const std::string AUTO_PUNCTUATE_TEXT_INPUT = 'settings.input.auto_punctuate_text_input';
-    static const std::string AUTO_REPLACE_TEXT_INPUT = 'settings.input.auto_replace_text_input';
-    static const std::string SHOW_PASSWORD_TEXT_INPUT = 'settings.input.show_password_text_input';
+    static const std::string DEFAULT_INPUT_METHOD = "settings.input.default_input_method";
+    static const std::string ACTIVATED_INPUT_METHOD_SUB_MODE = "settings.input.activated_input_method_submode";
+    static const std::string ACTIVATED_INPUT_METHODS = "settings.input.activated_input_methods";
+    static const std::string SELECTOR_VISIBILITY_FOR_INPUT_METHOD = "settings.input.selector_visibility_for_input_method";
+    static const std::string AUTO_CAPS_TEXT_INPUT = "settings.input.auto_caps_text_input";
+    static const std::string AUTO_PUNCTUATE_TEXT_INPUT = "settings.input.auto_punctuate_text_input";
+    static const std::string AUTO_REPLACE_TEXT_INPUT = "settings.input.auto_replace_text_input";
+    static const std::string SHOW_PASSWORD_TEXT_INPUT = "settings.input.show_password_text_input";
 };
 
 class Network
 {
 public:
-    static const std::string DATA_ROAMING_STATUS = 'settings.network.data_roaming_status';
-    static const std::string HTTP_PROXY_CFG = 'settings.network.http_proxy_cfg';
-    static const std::string NETWORK_PREFERENCE_USAGE = 'settings.network.network_preference_usage';
+    static const std::string DATA_ROAMING_STATUS = "settings.network.data_roaming_status";
+    static const std::string HTTP_PROXY_CFG = "settings.network.http_proxy_cfg";
+    static const std::string NETWORK_PREFERENCE_USAGE = "settings.network.network_preference_usage";
 };
 
 class Phone
 {
 public:
-    static const std::string RTT_CALLING_STATUS = 'settings.phone.rtt_calling_status';
+    static const std::string RTT_CALLING_STATUS = "settings.phone.rtt_calling_status";
 };
 
 class Sound
 {
 public:
-    static const std::string VIBRATE_WHILE_RINGING = 'settings.sound.vibrate_while_ringing';
-    static const std::string DEFAULT_ALARM_ALERT = 'settings.sound.default_alarm_alert';
-    static const std::string DTMF_TONE_TYPE_WHILE_DIALING = 'settings.sound.dtmf_tone_type_while_dialing';
-    static const std::string DTMF_TONE_WHILE_DIALING = 'settings.sound.dtmf_tone_while_dialing';
-    static const std::string HAPTIC_FEEDBACK_STATUS = 'settings.sound.haptic_feedback_status';
-    static const std::string AFFECTED_MODE_RINGER_STREAMS = 'settings.sound.affected_mode_ringer_streams';
-    static const std::string AFFECTED_MUTE_STREAMS = 'settings.sound.affected_mute_streams';
-    static const std::string DEFAULT_NOTIFICATION_SOUND = 'settings.sound.default_notification_sound';
-    static const std::string DEFAULT_RINGTONE = 'settings.sound.default_ringtone';
-    static const std::string SOUND_EFFECTS_STATUS = 'settings.sound.sound_effects_status';
-    static const std::string VIBRATE_STATUS = 'settings.sound.vibrate_status';
+    static const std::string VIBRATE_WHILE_RINGING = "settings.sound.vibrate_while_ringing";
+    static const std::string DEFAULT_ALARM_ALERT = "settings.sound.default_alarm_alert";
+    static const std::string DTMF_TONE_TYPE_WHILE_DIALING = "settings.sound.dtmf_tone_type_while_dialing";
+    static const std::string DTMF_TONE_WHILE_DIALING = "settings.sound.dtmf_tone_while_dialing";
+    static const std::string HAPTIC_FEEDBACK_STATUS = "settings.sound.haptic_feedback_status";
+    static const std::string AFFECTED_MODE_RINGER_STREAMS = "settings.sound.affected_mode_ringer_streams";
+    static const std::string AFFECTED_MUTE_STREAMS = "settings.sound.affected_mute_streams";
+    static const std::string DEFAULT_NOTIFICATION_SOUND = "settings.sound.default_notification_sound";
+    static const std::string DEFAULT_RINGTONE = "settings.sound.default_ringtone";
+    static const std::string SOUND_EFFECTS_STATUS = "settings.sound.sound_effects_status";
+    static const std::string VIBRATE_STATUS = "settings.sound.vibrate_status";
     // temp audio key, it will be modify in the feature
-    static const std::string AUDIO_RINGTONE = '';
-    static const std::string AUDIO_MEDIA = '';
-    static const std::string AUDIO_VOICECALL = '';
+    static const std::string AUDIO_RINGTONE = "";
+    static const std::string AUDIO_MEDIA = "";
+    static const std::string AUDIO_VOICECALL = "";
 };
 
 class TTS
 {
 public:
-    static const std::string DEFAULT_TTS_PITCH = 'settings.tts.default_tts_pitch';
-    static const std::string DEFAULT_TTS_RATE = 'settings.tts.default_tts_rate';
-    static const std::string DEFAULT_TTS_SYNTH = 'settings.tts.default_tts_synth';
-    static const std::string ENABLED_TTS_PLUGINS = 'settings.tts.enabled_tts_plugins';
+    static const std::string DEFAULT_TTS_PITCH = "settings.tts.default_tts_pitch";
+    static const std::string DEFAULT_TTS_RATE = "settings.tts.default_tts_rate";
+    static const std::string DEFAULT_TTS_SYNTH = "settings.tts.default_tts_synth";
+    static const std::string ENABLED_TTS_PLUGINS = "settings.tts.enabled_tts_plugins";
 };
 
 class Wireless
 {
 public:
-    static const std::string BLUETOOTH_RADIO = 'settings.wireless.bluetooth_radio';
-    static const std::string CELL_RADIO = 'settings.wireless.cell_radio';
-    static const std::string NFC_RADIO = 'settings.wireless.nfc_radio';
-    static const std::string AIRPLANE_MODE_RADIOS = 'settings.wireless.airplane_mode_radios';
-    static const std::string BLUETOOTH_STATUS = 'settings.wireless.bluetooth_status';
-    static const std::string BLUETOOTH_DISCOVER_ABILITY_STATUS = 'settings.wireless.bluetooth_discoverability_status';
-    static const std::string BLUETOOTH_DISCOVER_TIMEOUT = 'settings.wireless.bluetooth_discover_timeout';
-    static const std::string WIFI_DHCP_MAX_RETRY_COUNT = 'settings.wireless.wifi_dhcp_max_retry_count';
-    static const std::string WIFI_TO_MOBILE_DATA_AWAKE_TIMEOUT = 'settings.wireless.wifi_to_mobile_data_awake_timeout';
-    static const std::string WIFI_STATUS = 'settings.wireless.wifi_status';
-    static const std::string WIFI_WATCHDOG_STATUS = 'settings.wireless.wifi_watchdog_status';
-    static const std::string WIFI_RADIO = 'settings.wireless.wifi_radio';
-    static const std::string OWNER_LOCKDOWN_WIFI_CFG = 'settings.wireless.owner_lockdown_wifi_cfg';
+    static const std::string BLUETOOTH_RADIO = "settings.wireless.bluetooth_radio";
+    static const std::string CELL_RADIO = "settings.wireless.cell_radio";
+    static const std::string NFC_RADIO = "settings.wireless.nfc_radio"
+    static const std::string AIRPLANE_MODE_RADIOS = "settings.wireless.airplane_mode_radios";
+    static const std::string BLUETOOTH_STATUS = "settings.wireless.bluetooth_status";
+    static const std::string BLUETOOTH_DISCOVER_ABILITY_STATUS = "settings.wireless.bluetooth_discoverability_status";
+    static const std::string BLUETOOTH_DISCOVER_TIMEOUT = "settings.wireless.bluetooth_discover_timeout";
+    static const std::string WIFI_DHCP_MAX_RETRY_COUNT = "settings.wireless.wifi_dhcp_max_retry_count";
+    static const std::string WIFI_TO_MOBILE_DATA_AWAKE_TIMEOUT = "settings.wireless.wifi_to_mobile_data_awake_timeout";
+    static const std::string WIFI_STATUS = "settings.wireless.wifi_status";
+    static const std::string WIFI_WATCHDOG_STATUS = "settings.wireless.wifi_watchdog_status";
+    static const std::string WIFI_RADIO = "settings.wireless.wifi_radio";
+    static const std::string OWNER_LOCKDOWN_WIFI_CFG = "settings.wireless.owner_lockdown_wifi_cfg";
 };
 
 class Power
 {
 public:
-    static const std::string SUSPEND_SOURCES_CFG = 'settings.power.suspend_sources';
+    static const std::string SUSPEND_SOURCES_CFG = "settings.power.suspend_sources";
 };
 
 const std::string TableName::GLOBAL = "global";
