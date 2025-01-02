@@ -94,7 +94,12 @@
       },
       {
         "name": "ohos.permission.DISTRIBUTED_DATASYNC",
-        "reason": "$string:DISTRIBUTED_DATASYNC"
+        "reason": "$string:DISTRIBUTED_DATASYNC",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ]
+        }
       },
       {
         "name": "ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION",
@@ -182,7 +187,12 @@
       },
       {
         "name": "ohos.permission.LOCATION",
-        "reason": "$string:LOCATION"
+        "reason": "$string:LOCATION",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ]
+        }
       },
       {
         "name": "ohos.permission.MANAGE_BLUETOOTH",
@@ -222,7 +232,12 @@
       },
       {
         "name": "ohos.permission.GET_INSTALLED_BUNDLE_LIST",
-        "reason": "$string:GET_INSTALLED_BUNDLE_LIST"
+        "reason": "$string:GET_INSTALLED_BUNDLE_LIST",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ]
+        }
       },
       {
         "name": "ohos.permission.WRITE_ACCESSIBILITY_CONFIG",
