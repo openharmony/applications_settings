@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import { Context } from '@kit.AbilityKit';
 import router from '@ohos.router';
 import config from '@ohos.accessibility.config';
 import bundleMonitor from '@ohos.bundle.bundleMonitor';
