@@ -47,7 +47,7 @@ export async function registerObserver() {
     AppStorage.SetOrCreate('ringerModeNormal', mode === Audio.AudioRingMode.RINGER_MODE_NORMAL);
   })
 
-  audioManager.on('volumeChange', (data) => {
+  Audio?.getAudioManager()?.getVolumeManager()?.on('volumeChange', (data) => {
     if (data.volumeType === Audio.AudioVolumeType.RINGTONE) {
       AppStorage.SetOrCreate('volume_ringtone', data.volume);
     } else if (data.volumeType === Audio.AudioVolumeType.VOICE_CALL) {
@@ -154,7 +154,7 @@ export class RingerModel extends BaseModel {
    */
   @Log
   public async setRingerMode() {
-    let getaudioVolumeGroupManager = await audioVolumeGroupManager();
+    let getaudioVolumeGroupManager = Audio.getAudioManager();
     getaudioVolumeGroupManager.setRingerMode(this.modeTag, (err, data) => {
       LogUtil.info(`${this.TAG} setRingerMode.`);
       LogUtil.info(`${this.TAG} setRingerMode sucess.`);
