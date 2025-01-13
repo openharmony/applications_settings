@@ -290,7 +290,7 @@ struct PasswordInput {
 
                 if (event?.type === TouchType.Up) {
                   this.isTouchedRight = false;
-                  this.isFocused = false;
+                  this.isFocused = true;
                 }
               })
               .onClick(this.okOnClickHandler)
