@@ -189,7 +189,7 @@ struct WifiPsd {
             }
             .height(ConfigData.WH_100_100)
             .padding(this.isFocused === false ? { bottom: $r("app.float.wh_padding_136") } : {
-              top: $r("app.float.wh_padding_212")
+              top: "14%"
             })
             .alignItems(this.isFocused === false ? VerticalAlign.Bottom : VerticalAlign.Top)
           }
