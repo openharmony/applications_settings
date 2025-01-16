@@ -41,6 +41,7 @@ const std::string PERMISSION_EXCEPTION = "201 - Permission denied";
 const int PERMISSION_DENIED_CODE = -2;
 const int DB_HELPER_TRIAL_NUMBER = 2;
 const int USERID_HELPER_NUMBER = 100;
+bool g_useSilent = false;
 
 void ThrowExistingError(napi_env env, std::string errorMessage)
 {
@@ -402,8 +403,13 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
     OHOS::Uri proxyUri(strProxyUri);
     SETTING_LOG_INFO("<Ver-11-14> strProxyUri: %{public}s", strProxyUri.c_str());
     auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
-
-    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri, strUri);
+    g_useSilent = false;
+    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri);
+    if (!dataShareHelper) {
+        SETTING_LOG_ERROR("dataShareHelper from strProxyUri is null");
+        dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
+        g_useSilent = true;
+    }
     SETTING_LOG_INFO("g_D_S_H Creator called, valid %{public}d", dataShareHelper != nullptr);
     return dataShareHelper;
 }
@@ -572,6 +578,10 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
         // retry to insert.
         retInt = asyncCallbackInfo->dataShareHelper->Insert(uri, val);
         SETTING_LOG_ERROR("insert ret: %{public}d", retInt);
+    }
+    if (retInt > 0 && asyncCallbackInfo->useSilent) {
+        SETTING_LOG_INFO("use silent and notifyChange!");
+        asyncCallbackInfo->dataShareHelper->NotifyChange(uri);
     }
     asyncCallbackInfo->status = retInt;
 }
@@ -1258,6 +1268,7 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
         .value = "",
         .uri = "",
         .status = false,
+        .useSilent = false,
     };
 
     size_t argc = ARGS_FIVE;
@@ -1265,6 +1276,9 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
     NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
 
     asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode);
+    if (g_useSilent) {
+        asyncCallbackInfo->useSilent = true;
+    }
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
     asyncCallbackInfo->uri = unwrap_string_from_js(env, args[PARAM2]); //temp
     napi_value resource = nullptr;
