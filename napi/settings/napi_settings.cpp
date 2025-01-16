@@ -45,6 +45,7 @@ const int PERMISSION_DENIED_CODE = -2;
 const int DB_HELPER_TRIAL_NUMBER = 2;
 const int USERID_HELPER_NUMBER = 100;
 const int WAIT_TIME = 2;
+bool g_useSilent = false;
 
 void ThrowExistingError(napi_env env, int errorCode, std::string errorMessage)
 {
@@ -450,8 +451,13 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
         SETTING_LOG_ERROR("get context is error.");
         return dataShareHelper;
     }
-
-    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri, strUri, WAIT_TIME);
+    g_useSilent = false;
+    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUrl, WAIT_TIME);
+    if (!dataShareHelper) {
+        SETTING_LOG_ERROR("dataShareHelper from strProxyUrl is null");
+        dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri, WAIT_TIME);
+        g_useSilent = true;
+    }
     SETTING_LOG_INFO("g_D_S_H Creator called, valid %{public}d", dataShareHelper != nullptr);
     return dataShareHelper;
 }
@@ -647,6 +653,10 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
         // retry to insert.
         retInt = asyncCallbackInfo->dataShareHelper->Insert(uri, val);
         SETTING_LOG_ERROR("insert ret: %{public}d", retInt);
+    }
+    if (retInt > 0 && asyncCallbackInfo->useSilent) {
+        SETTING_LOG_INFO("use silent and notifyChange!");
+        asyncCallbackInfo->dataShareHelper->notifyChange(uri);
     }
     asyncCallbackInfo->status = retInt;
 }
@@ -1414,12 +1424,16 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
         .value = "",
         .uri = "",
         .status = false,
+        .useSilent = false;
     };
     if (asyncCallbackInfo == nullptr) {
         SETTING_LOG_ERROR("asyncCallbackInfo is null");
         return wrap_void_to_js(env);
     }
     asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode);
+    if (g_useSilent) {
+        asyncCallbackInfo->useSilent = true;
+    }
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
     asyncCallbackInfo->uri = unwrap_string_from_js(env, args[PARAM2]); //temp
 
