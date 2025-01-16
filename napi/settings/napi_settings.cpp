@@ -452,9 +452,9 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
         return dataShareHelper;
     }
     g_useSilent = false;
-    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUrl, WAIT_TIME);
+    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri, WAIT_TIME);
     if (!dataShareHelper) {
-        SETTING_LOG_ERROR("dataShareHelper from strProxyUrl is null");
+        SETTING_LOG_ERROR("dataShareHelper from strProxyUri is null");
         dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri, WAIT_TIME);
         g_useSilent = true;
     }
