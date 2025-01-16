@@ -65,6 +65,7 @@ struct AsyncCallbackInfo {
     std::string tableName;
     int status;
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
+    bool useSilent = false;
 };
 
 namespace OHOS {
