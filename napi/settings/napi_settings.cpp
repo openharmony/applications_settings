@@ -403,7 +403,7 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
     OHOS::Uri proxyUri(strProxyUri);
     SETTING_LOG_INFO("<Ver-11-14> strProxyUri: %{public}s", strProxyUri.c_str());
     auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
-    g_useSilent = false;
+
     dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri);
     if (!dataShareHelper) {
         SETTING_LOG_ERROR("dataShareHelper from strProxyUri is null");
