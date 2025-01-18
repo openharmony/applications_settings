@@ -41,7 +41,6 @@ const std::string PERMISSION_EXCEPTION = "201 - Permission denied";
 const int PERMISSION_DENIED_CODE = -2;
 const int DB_HELPER_TRIAL_NUMBER = 2;
 const int USERID_HELPER_NUMBER = 100;
-bool g_useSilent = false;
 
 void ThrowExistingError(napi_env env, std::string errorMessage)
 {
@@ -387,7 +386,8 @@ void CheckDataShareHelper(napi_env env, const napi_value context,
 }
 
 std::shared_ptr<DataShareHelper> getDataShareHelper(
-    napi_env env, const napi_value context, const bool stageMode, std::string tableName)
+    napi_env env, const napi_value context, const bool stageMode, std::string tableName,
+    AsyncCallbackInfo *asyncCallbackInfo)
 {
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
     std::vector<int> tmpId;
@@ -408,7 +408,9 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
     if (!dataShareHelper) {
         SETTING_LOG_ERROR("dataShareHelper from strProxyUri is null");
         dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri);
-        g_useSilent = true;
+        if (asyncCallbackInfo) {
+            asyncCallbackInfo->useSilent = true;
+        }
     }
     SETTING_LOG_INFO("g_D_S_H Creator called, valid %{public}d", dataShareHelper != nullptr);
     return dataShareHelper;
@@ -1275,10 +1277,7 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
     napi_value args[ARGS_FIVE] = {nullptr};
     NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
 
-    asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode);
-    if (g_useSilent) {
-        asyncCallbackInfo->useSilent = true;
-    }
+    asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, "global", asyncCallbackInfo);
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
     asyncCallbackInfo->uri = unwrap_string_from_js(env, args[PARAM2]); //temp
     napi_value resource = nullptr;
@@ -1733,7 +1732,8 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
     } else {
         asyncCallbackInfo->tableName = "global";
     }
-    asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, asyncCallbackInfo->tableName);
+    asyncCallbackInfo->dataShareHelper = getDataShareHelper(
+        env, args[PARAM0], stageMode, asyncCallbackInfo->tableName, asyncCallbackInfo);
     SetValueExecuteExt(env, (void *)asyncCallbackInfo, unwrap_string_from_js(env, args[PARAM2]));
     napi_value result = wrap_bool_to_js(env, ThrowError(env, asyncCallbackInfo->status));
     delete asyncCallbackInfo;
