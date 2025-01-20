@@ -657,7 +657,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     }
     if (retInt > 0 && asyncCallbackInfo->useSilent) {
         SETTING_LOG_INFO("use silent and notifyChange!");
-        asyncCallbackInfo->dataShareHelper->notifyChange(uri);
+        asyncCallbackInfo->dataShareHelper->NotifyChange(uri);
     }
     asyncCallbackInfo->status = retInt;
 }
@@ -1425,16 +1425,13 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
         .value = "",
         .uri = "",
         .status = false,
-        .useSilent = false;
+        .useSilent = false,
     };
     if (asyncCallbackInfo == nullptr) {
         SETTING_LOG_ERROR("asyncCallbackInfo is null");
         return wrap_void_to_js(env);
     }
     asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, "global", asyncCallbackInfo);
-    if (g_useSilent) {
-        asyncCallbackInfo->useSilent = true;
-    }
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
     asyncCallbackInfo->uri = unwrap_string_from_js(env, args[PARAM2]); //temp
 
