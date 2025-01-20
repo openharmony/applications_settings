@@ -424,7 +424,8 @@ void CheckDataShareHelper(napi_env env, const napi_value context,
 }
 
 std::shared_ptr<DataShareHelper> getDataShareHelper(
-    napi_env env, const napi_value context, const bool stageMode, std::string tableName)
+    napi_env env, const napi_value context, const bool stageMode, std::string tableName,
+    AsyncCallbackInfo *asyncCallbackInfo)
 {
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
     std::vector<int> tmpId;
@@ -450,8 +451,14 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
         SETTING_LOG_ERROR("get context is error.");
         return dataShareHelper;
     }
-
-    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri, strUri, WAIT_TIME);
+    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri, "", WAIT_TIME);
+    if (!dataShareHelper) {
+        SETTING_LOG_ERROR("dataShareHelper from strProxyUri is null");
+        dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri, "", WAIT_TIME);
+        if (asyncCallbackInfo) {
+            asyncCallbackInfo->useSilent = true;
+        }
+    }
     SETTING_LOG_INFO("g_D_S_H Creator called, valid %{public}d", dataShareHelper != nullptr);
     return dataShareHelper;
 }
@@ -647,6 +654,10 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
         // retry to insert.
         retInt = asyncCallbackInfo->dataShareHelper->Insert(uri, val);
         SETTING_LOG_ERROR("insert ret: %{public}d", retInt);
+    }
+    if (retInt > 0 && asyncCallbackInfo->useSilent) {
+        SETTING_LOG_INFO("use silent and notifyChange!");
+        asyncCallbackInfo->dataShareHelper->NotifyChange(uri);
     }
     asyncCallbackInfo->status = retInt;
 }
@@ -1414,12 +1425,13 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
         .value = "",
         .uri = "",
         .status = false,
+        .useSilent = false,
     };
     if (asyncCallbackInfo == nullptr) {
         SETTING_LOG_ERROR("asyncCallbackInfo is null");
         return wrap_void_to_js(env);
     }
-    asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode);
+    asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, "global", asyncCallbackInfo);
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
     asyncCallbackInfo->uri = unwrap_string_from_js(env, args[PARAM2]); //temp
 
@@ -1940,7 +1952,8 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
     } else {
         asyncCallbackInfo->tableName = "global";
     }
-    asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, asyncCallbackInfo->tableName);
+    asyncCallbackInfo->dataShareHelper = getDataShareHelper(
+        env, args[PARAM0], stageMode, asyncCallbackInfo->tableName, asyncCallbackInfo);
     SetValueExecuteExt(env, (void *)asyncCallbackInfo, unwrap_string_from_js(env, args[PARAM2]));
     napi_value result = wrap_bool_to_js(env, ThrowError(env, asyncCallbackInfo->status));
     delete asyncCallbackInfo;
