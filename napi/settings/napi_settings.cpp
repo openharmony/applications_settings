@@ -451,10 +451,10 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
         SETTING_LOG_ERROR("get context is error.");
         return dataShareHelper;
     }
-    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri, WAIT_TIME);
+    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri, "", WAIT_TIME);
     if (!dataShareHelper) {
         SETTING_LOG_ERROR("dataShareHelper from strProxyUri is null");
-        dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri, WAIT_TIME);
+        dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri, "", WAIT_TIME);
         if (asyncCallbackInfo) {
             asyncCallbackInfo->useSilent = true;
         }
