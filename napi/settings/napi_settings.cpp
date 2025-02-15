@@ -1150,24 +1150,25 @@ napi_value napi_set_value_sync(napi_env env, napi_callback_info info)
         resultset->GetRowCount(numRows);
     }
 
-    // insert
-    if (resultset == nullptr || numRows == 0) {
-        retInt = dataAbilityHelper->Insert(*uri, val);
-        SETTING_LOG_INFO("n_s_v aft In");
-    // update
-    } else {
-        retInt = dataAbilityHelper->Update(*uri, val, predicates);
-        SETTING_LOG_INFO("n_s_v aft Up");
+    if (dataAbilityHelper != nullptr) {
+        // insert
+        if (resultset == nullptr || numRows == 0) {
+            retInt = dataAbilityHelper->Insert(*uri, val);
+            SETTING_LOG_INFO("n_s_v aft In");
+        // update
+        } else {
+            retInt = dataAbilityHelper->Update(*uri, val, predicates);
+            SETTING_LOG_INFO("n_s_v aft Up");
+        }
+        // notify change
+        if (retInt != 0) {
+            std::string uriWithNameStr =
+                argsName.empty() ? SETTINGS_DATA_BASE_URI : (SETTINGS_DATA_BASE_URI + "/" + argsName);
+            std::shared_ptr<Uri> uriWithName = std::make_shared<Uri>(uriWithNameStr);
+            dataAbilityHelper->NotifyChange(*uriWithName);
+            SETTING_LOG_INFO("n_s_v aft NotifyChange with uri: %{public}s", uriWithNameStr.c_str());
+        }
     }
-    // notify change
-    if (retInt != 0) {
-        std::string uriWithNameStr =
-            argsName.empty() ? SETTINGS_DATA_BASE_URI : (SETTINGS_DATA_BASE_URI + "/" + argsName);
-        std::shared_ptr<Uri> uriWithName = std::make_shared<Uri>(uriWithNameStr);
-        dataAbilityHelper->NotifyChange(*uriWithName);
-        SETTING_LOG_INFO("n_s_v aft NotifyChange with uri: %{public}s", uriWithNameStr.c_str());
-    }
-
     if (resultset != nullptr) {
         resultset->Close();
     }
