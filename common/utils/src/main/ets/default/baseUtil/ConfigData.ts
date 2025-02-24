@@ -95,7 +95,7 @@ export class ConfigData {
   MOBILE_DATA_ABILITY_NAME = 'com.ohos.mobiledatasettings.MainAbility';
   softWareUpDatesBundleName = 'com.ohos.updateapp';
   softWareUpDatesAbilityName = 'com.ohos.updateapp.MainAbility';
-  SECURITY_BUNDLE_NAME = 'com.ohos.certmanager';
+  SECURITY_BUNDLE_NAME = 'com.ohos.security.privacycenter';
   SECURITY_ABILITY_NAME = 'MainAbility';
   PRIVACY_ABILITY_NAME = 'EntryAbility';
 
