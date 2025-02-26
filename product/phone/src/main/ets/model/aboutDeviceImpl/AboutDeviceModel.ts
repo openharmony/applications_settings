@@ -100,7 +100,10 @@ export class AboutDeviceModel extends BaseModel {
   @CatchError(undefined)
   setSystemName(name: string) {
     let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
-    settings.setValueSync(context, ConfigData.SETTINGSDATA_DEVICE_NAME, name);
+    settings.setValueSync(context, ConfigData.SETTINGSDATA_DEVICE_NAME, name)
+      .catch(err => {
+      LogUtil.error(`setValueSync err, ${err.message}`);
+    });
     return;
   }
 }
