@@ -105,7 +105,10 @@ class DataRdbModel {
     LogUtil.info(ConfigData.TAG + 'get data update model start: ' + key);
     let predicates = rdbStore.getRdbPredicates(tableName);
     await predicates.equalTo(Stable.Global.key, key);
-    rdbStore.update(predicates, rowValue);
+    rdbStore.update(predicates, rowValue)
+      .catch(err => {
+        LogUtil.error(ConfigData.TAG + 'get data update model err ' + err.message);
+      });
     LogUtil.info(ConfigData.TAG + 'get data update model end ');
   }
 
