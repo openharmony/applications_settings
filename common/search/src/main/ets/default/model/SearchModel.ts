@@ -65,8 +65,9 @@ export default class SearchModel {
       .or().like(SearchConfig.search.FIELD_SYNONYM, `%${query}%`)
       .orderByAsc(SearchConfig.search.FIELD_URI);
 
+    let resultSet = null;
     try {
-      let resultSet = await this.rdbStore.query(predicates, [
+      resultSet = await this.rdbStore.query(predicates, [
         SearchConfig.search.FIELD_ICON,
         SearchConfig.search.FIELD_TITLE,
         SearchConfig.search.FIELD_KEYWORD,
@@ -76,6 +77,7 @@ export default class SearchModel {
       LogUtil.log("settings: query data: " + resultSet);
     } catch(err) {
       LogUtil.error('query data err.' + err.message);
+      return [];
     }
     // build search data from resultSet
     let searchData: SearchData[] = [];
