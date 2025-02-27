@@ -65,14 +65,20 @@ export default class SearchModel {
       .or().like(SearchConfig.search.FIELD_SYNONYM, `%${query}%`)
       .orderByAsc(SearchConfig.search.FIELD_URI);
 
-    let resultSet = await this.rdbStore.query(predicates, [
-    SearchConfig.search.FIELD_ICON,
-    SearchConfig.search.FIELD_TITLE,
-    SearchConfig.search.FIELD_KEYWORD,
-    SearchConfig.search.FIELD_SUMMARY,
-    SearchConfig.search.FIELD_URI
-    ]);
-
+    let resultSet = null;
+    try {
+      resultSet = await this.rdbStore.query(predicates, [
+        SearchConfig.search.FIELD_ICON,
+        SearchConfig.search.FIELD_TITLE,
+        SearchConfig.search.FIELD_KEYWORD,
+        SearchConfig.search.FIELD_SUMMARY,
+        SearchConfig.search.FIELD_URI
+      ]);
+      LogUtil.log("settings: query data: " + resultSet);
+    } catch(err) {
+      LogUtil.error('query data err.' + err.message);
+      return [];
+    }
     // build search data from resultSet
     let searchData: SearchData[] = [];
     while (resultSet.goToNextRow()) {
@@ -109,7 +115,11 @@ export default class SearchModel {
       LogUtil.log('settings SettingsSearch.db is ready.');
 
       // table SEARCH_DATA init
-      await this.rdbStore.executeSql(SearchConfig.search.DDL_TABLE_CREATE, null);
+      try {
+        await this.rdbStore.executeSql(SearchConfig.search.DDL_TABLE_CREATE, null);
+      } catch(err) {
+        LogUtil.error(`settings: executeSql err ${err.message}`);
+      }
       LogUtil.log('settings table SEARCH_DATA is ready.');
     }
   }
@@ -164,7 +174,11 @@ export default class SearchModel {
     await this.initRdb();
 
     // delete old data if exists
-    await this.rdbStore.executeSql(SearchConfig.search.SQL_DELETE_ALL, null);
+    try {
+      await this.rdbStore.executeSql(SearchConfig.search.SQL_DELETE_ALL, null);
+    } catch(err) {
+      LogUtil.error("settings: executeSql DELETE err " + err.message);
+    }
     LogUtil.log('settings search old data if exists.');
 
     // insert new data into table
@@ -176,8 +190,12 @@ export default class SearchModel {
       valueBucket[SearchConfig.search.FIELD_KEYWORD] = data.keyword;
       valueBucket[SearchConfig.search.FIELD_SUMMARY] = data.summary;
       valueBucket[SearchConfig.search.FIELD_SYNONYM] = data.synonym;
-      let ret = await this.rdbStore.insert(SearchConfig.search.TABLE_NAME, valueBucket)
-      LogUtil.log("settings: search insert data: " + ret)
+      try {
+        let ret = await this.rdbStore.insert(SearchConfig.search.TABLE_NAME, valueBucket);
+        LogUtil.log("settings: search insert data: " + ret);
+      } catch(err) {
+        LogUtil.error('insert data err ' + err.message);
+      }
     }
   }
 
