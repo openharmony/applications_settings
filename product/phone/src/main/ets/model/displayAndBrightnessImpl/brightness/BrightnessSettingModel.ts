@@ -131,10 +131,11 @@ export class BrightnessSettingModel extends BaseModel {
     LogUtil.info(`${this.TAG} setSettingsData [brightness:${brightness}]`);
     this.brightness = brightness;
     let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
-    settings.setValueSync(context, ConfigData.SETTINGSDATA_BRIGHTNESS, brightness.toString())
-      .catch(err => {
-        LogUtil.error(`${this.TAG} setSettingsData success`);
-      });
+    try {
+      settings.setValueSync(context, ConfigData.SETTINGSDATA_BRIGHTNESS, brightness.toString());
+    } catch(err) {
+      LogUtil.error(`${this.TAG} setSettingsData success`);
+    };
     LogUtil.info(`${this.TAG} setSettingsData success`);
   }
 
