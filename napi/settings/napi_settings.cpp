@@ -1951,7 +1951,14 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
 
     // define table name
     if (argc == ARGS_FOUR) {
-        NAPI_CALL(env, napi_typeof(env, args[PARAM3], &valueType));
+        if (napi_typeof(env, args[PARAM3], &valueType) != napi_ok) {
+            SETTING_LOG_ERROR("napi_typeof error");
+            if (asyncCallbackInfo != nullptr) {
+                delete asyncCallbackInfo;
+                asyncCallbackInfo = nullptr;
+            }
+            return wrap_void_to_js(env);
+        }
         if (valueType != napi_string) {
             SETTING_LOG_ERROR("tableName IS NOT STRING");
             return wrap_void_to_js(env);
