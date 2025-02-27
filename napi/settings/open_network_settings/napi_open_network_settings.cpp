@@ -339,6 +339,7 @@ napi_value opne_manager_settings(napi_env env, napi_callback_info info)
         SETTING_LOG_ERROR("context parse error.");
         asyncCallbackInfo->status = SETTINGS_PARAM_ERROR;
         SetAsyncCallback(env, asyncCallbackInfo);
+        asyncCallbackInfo = nullptr;
         return wrap_void_to_js(env);
     }
 

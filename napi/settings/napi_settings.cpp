@@ -1404,6 +1404,7 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
     } else {
         ret = SetValuePromise(env, asyncCallbackInfo);
     }
+    asyncCallbackInfo = nullptr;
     SETTING_LOG_INFO("set  value end");
     return ret;
 }
@@ -1632,7 +1633,13 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
         SETTING_LOG_INFO("%{public}s, promise.", __func__);
         napi_deferred deferred;
         napi_value promise;
-        NAPI_CALL(env, napi_create_promise(env, &deferred, &promise));
+        if (napi_create_promise(env, &deferred, &promise) != napi_ok) {
+            SETTING_LOG_ERROR("napi_create_promise error");
+            if (asyncCallbackInfo != nullptr) {
+                delete asyncCallbackInfo;
+            }
+            return nullptr;
+        }
         asyncCallbackInfo->deferred = deferred;
 
         napi_create_async_work(
@@ -1708,8 +1715,13 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
         return wrap_void_to_js(env);
     }
     napi_value resource = nullptr;  
-    NAPI_CALL(env, napi_create_string_utf8(env, "enableAirplaneMode", NAPI_AUTO_LENGTH, &resource));
-
+    if (napi_create_string_utf8(env, "enableAirplaneMode", NAPI_AUTO_LENGTH, &resource) != napi_ok) {
+        SETTING_LOG_ERROR("napi_create_string_utf8 error");
+        if (asyncCallbackInfo != nullptr) {
+            delete asyncCallbackInfo;
+        }
+        return nullptr;
+    }
     if (argc == paramOfCallback) {
         SETTING_LOG_INFO("%{public}s, a_C_B.", __func__);
 
@@ -1939,7 +1951,14 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
 
     // define table name
     if (argc == ARGS_FOUR) {
-        NAPI_CALL(env, napi_typeof(env, args[PARAM3], &valueType));
+        if (napi_typeof(env, args[PARAM3], &valueType) != napi_ok) {
+            SETTING_LOG_ERROR("napi_typeof error");
+            if (asyncCallbackInfo != nullptr) {
+                delete asyncCallbackInfo;
+                asyncCallbackInfo = nullptr;
+            }
+            return wrap_void_to_js(env);
+        }
         if (valueType != napi_string) {
             SETTING_LOG_ERROR("tableName IS NOT STRING");
             return wrap_void_to_js(env);
