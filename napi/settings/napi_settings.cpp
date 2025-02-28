@@ -388,39 +388,39 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
 void CheckDataShareHelper(napi_env env, const napi_value context,
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper, OHOS::Uri proxyUri)
 {
-    std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultset = nullptr;
+    std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultSet = nullptr;
     std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
     DataSharePredicates predicates;
     predicates.Limit(1, 0);
     auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
     std::vector<std::string> columns;
     DatashareBusinessError businessError;
-    resultset = dataShareHelper->Query(proxyUri, predicates, columns, &businessError);
+    resultSet = dataShareHelper->Query(proxyUri, predicates, columns, &businessError);
     int numRows = 0;
-    if (resultset != nullptr) {
-        resultset->GetRowCount(numRows);
+    if (resultSet != nullptr) {
+        resultSet->GetRowCount(numRows);
     }
     SETTING_LOG_INFO("numRows %{public}d, error code %{public}d", numRows, businessError.GetCode());
     if (businessError.GetCode() == PERMISSION_DENIED_CODE) {
-        if (resultset != nullptr) {
-            resultset->Close();
+        if (resultSet != nullptr) {
+            resultSet->Close();
         }
         return;
-    } else if (resultset == nullptr || numRows <= 0) {
+    } else if (resultSet == nullptr || numRows <= 0) {
         int trial = 0;
         do {
-            SETTING_LOG_INFO("settingsnapi : getDataShareHelper resultset == nullptr, strUri %{public}s %{public}d",
+            SETTING_LOG_INFO("settingsnapi : getDataShareHelper resultSet == nullptr, strUri %{public}s %{public}d",
                 strUri.c_str(),
                 trial);
             dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(),
             strUri, strUri, WAIT_TIME);
         } while (trial++ < DB_HELPER_TRIAL_NUMBER && dataShareHelper == nullptr);
-        if (resultset != nullptr) {
-            resultset->Close();
+        if (resultSet != nullptr) {
+            resultSet->Close();
         }
         return;
     }
-    resultset->Close();
+    resultSet->Close();
 }
 
 std::shared_ptr<DataShareHelper> getDataShareHelper(
@@ -456,7 +456,7 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
         SETTING_LOG_ERROR("dataShareHelper from strProxyUri is null");
         dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri, "", WAIT_TIME);
         if (asyncCallbackInfo) {
-            asyncCallbackInfo->useSilent = true;
+            asyncCallbackInfo->useSilent = false;
         }
     }
     SETTING_LOG_INFO("g_D_S_H Creator called, valid %{public}d", dataShareHelper != nullptr);
@@ -479,12 +479,12 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
     predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
 
     DatashareBusinessError businessError;
-    std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultset = nullptr;
-    resultset = asyncCallbackInfo->dataShareHelper->Query(uri, predicates, columns, &businessError);
+    std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultSet = nullptr;
+    resultSet = asyncCallbackInfo->dataShareHelper->Query(uri, predicates, columns, &businessError);
     int numRows = 0;
-    if (resultset != nullptr) {
-        SETTING_LOG_INFO("G_V_E_E resultset is NOT empty");
-        resultset->GetRowCount(numRows);
+    if (resultSet != nullptr) {
+        SETTING_LOG_INFO("G_V_E_E resultSet is NOT empty");
+        resultSet->GetRowCount(numRows);
     }
     int datashareErrorCode = businessError.GetCode();
     SETTING_LOG_INFO("numRows %{public}d, error code %{public}d", numRows, datashareErrorCode);
@@ -492,22 +492,22 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
     } else if (datashareErrorCode == PERMISSION_DENIED_CODE) {
         asyncCallbackInfo->status = PERMISSION_DENIED_CODE;
-    } else if (resultset == nullptr || numRows <= 0) {
+    } else if (resultSet == nullptr || numRows <= 0) {
         SETTING_LOG_INFO("G_V_E_E value is empty");
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
     } else {
         std::string val;
         int32_t columnIndex = 0;
-        resultset->GoToFirstRow();
-        resultset->GetString(columnIndex, val);
+        resultSet->GoToFirstRow();
+        resultSet->GetString(columnIndex, val);
 
         SETTING_LOG_INFO("n_g_v_e %{public}s", val.c_str());
         asyncCallbackInfo->value = val;
         asyncCallbackInfo->status = QUERY_SUCCESS_CODE;
     }
     
-    if (resultset != nullptr) {
-        resultset->Close();
+    if (resultSet != nullptr) {
+        resultSet->Close();
     }
 }
 
@@ -559,13 +559,13 @@ void DeleteCallbackInfo(napi_env env, AsyncCallbackInfo *asyncCallbackInfo)
     delete asyncCallbackInfo;
 }
 
-void CompleteCall(napi_env env, napi_status status, void *data, const napi_value retVaule)
+void CompleteCall(napi_env env, napi_status status, void *data, const napi_value retValue)
 {
     napi_value message = nullptr;
     napi_value code = nullptr;
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
     napi_value result[PARAM2] = {0};
-    result[PARAM1] = retVaule;
+    result[PARAM1] = retValue;
     if (asyncCallbackInfo->status > 0 && status == napi_ok) {
         napi_get_undefined(env, &result[PARAM0]);
     } else if (asyncCallbackInfo->status == PERMISSION_DENIED_CODE) {
@@ -585,7 +585,7 @@ void CompleteCall(napi_env env, napi_status status, void *data, const napi_value
     SETTING_LOG_INFO("c_b complete");
 }
 
-void CompletePromise(napi_env env, napi_status status, void *data, const napi_value retVaule)
+void CompletePromise(napi_env env, napi_status status, void *data, const napi_value retValue)
 {
     SETTING_LOG_INFO("p_m asy end  c_b");
     napi_value message = nullptr;
@@ -593,7 +593,7 @@ void CompletePromise(napi_env env, napi_status status, void *data, const napi_va
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
     napi_value result = nullptr;
     if (asyncCallbackInfo->status > 0 && status == napi_ok) {
-        napi_resolve_deferred(env, asyncCallbackInfo->deferred, retVaule);
+        napi_resolve_deferred(env, asyncCallbackInfo->deferred, retValue);
     } else if (asyncCallbackInfo->status == PERMISSION_DENIED_CODE) {
         napi_create_string_utf8(env, PERMISSION_EXCEPTION.c_str(), NAPI_AUTO_LENGTH, &message);
         napi_create_uint32(env, PERMISSION_EXCEPTION_CODE, &code);
@@ -655,8 +655,8 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
         retInt = asyncCallbackInfo->dataShareHelper->Insert(uri, val);
         SETTING_LOG_ERROR("insert ret: %{public}d", retInt);
     }
-    if (retInt > 0 && asyncCallbackInfo->useSilent) {
-        SETTING_LOG_INFO("use silent and notifyChange!");
+    if (retInt > 0 && !asyncCallbackInfo->useSilent) {
+        SETTING_LOG_INFO("not use silent and notifyChange!");
         asyncCallbackInfo->dataShareHelper->NotifyChange(uri);
     }
     asyncCallbackInfo->status = retInt;
@@ -711,33 +711,33 @@ napi_value napi_get_value_sync(napi_env env, napi_callback_info info)
     predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, unwrap_string_from_js(env, args[PARAM1]));
 
     SETTING_LOG_INFO("n_g_v bef d_A_H->Query");
-    std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultset = nullptr;
+    std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultSet = nullptr;
     if (dataAbilityHelper != nullptr) {
-        resultset = dataAbilityHelper->Query(*uri, columns, predicates);
+        resultSet = dataAbilityHelper->Query(*uri, columns, predicates);
     };
 
     napi_value retVal = nullptr;
     int numRows = 0;
 
-    if (resultset != nullptr) {
-        SETTING_LOG_INFO("n_g_v resultset is NOT empty");
-        resultset->GetRowCount(numRows);
+    if (resultSet != nullptr) {
+        SETTING_LOG_INFO("n_g_v resultSet is NOT empty");
+        resultSet->GetRowCount(numRows);
     }
 
-    if (resultset == nullptr || numRows == 0) {
+    if (resultSet == nullptr || numRows == 0) {
         SETTING_LOG_INFO("n_g_v return def value");
         retVal = args[PARAM2];
     } else {
-        SETTING_LOG_INFO("n_g_v return value from resultset");
+        SETTING_LOG_INFO("n_g_v return value from resultSet");
         std::string val;
         int32_t columnIndex = 0;
-        resultset->GoToFirstRow();
-        resultset->GetString(columnIndex, val);
+        resultSet->GoToFirstRow();
+        resultSet->GetString(columnIndex, val);
         retVal = wrap_string_to_js(env, val);
     }
 
-    if (resultset != nullptr) {
-        resultset->Close();
+    if (resultSet != nullptr) {
+        resultSet->Close();
     }
     dataAbilityHelper = nullptr;
     SETTING_LOG_INFO("n_g_v END!");
@@ -752,29 +752,29 @@ void get_val_CB_exe_CB(napi_env env, AsyncCallbackInfo *asyncCallbackInfo)
     predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
 
     std::shared_ptr<Uri> uri = std::make_shared<Uri>(SETTINGS_DATA_BASE_URI);
-    std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultset = nullptr;
+    std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultSet = nullptr;
     if (asyncCallbackInfo->dataAbilityHelper != nullptr) {
-        resultset = asyncCallbackInfo->dataAbilityHelper->Query(*uri, columns, predicates);
+        resultSet = asyncCallbackInfo->dataAbilityHelper->Query(*uri, columns, predicates);
     };
     SETTING_LOG_INFO("c_b n_g_v aft d_A_H->Query");
 
     int numRows = 0;
-    if (resultset != nullptr) {
-        SETTING_LOG_INFO("c_b n_g_v resultset is NOT empty");
-        resultset->GetRowCount(numRows);
+    if (resultSet != nullptr) {
+        SETTING_LOG_INFO("c_b n_g_v resultSet is NOT empty");
+        resultSet->GetRowCount(numRows);
     }
-    if (resultset == nullptr || numRows == 0) {
+    if (resultSet == nullptr || numRows == 0) {
         SETTING_LOG_INFO("c_b n_g_v return def value");
     } else {
         std::string val;
         int32_t columnIndex = 0;
-        resultset->GoToFirstRow();
-        resultset->GetString(columnIndex, val);
+        resultSet->GoToFirstRow();
+        resultSet->GetString(columnIndex, val);
         SETTING_LOG_INFO("c_b retVal is %{public}s", val.c_str());
         asyncCallbackInfo->value = val;
     }
-    if (resultset != nullptr) {
-        resultset->Close();
+    if (resultSet != nullptr) {
+        resultSet->Close();
     }
 }
 
@@ -912,29 +912,29 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
             predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
 
             std::shared_ptr<Uri> uri = std::make_shared<Uri>(SETTINGS_DATA_BASE_URI);
-            std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultset = nullptr;
+            std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultSet = nullptr;
             if (asyncCallbackInfo->dataAbilityHelper != nullptr) {
-                resultset = asyncCallbackInfo->dataAbilityHelper->Query(*uri, columns, predicates);
+                resultSet = asyncCallbackInfo->dataAbilityHelper->Query(*uri, columns, predicates);
             }
             SETTING_LOG_INFO("p_m n_g_v aft d_A_H->Query");
 
             int numRows = 0;
-            if (resultset != nullptr) {
-                SETTING_LOG_INFO("p_m n_g_v resultset is NOT empty");
-                resultset->GetRowCount(numRows);
+            if (resultSet != nullptr) {
+                SETTING_LOG_INFO("p_m n_g_v resultSet is NOT empty");
+                resultSet->GetRowCount(numRows);
             }
-            if (resultset == nullptr || numRows == 0) {
+            if (resultSet == nullptr || numRows == 0) {
                 SETTING_LOG_INFO("p_m n_g_v return def value");
             } else {
-                SETTING_LOG_INFO("p_m n_g_v return value from resultset");
+                SETTING_LOG_INFO("p_m n_g_v return value from resultSet");
                 std::string val;
                 int32_t columnIndex = 0;
-                resultset->GoToFirstRow();
-                resultset->GetString(columnIndex, val);
+                resultSet->GoToFirstRow();
+                resultSet->GetString(columnIndex, val);
                 asyncCallbackInfo->value = val;
             }
-            if (resultset != nullptr) {
-                resultset->Close();
+            if (resultSet != nullptr) {
+                resultSet->Close();
             }
         },
         // async end called callback
@@ -1136,23 +1136,23 @@ napi_value napi_set_value_sync(napi_env env, napi_callback_info info)
     predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, argsName);
 
     std::shared_ptr<Uri> uri = std::make_shared<Uri>(SETTINGS_DATA_BASE_URI);
-    std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultset = nullptr;
+    std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultSet = nullptr;
     if (dataAbilityHelper != nullptr) {
-        resultset = dataAbilityHelper->Query(*uri, columns, predicates);
+        resultSet = dataAbilityHelper->Query(*uri, columns, predicates);
     }
     SETTING_LOG_INFO("n_s_v aft d_A_H->Query");
 
     int retInt = 0;
     int numRows = 0;
 
-    if (resultset != nullptr) {
-        SETTING_LOG_INFO("n_s_v resultset is NOT empty");
-        resultset->GetRowCount(numRows);
+    if (resultSet != nullptr) {
+        SETTING_LOG_INFO("n_s_v resultSet is NOT empty");
+        resultSet->GetRowCount(numRows);
     }
 
     if (dataAbilityHelper != nullptr) {
         // insert
-        if (resultset == nullptr || numRows == 0) {
+        if (resultSet == nullptr || numRows == 0) {
             retInt = dataAbilityHelper->Insert(*uri, val);
             SETTING_LOG_INFO("n_s_v aft In");
         // update
@@ -1169,8 +1169,8 @@ napi_value napi_set_value_sync(napi_env env, napi_callback_info info)
             SETTING_LOG_INFO("n_s_v aft NotifyChange with uri: %{public}s", uriWithNameStr.c_str());
         }
     }
-    if (resultset != nullptr) {
-        resultset->Close();
+    if (resultSet != nullptr) {
+        resultSet->Close();
     }
     
     return wrap_bool_to_js(env, ThrowError(env, retInt));
@@ -1427,7 +1427,7 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
         .value = "",
         .uri = "",
         .status = false,
-        .useSilent = false,
+        .useSilent = true,
     };
     if (asyncCallbackInfo == nullptr) {
         SETTING_LOG_ERROR("asyncCallbackInfo is null");
