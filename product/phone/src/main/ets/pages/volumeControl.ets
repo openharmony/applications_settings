@@ -215,6 +215,7 @@ struct VolumeControlComponent {
   aboutToAppear(): void {
     LogUtil.info(`${this.TAG} aboutToAppear in`);
     LogUtil.info(`${this.TAG} aboutToAppear out`);
+    let volumeGroupManager = Audio.getAudioManager().getVolumeManager();
     volumeGroupManager.on('volumeChange', (data) => {
       LogUtil.info(`${this.TAG} volumeType: ${data.volumeType} volume: ${data.volume}`);
       if (data.volumeType === Audio.AudioVolumeType.RINGTONE) {
