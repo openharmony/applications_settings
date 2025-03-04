@@ -74,16 +74,17 @@ class DataRdbModel {
     let result = {
       rowId: -1
     }
-    let insertPromise = rdbStore.insert(tableName, rowValue);
-    insertPromise.then(rowId => {
-      LogUtil.info(ConfigData.TAG + 'get data insert model num' + rowId);
-      result.rowId = rowId;
-      callback(result);
-    })
-      .catch((err) => {
-        LogUtil.info(ConfigData.TAG + 'get data insert model err' + err);
+    try {
+      let insertPromise = rdbStore.insert(tableName, rowValue);
+      insertPromise.then(rowId => {
+        LogUtil.info(ConfigData.TAG + 'get data insert model num' + rowId);
+        result.rowId = rowId;
         callback(result);
       })
+    } catch (err) {
+      LogUtil.error(ConfigData.TAG + 'get data insert model err' + err);
+      callback(result);
+    }
     LogUtil.info(ConfigData.TAG + 'get data insert model end');
   }
 
