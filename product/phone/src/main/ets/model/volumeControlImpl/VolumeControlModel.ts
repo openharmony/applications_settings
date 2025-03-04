@@ -154,11 +154,11 @@ export class RingerModel extends BaseModel {
    */
   @Log
   public async setRingerMode() {
-    let getaudioVolumeGroupManager = Audio.getAudioManager();
-    getaudioVolumeGroupManager.setRingerMode(this.modeTag, (err, data) => {
-      LogUtil.info(`${this.TAG} setRingerMode.`);
-      LogUtil.info(`${this.TAG} setRingerMode sucess.`);
-    });
+    let audioVolumeGroupManager = await Audio.getAudioManager().getVolumeManager().getVolumeGroupManager(groupId);
+    await audioVolumeGroupManager.setRingerMode(this.modeTag);
+    let volume = await audioVolumeGroupManager.getVolume(Audio.AudioVolumeType.RINGTONE);
+    AppStorage.SetOrCreate('volume_ringtone', volume);
+    LogUtil.info(`${this.TAG} setRingerMode ${this.modeTag} volume: ${volume}.`);
     return;
   }
 }
