@@ -215,6 +215,18 @@ struct VolumeControlComponent {
   aboutToAppear(): void {
     LogUtil.info(`${this.TAG} aboutToAppear in`);
     LogUtil.info(`${this.TAG} aboutToAppear out`);
+    let volumeGroupManager = Audio.getAudioManager().getVolumeManager();
+    volumeGroupManager.on('volumeChange', (data) => {
+      LogUtil.info(`${this.TAG} volumeType: ${data.volumeType} volume: ${data.volume}`);
+      if (data.volumeType === Audio.AudioVolumeType.RINGTONE) {
+        AppStorage.SetOrCreate('volume_ringtone', data.volume);
+        this.volumeRingTone = data.volume;
+      } else if (data.volumeType === Audio.AudioVolumeType.VOICE_CALL) {
+        AppStorage.SetOrCreate('volume_voicecall', data.volume);
+      } else if (data.volumeType === Audio.AudioVolumeType.MEDIA) {
+        AppStorage.SetOrCreate('volume_media', data.volume);
+      }
+    })
   }
 }
 
