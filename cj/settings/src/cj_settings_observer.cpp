@@ -58,6 +58,9 @@ bool RegisterKeyObserver(
     std::string strUri = GetStageUriStr(tableName, GetUserIdStr(), key);
     OHOS::Uri uri(strUri);
     sptr<SettingsObserver> settingsObserver = sptr<SettingsObserver>(new (std::nothrow)SettingsObserver());
+    if (settingsObserver == nullptr) {
+        return false;
+    }
     auto func = reinterpret_cast<void(*)(void)>(observer);
     settingsObserver->cjInfo.key = key;
     settingsObserver->cjInfo.tableName = tableName;
