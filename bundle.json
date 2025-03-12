@@ -41,7 +41,15 @@
                 "//applications/standard/settings/napi/settings:settings",
                 "//applications/standard/settings/cj/settings:cj_settings_ffi"
             ],
-            "inner_kits": [],
+            "inner_kits": [
+                {
+                    "name": "//applications/standard/settings/cj/settings:cj_settings_ffi",
+                    "header": {
+                      "header_files": [],
+                      "header_base": "//applications/standard/settings/cj/settings/src"
+                    }
+                }
+            ],
             "test": []
         }
     }
