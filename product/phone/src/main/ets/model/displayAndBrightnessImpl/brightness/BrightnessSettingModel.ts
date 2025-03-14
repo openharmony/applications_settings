@@ -118,7 +118,7 @@ export class BrightnessSettingModel extends BaseModel {
   @Log
   public unregisterObserver() {
     LogUtil.info(`${this.TAG} unregisterObserver`);
-    this.dataShareHelper.off("dataChange", this.listenUri);
+    this.dataShareHelper?.off("dataChange", this.listenUri);
     return;
   }
 
