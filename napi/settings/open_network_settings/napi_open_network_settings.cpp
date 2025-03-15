@@ -247,8 +247,7 @@ napi_value SetAsyncCallback(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
     if (napi_create_promise(env, &deferred, &promise) != napi_ok) {
         SETTING_LOG_ERROR("napi_create_promise error");
         delete asyncCallbackInfo;
-        asyncCallbackInfo = nullptr;
-        return nullptr;
+        return wrap_void_to_js(env);
     }
     asyncCallbackInfo->deferred = deferred;
     ret = napi_create_async_work(
