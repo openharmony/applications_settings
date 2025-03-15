@@ -337,8 +337,6 @@ napi_value opne_manager_settings(napi_env env, napi_callback_info info)
     if (!ParseAbilityContext(env, argv[PARAM0], loadProductContext->abilityContext,
         loadProductContext->uiExtensionContext)) {
         SETTING_LOG_ERROR("context parse error.");
-        asyncCallbackInfo->status = SETTINGS_PARAM_ERROR;
-        SetAsyncCallback(env, asyncCallbackInfo);
         delete asyncCallbackInfo;
         ThrowExistingError(env, SETTINGS_PARAM_ERROR, "Parameter error.");
         return wrap_void_to_js(env);
@@ -349,8 +347,6 @@ napi_value opne_manager_settings(napi_env env, napi_callback_info info)
     ExecuteLoadProduct(loadProductContext, wantRequest);
     if (!StartUiExtensionAbility(wantRequest, loadProductContext)) {
         SETTING_LOG_ERROR("opne manager faild.");
-        asyncCallbackInfo->status = SETTINGS_ORIGINAL_SERVICE_ERROR;
-        SetAsyncCallback(env, asyncCallbackInfo);
         delete asyncCallbackInfo;
         ThrowExistingError(env, SETTINGS_PARAM_ERROR, "Original service error.");
         return wrap_void_to_js(env);
