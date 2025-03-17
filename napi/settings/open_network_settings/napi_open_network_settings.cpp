@@ -331,7 +331,7 @@ napi_value opne_manager_settings(napi_env env, napi_callback_info info)
     if (!isInvalid) {
         SETTING_LOG_ERROR("param is invalid.");
         delete asyncCallbackInfo;
-        ThrowExistingError(env, SETTINGS_PARAM_ERROR, "Parameter invalid error.");
+        ThrowExistingError(env, SETTINGS_PARAM_ERROR_CODE, "Parameter invalid error.");
         return wrap_void_to_js(env);
     }
 
