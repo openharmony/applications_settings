@@ -242,28 +242,7 @@ napi_value SetAsyncCallback(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
         return wrap_void_to_js(env);
     }
     asyncCallbackInfo->deferred = deferred;
-    ret = createAsyncWork(napi_env env, AsyncCallbackInfo* asyncCallbackInfo);
-    if (ret != napi_ok) {
-        SETTING_LOG_ERROR("create async work failed");
-        napi_delete_reference(env, asyncCallbackInfo->callbackRef);
-        delete asyncCallbackInfo;
-        return wrap_void_to_js(env);
-    }
-    ret = napi_queue_async_work(env, asyncCallbackInfo->asyncWork);
-    if (ret != napi_ok) {
-        SETTING_LOG_ERROR("queue async work failed");
-        napi_delete_reference(env, asyncCallbackInfo->callbackRef);
-        napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
-        delete asyncCallbackInfo;
-        return wrap_void_to_js(env);
-    }
-    SETTING_LOG_INFO("queue async work success");
-    return promise;
-}
-
-napi_status createAsyncWork()
-{
-    return napi_create_async_work(
+    ret = napi_create_async_work(
         env,
         nullptr,
         resource,
@@ -286,6 +265,22 @@ napi_status createAsyncWork()
         },
         (void*)asyncCallbackInfo,
         &asyncCallbackInfo->asyncWork);
+    if (ret != napi_ok) {
+        SETTING_LOG_ERROR("create async work failed");
+        napi_delete_reference(env, asyncCallbackInfo->callbackRef);
+        delete asyncCallbackInfo;
+        return wrap_void_to_js(env);
+    }
+    ret = napi_queue_async_work(env, asyncCallbackInfo->asyncWork);
+    if (ret != napi_ok) {
+        SETTING_LOG_ERROR("queue async work failed");
+        napi_delete_reference(env, asyncCallbackInfo->callbackRef);
+        napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
+        delete asyncCallbackInfo;
+        return wrap_void_to_js(env);
+    }
+    SETTING_LOG_INFO("queue async work success");
+    return promise;
 }
 
 bool CheckParam(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, napi_callback_info info,
