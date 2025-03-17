@@ -335,8 +335,9 @@ napi_value opne_manager_settings(napi_env env, napi_callback_info info)
     bool isInvalid = CheckParam(env, asyncCallbackInfo, info, argc, argv);
     if (!isInvalid) {
         SETTING_LOG_ERROR("param is invalid.");
-        asyncCallbackInfo->status = SETTINGS_PARAM_ERROR;
-        return SetAsyncCallback(env, asyncCallbackInfo);
+        delete asyncCallbackInfo;
+        ThrowExistingError(env, SETTINGS_PARAM_ERROR, "Parameter invalid error.");
+        return wrap_void_to_js(env);
     }
 
     auto loadProductContext = std::make_shared<BaseContext>();
