@@ -465,7 +465,6 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
 
 void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri uri)
 {
-    SETTING_LOG_INFO("a_C_B_I->d_S_H != nullptr");
     if (asyncCallbackInfo->dataShareHelper == nullptr) {
         SETTING_LOG_ERROR("helper is null");
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
@@ -533,11 +532,9 @@ void GetValueExecuteExt(napi_env env, void *data)
     std::string tmpIdStr = "100";
     if (currentUserId > 0) {
         tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("userId is %{public}s", tmpIdStr.c_str());
     } else if (currentUserId == 0) {
         OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
         tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("user0 userId is %{public}s", tmpIdStr.c_str());
     } else {
         SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
     }
@@ -631,11 +628,9 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     std::string tmpIdStr = "100";
     if (currentUserId > 0) {
         tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("userId is %{public}s", tmpIdStr.c_str());
     } else if (currentUserId == 0) {
         OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
         tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("user0 userId is %{public}s", tmpIdStr.c_str());
     } else {
         SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
     }
@@ -1925,8 +1920,6 @@ napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
     asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, asyncCallbackInfo->tableName);
     GetValueExecuteExt(env, (void *)asyncCallbackInfo);
-    SETTING_LOG_INFO(
-        "n_g_v return  %{public}s", asyncCallbackInfo->value.c_str());
     napi_value retVal = nullptr;
     if (asyncCallbackInfo->value.size() <= 0) {
         retVal = args[PARAM2];
