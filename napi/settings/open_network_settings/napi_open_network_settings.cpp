@@ -242,11 +242,7 @@ napi_value SetAsyncCallback(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
         return wrap_void_to_js(env);
     }
     asyncCallbackInfo->deferred = deferred;
-    ret = napi_create_async_work(
-        env,
-        nullptr,
-        resource,
-        [](napi_env env, void* data) { },
+    ret = napi_create_async_work(env, nullptr, resource, [](napi_env env, void* data) { },
         [](napi_env env, napi_status status, void* data) {
             if (data == nullptr) {
                 SETTING_LOG_ERROR("manager data is null");
@@ -254,17 +250,11 @@ napi_value SetAsyncCallback(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
             }
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
             napi_value result = wrap_bool_to_js(env, (asyncCallbackInfo->status == SETTINGS_SUCCESS));
-            if (asyncCallbackInfo->callType == FA_CALLBACK) {
-                SettingsCompleteCall(env, asyncCallbackInfo, result);
-            } else {
-                SettingsCompletePromise(env, asyncCallbackInfo, result);
-            }
+            SettingsCompletePromise(env, asyncCallbackInfo, result);
             napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
             delete asyncCallbackInfo;
             SETTING_LOG_INFO("manager change complete");
-        },
-        (void*)asyncCallbackInfo,
-        &asyncCallbackInfo->asyncWork);
+        }, (void*)asyncCallbackInfo, &asyncCallbackInfo->asyncWork);
     if (ret != napi_ok) {
         SETTING_LOG_ERROR("create async work failed");
         napi_delete_reference(env, asyncCallbackInfo->callbackRef);
