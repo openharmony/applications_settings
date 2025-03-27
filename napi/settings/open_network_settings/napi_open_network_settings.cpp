@@ -196,14 +196,6 @@ SettingsError ReadErrorMessage(int code)
 void SettingsCompletePromise(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, napi_value result)
 {
     SETTING_LOG_INFO("settings complete promise.");
-    napi_value promise;
-    napi_deferred deferred;
-    napi_status ret = napi_create_promise(env, &deferred, &promise);
-    if (ret != napi_ok) {
-        SETTING_LOG_ERROR("create promise failed.");
-        return;
-    }
-    asyncCallbackInfo->deferred = deferred;
     if (asyncCallbackInfo->status == SETTINGS_SUCCESS) {
         napi_resolve_deferred(env, asyncCallbackInfo->deferred, result);
     } else {
