@@ -456,7 +456,7 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
         SETTING_LOG_ERROR("dataShareHelper from strProxyUri is null");
         dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri, "", WAIT_TIME);
         if (asyncCallbackInfo) {
-            asyncCallbackInfo->useSilent = false;
+            asyncCallbackInfo->useNonSilent = true;
         }
     }
     SETTING_LOG_INFO("g_D_S_H Creator called, valid %{public}d", dataShareHelper != nullptr);
@@ -650,7 +650,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
         retInt = asyncCallbackInfo->dataShareHelper->Insert(uri, val);
         SETTING_LOG_ERROR("insert ret: %{public}d", retInt);
     }
-    if (retInt > 0 && !asyncCallbackInfo->useSilent) {
+    if (retInt > 0 && asyncCallbackInfo->useNonSilent) {
         SETTING_LOG_INFO("not use silent and notifyChange!");
         asyncCallbackInfo->dataShareHelper->NotifyChange(uri);
     }
@@ -1422,7 +1422,7 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
         .value = "",
         .uri = "",
         .status = false,
-        .useSilent = true,
+        .useNonSilent = false,
     };
     if (asyncCallbackInfo == nullptr) {
         SETTING_LOG_ERROR("asyncCallbackInfo is null");
