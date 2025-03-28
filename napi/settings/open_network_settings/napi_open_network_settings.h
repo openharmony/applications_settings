@@ -23,7 +23,7 @@
 #include "../napi_settings_log.h"
 
 const int SETTINGS_PARAM_ERROR_CODE = 14800000;
-const int SETTINGS_ORIGINAL_SERVICE_CODE = 1480010;
+const int SETTINGS_ORIGINAL_SERVICE_CODE = 14800010;
 
 enum SettingsCode {
     SETTINGS_SUCCESS = 0,
