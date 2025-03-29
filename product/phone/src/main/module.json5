@@ -266,9 +266,6 @@
         "name": "ohos.permission.ACCESS_CERT_MANAGER"
       },
       {
-        "name": "ohos.permission.ACCESS_CERT_MANAGER_INTERNAL"
-      },
-      {
         "name": "ohos.permission.MANAGE_USB_CONFIG"
       }
     ]
