@@ -1909,11 +1909,8 @@ napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
         } else {
             asyncCallbackInfo->tableName = unwrap_string_from_js(env, args[PARAM3]);
             if (IsTableNameInvalid(asyncCallbackInfo->tableName)) {
-                if (asyncCallbackInfo != nullptr) {
-                    delete asyncCallbackInfo;
-                    asyncCallbackInfo = nullptr;
-                }
                 SETTING_LOG_ERROR("INVALID tableName");
+                delete asyncCallbackInfo;
                 return wrap_void_to_js(env);
             }
         }
@@ -1963,10 +1960,7 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
             asyncCallbackInfo->tableName = unwrap_string_from_js(env, args[PARAM3]);
             if (IsTableNameInvalid(asyncCallbackInfo->tableName)) {
                 SETTING_LOG_ERROR("INVALID tableName");
-                if (asyncCallbackInfo != nullptr) {
-                    delete asyncCallbackInfo;
-                    asyncCallbackInfo = nullptr;
-                }
+                delete asyncCallbackInfo;
                 return wrap_void_to_js(env);
             }
         }
