@@ -625,10 +625,14 @@ class PairDialogController {
       accessAuthorizationParams = AccessAuthorization.UNKNOWN;
       shareTypeParams = ShareType.SHARE_NOTHING;
     }
-    this.pbapServerProfile.setPhoneBookAccessAuthorization(deviceId, accessAuthorizationParams)
-    this.pbapServerProfile.setShareType(deviceId, shareTypeParams)
     LogUtil.info(`${TAG} onPairClickForPinType137 onButton3Click`);
-    connection.setDevicePinCode(deviceId, input ?? '');
+    try {
+      this.pbapServerProfile.setPhoneBookAccessAuthorization(deviceId, accessAuthorizationParams);
+      this.pbapServerProfile.setShareType(deviceId, shareTypeParams);
+      connection.setDevicePinCode(deviceId, input ?? '');
+    } catch (err) {
+      LogUtil.error('${TAG} onPairClickForPinType137 failed , BusinessError is ' + JSON.stringify(err));
+    }
   }
 
   private onPairClickForPinType02ForOther(deviceId: string, checkBoxState: boolean): void {
@@ -641,9 +645,13 @@ class PairDialogController {
       accessAuthorizationParams = AccessAuthorization.UNKNOWN;
       shareTypeParams = ShareType.SHARE_NOTHING;
     }
-    this.pbapServerProfile.setPhoneBookAccessAuthorization(deviceId, accessAuthorizationParams)
-    this.pbapServerProfile.setShareType(deviceId, shareTypeParams)
     LogUtil.info('${TAG} onPairClickForPinType02ForOther onButton3Click');
+    try {
+      this.pbapServerProfile.setPhoneBookAccessAuthorization(deviceId, accessAuthorizationParams);
+      this.pbapServerProfile.setShareType(deviceId, shareTypeParams);
+    } catch (err) {
+      LogUtil.error('${TAG} onPairClickForPinType02ForOther failed , BusinessError is ' + JSON.stringify(err));
+    }
   }
 
   private onPairClickForPinType45(deviceId: string, checkBoxState: boolean): void {
@@ -656,31 +664,47 @@ class PairDialogController {
       accessAuthorizationParams = AccessAuthorization.UNKNOWN;
       shareTypeParams = ShareType.SHARE_NOTHING;
     }
-    this.pbapServerProfile.setPhoneBookAccessAuthorization(deviceId, accessAuthorizationParams)
-    this.pbapServerProfile.setShareType(deviceId, shareTypeParams)
-    LogUtil.info(`${TAG} setShareType onPairClickForPinType256`);
-    connection.setDevicePairingConfirmation(deviceId, true);
+    LogUtil.info(`${TAG} setShareType onPairClickForPinType45`);
+    try {
+      this.pbapServerProfile.setPhoneBookAccessAuthorization(deviceId, accessAuthorizationParams);
+      this.pbapServerProfile.setShareType(deviceId, shareTypeParams);
+      connection.setDevicePairingConfirmation(deviceId, true);
+    } catch (err) {
+      LogUtil.error('${TAG} onPairClickForPinType45 failed , BusinessError is ' + JSON.stringify(err));
+    }
   }
 
   private onCancelClickForPinType137(deviceId: string, input?: string): void {
-    this.pbapServerProfile.setPhoneBookAccessAuthorization(deviceId, AccessAuthorization.REJECTED)
-    this.pbapServerProfile.setShareType(deviceId, ShareType.SHARE_NOTHING)
-    LogUtil.info(`[${TAG}] onCancelClickForPinType17 onCancelPair`);
-    connection.cancelPairingDevice(deviceId)
+    LogUtil.info(`[${TAG}] onCancelClickForPinType137 onCancelPair`);
+    try {
+      this.pbapServerProfile.setPhoneBookAccessAuthorization(deviceId, AccessAuthorization.REJECTED);
+      this.pbapServerProfile.setShareType(deviceId, ShareType.SHARE_NOTHING);
+      connection.setDevicePairingConfirmation(deviceId, false);
+    } catch (err) {
+      LogUtil.error('${TAG} onCancelClickForPinType137 failed , BusinessError is ' + JSON.stringify(err));
+    }
   }
 
   private onCancelClickForPinType45(deviceId: string): void {
-    this.pbapServerProfile.setPhoneBookAccessAuthorization(deviceId, AccessAuthorization.REJECTED)
-    this.pbapServerProfile.setShareType(deviceId, ShareType.SHARE_NOTHING)
-    LogUtil.info(`[${TAG}] onCancelClickForPinType2 onCancelPair`);
-    connection.setDevicePairingConfirmation(deviceId, false);
+    LogUtil.info(`[${TAG}] onCancelClickForPinType45 onCancelPair`);
+    try {
+      this.pbapServerProfile.setPhoneBookAccessAuthorization(deviceId, AccessAuthorization.REJECTED);
+      this.pbapServerProfile.setShareType(deviceId, ShareType.SHARE_NOTHING);
+      connection.setDevicePairingConfirmation(deviceId, false);
+    } catch (err) {
+      LogUtil.error('${TAG} onCancelClickForPinType45 failed , BusinessError is ' + JSON.stringify(err));
+    }
   }
 
   private onCancelClickForPinType02ForOther(deviceId: string): void {
-    this.pbapServerProfile.setPhoneBookAccessAuthorization(deviceId, AccessAuthorization.REJECTED)
-    this.pbapServerProfile.setShareType(deviceId, ShareType.SHARE_NOTHING)
-    LogUtil.info(`[${TAG}] onCancelClickForPinType56ForOther onCancelPair`);
-    connection.cancelPairingDevice(deviceId);
+    LogUtil.info(`[${TAG}] onCancelClickForPinType02ForOther onCancelPair`);
+    try {
+      this.pbapServerProfile.setPhoneBookAccessAuthorization(deviceId, AccessAuthorization.REJECTED);
+      this.pbapServerProfile.setShareType(deviceId, ShareType.SHARE_NOTHING);
+      connection.cancelPairingDevice(deviceId);
+    } catch (err) {
+      LogUtil.error('${TAG} onCancelClickForPinType02ForOther failed , BusinessError is ' + JSON.stringify(err));
+    }
   }
 
   private closeDialog(): void {
