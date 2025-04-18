@@ -1955,6 +1955,7 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
         }
         if (valueType != napi_string) {
             SETTING_LOG_ERROR("tableName IS NOT STRING");
+            delete asyncCallbackInfo;
             return wrap_void_to_js(env);
         } else {
             asyncCallbackInfo->tableName = unwrap_string_from_js(env, args[PARAM3]);
