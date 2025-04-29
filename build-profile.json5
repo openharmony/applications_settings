@@ -6,7 +6,7 @@
         "signingConfig": "release",
         "compileSdkVersion": 18,
         "compatibleSdkVersion": 18,
-        "targetSdkVersion": 14,
+        "targetSdkVersion": 18,
         "runtimeOS": "OpenHarmony"
       }
     ]
