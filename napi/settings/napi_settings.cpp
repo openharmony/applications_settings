@@ -998,7 +998,7 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
             asyncCallbackInfo->tableName = unwrap_string_from_js(env, args[PARAM2]);
             if (IsTableNameInvalid(asyncCallbackInfo->tableName)) {
                 SETTING_LOG_ERROR("INVALID tableName [ARGS_THREE]");
-                asyncCallbackInfo = nullptr;
+                delete asyncCallbackInfo;
                 return wrap_void_to_js(env);
             } else {
                 asyncCallbackInfo->callType = STAGE_PROMISE_SPECIFIC;
@@ -1017,7 +1017,7 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
     // check whether invalid call
     if (asyncCallbackInfo->callType == INVALID_CALL) {
         SETTING_LOG_ERROR("INVALID CALL");
-        asyncCallbackInfo = nullptr;
+        delete asyncCallbackInfo;
         return wrap_void_to_js(env);
     }
 
@@ -1445,7 +1445,7 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
             asyncCallbackInfo->tableName = unwrap_string_from_js(env, args[PARAM3]);
             if (IsTableNameInvalid(asyncCallbackInfo->tableName)) {
                 SETTING_LOG_ERROR("INVALID tableName [ARGS_FOUR]");
-                asyncCallbackInfo = nullptr;
+                delete asyncCallbackInfo;
                 return wrap_void_to_js(env);
             } else {
                 asyncCallbackInfo->callType = STAGE_PROMISE_SPECIFIC;
@@ -1464,7 +1464,7 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
     // check whether invalid call
     if (asyncCallbackInfo->callType == INVALID_CALL) {
         SETTING_LOG_ERROR("INVALID CALL");
-        asyncCallbackInfo = nullptr;
+        delete asyncCallbackInfo;
         return wrap_void_to_js(env);
     }
 
@@ -1959,13 +1959,13 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
         }
         if (valueType != napi_string) {
             SETTING_LOG_ERROR("tableName IS NOT STRING");
-            asyncCallbackInfo = nullptr;
+            delete asyncCallbackInfo;
             return wrap_void_to_js(env);
         } else {
             asyncCallbackInfo->tableName = unwrap_string_from_js(env, args[PARAM3]);
             if (IsTableNameInvalid(asyncCallbackInfo->tableName)) {
                 SETTING_LOG_ERROR("INVALID tableName");
-                asyncCallbackInfo = nullptr;
+                delete asyncCallbackInfo;
                 return wrap_void_to_js(env);
             }
         }
