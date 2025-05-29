@@ -635,8 +635,8 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
         SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
     }
     std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, tmpIdStr, asyncCallbackInfo->key);
-    SETTING_LOG_INFO(
-        "Set uri : %{public}s, key: %{public}s", strUri.c_str(), (asyncCallbackInfo->key).c_str());
+    SETTING_LOG_WARN(
+        "Set key: %{public}s value: %{public}s", (asyncCallbackInfo->key).c_str(), setValue.c_str());
     OHOS::Uri uri(strUri);
 
     OHOS::DataShare::DataSharePredicates predicates;
@@ -644,7 +644,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
 
     // update first.
     int retInt = asyncCallbackInfo->dataShareHelper->Update(uri, predicates, val);
-    SETTING_LOG_ERROR("update ret: %{public}d", retInt);
+    SETTING_LOG_WARN("update ret: %{public}d", retInt);
     if (retInt <= 0) {
         // retry to insert.
         retInt = asyncCallbackInfo->dataShareHelper->Insert(uri, val);
