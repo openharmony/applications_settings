@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -38,6 +38,7 @@ const std::string SETTINGS_DATA_BASE_URI = "dataability:///com.ohos.settingsdata
 const std::string SETTINGS_DATA_FIELD_KEYWORD = "KEYWORD";
 const std::string SETTINGS_DATA_FIELD_VALUE = "VALUE";
 const std::string PERMISSION_EXCEPTION = "Permission denied";
+const std::string DEFAULT_ANONYMOUS = "******";
 const int PERMISSION_EXCEPTION_CODE = 201;
 const int QUERY_SUCCESS_CODE = 1;
 const int STATUS_ERROR_CODE = -1;
@@ -86,9 +87,10 @@ napi_value wrap_void_to_js(napi_env env)
  *
  * @param env the environment that the Node-API call is invoked under
  * @param param js value to unwrap
+ * @param anonymousLog log is need anonymous, default false
  * @return std::string string value after unwrapped
  */
-std::string unwrap_string_from_js(napi_env env, napi_value param)
+std::string unwrap_string_from_js(napi_env env, napi_value param, bool anonymousLog)
 {
     std::string defaultValue("");
 
@@ -119,8 +121,27 @@ std::string unwrap_string_from_js(napi_env env, napi_value param)
 
     delete[] buf;
     buf = nullptr;
-    SETTING_LOG_INFO("unwarp str is : %{public}s", value.c_str());
+    if (anonymousLog) {
+        SETTING_LOG_INFO("unwarp str is : %{public}s", anonymous_log(value).c_str());
+    } else {
+        SETTING_LOG_INFO("unwarp str is : %{public}s", value.c_str());
+    }
     return value;
+}
+
+/**
+ * @brief anonymous log.
+ *
+ * @param log original log
+ * @return std::string string value after anonymous
+ */
+std::string anonymous_log(std::string log)
+{
+    std::string anonymousLog(log);
+    if (log != "") {
+        anonymousLog = log.substr(0, 1) + DEFAULT_ANONYMOUS;
+    }
+    return anonymousLog;
 }
 
 /**
@@ -500,7 +521,7 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
         resultSet->GoToFirstRow();
         resultSet->GetString(columnIndex, val);
 
-        SETTING_LOG_INFO("n_g_v_e %{public}s", val.c_str());
+        SETTING_LOG_INFO("n_g_v_e %{public}s", anonymous_log(val).c_str());
         asyncCallbackInfo->value = val;
         asyncCallbackInfo->status = QUERY_SUCCESS_CODE;
     }
@@ -1980,7 +2001,7 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
     }
     asyncCallbackInfo->dataShareHelper = getDataShareHelper(
         env, args[PARAM0], stageMode, asyncCallbackInfo->tableName, asyncCallbackInfo);
-    SetValueExecuteExt(env, (void *)asyncCallbackInfo, unwrap_string_from_js(env, args[PARAM2]));
+    SetValueExecuteExt(env, (void *)asyncCallbackInfo, unwrap_string_from_js(env, args[PARAM2], true));
     napi_value result = wrap_bool_to_js(env, ThrowError(env, asyncCallbackInfo->status));
     delete asyncCallbackInfo;
     return result;

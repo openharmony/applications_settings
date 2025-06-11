@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -101,9 +101,18 @@ napi_value wrap_bool_to_js(napi_env env, bool value);
  *
  * @param env the environment that the Node-API call is invoked under
  * @param param js value to unwrap
+ * @param anonymousLog log is need anonymous, default false
  * @return std::string string value after unwrapped
  */
-std::string unwrap_string_from_js(napi_env env, napi_value param);
+std::string unwrap_string_from_js(napi_env env, napi_value param, bool anonymousLog = false);
+
+/**
+ * @brief anonymous log.
+ *
+ * @param log original log
+ * @return std::string string value after anonymous
+ */
+std::string anonymous_log(std::string log);
 
 /**
  * @brief getUri NAPI implementation.
