@@ -360,55 +360,6 @@ struct AccessibilitySettings {
           .width(ConfigData.WH_100_100)
           .borderRadius($r('app.float.radius_24'))
           .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'));
-
-          SubHeader({ titleContent: ResourceUtils.getCapitalStringSync($r('app.string.extension_service')) });
-          if (this.serviceNumChanged || !this.serviceNumChanged) {
-            Navigator({ target: 'pages/serviceManagement' }) {
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-                Row() {
-                  Text($r('app.string.installed_service'))
-                    .fontSize($r('app.float.font_16'))
-                    .fontWeight(FontWeight.Medium)
-                    .fontColor($r('app.color.font_color_182431'))
-                    .lineHeight($r('app.float.wh_value_22'))
-                    .margin({ left: $r('app.float.distance_8') })
-                    .textAlign(TextAlign.Start);
-                }
-
-                Row() {
-                  Text(this.serviceStateText)
-                    .fontSize($r('app.float.font_14'))
-                    .lineHeight($r('app.float.wh_value_19'))
-                    .fontWeight(FontWeight.Regular)
-                    .fontColor($r('sys.color.ohos_id_color_text_secondary'))
-                    .textAlign(TextAlign.End)
-                    .margin({ right: $r('app.float.distance_4') });
-                  Image('/res/image/ic_settings_arrow.svg')
-                    .height($r('app.float.wh_value_24'))
-                    .width($r('app.float.wh_value_12'))
-                    .fillColor($r('sys.color.ohos_id_color_primary'))
-                    .margin({ right: $r('app.float.distance_8') })
-                    .opacity($r('app.float.opacity_0_2'));
-                }
-              }
-              .onTouch((event?: TouchEvent) => {
-                if (event && event.type === TouchType.Down) {
-                  this.isTouched = true;
-                }
-                if (event && event.type === TouchType.Up) {
-                  this.isTouched = false;
-                }
-              })
-              .height(ComponentConfig.WH_100_100)
-              .width(ComponentConfig.WH_100_100)
-              .borderRadius($r('app.float.radius_20'));
-            }
-            .padding($r('app.float.distance_4'))
-            .height($r('app.float.wh_value_56'))
-            .borderRadius($r('app.float.radius_24'))
-            .enabled(this.serviceNum > 0 ? true : false)
-            .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'));
-          }
         }
         .useSizeType({
           sm: { span: 4, offset: 0 },
