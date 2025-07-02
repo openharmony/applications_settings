@@ -85,11 +85,12 @@ export class AppManagementModel extends BaseModel {
     let that = this;
     LogUtil.info('settings AppManagementModel data[index].name :' + data[index].name);
     try {
-      let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
+      let abilityContext = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as common.Context;
       let appInfo = data[index].appInfo;
+      const context = abilityContext.createModuleContext(appInfo.labelResource.bundleName, appInfo.labelResource.moduleName)
       LogUtil.info('settings AppManagementModel getResourceManager appInfo.labelId:' + JSON.stringify(appInfo.labelResource));
       if (appInfo.labelResource.id > 0) {
-        await context.resourceManager.getString(appInfo.labelResource)
+        await context.resourceManager.getStringValue(appInfo.labelResource.id)
           .then((res) => {
             label = res;
             LogUtil.info('settings AppManagementModel getResourceManager getString() res:' + label);
@@ -107,7 +108,7 @@ export class AppManagementModel extends BaseModel {
       LogUtil.info('settings AppManagementModel getResourceManager getString() value:' + label);
       LogUtil.info('settings AppManagementModel getResourceManager appInfo.iconResource:' + JSON.stringify(appInfo.iconResource));
       if (appInfo.iconResource.id > 0) {
-        await context.resourceManager.getMediaBase64(appInfo.iconResource)
+        await context.resourceManager.getMediaBase64(appInfo.iconResource.id)
           .then((res) => {
             imageValue = res;
             LogUtil.info('settings AppManagementModel getResourceManager getMediaBase64() res:' + imageValue);
