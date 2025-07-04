@@ -15,9 +15,6 @@ import("//build/ohos.gni")
 
 ohos_shared_library("settings") {
   include_dirs = [
-    "//foundation/arkui/napi/interfaces/kits",
-    "//third_party/node/src",
-    "//foundation/distributeddatamgr/data_share/interfaces/inner_api/common/include",
     "./open_network_settings",
   ]
 
