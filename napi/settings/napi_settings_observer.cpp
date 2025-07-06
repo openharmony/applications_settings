@@ -146,6 +146,10 @@ namespace Settings {
     void CleanUp(void* data)
     {
         SETTING_LOG_INFO("CleanUp");
+        if (data === nullptr) {
+            SETTING_LOG_WARN("CleanUp, data nullptr");
+            return;
+        }
         AsyncCallbackInfo* callbackInfo = reinterpret_cast<AsyncCallbackInfo*>(data);
         std::lock_guard<std::mutex> lockGuard(g_observerMapMutex);
         if (g_observerMap.find(callbackInfo->key) != g_observerMap.end() &&
@@ -275,7 +279,7 @@ namespace Settings {
         }
         std::string strUri = GetStageUriStr(tableName, GetObserverIdStr(), key);
         OHOS::Uri uri(strUri);
-    
+        napi_remove_env_cleanup_hook(env, CleanUp, g_observerMap[key]->cbInfo);
         napi_delete_reference(g_observerMap[key]->cbInfo->env, g_observerMap[key]->cbInfo->callbackRef);
         dataShareHelper->UnregisterObserver(uri, g_observerMap[key]);
         dataShareHelper->Release();
