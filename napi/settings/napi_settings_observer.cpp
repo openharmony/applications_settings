@@ -146,7 +146,7 @@ namespace Settings {
     void CleanUp(void* data)
     {
         SETTING_LOG_INFO("CleanUp");
-        if (data === nullptr) {
+        if (data == nullptr) {
             SETTING_LOG_WARN("CleanUp, data nullptr");
             return;
         }
