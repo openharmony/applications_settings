@@ -143,6 +143,28 @@ namespace Settings {
         return tmpIdStr;
     }
 
+    void CleanUp(void* data)
+    {
+        SETTING_LOG_INFO("CleanUp");
+        if (data == nullptr) {
+            SETTING_LOG_WARN("CleanUp, data nullptr");
+            return;
+        }
+        AsyncCallbackInfo* callbackInfo = reinterpret_cast<AsyncCallbackInfo*>(data);
+        std::lock_guard<std::mutex> lockGuard(g_observerMapMutex);
+        if (g_observerMap.find(callbackInfo->key) != g_observerMap.end() &&
+            g_observerMap[callbackInfo->key] != nullptr) {
+            SETTING_LOG_WARN("CleanUp key is %{public}s", callbackInfo->key.c_str());
+            g_observerMap[callbackInfo->key]->toBeDelete = true;
+            g_observerMap[callbackInfo->key] = nullptr;
+            g_observerMap.erase(callbackInfo->key);
+            napi_delete_reference(callbackInfo->env, callbackInfo->callbackRef);
+            callbackInfo->env = nullptr;
+            callbackInfo->callbackRef = nullptr;
+            delete callbackInfo;
+        }
+    }
+
     napi_value npai_settings_register_observer(napi_env env, napi_callback_info info)
     {
         SETTING_LOG_INFO("n_s_r_o");
@@ -202,6 +224,7 @@ namespace Settings {
         sptr<SettingsObserver> settingsObserver = sptr<SettingsObserver>
         (new (std::nothrow)SettingsObserver(callbackInfo));
         g_observerMap[callbackInfo->key] = settingsObserver;
+        napi_add_env_cleanup_hook(env, CleanUp, callbackInfo);
         dataShareHelper->RegisterObserver(uri, settingsObserver);
         dataShareHelper->Release();
 		
@@ -256,7 +279,7 @@ namespace Settings {
         }
         std::string strUri = GetStageUriStr(tableName, GetObserverIdStr(), key);
         OHOS::Uri uri(strUri);
-    
+        napi_remove_env_cleanup_hook(env, CleanUp, g_observerMap[key]->cbInfo);
         napi_delete_reference(g_observerMap[key]->cbInfo->env, g_observerMap[key]->cbInfo->callbackRef);
         dataShareHelper->UnregisterObserver(uri, g_observerMap[key]);
         dataShareHelper->Release();
