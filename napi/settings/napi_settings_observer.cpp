@@ -154,7 +154,7 @@ namespace Settings {
             g_observerMap[callbackInfo->key]->toBeDelete = true;
             g_observerMap[callbackInfo->key] = nullptr;
             g_observerMap.erase(callbackInfo->key);
-            napi_delete_reference(env, callbackInfo->callbackRef);
+            napi_delete_reference(callbackInfo->env, callbackInfo->callbackRef);
             callbackInfo->env = nullptr;
             callbackInfo->callbackRef = nullptr;
             delete callbackInfo;
