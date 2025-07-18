@@ -23,6 +23,7 @@ export namespace settings {
   namespace domainName {
     const DEVICE_SHARED: string = "global";
     const USER_PROPERTY: string = "system";
+    const USER_SECURITY: string = "secure";
   }
 
   namespace date {
@@ -36,8 +37,8 @@ export namespace settings {
     const FONT_SCALE: string = "settings.display.font_scale";
     const SCREEN_BRIGHTNESS_STATUS: string = "settings.display.screen_brightness_status";
     const AUTO_SCREEN_BRIGHTNESS: string = "settings.display.auto_screen_brightness";
-    const AUTO_SCREEN_BRIGHTNESS_MODE: number = 1;
-    const MANUAL_SCREEN_BRIGHTNESS_MODE: number = 0;
+    const AUTO_SCREEN_BRIGHTNESS_MODE: int = 1;
+    const MANUAL_SCREEN_BRIGHTNESS_MODE: int = 0;
     const SCREEN_OFF_TIMEOUT: string = "settings.display.screen_off_timeout";
     const DEFAULT_SCREEN_ROTATION: string = "settings.display.default_screen_rotation";
     const ANIMATOR_DURATION_SCALE: string = "settings.display.animator_duration_scale";
