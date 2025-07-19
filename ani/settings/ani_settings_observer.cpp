@@ -127,7 +127,7 @@ ani_object CreateBusinessError(ani_env *env, int code, const std::string &msg)
         SETTING_LOG_ERROR("FindClass failed %{public}d", status);
         return nullptr;
     }
-    if ((status = env->Class_FindMethod(cls, "<ctor>", "DLescompat/Error;:V", &method)) != ANI_OK) {
+    if ((status = env->Class_FindMethod(cls, "<ctor>", "ILescompat/Error;:V", &method)) != ANI_OK) {
         SETTING_LOG_ERROR("Class_FindMethod failed %{public}d", status);
         return nullptr;
     }
