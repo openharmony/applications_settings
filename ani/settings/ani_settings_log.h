@@ -25,22 +25,22 @@
 namespace OHOS::Settings {
 const OHOS::HiviewDFX::HiLogLabel SETTINGS_LABEL = { LOG_CORE, 0xD000501, "Settings" };
 
-#define __FILENAME__ (__builtin_strrchr(__FILE__, '/') ? __builtin_strrchr(__FILE__, '/') + 1 : __FILE__)
+#define FILENAME (__builtin_strrchr(__FILE__, '/') ? __builtin_strrchr(__FILE__, '/') + 1 : __FILE__)
 
 #define SETTING_LOG_DEBUG(fmt, ...) \
     HiLogDebug(SETTINGS_LABEL, \
-    "[%{public}s(%{public}s:%{public}d)]" fmt, __FILENAME__, __FUNCTION__, __LINE__, ##__VA_ARGS__)
+    "[%{public}s(%{public}s:%{public}d)]" fmt, FILENAME, __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define SETTING_LOG_INFO(fmt, ...) \
     HiLogInfo(SETTINGS_LABEL, \
-    "[%{public}s(%{public}s:%{public}d)]" fmt, __FILENAME__, __FUNCTION__, __LINE__, ##__VA_ARGS__)
+    "[%{public}s(%{public}s:%{public}d)]" fmt, FILENAME, __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define SETTING_LOG_WARN(fmt, ...) \
     HiLogWarn(SETTINGS_LABEL, \
-    "[%{public}s(%{public}s:%{public}d)]" fmt, __FILENAME__, __FUNCTION__, __LINE__, ##__VA_ARGS__)
+    "[%{public}s(%{public}s:%{public}d)]" fmt, FILENAME, __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define SETTING_LOG_ERROR(fmt, ...) \
     HiLogError(SETTINGS_LABEL, \
-    "[%{public}s(%{public}s:%{public}d)]" fmt, __FILENAME__, __FUNCTION__, __LINE__, ##__VA_ARGS__)
+    "[%{public}s(%{public}s:%{public}d)]" fmt, FILENAME, __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define SETTING_LOG_FATAL(fmt, ...) \
     HiLogFatal(SETTINGS_LABEL, \
-    "[%{public}s(%{public}s:%{public}d)]" fmt, __FILENAME__, __FUNCTION__, __LINE__, ##__VA_ARGS__)
+    "[%{public}s(%{public}s:%{public}d)]" fmt, FILENAME, __FUNCTION__, __LINE__, ##__VA_ARGS__)
 } // namespace OHOS::Settings
 #endif
