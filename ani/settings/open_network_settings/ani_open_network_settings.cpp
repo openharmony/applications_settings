@@ -79,7 +79,7 @@ OHOS::Ace::UIContent* GetUIContent(std::shared_ptr<BaseContext> &asyncContext)
         SETTING_LOG_INFO("get uiContext by ui extension ability context");
         uiContent = asyncContext->uiExtensionContext->GetUIContent();
     } else {
-        SETTING_LOG_INFO("get uiContext failed.");
+        SETTING_LOG_ERROR("get uiContext failed.");
     }
 
     return uiContent;

@@ -40,13 +40,13 @@ ohos_shared_library("settings_ani") {
     "ability_runtime:dataobs_manager",
     "ability_runtime:runtime",
     "ability_runtime:ui_extension",
+    "ability_runtime:abilitykit_native",
     "ace_engine:ace_uicontent",
     "c_utils:utils",
     "data_share:datashare_common",
     "data_share:datashare_consumer",
     "hilog:libhilog",
     "ipc:ipc_core",
-    "napi:ace_napi",
     "os_account:os_account_innerkits",
     "relational_store:native_dataability",
     "relational_store:native_rdb",
@@ -55,7 +55,6 @@ ohos_shared_library("settings_ani") {
   ]
 
   relative_install_dir = "module"
-
   subsystem_name = "applications"
   part_name = "settings"
 }
@@ -63,7 +62,6 @@ ohos_shared_library("settings_ani") {
 generate_static_abc("settings") {
     base_url = "./ets"
     files = [ "./ets/@ohos.settings.ets" ]
-
     is_boot_abc = "True"
     device_dst_file = "/system/framework/settings.abc"
 }
