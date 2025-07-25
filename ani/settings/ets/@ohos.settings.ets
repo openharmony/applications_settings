@@ -229,7 +229,7 @@ export namespace settings {
 
   export function enableAirplaneMode(enable: boolean, callback: AsyncCallback<void>): void {
     taskpool.execute((): void => {
-      return enableAirplaneMode_inner(enable);
+      enableAirplaneMode_inner(enable);
     })
       .then((ret: NullishType): void => {
         callback(null, ret as undefined);
@@ -243,7 +243,7 @@ export namespace settings {
   export function enableAirplaneMode(enable: boolean): Promise<void> {
     return new Promise<void>((resolve, reject): void => {
       taskpool.execute((): void => {
-        return enableAirplaneMode_inner(enable);
+        enableAirplaneMode_inner(enable);
       })
         .then((ret: NullishType): void => {
           resolve(ret as undefined);
