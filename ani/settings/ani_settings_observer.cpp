@@ -223,6 +223,14 @@ std::string GetObserverIdStr()
     return tmpIdStr;
 }
 
+void DeleteAsyncCallbackInfo(AsyncCallbackInfo *asyncCallbackInfo)
+{
+    if (asyncCallbackInfo != nullptr) {
+        delete asyncCallbackInfo;
+        asyncCallbackInfo = nullptr;
+    }
+}
+
 ani_boolean ani_settings_register_observer(
     ani_env *env, ani_object context, ani_string name, ani_string domainName, ani_object observer)
 {
@@ -244,6 +252,7 @@ ani_boolean ani_settings_register_observer(
     ani_vm *vm = nullptr;
     if (env->GetVM(&vm) != ANI_OK) {
         SETTING_LOG_ERROR("GetVM failed");
+        DeleteAsyncCallbackInfo(callbackInfo);
         return false;
     }
     callbackInfo->key = unwrap_string_from_js(env, name);
@@ -254,14 +263,14 @@ ani_boolean ani_settings_register_observer(
     if (g_observerMap.find(callbackInfo->key) != g_observerMap.end() && g_observerMap[callbackInfo->key] != nullptr) {
         SETTING_LOG_INFO("%{public}s, already registered.", __func__);
         env->GlobalReference_Delete(callbackInfo->callbackRef);
-        delete callbackInfo;
+        DeleteAsyncCallbackInfo(callbackInfo);
         return false;
     }
 
     auto dataShareHelper = getDataShareHelper(env, context, callbackInfo->tableName);
     if (dataShareHelper == nullptr) {
         env->GlobalReference_Delete(callbackInfo->callbackRef);
-        delete callbackInfo;
+        DeleteAsyncCallbackInfo(callbackInfo);
         return false;
     }
 
@@ -269,15 +278,14 @@ ani_boolean ani_settings_register_observer(
     OHOS::Uri uri(strUri);
     sptr<SettingsObserver> settingsObserver =
         sptr<SettingsObserver>(new (std::nothrow) SettingsObserver(vm, observer, callbackInfo));
-    env->GlobalReference_Create(observer, &(settingsObserver->callback_));
+    if (settingsObserver->callback_ != nullptr) {
+        env->GlobalReference_Create(observer, &(settingsObserver->callback_));
+    }
 
     g_observerMap[callbackInfo->key] = settingsObserver;
     dataShareHelper->RegisterObserver(uri, settingsObserver);
     dataShareHelper->Release();
-    if (callbackInfo != nullptr) {
-        delete callbackInfo;
-        callbackInfo = nullptr;
-    }
+    DeleteAsyncCallbackInfo(callbackInfo);
     return true;
 }
 
