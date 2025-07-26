@@ -207,6 +207,8 @@ ani_string ani_get_value_ext(ani_env *env, ani_object context, ani_string name, 
     asyncCallbackInfo->tableName = unwrap_string_from_js(env, domainName);
     if (IsTableNameInvalid(asyncCallbackInfo->tableName)) {
         SETTING_LOG_ERROR("INVALID tableName [ARGS_THREE]");
+        delete asyncCallbackInfo;
+        asyncCallbackInfo = nullptr;
         return nullptr;
     }
     GetValueExecuteExt(env, (void *)asyncCallbackInfo);
@@ -250,6 +252,8 @@ ani_boolean ani_set_value_ext(
     asyncCallbackInfo->value = unwrap_string_from_js(env, value);
     if (IsTableNameInvalid(asyncCallbackInfo->tableName)) {
         SETTING_LOG_ERROR("INVALID tableName [ARGS_FOUR]");
+        delete asyncCallbackInfo;
+        asyncCallbackInfo = nullptr;
         return false;
     }
     SetValueExecuteExt(env, (void *)asyncCallbackInfo, asyncCallbackInfo->uri);
@@ -479,8 +483,9 @@ ani_boolean ani_set_value_sync_ext(
     asyncCallbackInfo->dataShareHelper =
         getDataShareHelper(env, context, asyncCallbackInfo->tableName, asyncCallbackInfo);
     SetValueExecuteExt(env, (void *)asyncCallbackInfo, unwrap_string_from_js(env, value));
+    bool result = ThrowError(env, asyncCallbackInfo->status);
     DeleteCallbackInfo(asyncCallbackInfo);
-    return ThrowError(env, asyncCallbackInfo->status);
+    return static_cast<ani_boolean>(result);
 }
 
 void SetValueExecuteExt(ani_env *env, void *data, const std::string setValue)
