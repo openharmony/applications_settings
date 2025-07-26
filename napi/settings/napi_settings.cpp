@@ -561,7 +561,7 @@ void GetValueExecuteExt(napi_env env, void *data)
     }
     std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, tmpIdStr, asyncCallbackInfo->key);
     SETTING_LOG_INFO(
-        "Get key: %{public}s", strUri.c_str(), (asyncCallbackInfo->key).c_str());
+        "Get key: %{public}s", (asyncCallbackInfo->key).c_str());
     OHOS::Uri uri(strUri);
 
     QueryValue(env, asyncCallbackInfo, uri);
