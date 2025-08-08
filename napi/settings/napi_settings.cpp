@@ -87,10 +87,11 @@ napi_value wrap_void_to_js(napi_env env)
  *
  * @param env the environment that the Node-API call is invoked under
  * @param param js value to unwrap
+ * @param showLog log is need to show, default true
  * @param anonymousLog log is need anonymous, default false
  * @return std::string string value after unwrapped
  */
-std::string unwrap_string_from_js(napi_env env, napi_value param, bool anonymousLog)
+std::string unwrap_string_from_js(napi_env env, napi_value param, bool showLog, bool anonymousLog)
 {
     std::string defaultValue("");
 
@@ -121,6 +122,9 @@ std::string unwrap_string_from_js(napi_env env, napi_value param, bool anonymous
 
     delete[] buf;
     buf = nullptr;
+    if (!showLog) {
+        return value;
+    }
     if (anonymousLog) {
         SETTING_LOG_INFO("str : %{public}s", anonymous_log(value).c_str());
     } else {
@@ -181,8 +185,6 @@ napi_value wrap_bool_to_js(napi_env env, bool value)
  */
 napi_value napi_get_uri_sync(napi_env env, napi_callback_info info)
 {
-    SETTING_LOG_INFO("called");
-
     napi_value retUri = nullptr;
 
     // Check the number of the arguments
@@ -222,14 +224,13 @@ napi_value napi_get_uri_sync(napi_env env, napi_callback_info info)
         retUri = wrap_string_to_js(env, retStr);
         return retUri;
     } else {
-        SETTING_LOG_INFO("ARGS_OTHER (should one)");
         NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
         if (argc != ARGS_ONE) {
             SETTING_LOG_ERROR("%{public}s, wrong number of arguments.", __func__);
             return wrap_void_to_js(env);
         }
 
-        std::string uriArgStr = unwrap_string_from_js(env, args[PARAM0]);
+        std::string uriArgStr = unwrap_string_from_js(env, args[PARAM0], false);
         uriArgStr = "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=" + uriArgStr;
         retUri = wrap_string_to_js(env, uriArgStr);
         return retUri;
@@ -455,18 +456,18 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
     std::string tmpIdStr = "100";
     if (currentUserId > 0) {
         tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("userId is %{public}s", tmpIdStr.c_str());
     } else if (currentUserId == 0) {
         OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
         tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("user0 userId is %{public}s", tmpIdStr.c_str());
     } else {
         SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
+    }
+    if (currentUserId > USERID_HELPER_NUMBER) {
+        SETTING_LOG_INFO("user0 userId is %{public}s", tmpIdStr.c_str());
     }
     std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
     std::string strProxyUri = GetProxyUriStr(tableName, tmpIdStr);
     OHOS::Uri proxyUri(strProxyUri);
-    SETTING_LOG_INFO("proxyUri: %{public}s", strProxyUri.c_str());
     auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
     if (contextS == nullptr) {
         SETTING_LOG_ERROR("get context is error.");
@@ -480,7 +481,6 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
             asyncCallbackInfo->useNonSilent = true;
         }
     }
-    SETTING_LOG_INFO("dataShareHelper is valid %{public}d", dataShareHelper != nullptr);
     return dataShareHelper;
 }
 
@@ -502,19 +502,18 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
     std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultSet = nullptr;
     resultSet = asyncCallbackInfo->dataShareHelper->Query(uri, predicates, columns, &businessError);
     int numRows = 0;
-    if (resultSet != nullptr) {
-        SETTING_LOG_INFO("resultSet is not empty");
-        resultSet->GetRowCount(numRows);
+    if (resultSet == nullptr) {
+        SETTING_LOG_INFO("resultSet is empty");
+        asyncCallbackInfo->status = STATUS_ERROR_CODE;
+        return;
     }
+    resultSet->GetRowCount(numRows);
     int datashareErrorCode = businessError.GetCode();
     SETTING_LOG_INFO("numRows %{public}d, error code %{public}d", numRows, datashareErrorCode);
-    if (datashareErrorCode != 0 && datashareErrorCode != PERMISSION_DENIED_CODE) {
+    if ((datashareErrorCode != 0 && datashareErrorCode != PERMISSION_DENIED_CODE) || numRows <= 0) {
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
     } else if (datashareErrorCode == PERMISSION_DENIED_CODE) {
         asyncCallbackInfo->status = PERMISSION_DENIED_CODE;
-    } else if (resultSet == nullptr || numRows <= 0) {
-        SETTING_LOG_INFO("value is empty");
-        asyncCallbackInfo->status = STATUS_ERROR_CODE;
     } else {
         std::string val;
         int32_t columnIndex = 0;
@@ -537,10 +536,7 @@ void GetValueExecuteExt(napi_env env, void *data)
         SETTING_LOG_INFO("execute data is null");
         return;
     }
-
-    SETTING_LOG_INFO("G_V_E_E start");
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-    
     if (asyncCallbackInfo->dataShareHelper == nullptr) {
         SETTING_LOG_ERROR("dataShareHelper is empty");
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
@@ -605,7 +601,7 @@ void CompleteCall(napi_env env, napi_status status, void *data, const napi_value
 
 void CompletePromise(napi_env env, napi_status status, void *data, const napi_value retValue)
 {
-    SETTING_LOG_INFO("p_m asy end  c_b");
+    SETTING_LOG_INFO("c_p");
     napi_value message = nullptr;
     napi_value code = nullptr;
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
@@ -630,9 +626,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
         SETTING_LOG_INFO("s_v_e_ex data is null");
         return;
     }
-    SETTING_LOG_INFO("execute start");
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-    
     if (asyncCallbackInfo->dataShareHelper == nullptr) {
         SETTING_LOG_INFO("helper is null");
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
@@ -1004,7 +998,7 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
         SETTING_LOG_ERROR("asyncCallbackInfo is null");
         return wrap_void_to_js(env);
     }
-    asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
+    asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1], false);
     asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode);
 
     // set call type and table name, and check whether the parameter is valid
@@ -1452,8 +1446,8 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
         SETTING_LOG_ERROR("asyncCallbackInfo is null");
         return wrap_void_to_js(env);
     }
-    asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
-    asyncCallbackInfo->uri = unwrap_string_from_js(env, args[PARAM2]);
+    asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1], false);
+    asyncCallbackInfo->uri = unwrap_string_from_js(env, args[PARAM2], false);
     asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, "global", asyncCallbackInfo);
 
     // set call type and table name
@@ -1945,7 +1939,7 @@ napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
         asyncCallbackInfo->tableName = "global";
     }
 
-    asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
+    asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1], false);
     asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, asyncCallbackInfo->tableName);
     GetValueExecuteExt(env, (void *)asyncCallbackInfo);
     napi_value retVal = nullptr;
@@ -1966,7 +1960,7 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
         SETTING_LOG_ERROR("asyncCallbackInfo is null");
         return wrap_void_to_js(env);
     }
-    asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
+    asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1], false);
     napi_valuetype valueType;
 
     // define table name
@@ -1998,7 +1992,8 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
     }
     asyncCallbackInfo->dataShareHelper = getDataShareHelper(
         env, args[PARAM0], stageMode, asyncCallbackInfo->tableName, asyncCallbackInfo);
-    SetValueExecuteExt(env, (void *)asyncCallbackInfo, unwrap_string_from_js(env, args[PARAM2], true));
+    SetValueExecuteExt(env, (void *)asyncCallbackInfo, unwrap_string_from_js(env, args[PARAM2],
+        true, true));
     napi_value result = wrap_bool_to_js(env, ThrowError(env, asyncCallbackInfo->status));
     delete asyncCallbackInfo;
     return result;
