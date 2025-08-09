@@ -101,10 +101,11 @@ napi_value wrap_bool_to_js(napi_env env, bool value);
  *
  * @param env the environment that the Node-API call is invoked under
  * @param param js value to unwrap
+ * @param showLog log is need to show, default true
  * @param anonymousLog log is need anonymous, default false
  * @return std::string string value after unwrapped
  */
-std::string unwrap_string_from_js(napi_env env, napi_value param, bool anonymousLog = false);
+std::string unwrap_string_from_js(napi_env env, napi_value param, bool showLog = true, bool anonymousLog = false);
 
 /**
  * @brief anonymous log.
