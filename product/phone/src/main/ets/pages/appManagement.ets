@@ -111,8 +111,6 @@ struct AppManagement {
     AppStorage.SetOrCreate('appManagementList', []);
     AppManagementModel.setAppManagementListener();
     ResourceUtil.getString($r('app.float.wh_value_80')).then(value => this.whtl = value);
-    LogUtil.info('settings AppManagement aboutToAppear  appList:' + JSON.stringify(this.appList));
-
     LogUtil.info('settings AppManagement aboutToAppear out');
   }
 
