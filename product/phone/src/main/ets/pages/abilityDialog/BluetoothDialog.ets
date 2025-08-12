@@ -29,7 +29,9 @@ struct BluetoothSwitchWindowDialog {
     autoCancel: true,
     customStyle: true,
     cancel: () => {
-      (AppStorage.get<UIExtensionContentSession>('bluetoothDialogSession') as UIExtensionContentSession).terminateSelf();
+      let dialogSession: UIExtensionContentSession | undefined =
+        AppStorage.get<UIExtensionContentSession>('accessibilityDialogSession');
+      dialogSession?.terminateSelf();
     }
   });
 
@@ -150,7 +152,9 @@ struct BluetoothSwitchDialog {
   onDialogClose(): void {
     LogUtil.info(`${TAG} onDialogClose in`);
     this.controller?.close();
-    (AppStorage.get<UIExtensionContentSession>('accessibilityDialogSession') as UIExtensionContentSession).terminateSelf();
+    let dialogSession: UIExtensionContentSession | undefined =
+      AppStorage.get<UIExtensionContentSession>('accessibilityDialogSession');
+    dialogSession?.terminateSelf();
   }
 
   aboutToAppear(): void {
