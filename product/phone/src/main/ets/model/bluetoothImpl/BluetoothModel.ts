@@ -308,7 +308,7 @@ export class BluetoothModel extends BaseModel {
       deviceId: string;
       pinCode: string;
     }) => {
-      LogUtil.info(`${this.TAG} subscribePinRequired->pinRequired return: ${data.pinCode}`);
+      LogUtil.info(`${this.TAG} subscribePinRequired->pinRequired`);
       if (callback) {
         callback(data)
       }
@@ -331,7 +331,7 @@ export class BluetoothModel extends BaseModel {
         LogUtil.error(`${this.TAG} unsubscribePinRequired->pinRequired error`);
         return;
       }
-      LogUtil.info(`${this.TAG} unsubscribePinRequired->pinRequired return: ${data.pinCode}`);
+      LogUtil.info(`${this.TAG} unsubscribePinRequired->pinRequired`);
       if (callback) {
         callback(data)
       }
