@@ -69,7 +69,6 @@ export class AboutDeviceModel extends BaseModel {
   @Log
   setOnAboutDeviceListener(): any {
     LogUtil.info('settings setOnAboutDeviceListener in');
-    LogUtil.info('settings setOnAboutDeviceListener deviceInfo ' + JSON.stringify(deviceInfo));
     return deviceInfo;
   }
 
