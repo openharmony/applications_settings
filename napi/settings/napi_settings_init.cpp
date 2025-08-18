@@ -175,7 +175,7 @@ const std::string Date::TIME_FORMAT = "settings.date.time_format";
 const std::string Date::AUTO_GAIN_TIME = "settings.date.auto_gain_time";
 const std::string Date::AUTO_GAIN_TIME_ZONE = "settings.date.auto_gain_time_zone";
 
-const std::string Display::FONT_SCALE = "settings.display.font_scale";
+const std::string Display::FONT_SCALE = "font_scale";
 const std::string Display::SCREEN_BRIGHTNESS_STATUS = "settings.display.screen_brightness_status";
 const std::string Display::AUTO_SCREEN_BRIGHTNESS = "settings.display.auto_screen_brightness";
 const int Display::AUTO_SCREEN_BRIGHTNESS_MODE = 1;
