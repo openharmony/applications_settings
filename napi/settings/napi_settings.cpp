@@ -549,7 +549,7 @@ void GetValueExecuteExt(napi_env env, void *data)
         tmpId = currentUserId;
     } else if (currentUserId == 0) {
         OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
-        tmpIdStr = currentUserId;
+        tmpId = currentUserId;
     } else {
         SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
     }
