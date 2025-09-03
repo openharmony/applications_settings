@@ -56,7 +56,9 @@ namespace Settings {
 
     int OnChangeAsync(uv_loop_s* loop, uv_work_t *work)
     {
-        int ret = uv_queue_work(loop, work, [](uv_work_t *work) {},
+        int ret = uv_queue_work(loop, work, [](uv_work_t *work) {
+                SETTING_LOG_INFO("oca_c");
+            },
             [](uv_work_t *work, int status) {
                 SETTING_LOG_INFO("n_s_o_c_a");
                 std::lock_guard<std::mutex> lockGuard(g_observerMapMutex);
