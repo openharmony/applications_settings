@@ -1853,7 +1853,15 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
 // get uri for stage model
 std::string GetStageUriStr(std::string tableName, std::string idStr, std::string keyStr)
 {
-    if (std::stoi(idStr) < USERID_HELPER_NUMBER) {
+    try {
+        if (std::stoi(idStr) < USERID_HELPER_NUMBER) {
+            idStr = "100";
+        }
+    } catch (std::invalid_argument&) {
+        SETTING_LOG_ERROR("GSUS_I");
+        idStr = "100";
+    } catch (...) {
+        SETTING_LOG_ERROR("GSUS_I");
         idStr = "100";
     }
     if (tableName == "global") {
@@ -1879,7 +1887,15 @@ std::string GetStageUriStr(std::string tableName, std::string idStr, std::string
 // get proxy uri
 std::string GetProxyUriStr(std::string tableName, std::string idStr)
 {
-    if (std::stoi(idStr) < USERID_HELPER_NUMBER) {
+    try {
+        if (std::stoi(idStr) < USERID_HELPER_NUMBER) {
+            idStr = "100";
+        }
+    } catch (std::invalid_argument&) {
+        SETTING_LOG_ERROR("GSUS_I");
+        idStr = "100";
+    } catch (...) {
+        SETTING_LOG_ERROR("GSUS_I");
         idStr = "100";
     }
     if (tableName == "global") {
