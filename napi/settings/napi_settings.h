@@ -188,8 +188,8 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info);
  * @return napi_value the return value from NAPI C++ to JS for the module.
  */
 napi_value napi_can_show_floating(napi_env env, napi_callback_info info);
-std::string GetStageUriStr(std::string tableName, std::string idStr, std::string keyStr);
-std::string GetProxyUriStr(std::string tableName, std::string idStr);
+std::string GetStageUriStr(std::string tableName, int id, std::string keyStr);
+std::string GetProxyUriStr(std::string tableName, int id);
 bool IsTableNameInvalid(std::string tableName);
 std::shared_ptr<DataShare::DataShareHelper> getDataShareHelper(
     napi_env env, const napi_value context, const bool stageMode, std::string tableName = "global",
