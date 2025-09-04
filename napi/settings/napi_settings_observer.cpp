@@ -61,7 +61,6 @@ namespace Settings {
         if (!IsExistObserver(settingsObserver) || settingsObserver == nullptr || settingsObserver->cbInfo == nullptr ||
             settingsObserver->toBeDelete) {
             SETTING_LOG_ERROR("uv_work: cbInfo invalid.");
-            delete settingsObserver;
             return;
         }
 
@@ -86,7 +85,6 @@ namespace Settings {
             &callResult);
         napi_close_handle_scope(settingsObserver->cbInfo->env, scope);
         SETTING_LOG_INFO("%{public}s, uv_work success.", __func__);
-        delete settingsObserver;
     }
 
     void SettingsObserver::OnChange()
@@ -112,10 +110,10 @@ namespace Settings {
         int ret = napi_send_event(cbInfo->env, std::bind(DoEventWork, settingsObserver), napi_eprio_high);
         if (ret != 0) {
             SETTING_LOG_ERROR("%{public}s, uv_queue_work failed.", __func__);
-            if (work != nullptr) {
-                delete work;
-                work = nullptr;
-            }
+        }
+        if (work != nullptr) {
+            delete work;
+            work = nullptr;
         }
     }
 
