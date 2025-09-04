@@ -54,46 +54,39 @@ namespace Settings {
         return false;
     }
 
-    int OnChangeAsync(uv_loop_s* loop, uv_work_t *work)
+    void SettingsObserver::DoEventWork(SettingsObserver *settingsObserver)
     {
-        int ret = uv_queue_work(loop, work, [](uv_work_t *work) {
-                SETTING_LOG_INFO("oca_c");
-            },
-            [](uv_work_t *work, int status) {
-                SETTING_LOG_INFO("n_s_o_c_a");
-                std::lock_guard<std::mutex> lockGuard(g_observerMapMutex);
-                SettingsObserver* settingsObserver = reinterpret_cast<SettingsObserver*>(work->data);
-                if (!IsExistObserver(settingsObserver) || settingsObserver == nullptr || settingsObserver->cbInfo == nullptr ||
-                    settingsObserver->toBeDelete) {
-                    SETTING_LOG_ERROR("uv_work: cbInfo invalid.");
-                    delete work;
-                    return;
-                }
+        SETTING_LOG_INFO("n_s_o_c_a");
+        std::lock_guard<std::mutex> lockGuard(g_observerMapMutex);
+        if (!IsExistObserver(settingsObserver) || settingsObserver == nullptr || settingsObserver->cbInfo == nullptr ||
+            settingsObserver->toBeDelete) {
+            SETTING_LOG_ERROR("uv_work: cbInfo invalid.");
+            delete settingsObserver;
+            return;
+        }
 
-                napi_handle_scope scope = nullptr;
-                napi_open_handle_scope(settingsObserver->cbInfo->env, &scope);
-                napi_value callback = nullptr;
-                napi_value undefined;
-                napi_get_undefined(settingsObserver->cbInfo->env, &undefined);
-                napi_value error = nullptr;
-                napi_create_object(settingsObserver->cbInfo->env, &error);
-                int unSupportCode = 802;
-                napi_value errCode = nullptr;
-                napi_create_int32(settingsObserver->cbInfo->env, unSupportCode, &errCode);
-                napi_set_named_property(settingsObserver->cbInfo->env, error, "code", errCode);
-                napi_value result[PARAM2] = {0};
-                result[0] = error;
-                result[1] = wrap_bool_to_js(settingsObserver->cbInfo->env, false);
-                napi_get_reference_value(settingsObserver->cbInfo->env, settingsObserver->cbInfo->callbackRef,
-                    &callback);
-                napi_value callResult;
-                napi_call_function(settingsObserver->cbInfo->env, undefined, callback, PARAM2, result,
-                    &callResult);
-                napi_close_handle_scope(settingsObserver->cbInfo->env, scope);
-                SETTING_LOG_INFO("%{public}s, uv_work success.", __func__);
-                delete work;
-            });
-            return ret;
+        napi_handle_scope scope = nullptr;
+        napi_open_handle_scope(settingsObserver->cbInfo->env, &scope);
+        napi_value callback = nullptr;
+        napi_value undefined;
+        napi_get_undefined(settingsObserver->cbInfo->env, &undefined);
+        napi_value error = nullptr;
+        napi_create_object(settingsObserver->cbInfo->env, &error);
+        int unSupportCode = 802;
+        napi_value errCode = nullptr;
+        napi_create_int32(settingsObserver->cbInfo->env, unSupportCode, &errCode);
+        napi_set_named_property(settingsObserver->cbInfo->env, error, "code", errCode);
+        napi_value result[PARAM2] = {0};
+        result[0] = error;
+        result[1] = wrap_bool_to_js(settingsObserver->cbInfo->env, false);
+        napi_get_reference_value(settingsObserver->cbInfo->env, settingsObserver->cbInfo->callbackRef,
+            &callback);
+        napi_value callResult;
+        napi_call_function(settingsObserver->cbInfo->env, undefined, callback, PARAM2, result,
+            &callResult);
+        napi_close_handle_scope(settingsObserver->cbInfo->env, scope);
+        SETTING_LOG_INFO("%{public}s, uv_work success.", __func__);
+        delete settingsObserver;
     }
 
     void SettingsObserver::OnChange()
@@ -115,8 +108,8 @@ namespace Settings {
             return;
         }
         work->data = reinterpret_cast<void*>(this);
-
-        int ret = OnChangeAsync(loop, work);
+        SettingsObserver* settingsObserver = reinterpret_cast<SettingsObserver*>(work->data);
+        int ret = napi_send_event(cbInfo->env, std::bind(DoEventWork, settingsObserver), napi_eprio_high);
         if (ret != 0) {
             SETTING_LOG_ERROR("%{public}s, uv_queue_work failed.", __func__);
             if (work != nullptr) {

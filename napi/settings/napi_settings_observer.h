@@ -34,6 +34,7 @@ class SettingsObserver : public OHOS::AAFwk::DataAbilityObserverStub {
 public:
     explicit SettingsObserver(AsyncCallbackInfo* callback) : cbInfo(callback) {}
     ~SettingsObserver();
+    static void DoEventWork(SettingsObserver *settingsObserver);
     void OnChange();
     AsyncCallbackInfo* cbInfo;
     static void EnvObserver(void* arg);
