@@ -53,7 +53,7 @@ ani_object BoolToObject(ani_env *env, bool value)
 {
     ani_object aniObject = nullptr;
     ani_boolean boolValue = static_cast<bool>(value);
-    const char *className = "Lstd/core/Boolean;";
+    const char *className = "std.core.Boolean";
     ani_class aniClass;
     if (ANI_OK != env->FindClass(className, &aniClass)) {
         SETTING_LOG_ERROR("Not found '%{public}s.'", className);
@@ -61,7 +61,7 @@ ani_object BoolToObject(ani_env *env, bool value)
     }
 
     ani_method personInfoCtor;
-    if (ANI_OK != env->Class_FindMethod(aniClass, "<ctor>", "Z:V", &personInfoCtor)) {
+    if (ANI_OK != env->Class_FindMethod(aniClass, "<ctor>", "z:", &personInfoCtor)) {
         SETTING_LOG_ERROR("Class_GetMethod Failed '%{public}s' <ctor>.", className);
         return aniObject;
     }
@@ -96,11 +96,11 @@ ani_object CreateError(ani_env *env, const std::string &msg)
         return nullptr;
     }
 
-    if ((status = env->FindClass("Lescompat/Error;", &cls)) != ANI_OK) {
+    if ((status = env->FindClass("escompat.Error", &cls)) != ANI_OK) {
         SETTING_LOG_ERROR("FindClass failed %{public}d", status);
         return nullptr;
     }
-    if ((status = env->Class_FindMethod(cls, "<ctor>", "Lstd/core/String;Lescompat/ErrorOptions;:V", &method)) !=
+    if ((status = env->Class_FindMethod(cls, "<ctor>", "C{std.core.String}C{escompat.ErrorOptions}:", &method)) !=
         ANI_OK) {
         SETTING_LOG_ERROR("Class_FindMethod failed %{public}d", status);
         return nullptr;
@@ -123,11 +123,11 @@ ani_object CreateBusinessError(ani_env *env, int code, const std::string &msg)
         SETTING_LOG_ERROR("null env");
         return nullptr;
     }
-    if ((status = env->FindClass("L@ohos/base/BusinessError;", &cls)) != ANI_OK) {
+    if ((status = env->FindClass("@ohos.base.BusinessError", &cls)) != ANI_OK) {
         SETTING_LOG_ERROR("FindClass failed %{public}d", status);
         return nullptr;
     }
-    if ((status = env->Class_FindMethod(cls, "<ctor>", "ILescompat/Error;:V", &method)) != ANI_OK) {
+    if ((status = env->Class_FindMethod(cls, "<ctor>", "iC{escompat.Error}:", &method)) != ANI_OK) {
         SETTING_LOG_ERROR("Class_FindMethod failed %{public}d", status);
         return nullptr;
     }
