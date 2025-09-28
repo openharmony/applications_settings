@@ -278,7 +278,7 @@ ani_boolean ani_settings_register_observer(
     OHOS::Uri uri(strUri);
     sptr<SettingsObserver> settingsObserver =
         sptr<SettingsObserver>(new (std::nothrow) SettingsObserver(vm, observer, callbackInfo));
-    if (settingsObserver->callback_ != nullptr) {
+    if (settingsObserver != nullptr && settingsObserver->callback_ != nullptr) {
         env->GlobalReference_Create(observer, &(settingsObserver->callback_));
     }
 
