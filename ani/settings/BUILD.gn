@@ -1,0 +1,75 @@
+# Copyright (c) 2025 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/config/components/ets_frontend/ets2abc_config.gni")
+import("//build/ohos.gni")
+
+ohos_shared_library("settings_ani") {
+  include_dirs = [
+    "./ani_settings.h",
+    "./ani_settings_log.h",
+    "./ani_settings_observer.h",
+    "./open_network_settings",
+  ]
+
+  sources = [
+    "./ani_settings.cpp",
+    "./ani_settings_observer.cpp",
+    "./open_network_settings/ani_open_network_settings.cpp",
+  ]
+
+  version_script = "settings_ani.versionscript"
+
+  external_deps = [
+    "ability_base:want",
+    "ability_base:zuri",
+    "ability_runtime:ani_base_context",
+    "ability_runtime:ability_context_native",
+    "ability_runtime:ability_manager",
+    "ability_runtime:data_ability_helper",
+    "ability_runtime:dataobs_manager",
+    "ability_runtime:runtime",
+    "ability_runtime:ui_extension",
+    "ability_runtime:abilitykit_native",
+    "ace_engine:ace_uicontent",
+    "c_utils:utils",
+    "data_share:datashare_common",
+    "data_share:datashare_consumer",
+    "hilog:libhilog",
+    "ipc:ipc_core",
+    "os_account:os_account_innerkits",
+    "relational_store:native_dataability",
+    "relational_store:native_rdb",
+    "runtime_core:ani",
+    "runtime_core:libarkruntime"
+  ]
+
+  relative_install_dir = "module"
+  subsystem_name = "applications"
+  part_name = "settings"
+}
+
+generate_static_abc("settings") {
+    base_url = "./ets"
+    files = [ "./ets/@ohos.settings.ets" ]
+    is_boot_abc = "True"
+    device_dst_file = "/system/framework/settings.abc"
+}
+
+ohos_prebuilt_etc("settings_etc") {
+    source = "$target_out_dir/settings.abc"
+    deps = [":settings"]
+    module_install_dir = "framework"
+    subsystem_name = "applications"
+    part_name = "settings"
+}
