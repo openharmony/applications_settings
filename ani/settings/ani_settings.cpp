@@ -572,14 +572,11 @@ static ani_boolean BindMethods(ani_env *env)
     using namespace OHOS::Settings;
     const char *spaceName = "L@ohos/settings/settings;";
     ani_namespace spc;
-
     ani_status ret = env->FindNamespace(spaceName, &spc);
-
     if (ret != ANI_OK) {
         SETTING_LOG_ERROR("Not found %{public}s, ret = %{public}d", spaceName, ret);
         return ANI_NOT_FOUND;
     }
-
     std::array methods = {
         ani_native_function{"getValue_inner", nullptr, reinterpret_cast<void *>(ani_get_value)},
         ani_native_function{"setValue_inner", nullptr, reinterpret_cast<void *>(ani_set_value)},
@@ -593,7 +590,6 @@ static ani_boolean BindMethods(ani_env *env)
         ani_native_function{
             "openNetworkManagerSettings_inner", nullptr, reinterpret_cast<void *>(opne_manager_settings)},
     };
-
     if (env->Namespace_BindNativeFunctions(spc, methods.data(), methods.size()) != ANI_OK) {
         SETTING_LOG_ERROR("Cannot bind native methods to %{public}s ", spaceName);
         return ANI_ERROR;
