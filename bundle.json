@@ -32,14 +32,17 @@
                 "relational_store",
                 "os_account",
                 "napi",
-                "ipc"
+                "ipc",
+                "runtime_core"
             ],
             "third_party": []
         },
         "build": {
             "sub_component": [
                 "//applications/standard/settings/napi/settings:settings",
-                "//applications/standard/settings/cj/settings:cj_settings_ffi"
+                "//applications/standard/settings/cj/settings:cj_settings_ffi",
+                "//applications/standard/settings/ani/settings:settings_ani",
+                "//applications/standard/settings/ani/settings:settings_etc"
             ],
             "inner_kits": [
                 {
