@@ -230,7 +230,7 @@ export class ExtensionServiceManagementModel extends BaseModel {
     let context = GlobalContext.getContext().getObject(GlobalContext.globalKeySettingsAbilityContext) as Context;
     let moduleInfo: Array<bundleManager.HapModuleInfo> = bundleInfo.hapModulesInfo;
     if (moduleInfo.length > 0) {
-      for (let hapInfo of moduleInfo) {
+      /*for (let hapInfo of moduleInfo) {
         let bundleContext: Context = context.createBundleContext(bundleInfo.name);
         for (let ability of hapInfo.extensionAbilitiesInfo) {
           if (ability.name === serviceName && ability.descriptionId > 0) {
@@ -251,7 +251,7 @@ export class ExtensionServiceManagementModel extends BaseModel {
             return description;
           }
         }
-      }
+      }*/
     }
     return description;
   }
