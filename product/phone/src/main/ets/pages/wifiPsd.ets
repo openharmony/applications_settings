@@ -303,7 +303,7 @@ struct WifiPsd {
           LogUtil.info(MODULE_TAG + 'get linked info failed');
           return;
         }
-
+        LogUtil.info(MODULE_TAG + 'result ssid: ' + result.ssid + ' tobeConnectedSSID: ' + this.tobeConnectedSSID + ' connState: ' + result.connState);
         // 1: Connecting, 4: Connected, 6: Disconnected
         if (result.ssid === this.tobeConnectedSSID && result.connState === 4) {
           this.connectDialog?.close();
@@ -314,10 +314,12 @@ struct WifiPsd {
         }
 
         if (result.connState === 6 && this.toConnected) {
+          LogUtil.info(MODULE_TAG + 'connect failed, toConnected: ' + this.toConnected);
           this.toConnected = false;
           this.connectDialog?.close();
           this.failedDialog?.open();
           if (this.tobeConnectedAp) {
+            LogUtil.info(MODULE_TAG + 'removeDeviceConfig ' + this.toConnected);
             WifiModel.removeDeviceConfig(this.tobeConnectedAp);
           }
           WifiModel.refreshApScanResults();
