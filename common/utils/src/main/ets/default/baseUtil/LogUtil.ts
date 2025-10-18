@@ -41,6 +41,16 @@ export class LogUtil extends BaseModel {
   error(msg): void {
     HiLog.error(DOMAIN, TAG, msg);
   }
+
+  dealLog(msg: string): string {
+    if (!msg) {
+      return '';
+    }
+    if (msg.length === 1) {
+      return '*****';
+    }
+    return msg.charAt(0) + '*****';
+  }
 }
 
 let mLogUtil = new LogUtil();
