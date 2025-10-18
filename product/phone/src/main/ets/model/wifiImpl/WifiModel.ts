@@ -394,7 +394,7 @@ export class WifiModel extends BaseModel {
       return;
     }
     LogUtil.info(MODULE_TAG + 'start to removeDevice');
-    LogUtil.info(MODULE_TAG + 'remove networkId: ' + networkId + ' ssid: ' + apInfo.ssid);
+    LogUtil.info(MODULE_TAG + 'remove ssid: ' + LogUtil.dealLog(apInfo.ssid));
     let ret = wifi.removeDevice(networkId);
     LogUtil.info(MODULE_TAG + 'remove device config : ' + ret);
   }
