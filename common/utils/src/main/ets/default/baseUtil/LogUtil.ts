@@ -46,7 +46,7 @@ export class LogUtil extends BaseModel {
     if (!msg) {
       return '';
     }
-    if (msg.length === 1) {
+    if (msg.length <= 1) {
       return '*****';
     }
     return msg.charAt(0) + '*****';
