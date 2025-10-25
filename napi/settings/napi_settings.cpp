@@ -405,44 +405,6 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
     }
 }
 
-void CheckDataShareHelper(napi_env env, const napi_value context,
-    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper, OHOS::Uri proxyUri)
-{
-    std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultSet = nullptr;
-    std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
-    DataSharePredicates predicates;
-    predicates.Limit(1, 0);
-    auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
-    std::vector<std::string> columns;
-    DatashareBusinessError businessError;
-    resultSet = dataShareHelper->Query(proxyUri, predicates, columns, &businessError);
-    int numRows = 0;
-    if (resultSet != nullptr) {
-        resultSet->GetRowCount(numRows);
-    }
-    SETTING_LOG_INFO("numRows %{public}d, error code %{public}d", numRows, businessError.GetCode());
-    if (businessError.GetCode() == PERMISSION_DENIED_CODE) {
-        if (resultSet != nullptr) {
-            resultSet->Close();
-        }
-        return;
-    } else if (resultSet == nullptr || numRows <= 0) {
-        int trial = 0;
-        do {
-            SETTING_LOG_INFO("settingsnapi : getDataShareHelper resultSet == nullptr, strUri %{public}s %{public}d",
-                strUri.c_str(),
-                trial);
-            dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(),
-            strUri, strUri, WAIT_TIME);
-        } while (trial++ < DB_HELPER_TRIAL_NUMBER && dataShareHelper == nullptr);
-        if (resultSet != nullptr) {
-            resultSet->Close();
-        }
-        return;
-    }
-    resultSet->Close();
-}
-
 std::shared_ptr<DataShareHelper> getDataShareHelper(
     napi_env env, const napi_value context, const bool stageMode, std::string tableName,
     AsyncCallbackInfo *asyncCallbackInfo)
