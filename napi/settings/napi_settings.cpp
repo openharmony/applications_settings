@@ -43,7 +43,6 @@ const int PERMISSION_EXCEPTION_CODE = 201;
 const int QUERY_SUCCESS_CODE = 1;
 const int STATUS_ERROR_CODE = -1;
 const int PERMISSION_DENIED_CODE = -2;
-const int DB_HELPER_TRIAL_NUMBER = 2;
 const int USERID_HELPER_NUMBER = 100;
 const int WAIT_TIME = 2;
 
