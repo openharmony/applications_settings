@@ -46,6 +46,7 @@ namespace Settings {
     }
 
     bool IsExistObserver(SettingsObserver* settingsObserver) {
+        std::lock_guard<std::mutex> lockGuard(g_observerMapMutex);
         for (auto it = g_observerMap.begin(); it != g_observerMap.end(); ++it) {
             if (&(*(it->second)) == settingsObserver) {
                 return true;
@@ -57,7 +58,6 @@ namespace Settings {
     void SettingsObserver::DoEventWork(SettingsObserver *settingsObserver)
     {
         SETTING_LOG_INFO("n_s_o_c_a");
-        std::lock_guard<std::mutex> lockGuard(g_observerMapMutex);
         if (!IsExistObserver(settingsObserver) || settingsObserver == nullptr || settingsObserver->cbInfo == nullptr ||
             settingsObserver->toBeDelete) {
             SETTING_LOG_ERROR("uv_work: cbInfo invalid.");
