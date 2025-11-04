@@ -1198,7 +1198,6 @@ void SetValueExecuteCB(napi_env env, void *data)
 napi_value SetValueAsync(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
 {
     if (asyncCallbackInfo == nullptr) {
-        SETTING_LOG_ERROR("asyncCallbackInfo is null");
         return wrap_void_to_js(env);
     }
     SETTING_LOG_INFO("set do c_b");
@@ -1210,12 +1209,8 @@ napi_value SetValueAsync(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
         }
         return nullptr;
     }
-
     napi_create_async_work(
-        env,
-        nullptr,
-        resource,
-        SetValueExecuteCB,
+        env, nullptr, resource, SetValueExecuteCB,
         [](napi_env env, napi_status status, void* data) {
             if (data == nullptr) {
                 SETTING_LOG_INFO("c_b set asy end data is null");
@@ -1255,7 +1250,6 @@ napi_value SetValuePromise(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
 {
     SETTING_LOG_INFO("set do promise");
     if (asyncCallbackInfo == nullptr) {
-        SETTING_LOG_ERROR("asyncCallbackInfo is null");
         return wrap_void_to_js(env);
     }
     napi_value promise;
@@ -1268,7 +1262,6 @@ napi_value SetValuePromise(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
         return nullptr;
     }
     asyncCallbackInfo->deferred = deferred;
-
     napi_value resource = nullptr;
     if (napi_create_string_utf8(env, __func__, NAPI_AUTO_LENGTH, &resource) != napi_ok) {
         SETTING_LOG_ERROR("napi_create_string_utf8 error");
@@ -1277,7 +1270,6 @@ napi_value SetValuePromise(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
         }
         return nullptr;
     }
-
     napi_create_async_work(
         env,
         nullptr,
