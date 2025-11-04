@@ -1271,10 +1271,7 @@ napi_value SetValuePromise(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
         return nullptr;
     }
     napi_create_async_work(
-        env,
-        nullptr,
-        resource,
-        SetValueExecuteCB,
+        env, nullptr, resource, SetValueExecuteCB,
         [](napi_env env, napi_status status, void* data) {
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
             SETTING_LOG_INFO("p_m set end get c_b value is %{public}d",
