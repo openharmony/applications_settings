@@ -1262,20 +1262,16 @@ napi_value SetValuePromise(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
     napi_deferred deferred;
     if (napi_create_promise(env, &deferred, &promise) != napi_ok) {
         SETTING_LOG_ERROR("napi_create_promise error");
-        if (asyncCallbackInfo != nullptr) {
-            delete asyncCallbackInfo;
-            asyncCallbackInfo = nullptr;
-        }
+        delete asyncCallbackInfo;
+        asyncCallbackInfo = nullptr;
         return nullptr;
     }
     asyncCallbackInfo->deferred = deferred;
     napi_value resource = nullptr;
     if (napi_create_string_utf8(env, __func__, NAPI_AUTO_LENGTH, &resource) != napi_ok) {
         SETTING_LOG_ERROR("napi_create_string_utf8 error");
-        if (asyncCallbackInfo != nullptr) {
-            delete asyncCallbackInfo;
-            asyncCallbackInfo = nullptr;
-        }
+        delete asyncCallbackInfo;
+        asyncCallbackInfo = nullptr;
         return nullptr;
     }
     napi_create_async_work(
