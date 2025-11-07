@@ -524,7 +524,7 @@ struct AvailableDeviceComponent {
       if (this.availableDevices && this.availableDevices.length >= 1) {
         List() {
           // paired devices list
-          ForEach(this.availableDevices, (item: BluetoothDevice) => {
+          LazyForEach(this.availableDevicesList, (item: BluetoothDevice) => {
             ListItem() {
               Row() {
                 EntryComponent({
