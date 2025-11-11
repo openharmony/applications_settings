@@ -773,8 +773,16 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
     // Check the value type of the arguments
     napi_valuetype valueType;
     NAPI_CALL(env, napi_typeof(env, args[PARAM0], &valueType));
+    bool typeCheck = (valueType == napi_object);
+    if (!typeCheck) {
+        SETTING_LOG_ERROR("first argument type error");
+    }
     NAPI_ASSERT(env, valueType == napi_object, "Wrong argument[0] type. Object expected.");
     NAPI_CALL(env, napi_typeof(env, args[PARAM1], &valueType));
+    typeCheck = (valueType == napi_string);
+    if (!typeCheck) {
+        SETTING_LOG_ERROR("key type error");
+    }
     NAPI_ASSERT(env, valueType == napi_string, "Wrong argument[1], type. String expected");
 
     bool stageMode = false;
