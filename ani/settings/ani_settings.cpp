@@ -61,21 +61,23 @@ void ThrowExistingError(ani_env *env, int errorCode, std::string errorMessage)
         SETTING_LOG_ERROR("create BusinessError object failed");
         return;
     }
-    ani_double aniErrCode = static_cast<ani_double>(errorCode);
+    ani_int aniErrCode = static_cast<ani_int>(errorCode);
     ani_string errMsgStr;
     if (ANI_OK != env->String_NewUTF8(errorMessage.c_str(), errorMessage.size(), &errMsgStr)) {
         SETTING_LOG_ERROR("convert errMsg to ani_string failed");
         return;
     }
-    if (ANI_OK != env->Object_SetFieldByName_Double(errorObject, "code", aniErrCode)) {
+    if (ANI_OK != env->Object_SetPropertyByName_Int(errorObject, "code_", aniErrCode)) {
         SETTING_LOG_ERROR("set error code failed");
         return;
     }
-    if (ANI_OK != env->Object_SetPropertyByName_Ref(errorObject, "message", errMsgStr)) {
+    if (ANI_OK != env->Object_SetPropertyByName_Ref(errorObject, "message", static_cast<ani_ref>(errMsgStr))) {
         SETTING_LOG_ERROR("set error message failed");
         return;
     }
-    env->ThrowError(static_cast<ani_error>(errorObject));
+    if (ANI_OK != env->ThrowError(static_cast<ani_error>(errorObject))) {
+        SETTING_LOG_ERROR("ThrowError failed");
+    }
 }
 
 bool ThrowError(ani_env *env, int status)
