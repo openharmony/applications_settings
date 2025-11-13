@@ -285,7 +285,6 @@ ani_boolean ani_settings_register_observer(
     g_observerMap[callbackInfo->key] = settingsObserver;
     dataShareHelper->RegisterObserver(uri, settingsObserver);
     dataShareHelper->Release();
-    DeleteAsyncCallbackInfo(callbackInfo);
     return true;
 }
 
@@ -329,7 +328,6 @@ ani_boolean ani_settings_unregister_observer(ani_env *env, ani_object context, a
     g_observerMap[key]->toBeDelete = true;
     g_observerMap[key] = nullptr;
     g_observerMap.erase(key);
-
     return true;
 }
 }  // namespace Settings
