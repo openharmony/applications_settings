@@ -1386,7 +1386,6 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
         ret = SetValuePromise(env, asyncCallbackInfo);
     }
     if (asyncCallbackInfo != nullptr) {
-        delete asyncCallbackInfo;
         asyncCallbackInfo = nullptr;
     }
     SETTING_LOG_INFO("set  value end");
