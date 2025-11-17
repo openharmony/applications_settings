@@ -150,10 +150,10 @@ export namespace settings {
     taskpool.execute((): string => {
       return getValue_inner(context, name, "global");
     })
-      .then((ret: NullishType): void => {
+      .then((ret: Any): void => {
         callback(null, ret as string);
       })
-      .catch((ret: NullishType): void => {
+      .catch((ret: Any): void => {
         let data: string;
         callback(ret as BusinessError, data);
       });
@@ -164,10 +164,10 @@ export namespace settings {
       taskpool.execute((): string => {
         return getValue_inner(context, name, "global");
       })
-        .then((ret: NullishType): void => {
+        .then((ret: Any): void => {
           resolve(ret as string);
         })
-        .catch((ret: NullishType): void => {
+        .catch((ret: Any): void => {
           reject(ret as Error);
         });
     });
@@ -178,10 +178,10 @@ export namespace settings {
       taskpool.execute((): string => {
         return getValue_inner(context, name, domainName);
       })
-        .then((ret: NullishType): void => {
+        .then((ret: Any): void => {
           resolve(ret as string);
         })
-        .catch((ret: NullishType): void => {
+        .catch((ret: Any): void => {
           reject(ret as Error);
         });
     });
@@ -191,10 +191,10 @@ export namespace settings {
     taskpool.execute((): boolean => {
       return setValue_inner(context, name, value, "global");
     })
-      .then((ret: NullishType): void => {
+      .then((ret: Any): void => {
         callback(null, ret as boolean);
       })
-      .catch((ret: NullishType): void => {
+      .catch((ret: Any): void => {
         let data: boolean;
         callback(ret as BusinessError, data);
       });
@@ -205,10 +205,10 @@ export namespace settings {
       taskpool.execute((): boolean => {
         return setValue_inner(context, name, value, "global");
       })
-        .then((ret: NullishType): void => {
+        .then((ret: Any): void => {
           resolve(ret as boolean);
         })
-        .catch((ret: NullishType): void => {
+        .catch((ret: Any): void => {
           reject(ret as Error);
         });
     });
@@ -219,10 +219,10 @@ export namespace settings {
       taskpool.execute((): boolean => {
         return setValue_inner(context, name, value, domainName);
       })
-        .then((ret: NullishType): void => {
+        .then((ret: Any): void => {
           resolve(ret as boolean);
         })
-        .catch((ret: NullishType): void => {
+        .catch((ret: Any): void => {
           reject(ret as Error);
         });
     });
@@ -232,10 +232,10 @@ export namespace settings {
     taskpool.execute((): void => {
       return enableAirplaneMode_inner(enable);
     })
-      .then((ret: NullishType): void => {
+      .then((ret: Any): void => {
         callback(null, ret as undefined);
       })
-      .catch((ret: NullishType): void => {
+      .catch((ret: Any): void => {
         let data: undefined;
         callback(ret as BusinessError, data);
       });
@@ -246,10 +246,10 @@ export namespace settings {
       taskpool.execute((): void => {
         return enableAirplaneMode_inner(enable);
       })
-        .then((ret: NullishType): void => {
+        .then((ret: Any): void => {
           resolve(ret as undefined);
         })
-        .catch((ret: NullishType): void => {
+        .catch((ret: Any): void => {
           reject(ret as Error);
         });
     });
@@ -259,10 +259,10 @@ export namespace settings {
     taskpool.execute((): boolean => {
       return canShowFloating_inner();
     })
-      .then((ret: NullishType): void => {
+      .then((ret: Any): void => {
         callback(null, ret as boolean);
       })
-      .catch((ret: NullishType): void => {
+      .catch((ret: Any): void => {
         let data: boolean;
         callback(ret as BusinessError, data);
       });
@@ -273,10 +273,10 @@ export namespace settings {
       taskpool.execute((): boolean => {
         return canShowFloating_inner();
       })
-        .then((ret: NullishType): void => {
+        .then((ret: Any): void => {
           resolve(ret as boolean);
         })
-        .catch((ret: NullishType): void => {
+        .catch((ret: Any): void => {
           reject(ret as Error);
         });
     });
@@ -303,10 +303,10 @@ export namespace settings {
       taskpool.execute((): boolean => {
         return openNetworkManagerSettings_inner(context);
       })
-        .then((ret: NullishType): void => {
+        .then((ret: Any): void => {
           resolve(ret as boolean);
         })
-        .catch((ret: NullishType): void => {
+        .catch((ret: Any): void => {
           reject(ret as Error);
         });
     });
