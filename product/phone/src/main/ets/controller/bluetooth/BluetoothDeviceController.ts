@@ -22,7 +22,7 @@ import ConfigData from '../../../../../../../common/utils/src/main/ets/default/b
 import ISettingsController from '../../../../../../../common/component/src/main/ets/default/controller/ISettingsController';
 import LogUtil from '../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import AboutDeviceModel from '../../model/aboutDeviceImpl/AboutDeviceModel'
-import { emitter } from '@kit.BasicServicesKit';
+import { emitter, systemDateTime } from '@kit.BasicServicesKit';
 import constant from '@ohos.bluetooth.constant';
 
 const deviceTypeInfo = deviceInfo.deviceType;
@@ -48,6 +48,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
   private discoveryStopTimeoutId: number = 0;
   private debounceTimer: number = 0;
   private eventData: emitter.EventData = {};
+  private lastTime: number = 0;
 
   initData(): ISettingsController {
     LogUtil.log(this.TAG + 'start to initData bluetooth');
@@ -371,7 +372,14 @@ export default class BluetoothDeviceController extends BaseSettingsController {
           }
         }
       })
-      AppStorage.SetOrCreate('bluetoothAvailableDevices', this.availableDevices);
+      let currentTime = systemDateTime.getTime(false);
+      if ((currentTime - this.lastTime) > 1500) {
+        this.lastTime = currentTime;
+        setTimeout(() => {
+          LogUtil.log(this.TAG + 'refresh  bluetoothAvailableDevices' + this.availableDevices.length);
+          AppStorage.SetOrCreate('bluetoothAvailableDevices', this.availableDevices);
+        }, 1500);
+      }
     });
   }
 
