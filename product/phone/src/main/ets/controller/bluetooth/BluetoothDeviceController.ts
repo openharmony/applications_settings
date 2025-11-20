@@ -376,14 +376,18 @@ export default class BluetoothDeviceController extends BaseSettingsController {
       })
       LogUtil.log(ConfigData.TAG + 'available bluetooth done: ' + this.availableDevices.length);
       let currentTime = systemDateTime.getTime(false);
-      if ((currentTime - this.lastTime) >= DELAY_TIME || this.lastTime === 0) {
+      if (this.lastTime === 0) {
+        LogUtil.log(this.TAG + 'refresh bluetoothAvailableDevices first: ' + this.availableDevices.length);
+        AppStorage.SetOrCreate('bluetoothAvailableDevices', this.availableDevices);
+      }
+      if ((currentTime - this.lastTime) >= DELAY_TIME) {
         this.lastTime = systemDateTime.getTime(false);
         if (this.timeId === -1) {
           this.timeId = setTimeout(() => {
             this.timeId = -1;
             LogUtil.log(this.TAG + 'refresh  bluetoothAvailableDevices: ' + this.availableDevices.length);
             AppStorage.SetOrCreate('bluetoothAvailableDevices', this.availableDevices);
-          }, 0);
+          }, DELAY_TIME);
         }
       }
     });
