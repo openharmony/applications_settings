@@ -29,6 +29,7 @@ const deviceTypeInfo = deviceInfo.deviceType;
 const DISCOVERY_DURING_TIME: number = 30000; // 30'
 const DISCOVERY_INTERVAL_TIME: number = 3000; // 3'
 const DISCOVERY_DEBOUNCE_TIME: number = 500;
+const DELAY_TIME: number = 2000;
 
 export default class BluetoothDeviceController extends BaseSettingsController {
   private TAG = ConfigData.TAG + 'BluetoothDeviceController '
@@ -49,6 +50,7 @@ export default class BluetoothDeviceController extends BaseSettingsController {
   private debounceTimer: number = 0;
   private eventData: emitter.EventData = {};
   private lastTime: number = 0;
+  private timeId: number = -1;
 
   initData(): ISettingsController {
     LogUtil.log(this.TAG + 'start to initData bluetooth');
@@ -372,13 +374,17 @@ export default class BluetoothDeviceController extends BaseSettingsController {
           }
         }
       })
+      LogUtil.log(ConfigData.TAG + 'available bluetooth done: ' + this.availableDevices.length);
       let currentTime = systemDateTime.getTime(false);
-      if ((currentTime - this.lastTime) > 1500) {
-        this.lastTime = currentTime;
-        setTimeout(() => {
-          LogUtil.log(this.TAG + 'refresh  bluetoothAvailableDevices' + this.availableDevices.length);
-          AppStorage.SetOrCreate('bluetoothAvailableDevices', this.availableDevices);
-        }, 1500);
+      if ((currentTime - this.lastTime) >= DELAY_TIME || this.lastTime === 0) {
+        this.lastTime = systemDateTime.getTime(false);
+        if (this.timeId === -1) {
+          this.timeId = setTimeout(() => {
+            this.timeId = -1;
+            LogUtil.log(this.TAG + 'refresh  bluetoothAvailableDevices: ' + this.availableDevices.length);
+            AppStorage.SetOrCreate('bluetoothAvailableDevices', this.availableDevices);
+          }, 0);
+        }
       }
     });
   }
