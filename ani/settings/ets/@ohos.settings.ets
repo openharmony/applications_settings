@@ -34,7 +34,7 @@ export namespace settings {
   }
 
   namespace display {
-    const FONT_SCALE: string = "settings.display.font_scale";
+    const FONT_SCALE: string = "font_scale";
     const SCREEN_BRIGHTNESS_STATUS: string = "settings.display.screen_brightness_status";
     const AUTO_SCREEN_BRIGHTNESS: string = "settings.display.auto_screen_brightness";
     const AUTO_SCREEN_BRIGHTNESS_MODE: int = 1;
@@ -168,7 +168,7 @@ export namespace settings {
           resolve(ret as string);
         })
         .catch((ret: Any): void => {
-          reject(ret as Error);
+          reject(ret as BusinessError);
         });
     });
   }
@@ -182,7 +182,7 @@ export namespace settings {
           resolve(ret as string);
         })
         .catch((ret: Any): void => {
-          reject(ret as Error);
+          reject(ret as BusinessError);
         });
     });
   }
@@ -209,7 +209,7 @@ export namespace settings {
           resolve(ret as boolean);
         })
         .catch((ret: Any): void => {
-          reject(ret as Error);
+          reject(ret as BusinessError);
         });
     });
   }
@@ -223,7 +223,7 @@ export namespace settings {
           resolve(ret as boolean);
         })
         .catch((ret: Any): void => {
-          reject(ret as Error);
+          reject(ret as BusinessError);
         });
     });
   }
@@ -250,7 +250,7 @@ export namespace settings {
           resolve(ret as undefined);
         })
         .catch((ret: Any): void => {
-          reject(ret as Error);
+          reject(ret as BusinessError);
         });
     });
   }
@@ -277,7 +277,7 @@ export namespace settings {
           resolve(ret as boolean);
         })
         .catch((ret: Any): void => {
-          reject(ret as Error);
+          reject(ret as BusinessError);
         });
     });
   }
@@ -307,7 +307,7 @@ export namespace settings {
           resolve(ret as boolean);
         })
         .catch((ret: Any): void => {
-          reject(ret as Error);
+          reject(ret as BusinessError);
         });
     });
   }
