@@ -45,14 +45,14 @@ const int UNSUPPORT_CODE = 801;
 
 void ThrowExistingError(ani_env *env, int errorCode, std::string errorMessage)
 {
-    static const char *errorClsName = "L@ohos/base/BusinessError;";
+    static const char *errorClsName = "@ohos.base.BusinessError";
     ani_class cls{};
     if (ANI_OK != env->FindClass(errorClsName, &cls)) {
         SETTING_LOG_ERROR("find class BusinessError %{public}s failed", errorClsName);
         return;
     }
     ani_method ctor;
-    if (ANI_OK != env->Class_FindMethod(cls, "<ctor>", ":V", &ctor)) {
+    if (ANI_OK != env->Class_FindMethod(cls, "<ctor>", ":", &ctor)) {
         SETTING_LOG_ERROR("find method BusinessError.constructor failed");
         return;
     }
@@ -67,15 +67,17 @@ void ThrowExistingError(ani_env *env, int errorCode, std::string errorMessage)
         SETTING_LOG_ERROR("convert errMsg to ani_string failed");
         return;
     }
-    if (ANI_OK != env->Object_SetFieldByName_Double(errorObject, "code", aniErrCode)) {
+    if (ANI_OK != env->Object_SetPropertyByName_Int(errorObject, "code_", aniErrCode)) {
         SETTING_LOG_ERROR("set error code failed");
         return;
     }
-    if (ANI_OK != env->Object_SetPropertyByName_Ref(errorObject, "message", errMsgStr)) {
+    if (ANI_OK != env->Object_SetPropertyByName_Ref(errorObject, "message", static_cast<ani_ref>(errMsgStr))) {
         SETTING_LOG_ERROR("set error message failed");
         return;
     }
-    env->ThrowError(static_cast<ani_error>(errorObject));
+    if (ANI_OK != env->ThrowError(static_cast<ani_error>(errorObject))) {
+        SETTING_LOG_ERROR("ThrowError failed");
+    }
 }
 
 bool ThrowError(ani_env *env, int status)
@@ -570,7 +572,7 @@ ani_boolean ani_register_key_observer(
 static ani_boolean BindMethods(ani_env *env)
 {
     using namespace OHOS::Settings;
-    const char *spaceName = "L@ohos/settings/settings;";
+    const char *spaceName = "@ohos.settings.settings";
     ani_namespace spc;
     ani_status ret = env->FindNamespace(spaceName, &spc);
     if (ret != ANI_OK) {
