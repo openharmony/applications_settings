@@ -24,6 +24,7 @@ ohos_shared_library("settings") {
     "./napi_settings_observer.cpp",
     "./native_module.cpp",
     "./open_network_settings/napi_open_network_settings.cpp",
+    "./open_network_settings/napi_open_settings_page_util.cpp"
   ]
 
   external_deps = [
