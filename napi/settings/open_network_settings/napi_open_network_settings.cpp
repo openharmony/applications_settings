@@ -376,7 +376,7 @@ void StartUiExtensionWithParams(napi_env env, const napi_value &obj, OHOS::AAFwk
     }
 }
 
-napi_value openInputMethodSettings(napi_env env, napi_callback_info info) 
+napi_value openInputMethodSettings(napi_env env, napi_callback_info info)
 {
     SETTING_LOG_INFO("start openInputMethodSettings.");
     // 设备校验
@@ -386,7 +386,7 @@ napi_value openInputMethodSettings(napi_env env, napi_callback_info info)
     }
     size_t argc = ARGS_ONE;
     napi_value argv[ARGS_ONE] = {nullptr};
-    
+
     // 参数校验
     napi_status ret = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     if (ret != napi_ok || argc != ARGS_ONE) {
@@ -394,7 +394,7 @@ napi_value openInputMethodSettings(napi_env env, napi_callback_info info)
         ThrowParamErrorException(env);
         return wrap_void_to_js(env);
     }
-    
+
     // 处理请求信息
     OHOS::AAFwk::Want wantRequest;
     wantRequest.SetUri(SettingsPageUrl::INPUT_PAGE);
