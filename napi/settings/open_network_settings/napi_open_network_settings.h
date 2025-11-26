@@ -21,9 +21,11 @@
 #include "ability.h"
 #include "ui_extension_context.h"
 #include "../napi_settings_log.h"
+#include "napi_open_settings_page_util.h"
 
 const int SETTINGS_PARAM_ERROR_CODE = 14800000;
 const int SETTINGS_ORIGINAL_SERVICE_CODE = 14800010;
+const int SETTINGS_PARAM_INVALID_CODE = 16900010;
 
 enum SettingsCode {
     SETTINGS_SUCCESS = 0,
@@ -72,6 +74,8 @@ bool ParseAbilityContext(napi_env env, const napi_value &obj,
     std::shared_ptr<OHOS::AbilityRuntime::UIExtensionContext> &uiExtensionContext);
 OHOS::Ace::UIContent* GetUIContent(std::shared_ptr<BaseContext> &asyncContext);
 napi_value opne_manager_settings(napi_env env, napi_callback_info info);
+napi_value openInputMethodSettings(napi_env env, napi_callback_info info);
+napi_value openInputMethodDetail(napi_env env, napi_callback_info info);
 }
 }
 
