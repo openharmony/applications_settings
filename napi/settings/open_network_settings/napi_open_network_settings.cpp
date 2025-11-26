@@ -18,7 +18,7 @@
 #include "napi_base_context.h"
 #include "ui_content.h"
 #include <json/json.h>
-#include "paramters.h"
+#include "parameters.h"
 
 namespace OHOS {
 namespace Settings {
@@ -365,14 +365,14 @@ void StartUiExtensionWithParams(napi_env env, const napi_value &obj, OHOS::AAFwk
     auto loadProductContext = std::make_shared<BaseContext>();
     if (!ParseAbilityContext(env, argv[PARAM0], loadProductContext->abilityContext, loadProductContext->uiExtensionContext)) {
         SETTING_LOG_ERROR("context parse error.");
-        ThrowExistingError(env);
+        ThrowParamErrorException(env);
         return;
     }
     request.SetElementName(SETTINGS_PACKAGE_NAME, SETTINGS_COMMON_EXTERNAL_PAGE_NAME);
     request.SetParam(UIEXTENSION_TYPE_KEY, UIEXTENSION_TYPE_VALUE);
     if (!StartUiExtensionAbility(requset, loadProductContext)) {
         SETTING_LOG_ERROR("open settings error.");
-        ThrowExistingError(env);
+        ThrowParamErrorException(env);
     }
 }
 
@@ -381,7 +381,7 @@ napi_value openInputMethodSettings(napi_env env, napi_callback_info info)
     SETTING_LOG_INFO("start openInputMethodSettings.");
     // 设备校验
     if (IsPageSupportJump(DEVICE_TYPE, SettingsPageUrl::INPUT_PAGE)) {
-        SETTING_LOG_ERROR("open settings error.");
+        SETTING_LOG_ERROR("device is not support.");
         return wrap_void_to_js(env);
     }
     size_t argc = ARGS_ONE;
@@ -391,7 +391,7 @@ napi_value openInputMethodSettings(napi_env env, napi_callback_info info)
     napi_status ret = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     if (ret != napi_ok || argc != ARGS_ONE) {
         SETTING_LOG_ERROR("param is invalid.");
-        ThrowExistingError(env);
+        ThrowParamErrorException(env);
         return wrap_void_to_js(env);
     }
     
@@ -408,7 +408,7 @@ napi_value openInputMethodDetail(napi_env env, napi_callback_info info)
     SETTING_LOG_INFO("start openInputMethodDetail.");
     // 设备校验
     if (IsPageSupportJump(DEVICE_TYPE, SettingsPageUrl::INPUT_DETAIL_PAGE)) {
-        SETTING_LOG_ERROR("open settings error.");
+        SETTING_LOG_ERROR("device is not support.");
         return wrap_void_to_js(env);
     }
     size_t argc = ARGS_THREE;
@@ -418,7 +418,7 @@ napi_value openInputMethodDetail(napi_env env, napi_callback_info info)
     napi_status ret = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     if (ret != napi_ok || argc != ARGS_THREE) {
         SETTING_LOG_ERROR("param is invalid.");
-        ThrowExistingError(env);
+        ThrowParamErrorException(env);
         return wrap_void_to_js(env);
     }
     
