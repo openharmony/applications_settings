@@ -28,6 +28,7 @@
 #include "datashare_helper.h"
 #include "datashare_predicates.h"
 
+#define ARGS_ZERO 0
 #define ARGS_ONE 1
 #define ARGS_TWO 2
 #define ARGS_THREE 3
