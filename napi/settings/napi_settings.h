@@ -198,6 +198,7 @@ napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
 napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, napi_value* args);
 napi_value napi_register_key_observer(napi_env env, napi_callback_info info);
 napi_value napi_unregister_key_observer(napi_env env, napi_callback_info info);
+void ThrowExistingError(napi_env env, int errorCode, std::string errorMessage);
 }  // namespace Settings
 }  // namespace OHOS
 #endif  //  NAPI_SETTINGS_H
