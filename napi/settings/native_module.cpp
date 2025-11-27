@@ -44,6 +44,8 @@ static napi_value Init(napi_env env, napi_value exports)
         DECLARE_NAPI_FUNCTION("registerKeyObserver", napi_register_key_observer),
         DECLARE_NAPI_FUNCTION("unregisterKeyObserver", napi_unregister_key_observer),
         DECLARE_NAPI_FUNCTION("openNetworkManagerSettings", opne_manager_settings),
+        DECLARE_NAPI_FUNCTION("openInputMethodSettings", openInputMethodSettings),
+        DECLARE_NAPI_FUNCTION("openInputMethodDetail", openInputMethodDetail),
     };
 
     // init settings class

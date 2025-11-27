@@ -17,6 +17,8 @@
 #include "../napi_settings.h"
 #include "napi_base_context.h"
 #include "ui_content.h"
+#include <json/json.h>
+#include "parameters.h"
 
 namespace OHOS {
 namespace Settings {
@@ -26,8 +28,17 @@ const std::string CONTEXT_TYPE_KEY = "storeKit.ability.contextType";
 const std::string UIEXTENSION_TYPE_VALUE = "sys/commonUI";
 const std::string SETTINGS_PACKAGE_NAME = "com.huawei.hmos.settings";
 const std::string SETTINGS_ABILITY_NAME = "OpenNetworkUIExtensionAbility";
+const std::string SETTINGS_COMMON_EXTERNAL_PAGE_NAME = "ExternalCommonUIExtensionAbility";
 const std::string UI_ABILITY_CONTEXT_VALUE = "uiAbility";
 const std::string UI_EXTENSION_CONTEXT_VALUE = "uiExtension";
+const std::string DEVICE_TYPE = OHOS::system::GetParameter("const.product.devicetype", "");
+
+const std::string SETTINGS_PUSH_PARAM = "pushParam";
+const std::string SETTINGS_PUSH_PARAM_JSON_TYPE = "isParamJsonObject";
+
+const std::string INPUT_DETAIL_WANT_EXTRA = "extra";
+const std::string INPUT_DETAIL_WANT_VALUE = "value";
+const std::string INPUT_DETAIL_WANT_NAME = "name";
 
 bool StartUiExtensionAbility(OHOS::AAFwk::Want &request, std::shared_ptr<BaseContext> &asyncContext)
 {
@@ -343,5 +354,92 @@ napi_value opne_manager_settings(napi_env env, napi_callback_info info)
     SETTING_LOG_INFO("opne manager settings end.");
     return SetAsyncCallback(env, asyncCallbackInfo);
 }
+
+void ThrowParamErrorException(napi_env env)
+{
+    ThrowExistingError(env, SETTINGS_PARAM_INVALID_CODE, "param is invalid, start settings failed");
 }
+
+void StartUiExtensionWithParams(napi_env env, const napi_value &obj, OHOS::AAFwk::Want &request)
+{
+    auto loadProductContext = std::make_shared<BaseContext>();
+    if (!ParseAbilityContext(env, obj, loadProductContext->abilityContext, loadProductContext->uiExtensionContext)) {
+        SETTING_LOG_ERROR("context parse error.");
+        ThrowParamErrorException(env);
+        return;
+    }
+    request.SetElementName(SETTINGS_PACKAGE_NAME, SETTINGS_COMMON_EXTERNAL_PAGE_NAME);
+    request.SetParam(UIEXTENSION_TYPE_KEY, UIEXTENSION_TYPE_VALUE);
+    if (!StartUiExtensionAbility(request, loadProductContext)) {
+        SETTING_LOG_ERROR("open settings error.");
+        ThrowParamErrorException(env);
+    }
 }
+
+napi_value openInputMethodSettings(napi_env env, napi_callback_info info)
+{
+    SETTING_LOG_INFO("start openInputMethodSettings.");
+    // 设备校验
+    if (!IsPageSupportJump(DEVICE_TYPE, SettingsPageUrl::INPUT_PAGE)) {
+        SETTING_LOG_ERROR("device is not support.");
+        return wrap_void_to_js(env);
+    }
+    size_t argc = ARGS_ONE;
+    napi_value argv[ARGS_ONE] = {nullptr};
+
+    // 参数校验
+    napi_status ret = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+    if (ret != napi_ok || argc != ARGS_ONE) {
+        SETTING_LOG_ERROR("param is invalid.");
+        ThrowParamErrorException(env);
+        return wrap_void_to_js(env);
+    }
+
+    // 处理请求信息
+    OHOS::AAFwk::Want wantRequest;
+    wantRequest.SetUri(SettingsPageUrl::INPUT_PAGE);
+    StartUiExtensionWithParams(env, argv[PARAM0], wantRequest);
+    SETTING_LOG_INFO("openInputMethodSettings end.");
+    return wrap_void_to_js(env);
+}
+
+napi_value openInputMethodDetail(napi_env env, napi_callback_info info)
+{
+    SETTING_LOG_INFO("start openInputMethodDetail.");
+    // 设备校验
+    if (!IsPageSupportJump(DEVICE_TYPE, SettingsPageUrl::INPUT_DETAIL_PAGE)) {
+        SETTING_LOG_ERROR("device is not support.");
+        return wrap_void_to_js(env);
+    }
+    size_t argc = ARGS_THREE;
+    napi_value argv[ARGS_THREE] = {nullptr};
+
+    // 参数校验
+    napi_status ret = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+    if (ret != napi_ok || argc != ARGS_THREE) {
+        SETTING_LOG_ERROR("param is invalid.");
+        ThrowParamErrorException(env);
+        return wrap_void_to_js(env);
+    }
+
+    std::string bundleName = unwrap_string_from_js(env, argv[ARGS_ONE]);
+    std::string inputMethodId = unwrap_string_from_js(env, argv[ARGS_TWO]);
+
+    // 处理请求信息
+    OHOS::AAFwk::Want wantRequest;
+    Json::Value value;
+    Json::Value extra;
+    extra[INPUT_DETAIL_WANT_VALUE] = bundleName;
+    extra[INPUT_DETAIL_WANT_NAME] = inputMethodId;
+    value[INPUT_DETAIL_WANT_EXTRA] = extra;
+    Json::StreamWriterBuilder builder;
+    std::string param = Json::writeString(builder, value);
+    wantRequest.SetParam(SETTINGS_PUSH_PARAM, param);
+    wantRequest.SetParam(SETTINGS_PUSH_PARAM_JSON_TYPE, true);
+    wantRequest.SetUri(SettingsPageUrl::INPUT_DETAIL_PAGE);
+    StartUiExtensionWithParams(env, argv[PARAM0], wantRequest);
+    SETTING_LOG_INFO("openInputMethodDetail end.");
+    return wrap_void_to_js(env);
+}
+} // namespace Settings
+} // namespace OHOS
