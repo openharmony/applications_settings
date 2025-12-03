@@ -424,6 +424,11 @@ napi_value openInputMethodDetail(napi_env env, napi_callback_info info)
 
     std::string bundleName = unwrap_string_from_js(env, argv[ARGS_ONE]);
     std::string inputMethodId = unwrap_string_from_js(env, argv[ARGS_TWO]);
+    if (bundleName.empty() || inputMethodId.empty()) {
+        SETTING_LOG_ERROR("param is invalid.");
+        ThrowParamErrorException(env);
+        return wrap_void_to_js(env);
+    }
 
     // 处理请求信息
     OHOS::AAFwk::Want wantRequest;
