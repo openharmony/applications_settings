@@ -26,6 +26,7 @@ ohos_shared_library("settings_ani") {
     "./ani_settings.cpp",
     "./ani_settings_observer.cpp",
     "./open_network_settings/ani_open_network_settings.cpp",
+    "./open_network_settings/api_open_settings_page_util.cpp"
   ]
 
   version_script = "settings_ani.versionscript"

@@ -17,6 +17,8 @@
 #include "../ani_settings.h"
 #include "ani_base_context.h"
 #include "ui_content.h"
+#include <json/json.h>
+#include "parameters.h"
 
 namespace OHOS {
 namespace Settings {
@@ -26,8 +28,17 @@ const std::string CONTEXT_TYPE_KEY = "storeKit.ability.contextType";
 const std::string UIEXTENSION_TYPE_VALUE = "sys/commonUI";
 const std::string SETTINGS_PACKAGE_NAME = "com.huawei.hmos.settings";
 const std::string SETTINGS_ABILITY_NAME = "OpenNetworkUIExtensionAbility";
+const std::string SETTINGS_COMMON_EXTERNAL_PAGE_NAME = "ExternalCommonUIExtensionAbility";
 const std::string UI_ABILITY_CONTEXT_VALUE = "uiAbility";
 const std::string UI_EXTENSION_CONTEXT_VALUE = "uiExtension";
+const std::string DEVICE_TYPE = OHOS::system::GetParameter("const.product.devicetype", "");
+
+const std::string SETTINGS_PUSH_PARAM = "pushParam";
+const std::string SETTINGS_PUSH_PARAM_JSON_TYPE = "isParamJsonObject";
+
+const std::string INPUT_DETAIL_WANT_EXTRA = "extra";
+const std::string INPUT_DETAIL_WANT_VALUE = "value";
+const std::string INPUT_DETAIL_WANT_NAME = "name";
 
 bool StartUiExtensionAbility(OHOS::AAFwk::Want &request, std::shared_ptr<BaseContext> &asyncContext)
 {
@@ -224,6 +235,78 @@ ani_boolean opne_manager_settings(ani_env *env, ani_object context)
     }
     SETTING_LOG_INFO("opne manager settings end.");
     return SetAsyncCallback(env, asyncCallbackInfo);
+}
+
+void ThrowParamErrorException(ani_env *env)
+{
+    ThrowExistingError(env, SETTINGS_PARAM_INVALID_CODE, "param is invalid, start settings failed");
+}
+
+void StartUiExtensionWithParams(ani_env *env, const ani_object &context, OHOS::AAFwk::Want &request)
+{
+    auto loadProductContext = std::make_shared<BaseContext>();
+    if (!ParseAbilityContext(env, context,
+        loadProductContext->abilityContext, loadProductContext->uiExtensionContext)) {
+        SETTING_LOG_ERROR("context parse error.");
+        ThrowParamErrorException(env);
+        return;
+    }
+    request.SetElementName(SETTINGS_PACKAGE_NAME, SETTINGS_COMMON_EXTERNAL_PAGE_NAME);
+    request.SetParam(UIEXTENSION_TYPE_KEY, UIEXTENSION_TYPE_VALUE);
+    if (!StartUiExtensionAbility(request, loadProductContext)) {
+        SETTING_LOG_ERROR("open settings error.");
+        ThrowParamErrorException(env);
+    }
+}
+
+void openInputMethodSettings(ani_env *env, ani_object context)
+{
+    SETTING_LOG_INFO("start openInputMethodSettings.");
+    // 设备校验
+    if (!IsPageSupportJump(DEVICE_TYPE, SettingsPageUrl::INPUT_PAGE)) {
+        SETTING_LOG_ERROR("device is not support.");
+        return;
+    }
+
+    // 处理请求信息
+    OHOS::AAFwk::Want wantRequest;
+    wantRequest.SetUri(SettingsPageUrl::INPUT_PAGE);
+    StartUiExtensionWithParams(env, context, wantRequest);
+    SETTING_LOG_INFO("openInputMethodSettings end.");
+}
+
+void openInputMethodDetail(ani_env *env, ani_object context, ani_string bundleName, ani_string inputMethodId)
+{
+    SETTING_LOG_INFO("start openInputMethodDetail.");
+    // 设备校验
+    if (!IsPageSupportJump(DEVICE_TYPE, SettingsPageUrl::INPUT_DETAIL_PAGE)) {
+        SETTING_LOG_ERROR("device is not support.");
+        return;
+    }
+
+    // 参数校验
+    std::string strBundleName = unwrap_string_from_js(env, bundleName);
+    std::string strInputMethodId = unwrap_string_from_js(env, inputMethodId);
+    if (strBundleName.empty() || strInputMethodId.empty()) {
+        SETTING_LOG_ERROR("param is invalid.");
+        ThrowParamErrorException(env);
+        return;
+    }
+
+    // 处理请求信息
+    OHOS::AAFwk::Want wantRequest;
+    Json::Value value;
+    Json::Value extra;
+    extra[INPUT_DETAIL_WANT_VALUE] = strBundleName;
+    extra[INPUT_DETAIL_WANT_NAME] = strInputMethodId;
+    value[INPUT_DETAIL_WANT_EXTRA] = extra;
+    Json::StreamWriterBuilder builder;
+    std::string param = Json::writeString(builder, value);
+    wantRequest.SetParam(SETTINGS_PUSH_PARAM, param);
+    wantRequest.SetParam(SETTINGS_PUSH_PARAM_JSON_TYPE, true);
+    wantRequest.SetUri(SettingsPageUrl::INPUT_DETAIL_PAGE);
+    StartUiExtensionWithParams(env, context, wantRequest);
+    SETTING_LOG_INFO("openInputMethodDetail end.");
 }
 }
 }

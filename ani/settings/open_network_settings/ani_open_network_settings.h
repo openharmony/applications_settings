@@ -21,9 +21,11 @@
 #include "ani.h"
 #include "ui_extension_context.h"
 #include "../ani_settings_log.h"
+#include "api_open_settings_page_util.h"
 
 const int SETTINGS_PARAM_ERROR_CODE = 14800000;
 const int SETTINGS_ORIGINAL_SERVICE_CODE = 14800010;
+const int SETTINGS_PARAM_INVALID_CODE = 16900010;
 
 enum SettingsCode {
     SETTINGS_SUCCESS = 0,
@@ -72,6 +74,8 @@ bool ParseAbilityContext(ani_env *env, const ani_object &obj,
     std::shared_ptr<OHOS::AbilityRuntime::UIExtensionContext> &uiExtensionContext);
 OHOS::Ace::UIContent* GetUIContent(std::shared_ptr<BaseContext> &asyncContext);
 ani_boolean opne_manager_settings(ani_env *env, ani_object context);
+void openInputMethodSettings(ani_env *env, ani_object context);
+void openInputMethodDetail(ani_env *env, ani_object context, ani_string bundleName, ani_string inputMethodId);
 }
 }
 
