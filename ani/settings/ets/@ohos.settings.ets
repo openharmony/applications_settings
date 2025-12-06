@@ -146,6 +146,10 @@ export namespace settings {
 
   export native function unregisterKeyObserver(context: Context, name: string, domainName: string): boolean;
 
+  native function openInputMethodSettings_inner(context: Context): void;
+
+  native function openInputMethodDetail_inner(context: Context, bundleName: string, inputMethodId: string): void;
+
   export function getValue(context: Context, name: string, callback: AsyncCallback<string>): void {
     taskpool.execute((): string => {
       return getValue_inner(context, name, "global");
@@ -310,5 +314,13 @@ export namespace settings {
           reject(ret as BusinessError);
         });
     });
+  }
+
+  export function openInputMethodSettings(context: Context): void {
+    openInputMethodSettings_inner(context);
+  }
+
+  export function openInputMethodDetail(context: Context, bundleName: string, inputMethodId: string): void {
+    openInputMethodDetail_inner(context, bundleName, inputMethodId);
   }
 }

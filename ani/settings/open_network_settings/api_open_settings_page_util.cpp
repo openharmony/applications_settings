@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-#include "napi_open_settings_page_util.h"
+#include "api_open_settings_page_util.h"
 
 namespace OHOS {
 namespace Settings {
