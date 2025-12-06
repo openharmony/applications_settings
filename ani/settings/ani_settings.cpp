@@ -591,6 +591,10 @@ static ani_boolean BindMethods(ani_env *env)
         ani_native_function{"unregisterKeyObserver", nullptr, reinterpret_cast<void *>(ani_unregister_key_observer)},
         ani_native_function{
             "openNetworkManagerSettings_inner", nullptr, reinterpret_cast<void *>(opne_manager_settings)},
+        ani_native_function{
+            "openInputMethodSettings_inner", nullptr, reinterpret_cast<void *>(openInputMethodSettings)},
+        ani_native_function{
+            "openInputMethodDetail_inner", nullptr, reinterpret_cast<void *>(openInputMethodDetail)},
     };
     if (env->Namespace_BindNativeFunctions(spc, methods.data(), methods.size()) != ANI_OK) {
         SETTING_LOG_ERROR("Cannot bind native methods to %{public}s ", spaceName);
