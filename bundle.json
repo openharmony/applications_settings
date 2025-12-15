@@ -44,7 +44,8 @@
                 "//applications/standard/settings/napi/settings:settings",
                 "//applications/standard/settings/cj/settings:cj_settings_ffi",
                 "//applications/standard/settings/ani/settings:settings_ani",
-                "//applications/standard/settings/ani/settings:settings_etc"
+                "//applications/standard/settings/ani/settings:settings_etc",
+                "//applications/standard/settings/native/settings:settings_common"
             ],
             "inner_kits": [
                 {
@@ -52,6 +53,13 @@
                     "header": {
                       "header_files": [],
                       "header_base": "//applications/standard/settings/cj/settings/src"
+                    }
+                },
+                {
+                    "name": "//applications/standard/settings/native/settings:settings_common",
+                    "header": {
+                        "header_files": [],
+                        "header_base": "//applications/standard/settings/native/settings/src/include"
                     }
                 }
             ],

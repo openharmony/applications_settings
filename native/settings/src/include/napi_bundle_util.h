@@ -20,7 +20,7 @@
 #include "bundle_mgr_proxy.h"
 #include "iservice_registry.h"
 #include "system_ability_definition.h"
-#include "../napi_settings_log.h"
+#include "napi_settings_log.h"
 
 namespace OHOS {
 namespace Settings {

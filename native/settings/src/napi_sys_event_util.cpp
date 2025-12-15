@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-#include "napi_sys_event_util.h"
+#include "include/napi_sys_event_util.h"
 
 namespace OHOS {
 namespace Settings {
