@@ -15,7 +15,7 @@
 
 #include <map>
 #include "ani_settings_observer.h"
-#include "ani_settings_log.h"
+#include "napi_settings_log.h"
 #include "abs_shared_result_set.h"
 #include "values_bucket.h"
 #include "ani_base_context.h"
