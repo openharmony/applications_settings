@@ -16,6 +16,7 @@ import("//build/ohos.gni")
 ohos_shared_library("settings") {
   include_dirs = [
     "./open_network_settings",
+    "./util",
   ]
 
   sources = [
@@ -24,7 +25,9 @@ ohos_shared_library("settings") {
     "./napi_settings_observer.cpp",
     "./native_module.cpp",
     "./open_network_settings/napi_open_network_settings.cpp",
-    "./open_network_settings/napi_open_settings_page_util.cpp"
+    "./open_network_settings/napi_open_settings_page_util.cpp",
+    "./util/napi_bundle_util.cpp",
+    "./util/napi_sys_event_util.cpp",
   ]
 
   external_deps = [
@@ -48,6 +51,8 @@ ohos_shared_library("settings") {
     "os_account:os_account_innerkits",
     "relational_store:native_dataability",
     "relational_store:native_rdb",
+    "hisysevent:libhisysevent",
+    "samgr:samgr_proxy",
   ]
 
   relative_install_dir = "module"
