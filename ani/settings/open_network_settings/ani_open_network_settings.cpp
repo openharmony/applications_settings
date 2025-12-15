@@ -237,40 +237,46 @@ ani_boolean opne_manager_settings(ani_env *env, ani_object context)
     return SetAsyncCallback(env, asyncCallbackInfo);
 }
 
-void ThrowParamErrorException(ani_env *env)
+void ThrowParamErrorException(ani_env *env, const std::string &page)
 {
+    ReportSysEvent(page, false);
     ThrowExistingError(env, SETTINGS_PARAM_INVALID_CODE, "param is invalid, start settings failed");
 }
 
 void StartUiExtensionWithParams(ani_env *env, const ani_object &context, OHOS::AAFwk::Want &request)
 {
     auto loadProductContext = std::make_shared<BaseContext>();
+    const std::string targetPage = request.GetUriString();
     if (!ParseAbilityContext(env, context,
         loadProductContext->abilityContext, loadProductContext->uiExtensionContext)) {
         SETTING_LOG_ERROR("context parse error.");
-        ThrowParamErrorException(env);
+        ThrowParamErrorException(env, targetPage);
         return;
     }
     request.SetElementName(SETTINGS_PACKAGE_NAME, SETTINGS_COMMON_EXTERNAL_PAGE_NAME);
     request.SetParam(UIEXTENSION_TYPE_KEY, UIEXTENSION_TYPE_VALUE);
     if (!StartUiExtensionAbility(request, loadProductContext)) {
         SETTING_LOG_ERROR("open settings error.");
-        ThrowParamErrorException(env);
+        ThrowParamErrorException(env, targetPage);
+        return;
     }
+    ReportSysEvent(targetPage, true);
 }
 
 void openInputMethodSettings(ani_env *env, ani_object context)
 {
     SETTING_LOG_INFO("start openInputMethodSettings.");
     // 设备校验
-    if (!IsPageSupportJump(DEVICE_TYPE, SettingsPageUrl::INPUT_PAGE)) {
+    const std::string targetPage = SettingsPageUrl::INPUT_PAGE;
+    if (!IsPageSupportJump(DEVICE_TYPE, targetPage)) {
         SETTING_LOG_ERROR("device is not support.");
+        ReportSysEvent(targetPage, false);
         return;
     }
 
     // 处理请求信息
     OHOS::AAFwk::Want wantRequest;
-    wantRequest.SetUri(SettingsPageUrl::INPUT_PAGE);
+    wantRequest.SetUri(targetPage);
     StartUiExtensionWithParams(env, context, wantRequest);
     SETTING_LOG_INFO("openInputMethodSettings end.");
 }
@@ -278,9 +284,11 @@ void openInputMethodSettings(ani_env *env, ani_object context)
 void openInputMethodDetail(ani_env *env, ani_object context, ani_string bundleName, ani_string inputMethodId)
 {
     SETTING_LOG_INFO("start openInputMethodDetail.");
+    const std::string targetPage = SettingsPageUrl::INPUT_DETAIL_PAGE;
     // 设备校验
-    if (!IsPageSupportJump(DEVICE_TYPE, SettingsPageUrl::INPUT_DETAIL_PAGE)) {
+    if (!IsPageSupportJump(DEVICE_TYPE, targetPage)) {
         SETTING_LOG_ERROR("device is not support.");
+        ReportSysEvent(targetPage, false);
         return;
     }
 
@@ -289,7 +297,7 @@ void openInputMethodDetail(ani_env *env, ani_object context, ani_string bundleNa
     std::string strInputMethodId = unwrap_string_from_js(env, inputMethodId);
     if (strBundleName.empty() || strInputMethodId.empty()) {
         SETTING_LOG_ERROR("param is invalid.");
-        ThrowParamErrorException(env);
+        ThrowParamErrorException(env, targetPage);
         return;
     }
 
