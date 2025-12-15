@@ -355,33 +355,39 @@ napi_value opne_manager_settings(napi_env env, napi_callback_info info)
     return SetAsyncCallback(env, asyncCallbackInfo);
 }
 
-void ThrowParamErrorException(napi_env env)
+void ThrowParamErrorException(napi_env env, const std::string &page)
 {
+    ReportSysEvent(page, false);
     ThrowExistingError(env, SETTINGS_PARAM_INVALID_CODE, "param is invalid, start settings failed");
 }
 
 void StartUiExtensionWithParams(napi_env env, const napi_value &obj, OHOS::AAFwk::Want &request)
 {
     auto loadProductContext = std::make_shared<BaseContext>();
+    const std::string targetPage = request.GetUriString();
     if (!ParseAbilityContext(env, obj, loadProductContext->abilityContext, loadProductContext->uiExtensionContext)) {
         SETTING_LOG_ERROR("context parse error.");
-        ThrowParamErrorException(env);
+        ThrowParamErrorException(env, targetPage);
         return;
     }
     request.SetElementName(SETTINGS_PACKAGE_NAME, SETTINGS_COMMON_EXTERNAL_PAGE_NAME);
     request.SetParam(UIEXTENSION_TYPE_KEY, UIEXTENSION_TYPE_VALUE);
     if (!StartUiExtensionAbility(request, loadProductContext)) {
         SETTING_LOG_ERROR("open settings error.");
-        ThrowParamErrorException(env);
+        ThrowParamErrorException(env, targetPage);
+        return;
     }
+    ReportSysEvent(targetPage, true);
 }
 
 napi_value openInputMethodSettings(napi_env env, napi_callback_info info)
 {
     SETTING_LOG_INFO("start openInputMethodSettings.");
     // 设备校验
-    if (!IsPageSupportJump(DEVICE_TYPE, SettingsPageUrl::INPUT_PAGE)) {
+    const std::string targetPage = SettingsPageUrl::INPUT_PAGE;
+    if (!IsPageSupportJump(DEVICE_TYPE, targetPage)) {
         SETTING_LOG_ERROR("device is not support.");
+        ReportSysEvent(targetPage, false);
         return wrap_void_to_js(env);
     }
     size_t argc = ARGS_ONE;
@@ -391,13 +397,13 @@ napi_value openInputMethodSettings(napi_env env, napi_callback_info info)
     napi_status ret = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     if (ret != napi_ok || argc != ARGS_ONE) {
         SETTING_LOG_ERROR("param is invalid.");
-        ThrowParamErrorException(env);
+        ThrowParamErrorException(env, targetPage);
         return wrap_void_to_js(env);
     }
 
     // 处理请求信息
     OHOS::AAFwk::Want wantRequest;
-    wantRequest.SetUri(SettingsPageUrl::INPUT_PAGE);
+    wantRequest.SetUri(targetPage);
     StartUiExtensionWithParams(env, argv[PARAM0], wantRequest);
     SETTING_LOG_INFO("openInputMethodSettings end.");
     return wrap_void_to_js(env);
@@ -407,8 +413,10 @@ napi_value openInputMethodDetail(napi_env env, napi_callback_info info)
 {
     SETTING_LOG_INFO("start openInputMethodDetail.");
     // 设备校验
-    if (!IsPageSupportJump(DEVICE_TYPE, SettingsPageUrl::INPUT_DETAIL_PAGE)) {
+    const std::string targetPage = SettingsPageUrl::INPUT_DETAIL_PAGE;
+    if (!IsPageSupportJump(DEVICE_TYPE, targetPage)) {
         SETTING_LOG_ERROR("device is not support.");
+        ReportSysEvent(targetPage, false);
         return wrap_void_to_js(env);
     }
     size_t argc = ARGS_THREE;
@@ -418,7 +426,7 @@ napi_value openInputMethodDetail(napi_env env, napi_callback_info info)
     napi_status ret = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     if (ret != napi_ok || argc != ARGS_THREE) {
         SETTING_LOG_ERROR("param is invalid.");
-        ThrowParamErrorException(env);
+        ThrowParamErrorException(env, targetPage);
         return wrap_void_to_js(env);
     }
 
@@ -426,7 +434,7 @@ napi_value openInputMethodDetail(napi_env env, napi_callback_info info)
     std::string inputMethodId = unwrap_string_from_js(env, argv[ARGS_TWO]);
     if (bundleName.empty() || inputMethodId.empty()) {
         SETTING_LOG_ERROR("param is invalid.");
-        ThrowParamErrorException(env);
+        ThrowParamErrorException(env, targetPage);
         return wrap_void_to_js(env);
     }
 
@@ -441,7 +449,7 @@ napi_value openInputMethodDetail(napi_env env, napi_callback_info info)
     std::string param = Json::writeString(builder, value);
     wantRequest.SetParam(SETTINGS_PUSH_PARAM, param);
     wantRequest.SetParam(SETTINGS_PUSH_PARAM_JSON_TYPE, true);
-    wantRequest.SetUri(SettingsPageUrl::INPUT_DETAIL_PAGE);
+    wantRequest.SetUri(targetPage);
     StartUiExtensionWithParams(env, argv[PARAM0], wantRequest);
     SETTING_LOG_INFO("openInputMethodDetail end.");
     return wrap_void_to_js(env);
