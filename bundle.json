@@ -33,7 +33,9 @@
                 "os_account",
                 "napi",
                 "ipc",
-                "runtime_core"
+                "runtime_core",
+                "hisysevent",
+                "samgr"
             ],
             "third_party": []
         },
