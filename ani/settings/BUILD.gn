@@ -17,7 +17,6 @@ import("//build/ohos.gni")
 ohos_shared_library("settings_ani") {
   include_dirs = [
     "./ani_settings.h",
-    "./ani_settings_log.h",
     "./ani_settings_observer.h",
     "./open_network_settings",
     "./util",
@@ -28,9 +27,9 @@ ohos_shared_library("settings_ani") {
     "./ani_settings_observer.cpp",
     "./open_network_settings/ani_open_network_settings.cpp",
     "./open_network_settings/api_open_settings_page_util.cpp",
-    "./util/napi_bundle_util.cpp",
-    "./util/napi_sys_event_util.cpp",
   ]
+
+  deps= ["../../native/settings:settings_common"]
 
   version_script = "settings_ani.versionscript"
 
