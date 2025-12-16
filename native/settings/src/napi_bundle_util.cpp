@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-#include "napi_bundle_util.h"
+#include "include/napi_bundle_util.h"
 
 namespace OHOS {
 namespace Settings {

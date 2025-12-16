@@ -17,7 +17,7 @@
 #define NAPI_SYS_EVENT_UTIL_H
 
 #include <string>
-#include "../ani_settings_log.h"
+#include "napi_settings_log.h"
 #include "napi_bundle_util.h"
 #include "hisysevent.h"
 

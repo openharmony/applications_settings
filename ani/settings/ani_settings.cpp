@@ -16,7 +16,7 @@
 #include <pthread.h>
 #include <unistd.h>
 #include "ani_settings.h"
-#include "ani_settings_log.h"
+#include "napi_settings_log.h"
 #include "ani_settings_observer.h"
 #include "ani.h"
 #include "ani_base_context.h"

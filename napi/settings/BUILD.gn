@@ -19,6 +19,8 @@ ohos_shared_library("settings") {
     "./util",
   ]
 
+  deps= ["../../native/settings:settings_common"]
+
   sources = [
     "./napi_settings.cpp",
     "./napi_settings_init.cpp",
@@ -26,8 +28,6 @@ ohos_shared_library("settings") {
     "./native_module.cpp",
     "./open_network_settings/napi_open_network_settings.cpp",
     "./open_network_settings/napi_open_settings_page_util.cpp",
-    "./util/napi_bundle_util.cpp",
-    "./util/napi_sys_event_util.cpp",
   ]
 
   external_deps = [

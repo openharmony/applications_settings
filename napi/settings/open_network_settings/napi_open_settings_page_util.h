@@ -19,7 +19,7 @@
 #include <map>
 #include <string>
 #include <unordered_set>
-#include "../napi_settings_log.h"
+#include "napi_settings_log.h"
 
 namespace OHOS {
 namespace Settings {

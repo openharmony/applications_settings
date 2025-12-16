@@ -20,9 +20,9 @@
 #include "ability.h"
 #include "ani.h"
 #include "ui_extension_context.h"
-#include "../ani_settings_log.h"
+#include "napi_settings_log.h"
 #include "api_open_settings_page_util.h"
-#include "../util/napi_sys_event_util.h"
+#include "napi_sys_event_util.h"
 
 const int SETTINGS_PARAM_ERROR_CODE = 14800000;
 const int SETTINGS_ORIGINAL_SERVICE_CODE = 14800010;
