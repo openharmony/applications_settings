@@ -442,6 +442,8 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
         if (asyncCallbackInfo) {
             asyncCallbackInfo->useNonSilent = true;
         }
+    } else {
+        dataShareHelper->SetDataShareHelperExtUri(strUri);
     }
     return dataShareHelper;
 }
