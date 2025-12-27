@@ -35,7 +35,9 @@
                 "ipc",
                 "runtime_core",
                 "hisysevent",
-                "samgr"
+                "samgr",
+                "distributed_notification_service",
+                "access_token"
             ],
             "third_party": []
         },
@@ -45,7 +47,10 @@
                 "//applications/standard/settings/cj/settings:cj_settings_ffi",
                 "//applications/standard/settings/ani/settings:settings_ani",
                 "//applications/standard/settings/ani/settings:settings_etc",
-                "//applications/standard/settings/native/settings:settings_common"
+                "//applications/standard/settings/native/settings:settings_common",
+                "//applications/standard/settings/napi/intelligentscene:intelligentscene",
+                "//applications/standard/settings/ani/intelligentscene:intelligentscene_ani",
+                "//applications/standard/settings/ani/intelligentscene:intelligentscene_etc"
             ],
             "inner_kits": [
                 {
