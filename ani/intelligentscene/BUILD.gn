@@ -1,0 +1,58 @@
+# Copyright (c) 2025 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/config/components/ets_frontend/ets2abc_config.gni")
+import("//build/ohos.gni")
+
+ohos_shared_library("intelligentscene_ani") {
+  include_dirs = [
+    "./common"
+  ]
+
+  sources = [
+    "./ani_init_module.cpp",
+    "./ani_nodisturb.cpp",
+    "./common/ani_throw_error.cpp",
+  ]
+
+  version_script = "intelligentscene_ani.versionscript"
+
+  external_deps = [
+    "ability_base:zuri",
+    "runtime_core:ani",
+    "runtime_core:libarkruntime",
+    "os_account:os_account_innerkits",
+    "distributed_notification_service:ans_innerkits",
+    "access_token:libaccesstoken_sdk",
+    "access_token:libtokenid_sdk",
+  ]
+
+  relative_install_dir = "module"
+  subsystem_name = "applications"
+  part_name = "settings"
+}
+
+generate_static_abc("intelligentscene") {
+    base_url = "./ets"
+    files = [ "./ets/@ohos.intelligentscene.ets" ]
+    is_boot_abc = "True"
+    device_dst_file = "/system/framework/intelligentscene.abc"
+}
+
+ohos_prebuilt_etc("intelligentscene_etc") {
+    source = "$target_out_dir/intelligentscene.abc"
+    deps = [":intelligentscene"]
+    module_install_dir = "framework"
+    subsystem_name = "applications"
+    part_name = "settings"
+}
