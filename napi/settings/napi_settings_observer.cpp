@@ -135,6 +135,13 @@ namespace Settings {
         return tmpId;
     }
 
+    void CleanObserverMap(std::string key)
+    {
+        g_observerMap[key]->toBeDelete = true;
+        g_observerMap[key] = nullptr;
+        g_observerMap.erase(key);
+    }
+
     void CleanUp(void* data)
     {
         SETTING_LOG_INFO("CleanUp");
@@ -147,9 +154,7 @@ namespace Settings {
         if (g_observerMap.find(callbackInfo->key) != g_observerMap.end() &&
             g_observerMap[callbackInfo->key] != nullptr) {
             SETTING_LOG_WARN("CleanUp key is %{public}s", callbackInfo->key.c_str());
-            g_observerMap[callbackInfo->key]->toBeDelete = true;
-            g_observerMap[callbackInfo->key] = nullptr;
-            g_observerMap.erase(callbackInfo->key);
+            CleanObserverMap(callbackInfo->key);
             napi_delete_reference(callbackInfo->env, callbackInfo->callbackRef);
             callbackInfo->env = nullptr;
             callbackInfo->callbackRef = nullptr;
@@ -179,8 +184,7 @@ namespace Settings {
         NAPI_ASSERT(env, valueType == napi_string, "Wrong argument[2] type. String expected.");
 
         bool stageMode = false;
-        napi_status status = OHOS::AbilityRuntime::IsStageContext(env, args[PARAM0], stageMode);
-        if (status != napi_ok) {
+        if (napi_ok != OHOS::AbilityRuntime::IsStageContext(env, args[PARAM0], stageMode)) {
             SETTING_LOG_ERROR("%{public}s, not stage mode.", __func__);
             return wrap_bool_to_js(env, false);
         }
@@ -203,8 +207,12 @@ namespace Settings {
             delete callbackInfo;
             return wrap_bool_to_js(env, false);
         }
-    
-        auto dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, callbackInfo->tableName);
+        auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, args[PARAM0]);
+        if (contextS == nullptr) {
+            SETTING_LOG_ERROR("get context is error.");
+            return wrap_bool_to_js(env, false);
+        }
+        auto dataShareHelper = getDataShareHelper(env, contextS->GetToken(), stageMode, callbackInfo->tableName);
         if (dataShareHelper == nullptr) {
             napi_delete_reference(env, callbackInfo->callbackRef);
             delete callbackInfo;
@@ -244,8 +252,7 @@ namespace Settings {
         NAPI_ASSERT(env, valueType == napi_string, "Wrong argument[2] type. String expected.");
 
         bool stageMode = false;
-        napi_status status = OHOS::AbilityRuntime::IsStageContext(env, args[PARAM0], stageMode);
-        if (status != napi_ok) {
+        if (napi_ok != OHOS::AbilityRuntime::IsStageContext(env, args[PARAM0], stageMode)) {
             SETTING_LOG_ERROR("%{public}s, not stage mode.", __func__);
             return wrap_bool_to_js(env, false);
         }
@@ -263,21 +270,22 @@ namespace Settings {
             g_observerMap.erase(key);
             return wrap_bool_to_js(env, false);
         }
-    
-        auto dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, tableName);
+        auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, args[PARAM0]);
+        if (contextS == nullptr) {
+            SETTING_LOG_ERROR("get context is error.");
+            return wrap_bool_to_js(env, false);
+        }
+        auto dataShareHelper = getDataShareHelper(env, contextS->GetToken(), stageMode, tableName);
         if (dataShareHelper == nullptr) {
             SETTING_LOG_ERROR("%{public}s, data share is null.", __func__);
             return wrap_bool_to_js(env, false);
         }
         std::string strUri = GetStageUriStr(tableName, GetObserverIdStr(), key);
-        OHOS::Uri uri(strUri);
         napi_remove_env_cleanup_hook(env, CleanUp, g_observerMap[key]->cbInfo);
         napi_delete_reference(g_observerMap[key]->cbInfo->env, g_observerMap[key]->cbInfo->callbackRef);
-        dataShareHelper->UnregisterObserver(uri, g_observerMap[key]);
+        dataShareHelper->UnregisterObserver(OHOS::Uri(strUri), g_observerMap[key]);
         dataShareHelper->Release();
-        g_observerMap[key]->toBeDelete = true;
-        g_observerMap[key] = nullptr;
-        g_observerMap.erase(key);
+        CleanObserverMap(key);
 		
         return wrap_bool_to_js(env, true);
     }

@@ -407,7 +407,7 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
 }
 
 std::shared_ptr<DataShareHelper> getDataShareHelper(
-    napi_env env, const napi_value context, const bool stageMode, std::string tableName,
+    napi_env env, sptr<IRemoteObject> token, const bool stageMode, std::string tableName,
     AsyncCallbackInfo *asyncCallbackInfo)
 {
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
@@ -430,15 +430,10 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
     std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
     std::string strProxyUri = GetProxyUriStr(tableName, tmpId);
     OHOS::Uri proxyUri(strProxyUri);
-    auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
-    if (contextS == nullptr) {
-        SETTING_LOG_ERROR("get context is error.");
-        return dataShareHelper;
-    }
-    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strProxyUri, "", WAIT_TIME);
+    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(token, strProxyUri, "", WAIT_TIME);
     if (!dataShareHelper) {
         SETTING_LOG_ERROR("dataShareHelper from proxy is null");
-        dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(contextS->GetToken(), strUri, "", WAIT_TIME);
+        dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(token, strUri, "", WAIT_TIME);
         if (asyncCallbackInfo) {
             asyncCallbackInfo->useNonSilent = true;
         }
@@ -501,6 +496,8 @@ void GetValueExecuteExt(napi_env env, void *data)
         return;
     }
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+    asyncCallbackInfo->dataShareHelper =
+        getDataShareHelper(env, asyncCallbackInfo->token, true, asyncCallbackInfo->tableName);
     if (asyncCallbackInfo->dataShareHelper == nullptr) {
         SETTING_LOG_ERROR("dataShareHelper is empty");
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
@@ -593,6 +590,8 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
         return;
     }
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+    asyncCallbackInfo->dataShareHelper =
+        getDataShareHelper(env, asyncCallbackInfo->token, true, asyncCallbackInfo->tableName);
     if (asyncCallbackInfo->dataShareHelper == nullptr) {
         SETTING_LOG_INFO("helper is null");
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
@@ -973,7 +972,6 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
         return wrap_void_to_js(env);
     }
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1], false);
-    asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode);
 
     // set call type and table name, and check whether the parameter is valid
     napi_valuetype valueType;
@@ -989,9 +987,8 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
                 delete asyncCallbackInfo;
                 asyncCallbackInfo = nullptr;
                 return wrap_void_to_js(env);
-            } else {
-                asyncCallbackInfo->callType = STAGE_PROMISE_SPECIFIC;
             }
+            asyncCallbackInfo->callType = STAGE_PROMISE_SPECIFIC;
         } else {
             asyncCallbackInfo->callType = STAGE_CALLBACK;
             asyncCallbackInfo->tableName = "global";
@@ -1001,16 +998,18 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
         asyncCallbackInfo->tableName = unwrap_string_from_js(env, args[PARAM3]);
     } else {
         asyncCallbackInfo->callType = INVALID_CALL;
-    }
-
-    // check whether invalid call
-    if (asyncCallbackInfo->callType == INVALID_CALL) {
         SETTING_LOG_ERROR("INVALID CALL");
         delete asyncCallbackInfo;
         asyncCallbackInfo = nullptr;
         return wrap_void_to_js(env);
     }
 
+    auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, args[PARAM0]);
+    if (contextS == nullptr) {
+        SETTING_LOG_ERROR("get context is error.");
+    } else {
+        asyncCallbackInfo->token = contextS->GetToken();
+    }
     if (asyncCallbackInfo->callType == STAGE_CALLBACK || asyncCallbackInfo->callType == STAGE_CALLBACK_SPECIFIC) {
         napi_create_reference(env, args[PARAM2], 1, &asyncCallbackInfo->callbackRef);
         napi_create_async_work(
@@ -1404,6 +1403,7 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
 
     AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
         .env = env,
+        .token = nullptr;
         .asyncWork = nullptr,
         .deferred = nullptr,
         .callbackRef = nullptr,
@@ -1414,13 +1414,8 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
         .status = false,
         .useNonSilent = false,
     };
-    if (asyncCallbackInfo == nullptr) {
-        SETTING_LOG_ERROR("asyncCallbackInfo is null");
-        return wrap_void_to_js(env);
-    }
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1], false);
     asyncCallbackInfo->uri = unwrap_string_from_js(env, args[PARAM2], false);
-    asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, "global", asyncCallbackInfo);
 
     // set call type and table name
     napi_valuetype valueType;
@@ -1436,9 +1431,8 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
                 delete asyncCallbackInfo;
                 asyncCallbackInfo = nullptr;
                 return wrap_void_to_js(env);
-            } else {
-                asyncCallbackInfo->callType = STAGE_PROMISE_SPECIFIC;
             }
+            asyncCallbackInfo->callType = STAGE_PROMISE_SPECIFIC;
         } else {
             asyncCallbackInfo->callType = STAGE_CALLBACK;
             asyncCallbackInfo->tableName = "global";
@@ -1448,16 +1442,18 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
         asyncCallbackInfo->tableName = unwrap_string_from_js(env, args[PARAM4]);
     } else {
         asyncCallbackInfo->callType = INVALID_CALL;
-    }
-
-    // check whether invalid call
-    if (asyncCallbackInfo->callType == INVALID_CALL) {
         SETTING_LOG_ERROR("INVALID CALL");
         delete asyncCallbackInfo;
         asyncCallbackInfo = nullptr;
         return wrap_void_to_js(env);
     }
-
+    
+    auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, args[PARAM0]);
+    if (contextS == nullptr) {
+        SETTING_LOG_ERROR("get context is error.");
+    } else {
+        asyncCallbackInfo->token = contextS->GetToken();
+    }
     if (asyncCallbackInfo->callType == STAGE_CALLBACK || asyncCallbackInfo->callType == STAGE_CALLBACK_SPECIFIC) {
         napi_create_reference(env, args[PARAM3], 1, &asyncCallbackInfo->callbackRef);
         napi_create_async_work(
@@ -1921,8 +1917,14 @@ napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
     }
 
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1], false);
-    asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, args[PARAM0], stageMode, asyncCallbackInfo->tableName);
-    GetValueExecuteExt(env, (void *)asyncCallbackInfo);
+    auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, args[PARAM0]);
+    if (contextS == nullptr) {
+        SETTING_LOG_ERROR("get context is error.");
+        asyncCallbackInfo->status = STATUS_ERROR_CODE;
+    } else {
+        asyncCallbackInfo->token = contextS->GetToken();
+        GetValueExecuteExt(env, (void *)asyncCallbackInfo);
+    }
     napi_value retVal = nullptr;
     if (asyncCallbackInfo->value.size() <= 0) {
         retVal = args[PARAM2];
@@ -1972,10 +1974,15 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
     } else {
         asyncCallbackInfo->tableName = "global";
     }
-    asyncCallbackInfo->dataShareHelper = getDataShareHelper(
-        env, args[PARAM0], stageMode, asyncCallbackInfo->tableName, asyncCallbackInfo);
-    SetValueExecuteExt(env, (void *)asyncCallbackInfo, unwrap_string_from_js(env, args[PARAM2],
-        true, true));
+    auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, args[PARAM0]);
+    if (contextS == nullptr) {
+        SETTING_LOG_ERROR("get context is error.");
+        asyncCallbackInfo->status = STATUS_ERROR_CODE;
+    } else {
+        asyncCallbackInfo->token = contextS->GetToken();
+        SetValueExecuteExt(env, (void *)asyncCallbackInfo, unwrap_string_from_js(env, args[PARAM2],
+            true, true));
+    }
     napi_value result = wrap_bool_to_js(env, ThrowError(env, asyncCallbackInfo->status));
     delete asyncCallbackInfo;
     asyncCallbackInfo = nullptr;
