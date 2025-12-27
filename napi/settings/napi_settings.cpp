@@ -1403,7 +1403,7 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
 
     AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
         .env = env,
-        .token = nullptr;
+        .token = nullptr,
         .asyncWork = nullptr,
         .deferred = nullptr,
         .callbackRef = nullptr,
@@ -1903,14 +1903,13 @@ napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
                 asyncCallbackInfo = nullptr;
             }
             return wrap_void_to_js(env);
-        } else {
-            asyncCallbackInfo->tableName = unwrap_string_from_js(env, args[PARAM3]);
-            if (IsTableNameInvalid(asyncCallbackInfo->tableName)) {
-                SETTING_LOG_ERROR("INVALID tableName");
-                delete asyncCallbackInfo;
-                asyncCallbackInfo = nullptr;
-                return wrap_void_to_js(env);
-            }
+        }
+        asyncCallbackInfo->tableName = unwrap_string_from_js(env, args[PARAM3]);
+        if (IsTableNameInvalid(asyncCallbackInfo->tableName)) {
+            SETTING_LOG_ERROR("INVALID tableName");
+            delete asyncCallbackInfo;
+            asyncCallbackInfo = nullptr;
+            return wrap_void_to_js(env);
         }
     } else {
         asyncCallbackInfo->tableName = "global";
