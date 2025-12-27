@@ -54,7 +54,7 @@ enum CallType {
 
 struct AsyncCallbackInfo {
     napi_env env;
-    OHOS::sptr<IRemoteObject> token
+    OHOS::sptr<IRemoteObject> token;
     napi_async_work asyncWork;
     napi_deferred deferred;
     napi_ref callbackRef;
