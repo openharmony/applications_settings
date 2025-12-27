@@ -54,6 +54,7 @@ enum CallType {
 
 struct AsyncCallbackInfo {
     napi_env env;
+    OHOS::sptr<IRemoteObject> token
     napi_async_work asyncWork;
     napi_deferred deferred;
     napi_ref callbackRef;
@@ -192,7 +193,7 @@ std::string GetStageUriStr(std::string tableName, int id, std::string keyStr);
 std::string GetProxyUriStr(std::string tableName, int id);
 bool IsTableNameInvalid(std::string tableName);
 std::shared_ptr<DataShare::DataShareHelper> getDataShareHelper(
-    napi_env env, const napi_value context, const bool stageMode, std::string tableName = "global",
+    napi_env env, OHOS::sptr<IRemoteObject> token, const bool stageMode, std::string tableName = "global",
     AsyncCallbackInfo *data = nullptr);
 napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, napi_value* args);
 napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, napi_value* args);
