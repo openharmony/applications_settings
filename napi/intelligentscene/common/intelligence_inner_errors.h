@@ -26,7 +26,7 @@ namespace IntelligentScene {
     const int32_t ERROR_SYSTEM_CAP_ERROR  = 801;          // The specified SystemCapability names was not found.
 
     // Intelligence error code
-    const int32_t ERROR_INTERNAL_ERROR               = 1600001;    // Internal error.
+    const int32_t ERROR_INTERNAL_ERROR               = 35200001;    // Internal error.
     const int32_t ERROR_IPC_ERROR                    = 1600002;    // Marshalling or unmarshalling error.
     const int32_t ERROR_SERVICE_CONNECT_ERROR        = 1600003;    // Failed to connect to the service.
 

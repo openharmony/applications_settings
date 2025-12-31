@@ -56,7 +56,7 @@ ani_boolean ani_is_do_not_disturb_enabled(ani_env *env)
     int returncode = Notification::NotificationHelper::IsDoNotDisturbEnabled(userId, isDoNotDisturbEnabled);
     if (returncode != ERR_OK) {
         INTELLIGENTSCENE_LOG_ERROR("isDoNotDisturbEnabled error. returncode: %{public}d", returncode);
-        ThrowError(env, returncode);
+        ThrowError(env, ERROR_INTERNAL_ERROR);
         return ANI_FALSE;
     }
     INTELLIGENTSCENE_LOG_INFO("isDoNotDisturbEnabled end");
@@ -86,7 +86,7 @@ ani_boolean ani_is_notify_allowed(ani_env *env)
         Notification::NotificationHelper::IsNotifyAllowedInDoNotDisturb(userId, isNotifyAllowedInDoNotDisturb);
     if (returncode != ERR_OK) {
         INTELLIGENTSCENE_LOG_ERROR("IsNotifyAllowedInDoNotDisturb error. returncode: %{public}d", returncode);
-        ThrowError(env, returncode);
+        ThrowError(env, ERROR_INTERNAL_ERROR);
         return ANI_FALSE;
     }
     INTELLIGENTSCENE_LOG_INFO("IsNotifyAllowedInDoNotDisturb end");

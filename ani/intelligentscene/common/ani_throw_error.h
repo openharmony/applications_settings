@@ -28,7 +28,7 @@ namespace OHOS {
 namespace IntelligentScene {
 constexpr int ERROR_PERMISSION_DENIED = 201;
 constexpr int ERROR_SYSTEM_CAP_ERROR = 801;
-constexpr int ERROR_INTERNAL_ERROR = 1600001;
+constexpr int ERROR_INTERNAL_ERROR = 35200001;
 constexpr int ERROR_IPC_ERROR = 1600002;
 constexpr int ERROR_SERVICE_CONNECT_ERROR = 1600003;
 const std::string ERROR_INTERNAL_MSG = "Internal error.";
