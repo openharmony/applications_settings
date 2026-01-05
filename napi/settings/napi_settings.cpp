@@ -591,7 +591,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     }
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
     asyncCallbackInfo->dataShareHelper =
-        getDataShareHelper(env, asyncCallbackInfo->token, true, asyncCallbackInfo->tableName);
+        getDataShareHelper(env, asyncCallbackInfo->token, true, asyncCallbackInfo->tableName, asyncCallbackInfo);
     if (asyncCallbackInfo->dataShareHelper == nullptr) {
         SETTING_LOG_INFO("helper is null");
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
