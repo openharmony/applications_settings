@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+/**
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -158,7 +158,7 @@ export namespace settings {
         callback(null, ret as string);
       })
       .catch((ret: Any): void => {
-        let data: string;
+        let data: string = "";
         callback(ret as BusinessError, data);
       });
   }
@@ -199,7 +199,7 @@ export namespace settings {
         callback(null, ret as boolean);
       })
       .catch((ret: Any): void => {
-        let data: boolean;
+        let data: boolean = false;
         callback(ret as BusinessError, data);
       });
   }
@@ -240,7 +240,7 @@ export namespace settings {
         callback(null, ret as undefined);
       })
       .catch((ret: Any): void => {
-        let data: undefined;
+        let data: undefined = undefined;
         callback(ret as BusinessError, data);
       });
   }
@@ -267,7 +267,7 @@ export namespace settings {
         callback(null, ret as boolean);
       })
       .catch((ret: Any): void => {
-        let data: boolean;
+        let data: boolean = false;
         callback(ret as BusinessError, data);
       });
   }
