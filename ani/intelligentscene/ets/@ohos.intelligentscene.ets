@@ -27,12 +27,13 @@ export namespace intelligentscene {
     taskpool.execute((): boolean => {
       return isDoNotDisturbEnabled_inner();
     })
-      .then((ret: boolean): void => {
+      .then((value: Any): void => {
+        const ret = value as boolean;
         callback(null, ret);
       })
-      .catch((ret: BusinessError): void => {
+      .catch((ret: Error): void => {
         let data: boolean;
-        callback(ret, data);
+        callback(ret as BusinessError<void>, data);
       });
   }
 
@@ -41,10 +42,11 @@ export namespace intelligentscene {
       taskpool.execute((): boolean => {
         return isDoNotDisturbEnabled_inner();
       })
-        .then((ret: boolean): void => {
+        .then((value: Any): void => {
+          const ret = value as boolean;
           resolve(ret);
         })
-        .catch((ret: BusinessError): void => {
+        .catch((ret: Error): void => {
           reject(ret);
         });
     });
@@ -54,12 +56,13 @@ export namespace intelligentscene {
     taskpool.execute((): boolean => {
       return isNotifyAllowedInDoNotDisturb_inner();
     })
-      .then((ret: boolean): void => {
+      .then((value: Any): void => {
+        const ret = value as boolean;
         callback(null, ret);
       })
-      .catch((ret: BusinessError): void => {
+      .catch((ret: Error): void => {
         let data: boolean;
-        callback(ret, data);
+        callback(ret as BusinessError<void>, data);
       });
   }
 
@@ -68,10 +71,11 @@ export namespace intelligentscene {
       taskpool.execute((): boolean => {
         return isNotifyAllowedInDoNotDisturb_inner();
       })
-        .then((ret: boolean): void => {
+        .then((value: Any): void => {
+          const ret = value as boolean;
           resolve(ret);
         })
-        .catch((ret: BusinessError): void => {
+        .catch((ret: Error): void => {
           reject(ret);
         });
     });
