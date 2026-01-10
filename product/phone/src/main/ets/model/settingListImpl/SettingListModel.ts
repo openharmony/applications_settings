@@ -91,8 +91,11 @@ export class SettingListModel extends BaseModel {
    */
   @Log
   registerObserver() {
+    LogUtil.info('register wifiStateChange start');
     wifi.on('wifiStateChange', (code) => {
-      AppStorage.SetOrCreate('wifiStatus', wifi.isWifiActive());
+      const wifiActive: boolean = wifi.isWifiActive();
+      LogUtil.info(`receive wifiStateChange: ${wifiActive}`);
+      AppStorage.SetOrCreate('wifiStatus', wifiActive);
     })
   }
 }
