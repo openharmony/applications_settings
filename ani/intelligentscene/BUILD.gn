@@ -28,6 +28,7 @@ ohos_shared_library("intelligentscene_ani") {
   version_script = "intelligentscene_ani.versionscript"
 
   external_deps = [
+    "ability_base:configuration",
     "ability_base:zuri",
     "runtime_core:ani",
     "runtime_core:libarkruntime",
