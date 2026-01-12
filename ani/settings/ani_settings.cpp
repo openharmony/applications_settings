@@ -155,21 +155,20 @@ void GetValueExecuteExt(ani_env *env, void *data)
         return;
     }
 
-    std::vector<int> tmpId;
     int currentUserId = -1;
     OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(currentUserId);
-    std::string tmpIdStr = "100";
+    int tmpId = 100;
     if (currentUserId > 0) {
-        tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("userId is %{public}s", tmpIdStr.c_str());
+        tmpId = currentUserId;
+        SETTING_LOG_INFO("userId is %{public}d", tmpId);
     } else if (currentUserId == 0) {
         OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
-        tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("user0 userId is %{public}s", tmpIdStr.c_str());
+        tmpId = currentUserId;
+        SETTING_LOG_INFO("user0 userId is %{public}d", tmpId);
     } else {
         SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
     }
-    std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, tmpIdStr, asyncCallbackInfo->key);
+    std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, tmpId, asyncCallbackInfo->key);
     SETTING_LOG_INFO("Get uri : %{public}s, key: %{public}s", strUri.c_str(), (asyncCallbackInfo->key).c_str());
     OHOS::Uri uri(strUri);
 
@@ -359,22 +358,21 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(
     ani_env *env, const ani_object context, std::string tableName, AsyncCallbackInfo *asyncCallbackInfo)
 {
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
-    std::vector<int> tmpId;
     int currentUserId = -1;
     OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(currentUserId);
-    std::string tmpIdStr = "100";
+    int tmpId = 100;
     if (currentUserId > 0) {
-        tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("userId is %{public}s", tmpIdStr.c_str());
+        tmpId = currentUserId;
+        SETTING_LOG_INFO("userId is %{public}d", tmpId);
     } else if (currentUserId == 0) {
         OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
-        tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("user0 userId is %{public}s", tmpIdStr.c_str());
+        tmpId = currentUserId;
+        SETTING_LOG_INFO("user0 userId is %{public}d", tmpId);
     } else {
         SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
     }
     std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
-    std::string strProxyUri = GetProxyUriStr(tableName, tmpIdStr);
+    std::string strProxyUri = GetProxyUriStr(tableName, tmpId);
     OHOS::Uri proxyUri(strProxyUri);
     SETTING_LOG_INFO("<Ver-11-14> strProxyUri: %{public}s", strProxyUri.c_str());
     auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, context);
@@ -421,11 +419,12 @@ std::string unwrap_string_from_js(ani_env *env, ani_string param)
     return std::string(utf8Buffer);
 }
 
-std::string GetStageUriStr(std::string tableName, std::string idStr, std::string keyStr)
+std::string GetStageUriStr(std::string tableName, int id, std::string keyStr)
 {
-    if (std::stoi(idStr) < USERID_HELPER_NUMBER) {
-        idStr = "100";
+    if (id < USERID_HELPER_NUMBER) {
+        id = USERID_HELPER_NUMBER;
     }
+    std::string idStr = std::to_string(id);
     std::string retStr;
     if (tableName == "global") {
         retStr = "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=" + keyStr;
@@ -442,11 +441,12 @@ std::string GetStageUriStr(std::string tableName, std::string idStr, std::string
     return retStr;
 }
 
-std::string GetProxyUriStr(std::string tableName, std::string idStr)
+std::string GetProxyUriStr(std::string tableName, int id)
 {
-    if (std::stoi(idStr) < USERID_HELPER_NUMBER) {
-        idStr = "100";
+    if (id < USERID_HELPER_NUMBER) {
+        id = USERID_HELPER_NUMBER;
     }
+    std::string idStr = std::to_string(id);
     std::string retStr;
     if (tableName == "global") {
         // return global uri
@@ -509,21 +509,20 @@ void SetValueExecuteExt(ani_env *env, void *data, const std::string setValue)
     val.Put(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
     val.Put(SETTINGS_DATA_FIELD_VALUE, setValue);
 
-    std::vector<int> tmpId;
     int currentUserId = -1;
     OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(currentUserId);
-    std::string tmpIdStr = "100";
+    int tmpId = 100;
     if (currentUserId > 0) {
-        tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("userId is %{public}s", tmpIdStr.c_str());
+        tmpId = currentUserId;
+        SETTING_LOG_INFO("userId is %{public}d", tmpId);
     } else if (currentUserId == 0) {
         OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
-        tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("user0 userId is %{public}s", tmpIdStr.c_str());
+        tmpId = currentUserId;
+        SETTING_LOG_INFO("user0 userId is %{public}d", tmpId);
     } else {
         SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
     }
-    std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, tmpIdStr, asyncCallbackInfo->key);
+    std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, tmpId, asyncCallbackInfo->key);
     SETTING_LOG_WARN("Set key: %{public}s", (asyncCallbackInfo->key).c_str());
     OHOS::Uri uri(strUri);
 

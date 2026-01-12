@@ -79,8 +79,8 @@ void ani_enable_airplane_mode(ani_env *env, ani_boolean enable);
 ani_boolean ani_can_show_floating(ani_env *env);
 ani_string ani_get_value_sync(
     ani_env *env, ani_object context, ani_string key, ani_string defaultValue, ani_string domainName);
-std::string GetStageUriStr(std::string tableName, std::string idStr, std::string keyStr);
-std::string GetProxyUriStr(std::string tableName, std::string idStr);
+std::string GetStageUriStr(std::string tableName, int id, std::string keyStr);
+std::string GetProxyUriStr(std::string tableName, int id);
 bool IsTableNameInvalid(std::string tableName);
 std::shared_ptr<DataShare::DataShareHelper> getDataShareHelper(
     ani_env *env, const ani_object context, std::string tableName = "global", AsyncCallbackInfo *data = nullptr);
