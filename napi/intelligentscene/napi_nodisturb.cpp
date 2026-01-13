@@ -149,7 +149,9 @@ napi_value napi_is_do_not_disturb_enabled(napi_env env, napi_callback_info info)
     napi_value promise = nullptr;
     Common::PaddingCallbackPromiseInfo(env, callback, asyncCallBackInfo->info, promise);
     if (!HasPermisson()) {
-        return Common::NapiThrowError(env, ERROR_PERMISSION_DENIED, asyncCallBackInfo->info, promise);
+        napi_value error = Common::NapiThrowError(env, ERROR_PERMISSION_DENIED, asyncCallBackInfo->info, promise);
+        delete asyncCallBackInfo;
+        return error;
     }
     startDoNotDisturbEnabledWork(env, asyncCallBackInfo);
     napi_queue_async_work_with_qos(env, asyncCallBackInfo->asyncWork, napi_qos_user_initiated);
@@ -176,7 +178,9 @@ napi_value napi_is_notify_allowed(napi_env env, napi_callback_info info)
     napi_value promise = nullptr;
     Common::PaddingCallbackPromiseInfo(env, callback, asyncCallBackInfo->info, promise);
     if (!HasPermisson()) {
-        return Common::NapiThrowError(env, ERROR_PERMISSION_DENIED, asyncCallBackInfo->info, promise);
+        napi_value error = Common::NapiThrowError(env, ERROR_PERMISSION_DENIED, asyncCallBackInfo->info, promise);
+        delete asyncCallBackInfo;
+        return error;
     }
     startNotifyAllowedWork(env, asyncCallBackInfo);
     napi_queue_async_work_with_qos(env, asyncCallBackInfo->asyncWork, napi_qos_user_initiated);
