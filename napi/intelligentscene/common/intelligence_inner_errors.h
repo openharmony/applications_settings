@@ -31,8 +31,6 @@ namespace IntelligentScene {
     const int32_t ERROR_SERVICE_CONNECT_ERROR        = 1600003;    // Failed to connect to the service.
 
     std::string GetIntelligenceErrMessage(uint32_t errCode, std::string defaultMsg = "");
-
-    int32_t ErrorToExternal(uint32_t errCode);
 }  // namespace IntelligentScene
 }  // namespace OHOS
 

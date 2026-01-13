@@ -39,19 +39,5 @@ std::string GetIntelligenceErrMessage(uint32_t errCode, std::string defaultMsg)
     auto iter = INTELLIGENCE_ERROR_CODE_MESSAGE_MAP.find(errCode);
     return iter != INTELLIGENCE_ERROR_CODE_MESSAGE_MAP.end() ? iter->second : defaultMsg;
 }
-
-int32_t ErrorToExternal(uint32_t errCode)
-{
-    int32_t externalCode = ERROR_INTERNAL_ERROR;
-    for (const auto &errorConvert : ERRORS_CONVERT) {
-        if (errCode == errorConvert.first) {
-            externalCode = errorConvert.second;
-            break;
-        }
-    }
-    INTELLIGENT_SCENE_LOG_INFO("internal error[%{public}u] to [%{public}d]", errCode, externalCode);
-    return externalCode;
-}
-
 }  // namespace IntelligentScene
 }  // namespace OHOS
