@@ -144,7 +144,10 @@ void Common::PaddingCallbackPromiseInfo(
 void Common::CreateReturnValue(const napi_env &env, const CallbackPromiseInfo &info, const napi_value &result)
 {
     INTELLIGENT_SCENE_LOG_INFO("start, errorCode=%{public}d", info.errorCode);
-    int32_t errorCode = info.errorCode == ERR_OK ? ERR_OK : ERROR_INTERNAL_ERROR;
+    int32_t errorCode = info.errorCode;
+    if (errorCode != ERROR_PERMISSION_DENIED && errorCode != ERR_OK) {
+        errorCode = ERROR_INTERNAL_ERROR;
+    }
     if (info.isCallback) {
         SetCallback(env, info.callback, errorCode, result, true);
     } else {
