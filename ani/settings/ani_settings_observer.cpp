@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -204,23 +204,22 @@ void SettingsObserver::OnChange()
     settingsObserver->vm_->DetachCurrentThread();
 }
 
-std::string GetObserverIdStr()
+int GetObserverIdStr()
 {
-    std::vector<int> tmpId;
     int currentUserId = -1;
     OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(currentUserId);
-    std::string tmpIdStr = "100";
+    int tmpId = 100;
     if (currentUserId > 0) {
-        tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("userId is %{public}s", tmpIdStr.c_str());
+        tmpId = currentUserId;
+        SETTING_LOG_INFO("userId is %{public}d", tmpId);
     } else if (currentUserId == 0) {
         OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
-        tmpIdStr = std::to_string(currentUserId);
-        SETTING_LOG_INFO("user0 userId is %{public}s", tmpIdStr.c_str());
+        tmpId = currentUserId;
+        SETTING_LOG_INFO("user0 userId is %{public}d", tmpId);
     } else {
         SETTING_LOG_INFO("%{public}s, user id 100.", __func__);
     }
-    return tmpIdStr;
+    return tmpId;
 }
 
 void DeleteAsyncCallbackInfo(AsyncCallbackInfo *asyncCallbackInfo)
