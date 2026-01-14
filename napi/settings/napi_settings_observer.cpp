@@ -210,6 +210,7 @@ namespace Settings {
         auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, args[PARAM0]);
         if (contextS == nullptr) {
             SETTING_LOG_ERROR("get context is error.");
+            delete callbackInfo;
             return wrap_bool_to_js(env, false);
         }
         auto dataShareHelper = getDataShareHelper(env, contextS->GetToken(), stageMode, callbackInfo->tableName);
