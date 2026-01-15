@@ -136,6 +136,7 @@ struct EntryComponent {
   private info: string = 'false';
 
   wifiStatusChange() {
+    LogUtil.info(`wifiStatusChange, wifiStatus: ${this.wifiStatus}`);
     AppStorage.SetOrCreate("wifiStatusInfo", this.wifiStatus ? $r("app.string.enabled") : $r("app.string.disabled"))
   }
 
@@ -152,7 +153,7 @@ struct EntryComponent {
     });
 
     this.info = parameter.getSync("const.SystemCapability.Communication.NFC.Core" ,"false");
-    LogUtil.info('CCCC settings SettingList EntryComponent aboutToAppear out');
+    LogUtil.info('CCCC settings SettingList EntryComponent aboutToAppear out, wifiStatus: ' + this.wifiStatus);
   }
 
   aboutToDisappear(){
