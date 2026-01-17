@@ -138,6 +138,7 @@ namespace Settings {
 
     void CleanObserverMap(std::string key)
     {
+        std::lock_guard<std::recursive_mutex> lockGuard(g_observerMapMutex);
         g_observerMap[key]->toBeDelete = true;
         g_observerMap[key] = nullptr;
         g_observerMap.erase(key);
