@@ -1415,9 +1415,9 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
         .useNonSilent = false,
     };
     if (asyncCallbackInfo == nullptr) {
-         SETTING_LOG_ERROR("asyncCallbackInfo is null");
-         return wrap_void_to_js(env);
-     }
+        SETTING_LOG_ERROR("asyncCallbackInfo is null");
+        return wrap_void_to_js(env);
+    }
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1], false);
     asyncCallbackInfo->uri = unwrap_string_from_js(env, args[PARAM2], false);
 
