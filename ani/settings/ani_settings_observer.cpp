@@ -147,13 +147,13 @@ ani_object CreateBusinessError(ani_env *env, int code, const std::string &msg)
 void SettingsObserver::OnChange()
 {
     SETTING_LOG_INFO("n_s_o_c");
+    std::lock_guard<std::mutex> lockGuard(g_observerMapMutex);
     if (this->cbInfo == nullptr) {
         SETTING_LOG_ERROR("%{public}s, cbInfo is null.", __func__);
         return;
     }
 
     SETTING_LOG_INFO("n_s_o_c_a");
-    std::lock_guard<std::mutex> lockGuard(g_observerMapMutex);
     SettingsObserver *settingsObserver = reinterpret_cast<SettingsObserver *>(this);
     if (!IsExistObserver(settingsObserver) || settingsObserver == nullptr || settingsObserver->cbInfo == nullptr ||
         settingsObserver->toBeDelete) {

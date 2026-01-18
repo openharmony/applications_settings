@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2025 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -1414,6 +1414,10 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
         .status = false,
         .useNonSilent = false,
     };
+    if (asyncCallbackInfo == nullptr) {
+        SETTING_LOG_ERROR("asyncCallbackInfo is null");
+        return wrap_void_to_js(env);
+    }
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1], false);
     asyncCallbackInfo->uri = unwrap_string_from_js(env, args[PARAM2], false);
 
