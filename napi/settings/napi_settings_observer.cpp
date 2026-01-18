@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -34,7 +34,7 @@ using namespace OHOS::AccountSA;
 namespace OHOS {
 namespace Settings {
     std::map<std::string, sptr<SettingsObserver>> g_observerMap;
-    std::mutex g_observerMapMutex;
+    std::recursive_mutex g_observerMapMutex;
 
     SettingsObserver::~SettingsObserver()
     {
@@ -57,7 +57,7 @@ namespace Settings {
     void SettingsObserver::DoEventWork(SettingsObserver *settingsObserver)
     {
         SETTING_LOG_INFO("n_s_o_c_a_l");
-        std::lock_guard<std::mutex> lockGuard(g_observerMapMutex);
+        std::lock_guard<std::recursive_mutex> lockGuard(g_observerMapMutex);
         if (!IsExistObserver(settingsObserver) || settingsObserver == nullptr || settingsObserver->cbInfo == nullptr ||
             settingsObserver->toBeDelete) {
             SETTING_LOG_ERROR("uv_work: cbInfo invalid.");
@@ -89,7 +89,8 @@ namespace Settings {
 
     void SettingsObserver::OnChange()
     {
-        SETTING_LOG_INFO("n_s_o_c");
+        SETTING_LOG_INFO("n_s_o_cl");
+        std::lock_guard<std::recursive_mutex> lockGuard(g_observerMapMutex);
         if (this->cbInfo == nullptr) {
             SETTING_LOG_ERROR("%{public}s, cbInfo is null.", __func__);
             return;
@@ -137,6 +138,7 @@ namespace Settings {
 
     void CleanObserverMap(std::string key)
     {
+        std::lock_guard<std::recursive_mutex> lockGuard(g_observerMapMutex);
         g_observerMap[key]->toBeDelete = true;
         g_observerMap[key] = nullptr;
         g_observerMap.erase(key);
@@ -150,7 +152,7 @@ namespace Settings {
             return;
         }
         AsyncCallbackInfo* callbackInfo = reinterpret_cast<AsyncCallbackInfo*>(data);
-        std::lock_guard<std::mutex> lockGuard(g_observerMapMutex);
+        std::lock_guard<std::recursive_mutex> lockGuard(g_observerMapMutex);
         if (g_observerMap.find(callbackInfo->key) != g_observerMap.end() &&
             g_observerMap[callbackInfo->key] != nullptr) {
             SETTING_LOG_WARN("CleanUp key is %{public}s", callbackInfo->key.c_str());
@@ -199,7 +201,7 @@ namespace Settings {
         callbackInfo->tableName = unwrap_string_from_js(env, args[PARAM2]);
         napi_create_reference(env, args[PARAM3], 1, &(callbackInfo->callbackRef));
 
-        std::lock_guard<std::mutex> lockGuard(g_observerMapMutex);
+        std::lock_guard<std::recursive_mutex> lockGuard(g_observerMapMutex);
         if (g_observerMap.find(callbackInfo->key) != g_observerMap.end() &&
         g_observerMap[callbackInfo->key] != nullptr) {
             SETTING_LOG_INFO("%{public}s, already registered.", __func__);
@@ -261,7 +263,7 @@ namespace Settings {
         std::string key = unwrap_string_from_js(env, args[PARAM1]);
         std::string tableName = unwrap_string_from_js(env, args[PARAM2]);
         
-        std::lock_guard<std::mutex> lockGuard(g_observerMapMutex);
+        std::lock_guard<std::recursive_mutex> lockGuard(g_observerMapMutex);
         if (g_observerMap.find(key) == g_observerMap.end()) {
             SETTING_LOG_ERROR("%{public}s, null.", __func__);
             return wrap_bool_to_js(env, false);
