@@ -30,7 +30,7 @@ bool HasPermisson()
 {
     Security::AccessToken::AccessTokenID tokenId = IPCSkeleton::GetCallingTokenID();
     int result = Security::AccessToken::AccessTokenKit::
-        VerifyAccessToken(tokenId, OHOS_GET_DONOTDISTURB_STATE);
+        VerifyAccessToken(tokenId, OHOS_GET_DONOTDISTURB_STATE_PERMISSION);
     return result == PERMISSION_GRANTED;
 }
 
