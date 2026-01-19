@@ -26,6 +26,7 @@ ohos_shared_library("intelligentscene") {
   ]
 
   external_deps = [
+    "ability_base:configuration",
     "ability_base:zuri",
     "napi:ace_napi",
     "os_account:os_account_innerkits",
