@@ -22,7 +22,7 @@
 namespace OHOS {
 namespace IntelligentScene {
 
-inline const std::string OHOS_GET_DONOTDISTURB_STATE = "ohos.permission.GET_DONOTDISTURB_STATE";
+inline const std::string OHOS_GET_DONOTDISTURB_STATE_PERMISSION = "ohos.permission.GET_DONOTDISTURB_STATE";
 constexpr int8_t ERROR = -1;
 constexpr uint8_t PARAMS0 = 0;
 constexpr uint8_t PARAMS1 = 1;
