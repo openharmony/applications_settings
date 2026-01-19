@@ -46,10 +46,6 @@ struct SettingsError {
 
 const SettingsError SETTINGS_ERROR_PARAM = {SETTINGS_PARAM_ERROR_CODE, "Parameter error."};
 const SettingsError SETTINGS_ERROR_ORIGINAL_SERVICE = {SETTINGS_ORIGINAL_SERVICE_CODE, "Original service error."};
-const std::map<SettingsCode, SettingsError> g_errorMap = {
-    {SETTINGS_PARAM_ERROR, SETTINGS_ERROR_PARAM},
-    {SETTINGS_ORIGINAL_SERVICE_ERROR, SETTINGS_ERROR_ORIGINAL_SERVICE}
-};
 
 namespace OHOS {
 namespace Settings {
