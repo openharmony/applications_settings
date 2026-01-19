@@ -39,6 +39,10 @@ const std::string SETTINGS_PUSH_PARAM_JSON_TYPE = "isParamJsonObject";
 const std::string INPUT_DETAIL_WANT_EXTRA = "extra";
 const std::string INPUT_DETAIL_WANT_VALUE = "value";
 const std::string INPUT_DETAIL_WANT_NAME = "name";
+const std::map<SettingsCode, SettingsError> g_errorMap = {
+    {SETTINGS_PARAM_ERROR, SETTINGS_ERROR_PARAM},
+    {SETTINGS_ORIGINAL_SERVICE_ERROR, SETTINGS_ERROR_ORIGINAL_SERVICE}
+};
 
 bool StartUiExtensionAbility(OHOS::AAFwk::Want &request, std::shared_ptr<BaseContext> &asyncContext)
 {
