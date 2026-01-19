@@ -31,9 +31,9 @@ constexpr int ERROR_SYSTEM_CAP_ERROR = 801;
 constexpr int ERROR_INTERNAL_ERROR = 35200001;
 constexpr int ERROR_IPC_ERROR = 1600002;
 constexpr int ERROR_SERVICE_CONNECT_ERROR = 1600003;
-const std::string ERROR_INTERNAL_MSG = "Internal error.";
+inline const std::string ERROR_INTERNAL_MSG = "Internal error.";
 
-const std::map<int, std::string> g_errorMap = {
+inline const std::map<int, std::string> g_errorMap = {
     {ERROR_PERMISSION_DENIED, "Permission denied."},
     {ERROR_SYSTEM_CAP_ERROR, "Capability not supported."},
     {ERROR_INTERNAL_ERROR, "Internal error."},
