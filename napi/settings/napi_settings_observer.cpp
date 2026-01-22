@@ -212,6 +212,7 @@ namespace Settings {
         auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, args[PARAM0]);
         if (contextS == nullptr) {
             SETTING_LOG_ERROR("get context is error.");
+            napi_delete_reference(env, callbackInfo->callbackRef);
             delete callbackInfo;
             return wrap_bool_to_js(env, false);
         }
