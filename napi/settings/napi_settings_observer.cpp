@@ -196,12 +196,12 @@ namespace Settings {
             return wrap_bool_to_js(env, false);
         }
 
+        std::lock_guard<std::recursive_mutex> lockGuard(g_observerMapMutex);
         callbackInfo->env = env;
         callbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
         callbackInfo->tableName = unwrap_string_from_js(env, args[PARAM2]);
         napi_create_reference(env, args[PARAM3], 1, &(callbackInfo->callbackRef));
 
-        std::lock_guard<std::recursive_mutex> lockGuard(g_observerMapMutex);
         if (g_observerMap.find(callbackInfo->key) != g_observerMap.end() &&
         g_observerMap[callbackInfo->key] != nullptr) {
             SETTING_LOG_INFO("%{public}s, already registered.", __func__);

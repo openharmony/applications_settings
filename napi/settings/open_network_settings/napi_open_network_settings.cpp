@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2024-2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -39,6 +39,10 @@ const std::string SETTINGS_PUSH_PARAM_JSON_TYPE = "isParamJsonObject";
 const std::string INPUT_DETAIL_WANT_EXTRA = "extra";
 const std::string INPUT_DETAIL_WANT_VALUE = "value";
 const std::string INPUT_DETAIL_WANT_NAME = "name";
+const std::map<SettingsCode, SettingsError> g_errorMap = {
+    {SETTINGS_PARAM_ERROR, SETTINGS_ERROR_PARAM},
+    {SETTINGS_ORIGINAL_SERVICE_ERROR, SETTINGS_ERROR_ORIGINAL_SERVICE}
+};
 
 bool StartUiExtensionAbility(OHOS::AAFwk::Want &request, std::shared_ptr<BaseContext> &asyncContext)
 {
