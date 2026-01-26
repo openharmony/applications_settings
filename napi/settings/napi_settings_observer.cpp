@@ -91,8 +91,8 @@ namespace Settings {
     {
         SETTING_LOG_INFO("n_s_o_cl");
         std::lock_guard<std::recursive_mutex> lockGuard(g_observerMapMutex);
-        if (this->cbInfo == nullptr) {
-            SETTING_LOG_ERROR("%{public}s, cbInfo is null.", __func__);
+        if (this->cbInfo == nullptr || this->toBeDelete) {
+            SETTING_LOG_ERROR("%{public}s, cbInfo is null, deleted: %{public}d", __func__, this->toBeDelete);
             return;
         }
         uv_loop_s* loop = nullptr;
