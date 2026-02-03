@@ -46,7 +46,6 @@ const int PERMISSION_DENIED_CODE = -2;
 const int USERID_HELPER_NUMBER = 100;
 const int DATA_SHARE_DIED1 = 29189;
 const int DATA_SHARE_DIED2 = 32;
-const int USERID_HELPER_NUMBER = 100;
 std::shared_ptr<OHOS::DataShare::DataShareHelper> globalDataShareHelper = nullptr;
 std::mutex helper;
 
@@ -438,6 +437,7 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, sptr<IRemoteOb
         SETTING_LOG_ERROR("dataShareHelper from proxy is null");
     } else {
         globalDataShareHelper = dataShareHelper;
+        std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
         dataShareHelper->SetDataShareHelperExtUri(strUri);
     }
     return dataShareHelper;
@@ -445,7 +445,7 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, sptr<IRemoteOb
 
 bool CheckQueryErrorCode(int dataShareErrorCode)
 {
-    if (dataShareErrorCode == DATA_SHARE_DIED1 || dataShareErrorCode == DATA_SHARE_DIED1) {
+    if (dataShareErrorCode == DATA_SHARE_DIED1 || dataShareErrorCode == DATA_SHARE_DIED2) {
         SETTING_LOG_ERROR("data share error code:  %{public}d", dataShareErrorCode);
         return true;
     }
