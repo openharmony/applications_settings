@@ -619,7 +619,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     }
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
-    dataShareHelper = getDataShareHelper(env, asyncCallbackInfo->token, true, asyncCallbackInfo->tableName);
+    dataShareHelper = getDataShareHelper(env, asyncCallbackInfo->token, asyncCallbackInfo->tableName);
     if (dataShareHelper == nullptr) {
         SETTING_LOG_INFO("helper is null");
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
