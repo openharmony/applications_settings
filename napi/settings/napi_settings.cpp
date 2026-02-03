@@ -44,6 +44,9 @@ const int QUERY_SUCCESS_CODE = 1;
 const int STATUS_ERROR_CODE = -1;
 const int PERMISSION_DENIED_CODE = -2;
 const int USERID_HELPER_NUMBER = 100;
+const int DATA_SHARE_DIED1 = 29189;
+const int DATA_SHARE_DIED2 = 32;
+const int USERID_HELPER_NUMBER = 100;
 const int WAIT_TIME = 2;
 std::shared_ptr<OHOS::DataShare::DataShareHelper> globalDataShareHelper = nullptr;
 std::mutex helper;
@@ -441,6 +444,14 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, sptr<IRemoteOb
     return dataShareHelper;
 }
 
+bool checkQueryErrorCode(int dataShareErrorCode)
+{
+    if (dataShareErrorCode == DATA_SHARE_DIED1 || dataShareErrorCode == DATA_SHARE_DIED1) {
+        return true;
+    }
+    return false;
+}
+
 void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri uri)
 {
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
@@ -459,10 +470,9 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
 
     DatashareBusinessError businessError;
     std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultSet = nullptr;
-    resultSet = asyncCallbackInfo->dataShareHelper->Query(uri, predicates, columns, &businessError);
-    int datashareErrorCode = businessError.GetCode();
-    // need retry
-    if (datashareErrorCode != 0 && datashareErrorCode != PERMISSION_DENIED_CODE && datashareErrorCode != 1061) {
+    resultSet = dataShareHelper->Query(uri, predicates, columns, &businessError);
+    // 如果是datashare服务端死亡则需要重试
+    if (checkQueryErrorCode(businessError.GetCode())) {
         dataShareHelper = getNoSilentDataShareHelper(env, asyncCallbackInfo);
         if (dataShareHelper == nullptr) {
             SETTING_LOG_ERROR("no silent helper is null");
@@ -478,7 +488,7 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
         return;
     }
     resultSet->GetRowCount(numRows);
-    datashareErrorCode = businessError.GetCode();
+    int datashareErrorCode = businessError.GetCode();
     SETTING_LOG_INFO("numRows %{public}d, error code %{public}d", numRows, datashareErrorCode);
     if ((datashareErrorCode != 0 && datashareErrorCode != PERMISSION_DENIED_CODE) || numRows <= 0) {
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
@@ -585,7 +595,7 @@ void CompletePromise(napi_env env, napi_status status, void *data, const napi_va
     asyncCallbackInfo = nullptr;
 }
 
-int getUserId()
+int GetUserId()
 {
     int currentUserId = -1;
     OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(currentUserId);
@@ -620,7 +630,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     val.Put(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
     val.Put(SETTINGS_DATA_FIELD_VALUE, setValue);
     
-    int tmpId = getUserId();
+    int tmpId = GetUserId();
     std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, tmpId,
         asyncCallbackInfo->key);
     SETTING_LOG_WARN(

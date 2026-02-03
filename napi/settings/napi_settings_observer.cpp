@@ -249,7 +249,7 @@ namespace Settings {
             delete callbackInfo;
             return wrap_bool_to_js(env, false);
         }
-        auto dataShareHelper = createDataShareHelper(env,contextS->GetToken(),
+        auto dataShareHelper = createDataShareHelper(env, contextS->GetToken(),
                                                      callbackInfo->tableName);
         if (dataShareHelper == nullptr) {
             napi_delete_reference(env, callbackInfo->callbackRef);
@@ -313,7 +313,7 @@ namespace Settings {
             SETTING_LOG_ERROR("get context is error.");
             return wrap_bool_to_js(env, false);
         }
-        auto dataShareHelper = createDataShareHelper(env,contextS->GetToken(),tableName);
+        auto dataShareHelper = createDataShareHelper(env, contextS->GetToken(), tableName);
         if (dataShareHelper == nullptr) {
             SETTING_LOG_ERROR("%{public}s, data share is null.", __func__);
             return wrap_bool_to_js(env, false);
