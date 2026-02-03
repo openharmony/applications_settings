@@ -78,10 +78,10 @@ namespace Settings {
         std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
         std::string strProxyUri = GetProxyUriStr(tableName, tmpId);
         OHOS::Uri proxyUri(strProxyUri);
-        dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(token, strProxyUri, "", WAIT_TIME);
+        dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(token, strProxyUri, "");
         if (!dataShareHelper) {
             SETTING_LOG_ERROR("dataShareHelper from proxy is null");
-            dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(token, strUri, "", WAIT_TIME);
+            dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(token, strUri, "");
         } else {
             dataShareHelper->SetDataShareHelperExtUri(strUri);
         }
