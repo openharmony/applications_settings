@@ -47,7 +47,6 @@ const int USERID_HELPER_NUMBER = 100;
 const int DATA_SHARE_DIED1 = 29189;
 const int DATA_SHARE_DIED2 = 32;
 const int USERID_HELPER_NUMBER = 100;
-const int WAIT_TIME = 2;
 std::shared_ptr<OHOS::DataShare::DataShareHelper> globalDataShareHelper = nullptr;
 std::mutex helper;
 
@@ -415,7 +414,7 @@ std::shared_ptr<DataShareHelper> getNoSilentDataShareHelper(napi_env env, AsyncC
 {
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
     std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
-    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(asyncCallbackInfo->token, strUri, "", WAIT_TIME);
+    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(asyncCallbackInfo->token, strUri, "");
     asyncCallbackInfo->useNonSilent = true;
     return dataShareHelper;
 }
@@ -434,7 +433,7 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, sptr<IRemoteOb
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
     std::string strProxyUri = GetProxyUriStr(tableName, USERID_HELPER_NUMBER);
     OHOS::Uri proxyUri(strProxyUri);
-    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(token, strProxyUri, "", WAIT_TIME);
+    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(token, strProxyUri, "");
     if (!dataShareHelper) {
         SETTING_LOG_ERROR("dataShareHelper from proxy is null");
     } else {
