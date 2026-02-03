@@ -444,9 +444,10 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, sptr<IRemoteOb
     return dataShareHelper;
 }
 
-bool checkQueryErrorCode(int dataShareErrorCode)
+bool CheckQueryErrorCode(int dataShareErrorCode)
 {
     if (dataShareErrorCode == DATA_SHARE_DIED1 || dataShareErrorCode == DATA_SHARE_DIED1) {
+        SETTING_LOG_ERROR("data share error code:  %{public}d", dataShareErrorCode);
         return true;
     }
     return false;
@@ -472,7 +473,7 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
     std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultSet = nullptr;
     resultSet = dataShareHelper->Query(uri, predicates, columns, &businessError);
     // 如果是datashare服务端死亡则需要重试
-    if (checkQueryErrorCode(businessError.GetCode())) {
+    if (CheckQueryErrorCode(businessError.GetCode())) {
         dataShareHelper = getNoSilentDataShareHelper(env, asyncCallbackInfo);
         if (dataShareHelper == nullptr) {
             SETTING_LOG_ERROR("no silent helper is null");
