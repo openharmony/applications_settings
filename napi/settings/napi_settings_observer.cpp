@@ -33,6 +33,7 @@ using namespace OHOS::AccountSA;
 
 namespace OHOS {
 namespace Settings {
+    const int USERID_HELPER_NUMBER = 100;
     std::map<std::string, sptr<SettingsObserver>> g_observerMap;
     std::recursive_mutex g_observerMapMutex;
 
@@ -52,6 +53,39 @@ namespace Settings {
             }
         }
         return false;
+    }
+
+    std::shared_ptr<DataShareHelper> createDataShareHelper(
+        napi_env env, sptr<IRemoteObject> token, std::string tableName)
+    {
+        std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
+        int currentUserId = -1;
+        OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(currentUserId);
+        int tmpId = 100;
+        if (currentUserId > 0) {
+            tmpId = currentUserId;
+            SETTING_LOG_INFO("userId is %{public}d", tmpId);
+        } else if (currentUserId == 0) {
+            OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
+            tmpId = currentUserId;
+            SETTING_LOG_INFO("user0 userId is %{public}d", tmpId);
+        } else {
+            SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
+        }
+        if (currentUserId > USERID_HELPER_NUMBER) {
+            SETTING_LOG_INFO("user0 userId is %{public}d", tmpId);
+        }
+        std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
+        std::string strProxyUri = GetProxyUriStr(tableName, tmpId);
+        OHOS::Uri proxyUri(strProxyUri);
+        dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(token, strProxyUri, "", WAIT_TIME);
+        if (!dataShareHelper) {
+            SETTING_LOG_ERROR("dataShareHelper from proxy is null");
+            dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(token, strUri, "", WAIT_TIME);
+        } else {
+            dataShareHelper->SetDataShareHelperExtUri(strUri);
+        }
+        return dataShareHelper;
     }
 
     void SettingsObserver::DoEventWork(SettingsObserver *settingsObserver)
@@ -215,7 +249,8 @@ namespace Settings {
             delete callbackInfo;
             return wrap_bool_to_js(env, false);
         }
-        auto dataShareHelper = getDataShareHelper(env, contextS->GetToken(), stageMode, callbackInfo->tableName);
+        auto dataShareHelper = createDataShareHelper(env,contextS->GetToken(),
+                                                     callbackInfo->tableName);
         if (dataShareHelper == nullptr) {
             napi_delete_reference(env, callbackInfo->callbackRef);
             delete callbackInfo;
@@ -278,7 +313,7 @@ namespace Settings {
             SETTING_LOG_ERROR("get context is error.");
             return wrap_bool_to_js(env, false);
         }
-        auto dataShareHelper = getDataShareHelper(env, contextS->GetToken(), stageMode, tableName);
+        auto dataShareHelper = createDataShareHelper(env,contextS->GetToken(),tableName);
         if (dataShareHelper == nullptr) {
             SETTING_LOG_ERROR("%{public}s, data share is null.", __func__);
             return wrap_bool_to_js(env, false);
