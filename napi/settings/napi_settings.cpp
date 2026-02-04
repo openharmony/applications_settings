@@ -44,7 +44,10 @@ const int QUERY_SUCCESS_CODE = 1;
 const int STATUS_ERROR_CODE = -1;
 const int PERMISSION_DENIED_CODE = -2;
 const int USERID_HELPER_NUMBER = 100;
-const int WAIT_TIME = 2;
+const int DATA_SHARE_DIED1 = 29189;
+const int DATA_SHARE_DIED2 = 32;
+std::shared_ptr<OHOS::DataShare::DataShareHelper> globalDataShareHelper = nullptr;
+std::mutex helper;
 
 void ThrowExistingError(napi_env env, int errorCode, std::string errorMessage)
 {
@@ -406,46 +409,59 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
     }
 }
 
-std::shared_ptr<DataShareHelper> getDataShareHelper(
-    napi_env env, sptr<IRemoteObject> token, const bool stageMode, std::string tableName,
-    AsyncCallbackInfo *asyncCallbackInfo)
+std::shared_ptr<DataShareHelper> getNoSilentDataShareHelper(napi_env env, AsyncCallbackInfo *asyncCallbackInfo)
 {
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
-    int currentUserId = -1;
-    OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(currentUserId);
-    int tmpId = 100;
-    if (currentUserId > 0) {
-        tmpId = currentUserId;
-        SETTING_LOG_INFO("userId is %{public}d", tmpId);
-    } else if (currentUserId == 0) {
-        OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
-        tmpId = currentUserId;
-        SETTING_LOG_INFO("user0 userId is %{public}d", tmpId);
-    } else {
-        SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
-    }
-    if (currentUserId > USERID_HELPER_NUMBER) {
-        SETTING_LOG_INFO("user0 userId is %{public}d", tmpId);
-    }
     std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
-    std::string strProxyUri = GetProxyUriStr(tableName, tmpId);
+    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(asyncCallbackInfo->token, strUri, "");
+    if (asyncCallbackInfo) {
+        asyncCallbackInfo->useNonSilent = true;
+    }
+    return dataShareHelper;
+}
+
+std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, sptr<IRemoteObject> token, std::string tableName,
+                                                    AsyncCallbackInfo *asyncCallbackInfo)
+{
+    if (globalDataShareHelper != nullptr) {
+        SETTING_LOG_INFO("u_c");
+        return globalDataShareHelper;
+    }
+    std::lock_guard<std::mutex> lockGuard(helper);
+    if (globalDataShareHelper != nullptr) {
+        SETTING_LOG_INFO("l_u_c");
+        return globalDataShareHelper;
+    }
+    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
+    std::string strProxyUri = GetProxyUriStr(tableName, USERID_HELPER_NUMBER);
     OHOS::Uri proxyUri(strProxyUri);
-    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(token, strProxyUri, "", WAIT_TIME);
+    dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(token, strProxyUri, "");
     if (!dataShareHelper) {
         SETTING_LOG_ERROR("dataShareHelper from proxy is null");
-        dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(token, strUri, "", WAIT_TIME);
-        if (asyncCallbackInfo) {
-            asyncCallbackInfo->useNonSilent = true;
-        }
+        dataShareHelper = getNoSilentDataShareHelper(env, asyncCallbackInfo);
     } else {
+        SETTING_LOG_INFO("create global helper");
+        globalDataShareHelper = dataShareHelper;
+        std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
         dataShareHelper->SetDataShareHelperExtUri(strUri);
     }
     return dataShareHelper;
 }
 
+bool CheckQueryErrorCode(int dataShareErrorCode)
+{
+    if (dataShareErrorCode == DATA_SHARE_DIED1 || dataShareErrorCode == DATA_SHARE_DIED2) {
+        SETTING_LOG_ERROR("data share error code:  %{public}d", dataShareErrorCode);
+        return true;
+    }
+    return false;
+}
+
 void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri uri)
 {
-    if (asyncCallbackInfo->dataShareHelper == nullptr) {
+    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper =
+    getDataShareHelper(env, asyncCallbackInfo->token, asyncCallbackInfo->tableName, asyncCallbackInfo);
+    if (dataShareHelper == nullptr) {
         SETTING_LOG_ERROR("helper is null");
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
         return;
@@ -459,10 +475,20 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
 
     DatashareBusinessError businessError;
     std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultSet = nullptr;
-    resultSet = asyncCallbackInfo->dataShareHelper->Query(uri, predicates, columns, &businessError);
+    resultSet = dataShareHelper->Query(uri, predicates, columns, &businessError);
+    // 如果是datashare服务端死亡并且不是使用非静默则需要重试
+    if (CheckQueryErrorCode(businessError.GetCode()) && !(asyncCallbackInfo->useNonSilent)) {
+        dataShareHelper = getNoSilentDataShareHelper(env, asyncCallbackInfo);
+        SETTING_LOG_ERROR("query failed, %{public}d", (dataShareHelper == nullptr));
+        if (dataShareHelper == nullptr) {
+            asyncCallbackInfo->status = STATUS_ERROR_CODE;
+            return;
+        }
+        resultSet = dataShareHelper->Query(uri, predicates, columns, &businessError);
+    }
     int numRows = 0;
     if (resultSet == nullptr) {
-        SETTING_LOG_INFO("resultSet is empty");
+        SETTING_LOG_ERROR("resultSet is empty");
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
         return;
     }
@@ -478,7 +504,6 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
         int32_t columnIndex = 0;
         resultSet->GoToFirstRow();
         resultSet->GetString(columnIndex, val);
-
         SETTING_LOG_INFO("n_g_v_e %{public}s", anonymous_log(val).c_str());
         asyncCallbackInfo->value = val;
         asyncCallbackInfo->status = QUERY_SUCCESS_CODE;
@@ -496,14 +521,6 @@ void GetValueExecuteExt(napi_env env, void *data)
         return;
     }
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-    asyncCallbackInfo->dataShareHelper =
-        getDataShareHelper(env, asyncCallbackInfo->token, true, asyncCallbackInfo->tableName);
-    if (asyncCallbackInfo->dataShareHelper == nullptr) {
-        SETTING_LOG_ERROR("dataShareHelper is empty");
-        asyncCallbackInfo->status = STATUS_ERROR_CODE;
-        return;
-    }
-    
     int currentUserId = -1;
     OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(currentUserId);
     int tmpId = 100;
@@ -583,25 +600,8 @@ void CompletePromise(napi_env env, napi_status status, void *data, const napi_va
     asyncCallbackInfo = nullptr;
 }
 
-void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
+int GetUserId()
 {
-    if (data == nullptr) {
-        SETTING_LOG_INFO("s_v_e_ex data is null");
-        return;
-    }
-    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-    asyncCallbackInfo->dataShareHelper =
-        getDataShareHelper(env, asyncCallbackInfo->token, true, asyncCallbackInfo->tableName, asyncCallbackInfo);
-    if (asyncCallbackInfo->dataShareHelper == nullptr) {
-        SETTING_LOG_INFO("helper is null");
-        asyncCallbackInfo->status = STATUS_ERROR_CODE;
-        return;
-    }
-
-    OHOS::DataShare::DataShareValuesBucket val;
-    val.Put(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
-    val.Put(SETTINGS_DATA_FIELD_VALUE, setValue);
-    
     int currentUserId = -1;
     OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(currentUserId);
     int tmpId = 100;
@@ -613,6 +613,30 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     } else {
         SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
     }
+    return tmpId;
+}
+
+void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
+{
+    if (data == nullptr) {
+        SETTING_LOG_INFO("s_v_e_ex data is null");
+        return;
+    }
+    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
+    dataShareHelper = getDataShareHelper(env, asyncCallbackInfo->token, asyncCallbackInfo->tableName,
+                                         asyncCallbackInfo);
+    if (dataShareHelper == nullptr) {
+        SETTING_LOG_INFO("helper is null");
+        asyncCallbackInfo->status = STATUS_ERROR_CODE;
+        return;
+    }
+
+    OHOS::DataShare::DataShareValuesBucket val;
+    val.Put(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
+    val.Put(SETTINGS_DATA_FIELD_VALUE, setValue);
+    
+    int tmpId = GetUserId();
     std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, tmpId,
         asyncCallbackInfo->key);
     SETTING_LOG_WARN(
@@ -623,16 +647,25 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
 
     // update first.
-    int retInt = asyncCallbackInfo->dataShareHelper->Update(uri, predicates, val);
-    SETTING_LOG_WARN("update ret: %{public}d", retInt);
+    int retInt = dataShareHelper->Update(uri, predicates, val);
+    SETTING_LOG_WARN("update ret: %{public}d, %{public}d", retInt, asyncCallbackInfo->useNonSilent);
+    if (retInt < 0 && !(asyncCallbackInfo->useNonSilent)) {
+        dataShareHelper = getNoSilentDataShareHelper(env, asyncCallbackInfo);
+        if (dataShareHelper == nullptr) {
+            SETTING_LOG_INFO("no silent helper is null");
+            asyncCallbackInfo->status = STATUS_ERROR_CODE;
+            return;
+        }
+        retInt = dataShareHelper->Update(uri, predicates, val);
+    }
     if (retInt <= 0) {
         // retry to insert.
-        retInt = asyncCallbackInfo->dataShareHelper->Insert(uri, val);
+        retInt = dataShareHelper->Insert(uri, val);
         SETTING_LOG_ERROR("insert ret: %{public}d", retInt);
     }
     if (retInt > 0 && asyncCallbackInfo->useNonSilent) {
         SETTING_LOG_INFO("not use silent and notifyChange!");
-        asyncCallbackInfo->dataShareHelper->NotifyChange(uri);
+        dataShareHelper->NotifyChange(uri);
     }
     asyncCallbackInfo->status = retInt;
 }
@@ -1559,6 +1592,7 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
         .value = "",
         .uri = "",
         .status = 0,
+        .useNonSilent = false
     };
     if (asyncCallbackInfo == nullptr) {
         SETTING_LOG_ERROR("asyncCallbackInfo is null");
