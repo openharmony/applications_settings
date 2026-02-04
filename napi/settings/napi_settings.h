@@ -194,7 +194,7 @@ std::string GetProxyUriStr(std::string tableName, int id);
 bool IsTableNameInvalid(std::string tableName);
 std::shared_ptr<DataShare::DataShareHelper> getNoSilentDataShareHelper(napi_env env, AsyncCallbackInfo *data);
 std::shared_ptr<DataShare::DataShareHelper> getDataShareHelper(
-    napi_env env, OHOS::sptr<IRemoteObject> token, std::string tableName = "global");
+    napi_env env, OHOS::sptr<IRemoteObject> token, std::string tableName = "global", AsyncCallbackInfo *data = nullptr);
 napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, napi_value* args);
 napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, napi_value* args);
 napi_value napi_register_key_observer(napi_env env, napi_callback_info info);

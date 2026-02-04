@@ -414,11 +414,14 @@ std::shared_ptr<DataShareHelper> getNoSilentDataShareHelper(napi_env env, AsyncC
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
     std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
     dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(asyncCallbackInfo->token, strUri, "");
-    asyncCallbackInfo->useNonSilent = true;
+    if (asyncCallbackInfo) {
+        asyncCallbackInfo->useNonSilent = true;
+    }
     return dataShareHelper;
 }
 
-std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, sptr<IRemoteObject> token, std::string tableName)
+std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, sptr<IRemoteObject> token, std::string tableName,
+                                                    AsyncCallbackInfo *asyncCallbackInfo)
 {
     if (globalDataShareHelper != nullptr) {
         SETTING_LOG_INFO("u_c");
@@ -435,7 +438,9 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, sptr<IRemoteOb
     dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(token, strProxyUri, "");
     if (!dataShareHelper) {
         SETTING_LOG_ERROR("dataShareHelper from proxy is null");
+        dataShareHelper = getNoSilentDataShareHelper(env, asyncCallbackInfo);
     } else {
+        SETTING_LOG_INFO("create global helper");
         globalDataShareHelper = dataShareHelper;
         std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
         dataShareHelper->SetDataShareHelperExtUri(strUri);
@@ -454,8 +459,8 @@ bool CheckQueryErrorCode(int dataShareErrorCode)
 
 void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri uri)
 {
-    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
-    dataShareHelper = getDataShareHelper(env, asyncCallbackInfo->token, asyncCallbackInfo->tableName);
+    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = getDataShareHelper(env,
+                                            asyncCallbackInfo->token, asyncCallbackInfo->tableName, asyncCallbackInfo);
     if (dataShareHelper == nullptr) {
         SETTING_LOG_ERROR("helper is null");
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
@@ -472,7 +477,7 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
     std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultSet = nullptr;
     resultSet = dataShareHelper->Query(uri, predicates, columns, &businessError);
     // 如果是datashare服务端死亡则需要重试
-    if (CheckQueryErrorCode(businessError.GetCode())) {
+    if (CheckQueryErrorCode(businessError.GetCode()) && asyncCallbackInfo->useNonSilent) {
         dataShareHelper = getNoSilentDataShareHelper(env, asyncCallbackInfo);
         if (dataShareHelper == nullptr) {
             SETTING_LOG_ERROR("no silent helper is null");
@@ -619,7 +624,8 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     }
     AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
-    dataShareHelper = getDataShareHelper(env, asyncCallbackInfo->token, asyncCallbackInfo->tableName);
+    dataShareHelper = getDataShareHelper(env, asyncCallbackInfo->token, asyncCallbackInfo->tableName,
+                                         asyncCallbackInfo);
     if (dataShareHelper == nullptr) {
         SETTING_LOG_INFO("helper is null");
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
@@ -643,7 +649,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     // update first.
     int retInt = dataShareHelper->Update(uri, predicates, val);
     SETTING_LOG_WARN("update ret: %{public}d", retInt);
-    if (retInt < 0) {
+    if (retInt < 0 && asyncCallbackInfo->useNonSilent) {
         dataShareHelper = getNoSilentDataShareHelper(env, asyncCallbackInfo);
         if (dataShareHelper == nullptr) {
             SETTING_LOG_INFO("no silent helper is null");
@@ -1586,6 +1592,7 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
         .value = "",
         .uri = "",
         .status = 0,
+        .useNonSilent = false
     };
     if (asyncCallbackInfo == nullptr) {
         SETTING_LOG_ERROR("asyncCallbackInfo is null");
