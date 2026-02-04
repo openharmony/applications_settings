@@ -476,8 +476,9 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
     DatashareBusinessError businessError;
     std::shared_ptr<OHOS::DataShare::DataShareResultSet> resultSet = nullptr;
     resultSet = dataShareHelper->Query(uri, predicates, columns, &businessError);
-    // 如果是datashare服务端死亡则需要重试
-    if (CheckQueryErrorCode(businessError.GetCode()) && asyncCallbackInfo->useNonSilent) {
+    // 如果是datashare服务端死亡并且不是使用非静默则需要重试
+    if (CheckQueryErrorCode(businessError.GetCode()) && !(asyncCallbackInfo->useNonSilent)) {
+        SETTING_LOG_ERROR("query failed, code: %{public}d", businessError.GetCode());
         dataShareHelper = getNoSilentDataShareHelper(env, asyncCallbackInfo);
         if (dataShareHelper == nullptr) {
             SETTING_LOG_ERROR("no silent helper is null");
@@ -648,8 +649,8 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
 
     // update first.
     int retInt = dataShareHelper->Update(uri, predicates, val);
-    SETTING_LOG_WARN("update ret: %{public}d", retInt);
-    if (retInt < 0 && asyncCallbackInfo->useNonSilent) {
+    SETTING_LOG_WARN("update ret: %{public}d, %{public}d", retInt, asyncCallbackInfo->useNonSilent);
+    if (retInt < 0 && !(asyncCallbackInfo->useNonSilent)) {
         dataShareHelper = getNoSilentDataShareHelper(env, asyncCallbackInfo);
         if (dataShareHelper == nullptr) {
             SETTING_LOG_INFO("no silent helper is null");
