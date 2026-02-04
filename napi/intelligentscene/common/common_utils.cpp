@@ -66,8 +66,8 @@ void Common::NapiThrow(napi_env env, int32_t errCode, std::string &msg)
     napi_throw(env, CreateErrorValue(env, errCode, msg));
 }
 
-void Common::SetPromise(const napi_env &env,
-    const napi_deferred &deferred, const int32_t errorCode, const napi_value &result, bool newType)
+void Common::SetPromise(
+    const napi_env &env, const napi_deferred &deferred, const int32_t errorCode, const napi_value &result, bool newType)
 {
     INTELLIGENT_SCENE_LOG_INFO("start");
     if (errorCode == ERR_OK) {
@@ -103,8 +103,7 @@ void Common::SetCallback(
     INTELLIGENT_SCENE_LOG_INFO("end");
 }
 
-void Common::SetCallback(
-    const napi_env &env, const napi_ref &callbackIn, const napi_value &result)
+void Common::SetCallback(const napi_env &env, const napi_ref &callbackIn, const napi_value &result)
 {
     INTELLIGENT_SCENE_LOG_INFO("start");
     napi_value undefined = nullptr;
@@ -210,8 +209,8 @@ napi_value Common::JSParaError(const napi_env &env, const napi_ref &callback)
     return promise;
 }
 
-napi_value Common::NapiThrowError(const napi_env &env, int32_t errorCode,
-    CallbackPromiseInfo &info, const napi_value &promise)
+napi_value Common::NapiThrowError(
+    const napi_env &env, int32_t errorCode, CallbackPromiseInfo &info, const napi_value &promise)
 {
     napi_value result = nullptr;
     napi_get_boolean(env, false, &result);
