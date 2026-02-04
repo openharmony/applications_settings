@@ -478,10 +478,9 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
     resultSet = dataShareHelper->Query(uri, predicates, columns, &businessError);
     // 如果是datashare服务端死亡并且不是使用非静默则需要重试
     if (CheckQueryErrorCode(businessError.GetCode()) && !(asyncCallbackInfo->useNonSilent)) {
-        SETTING_LOG_ERROR("query failed, code: %{public}d", businessError.GetCode());
         dataShareHelper = getNoSilentDataShareHelper(env, asyncCallbackInfo);
+        SETTING_LOG_ERROR("query failed, %{public}d", (dataShareHelper == nullptr));
         if (dataShareHelper == nullptr) {
-            SETTING_LOG_ERROR("no silent helper is null");
             asyncCallbackInfo->status = STATUS_ERROR_CODE;
             return;
         }
@@ -489,7 +488,7 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
     }
     int numRows = 0;
     if (resultSet == nullptr) {
-        SETTING_LOG_INFO("resultSet is empty");
+        SETTING_LOG_ERROR("resultSet is empty");
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
         return;
     }
