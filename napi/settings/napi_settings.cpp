@@ -459,8 +459,8 @@ bool CheckQueryErrorCode(int dataShareErrorCode)
 
 void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri uri)
 {
-    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = getDataShareHelper(env,
-                                            asyncCallbackInfo->token, asyncCallbackInfo->tableName, asyncCallbackInfo);
+    std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper =
+    getDataShareHelper(env, asyncCallbackInfo->token, asyncCallbackInfo->tableName, asyncCallbackInfo);
     if (dataShareHelper == nullptr) {
         SETTING_LOG_ERROR("helper is null");
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
