@@ -156,7 +156,13 @@ napi_value napi_is_do_not_disturb_enabled(napi_env env, napi_callback_info info)
         return error;
     }
     startDoNotDisturbEnabledWork(env, asyncCallBackInfo);
-    napi_queue_async_work_with_qos(env, asyncCallBackInfo->asyncWork, napi_qos_user_initiated);
+    napi_status status = napi_queue_async_work_with_qos(env, asyncCallBackInfo->asyncWork, napi_qos_user_initiated);
+    if (status != napi_ok) {
+        napi_delete_async_work(env, asynccallbackinfo->asyncWork);
+        delete asyncCallBackInfo;
+        Common::NapiThrow(env, ERROR_INTERNAL_ERROR);
+        return Common::JSParaError(env, callback);
+    }
 
     if (asyncCallBackInfo->info.isCallback) {
         INTELLIGENT_SCENE_LOG_INFO("has callback");
@@ -184,7 +190,13 @@ napi_value napi_is_notify_allowed(napi_env env, napi_callback_info info)
         return error;
     }
     startNotifyAllowedWork(env, asyncCallBackInfo);
-    napi_queue_async_work_with_qos(env, asyncCallBackInfo->asyncWork, napi_qos_user_initiated);
+    napi_status status = napi_queue_async_work_with_qos(env, asyncCallBackInfo->asyncWork, napi_qos_user_initiated);
+    if (status != napi_ok) {
+        napi_delete_async_work(env, asynccallbackinfo->asyncWork);
+        delete asyncCallBackInfo;
+        Common::NapiThrow(env, ERROR_INTERNAL_ERROR);
+        return Common::JSParaError(env, callback);
+    }
 
     if (asyncCallBackInfo->info.isCallback) {
         INTELLIGENT_SCENE_LOG_INFO("has callback");
