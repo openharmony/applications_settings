@@ -158,7 +158,7 @@ napi_value napi_is_do_not_disturb_enabled(napi_env env, napi_callback_info info)
     startDoNotDisturbEnabledWork(env, asyncCallBackInfo);
     napi_status status = napi_queue_async_work_with_qos(env, asyncCallBackInfo->asyncWork, napi_qos_user_initiated);
     if (status != napi_ok) {
-        napi_delete_async_work(env, asynccallbackinfo->asyncWork);
+        napi_delete_async_work(env, asyncCallBackInfo->asyncWork);
         delete asyncCallBackInfo;
         Common::NapiThrow(env, ERROR_INTERNAL_ERROR);
         return Common::JSParaError(env, callback);
@@ -192,7 +192,7 @@ napi_value napi_is_notify_allowed(napi_env env, napi_callback_info info)
     startNotifyAllowedWork(env, asyncCallBackInfo);
     napi_status status = napi_queue_async_work_with_qos(env, asyncCallBackInfo->asyncWork, napi_qos_user_initiated);
     if (status != napi_ok) {
-        napi_delete_async_work(env, asynccallbackinfo->asyncWork);
+        napi_delete_async_work(env, asyncCallBackInfo->asyncWork);
         delete asyncCallBackInfo;
         Common::NapiThrow(env, ERROR_INTERNAL_ERROR);
         return Common::JSParaError(env, callback);
