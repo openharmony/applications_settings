@@ -649,6 +649,10 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     // update first.
     int retInt = dataShareHelper->Update(uri, predicates, val);
     SETTING_LOG_WARN("update ret: %{public}d, %{public}d", retInt, asyncCallbackInfo->useNonSilent);
+    if (retInt == PERMISSION_DENIED_CODE) {
+        asyncCallbackInfo->status = PERMISSION_DENIED_CODE;
+        return;
+    }
     if (retInt < 0 && !(asyncCallbackInfo->useNonSilent)) {
         dataShareHelper = getNoSilentDataShareHelper(env, asyncCallbackInfo);
         if (dataShareHelper == nullptr) {
