@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="54px" height="26px" viewBox="0 0 54 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>battery_white5_charge</title>
+    <defs>
+        <polygon id="path-1" points="8 0.1 8 9.9546875 12 9.9546875 4 23.9 4 13.859375 0 13.859375"></polygon>
+    </defs>
+    <g id="battery_white5_charge" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="编组-41" transform="translate(1.000000, 1.000000)">
+            <g id="Devices/Battery/ic_device_battery_charging" transform="translate(24.000000, 12.000000) rotate(90.000000) translate(-24.000000, -12.000000) translate(18.000000, 0.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Path-35" fill="#000000" xlink:href="#path-1"></use>
+            </g>
+            <rect id="矩形" stroke="#000000" stroke-width="1.5" x="0" y="0" width="47" height="24" rx="4"></rect>
+            <rect id="矩形" fill="#000000" x="49" y="4" width="4" height="16" rx="2"></rect>
+            <rect id="矩形备份-17" fill="#FF3320" x="2" y="2" width="2" height="20" rx="1"></rect>
+        </g>
+        <g id="编组-40" transform="translate(1.000000, 1.000000)"></g>
+    </g>
+</svg>

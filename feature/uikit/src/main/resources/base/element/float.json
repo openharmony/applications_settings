@@ -1,0 +1,885 @@
+{
+  "float": [
+    {
+      "name": "margin_negative_2",
+      "value": "-2vp"
+    },
+    {
+      "name": "margin_0",
+      "value": "0"
+    },
+    {
+      "name": "margin_2",
+      "value": "2vp"
+    },
+    {
+      "name": "margin_4",
+      "value": "4vp"
+    },
+    {
+      "name": "wh_value_4",
+      "value": "4vp"
+    },
+    {
+      "name": "margin_6",
+      "value": "6vp"
+    },
+    {
+      "name": "wh_value_12",
+      "value": "12vp"
+    },
+    {
+      "name": "margin_42",
+      "value": "42vp"
+    },
+    {
+      "name": "padding_0",
+      "value": "0"
+    },
+    {
+      "name": "padding_negative_20",
+      "value": "-20vp"
+    },
+    {
+      "name": "padding_negative_6",
+      "value": "-6vp"
+    },
+    {
+      "name": "padding_3",
+      "value": "3"
+    },
+    {
+      "name": "padding_4",
+      "value": "4"
+    },
+    {
+      "name": "padding_5",
+      "value": "5"
+    },
+    {
+      "name": "padding_6",
+      "value": "6vp"
+    },
+    {
+      "name": "padding_7",
+      "value": "7vp"
+    },
+    {
+      "name": "padding_8",
+      "value": "8vp"
+    },
+    {
+      "name": "padding_10",
+      "value": "10vp"
+    },
+    {
+      "name": "padding_12",
+      "value": "12vp"
+    },
+    {
+      "name": "padding_13",
+      "value": "13vp"
+    },
+    {
+      "name": "padding_16",
+      "value": "16vp"
+    },
+    {
+      "name": "padding_18",
+      "value": "18vp"
+    },
+    {
+      "name": "padding_19",
+      "value": "19vp"
+    },
+    {
+      "name": "padding_36",
+      "value": "36vp"
+    },
+    {
+      "name": "size_16",
+      "value": "16vp"
+    },
+    {
+      "name": "size_32",
+      "value": "32vp"
+    },
+    {
+      "name": "padding_23",
+      "value": "23vp"
+    },
+    {
+      "name": "padding_24",
+      "value": "24vp"
+    },
+    {
+      "name": "padding_20",
+      "value": "20vp"
+    },
+    {
+      "name": "padding_42",
+      "value": "42vp"
+    },
+    {
+      "name": "padding_44",
+      "value": "44vp"
+    },
+    {
+      "name": "padding_45",
+      "value": "45vp"
+    },
+    {
+      "name": "padding_48",
+      "value": "48vp"
+    },
+
+    {
+      "name": "width_2",
+      "value": "2vp"
+    },
+    {
+      "name": "max_length_128",
+      "value": "128"
+    },
+    {
+      "name": "size_346",
+      "value": "346vp"
+    },
+    {
+      "name": "length_14",
+      "value": "14vp"
+    },
+    {
+      "name": "length_13",
+      "value": "13vp"
+    },
+    {
+      "name": "height_36",
+      "value": "36vp"
+    },
+    {
+      "name": "height_134",
+      "value": "134vp"
+    },
+    {
+      "name": "height_162",
+      "value": "162vp"
+    },
+    {
+      "name": "length_negative_32",
+      "value": "-32vp"
+    },
+    {
+      "name": "length_24",
+      "value": "24vp"
+    },
+    {
+      "name": "length_4",
+      "value": "4vp"
+    },
+    {
+      "name": "length_48",
+      "value": "48vp"
+    },
+    {
+      "name": "length_1",
+      "value": "1vp"
+    },
+    {
+      "name": "length_19_5",
+      "value": "19.5vp"
+    },
+    {
+      "name": "length_9",
+      "value": "9vp"
+    },
+    {
+      "name": "length_0",
+      "value": "0"
+    },
+    {
+      "name": "length_12",
+      "value": "12vp"
+    },
+    {
+      "name": "length_8",
+      "value": "8vp"
+    },
+    {
+      "name": "length_10",
+      "value": "10vp"
+    },
+    {
+      "name": "dialog_width_604",
+      "value": "604vp"
+    },
+    {
+      "name": "border_radius_2",
+      "value": "2vp"
+    },
+    {
+      "name": "border_radius_16",
+      "value": "16vp"
+    },
+    {
+      "name": "border_radius_20",
+      "value": "20vp"
+    },
+    {
+      "name": "border_radius_32",
+      "value": "32vp"
+    },
+    {
+      "name": "border_radius_0",
+      "value": "0vp"
+    },
+    {
+      "name": "radius_24",
+      "value": "24vp"
+    },
+    {
+      "name": "radius_8",
+      "value": "8vp"
+    },
+    {
+      "name": "width_1_5",
+      "value": "1.5"
+    },
+    {
+      "name": "bgrid_gutter_16",
+      "value": "16vp"
+    },
+    {
+      "name": "grid_margin_105",
+      "value": "105vp"
+    },
+    {
+      "name": "margin_56",
+      "value": "56vp"
+    },
+    {
+      "name": "margin_48",
+      "value": "48vp"
+    },
+    {
+      "name": "margin_24",
+      "value": "24vp"
+    },
+    {
+      "name": "margin_13",
+      "value": "13vp"
+    },
+    {
+      "name": "margin_5",
+      "value": "5vp"
+    },
+    {
+      "name": "width_80",
+      "value": "80vp"
+    },
+    {
+      "name": "width_160",
+      "value": "160vp"
+    },
+    {
+      "name": "width_214",
+      "value": "214vp"
+    },
+    {
+      "name": "width_252",
+      "value": "252vp"
+    },
+    {
+      "name": "width_360",
+      "value": "360vp"
+    },
+    {
+      "name": "width_352",
+      "value": "352vp"
+    },
+    {
+      "name": "width_313",
+      "value": "313.6vp"
+    },
+    {
+      "name": "width_312",
+      "value": "312vp"
+    },
+    {
+      "name": "width_320",
+      "value": "320vp"
+    },
+    {
+      "name": "height_43",
+      "value": "43vp"
+    },
+    {
+      "name": "height_56",
+      "value": "56vp"
+    },
+    {
+      "name": "height_84",
+      "value": "84vp"
+    },
+    {
+      "name": "height_64",
+      "value": "64vp"
+    },
+    {
+      "name": "height_66",
+      "value": "66vp"
+    },
+    {
+      "name": "margin_carry_16",
+      "value": "-16vp"
+    },
+    {
+      "name": "margin_60",
+      "value": "60vp"
+    },
+    {
+      "name": "margin_72",
+      "value": "72vp"
+    },
+    {
+      "name": "margin_8",
+      "value": "8vp"
+    },
+    {
+      "name": "margin_prompt_f4",
+      "value": "-4vp"
+    },
+    {
+      "name": "margin_12",
+      "value": "12vp"
+    },
+    {
+      "name": "margin_14",
+      "value": "14vp"
+    },
+    {
+      "name": "margin_15",
+      "value": "15vp"
+    },
+    {
+      "name": "margin_16",
+      "value": "16vp"
+    },
+    {
+      "name": "margin_20",
+      "value": "20vp"
+    },
+    {
+      "name": "margin_32",
+      "value": "32vp"
+    },
+    {
+      "name": "width_24",
+      "value": "24vp"
+    },
+    {
+      "name": "width_56",
+      "value": "56vp"
+    },
+    {
+      "name": "height_12",
+      "value": "12vp"
+    },
+    {
+      "name": "height_18",
+      "value": "18vp"
+    },
+    {
+      "name": "height_22",
+      "value": "22vp"
+    },
+    {
+      "name": "height_24",
+      "value": "24vp"
+    },
+    {
+      "name": "height_23",
+      "value": "23vp"
+    },
+    {
+      "name": "height_28",
+      "value": "28vp"
+    },
+    {
+      "name": "height_40",
+      "value": "40vp"
+    },
+    {
+      "name": "height_42",
+      "value": "42vp"
+    },
+    {
+      "name": "height_48",
+      "value": "48vp"
+    },
+    {
+      "name": "height_52",
+      "value": "52vp"
+    },
+    {
+      "name": "height_62",
+      "value": "62vp"
+    },
+    {
+      "name": "height_72",
+      "value": "72vp"
+    },
+    {
+      "name": "height_92",
+      "value": "92vp"
+    },
+    {
+      "name": "height_106",
+      "value": "106vp"
+    },
+    {
+      "name": "height_140",
+      "value": "140vp"
+    },
+    {
+      "name": "height_122",
+      "value": "122vp"
+    },
+    {
+      "name": "height_186",
+      "value": "186vp"
+    },
+    {
+      "name": "height_269",
+      "value": "269vp"
+    },
+    {
+      "name": "height_232",
+      "value": "232vp"
+    },
+    {
+      "name": "height_240",
+      "value": "240vp"
+    },
+    {
+      "name": "height_300",
+      "value": "300vp"
+    },
+    {
+      "name": "height_359",
+      "value": "359vp"
+    },
+    {
+      "name": "height_424",
+      "value": "424vp"
+    },
+    {
+      "name": "height_288",
+      "value": "288vp"
+    },
+    {
+      "name": "width_300",
+      "value": "300vp"
+    },
+    {
+      "name": "height_504",
+      "value": "504vp"
+    },
+    {
+      "name": "height_508",
+      "value": "508vp"
+    },
+    {
+      "name": "height_520",
+      "value": "520vp"
+    },
+    {
+      "name": "length_20",
+      "value": "20vp"
+    },
+    {
+      "name": "length_27",
+      "value": "27vp"
+    },
+    {
+      "name": "length_15",
+      "value": "15vp"
+    },
+    {
+      "name": "length_5",
+      "value": "5vp"
+    },
+    {
+      "name": "length_7_5",
+      "value": "7.5vp"
+    },
+    {
+      "name": "length_16",
+      "value": "16vp"
+    },
+    {
+      "name": "length_16_5",
+      "value": "16.5vp"
+    },
+    {
+      "name": "length_17",
+      "value": "17vp"
+    },
+    {
+      "name": "margin_minus_6",
+      "value": "-6vp"
+    },
+    {
+      "name": "margin_minus_8",
+      "value": "-8vp"
+    },
+    {
+      "name": "length_19",
+      "value": "19vp"
+    },
+    {
+      "name": "length_21",
+      "value": "21vp"
+    },
+    {
+      "name": "length_22",
+      "value": "22vp"
+    },
+    {
+      "name": "length_26",
+      "value": "26vp"
+    },
+    {
+      "name": "length_28",
+      "value": "28vp"
+    },
+    {
+      "name": "length_32",
+      "value": "32vp"
+    },
+    {
+      "name": "length_68",
+      "value": "68vp"
+    },
+    {
+      "name": "length_273",
+      "value": "273vp"
+    },
+    {
+      "name": "width_394",
+      "value": "394vp"
+    },
+    {
+      "name": "width_250",
+      "value": "250vp"
+    },
+    {
+      "name": "width_200",
+      "value": "200vp"
+    },
+    {
+      "name": "width_288",
+      "value": "288vp"
+    },
+    {
+      "name": "width_280",
+      "value": "280vp"
+    },
+    {
+      "name": "width_400",
+      "value": "400vp"
+    },
+    {
+      "name": "width_488",
+      "value": "488vp"
+    },
+    {
+      "name": "width_176",
+      "value": "176vp"
+    },
+    {
+      "name": "width_173",
+      "value": "173vp"
+    },
+    {
+      "name": "width_196",
+      "value": "196vp"
+    },
+    {
+      "name": "width_120",
+      "value": "120vp"
+    },
+    {
+      "name": "width_40",
+      "value": "40vp"
+    },
+    {
+      "name": "width_536",
+      "value": "536vp"
+    },
+    {
+      "name": "width_152",
+      "value": "152vp"
+    },
+    {
+      "name": "width_34",
+      "value": "34vp"
+    },
+    {
+      "name": "width_512",
+      "value": "512vp"
+    },
+    {
+      "name": "width_172",
+      "value": "172vp"
+    },
+    {
+      "name": "width_439",
+      "value": "439vp"
+    },
+    {
+      "name": "width_73",
+      "value": "73vp"
+    },
+    {
+      "name": "width_46",
+      "value": "46vp"
+    },
+    {
+      "name": "width_542",
+      "value": "542vp"
+    },
+    {
+      "name": "gridGutter_16",
+      "value": "16vp"
+    },
+    {
+      "name": "gridMargin_4",
+      "value": "4vp"
+    },
+    {
+      "name": "length_120",
+      "value": "120vp"
+    },
+    {
+      "name": "font_12",
+      "value": "12fp"
+    },
+    {
+      "name": "font_14",
+      "value": "14fp"
+    },
+    {
+      "name": "font_15",
+      "value": "15fp"
+    },
+    {
+      "name": "font_16",
+      "value": "16fp"
+    },
+    {
+      "name": "font_20",
+      "value": "20fp"
+    },
+    {
+      "name": "font_22",
+      "value": "22fp"
+    },
+    {
+      "name": "font_26",
+      "value": "26fp"
+    },
+    {
+      "name": "font_36",
+      "value": "36fp"
+    },
+    {
+      "name": "line_height_16_fp",
+      "value": "16fp"
+    },
+    {
+      "name": "line_height_19_fp",
+      "value": "19fp"
+    },
+    {
+      "name": "line_height_21_fp",
+      "value": "21fp"
+    },
+    {
+      "name": "line_height_48_fp",
+      "value": "48fp"
+    },
+    {
+      "name": "font_20_vp",
+      "value": "20vp"
+    },
+    {
+      "name": "height_32",
+      "value": "32vp"
+    },
+    {
+      "name": "length_2",
+      "value": "2vp"
+    },
+    {
+      "name": "opacity_0_6",
+      "value": "0.6"
+    },
+    {
+      "name": "opacity_0_9",
+      "value": "0.9"
+    },
+    {
+      "name": "opacity_0_4",
+      "value": "0.4"
+    },
+    {
+      "name": "length_394",
+      "value": "394vp"
+    },
+    {
+      "name": "length_224",
+      "value": "224vp"
+    },
+    {
+      "name": "height_222",
+      "value": "222vp"
+    },
+    {
+      "name": "height_96",
+      "value": "96vp"
+    },
+    {
+      "name": "length_70",
+      "value": "70vp"
+    },
+    {
+      "name": "wh_value_24",
+      "value": "24vp"
+    },
+    {
+      "name": "wh_value_132",
+      "value": "132vp"
+    },
+    {
+      "name": "wh_value_480",
+      "value": "480vp"
+    },
+    {
+      "name": "wh_value_188",
+      "value": "188vp"
+    },
+    {
+      "name": "time_zone_width",
+      "value": "420vp"
+    },
+    {
+      "name": "time_zone_height",
+      "value": "380vp"
+    },
+    {
+      "name": "pc_dialog_header_height",
+      "value": "64vp"
+    },
+    {
+      "name": "pc_dialog_footer_height",
+      "value": "80vp"
+    },
+    {
+      "name": "margin_value_28",
+      "value": "28vp"
+    },
+    {
+      "name": "length_148",
+      "value": "148vp"
+    },
+    {
+      "name": "length_536",
+      "value": "536vp"
+    },
+    {
+      "name": "length_113",
+      "value": "113vp"
+    },
+    {
+      "name": "length_100",
+      "value": "100vp"
+    },
+    {
+      "name": "length_127",
+      "value": "127vp"
+    },
+    {
+      "name": "width_216",
+      "value": "216vp"
+    },
+    {
+      "name": "length_384",
+      "value": "384vp"
+    },
+    {
+      "name": "divider_stroke_width",
+      "value": "0.5vp"
+    },
+    {
+      "name": "width_12",
+      "value": "12vp"
+    },
+    {
+      "name": "width_18",
+      "value": "18vp"
+    },
+    {
+      "name": "height_542",
+      "value": "542vp"
+    },
+    {
+      "name": "height_406",
+      "value": "406vp"
+    },
+    {
+      "name": "height_400",
+      "value": "400vp"
+    },
+    {
+      "name": "radius_120",
+      "value": "120"
+    },
+    {
+      "name": "offset_20",
+      "value": "20"
+    },
+    {
+      "name": "width_180",
+      "value": "180vp"
+    },
+    {
+      "name": "add_domain_user_form_max_height",
+      "value": "700px"
+    },
+    {
+      "name": "add_domain_user_form_normal_height",
+      "value": "598vp"
+    },
+    {
+      "name": "height_164",
+      "value": "164vp"
+    },
+    {
+      "name": "height_560",
+      "value": "560vp"
+    },
+    {
+      "name": "height_480",
+      "value": "480vp"
+    },
+    {
+      "name": "list_item_background_radius",
+      "value": "12vp"
+    },
+    {
+      "name": "menu_group_radius",
+      "value": "16vp"
+    }
+  ]
+}

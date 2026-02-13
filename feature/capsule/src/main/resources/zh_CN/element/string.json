@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"cloud_space",
+            "value":"云空间",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"subscribe",
+            "value":"订阅",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"find_device",
+            "value":"查找设备",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"企业管理策略禁止此操作",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

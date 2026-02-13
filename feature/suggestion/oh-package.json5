@@ -1,0 +1,12 @@
+{
+  "name": "@ohos/settings.suggestion",
+  "version": "1.0.0",
+  "description": "suggestion feature",
+  "main": "Index.ets",
+  "dependencies": {
+    "@ohos/settings.common": "file:../../common",
+    "@ohos/settings.uikit": "file:../../feature/uikit",
+//    "@hw-hmos/hiviewcare": "5.1.0-115",
+    "@ohos/settings.feature.storage": "file:../../feature/storage"
+  }
+}

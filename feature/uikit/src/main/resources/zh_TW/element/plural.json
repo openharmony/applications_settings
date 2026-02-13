@@ -1,0 +1,40 @@
+{
+    "plural":[
+        {
+            "name":"password_edit_read_end",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"已編輯 %d 位",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_edit_read_begin",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"正在編輯密碼，共 %d 位",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"dialog_ok_countdown",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"確定（%d 秒）",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

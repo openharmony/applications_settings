@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"cloud_space",
+            "value":"Cloud",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"find_device",
+            "value":"Buscar dispositivo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"La administración de la empresa prohíbe esta operación.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"subscribe",
+            "value":"Suscripciones",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

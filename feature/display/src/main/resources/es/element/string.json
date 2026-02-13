@@ -1,0 +1,396 @@
+{
+    "string":[
+        {
+            "name":"screen_zoom_summary_small",
+            "value":"Pequeño",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_set_tips_disconnect",
+            "value":"Desconectar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_on",
+            "value":"Sí",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_model",
+            "value":"Modo de visualización",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"advanced_setting",
+            "value":"Ajustes avanzados",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"two_minutes",
+            "value":"%d minutos",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_default",
+            "value":"Predeterminado",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"five_minutes",
+            "value":"%d minutos",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"motion_off",
+            "value":"No",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ten_minutes",
+            "value":"%d minutos",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_large",
+            "value":"Grande",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_azimuth_settings_finish",
+            "value":"Listo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fifteen_seconds",
+            "value":"%d segundos",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"thirty_seconds",
+            "value":"%d segundos",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"never_sleep",
+            "value":"Nunca",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"one_minute",
+            "value":"%d minuto",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_very_large",
+            "value":"Más grande",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_adjustment",
+            "value":"Color",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_temperature_title",
+            "value":"Temperatura de color",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dark_mode_title",
+            "value":"Cuando está configurado como Programado, el modo Oscuro no se activa hasta que se apaga la pantalla.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"after_five_minutes",
+            "value":"Después de %d minutos",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_one_minute",
+            "value":"Después de %d minuto",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_extremely_large",
+            "value":"Máximo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"start_time",
+            "value":"Inicio",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_all_day",
+            "value":"Todo el día",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"nothing",
+            "value":"No hacer nada",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_two_minutes",
+            "value":"Después de %d minutos",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"end_time",
+            "value":"Fin",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"go_to_set",
+            "value":"Ir a Ajustes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm_close_high_contrast_content",
+            "value":"Esto deshabilitará el texto de alto contraste.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_built_in",
+            "value":"Pantalla integrada",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"eye_timed_on",
+            "value":"Programado",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_set",
+            "value":"Diseño de pantalla",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_eye_protection_warmer",
+            "value":"Más cálido",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_machine",
+            "value":"Este dispositivo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"thirty_minutes",
+            "value":"%d minutos",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_adjustment_and_color_temperature_title",
+            "value":"Color",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_larger_fonts_message",
+            "value":"En el modo Personas mayores hay fuentes extragrandes disponibles.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_sample_text",
+            "value":"Texto de ejemplo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"font_apply_all",
+            "value":"Aplicar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_larger_fonts",
+            "value":"¿Necesitas una fuente más grande?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_set_description",
+            "value":"Arrastra las pantallas para reorganizarlas. El puntero puede desplazarse entre pantallas cercanas.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dark_mode_dialog_title",
+            "value":"¿Habilitar el modo Oscuro?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_eye_protection_colder",
+            "value":"Más frío",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_title",
+            "value":"Tamaño de visualización",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"after_thirty_seconds",
+            "value":"Después de %d segundos",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_extended",
+            "value":"Pantalla externa",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sleep",
+            "value":"En reposo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_ten_minutes",
+            "value":"Después de %d minutos",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_edit",
+            "value":"Editar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"only_screenOff",
+            "value":"Apagar pantalla",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fifteen_minutes",
+            "value":"%d minutos",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_fifteen_seconds",
+            "value":"Después de %d segundos",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"until_turn_off",
+            "value":"Permanecerá activado hasta que lo desactives",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"only_landscape_supported",
+            "value":"Solo disponible cuando el dispositivo está abierto y en modo horizontal.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"other_time",
+            "value":"Otros",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

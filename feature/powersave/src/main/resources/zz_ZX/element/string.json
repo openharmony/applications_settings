@@ -1,0 +1,92 @@
+{
+    "string":[
+        {
+            "name":"turn_off_battery_intensive_apps_sub_2",
+            "value":"[TS_1084890]_Close %1$s and %2$s."
+        },
+        {
+            "name":"set_sleep_time_30_sub",
+            "value":"[TS_1083959]_The screen will turn off after %ds of inactivity."
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_3",
+            "value":"[TS_1084892]_Close %1$s, %2$s, and %3$s."
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_1",
+            "value":"[TS_1084894]_Close %1$s to extend battery life."
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_2",
+            "value":"[TS_1084893]_Close %1$s and %2$s to extend battery life."
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_other",
+            "value":"[TS_1084889]_Close %1$s, %2$s, %3$s, and others."
+        },
+        {
+            "name":"set_aod_display_mode_smart",
+            "value":"[TS_1083962]_Set Always On Display to \"Smart\""
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_3",
+            "value":"[TS_1084896]_Close %1$s, %2$s, and %3$s to extend battery life."
+        },
+        {
+            "name":"turn_off_hotspot_sub",
+            "value":"[TS_1083948]_Your personal hotspot will be turned off."
+        },
+        {
+            "name":"turn_off_battery_intensive_apps",
+            "value":"[TS_1083947]_Close power-hungry apps"
+        },
+        {
+            "name":"disable_wakeup_notification",
+            "value":"[TS_1083958]_Don't wake screen for notifications"
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_other",
+            "value":"[TS_1084895]_Close %1$s, %2$s, %3$s and others to extend battery life."
+        },
+        {
+            "name":"turn_off_hotspot",
+            "value":"[TS_1083953]_Disable personal hotspot"
+        },
+        {
+            "name":"disable_notification_when_hibernation",
+            "value":"[TS_1083950]_Disable notifications during sleep"
+        },
+        {
+            "name":"set_aod_display_mode_smart_sub",
+            "value":"[TS_1083951]_Turn on Always On Display with a tap or a glance."
+        },
+        {
+            "name":"set_sleep_time_30",
+            "value":"[TS_1083946]_Set screen timeout to %ds"
+        },
+        {
+            "name":"set_screen_refresh_rate_to_smart_mode_sub",
+            "value":"[TS_1083954]_Strike a balance between power saving and display fluidity."
+        },
+        {
+            "name":"disable_notification_when_hibernation_sub",
+            "value":"[TS_1083963]_Notifications won't be pushed when your device is sleeping."
+        },
+        {
+            "name":"set_screen_refresh_rate_to_smart_mode",
+            "value":"[TS_1083955]_Set screen refresh rate to \"Dynamic\""
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_1",
+            "value":"[TS_1084891]_Close %1$s."
+        },
+        {
+            "name":"turn_off_hotspot_card_sub",
+            "value":"[TS_1084887]_Disable your personal hotspot to extend battery life."
+        },
+        {
+            "name":"disable_wakeup_notification_sub",
+            "value":"[TS_1083952]_The screen won't turn on when a notification is received."
+        }
+    ]
+}

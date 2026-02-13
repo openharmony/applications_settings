@@ -1,0 +1,9 @@
+{
+  "name": "@ohos/settings.capsule",
+  "description": "users feature",
+  "main": "index.ets",
+  "version": "1.0.0",
+  "dependencies": {
+    "@ohos/settings.common": "file:../../common"
+  }
+}

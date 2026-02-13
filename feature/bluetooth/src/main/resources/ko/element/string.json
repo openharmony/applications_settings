@@ -1,0 +1,424 @@
+{
+    "string":[
+        {
+            "name":"bluetooth_sharing_and_call_history",
+            "value":"연락처 및 통화 내역 공유",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_play_music_tips",
+            "value":"장치의 상세정보 화면에서 변경할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keyboard",
+            "value":"키보드",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_connection_strategy_summary",
+            "value":"연결 중…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keep_auto_play",
+            "value":"자동 재생을 실행 상태로 유지",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_pad",
+            "value":"태블릿과 볼륨 동기화",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"forbidding",
+            "value":"종료",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_disconnecting_summary",
+            "value":"연결 해제 중…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auto_play_music",
+            "value":"자동 재생 음악",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_connecting_summary",
+            "value":"연결 중…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_connected_summary",
+            "value":"연결됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_fulls_detals",
+            "value":"모든 정보",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_profile_hid",
+            "value":"입력 장치",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unpair",
+            "value":"연결 해제",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_connect_auto_play",
+            "value":"음악은 \"%s\" 연결이 이뤄지면 재생을 자동으로 시작합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_hfp_a2dp_connect_summary",
+            "value":"통화 및 미디어 오디오용으로 연결됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_car",
+            "value":"차량",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_read_info_auth",
+            "value":"SMS 메시지에 대한 액세스 허용",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_play_music_desc",
+            "value":"연결 시 이 장치가 자동으로 음악을 재생하도록 허용합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_profile_a2dp",
+            "value":"미디어 오디오",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_pair_failed_message",
+            "value":"페어링 코드가 잘못되었거나, 페어링하려는 장치에 구성 오류가 발생했습니다. 다시 시도하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_pc",
+            "value":"컴퓨터와 볼륨 동기화",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_speaker",
+            "value":"스피커",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_profile_map",
+            "value":"SMS 메시지에 대한 액세스 허용",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_name_and_numbers_only",
+            "value":"이름 및 번호만",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed1",
+            "value":"연결을 다시 시작하려면 키보드의 키를 누르십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_settings_title",
+            "value":"장치 이름",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_type_glasses",
+            "value":"안경",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"help",
+            "value":"도움말",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_anti_theft_tip",
+            "value":"데모 장치에서 작업을 사용할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_a2dp_connect_summary",
+            "value":"미디어 오디오용으로 연결됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_hearing",
+            "value":"보청기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_phone",
+            "value":"휴대폰과 볼륨 동기화",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_help_popup_content",
+            "value":"장치를 찾을 수 없나요?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_not_share",
+            "value":"공유하지 않음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_type_headset",
+            "value":"헤드폰",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bt_connect_failed_message",
+            "value":"%1$s에 연결할 수 없습니다. 추정 원인:\n%2$s. 장치가 범위(%3$sm) 밖에 있거나 블루투스가 실행되지 않았습니다.\n%4$s. 장치가 다른 장치에 연결되어 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_pair_failed2",
+            "value":"잘못된 PIN 또는 페어링 키입니다. \"%s\" 장치와 페어링할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_pair_failed3",
+            "value":"\"%s\"에서 페어링을 거부했습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_pair_failed1",
+            "value":"\"%1$s\" 장치와 통신하지 못했습니다.\n\n가능한 원인:\n\n%2$s. 전원이 꺼져 있거나 페어링 모드가 아닙니다. 도움이 필요하면 장치의 사용자 가이드를 참조하십시오.\n%3$s. 너무 멀리 있습니다. 이 장치로부터 %4$s미터 이내에 있는지 확인하고 다시 시도하십시오.\n%5$s. 다른 장치에 연결되었습니다. 그렇다면 연결을 해제하고 다시 시도하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_watch",
+            "value":"워치",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_profile_hfp",
+            "value":"통화 오디오",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed3",
+            "value":"차량에서 다시 연결해 보십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_hfp_connect_summary",
+            "value":"통화용으로 연결됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed2",
+            "value":"마우스에서 다시 연결해 보십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed4",
+            "value":"최대 장치 연결 수에 도달했습니다. 일부 장치를 연결 해제하고 다시 시도하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"이 작업은 엔터프라이즈 관리에 의해 금지되어 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_settings_title",
+            "value":"블루투스",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_bonded_devices",
+            "value":"페어링된 디바이스",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_no_paired_devices",
+            "value":"페어링된 장치 없음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"phone",
+            "value":"휴대폰",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"matebook",
+            "value":"노트북",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_settings",
+            "value":"설정",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"soundx",
+            "value":"오디오 장치",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth",
+            "value":"블루투스",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pencil",
+            "value":"스타일러스",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mouse",
+            "value":"마우스",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pad",
+            "value":"태블릿",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_printer",
+            "value":"프린터",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_car_key",
+            "value":"차량 키",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

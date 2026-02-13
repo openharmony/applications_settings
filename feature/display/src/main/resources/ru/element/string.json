@@ -1,0 +1,396 @@
+{
+    "string":[
+        {
+            "name":"screen_zoom_summary_small",
+            "value":"Мелкий",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_set_tips_disconnect",
+            "value":"Отключить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_on",
+            "value":"Включено",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_model",
+            "value":"Режим просмотра",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"advanced_setting",
+            "value":"Расширенные настройки",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"after_five_minutes",
+            "value":"Через %d минут",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_one_minute",
+            "value":"Через %d минуту",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_extremely_large",
+            "value":"Максимальный",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"start_time",
+            "value":"Начало",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_all_day",
+            "value":"Весь день",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"nothing",
+            "value":"Ничего не делать",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_two_minutes",
+            "value":"Через %d минуты",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"end_time",
+            "value":"Конец",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"go_to_set",
+            "value":"Настройки",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm_close_high_contrast_content",
+            "value":"Это действие выключит высококонтрастный текст.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_built_in",
+            "value":"Встроенный дисплей",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"eye_timed_on",
+            "value":"Расписание",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"two_minutes",
+            "value":"%d мин",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_set",
+            "value":"Вид экрана",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_eye_protection_warmer",
+            "value":"Тепло",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_machine",
+            "value":"Это устройство",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_default",
+            "value":"По умолчанию",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"thirty_minutes",
+            "value":"%d минут",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_adjustment_and_color_temperature_title",
+            "value":"Цвет",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_larger_fonts_message",
+            "value":"Очень крупные шрифты доступны в режиме для пожилых.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_sample_text",
+            "value":"Образец текста",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"font_apply_all",
+            "value":"Применить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"five_minutes",
+            "value":"%d мин",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_larger_fonts",
+            "value":"Нужен более крупный шрифт?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_set_description",
+            "value":"Нажмите и перетащите, чтобы изменить положение экранов. Курсор может перемещаться по экранам поблизости.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"motion_off",
+            "value":"Выклю\u200bчено",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ten_minutes",
+            "value":"%d мин",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_large",
+            "value":"Большой",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dark_mode_dialog_title",
+            "value":"Включить Темный режим?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_azimuth_settings_finish",
+            "value":"Готово",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fifteen_seconds",
+            "value":"%d с",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"thirty_seconds",
+            "value":"%d с",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"never_sleep",
+            "value":"Выкл.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"one_minute",
+            "value":"%d мин",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_eye_protection_colder",
+            "value":"Холодно",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_very_large",
+            "value":"Очень крупный",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_adjustment",
+            "value":"Цвет",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_title",
+            "value":"Размер отображения",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"after_thirty_seconds",
+            "value":"Через %d секунд",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_temperature_title",
+            "value":"Цветовая температура",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_extended",
+            "value":"Внешний дисплей",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sleep",
+            "value":"Спящий режим",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_ten_minutes",
+            "value":"Через %d минут",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_edit",
+            "value":"Изменить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"only_screenOff",
+            "value":"Выключить экран",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fifteen_minutes",
+            "value":"%d минут",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_fifteen_seconds",
+            "value":"Через %d секунд",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dark_mode_title",
+            "value":"Когда выбран режим Расписание, Темный режим не будет активирован, пока экран не будет выключен.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"until_turn_off",
+            "value":"Будет активен до выключения",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"only_landscape_supported",
+            "value":"Доступно, только когда устройство разложено или находится в горизонтальном режиме.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"other_time",
+            "value":"Другое",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

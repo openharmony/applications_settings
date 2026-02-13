@@ -1,0 +1,123 @@
+{
+    "string":[
+        {
+            "name":"nfc_switch_off_text",
+            "value":"مغلق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_on_text",
+            "value":"متصل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"nfc_switch_on_text",
+            "value":"مشغّل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_notice",
+            "value":"إشعار الأذونات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"projection_state_on",
+            "value":"مشغّل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_off_text",
+            "value":"غير متصل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_collaboration_settings_title",
+            "value":"الإعدادات المتقدمة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"multi_device_collaboration_service_switch",
+            "value":"خدمات المشاركة المحسّنة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"projection_state_off",
+            "value":"مغلق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bind_devices",
+            "value":"إدارة الأجهزة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wireless_projection_statement",
+            "value":"تحتاج هذه الخدمة إذن توصيل الأجهزة. كما ستستخدم الشبكة اللاسلكية والبلوتوث بالإضافة إلى تسجيل صوت الجهاز والمحتوى على الشاشة. بتشغيل هذا الخيار، فأنت تعني بذلك موافقتك على %s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_switch",
+            "value":"اقتراحات التعاون",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_details",
+            "value":"استنادًا إلى الاكتشاف التلقائي للأجهزة والسياق.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"far_field_communication_service_privacy",
+            "value":"بيان حول خدمات الاتصال البعيد المدى وخصوصيته",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_switch_msg",
+            "value":"تقترح هذه الخدمة طرق التعاون مع أجهزتك الأخرى عندما تكون قريبة. وتتطلب الاتصال بالإنترنت، واستخدام البلوتوث والشبكة اللاسلكية لإجراء هذا، وستتبادل البيانات مع الأجهزة الأخرى عبر اتصال المجال البعيد. ويمكنك الاطلاع على %s لمعرفة المزيد من التفاصيل حول كيفية معالجة معلوماتك الشخصية. بتشغيل هذا الخيار، فأنت تعني بذلك موافقتك على هذه البنود.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_entry_guide",
+            "value":"كيفية تشغيل ميزة \"بث الشاشة\"",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_entry_guide_message",
+            "value":"ما عليك سوى النقر على \"بث الشاشة\" في لوحة التحكم للبحث عن الأجهزة القريبة.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

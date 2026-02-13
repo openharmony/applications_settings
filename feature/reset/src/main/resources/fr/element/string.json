@@ -1,0 +1,46 @@
+{
+    "string":[
+        {
+            "name":"reset_factory_dialog_title",
+            "value":"Réinitialiser ce téléphone ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_content",
+            "value": "Les données de sauvegarde ne peuvent pas être restaurées après la réinitialisation.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_title_pc",
+            "value":"Réinitialiser cet appareil ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"log_out",
+            "value":"Se déconnecter",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_retain_esim_content",
+            "value":"Votre eSIM reste stockée sur cet appareil. Veuillez le conserver en sécurité. Si vous prévoyez de ne plus utiliser cet appareil, veuillez transférer votre eSIM sur un autre appareil ou désactivez-la. Pour connaître les instructions, veuillez contacter votre opérateur.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_continue_reset_button",
+            "value":"Réinitialiser",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

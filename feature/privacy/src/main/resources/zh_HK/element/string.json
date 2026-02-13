@@ -1,0 +1,74 @@
+{
+    "string":[
+        {
+            "name":"location_switch_on_text",
+            "value":"已啟用",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_switch_off_text",
+            "value":"已停用",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"password_input_warning_message_not_equal",
+            "value":"密碼不符",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_too_short",
+            "value":"密碼必須多於 %d 個字元",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_contain_illegal_character_and_too_long",
+            "value":"密碼必須少於 %d 個字元且不能包含非法字元",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_too_long",
+            "value":"密碼不可超過 %d 個字元。",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_contain_illegal_character_and_too_short",
+            "value":"密碼必須多於 %d 個字元且不能包含非法字元",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_contain_illegal_character",
+            "value":"密碼包含禁用字元。",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edm_password_warning_message",
+            "value":"密碼強度不符合您機構的安全策略。",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"service_error",
+            "value":"系統服務出現異常",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

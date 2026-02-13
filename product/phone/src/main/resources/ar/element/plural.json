@@ -1,0 +1,1414 @@
+{
+    "plural":[
+        {
+            "name":"password_message_incorrect",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"كلمة مرور خاطئة، لا يزال لديك %d محاولة متبقية",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"كلمة مرور خاطئة، تبقى لديك محاولة واحدة فقط",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"كلمة مرور خاطئة، لا يزال لديك %d محاولات متبقية",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"كلمة مرور خاطئة، لا يزال لديك %d محاولات متبقية",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"كلمة مرور خاطئة، لا يزال لديك %d محاولة متبقية",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"كلمة مرور خاطئة، لا يزال لديك محاولتان متبقيتان",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"attempts_n",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"تبقت %d محاولة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"تبقت محاولة واحدة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"تبقت %d محاولات",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"تبقت %d محاولات",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"تبقت %d محاولة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"تبقت محاولتان",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"time_minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d د",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d د",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"%d د",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d د",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d د",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"%d د",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_service_number",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"%d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"%d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"time_second",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d ث",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d ث",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"%d ث",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d ث",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d ث",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"%d ث",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"private_password_edit_read_begin",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"أنت تعيّن رقم دخول للخصوصية، بإجمالي %d رقم",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"أنت تعيّن رقم دخول للخصوصية، بإجمالي رقم واحد",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"أنت تعيّن رقم دخول للخصوصية، بإجمالي %d أرقام",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"أنت تعيّن رقم دخول للخصوصية، بإجمالي %d أرقام",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"أنت تعيّن رقم دخول للخصوصية، بإجمالي %d رقمًا",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"أنت تعيّن رقم دخول للخصوصية، بإجمالي رقمين",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_seconds",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"يُرجى إعادة المحاولة بعد %d ثانية.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"يُرجى إعادة المحاولة بعد %d ثانية.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"يُرجى إعادة المحاولة بعد %d ثوانٍ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"يُرجى إعادة المحاولة بعد %d ثوانٍ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"يُرجى إعادة المحاولة بعد %d ثانية.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"يُرجى إعادة المحاولة بعد %d ثوانٍ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"all_font_list_num_title",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"الإجمالي: %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"الإجمالي: %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"الإجمالي: %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"الإجمالي: %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"الإجمالي: %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"الإجمالي: %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"network_simulation_phase_num",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"تتضمن المحاكاة مرحلة واحدة.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"تتضمن المحاكاة %d مرحلة.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"تتضمن المحاكاة %d مراحل.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"تتضمن المحاكاة %d مراحل.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"تتضمن المحاكاة %d مرحلة.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"تتضمن المحاكاة مرحلتين.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_count_down_timer",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"منح صلاحية الوصول (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"منح صلاحية الوصول (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"منح صلاحية الوصول (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"منح صلاحية الوصول (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"منح صلاحية الوصول (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"منح صلاحية الوصول (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"network_simulation_total_time",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"يستغرق إكمال المحاكاة %d دقيقة، وتتكرّر بعد ذلك تلقائيًا.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"يستغرق إكمال المحاكاة دقيقة واحدة، وتتكرّر بعد ذلك تلقائيًا.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"يستغرق إكمال المحاكاة %d دقائق، وتتكرّر بعد ذلك تلقائيًا.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"يستغرق إكمال المحاكاة %d دقائق، وتتكرّر بعد ذلك تلقائيًا.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"يستغرق إكمال المحاكاة %d دقيقة، وتتكرّر بعد ذلك تلقائيًا.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"يستغرق إكمال المحاكاة دقيقتين، وتتكرّر بعد ذلك تلقائيًا.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_minutes",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"يُرجى إعادة المحاولة بعد %d دقيقة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"يُرجى إعادة المحاولة بعد دقيقة واحدة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"يُرجى إعادة المحاولة بعد %d دقائق",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"يُرجى إعادة المحاولة بعد %d دقائق",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"يُرجى إعادة المحاولة بعد %d دقيقة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"يُرجى إعادة المحاولة بعد دقيقتين",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"battery_time_hour",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"ساعة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d ساعة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"%d ساعات",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d ساعات",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d ساعة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"ساعتين",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"pin_message_incorrect",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"رقم الدخول غير صحيح. تبقت %d محاولة.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"رقم الدخول غير صحيح. تبقت محاولة واحدة.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"رقم الدخول غير صحيح. تبقت %d محاولات.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"رقم الدخول غير صحيح. تبقت %d محاولات.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"رقم الدخول غير صحيح. تبقت %d محاولة.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"رقم الدخول غير صحيح. تبقت محاولتان.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"battery_time_minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d دقيقة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"دقيقة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"%d دقائق",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d دقائق",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d دقيقة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"دقيقتين",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"allow_max_clone_app",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"يمكن إنشاء نسخة مُكررة واحدة بحدٍ أقصى.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"يمكن إنشاء %d نسخة مُكررة بحدٍ أقصى.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"يمكن إنشاء %d نسخ مُكررة بحدٍ أقصى.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"يمكن إنشاء %d نسخ مُكررة بحدٍ أقصى.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"يمكن إنشاء %d نسخة مُكررة بحدٍ أقصى.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"يمكن إنشاء نسختين مُكررتين بحدٍ أقصى.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"has_clone_app",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d نسخة مُكررة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"نسخة واحدة مُكررة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"%d نسخ مُكررة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d نسخ مُكررة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d نسخة مُكررة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"نسختان مُكررتان",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"time_hour",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d س",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d س",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"%d س",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d س",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d س",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"%d س",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_hours",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"يُرجى إعادة المحاولة بعد %d ساعة.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"يُرجى إعادة المحاولة بعد %d ساعة.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"يُرجى إعادة المحاولة بعد %d ساعات.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"يُرجى إعادة المحاولة بعد %d ساعات.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"يُرجى إعادة المحاولة بعد %d ساعة.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"يُرجى إعادة المحاولة بعد %d ساعات.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"reset_password_hour_warning_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"خلال الساعة (%d) التالية، يمكن استخدام كلمة المرور السابقة لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"خلال الـ %d ساعة التالية، يمكن استخدام كلمة المرور السابقة لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"خلال الـ %d ساعة التالية، يمكن استخدام كلمة المرور السابقة لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"خلال الـ %d ساعات التالية، يمكن استخدام كلمة المرور السابقة لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"خلال الـ %d ساعة التالية، يمكن استخدام كلمة المرور السابقة لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"خلال الساعتين (%d) التاليتين، يمكن استخدام كلمة المرور السابقة لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"reset_password_minute_warning_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"خلال الدقيقة (%d) التالية، يمكن استخدام كلمة المرور السابقة لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"خلال الـ %d دقيقة التالية، يمكن استخدام كلمة المرور السابقة لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"خلال الـ %d دقيقة التالية، يمكن استخدام كلمة المرور السابقة لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"خلال الـ %d دقائق التالية، يمكن استخدام كلمة المرور السابقة لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"خلال الـ %d دقيقة التالية، يمكن استخدام كلمة المرور السابقة لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"خلال الدقيقتين (%d) التاليتين، يمكن استخدام كلمة المرور السابقة لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"reset_pin_minute_warning_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"خلال الدقيقة (%d) التالية، يمكن استخدام رقم الدخول السابق لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"خلال الـ %d دقيقة التالية، يمكن استخدام رقم الدخول السابق لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"خلال الـ %d دقيقة التالية، يمكن استخدام رقم الدخول السابق لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"خلال الـ %d دقائق التالية، يمكن استخدام رقم الدخول السابق لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"خلال الـ %d دقيقة التالية، يمكن استخدام رقم الدخول السابق لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"خلال الدقيقتين (%d) التاليتين، يمكن استخدام رقم الدخول السابق لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"reset_pin_hour_warning_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"خلال الساعة (%d) التالية، يمكن استخدام رقم الدخول السابق لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"خلال الـ %d ساعة التالية، يمكن استخدام رقم الدخول السابق لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"خلال الـ %d ساعة التالية، يمكن استخدام رقم الدخول السابق لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"خلال الـ %d ساعات التالية، يمكن استخدام رقم الدخول السابق لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"خلال الـ %d ساعة التالية، يمكن استخدام رمز الدخول السابق لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"خلال الساعتين (%d) التاليتين، يمكن استخدام رقم الدخول السابق لإعادة تعيين رقم الدخول/كلمة المرور الجديدة إذا نسيتها.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"magnification_scale",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"تكبير %s مرة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"تكبير مرة واحدة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"تكبير %s مرات",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"تكبير %s مرات",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"تكبير %s مرة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"تكبير مرتين",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_experiment_summary",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"لقد عينت الفاصل الزمني على %.1f ثانية. وهذا يعني أن النقرات المتعددة خلال هذا الوقت ستُحتسب كنقرة واحدة. ويمكنك تجربة ذلك أدناه.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"لقد عينت الفاصل الزمني على ثانية واحدة. وهذا يعني أن النقرات المتعددة خلال هذا الوقت ستُحتسب كنقرة واحدة. ويمكنك تجربة ذلك أدناه.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"لقد عينت الفاصل الزمني على %.1f ثواني. وهذا يعني أن النقرات المتعددة خلال هذا الوقت ستُحتسب كنقرة واحدة. ويمكنك تجربة ذلك أدناه.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"لقد عينت الفاصل الزمني على %.1f ثوانٍ. وهذا يعني أن النقرات المتعددة خلال هذا الوقت ستُحتسب كنقرة واحدة. ويمكنك تجربة ذلك أدناه.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"لقد عينت الفاصل الزمني على %.1f ثانية. وهذا يعني أن النقرات المتعددة خلال هذا الوقت ستُحتسب كنقرة واحدة. ويمكنك تجربة ذلك أدناه.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"لقد عينت الفاصل الزمني على ثانيتين. وهذا يعني أن النقرات المتعددة خلال هذا الوقت ستُحتسب كنقرة واحدة. ويمكنك تجربة ذلك أدناه.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeat_click_change_original_delay",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%.1f ثانية",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"ثانية واحدة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"%.1f ثواني",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%.1f ثوانٍ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%.1f ثانية",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"ثانيتان",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeat_click_change_current_delay",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"ثانية واحدة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%.1f ثانية",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"%.1f ثواني",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%.1f ثوانٍ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%.1f ثانية",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"ثانيتان",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"minutes_before",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"قبل %d دقيقة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"قبل دقيقة واحدة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"قبل %d دقائق",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"قبل %d دقائق",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"قبل %d دقيقة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"قبل دقيقتين",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"hours_before",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"منذ %d ساعة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"منذ ساعة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"منذ %d ساعات",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"منذ %d ساعات",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"منذ %d ساعة",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"منذ ساعتين",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"days_before",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"منذ %d يوم",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"منذ يوم واحد",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"منذ %d أيام",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"منذ %d أيام",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"منذ %d يومًا",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"منذ يومين",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

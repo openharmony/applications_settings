@@ -1,8 +1,11 @@
 {
-  "string": [
-    {
-      "name": "app_name",
-      "value": "设置"
-    }
-  ]
+    "string":[
+        {
+            "name":"settings_title",
+            "value":"Settings",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
 }

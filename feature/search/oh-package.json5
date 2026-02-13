@@ -1,0 +1,9 @@
+{
+  "name": "search",
+  "version": "1.0.0",
+  "description": "search feature.",
+  "main": "Index.ets",
+  "dependencies": {
+    "@ohos/settings.common": "file:../../common"
+  }
+}

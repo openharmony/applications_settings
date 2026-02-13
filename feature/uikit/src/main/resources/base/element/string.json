@@ -1,0 +1,939 @@
+{
+    "string":[
+        {
+            "name":"device_name_settings_summary",
+            "value":"This name will be shown on other devices when you interact, share, or connect with them via Bluetooth, WLAN Direct, or a personal hotspot.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"system_rollback",
+            "value":"System rollback",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"Cancel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ok",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delete",
+            "value":"Delete",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"input_max_length_message",
+            "value":"You have entered too many characters.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wall_paper_applied",
+            "value":"Applied",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wall_paper_application",
+            "value":"Apply",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wall_paper_adding_a_theme",
+            "value":"Add theme"
+        },
+        {
+            "name":"uncompleted",
+            "value":"Feature coming soon.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_time_zone",
+            "value":"%s needs to be enabled to automatically set the time zone.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_services",
+            "value":"Location Services",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_precision_text",
+            "value":"To improve positioning accuracy, apps and services can scan for WLAN networks even when WLAN is disabled. You can change this in %s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_precision_title",
+            "value":"Advanced settings",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wlan_scan_title",
+            "value":"WLAN scanning",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wlan_scan_content",
+            "value":"Improve positioning accuracy by allowing apps and services to scan for WLAN networks at any time, even when WLAN is disabled.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_hlink_description",
+            "value":"Connect without a password – simply bring your device near the router and press the \"%s\" button when the light flashes.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fp_duplicated_name_toast",
+            "value":"Name already in use",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_device_name_title",
+            "value":"Your device is visible to nearby Bluetooth devices as \"%1$s\". %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_edit_device_name",
+            "value":"Rename",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_name_max",
+            "value":"Name exceeds length limit",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bt_bond_device_name",
+            "value":"Device name",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_bond_device_type",
+            "value":"Device type",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hot_spot_block_list",
+            "value":"Blocklist",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"block_list_tips",
+            "value":"Devices on your blocklist are not allowed to connect to your personal hotspot.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hotspot_blocklist_limit",
+            "value":"A maximum of %d devices can be added.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"other_wlan",
+            "value":"Connected devices",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_modify_tips",
+            "value":"This name will be shown on other devices when you interact, share, or connect with them via Bluetooth, a personal hotspot, or USB.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scan_for_hotspots",
+            "value":"Scan to connect",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"repeat_name_warning",
+            "value":"Cannot use the same name as currently connected WLAN, please enter again.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attention",
+            "value":"Note",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"modify",
+            "value":"Change",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_from_blocklist",
+            "value":"Unblock",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"add_to_blocklist",
+            "value":"Block",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove_from_blocklist_disconnect",
+            "value":"\"%s\" will be able to connect to this device's hotspot again.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"add_to_blocklist_disconnect",
+            "value":"\"%s\" will be added to your blocklist and disconnected from your hotspot.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_change_name",
+            "value":"Changing your device name will disable your personal hotspot. Change anyway?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"name_repeat_warning",
+            "value":"Can't be the same as the WLAN network you're connected to",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_title_ok",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"page_load_failed_message",
+            "value":"This screen could not be loaded. Please try reopening it.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_title_got_it",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_dialog_title",
+            "value":"Unable to enable developer options",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_dialog_message",
+            "value":"Enabling developer options may make your device vulnerable to security threats. Before continuing, you need to disable Secure Shield in Settings > Privacy & security.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_text_size",
+            "value":"Text size",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_small",
+            "value":"Small",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_normal",
+            "value":"Normal",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_large",
+            "value":"Large",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_extra_large",
+            "value":"Extra large",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge",
+            "value":"Huge",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge2",
+            "value":"Huge (2)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge3",
+            "value":"Huge (3)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge4",
+            "value":"Huge (4)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_multiWeight",
+            "value":"Not available",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fp_do_not_support_mini_screen_new",
+            "value":"One-Handed mode not available.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_lightest",
+            "value":"Lightest",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_light",
+            "value":"Light",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_normal",
+            "value":"Normal",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_bold",
+            "value":"Bold",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_boldest",
+            "value":"Boldest",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_text_weight",
+            "value":"Text weight",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enableTheme",
+            "value":"Applying theme…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"applyIcon",
+            "value":"Applying icons…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove_this_theme",
+            "value":"Remove this theme?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove",
+            "value":"Remove",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_Theme_App",
+            "value":"Restore Themes app?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_Theme_App_massage",
+            "value":"Themes needs to be installed to use this feature.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover",
+            "value":"Restore",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_restored",
+            "value":"App has been restored.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"touch_screen_reader_message",
+            "value":"When ScreenReader is enabled, touchscreen-related settings are unavailable.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"font_apply_successd",
+            "value":"Font applied.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"font_apply_failed",
+            "value":"Unable to apply font.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_apply_successd",
+            "value":"Icon style applied.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"charge_time_segment",
+            "value":"Charging",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"icon_apply_failed",
+            "value":"Unable to apply icon style.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"change_device_name",
+            "value":"Edit device name",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"icon_size",
+            "value":"Home screen icon size",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"icon_size_tip",
+            "value":"Does not apply to the dock.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"icon_size_restore_default",
+            "value":"Reset",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"icon_style_stereoscopic",
+            "value":"Stereoscopic",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"icon_size_simplicity",
+            "value":"Boundless Simplicity",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dock_color_style",
+            "value":"Dock color adapts to",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_window",
+            "value":"Wallpaper & windows",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_system",
+            "value":"Display mode",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_window_tips",
+            "value":"The dock will change color in response to the color of the wallpaper or the content of a maximized window.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_system_tips",
+            "value":"In Dark mode, the color of the dock will become darker.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dock_auto_hide_style",
+            "value":"Hide the dock when windows are maximized or split",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"window_animation_title",
+            "value":"Minimize windows using",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"window_animation_attraction",
+            "value":"Genie animation",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"window_animation_default",
+            "value":"Default animation",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove_theme_info",
+            "value":"This theme, along with its wallpaper and icon pack, will be removed.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"desktop_style_title",
+            "value":"Home screen style",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"desktop_style_tip",
+            "value":"Select a dock style.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vassistant_settings",
+            "value":"Celia",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vibrate_synchronize_with_ringtone",
+            "value":"Synchronized",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"only_supports_synchronized_vibration_with_system_ringtone",
+            "value":"System ringtones only.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_vibrate",
+            "value":"None",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toggle_to_smaller",
+            "value":"Decrease size",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_bigger",
+            "value":"Increase size",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_thinner",
+            "value":"Reduce text weight",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_fatter",
+            "value":"Increase text weight",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"check_the_detail",
+            "value":"Details",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title",
+            "value":"Title",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"be_chosen",
+            "value":"Selected",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_be_chosen",
+            "value":"Not selected",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"has_selected_click_tips",
+            "value":"Double-tap to deselect",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_selected_click_tips",
+            "value":"Double-tap to select",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"back_to_parent_menu",
+            "value":"Go back",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_selected_click_tips",
+            "value":"Not selected, double-tap to activate",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_options",
+            "value":"More options",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"close_menu",
+            "value":"Close",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"eye_comfort_tick",
+            "value":"Eye comfort mode filters out blue light to help reduce eye fatigue. When this is on, the screen will have a warmer tone.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_softwareupdate",
+            "value":"Software update services need to connect to the Internet and read the list of installed apps.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_device_communication",
+            "value":"Device communication services need to connect to the Internet and read this device's phone number(s), IMEI, SMS/MMS message content, and location information.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_system_storage",
+            "value":"System storage services need to read Calendar event data and read and modify contacts and call logs data.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_carrier",
+            "value":"Carrier services need to connect to the Internet, read and upload/transfer this device's phone number(s), IMEI, Bluetooth and WLAN MAC addresses, and approximate location information, and send and receive SMS messages.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_auto_discovery",
+            "value":"Auto-discovery services need to connect to the Internet, use Bluetooth and NFC, read and upload/transfer Bluetooth and WLAN MAC addresses, and enable the camera to scan codes.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_common_security",
+            "value":"Common security services need to connect to the Internet, read location information, as well as read and upload/transfer the list of installed apps, this device's phone number(s), and approximate location information.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_super_device",
+            "value":"Super Device services need to connect to the Internet, use Bluetooth and WLAN, turn on Bluetooth and WLAN, and read and upload/transfer Bluetooth and WLAN MAC addresses.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_fusion_search",
+            "value":"Fusion Search Service needs to connect to the Internet and read the list of installed apps, media data (such as images, videos, and audio), file data, contacts, SMS messages, and Calendar event data.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_basic_system_analysis",
+            "value":"Basic system analysis services need to connect to the Internet, read device running information, and upload/transfer such information in anonymized form.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_picker_less",
+            "value":"Picker services need to read media data (images, videos, and audio), contacts, file data, and the list of installed apps, and enable the camera and microphone. The map picker service needs to connect to the Internet to read and upload/transfer location information.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_management",
+            "value":"Management services in Security & Privacy Center need to read location information, images, videos, and the list of installed apps, and read and modify contacts, messages, and call logs.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_device_activation",
+            "value":"The device activation service needs to connect to the Internet to read and upload/transfer approximate location information.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_authentication",
+            "value":"The authentication service needs to connect to the Internet to read the list of installed apps.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_atomicservice",
+            "value":"Feature Ability framework needs to connect to the Internet and read and upload/transfer the list of installed apps.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_passkey",
+            "value":"The passkey service requires an Internet connection and needs to turn on and use Bluetooth.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"insufficient_storage_toast",
+            "value":"Unable to provide theme services due to insufficient internal storage. Delete files to free up space.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"already_registered_with_real_name",
+            "value":"Verified",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"disable_modify_wallpaper_tips",
+            "value":"This feature has been disabled by your organization.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"nearlink_and_bluetooth",
+            "value":"NearLink & Bluetooth",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"nearlink_and_bluetooth_device_name_title",
+            "value":"Your device is visible to nearby devices as \"%1$s\". %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"only_bluetooth_on",
+            "value":"Bluetooth on",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_link_speed",
+            "value":"%s Mbps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_begin_line",
+            "value":"%1$s. %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

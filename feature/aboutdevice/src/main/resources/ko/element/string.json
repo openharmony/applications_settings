@@ -1,0 +1,361 @@
+{
+    "string":[
+        {
+            "name":"model_code",
+            "value":"모델 번호",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_total",
+            "value":"용량: %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_mac",
+            "value":"%1$s(장치)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"software_version",
+            "value":"소프트웨어 버전",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_resolution",
+            "value":"해상도",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_state_off",
+            "value":"사용할 수 없음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"openHarmony_version",
+            "value":"OpenHarmony 버전",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enterprise_disable_developer_options_toast",
+            "value":"이 기능은 해당 조직에서 차단했습니다. 관리자에게 지원을 요청하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unknown",
+            "value":"알 수 없음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"version",
+            "value":"버전",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"power_on_duration",
+            "value":"실행 시간",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_total_used",
+            "value":"사용 가능: %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_settings_title",
+            "value":"저장 공간",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"model_name",
+            "value":"모델 이름",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"external",
+            "value":"외부: %1$s × %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"serial_number",
+            "value":"일련번호",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_level",
+            "value":"배터리 잔량",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"close_developer_mode",
+            "value":"개발자 옵션을 종료하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_close",
+            "value":"종료 및 다시 시작",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"running_memory",
+            "value":"RAM",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"kernel_version",
+            "value":"커널 버전",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_options_enabled_toast",
+            "value":"개발자 옵션은 이미 사용 가능합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"baseband_version",
+            "value":"기저대역 버전",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_on",
+            "value":"실행 및 다시 시작",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_development_modal_dialog_content",
+            "value":"이로 인해 장치가 보안 위협에 취약해질 수 있습니다. 이 변경 사항을 적용하기 위해 장치가 다시 시작됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"system_service_version",
+            "value":"시스템 서비스 버전",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"inner",
+            "value":"내부: %1$s × %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel_development_modal_dialog_content",
+            "value":"앱 디버깅을 더 이상 사용할 수 없게 됩니다. 이 변경 사항을 적용하기 위해 장치가 다시 시작됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"취소",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"battery_status_consuming_power",
+            "value":"충전 안 함",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hardware_version",
+            "value":"하드웨어 버전",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status_filled",
+            "value":"충전 완료",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ip_address",
+            "value":"IP 주소",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_Additional_text",
+            "value":"%1$d. 소프트웨어 업데이트 서비스는 인터넷에 연결하고 설치된 앱 목록을 읽어야 합니다.\n",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"api_version",
+            "value":"API 버전",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_battery_choose_info",
+            "value":"%1$s~%2$s, 배터리 잔량 %3$s~%4$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_developer_mode",
+            "value":"개발자 옵션을 실행하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status",
+            "value":"배터리 상태",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_address",
+            "value":"블루투스 주소",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_options_settings_title",
+            "value":"개발자 옵션",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"imei_id",
+            "value":"IMEI",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_patch_label",
+            "value":"보안 패치",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"random_mac",
+            "value":"%1$s(무작위)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status_charging",
+            "value":"충전",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_type_professional",
+            "value":"전문가",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_type",
+            "value":"에디션",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_type_enterprise",
+            "value":"회사",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_options_settings_summary",
+            "value":"개발 전용입니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_mode_open_toast",
+            "value":"이제 개발자 옵션을 사용할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cpu_title",
+            "value":"프로세서",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_name",
+            "value":"버전 이름",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

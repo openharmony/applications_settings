@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "settings.network",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

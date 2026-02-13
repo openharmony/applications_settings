@@ -1,0 +1,354 @@
+{
+    "string":[
+        {
+            "name":"display_refresh_frequency_title",
+            "value":"Mostrar frecuencia de actualización",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"debug_settings_title",
+            "value":"Depuración",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"learn_more",
+            "value":"Conocer más detalles",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"debug_networking_category",
+            "value":"Red",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"trusted_device_button_confirm",
+            "value":"Confiar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_settings_title",
+            "value":"Nombre del dispositivo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_bit_rate_adaptive",
+            "value":"Streaming de tasa de bits adaptativa",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_tittle_cancel",
+            "value":"Cancelar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_debugged_mode_prompt",
+            "value":"Para habilitar más opciones de depuración del desarrollador, conecta tu ordenador y sigue las instrucciones para habilitarlas. %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"show_touch_actions_title",
+            "value":"Mostrar punteos",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_channel_mode_mono",
+            "value":"Mono",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_insightintent_debug_status_open",
+            "value":"Sí",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_show_touch_actions_summary",
+            "value":"Mostrar información visual para punteos.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"debug_entering_category",
+            "value":"Introducción",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_tittle_allow",
+            "value":"Permitir",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"trusted_device_button_cancel",
+            "value":"No confiar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_usb_debug_title",
+            "value":"¿Permitir depuración USB?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"revocation_usb_authorize",
+            "value":"¿Eliminar todos los dispositivos fiables?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_touch_actions_trace",
+            "value":"Mostrar dónde está el cursor",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wlan_address_bssid",
+            "value":"Dirección WLAN (BSSID)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_display_refresh_frequency_summary",
+            "value":"Muestra la frecuencia de actualización máxima actual de la pantalla.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"machine_name",
+            "value":"Nombre del dispositivo:\n%1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_usb_authorize",
+            "value":"Eliminar todos los dispositivos fiables",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sunlight_readability_title",
+            "value":"Aumentar legibilidad bajo luz solar",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ip_address_and_port",
+            "value":"Dirección IP y puerto",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"activating_usb_debug",
+            "value":"Habilita la depuración cuando esté conectado a la WLAN.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"opened_wireless",
+            "value":"Activada",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_Open_Logs",
+            "value":"Registro detallado de registros WLAN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_insightintent_debug_status_close",
+            "value":"Desactivada",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Confirm_the_cancellation",
+            "value":"Eliminar",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_name_ssid",
+            "value":"Nombre de red (SSID)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"public_key_name",
+            "value":"Huella digital de clave RSA:\n%1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_Open_Logs__summary",
+            "value":"Aumenta el nivel de registro de WLAN (muestra RSSI por SSID en el selector de red WLAN).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_wireless",
+            "value":"¿Permitir depuración inalámbrica en esta red?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_show_touch_trace_summary",
+            "value":"Muestra datos táctiles actuales en la pantalla superpuesta.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"link_wlan",
+            "value":"Sin conexión WLAN. Conéctate a la WLAN y vuelve a intentarlo.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_usb_authorize_title",
+            "value":"Los dispositivos fiables dejarán de serlo.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wireless_commissioning",
+            "value":"Depuración inalámbrica",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"link_wireless",
+            "value":"No se puede habilitar la depuración inalámbrica",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"closed_wireless",
+            "value":"Desactivada",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"usb_dialog_content",
+            "value":"La depuración USB está destinada únicamente con fines de desarrollo. Úsala para copiar datos entre un ordenador y otro dispositivo, acceder a archivos de datos en un directorio común, instalar aplicaciones en silencio y leer datos de registro.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"trusted_device_title",
+            "value":"¿Confiar en este dispositivo?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"always_allow_debug",
+            "value":"Confiar siempre",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unlock_device_offline",
+            "value":"Desbloquear sin conexión",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_options_open_failed",
+            "value":"No se pueden habilitar las opciones del desarrollador",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_advanced_options",
+            "value":"Opciones avanzadas del sistema",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_not_connected",
+            "value":"El dispositivo no está conectado a Internet. Conéctate a una red o desbloquea el dispositivo sin conexión a través de una solicitud en el sitio web AGC.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_display",
+            "value":"Pantalla",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_machine_debugging",
+            "value":"Cuando este dispositivo se esté depurando",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_channel_mode_stereo",
+            "value":"Estéreo",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

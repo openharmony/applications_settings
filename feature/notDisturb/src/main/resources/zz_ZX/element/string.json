@@ -1,0 +1,252 @@
+{
+    "string":[
+        {
+            "name":"not_disturb_turnedon",
+            "value":"[TS_956130]_On"
+        },
+        {
+            "name":"week_description_six_format",
+            "value":"[TS_956079]_%1$s, %2$s, %3$s, %4$s, %5$s, %6$s"
+        },
+        {
+            "name":"timer_add",
+            "value":"[TS_956125]_Add schedule"
+        },
+        {
+            "name":"not_disturb_tonight_time",
+            "value":"[TS_956109]_Will stay on until %1$s"
+        },
+        {
+            "name":"timer_edit",
+            "value":"[TS_956095]_Edit schedule"
+        },
+        {
+            "name":"allow_everyone",
+            "value":"[TS_956080]_Allow from everyone"
+        },
+        {
+            "name":"none_selected_app",
+            "value":"[TS_956089]_None selected"
+        },
+        {
+            "name":"allow_only_specified_contacts",
+            "value":"[TS_956118]_Allow from selected contacts"
+        },
+        {
+            "name":"allow_only_favorite_contacts",
+            "value":"[TS_956113]_Allow from favorites only"
+        },
+        {
+            "name":"timer_repeat",
+            "value":"[TS_956124]_Repeat"
+        },
+        {
+            "name":"not_disturb_until_tonight",
+            "value":"[TS_956076]_Until this evening"
+        },
+        {
+            "name":"zen_mode_schedule_repeat_monday_to_friday",
+            "value":"[TS_956082]_Monday to Friday"
+        },
+        {
+            "name":"not_disturb_notification",
+            "value":"[TS_956091]_Notifications"
+        },
+        {
+            "name":"zen_mode_ruletime_nextday",
+            "value":"[TS_956098]_%1$s–%2$s (Next day)"
+        },
+        {
+            "name":"allow_only_existing_contacts",
+            "value":"[TS_956092]_Allow from contacts only"
+        },
+        {
+            "name":"not_disturb_scheduled",
+            "value":"[TS_956128]_Add schedule"
+        },
+        {
+            "name":"week_description_four_format",
+            "value":"[TS_956087]_%1$s, %2$s, %3$s, %4$s"
+        },
+        {
+            "name":"timer_open",
+            "value":"[TS_956096]_Turn on"
+        },
+        {
+            "name":"not_disturb_turn_on_now",
+            "value":"[TS_956121]_Turn on now"
+        },
+        {
+            "name":"forbid_everyone",
+            "value":"[TS_956122]_Block from everyone"
+        },
+        {
+            "name":"not_disturb_closed",
+            "value":"[TS_956099]_Off"
+        },
+        {
+            "name":"not_disturb_two_hour",
+            "value":"[TS_956105]_For 2 hours"
+        },
+        {
+            "name":"no_repeat",
+            "value":"[TS_958958]_Never"
+        },
+        {
+            "name":"timer_between",
+            "value":"[TS_956106]_%1$s – %2$s"
+        },
+        {
+            "name":"week_description_five_format",
+            "value":"[TS_956110]_%1$s, %2$s, %3$s, %4$s, %5$s"
+        },
+        {
+            "name":"not_disturb_title",
+            "value":"[TS_956077]_Do not disturb"
+        },
+        {
+            "name":"not_disturb_tips_title",
+            "value":"[TS_988959]_When this is on, incoming calls are automatically declined and notifications are silenced. Alarms still go off as usual. Under \"Allow interruptions\", you can choose what to block or allow."
+        },
+        {
+            "name":"not_disturb_tips_settings",
+            "value":"[TS_997836]_When this is on, incoming calls and notifications won't make a sound or light up the screen. Alarms will ring as usual."
+        },
+        {
+            "name":"not_disturb_tips_dialog",
+            "value":"[TS_997837]_When this is on, incoming calls and notifications won't make a sound or light up the screen. Alarms will ring as usual."
+        },
+        {
+            "name":"week_description_three_format",
+            "value":"[TS_956102]_%1$s, %2$s, %3$s"
+        },
+        {
+            "name":"not_disturb_allow",
+            "value":"[TS_956083]_Allow interruptions"
+        },
+        {
+            "name":"app_loading",
+            "value":"[TS_956129]_Loading…"
+        },
+        {
+            "name":"timer_delete_confirm",
+            "value":"[TS_956112]_Delete this schedule?"
+        },
+        {
+            "name":"week_description_two_format",
+            "value":"[TS_956078]_%1$s, %2$s"
+        },
+        {
+            "name":"permission_dialog_title",
+            "value":"[TS_958959]_Settings requires the Contacts permission"
+        },
+        {
+            "name":"not_disturb_until_close",
+            "value":"[TS_956131]_Will stay on until turned off"
+        },
+        {
+            "name":"timer_delete",
+            "value":"[TS_956093]_Delete"
+        },
+        {
+            "name":"repeat_call_ringing",
+            "value":"[TS_956119]_Allow repeated calls"
+        },
+        {
+            "name":"none_selected",
+            "value":"[TS_956084]_None selected"
+        },
+        {
+            "name":"repeat_call_will_ring_normally",
+            "value":"[TS_956123]_A second call from the same number within %d minutes won't be silenced."
+        },
+        {
+            "name":"timer_start_time",
+            "value":"[TS_956100]_From"
+        },
+        {
+            "name":"not_disturb_call",
+            "value":"[TS_956120]_Phone calls"
+        },
+        {
+            "name":"not_disturb_regularly",
+            "value":"[TS_956117]_Scheduled"
+        },
+        {
+            "name":"not_disturb_maximum_scheduled",
+            "value":"[TS_956107]_Up to %d schedules can be added."
+        },
+        {
+            "name":"timer_cancel",
+            "value":"[TS_956101]_Cancel"
+        },
+        {
+            "name":"timer_reset",
+            "value":"[TS_956086]_You can add this again at any time."
+        },
+        {
+            "name":"timer_end_time",
+            "value":"[TS_956085]_To"
+        },
+        {
+            "name":"permission_reason_read_write_contacts",
+            "value":"[TS_958957]_This is used to read and write contacts."
+        },
+        {
+            "name":"select_contacts",
+            "value":"[TS_956104]_Select contacts"
+        },
+        {
+            "name":"timer_confirm",
+            "value":"[TS_956090]_OK"
+        },
+        {
+            "name":"select_app",
+            "value":"[TS_956116]_Select apps"
+        },
+        {
+            "name":"done",
+            "value":"[TS_956111]_Done"
+        },
+        {
+            "name":"app_list_search_empty",
+            "value":"[TS_956088]_No results"
+        },
+        {
+            "name":"not_disturb_nextday",
+            "value":"[TS_958960]_%s (Next day)"
+        },
+        {
+            "name":"allow_contacts",
+            "value":"[TS_956094]_Preferences"
+        },
+        {
+            "name":"not_disturb_everyday",
+            "value":"[TS_956103]_Every day"
+        },
+        {
+            "name":"not_disturb_one_hour",
+            "value":"[TS_956081]_For 1 hour"
+        },
+        {
+            "name":"all_app",
+            "value":"[TS_956132]_All apps"
+        },
+        {
+            "name":"search_app",
+            "value":"[TS_956108]_Search apps"
+        },
+        {
+            "name":"go_to_set",
+            "value":"[TS_958956]_Go to Settings"
+        },
+        {
+            "name":"not_selected",
+            "value":"[TS_967363]_Not selected"
+        },
+        {
+            "name":"has_selected",
+            "value":"[TS_967364]_Selected"
+        }
+    ]
+}

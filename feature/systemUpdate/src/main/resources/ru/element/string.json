@@ -1,0 +1,46 @@
+{
+    "string":[
+        {
+            "name":"update_status_download_pause",
+            "value":"Загрузка приостановлена",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_version_found_text",
+            "value":"Доступно обновление",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"update_status_downloading",
+            "value":"Загружается обновление",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"update_status_wait_install",
+            "value":"Доступна новая версия",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"patch_installing_title",
+            "value":"Установка обновления",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"check_version_status_to_be_reboot",
+            "value":"Это обновление будет применено после перезагрузки устройства.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

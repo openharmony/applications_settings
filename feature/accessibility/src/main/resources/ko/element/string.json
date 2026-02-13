@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"dialog_enable",
+            "value":"실행",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"취소",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"audio_adjustment",
+            "value":"오디오 미세 조정",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"single_audio_reminder",
+            "value":"스테레오 효과 없이 양쪽 이어버드에서 동일하게 오디오를 재생합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

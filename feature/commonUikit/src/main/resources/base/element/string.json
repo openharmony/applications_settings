@@ -1,0 +1,81 @@
+{
+    "string":[
+        {
+            "name":"input_max_length_message",
+            "value":"You have entered too many characters.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_settings_summary_with_near_link",
+            "value":"This name will be shown on other devices when you interact, share, or connect with them via Bluetooth, NearLink, a personal hotspot, or USB.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"setting_search",
+            "value":"Search",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_tips",
+            "value":"Connect to a network first.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"go_to_login",
+            "value":"Log in",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"note",
+            "value":"Note",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_check_fail",
+            "value":"Try a different name.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_update_fail",
+            "value":"Unable to change name. Try again later.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_wait_tip",
+            "value":"Applying",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"navigation_back",
+            "value":"Go back",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_options",
+            "value":"More options",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

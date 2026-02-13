@@ -1,0 +1,158 @@
+{
+    "string":[
+        {
+            "name":"turn_off_hotspot",
+            "value":"إغلاق نقطة الاتصال الشخصية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_sleep_time_30_sub",
+            "value":"سيتوقف تشغيل الشاشة بعد %d ثانية من عدم النشاط.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_aod_display_mode_smart",
+            "value":"تعيين العرض الدائم على \"ذكي\"",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_hotspot_sub",
+            "value":"سيتم إيقاف تشغيل نقطة الاتصال الشخصية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps",
+            "value":"إغلاق التطبيقات المستهلكة للطاقة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_wakeup_notification",
+            "value":"عدم إيقاظ الشاشة لعرض الإشعارات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_notification_when_hibernation",
+            "value":"إيقاف الإشعارات أثناء انطفاء الشاشة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_aod_display_mode_smart_sub",
+            "value":"تشغيل العرض الدائم بنقرة أو بنظرة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_screen_refresh_rate_to_smart_mode_sub",
+            "value":"تحقيق التوازن بين توفير الطاقة وسلاسة العرض.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_notification_when_hibernation_sub",
+            "value":"التوقف عن إرسال الإشعارات عندما تكون شاشة الجهاز مطفأة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_screen_refresh_rate_to_smart_mode",
+            "value":"تعيين معدل تحديث الشاشة إلى \"ديناميكي\"",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_wakeup_notification_sub",
+            "value":"عدم تشغيل شاشة الجهاز عند تلقي الإشعارات.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_2",
+            "value":"إغلاق %1$s و%2$s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_3",
+            "value":"إغلاق %1$s، و%2$s، و%3$s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_1",
+            "value":"أغلق %1$s لإطالة عمر البطارية.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_2",
+            "value":"أغلق %1$s و%2$s لإطالة عمر البطارية.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_other",
+            "value":"إغلاق تطبيقات %1$s، و%2$s، و%3$s، وغيرها.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_3",
+            "value":"أغلق %1$s، و%2$s، و%3$s لإطالة عمر البطارية.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_other",
+            "value":"أغلق %1$s، و%2$s، و%3$s، وغيرها لإطالة عمر البطارية.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_1",
+            "value":"إغلاق %1$s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_hotspot_card_sub",
+            "value":"أوقف نقطة الاتصال الشخصية لإطالة عمر البطارية.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_sleep_time_30",
+            "value":"تعيين زمن انطفاء الشاشة على %d ثانية",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

@@ -1,0 +1,382 @@
+{
+    "string":[
+        {
+            "name":"app_info_storage_app_size",
+            "value":"Ứng dụng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_music",
+            "value":"Nhạc",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_big_file",
+            "value":"Tệp tin lớn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_version",
+            "value":"Phiên bản %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"clear_cache_not_clear_cache",
+            "value":"Không có dữ liệu để xóa.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_uninstall",
+            "value":"Gỡ cài đặt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_uninstall_confirm",
+            "value":"Gỡ cài đặt %s?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"load_more_card",
+            "value":"Thêm",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_videos",
+            "value":"Video",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_app_clear_data",
+            "value":"Vào %s để giải phóng dung lượng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Hủy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"clear_cache_button_name",
+            "value":"Dọn dẹp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstalling_dialog_message",
+            "value":"Đang gỡ cài đặt %s…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_sizes",
+            "value":"Kích thước",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"clear_cache_cleaning_up",
+            "value":"Đang xóa bộ nhớ đệm…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_sort_by",
+            "value":"Sắp xếp theo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"load_more_data",
+            "value":"Thêm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uninstall_unusual_apps",
+            "value":"Gỡ cài đặt ứng dụng không sử dụng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"clear_cache_title",
+            "value":"Xóa bộ nhớ đệm",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall_unusual_app_prompt",
+            "value":"Giải phóng tới %1$s dung lượng lưu trữ bằng cách gỡ cài đặt các ứng dụng bạn ít sử dụng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_storage_data_size",
+            "value":"Dữ liệu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recommend_card_header",
+            "value":"Đề xuất",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_apps",
+            "value":"Ứng dụng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"clear_cache_caculating",
+            "value":"Đang tính toán…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_remove",
+            "value":"Gỡ cài đặt ứng dụng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"clear_cache_summary",
+            "value":"Xóa bộ nhớ đệm để giải phóng %s dung lượng. Thao tác này sẽ không ảnh hưởng đến việc sử dụng bình thường của thiết bị.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_other",
+            "value":"Khác",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_storage_total_size",
+            "value":"Tổng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_system",
+            "value":"Hệ thống",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"clear_cache_cleaning_toast",
+            "value":"Đã giải phóng %s dung lượng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_data_size",
+            "value":"Dữ liệu ứng dụng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"used_data",
+            "value":"Đã sử dụng %1$s/%2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_calculating_size",
+            "value":"Đang tính toán…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_photo",
+            "value":"Ảnh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_last_used",
+            "value":"Lần sử dụng gần nhất",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_suggestion_desc",
+            "value":"Quản lý bộ nhớ thiết bị để giải phóng dung lượng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_suggestion_level_2",
+            "value":"Bộ nhớ gần đầy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_suggestion_level_3",
+            "value":"Giải phóng dung lượng lưu trữ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_suggestion_level_1",
+            "value":"Bộ nhớ gần đầy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unused_app",
+            "value":"Không sử dụng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_backup_data_dialog_message",
+            "value":"Thao tác này sẽ khôi phục dữ liệu ứng dụng bị mất đã được hệ thống sao lưu. Tuy nhiên, thao tác này cũng sẽ ghi đè lên bất kỳ dữ liệu mới nào được tạo kể từ khi sao lưu. Cần phải đóng %s trong khi dữ liệu đang được khôi phục.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_backup_data_dialog_confirm",
+            "value":"Khôi phục",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_item_title",
+            "value":"Xóa dữ liệu sao lưu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_dialog_title",
+            "value":"Xóa dữ liệu sao lưu?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_dialog_confirm",
+            "value":"Xóa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_bakcup_data_item_title",
+            "value":"Khôi phục dữ liệu sao lưu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_backup_data_success_tip",
+            "value":"Đã khôi phục dữ liệu sao lưu.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restoring_backup_data",
+            "value":"Đang khôi phục dữ liệu sao lưu…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"deleting_backup_data",
+            "value":"Đang xóa dữ liệu sao lưu…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_success_tip",
+            "value":"Dữ liệu sao lưu đã bị xóa.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_bakcup_data_dialog_title",
+            "value":"Khôi phục dữ liệu sao lưu?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_dialog_message",
+            "value":"Thao tác này sẽ xóa vĩnh viễn dữ liệu %s được hệ thống sao lưu, bao gồm cả bản ghi trò chuyện và tệp tin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_fail_tip",
+            "value":"Không xóa được dữ liệu sao lưu.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_backup_data_fail_tip",
+            "value":"Không khôi phục được dữ liệu sao lưu.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

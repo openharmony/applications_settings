@@ -1,6 +1,14 @@
 {
   "color": [
     {
+      "name": "color_bg",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "color_subbg",
+      "value": "#F1F3F5"
+    },
+    {
       "name": "color_333333_grey",
       "value": "#333333"
     },
@@ -21,14 +29,6 @@
       "value": "#D8D8D8"
     },
     {
-      "name": "color_button_grey",
-      "value": "#1824310D"
-    },
-    {
-      "name": "color_00000000_transparent",
-      "value": "#00000000"
-    },
-    {
       "name": "volume_bg_color",
       "value": "#CCFFFFFF"
     },
@@ -45,24 +45,16 @@
       "value": "#007DFF"
     },
     {
-      "name": "toggle_selected_color_007DFF",
-      "value": "#007DFF"
+      "name": "font_color_blue_entry_menu",
+      "value": "#0A59F7"
     },
     {
-      "name": "search_no_result_text_color",
-      "value": "$color:font_color_182431"
+      "name": "font_color_error",
+      "value": "#E84026"
     },
     {
-      "name": "search_result_text_color",
-      "value": "$color:font_color_182431"
-    },
-    {
-      "name": "search_result_text_color_highlight",
-      "value": "$color:font_color_007DFF"
-    },
-    {
-      "name": "bluetooth_text_color_highlight",
-      "value": "$color:font_color_007DFF"
+      "name": "bg_color_input_box_sub_bg",
+      "value": "#0C000000"
     },
     {
       "name": "FAFAFA",
@@ -73,20 +65,244 @@
       "value": "#DCEAF9"
     },
     {
-      "name": "4C89F0",
-      "value": "#4C89F0"
+      "name": "0A59F7",
+      "value": "#0A59F7"
     },
     {
-      "name": "D1D0DB",
+      "name": "317aff",
+      "value": "#317AF7"
+    },
+    {
+      "name": "data_panel_start_1",
+      "value": "#F7CE00"
+    },
+    {
+      "name": "data_panel_start_2",
+      "value": "#F76223"
+    },
+    {
+      "name": "data_panel_start_3",
+      "value": "#F772AC"
+    },
+    {
+      "name": "data_panel_start_4",
+      "value": "#A575EB"
+    },
+    {
+      "name": "data_panel_start_5",
+      "value": "#A5D61D"
+    },
+    {
+      "name": "data_panel_start_100",
       "value": "#D1D0DB"
     },
     {
-      "name": "white",
+      "name": "data_panel_end_1",
+      "value": "#F99B11"
+    },
+    {
+      "name": "data_panel_end_2",
+      "value": "#F2400A"
+    },
+    {
+      "name": "data_panel_end_3",
+      "value": "#E65392"
+    },
+    {
+      "name": "data_panel_end_4",
+      "value": "#A12DF7"
+    },
+    {
+      "name": "data_panel_end_5",
+      "value": "#69D14F"
+    },
+    {
+      "name": "data_panel_end_100",
+      "value": "#D8D6E3"
+    },
+    {
+      "name": "black_color",
+      "value": "#000000"
+    },
+    {
+      "name": "btn_bg_color",
+      "value": "#307AF7"
+    },
+    {
+      "name": "fg_enroll_btn_bg",
+      "value": "#1A1A1A"
+    },
+    {
+      "name": "fg_enroll_font",
+      "value": "#5291FF"
+    },
+    {
+      "name": "fg_enroll_tip_title",
+      "value": "#DBFFFFFF"
+    },
+    {
+      "name": "fg_enroll_tip_text",
+      "value": "#99FFFFFF"
+    },
+    {
+      "name": "fg_btn_bg",
+      "value": "#ff254ff7"
+    },
+    {
+      "name": "profile_switch_color",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "start_window_background",
       "value": "#FFFFFF"
     },
     {
-      "name": "FA2A2D",
-      "value": "#FA2A2D"
+      "name": "row_bg_color",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "card_row_bg_color",
+      "value": "#FFF"
+    },
+    {
+      "name": "loading_color",
+      "value": "#656565"
+    },
+    {
+      "name": "bluetooth_window_settings_divider_color",
+      "value": "#1A000000"
+    },
+    {
+      "name": "control_center_sub_panel_color",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "wlan_window_settings_divider_color",
+      "value": "#19000000"
+    },
+    {
+      "name": "intent_card_bg_light_color",
+      "value": "#B3FFFFFF"
+    },
+    {
+      "name": "intent_card_bg_dark_color",
+      "value": "#4DFFFFFF"
+    },
+    {
+      "name": "intent_card_shadow_color",
+      "value": "#4DFFFFFF"
+    },
+    {
+      "name": "mouse_point_red",
+      "value": "#FFE53D24"
+    },
+    {
+      "name": "mouse_point_yellow",
+      "value": "#FFF6C800"
+    },
+    {
+      "name": "mouse_point_green",
+      "value": "#FF63B959"
+    },
+    {
+      "name": "mouse_point_cyan",
+      "value": "#FF48ADDD"
+    },
+    {
+      "name": "mouse_point_blue",
+      "value": "#FF5445EF"
+    },
+    {
+      "name": "mouse_point_purple",
+      "value": "#FFA946F1"
+    },
+    {
+      "name": "mouse_point_white",
+      "value": "#FFFFFFFF"
+    },
+    {
+      "name": "mouse_point_black",
+      "value": "#FF171717"
+    },
+    {
+      "name": "mouse_color_select",
+      "value": "#000000"
+    },
+    {
+      "name": "mouse_color",
+      "value": "#FFFFFFFF"
+    },
+    {
+      "name": "pointer_slide_color",
+      "value": "#FF0A59F7"
+    },
+    {
+      "name": "oobe_wlan_bg_color",
+      "value": "#99FFFFFF"
+    },
+    {
+      "name": "linear_mask_start_color",
+      "value": "#00E5E5F1"
+    },
+    {
+      "name": "linear_mask_end_color",
+      "value": "#FFE5E5F1"
+    },
+    {
+      "name": "window_settings_icon_primary",
+      "value": "$ohos:color:icon_primary"
+    },
+    {
+      "name": "window_settings_font_primary",
+      "value": "$ohos:color:font_primary"
+    },
+    {
+      "name": "window_settings_font_secondary",
+      "value": "$ohos:color:font_secondary"
+    },
+    {
+      "name": "window_settings_font_tertiary",
+      "value": "$ohos:color:font_tertiary"
+    },
+    {
+      "name": "font_color_transparent",
+      "value": "#00000000"
+    },
+    {
+      "name": "sheet_finish_background",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "app_sheet_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "oobe_textinput_bg_color",
+      "value": "#99FFFFFF"
+    },
+    {
+      "name": "oobe_textinput_font_color",
+      "value": "#99000000"
+    },
+    {
+      "name": "font_color_red",
+      "value": "#E84026"
+    },
+    {
+      "name": "dark_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "base_color",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "wrc_toggle_color",
+      "value": "#FF000000"
+    },
+    {
+      "name": "oobe_text_size_bg_color",
+      "value": "#4D0A59F7"
     }
   ]
 }

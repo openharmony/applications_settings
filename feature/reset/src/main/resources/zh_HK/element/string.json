@@ -1,0 +1,46 @@
+{
+    "string":[
+        {
+            "name":"reset_factory_dialog_title",
+            "value":"確定「重設手機」？",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_title_pc",
+            "value":"確定「重設本機」？",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_content",
+          "value": "重置後無法恢復備份數據。",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"log_out",
+            "value":"登出帳戶",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_retain_esim_content",
+            "value":"您的 eSIM 卡仍保留在本機，請妥善保管，如本機不再使用，請聯絡供應商轉移或註銷 eSIM。",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_continue_reset_button",
+            "value":"繼續重設",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

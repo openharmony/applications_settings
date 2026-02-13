@@ -1,0 +1,158 @@
+{
+    "string":[
+        {
+            "name":"turn_off_hotspot",
+            "value":"Désactiver le point d'accès personnel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_sleep_time_30_sub",
+            "value":"L'écran s'éteindra après %d s d'inactivité.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_aod_display_mode_smart",
+            "value":"Veuillez régler Thème d'écran éteint sur \"Affichage intelligent\"",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_hotspot_sub",
+            "value":"Votre point d'accès personnel sera désactivé.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps",
+            "value":"Fermer les applications énergivores",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_wakeup_notification",
+            "value":"Ne pas réactiver l'écran pour les notifications",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_notification_when_hibernation",
+            "value":"Désactiver les notifications pendant la veille",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_aod_display_mode_smart_sub",
+            "value":"Veuillez allumer Thème d'écran éteint d'un toucher ou d'un regard.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_screen_refresh_rate_to_smart_mode_sub",
+            "value":"Trouver le juste équilibre entre économie d'énergie et fluidité d'affichage.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_notification_when_hibernation_sub",
+            "value":"Les notifications ne seront pas envoyées lorsque votre appareil est en veille.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_screen_refresh_rate_to_smart_mode",
+            "value":"Définir la fréquence de rafraîchissement de l'écran sur \"Dynamique\"",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_wakeup_notification_sub",
+            "value":"L'écran ne s'allumera pas lorsqu'une notification est reçue.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_2",
+            "value":"Fermer %1$s et %2$s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_3",
+            "value":"Fermer %1$s, %2$s et %3$s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_1",
+            "value":"Veuillez fermer %1$s pour prolonger l'autonomie de la batterie.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_2",
+            "value":"Veuillez fermer %1$s et %2$s pour prolonger l'autonomie de la batterie.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_other",
+            "value":"Les applications %1$s, %2$s, %3$s et d'autres seront fermées.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_3",
+            "value":"Veuillez fermer %1$s, %2$s et %3$s pour prolonger l'autonomie de la batterie.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_other",
+            "value":"Veuillez fermer %1$s, %2$s, %3$s et d'autres applications pour prolonger l'autonomie de la batterie.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_1",
+            "value":"%1$s sera fermée.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_hotspot_card_sub",
+            "value":"Veuillez désactiver votre point d'accès personnel pour prolonger l'autonomie de la batterie.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_sleep_time_30",
+            "value":"Définir le délai d'expiration de l'écran sur %d s",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

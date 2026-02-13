@@ -1,0 +1,91 @@
+{
+  "plural":[
+    {
+      "name":"password_edit_read_end",
+      "value":[
+        {
+          "quantity":"other",
+          "value":"[TS_995910]_%d characters entered"
+        },
+        {
+          "quantity":"one",
+          "value":"[TS_995915]_%d character entered"
+        },
+        {
+          "quantity":"zero",
+          "value":"[TS_995916]_%d characters entered"
+        },
+        {
+          "quantity":"few",
+          "value":"[TS_995917]_%d characters entered"
+        },
+        {
+          "quantity":"many",
+          "value":"[TS_995912]_%d characters entered"
+        },
+        {
+          "quantity":"two",
+          "value":"[TS_995920]_%d characters entered"
+        }
+      ]
+    },
+    {
+      "name":"password_edit_read_begin",
+      "value":[
+        {
+          "quantity":"one",
+          "value":"[TS_995913]_Entering PIN or password, %d character in total"
+        },
+        {
+          "quantity":"other",
+          "value":"[TS_995914]_Entering PIN or password, %d characters in total"
+        },
+        {
+          "quantity":"zero",
+          "value":"[TS_995911]_Entering PIN or password, %d characters in total"
+        },
+        {
+          "quantity":"few",
+          "value":"[TS_995918]_Entering PIN or password, %d characters in total"
+        },
+        {
+          "quantity":"many",
+          "value":"[TS_995909]_Entering PIN or password, %d characters in total"
+        },
+        {
+          "quantity":"two",
+          "value":"[TS_995919]_Entering PIN or password, %d characters in total"
+        }
+      ]
+    },
+    {
+      "name":"dialog_ok_countdown",
+      "value":[
+        {
+          "quantity":"other",
+          "value":"[TS_1049385]_OK (%d)"
+        },
+        {
+          "quantity":"one",
+          "value":"[TS_1049382]_OK (%d)"
+        },
+        {
+          "quantity":"zero",
+          "value":"[TS_1049383]_OK (%d)"
+        },
+        {
+          "quantity":"few",
+          "value":"[TS_1049384]_OK (%d)"
+        },
+        {
+          "quantity":"many",
+          "value":"[TS_1049380]_OK (%d)"
+        },
+        {
+          "quantity":"two",
+          "value":"[TS_1049381]_OK (%d)"
+        }
+      ]
+    }
+  ]
+}

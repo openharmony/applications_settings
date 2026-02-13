@@ -1,0 +1,9 @@
+{
+  "name": "settings.notDisturb",
+  "version": "1.0.0",
+  "description": "notdisturb feature.",
+  "main": "index.ets",
+  "dependencies": {
+    "@ohos/settings.common": "file:../../common"
+  }
+}

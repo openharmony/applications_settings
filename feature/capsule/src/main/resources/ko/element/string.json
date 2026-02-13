@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"cloud_space",
+            "value":"Cloud",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"find_device",
+            "value":"장치 찾기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"subscribe",
+            "value":"구독",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"이 작업은 엔터프라이즈 관리에 의해 금지되어 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

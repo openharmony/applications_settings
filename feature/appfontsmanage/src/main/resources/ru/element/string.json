@@ -1,0 +1,228 @@
+{
+    "string":[
+        {
+            "name":"installing_fonts",
+            "value":"Сейчас выполняется установка шрифтов. Повторите попытку позже.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_duplicate_fonts",
+            "value":"Заменить шрифт?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_all",
+            "value":"Выбрать все",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"loading_fonts",
+            "value":"Сейчас выполняется загрузка шрифтов. Повторите попытку позже.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"batch_installation_duplicate_fonts",
+            "value":"Шрифт %s уже установлен. Заменить?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall",
+            "value":"Удалить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_success",
+            "value":"Шрифт %s установлен.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_fail",
+            "value":"Сбой установки. Повторите попытку позже.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unloading_fonts",
+            "value":"Сейчас выполняется удаление шрифтов. Повторите попытку позже.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"is_delete_app",
+            "value":"Удалить приложение %s?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_delete",
+            "value":"Все данные, связанные с этим приложением, будут удалены с вашего устройства.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_installed_font",
+            "value":"Нет шрифтов",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_excess_font",
+            "value":"Установлено максимальное количество шрифтов.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replace_install",
+            "value":"Заменить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"freed_memory_apps_number",
+            "value":"Освобождено %s места в памяти.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"installing",
+            "value":"Установка…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"failed_to_replace",
+            "value":"Шрифт %s невозможно заменить.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"all_replaced_successfully",
+            "value":"Все элементы заменены.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"deleting",
+            "value":"Удаление...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replaced_successfully",
+            "value":"Заменено.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"duplicate_fonts_summary",
+            "value":"Этот шрифт уже установлен. Заменить?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Uninstallation_failed",
+            "value":"Сбой удаления.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_font",
+            "value":"Удалить этот шрифт?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_ok",
+            "value":"Удалить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replace_all_duplicate_fonts",
+            "value":"Заменить все повторные шрифты",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_font",
+            "value":"Выбрать из приложения Файлы",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall_unused_apps",
+            "value":"Удаление неиспользуемых приложений",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"Отмена",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"drag_install",
+            "value":"Перетащите для установки",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"install_fail_warning",
+            "value":"Поддерживаются только форматы TTF, TTC и OTF.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_font_summary",
+            "value":"Этот шрифт станет недоступен в приложениях.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"drag_font_summary",
+            "value":"Перетащите шрифт сюда, чтобы установить его",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

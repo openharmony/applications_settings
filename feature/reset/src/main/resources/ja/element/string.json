@@ -1,0 +1,46 @@
+{
+    "string":[
+        {
+            "name":"reset_factory_dialog_title",
+            "value":"スマートフォンをリセットしますか？",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_content",
+            "value": "リセット後、バックアップデータを復元できません。",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_title_pc",
+            "value":"端末をリセットしますか？",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"log_out",
+            "value":"ログアウト",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_retain_esim_content",
+            "value":"eSIMはこのデバイスに保存されたままになります。安全に保管してください。このデバイスを使用しない場合は、別のデバイスにeSIMを移行するか、アクティベート解除してください。手順については、通信事業者にお問い合わせください。",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_continue_reset_button",
+            "value":"リセット",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

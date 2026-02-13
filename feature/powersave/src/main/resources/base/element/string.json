@@ -1,0 +1,158 @@
+{
+    "string":[
+        {
+            "name":"turn_off_battery_intensive_apps",
+            "value":"Close power-hungry apps",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_screen_refresh_rate_to_smart_mode",
+            "value":"Set screen refresh rate to \"Dynamic\"",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_hotspot",
+            "value":"Disable personal hotspot",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_sleep_time_30",
+            "value":"Set screen timeout to %ds",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_aod_display_mode_smart",
+            "value":"Set Always On Display to \"Smart\"",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"disable_notification_when_hibernation",
+            "value":"Disable notifications during sleep",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_wakeup_notification",
+            "value":"Don't wake screen for notifications",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_1",
+            "value":"Close %1$s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_2",
+            "value":"Close %1$s and %2$s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_3",
+            "value":"Close %1$s, %2$s, and %3$s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_other",
+            "value":"Close %1$s, %2$s, %3$s, and others.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_1",
+            "value":"Close %1$s to extend battery life.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_2",
+            "value":"Close %1$s and %2$s to extend battery life.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_3",
+            "value":"Close %1$s, %2$s, and %3$s to extend battery life.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_other",
+            "value":"Close %1$s, %2$s, %3$s and others to extend battery life.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_screen_refresh_rate_to_smart_mode_sub",
+            "value":"Strike a balance between power saving and display fluidity.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_hotspot_sub",
+            "value":"Your personal hotspot will be turned off.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_hotspot_card_sub",
+            "value":"Disable your personal hotspot to extend battery life.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_sleep_time_30_sub",
+            "value":"The screen will turn off after %ds of inactivity.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_aod_display_mode_smart_sub",
+            "value":"Turn on Always On Display with a tap or a glance.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"disable_notification_when_hibernation_sub",
+            "value":"Notifications won't be pushed when your device is sleeping.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_wakeup_notification_sub",
+            "value":"The screen won't turn on when a notification is received.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

@@ -1,0 +1,361 @@
+{
+    "string":[
+        {
+            "name":"software_version",
+            "value":"Versión de software",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_resolution",
+            "value":"Resolución",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_state_off",
+            "value":"No disponible",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unknown",
+            "value":"Se desconoce",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"version",
+            "value":"Versión",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_settings_title",
+            "value":"Almacenamiento",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"serial_number",
+            "value":"Número de serie",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_level",
+            "value":"Nivel de batería",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"running_memory",
+            "value":"RAM",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"kernel_version",
+            "value":"Versión de Kernel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"baseband_version",
+            "value":"Versión de banda base",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Cancelar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hardware_version",
+            "value":"Versión de hardware",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ip_address",
+            "value":"Dirección IP",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_battery_choose_info",
+            "value":"%1$s-%2$s, nivel de batería %3$s-%4$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"battery_status",
+            "value":"Estado de la batería",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_address",
+            "value":"Dirección de Bluetooth",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_patch_label",
+            "value":"Parche de seguridad",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enterprise_disable_developer_options_toast",
+            "value":"Tu organización bloqueó esta función. Ponte en contacto con el administrador para recibir asistencia.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"model_code",
+            "value":"Número de modelo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_total",
+            "value":"Capacidad: %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_mac",
+            "value":"%1$s (dispositivo)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"openHarmony_version",
+            "value":"Versión de OpenHarmony",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_on_duration",
+            "value":"Tiempo en funcionamiento",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_total_used",
+            "value":"Disponible: %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"model_name",
+            "value":"Nombre del modelo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"external",
+            "value":"Exterior: %1$s × %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"close_developer_mode",
+            "value":"¿Deshabilitar opciones del desarrollador?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_close",
+            "value":"Deshabilitar y reiniciar",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_options_enabled_toast",
+            "value":"Las opciones del desarrollador ya están disponibles.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_on",
+            "value":"Habilitar y reiniciar",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_development_modal_dialog_content",
+            "value":"Esto puede hacer que tu dispositivo sea vulnerable a amenazas de seguridad. El dispositivo se reiniciará para aplicar este cambio.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"system_service_version",
+            "value":"Versión del servicio del sistema",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"inner",
+            "value":"Interior: %1$s × %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel_development_modal_dialog_content",
+            "value":"La depuración de aplicaciones ya no estará disponible. El dispositivo se reiniciará para aplicar este cambio.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status_consuming_power",
+            "value":"No se está cargando",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"battery_status_filled",
+            "value":"Carga completa",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_Additional_text",
+            "value":"%1$d. El servicio Actualización de software debe conectarse a Internet y leer la lista de aplicaciones instaladas.\n",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"api_version",
+            "value":"Versión de API",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_developer_mode",
+            "value":"¿Habilitar Opciones del desarrollador?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_options_settings_title",
+            "value":"Opciones del desarrollador",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"imei_id",
+            "value":"IMEI",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"random_mac",
+            "value":"%1$s (Aleatoria)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status_charging",
+            "value":"Cargando",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_type_professional",
+            "value":"Profesional",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_type",
+            "value":"Edición",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_type_enterprise",
+            "value":"Corporativa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_options_settings_summary",
+            "value":"Solo para uso por parte del desarrollador.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_mode_open_toast",
+            "value":"Las opciones del desarrollador ahora están disponibles.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cpu_title",
+            "value":"Procesador",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_name",
+            "value":"Nombre de la versión",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

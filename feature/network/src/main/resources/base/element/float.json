@@ -1,0 +1,40 @@
+{
+  "float": [
+    {
+      "name": "network_dialog_button_width",
+      "value": "268vp"
+    },
+    {
+      "name": "ethernet_dialog_card_with",
+      "value": "552vp"
+    },
+    {
+      "name": "ethernet_dialog_card_height",
+      "value": "248vp"
+    },
+    {
+      "name": "ethernet_dialog_with",
+      "value": "600vp"
+    },
+    {
+      "name": "ethernet_dialog_height",
+      "value": "380vp"
+    },
+    {
+      "name": "proxy_dialog_card_height",
+      "value": "200vp"
+    },
+    {
+      "name": "proxy_dialog_with",
+      "value": "600vp"
+    },
+    {
+      "name": "proxy_dialog_height",
+      "value": "388vp"
+    },
+    {
+      "name": "confirm_button_width",
+      "value": "368vp"
+    }
+  ]
+}

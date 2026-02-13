@@ -1,0 +1,28 @@
+{
+    "string":[
+        {
+            "name":"reset_factory_dialog_title",
+            "value":"[TS_970107]_Reset this phone?"
+        },
+        {
+            "name":"reset_factory_dialog_title_pc",
+            "value":"[TS_970110]_Reset this device?"
+        },
+        {
+            "name":"reset_factory_dialog_content",
+          "value": "[TS_970109]_Backup data cannot be restored after reset."
+        },
+        {
+            "name":"log_out",
+            "value":"[TS_864842]_Log out"
+        },
+        {
+            "name":"reset_factory_dialog_retain_esim_content",
+            "value":"[TS_1105212]_Your eSIM will remain stored on this device. Please keep it safe. If you no longer plan to use this device, please transfer your eSIM to another device or deactivate it. For instructions, contact your carrier."
+        },
+        {
+            "name":"reset_factory_dialog_continue_reset_button",
+            "value":"[TS_1105210]_Reset"
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+{
+    "string":[
+        {
+            "name":"new_version_found_text",
+            "value":"[TS_918712]_Update available"
+        },
+        {
+            "name":"update_status_downloading",
+            "value":"[TS_960020]_Downloading update"
+        },
+        {
+            "name":"update_status_wait_install",
+            "value":"[TS_960019]_New version available"
+        },
+        {
+            "name":"update_status_download_pause",
+            "value":"[TS_960018]_Download paused"
+        },
+        {
+            "name":"patch_installing_title",
+            "value":"[TS_1121000]_Installing update"
+        },
+        {
+            "name":"check_version_status_to_be_reboot",
+            "value":"[TS_1120999]_Update pending restart"
+        }
+    ]
+}

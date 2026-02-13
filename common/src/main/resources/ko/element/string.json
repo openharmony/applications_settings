@@ -1,0 +1,11 @@
+{
+    "string":[
+        {
+            "name":"app_list_loading",
+            "value":"로드 중…",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

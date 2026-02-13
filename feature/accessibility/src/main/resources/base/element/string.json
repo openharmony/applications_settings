@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"dialog_cancel",
+            "value":"Cancel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_enable",
+            "value":"Enable",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_adjustment",
+            "value":"Audio tuning",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"single_audio_reminder",
+            "value":"Play the same audio in both earbuds with no stereo effect.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

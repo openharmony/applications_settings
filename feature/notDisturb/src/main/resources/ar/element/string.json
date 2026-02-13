@@ -1,0 +1,438 @@
+{
+    "string":[
+        {
+            "name":"not_disturb_turnedon",
+            "value":"مشغّل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_six_format",
+            "value":"%1$s، %2$s، %3$s، %4$s، %5$s، %6$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tips_title",
+            "value":"عند تشغيل هذا الخيار، سيتم رفض المكالمات الواردة تلقائيًا وكتم صوت الإشعارات. وسيستمر انطلاق المنبهات كالمعتاد. ضمن \"السماح بالمقاطعات\"، يمكنك اختيار ما تريد حظره أو السماح به.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_add",
+            "value":"إنشاء جدول",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"repeat_call_will_ring_normally",
+            "value":"لن يتم إسكات المكالمة الثانية الواردة من الرقم نفسه في خلال %d دقيقة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"done",
+            "value":"تم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tonight_time",
+            "value":"سيستمر حتى %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_edit",
+            "value":"تعديل الجدول",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_start_time",
+            "value":"من",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_call",
+            "value":"المكالمات الهاتفية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"go_to_set",
+            "value":"الانتقال إلى الإعدادات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_regularly",
+            "value":"التشغيل المجدول",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_maximum_scheduled",
+            "value":"يمكن إضافة %d جداول كحدٍ أقصى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_cancel",
+            "value":"إلغاء",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_reset",
+            "value":"يمكنك إنشاء هذا مرة أخرى في أي وقت.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_everyone",
+            "value":"السماح من الجميع",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"none_selected_app",
+            "value":"لم يُحدد أي تطبيق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_only_specified_contacts",
+            "value":"السماح من جهات الاتصال المُحددة فقط",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_end_time",
+            "value":"إلى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_only_favorite_contacts",
+            "value":"السماح من المفضلة فقط",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_repeat",
+            "value":"التكرار",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tips_settings",
+            "value":"عند تشغيل هذا الخيار، لن تُصدر المكالمات الواردة والإشعارات صوتًا أو تضيء الشاشة. سترن المنبهات كالمعتاد.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_until_tonight",
+            "value":"حتى هذا المساء",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"zen_mode_schedule_repeat_monday_to_friday",
+            "value":"الاثنين إلى الجمعة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_notification",
+            "value":"الإشعارات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"zen_mode_ruletime_nextday",
+            "value":"‏%1$s‏ -‏ %2$s‏ (اليوم التالي)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_only_existing_contacts",
+            "value":"السماح من جهات الاتصال فقط",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_reason_read_write_contacts",
+            "value":"يُستخدم هذا لقراءة جهات الاتصال وكتابتها.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_contacts",
+            "value":"تحديد جهات الاتصال",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_confirm",
+            "value":"موافق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_app",
+            "value":"تحديد التطبيقات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_scheduled",
+            "value":"إنشاء جدول",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_four_format",
+            "value":"%1$s، %2$s، %3$s، %4$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_nextday",
+            "value":"‏%s‏ (اليوم التالي)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_open",
+            "value":"تشغيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_list_search_empty",
+            "value":"لا توجد نتائج",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_turn_on_now",
+            "value":"التشغيل الآن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"forbid_everyone",
+            "value":"حظر من الجميع",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_closed",
+            "value":"مغلق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_two_hour",
+            "value":"لمدة ساعتين",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tips_dialog",
+            "value":"عند تشغيل هذا الخيار، لن تُصدر المكالمات الواردة والإشعارات صوتًا أو تضيء الشاشة. سترن المنبهات كالمعتاد.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_repeat",
+            "value":"مطلقًا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_between",
+            "value":"%1$s – %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_five_format",
+            "value":"%1$s، %2$s، %3$s، %4$s، %5$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_contacts",
+            "value":"التفضيلات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_everyday",
+            "value":"كل يوم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_title",
+            "value":"عدم الإزعاج",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_three_format",
+            "value":"%1$s، %2$s، %3$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_allow",
+            "value":"السماح بالمقاطعات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_loading",
+            "value":"جارٍ التحميل…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_delete_confirm",
+            "value":"هل تريد حذف هذا الجدول؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_two_format",
+            "value":"%1$s، %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_dialog_title",
+            "value":"تتطلب الإعدادات إذن جهات الاتصال",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_until_close",
+            "value":"سيبقى قيد التشغيل حتى يتم إيقافه",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_one_hour",
+            "value":"لمدة ساعة واحدة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_delete",
+            "value":"حذف",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"all_app",
+            "value":"كل التطبيقات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"search_app",
+            "value":"البحث في التطبيقات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"repeat_call_ringing",
+            "value":"السماح بالمكالمات المُكررة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"none_selected",
+            "value":"لم يُحدد أي تطبيق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_selected",
+            "value":"غير محدد",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"has_selected",
+            "value":"محدد",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

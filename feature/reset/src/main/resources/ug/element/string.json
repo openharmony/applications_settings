@@ -1,0 +1,46 @@
+{
+    "string":[
+        {
+            "name":"reset_factory_dialog_title",
+            "value":"يانفوننى قايتا بەلگىلەمسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_title_pc",
+            "value":"بۇ ئۈسكۈنىنى قايتا بەلگىلەمسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_content",
+          "value": "قايتا تەڭشەشتىن كېيىن پايدىلانغان ساقلانمىلارنى قايتا تىكلەش مۇمكىن ئەمەس.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"log_out",
+            "value":"ھېساباتتىن چېكىنىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_retain_esim_content",
+            "value":"ئۈسكۈنىدىكى eSIM كارتا ساقلاپ قېلىنىدۇ، ئەگەر بۇ ئۈسكۈنىدە ئىشلەتمىسىڭىز يۈرۈتكۈچى بىلەن ئالاقىلىشىپ يۆتكەڭ ياكى eSIM مۇلازىمىتىنى ئېتىڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_continue_reset_button",
+            "value":"قايتا بەلگىلەش",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

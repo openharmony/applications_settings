@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"cloud_space",
+            "value":"بۇلۇت بوشلۇقى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"subscribe",
+            "value":"ئەگەشمە",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"find_device",
+            "value":"ئۈسكۈنە ئىزدەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"كارخانا تۈزۈمى بۇ مەشغۇلاتنى چەكلەيدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

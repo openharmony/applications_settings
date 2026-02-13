@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"dialog_cancel",
+            "value":"取消",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_enable",
+            "value":"开启",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"audio_adjustment",
+            "value":"音频调节",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"single_audio_reminder",
+            "value":"播放音频时合并声道，无立体声音效差异",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

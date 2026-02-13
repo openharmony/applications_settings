@@ -1,0 +1,91 @@
+{
+    "plural":[
+        {
+            "name":"user_select_app",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_956165]_%d apps"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_956171]_%d app"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_956180]_%d apps"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_956178]_%d apps"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_956168]_%d apps"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_956169]_%d apps"
+                }
+            ]
+        },
+        {
+            "name":"selected_app",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_956170]_Selected: %d"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_956173]_Selected: %d"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_956166]_Selected: %d"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_956163]_Selected: %d"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_956179]_Selected: %d"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_956175]_Selected: %d"
+                }
+            ]
+        },
+        {
+            "name":"user_select_contact",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_956176]_%d contacts"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_956164]_%d contact"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_956177]_%d contacts"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_956172]_%d contacts"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_956167]_%d contacts"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_956174]_%d contacts"
+                }
+            ]
+        }
+    ]
+}

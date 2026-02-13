@@ -1,0 +1,14 @@
+{
+  "name": "powersave",
+  "version": "1.0.0",
+  "description": "power save suggestion",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "@ohos/settings.common": "file:../../common",
+    "@ohos/settings.commonUikit": "file:../../feature/commonUikit",
+    "@ohos/settings.display": "file:../../feature/display",
+  }
+}
+

@@ -1,0 +1,354 @@
+{
+    "string":[
+        {
+            "name":"trusted_device_button_cancel",
+            "value":"Không tin cậy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_usb_debug_title",
+            "value":"Cho phép Gỡ lỗi USB?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"revocation_usb_authorize",
+            "value":"Gỡ tất cả thiết bị đáng tin cậy?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_touch_actions_trace",
+            "value":"Hiển thị vị trí con trỏ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wlan_address_bssid",
+            "value":"Địa chỉ WLAN (BSSID)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_display_refresh_frequency_summary",
+            "value":"Hiển thị tốc độ làm mới tối đa hiện tại của màn hình.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"machine_name",
+            "value":"Tên thiết bị:\n%1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_usb_authorize",
+            "value":"Gỡ tất cả thiết bị đáng tin cậy",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sunlight_readability_title",
+            "value":"Tăng khả năng đọc dưới ánh mặt trời",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ip_address_and_port",
+            "value":"Địa chỉ IP và cổng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"activating_usb_debug",
+            "value":"Cho phép gỡ lỗi khi kết nối WLAN.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"opened_wireless",
+            "value":"Bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_Open_Logs",
+            "value":"Ghi nhật ký chi tiết WLAN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_refresh_frequency_title",
+            "value":"Hiển thị tốc độ làm mới",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_insightintent_debug_status_close",
+            "value":"Tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"debug_settings_title",
+            "value":"Gỡ lỗi",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"learn_more",
+            "value":"Tìm hiểu thêm",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Confirm_the_cancellation",
+            "value":"Gỡ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_name_ssid",
+            "value":"Tên mạng (SSID)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"public_key_name",
+            "value":"Vân tay khóa RSA:\n%1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"debug_networking_category",
+            "value":"Mạng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_Open_Logs__summary",
+            "value":"Tăng mức độ ghi nhật ký WLAN (hiển thị RSSI theo SSID trong bộ chọn WLAN).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"trusted_device_button_confirm",
+            "value":"Tin cậy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_wireless",
+            "value":"Cho phép gỡ lỗi không dây trên mạng này?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_settings_title",
+            "value":"Tên thiết bị",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_show_touch_trace_summary",
+            "value":"Hiện dữ liệu chạm hiện tại trên lớp phủ màn hình.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_bit_rate_adaptive",
+            "value":"Phát trực tuyến tốc độ bit thích ứng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"link_wlan",
+            "value":"Không có kết nối WLAN. Hãy kết nối với WLAN rồi thử lại.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_tittle_cancel",
+            "value":"Hủy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_debugged_mode_prompt",
+            "value":"Để bật thêm các tùy chọn gỡ lỗi dành cho nhà phát triển, hãy kết nối máy tính của bạn và làm theo hướng dẫn để bật. %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recall_usb_authorize_title",
+            "value":"Các thiết bị đáng tin cậy trước đây sẽ không còn được tin cậy nữa.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wireless_commissioning",
+            "value":"Gỡ lỗi không dây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_touch_actions_title",
+            "value":"Hiển thị số lần chạm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"link_wireless",
+            "value":"Không bật được gỡ lỗi không dây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"closed_wireless",
+            "value":"Tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"usb_dialog_content",
+            "value":"Tính năng Gỡ lỗi USB chỉ dành cho mục đích phát triển. Sử dụng tính năng này để sao chép dữ liệu giữa máy tính và thiết bị khác, truy cập tệp tin dữ liệu trong thư mục chung, cài đặt ứng dụng âm thầm và đọc dữ liệu nhật ký.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_audio_channel_mode_mono",
+            "value":"Đơn kênh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_insightintent_debug_status_open",
+            "value":"Bật",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_show_touch_actions_summary",
+            "value":"Hiển thị phản hồi trực quan cho các lần chạm.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"trusted_device_title",
+            "value":"Tin cậy thiết bị này?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"debug_entering_category",
+            "value":"Nhập",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_tittle_allow",
+            "value":"Cho phép",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"always_allow_debug",
+            "value":"Luôn tin cậy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unlock_device_offline",
+            "value":"Mở khóa ngoại tuyến",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_options_open_failed",
+            "value":"Không thể bật tùy chọn nhà phát triển",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_advanced_options",
+            "value":"Tùy chọn hệ thống nâng cao",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_not_connected",
+            "value":"Thiết bị của bạn chưa kết nối Internet. Hãy kết nối mạng hoặc mở khóa ngoại tuyến bằng cách gửi yêu cầu trên trang web AGC.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_display",
+            "value":"Hiển thị",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_machine_debugging",
+            "value":"Khi thiết bị này đang được gỡ lỗi",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_channel_mode_stereo",
+            "value":"Âm thanh nổi",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}
