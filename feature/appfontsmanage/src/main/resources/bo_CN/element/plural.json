@@ -1,0 +1,64 @@
+{
+    "plural":[
+        {
+            "name":"batch_installation_success",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ཡིག་གཟུགས་ %d སྒྲིག་འཇུག་བྱེད་ཐུབ་སོང་།",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_replace_failed",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ཡིག་གཟུགས་ %d ཚབ་བརྗེ་མ་ཐུབ།",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_not_support",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"རྣམ་གཞག་ ttf དང་ ttc དང་ otf ཁོ་ནར་རྒྱབ་སྐྱོར་བྱེད། ཡིག་གཟུགས་ %d སྒྲིག་འཇུག་བྱེད་མ་ཐུབ།",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"font_num",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ཡིག་གཟུགས་ %d",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_reached_the_upper_limit",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"སྒྲིག་འཇུག་ཁ་གྲངས་ཚད་བཀག་ལ་སླེབས། ཡིག་གཟུགས་ %d སྒྲིག་འཇུག་བྱེད་མ་ཐུབ།",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

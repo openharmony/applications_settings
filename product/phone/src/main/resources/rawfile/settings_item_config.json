@@ -1,0 +1,1610 @@
+[
+  {
+    "itemName": "wlan",
+    "itemDesc": "Wifi开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "wifi_settings_title",
+    "parentKey": "wifi_entry"
+  },
+  {
+    "itemName": "bluetooth",
+    "itemDesc": "蓝牙开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "bluetooth_settings_title",
+    "parentKey": "bluetooth_entry"
+  },
+  {
+    "itemName": "bt_bond_device_name",
+    "itemDesc": "蓝牙地址",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "bluetooth_entry"
+  },
+  {
+    "itemName": "paired_bluetooth_devices",
+    "itemDesc": "已配对蓝牙",
+    "itemType": "GetPairedBluetoothDevices",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "bluetooth_entry"
+  },
+  {
+    "itemName": "other_bluetooth_devices",
+    "itemDesc": "其他蓝牙",
+    "itemType": "GetOtherBluetoothDevices",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "bluetooth_entry"
+  },
+  {
+    "itemName": "airplane_mode",
+    "itemDesc": "飞行模式开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "airplane_mode",
+    "parentKey": "mobile_network_entry"
+  },
+  {
+    "itemName": "personal_hotspot",
+    "itemDesc": "个人热点开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "hotspot_settings_title",
+    "parentKey": "hotspot_data_settings"
+  },
+  {
+    "itemName": "hotspot_connected_device",
+    "itemDesc": "已连接设备",
+    "itemType": "GetHotspotConnectedDevices",
+    "itemValues": [],
+    "itemResourceId": "hotspot_connected_device",
+    "parentKey": "connected_device_entry"
+  },
+  {
+    "itemName": "auto_brightness",
+    "itemDesc": "亮度自动调节开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "automatic_brightness_adjust",
+    "parentKey": "display_settings"
+  },
+  {
+    "itemName": "system_haptic_feedback",
+    "itemDesc": "系统触感反馈开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "system_touch_feedback",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "wake_screen_pick_up",
+    "itemDesc": "拿起手机亮屏开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "wake_screen_pick_up",
+    "parentKey": "accessibility_wake_screen_entry"
+  },
+  {
+    "itemName": "wake_screen_double_click",
+    "itemDesc": "双击亮屏开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "wake_screen_double_click",
+    "parentKey": "accessibility_wake_screen_entry"
+  },
+  {
+    "itemName": "sleep",
+    "itemDesc": "休眠时间选项",
+    "itemType": "Select",
+    "itemValues": [
+      "15000",
+      "30000",
+      "60000",
+      "120000",
+      "300000",
+      "600000"
+    ],
+    "itemResourceId": "dormancy",
+    "parentKey": "display_settings"
+  },
+  {
+    "itemName": "allow_contacts",
+    "itemDesc": "允许联系人",
+    "itemType": "Select",
+    "itemValues": [
+      "forbid_everyone",
+      "allow_everyone",
+      "allow_only_existing_contacts",
+      "allow_only_favorite_contacts",
+      "allow_only_specified_contacts"
+    ],
+    "itemResourceId": "allow_contacts",
+    "parentKey": "incoming_call"
+  },
+  {
+    "itemName": "display_size",
+    "itemDesc": "显示大小",
+    "itemType": "Select",
+    "itemValues": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "defaultValue": "1",
+    "itemResourceId": "screen_zoom_title",
+    "parentKey": "screen_zoom"
+  },
+  {
+    "itemName": "screen_zoom_text_size",
+    "itemDesc": "字体大小",
+    "itemType": "Select",
+    "itemValues": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "itemResourceId": "screen_zoom_text_size",
+    "parentKey": "screen_zoom"
+  },
+  {
+    "itemName": "screen_zoom_text_weight",
+    "itemDesc": "字体粗细",
+    "itemType": "Select",
+    "itemValues": [
+      "text_font_weight_lightest",
+      "text_font_weight_light",
+      "text_font_weight_normal",
+      "text_font_weight_bold",
+      "text_font_weight_boldest"
+    ],
+    "defaultValue": "text_font_weight_normal",
+    "itemResourceId": "screen_zoom_text_weight",
+    "parentKey": "screen_zoom"
+  },
+  {
+    "itemName": "screen_refresh_rate",
+    "itemDesc": "屏幕刷新率",
+    "itemType": "Select",
+    "itemValues": [
+      "Dynamic",
+      "High",
+      "Medium",
+      "Standard"
+    ],
+    "itemResourceId": "screen_refresh_rate_title",
+    "parentKey": "screen_refresh_rate_entry"
+  },
+  {
+    "itemName": "volume_mode",
+    "itemDesc": "声音模式",
+    "itemType": "Select",
+    "itemValues": [
+      "Sound",
+      "Vibrate",
+      "Silent"
+    ],
+    "itemResourceId": "volume_mode",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "color_mode",
+    "itemDesc": "色彩调节",
+    "itemType": "Select",
+    "itemValues": [
+      "standard",
+      "bright"
+    ],
+    "itemResourceId": "colour_title",
+    "parentKey": "color_adjustment_and_color_temperature_entry"
+  },
+  {
+    "itemName": "color_temperature",
+    "itemDesc": "色温调节",
+    "itemType": "Select",
+    "itemValues": [
+      "default",
+      "warm",
+      "cold",
+      "nature"
+    ],
+    "itemResourceId": "color_temperature_title",
+    "parentKey": "color_adjustment_and_color_temperature_entry"
+  },
+  {
+    "itemName": "brightness",
+    "itemDesc": "亮度控制滑动条",
+    "itemType": "Seekbar",
+    "itemMaxValue": 255,
+    "itemMinValue": 5,
+    "itemStepValue": 1,
+    "itemValues": [],
+    "itemResourceId": "brightness_settings_title",
+    "parentKey": "display_settings"
+  },
+  {
+    "itemName": "call_volume",
+    "itemDesc": "通话音量控制滑动条",
+    "itemType": "Seekbar",
+    "itemValues": [],
+    "itemMaxValue": 15,
+    "itemMinValue": 0,
+    "itemStepValue": 1,
+    "itemResourceId": "call_volume_title",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "ringtone_volume",
+    "itemDesc": "来电，信息，通知音量控制滑动条",
+    "itemType": "Seekbar",
+    "itemValues": [],
+    "itemMaxValue": 15,
+    "itemMinValue": 0,
+    "itemStepValue": 1,
+    "itemResourceId": "ringtone_volume_new_title",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "alarm_volume",
+    "itemDesc": "闹钟控制滑动条",
+    "itemType": "Seekbar",
+    "itemValues": [],
+    "itemMaxValue": 15,
+    "itemMinValue": 0,
+    "itemStepValue": 1,
+    "itemResourceId": "alarm_volume_title",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "media_volume",
+    "itemDesc": "音乐，视频，游戏音量控制滑动条",
+    "itemType": "Seekbar",
+    "itemValues": [],
+    "itemMaxValue": 15,
+    "itemMinValue": 0,
+    "itemStepValue": 1,
+    "itemResourceId": "media_volume_title",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "vassistant_volume",
+    "itemDesc": "小艺音量控制滑动条",
+    "itemType": "Seekbar",
+    "itemValues": [],
+    "itemMaxValue": 15,
+    "itemMinValue": 0,
+    "itemStepValue": 1,
+    "itemResourceId": "vassistant_settings",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "zoom_gesture",
+    "itemDesc": "放大手势开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "zoom_gesture"
+  },
+  {
+    "itemName": "color_correction",
+    "itemDesc": "色彩校正开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "color_correction"
+  },
+  {
+    "itemName": "color_inversion",
+    "itemDesc": "颜色反转开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "invert_color"
+  },
+  {
+    "itemName": "high_contrast_text",
+    "itemDesc": "高对比度文字开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "highContrast_text"
+  },
+  {
+    "itemName": "mono_audio",
+    "itemDesc": "单声道音频开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "single_audio"
+  },
+  {
+    "itemName": "ignore_repeated_touches",
+    "itemDesc": "忽略重复点击开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "ignore_repeated_touches"
+  },
+  {
+    "itemName": "accessibility_shortcut",
+    "itemDesc": "辅助功能快捷键开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "shortKey_accessibility"
+  },
+  {
+    "itemName": "accessibility_shortcut_on_lock_screen",
+    "itemDesc": "屏幕锁定时可用开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "shortKey_lock_screen"
+  },
+  {
+    "itemName": "balance",
+    "itemDesc": "音量平衡滑动条",
+    "itemType": "Seekbar",
+    "itemValues": [],
+    "itemMaxValue": 100,
+    "itemMinValue": -100,
+    "itemStepValue": 10,
+    "itemResourceId": "audio_balance",
+    "parentKey": "accessibility_feature"
+  },
+  {
+    "itemName": "touch_duration",
+    "itemDesc": "点击持续时间选项",
+    "itemType": "Select",
+    "itemValues": [
+      "Short",
+      "Medium",
+      "Long"
+    ],
+    "defaultValue" : "Short",
+    "itemResourceId": "touch_duration",
+    "parentKey": "accessibility_touchscreen_entry"
+  },
+  {
+    "itemName": "time_interval",
+    "itemDesc": "时间间隔选项",
+    "itemType": "Select",
+    "itemValues": [
+      "Shortest",
+      "Short",
+      "Medium",
+      "Long",
+      "Longest"
+    ],
+    "defaultValue" : "Shortest",
+    "itemResourceId": "time_interval",
+    "parentKey": "accessibility_touchscreen_entry"
+  },
+  {
+    "itemName": "function_select",
+    "itemDesc": "选项功能选项",
+    "itemType": "Select",
+    "itemValues": [
+      "HIGH_CONTRAST_TEXT",
+      "AUDIO_MONO",
+      "INVERT_COLOR",
+      "com.ohos.screenreader/AccessibilityExtAbility"
+    ],
+    "itemResourceId": "function_select",
+    "parentKey": "accessibility_operation_entry"
+  },
+  {
+    "itemName": "dark_mode_all_day",
+    "itemDesc": "深色模式",
+    "itemType": "Switch",
+    "itemValues": [
+      0,
+      1
+    ],
+    "itemResourceId": "dark_mode",
+    "parentKey": "dark_settings"
+  },
+  {
+    "itemName": "ebook_mode",
+    "itemDesc": "电子书模式",
+    "itemType": "Switch",
+    "itemValues": [
+      0,
+      1
+    ],
+    "itemResourceId": "ebook_mode",
+    "parentKey": "ebook_mode"
+  },
+  {
+    "itemName": "wrc_switch",
+    "itemDesc": "无线反向充电",
+    "itemType": "Switch",
+    "itemValues": [
+      0,
+      1
+    ],
+    "itemResourceId": "wrc_switch_name",
+    "parentKey": "battery"
+  },
+  {
+    "itemName": "sleep_notification_enable",
+    "itemDesc": "允许休眠时通知开关",
+    "itemType": "Switch",
+    "itemValues": [
+      0,
+      1
+    ],
+    "itemResourceId": "sleep_notification_enable",
+    "parentKey": "battery"
+  },
+  {
+    "itemName": "battery_percent",
+    "itemDesc": "当前电量百分比",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "battery"
+  },
+  {
+    "itemName": "display_battery_percentage",
+    "itemDesc": "显示电量百分比",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "display_battery_percentage",
+    "parentKey": "battery"
+  },
+  {
+    "itemName": "mouse_pointer_size",
+    "itemDesc": "光标尺寸滑动条",
+    "itemType": "Seekbar",
+    "itemValues": [],
+    "itemMaxValue": 7,
+    "itemMinValue": 1,
+    "itemStepValue": 1,
+    "itemResourceId": "mouse_pointer_size",
+    "parentKey": "phone_mouse_settings"
+  },
+  {
+    "itemName": "cursor_tracking_speed",
+    "itemDesc": "光标速度滑动条",
+    "itemType": "Seekbar",
+    "itemValues": [],
+    "itemMaxValue": 11,
+    "itemMinValue": 1,
+    "itemStepValue": 1,
+    "itemResourceId": "cursor_tracking_speed",
+    "parentKey": "phone_mouse_settings"
+  },
+  {
+    "itemName": "mouse_pointer_style",
+    "itemDesc": "光标样式选项",
+    "itemType": "Select",
+    "itemValues": [
+      "default",
+      "cursor_circle"
+    ],
+    "itemResourceId": "mouse_pointer_style",
+    "parentKey": "phone_mouse_settings"
+  },
+  {
+    "itemName": "mouse_primary_button",
+    "itemDesc": "主鼠标键",
+    "itemType": "Select",
+    "itemValuesIsId" : true,
+    "itemValues": [
+      "LeftButton",
+      "RightButton"
+    ],
+    "itemResourceId": "mouse_primary_button",
+    "parentKey": "phone_mouse_settings"
+  },
+  {
+    "itemName": "mouse_inactive_window_control",
+    "itemDesc": "非活动窗口控制开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "inactive_window_control"
+  },
+  {
+    "itemName": "mouse_pointer_speed",
+    "itemDesc": "光标速度滑动条",
+    "itemType": "Seekbar",
+    "itemValues": [],
+    "itemShowSteps" : true,
+    "itemMaxValue": 20,
+    "itemMinValue": 1,
+    "itemStepValue": 1,
+    "itemResourceId": "cursor_tracking_speed"
+  },
+  {
+    "itemName": "mouse_pointer_scroll_rows",
+    "itemDesc": "滚动速度滑动条",
+    "itemType": "Seekbar",
+    "itemValues": [],
+    "itemShowSteps" : false,
+    "itemMaxValue": 100,
+    "itemMinValue": 1,
+    "itemStepValue": 10,
+    "itemResourceId": "rolling_speed"
+  },
+  {
+    "itemName": "mouse_pointer_pattern",
+    "itemDesc": "光标风格",
+    "itemType": "Select",
+    "itemValuesIsId" : true,
+    "itemValues": [
+      "Arrow"
+    ],
+    "itemResourceId": "Mouse_pointer_pattern",
+    "parentKey": "phone_mouse_settings"
+  },
+  {
+    "itemName": "mouse_pointer_color",
+    "itemDesc": "光标填充颜色",
+    "itemType": "Select",
+    "itemValuesIsId" : true,
+    "itemValues": [
+      "Red",
+      "Yellow",
+      "Green",
+      "Cyan",
+      "Blue",
+      "Purple",
+      "White",
+      "Black"
+    ],
+    "itemResourceId": "Mouse_pointer_color",
+    "parentKey": "phone_mouse_settings"
+  },
+  {
+    "itemName": "touchpad_pointer_speed",
+    "itemDesc": "光标速度滑动条",
+    "itemType": "Seekbar",
+    "itemValues": [],
+    "itemShowSteps" : true,
+    "itemMaxValue": 11,
+    "itemMinValue": 1,
+    "itemStepValue": 1,
+    "itemResourceId": "cursor_tracking_speed"
+  },
+  {
+    "itemName": "touchpad_right_click_type",
+    "itemDesc": "菜单弹出",
+    "itemType": "Select",
+    "itemValuesIsId" : true,
+    "itemValues": [
+      "TwoFingerPress",
+      "PressLeftCorner",
+      "PressRightCorner"
+    ],
+    "itemResourceId": "menu_pop_up"
+  },
+  {
+    "itemName": "touchpad_tap_switch",
+    "itemDesc": "轻点点按",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "tap_and_click"
+  },
+  {
+    "itemName": "touchpad_scroll_direction",
+    "itemDesc": "自然滚动",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "natural_scrolling"
+  },
+  {
+    "itemName": "touchpad_pinch_switch",
+    "itemDesc": "放大或缩小",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "zoom_in_or_out"
+  },
+  {
+    "itemName": "touchpad_display_desk",
+    "itemDesc": "显示桌面",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "display_the_desktop"
+  },
+  {
+    "itemName": "touchpad_go_to_multitask",
+    "itemDesc": "进入多任务",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "go_into_multitasking"
+  },
+  {
+    "itemName": "gaze_screen_no_turning_off",
+    "itemDesc": "注视屏幕不息屏开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "gaze_screen_no_turning_off",
+    "parentKey": "display_settings"
+  },
+  {
+    "itemName": "settings_nfc",
+    "itemDesc": "NFC",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "nfc_quick_toggle_title",
+    "parentKey": "nfc_settings"
+  },
+  {
+    "itemName": "set_default_pay_app",
+    "itemDesc": "设置默认付款app",
+    "itemType": "SetDefaultPayApp",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "nfc_settings"
+  },
+  {
+    "itemName": "get_default_pay_app",
+    "itemDesc": "设置默认付款app",
+    "itemType": "GetDefaultPayApp",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "nfc_settings"
+  },
+  {
+    "itemName": "near_link_device_name",
+    "itemDesc": "星闪设备名称",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "bt_bond_device_name",
+    "parentKey": "near_link_settings"
+  },
+  {
+    "itemName": "near_link_paired_devices",
+    "itemDesc": "已配对设备",
+    "itemType": "GetPairedSparkLinkDevices",
+    "itemValues": [],
+    "itemResourceId": "bluetooth_other_device_group",
+    "parentKey": "near_link_settings"
+  },
+  {
+    "itemName": "near_link_other_devices",
+    "itemDesc": "其他设备",
+    "itemType": "GetOtherSparkLinkDevices",
+    "itemValues": [],
+    "itemResourceId": "bluetooth_bonded_devices",
+    "parentKey": "near_link_bond_device_settings"
+  },
+  {
+    "itemName": "hotspot_device_name",
+    "itemDesc": "热点名称",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "hotspot_device_name",
+    "parentKey": "hotspot_data_settings"
+  },
+  {
+    "itemName": "ap_band",
+    "itemDesc": "AP 频段",
+    "itemType": "Select",
+    "itemValues": [
+      "hotspot_band_2_4",
+      "hotspot_band_5"
+    ],
+    "itemResourceId": "hotspot_ap_band",
+    "parentKey": "more_share_entry"
+  },
+  {
+    "itemName": "once_limit",
+    "itemDesc": "单次流量限制",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "once_limit",
+    "parentKey": "more_share_entry"
+  },
+  {
+    "itemName": "hotspot_device_usb",
+    "itemDesc": "USB 共享网络",
+    "itemType": "Switch",
+    "itemValues": [
+    ],
+    "itemResourceId": "hotspot_usb",
+    "parentKey": "more_share_entry"
+  },
+  {
+    "itemName": "smart_resolution_rate",
+    "itemDesc": "智能分辨率",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "display_smart_resolution_title",
+    "parentKey": "display_settings"
+  },
+  {
+    "itemName": "charge_temperature_limit",
+    "itemDesc": "充电温度限制开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "charge_temperature_limit",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "developer_options",
+    "itemDesc": "开发者选项开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "developer_options_settings_title",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "open_developer",
+    "itemDesc": "打开开发者选项",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "developer_options_settings_title",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "automatic_system_update",
+    "itemDesc": "自动系统更新开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "automatic_system_update",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "usb_debug_settings",
+    "itemDesc": "USB调试开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "usb_debug_settings_title",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "display_refresh_frequency",
+    "itemDesc": "显示刷新频率开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "display_refresh_frequency_title",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "debug_system_trace",
+    "itemDesc": "系统trace跟踪开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "debug_system_trace",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "debug_freeze_detect",
+    "itemDesc": "冻屏信息日志开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "debug_freeze_detect",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "debug_leak_detect",
+    "itemDesc": "系统资源泄漏日志开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "debug_leak_detect",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "show_touch_actions_title",
+    "itemDesc": "显示触摸操作开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "show_touch_actions_title",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "show_touch_actions_trace",
+    "itemDesc": "指针位置开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "show_touch_actions_trace",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "debug_layout",
+    "itemDesc": "显示布局边界开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "debug_layout",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "show_redraw_area",
+    "itemDesc": "显示重绘刷新区域开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "debug_redraw_area",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "redraw_cache_hit_detection",
+    "itemDesc": "缓存是否命中检测开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "debug_redraw_cache_hit_detection",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "overdraw_detect",
+    "itemDesc": "过度绘制检测开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "debug_overdraw",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "force_resizable_app_interfaces",
+    "itemDesc": "强制将应用界面设为可调整大小",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "force_resizable_app_interfaces",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "multi_device_collaboration_service",
+    "itemDesc": "多设备协同增强服务",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "multi_device_collaboration_service_switch",
+    "parentKey": "more_collaboration_settings"
+  },
+  {
+    "itemName": "wlan_to_cell_detail",
+    "itemDesc": "允许使用移动数据加速网络",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "enable_cell_acc_network",
+    "parentKey": "enhance_netmanager"
+  },
+  {
+    "itemName": "smart_cloud_acc",
+    "itemDesc": "允许使用云加速",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "enable_smart_cloud_acc",
+    "parentKey": "enhance_netmanager"
+  },
+  {
+    "itemName": "device_name",
+    "itemDesc": "设备名称",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "device_name_settings_title",
+    "parentKey": "about_device"
+  },
+  {
+    "itemName": "serial_number",
+    "itemDesc": "序列号",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "serial_number",
+    "parentKey": "about_device"
+  },
+  {
+    "itemName": "model_name",
+    "itemDesc": "型号名称",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "model_name",
+    "parentKey": "about_device"
+  },
+  {
+    "itemName": "model_code",
+    "itemDesc": "型号代码",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "model_code",
+    "parentKey": "about_device"
+  },
+  {
+    "itemName": "open_harmony",
+    "itemDesc": "OpenHarmony",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "about_device"
+  },
+  {
+    "itemName": "software_version",
+    "itemDesc": "软件版本",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "software_version",
+    "parentKey": "about_device"
+  },
+  {
+    "itemName": "running_memory",
+    "itemDesc": "运行内存",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "running_memory",
+    "parentKey": "about_device"
+  },
+  {
+    "itemName": "app_info_storage",
+    "itemDesc": "存储",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "app_info_storage_title",
+    "parentKey": "about_device"
+  },
+  {
+    "itemName": "api_version",
+    "itemDesc": "API 版本",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "api_version",
+    "parentKey": "about_device"
+  },
+  {
+    "itemName": "open_harmony_version",
+    "itemDesc": "OpenHarmony 版本",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "openHarmony_version",
+    "parentKey": "about_device"
+  },
+  {
+    "itemName": "screen_resolution",
+    "itemDesc": "屏幕",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "screen_resolution",
+    "parentKey": "about_device"
+  },
+  {
+    "itemName": "baseband_version",
+    "itemDesc": "基带版本",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "baseband_version",
+    "parentKey": "about_device"
+  },
+  {
+    "itemName": "kernel_version",
+    "itemDesc": "内核版本",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "kernel_version",
+    "parentKey": "about_device"
+  },
+  {
+    "itemName": "imei_id",
+    "itemDesc": "IMEI",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "imei_id",
+    "parentKey": "about_device"
+  },
+  {
+    "itemName": "battery_level",
+    "itemDesc": "电池电量",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "battery_level",
+    "parentKey": "status_information_settings"
+  },
+  {
+    "itemName": "battery_status",
+    "itemDesc": "电池状态",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "battery_status",
+    "parentKey": "status_information_settings"
+  },
+  {
+    "itemName": "power_on_duration",
+    "itemDesc": "已开机时长",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "power_on_duration",
+    "parentKey": "status_information_settings"
+  },
+  {
+    "itemName": "ip_address",
+    "itemDesc": "IP 地址",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "ip_address",
+    "parentKey": "status_information_settings"
+  },
+  {
+    "itemName": "bluetooth_address",
+    "itemDesc": "蓝牙地址",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "bluetooth_address",
+    "parentKey": "status_information_settings"
+  },
+  {
+    "itemName": "wlan_mac_address",
+    "itemDesc": "WLAN MAC 地址",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "wlan_mac",
+    "parentKey": "status_information_settings"
+  },
+  {
+    "itemName": "hardware_version",
+    "itemDesc": "硬件版本",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "hardware_version",
+    "parentKey": "status_information_settings"
+  },
+  {
+    "itemName": "atomicservice_debug_enable",
+    "itemDesc": "开发中元服务豁免管控",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "atomicservice_debug_enable",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "wireless_commissioning",
+    "itemDesc": "无线调试",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "wireless_commissioning",
+    "parentKey": "system_wireless_commissioning"
+  },
+  {
+    "itemName": "wireless_device_name",
+    "itemDesc": "设备名称",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "device_name_settings_title",
+    "parentKey": "system_wireless_commissioning"
+  },
+  {
+    "itemName": "ip_address_and_port",
+    "itemDesc": "IP 地址和端口",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "ip_address_and_port",
+    "parentKey": "system_wireless_commissioning"
+  },
+  {
+    "itemName": "transition_animation_scale",
+    "itemDesc": "过渡动画缩放",
+    "itemType": "Select",
+    "itemValues": [
+      "0",
+      "0.5",
+      "1",
+      "1.5",
+      "2",
+      "5",
+      "10"
+    ],
+    "defaultValue": "1",
+    "itemResourceId": "transition_animation_scale_title",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "enlarge_display",
+    "itemDesc": "放大显示",
+    "itemType": "Select",
+    "itemValues": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "defaultValue": "0",
+    "itemResourceId": "elder_care_enlarge_display",
+    "parentKey": "accessibility_elder_care_entry"
+  },
+  {
+    "itemName": "simple_desktop_layout",
+    "itemDesc": "桌面布局",
+    "itemType": "Select",
+    "itemValues": [
+      "Normal",
+      "Simple"
+    ],
+    "itemResourceId": "elder_care_desktop_layout",
+    "parentKey": "accessibility_elder_care_entry"
+  },
+  {
+    "itemName": "time_24_hour",
+    "itemDesc": "24小时制",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "time_24_hour_title",
+    "parentKey": "date_and_time"
+  },
+  {
+    "itemName": "set_automatically",
+    "itemDesc": "自动设置",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "automatic_setting",
+    "parentKey": "date_and_time"
+  },
+  {
+    "itemName": "storage_system_data_other_system_resources",
+    "itemDesc": "其他系统资源",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "storage_system_data_other_system_resources",
+    "parentKey": "storage_settings"
+  },
+  {
+    "itemName": "boot_sound",
+    "itemDesc": "开机铃声",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "boot_sound",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "screen_lock_tone",
+    "itemDesc": "锁屏提示音",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "screen_lock_tone",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "screenshot_prompt_tone",
+    "itemDesc": "截屏提示音",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "screenshot_prompt_tone",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "system_touch_feedback",
+    "itemDesc": "系统触感反馈",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "system_touch_feedback",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "current_ring_tone_phone",
+    "itemDesc": "获取来电铃音",
+    "itemType": "GetCurrentRingtone",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "default_ring_tone_phone",
+    "itemDesc": "恢复来电铃音",
+    "itemType": "RestoreDefaultPhoneRingtone",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "screen_on_time_today",
+    "itemDesc": "今日亮屏时长",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "screen_on_time_today",
+    "parentKey": "battery"
+  },
+  {
+    "itemName": "used_storage_percentage",
+    "itemDesc": "已使用内存百分比",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "storage_settings"
+  },
+  {
+    "itemName": "used_storage",
+    "itemDesc": "使用内存",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "storage_settings"
+  },
+  {
+    "itemName": "total_storage",
+    "itemDesc": "总内存",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "storage_settings"
+  },
+  {
+    "itemName": "app_info_storage_detail",
+    "itemDesc": "CELL ID",
+    "itemType": "GetStorageSpaceOfApp",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "storage_settings"
+  },
+  {
+    "itemName": "current_region",
+    "itemDesc": "当前地区",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "currentRegion",
+    "parentKey": "set_language_region"
+  },
+  {
+    "itemName": "current_time_zone",
+    "itemDesc": "当前时区",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "time_zone_settings_title",
+    "parentKey": "set_language_region"
+  },
+  {
+    "itemName": "current_language",
+    "itemDesc": "当前语言",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "addLanguage",
+    "parentKey": "set_language_region"
+  },
+  {
+    "itemName": "input_default",
+    "itemDesc": "当前输入法",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "input_default",
+    "parentKey": "set_input"
+  },
+  {
+    "itemName": "battery_usage_details",
+    "itemDesc": "应用耗电详情",
+    "itemType": "",
+    "itemValues": [],
+    "itemResourceId": "battery_usage_details",
+    "parentKey": "power_consumption_entry"
+  },
+  {
+    "itemName": "foreground_time_power",
+    "itemDesc": "前台占用时长/耗电量",
+    "itemType": "GetAppUsageDurationAndPower",
+    "itemValues": [],
+    "itemResourceId": "foreground_time_power",
+    "parentKey": "power_consumption_entry"
+  },
+  {
+    "itemName": "background_time_power",
+    "itemDesc": "后台占用时长/耗电量",
+    "itemType": "GetAppUsageDurationAndPower",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "power_consumption_entry"
+  },
+  {
+    "itemName": "end_running_app",
+    "itemDesc": "杀死app",
+    "itemType": "EndRunningApp",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "power_consumption_entry"
+  },
+  {
+    "itemName": "network_information",
+    "itemDesc": "网络",
+    "itemType": "GetSimCardNetwork",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "network_information_settings"
+  },
+  {
+    "itemName": "signal_strength",
+    "itemDesc": "信号强度",
+    "itemType": "GetSimCardSignalStrength",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "network_information_settings"
+  },
+  {
+    "itemName": "mcc_mnc",
+    "itemDesc": "MCC，MNC",
+    "itemType": "GetSimCardMccMnc",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "network_information_settings"
+  },
+  {
+    "itemName": "sms_center_number",
+    "itemDesc": "短信中心号码",
+    "itemType": "GetSimCardSmsCenterNumber",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "network_information_settings"
+  },
+  {
+    "itemName": "mobile_network_type",
+    "itemDesc": "移动网络类型",
+    "itemType": "GetSimCardMobileNetworkType",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "network_information_settings"
+  },
+  {
+    "itemName": "cell_id",
+    "itemDesc": "CELL ID",
+    "itemType": "GetSimCardCellId",
+    "itemValues": [],
+    "itemResourceId": "",
+    "parentKey": "network_information_settings"
+  },
+  {
+    "itemName": "not_disturb_turn_on",
+    "itemDesc": "免打扰",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "not_disturb_title",
+    "parentKey": "not_disturb_entry"
+  },
+  {
+    "itemName": "repeat_call_ringing",
+    "itemDesc": "重复来电响铃",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "repeat_call_ringing",
+    "parentKey": "incoming_call"
+  },
+  {
+    "itemName": "pad_smart_power_save",
+    "itemDesc": "智能保电",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "pad_smart_power_save_title",
+    "parentKey": "more_battery_settings"
+  },
+  {
+    "itemName": "vibrate_when_ring",
+    "itemDesc": "响铃时振动",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "vibrate_when_ring",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "Intelligent_call_noise_reduction",
+    "itemDesc": "通话智能降噪", 
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "Intelligent_call_noise_reduction",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "sound_quality_effect",
+    "itemDesc": "音质",
+    "itemType": "select",
+    "itemValues": [],
+    "itemResourceId": "sound_quality_effect",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "ringtone_vibration_adaptive",
+    "itemDesc": "铃声振动自适应",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "ringtone_vibration_adaptive",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "volume_key_control_message",
+    "itemDesc": "音量键默认控制",
+    "itemType": "select",
+    "itemValues": [],
+    "itemResourceId": "volume_key_control_message",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "stereo_enhancement",
+    "itemDesc": "立体声增强",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "stereo_enhancement",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "dial_tone",
+    "itemDesc": "拨号按键音",
+    "itemType": "Select",
+    "itemValues": [
+      "no_sound",
+      "default_ringtone",
+      "music_melodies"
+    ],
+    "itemResourceId": "dial_Tone",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "ai_insightintent_debug",
+    "itemDesc": "意图框架调试",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "ai_insightintent_debug_settings_title",
+    "parentKey": "insight_intent_settings"
+  },
+  {
+    "itemName": "usb_not_charging",
+    "itemDesc": "关闭充电",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "usb_not_charging_title",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "wifi_open_logs",
+    "itemDesc": "开启 WLAN 详细日志记录",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "wifi_Open_Logs",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "keyboard_repeate_rate",
+    "itemDesc": "键重复速度滑动条",
+    "itemType": "Seekbar",
+    "itemValues": [],
+    "itemShowSteps" : true,
+    "itemMaxValue": 64,
+    "itemMinValue": 0,
+    "itemStepValue": 8,
+    "itemResourceId": "key_repetition_rate"
+  },
+  {
+    "itemName": "keyboard_repeate_delay",
+    "itemDesc": "键重复延迟滑动条",
+    "itemType": "Seekbar",
+    "itemValues": [],
+    "itemShowSteps" : true,
+    "itemMaxValue": 1000,
+    "itemMinValue": 300,
+    "itemStepValue": 100,
+    "itemResourceId": "key_repetition_delay"
+  },
+  {
+    "itemName": "decoder_settings",
+    "itemDesc": "蓝牙音频解码器",
+    "itemType": "Select",
+    "itemValues":  [
+      "L2HC",
+      "SBC",
+      "AAC"
+    ],
+    "itemResourceId": "bluetooth_audio_decoder",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "bit_rate_settings",
+    "itemDesc": "蓝牙音频L2HC码率",
+    "itemType": "Select",
+    "itemValues": [
+      "96kbps",
+      "128kbps",
+      "192kbps",
+      "256kbps",
+      "320kbps",
+      "480kbps",
+      "640kbps",
+      "960kbps",
+      "ABR"
+    ],
+    "itemResourceId": "bluetooth_audio_bit_rate",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "sampling_rate_settings",
+    "itemDesc": "蓝牙音频采样率",
+    "itemType": "Select",
+    "itemValues": [
+      "44.1KHz",
+      "48KHz",
+      "88.2KHz",
+      "96KHz"
+    ],
+    "itemResourceId": "bluetooth_audio_sampling_rate",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "bits_per_sample_settings",
+    "itemDesc": "蓝牙音频采样位深",
+    "itemType": "Select",
+    "itemValues": [
+      "16KHz",
+      "24KHz",
+      "32KHz"
+    ],
+    "itemResourceId": "bluetooth_audio_bits_per_sample",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "channel_mode_settings",
+    "itemDesc": "蓝牙音频声道数",
+    "itemType": "Select",
+    "itemValues": [
+      "mono",
+      "stereo"
+    ],
+    "itemResourceId": "bluetooth_audio_channel_mode",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "frame_length_settings",
+    "itemDesc": "蓝牙音频帧长",
+    "itemType": "Select",
+    "itemValues": [
+      "5dms frame mode",
+      "10dms frame mode"
+    ],
+    "itemResourceId": "bluetooth_audio_frame_length",
+    "parentKey": "developer_options_settings"
+  },
+  {
+    "itemName": "settings_vpn",
+    "itemDesc": "VPN",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "VPN",
+    "parentKey": "vpn_settings"
+  },
+  {
+    "itemName": "international_internet",
+    "itemDesc": "国际上网服务",
+    "itemType": "",
+    "itemValues": [],
+    "itemResourceId": "mobile_net_global_internet_service",
+    "parentKey": "international_internet_entry"
+  },
+  {
+    "itemName": "vpn_list_add",
+    "itemDesc": "添加 VPN 网络",
+    "itemType": "Status",
+    "itemValues": [],
+    "itemResourceId": "vpn_list_add",
+    "parentKey": "vpn_settings"
+  },
+  {
+    "itemName": "voice_cancel",
+    "itemDesc": "AI智慧伴唱开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "voice_cancel",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "voice_extract",
+    "itemDesc": "AI人声突显开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "voice_extract",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "call_noise_reduct",
+    "itemDesc": "通话对端降噪开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "call_noise_reduct",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "record_noise_reduct",
+    "itemDesc": "AI降噪录音开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "record_noise_reduct",
+    "parentKey": "volume_settings"
+  },
+  {
+    "itemName": "touch_disable_mode",
+    "itemDesc": "防误触模式开关",
+    "itemType": "Switch",
+    "itemValues": [],
+    "itemResourceId": "touch_disable_mode",
+    "parentKey": "display_settings"
+  }
+]

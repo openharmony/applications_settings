@@ -1,0 +1,12 @@
+{
+  "color": [
+    {
+      "name": "component_ultra_thick_panel",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "statusbar_blend_color",
+      "value": "#FFFFFFFF"
+    }
+  ]
+}

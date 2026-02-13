@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Public/Icon/Arrow/bottom  filled small备份</title>
+    <defs>
+        <path d="M0.800126503,0 L7.19990296,0 C7.64178435,0 8,0.383796734 8,0.857233998 C8,1.0518874 7.9381679,1.24074506 7.82467378,1.39274383 L4.62478556,5.67824427 C4.34874444,6.04793666 3.84524947,6.10787564 3.50019807,5.81212173 C3.45406071,5.77257601 3.41215379,5.72767641 3.37524391,5.67824427 L0.175355679,1.39274383 C-0.10068544,1.02305144 -0.0447415544,0.483600621 0.300309844,0.187846707 C0.442177489,0.066247688 0.618447272,0 0.800126503,0 Z" id="path-1"></path>
+    </defs>
+    <g id="Public/Icon/Arrow/bottom--filled-small备份" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Public/ic_public_spinner" transform="translate(8.000000, 9.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="矩形备份"></g>
+            <g id="编组" mask="url(#mask-2)" fill-opacity="0.901960784">
+                <g transform="translate(-8.000000, -9.000000)" id="Public/Icon/Symbol/Color/Light/Primary">
+                    <rect id="矩形" fill="#000000" x="0" y="0" width="24" height="24"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

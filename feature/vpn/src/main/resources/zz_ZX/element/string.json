@@ -1,0 +1,248 @@
+{
+    "string":[
+        {
+            "name":"vpn_list_add",
+            "value":"[TS_975403]_Add VPN"
+        },
+        {
+            "name":"vpn_connect_confirm",
+            "value":"[TS_975372]_Connect"
+        },
+        {
+            "name":"vpn_edit_serveraddress",
+            "value":"[TS_975391]_Server address"
+        },
+        {
+            "name":"vpn_edit_alias",
+            "value":"[TS_975355]_Name"
+        },
+        {
+            "name":"vpn_edit_cacert",
+            "value":"[TS_975371]_IPsec CA certificate"
+        },
+        {
+            "name":"vpn_connect_username",
+            "value":"[TS_975380]_Username"
+        },
+        {
+            "name":"vpn_edit_searchdomains",
+            "value":"[TS_975359]_DNS search domain"
+        },
+        {
+            "name":"vpn_edit_l2tpsecret",
+            "value":"[TS_975404]_L2TP secret"
+        },
+        {
+            "name":"vpn_state_connec_failed",
+            "value":"[TS_975408]_Connection failed"
+        },
+        {
+            "name":"vpn_edit_ovpn_password",
+            "value":"[TS_975375]_Password"
+        },
+        {
+            "name":"vpn_edit_save",
+            "value":"[TS_975383]_Save"
+        },
+        {
+            "name":"vpn_edit_ipsecidentifier",
+            "value":"[TS_975353]_IPsec identifier"
+        },
+        {
+            "name":"vpn_line_remove_alert_confirm",
+            "value":"[TS_975352]_Delete"
+        },
+        {
+            "name":"vpn_edit_ovpn_protocol",
+            "value":"[TS_975407]_OpenVPN protocol"
+        },
+        {
+            "name":"vpn_state_connec_success",
+            "value":"[TS_975411]_Connected"
+        },
+        {
+            "name":"vpn_edit_ovpn_serveraddress",
+            "value":"[TS_975395]_OpenVPN server address"
+        },
+        {
+            "name":"vpn_edit_cert_from_server",
+            "value":"[TS_975405]_From server"
+        },
+        {
+            "name":"vpn_edit_advanced_collapse",
+            "value":"[TS_975343]_Show less"
+        },
+        {
+            "name":"vpn_connect_password",
+            "value":"[TS_975360]_Password"
+        },
+        {
+            "name":"vpn_change_alert_confirm",
+            "value":"[TS_975409]_OK"
+        },
+        {
+            "name":"vpn_state_disconnected",
+            "value":"[TS_975385]_Disconnected"
+        },
+        {
+            "name":"vpn_edit_ovpn_private_key_psd",
+            "value":"[TS_975350]_Private key password"
+        },
+        {
+            "name":"vpn_edit_cert_not_verify_server",
+            "value":"[TS_975388]_Don't verify server"
+        },
+        {
+            "name":"VPN",
+            "value":"[TS_975384]_VPN"
+        },
+        {
+            "name":"vpn_edit_dnsaddresses",
+            "value":"[TS_975356]_DNS server"
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_port",
+            "value":"[TS_975354]_OpenVPN proxy port"
+        },
+        {
+            "name":"other_users_delete_user_prohibited",
+            "value":"[TS_977575]_Other users cannot delete this user."
+        },
+        {
+            "name":"vpn_edit_ipsecsecret",
+            "value":"[TS_975366]_IPsec pre-shared key"
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_username",
+            "value":"[TS_975412]_OpenVPN proxy username"
+        },
+        {
+            "name":"vpn_edit_servercert",
+            "value":"[TS_975357]_IPsec server certificate"
+        },
+        {
+            "name":"vpn_edit_ovpn_configfile",
+            "value":"[TS_975363]_OpenVPN config file"
+        },
+        {
+            "name":"vpn_edit_ovpn_click_select",
+            "value":"[TS_975392]_Select"
+        },
+        {
+            "name":"vpn_edit_auth_type",
+            "value":"[TS_975413]_OpenVPN auth type"
+        },
+        {
+            "name":"vpn_edit_advanced",
+            "value":"[TS_975414]_Advanced options"
+        },
+        {
+            "name":"vpn_connect_title",
+            "value":"[TS_975361]_Connect to %s"
+        },
+        {
+            "name":"vpn_edit_ovpn_user_cert_file",
+            "value":"[TS_975400]_User certificate"
+        },
+        {
+            "name":"vpn_edit_unuse",
+            "value":"[TS_975386]_Not used"
+        },
+        {
+            "name":"vpn_edit_usercert",
+            "value":"[TS_975345]_IPsec user certificate"
+        },
+        {
+            "name":"vpn_line_disconnect_alert_title",
+            "value":"[TS_975381]_This VPN is already connected."
+        },
+        {
+            "name":"vpn_edit_ovpn_ca_cert_file",
+            "value":"[TS_975348]_CA certificate"
+        },
+        {
+            "name":"vpn_state_disconnecting",
+            "value":"[TS_975401]_Disconnecting…"
+        },
+        {
+            "name":"vpn_connect_save",
+            "value":"[TS_975358]_Save user information"
+        },
+        {
+            "name":"vpn_edit_router",
+            "value":"[TS_975367]_Forwarding route"
+        },
+        {
+            "name":"vpn_line_disconnect_operation_remove",
+            "value":"[TS_975370]_Delete VPN"
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_host",
+            "value":"[TS_975382]_OpenVPN proxy host"
+        },
+        {
+            "name":"vpn_dns_tips",
+            "value":"[TS_975393]_Ex: 8.8.8.8"
+        },
+        {
+            "name":"vpn_edit_ovpn_port",
+            "value":"[TS_975402]_OpenVPN server port"
+        },
+        {
+            "name":"vpn_router_tips",
+            "value":"[TS_975368]_Ex: 10.0.0.0/8"
+        },
+        {
+            "name":"vpn_edit_ovpn_username",
+            "value":"[TS_975373]_Username"
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_password",
+            "value":"[TS_975398]_OpenVPN proxy password"
+        },
+        {
+            "name":"vpn_line_disconnect_alert_confirm",
+            "value":"[TS_975346]_Disconnect"
+        },
+        {
+            "name":"vpn_edit_proxy_advanced",
+            "value":"[TS_975389]_Show proxy"
+        },
+        {
+            "name":"vpn_edit_advanced_expanded",
+            "value":"[TS_975396]_Advanced options"
+        },
+        {
+            "name":"vpn_edit_type",
+            "value":"[TS_975377]_Type"
+        },
+        {
+            "name":"vpn_edit_cert_not_specified",
+            "value":"[TS_975399]_Unspecified"
+        },
+        {
+            "name":"vpn_list_empty",
+            "value":"[TS_975406]_No VPNs"
+        },
+        {
+            "name":"vpn_change_alert_title",
+            "value":"[TS_975387]_Change VPN?"
+        },
+        {
+            "name":"vpn_change_alert_content",
+            "value":"[TS_975410]_This will end the current VPN connection."
+        },
+        {
+            "name":"vpn_error_disconnect_first",
+            "value":"[TS_975374]_Disconnect the VPN first."
+        },
+        {
+            "name":"vpn_state_connect_ing",
+            "value":"[TS_975349]_Connecting…"
+        },
+        {
+            "name":"vpn_line_remove_alert_title",
+            "value":"[TS_975397]_Delete the VPN \"%s\"?"
+        }
+    ]
+}

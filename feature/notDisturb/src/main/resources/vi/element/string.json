@@ -1,0 +1,438 @@
+{
+    "string":[
+        {
+            "name":"not_disturb_turnedon",
+            "value":"Bật",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_six_format",
+            "value":"%1$s, %2$s, %3$s, %4$s, %5$s, %6$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tips_title",
+            "value":"Khi bật tính năng này, cuộc gọi đến sẽ tự động bị từ chối và thông báo sẽ bị tắt tiếng. Báo thức sẽ đổ chuông như bình thường. Trong phần \"Cho phép gián đoạn\", bạn có thể chọn ứng dụng sẽ bị chặn hoặc được cho phép.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_add",
+            "value":"Thêm lịch",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"repeat_call_will_ring_normally",
+            "value":"Cuộc gọi thứ hai trong vòng %d phút từ cùng một số điện thoại sẽ không bị tắt tiếng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"done",
+            "value":"Xong",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tonight_time",
+            "value":"Sẽ luôn bật cho đến %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_edit",
+            "value":"Sửa lịch",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_start_time",
+            "value":"Từ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_call",
+            "value":"Cuộc gọi điện thoại",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"go_to_set",
+            "value":"Vào Cài đặt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_regularly",
+            "value":"Theo lịch",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_maximum_scheduled",
+            "value":"Có thể thêm tối đa %d lịch.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_cancel",
+            "value":"Hủy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_reset",
+            "value":"Bạn có thể thêm lại bất kỳ lúc nào.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_everyone",
+            "value":"Cho phép từ mọi người",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"none_selected_app",
+            "value":"Chưa chọn mục nào",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_only_specified_contacts",
+            "value":"Cho phép từ các liên hệ được chọn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_end_time",
+            "value":"Đến",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_only_favorite_contacts",
+            "value":"Chỉ cho phép từ danh sách ưa thích",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_repeat",
+            "value":"Lặp lại",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tips_settings",
+            "value":"Khi bật tính năng này, cuộc gọi đến và thông báo sẽ không phát ra âm thanh hoặc làm sáng màn hình. Báo thức sẽ đổ chuông như bình thường.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_until_tonight",
+            "value":"Cho đến tối nay",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"zen_mode_schedule_repeat_monday_to_friday",
+            "value":"Thứ Hai đến Thứ Sáu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_notification",
+            "value":"Thông báo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"zen_mode_ruletime_nextday",
+            "value":"%1$s – %2$s (Ngày tiếp theo)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_only_existing_contacts",
+            "value":"Chỉ cho phép từ danh bạ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_reason_read_write_contacts",
+            "value":"Quyền này dùng để đọc và ghi danh bạ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_contacts",
+            "value":"Chọn liên hệ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_confirm",
+            "value":"OK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_app",
+            "value":"Chọn ứng dụng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_scheduled",
+            "value":"Thêm lịch",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_four_format",
+            "value":"%1$s, %2$s, %3$s, %4$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_nextday",
+            "value":"%s (Ngày tiếp theo)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_open",
+            "value":"Bật",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_list_search_empty",
+            "value":"Không có kết quả",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_turn_on_now",
+            "value":"Bật ngay",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"forbid_everyone",
+            "value":"Chặn mọi người",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_closed",
+            "value":"Tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_two_hour",
+            "value":"Trong 2 giờ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tips_dialog",
+            "value":"Khi bật tính năng này, cuộc gọi đến và thông báo sẽ không phát ra âm thanh hoặc làm sáng màn hình. Báo thức sẽ đổ chuông như bình thường.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_repeat",
+            "value":"Không bao giờ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_between",
+            "value":"%1$s – %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_five_format",
+            "value":"%1$s, %2$s, %3$s, %4$s, %5$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_contacts",
+            "value":"Tùy chọn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_everyday",
+            "value":"Hàng ngày",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_title",
+            "value":"Không làm phiền",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_three_format",
+            "value":"%1$s, %2$s, %3$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_allow",
+            "value":"Cho phép gián đoạn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_loading",
+            "value":"Đang tải…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_delete_confirm",
+            "value":"Xóa lịch này?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_two_format",
+            "value":"%1$s, %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_dialog_title",
+            "value":"Cài đặt yêu cầu quyền truy cập Danh bạ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_until_close",
+            "value":"Sẽ luôn bật cho đến khi tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_one_hour",
+            "value":"Trong 1 giờ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_delete",
+            "value":"Xóa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"all_app",
+            "value":"Tất cả ứng dụng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"search_app",
+            "value":"Tìm kiếm ứng dụng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"repeat_call_ringing",
+            "value":"Cho phép cuộc gọi lặp lại",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"none_selected",
+            "value":"Chưa chọn mục nào",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_selected",
+            "value":"Chưa chọn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"has_selected",
+            "value":"Đã chọn",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

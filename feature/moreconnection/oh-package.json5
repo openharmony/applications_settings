@@ -1,0 +1,14 @@
+{
+  "name": "@ohos/settings.moreconnection",
+  "description": "moreconnection feature",
+  "main": "index.ets",
+  "version": "1.0.0",
+  "dependencies": {
+    "@ohos/settings.accessibility": "file:../accessibility",
+    "@ohos/settings.common": "file:../../common",
+    "@ohos/settings.wifi": "file:../../feature/wifi",
+    "@ohos/settings.uikit": "file:../../feature/uikit",
+    "@ohos/settings.nearlink": "file:../../feature/nearlink",
+    '@ohos/settings.display': 'file:../../feature/display',
+  }
+}

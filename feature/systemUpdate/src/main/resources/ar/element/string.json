@@ -1,0 +1,46 @@
+{
+    "string":[
+        {
+            "name":"update_status_download_pause",
+            "value":"تم إيقاف التنزيل مؤقتًا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_version_found_text",
+            "value":"التحديث متاح",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"update_status_downloading",
+            "value":"جاري تنزيل التحديث...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"update_status_wait_install",
+            "value":"يتوفر إصدار جديد",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"patch_installing_title",
+            "value":"التحديث قيد التثبيت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"check_version_status_to_be_reboot",
+            "value":"سيُطبّق التحديث بعد إعادة تشغيل جهازك.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

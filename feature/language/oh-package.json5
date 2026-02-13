@@ -1,0 +1,9 @@
+{
+  "name": "@ohos/settings.language",
+  "description": "language feature",
+  "main": "index.ets",
+  "version": "1.0.0",
+  "dependencies": {
+    "@ohos/settings.common": "file:../../common"
+  }
+}

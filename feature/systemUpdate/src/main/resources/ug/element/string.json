@@ -1,0 +1,46 @@
+{
+    "string":[
+        {
+            "name":"new_version_found_text",
+            "value":"يېڭىلانما بار",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"update_status_downloading",
+            "value":"يېڭىلانما چۈشۈۋاتىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"update_status_wait_install",
+            "value":"يېڭىلانما قاچىلاشنى كۈتۈۋاتىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"update_status_download_pause",
+            "value":"چۈشۈرۈش تورمۇزلاندى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"patch_installing_title",
+            "value":"يېڭىلانما قاچىلىنىۋاتىدۇ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"check_version_status_to_be_reboot",
+            "value":"يېڭى نەشرى قايتا قوزغاتقاندا كۈچكە ئىگە بولىدۇ",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

@@ -1,0 +1,424 @@
+{
+    "string":[
+        {
+            "name":"bluetooth_sharing_and_call_history",
+            "value":"مشاركة جهات الاتصال وسجل المكالمات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_play_music_tips",
+            "value":"يمكنك تغيير هذا في شاشة تفاصيل الجهاز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keyboard",
+            "value":"لوحة المفاتيح",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_connection_strategy_summary",
+            "value":"جارٍ الاتصال\u2026",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keep_auto_play",
+            "value":"إبقاء التشغيل التلقائي ممكّنًا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_pad",
+            "value":"مزامنة مستوى الصوت مع الجهاز اللوحي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"forbidding",
+            "value":"إيقاف",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_disconnecting_summary",
+            "value":"جارٍ قطع الاتصال…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auto_play_music",
+            "value":"تشغيل الموسيقى تلقائيًا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_connecting_summary",
+            "value":"جارٍ الاتصال\u2026",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_connected_summary",
+            "value":"متصل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_fulls_detals",
+            "value":"جميع المعلومات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_profile_hid",
+            "value":"جهاز الإدخال",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unpair",
+            "value":"إلغاء الاقتران",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_connect_auto_play",
+            "value":"سيبدأ تشغيل الموسيقى تلقائيًا عندما يتصل \"%s\".",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_hfp_a2dp_connect_summary",
+            "value":"متصل للمكالمات والوسائط الصوتية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_car",
+            "value":"السيارة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_read_info_auth",
+            "value":"السماح بالوصول إلى الرسائل النصية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_play_music_desc",
+            "value":"السماح لهذا الجهاز بتشغيل الموسيقى تلقائيًا عند الاتصال.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_profile_a2dp",
+            "value":"الإعدادات الصوتية للوسائط",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_pair_failed_message",
+            "value":"رمز الاقتران خطأ، أو حدثت مشكلة في إعداد الجهاز الذي تقترن به. يُرجى إعادة المحاولة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_pc",
+            "value":"مزامنة مستوى الصوت مع الحاسوب",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_speaker",
+            "value":"سماعة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_profile_map",
+            "value":"السماح بالوصول إلى الرسائل النصية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_name_and_numbers_only",
+            "value":"الاسم والرقم فقط",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed1",
+            "value":"اضغط على زر في لوحة المفاتيح لبدء الاتصال مرة أخرى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_settings_title",
+            "value":"اسم الجهاز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_type_glasses",
+            "value":"نظارة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"help",
+            "value":"المساعدة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_anti_theft_tip",
+            "value":"العملية غير متوفرة على جهاز العرض.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_a2dp_connect_summary",
+            "value":"متصل للوسائط الصوتية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_hearing",
+            "value":"أداة السمع المساعدة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_phone",
+            "value":"مزامنة مستوى الصوت مع الهاتف",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_help_popup_content",
+            "value":"لم تستطع العثور على الجهاز المطلوب؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_not_share",
+            "value":"عدم المشاركة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_type_headset",
+            "value":"سماعة الرأس",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bt_connect_failed_message",
+            "value":"يتعذّر الاتصال بجهاز %1$s. الأسباب المُحتملة:\n%2$s. يقع الجهاز خارج نطاق التغطية (%3$s أمتار) أو البلوتوث موقوفًا به.\n%4$s. الجهاز متصل بجهاز آخر.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_pair_failed2",
+            "value":"مفتاح الاقتران أو رقم الدخول خطأ. يتعذّر الاقتران مع \"%s\".",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_pair_failed3",
+            "value":"رفض \"%s\" الاقتران.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_pair_failed1",
+            "value":"تعذر التواصل مع \"%1$s\".\n\nوربما يعود ذلك للأسباب التالية:\n\n%2$s. تم إيقاف تشغيله أو ليس في وضع الاقتران. يمكنك الاطلاع على دليل المستخدم للجهاز للحصول على المساعدة.\n%3$s. الجهاز بعيد جدًا. يُرجى التأكّد من وجوده ضمن مسافة لا تزيد عن %4$s أمتار من هذا الجهاز ثم أعد المحاولة.\n%5$s. الجهاز متصل بجهاز آخر. إذا كان الأمر كذلك، فيُرجى قطع الاتصال وإعادة المحاولة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_type_watch",
+            "value":"الساعة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_profile_hfp",
+            "value":"القناة الصوتية للمكالمات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed3",
+            "value":"حاول إعادة الاتصال من السيارة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_hfp_connect_summary",
+            "value":"متصل للمكالمات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed2",
+            "value":"حاول إعادة الاتصال من الفأرة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed4",
+            "value":"تم بلوغ الحد الأقصى لعدد اتصالات الأجهزة. يُرجى قطع اتصال بعض الأجهزة وإعادة المحاولة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"تحظر إدارة المؤسسة هذه العملية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_settings_title",
+            "value":"البلوتوث",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_bonded_devices",
+            "value":"الأجهزة المقترنة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_no_paired_devices",
+            "value":"لا توجد أجهزة مقترنة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"phone",
+            "value":"الهاتف",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"matebook",
+            "value":"الحاسوب المحمول",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_settings",
+            "value":"الإعدادات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"soundx",
+            "value":"جهاز الصوت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth",
+            "value":"البلوتوث",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pencil",
+            "value":"القلم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mouse",
+            "value":"الفأرة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pad",
+            "value":"الجهاز اللوحي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_printer",
+            "value":"طابعة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_car_key",
+            "value":"مفتاح السيارة",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

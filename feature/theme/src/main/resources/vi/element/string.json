@@ -1,0 +1,298 @@
+{
+    "string":[
+        {
+            "name":"table_theme",
+            "value":"Màn hình chính",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_off_theme",
+            "value":"Luôn hiển thị",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"the_theme",
+            "value":"Chủ đề",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_settings_title",
+            "value":"Màn hình và độ sáng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"theme_settings_title",
+            "value":"Màn hình chính và phong cách",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"covertheme_settings_title",
+            "value":"Màn hình chính, màn hình ngoài và kiểu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Hủy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"universe",
+            "value":"Vũ trụ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pinnacle",
+            "value":"Đỉnh cao",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_theme",
+            "value":"Cài đặt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_all_day_display",
+            "value":"Cả ngày",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_signature",
+            "value":"Chữ ký màn hình khóa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keywords_outer_theme",
+            "value":"Chủ đề màn hình ngoài",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_from_gallery",
+            "value":"Chọn từ Bộ sưu tập",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_theme",
+            "value":"Biểu tượng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"font_style_theme",
+            "value":"Phông chữ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_sign_entry",
+            "value":"Cách thiết lập chữ ký màn hình khóa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"apply",
+            "value":"Áp dụng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_theme",
+            "value":"Luôn hiển thị",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keywords_outer_facard",
+            "value":"Tiện ích dịch vụ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"random_display_of_photos",
+            "value":"Xáo trộn ảnh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_style_theme",
+            "value":"Kiểu biểu tượng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"my_wallpaper",
+            "value":"Hình nền của tôi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switch_desktop_style_dialog_warning_message",
+            "value":"Thao tác này sẽ đăng xuất bạn khỏi tài khoản người dùng hiện tại. Mọi dữ liệu ứng dụng chưa lưu sẽ bị mất.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_ways_display_awake_scheduled",
+            "value":"Theo lịch",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_ways_display_awake_off",
+            "value":"Tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wall_paper_theme",
+            "value":"Hình nền",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"digital_clock",
+            "value":"Đồng hồ kỹ thuật số",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"art_signature",
+            "value":"Chữ ký cá nhân hóa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"lock_card",
+            "value":"Tiện ích",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"homescreen",
+            "value":"Màn hình chính",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switch_desktop_style",
+            "value":"Thay đổi phong cách màn hình chính?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_sure",
+            "value":"OK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_ways_display_awake_intelligent",
+            "value":"Thông minh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_online_wallpapers",
+            "value":"Hình nền khác",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"my_theme_settings_title",
+            "value":"Chủ đề của tôi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"lockscreen",
+            "value":"Màn hình khóa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wallpaper_title",
+            "value":"Hình nền",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uncompleted",
+            "value":"Tính năng sắp ra mắt.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"central_axis_personalization",
+            "value":"Viền ảo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_settings",
+            "value":"Màn hình khóa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_font_creation_service",
+            "value":"Dịch vụ tạo phông chữ màn hình khóa",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

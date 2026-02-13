@@ -1,0 +1,44 @@
+{
+  "strarray": [
+    {
+      "name":"ovpen_auth_type",
+      "value":[
+        {
+          "value":"ئىجازەتنامە (TLS)",
+          "attr":{
+            "priority":"translate"
+          }
+        },
+        {
+          "value":"پارول",
+          "attr":{
+            "priority":"translate"
+          }
+        },
+        {
+          "value":"ئىجازەتنامە ۋە پارول (TLS)",
+          "attr":{
+            "priority":"translate"
+          }
+        }
+      ]
+    },
+    {
+      "name":"ovpn_protocol",
+      "value":[
+        {
+          "value":"\u200fTCP",
+          "attr":{
+            "priority":"translate"
+          }
+        },
+        {
+          "value":"\u200fUDP",
+          "attr":{
+            "priority":"translate"
+          }
+        }
+      ]
+    }
+  ]
+}

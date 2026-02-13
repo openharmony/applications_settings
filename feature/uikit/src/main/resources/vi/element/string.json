@@ -1,0 +1,928 @@
+{
+    "string":[
+        {
+            "name":"display_mode_font_weight_bold",
+            "value":"Đậm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"page_load_failed_message",
+            "value":"Không thể tải màn hình này. Vui lòng thử mở lại.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_vibrate",
+            "value":"Không có",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_normal",
+            "value":"Bình thường",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"system_rollback",
+            "value":"Hoàn nguyên hệ thống",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"charge_time_segment",
+            "value":"Đang sạc",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_system_tips",
+            "value":"Ở Chế độ Giao diện tối màu, màu của thanh tác vụ sẽ trở nên tối hơn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_size_simplicity",
+            "value":"Giản đơn vô tận",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"only_supports_synchronized_vibration_with_system_ringtone",
+            "value":"Chỉ sử dụng nhạc chuông hệ thống.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_edit_device_name",
+            "value":"Đổi tên",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_hlink_description",
+            "value":"Kết nối không cần mật khẩu. Chỉ cần đưa thiết bị của bạn lại gần bộ định tuyến và nhấn nút \"%s\" khi đèn nhấp nháy.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_this_theme",
+            "value":"Gỡ chủ đề này?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_dialog_title",
+            "value":"Không bật được tùy chọn nhà phát triển",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_settings_summary",
+            "value":"Tên này sẽ hiển thị trên các thiết bị khác khi bạn tương tác, chia sẻ hoặc kết nối với các thiết bị đó qua Bluetooth, WLAN Direct hoặc điểm phát sóng cá nhân.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_multiWeight",
+            "value":"Không khả dụng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_bond_device_name",
+            "value":"Tên thiết bị",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_size_tip",
+            "value":"Thao tác này sẽ không áp dụng cho thanh tác vụ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_precision_title",
+            "value":"Cài đặt nâng cao",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"repeat_name_warning",
+            "value":"Không thể đặt trùng với tên mạng WLAN đã kết nối, vui lòng thử lại.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_title_ok",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wlan_scan_title",
+            "value":"Quét WLAN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"font_apply_failed",
+            "value":"Không áp dụng được phông chữ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_light",
+            "value":"Nhạt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uncompleted",
+            "value":"Tính năng sắp ra mắt.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_name_max",
+            "value":"Tên vượt quá giới hạn độ dài",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fp_do_not_support_mini_screen_new",
+            "value":"Chế độ Một tay không khả dụng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vibrate_synchronize_with_ringtone",
+            "value":"Đã đồng bộ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_restored",
+            "value":"Ứng dụng đã được khôi phục.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_theme_info",
+            "value":"Chủ đề này cùng với hình nền và gói biểu tượng đi kèm sẽ bị xóa.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_bond_device_type",
+            "value":"Loại thiết bị",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hotspot_blocklist_limit",
+            "value":"Có thể thêm tối đa %d thiết bị.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_apply_failed",
+            "value":"Không áp dụng được kiểu biểu tượng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_to_blocklist",
+            "value":"Chặn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_device_name_title",
+            "value":"Thiết bị của bạn được hiển thị với các thiết bị Bluetooth ở gần dưới tên \"%1$s\". %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"desktop_style_tip",
+            "value":"Chọn kiểu thanh tác vụ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_text_size",
+            "value":"Cỡ chữ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_dialog_message",
+            "value":"Việc bật tùy chọn nhà phát triển có thể khiến thiết bị của bạn dễ bị tấn công bảo mật. Trước khi tiếp tục, bạn cần tắt Khiên an toàn trong Cài đặt > Quyền riêng tư và bảo mật.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_services",
+            "value":"Dịch vụ Vị trí",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_Theme_App_massage",
+            "value":"Bạn cần cài đặt ứng dụng Chủ đề để sử dụng tính năng này.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_title_got_it",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_normal",
+            "value":"Thường",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"icon_style_stereoscopic",
+            "value":"Lập thể",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wall_paper_applied",
+            "value":"Đã áp dụng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fp_duplicated_name_toast",
+            "value":"Tên đang được sử dụng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_modify_tips",
+            "value":"Tên này sẽ hiển thị trên các thiết bị khác khi bạn tương tác, chia sẻ hoặc kết nối với các thiết bị đó qua Bluetooth, điểm phát sóng cá nhân hoặc USB.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_size_restore_default",
+            "value":"Đặt lại",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_small",
+            "value":"Nhỏ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove_from_blocklist",
+            "value":"Bỏ chặn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wall_paper_application",
+            "value":"Áp dụng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_from_blocklist_disconnect",
+            "value":"\"%s\" sẽ có thể kết nối lại với điểm phát sóng của thiết bị này.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_boldest",
+            "value":"Đậm nhất",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_text_weight",
+            "value":"Độ đậm văn bản",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"icon_apply_successd",
+            "value":"Đã áp dụng kiểu biểu tượng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"window_animation_title",
+            "value":"Thu nhỏ cực tiểu cửa sổ bằng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"window_animation_attraction",
+            "value":"Hoạt ảnh dạng thần đèn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_size",
+            "value":"Kích cỡ biểu tượng màn hình chính",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enableTheme",
+            "value":"Đang áp dụng chủ đề…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dock_color_style",
+            "value":"Màu sắc của thanh tác vụ thích ứng với",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_system",
+            "value":"Chế độ hiển thị",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ok",
+            "value":"OK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge4",
+            "value":"Siêu lớn (4)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_large",
+            "value":"Lớn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"applyIcon",
+            "value":"Đang áp dụng biểu tượng…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recover",
+            "value":"Khôi phục",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hot_spot_block_list",
+            "value":"Danh sách chặn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge2",
+            "value":"Siêu lớn (2)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge3",
+            "value":"Siêu lớn (3)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"block_list_tips",
+            "value":"Các thiết bị trong danh sách chặn không được phép kết nối với điểm phát sóng cá nhân của bạn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"window_animation_default",
+            "value":"Hoạt ảnh mặc định",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_time_zone",
+            "value":"Cần bật %s để tự động đặt múi giờ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"eye_comfort_tick",
+            "value":"Chế độ Làm dịu mắt lọc bỏ ánh sáng xanh giúp giảm mỏi mắt. Khi bật chế độ này, màn hình sẽ có tông màu ấm hơn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scan_for_hotspots",
+            "value":"Quét để kết nối",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge",
+            "value":"Siêu lớn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove",
+            "value":"Gỡ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete",
+            "value":"Xóa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_window_tips",
+            "value":"Thanh tác vụ sẽ thay đổi màu sắc theo màu của hình nền hoặc nội dung của cửa sổ được phóng to.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_common_security",
+            "value":"Các dịch vụ bảo mật cơ bản cần kết nối Internet, đọc thông tin vị trí cũng như đọc và tải lên/truyền danh sách ứng dụng đã cài đặt, (các) số điện thoại của thiết bị này và thông tin vị trí gần đúng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wlan_scan_content",
+            "value":"Cải thiện độ chính xác của chức năng định vị bằng cách cho phép các ứng dụng và dịch vụ quét tìm mạng WLAN bất kỳ lúc nào, ngay cả khi WLAN bị tắt.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_window",
+            "value":"Hình nền và cửa sổ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_size_extra_large",
+            "value":"Rất lớn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"modify",
+            "value":"Đổi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"font_apply_successd",
+            "value":"Đã áp dụng phông chữ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm_change_name",
+            "value":"Việc thay đổi tên thiết bị sẽ tắt điểm phát sóng cá nhân của bạn. Vẫn thay đổi?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recover_Theme_App",
+            "value":"Khôi phục ứng dụng Chủ đề?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_to_blocklist_disconnect",
+            "value":"\"%s\" sẽ được thêm vào danh sách chặn và ngắt kết nối khỏi điểm phát sóng của bạn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"name_repeat_warning",
+            "value":"Không thể trùng với mạng WLAN mà bạn đang kết nối",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_precision_text",
+            "value":"Để cải thiện độ chính xác của chức năng định vị, các ứng dụng và dịch vụ có thể quét tìm mạng WLAN ngay cả khi WLAN bị tắt. Bạn có thể thay đổi thiết lập này trong %s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"desktop_style_title",
+            "value":"Kiểu màn hình chính",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"Hủy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vassistant_settings",
+            "value":"Celia",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"input_max_length_message",
+            "value":"Bạn đã nhập quá nhiều ký tự.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"change_device_name",
+            "value":"Sửa tên thiết bị",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_lightest",
+            "value":"Nhạt nhất",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"other_wlan",
+            "value":"Thiết bị đã kết nối",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attention",
+            "value":"Lưu ý",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dock_auto_hide_style",
+            "value":"Ẩn thanh dock khi cửa sổ được phóng to hoặc tách ra",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title",
+            "value":"Tiêu đề",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"insufficient_storage_toast",
+            "value":"Không cung cấp được dịch vụ chủ đề do bộ nhớ trong không đủ. Xóa tệp tin để giải phóng dung lượng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_softwareupdate",
+            "value":"Các dịch vụ Cập nhật phần mềm cần kết nối Internet và đọc danh sách các ứng dụng đã cài đặt.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_fusion_search",
+            "value":"Dịch vụ Tìm kiếm hợp nhất cần kết nối Internet và đọc danh sách ứng dụng đã cài đặt, dữ liệu phương tiện (như hình ảnh, video và âm thanh), dữ liệu tệp tin, danh bạ, tin nhắn SMS và dữ liệu Sự kiện trên Lịch.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_system_storage",
+            "value":"Các dịch vụ lưu trữ của hệ thống cần đọc dữ liệu Sự kiện trên Lịch, đọc và sửa đổi danh bạ cũng như dữ liệu nhật ký cuộc gọi.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_basic_system_analysis",
+            "value":"Các dịch vụ phân tích hệ thống cơ bản cần kết nối Internet, đọc thông tin chạy thiết bị và tải lên/truyền thông tin đó dưới dạng ẩn danh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_device_communication",
+            "value":"Các dịch vụ liên lạc thiết bị cần kết nối Internet, đồng thời đọc số điện thoại, IMEI, nội dung tin nhắn SMS/MMS và thông tin vị trí của thiết bị này.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_authentication",
+            "value":"Dịch vụ xác thực cần kết nối Internet để đọc danh sách các ứng dụng đã cài đặt.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_atomicservice",
+            "value":"Khung Năng lực tính năng yêu cầu kết nối Internet, cũng như đọc và tải lên/truyền danh sách các ứng dụng đã cài đặt.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_management",
+            "value":"Các dịch vụ quản lý trong Trung tâm Bảo mật và Quyền riêng tư cần đọc thông tin vị trí, hình ảnh, video và danh sách ứng dụng đã cài đặt, cũng như đọc, sửa đổi danh bạ, tin nhắn và nhật ký cuộc gọi.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_auto_discovery",
+            "value":"Các dịch vụ tự động phát hiện cần kết nối Internet, sử dụng Bluetooth và NFC, đọc và tải lên/truyền địa chỉ MAC của Bluetooth và WLAN, cũng như bật máy ảnh để quét mã.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_options",
+            "value":"Tùy chọn khác",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_device_activation",
+            "value":"Các dịch vụ kích hoạt thiết bị yêu cầu kết nối Internet cũng như cần đọc và tải lên/truyền thông tin vị trí gần đúng.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_picker_less",
+            "value":"Các dịch vụ chọn cần đọc dữ liệu phương tiện (hình ảnh, video và âm thanh), danh bạ, dữ liệu tệp tin và danh sách ứng dụng đã cài đặt, cũng như bật máy ảnh và micrô. Dịch vụ chọn bản đồ cần kết nối Internet để đọc và tải lên/truyền thông tin vị trí.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_super_device",
+            "value":"Các dịch vụ Siêu thiết bị cần kết nối Internet, sử dụng Bluetooth và WLAN, bật Bluetooth và WLAN, cũng như đọc, tải lên/truyền địa chỉ MAC của Bluetooth và WLAN.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_carrier",
+            "value":"Các dịch vụ nhà mạng cần kết nối Internet, đọc và tải lên/truyền số điện thoại, IMEI, địa chỉ MAC của Bluetooth và WLAN, thông tin vị trí gần đúng của thiết bị này, cũng như gửi và nhận tin nhắn SMS.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"nearlink_and_bluetooth_device_name_title",
+            "value":"Thiết bị của bạn được hiển thị với các thiết bị ở gần dưới tên \"%1$s\". %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"nearlink_and_bluetooth",
+            "value":"NearLink và Bluetooth",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"check_the_detail",
+            "value":"Chi tiết",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"be_chosen",
+            "value":"Đã chọn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"touch_screen_reader_message",
+            "value":"Khi Trình đọc màn hình được bật, các cài đặt liên quan đến màn hình cảm ứng sẽ không dùng được.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_smaller",
+            "value":"Giảm kích cỡ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"close_menu",
+            "value":"Đóng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_selected_click_tips",
+            "value":"Chưa chọn, chạm đúp để kích hoạt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_bigger",
+            "value":"Tăng kích cỡ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_be_chosen",
+            "value":"Chưa chọn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_fatter",
+            "value":"Tăng độ đậm văn bản",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_thinner",
+            "value":"Giảm độ đậm văn bản",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"disable_modify_wallpaper_tips",
+            "value":"Tính năng này đã bị tắt bởi tổ chức của bạn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"back_to_parent_menu",
+            "value":"Trở lại",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_selected_click_tips",
+            "value":"Chạm đúp để chọn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"has_selected_click_tips",
+            "value":"Chạm đúp để bỏ chọn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"only_bluetooth_on",
+            "value":"Bluetooth đang bật",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_passkey",
+            "value":"Dịch vụ khóa mật khẩu yêu cầu kết nối Internet, đồng thời cần bật và sử dụng Bluetooth.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_link_speed",
+            "value":"%s Mbps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_begin_line",
+            "value":"%1$s. %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

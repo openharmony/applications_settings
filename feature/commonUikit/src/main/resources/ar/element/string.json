@@ -1,0 +1,81 @@
+{
+    "string":[
+        {
+            "name":"go_to_login",
+            "value":"تسجيل الدخول",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_update_fail",
+            "value":"يتعذّر تغيير الاسم. يُرجى إعادة المحاولة لاحقًا.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"network_tips",
+            "value":"اتصل بشبكة أولاً.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_wait_tip",
+            "value":"قيد التطبيق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"note",
+            "value":"ملاحظة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_settings_summary_with_near_link",
+            "value":"سيظهر هذا الاسم على الأجهزة الأخرى عند التفاعل معها، أو المشاركة معها، أو الاتصال بها عبر البلوتوث، أو NearLink، أو نقطة اتصال شخصية، أو USB.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"input_max_length_message",
+            "value":"لقد أدخلت حروفًا كثيرة للغاية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_check_fail",
+            "value":"جرّب اسمًا مختلفًا.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_search",
+            "value":"بحث",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_options",
+            "value":"المزيد من الخيارات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"navigation_back",
+            "value":"رجوع",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

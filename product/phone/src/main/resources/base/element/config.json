@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "plugin_json",
+      "value": "{\"pluginSlot\": \"wifi\",\"pluginTemplateName\": \"pages/wifi/model/WifiWindowPage.js\",\"pluginDeviceType\":\"default\",\"pluginIconType\": \"toggle\",\"subPageClickInfo\": {\"clickType\": \"window\", \"abilityType\": \"ability\", \"windowPosition\": 1, \"windowHeight\": 398, \"windowType\": \"common\", \"bundleName\": \"com.ohos.settings\", \"abilityName\": \"WifiWindowSettingsAbility\"}}"
+    },
+    {
+      "name": "plugin_json_bluetooth",
+      "value": "{\"pluginSlot\": \"bluetooth\",\"pluginTemplateName\": \"pages/bluetooth/model/BluetoothWindowPage.js\",\"pluginDeviceType\":\"default\",\"pluginIconType\": \"toggle\",\"subPageClickInfo\": {\"clickType\": \"window\", \"abilityType\": \"ability\", \"windowPosition\": 1, \"windowHeight\": 398, \"windowType\": \"common\", \"bundleName\": \"com.ohos.settings\", \"abilityName\": \"BluetoothWindowSettingsAbility\"}}"
+    },
+    {
+      "name": "plugin_json_wifi_ui_extension",
+      "value": "{\"pluginSlot\": \"wifi_ui_extension\",\"pluginTemplateName\": \"pages/wifi/model/WifiWindowPage.js\",\"pluginDeviceType\":\"default\",\"pluginIconType\": \"toggle\",\"subPageClickInfo\": {\"clickType\": \"window\", \"abilityType\": \"ability\", \"windowPosition\": 1, \"windowHeight\": 398, \"windowType\": \"common\", \"bundleName\": \"com.ohos.settings\", \"abilityName\": \"WifiUIExtensionSettingsAbility\"}}"
+    },
+    {
+      "name": "plugin_json_bluetooth_ui_extension",
+      "value": "{\"pluginSlot\": \"bluetooth_ui_extension\",\"pluginTemplateName\": \"pages/bluetooth/model/BluetoothWindowPage.js\",\"pluginDeviceType\":\"default\",\"pluginIconType\": \"toggle\",\"subPageClickInfo\": {\"clickType\": \"window\", \"abilityType\": \"ability\", \"windowPosition\": 1, \"windowHeight\": 398, \"windowType\": \"common\", \"bundleName\": \"com.ohos.settings\", \"abilityName\": \"BluetoothUIExtensionSettingsAbility\"}}"
+    },
+    {
+      "name": "plugin_status_bar_pc_wifi",
+      "value": "{\"pluginSlot\":\"status_bar_wifi_panel\",\"pluginDeviceType\":\"default\",\"pluginTemplateName\":\"pages/wifi/PluginWifiIcon.js\",\"pluginBackTemplateName\":\"pages/wifi/PluginWifiWhiteIcon.js\",\"pluginIconTypepluginIconType\":\"small\",\"pluginPosition\":\"right\",\"pluginPriority\":1,\"clickInfo\": {\"clickType\":\"window\",\"windowType\":\"large\",\"windowHeight\":119,\"abilityName\":\"PcModeWifiWindowSettingsAbility\"}}"
+    },
+    {
+      "name": "plugin_status_bar_pc_bluetooth",
+      "value": "{\"pluginSlot\":\"status_bar_bluetooth_panel\",\"pluginDeviceType\":\"default\",\"pluginTemplateName\":\"Setting/Bluetooth/view/PcModePluginBluetoothIcon.js\",\"pluginBackTemplateName\":\"Setting/Bluetooth/view/PcModePluginBluetoothWhiteIcon.js\",\"pluginIconType\":\"small\",\"pluginPosition\":\"right\",\"pluginPriority\":1,\"clickInfo\": {\"clickType\":\"window\",\"windowType\":\"large\",\"windowHeight\":119,\"abilityName\":\"PcModeBluetoothWindowSettingsAbility\"}}"
+    }
+  ]
+}

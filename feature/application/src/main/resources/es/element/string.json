@@ -1,0 +1,284 @@
+{
+    "string":[
+        {
+            "name":"app_info_version",
+            "value":"Versión %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_application_text",
+            "value":"Más aplicaciones",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall",
+            "value":"Desinstalar",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Cancelar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"system_default",
+            "value":"predeterminado",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_tittle_cancel",
+            "value":"Cancelar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_replace",
+            "value":"Cambiar",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_list_loading_message",
+            "value":"Cargando…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update",
+            "value":"Desinstalar actualizaciones",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_networking_wlan_only",
+            "value":"WLAN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_force_stop",
+            "value":"Detener",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"service_disable_text",
+            "value":"Deshabilitar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_apps_text",
+            "value":"Restaurar aplicaciones",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall_unused_app",
+            "value":"Desinstalar aplicaciones no utilizadas",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update_title",
+            "value":"¿Desinstalar actualizaciones de %s?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_atomic_service_text",
+            "value":"Eliminar este servicio",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_to_forcibly_stop_descriptions",
+            "value":"Si fuerzas la detención de una aplicación, se pueden producir errores.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"default_mail",
+            "value":"Aplicación de correo predeterminada",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"service_enable_text",
+            "value":"Habilitar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall_app_prompt",
+            "value":"Ahorra %1$s de espacio de almacenamiento desinstalando aplicaciones que no usas nunca.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"empty_service",
+            "value":"Sin servicios",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"service_remove_text",
+            "value":"Eliminar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_meta_service_text",
+            "value":"Restaurar servicios",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_networking_cellular_only",
+            "value":"Datos móviles",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_to_forcibly_stop_text",
+            "value":"¿Forzar detención de esta aplicación?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_networking_wlan_and_cellular",
+            "value":"WLAN y datos móviles",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_allow_access",
+            "value":"Permitir que %s acceda a",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"is_delete_form",
+            "value":"¿Eliminar %s?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm_replacement_content",
+            "value":"Cambiar el navegador predeterminado puede aumentar el consumo de batería y el uso de datos, y también puede poner en riesgo tu privacidad. Se recomienda mantener el navegador predeterminado.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"default_browser",
+            "value":"Navegador predeterminado",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_confirm",
+            "value":"¿Desinstalar esta aplicación?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update_confirm",
+            "value":"Esto reemplazará la versión actual de la aplicación por la versión de fábrica.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"view_details",
+            "value":"Ver detalles",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_networking",
+            "value":"Acceso a la red",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_live_view",
+            "value":"Info actualizada",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_to_disable_descriptions",
+            "value":"Si se deshabilita una aplicación preinstalada, es posible que otras aplicaciones no funcionen correctamente.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"compatible_application_text",
+            "value":"Aplicaciones compatibles",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_to_disable_text",
+            "value":"¿Deshabilitar esta aplicación?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_replacement",
+            "value":"¿Confirmas que quieres cambiarlo?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_matching_results",
+            "value":"Sin resultados coincidentes",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

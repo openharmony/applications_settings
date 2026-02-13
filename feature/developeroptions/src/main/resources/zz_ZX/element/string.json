@@ -1,0 +1,208 @@
+{
+    "string":[
+        {
+            "name":"sunlight_readability_title",
+            "value":"[TS_978923]_Increase readability under sunlight"
+        },
+        {
+            "name":"button_tittle_cancel",
+            "value":"[TS_806126]_Cancel"
+        },
+        {
+            "name":"whether_usb_debug_title",
+            "value":"[TS_878190]_Allow USB debugging?"
+        },
+        {
+            "name":"revocation_usb_authorize",
+            "value":"[TS_898565]_Remove all trusted devices?"
+        },
+        {
+            "name":"closed_wireless",
+            "value":"[TS_898567]_Off"
+        },
+        {
+            "name":"usb_dialog_content",
+            "value":"[TS_898566]_USB debugging is intended for development purposes only. Use it to copy data between a computer and another device, access data files in a common directory, install apps silently, and read log data."
+        },
+        {
+            "name":"Confirm_the_cancellation",
+            "value":"[TS_898568]_Remove"
+        },
+        {
+            "name":"button_tittle_allow",
+            "value":"[TS_898564]_Allow"
+        },
+        {
+            "name":"recall_usb_authorize_title",
+            "value":"[TS_898563]_Previously trusted devices will no longer be trusted."
+        },
+        {
+            "name":"opened_wireless",
+            "value":"[TS_898562]_On"
+        },
+        {
+            "name":"debug_settings_title",
+            "value":"[TS_806183]_Debugging"
+        },
+        {
+            "name":"debug_networking_category",
+            "value":"[TS_869844]_Network"
+        },
+        {
+            "name":"wifi_Open_Logs__summary",
+            "value":"[TS_931872]_Increase WLAN logging level (show per SSID RSSI in WLAN picker)."
+        },
+        {
+            "name":"wifi_Open_Logs",
+            "value":"[TS_931874]_WLAN detailed log recording"
+        },
+        {
+            "name":"public_key_name",
+            "value":"[TS_972578]_RSA key fingerprint:\n%1$s"
+        },
+        {
+            "name":"display_refresh_frequency_title",
+            "value":"[TS_878741]_Show refresh rate"
+        },
+        {
+            "name":"enable_display_refresh_frequency_summary",
+            "value":"[TS_878737]_Show the current maximum refresh rate of the display."
+        },
+        {
+            "name":"recall_usb_authorize",
+            "value":"[TS_878191]_Remove all trusted devices"
+        },
+        {
+            "name":"support_wireless_commissioning",
+            "value":"[TS_878193]_When wireless debugging is enabled, USB debugging is not available."
+        },
+        {
+            "name":"activating_usb_debug",
+            "value":"[TS_878189]_Enable debugging when WLAN is connected."
+        },
+        {
+            "name":"link_wireless",
+            "value":"[TS_878202]_Can't enable wireless debugging"
+        },
+        {
+            "name":"link_wlan",
+            "value":"[TS_878206]_No WLAN connection. Connect to WLAN and try again."
+        },
+        {
+            "name":"allow_wireless",
+            "value":"[TS_878724]_Allow wireless debugging on this network?"
+        },
+        {
+            "name":"wlan_address_bssid",
+            "value":"[TS_878204]_WLAN address (BSSID)"
+        },
+        {
+            "name":"network_name_ssid",
+            "value":"[TS_878199]_Network name (SSID)"
+        },
+        {
+            "name":"device_name_settings_title",
+            "value":"[TS_806193]_Device name"
+        },
+        {
+            "name":"ip_address_and_port",
+            "value":"[TS_878194]_IP address & port"
+        },
+        {
+            "name":"wireless_commissioning",
+            "value":"[TS_878196]_Wireless debugging"
+        },
+        {
+            "name":"machine_name",
+            "value":"[TS_878207]_Device name:\n%1$s"
+        },
+        {
+            "name":"trusted_device_title",
+            "value":"[TS_929781]_Trust this device?"
+        },
+        {
+            "name":"trusted_device_button_cancel",
+            "value":"[TS_929780]_Don't trust"
+        },
+        {
+            "name":"trusted_device_button_confirm",
+            "value":"[TS_929782]_Trust"
+        },
+        {
+            "name":"always_allow_debug",
+            "value":"[TS_878188]_Always trust"
+        },
+        {
+            "name":"debug_entering_category",
+            "value":"[TS_878041]_Input"
+        },
+        {
+            "name":"show_touch_actions_title",
+            "value":"[TS_878043]_Show touches"
+        },
+        {
+            "name":"enable_show_touch_actions_summary",
+            "value":"[TS_878044]_Show visual feedback for touches."
+        },
+        {
+            "name":"show_touch_actions_trace",
+            "value":"[TS_921372]_Display pointer position"
+        },
+        {
+            "name":"enable_show_touch_trace_summary",
+            "value":"[TS_921371]_Show current touch data on the screen overlay."
+        },
+        {
+            "name":"ai_insightintent_debug_status_close",
+            "value":"[TS_917590]_Off"
+        },
+        {
+            "name":"ai_insightintent_debug_status_open",
+            "value":"[TS_917602]_On"
+        },
+        {
+            "name":"unlock_device_offline",
+            "value":"[TS_1055419]_Unlock offline"
+        },
+        {
+            "name":"developer_options_open_failed",
+            "value":"[TS_1055423]_Can't enable developer options"
+        },
+        {
+            "name":"network_not_connected",
+            "value":"[TS_1055420]_Your device is not connected to the Internet. Connect to a network, or unlock offline by submitting a request on the AGC website."
+        },
+        {
+            "name":"bluetooth_audio_bit_rate_adaptive",
+            "value":"[TS_1058280]_Adaptive bitrate streaming"
+        },
+        {
+            "name":"bluetooth_audio_channel_mode_stereo",
+            "value":"[TS_1058289]_Stereo"
+        },
+        {
+            "name":"bluetooth_audio_channel_mode_mono",
+            "value":"[TS_1058284]_Mono"
+        },
+        {
+            "name":"developer_advanced_options",
+            "value":"[TS_1053209]_Advanced system options"
+        },
+        {
+            "name":"developer_display",
+            "value":"[TS_1053208]_Display"
+        },
+        {
+            "name":"developer_machine_debugging",
+            "value":"[TS_1053210]_When this device is being debugged"
+        },
+        {
+            "name":"open_debugged_mode_prompt",
+            "value":"[TS_1056569]_To enable more developer debugging options, connect your computer and follow the instructions to enable them. %1$s"
+        },
+        {
+            "name":"learn_more",
+            "value":"[TS_1056571]_Learn more"
+        }
+    ]
+}

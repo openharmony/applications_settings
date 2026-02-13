@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name":"screen_refresh_rate_dynamic",
+      "value":"Dynamic"
+    },
+    {
+      "name":"screen_refresh_rate_high",
+      "value":"High"
+    },
+    {
+      "name":"screen_refresh_rate_standard",
+      "value":"Standard"
+    }
+  ]
+}
