@@ -1,5 +1,5 @@
 {
-  "modelVersion": "6.0.1",
+  "modelVersion": "6.0.0",
   "dependencies": {
 //    "@ohos/hypium-plugin": "1.0.10-rc1",
     "fs-extra": "10.0.1",
