@@ -966,17 +966,17 @@ struct SettingsHome {
   }
 
   private async loadEditLanguage(): Promise<void> {
-    let editLanguageLoader = await import('../system/languageSettings/languageAndRegion/EditLanguage');
+    let editLanguageLoader = await import('../system/languageSettings/languageAndRegion/editLanguage');
     DynamicLoader.getInstance().loaderMap.set(NavEntryKey.EDIT_LANGUAGE_ENTRY, editLanguageLoader.EditLanguageLoader);
   }
 
   private async loadAddLanguage(): Promise<void> {
-    let addLanguageLoader = await import('../system/languageSettings/languageAndRegion/AddLanguage');
+    let addLanguageLoader = await import('../system/languageSettings/languageAndRegion/addLanguage');
     DynamicLoader.getInstance().loaderMap.set(NavEntryKey.ADD_LANGUAGE_ENTRY, addLanguageLoader.AddLanguageLoader);
   }
 
   private async loadSelectRegion(): Promise<void> {
-    let selectRegionLoader = await import('../system/languageSettings/languageAndRegion/SelectRegion');
+    let selectRegionLoader = await import('../system/languageSettings/languageAndRegion/selectRegion');
     DynamicLoader.getInstance().loaderMap.set(NavEntryKey.SELECT_REGION_ENTRY, selectRegionLoader.SelectRegionLoader);
   }
 
