@@ -1,0 +1,158 @@
+{
+    "string":[
+        {
+            "name":"turn_off_hotspot",
+            "value":"Deshabilitar zona Wi-Fi personal",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_sleep_time_30_sub",
+            "value":"La pantalla se apagará después de %d s de inactividad.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_aod_display_mode_smart",
+            "value":"Configurar Mostrar siempre en pantalla como “Inteligente”",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_hotspot_sub",
+            "value":"Se desactivará tu zona Wi-Fi personal.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps",
+            "value":"Cerrar aplicaciones de alto consumo de energía",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_wakeup_notification",
+            "value":"No activar pantalla con notificaciones",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_notification_when_hibernation",
+            "value":"Deshabilitar las notificaciones en reposo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_aod_display_mode_smart_sub",
+            "value":"Activar Mostrar siempre en pantalla pulsando o mirando la pantalla.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_screen_refresh_rate_to_smart_mode_sub",
+            "value":"Conseguir un equilibrio entre el ahorro de energía y la fluidez de la visualización.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"disable_notification_when_hibernation_sub",
+            "value":"No se enviarán notificaciones cuando el dispositivo esté en reposo.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_screen_refresh_rate_to_smart_mode",
+            "value":"Configurar la frecuencia de actualización de pantalla como “Dinámica”",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_wakeup_notification_sub",
+            "value":"La pantalla no se activará cuando se reciba una notificación.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_2",
+            "value":"Cierra %1$s y %2$s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_3",
+            "value":"Cierra %1$s, %2$s y %3$s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_1",
+            "value":"Cierra %1$s para extender la autonomía de la batería.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_2",
+            "value":"Cierra %1$s y %2$s para prolongar la autonomía de la batería.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_other",
+            "value":"Cerrar %1$s, %2$s, %3$s y otras.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_3",
+            "value":"Cierra %1$s, %2$s y %3$s para extender la autonomía de la batería.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_other",
+            "value":"Cierra %1$s, %2$s, %3$s y otras aplicaciones para prolongar la autonomía de la batería.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_1",
+            "value":"Cierra %1$s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_hotspot_card_sub",
+            "value":"Deshabilita tu zona Wi-Fi personal para prolongar la autonomía de la batería.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_sleep_time_30",
+            "value":"Establecer tiempo de espera de la pantalla en %d s",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

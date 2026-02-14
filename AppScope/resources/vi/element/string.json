@@ -1,0 +1,11 @@
+{
+    "string":[
+        {
+            "name":"settings_title",
+            "value":"Cài đặt",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

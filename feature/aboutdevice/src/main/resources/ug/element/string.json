@@ -1,0 +1,361 @@
+{
+    "string":[
+        {
+            "name":"developer_options_settings_title",
+            "value":"ئىجادچى تاللانمىلىرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_options_settings_summary",
+            "value":"بۇ تەڭشەكنى ئەپ ئىشلىگۈچىلەر ئىشلىتىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm_development_modal_dialog_content",
+            "value":"ئىجادچى تاللانمىلىرى ئوچۇق ھالەتتە سىستېما بىخەتەرلىكى تۆۋەن. ئاچسىڭىز، بۇ ئۆزگەرتىشنى قوللىنىش ئۈچۈن ئۈسكۈنە قايتا قوزغىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"close_developer_mode",
+            "value":"ئىجادچى تاللانمىلىرىنى ئېتەمسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_developer_mode",
+            "value":"ئىجادچى تاللانمىلىرىنى ئاچامسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_close",
+            "value":"ئېتىش ۋە قايتا قوزغىتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel_development_modal_dialog_content",
+            "value":"«ئىجادچى تاللانمىلىرى» نى ئەتسىڭىز، ئەپ سىناش ئىقتىدارى ئېتىلىدۇ. بۇ ئۆزگەرتىشنى قوللىنىش ئۈچۈن ئۈسكۈنە قايتا قوزغىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_on",
+            "value":"ئېچىش ۋە قايتا قوزغىتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"بىكار قىلىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_options_enabled_toast",
+            "value":"ئىجادچى ھالىتى ئوچۇق.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_Additional_text",
+            "value":"%1$d. يۇمشاق دېتال يېڭىلاش مۇلازىمىتى تور ئىشلىتىدۇ ۋە قاچىلىغان ئەپ تىزىملىكىنى ئوقۇيدۇ.\n",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"api_version",
+            "value":"\u200fAPI نەشرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enterprise_disable_developer_options_toast",
+            "value":"بۇ ئىقتىدارنى ئورگان چەكلىگەن، ئورگاندىكى IT باشقۇرغۇچى بىلەن ئالاقىلىشىڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"model_name",
+            "value":"تىپ نامى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"model_code",
+            "value":"تىپ نومۇرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"imei_id",
+            "value":"\u200fIMEI",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"version",
+            "value":"نەشرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"software_version",
+            "value":"يۇمشاق دېتال نەشرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"serial_number",
+            "value":"تەرتىپ نومۇرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"running_memory",
+            "value":"يۈرگۈزمە ساقلىغۇچ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_settings_title",
+            "value":"بوشلۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_resolution",
+            "value":"ئېكران",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"baseband_version",
+            "value":"ئاساسىي بەلباغ نەشرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"kernel_version",
+            "value":"يادرو نەشرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"openHarmony_version",
+            "value":"\u200fOpenHarmony نەشرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_patch_label",
+            "value":"بىخەتەرلىك يامىقى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_total_used",
+            "value":"قالدۇق: %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_total",
+            "value":"جەمئىي: %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_mac",
+            "value":"\u200f%1$s (ئۈسكۈنە)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"random_mac",
+            "value":"\u200f%1$s (ئىختىيارىي)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status_charging",
+            "value":"توكلاۋاتىدۇ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status_filled",
+            "value":"تولۇق توكلاندى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status_consuming_power",
+            "value":"توك تەمىنلەۋاتىدۇ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status",
+            "value":"باتارېيە ھالىتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_level",
+            "value":"باتارېيەدىكى توك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_address",
+            "value":"كۆكچىش ئادرېسى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_on_duration",
+            "value":"يۈرگەن ۋاقىت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hardware_version",
+            "value":"قاتتىق دېتال نەشرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ip_address",
+            "value":"\u200fIP ئادرېسى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unknown",
+            "value":"ئېنىقسىز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_state_off",
+            "value":"يوق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"external",
+            "value":"تاشقى ئېكران: %1$sx%2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"inner",
+            "value":"ئىچكى ئېكران: %1$sx%2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"system_service_version",
+            "value":"سىستېما مۇلازىمىتىنىڭ نەشرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_battery_choose_info",
+            "value":"%1$s~%2$s، توك \u200e%3$s ~ \u200e%4$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_mode_open_toast",
+            "value":"ئىجادچى ھالىتى ئېچىلدى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"version_type_professional",
+            "value":"كەسپىي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_type",
+            "value":"نەشر تۈرى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_type_enterprise",
+            "value":"كارخانا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cpu_title",
+            "value":"ئۆزەك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_name",
+            "value":"نەشر نامى",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

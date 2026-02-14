@@ -1,0 +1,354 @@
+{
+    "string":[
+        {
+            "name":"display_refresh_frequency_title",
+            "value":"Affichage de la fréquence d'actualisation",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"debug_settings_title",
+            "value":"Débogage",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"learn_more",
+            "value":"En savoir plus",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"debug_networking_category",
+            "value":"Réseau",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"trusted_device_button_confirm",
+            "value":"Faire confiance",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_settings_title",
+            "value":"Nom de l'appareil",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_bit_rate_adaptive",
+            "value":"Streaming à débit binaire adaptatif",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_tittle_cancel",
+            "value":"Annuler",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_debugged_mode_prompt",
+            "value":"Pour activer d'autres options de débogage pour les développeurs, veuillez connecter votre ordinateur et suivez les instructions pour les activer. %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"show_touch_actions_title",
+            "value":"Affichage des sélections au toucher",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_channel_mode_mono",
+            "value":"Mono",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_insightintent_debug_status_open",
+            "value":"Activé/e",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_show_touch_actions_summary",
+            "value":"Affiche un avis/retour visuel pour les éléments sélectionnés au toucher.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"debug_entering_category",
+            "value":"Saisie",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_tittle_allow",
+            "value":"Autoriser",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"trusted_device_button_cancel",
+            "value":"Ne pas faire confiance",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_usb_debug_title",
+            "value":"Autoriser le débogage USB ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"revocation_usb_authorize",
+            "value":"Retirer tous les appareils de confiance ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_touch_actions_trace",
+            "value":"Affichage de la position du curseur",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wlan_address_bssid",
+            "value":"Adresse WLAN (BSSID)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_display_refresh_frequency_summary",
+            "value":"La fréquence d'actualisation maximum actuelle de l'écran est affichée.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"machine_name",
+            "value":"Nom de l'appareil :\n%1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_usb_authorize",
+            "value":"Retrait de tous les appareils de confiance",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sunlight_readability_title",
+            "value":"Augmentation de la lisibilité au soleil",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ip_address_and_port",
+            "value":"Adresse IP et port",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"activating_usb_debug",
+            "value":"Activer le débogage lorsque le WLAN est connecté.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"opened_wireless",
+            "value":"Activé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_Open_Logs",
+            "value":"Enregistrement du journal WLAN détaillé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_insightintent_debug_status_close",
+            "value":"Désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Confirm_the_cancellation",
+            "value":"Retirer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_name_ssid",
+            "value":"Nom du réseau (SSID)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"public_key_name",
+            "value":"Empreinte digitale de la clé RSA :\n%1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_Open_Logs__summary",
+            "value":"Le niveau de consignation au journal WLAN est augmenté (affichage de RSSI de chaque SSID dans le sélecteur WLAN).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_wireless",
+            "value":"Autoriser le débogage sans fil sur ce réseau ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_show_touch_trace_summary",
+            "value":"Les données mobiles actuelles sont affichées en superposition sur l'écran.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"link_wlan",
+            "value":"Aucune connexion WLAN. Veuillez vous connecter au WLAN puis réessayez.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_usb_authorize_title",
+            "value":"Les appareils précédemment de confiance ne seront plus des appareils de confiance.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wireless_commissioning",
+            "value":"Débogage sans fil",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"link_wireless",
+            "value":"Le débogage sans fil n'a pas pu être activé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"closed_wireless",
+            "value":"Désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"usb_dialog_content",
+            "value":"Le débogage USB est destiné uniquement au développement. Il peut être utilisé pour copier des données entre un ordinateur et un autre appareil, accéder à des fichiers de données dans un répertoire commun, installer des applications sans notifications et lire les données de journal.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"trusted_device_title",
+            "value":"Faire confiance à cet appareil ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"always_allow_debug",
+            "value":"Toujours faire confiance",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unlock_device_offline",
+            "value":"Déverrouiller hors ligne",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_options_open_failed",
+            "value":"Les options pour développeurs ne peuvent pas être activées",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_advanced_options",
+            "value":"Options système avancées",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_not_connected",
+            "value":"Votre appareil n'est pas connecté à internet. Veuillez vous connecter à un réseau, ou déverrouillez hors ligne en soumettant une demande sur le site AGC.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_display",
+            "value":"Affichage",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_machine_debugging",
+            "value":"Lorsque cet appareil est en cours de débogage",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_channel_mode_stereo",
+            "value":"Stéréo",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

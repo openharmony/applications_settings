@@ -1,0 +1,18 @@
+{
+    "string":[
+        {
+            "name":"hotspot_turned_off",
+            "value":"Zona WLAN personal desactivada",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mobile_network_unavailable",
+            "value":"Red móvil no disponible en el teléfono. Deshabilita la zona WLAN personal y vuelve a intentarlo.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

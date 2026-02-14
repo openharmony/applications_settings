@@ -1,0 +1,284 @@
+{
+    "string":[
+        {
+            "name":"app_info_version",
+            "value":"%s 버전",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_application_text",
+            "value":"앱 더 보기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uninstall_unused_app",
+            "value":"사용하지 않는 앱 설치 제거",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_uninstall",
+            "value":"제거",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update_title",
+            "value":"%s의 업데이트를 제거하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_atomic_service_text",
+            "value":"이 서비스 삭제",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"취소",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_to_forcibly_stop_descriptions",
+            "value":"앱을 강제 종료하면 오류가 발생할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"default_mail",
+            "value":"기본 이메일 앱",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"service_enable_text",
+            "value":"실행",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"system_default",
+            "value":"기본 설정",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_tittle_cancel",
+            "value":"취소",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall_app_prompt",
+            "value":"사용하지 않는 앱을 제거하여 저장 공간의 %1$s를 절약할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"empty_service",
+            "value":"서비스 불가",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_replace",
+            "value":"변경",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"service_remove_text",
+            "value":"제거",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_meta_service_text",
+            "value":"서비스 복원",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_networking_cellular_only",
+            "value":"모바일 데이터",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_list_loading_message",
+            "value":"로딩 중…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_to_forcibly_stop_text",
+            "value":"이 앱을 강제 종료하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_networking_wlan_and_cellular",
+            "value":"WLAN 및 모바일 데이터",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_allow_access",
+            "value":"%s의 액세스 허용",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update",
+            "value":"업데이트 제거",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"is_delete_form",
+            "value":"%s을(를) 제거하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm_replacement_content",
+            "value":"기본 브라우저를 변경하면 소비 전력과 데이터 사용량이 증가할 수 있으며 개인 정보 보호가 위험에 빠질 수도 있습니다. 기본 브라우저를 유지하는 것이 좋습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"default_browser",
+            "value":"기본 브라우저",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_confirm",
+            "value":"이 앱을 제거하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_networking_wlan_only",
+            "value":"WLAN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_force_stop",
+            "value":"강제 종료",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update_confirm",
+            "value":"이렇게 하면 앱의 현재 버전이 공장 버전으로 대체됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"service_disable_text",
+            "value":"사용 안 함",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"view_details",
+            "value":"상세정보 보기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_networking",
+            "value":"네트워크 액세스",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_live_view",
+            "value":"라이브 보기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_to_disable_descriptions",
+            "value":"사전 설치된 앱을 종료하면 다른 앱에 예기치 않은 오류가 발생할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"compatible_application_text",
+            "value":"호환 앱",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_to_disable_text",
+            "value":"이 앱을 종료하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_replacement",
+            "value":"정말로 변경하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_apps_text",
+            "value":"앱 복원",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_matching_results",
+            "value":"결과 없음",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

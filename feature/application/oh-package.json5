@@ -1,0 +1,11 @@
+{
+  "name": "@ohos/settings.application",
+  "description": "application feature",
+  "main": "index.ets",
+  "version": "1.0.0",
+  "dependencies": {
+    "@ohos/settings.common": "file:../../common",
+    "@ohos/settings.uikit": "file:../uikit",
+    "@ohos/settings.search": "file:../search"
+  }
+}

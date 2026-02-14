@@ -1,0 +1,11 @@
+{
+    "string":[
+        {
+            "name":"app_info_storage_cache_size",
+            "value":"快取",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

@@ -1,0 +1,424 @@
+{
+    "string":[
+        {
+            "name":"keyboard",
+            "value":"Teclado",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_connection_strategy_summary",
+            "value":"Conectando\u2026",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_pad",
+            "value":"Sincronizar volumen con la tableta",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_connecting_summary",
+            "value":"Conectando\u2026",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_connected_summary",
+            "value":"Conectado",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_fulls_detals",
+            "value":"Toda la información",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_profile_hid",
+            "value":"Dispositivo de entrada",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unpair",
+            "value":"Desenlazar",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_profile_a2dp",
+            "value":"Audio multimedia",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_speaker",
+            "value":"Altavoz",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_name_and_numbers_only",
+            "value":"Solo nombre y número",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_settings_title",
+            "value":"Nombre del dispositivo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_type_glasses",
+            "value":"Gafas",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_phone",
+            "value":"Sincronizar volumen con el teléfono",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_help_popup_content",
+            "value":"¿No encuentras el dispositivo de destino?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_not_share",
+            "value":"No compartir",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_profile_hfp",
+            "value":"Audio de llamadas",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_sharing_and_call_history",
+            "value":"Compartir contactos e historial de llamadas",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_play_music_tips",
+            "value":"Puedes cambiarlo en la pantalla de detalles del dispositivo.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keep_auto_play",
+            "value":"Mantener la reproducción automática habilitada",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"forbidding",
+            "value":"Deshabilitar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_disconnecting_summary",
+            "value":"Desconectando...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auto_play_music",
+            "value":"Reproducir música automáticamente",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_connect_auto_play",
+            "value":"La música comenzará a reproducirse automáticamente cuando “%s” se conecte.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_hfp_a2dp_connect_summary",
+            "value":"Conectado para llamadas y audio multimedia",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_car",
+            "value":"Coche",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_read_info_auth",
+            "value":"Permitir acceso a mensajes SMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_play_music_desc",
+            "value":"Permitir que este dispositivo reproduzca música automáticamente al conectarse.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_pair_failed_message",
+            "value":"El código de enlace era incorrecto o se ha producido un error de configuración en el dispositivo con el que estás enlazando. Vuelve a intentarlo.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_pc",
+            "value":"Sincronizar volumen con el ordenador",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"La administración de la empresa prohíbe esta operación.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_profile_map",
+            "value":"Permitir acceso a mensajes SMS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed1",
+            "value":"Pulsa una tecla del teclado para reiniciar la conexión.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"help",
+            "value":"Ayuda",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_anti_theft_tip",
+            "value":"Operación no disponible en dispositivo de demostración.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_a2dp_connect_summary",
+            "value":"Conectado para audio multimedia",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_hearing",
+            "value":"Audífono",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_type_headset",
+            "value":"Auriculares",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bt_connect_failed_message",
+            "value":"No se ha podido conectar con %1$s. Posibles motivos:\n%2$s. El dispositivo está fuera de rango (%3$s m) o no tiene el Bluetooth habilitado.\n%4$s. El dispositivo está conectado a otro dispositivo.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_pair_failed2",
+            "value":"PIN o clave de enlace incorrectos. No se puede enlazar con “%s”.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_pair_failed3",
+            "value":"“%s” ha rechazado el enlace.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_pair_failed1",
+            "value":"No se ha podido comunicar con “%1$s”.\n\nEsto puede deberse a:\n\n%2$s. Está apagado o el modo de enlace no está activado. Para obtener ayuda, consulta la guía del usuario del dispositivo.\n%3$s. Está demasiado lejos. Asegúrate de que esté a menos de %4$s metros de este dispositivo y vuelve a intentarlo.\n%5$s. Está conectado a otro dispositivo. De ser así, desconéctate y vuelve a intentarlo.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_watch",
+            "value":"Reloj",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed3",
+            "value":"Intenta reconectarte desde el coche.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_hfp_connect_summary",
+            "value":"Conectado para llamadas",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed2",
+            "value":"Intenta reconectarte con el ratón.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed4",
+            "value":"Se ha alcanzado la cantidad máxima de conexiones de dispositivos. Desconecta algunos dispositivos e inténtalo de nuevo.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_settings_title",
+            "value":"Bluetooth",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_bonded_devices",
+            "value":"Dispositivos enlazados",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_no_paired_devices",
+            "value":"No hay dispositivos enlazados",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"phone",
+            "value":"Teléfono",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"matebook",
+            "value":"Ordenador portátil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_settings",
+            "value":"Ajustes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"soundx",
+            "value":"Dispositivo de audio",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth",
+            "value":"Bluetooth",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pencil",
+            "value":"Lápiz óptico",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mouse",
+            "value":"Ratón",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pad",
+            "value":"Tableta",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_printer",
+            "value":"Impresora",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_car_key",
+            "value":"Llave de vehículo",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

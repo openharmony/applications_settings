@@ -1,0 +1,46 @@
+{
+    "string":[
+        {
+            "name":"update_status_downloading",
+            "value":"Téléchargement de la mise à jour en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"update_status_download_pause",
+            "value":"Téléchargement mis en pause",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_version_found_text",
+            "value":"Mise à jour disponible",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"update_status_wait_install",
+            "value":"Nouvelle version disponible",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"patch_installing_title",
+            "value":"Mise à jour en cours d'installation",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"check_version_status_to_be_reboot",
+            "value":"La mise à jour prendra effet après le redémarrage de votre appareil.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

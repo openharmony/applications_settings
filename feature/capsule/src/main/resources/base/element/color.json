@@ -1,0 +1,36 @@
+{
+  "color": [
+    {
+      "name": "color_pressed_click_dark",
+      "value": "#19317AF7"
+    },
+    {
+      "name": "color_pressed_click",
+      "value": "#190A59F7"
+    },
+    {
+      "name": "color_1A000000_grey",
+      "value": "#1A000000"
+    },
+    {
+      "name": "color_white",
+      "value": "#f1f1f1"
+    },
+    {
+      "name":"color_dark",
+      "value":"#333333"
+    },
+    {
+      "name": "color_default_white",
+      "value": "#00000000"
+    },
+    {
+      "name": "background_dark_color_default",
+      "value": "#313131"
+    },
+    {
+      "name": "border_color_default_white",
+      "value": "#ffffff"
+    }
+  ]
+}

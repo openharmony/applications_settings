@@ -1,0 +1,346 @@
+[
+  {
+    "name": "zh-hans-cn",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "zh-hant-hk",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "zh-hant-cn",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "en-us",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "am-et",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "ar-eg",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "as-in",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "az-az",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "be-by",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "bg-bg",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "bn-bd",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "bo-cn",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "bs-ba",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "ca-es",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "cs-cz",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "da-dk",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "de-de",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "de-at",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "de-ch",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "el-gr",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "en-gb",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "es-es",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "es-us",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "et-ee",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "eu-es",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "fa-ir",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "fi-fi",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "fr-fr",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "fr-ch",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "gl-es",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "gu-in",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "hi-in",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "hr-hr",
+    "url": "https://gitcode.com/openharmony/"
+  },
+  {
+    "name": "hu-hu",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "in-id",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "id-",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "it-it",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "it-ch",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "iw-il",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "he-",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "ja-jp",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "jv-id",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "ka-ge",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "kk-kz",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "km-kh",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "kn-in",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "ko-kr",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "lo-la",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "lt-lt",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "lv-lv",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "mai-in",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "mi-nz",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "mk-mk",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "ml-in",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "mn-mn",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "mr-in",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "ms-my",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "my-mm",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "my-zg",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "nb-no",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "ne-np",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "nl-nl",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "or-in",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "pa-in",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "pl-pl",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "pt-br",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "pt-pt",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "ro-ro",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "ru-ru",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "si-lk",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "sk-sk",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "sl-si",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "sr-rs",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "sr-ba",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "sv-se",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "sw-ke",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "ta-in",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "te-in",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "th-th",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "tl-ph",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "fil-ph",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "tr-tr",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "uk-ua",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "ur-pk",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "uz-uz",
+    "url": "https://gitcode.com/openharmony"
+  },
+  {
+    "name": "vi-vn",
+    "url": "https://gitcode.com/openharmony"
+  }
+]

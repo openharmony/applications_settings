@@ -1,0 +1,220 @@
+{
+    "string":[
+        {
+            "name":"storage_app_data_size",
+            "value":"[TS_942681]_App data"
+        },
+        {
+            "name":"storage_calculating_size",
+            "value":"[TS_942677]_Calculating…"
+        },
+        {
+            "name":"app_uninstall_confirm",
+            "value":"[TS_954784]_Uninstall %s?"
+        },
+        {
+            "name":"load_more_data",
+            "value":"[TS_960749]_More"
+        },
+        {
+            "name":"used_data",
+            "value":"[TS_808203]_Used %1$s/%2$s"
+        },
+        {
+            "name":"app_info_version",
+            "value":"[TS_806121]_Version %s"
+        },
+        {
+            "name":"uninstalling_dialog_message",
+            "value":"[TS_806039]_Uninstalling %s…"
+        },
+        {
+            "name":"storage_apps",
+            "value":"[TS_855836]_Apps"
+        },
+        {
+            "name":"storage_photo",
+            "value":"[TS_942686]_Photos"
+        },
+        {
+            "name":"storage_music",
+            "value":"[TS_942682]_Music"
+        },
+        {
+            "name":"storage_videos",
+            "value":"[TS_855838]_Videos"
+        },
+        {
+            "name":"storage_system",
+            "value":"[TS_942680]_System"
+        },
+        {
+            "name":"storage_other",
+            "value":"[TS_942678]_Other"
+        },
+        {
+            "name":"app_info_storage_total_size",
+            "value":"[TS_806014]_Total"
+        },
+        {
+            "name":"app_info_storage_app_size",
+            "value":"[TS_806148]_App"
+        },
+        {
+            "name":"app_info_storage_data_size",
+            "value":"[TS_806098]_Data"
+        },
+        {
+            "name":"storage_app_clear_data",
+            "value":"[TS_942689]_Go to %s to free up space"
+        },
+        {
+            "name":"storage_app_remove",
+            "value":"[TS_942692]_Uninstall app"
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"[TS_806070]_Cancel"
+        },
+        {
+            "name":"app_info_uninstall",
+            "value":"[TS_806103]_Uninstall"
+        },
+        {
+            "name":"storage_app_sort_by",
+            "value":"[TS_942685]_Sort by"
+        },
+        {
+            "name":"storage_app_sizes",
+            "value":"[TS_942687]_Size"
+        },
+        {
+            "name":"storage_app_last_used",
+            "value":"[TS_942684]_Last used"
+        },
+        {
+            "name":"recommend_card_header",
+            "value":"[TS_974363]_Suggestions"
+        },
+        {
+            "name":"load_more_card",
+            "value":"[TS_1019383]_More"
+        },
+        {
+            "name":"clear_cache_not_clear_cache",
+            "value":"[TS_1024738]_No data to clear."
+        },
+        {
+            "name":"clear_cache_button_name",
+            "value":"[TS_1024747]_Clean up"
+        },
+        {
+            "name":"clear_cache_cleaning_up",
+            "value":"[TS_1024746]_Clearing cache…"
+        },
+        {
+            "name":"clear_cache_title",
+            "value":"[TS_1024741]_Clear cache"
+        },
+        {
+            "name":"clear_cache_caculating",
+            "value":"[TS_1024742]_Calculating…"
+        },
+        {
+            "name":"clear_cache_summary",
+            "value":"[TS_1024740]_Clear the cache to free up %s of space. This won't affect normal use of the device."
+        },
+        {
+            "name":"clear_cache_cleaning_toast",
+            "value":"[TS_1025646]_Freed up %s of space."
+        },
+        {
+            "name":"storage_big_file",
+            "value":"[TS_1050128]_Large files"
+        },
+        {
+            "name":"uninstall_unusual_app_prompt",
+            "value":"[TS_1045052]_Free up to %1$s of storage space by uninstalling apps you rarely use."
+        },
+        {
+            "name":"uninstall_unusual_apps",
+            "value":"[TS_1043256]_Uninstall unused apps"
+        },
+        {
+            "name":"storage_suggestion_desc",
+            "value":"[TS_1056840]_Manage device storage to free up space."
+        },
+        {
+            "name":"storage_suggestion_level_2",
+            "value":"[TS_1056842]_Storage almost full"
+        },
+        {
+            "name":"storage_suggestion_level_3",
+            "value":"[TS_1056839]_Free up storage space"
+        },
+        {
+            "name":"storage_suggestion_level_1",
+            "value":"[TS_1056841]_Storage almost full"
+        },
+        {
+            "name":"unused_app",
+            "value":"[TS_1104043]_Unused"
+        },
+        {
+            "name":"restore_backup_data_dialog_message",
+            "value":"[TS_1134310]_This will restore lost app data backed up by the system. However, it will also overwrite any new data created since the backup was made. %s needs to close while data is being restored."
+        },
+        {
+            "name":"restore_backup_data_dialog_confirm",
+            "value":"[TS_1134313]_Restore"
+        },
+        {
+            "name":"delete_backup_data_item_title",
+            "value":"[TS_1134314]_Delete backup data"
+        },
+        {
+            "name":"delete_backup_data_dialog_title",
+            "value":"[TS_1134317]_Delete backup data?"
+        },
+        {
+            "name":"delete_backup_data_dialog_confirm",
+            "value":"[TS_1134321]_Delete"
+        },
+        {
+            "name":"restore_bakcup_data_item_title",
+            "value":"[TS_1134311]_Restore backup data"
+        },
+        {
+            "name":"restore_backup_data_success_tip",
+            "value":"[TS_1134320]_Backup data restored."
+        },
+        {
+            "name":"restoring_backup_data",
+            "value":"[TS_1134525]_Restoring backup data…"
+        },
+        {
+            "name":"deleting_backup_data",
+            "value":"[TS_1134316]_Deleting backup data…"
+        },
+        {
+            "name":"delete_backup_data_success_tip",
+            "value":"[TS_1134315]_Backup data deleted."
+        },
+        {
+            "name":"restore_bakcup_data_dialog_title",
+            "value":"[TS_1134319]_Restore backup data?"
+        },
+        {
+            "name":"delete_backup_data_dialog_message",
+            "value":"[TS_1134318]_This will permanently delete %s data backed up by the system, including chat records and files."
+        },
+        {
+            "name":"delete_backup_data_fail_tip",
+            "value":"[TS_1134309]_Unable to delete backup data."
+        },
+        {
+            "name":"restore_backup_data_fail_tip",
+            "value":"[TS_1134312]_Unable to restore backup data."
+        }
+    ]
+}

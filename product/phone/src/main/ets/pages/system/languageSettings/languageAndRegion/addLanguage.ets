@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2024-2025. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,138 +13,363 @@
  * limitations under the License.
  */
 
-import router from '@system.router';
-import prompt from '@system.prompt';
-import deviceInfo from '@ohos.deviceInfo';
-import LogUtil from '../../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import { SubHeader } from '../../../../../../../../../common/component/src/main/ets/default/textComponent';
-import ConfigData from '../../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import LanguageAndRegionModel from '../../../../model/systemImpl/languageSettings/LanguageAndRegionModel';
-import HeadComponent from '../../../../../../../../../common/component/src/main/ets/default/headComponent';
-import ResourceUtil from '../../../../../../../../../common/search/src/main/ets/default/common/ResourceUtil';
+import { Params, PushParam, UiRefresher } from '@ohos/settings.common/src/main/ets/core/controller/Controller';
+import { DeviceUtil } from '@ohos/settings.common/src/main/ets/utils/BaseUtils';
+import { PADDING_16, PADDING_24, PADDING_4, PADDING_8 } from '@ohos/settings.common/src/main/ets/constant/StyleConstant';
+import { DynamicLoader } from '@ohos/settings.common/src/main/ets/utils/DynamicLoader';
+import { FontScaleUtils } from '@ohos/settings.common/src/main/ets/utils/FontScaleUtils';
+import { HiSysEventUtil } from '@ohos/settings.common/src/main/ets/systemEvent/HiSysEventUtil';
+import { LogUtil } from '@ohos/settings.common/src/main/ets/utils/LogUtil';
+import { ResourceUtil } from '@ohos/settings.common/src/main/ets/utils/ResourceUtil';
+import { ToastUtil } from '@ohos/settings.common/src/main/ets/utils/ToastUtil';
+import DpiManager from '@ohos/settings.common/src/main/ets/utils/DpiManager';
+import { DisplayConstant } from '@ohos/settings.common/src/main/ets/constant/DisplayConstant';
+import { SettingsDataUtils } from '@ohos/settings.common/src/main/ets/utils/SettingsDataUtils';
+import { LanguageUtils } from '@ohos/settings.common/src/main/ets/utils/LanguageUtils';
+import { BasicDataSource } from '@ohos/settings.language/src/main/ets/model/BasicDataSource';
+import { languageAndRegionModel } from '@ohos/settings.language/src/main/ets/model/LanguageAndRegionModel';
+import { SubHeaderComponent } from '../SubHeader';
+/* instrument ignore file */
+const ADD_LANGUAGE_ENTRY: string = 'add_language_entry';
+const RETAIN_CURRENT_LANGUAGE: string = 'retain_current_language';
+const CHANGE_CURRENT_LANGUAGE: string = 'change_current_language';
+const ENTER_ADD_LANGUAGE_ENTRY: string = 'enter_add_language_entry';
+const STROKE_WIDTH_1_PX: string = '1px';
 
-const deviceTypeInfo = deviceInfo.deviceType;
+@Styles
+function normalStateIconStyles() {
+  .backgroundColor(Color.Transparent)
+}
+
+@Styles
+function pressedStateIconStyles() {
+  .backgroundColor((DeviceUtil.isDevicePhone() || DeviceUtil.isDevicePad())
+    ? $r('sys.color.ohos_id_color_click_effect') : $r('sys.color.ohos_id_color_click_effect'))
+  .borderRadius('20vp')
+}
 
 /**
  * Home Page Of AddLanguage
  */
-@Entry
+@Builder
+export function AddLanguageLoader($$: Params): void {
+  AddLanguage({ params: $$ as Object as PushParam });
+}
+
 @Component
-struct AddLanguage {
-  private TAG = `${ConfigData.TAG} AddLanguage`;
+export struct AddLanguage {
+  private TAG: string = `Settings AddLanguage`;
+  private listSpace: string = '10vp';
+  @State uiRefresher: UiRefresher = new UiRefresher();
+  @Consume('pathInfos') pathInfos: NavPathStack;
+  @StorageProp('navigationMode') navigationMode: NavigationMode | undefined = NavigationMode.Stack;
+  @State params: PushParam | null = null;
+  title: string = ResourceUtil.getStringSync($r('app.string.addLanguage'));
 
   build() {
-    Column() {
-      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
-        Column() {
-          HeadComponent({ headName: $r('app.string.addLanguage'), isActive: true });
-
-          List() {
-            ListItem() {
-              SubHeader({ titleContent: $r('app.string.addedLanguage') })
+    NavDestination() {
+      Column() {
+        GridContainer({
+          columns: 12,
+          sizeType: SizeType.MD,
+          gutter: vp2px(1) === 2 ? '12vp' : '0vp',
+          margin: '0vp',
+        }) {
+          Row() {
+            Column() {
             }
+            .width('100%')
+            .height('100%')
+            .useSizeType({
+              xs: { span: 0, offset: 0 }, sm: { span: 0, offset: 0 },
+              md: { span: 0, offset: 0 }, lg: { span: 2, offset: 0 },
+            });
 
-            ListItem() {
-              AddedLanguagesList();
-            }
+            Column() {
+              Blank().height($r('app.float.navigation_56'))
+              List() {
+                ListItem() {
+                  SubHeaderComponent({ titleContent: $r('app.string.addedLanguage') })
+                }
 
-            ListItem() {
-              SubHeader({ titleContent: $r('app.string.allLanguage') });
-            }
+                ListItem() {
+                  AddedLanguagesList();
+                }
 
-            ListItem() {
-              AllLanguagesList();
+                ListItem() {
+                  SubHeaderComponent({ titleContent: $r('app.string.allLanguage') })
+                }
+
+                ListItem() {
+                  AllLanguagesList();
+                }
+              }
+              .flexShrink(1)
+              .padding({ start: PADDING_16, end: PADDING_16 })
+              .edgeEffect(EdgeEffect.Spring);
             }
+            .height('100%')
+            .width('100%')
+            .useSizeType({
+              xs: { span: 12, offset: 0 }, sm: { span: 12, offset: 0 },
+              md: { span: 12, offset: 0 }, lg: { span: 8, offset: 2 },
+            });
+
+            Column() {
+            }
+            .width('100%')
+            .height('100%')
+            .useSizeType({
+              xs: { span: 0, offset: 12 }, sm: { span: 0, offset: 12 },
+              md: { span: 0, offset: 12 }, lg: { span: 2, offset: 10 },
+            })
           }
-          .flexShrink(1)
-          .edgeEffect(EdgeEffect.Spring);
+          .width('100%')
+          .height('100%');
         }
-        .useSizeType({
-          sm: { span: 4, offset: 0 },
-          md: { span: 6, offset: 1 },
-          lg: { span: 8, offset: 2 }
-        })
+        .width('100%')
+        .height('100%');
       }
-      .width(ConfigData.WH_100_100)
-      .height(ConfigData.WH_100_100)
-    }
-    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-    .width(ConfigData.WH_100_100)
-    .height(ConfigData.WH_100_100)
+      .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
+      .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
+      .width('100%')
+      .height('100%');
+    }.hideTitleBar(false)
+    .title(this.title)
+    // .titleBar({content: {title: {mainTitle: this.title}}})
+    .hideBackButton(this.navigationMode === NavigationMode.Split && this.pathInfos.size() === 1)
+    .backgroundColor($r('sys.color.ohos_id_color_titlebar_sub_bg'))
+    .onShown(() => {
+      LogUtil.info(`${this.TAG} onPageShow`);
+      DynamicLoader.getInstance().pageTransitionSuccess(this.TAG);
+    })
+    .onHidden(() => {
+      LogUtil.info(`${this.TAG} onPageHide`);
+    })
   }
 
   aboutToAppear() {
     LogUtil.info(`${this.TAG} aboutToAppear in`);
-    LogUtil.info(`${this.TAG} aboutToAppear out`);
+    ResourceUtil.getString($r('app.float.distance_10')).then(value => this.listSpace = value);
+    HiSysEventUtil.reportEntryEvent(ENTER_ADD_LANGUAGE_ENTRY, '');
   }
 }
+
 
 /**
  * List Of Added Language
  */
 @Component
 struct AddedLanguagesList {
-  @StorageLink('addedLanguages') addedLanguages: Array<string> = LanguageAndRegionModel.getAddedLanguages();
-  @State touchedItem: string = '';
+  @StorageLink('addedLanguages') addedLanguages: Array<string> = languageAndRegionModel.getAddedLanguages();
 
   build() {
     List() {
       ForEach(this.addedLanguages, (item: string) => {
-        ListItem() {
-          Column() {
-            Text(LanguageAndRegionModel.getSysDisplayLanguage(item))
-              .fontSize($r("app.float.font_16"))
-              .height($r("app.float.wh_value_22"))
-              .fontWeight(FontWeight.Medium)
-              .margin({ top: $r("app.float.distance_10"), bottom: $r("app.float.distance_2") })
-              .fontColor($r("app.color.font_color_182431"))
-              .textAlign(TextAlign.Start);
-
-            Text(LanguageAndRegionModel.getDisplayLanguage(item))
-              .fontSize($r("app.float.font_14"))
-              .height($r("app.float.wh_value_19"))
-              .fontWeight(FontWeight.Regular)
-              .margin({ bottom: $r("app.float.distance_11") })
-              .fontColor($r('sys.color.ohos_id_color_primary'))
-              .opacity($r('sys.float.ohos_fa_alpha_content_secondary'))
-              .textAlign(TextAlign.Start);
-          }
-          .alignItems(HorizontalAlign.Start);
-        }
-        .align(Alignment.Start)
-        .width(ConfigData.WH_100_100)
-        .padding({ left: $r("app.float.distance_8"), right: $r("app.float.distance_8") })
-        .borderRadius($r("app.float.radius_20"))
-        .linearGradient(item === this.touchedItem ? {
-          angle: 90,
-          direction: GradientDirection.Right,
-          colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-        } : {
-          angle: 90,
-          direction: GradientDirection.Right,
-          colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-        })
-        .onTouch((event?: TouchEvent | undefined) => {
-          if (event?.type === TouchType.Down) {
-            this.touchedItem = item;
-          }
-          if (event?.type === TouchType.Up) {
-            this.touchedItem = '';
-          }
-        })
-      }, (item: string) => {
-        return item;
-      });
+        LanguageItem({ item: item, isClickable: false })
+      }, (item: string) => item);
     }
-    .padding($r("app.float.distance_4"))
-    .borderRadius($r("app.float.radius_24"))
-    .divider({
-      strokeWidth: $r('app.float.divider_wh'),
-      color: $r('sys.color.ohos_id_color_list_separator'),
-      startMargin: $r("app.float.distance_8"),
-      endMargin: $r("app.float.distance_8")
+    .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
+    .padding({
+      start: PADDING_4,
+      end: PADDING_4,
+      bottom: PADDING_4,
+      top: PADDING_4
     })
-    .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
+    .borderRadius($r('sys.float.corner_radius_level10'))
+    .divider({
+      strokeWidth: STROKE_WIDTH_1_PX,
+      color: $r('sys.color.ohos_id_color_list_separator'),
+      startMargin: $r('app.float.distance_8'),
+      endMargin: $r('app.float.distance_8')
+    })
+    .backgroundColor($r('sys.color.comp_background_list_card'));
+  }
+}
+
+@Component
+struct LanguageItem {
+  @State item: string = '';
+  @State isHover: boolean = false;
+  @State isTouched: boolean = false;
+  @Prop isClickable: boolean = false;
+
+  build() {
+    Column() {
+      Text(languageAndRegionModel.getSysDisplayLanguage(this.item))
+        .fontSize($r('app.float.font_16'))
+        .constraintSize({ minHeight: $r('app.float.wh_value_22') })
+        .fontWeight(FontWeight.Medium)
+        .margin({ top: $r('app.float.distance_10'), bottom: $r('app.float.distance_2') })
+        .fontColor($r('sys.color.ohos_id_color_text_primary'))
+        .textAlign(TextAlign.Start);
+      Text(languageAndRegionModel.getDisplayLanguage(this.item))
+        .fontSize($r('app.float.font_14'))
+        .constraintSize({ minHeight: $r('app.float.wh_value_19') })
+        .fontWeight(FontWeight.Regular)
+        .margin({ bottom: $r('app.float.distance_11') })
+        .fontColor($r('sys.color.ohos_id_color_text_secondary'))
+        .textAlign(TextAlign.Start);
+    }
+    .align(LanguageUtils.isLtrDirection() ? Alignment.Start : Alignment.End)
+    .width('100%')
+    .padding({ start: PADDING_8, end: PADDING_8 })
+    .borderRadius($r('sys.float.corner_radius_level8'))
+    .backgroundColor(this.isTouched ? $r('sys.color.ohos_id_color_click_effect') : Color.Transparent)
+    .accessibilityGroup(true)
+    .stateStyles({
+      normal: this.normalStateStyles,
+      pressed: this.pressedStateStyles,
+    })
+    .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
+    .alignItems(HorizontalAlign.Start)
+    .onHover((hover: boolean) => {
+      if (!this.isClickable) {
+        return;
+      }
+      this.isHover = hover;
+    })
+    .onTouch((event?: TouchEvent) => {
+      if (!this.isClickable) {
+        return;
+      }
+      if (event?.type === TouchType.Down) {
+        this.isTouched = true;
+      }
+      if (event?.type === TouchType.Up) {
+        this.isTouched = false;
+      }
+    })
+  }
+
+  @Styles
+  normalStateStyles() {
+    .backgroundColor(this.isHover ? $r('sys.color.ohos_id_color_hover') : Color.Transparent)
+    .borderRadius($r('sys.float.corner_radius_level8'))
+  }
+
+  @Styles
+  pressedStateStyles() {
+    .backgroundColor(this.isClickable
+      ? $r('sys.color.ohos_id_color_click_effect') : null)
+  }
+}
+
+/**
+ * Addlanguage dialog
+ */
+@CustomDialog
+export struct AddLanguageDialog {
+  @Consume('pathInfos') pathInfos: NavPathStack;
+  private tag = `AddLanguageDialog`;
+  private controller?: CustomDialogController;
+  private message: ResourceStr = '';
+  private item: string = '';
+
+  private isExtraLargeFontMode() {
+    return FontScaleUtils.isExtraLargeFontMode();
+  }
+
+  private needWrap() {
+    let result: boolean = FontScaleUtils.isLargeFontMode();
+    if (result) {
+      let dpi: string = SettingsDataUtils.getSettingsData(DisplayConstant.SETTINGS_DATA_USER_SET_DPI_VALUE,
+        DpiManager.defaultDensityDpi.toString());
+      try {
+        result = Number(dpi) >= DpiManager.maxDensityDpi;
+      } catch (error) {
+        LogUtil.showError(this.tag, `convert number error ${error?.message}, code: ${error?.code}`);
+      }
+    }
+    // 字体>=特大一档 或者 字体特大且显示大小最大时换行显示
+    return this.isExtraLargeFontMode() || result;
+  }
+
+  build() {
+    Column() {
+      Text(this.message)
+        .fontFamily('HarmonyHeiTi')
+        .fontSize('16fp')
+        .maxFontScale(2)
+        .fontWeight(FontWeight.Regular)
+        .fontColor($r('sys.color.ohos_id_color_primary'))
+        .constraintSize({ minHeight: '21vp' })
+        .margin({
+          top: PADDING_24,
+          end: PADDING_24,
+          bottom: PADDING_8,
+          start: PADDING_24,
+        })
+      Flex({ wrap: this.needWrap() ? FlexWrap.Wrap : FlexWrap.NoWrap,
+        justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+        Button($r('app.string.keepCurrent'),
+          {
+            stateEffect: false,
+          })
+          .fontColor($r('sys.color.font_emphasize'))
+          .fontSize($r('sys.float.Body_L'))
+          .fontFamily('HarmonyHeiTi')
+          .fontWeight(FontWeight.Regular)
+          .width(this.needWrap() ? '100%' : 'calc(50% - 8vp)')
+          .constraintSize({ minHeight: '40vp' })
+          .stateStyles({
+            normal: normalStateIconStyles,
+            pressed: pressedStateIconStyles,
+          })
+          .onClick(() => {
+            LogUtil.info(`${this.tag} click keepCurrent.`);
+            AppStorage.set('addedLanguages', languageAndRegionModel.getAddedLanguages());
+            this.controller?.close();
+            this.pathInfos?.pop();
+            HiSysEventUtil.reportButtonEvent(RETAIN_CURRENT_LANGUAGE, '');
+          })
+        Divider()
+          .vertical(true)
+          .strokeWidth(px2vp(2))
+          .height($r('app.float.padding_24'))
+          .color($r('sys.color.comp_divider'))
+          .visibility(this.needWrap() ? Visibility.None : Visibility.Visible)
+        Button(ResourceUtil.getStringSync($r('app.string.change')),
+          {
+            stateEffect: false,
+          })
+          .fontColor($r('sys.color.font_emphasize'))
+          .fontSize($r('sys.float.Body_L'))
+          .fontFamily('HarmonyHeiTi')
+          .fontWeight(FontWeight.Regular)
+          .width(this.needWrap() ? '100%' : 'calc(50% - 8vp)')
+          .constraintSize({ minHeight: '40vp' })
+          .stateStyles({
+            normal: normalStateIconStyles,
+            pressed: pressedStateIconStyles,
+          })
+          .onClick(() => {
+            LogUtil.info(`${this.tag} click change.`);
+            this.controller?.close();
+            languageAndRegionModel.setSystemLanguage(this.item);
+            languageAndRegionModel.setAddLanguageChange(true);
+            this.pathInfos?.pop();
+            HiSysEventUtil.reportButtonEvent(CHANGE_CURRENT_LANGUAGE, this.item);
+          })
+      }.margin({ bottom: PADDING_16, start: PADDING_16, end: PADDING_16 })
+    }
+    .borderRadius('32vp')
+  }
+
+  aboutToAppear(): void {
+    LogUtil.info(`${this.tag} aboutToAppear`);
+  }
+
+  aboutToDisappear(): void {
+    LogUtil.info(`${this.tag} aboutToDisappear`);
+  }
+
+  onPageShow(): void {
+    LogUtil.info(`${this.tag} onPageShow`);
+  }
+
+  onPageHide(): void {
+    LogUtil.info(`${this.tag} onPageHide`);
   }
 }
 
@@ -153,115 +378,67 @@ struct AddedLanguagesList {
  */
 @Component
 struct AllLanguagesList {
+  private TAG = `Settings AllLanguagesList`;
+  private allLanguages: AllLanguages = new AllLanguages(languageAndRegionModel.getAllLanguages());
   @State touchedItem: string = '';
-  private allLanguages: AllLanguages = new AllLanguages(LanguageAndRegionModel.getAllLanguages());
+  @Consume('pathInfos') pathInfos: NavPathStack;
+
+  private item = '';
+  private addLanguageController = new CustomDialogController({
+    builder: AddLanguageDialog({
+      message: $r('app.string.changeLanguage', languageAndRegionModel.getSysDisplayLanguage(this.item)),
+      item: this.item
+    }),
+    autoCancel: true,
+    alignment: DialogAlignment.Center,
+  });
 
   build() {
     List() {
-      LazyForEach(this.allLanguages, (item: string) => {
-        ListItem() {
-          Column() {
-            Text(LanguageAndRegionModel.getSysDisplayLanguage(item))
-              .fontSize($r("app.float.font_16"))
-              .height($r("app.float.wh_value_22"))
-              .fontWeight(FontWeight.Medium)
-              .margin({ top: $r("app.float.distance_10"), bottom: $r("app.float.distance_2") })
-              .fontColor($r("app.color.font_color_182431"))
-              .textAlign(TextAlign.Start);
-
-            Text(LanguageAndRegionModel.getDisplayLanguage(item))
-              .fontSize($r("app.float.font_14"))
-              .height($r("app.float.wh_value_19"))
-              .fontWeight(FontWeight.Regular)
-              .margin({ bottom: $r("app.float.distance_11") })
-              .fontColor($r('sys.color.ohos_id_color_primary'))
-              .opacity($r('sys.float.ohos_fa_alpha_content_secondary'))
-              .textAlign(TextAlign.Start);
-          }
-          .alignItems(HorizontalAlign.Start);
-        }
-        .align(Alignment.Start)
-        .width(ConfigData.WH_100_100)
-        .padding({ left: $r("app.float.distance_8"), right: $r("app.float.distance_8") })
-        .borderRadius($r("app.float.radius_20"))
-        .linearGradient(item === this.touchedItem ? {
-          angle: 90,
-          direction: GradientDirection.Right,
-          colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-        } : {
-          angle: 90,
-          direction: GradientDirection.Right,
-          colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-        })
-        .onTouch((event?: TouchEvent | undefined) => {
-          if (event?.type === TouchType.Down) {
-            this.touchedItem = item;
-          }
-          if (event?.type === TouchType.Up) {
-            this.touchedItem = '';
-          }
-        })
+      LazyForEach(this.allLanguages, (item: string, index: number) => {
+        LanguageItem({ item: item, isClickable: true })
         .onClick(() => {
-          if (!LanguageAndRegionModel.isInAddedLanguage(item)) {
-            LanguageAndRegionModel.addLanguage(item);
-            AlertDialog.show(
-              {
-                message: $r("app.string.changeLanguage", LanguageAndRegionModel.getSysDisplayLanguage(item)),
-                primaryButton: {
-                  value: $r("app.string.keepCurrent"),
-                  action: () => {
-                    router.back();
-                    LogUtil.info(ConfigData.TAG + 'callback when first button clicked');
-                  }
-                },
-                secondaryButton: {
-                  value: $r("app.string.change"),
-                  action: () => {
-                    LanguageAndRegionModel.setSystemLanguage(item);
-                    router.back();
-                    LogUtil.info(ConfigData.TAG + 'callback when first button clicked');
-                  }
-                },
-                alignment: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? DialogAlignment.Bottom : DialogAlignment.Center,
-                offset: ({ dx: 0, dy: deviceTypeInfo === 'phone' || deviceTypeInfo === 'default' ? '-24dp' : 0 }),
-                cancel: () => {
-                  LogUtil.info(ConfigData.TAG + 'cancel');
-                }
-              }
-            )
+          HiSysEventUtil.reportEntryEvent(ADD_LANGUAGE_ENTRY, item);
+          if (!languageAndRegionModel.isInAddedLanguage(item)) {
+            languageAndRegionModel.addLanguage(item);
+            AppStorage.set('addedLanguages', languageAndRegionModel.getAddedLanguages());
+            this.item = item;
+            LogUtil.info(`${this.TAG} item value: ${this.item}`);
+            this.addLanguageController.open();
           } else {
-            ResourceUtil.getString($r("app.string.hasAdded")).then(value => {
-              prompt.showToast({
-                message: value,
-                duration: 2000,
-              })
+            ResourceUtil.getString($r('app.string.hasAdded')).then(value => {
+              ToastUtil.showToast(value, ToastUtil.SHORT_DURATION)
             })
           }
         })
-      }, (item: string) => {
-        return item;
-      });
+      }, (item: string) => item);
     }
-    .padding($r("app.float.distance_4"))
-    .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
-    .borderRadius($r("app.float.radius_24"))
+    .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
+    .padding($r('app.float.distance_4'))
+    .backgroundColor($r('sys.color.comp_background_list_card'))
+    .borderRadius($r('sys.float.corner_radius_level10'))
     .divider({
-      strokeWidth: $r('app.float.divider_wh'),
+      strokeWidth: STROKE_WIDTH_1_PX,
       color: $r('sys.color.ohos_id_color_list_separator'),
-      startMargin: $r("app.float.distance_8"),
-      endMargin: $r("app.float.distance_8")
+      startMargin: $r('app.float.distance_8'),
+      endMargin: $r('app.float.distance_8')
     });
+  }
+
+  aboutToDisappear(): void {
+    this.addLanguageController?.close();
+    LogUtil.info(`${this.TAG} Settings AddLanguageDialog onPageHide`);
   }
 }
 
 /**
  * Array Of AllLanguages For Lazy Loading
  */
-class AllLanguages implements IDataSource {
+class AllLanguages extends BasicDataSource {
   private languagesArray: string[] = [];
-  private listeners: DataChangeListener[] = [];
 
   constructor(languagesArray: string[]) {
+    super();
     this.languagesArray = languagesArray;
   }
 
@@ -271,48 +448,5 @@ class AllLanguages implements IDataSource {
 
   public getData(index: number): string {
     return this.languagesArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const position = this.listeners.indexOf(listener);
-    if (position >= 0) {
-      this.listeners.splice(position, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdded(index);
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChanged(index);
-    })
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDeleted(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMoved(from, to);
-    })
   }
 }
