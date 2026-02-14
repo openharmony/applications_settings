@@ -1,0 +1,145 @@
+{
+    "plural":[
+        {
+            "name":"not_enabled_for_many_days",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"لم يُستخدم لمدة %d يوم",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"لم يُستخدم لمدة يوم واحد",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"لم يُستخدم لمدة %d أيام",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"لم يُستخدم لمدة %d أيام",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"لم يُستخدم لمدة %d يومًا",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"لم يُستخدم لمدة يومين",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"delete_apps_selected",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"إزالة تثبيت تطبيق واحد",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"إزالة تثبيت %d تطبيق",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"إزالة تثبيت %d تطبيقات",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"إزالة تثبيت %d تطبيقات",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"إزالة تثبيت %d تطبيقًا",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"إزالة تثبيت تطبيقين",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"is_delete_apps_number",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"هل تريد إزالة تثبيت تطبيق واحد؟",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"هل تريد إزالة تثبيت %d تطبيق؟",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"هل تريد إزالة تثبيت %d تطبيقات؟",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"هل تريد إزالة تثبيت %d تطبيقات؟",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"هل تريد إزالة تثبيت %d تطبيقًا؟",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"هل تريد إزالة تثبيت تطبيقين؟",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

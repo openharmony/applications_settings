@@ -1,0 +1,438 @@
+{
+    "string":[
+        {
+            "name":"not_disturb_turnedon",
+            "value":"켜짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_six_format",
+            "value":"%1$s, %2$s, %3$s, %4$s, %5$s, %6$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tips_title",
+            "value":"이 기능이 켜져 있으면 수신전화가 자동으로 거절되고 알림이 무음으로 설정됩니다. 알람은 여전히 평소처럼 울립니다. \"중단 허용\"에서 차단하거나 허용할 항목을 선택할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_add",
+            "value":"일정 추가",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"repeat_call_will_ring_normally",
+            "value":"%d분 이내에 같은 번호로 걸려오는 두 번째 전화는 무음 처리되지 않습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"done",
+            "value":"완료",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tonight_time",
+            "value":"%1$s까지 켠 상태 유지",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_edit",
+            "value":"일정 편집",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_start_time",
+            "value":"보낸 사람",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_call",
+            "value":"수신 전화",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"go_to_set",
+            "value":"설정으로 이동",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_regularly",
+            "value":"예약됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_maximum_scheduled",
+            "value":"최대 %d개 일정을 추가할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_cancel",
+            "value":"취소",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_reset",
+            "value":"언제든지 다시 추가할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_everyone",
+            "value":"모든 사람으로부터 허용",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"none_selected_app",
+            "value":"선택된 항목 없음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_only_specified_contacts",
+            "value":"선택한 연락처에서 허용",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_end_time",
+            "value":"받는 사람",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_only_favorite_contacts",
+            "value":"즐겨찾기에서만 허용",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_repeat",
+            "value":"반복",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tips_settings",
+            "value":"이 기능이 켜져 있으면 수신전화가 걸려오거나 알림이 올 때 소리가 나지 않고 화면이 켜지지 않습니다. 알람은 평소처럼 울립니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_until_tonight",
+            "value":"오늘 저녁까지",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"zen_mode_schedule_repeat_monday_to_friday",
+            "value":"월요일~금요일",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_notification",
+            "value":"알림",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"zen_mode_ruletime_nextday",
+            "value":"%1$s~%2$s(다음 날)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_only_existing_contacts",
+            "value":"연락처에서만 허용",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_reason_read_write_contacts",
+            "value":"연락처를 읽고 쓰는 데 사용됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_contacts",
+            "value":"연락처 선택",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_confirm",
+            "value":"확인",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_app",
+            "value":"앱 선택",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_scheduled",
+            "value":"일정 추가",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_four_format",
+            "value":"%1$s, %2$s, %3$s, %4$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_nextday",
+            "value":"%s(다음 날)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_open",
+            "value":"켜기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_list_search_empty",
+            "value":"일치하는 결과 없음",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_turn_on_now",
+            "value":"지금 켜기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"forbid_everyone",
+            "value":"모든 사용자로부터 차단",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_closed",
+            "value":"꺼짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_two_hour",
+            "value":"2시간 동안",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tips_dialog",
+            "value":"이 기능이 켜져 있으면 수신전화가 걸려오거나 알림이 올 때 소리가 나지 않고 화면이 켜지지 않습니다. 알람은 평소처럼 울립니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_repeat",
+            "value":"사용 안 함",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_between",
+            "value":"%1$s~%2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_five_format",
+            "value":"%1$s, %2$s, %3$s, %4$s, %5$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_contacts",
+            "value":"선호도",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_everyday",
+            "value":"매일",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_title",
+            "value":"방해금지",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_three_format",
+            "value":"%1$s, %2$s, %3$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_allow",
+            "value":"중단 허용",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_loading",
+            "value":"로드 중…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_delete_confirm",
+            "value":"이 일정을 삭제하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_two_format",
+            "value":"%1$s, %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_dialog_title",
+            "value":"설정에 주소록 권한 필요",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_until_close",
+            "value":"꺼질 때까지 켠 상태 유지",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_one_hour",
+            "value":"1시간 동안",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_delete",
+            "value":"삭제",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"all_app",
+            "value":"모든 앱",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"search_app",
+            "value":"앱 검색",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"repeat_call_ringing",
+            "value":"반복 통화 허용",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"none_selected",
+            "value":"선택된 항목 없음",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_selected",
+            "value":"선택되지 않음",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"has_selected",
+            "value":"선택됨",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

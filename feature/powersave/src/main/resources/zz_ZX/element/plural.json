@@ -1,0 +1,62 @@
+{
+    "plural":[
+        {
+            "name":"optimization_task_toast",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_1085059]_%d optimization applied."
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_1085065]_%d optimizations applied."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1085055]_%d optimizations applied."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1085058]_%d optimizations applied."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1085061]_%d optimizations applied."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1085066]_%d optimizations applied."
+                }
+            ]
+        },
+        {
+            "name":"power_save_advise_sub",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_1085064]_Apply %d optimization to extend battery life."
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_1085062]_Apply %d optimizations to extend battery life."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1085056]_Apply %d optimizations to extend battery life."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1085063]_Apply %d optimizations to extend battery life."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1085057]_Apply %d optimizations to extend battery life."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1085060]_Apply %d optimizations to extend battery life."
+                }
+            ]
+        }
+    ]
+}

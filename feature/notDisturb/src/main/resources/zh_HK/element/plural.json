@@ -1,0 +1,40 @@
+{
+    "plural":[
+        {
+            "name":"user_select_app",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 個應用程式",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"selected_app",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"已選取（%d）",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"user_select_contact",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 位聯絡人",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

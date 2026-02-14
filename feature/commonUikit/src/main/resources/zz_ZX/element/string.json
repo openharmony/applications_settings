@@ -1,0 +1,48 @@
+{
+    "string":[
+        {
+            "name":"input_max_length_message",
+            "value":"[TS_806107]_You have entered too many characters."
+        },
+        {
+            "name":"device_name_settings_summary_with_near_link",
+            "value":"[TS_927049]_This name will be shown on other devices when you interact, share, or connect with them via Bluetooth, NearLink, a personal hotspot, or USB."
+        },
+        {
+            "name":"setting_search",
+            "value":"[TS_992726]_Search"
+        },
+        {
+            "name":"note",
+            "value":"[TS_858450]_Note"
+        },
+        {
+            "name":"go_to_login",
+            "value":"[TS_1009652]_Log in"
+        },
+        {
+            "name":"device_name_update_fail",
+            "value":"[TS_1009655]_Unable to change name. Try again later."
+        },
+        {
+            "name":"network_tips",
+            "value":"[TS_1009653]_Connect to a network first."
+        },
+        {
+            "name":"device_name_wait_tip",
+            "value":"[TS_1011697]_Applying"
+        },
+        {
+            "name":"device_name_check_fail",
+            "value":"[TS_1009654]_Try a different name."
+        },
+        {
+            "name":"navigation_back",
+            "value":"[TS_992722]_Go back"
+        },
+        {
+            "name":"more_options",
+            "value":"[TS_979800]_More options"
+        }
+    ]
+}

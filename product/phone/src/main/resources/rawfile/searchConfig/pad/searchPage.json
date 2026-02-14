@@ -1,0 +1,4868 @@
+{
+  "version": {
+    "curVersion": "1.0.4"
+  },
+  "searchPages": [
+    {
+      "pageTitle": "$string:wifi_settings_title",
+      "pageDescription": "WLAN settings",
+      "entryKey": "wifi_entry",
+      "params": "",
+      "path": [
+        "$string:wifi_settings_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "wlan",
+          "itemTitle": "$string:wifi_settings_title",
+          "itemDescription": "",
+          "icon": "",
+          "childItems": "",
+          "alias": "WiFi|网络连接|无线局域网|无线网|局域网|无线|无线网络|开启WLAN|WI-FI|WIFI"
+        },
+        {
+          "itemName": "wifi_add_other_wifi",
+          "itemTitle": "$string:wifi_add_other_wifi",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "wlan_security_title",
+          "itemTitle": "$string:wlan_security_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:bluetooth_settings_title",
+      "pageDescription": "bluetooth settings",
+      "entryKey": "bluetooth_entry",
+      "params": "",
+      "path": [
+        "$string:bluetooth_settings_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "bluetooth",
+          "itemTitle": "$string:bluetooth_settings_title",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_bluetooth",
+          "childItems": "",
+          "alias": "开启蓝牙|蓝牙开关|BT|Bluetooth|lanya",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isShowFusionEntrance",
+            "value": "false"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:nearlink_and_bluetooth",
+      "pageDescription": "nearlink and bluetooth settings",
+      "entryKey": "bluetooth_entry",
+      "params": "",
+      "path": [
+        "$string:nearlink_and_bluetooth"
+      ],
+      "searchItems": [
+        {
+          "itemName": "bluetooth",
+          "itemTitle": "$string:bluetooth_settings_title",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_bluetooth",
+          "childItems": "",
+          "alias": "开启蓝牙|蓝牙开关|BT|Bluetooth|lanya",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isShowFusionEntrance",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:mobile_network_settings_title",
+      "pageDescription": "mobile network",
+      "entryKey": "mobile_network_entry",
+      "params": "",
+      "path": [
+        "$string:mobile_network_settings_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "mobile_network",
+          "itemTitle": "$string:mobile_network_settings_title",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_mobile_network",
+          "enable": "true",
+          "childItems": "",
+          "alias": "蜂窝移动数据|数据连接|数据网络|Mobile data|yidongshuju",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportMobileNetworkPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "airplane_mode",
+          "itemTitle": "$string:airplane_mode",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "航空模式|飞机|离线模式|Airplane mode|feixingmoshi",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportMobileNetworkPage",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:hotspot_settings_title",
+      "pageDescription": "Personal hotspot",
+      "entryKey": "hotspot_data_settings",
+      "params": "",
+      "path": [
+        "$string:mobile_network_settings_title",
+        "$string:hotspot_settings_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "personal_hotspot",
+          "itemTitle": "$string:hotspot_settings_title",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_mobile_network",
+          "enable": "true",
+          "childItems": "",
+          "alias": "个人热点|WLAN热点|蓝牙共享|USB共享|WLAN热点和网络共享|移动热点和网络共享|热点|便携式WLAN热点|移动网络共享",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasVoiceCapability",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "hotspot_device_name",
+          "itemTitle": "$string:hotspot_device_name",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "设备名字|设备命名",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasVoiceCapability",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "hotspot_password",
+          "itemTitle": "$string:hotspot_password",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasVoiceCapability",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:hotspot_connected_device",
+      "pageDescription": "hotspot connected device",
+      "entryKey": "connected_device_entry",
+      "params": "",
+      "path": [
+        "$string:mobile_network_settings_title",
+        "$string:hotspot_settings_title",
+        "$string:hotspot_connected_device"
+      ],
+      "searchItems": [
+        {
+          "itemName": "hotspot_connected_device",
+          "itemTitle": "$string:hotspot_connected_device",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasVoiceCapability",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:hot_spot_block_list",
+      "pageDescription": "hotspot block list",
+      "entryKey": "block_list_entry",
+      "params": "",
+      "path": [
+        "$string:mobile_network_settings_title",
+        "$string:hotspot_settings_title",
+        "$string:hotspot_connected_device",
+        "$string:hot_spot_block_list"
+      ],
+      "searchItems": [
+        {
+          "itemName": "hotspot_block_list",
+          "itemTitle": "$string:hot_spot_block_list",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasVoiceCapability",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:hotspot_more_share_settings",
+      "pageDescription": "Personal hotspot more share settings",
+      "entryKey": "more_share_entry",
+      "params": "",
+      "path": [
+        "$string:mobile_network_settings_title",
+        "$string:hotspot_settings_title",
+        "$string:hotspot_more_share_settings"
+      ],
+      "searchItems": [
+        {
+          "itemName": "settings_more",
+          "itemTitle": "$string:hotspot_more_share_settings",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "More|gengduogongxiangshezhi",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasVoiceCapability",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "ap_band",
+          "itemTitle": "$string:hotspot_ap_band",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasVoiceCapability",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "hotspot_device_usb",
+          "itemTitle": "$string:hotspot_usb",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems":  {
+            "type": "function",
+            "checkKey": "hasVoiceCapability",
+            "value": "true"
+          },
+          "alias": "USB 共享网络|gongxiangwangluo|USB共享网络"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:multi_device_collaboration",
+      "pageDescription": "More connections",
+      "entryKey": "more_connections_settings",
+      "params": "",
+      "path": [
+        "$string:multi_device_collaboration"
+      ],
+      "searchItems": [
+        {
+          "itemName": "more_connections",
+          "itemTitle": "$string:multi_device_collaboration",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_more_connections",
+          "enable": "true",
+          "alias": "设备连接|More connections|gengduolianjie"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:projection_toggle_title",
+      "pageDescription": "",
+      "entryKey": "wireless_projection_settings",
+      "params": "",
+      "path": [
+        "$string:multi_device_collaboration",
+        "$string:projection_toggle_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "projection_toggle",
+          "itemTitle": "$string:projection_toggle_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:bind_devices",
+      "pageDescription": "",
+      "entryKey": "wireless_trusted_settings",
+      "params": "",
+      "path": [
+        "$string:multi_device_collaboration",
+        "$string:projection_toggle_title",
+        "$string:bind_devices"
+      ],
+      "searchItems": [
+        {
+          "itemName": "bind_devices",
+          "itemTitle": "$string:bind_devices",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:theme_settings_title",
+      "pageDescription": "Home screen & style",
+      "entryKey": "theme_settings",
+      "params": "settingsThemePage",
+      "path": [
+        "$string:theme_settings_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "home_screen_and_style",
+          "itemTitle": "$string:theme_settings_title",
+          "itemDescription": "",
+          "icon": "$media:ic_public_themes",
+          "enable": "true",
+          "childItems": "",
+          "alias": "主屏幕|Home screen & style|zhuomianhegexinghua"
+        },
+        {
+          "itemName": "attration_style",
+          "itemTitle": "$string:window_animation_title",
+          "itemDescription": "",
+          "icon": "$media:ic_public_themes"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:wall_paper_theme",
+      "pageDescription": "",
+      "entryKey": "theme_settings",
+      "params": "wallpaperPicker",
+      "path": [
+        "$string:theme_settings_title",
+        "$string:wall_paper_theme"
+      ],
+      "searchItems": [
+        {
+          "itemName": "wallpaper_theme",
+          "itemTitle": "$string:wall_paper_theme",
+          "itemDescription": "",
+          "icon": "$media:ic_public_themes"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:my_wallpaper",
+      "pageDescription": "",
+      "entryKey": "theme_settings",
+      "params": "myWallpaperEdit",
+      "path": [
+        "$string:theme_settings_title",
+        "$string:wall_paper_theme",
+        "$string:my_wallpaper"
+      ],
+      "searchItems": [
+        {
+          "itemName": "my_wallpapers",
+          "itemTitle": "$string:my_wallpaper",
+          "itemDescription": "",
+          "icon": "$media:ic_public_themes",
+          "alias": "锁屏个性化|鎖屏個性化|Lock Screen Personalization|suopinggexinghua|锁屏编辑|鎖屏編輯|Lock Screen Editing|suopingbianji|编辑|編輯|Editing|bianji|锁屏自定义|鎖屏自定義|Lock Screen Customization|suopingzidingyi|锁屏设置|鎖屏設置|Lock Screen Settings|suopingshezhi",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSmallFoldProduct",
+            "value": "false"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:my_wallpaper",
+      "pageDescription": "",
+      "entryKey": "theme_settings",
+      "params": "myWallpaperEdit",
+      "path": [
+        "$string:covertheme_settings_title",
+        "$string:wall_paper_theme",
+        "$string:my_wallpaper"
+      ],
+      "searchItems": [
+        {
+          "itemName": "my_wallpapers",
+          "itemTitle": "$string:my_wallpaper",
+          "itemDescription": "",
+          "icon": "$media:ic_public_themes",
+          "alias": "锁屏个性化|鎖屏個性化|Lock Screen Personalization|suopinggexinghua|锁屏编辑|鎖屏編輯|Lock Screen Editing|suopingbianji|编辑|編輯|Editing|bianji|锁屏自定义|鎖屏自定義|Lock Screen Customization|suopingzidingyi|锁屏设置|鎖屏設置|Lock Screen Settings|suopingshezhi",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSmallFoldProduct",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:digital_clock",
+      "pageDescription": "",
+      "entryKey": "theme_settings",
+      "params": "myWallpaperEditDigitalClock",
+      "path": [
+        "$string:theme_settings_title",
+        "$string:wall_paper_theme",
+        "$string:my_wallpaper",
+        "$string:digital_clock"
+      ],
+      "searchItems": [
+        {
+          "itemName": "digital_clock",
+          "itemTitle": "$string:digital_clock",
+          "itemDescription": "",
+          "icon": "$media:ic_public_themes",
+          "alias": "锁屏时间|鎖屏時間|Lock Screen Time|suopingshijian|时钟|時鐘|Clock|shizhong|数字时钟|數字時鐘|Digital Clock|shuzishizhong|锁屏时钟|鎖屏時鐘|Lock Screen Clock|suopingshizhong|锁屏签名|鎖屏簽名|Lock Screen Signature|suopingqianming|文字签名|文字簽名|Text Signature|wenziqianming|签名|簽名|Signature|qianming",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSmallFoldProduct",
+            "value": "false"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:digital_clock",
+      "pageDescription": "",
+      "entryKey": "theme_settings",
+      "params": "myWallpaperEditDigitalClock",
+      "path": [
+        "$string:covertheme_settings_title",
+        "$string:wall_paper_theme",
+        "$string:my_wallpaper",
+        "$string:digital_clock"
+      ],
+      "searchItems": [
+        {
+          "itemName": "digital_clock",
+          "itemTitle": "$string:digital_clock",
+          "itemDescription": "",
+          "icon": "$media:ic_public_themes",
+          "alias": "锁屏时间|鎖屏時間|Lock Screen Time|suopingshijian|时钟|時鐘|Clock|shizhong|数字时钟|數字時鐘|Digital Clock|shuzishizhong|锁屏时钟|鎖屏時鐘|Lock Screen Clock|suopingshizhong|锁屏签名|鎖屏簽名|Lock Screen Signature|suopingqianming|文字签名|文字簽名|Text Signature|wenziqianming|签名|簽名|Signature|qianming",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSmallFoldProduct",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:art_signature",
+      "pageDescription": "",
+      "entryKey": "theme_settings",
+      "params": "myWallpaperEditArtSignature",
+      "path": [
+        "$string:theme_settings_title",
+        "$string:wall_paper_theme",
+        "$string:my_wallpaper",
+        "$string:art_signature"
+      ],
+      "searchItems": [
+        {
+          "itemName": "art_signature",
+          "itemTitle": "$string:art_signature",
+          "itemDescription": "",
+          "icon": "$media:ic_public_themes",
+          "alias": "个性签名|個性簽名|Personalized Signature|gexingqianming|锁屏艺术签名|鎖屏藝術簽名|Lock Screen Artistic Signature|suopingyishuqianming|艺术签名|藝術簽名|Artistic Signature|yishuqianming",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSmallFoldProduct",
+            "value": "false"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:art_signature",
+      "pageDescription": "",
+      "entryKey": "theme_settings",
+      "params": "myWallpaperEditArtSignature",
+      "path": [
+        "$string:covertheme_settings_title",
+        "$string:wall_paper_theme",
+        "$string:my_wallpaper",
+        "$string:art_signature"
+      ],
+      "searchItems": [
+        {
+          "itemName": "art_signature",
+          "itemTitle": "$string:art_signature",
+          "itemDescription": "",
+          "icon": "$media:ic_public_themes",
+          "alias": "个性签名|個性簽名|Personalized Signature|gexingqianming|锁屏艺术签名|鎖屏藝術簽名|Lock Screen Artistic Signature|suopingyishuqianming|艺术签名|藝術簽名|Artistic Signature|yishuqianming",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSmallFoldProduct",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:lock_card",
+      "pageDescription": "",
+      "entryKey": "theme_settings",
+      "params": "myWallpaperEditLockCard",
+      "path": [
+        "$string:theme_settings_title",
+        "$string:wall_paper_theme",
+        "$string:my_wallpaper",
+        "$string:lock_card"
+      ],
+      "searchItems": [
+        {
+          "itemName": "lock_card",
+          "itemTitle": "$string:lock_card",
+          "itemDescription": "",
+          "icon": "$media:ic_public_themes",
+          "alias": "锁屏卡片|鎖屏卡片|Lock Screen Card|suopingkapian|锁屏组件|鎖屏組件|Lock Screen Widget|suopingzujian|锁屏小应用|鎖屏小應用|Lock Screen Mini App|suopingxiaoyingyong|锁屏控件|鎖屏控件|Lock Screen Control|suopingkongjian|锁屏插件|鎖屏插件|Lock Screen Plugin|suopingchajian|卡片|卡片|Card|kapian",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSmallFoldProduct",
+            "value": "false"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:lock_card",
+      "pageDescription": "",
+      "entryKey": "theme_settings",
+      "params": "myWallpaperEditLockCard",
+      "path": [
+        "$string:covertheme_settings_title",
+        "$string:wall_paper_theme",
+        "$string:my_wallpaper",
+        "$string:lock_card"
+      ],
+      "searchItems": [
+        {
+          "itemName": "lock_card",
+          "itemTitle": "$string:lock_card",
+          "itemDescription": "",
+          "icon": "$media:ic_public_themes",
+          "alias": "锁屏卡片|鎖屏卡片|Lock Screen Card|suopingkapian|锁屏组件|鎖屏組件|Lock Screen Widget|suopingzujian|锁屏小应用|鎖屏小應用|Lock Screen Mini App|suopingxiaoyingyong|锁屏控件|鎖屏控件|Lock Screen Control|suopingkongjian|锁屏插件|鎖屏插件|Lock Screen Plugin|suopingchajian|卡片|卡片|Card|kapian",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSmallFoldProduct",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:font_style_theme",
+      "pageDescription": "",
+      "entryKey": "theme_settings",
+      "params": "fontPicker",
+      "path": [
+        "$string:theme_settings_title",
+        "$string:font_style_theme"
+      ],
+      "searchItems": [
+        {
+          "itemName": "font_theme",
+          "itemTitle": "$string:font_style_theme",
+          "itemDescription": "",
+          "icon": "$media:ic_public_themes"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:icon_theme",
+      "pageDescription": "",
+      "entryKey": "theme_settings",
+      "params": "iconPicker",
+      "path": [
+        "$string:theme_settings_title",
+        "$string:icon_theme"
+      ],
+      "searchItems": [
+        {
+          "itemName": "icon_theme",
+          "itemTitle": "$string:icon_theme",
+          "itemDescription": "",
+          "icon": "$media:ic_public_themes"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:the_theme",
+      "pageDescription": "",
+      "entryKey": "theme_settings",
+      "params": "themePicker",
+      "path": [
+        "$string:theme_settings_title",
+        "$string:the_theme"
+      ],
+      "searchItems": [
+        {
+          "itemName": "theme_more",
+          "itemTitle": "$string:the_theme",
+          "itemDescription": "",
+          "icon": "$media:ic_public_themes"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:theme_settings_title",
+      "pageDescription": "",
+      "entryKey": "theme_settings",
+      "params": "settingsThemePage",
+      "path": [
+        "$string:theme_settings_title",
+        "$string:screenlock_sign_entry"
+      ],
+      "supportDevices": ["phone","tablet"],
+      "searchItems": [
+        {
+          "itemName": "screenlock_signature",
+          "itemTitle": "$string:screenlock_signature",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "锁屏|鎖屏|螢幕鎖定|lock screen|suoping|签名|簽名|簽名檔|qianming|signature|锁屏签名|鎖屏簽名|螢幕鎖定簽名檔|lock screen signature|suopingqianming",
+          "supportDevices": ["phone","tablet"]
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:theme_settings_title",
+      "pageDescription": "",
+      "entryKey": "theme_settings",
+      "params": "screenlockSettingPage",
+      "path": [
+        "$string:theme_settings_title",
+        "$string:screenlock_settings",
+        "$string:screenlock_font_creation_service"
+      ],
+      "supportDevices": ["phone","tablet"],
+      "searchItems": [
+        {
+          "itemName": "screenlock_font_creation_service",
+          "itemTitle": "$string:screenlock_font_creation_service",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "锁屏|鎖屏|字体创作|lock screen|suoping|服务|锁屏字体创作服务|zitichuangzuo|font creation service",
+          "supportDevices": ["phone","tablet"],
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSmallFoldProduct",
+            "value": "false"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:display_settings_title",
+      "pageDescription": "Display & brightness",
+      "entryKey": "display_settings",
+      "params": "",
+      "path": [
+        "$string:display_settings_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "display_and_brightness",
+          "itemTitle": "$string:display_settings_title",
+          "itemDescription": "",
+          "icon": "$media:ic_brightness_plus",
+          "enable": "true",
+          "childItems": "",
+          "alias": "屏幕亮度|显示亮度|Display & brightness|xianshiheliangdu"
+        },
+        {
+          "itemName": "brightness",
+          "itemTitle": "$string:brightness_settings_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "auto_brightness",
+          "itemTitle": "$string:automatic_adjust",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "sleep",
+          "itemTitle": "$string:dormancy",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "熄屏"
+        },
+        {
+          "itemName": "smart_resolution_rate",
+          "itemTitle": "$string:display_smart_resolution_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "gaze_screen_no_turning_off",
+          "itemTitle": "$string:gaze_screen_no_turning_off",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "",
+          "checkItem": {
+            "type": "param",
+            "checkKey": "const.config.swing_enabled",
+            "value": "1"
+          }
+        },
+        {
+          "itemName": "hide_screen_cutouts",
+          "itemTitle": "$string:hide_screen_cutouts",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "",
+          "checkItem": {
+            "type": "param",
+            "checkKey": "persist.sys.graphic.hideNotch.status",
+            "value": "1|2"
+          }
+        },
+        {
+          "itemName": "display_model",
+          "itemTitle": "$string:display_model",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:dark_mode",
+      "pageDescription": "Dark mode",
+      "entryKey": "dark_settings",
+      "params": "",
+      "path": [
+        "$string:display_settings_title",
+        "$string:dark_mode"
+      ],
+      "searchItems": [
+        {
+          "itemName": "dark_mode",
+          "itemTitle": "$string:dark_mode",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "dark_mode_all_day",
+          "itemTitle": "$string:open_all_day",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "dark_mode_timed_on",
+          "itemTitle": "$string:eye_timed_on",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "dark_start_time",
+          "itemTitle": "$string:start_time",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "false",
+          "childItems": "",
+          "alias": "kaishi",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "darkTimeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "dark_end_time",
+          "itemTitle": "$string:end_time",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "false",
+          "childItems": "",
+          "alias": "jieshu",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "darkTimeSupport",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:eye_Comfort_mode",
+      "pageDescription": "",
+      "entryKey": "eye_comfort_mode",
+      "params": "",
+      "path": [
+        "$string:display_settings_title",
+        "$string:eye_Comfort_mode"
+      ],
+      "searchItems": [
+        {
+          "itemName": "eye_Comfort_mode",
+          "itemTitle": "$string:eye_Comfort_mode",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "huyan",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "eyeProtectSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "open_all_day",
+          "itemTitle": "$string:open_all_day",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "quantian|quantiankaiqi",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "eyeProtectSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "blue_light_filter",
+          "itemTitle": "$string:blue_light_filter",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "夜览|languang",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "eyeBlueSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "screen_low_frequency_flash",
+          "itemTitle": "$string:screen_low_frequency_flash",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "dipinshan",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "lowFrequencySupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "intelligent_switch",
+          "itemTitle": "$string:intelligent_switch",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "zhinengkaiqi",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSwingEyeSupport",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:eye_timed_on",
+      "pageDescription": "",
+      "entryKey": "eye_comfort_mode_time_on",
+      "params": "",
+      "path": [
+        "$string:display_settings_title",
+        "$string:eye_Comfort_mode",
+        "$string:eye_timed_on"
+      ],
+      "searchItems": [
+        {
+          "itemName": "eye_timed_on",
+          "itemTitle": "$string:eye_timed_on",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "dingshikaiqi",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "eyeProtectSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "sun_falls_and_sunrises",
+          "itemTitle": "$string:sun_falls_and_sunrises",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "riluo|richu",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "eyeTimeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "custom_time_period",
+          "itemTitle": "$string:custom_time_period",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "zidingyi",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "eyeTimeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "start_time",
+          "itemTitle": "$string:start_time",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "kaishi",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "eyeStartTimeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "end_time",
+          "itemTitle": "$string:end_time",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "jieshu",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "eyeStartTimeSupport",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:ebook_mode",
+      "pageDescription": "",
+      "entryKey": "ebook_mode",
+      "params": "",
+      "path": [
+        "$string:display_settings_title",
+        "$string:ebook_mode"
+      ],
+      "searchItems": [
+        {
+          "itemName": "ebook_mode",
+          "itemTitle": "$string:ebook_mode",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "dianzishu",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "ebookSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "ebook_mode_color",
+          "itemTitle": "$string:color_picture_book",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "caise",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "ebookColorSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "ebook_mode_black",
+          "itemTitle": "$string:black_picture_book",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "heibai",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "ebookBlackSupport",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:advanced_setting",
+      "pageDescription": "",
+      "entryKey": "advanced_setting_entry",
+      "params": "",
+      "path": [
+        "$string:display_settings_title",
+        "$string:advanced_setting"
+      ],
+      "searchItems": [
+        {
+          "itemName": "advanced_setting",
+          "itemTitle": "$string:advanced_setting",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "gaoji",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hdrImageSupport",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:icon_hdr_display",
+      "pageDescription": "",
+      "entryKey": "hdr_pic_switch_entry",
+      "params": "",
+      "path": [
+        "$string:display_settings_title",
+        "$string:advanced_setting",
+        "$string:icon_hdr_display"
+      ],
+      "searchItems": [
+        {
+          "itemName": "icon_hdr_display",
+          "itemTitle": "$string:icon_hdr_display",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "图片HDR显示|tupianhdr",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hdrImageSupport",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:icon_bionic_vision",
+      "pageDescription": "",
+      "entryKey": "pic_bionic_vision_switch_entry",
+      "params": "",
+      "path": [
+        "$string:display_settings_title",
+        "$string:advanced_setting",
+        "$string:icon_bionic_vision"
+      ],
+      "searchItems": [
+        {
+          "itemName": "icon_bionic_vision",
+          "itemTitle": "$string:icon_bionic_vision",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "仿生视觉|fangshengshijue",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isBionicVisionSupport",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:video_hdr_display",
+      "pageDescription": "",
+      "entryKey": "hdr_video_switch_entry",
+      "params": "",
+      "path": [
+        "$string:display_settings_title",
+        "$string:advanced_setting",
+        "$string:video_hdr_display"
+      ],
+      "searchItems": [
+        {
+          "itemName": "video_hdr_display",
+          "itemTitle": "$string:video_hdr_display",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "视频HDR增强|shipinghdr|显示效果",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportAiHDRVideo",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:screen_zoom_and_text",
+      "pageDescription": "Screen zoom",
+      "entryKey": "screen_zoom",
+      "params": "",
+      "path": [
+        "$string:display_settings_title",
+        "$string:screen_zoom_and_text"
+      ],
+      "searchItems": [
+        {
+          "itemName": "display_size",
+          "itemTitle": "$string:screen_zoom_and_text",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "显示密度|屏幕缩放|比例|调整比例|内容比例"
+        },
+        {
+          "itemName": "font_size",
+          "itemTitle": "$string:screen_zoom_text_size",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": ""
+        },
+        {
+          "itemName": "font_weight",
+          "itemTitle": "$string:screen_zoom_text_weight",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": ""
+        },
+        {
+          "itemName": "screen_zoom_title",
+          "itemTitle": "$string:screen_zoom_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:color_temperature_title",
+      "pageDescription": "",
+      "entryKey": "color_adjustment_and_color_temperature_entry",
+      "params": "",
+      "path": [
+        "$string:display_settings_title",
+        "$string:color_temperature_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "color_temperature_title",
+          "itemTitle": "$string:color_temperature_title",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isOnlyColorTemperatureAdjustmentSupport",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:color_adjustment",
+      "pageDescription": "",
+      "entryKey": "color_adjustment_and_color_temperature_entry",
+      "params": "",
+      "path": [
+        "$string:display_settings_title",
+        "$string:color_adjustment"
+      ],
+      "searchItems": [
+        {
+          "itemName": "color_adjustment",
+          "itemTitle": "$string:color_adjustment",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isOnlyColorAdjustmentSupport",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:color_adjustment_and_color_temperature_title",
+      "pageDescription": "",
+      "entryKey": "color_adjustment_and_color_temperature_entry",
+      "params": "",
+      "path": [
+        "$string:display_settings_title",
+        "$string:color_adjustment_and_color_temperature_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "color_adjustment_and_color_temperature",
+          "itemTitle": "$string:color_adjustment_and_color_temperature_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "调整护眼屏幕效果|屏幕色温|屏幕偏色|屏幕效果",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isColorAndColorTemperatureAdjustmentSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "vivid_color_title",
+          "itemTitle": "$string:vivid_color_title",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isColorAdjustmentSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "standard_color_title",
+          "itemTitle": "$string:standard_color_title",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isColorAdjustmentSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "cool_color",
+          "itemTitle": "$string:cool_color",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isColorTemperatureAdjustmentSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "warm_color",
+          "itemTitle": "$string:warm_color",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isColorTemperatureAdjustmentSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "nature_color",
+          "itemTitle": "$string:nature_color",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "natureColorTemperatureSupport",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:screen_refresh_rate_title",
+      "pageDescription": "",
+      "entryKey": "screen_refresh_rate_entry",
+      "params": "",
+      "path": [
+        "$string:display_settings_title",
+        "$string:screen_refresh_rate_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "screen_refresh_rate",
+          "itemTitle": "$string:screen_refresh_rate_title",
+          "itemDescription": "",
+          "icon": "$media:ic_brightness_plus",
+          "enable": "true",
+          "childItems": "",
+          "alias": "刷新速度|限制帧速率",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "screenRefreshRatesSupport",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:phone_volume_control_setting_title",
+      "pageDescription": "Sounds & vibration",
+      "entryKey": "volume_settings",
+      "params": "",
+      "path": [
+        "$string:phone_volume_control_setting_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "sounds_and_vibration",
+          "itemTitle": "$string:phone_volume_control_setting_title",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_volume",
+          "enable": "true",
+          "childItems": "",
+          "alias": "音量|音量调整|Sounds & vibration|shengyinhezhendong"
+        },
+        {
+          "itemName": "volume_mode",
+          "itemTitle": "$string:volume_mode",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "volume_mode_sound",
+          "itemTitle": "$string:volume_mode_sound",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "AI Voice|zhihuiyuyin"
+        },
+        {
+          "itemName": "volume_mode_vibrate",
+          "itemTitle": "$string:volume_mode_vibrate",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "Vibration|zhendong",
+          "checkItem": {
+            "type": "param",
+            "checkKey": "const.vibrator.support_vibrator",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "volume_mode_silent",
+          "itemTitle": "$string:volume_mode_silent",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "Silent|jingyin"
+        },
+        {
+          "itemName": "ringtone_volume",
+          "itemTitle": "$string:ringtone_volume_new_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "铃声 Ringer|Messages|Notifications|laidian|xinxi|tongzhi",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasVoiceCapability",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "media_volume",
+          "itemTitle": "$string:media_volume_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "媒体|Music|Videos|Games|yinyue|shipin|youxi"
+        },
+        {
+          "itemName": "call_volume",
+          "itemTitle": "$string:call_volume_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "Calls|tonghua",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasVoiceCapability",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "alarm_volume",
+          "itemTitle": "$string:alarm_volume_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "Alarms|naozhong"
+        },
+        {
+          "itemName": "vassistant_volume",
+          "itemTitle": "$string:vassistant_settings",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "智慧语音|zhihuiyuyin"
+        },
+        {
+          "itemName": "boot_sound",
+          "itemTitle": "$string:boot_sound",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "开机铃音|Startup sound|kaijilingsheng|开机动画",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportBootSoundSwitch",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "screen_lock_tone",
+          "itemTitle": "$string:screen_lock_tone",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "锁屏提示音|锁屏音效|锁定声|锁屏声|屏幕锁定提示音|Screen lock|suopingtishiyin",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isScreenLockToneSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "screenshot_prompt_tone",
+          "itemTitle": "$string:screenshot_prompt_tone",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "截屏音效|截屏声|Screenshot|jiepingtishiyin"
+        },
+        {
+          "itemName": "dial_tone",
+          "itemTitle": "$string:dial_Tone",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "拨号按键音",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasVoiceCapability",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "vibrate_when_ring",
+          "itemTitle": "$string:vibrate_when_ring",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "响铃时振动",
+          "checkItem": {
+            "type": "param",
+            "checkKey": "const.vibrator.support_vibrator",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "Intelligent_call_noise_reduction",
+          "itemTitle": "$string:Intelligent_call_noise_reduction",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "智能降噪|降噪|通话降噪|AI降噪通话|降噪通话",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportAiVoice",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "sound_quality_effect",
+          "itemTitle": "$string:sound_quality_effect",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "音质|尊享|舒享|静享|尊享模式|舒享模式|静享模式|音效|低音|振手|Sound effects|yinzhi|zunxiang|shuxiang|jingxiang|zunxiangmoshi|shuxiangmoshi|jingxiangmoshi|yinxiao|diyin|zhenshou",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportSoundQuality",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "system_haptic_feedback",
+          "itemTitle": "$string:system_touch_feedback",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "振动|声音|震动|按键|触摸时振动|点击振动|触摸振动|触感反馈|导航振动|导航触摸反馈|解锁时振动|滑动反馈|滑动振动|振动反馈|点击时振动|系统振动反馈|System haptics|xitongchuganfankui",
+          "checkItem": {
+            "type": "param",
+            "checkKey": "const.vibrator.support_vibrator",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "volume_key_control_message",
+          "itemTitle": "$string:volume_key_control_message",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "音量键默认控制|媒体音量|铃声音量|Default volume button control|Media volume|yinliangjianmorenkongzhi|meitiyinliang|lingshengyinliang"
+        },
+        {
+          "itemName": "internal_speaker",
+          "itemTitle": "$string:sound_output_device_local",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_volume_max",
+          "alias": "benjiyangshengqi|Internal speakers|本机扬声器",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "param",
+            "checkKey": "const.settings.use_new_audio_page",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "internal_mircrophone",
+          "itemTitle": "$string:sound_intput_device_local",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_volume_max",
+          "alias": "benjimaikefeng|Internal microphone|本机麦克风",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "param",
+            "checkKey": "const.settings.use_new_audio_page",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "output",
+          "itemTitle": "$string:output",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_volume_max",
+          "alias": "shuchu|Output|输出",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "param",
+            "checkKey": "const.settings.use_new_audio_page",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "input",
+          "itemTitle": "$string:input_tab",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_volume_max",
+          "alias": "shuru|Input|输入",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "param",
+            "checkKey": "const.settings.use_new_audio_page",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "input_amplitude",
+          "itemTitle": "$string:input_amplitude",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_volume_max",
+          "alias": "maikefengxiangdushuiping|麦克风响度水平",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "param",
+            "checkKey": "const.settings.use_new_audio_page",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "voice_cancel",
+          "itemTitle": "$string:voice_cancel",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_volume_max",
+          "alias": "aizhihuibanchang|AI智慧伴唱",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isVocalCancelSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "voice_extract",
+          "itemTitle": "$string:voice_extract",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_volume_max",
+          "alias": "airenshengtuxian|AI人声突显",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isVocalCancelSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "call_noise_reduct",
+          "itemTitle": "$string:call_noise_reduct",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_volume_max",
+          "alias": "tonghuaduiduanjiangzao|通话对端降噪",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isCallNoiseReductforceSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "single_quiet_space",
+          "itemTitle": "$string:single_quiet_space",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_volume_max",
+          "alias": "danrenjingmikongjian|单人静谧空间",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isCallReinforceSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "multiplayer_pure_vocal",
+          "itemTitle": "$string:multiplayer_pure_vocal",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_volume_max",
+          "alias": "duorenchunjingrensheng|多人纯净人声",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isCallReinforceSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "record_noise_reduct",
+          "itemTitle": "$string:record_noise_reduct",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_volume_max",
+          "alias": "aijiangzaoluyin|AI降噪录音",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isRecordNoiseReductforceSupport",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:not_disturb_title",
+      "pageDescription": "not disturb",
+      "entryKey": "not_disturb_entry",
+      "params": "",
+      "path": [
+        "$string:phone_volume_control_setting_title",
+        "$string:not_disturb_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "not_disturb_title",
+          "itemTitle": "$string:not_disturb_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "静音|勿扰|免打扰|时间|防打扰|勿扰模式|勿扰偏好设置|勿扰|免打扰开关|免打扰模式|小月亮|Do Not Disturb|miandarao",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportNotDisturb",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "not_disturb_turn_on",
+          "itemTitle": "$string:not_disturb_turn_on_now",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "立即开启|lijikaiqi",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportNotDisturb",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "not_disturb_regularly",
+          "itemTitle": "$string:not_disturb_regularly",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "定时开启|dingshikaiqi",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportNotDisturb",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "not_disturb_scheduled",
+          "itemTitle": "$string:not_disturb_scheduled",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "添加“定时开启”|tianjiadingshikaiqi",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportNotDisturb",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "not_disturb_notification",
+          "itemTitle": "$string:not_disturb_notification",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "通知|tongzhi",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportNotDisturb",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "select_app",
+          "itemTitle": "$string:select_app",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportNotDisturb",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:not_disturb_call",
+      "pageDescription": "not disturb call",
+      "entryKey": "incoming_call",
+      "params": "",
+      "path": [
+        "$string:phone_volume_control_setting_title",
+        "$string:not_disturb_title",
+        "$string:not_disturb_call"
+      ],
+      "searchItems": [
+        {
+          "itemName": "not_disturb_call",
+          "itemTitle": "$string:not_disturb_call",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "来电|laidian",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isNotDisturbCallShow",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "repeat_call_ringing",
+          "itemTitle": "$string:repeat_call_ringing",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "重复来电响铃|chongfulaidianxiangling",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isRepeatedCallRinging",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "allow_contacts",
+          "itemTitle": "$string:allow_contacts",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isNotDisturbCallShow",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:ring_tone_settings_phone",
+      "pageDescription": "phone ringtone",
+      "entryKey": "ring_tone_settings",
+      "params": "",
+      "path": [
+        "$string:phone_volume_control_setting_title",
+        "$string:ring_tone_settings_phone"
+      ],
+      "searchItems": [
+        {
+          "itemName": "phone_ringtone",
+          "itemTitle": "$string:ring_tone_settings_phone",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "手机铃声|电话铃声|自定义铃声|个性化铃声|来电铃声|Phone ringtone|laidianlingsheng",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasVoiceCapability",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:ring_tone_settings_message",
+      "pageDescription": "messaging tone",
+      "entryKey": "Messaging_tone_settings",
+      "params": "",
+      "path": [
+        "$string:phone_volume_control_setting_title",
+        "$string:ring_tone_settings_message"
+      ],
+      "searchItems": [
+        {
+          "itemName": "messaging_tone",
+          "itemTitle": "$string:ring_tone_settings_message",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "信息铃声|短信铃声|Message tone|xinxilingsheng",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasVoiceCapability",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:ring_tone_settings_notification",
+      "pageDescription": "notification tone",
+      "entryKey": "notification_tone_settings",
+      "params": "",
+      "path": [
+        "$string:phone_volume_control_setting_title",
+        "$string:ring_tone_settings_notification"
+      ],
+      "searchItems": [
+        {
+          "itemName": "notification_tone",
+          "itemTitle": "$string:ring_tone_settings_notification",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "消息铃声|个性化铃声|默认通知铃声|Notification tone|tongzhilingsheng"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:accessibility",
+      "pageDescription": "Accessibility features",
+      "entryKey": "accessibility_feature",
+      "params": "",
+      "path": [
+        "$string:accessibility"
+      ],
+      "searchItems": [
+        {
+          "itemName": "accessibility_features",
+          "itemTitle": "$string:accessibility",
+          "itemDescription": "",
+          "icon": "$media:ic_accessibility",
+          "enable": "true",
+          "childItems": "",
+          "alias": "Accessibility features|fuzhugongneng|无障碍|wuzhangai"
+        },
+        {
+          "itemName": "hearing_aid",
+          "itemTitle": "$string:hearing_aid",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isHearingAidSupport",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:touchscreen_settings",
+      "pageDescription": "Touchscreen settings",
+      "entryKey": "accessibility_touchscreen_entry",
+      "params": "",
+      "path": [
+        "$string:accessibility",
+        "$string:touchscreen_settings"
+      ],
+      "searchItems": [
+        {
+          "itemName": "touchscreen_settings",
+          "itemTitle": "$string:touchscreen_settings",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "touch_duration",
+          "itemTitle": "$string:touch_duration",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "ignore_repeated_touches",
+          "itemTitle": "$string:ignore_repeated_touches",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:shortKey_accessibility",
+      "pageDescription": "Accessibility shortcut",
+      "entryKey": "accessibility_operation_entry",
+      "params": "",
+      "path": [
+        "$string:accessibility",
+        "$string:shortKey_accessibility"
+      ],
+      "searchItems": [
+        {
+          "itemName": "accessibility_shortcut",
+          "itemTitle": "$string:shortKey_accessibility",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "shortKey_lock_screen",
+          "itemTitle": "$string:shortKey_lock_screen",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "function_select",
+          "itemTitle": "$string:function_select",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:application_and_meta_service_settings_title",
+      "pageDescription": "App & meta-services",
+      "entryKey": "application_and_service_settings",
+      "params": "",
+      "path": [
+        "$string:application_and_meta_service_settings_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "app_and_meta_services",
+          "itemTitle": "$string:application_and_meta_service_settings_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "系统应用|应用程序|Apps & services|yingyonghefuwu"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:storage_settings_title",
+      "pageDescription": "Storage",
+      "entryKey": "storage_settings",
+      "params": "",
+      "path": [
+        "$string:storage_settings_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "storage_settings",
+          "itemTitle": "$string:storage_settings_title",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_storage",
+          "enable": "true",
+          "childItems": "",
+          "alias": "内部存储|存储空间|文件管理|ROM|空间管理|储存空间|手机存储|机身存储|总容量|Internal storage|cunchu|平板管家|管家|平板管理|清理加速|清理垃圾|垃圾|清理|清理内存|应用清理|自动清理|清理数据|删除数据|清除安装包|应用数据|清理应用"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:power_usage_summary_title",
+      "pageDescription": "Battery",
+      "entryKey": "battery",
+      "params": "",
+      "path": [
+        "$string:power_usage_summary_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "battery",
+          "itemTitle": "$string:power_usage_summary_title",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_battery",
+          "enable": "true",
+          "childItems": "",
+          "alias": "Battery|dianchi|耗电量|剩余电量|电池百分比|电池电量|平板管家|管家|平板管理"
+        },
+        {
+          "itemName": "wrc_switch_name",
+          "itemTitle": "$string:wrc_switch_name",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "反向充电|设备充电",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "wRCSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "battery_performance_mode_switch",
+          "itemTitle": "$string:battery_performance_mode",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "",
+          "childItems": "",
+          "alias": "",
+          "checkItem": {
+            "type": "param",
+            "checkKey": "const.window.support_window_pcmode_switch",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "battery_saving_mode_switch",
+          "itemTitle": "$string:battery_saving_mode",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "sleep_notification_enable_switch",
+          "itemTitle": "$string:sleep_notification_enable",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "display_battery_percentage",
+          "itemTitle": "$string:display_battery_percentage",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "screen_on_time_today",
+          "itemTitle": "$string:screen_on_time_today",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "亮屏时间|用了多久"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:smart_charge_battery_health",
+      "pageDescription": "smart_charge_battery_health",
+      "entryKey": "smart_charge_battery_health",
+      "params": "",
+      "path": [
+        "$string:power_usage_summary_title",
+        "$string:smart_charge_battery_health"
+      ],
+      "searchItems": [
+        {
+          "itemName": "smart_charge_battery_health",
+          "itemTitle": "$string:smart_charge_battery_health",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "智能充电|智慧充电|电池健康|电池安全|BatteryCare"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:more_battery_setting_title",
+      "pageDescription": "more battery setting",
+      "entryKey": "more_battery_settings",
+      "params": "",
+      "path": [
+        "$string:power_usage_summary_title",
+        "$string:more_battery_setting_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "pad_smart_power_save",
+          "itemTitle": "$string:pad_smart_power_save_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "智能保电|智能|保电",
+          "checkItem": {
+            "type": "param",
+            "checkKey": "const.pad.pad_smart_power_save_enable",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:biometrics_and_password_settings_title",
+      "pageDescription": "biometrics and password",
+      "entryKey": "biometrics_and_password_settings",
+      "params": "",
+      "path": [
+        "$string:biometrics_and_password_settings_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "biometrics_and_password_settings",
+          "itemTitle": "$string:biometrics_and_password_settings_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "Biometrics & password|shengwushibiehemima"
+        },
+        {
+          "itemName": "lock_screen_password",
+          "itemTitle": "$string:lock_screen_password_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "change_lock_screen_password,close_lock_screen_password",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasPinPassword",
+            "value": "false"
+          }
+        },
+        {
+          "itemName": "face_checker",
+          "itemTitle": "$string:face_checker",
+          "itemDescription": "",
+          "alias": "人脸识别|面容ID|面容|面部|面部识别|Face Recognition|renlianshibie",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "faceAuthSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "change_lock_screen_password",
+          "itemTitle": "$string:change_lock_screen_password_title",
+          "itemDescription": "",
+          "icon": "",
+          "childItems": "",
+          "alias": "锁屏与安全|密码和安全性|安全性与屏幕锁定|安全性和屏幕锁定|屏幕解锁类型|Change lock screen password|genggaisuopingmima",
+          "enable": "false",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasPinPassword",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "close_lock_screen_password",
+          "itemTitle": "$string:close_lock_screen_password_title",
+          "itemDescription": "",
+          "icon": "",
+          "alias": "Disable lock screen password|guanbisuopingmima",
+          "enable": "false",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasPinPassword",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "expire_lock_screen_password",
+          "itemTitle": "$string:expire_old_password_title",
+          "itemDescription": "",
+          "enable": "true",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "oldPasswordActive",
+            "value": "false"
+          }
+        },
+        {
+          "itemName": "fingerprint_settings_title",
+          "itemTitle": "$string:fingerprint_settings_title",
+          "itemDescription": "",
+          "enable": "true",
+          "childItems": "fp_title_apps_security_pref,fingerprint_settings_switch_title",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "fingerPrintSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "privacy_password",
+          "itemTitle": "$string:privacy_password",
+          "itemDescription": "",
+          "enable": "true",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasPrivacyPassword",
+            "value": "false"
+          }
+        },
+        {
+          "itemName": "close_privacy_password",
+          "itemTitle": "$string:close_privacy_password",
+          "itemDescription": "",
+          "enable": "true",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasPrivacyPassword",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "change_security_question",
+          "itemTitle": "$string:change_security_question",
+          "itemDescription": "",
+          "enable": "true",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasPrivacyPassword",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "PRIVACY_PASSWORD_CHANGE_ENTRY",
+          "itemTitle": "$string:change_privacy_password",
+          "itemDescription": "",
+          "enable": "true",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasPrivacyPassword",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "allow_drop_down_control_center",
+          "itemTitle": "$string:allow_drop_down_control_center",
+          "itemDescription": "",
+          "enable": "true"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:biometrics_and_password_settings_title",
+      "pageDescription": "biometrics and password",
+      "entryKey": "biometrics_and_password_settings",
+      "params": "",
+      "path": [
+        "$string:biometrics_and_password_settings_title",
+        "$string:fingerprint_settings_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "fp_title_apps_security_pref",
+          "itemTitle": "$string:title_apps_security_pref",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isFpSupportAppLock",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "fingerprint_settings_switch_title",
+          "itemTitle": "$string:face_fingerprint_settings_switch_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "fingerPrintSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "fingerprint_intelligence_fill",
+          "itemTitle": "$string:face_fingerprint_intelligence_fill",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "fingerPrintSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "fingerprint_in_app_purchase",
+          "itemTitle": "$string:fingerprint_in_app_payment",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "fingerPrintSupport",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:biometrics_and_password_settings",
+      "pageDescription": "biometrics and password",
+      "entryKey": "biometrics_and_password_settings",
+      "params": "",
+      "path": [
+        "$string:biometrics_and_password_settings_title",
+        "$string:face_checker"
+      ],
+      "searchItems": [
+        {
+          "itemName": "face_unlock_switch_title",
+          "itemTitle": "$string:face_unlock_switch_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "faceAuthSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "face_title_apps_security_pref",
+          "itemTitle": "$string:title_apps_security_pref",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isFaceSupportAppLock",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "face_settings_switch_title",
+          "itemTitle": "$string:face_fingerprint_settings_switch_title",
+          "itemDescription": "$string:face_fingerprint_settings_switch_summary",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "faceAuthSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "face_intelligence_fill",
+          "itemTitle": "$string:face_fingerprint_intelligence_fill",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "faceAuthSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "multiface_enroll_new_face",
+          "itemTitle": "$string:multiface_enroll_new_face",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "faceAuthSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "face_auxiliary_mode",
+          "itemTitle": "$string:auxiliary_mode",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "settingData",
+            "checkKey": "accessibility_screenreader_enabled",
+            "value": "1"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:system_title",
+      "pageDescription": "Common",
+      "entryKey": "system_and_updates",
+      "params": "",
+      "path": [
+        "$string:system_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "system_and_update",
+          "itemTitle": "$string:system_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "smart_cover_switch",
+          "itemTitle": "$string:smart_cover_operation",
+          "itemDescription": "",
+          "icon": "",
+          "checkItem": {
+            "type": "param",
+            "checkKey": "const.product.cover_mode",
+            "value": "1"
+          }
+        },
+        {
+          "itemName": "system_mode_change",
+          "itemTitle": "$string:system_mode_change",
+          "itemDescription": "",
+          "icon": "",
+          "checkItem": {
+            "type": "param",
+            "checkKey": "const.window.support_window_pcmode_switch",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "pc_mode",
+          "itemTitle": "$string:pc_mode",
+          "itemDescription": "",
+          "icon": "",
+          "checkItem": {
+            "type": "param",
+            "checkKey": "const.window.support_window_pcmode_switch",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "pad_mode",
+          "itemTitle": "$string:pad_mode",
+          "itemDescription": "",
+          "icon": "",
+          "checkItem": {
+            "type": "param",
+            "checkKey": "const.window.support_window_pcmode_switch",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:smart_cover_operation",
+      "pageDescription": "smart_cover_operation",
+      "entryKey": "smart_cover_operation_entry",
+      "params": "",
+      "path": [
+        "$string:system_title",
+        "$string:smart_cover_operation"
+      ],
+      "searchItems": [
+        {
+          "itemName": "smart_cover_switch",
+          "itemTitle": "$string:smart_cover_operation",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "param",
+            "checkKey": "const.product.cover_mode",
+            "value": "2"
+          }
+        },
+        {
+          "itemName": "smart_cover_with_window_switch",
+          "itemTitle": "$string:smart_cover_with_window",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "param",
+            "checkKey": "const.product.cover_mode",
+            "value": "2"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:languageAndRegion",
+      "pageDescription": "Language & region",
+      "entryKey": "set_language_region",
+      "params": "",
+      "path": [
+        "$string:system_title",
+        "$string:languageAndRegion"
+      ],
+      "searchItems": [
+        {
+          "itemName": "language_and_region",
+          "itemTitle": "$string:languageAndRegion",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "Language & region|yuyanhediqu"
+        },
+        {
+          "itemName": "current_region",
+          "itemTitle": "$string:currentRegion",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "currentRegion|当前地区"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:addLanguage",
+      "pageDescription": "Add language",
+      "entryKey": "add_language_entry",
+      "params": "",
+      "path": [
+        "$string:system_title",
+        "$string:languageAndRegion",
+        "$string:addLanguage"
+      ],
+      "searchItems": [
+        {
+          "itemName": "add_language",
+          "itemTitle": "$string:addLanguage",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true"
+        },
+        {
+          "itemName": "allLanguage",
+          "itemTitle": "$string:allLanguage",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:selectRegion",
+      "pageDescription": "Select region",
+      "entryKey": "select_region_entry",
+      "params": "",
+      "path": [
+        "$string:system_title",
+        "$string:languageAndRegion",
+        "$string:selectRegion"
+      ],
+      "searchItems": [
+        {
+          "itemName": "select_region",
+          "itemTitle": "$string:selectRegion",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:input",
+      "pageDescription": "input",
+      "entryKey": "set_input",
+      "params": "",
+      "path": [
+        "$string:system_title",
+        "$string:input"
+      ],
+      "searchItems": [
+        {
+          "itemName": "settings_input",
+          "itemTitle": "$string:input",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "输入法|input|yuyanheshurufa|输入法列表|启用输入法"
+        },
+        {
+          "itemName": "default_input",
+          "itemTitle": "$string:input_default",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:celia_input",
+      "pageDescription": "celia input",
+      "entryKey": "input_uiextension_list",
+      "params": "",
+      "path": [
+        "$string:system_title",
+        "$string:input",
+        "$string:celia_input"
+      ],
+      "searchItems": [
+        {
+          "itemName": "celia_input",
+          "itemTitle": "$string:celia_input",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:date_time_settings_title",
+      "pageDescription": "Date & time",
+      "entryKey": "date_and_time",
+      "params": "",
+      "path": [
+        "$string:system_title",
+        "$string:date_time_settings_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "date_and_time",
+          "itemTitle": "$string:date_time_settings_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "时钟|Date & time|riqiheshijian"
+        },
+        {
+          "itemName": "time_24_hour",
+          "itemTitle": "$string:time_24_hour_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "date_settings_title",
+          "itemTitle": "$string:date_settings_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isAutoTimeZoneOpen",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "time_settings_title",
+          "itemTitle": "$string:time_settings_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isAutoTimeZoneOpen",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "time_zone",
+          "itemTitle": "$string:time_zone_settings_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:reset_settings_title",
+      "pageDescription": "Reset",
+      "entryKey": "reset_settings",
+      "params": "",
+      "path": [
+        "$string:system_title",
+        "$string:reset_settings_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "reset",
+          "itemTitle": "$string:reset_settings_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "重设|还原|还原手机|Reset|chongzhi"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:reset_net_title",
+      "pageDescription": "reset_net_title",
+      "entryKey": "reset_net_settings",
+      "params": "",
+      "path": [
+        "$string:system_title",
+        "$string:reset_settings_title",
+        "$string:reset_net_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "reset_net_title",
+          "itemTitle": "$string:reset_net_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:reset_factory_title",
+      "pageDescription": "reset_factory_title",
+      "entryKey": "reset_factory_settings",
+      "params": "",
+      "path": [
+        "$string:system_title",
+        "$string:reset_settings_title",
+        "$string:reset_factory_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "reset_factory_settings",
+          "itemTitle": "$string:reset_factory_title_pc",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:font_manage",
+      "pageDescription": "",
+      "entryKey": "font_manage",
+      "params": "",
+      "path": [
+        "$string:system_title",
+        "$string:font_manage"
+      ],
+      "searchItems": [
+        {
+          "itemName": "font_manage",
+          "itemTitle": "$string:font_manage",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "字体|字体安装|字体安装和管理|font|font install|ziti"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:developer_options_settings_title",
+      "pageDescription": "Developer options",
+      "entryKey": "developer_options_settings",
+      "params": "",
+      "path": [
+        "$string:system_title",
+        "$string:developer_options_settings_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "developer_options",
+          "itemTitle": "$string:developer_options_settings_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "alias": "",
+          "childItems": "developer_options,charge_temperature_limit,automatic_system_update,system_rollback,atomicservice_debug_enable,usb_debug_settings,recall_usb_authorize,display_refresh_frequency,show_touch_actions_title,debug_layout,transition_animation_scale,force_resizable_app_interfaces,wireless_commissioning,show_redraw_area,redraw_cache_hit_detection,overdraw_detect,show_touch_actions_trace,wifi_open_logs,network_navigator_entry,decoder_settings,bit_rate_settings,sampling_rate_settings,bits_per_sample_settings,channel_mode_settings,frame_length_settings,usb_not_charging,sunlight_readability,debug_system_trace,debug_freeze_detect,debug_leak_detect,insight_intent_settings,update_system_shared_libraries",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "charge_temperature_limit",
+          "itemTitle": "$string:charge_temperature_limit",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "show_touch_actions_trace",
+          "itemTitle": "$string:show_touch_actions_trace",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "automatic_system_update",
+          "itemTitle": "$string:automatic_system_update",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "system_rollback",
+          "itemTitle": "$string:system_rollback",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "atomicservice_debug_enable",
+          "itemTitle": "$string:atomicservice_debug_enable",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "usb_debug_settings",
+          "itemTitle": "$string:usb_debug_settings_title",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "recall_usb_authorize",
+          "itemTitle": "$string:recall_usb_authorize",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "display_refresh_frequency",
+          "itemTitle": "$string:display_refresh_frequency_title",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "show_touch_actions_title",
+          "itemTitle": "$string:show_touch_actions_title",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "debug_layout",
+          "itemTitle": "$string:debug_layout",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "refreshShow",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "show_redraw_area",
+          "itemTitle": "$string:debug_redraw_area",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "redraw_cache_hit_detection",
+          "itemTitle": "$string:debug_redraw_cache_hit_detection",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "overdraw_detect",
+          "itemTitle": "$string:debug_overdraw",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "transition_animation_scale",
+          "itemTitle": "$string:transition_animation_scale_title",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "force_resizable_app_interfaces",
+          "itemTitle": "$string:force_resizable_app_interfaces",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "wifi_open_logs",
+          "itemTitle": "$string:wifi_Open_Logs",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "decoder_settings",
+          "itemTitle": "$string:bluetooth_audio_decoder",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "bit_rate_settings",
+          "itemTitle": "$string:bluetooth_audio_bit_rate",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "sampling_rate_settings",
+          "itemTitle": "$string:bluetooth_audio_sampling_rate",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "bits_per_sample_settings",
+          "itemTitle": "$string:bluetooth_audio_bits_per_sample",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "channel_mode_settings",
+          "itemTitle": "$string:bluetooth_audio_channel_mode",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "frame_length_settings",
+          "itemTitle": "$string:bluetooth_audio_frame_length",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "usb_not_charging",
+          "itemTitle": "$string:usb_not_charging_title",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "sunlight_readability",
+          "itemTitle": "$string:sunlight_readability_title",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSunlightReadabilitySupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "debug_system_trace",
+          "itemTitle": "$string:debug_system_trace",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "debug_freeze_detect",
+          "itemTitle": "$string:debug_freeze_detect",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "debug_leak_detect",
+          "itemTitle": "$string:debug_leak_detect",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "update_system_shared_libraries",
+          "itemTitle": "$string:update_system_shared_libraries",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:ai_insightintent_debug_settings_title",
+      "pageDescription": "$string:ai_insightintent_debug_setting_summary",
+      "entryKey": "insight_intent_settings",
+      "params": "",
+      "path": [
+        "$string:system_title",
+        "$string:developer_options_settings_title",
+        "$string:ai_insightintent_debug_settings_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "insight_intent_settings",
+          "itemTitle": "$string:ai_insightintent_debug_settings_title",
+          "itemDescription": "$string:ai_insightintent_debug_setting_summary",
+          "icon": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:wireless_commissioning",
+      "pageDescription": "Wireless commissioning",
+      "entryKey": "system_wireless_commissioning",
+      "params": "",
+      "path": [
+        "$string:system_title",
+        "$string:developer_options_settings_title",
+        "$string:wireless_commissioning"
+      ],
+      "searchItems": [
+        {
+          "itemName": "wireless_commissioning",
+          "itemTitle": "$string:wireless_commissioning",
+          "itemDescription": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:about_device_title",
+      "pageDescription": "About pad",
+      "entryKey": "about_device",
+      "params": "",
+      "path": [
+        "$string:about_device_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "about_pad",
+          "itemTitle": "$string:about_device_title",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_about",
+          "enable": "true",
+          "childItems": "",
+          "alias": "我的平板|pad|我的设备|About pad|guanyupingban"
+        },
+        {
+          "itemName": "model_code",
+          "itemTitle": "$string:model_code",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "平板型号|Model number|xinghaodaima"
+        },
+        {
+          "itemName": "software_version",
+          "itemTitle": "$string:software_version",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "serial_number",
+          "itemTitle": "$string:serial_number",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "Serial number|xuliehao"
+        },
+        {
+          "itemName": "imei_id",
+          "itemTitle": "$string:imei_id",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "IMEI|imei",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasSim",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "cpu_id",
+          "itemTitle": "$string:cpu_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "cpu",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isShowProcessorSearch",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "running_memory",
+          "itemTitle": "$string:running_memory",
+          "itemDescription": "",
+          "enable": "true",
+          "icon": "",
+          "alias": "RAM|yunxingneicun"
+        },
+        {
+          "itemName": "about_storage_setting",
+          "itemTitle": "$string:storage_settings_title",
+          "itemDescription": "",
+          "enable": "true",
+          "icon": "",
+          "alias": "平板存储|机身存储|总容量|Internal storage|cunchu"
+        },
+        {
+          "itemName": "about_screen_resolution",
+          "itemTitle": "$string:screen_resolution",
+          "itemDescription": "",
+          "enable": "true",
+          "icon": "",
+          "alias": "Resolution|pingmu"
+        },
+        {
+          "itemName": "kernel_version",
+          "itemTitle": "$string:kernel_version",
+          "itemDescription": "",
+          "enable": "true",
+          "icon": "",
+          "alias": "Kernel version|neihebanben"
+        },
+        {
+          "itemName": "api_version",
+          "itemTitle": "$string:api_version",
+          "itemDescription": "",
+          "enable": "true",
+          "icon": "",
+          "alias": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isApiVersionSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "openHarmony_version",
+          "itemTitle": "$string:openHarmony_version",
+          "itemDescription": "",
+          "enable": "true",
+          "icon": "",
+          "alias": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isOpenHarmonySupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "baseband_version",
+          "itemTitle": "$string:baseband_version",
+          "itemDescription": "",
+          "enable": "true",
+          "icon": "",
+          "alias": "Baseband version|jidaibanben",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasSim",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "security_patch_label",
+          "itemTitle": "$string:security_patch_label",
+          "itemDescription": "",
+          "enable": "true",
+          "icon": "",
+          "alias": ""
+        },
+        {
+          "itemName": "model_name",
+          "itemTitle": "$string:model_name",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:device_name_settings_title",
+      "pageDescription": "about device name",
+      "entryKey": "about_device",
+      "params": "",
+      "path": [
+        "$string:about_device_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "device_name_settings_title",
+          "itemTitle": "$string:device_name_settings_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "平板名称|名称|设备昵称|设备名字|设备命名|Device name|shebeimingcheng"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:status_information",
+      "pageDescription": "Status information",
+      "entryKey": "status_information_settings",
+      "params": "",
+      "path": [
+        "$string:about_device_title",
+        "$string:status_information"
+      ],
+      "searchItems": [
+        {
+          "itemName": "status_information",
+          "itemTitle": "$string:status_information",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "wlan_mac_address",
+          "itemTitle": "$string:wlan_mac",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "battery_status",
+          "itemTitle": "$string:battery_status",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "battery_level",
+          "itemTitle": "$string:battery_level",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "network_information",
+          "itemTitle": "$string:network_information",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasSim",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "ip_address",
+          "itemTitle": "$string:ip_address",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "bluetooth_address",
+          "itemTitle": "$string:bluetooth_address",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "power_on_duration",
+          "itemTitle": "$string:power_on_duration",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "hardware_version",
+          "itemTitle": "$string:hardware_version",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        },
+      ]
+    },
+    {
+      "pageTitle": "$string:network_information",
+      "pageDescription": "network information",
+      "entryKey": "network_information_settings",
+      "params": "",
+      "path": [
+        "$string:about_device_title",
+        "$string:status_information",
+        "$string:network_information"
+      ],
+      "searchItems": [
+        {
+          "itemName": "network_information",
+          "itemTitle": "$string:network_information",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "false",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "signal_strength",
+          "itemTitle": "$string:signal_strength",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "false",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "mcc_mnc",
+          "itemTitle": "$string:mcc_mnc",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "false",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "sms_center_number",
+          "itemTitle": "$string:sms_center_number",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "false",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "mobile_network_type",
+          "itemTitle": "$string:mobile_network_type",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "false",
+          "childItems": "",
+          "alias": ""
+        },
+        {
+          "itemName": "cell_id",
+          "itemTitle": "$string:cell_id",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "false",
+          "childItems": "",
+          "alias": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:enterprise_custom_information",
+      "pageDescription": "",
+      "entryKey": "enterprise_custom_information_entry",
+      "params": "",
+      "path": [
+        "$string:about_device_title",
+        "$string:enterprise_custom_information"
+      ],
+      "searchItems": [
+        {
+          "itemName": "enterprise_custom_information",
+          "itemTitle": "$string:enterprise_custom_information",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isEnterpriseCustomInfoSupport",
+            "value": "true"
+          },
+          "alias": "企业定制信息|enterprise custom information|qiyedingzhixinxi"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:mouse_settings_title",
+      "pageDescription": "",
+      "entryKey": "phone_mouse_settings",
+      "params": "",
+      "path": [
+        "$string:mouse_settings_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "mouse_settings_title",
+          "itemTitle": "$string:mouse_settings_title",
+          "itemDescription": "",
+          "icon": ""
+        },
+        {
+          "itemName": "mouse_round_shape",
+          "itemTitle": "$string:mouse_round_shape",
+          "itemDescription": "",
+          "icon": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isEnableCircleCursor",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "mouse_arrow_shape",
+          "itemTitle": "$string:mouse_arrow_shape",
+          "itemDescription": "",
+          "icon": ""
+        },
+        {
+          "itemName": "mouse_pointer_size",
+          "itemTitle": "$string:mouse_pointer_size",
+          "itemDescription": "",
+          "icon": "",
+          "alias": "鼠标大小",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "ifUseNewMousePage",
+            "value": "false"
+          }
+        },
+        {
+          "itemName": "mouse_pointer_color",
+          "itemTitle": "$string:mouse_pointer_color",
+          "itemDescription": "",
+          "icon": "",
+          "alias": "鼠标颜色",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "ifUseNewMousePage",
+            "value": "false"
+          }
+        },
+        {
+          "itemName": "cursor_tracking_speed",
+          "itemTitle": "$string:cursor_tracking_speed",
+          "itemDescription": "",
+          "icon": "",
+          "alias": "鼠标速度"
+        },
+        {
+          "itemName": "mouse_pointer_style",
+          "itemTitle": "$string:mouse_pointer_style",
+          "itemDescription": "",
+          "icon": "",
+          "alias": "鼠标样式"
+        },
+        {
+          "itemName": "Mouse primary button",
+          "itemTitle": "$string:mouse_primary_button",
+          "itemDescription": "",
+          "icon": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "ifUseNewMousePage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "Inactive window control",
+          "itemTitle": "$string:inactive_window_control",
+          "itemDescription": "",
+          "icon": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "ifUseNewMousePage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "Rolling speed",
+          "itemTitle": "$string:rolling_speed",
+          "itemDescription": "",
+          "icon": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "ifUseNewMousePage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "Mouse pointer pattern",
+          "itemTitle": "$string:Mouse_pointer_pattern",
+          "itemDescription": "",
+          "icon": "",
+          "alias": "鼠标风格",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "ifUseNewMousePage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "Mouse pointer color",
+          "itemTitle": "$string:Mouse_pointer_color",
+          "itemDescription": "",
+          "icon": "",
+          "alias": "鼠标颜色",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "ifUseNewMousePage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "Mouse pointer size",
+          "itemTitle": "$string:Mouse_pointer_size",
+          "itemDescription": "",
+          "icon": "",
+          "alias": "鼠标大小",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "ifUseNewMousePage",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:keyboard",
+      "pageDescription": "",
+      "entryKey": "pad_keyboard_settings_entry",
+      "params": "",
+      "path": [
+        "$string:keyboard"
+      ],
+      "searchItems": [
+        {
+          "itemName": "keyboard",
+          "itemTitle": "$string:keyboard",
+          "itemDescription": "",
+          "icon": "",
+          "childItems": "shortcut_helper,shortcut_helper_summary,product_info,firmware_upgrade,firmware_version,serial_number,hardware_version,model"
+        },
+        {
+          "itemName": "Key repetition rate",
+          "itemTitle": "$string:key_repetition_rate",
+          "itemDescription": "Key repetition rate",
+          "icon": "$media:Settings_keyboard",
+          "alias": "",
+          "enable": "true",
+          "childItems": ""
+        },
+        {
+          "itemName": "Key repeat delay",
+          "itemTitle": "$string:key_repetition_delay",
+          "itemDescription": "Key repeat delay",
+          "icon": "$media:Settings_keyboard",
+          "alias": "",
+          "enable": "true",
+          "childItems": ""
+        },
+        {
+          "itemName": "Key repeat speed test",
+          "itemTitle": "$string:key_repeat_speed_test",
+          "itemDescription": "Key repeat speed test",
+          "icon": "$media:Settings_keyboard",
+          "alias": "",
+          "enable": "true",
+          "childItems": ""
+        },
+        {
+          "itemName": "shortcut_helper",
+          "itemTitle": "$string:shortcut_helper",
+          "itemDescription": "",
+          "icon": ""
+        },
+        {
+          "itemName": "shortcut_helper_summary",
+          "itemTitle": "$string:shortcut_helper_summary",
+          "itemDescription": "",
+          "icon": ""
+        },
+        {
+          "itemName": "product_info",
+          "itemTitle": "$string:product_info",
+          "itemDescription": "",
+          "icon": "",
+          "childItems": "firmware_version,serial_number,hardware_version,model"
+        },
+        {
+          "itemName": "firmware_upgrade",
+          "itemTitle": "$string:firmware_upgrade",
+          "itemDescription": "",
+          "icon": ""
+        },
+        {
+          "itemName": "firmware_version",
+          "itemTitle": "$string:firmware_version",
+          "itemDescription": "",
+          "icon": ""
+        },
+        {
+          "itemName": "serial_number",
+          "itemTitle": "$string:serial_number",
+          "itemDescription": "",
+          "icon": ""
+        },
+        {
+          "itemName": "model",
+          "itemTitle": "$string:model",
+          "itemDescription": "",
+          "icon": ""
+        },
+        {
+          "itemName": "hardware_version",
+          "itemTitle": "$string:hardware_version",
+          "itemDescription": "",
+          "icon": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:more_collaboration_settings_title",
+      "pageDescription": "",
+      "entryKey": "more_collaboration_settings",
+      "params": "",
+      "path": [
+        "$string:multi_device_collaboration",
+        "$string:more_collaboration_settings_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "multi device collaboration service switch",
+          "itemTitle": "$string:multi_device_collaboration_service_switch",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_more_connections"
+        },
+        {
+          "itemName": "more_collaboration_settings_title",
+          "itemTitle": "$string:more_collaboration_settings_title",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_more_connections"
+        },
+        {
+          "itemName": "collaboration_recommend_service_switch",
+          "itemTitle": "$string:collaboration_recommend_service_switch",
+          "itemDescription": "",
+          "icon": "$media:ic_settings_more_connections"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:clone_app_center",
+      "pageDescription": "",
+      "entryKey": "clone_app_manager",
+      "params": "",
+      "path": [
+        "$string:system_title",
+        "$string:clone_app_center"
+      ],
+      "searchItems": [
+        {
+          "itemName": "clone_app",
+          "itemTitle": "$string:clone_app_center",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "应用分身|应用多开|App Cloner|yingyongfenshen"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:touchpad",
+      "pageDescription": "",
+      "entryKey": "pad_touchpad_settings_entry",
+      "params": "",
+      "path": [
+        "$string:touchpad"
+      ],
+      "searchItems": [
+        {
+          "itemName": "touchpad",
+          "itemTitle": "$string:touchpad",
+          "itemDescription": "",
+          "icon": "",
+          "childItems": "input_pointer_speed,touchpad_gesture_secondary_click,touchpad_gesture_tap,two_finger_press_or_lightly_tap,single_finger_light_dot"
+        },
+        {
+          "itemName": "input_pointer_speed",
+          "itemTitle": "$string:input_pointer_speed",
+          "itemDescription": "",
+          "icon": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "false"
+          }
+        },
+        {
+          "itemName": "touchpad_gesture_secondary_click",
+          "itemTitle": "$string:touchpad_gesture_secondary_click",
+          "itemDescription": "",
+          "icon": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "false"
+          }
+        },
+        {
+          "itemName": "touchpad_gesture_tap",
+          "itemTitle": "$string:touchpad_gesture_tap",
+          "itemDescription": "",
+          "icon": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "false"
+          }
+        },
+        {
+          "itemName": "two_finger_press_or_lightly_tap",
+          "itemTitle": "$string:two_finger_press_or_lightly_tap",
+          "itemDescription": "",
+          "icon": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "false"
+          }
+        },
+        {
+          "itemName": "single_finger_light_dot",
+          "itemTitle": "$string:single_finger_light_dot",
+          "itemDescription": "",
+          "icon": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "false"
+          }
+        },
+        {
+          "itemName": "cursor click",
+          "itemTitle": "$string:cursor_click",
+          "itemDescription": "cursor click",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "Follow speed",
+          "itemTitle": "$string:cursor_tracking_speed",
+          "itemDescription": "Follow speed",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "Secondary click",
+          "itemTitle": "$string:menu_pop_up",
+          "itemDescription": "Secondary click",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "two finger press or lightly tap",
+          "itemTitle": "$string:TwoFingerPress",
+          "itemDescription": "two finger press or lightly tap",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "tap the lower left corner",
+          "itemTitle": "$string:PressLeftCorner",
+          "itemDescription": "tap the lower left corner",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "tap the lower right corner",
+          "itemTitle": "$string:PressRightCorner",
+          "itemDescription": "tap the lower right corner",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "Tap and click",
+          "itemTitle": "$string:tap_and_click",
+          "itemDescription": "Tap and click",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "touchpad switches",
+          "itemTitle": "$string:enable_touchpad",
+          "itemDescription": "touchpad switches",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "scroll zoom",
+          "itemTitle": "$string:scroll_zoom",
+          "itemDescription": "scroll zoom",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "two taps and move",
+          "itemTitle": "$string:two_taps_and_move",
+          "itemDescription": "two taps and move",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "Natural scrolling",
+          "itemTitle": "$string:natural_scrolling",
+          "itemDescription": "Natural scrolling",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "Zoom in or out",
+          "itemTitle": "$string:zoom_in_or_out",
+          "itemDescription": "Zoom in or out",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "more gestures",
+          "itemTitle": "$string:more_gestures",
+          "itemDescription": "more gestures",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "Display the desktop",
+          "itemTitle": "$string:display_the_desktop",
+          "itemDescription": "Display the desktop",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "three finger slide up",
+          "itemTitle": "$string:three_finger_slide_up",
+          "itemDescription": "three finger slide up",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "Go into multitasking",
+          "itemTitle": "$string:go_into_multitasking",
+          "itemDescription": "Go into multitasking",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "three fingers up and stay",
+          "itemTitle": "$string:three_fingers_up_and_stay",
+          "itemDescription": "three fingers up and stay",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportShowPcTouchpadPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "Touchpad Knuckle Switches",
+          "itemTitle": "$string:touchpad_knuckle_switches",
+          "itemDescription": "Touchpad Knuckle Switches",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportSearchTouchpadKnuckleGesture",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "Touchpad Volume Switches",
+          "itemTitle": "$string:touchpad_volume_switches",
+          "itemDescription": "Touchpad Volume Switches",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportSearchTouchpadEdgeGesture",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "Touchpad Brightness Switches",
+          "itemTitle": "$string:touchpad_brightness_switches",
+          "itemDescription": "Touchpad Brightness Switches",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportSearchTouchpadEdgeGesture",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "Press Sensitivity",
+          "itemTitle": "$string:press_sensitivity",
+          "itemDescription": "Press Sensitivity",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportSearchPressAndShock",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "Shock Sensitivity",
+          "itemTitle": "$string:shock_intensity",
+          "itemDescription": "Shock Sensitivity",
+          "icon": "$media:Settings_touchpad",
+          "alias": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportSearchPressAndShock",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:enterprise_device_and_application_management",
+      "pageDescription": "Enterprise devices & apps",
+      "entryKey": "device_and_application",
+      "params": "",
+      "path": [
+        "$string:system_title",
+        "$string:enterprise_device_and_application_management"
+      ],
+      "searchItems": [
+        {
+          "itemName": "enterprise_devices_and_apps",
+          "itemTitle": "$string:enterprise_device_and_application_management",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "企业|Enterprise devices & apps|qiye"
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:certification_mark",
+      "pageDescription": "certification mark",
+      "entryKey": "certification_mark",
+      "params": "",
+      "path": [
+        "$string:system_title",
+        "$string:certification_mark"
+      ],
+      "searchItems": [
+        {
+          "itemName": "certification_mark",
+          "itemTitle": "$string:certification_mark",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isCertificationShow",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:default_browser",
+      "pageDescription": "default browser",
+      "entryKey": "default_browser_settings",
+      "params": "",
+      "path": [
+        "$string:application_and_meta_service_settings_title",
+        "$string:default_browser"
+      ],
+      "searchItems": [
+        {
+          "itemName": "default_browser",
+          "itemTitle": "$string:default_browser",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:default_mail",
+      "pageDescription": "default_mail",
+      "entryKey": "default_mail_settings",
+      "params": "",
+      "path": [
+        "$string:application_and_meta_service_settings_title",
+        "$string:default_mail"
+      ],
+      "searchItems": [
+        {
+          "itemName": "default_mail",
+          "itemTitle": "$string:default_mail",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:more_application_text",
+      "pageDescription": "more application",
+      "entryKey": "more_application_settings",
+      "params": "",
+      "path": [
+        "$string:application_and_meta_service_settings_title",
+        "$string:more_application_text"
+      ],
+      "searchItems": [
+        {
+          "itemName": "more_application_text",
+          "itemTitle": "$string:more_application_text",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:print_scan_settings_title",
+      "pageDescription": "",
+      "entryKey": "pad_print_settings_entry",
+      "params": "",
+      "path": [
+        "$string:print_scan_settings_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "print_settings_title",
+          "itemTitle": "$string:print_scan_settings_title",
+          "itemDescription": "",
+          "icon": ""
+        },
+        {
+          "itemName": "print_add_printer",
+          "itemTitle": "$string:add_printer",
+          "itemDescription": "",
+          "icon": ""
+        },
+        {
+          "itemName": "print_default_printer",
+          "itemTitle": "$string:default_printer",
+          "itemDescription": "",
+          "icon": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:car_collaboration_toggle_title",
+      "pageDescription": "",
+      "entryKey": "pad_cockpit_setting",
+      "params": "",
+      "path": [
+        "$string:multi_device_collaboration",
+        "$string:car_collaboration_toggle_title"
+      ],
+      "searchItems": [
+        {
+          "itemName": "pad_cockpit_assistant",
+          "itemTitle": "$string:car_collaboration_toggle_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": ""
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:network_navigator_entry",
+      "pageDescription": "network navigator",
+      "entryKey": "network_navigator_entry",
+      "params": "",
+      "path": [
+        "$string:system_title",
+        "$string:developer_options_settings_title",
+        "$string:network_navigator_entry"
+      ],
+      "searchItems": [
+        {
+          "itemName": "network_navigator_entry",
+          "itemTitle": "$string:network_navigator_entry",
+          "itemDescription": "",
+          "childItems": "network_navigator_scene_elevator,network_navigator_scene_leave_home_wlan_off,network_navigator_scene_arrive_home_wlan_on,network_navigator_scene_crowded_canteen,network_navigator_scene_low_signal_parking,network_navigator_scene_subway,network_navigator_high_speed_rail,network_navigator_highway_driving,network_navigator_add_custom_scene",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isDevelopModeSupport",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "network_navigator_scene_elevator",
+          "itemTitle": "$string:network_navigator_scene_elevator",
+          "itemDescription": "",
+          "icon": "",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isNetSimulatorEnabled",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "network_navigator_scene_arrive_home_wlan_on",
+          "itemTitle": "$string:network_navigator_scene_arrive_home_wlan_on",
+          "itemDescription": "",
+          "icon": "",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isNetSimulatorEnabled",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "network_navigator_scene_crowded_canteen",
+          "itemTitle": "$string:network_navigator_scene_crowded_canteen",
+          "itemDescription": "",
+          "icon": "",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isNetSimulatorEnabled",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "network_navigator_scene_low_signal_parking",
+          "itemTitle": "$string:network_navigator_scene_low_signal_parking",
+          "itemDescription": "",
+          "icon": "",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isNetSimulatorEnabled",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "network_navigator_scene_subway",
+          "itemTitle": "$string:network_navigator_scene_subway",
+          "itemDescription": "",
+          "icon": "",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isNetSimulatorEnabled",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "network_navigator_high_speed_rail",
+          "itemTitle": "$string:network_navigator_high_speed_rail",
+          "itemDescription": "",
+          "icon": "",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isNetSimulatorEnabled",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "network_navigator_highway_driving",
+          "itemTitle": "$string:network_navigator_highway_driving",
+          "itemDescription": "",
+          "icon": "",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isNetSimulatorEnabled",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "network_navigator_add_custom_scene",
+          "itemTitle": "$string:network_navigator_add_custom_scene",
+          "itemDescription": "",
+          "icon": "",
+          "childItems": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isNetSimulatorCustomAddEnabled",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:network_settings_title",
+      "pageDescription": "network",
+      "entryKey": "network_settings",
+      "params": "",
+      "path": [
+        "$string:network_settings_title"
+      ],
+      "supportDevices": [
+        "tablet"
+      ],
+      "searchItems": [
+        {
+          "itemName": "network_settings_title",
+          "itemTitle": "$string:network_settings_title",
+          "itemDescription": "",
+          "icon": "$media:ic_network_icon",
+          "enable": "true",
+          "alias": "网络|wangluo",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportNewNetworkPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "network_title",
+          "itemTitle": "$string:network_title",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "以太网|IPv4|IP|ip|IP地址|子网掩码|路由器|DNS|DNS服务器|备用DNS服务器|DHCP|network|ethernet|ipaddress|subnet mask|router|fuwuqi|dizhi",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportNewNetworkPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "airplane_mode",
+          "itemTitle": "$string:airplane_mode",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "航空模式|飞机|离线模式|Airplane mode|feixingmoshi",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportNewNetworkPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "vpn",
+          "itemTitle": "$string:VPN",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportNewNetworkPage",
+            "value": "true"
+          }
+        }
+
+      ]
+    },
+    {
+      "pageTitle": "$string:network_proxy_title",
+      "pageDescription": "",
+      "entryKey": "pc_network_proxy_settings",
+      "params": "proxy_page",
+      "path": [
+        "$string:network_settings_title",
+        "$string:network_proxy_title"
+      ],
+      "supportDevices": [
+        "tablet"
+      ],
+      "searchItems": [
+        {
+          "itemName": "network_proxy",
+          "itemTitle": "$string:network_proxy_title",
+          "itemDescription": "",
+          "icon": "$media:ic_network_icon",
+          "alias": "daili|proxy|代理",
+          "enable": "true",
+          "childItems": "",
+          "supportDevices": [
+            "tablet"
+          ],
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportNewNetworkPage",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "use_proxy_server",
+          "itemTitle": "$string:use_proxy_server_title",
+          "itemDescription": "",
+          "icon": "$media:ic_network_icon",
+          "alias": "daili|proxy|port|代理|端口|忽略代理|绕过代理",
+          "enable": "true",
+          "childItems": "",
+          "supportDevices": [
+            "tablet"
+          ],
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportNewNetworkPage",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:data_usage_management_title",
+      "pageDescription": "",
+      "entryKey": "mobile_data_manage_entry",
+      "path": [
+        "$string:network_settings_title",
+        "$string:data_usage_management_title"
+      ],
+      "supportDevices": [
+        "tablet"
+      ],
+      "params": "0,-1,-1",
+      "searchItems": [
+        {
+          "itemName": "mobile_data_manage_entry",
+          "itemTitle": "$string:data_usage_management_title",
+          "itemDescription": "",
+          "icon": "$media:ic_network_icon",
+          "enable": "true",
+          "childItems": "",
+          "supportDevices": [
+            "tablet"
+          ],
+          "alias": "流量管理|手机流量|mobiledata|liuliang",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportNewNetworkPage",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:wlan_ranking_of_this_month",
+      "pageDescription": "",
+      "entryKey": "mobile_data_manage_entry",
+      "path": [
+        "$string:network_settings_title",
+        "$string:data_usage_management_title"
+      ],
+      "supportDevices": [
+        "tablet"
+      ],
+      "params": "0,-1,-1",
+      "searchItems": [
+        {
+          "itemName": "wlan_ranking_of_this_month",
+          "itemTitle": "$string:wlan_ranking_of_this_month",
+          "itemDescription": "",
+          "icon": "$media:ic_network_icon",
+          "enable": "true",
+          "childItems": "",
+          "alias": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportNewNetworkPage",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:app_networking_title",
+      "pageDescription": "",
+      "entryKey": "mobile_data_manage_entry",
+      "path": [
+        "$string:network_settings_title",
+        "$string:data_usage_management_title",
+        "$string:app_networking_title"
+      ],
+      "supportDevices": [
+        "tablet"
+      ],
+      "params": "1,-1,-1",
+      "searchItems": [
+        {
+          "itemName": "app_networking_title",
+          "itemTitle": "$string:app_networking_title",
+          "itemDescription": "",
+          "icon": "$media:ic_network_icon",
+          "enable": "true",
+          "childItems": "",
+          "alias": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportNewNetworkPage",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:network_acc",
+      "pageDescription": "",
+      "entryKey": "enhance_netmanager",
+      "params": "",
+      "path": [
+        "$string:network_acc"
+      ],
+      "searchItems": [
+        {
+          "itemName": "network acceleration",
+          "itemTitle": "$string:network_acc",
+          "itemDescription": "",
+          "icon": "",
+          "childItems": "",
+          "alias": "wangluojiasu|LINK Turbo|Network acceleration|网络加速",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "hasVoiceCapability",
+            "value": "true"
+          }
+        }
+      ]
+    }
+  ]
+}

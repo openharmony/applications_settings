@@ -1,0 +1,12 @@
+{
+  "commonEvents": [
+    {
+      "name": "com.ohos.settings.SettingsDataRestoreFinishSubscriber",
+      "permission": "ohos.permission.MANAGE_SECURE_SETTINGS",
+      "types": [],
+      "events": [
+        "custom.event.SETTINGS_DATA_RESTORE_FINISH"
+      ]
+    }
+  ]
+}

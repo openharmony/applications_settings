@@ -1,0 +1,1299 @@
+{
+    "string":[
+        {
+            "name":"proxy_pac_web_address_label",
+            "value":"URL PAC",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_wifi_frequency_5g",
+            "value":"5 GHz",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_connecting",
+            "value":"Đang kết nối…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"please_select_phase2",
+            "value":"Xác thực Giai đoạn 2",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"proxy_exclusionlist_label",
+            "value":"Bỏ qua proxy cho",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"phase2_aka_prime",
+            "value":"AKA'",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_domain",
+            "value":"Tên miền",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_ip_settings_dhcp",
+            "value":"Động",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsecure_wifi_status_connected",
+            "value":"Đã kết nối (Đã phát hiện rủi ro bảo mật)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsecure_wifi_status_saved_encrypted",
+            "value":"Đã lưu, đã mã hóa (Đã phát hiện rủi ro bảo mật)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsecure_wifi_status_saved",
+            "value":"Đã lưu (Đã phát hiện rủi ro bảo mật)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wlan_security_title",
+            "value":"Kiểm tra bảo mật WLAN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsecure_is_close_auto_reconnect",
+            "value":"Đã tắt tự động kết nối lại (Đã phát hiện rủi ro bảo mật)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"is_close_auto_reconnect",
+            "value":"Đã tắt tự động kết nối lại",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_saved",
+            "value":"Đã lưu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hotspot_repeated_connection",
+            "value":"Đã kết nối với điểm phát sóng này rồi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_security_open",
+            "value":"Không khóa",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_signal_good",
+            "value":"Tốt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_ip_settings_title",
+            "value":"Cài đặt IP",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_static_ip_dns2",
+            "value":"DNS 2",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_security",
+            "value":"Bảo mật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_wapi_psk",
+            "value":"WAPI PSK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_static_ip_dns1",
+            "value":"DNS 1",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_security_owe",
+            "value":"OWE",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_add_wifi",
+            "value":"Thêm mạng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_security_wep",
+            "value":"WEP",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_wapi_psk",
+            "value":"WAPI PSK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_static_ip_gateway",
+            "value":"Cổng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_wifi_frequency_2g_5g",
+            "value":"2,4 GHz và 5 GHz",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"phase2_gtc",
+            "value":"GTC",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_disconnected",
+            "value":"Không kết nối",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_wapi_cert",
+            "value":"WAPI CERT",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"join_unsave_net_tips",
+            "value":"Mạng này có thể gây ra mối đe dọa bảo mật.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_aka",
+            "value":"AKA",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_cipher_key_manage",
+            "value":"Quản lý khóa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_eap",
+            "value":"802.1x EAP",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_other_wlan",
+            "value":"Khác",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_ssid_error",
+            "value":"Không tìm thấy \"%s\". Không kết nối được.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_privacy_settings_title",
+            "value":"Quyền riêng tư",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_do_not_provide_eap_user_cert",
+            "value":"Không cung cấp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"Thao tác này bị cấm bởi chính sách quản trị doanh nghiệp.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_disconnecting",
+            "value":"Đang ngắt kết nối…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_settings_title",
+            "value":"WLAN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_security_psk",
+            "value":"WPA/WPA2",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_signal_excellent",
+            "value":"Tuyệt vời",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_eap_input_anonymous_identity_hint",
+            "value":"Nhập danh tính ẩn danh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_cipher_key_none",
+            "value":"Không có",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_eap_suite_b",
+            "value":"WPA3-Enterprise %d-bit",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_anti_theft_tip",
+            "value":"Không thể thực hiện thao tác trên thiết bị demo.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_sim",
+            "value":"SIM",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_wapi_psk_hex",
+            "value":"WAPI PSK hệ thập lục phân",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_failed_disabled",
+            "value":"Tổ chức của bạn không cho phép bạn kết nối với mạng WLAN này.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_failed_connection_full",
+            "value":"Mạng đã đầy. Kết nối không thành công.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method",
+            "value":"Phương pháp EAP",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_unsuccessful",
+            "value":"Không thành công",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unassigned",
+            "value":"Không xác định",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_scanning",
+            "value":"Đang quét…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_identity",
+            "value":"Nhận dạng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_proxy_settings_none",
+            "value":"Không có",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_wrong_pwd",
+            "value":"Sai mật khẩu. Kết nối thất bại.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_connect_status_failed",
+            "value":"Sai mật khẩu. Kết nối thất bại.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_saved_encrypted",
+            "value":"Đã lưu, đã mã hóa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_signal_fair",
+            "value":"Tốt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_aka_prime",
+            "value":"AKA'",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_network_setting",
+            "value":"Cài đặt mạng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_do_not_validate_eap_server_warning",
+            "value":"Chưa xác định chứng chỉ. Kết nối của bạn sẽ không riêng tư.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_add_other_wifi",
+            "value":"Thêm mạng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"as_certification",
+            "value":"Chứng chỉ AS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"connect_the_internet_title",
+            "value":"Kết nối mạng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_open",
+            "value":"Không khóa",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_cipher_key_ft",
+            "value":"FT",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_know",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_signal_poor",
+            "value":"Kém",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_peap",
+            "value":"PEAP",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_ip_settings_static",
+            "value":"Tĩnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"join_unsave_net",
+            "value":"Mạng không an toàn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_static_ip_network_prefix",
+            "value":"Độ dài tiền tố mạng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"continue_join",
+            "value":"Vẫn kết nối",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"phase2_aka",
+            "value":"AKA",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_obtaining_iP",
+            "value":"Đang lấy địa chỉ IP…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_name",
+            "value":"Tên mạng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_connected_successful",
+            "value":"Kết nối thành công.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sim_card_slot",
+            "value":"Khe cắm thẻ SIM",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_ip_address",
+            "value":"Địa chỉ IP",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_connected_unauthorized",
+            "value":"Đã kết nối (yêu cầu đăng nhập/cấp quyền)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"proxy_warning_limited_support",
+            "value":"Trình duyệt sử dụng Proxy HTTP nhưng các ứng dụng khác có thể không sử dụng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_advanced_title",
+            "value":"Tùy chọn nâng cao",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_mac_address_title",
+            "value":"Địa chỉ MAC",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_security_wapi_cert",
+            "value":"WAPI CERT",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_user_certificate",
+            "value":"Chứng chỉ người dùng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_wifi_frequency_2g",
+            "value":"2.4 GHz",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"proxy_hostname_label",
+            "value":"Tên máy chủ proxy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_auto_reconnect_settings",
+            "value":"Tự động kết nối lại",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"type_not_support",
+            "value":"Không thể chia sẻ loại mạng này.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_privacy_device",
+            "value":"Sử dụng MAC thiết bị",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_connected",
+            "value":"Đã kết nối",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"phase2_pap",
+            "value":"PAP",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_sae",
+            "value":"WPA3",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_tls",
+            "value":"TLS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_wapi_psk_ascii",
+            "value":"WAPI PSK ASCII",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_encrypted",
+            "value":"Đã mã hóa",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_eap_anonymous",
+            "value":"Danh tính ẩn danh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_wapi_psk_password_type",
+            "value":"Kiểu mật khẩu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_failed_rejected",
+            "value":"Đã từ chối truy cập vào mạng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_proxy_settings_auto",
+            "value":"Tự động",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ca_certificate",
+            "value":"Chứng chỉ CA",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"phase2_mschapv2",
+            "value":"MSCHAPV2",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_do_not_validate_eap_server",
+            "value":"Không xác thực",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_connecting",
+            "value":"Đang kết nối với %1$s…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hotspot_settings_title",
+            "value":"Điểm phát sóng cá nhân",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Hủy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_use_system_certs",
+            "value":"Sử dụng chứng chỉ hệ thống",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"skip_process",
+            "value":"Bỏ qua",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_enter_ssid_hint",
+            "value":"Tên mạng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_input_identity_hint",
+            "value":"Nhập danh tính",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_privacy_random",
+            "value":"Sử dụng MAC ngẫu nhiên",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"proxy_port_label",
+            "value":"Cổng proxy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_proxy_settings_title",
+            "value":"Proxy",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_proxy_settings_manual",
+            "value":"Thủ công",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"please_enter",
+            "value":"Vui lòng nhập",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_ttls",
+            "value":"TTLS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_failed_default",
+            "value":"Lỗi mạng. Kết nối không thành công.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_connected_failed",
+            "value":"Kết nối không thành công.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"please_select",
+            "value":"Vui lòng chọn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"phase2_sim",
+            "value":"SIM",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"phase2_mschap",
+            "value":"MSCHAP",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_privacy_settings",
+            "value":"Quyền riêng tư",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_connect_status_title",
+            "value":"Trạng thái",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_setup_config_save_button",
+            "value":"Lưu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_pwd",
+            "value":"PWD",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sim_not_set",
+            "value":"Không xác định",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_connected_ap",
+            "value":"Đã kết nối",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_settings",
+            "value":"Cài đặt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_available_ap_group",
+            "value":"Khả dụng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hotspot_no_connected_devices",
+            "value":"Không có thiết bị nào được kết nối",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hotspot_turned_off",
+            "value":"Điểm phát sóng cá nhân đã tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_signal_1",
+            "value":"Điểm phát sóng WLAN, %d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_signal_0",
+            "value":"Điểm phát sóng WLAN, %d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_lock_signal_2",
+            "value":"Điểm phát sóng WLAN %1$d đã mã hóa, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_signal_4",
+            "value":"Điểm phát sóng WLAN, vạch tín hiệu đầy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_lock_signal_3",
+            "value":"Điểm phát sóng WLAN %1$d đã mã hóa, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_signal_3",
+            "value":"Điểm phát sóng WLAN, %d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_lock_signal_4",
+            "value":"Điểm phát sóng WLAN %d đã mã hóa, vạch tín hiệu đầy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_signal_2",
+            "value":"Điểm phát sóng WLAN, %d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_lock_signal_0",
+            "value":"Điểm phát sóng WLAN %1$d đã mã hóa, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_lock_signal_1",
+            "value":"Điểm phát sóng WLAN %1$d đã mã hóa, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wlan_error",
+            "value":"Điểm phát sóng WLAN, không có Internet",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_0",
+            "value":"Điểm phát sóng WLAN %1$d Plus đã mã hóa, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_1",
+            "value":"Điểm phát sóng WLAN %1$d Plus đã mã hóa, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_2",
+            "value":"Điểm phát sóng WLAN %1$d Plus đã mã hóa, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_3",
+            "value":"Điểm phát sóng WLAN %1$d Plus đã mã hóa, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_4",
+            "value":"Điểm phát sóng WLAN %d Plus đã mã hóa, vạch tín hiệu đầy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"esim_card",
+            "value":"eSIM %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_signal_1",
+            "value":"Điểm phát sóng WLAN %1$d, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_lock_signal_0",
+            "value":"Điểm phát sóng WLAN %1$d đã mã hóa, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_signal_2",
+            "value":"Điểm phát sóng WLAN %1$d, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_signal_3",
+            "value":"Điểm phát sóng WLAN %1$d, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_signal_4",
+            "value":"Điểm phát sóng WLAN %d, vạch tín hiệu đầy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_lock_signal_4",
+            "value":"Điểm phát sóng WLAN %d đã mã hóa, vạch tín hiệu đầy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_lock_signal_3",
+            "value":"Điểm phát sóng WLAN %1$d đã mã hóa, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_lock_signal_2",
+            "value":"Điểm phát sóng WLAN %1$d đã mã hóa, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_lock_signal_1",
+            "value":"Điểm phát sóng WLAN %1$d đã mã hóa, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_signal_4",
+            "value":"Điểm phát sóng WLAN %d, vạch tín hiệu đầy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_signal_2",
+            "value":"Điểm phát sóng WLAN %1$d, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_signal_3",
+            "value":"Điểm phát sóng WLAN %1$d, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_signal_0",
+            "value":"Điểm phát sóng WLAN %1$d, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_signal_1",
+            "value":"Điểm phát sóng WLAN %1$d, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_signal_4",
+            "value":"Điểm phát sóng WLAN %d Plus, vạch tín hiệu đầy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_signal_2",
+            "value":"Điểm phát sóng WLAN %1$d Plus, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_signal_3",
+            "value":"Điểm phát sóng WLAN %1$d Plus, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_signal_0",
+            "value":"Điểm phát sóng WLAN %1$d Plus, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_signal_1",
+            "value":"Điểm phát sóng WLAN %1$d Plus, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_signal_0",
+            "value":"Điểm phát sóng WLAN %1$d, %2$d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_lock_signal_4",
+            "value":"Điểm phát sóng đã mã hóa, vạch tín hiệu đầy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_lock_signal_0",
+            "value":"Điểm phát sóng đã mã hóa, %d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_lock_signal_1",
+            "value":"Điểm phát sóng đã mã hóa, %d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_lock_signal_2",
+            "value":"Điểm phát sóng đã mã hóa, %d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_lock_signal_3",
+            "value":"Điểm phát sóng đã mã hóa, %d vạch tín hiệu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shared_network_ap_group",
+            "value":"Được chia sẻ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"shared_network_failed_message",
+            "value":"Trên %s, hãy ngắt kết nối WLAN, bật lại WLAN và Bluetooth, sau đó kiểm tra xem dữ liệu di động đã được bật chưa và thử lại.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_security_wpa_wpa2_wpa3_ft_psk",
+            "value":"WPA/WPA2/WPA3/FT PSK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ensure_mobile_data_enabled",
+            "value":"Trên điện thoại, bạn hãy đảm bảo đã bật dữ liệu di động, sau đó bật lại WLAN và Bluetooth rồi thử lại.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mobile_data_not_enabled",
+            "value":"Dữ liệu di động đã bị tắt trên điện thoại. Hãy bật lên rồi thử lại.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mobile_network_unavailable",
+            "value":"Không có mạng di động trên điện thoại. Hãy tắt điểm phát sóng cá nhân rồi thử lại.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"network_sharing_sub_switch_not_enabled",
+            "value":"Nút chuyển \"Internet\" trong mục \"Chia sẻ thông tin liên lạc\" đã bị tắt trên điện thoại. Hãy bật lên rồi thử lại.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

@@ -1,0 +1,284 @@
+{
+    "string":[
+        {
+            "name":"app_info_version",
+            "value":"Версия %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_application_text",
+            "value":"Другие приложения",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uninstall_unused_app",
+            "value":"Удалите неиспользуемые приложения",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_uninstall",
+            "value":"Удалить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update_title",
+            "value":"Удалить обновления приложения %s?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_atomic_service_text",
+            "value":"Удалить эту службу",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Отмена",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"whether_to_forcibly_stop_descriptions",
+            "value":"В случае принудительной остановки приложения могут возникнуть ошибки.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"default_mail",
+            "value":"Приложение эл. почты по умолчанию",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"service_enable_text",
+            "value":"Включить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"system_default",
+            "value":"По умолчанию",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_tittle_cancel",
+            "value":"Отмена",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall_app_prompt",
+            "value":"Удалите неиспользуемые приложения, чтобы освободить %1$s памяти.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"empty_service",
+            "value":"Нет служб",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_replace",
+            "value":"Изменить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"service_remove_text",
+            "value":"Удалить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_meta_service_text",
+            "value":"Восстановить службы",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_networking_cellular_only",
+            "value":"Мобильный трафик",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_list_loading_message",
+            "value":"Загрузка…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_to_forcibly_stop_text",
+            "value":"Принудительно остановить это приложение?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_networking_wlan_and_cellular",
+            "value":"WLAN и мобильный трафик",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_allow_access",
+            "value":"Предоставление прав доступа приложению %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update",
+            "value":"Удалить обновления",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"is_delete_form",
+            "value":"Удалить приложение %s?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm_replacement_content",
+            "value":"Изменение браузера по умолчанию может привести к увеличению энергопотребления и расхода трафика, а также нести угрозы конфиденциальности. Рекомендуется использовать браузер по умолчанию.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"default_browser",
+            "value":"Приложение браузера по умолчанию",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_confirm",
+            "value":"Удалить приложение?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_networking_wlan_only",
+            "value":"WLAN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_force_stop",
+            "value":"Остановить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update_confirm",
+            "value":"Это действие заменит текущую версию приложения его предустановленной версией.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"service_disable_text",
+            "value":"Выключить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"view_details",
+            "value":"Подробнее",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_networking",
+            "value":"Доступ в сеть",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_live_view",
+            "value":"Интерактивный вид",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_to_disable_descriptions",
+            "value":"Выключение предустановленного приложения может привести к некорректной работе других приложений.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"compatible_application_text",
+            "value":"Совместимые приложения",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_to_disable_text",
+            "value":"Выключить это приложение?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_replacement",
+            "value":"Изменить?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_apps_text",
+            "value":"Восстановление приложений",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_matching_results",
+            "value":"Нет результатов",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

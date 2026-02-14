@@ -1,0 +1,22 @@
+{
+  "module": {
+    "name": "settings.native",
+    "type": "har",
+    "description": "",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "uiSyntax": "ets",
+    "metadata": [
+      {
+        "name": "ArkTSPartialUpdate",
+        "value": "true"
+      },
+      {
+        "name": "partialUpdateStrictCheck",
+        "value": "warn"
+      }
+    ]
+  }
+}

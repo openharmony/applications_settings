@@ -1,0 +1,20 @@
+{
+    "string":[
+        {
+            "name":"dialog_enable",
+            "value":"[TS_951013]_Enable"
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"[TS_806070]_Cancel"
+        },
+        {
+            "name":"audio_adjustment",
+            "value":"[TS_1085870]_Audio tuning"
+        },
+        {
+            "name":"single_audio_reminder",
+            "value":"[TS_1085871]_Play the same audio in both earbuds with no stereo effect."
+        }
+    ]
+}

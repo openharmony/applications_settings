@@ -1,0 +1,284 @@
+{
+    "string":[
+        {
+            "name":"app_info_version",
+            "value":"الإصدار %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_application_text",
+            "value":"المزيد من التطبيقات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uninstall_unused_app",
+            "value":"إزالة تثبيت التطبيقات غير المُستخدمة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_uninstall",
+            "value":"إزالة التثبيت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update_title",
+            "value":"هل تريد إزالة تثبيت تحديثات %s؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_atomic_service_text",
+            "value":"إزالة هذه الخدمة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"إلغاء",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"whether_to_forcibly_stop_descriptions",
+            "value":"في حالة فرض إيقاف التطبيق، فقد يسبب ذلك مشكلات.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"default_mail",
+            "value":"تطبيق البريد الإلكتروني الافتراضي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"service_enable_text",
+            "value":"تشغيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"system_default",
+            "value":"الافتراضي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_tittle_cancel",
+            "value":"إلغاء",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall_app_prompt",
+            "value":"وفّر %1$s من مساحة التخزين عن طريق إزالة تثبيت التطبيقات التي لا تستخدمها مٌطلقًا.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"empty_service",
+            "value":"لا توجد خدمات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_replace",
+            "value":"تغيير",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"service_remove_text",
+            "value":"إزالة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_meta_service_text",
+            "value":"استعادة الخدمات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_networking_cellular_only",
+            "value":"بيانات الجوال",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_list_loading_message",
+            "value":"جارٍ التحميل…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_to_forcibly_stop_text",
+            "value":"هل تريد فرض إيقاف هذا التطبيق؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_networking_wlan_and_cellular",
+            "value":"الشبكة اللاسلكية وبيانات الجوال",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_allow_access",
+            "value":"السماح لتطبيق \"%s\" بالوصول إلى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update",
+            "value":"إزالة التحديثات المُثبَّتة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"is_delete_form",
+            "value":"هل تريد إزالة %s؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm_replacement_content",
+            "value":"قد يؤدي تغيير المتصفح الافتراضي إلى زيادة استهلاك الطاقة واستخدام البيانات، وقد يُعرّض خصوصيتك للخطر أيضًا. لذا يُوصى بالإبقاء على المتصفح الافتراضي.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"default_browser",
+            "value":"المتصفح الافتراضي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_confirm",
+            "value":"هل تريد إزالة تثبيت هذا التطبيق؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_networking_wlan_only",
+            "value":"الشبكة اللاسلكية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_force_stop",
+            "value":"فرض الإيقاف",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update_confirm",
+            "value":"سيؤدي هذا إلى استبدال الإصدار الحالي من التطبيق بالإصدار الافتراضي في النظام.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"service_disable_text",
+            "value":"تعطيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"view_details",
+            "value":"عرض التفاصيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_networking",
+            "value":"الاتصال بالشبكة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_live_view",
+            "value":"العرض الحي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_to_disable_descriptions",
+            "value":"قد يسبب إيقاف تشغيل تطبيق مثبت مسبقًا أن تعمل التطبيقات الأخرى بشكل غير سليم.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"compatible_application_text",
+            "value":"التطبيقات المتوافقة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_to_disable_text",
+            "value":"هل تريد إيقاف تشغيل هذا التطبيق؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_replacement",
+            "value":"هل حقًا تريد تغيير هذا؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_apps_text",
+            "value":"استعاده التطبيقات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_matching_results",
+            "value":"لا توجد نتائج",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

@@ -1,0 +1,61 @@
+{
+    "plural":[
+        {
+            "name":"password_edit_read_begin",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Entering PIN or password, %d character in total",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Entering PIN or password, %d characters in total",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_edit_read_end",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d character entered",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d characters entered",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"dialog_ok_countdown",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"OK (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"OK (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

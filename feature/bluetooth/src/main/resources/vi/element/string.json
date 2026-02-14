@@ -1,0 +1,424 @@
+{
+    "string":[
+        {
+            "name":"bluetooth_sharing_and_call_history",
+            "value":"Chia sẻ danh bạ và nhật ký cuộc gọi",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_play_music_tips",
+            "value":"Bạn có thể thay đổi thiết lập này trên màn hình chi tiết của thiết bị.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keyboard",
+            "value":"Bàn phím",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_connection_strategy_summary",
+            "value":"Đang kết nối…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keep_auto_play",
+            "value":"Luôn bật chế độ tự động phát",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_pad",
+            "value":"Đồng bộ âm lượng với máy tính bảng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"forbidding",
+            "value":"Tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_disconnecting_summary",
+            "value":"Đang ngắt kết nối…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auto_play_music",
+            "value":"Tự động phát nhạc",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_connecting_summary",
+            "value":"Đang kết nối…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_connected_summary",
+            "value":"Đã kết nối",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_fulls_detals",
+            "value":"Tất cả thông tin",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_profile_hid",
+            "value":"Thiết bị đầu vào",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unpair",
+            "value":"Bỏ ghép cặp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_connect_auto_play",
+            "value":"Nhạc sẽ tự động bắt đầu phát khi \"%s\" kết nối.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_hfp_a2dp_connect_summary",
+            "value":"Đã kết nối để thực hiện cuộc gọi và phát âm thanh đa phương tiện",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_car",
+            "value":"Ô tô",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_read_info_auth",
+            "value":"Cho phép truy cập tin nhắn SMS",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_play_music_desc",
+            "value":"Cho phép thiết bị này tự động phát nhạc khi kết nối.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_profile_a2dp",
+            "value":"Âm thanh của phương tiện",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_pair_failed_message",
+            "value":"Mã ghép cặp không đúng hoặc có lỗi cấu hình với thiết bị bạn đang ghép cặp. Vui lòng thử lại.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_pc",
+            "value":"Đồng bộ âm lượng với máy tính",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_speaker",
+            "value":"Loa",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_profile_map",
+            "value":"Cho phép truy cập tin nhắn SMS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_name_and_numbers_only",
+            "value":"Chỉ tên và số",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed1",
+            "value":"Nhấn một phím trên bàn phím để khởi tạo lại kết nối.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_settings_title",
+            "value":"Tên thiết bị",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_type_glasses",
+            "value":"Kính",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"help",
+            "value":"Trợ giúp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_anti_theft_tip",
+            "value":"Không thể thực hiện thao tác trên thiết bị demo.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_a2dp_connect_summary",
+            "value":"Đã kết nối để phát âm thanh đa phương tiện",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_hearing",
+            "value":"Máy trợ thính",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_phone",
+            "value":"Đồng bộ âm lượng với điện thoại",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_help_popup_content",
+            "value":"Không thể tìm thấy thiết bị đích?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_not_share",
+            "value":"Không chia sẻ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_type_headset",
+            "value":"Tai nghe",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bt_connect_failed_message",
+            "value":"Không kết nối được với %1$s. Nguyên nhân có thể xảy ra:\n%2$s. Thiết bị nằm ngoài phạm vi (%3$s m) hoặc không bật Bluetooth.\n%4$s. Thiết bị được kết nối với một thiết bị khác.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_pair_failed2",
+            "value":"Mã PIN hoặc mã ghép cặp không đúng. Không ghép cặp được với \"%s\".",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_pair_failed3",
+            "value":"Quá trình ghép cặp đã bị \"%s\" từ chối.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_pair_failed1",
+            "value":"Không thể giao tiếp với \"%1$s\".\n\nCó thể là vì thiết bị:\n\n%2$s. Tắt nguồn hoặc không ở chế độ ghép cặp. Xem hướng dẫn sử dụng của thiết bị để được trợ giúp.\n%3$s. Quá xa. Đảm bảo thiết bị nằm trong phạm vi %4$s mét tính từ thiết bị này và thử lại.\n%5$s. Đã kết nối với thiết bị khác. Nếu vậy, hãy ngắt kết nối rồi thử lại.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_watch",
+            "value":"Đồng hồ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_profile_hfp",
+            "value":"Âm thanh cuộc gọi",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed3",
+            "value":"Hãy thử kết nối lại từ xe.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_hfp_connect_summary",
+            "value":"Đã kết nối để thực hiện cuộc gọi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed2",
+            "value":"Hãy thử kết nối lại từ chuột.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed4",
+            "value":"Đã đạt đến số kết nối thiết bị tối đa. Hãy ngắt kết nối một số thiết bị và thử lại.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"Thao tác này bị cấm bởi chính sách quản trị doanh nghiệp.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_settings_title",
+            "value":"Bluetooth",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_bonded_devices",
+            "value":"Thiết bị đã ghép cặp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_no_paired_devices",
+            "value":"Chưa có thiết bị ghép cặp nào",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"phone",
+            "value":"Điện thoại",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"matebook",
+            "value":"Máy tính xách tay",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_settings",
+            "value":"Cài đặt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"soundx",
+            "value":"Thiết bị âm thanh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth",
+            "value":"Bluetooth",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pencil",
+            "value":"Bút cảm ứng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mouse",
+            "value":"Chuột",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pad",
+            "value":"Máy tính bảng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_printer",
+            "value":"Máy in",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_car_key",
+            "value":"Chìa khóa xe",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

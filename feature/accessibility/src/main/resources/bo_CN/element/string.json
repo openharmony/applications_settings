@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"dialog_cancel",
+            "value":"འདོར་བ།",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_enable",
+            "value":"ཁ་འབྱེད།",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_adjustment",
+            "value":"སྒྲ་ཟློས་སྙོམ་སྒྲིག",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"single_audio_reminder",
+            "value":"སྒྲ་ཟློས་གཏོང་སྐབས་སྒྲ་ལམ་ཟླ་སྒྲིལ་གཏོང་། དངོས་སྣང་སྒྲའི་སྒྲ་ནུས་ལ་ཁྱད་པར་མེད།",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

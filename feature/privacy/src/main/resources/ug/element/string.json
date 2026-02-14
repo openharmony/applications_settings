@@ -1,0 +1,74 @@
+{
+    "string":[
+        {
+            "name":"location_switch_on_text",
+            "value":"ئوچۇق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_switch_off_text",
+            "value":"ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"password_input_warning_message_not_equal",
+            "value":"مەخپىي نومۇر بىردەك ئەمەس",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_too_short",
+            "value":"پارول %d ھەرپ-بەلگىدىن ئۇزۇن بولۇشى كېرەك.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_contain_illegal_character_and_too_long",
+            "value":"پارول %d ھەرپ-بەلگىدىن قىسقا بولۇشى، ئىناۋەتسىز ھەرپ-بەلگە بولماسلىقى كېرەك.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_too_long",
+            "value":"مەخپىي نومۇر چوقۇم %dدىن ئاز بولۇشى كېرەك.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_contain_illegal_character_and_too_short",
+            "value":"پارول %d ھەرپ-بەلگىدىن ئۇزۇن بولۇشى، ئىناۋەتسىز ھەرپ-بەلگە بولماسلىقى كېرەك.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_contain_illegal_character",
+            "value":"مەخپىي نومۇر قانۇنسىز بەلگىنى ئۆز ئىچىگە ئالىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edm_password_warning_message",
+            "value":"پارول كۈچلۈكلۈكى ئىدارە بىخەتەرلىك ئۆلچىمىگە ئۇيغۇن ئەمەس.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"service_error",
+            "value":"سىستېما مۇلازىمىتىدە خاتالىق بار.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+    "plural":[
+        {
+            "name":"not_enabled_for_many_days",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ཉིན་ %d སྤྱོད་འགོ་བཙུགས་མེད།",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"delete_apps_selected",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"བཤིག་ཕབ། (ཉེར་སྤྱོད་ %d བདམས་ཟིན)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"is_delete_apps_number",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"གོང་གསལ་ཉེར་སྤྱོད་ %d བཤིག་ཕབ་བྱེད་ཀྱི་ཡིན་ནམ།",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

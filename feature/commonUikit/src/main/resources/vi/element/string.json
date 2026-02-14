@@ -1,0 +1,81 @@
+{
+    "string":[
+        {
+            "name":"go_to_login",
+            "value":"Đăng nhập",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_update_fail",
+            "value":"Không đổi tên được. Hãy thử lại sau.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"network_tips",
+            "value":"Trước tiên hãy kết nối với mạng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_wait_tip",
+            "value":"Đang áp dụng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"note",
+            "value":"Lưu ý",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_settings_summary_with_near_link",
+            "value":"Tên này sẽ hiển thị trên các thiết bị khác khi bạn tương tác, chia sẻ hoặc kết nối với các thiết bị đó qua Bluetooth, NearLink, điểm phát sóng cá nhân hoặc USB.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"input_max_length_message",
+            "value":"Bạn đã nhập quá nhiều ký tự.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_check_fail",
+            "value":"Hãy thử tên khác.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_search",
+            "value":"Tìm kiếm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_options",
+            "value":"Tùy chọn khác",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"navigation_back",
+            "value":"Trở lại",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

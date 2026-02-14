@@ -1,0 +1,74 @@
+{
+    "string":[
+        {
+            "name":"password_input_warning_message_not_equal",
+            "value":"密码不一致",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_switch_on_text",
+            "value":"已开启",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_switch_off_text",
+            "value":"已关闭",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_contain_illegal_character",
+            "value":"密码包含非法字符",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_too_short",
+            "value":"密码必须大于 %d 个字符",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_contain_illegal_character_and_too_long",
+            "value":"密码必须小于 %d 个字符且不能包含非法字符",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_too_long",
+            "value":"密码必须少于 %d 个字符。",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_contain_illegal_character_and_too_short",
+            "value":"密码必须大于 %d 个字符且不能包含非法字符",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edm_password_warning_message",
+            "value":"密码强度不符合您单位的安全策略。",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"service_error",
+            "value":"系统服务异常",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

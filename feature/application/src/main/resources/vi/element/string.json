@@ -1,0 +1,284 @@
+{
+    "string":[
+        {
+            "name":"app_info_version",
+            "value":"Phiên bản %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_application_text",
+            "value":"Ứng dụng khác",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uninstall_unused_app",
+            "value":"Gỡ cài đặt ứng dụng không sử dụng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_uninstall",
+            "value":"Gỡ cài đặt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update_title",
+            "value":"Gỡ cài đặt bản cập nhật cho %s?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_atomic_service_text",
+            "value":"Gỡ dịch vụ này",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Hủy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_to_forcibly_stop_descriptions",
+            "value":"Nếu bạn buộc dừng ứng dụng, có thể sẽ xảy ra lỗi.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"default_mail",
+            "value":"Ứng dụng email mặc định",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"service_enable_text",
+            "value":"Bật",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"system_default",
+            "value":"Mặc định",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_tittle_cancel",
+            "value":"Hủy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall_app_prompt",
+            "value":"Tiết kiệm %1$s dung lượng lưu trữ bằng cách gỡ cài đặt các ứng dụng bạn không bao giờ sử dụng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"empty_service",
+            "value":"Không có dịch vụ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_replace",
+            "value":"Thay đổi",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"service_remove_text",
+            "value":"Gỡ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_meta_service_text",
+            "value":"Khôi phục dịch vụ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_networking_cellular_only",
+            "value":"Dữ liệu di động",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_list_loading_message",
+            "value":"Đang tải...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_to_forcibly_stop_text",
+            "value":"Buộc dừng ứng dụng này?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_networking_wlan_and_cellular",
+            "value":"WLAN và dữ liệu di động",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_allow_access",
+            "value":"Cho phép %s truy cập",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update",
+            "value":"Gỡ cài đặt bản cập nhật",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"is_delete_form",
+            "value":"Gỡ %s?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm_replacement_content",
+            "value":"Việc thay đổi trình duyệt mặc định có thể làm tăng mức tiêu thụ pin và dữ liệu, đồng thời có thể gây nguy hiểm cho quyền riêng tư của bạn. Khuyến nghị giữ nguyên trình duyệt mặc định.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"default_browser",
+            "value":"Trình duyệt mặc định",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_confirm",
+            "value":"Gỡ cài đặt ứng dụng này?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_networking_wlan_only",
+            "value":"WLAN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_force_stop",
+            "value":"Buộc dừng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update_confirm",
+            "value":"Thao tác này sẽ thay thế phiên bản hiện tại của ứng dụng bằng phiên bản gốc.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"service_disable_text",
+            "value":"Tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"view_details",
+            "value":"Xem chi tiết",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_networking",
+            "value":"Truy cập mạng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_live_view",
+            "value":"Xem trực tiếp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_to_disable_descriptions",
+            "value":"Nếu bạn tắt một ứng dụng cài đặt trước, các ứng dụng khác có thể hoạt động không chính xác.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"compatible_application_text",
+            "value":"Ứng dụng tương thích",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_to_disable_text",
+            "value":"Tắt ứng dụng này?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_replacement",
+            "value":"Bạn có chắc chắn muốn thay đổi điều này không?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_apps_text",
+            "value":"Khôi phục ứng dụng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_matching_results",
+            "value":"Không tìm thấy kết quả",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

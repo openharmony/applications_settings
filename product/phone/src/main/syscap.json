@@ -1,0 +1,16 @@
+{
+  "devices": {
+    "general": [
+      "default",
+      "tablet"
+    ]
+  },
+  "development": {
+    "addedSysCaps": [
+      "SystemCapability.DisplayEngine.Syscap",
+      "SystemCapability.Print.PrintFramework",
+      "SystemCapability.Communication.NFC.Core",
+      "SystemCapability.Communication.Bluetooth.HearingAid"
+    ]
+  }
+}

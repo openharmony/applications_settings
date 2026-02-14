@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "black",
+      "value": "#FFFFFFFF"
+    },
+    {
+      "name": "white",
+      "value": "#FF000000"
+    },
+    {
+      "name": "theme_gallery_loading_background",
+      "value": "#202224"
+    }
+  ]
+}

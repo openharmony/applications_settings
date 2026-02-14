@@ -1,0 +1,296 @@
+{
+    "string":[
+        {
+            "name":"app_info_networking",
+            "value":"Network access",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_networking_wlan_only",
+            "value":"WLAN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_networking_cellular_only",
+            "value":"Mobile data",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_networking_wlan_and_cellular",
+            "value":"WLAN & mobile data",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove_atomic_service_text",
+            "value":"Remove this service",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"is_delete_form",
+            "value":"Remove %s?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_application_text",
+            "value":"More apps",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"compatible_application_text",
+            "value":"Compatible apps",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"whether_to_disable_text",
+            "value":"Disable this app?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"whether_to_disable_descriptions",
+            "value":"Disabling a pre-installed app may cause other apps to function incorrectly.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"whether_to_forcibly_stop_text",
+            "value":"Force stop this app?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"whether_to_forcibly_stop_descriptions",
+            "value":"If you force stop an app, it may stop working properly.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"service_remove_text",
+            "value":"Remove",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"service_enable_text",
+            "value":"Enable",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"service_disable_text",
+            "value":"Disable",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_confirm",
+            "value":"Uninstall this app?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall",
+            "value":"Uninstall",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_reason_get_sensitive_permissions",
+            "value":"Used to get sensitive permissions"
+        },
+        {
+            "name":"permission_reason_change_ability_enabled_state",
+            "value":"Used to change ability enabled state "
+        },
+        {
+            "name":"permission_reason_start_capturer_stream_enabled_state",
+            "value":"Used to start capturer stream by self"
+        },
+        {
+            "name":"app_info_force_stop",
+            "value":"Force stop",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_list_loading_message",
+            "value":"Loading…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"empty_service",
+            "value":"No services",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"default_mail",
+            "value":"Default email app",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_apps_text",
+            "value":"Restore apps",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_meta_service_text",
+            "value":"Restore services",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_live_view",
+            "value":"Live view",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_allow_access",
+            "value":"Allow %s to access",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"system_default",
+            "value":"Default",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_replacement",
+            "value":"Are you sure you want to change this?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_replacement_content",
+            "value":"Changing the default browser may increase power consumption and data usage, and could also put your privacy at risk. Keeping the default browser is recommended.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_tittle_cancel",
+            "value":"Cancel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_replace",
+            "value":"Change",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"default_browser",
+            "value":"Default browser",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_version",
+            "value":"Version %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Cancel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uninstall_unused_app",
+            "value":"Uninstall unused apps",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uninstall_app_prompt",
+            "value":"Save %1$s of storage space by uninstalling apps you never use.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"view_details",
+            "value":"View details",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update_title",
+            "value":"Uninstall updates for %s?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update_confirm",
+            "value":"This will replace the current version of the app with the factory version.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update",
+            "value":"Uninstall updates",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_matching_results",
+            "value":"No results",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

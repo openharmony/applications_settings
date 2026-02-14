@@ -1,0 +1,98 @@
+{
+    "plural":[
+        {
+            "name":"optimization_task_toast",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"تم تطبيق تحسين واحد",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"تم تطبيق %d تحسين",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"تم تطبيق %d تحسينات",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"تم تطبيق %d تحسينات",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"تم تطبيق %d تحسينًا",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"تم تطبيق تحسينين",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"power_save_advise_sub",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"تطبيق تحسين واحد لإطالة عمر البطارية.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"تطبيق %d تحسين لإطالة عمر البطارية.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"تطبيق %d تحسينات لإطالة عمر البطارية.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"تطبيق %d تحسينات لإطالة عمر البطارية.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"تطبيق %d تحسينًا لإطالة عمر البطارية.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"تطبيق تحسينين لإطالة عمر البطارية.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

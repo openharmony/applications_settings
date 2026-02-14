@@ -1,0 +1,228 @@
+{
+    "string":[
+        {
+            "name":"cancel",
+            "value":"Cancelar",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"installing_fonts",
+            "value":"Instalando fuentes en este momento. Vuelve a intentarlo más tarde.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_duplicate_fonts",
+            "value":"¿Reemplazar fuente?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_all",
+            "value":"Seleccionar todo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"loading_fonts",
+            "value":"Cargando fuentes en este momento. Vuelve a intentarlo más tarde.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"batch_installation_duplicate_fonts",
+            "value":"“%s” ya está instalado. ¿Quieres reemplazarlo?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall",
+            "value":"Desinstalar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_success",
+            "value":"“%s” se ha instalado correctamente.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_fail",
+            "value":"No se ha podido instalar. Vuelve a intentarlo más tarde.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unloading_fonts",
+            "value":"Se están desinstalando fuentes. Vuelve a intentarlo más tarde.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"is_delete_app",
+            "value":"¿Desinstalar %s?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_delete",
+            "value":"Se eliminarán de tu dispositivo todos los datos de esta aplicación.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_installed_font",
+            "value":"Sin fuentes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_excess_font",
+            "value":"Cantidad máxima de fuentes instaladas.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replace_install",
+            "value":"Reemplazar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"freed_memory_apps_number",
+            "value":"Se ha liberado %s de espacio de almacenamiento.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"installing",
+            "value":"Instalando...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"failed_to_replace",
+            "value":"No se ha podido reemplazar “%s”.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"all_replaced_successfully",
+            "value":"Se han reemplazado todos los elementos.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"deleting",
+            "value":"Desinstalando...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replaced_successfully",
+            "value":"Se ha reemplazado correctamente.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"duplicate_fonts_summary",
+            "value":"Esta fuente ya está instalada. ¿Quieres reemplazarla?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Uninstallation_failed",
+            "value":"No se puede desinstalar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_font",
+            "value":"¿Desinstalar esta fuente?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_ok",
+            "value":"Desinstalar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replace_all_duplicate_fonts",
+            "value":"Reemplazar todas las fuentes duplicadas",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_font",
+            "value":"Seleccionar desde Archivos",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall_unused_apps",
+            "value":"Desinstalar aplicaciones no utilizadas",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"drag_install",
+            "value":"Arrastrar para instalar",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"install_fail_warning",
+            "value":"Solo admite los formatos TTF, TTC y OTF.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_font_summary",
+            "value":"Esta fuente ya no estará disponible en las aplicaciones.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"drag_font_summary",
+            "value":"Arrastra un archivo de fuente para instalarlo",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

@@ -1,0 +1,298 @@
+{
+    "string":[
+        {
+            "name":"theme_settings_title",
+            "value":"ئۈستەليۈزى ۋە خاسلاشتۇرۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"aod_ways_display_awake_intelligent",
+            "value":"ئاڭلىق كۆرسىتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"my_wallpaper",
+            "value":"تەگلىكىم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wallpaper_title",
+            "value":"تەگلىك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"apply",
+            "value":"قوللىنىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"homescreen",
+            "value":"ئۈستەليۈزى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_from_gallery",
+            "value":"ئامباردىن تاللاش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_theme",
+            "value":"سىنبەلگە",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_theme",
+            "value":"باشقا تەڭشەكلەر",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_theme",
+            "value":"ئىزچىل كۆرسىتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"my_theme_settings_title",
+            "value":"ئۇسلۇبۇم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wall_paper_theme",
+            "value":"تەگلىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"digital_clock",
+            "value":"سانلىق سائەت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"art_signature",
+            "value":"ئىمزا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"lock_card",
+            "value":"كارتا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_settings_title",
+            "value":"كۆرسىتىش ۋە يورۇقلۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"table_theme",
+            "value":"ئۈستەليۈزى تەڭشىكى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_off_theme",
+            "value":"ئىزچىل كۆرسىتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"universe",
+            "value":"ئالەم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pinnacle",
+            "value":"چوققا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_all_day_display",
+            "value":"پۈتۈن كۈن كۆرسىتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"random_display_of_photos",
+            "value":"رەسىم تاسقاش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_ways_display_awake_scheduled",
+            "value":"قەرەللىك كۆرسىتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_ways_display_awake_off",
+            "value":"ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_online_wallpapers",
+            "value":"كۆپرەك تەگلىك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"lockscreen",
+            "value":"قۇلۇپ ئېكرانى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uncompleted",
+            "value":"بۇ ئىقتىدار ئىشلىنىۋاتىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"the_theme",
+            "value":"ئۇسلۇب",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_signature",
+            "value":"قۇلۇپ ئېكران ئىمزاسى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screenlock_sign_entry",
+            "value":"قۇلۇپ ئېكرانى ئىمزاسى بېكىتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"font_style_theme",
+            "value":"خەت شەكلى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_style_theme",
+            "value":"سىنبەلگە ئۇسلۇبى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"covertheme_settings_title",
+            "value":"ئۈستەليۈزى، تاشقى ئېكران ۋە خاسلاشتۇرۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"بىكار قىلىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_sure",
+            "value":"جەزملەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"switch_desktop_style_dialog_warning_message",
+            "value":"ئۈستەليۈزى ئۇسلۇبىنى ئالماشتۇرسىڭىز، ھېساباتتىن چېكىنىش كېرەك، ساقلىمىغان ئەپ مەلۇماتلىرى يوقىلىدۇ، ساقلىۋېلىپ ئاندىن ئالماشتۇرۇڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switch_desktop_style",
+            "value":"ئۈستەليۈزى ئۇسلۇبىنى ئالماشتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keywords_outer_theme",
+            "value":"تاشقى ئېكران ئۇسلۇبى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"keywords_outer_facard",
+            "value":"تاشقى ئېكران كارتىسى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"central_axis_personalization",
+            "value":"مەركىزىي ئوق ئۆزلەشتۈرۈش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_settings",
+            "value":"قۇلۇپ ئېكرانى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_font_creation_service",
+            "value":"قۇلۇپ ئېكرانى خەت نۇسخىسى ياساش مۇلازىمىتى",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

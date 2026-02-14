@@ -1,0 +1,123 @@
+{
+    "string":[
+        {
+            "name":"nfc_switch_off_text",
+            "value":"Tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_on_text",
+            "value":"Đã kết nối",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"nfc_switch_on_text",
+            "value":"Bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_notice",
+            "value":"Thông báo Quyền hạn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"projection_state_on",
+            "value":"Bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_off_text",
+            "value":"Không kết nối",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_collaboration_settings_title",
+            "value":"Cài đặt nâng cao",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"multi_device_collaboration_service_switch",
+            "value":"Dịch vụ phối hợp nâng cao",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"projection_state_off",
+            "value":"Tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bind_devices",
+            "value":"Quản lý thiết bị",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wireless_projection_statement",
+            "value":"Dịch vụ này yêu cầu quyền truy cập Kết nối thiết bị. Dịch vụ này sử dụng WLAN và Bluetooth, đồng thời sẽ ghi lại âm thanh của thiết bị cũng như nội dung trên màn hình. Bằng việc bật khóa chuyển này, bạn đồng ý với các điều khoản này và %s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_switch",
+            "value":"Đề xuất phối hợp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_details",
+            "value":"Dựa trên khả năng tự động phát hiện thiết bị và ngữ cảnh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"far_field_communication_service_privacy",
+            "value":"Tuyên bố về Dịch vụ giao tiếp tầm xa và Quyền riêng tư",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_switch_msg",
+            "value":"Dịch vụ này đề xuất những cách để phối hợp với các thiết bị khác của bạn khi thiết bị ở gần. Để làm điều đó, dịch vụ này yêu cầu kết nối Internet, cần sử dụng Bluetooth và WLAN, đồng thời sẽ trao đổi dữ liệu với các thiết bị khác thông qua liên lạc tầm xa. Để biết thêm chi tiết về cách thông tin cá nhân của bạn được xử lý, hãy tham khảo %s. Bằng việc bật nút chuyển này, bạn đồng ý với các điều khoản này.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_entry_guide",
+            "value":"Cách bật ScreenCast",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_entry_guide_message",
+            "value":"Chỉ cần chạm vào ScreenCast trong Bảng điều khiển để tìm kiếm các thiết bị ở gần.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

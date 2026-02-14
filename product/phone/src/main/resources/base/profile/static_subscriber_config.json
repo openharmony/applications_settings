@@ -1,0 +1,13 @@
+{
+  "commonEvents": [
+    {
+      "name": "com.ohos.settings.TimeChangeInitSubscriber",
+      "permission": "",
+      "types": [],
+      "events": [
+        "usual.event.TIME_CHANGED",
+        "usual.event.TIMEZONE_CHANGED"
+      ]
+    }
+  ]
+}

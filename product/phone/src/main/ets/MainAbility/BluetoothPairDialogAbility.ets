@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2024-2025. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,38 +13,17 @@
  * limitations under the License.
  */
 
-import LogUtil from '../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
 import Want from '@ohos.application.Want';
 import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import { AbilityContextManager } from './AbilityContextManager';
+import { PinType } from '@ohos/settings.bluetooth/src/main/ets/model/BluetoothModel';
+import { LogUtil } from '@ohos/settings.common/src/main/ets/utils/LogUtil';
+import { BluetoothUtils } from '@ohos/settings.common/src/main/ets/utils/BluetoothUtils';
+import { AbilityContextManager } from '@ohos/settings.common/src/main/ets/ability/AbilityContextManager';
+import { CheckEmptyUtils } from '@ohos/settings.common/src/main/ets/utils/CheckEmptyUtils';
 
+/* instrument ignore file */
 const TAG: string = 'BluetoothPairDialogAbility';
-
-export enum PinType {
-  PAIRING_VARIANT_DISPLAY_PIN = 0,
-  PAIRING_VARIANT_PIN = 1,
-  PAIRING_VARIANT_DISPLAY_PASSKEY = 2,
-  PAIRING_VARIANT_PASSKEY = 3,
-  PAIRING_VARIANT_PASSKEY_CONFIRMATION = 4,
-  PAIRING_VARIANT_CONSENT = 5,
-  PAIRING_VARIANT_OOB_CONSENT = 6,
-  PAIRING_VARIANT_PIN_16_DIGITS = 7
-}
-
-export class CheckEmptyUtils {
-  static isEmpty(obj: null | undefined | string | object): boolean {
-    return (typeof obj === 'undefined' || obj == null || obj === '')
-  }
-
-  static checkStrIsEmpty(str: string): boolean {
-    return typeof str === 'undefined' || str == null || str.trim().length === 0;
-  }
-
-  static IsEmptyArr<T>(arr: T[]): boolean {
-    return typeof arr === 'undefined' || arr == null || arr.length === 0;
-  }
-}
 
 export default class BluetoothPairDialogAbility extends UIExtensionAbility {
   onCreate(): void {
@@ -64,25 +43,27 @@ export default class BluetoothPairDialogAbility extends UIExtensionAbility {
       return;
     }
 
-    AppStorage.setOrCreate<UIExtensionContentSession>('dialogSession', session);
+    AppStorage.setOrCreate<UIExtensionContentSession>('bluetoothPairDialogSession', session);
     AppStorage.setOrCreate<string>('PairDeviceId', want.parameters?.deviceId);
     AppStorage.setOrCreate<string>('PairPinCode', want.parameters?.pinCode);
     AppStorage.setOrCreate<number>('PairPinType', Number.parseInt(want.parameters?.pinType));
+
     try {
-      session.loadContent('pages/abilityDialog/BluetoothPairDialog');
+      session.loadContent('Setting/Bluetooth/dialog/view/BluetoothDialog');
       session.setWindowBackgroundColor('#00FFFFFF');
     } catch (err) {
       LogUtil.error(`${TAG} onSessionCreate failed`);
     }
+
     LogUtil.info(`${TAG} onSessionCreate is end`);
   }
 
   private isParamsValid(want: Want): boolean {
-    if (CheckEmptyUtils.isEmpty(want) || typeof want.parameters?.deviceId === 'undefined' ||
-      typeof want.parameters?.pinCode === 'undefined' || typeof want.parameters?.pinType === 'undefined') {
-      LogUtil.error(`${TAG} deviceId: ${want?.parameters?.deviceId}, pinType:${want?.parameters?.pinType}`);
+    if (CheckEmptyUtils.isEmpty(want) || typeof want.parameters?.deviceId === 'undefined' || typeof want.parameters?.pinCode === 'undefined' || typeof want.parameters?.pinType === 'undefined') {
+      LogUtil.error(`${TAG} deviceId: ${BluetoothUtils.getLogMAC(want?.parameters?.deviceId)}, pinType:${want?.parameters?.pinType}`);
       return false;
     }
+
     let type: string = want.parameters?.pinType;
     switch (Number.parseInt(type)) {
       case PinType.PAIRING_VARIANT_PIN:
@@ -93,7 +74,7 @@ export default class BluetoothPairDialogAbility extends UIExtensionAbility {
       case PinType.PAIRING_VARIANT_DISPLAY_PIN:
       case PinType.PAIRING_VARIANT_OOB_CONSENT:
       case PinType.PAIRING_VARIANT_PIN_16_DIGITS:
-        break;
+        break
       default:
         LogUtil.error(`${TAG} pin type invalid: ${type}`);
         return false;

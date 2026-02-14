@@ -1,0 +1,32 @@
+{
+  "color": [
+    {
+      "name": "color_bg",
+      "value": "#000000"
+    },
+    {
+      "name": "bluetooth_window_settings_divider_color",
+      "value": "#4DFFFFFF"
+    },
+    {
+      "name": "control_center_sub_panel_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "wlan_window_settings_divider_color",
+      "value": "#4DFFFFFF"
+    },
+    {
+      "name": "sheet_finish_background",
+      "value": "#2F3034"
+    },
+    {
+      "name": "app_sheet_background",
+      "value": "#2F3034"
+    },
+    {
+      "name": "wrc_toggle_color",
+      "value": "#FFFFFFFF"
+    }
+  ]
+}

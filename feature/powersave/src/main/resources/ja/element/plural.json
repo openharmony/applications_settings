@@ -1,0 +1,28 @@
+{
+    "plural":[
+        {
+            "name":"optimization_task_toast",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d件の最適化が適用されました。",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"power_save_advise_sub",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d件の最適化を適用して、バッテリー持続時間を延ばします。",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

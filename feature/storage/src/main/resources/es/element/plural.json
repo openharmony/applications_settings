@@ -1,0 +1,61 @@
+{
+    "plural":[
+        {
+            "name":"not_enabled_for_many_days",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d días sin usar",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d día sin usar",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"delete_apps_selected",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Desinstalar %d aplicación",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Desinstalar %d aplicaciones",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"is_delete_apps_number",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"¿Desinstalar %d aplicación?",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"¿Desinstalar %d aplicaciones?",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,354 @@
+{
+    "string":[
+        {
+            "name":"sunlight_readability_title",
+            "value":"Increase readability under sunlight",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_tittle_cancel",
+            "value":"Cancel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_tittle_allow",
+            "value":"Allow",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"whether_usb_debug_title",
+            "value":"Allow USB debugging?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"usb_dialog_content",
+            "value":"USB debugging is intended for development purposes only. Use it to copy data between a computer and another device, access data files in a common directory, install apps silently, and read log data.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"revocation_usb_authorize",
+            "value":"Remove all trusted devices?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_usb_authorize_title",
+            "value":"Previously trusted devices will no longer be trusted.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Confirm_the_cancellation",
+            "value":"Remove",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"opened_wireless",
+            "value":"On",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"closed_wireless",
+            "value":"Off",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"debug_settings_title",
+            "value":"Debugging",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"debug_networking_category",
+            "value":"Network",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_Open_Logs__summary",
+            "value":"Increase WLAN logging level (show per SSID RSSI in WLAN picker).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_Open_Logs",
+            "value":"WLAN detailed log recording",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"public_key_name",
+            "value":"RSA key fingerprint:\n%1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_refresh_frequency_title",
+            "value":"Show refresh rate",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_display_refresh_frequency_summary",
+            "value":"Show the current maximum refresh rate of the display.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_usb_authorize",
+            "value":"Remove all trusted devices",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wireless_commissioning",
+            "value":"Wireless debugging",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"activating_usb_debug",
+            "value":"Enable debugging when WLAN is connected.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"link_wireless",
+            "value":"Can't enable wireless debugging",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"link_wlan",
+            "value":"No WLAN connection. Connect to WLAN and try again.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_wireless",
+            "value":"Allow wireless debugging on this network?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_name_ssid",
+            "value":"Network name (SSID)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wlan_address_bssid",
+            "value":"WLAN address (BSSID)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_settings_title",
+            "value":"Device name",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ip_address_and_port",
+            "value":"IP address & port",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"machine_name",
+            "value":"Device name:\n%1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"trusted_device_title",
+            "value":"Trust this device?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"trusted_device_button_cancel",
+            "value":"Don't trust",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"trusted_device_button_confirm",
+            "value":"Trust",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"always_allow_debug",
+            "value":"Always trust",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"debug_entering_category",
+            "value":"Input",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_touch_actions_title",
+            "value":"Show touches",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_show_touch_actions_summary",
+            "value":"Show visual feedback for touches.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_touch_actions_trace",
+            "value":"Display pointer position",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_show_touch_trace_summary",
+            "value":"Show current touch data on the screen overlay.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_insightintent_debug_status_open",
+            "value":"On",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_insightintent_debug_status_close",
+            "value":"Off",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_options_open_failed",
+            "value":"Can't enable developer options",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_not_connected",
+            "value":"Your device is not connected to the Internet. Connect to a network, or unlock offline by submitting a request on the AGC website.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unlock_device_offline",
+            "value":"Unlock offline",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_bit_rate_adaptive",
+            "value":"Adaptive bitrate streaming",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_channel_mode_mono",
+            "value":"Mono",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_channel_mode_stereo",
+            "value":"Stereo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_display",
+            "value":"Display",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_advanced_options",
+            "value":"Advanced system options",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_machine_debugging",
+            "value":"When this device is being debugged",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_debugged_mode_prompt",
+            "value":"To enable more developer debugging options, connect your computer and follow the instructions to enable them. %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"learn_more",
+            "value":"Learn more",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

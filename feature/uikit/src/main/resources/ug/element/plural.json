@@ -1,0 +1,61 @@
+{
+    "plural":[
+        {
+            "name":"password_edit_read_end",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d خانا تەھرىرلەندى",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d خانا تەھرىرلەندى",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_edit_read_begin",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"پارول تەھرىرلەش ھالىتى، جەمئىي %d خانا",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"پارول تەھرىرلەش ھالىتى، جەمئىي %d خانا",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"dialog_ok_countdown",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"جەزملەش (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"جەزملەش (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

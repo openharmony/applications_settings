@@ -1,0 +1,51 @@
+{
+    "plural":[
+        {
+            "name":"bluetooth_audio_frame_length_mode",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d ملي ثانية",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d ملي ثانية",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"%d ملي ثانية",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d ملي ثانية",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d ملي ثانية",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"%d ملي ثانية",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

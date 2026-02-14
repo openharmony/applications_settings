@@ -1,0 +1,228 @@
+{
+    "string":[
+        {
+            "name":"install_success",
+            "value":"\u200f«%s» قاچىلاندى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"failed_to_replace",
+            "value":"\u200f«%s» ئالماشمىدى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"loading_fonts",
+            "value":"قاچىلىغان خەت نۇسخىسى يۈكلىنىۋاتىدۇ، كېيىنرەك قايتا سىناڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unloading_fonts",
+            "value":"خەت نۇسخىسى ئۆچۈرۈلۈۋاتىدۇ، كېيىنرەك قايتا سىناڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"all_replaced_successfully",
+            "value":"ھەممىسى ئالماشتى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"replaced_successfully",
+            "value":"ئالماشتى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"installing_fonts",
+            "value":"خەت نۇسخىسى قاچىلىنىۋاتىدۇ، كېيىنرەك قايتا سىناڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Uninstallation_failed",
+            "value":"ئۆچۈرۈلمىدى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"install_duplicate_fonts",
+            "value":"تەكرار خەت نۇسخىسى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"duplicate_fonts_summary",
+            "value":"بۇ خەت نۇسخىسى قاچىلانغان، ئالماشتۇرۇپ قاچىلامسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"install_fail",
+            "value":"قاچىلانمىدى، كېيىنرەك قايتا سىناڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"select_font",
+            "value":"ھۆججەتتىن تاللاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"replace_install",
+            "value":"ئالماشتۇرۇش ۋە قاچىلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"بىكار قىلىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"install_fail_warning",
+            "value":"خەت نۇسخىسى ttf / ttc / otf فورماتلىق بولۇشى كېرەك.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"installing",
+            "value":"قاچىلاۋاتىدۇ...",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"deleting",
+            "value":"ئۆچۈرۈۋاتىدۇ...",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"batch_installation_duplicate_fonts",
+            "value":"\u200f«%s» قاچىلانغان، ئالماشتۇرۇپ قاچىلامسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delete_font",
+            "value":"بۇ خەت نۇسخىسىنى ئۆچۈرەمسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uninstall",
+            "value":"ئۆچۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_ok",
+            "value":"ئۆچۈرۈش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replace_all_duplicate_fonts",
+            "value":"بارلىق تەكرارنى ئالماشتۇرۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"install_excess_font",
+            "value":"قاچىلىغان خەت نۇسخىسىنىڭ سانى چەككە يەتكەن.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_font_summary",
+            "value":"ئۆچۈرسىڭىز، بۇ خەت نۇسخىسىنى ئەپتە ئىشلىتەلمەيسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"drag_install",
+            "value":"سۆرەپ قاچىلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"drag_font_summary",
+            "value":"خەت نۇسخىسى ھۆججىتىنى بۇ يەرگە سۆرەپ قاچىلاڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_installed_font",
+            "value":"خەت نۇسخىسى يوق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"select_all",
+            "value":"ﮬﻪﻣﻤﯩﻨﻰ ﺗﺎﻟﻼﺵ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"is_delete_app",
+            "value":"\u200f‏«%s» نى ئۆچۈرەمسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"after_delete",
+            "value":"ئۆچۈرسىڭىز، ئۈسكۈنىدىكى ئەپ مەلۇماتلىرىمۇ ماسقەدەملىك ئۆچۈرۈلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"freed_memory_apps_number",
+            "value":"جەمئىي %s بوشلۇق بوشىتىلدى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uninstall_unused_apps",
+            "value":"ئىشلەتمىگەن ئەپلەرنى ئۆچۈرۈش",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

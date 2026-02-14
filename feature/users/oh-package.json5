@@ -1,0 +1,12 @@
+{
+  "name": "@ohos/settings.users",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "@ohos/settings.common": "file:../../common"
+  }
+}
+

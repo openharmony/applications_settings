@@ -1,0 +1,28 @@
+{
+    "plural":[
+        {
+            "name":"optimization_task_toast",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"已优化 %d 项功能",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"power_save_advise_sub",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"当前存在 %d 项功能可优化，可降低使用过程中的电量消耗。",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

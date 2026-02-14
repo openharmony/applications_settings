@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"dialog_enable",
+            "value":"Bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Hủy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"audio_adjustment",
+            "value":"Chỉnh âm thanh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"single_audio_reminder",
+            "value":"Phát cùng một âm thanh ở cả hai tai nghe mà không có hiệu ứng âm thanh nổi.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

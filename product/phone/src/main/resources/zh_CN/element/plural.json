@@ -1,22 +1,364 @@
 {
-  "plural":[
-    {
-      "name": "user_approval_remain_times",
-      "value": [
+    "plural":[
         {
-          "quantity": "other",
-          "value": "开启 (%d秒)"
-        }
-      ]
-    },
-    {
-      "name": "service_number",
-      "value": [
+            "name":"reset_password_hour_warning_title",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"接下来 %d 小时内，若忘记新密码，你可以使用旧密码重设。",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
         {
-          "quantity": "other",
-          "value": "%d项服务"
+            "name":"reset_password_minute_warning_title",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"接下来 %d 分钟内，若忘记新密码，你可以使用旧密码重设。",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"reset_pin_hour_warning_title",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"接下来 %d 小时内，若忘记新密码，你可以使用旧密码重设。",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"reset_pin_minute_warning_title",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"接下来 %d 分钟内，若忘记新密码，你可以使用旧密码重设。",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"请 %d 秒后重试",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_minutes",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"请 %d 分钟后重试",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_hours",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"请 %d 小时后重试",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_message_incorrect",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"密码错误，还可尝试 %d 次",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"pin_message_incorrect",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"密码错误，还可尝试 %d 次",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_count_down_timer",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"开启 (%d 秒)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_service_number",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 项服务",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"time_hour",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 小时",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"time_minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 分钟",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"time_second",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 秒",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"allow_max_clone_app",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"最多可以创建 %d 个分身",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"has_clone_app",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 个分身",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"battery_time_hour",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 小时",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"minutes_before",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 分钟前",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"hours_before",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 小时前",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"days_before",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 天前",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"battery_time_minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 分钟",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"all_font_list_num_title",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"共 %d 个字体",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"attempts_n",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"还可尝试 %d 次",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"private_password_edit_read_begin",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"正在编辑隐私密码，共 %d 位",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"network_simulation_phase_num",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"此场景共 %d 个阶段，",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"network_simulation_total_time",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"总时长 %d 分钟，循环执行",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"magnification_scale",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"放大 %s 倍",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_experiment_summary",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"您已选择时长为 %.1f 秒，在该时间段内的多次点击会被视为单次。启用该功能前，请先完成试用，以便选择更贴合您需求的“忽略重复点击”时长。",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeat_click_change_original_delay",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"原来的 %.1f 秒",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeat_click_change_current_delay",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%.1f 秒",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }

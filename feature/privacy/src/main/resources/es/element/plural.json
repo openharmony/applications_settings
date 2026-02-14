@@ -1,0 +1,61 @@
+{
+    "plural":[
+        {
+            "name":"password_lockscreen_try_after_seconds",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Inténtalo de nuevo después de %d s",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Inténtalo de nuevo después de %d s",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_minutes",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Inténtalo de nuevo después de %d min",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Inténtalo de nuevo después de %d min",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_hours",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Inténtalo de nuevo después de %d h",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Inténtalo de nuevo después de %d h",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

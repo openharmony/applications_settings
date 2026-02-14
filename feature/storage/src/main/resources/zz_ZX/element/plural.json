@@ -1,0 +1,91 @@
+{
+    "plural":[
+        {
+            "name":"not_enabled_for_many_days",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_1033948]_Not used for %d days"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_1033956]_Not used for %d day"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1033953]_Not used for %d days"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1033944]_Not used for %d days"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1033949]_Not used for %d days"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1033954]_Not used for %d days"
+                }
+            ]
+        },
+        {
+            "name":"delete_apps_selected",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_1033951]_Uninstall %d app"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_1033952]_Uninstall %d apps"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1033942]_Uninstall %d apps"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1033943]_Uninstall %d apps"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1033940]_Uninstall %d apps"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1033946]_Uninstall %d apps"
+                }
+            ]
+        },
+        {
+            "name":"is_delete_apps_number",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_1033957]_Uninstall %d app?"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_1033950]_Uninstall %d apps?"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1033941]_Uninstall %d apps?"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1033945]_Uninstall %d apps?"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1033947]_Uninstall %d apps?"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1033955]_Uninstall %d apps?"
+                }
+            ]
+        }
+    ]
+}

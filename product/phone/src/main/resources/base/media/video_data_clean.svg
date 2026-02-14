@@ -1,0 +1,26 @@
+<svg width="24.000000" height="24.000000" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<radialGradient gradientTransform="translate(25.1107 -1.52729) rotate(130.894) scale(14.2348 14.2348)" cx="0.000000" cy="0.000000" r="1.000000" id="paint_radial_107_2537_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFFFFF" stop-opacity="0.278431"/>
+			<stop offset="1.000000" stop-color="#FFFFFF" stop-opacity="0.000000"/>
+		</radialGradient>
+	</defs>
+	<rect id="矩形 12" width="24.000000" height="24.000000" fill="#C4C4C4" fill-opacity="0"/>
+	<mask id="mask107_2537" mask-type="alpha" maskUnits="userSpaceOnUse" x="2.117676" y="2.117645" width="19.764648" height="19.764709">
+		<path id="蒙版" d="M5.64 21.88L18.35 21.88C20.3 21.88 21.88 20.3 21.88 18.35L21.88 5.64C21.88 3.69 20.3 2.11 18.35 2.11L5.64 2.11C3.69 2.11 2.11 3.69 2.11 5.64L2.11 18.35C2.11 20.3 3.69 21.88 5.64 21.88Z" fill="#FDA82E" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="蒙版" d="M5.64 21.88L18.35 21.88C20.3 21.88 21.88 20.3 21.88 18.35L21.88 5.64C21.88 3.69 20.3 2.11 18.35 2.11L5.64 2.11C3.69 2.11 2.11 3.69 2.11 5.64L2.11 18.35C2.11 20.3 3.69 21.88 5.64 21.88Z" fill="url(#paint_radial_107_2537_0)" fill-opacity="0" fill-rule="evenodd"/>
+		<path id="蒙版" d="" fill="#CD2325" fill-opacity="0" fill-rule="evenodd"/>
+	</mask>
+	<path id="蒙版" d="M5.64 21.88L18.35 21.88C20.3 21.88 21.88 20.3 21.88 18.35L21.88 5.64C21.88 3.69 20.3 2.11 18.35 2.11L5.64 2.11C3.69 2.11 2.11 3.69 2.11 5.64L2.11 18.35C2.11 20.3 3.69 21.88 5.64 21.88Z" fill="#FDA82E" fill-opacity="1.000000" fill-rule="evenodd"/>
+	<path id="蒙版" d="M5.64 21.88L18.35 21.88C20.3 21.88 21.88 20.3 21.88 18.35L21.88 5.64C21.88 3.69 20.3 2.11 18.35 2.11L5.64 2.11C3.69 2.11 2.11 3.69 2.11 5.64L2.11 18.35C2.11 20.3 3.69 21.88 5.64 21.88Z" fill="url(#paint_radial_107_2537_0)" fill-opacity="0" fill-rule="evenodd"/>
+	<path id="蒙版" d="" fill="#CD2325" fill-opacity="0" fill-rule="evenodd"/>
+	<g mask="url(#mask107_2537)">
+		<path id="矩形" d="M10.9 9.64L15.57 12.82C15.88 13.03 15.97 13.46 15.77 13.79C15.72 13.87 15.65 13.94 15.57 14L10.9 17.18C10.59 17.39 10.18 17.29 9.98 16.97C9.91 16.85 9.88 16.72 9.88 16.59L9.88 10.23C9.88 9.84 10.17 9.52 10.54 9.52C10.67 9.52 10.79 9.56 10.9 9.64Z" fill="#FFFFFF" fill-opacity="0.450980" fill-rule="evenodd"/>
+	</g>
+	<g mask="url(#mask107_2537)">
+		<rect id="矩形" x="2.117676" y="2.117645" width="19.764706" height="4.235294" fill="#FFFFFF" fill-opacity="0.450980"/>
+	</g>
+</svg>

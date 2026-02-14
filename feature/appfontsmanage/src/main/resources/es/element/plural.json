@@ -1,0 +1,99 @@
+{
+    "plural":[
+        {
+            "name":"batch_installation_not_support",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"No se han podido instalar %d fuentes. Solo se admiten los formatos TTF, TTC y OTF.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"No se ha podido instalar %d fuente. Solo se admiten los formatos TTF, TTC y OTF.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_replace_failed",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"No se han podido reemplazar %d fuentes.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"No se ha podido reemplazar %d fuente.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"font_num",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d fuentes",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d fuente",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_success",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Se han instalado correctamente %d fuentes.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Se ha instalado correctamente %d fuente.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_reached_the_upper_limit",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"No se han podido instalar %d fuentes. Se ha alcanzado la cantidad máxima.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"No se ha podido instalar %d fuente. Se ha alcanzado la cantidad máxima.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

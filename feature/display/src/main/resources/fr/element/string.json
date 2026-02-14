@@ -1,0 +1,396 @@
+{
+    "string":[
+        {
+            "name":"screen_zoom_summary_small",
+            "value":"Petite",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_set_tips_disconnect",
+            "value":"Déconnecter",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_on",
+            "value":"Activée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_model",
+            "value":"Mode d'affichage",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"advanced_setting",
+            "value":"Paramètres avancés",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"two_minutes",
+            "value":"%d minutes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_default",
+            "value":"Par défaut",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"five_minutes",
+            "value":"%d minutes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_off",
+            "value":"Désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ten_minutes",
+            "value":"%d minutes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_large",
+            "value":"Grande",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_azimuth_settings_finish",
+            "value":"OK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fifteen_seconds",
+            "value":"%d secondes",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"thirty_seconds",
+            "value":"%d secondes",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"never_sleep",
+            "value":"Jamais",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"one_minute",
+            "value":"%d minute",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_very_large",
+            "value":"Plus grand",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_adjustment",
+            "value":"Couleur",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_temperature_title",
+            "value":"Température de couleur",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dark_mode_title",
+            "value":"S'il est programmé pour s'activer, le mode sombre ne prend effet que lorsque l'écran est éteint.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"after_five_minutes",
+            "value":"Après %d minutes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_one_minute",
+            "value":"Après %d minute",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_extremely_large",
+            "value":"Plus grande taille",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"start_time",
+            "value":"Début",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_all_day",
+            "value":"Toute la journée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"nothing",
+            "value":"Ne rien faire",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_two_minutes",
+            "value":"Après %d minutes",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"end_time",
+            "value":"Fin",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"go_to_set",
+            "value":"Accéder aux Paramètres",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm_close_high_contrast_content",
+            "value":"Ceci désactivera le texte en contraste élevé.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_built_in",
+            "value":"Écran intégré",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"eye_timed_on",
+            "value":"Programmation",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_set",
+            "value":"Disposition de l'écran",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_eye_protection_warmer",
+            "value":"Température de couleur plus chaude",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_machine",
+            "value":"Cet appareil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"thirty_minutes",
+            "value":"%d minutes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_adjustment_and_color_temperature_title",
+            "value":"Couleur",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_larger_fonts_message",
+            "value":"Des tailles de police extra grandes sont disponibles en mode senior.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_sample_text",
+            "value":"Exemple de texte",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"font_apply_all",
+            "value":"Appliquer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_larger_fonts",
+            "value":"Besoin d'une police plus grande ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_set_description",
+            "value":"Cliquer et faire glisser pour réorganiser les écrans. Le curseur peut bouger entre les écrans à proximité.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dark_mode_dialog_title",
+            "value":"Activer le mode sombre ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_eye_protection_colder",
+            "value":"Température de couleur plus froide",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_title",
+            "value":"Taille d'affichage",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"after_thirty_seconds",
+            "value":"Après %d secondes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_extended",
+            "value":"Écran externe",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sleep",
+            "value":"En veille",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_ten_minutes",
+            "value":"Après %d minutes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_edit",
+            "value":"Modifier",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"only_screenOff",
+            "value":"Éteindre l'écran",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fifteen_minutes",
+            "value":"%d minutes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_fifteen_seconds",
+            "value":"Après %d secondes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"until_turn_off",
+            "value":"Reste activé jusqu'à ce qu'il soit désactivé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"only_landscape_supported",
+            "value":"Uniquement disponible lorsque l'appareil est déplié et en mode paysage.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"other_time",
+            "value":"Autre",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

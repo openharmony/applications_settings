@@ -1,0 +1,103 @@
+{
+    "plural":[
+        {
+            "name":"password_edit_read_end",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Введено %d символа",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Введен %d символ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Введено %d символа",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Введено %d символов",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_edit_read_begin",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Вы вводите PIN-код или пароль, всего %d символ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Вы вводите PIN-код или пароль, всего %d символа",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Вы вводите PIN-код или пароль, всего %d символа",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Вы вводите PIN-код или пароль, всего %d символов",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"dialog_ok_countdown",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"OK (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"OK (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"OK (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"OK (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}
