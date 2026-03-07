@@ -448,7 +448,7 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, sptr<IRemoteOb
         std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
         dataShareHelper->SetDataShareHelperExtUri(strUri);
     }
-     if (dataShareHelper == nullptr) {
+    if (dataShareHelper == nullptr) {
         SETTING_LOG_WARN("helper is null");
     }
     return dataShareHelper;
