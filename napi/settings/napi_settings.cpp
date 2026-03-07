@@ -640,7 +640,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, tmpId,
         asyncCallbackInfo->key);
     SETTING_LOG_WARN(
-        "Set key: %{public}s value: %{public}s", (asyncCallbackInfo->key).c_str(), setValue.c_str());
+        "Set key: %{public}s value: %{public}s", (asyncCallbackInfo->key).c_str(), anonymous_log(setValue).c_str());
     OHOS::Uri uri(strUri);
 
     OHOS::DataShare::DataSharePredicates predicates;
@@ -1413,8 +1413,7 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
 	
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
     asyncCallbackInfo->value = unwrap_string_from_js(env, args[PARAM2]);
-    SETTING_LOG_INFO("set  input param is : (key %{public}s, value %{public}s)",
-        asyncCallbackInfo->key.c_str(), asyncCallbackInfo->value.c_str());
+    SETTING_LOG_INFO("set  input param is : (key %{public}s)", asyncCallbackInfo->key.c_str());
 
     napi_value ret = nullptr;
     if (argc == paramOfCallback) {
