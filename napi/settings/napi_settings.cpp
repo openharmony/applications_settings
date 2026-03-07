@@ -417,6 +417,9 @@ std::shared_ptr<DataShareHelper> getNoSilentDataShareHelper(napi_env env, AsyncC
     if (asyncCallbackInfo) {
         asyncCallbackInfo->useNonSilent = true;
     }
+    if (dataShareHelper == nullptr) {
+        SETTING_LOG_WARN("no silent helper is null");
+    }
     return dataShareHelper;
 }
 
@@ -444,6 +447,9 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, sptr<IRemoteOb
         globalDataShareHelper = dataShareHelper;
         std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
         dataShareHelper->SetDataShareHelperExtUri(strUri);
+    }
+     if (dataShareHelper == nullptr) {
+        SETTING_LOG_WARN("helper is null");
     }
     return dataShareHelper;
 }
@@ -627,7 +633,6 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     dataShareHelper = getDataShareHelper(env, asyncCallbackInfo->token, asyncCallbackInfo->tableName,
                                          asyncCallbackInfo);
     if (dataShareHelper == nullptr) {
-        SETTING_LOG_INFO("helper is null");
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
         return;
     }
@@ -637,8 +642,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     val.Put(SETTINGS_DATA_FIELD_VALUE, setValue);
     
     int tmpId = GetUserId();
-    std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, tmpId,
-        asyncCallbackInfo->key);
+    std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, tmpId, asyncCallbackInfo->key);
     SETTING_LOG_WARN(
         "Set key: %{public}s value: %{public}s", (asyncCallbackInfo->key).c_str(), anonymous_log(setValue).c_str());
     OHOS::Uri uri(strUri);
@@ -656,7 +660,6 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     if (retInt < 0 && !(asyncCallbackInfo->useNonSilent)) {
         dataShareHelper = getNoSilentDataShareHelper(env, asyncCallbackInfo);
         if (dataShareHelper == nullptr) {
-            SETTING_LOG_INFO("no silent helper is null");
             asyncCallbackInfo->status = STATUS_ERROR_CODE;
             return;
         }
