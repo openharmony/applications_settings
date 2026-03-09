@@ -417,6 +417,9 @@ std::shared_ptr<DataShareHelper> getNoSilentDataShareHelper(napi_env env, AsyncC
     if (asyncCallbackInfo) {
         asyncCallbackInfo->useNonSilent = true;
     }
+    if (dataShareHelper == nullptr) {
+        SETTING_LOG_WARN("no silent helper is null");
+    }
     return dataShareHelper;
 }
 
@@ -444,6 +447,9 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, sptr<IRemoteOb
         globalDataShareHelper = dataShareHelper;
         std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
         dataShareHelper->SetDataShareHelperExtUri(strUri);
+    }
+    if (dataShareHelper == nullptr) {
+        SETTING_LOG_WARN("helper is nullptr");
     }
     return dataShareHelper;
 }
@@ -627,7 +633,6 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     dataShareHelper = getDataShareHelper(env, asyncCallbackInfo->token, asyncCallbackInfo->tableName,
                                          asyncCallbackInfo);
     if (dataShareHelper == nullptr) {
-        SETTING_LOG_INFO("helper is null");
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
         return;
     }
@@ -637,10 +642,9 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     val.Put(SETTINGS_DATA_FIELD_VALUE, setValue);
     
     int tmpId = GetUserId();
-    std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, tmpId,
-        asyncCallbackInfo->key);
+    std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, tmpId, asyncCallbackInfo->key);
     SETTING_LOG_WARN(
-        "Set key: %{public}s value: %{public}s", (asyncCallbackInfo->key).c_str(), setValue.c_str());
+        "Set key: %{public}s value: %{public}s", (asyncCallbackInfo->key).c_str(), anonymous_log(setValue).c_str());
     OHOS::Uri uri(strUri);
 
     OHOS::DataShare::DataSharePredicates predicates;
@@ -656,7 +660,6 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     if (retInt < 0 && !(asyncCallbackInfo->useNonSilent)) {
         dataShareHelper = getNoSilentDataShareHelper(env, asyncCallbackInfo);
         if (dataShareHelper == nullptr) {
-            SETTING_LOG_INFO("no silent helper is null");
             asyncCallbackInfo->status = STATUS_ERROR_CODE;
             return;
         }
@@ -1413,8 +1416,7 @@ napi_value napi_set_value(napi_env env, napi_callback_info info)
 	
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1]);
     asyncCallbackInfo->value = unwrap_string_from_js(env, args[PARAM2]);
-    SETTING_LOG_INFO("set  input param is : (key %{public}s, value %{public}s)",
-        asyncCallbackInfo->key.c_str(), asyncCallbackInfo->value.c_str());
+    SETTING_LOG_INFO("set  input param is : (key %{public}s)", asyncCallbackInfo->key.c_str());
 
     napi_value ret = nullptr;
     if (argc == paramOfCallback) {
