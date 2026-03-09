@@ -449,7 +449,7 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, sptr<IRemoteOb
         dataShareHelper->SetDataShareHelperExtUri(strUri);
     }
     if (dataShareHelper == nullptr) {
-        SETTING_LOG_WARN("helper is null");
+        SETTING_LOG_WARN("helper is nullptr");
     }
     return dataShareHelper;
 }
