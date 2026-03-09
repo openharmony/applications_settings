@@ -15,7 +15,7 @@
 
 import { AsyncCallback, BusinessError } from '@ohos.base';
 
-export namespace intelligentscene {
+export namespace intelligentScene {
 
   loadLibrary("intelligentscene_ani.z");
 

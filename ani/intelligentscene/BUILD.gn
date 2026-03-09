@@ -45,7 +45,7 @@ ohos_shared_library("intelligentscene_ani") {
 
 generate_static_abc("intelligentscene") {
     base_url = "./ets"
-    files = [ "./ets/@ohos.intelligentscene.ets" ]
+    files = [ "./ets/@ohos.intelligentScene.ets" ]
     is_boot_abc = "True"
     device_dst_file = "/system/framework/intelligentscene.abc"
 }
