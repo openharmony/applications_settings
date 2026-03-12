@@ -27,6 +27,7 @@ static constexpr const char* NFC_SYSTEM_CAPABILITY = "const.SystemCapability.Com
 static constexpr const char* NFC_NOT_SUPPORT_KEY = "const.nfc.not_support";
 static constexpr const char* SETTINGS_MAIN_ABILITY_NAME = "com.huawei.hmos.settings.MainAbility";
 static constexpr const int32_t SETTINGS_START_PAGE_FAILED_CODE = 16900020;
+static constexpr const int32_t DEFAULT_INVAL_VALUE = -1;
 
 const std::string UIEXTENSION_TYPE_KEY = "ability.want.params.uiExtensionType";
 const std::string CONTEXT_TYPE_KEY = "storeKit.ability.contextType";
@@ -69,9 +70,9 @@ static ErrCode JumpToSettingsPageByNavKey(const std::shared_ptr<BaseContext> &as
     want.SetUri(navKey);
     
     if (asyncContext->abilityContext != nullptr) {
-        return asyncContext->abilityContext->StartAbility(want, -1);
+        return asyncContext->abilityContext->StartAbility(want, DEFAULT_INVAL_VALUE);
     } else if (asyncContext->uiExtensionContext != nullptr) {
-        asyncContext->uiExtensionContext->StartAbility(want, -1);
+        return asyncContext->uiExtensionContext->StartAbility(want);
     } else {
         SETTING_LOG_ERROR("abilityContext and uiExtensionContext is nullptr");
         return ERR_INVALID_VALUE;
@@ -94,7 +95,7 @@ static bool OpenSettingsPage(napi_env env, napi_callback_info info, const std::s
         return false;
     }
     if (argc < ARGS_ONE) {
-        SETTING_LOG_ERROR("The number of parameters is less than 1");
+        SETTING_LOG_ERROR("The number of parameters is less than 1.");
         ThrowExistingError(env, SETTINGS_PARAM_INVALID_CODE, "The number of parameters is less than 1.");
         return false;
     }
@@ -109,7 +110,7 @@ static bool OpenSettingsPage(napi_env env, napi_callback_info info, const std::s
     auto ret = JumpToSettingsPageByNavKey(loadProductContext, navKey);
     if (ret != ERR_OK) {
         SETTING_LOG_ERROR("Failed to start the page, navKey: %{public}s, ret: %{public}d", navKey.c_str(), ret);
-        ThrowExistingError(env, SETTINGS_START_PAGE_FAILED_CODE, "The context parameter is invalid.");
+        ThrowExistingError(env, SETTINGS_START_PAGE_FAILED_CODE, "Failed to start the page.");
         return false;
     }
     SETTING_LOG_INFO("Start the page successfully, navKey: %{public}s.", navKey.c_str());
@@ -533,15 +534,17 @@ napi_value openInputMethodDetail(napi_env env, napi_callback_info info)
 
 napi_value OpenNfcSettingsPage(napi_env env, napi_callback_info info)
 {
-    SETTING_LOG_INFO("openInputMethodSettings start.");
+    SETTING_LOG_INFO("OpenNfcSettingsPage start.");
+    napi_value result = nullptr;
+    napi_get_undefined(env, &result);
     if (!IsNfcSupported()) {
         SETTING_LOG_ERROR("The current device does not support NFC.");
         ReportSysEvent(SettingsPageUrl::NFC_PAGE, false);
-        return nullptr;
+        return result;
     }
     bool ret = OpenSettingsPage(env, info, SettingsPageUrl::NFC_PAGE);
     ReportSysEvent(SettingsPageUrl::NFC_PAGE, ret);
-    return nullptr;
+    return result;
 }
 } // namespace Settings
 } // namespace OHOS
