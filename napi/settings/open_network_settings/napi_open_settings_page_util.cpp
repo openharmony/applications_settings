@@ -19,18 +19,21 @@ namespace OHOS {
 namespace Settings {
 const std::string SettingsPageUrl::INPUT_PAGE = "set_input";
 const std::string SettingsPageUrl::INPUT_DETAIL_PAGE = "other_input_detail_settings";
+const std::string SettingsPageUrl::NFC_PAGE = "nfc_settings";
 
 const std::string DeviceType::PHONE = "phone";
 const std::string DeviceType::TABLET = "tablet";
 
 const static std::unordered_set<std::string> supportedPageForPhoneList = {
     SettingsPageUrl::INPUT_PAGE,
-    SettingsPageUrl::INPUT_DETAIL_PAGE
+    SettingsPageUrl::INPUT_DETAIL_PAGE,
+    SettingsPageUrl::NFC_PAGE
 };
 
 const static std::unordered_set<std::string> supportedPageForTabletList = {
     SettingsPageUrl::INPUT_PAGE,
-    SettingsPageUrl::INPUT_DETAIL_PAGE
+    SettingsPageUrl::INPUT_DETAIL_PAGE,
+    SettingsPageUrl::NFC_PAGE
 };
 
 const static std::map<std::string, std::unordered_set<std::string>> supportedPageForDeviceMap = {
