@@ -64,11 +64,11 @@ static ErrCode JumpToSettingsPageByNavKey(const std::shared_ptr<BaseContext> &as
         SETTING_LOG_ERROR("asyncContext is nullptr");
         return ERR_INVALID_VALUE;
     }
-    
+
     OHOS::AAFwk::Want want;
     want.SetElementName(SETTINGS_PACKAGE_NAME, SETTINGS_MAIN_ABILITY_NAME);
     want.SetUri(navKey);
-    
+
     if (asyncContext->abilityContext != nullptr) {
         return asyncContext->abilityContext->StartAbility(want, DEFAULT_INVAL_VALUE);
     } else if (asyncContext->uiExtensionContext != nullptr) {
@@ -85,7 +85,7 @@ static bool OpenSettingsPage(napi_env env, napi_callback_info info, const std::s
         SETTING_LOG_ERROR("The device type is not supported.");
         return false;
     }
-    
+
     size_t argc = ARGS_ONE;
     napi_value argv[ARGS_ONE] = {nullptr};
     napi_status status = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
@@ -106,7 +106,7 @@ static bool OpenSettingsPage(napi_env env, napi_callback_info info, const std::s
         ThrowExistingError(env, SETTINGS_PARAM_INVALID_CODE, "The context parameter is invalid.");
         return false;
     }
-    
+
     auto ret = JumpToSettingsPageByNavKey(loadProductContext, navKey);
     if (ret != ERR_OK) {
         SETTING_LOG_ERROR("Failed to start the page, navKey: %{public}s, ret: %{public}d", navKey.c_str(), ret);
