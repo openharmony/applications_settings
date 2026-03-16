@@ -27,6 +27,7 @@ class SettingsPageUrl {
 public:
     static const std::string INPUT_PAGE;
     static const std::string INPUT_DETAIL_PAGE;
+    static const std::string NFC_PAGE;
 };
 
 class DeviceType {
