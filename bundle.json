@@ -14,7 +14,7 @@
         "subsystem": "applications",
         "syscap": [
             "SystemCapability.Applications.Settings.Core",
-            "SystemCapability.Applications.IntelligentScene"
+            "SystemCapability.Applications.IntelligentScene = false"
         ],
         "features": [],
         "adapted_system_type": [
