@@ -19,9 +19,16 @@
 #include "ui_content.h"
 #include <json/json.h>
 #include "parameters.h"
+#include <errors.h>
 
 namespace OHOS {
 namespace Settings {
+static constexpr const char* NFC_SYSTEM_CAPABILITY = "const.SystemCapability.Communication.NFC.Core";
+static constexpr const char* NFC_NOT_SUPPORT_KEY = "const.nfc.not_support";
+static constexpr const char* SETTINGS_MAIN_ABILITY_NAME = "com.huawei.hmos.settings.MainAbility";
+static constexpr const int32_t SETTINGS_START_PAGE_FAILED_CODE = 16900020;
+static constexpr const int32_t DEFAULT_INVAL_VALUE = -1;
+
 const std::string UIEXTENSION_TYPE_KEY = "ability.want.params.uiExtensionType";
 const std::string CONTEXT_TYPE_KEY = "storeKit.ability.contextType";
 
@@ -43,6 +50,72 @@ const std::map<SettingsCode, SettingsError> g_errorMap = {
     {SETTINGS_PARAM_ERROR, SETTINGS_ERROR_PARAM},
     {SETTINGS_ORIGINAL_SERVICE_ERROR, SETTINGS_ERROR_ORIGINAL_SERVICE}
 };
+
+static bool IsNfcSupported()
+{
+    return OHOS::system::GetBoolParameter(NFC_SYSTEM_CAPABILITY, false) &&
+        !OHOS::system::GetBoolParameter(NFC_NOT_SUPPORT_KEY, false);
+}
+
+static ErrCode JumpToSettingsPageByNavKey(const std::shared_ptr<BaseContext> &asyncContext, const std::string &navKey)
+{
+    SETTING_LOG_INFO("JumpToSettingsPageByNavKey start");
+    if (asyncContext == nullptr) {
+        SETTING_LOG_ERROR("asyncContext is nullptr");
+        return ERR_INVALID_VALUE;
+    }
+
+    OHOS::AAFwk::Want want;
+    want.SetElementName(SETTINGS_PACKAGE_NAME, SETTINGS_MAIN_ABILITY_NAME);
+    want.SetUri(navKey);
+
+    if (asyncContext->abilityContext != nullptr) {
+        return asyncContext->abilityContext->StartAbility(want, DEFAULT_INVAL_VALUE);
+    } else if (asyncContext->uiExtensionContext != nullptr) {
+        return asyncContext->uiExtensionContext->StartAbility(want);
+    } else {
+        SETTING_LOG_ERROR("abilityContext and uiExtensionContext is nullptr");
+        return ERR_INVALID_VALUE;
+    }
+}
+
+static bool OpenSettingsPage(napi_env env, napi_callback_info info, const std::string &navKey)
+{
+    if (!IsPageSupportJump(DEVICE_TYPE, navKey)) {
+        SETTING_LOG_ERROR("The device type is not supported.");
+        return false;
+    }
+
+    size_t argc = ARGS_ONE;
+    napi_value argv[ARGS_ONE] = {nullptr};
+    napi_status status = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+    if (status != napi_ok) {
+        SETTING_LOG_ERROR("napi_get_cb_info failed.");
+        ThrowExistingError(env, SETTINGS_PARAM_INVALID_CODE, "The parameters is invalid.");
+        return false;
+    }
+    if (argc < ARGS_ONE) {
+        SETTING_LOG_ERROR("The number of parameters is less than 1.");
+        ThrowExistingError(env, SETTINGS_PARAM_INVALID_CODE, "The number of parameters is less than 1.");
+        return false;
+    }
+    auto loadProductContext = std::make_shared<BaseContext>();
+    if (!ParseAbilityContext(env, argv[PARAM0], loadProductContext->abilityContext,
+        loadProductContext->uiExtensionContext)) {
+        SETTING_LOG_ERROR("context parse error.");
+        ThrowExistingError(env, SETTINGS_PARAM_INVALID_CODE, "The context parameter is invalid.");
+        return false;
+    }
+
+    auto ret = JumpToSettingsPageByNavKey(loadProductContext, navKey);
+    if (ret != ERR_OK) {
+        SETTING_LOG_ERROR("Failed to start the page, navKey: %{public}s, ret: %{public}d", navKey.c_str(), ret);
+        ThrowExistingError(env, SETTINGS_START_PAGE_FAILED_CODE, "Failed to start the page.");
+        return false;
+    }
+    SETTING_LOG_INFO("Start the page successfully, navKey: %{public}s.", navKey.c_str());
+    return true;
+}
 
 bool StartUiExtensionAbility(OHOS::AAFwk::Want &request, std::shared_ptr<BaseContext> &asyncContext)
 {
@@ -457,6 +530,21 @@ napi_value openInputMethodDetail(napi_env env, napi_callback_info info)
     StartUiExtensionWithParams(env, argv[PARAM0], wantRequest);
     SETTING_LOG_INFO("openInputMethodDetail end.");
     return wrap_void_to_js(env);
+}
+
+napi_value OpenNfcSettingsPage(napi_env env, napi_callback_info info)
+{
+    SETTING_LOG_INFO("OpenNfcSettingsPage start.");
+    napi_value result = nullptr;
+    napi_get_undefined(env, &result);
+    if (!IsNfcSupported()) {
+        SETTING_LOG_ERROR("The current device does not support NFC.");
+        ReportSysEvent(SettingsPageUrl::NFC_PAGE, false);
+        return result;
+    }
+    bool ret = OpenSettingsPage(env, info, SettingsPageUrl::NFC_PAGE);
+    ReportSysEvent(SettingsPageUrl::NFC_PAGE, ret);
+    return result;
 }
 } // namespace Settings
 } // namespace OHOS
