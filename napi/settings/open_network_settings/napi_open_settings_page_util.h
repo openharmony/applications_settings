@@ -28,12 +28,14 @@ public:
     static const std::string INPUT_PAGE;
     static const std::string INPUT_DETAIL_PAGE;
     static const std::string NFC_PAGE;
+    static const std::string BIOMETRICS_PASSWORD_PAGE;
 };
 
 class DeviceType {
 public:
     static const std::string PHONE;
     static const std::string TABLET;
+    static const std::string PC;
 };
 
 bool IsPageSupportJump(const std::string &deviceType, const std::string &pageUri);
