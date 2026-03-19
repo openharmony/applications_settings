@@ -546,5 +546,15 @@ napi_value OpenNfcSettingsPage(napi_env env, napi_callback_info info)
     ReportSysEvent(SettingsPageUrl::NFC_PAGE, ret);
     return result;
 }
+
+napi_value OpenBiometricsSettingsPage(napi_env env, napi_callback_info info)
+{
+    SETTING_LOG_INFO("OpenBiometricsSettingsPage start.");
+    napi_value result = nullptr;
+    napi_get_undefined(env, &result);
+    bool ret = OpenSettingsPage(env, info, SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE);
+    ReportSysEvent(SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE, ret);
+    return result;
+}
 } // namespace Settings
 } // namespace OHOS
