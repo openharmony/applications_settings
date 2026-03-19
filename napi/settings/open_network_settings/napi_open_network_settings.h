@@ -74,6 +74,7 @@ napi_value opne_manager_settings(napi_env env, napi_callback_info info);
 napi_value openInputMethodSettings(napi_env env, napi_callback_info info);
 napi_value openInputMethodDetail(napi_env env, napi_callback_info info);
 napi_value OpenNfcSettingsPage(napi_env env, napi_callback_info info);
+napi_value OpenBiometricsSettingsPage(napi_env env, napi_callback_info info);
 }
 }
 
