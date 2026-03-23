@@ -387,7 +387,7 @@ void OpenNfcSettingsPage(ani_env *env, ani_object context)
     if (!IsNfcSupported()) {
         SETTING_LOG_ERROR("The current device does not support NFC.");
         ReportSysEvent(SettingsPageUrl::NFC_PAGE, false);
-        return result;
+        return;
     }
     bool ret = OpenSettingsPage(env, context, SettingsPageUrl::NFC_PAGE);
     ReportSysEvent(SettingsPageUrl::NFC_PAGE, ret);
