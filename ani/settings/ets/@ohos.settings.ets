@@ -150,9 +150,9 @@ export namespace settings {
 
   native function openInputMethodDetail_inner(context: Context, bundleName: string, inputMethodId: string): void;
 
-  native function openNfcSettingsPage_inner(context: Context, bundleName: string, inputMethodId: string): void;
+  native function openNfcSettingsPage_inner(context: Context): void;
 
-  native function openBiometricsSettingsPage_inner(context: Context, bundleName: string, inputMethodId: string): void;
+  native function openBiometricsSettingsPage_inner(context: Context): void;
 
   export function getValue(context: Context, name: string, callback: AsyncCallback<string>): void {
     taskpool.execute((): string => {
