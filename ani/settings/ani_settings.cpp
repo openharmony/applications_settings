@@ -594,6 +594,10 @@ static ani_boolean BindMethods(ani_env *env)
             "openInputMethodSettings_inner", nullptr, reinterpret_cast<void *>(openInputMethodSettings)},
         ani_native_function{
             "openInputMethodDetail_inner", nullptr, reinterpret_cast<void *>(openInputMethodDetail)},
+        ani_native_function{
+            "openNfcSettingsPage_inner", nullptr, reinterpret_cast<void *>(OpenNfcSettingsPage)},
+        ani_native_function{
+            "openBiometricsSettingsPage_inner", nullptr, reinterpret_cast<void *>(OpenBiometricsSettingsPage)},
     };
     if (env->Namespace_BindNativeFunctions(spc, methods.data(), methods.size()) != ANI_OK) {
         SETTING_LOG_ERROR("Cannot bind native methods to %{public}s ", spaceName);

@@ -73,6 +73,8 @@ OHOS::Ace::UIContent* GetUIContent(std::shared_ptr<BaseContext> &asyncContext);
 ani_boolean opne_manager_settings(ani_env *env, ani_object context);
 void openInputMethodSettings(ani_env *env, ani_object context);
 void openInputMethodDetail(ani_env *env, ani_object context, ani_string bundleName, ani_string inputMethodId);
+void OpenNfcSettingsPage(ani_env *env, ani_object context);
+void OpenBiometricsSettingsPage(ani_env *env, ani_object context);
 }
 }
 
