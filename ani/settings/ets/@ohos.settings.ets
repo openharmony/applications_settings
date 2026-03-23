@@ -150,6 +150,10 @@ export namespace settings {
 
   native function openInputMethodDetail_inner(context: Context, bundleName: string, inputMethodId: string): void;
 
+  native function openNfcSettingsPage_inner(context: Context): void;
+
+  native function openBiometricsSettingsPage_inner(context: Context): void;
+
   export function getValue(context: Context, name: string, callback: AsyncCallback<string>): void {
     taskpool.execute((): string => {
       return getValue_inner(context, name, "global");
@@ -322,5 +326,13 @@ export namespace settings {
 
   export function openInputMethodDetail(context: Context, bundleName: string, inputMethodId: string): void {
     openInputMethodDetail_inner(context, bundleName, inputMethodId);
+  }
+
+  export function openNfcSettingsPage(context: Context): void {
+    openNfcSettingsPage_inner(context);
+  }
+
+  export function openBiometricsSettingsPage(context: Context): void {
+    openBiometricsSettingsPage_inner(context);
   }
 }
