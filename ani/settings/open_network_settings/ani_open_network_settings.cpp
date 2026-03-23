@@ -53,8 +53,8 @@ const std::map<SettingsCode, SettingsError> g_errorMap = {
 
 static bool IsNfcSupported()
 {
-     return OHOS::system::GetBoolParameter(NFC_SYSTEM_CAPABILITY, false) &&
-         !OHOS::system::GetBoolParameter(NFC_NOT_SUPPORT_KEY, false);
+    return OHOS::system::GetBoolParameter(NFC_SYSTEM_CAPABILITY, false) &&
+        !OHOS::system::GetBoolParameter(NFC_NOT_SUPPORT_KEY, false);
 }
 
 static ErrCode JumpToSettingsPageByNavKey(const std::shared_ptr<BaseContext> &asyncContext, const std::string &navKey)
