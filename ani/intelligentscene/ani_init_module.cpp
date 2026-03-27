@@ -21,7 +21,7 @@
 static ani_boolean BindMethods(ani_env *env)
 {
     using namespace OHOS::IntelligentScene;
-    const char *spaceName = "@ohos:intelligentScene.intelligentScene";
+    const char *spaceName = "@ohos.intelligentScene.intelligentScene";
     ani_namespace spc;
     ani_status ret = env->FindNamespace(spaceName, &spc);
     if (ret != ANI_OK) {
