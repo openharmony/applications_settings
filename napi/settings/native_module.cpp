@@ -47,7 +47,9 @@ static napi_value Init(napi_env env, napi_value exports)
         DECLARE_NAPI_FUNCTION("openInputMethodSettings", openInputMethodSettings),
         DECLARE_NAPI_FUNCTION("openInputMethodDetail", openInputMethodDetail),
         DECLARE_NAPI_FUNCTION("openNfcSettingsPage", OpenNfcSettingsPage),
-        DECLARE_NAPI_FUNCTION("openBiometricsSettingsPage", OpenBiometricsSettingsPage)
+        DECLARE_NAPI_FUNCTION("openBiometricsSettingsPage", OpenBiometricsSettingsPage),
+        DECLARE_NAPI_FUNCTION("isDoubleClickAppForSelf", IsDoubleClickAppForSelf),
+        DECLARE_NAPI_FUNCTION("openDoubleClickSettingsPage", OpenDoubleClickSettingsPage)
     };
 
     // init settings class
