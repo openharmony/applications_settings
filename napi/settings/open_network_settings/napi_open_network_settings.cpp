@@ -556,5 +556,20 @@ napi_value OpenBiometricsSettingsPage(napi_env env, napi_callback_info info)
     ReportSysEvent(SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE, ret);
     return result;
 }
+napi_value IsDoubleClickAppForSelf(napi_env env, napi_callback_info info)
+{
+    SETTING_LOG_INFO("This app is not supported.");
+    napi_value result = nullptr;
+    napi_get_undefined(env, &result);
+    return result;
+}
+
+napi_value OpenDoubleClickSettingsPage(napi_env env, napi_callback_info info)
+{
+    SETTING_LOG_INFO("This app is not supported.");
+    napi_value result = nullptr;
+    napi_get_undefined(env, &result);
+    return result;
+}
 } // namespace Settings
 } // namespace OHOS
