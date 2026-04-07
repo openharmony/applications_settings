@@ -154,6 +154,8 @@ export namespace settings {
 
   native function openBiometricsSettingsPage_inner(context: Context): void;
 
+  native function openAboutDeviceSettingsPage_inner(context: Context): void;
+
   export function getValue(context: Context, name: string, callback: AsyncCallback<string>): void {
     taskpool.execute((): string => {
       return getValue_inner(context, name, "global");
@@ -334,5 +336,9 @@ export namespace settings {
 
   export function openBiometricsSettingsPage(context: Context): void {
     openBiometricsSettingsPage_inner(context);
+  }
+
+  export function openAboutDeviceSettingsPage(context: Context): void {
+    openAboutDeviceSettingsPage_inner(context);
   }
 }
