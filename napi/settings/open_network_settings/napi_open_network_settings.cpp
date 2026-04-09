@@ -556,6 +556,17 @@ napi_value OpenBiometricsSettingsPage(napi_env env, napi_callback_info info)
     ReportSysEvent(SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE, ret);
     return result;
 }
+
+napi_value OpenAboutDeviceSettingsPage(napi_env env, napi_callback_info info)
+{
+    SETTING_LOG_INFO("OpenAboutDeviceSettingsPage start.");
+    napi_value result = nullptr;
+    napi_get_undefined(env, &result);
+    bool ret = OpenSettingsPage(env, info, SettingsPageUrl::ABOUT_DEVICE_PAGE);
+    ReportSysEvent(SettingsPageUrl::ABOUT_DEVICE_PAGE, ret);
+    return result;
+}
+
 napi_value IsDoubleClickAppForSelf(napi_env env, napi_callback_info info)
 {
     SETTING_LOG_INFO("This app is not supported.");

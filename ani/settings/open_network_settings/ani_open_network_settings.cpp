@@ -401,5 +401,13 @@ void OpenBiometricsSettingsPage(ani_env *env, ani_object context)
     ReportSysEvent(SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE, ret);
     SETTING_LOG_INFO("OpenBiometricsSettingsPage end.");
 }
+
+void OpenAboutDeviceSettingsPage(ani_env *env, ani_object context)
+{
+    SETTING_LOG_INFO("OpenAboutDeviceSettingsPage start.");
+    bool ret = OpenSettingsPage(env, context, SettingsPageUrl::ABOUT_DEVICE_PAGE);
+    ReportSysEvent(SettingsPageUrl::ABOUT_DEVICE_PAGE, ret);
+    SETTING_LOG_INFO("OpenAboutDeviceSettingsPage end.");
+}
 }
 }

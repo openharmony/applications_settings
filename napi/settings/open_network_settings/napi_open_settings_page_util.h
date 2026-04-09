@@ -29,6 +29,7 @@ public:
     static const std::string INPUT_DETAIL_PAGE;
     static const std::string NFC_PAGE;
     static const std::string BIOMETRICS_PASSWORD_PAGE;
+    static const std::string ABOUT_DEVICE_PAGE;
 };
 
 class DeviceType {
