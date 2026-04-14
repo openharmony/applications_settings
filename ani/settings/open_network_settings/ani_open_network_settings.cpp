@@ -20,6 +20,7 @@
 #include <json/json.h>
 #include "parameters.h"
 #include <errors.h>
+#include <functional>
 
 namespace OHOS {
 namespace Settings {
@@ -102,6 +103,22 @@ static bool OpenSettingsPage(ani_env *env, ani_object &context, const std::strin
     }
     SETTING_LOG_INFO("Start the page successfully, navKey: %{public}s.", navKey.c_str());
     return true;
+}
+
+static void OpenSettingsPageCommon(ani_env *env, ani_object context, const std::string &pageUrl,
+    std::function<bool()> checkFunc = nullptr, const std::string &errorMsg = "")
+{
+    SETTING_LOG_INFO("OpenSettingsPageCommon start, pageUrl: %{public}s.", pageUrl.c_str());
+    if (checkFunc != nullptr && !checkFunc()) {
+        if (!errorMsg.empty()) {
+            SETTING_LOG_ERROR("%{public}s.", errorMsg.c_str());
+        }
+        ReportSysEvent(pageUrl, false);
+        return;
+    }
+
+    bool ret = OpenSettingsPage(env, context, pageUrl);
+    ReportSysEvent(pageUrl, ret);
 }
 
 bool StartUiExtensionAbility(OHOS::AAFwk::Want &request, std::shared_ptr<BaseContext> &asyncContext)
@@ -383,23 +400,33 @@ void openInputMethodDetail(ani_env *env, ani_object context, ani_string bundleNa
 
 void OpenNfcSettingsPage(ani_env *env, ani_object context)
 {
-    SETTING_LOG_INFO("OpenNfcSettingsPage start.");
-    if (!IsNfcSupported()) {
-        SETTING_LOG_ERROR("The current device does not support NFC.");
-        ReportSysEvent(SettingsPageUrl::NFC_PAGE, false);
-        return;
-    }
-    bool ret = OpenSettingsPage(env, context, SettingsPageUrl::NFC_PAGE);
-    ReportSysEvent(SettingsPageUrl::NFC_PAGE, ret);
-    SETTING_LOG_INFO("OpenNfcSettingsPage end.");
+    OpenSettingsPageCommon(env, context, SettingsPageUrl::NFC_PAGE,
+        []() { return IsNfcSupported(); }, "The current device does not support NFC.");
 }
 
 void OpenBiometricsSettingsPage(ani_env *env, ani_object context)
 {
-    SETTING_LOG_INFO("OpenBiometricsSettingsPage start.");
-    bool ret = OpenSettingsPage(env, context, SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE);
-    ReportSysEvent(SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE, ret);
-    SETTING_LOG_INFO("OpenBiometricsSettingsPage end.");
+    OpenSettingsPageCommon(env, context, SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE);
+}
+
+void OpenMobileNetworkSettingsPage(ani_env *env, ani_object context)
+{
+    OpenSettingsPageCommon(env, context, SettingsPageUrl::MOBILE_NETWORK_PAGE);
+}
+
+void OpenDisplaySettingsPage(ani_env *env, ani_object context)
+{
+    OpenSettingsPageCommon(env, context, SettingsPageUrl::DISPLAY_PAGE);
+}
+
+void OpenScreenRefreshRateSettingsPage(ani_env *env, ani_object context)
+{
+    OpenSettingsPageCommon(env, context, SettingsPageUrl::SCREEN_REFRESH_RATE_PAGE);
+}
+
+void OpenSoundSettingsPage(ani_env *env, ani_object context)
+{
+    OpenSettingsPageCommon(env, context, SettingsPageUrl::SOUND_PAGE);
 }
 
 void OpenAboutDeviceSettingsPage(ani_env *env, ani_object context)

@@ -48,6 +48,10 @@ static napi_value Init(napi_env env, napi_value exports)
         DECLARE_NAPI_FUNCTION("openInputMethodDetail", openInputMethodDetail),
         DECLARE_NAPI_FUNCTION("openNfcSettingsPage", OpenNfcSettingsPage),
         DECLARE_NAPI_FUNCTION("openBiometricsSettingsPage", OpenBiometricsSettingsPage),
+        DECLARE_NAPI_FUNCTION("openMobileNetworkSettingsPage", OpenMobileNetworkSettingsPage),
+        DECLARE_NAPI_FUNCTION("openDisplaySettingsPage", OpenDisplaySettingsPage),
+        DECLARE_NAPI_FUNCTION("openScreenRefreshRateSettingsPage", OpenScreenRefreshRateSettingsPage),
+        DECLARE_NAPI_FUNCTION("openSoundSettingsPage", OpenSoundSettingsPage),
         DECLARE_NAPI_FUNCTION("openAboutDeviceSettingsPage", OpenAboutDeviceSettingsPage),
         DECLARE_NAPI_FUNCTION("isDoubleClickAppForSelf", IsDoubleClickAppForSelf),
         DECLARE_NAPI_FUNCTION("openDoubleClickSettingsPage", OpenDoubleClickSettingsPage)
