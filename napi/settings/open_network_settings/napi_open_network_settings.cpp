@@ -20,6 +20,7 @@
 #include <json/json.h>
 #include "parameters.h"
 #include <errors.h>
+#include <functional>
 
 namespace OHOS {
 namespace Settings {
@@ -115,6 +116,26 @@ static bool OpenSettingsPage(napi_env env, napi_callback_info info, const std::s
     }
     SETTING_LOG_INFO("Start the page successfully, navKey: %{public}s.", navKey.c_str());
     return true;
+}
+
+static napi_value OpenSettingsPageCommon(napi_env env, napi_callback_info info, const std::string &pageUrl,
+    std::function<bool()> checkFunc = nullptr, const std::string &errorMsg = "")
+{
+    SETTING_LOG_INFO("OpenSettingsPageCommon start, pageUrl: %{public}s.", pageUrl.c_str());
+    napi_value result = nullptr;
+    napi_get_undefined(env, &result);
+
+    if (checkFunc != nullptr && !checkFunc()) {
+        if (!errorMsg.empty()) {
+            SETTING_LOG_ERROR("%{public}s.", errorMsg.c_str());
+        }
+        ReportSysEvent(pageUrl, false);
+        return result;
+    }
+
+    bool ret = OpenSettingsPage(env, info, pageUrl);
+    ReportSysEvent(pageUrl, ret);
+    return result;
 }
 
 bool StartUiExtensionAbility(OHOS::AAFwk::Want &request, std::shared_ptr<BaseContext> &asyncContext)
@@ -534,27 +555,33 @@ napi_value openInputMethodDetail(napi_env env, napi_callback_info info)
 
 napi_value OpenNfcSettingsPage(napi_env env, napi_callback_info info)
 {
-    SETTING_LOG_INFO("OpenNfcSettingsPage start.");
-    napi_value result = nullptr;
-    napi_get_undefined(env, &result);
-    if (!IsNfcSupported()) {
-        SETTING_LOG_ERROR("The current device does not support NFC.");
-        ReportSysEvent(SettingsPageUrl::NFC_PAGE, false);
-        return result;
-    }
-    bool ret = OpenSettingsPage(env, info, SettingsPageUrl::NFC_PAGE);
-    ReportSysEvent(SettingsPageUrl::NFC_PAGE, ret);
-    return result;
+    return OpenSettingsPageCommon(env, info, SettingsPageUrl::NFC_PAGE,
+        []() { return IsNfcSupported(); }, "The current device does not support NFC.");
 }
 
 napi_value OpenBiometricsSettingsPage(napi_env env, napi_callback_info info)
 {
-    SETTING_LOG_INFO("OpenBiometricsSettingsPage start.");
-    napi_value result = nullptr;
-    napi_get_undefined(env, &result);
-    bool ret = OpenSettingsPage(env, info, SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE);
-    ReportSysEvent(SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE, ret);
-    return result;
+    return OpenSettingsPageCommon(env, info, SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE);
+}
+
+napi_value OpenMobileNetworkSettingsPage(napi_env env, napi_callback_info info)
+{
+    return OpenSettingsPageCommon(env, info, SettingsPageUrl::MOBILE_NETWORK_PAGE);
+}
+
+napi_value OpenDisplaySettingsPage(napi_env env, napi_callback_info info)
+{
+    return OpenSettingsPageCommon(env, info, SettingsPageUrl::DISPLAY_PAGE);
+}
+
+napi_value OpenScreenRefreshRateSettingsPage(napi_env env, napi_callback_info info)
+{
+    return OpenSettingsPageCommon(env, info, SettingsPageUrl::SCREEN_REFRESH_RATE_PAGE);
+}
+
+napi_value OpenSoundSettingsPage(napi_env env, napi_callback_info info)
+{
+    return OpenSettingsPageCommon(env, info, SettingsPageUrl::SOUND_PAGE);
 }
 
 napi_value OpenAboutDeviceSettingsPage(napi_env env, napi_callback_info info)

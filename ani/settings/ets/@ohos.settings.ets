@@ -154,6 +154,14 @@ export namespace settings {
 
   native function openBiometricsSettingsPage_inner(context: Context): void;
 
+  native function openMobileNetworkSettingsPage_inner(context: Context): void;
+
+  native function openDisplaySettingsPage_inner(context: Context): void;
+
+  native function openScreenRefreshRateSettingsPage_inner(context: Context): void;
+
+  native function openSoundSettingsPage_inner(context: Context): void;
+
   native function openAboutDeviceSettingsPage_inner(context: Context): void;
 
   export function getValue(context: Context, name: string, callback: AsyncCallback<string>): void {
@@ -336,6 +344,22 @@ export namespace settings {
 
   export function openBiometricsSettingsPage(context: Context): void {
     openBiometricsSettingsPage_inner(context);
+  }
+
+  export function openMobileNetworkSettingsPage(context: Context): void {
+    openMobileNetworkSettingsPage_inner(context);
+  }
+
+  export function openDisplaySettingsPage(context: Context): void {
+    openDisplaySettingsPage_inner(context);
+  }
+
+  export function openScreenRefreshRateSettingsPage(context: Context): void {
+    openScreenRefreshRateSettingsPage_inner(context);
+  }
+
+  export function openSoundSettingsPage(context: Context): void {
+    openSoundSettingsPage_inner(context);
   }
 
   export function openAboutDeviceSettingsPage(context: Context): void {

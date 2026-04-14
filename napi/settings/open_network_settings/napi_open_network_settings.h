@@ -76,6 +76,10 @@ napi_value openInputMethodDetail(napi_env env, napi_callback_info info);
 napi_value OpenNfcSettingsPage(napi_env env, napi_callback_info info);
 napi_value OpenBiometricsSettingsPage(napi_env env, napi_callback_info info);
 napi_value OpenAboutDeviceSettingsPage(napi_env env, napi_callback_info info);
+napi_value OpenMobileNetworkSettingsPage(napi_env env, napi_callback_info info);
+napi_value OpenDisplaySettingsPage(napi_env env, napi_callback_info info);
+napi_value OpenScreenRefreshRateSettingsPage(napi_env env, napi_callback_info info);
+napi_value OpenSoundSettingsPage(napi_env env, napi_callback_info info);
 napi_value IsDoubleClickAppForSelf(napi_env env, napi_callback_info info);
 napi_value OpenDoubleClickSettingsPage(napi_env env, napi_callback_info info);
 }
