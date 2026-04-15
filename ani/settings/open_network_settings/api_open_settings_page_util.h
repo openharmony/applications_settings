@@ -30,6 +30,10 @@ public:
     static const std::string NFC_PAGE;
     static const std::string BIOMETRICS_PASSWORD_PAGE;
     static const std::string ABOUT_DEVICE_PAGE;
+    static const std::string MOBILE_NETWORK_PAGE;
+    static const std::string DISPLAY_PAGE;
+    static const std::string SCREEN_REFRESH_RATE_PAGE;
+    static const std::string SOUND_PAGE;
 };
 
 class DeviceType {
