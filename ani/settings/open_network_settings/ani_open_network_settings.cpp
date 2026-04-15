@@ -43,6 +43,8 @@ const std::string DEVICE_TYPE = OHOS::system::GetParameter("const.product.device
 
 const std::string SETTINGS_PUSH_PARAM = "pushParam";
 const std::string SETTINGS_PUSH_PARAM_JSON_TYPE = "isParamJsonObject";
+const std::string SETTINGS_PARAM_BUNDLE_NAME = "settingsParamBundleName";
+const std::string SETTINGS_PARAM_APP_INDEX= "appIndex";
 
 const std::string INPUT_DETAIL_WANT_EXTRA = "extra";
 const std::string INPUT_DETAIL_WANT_VALUE = "value";
@@ -80,10 +82,10 @@ static ErrCode JumpToSettingsPageByNavKey(const std::shared_ptr<BaseContext> &as
     }
 }
 
-static ErrCode JumpToSettingsPageByNavKey(const std::shared_ptr<BaseContext> &asyncContext,
+static ErrCode JumpToSettingsPageByNavKeyWithWant(const std::shared_ptr<BaseContext> &asyncContext,
     const std::string &navKey, OHOS::AAFwk::Want &want)
 {
-    SETTING_LOG_INFO("JumpToSettingsPageByNavKey with want start");
+    SETTING_LOG_INFO("JumpToSettingsPageByNavKeyWithWant start");
     if (asyncContext == nullptr) {
         SETTING_LOG_ERROR("asyncContext is nullptr");
         return ERR_INVALID_VALUE;
@@ -127,7 +129,7 @@ static bool OpenSettingsPage(ani_env *env, ani_object &context, const std::strin
     return true;
 }
 
-static bool OpenSettingsPage(ani_env *env, ani_object &context, const std::string &navKey,
+static bool OpenSettingsPageWithWant(ani_env *env, ani_object &context, const std::string &navKey,
     OHOS::AAFwk::Want &want)
 {
     if (!IsPageSupportJump(DEVICE_TYPE, navKey)) {
@@ -143,7 +145,7 @@ static bool OpenSettingsPage(ani_env *env, ani_object &context, const std::strin
         return false;
     }
 
-    auto ret = JumpToSettingsPageByNavKey(loadProductContext, navKey, want);
+    auto ret = JumpToSettingsPageByNavKeyWithWant(loadProductContext, navKey, want);
     if (ret != ERR_OK) {
         SETTING_LOG_ERROR("Failed to start the page, navKey: %{public}s, ret: %{public}d", navKey.c_str(), ret);
         ThrowExistingError(env, SETTINGS_START_PAGE_FAILED_CODE, "Failed to start the page.");
@@ -487,7 +489,7 @@ void OpenAboutDeviceSettingsPage(ani_env *env, ani_object context)
 
 void OpenAppDetailSettingsPage(ani_env *env, ani_object context, ani_string bundleName, ani_int appIndex)
 {
-    SETTING_LOG_INFO("OpenAppDetailSettingsPage start.");
+    SETTING_LOG_INFO("OpenAppDetailSettingsPage ani start.");
     const std::string targetPage = SettingsPageUrl::APPLICATION_INFO_ENTRY;
     // 设备校验
     if (!IsPageSupportJump(DEVICE_TYPE, targetPage)) {
@@ -506,11 +508,11 @@ void OpenAppDetailSettingsPage(ani_env *env, ani_object context, ani_string bund
 
     // 处理请求信息
     OHOS::AAFwk::Want want;
-    want.SetParam("settingsParamBundleName", strBundleName);
-    want.SetParam("appIndex", appIndex);
+    want.SetParam(SETTINGS_PARAM_BUNDLE_NAME, strBundleName);
+    want.SetParam(SETTINGS_PARAM_APP_INDEX, appIndex);
 
     // 使用 OpenSettingsPage 跳转
-    if (!OpenSettingsPage(env, context, targetPage, want)) {
+    if (!OpenSettingsPageWithWant(env, context, targetPage, want)) {
         SETTING_LOG_ERROR("OpenAppDetailSettingsPage failed.");
         ReportSysEvent(targetPage, false);
         return;
