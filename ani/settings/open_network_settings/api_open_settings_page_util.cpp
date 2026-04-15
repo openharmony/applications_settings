@@ -21,6 +21,10 @@ const std::string SettingsPageUrl::INPUT_PAGE = "set_input";
 const std::string SettingsPageUrl::INPUT_DETAIL_PAGE = "other_input_detail_settings";
 const std::string SettingsPageUrl::NFC_PAGE = "nfc_settings";
 const std::string SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE = "biometrics_and_password_settings";
+const std::string SettingsPageUrl::MOBILE_NETWORK_PAGE = "mobile_network_entry";
+const std::string SettingsPageUrl::DISPLAY_PAGE = "display_settings";
+const std::string SettingsPageUrl::SCREEN_REFRESH_RATE_PAGE = "screen_refresh_rate_entry";
+const std::string SettingsPageUrl::SOUND_PAGE = "volume_settings";
 const std::string SettingsPageUrl::ABOUT_DEVICE_PAGE = "about_device";
 
 const std::string DeviceType::PHONE = "phone";
@@ -32,6 +36,10 @@ const static std::unordered_set<std::string> supportedPageForPhoneList = {
     SettingsPageUrl::INPUT_DETAIL_PAGE,
     SettingsPageUrl::NFC_PAGE,
     SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE,
+    SettingsPageUrl::MOBILE_NETWORK_PAGE,
+    SettingsPageUrl::DISPLAY_PAGE,
+    SettingsPageUrl::SCREEN_REFRESH_RATE_PAGE,
+    SettingsPageUrl::SOUND_PAGE,
     SettingsPageUrl::ABOUT_DEVICE_PAGE
 };
 
@@ -40,11 +48,17 @@ const static std::unordered_set<std::string> supportedPageForTabletList = {
     SettingsPageUrl::INPUT_DETAIL_PAGE,
     SettingsPageUrl::NFC_PAGE,
     SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE,
+    SettingsPageUrl::MOBILE_NETWORK_PAGE,
+    SettingsPageUrl::DISPLAY_PAGE,
+    SettingsPageUrl::SCREEN_REFRESH_RATE_PAGE,
+    SettingsPageUrl::SOUND_PAGE,
     SettingsPageUrl::ABOUT_DEVICE_PAGE
 };
 
 const static std::unordered_set<std::string> supportedPageForPCList = {
     SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE,
+    SettingsPageUrl::DISPLAY_PAGE,
+    SettingsPageUrl::SCREEN_REFRESH_RATE_PAGE,
     SettingsPageUrl::ABOUT_DEVICE_PAGE
 };
 

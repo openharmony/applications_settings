@@ -599,6 +599,14 @@ static ani_boolean BindMethods(ani_env *env)
         ani_native_function{
             "openBiometricsSettingsPage_inner", nullptr, reinterpret_cast<void *>(OpenBiometricsSettingsPage)},
         ani_native_function{
+            "openMobileNetworkSettingsPage_inner", nullptr, reinterpret_cast<void *>(OpenMobileNetworkSettingsPage)},
+        ani_native_function{
+            "openDisplaySettingsPage_inner", nullptr, reinterpret_cast<void *>(OpenDisplaySettingsPage)},
+        ani_native_function{"openScreenRefreshRateSettingsPage_inner", nullptr,
+            reinterpret_cast<void *>(OpenScreenRefreshRateSettingsPage)},
+        ani_native_function{
+            "openSoundSettingsPage_inner", nullptr, reinterpret_cast<void *>(OpenSoundSettingsPage)},
+        ani_native_function{
             "openAboutDeviceSettingsPage_inner", nullptr, reinterpret_cast<void *>(OpenAboutDeviceSettingsPage)},
     };
     if (env->Namespace_BindNativeFunctions(spc, methods.data(), methods.size()) != ANI_OK) {
