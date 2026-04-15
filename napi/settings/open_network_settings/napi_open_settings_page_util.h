@@ -34,6 +34,7 @@ public:
     static const std::string SCREEN_REFRESH_RATE_PAGE;
     static const std::string SOUND_PAGE;
     static const std::string ABOUT_DEVICE_PAGE;
+    static const std::string APPLICATION_INFO_ENTRY;
 };
 
 class DeviceType {
