@@ -44,7 +44,7 @@ const std::string DEVICE_TYPE = OHOS::system::GetParameter("const.product.device
 const std::string SETTINGS_PUSH_PARAM = "pushParam";
 const std::string SETTINGS_PUSH_PARAM_JSON_TYPE = "isParamJsonObject";
 const std::string SETTINGS_PARAM_BUNDLE_NAME = "settingsParamBundleName";
-const std::string SETTINGS_PARAM_APP_INDEX= "appIndex";
+const std::string SETTINGS_PARAM_APP_INDEX = "appIndex";
 
 const std::string INPUT_DETAIL_WANT_EXTRA = "extra";
 const std::string INPUT_DETAIL_WANT_VALUE = "value";
