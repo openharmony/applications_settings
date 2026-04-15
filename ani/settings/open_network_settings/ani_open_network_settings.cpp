@@ -80,6 +80,28 @@ static ErrCode JumpToSettingsPageByNavKey(const std::shared_ptr<BaseContext> &as
     }
 }
 
+static ErrCode JumpToSettingsPageByNavKey(const std::shared_ptr<BaseContext> &asyncContext,
+    const std::string &navKey, OHOS::AAFwk::Want &want)
+{
+    SETTING_LOG_INFO("JumpToSettingsPageByNavKey with want start");
+    if (asyncContext == nullptr) {
+        SETTING_LOG_ERROR("asyncContext is nullptr");
+        return ERR_INVALID_VALUE;
+    }
+
+    want.SetElementName(SETTINGS_PACKAGE_NAME, SETTINGS_MAIN_ABILITY_NAME);
+    want.SetUri(navKey);
+
+    if (asyncContext->abilityContext != nullptr) {
+        return asyncContext->abilityContext->StartAbility(want, DEFAULT_INVAL_VALUE);
+    } else if (asyncContext->uiExtensionContext != nullptr) {
+        return asyncContext->uiExtensionContext->StartAbility(want);
+    } else {
+        SETTING_LOG_ERROR("abilityContext and uiExtensionContext is nullptr");
+        return ERR_INVALID_VALUE;
+    }
+}
+
 static bool OpenSettingsPage(ani_env *env, ani_object &context, const std::string &navKey)
 {
     if (!IsPageSupportJump(DEVICE_TYPE, navKey)) {
@@ -96,6 +118,32 @@ static bool OpenSettingsPage(ani_env *env, ani_object &context, const std::strin
     }
     
     auto ret = JumpToSettingsPageByNavKey(loadProductContext, navKey);
+    if (ret != ERR_OK) {
+        SETTING_LOG_ERROR("Failed to start the page, navKey: %{public}s, ret: %{public}d", navKey.c_str(), ret);
+        ThrowExistingError(env, SETTINGS_START_PAGE_FAILED_CODE, "Failed to start the page.");
+        return false;
+    }
+    SETTING_LOG_INFO("Start the page successfully, navKey: %{public}s.", navKey.c_str());
+    return true;
+}
+
+static bool OpenSettingsPage(ani_env *env, ani_object &context, const std::string &navKey,
+    OHOS::AAFwk::Want &want)
+{
+    if (!IsPageSupportJump(DEVICE_TYPE, navKey)) {
+        SETTING_LOG_ERROR("The device type is not supported.");
+        return false;
+    }
+
+    auto loadProductContext = std::make_shared<BaseContext>();
+    if (!ParseAbilityContext(env, context, loadProductContext->abilityContext,
+        loadProductContext->uiExtensionContext)) {
+        SETTING_LOG_ERROR("context parse error.");
+        ThrowExistingError(env, SETTINGS_PARAM_INVALID_CODE, "The context parameter is invalid.");
+        return false;
+    }
+
+    auto ret = JumpToSettingsPageByNavKey(loadProductContext, navKey, want);
     if (ret != ERR_OK) {
         SETTING_LOG_ERROR("Failed to start the page, navKey: %{public}s, ret: %{public}d", navKey.c_str(), ret);
         ThrowExistingError(env, SETTINGS_START_PAGE_FAILED_CODE, "Failed to start the page.");
@@ -435,6 +483,40 @@ void OpenAboutDeviceSettingsPage(ani_env *env, ani_object context)
     bool ret = OpenSettingsPage(env, context, SettingsPageUrl::ABOUT_DEVICE_PAGE);
     ReportSysEvent(SettingsPageUrl::ABOUT_DEVICE_PAGE, ret);
     SETTING_LOG_INFO("OpenAboutDeviceSettingsPage end.");
+}
+
+void OpenAppDetailSettingsPage(ani_env *env, ani_object context, ani_string bundleName, ani_int appIndex)
+{
+    SETTING_LOG_INFO("OpenAppDetailSettingsPage start.");
+    const std::string targetPage = SettingsPageUrl::APPLICATION_INFO_ENTRY;
+    // 设备校验
+    if (!IsPageSupportJump(DEVICE_TYPE, targetPage)) {
+        SETTING_LOG_ERROR("device is not support.");
+        ReportSysEvent(targetPage, false);
+        return;
+    } 
+
+    // 参数校验
+    std::string strBundleName = unwrap_string_from_js(env, bundleName);
+    if (strBundleName.empty() || appIndex < 0) {
+        SETTING_LOG_ERROR("param is invalid.");
+        ThrowParamErrorException(env, targetPage);
+        return;
+    }
+
+    // 处理请求信息
+    OHOS::AAFwk::Want want;
+    want.SetParam("settingsParamBundleName", strBundleName);
+    want.SetParam("appIndex", appIndex);
+
+    // 使用 OpenSettingsPage 跳转
+    if (!OpenSettingsPage(env, context, targetPage, want)) {
+        SETTING_LOG_ERROR("OpenAppDetailSettingsPage failed.");
+        ReportSysEvent(targetPage, false);
+        return;
+    }
+    ReportSysEvent(targetPage, true);
+    SETTING_LOG_INFO("OpenAppDetailSettingsPage end.");
 }
 }
 }

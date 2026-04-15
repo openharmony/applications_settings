@@ -53,6 +53,7 @@ static napi_value Init(napi_env env, napi_value exports)
         DECLARE_NAPI_FUNCTION("openScreenRefreshRateSettingsPage", OpenScreenRefreshRateSettingsPage),
         DECLARE_NAPI_FUNCTION("openSoundSettingsPage", OpenSoundSettingsPage),
         DECLARE_NAPI_FUNCTION("openAboutDeviceSettingsPage", OpenAboutDeviceSettingsPage),
+        DECLARE_NAPI_FUNCTION("openAppDetailSettingsPage", OpenAppDetailSettingsPage),
         DECLARE_NAPI_FUNCTION("isDoubleClickAppForSelf", IsDoubleClickAppForSelf),
         DECLARE_NAPI_FUNCTION("openDoubleClickSettingsPage", OpenDoubleClickSettingsPage)
     };

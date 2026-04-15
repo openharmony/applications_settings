@@ -164,6 +164,8 @@ export namespace settings {
 
   native function openAboutDeviceSettingsPage_inner(context: Context): void;
 
+  native function openAppDetailSettingsPage_inner(context: Context, bundleName: string, appIndex: int): void;
+
   export function getValue(context: Context, name: string, callback: AsyncCallback<string>): void {
     taskpool.execute((): string => {
       return getValue_inner(context, name, "global");
@@ -364,5 +366,9 @@ export namespace settings {
 
   export function openAboutDeviceSettingsPage(context: Context): void {
     openAboutDeviceSettingsPage_inner(context);
+  }
+
+  export function openAppDetailSettingsPage(context: Context, bundleName: string, appIndex?: int): void {
+    openAppDetailSettingsPage_inner(context, bundleName, appIndex ?? 0);
   }
 }
