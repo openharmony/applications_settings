@@ -80,6 +80,7 @@ void OpenDisplaySettingsPage(ani_env *env, ani_object context);
 void OpenScreenRefreshRateSettingsPage(ani_env *env, ani_object context);
 void OpenSoundSettingsPage(ani_env *env, ani_object context);
 void OpenAboutDeviceSettingsPage(ani_env *env, ani_object context);
+void OpenAppDetailSettingsPage(ani_env *env, ani_object context, ani_string bundleName, ani_int appIndex = 0);
 }
 }
 
