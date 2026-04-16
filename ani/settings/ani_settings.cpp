@@ -608,6 +608,8 @@ static ani_boolean BindMethods(ani_env *env)
             "openSoundSettingsPage_inner", nullptr, reinterpret_cast<void *>(OpenSoundSettingsPage)},
         ani_native_function{
             "openAboutDeviceSettingsPage_inner", nullptr, reinterpret_cast<void *>(OpenAboutDeviceSettingsPage)},
+        ani_native_function{
+            "openAppDetailSettingsPage_inner", nullptr, reinterpret_cast<void *>(OpenAppDetailSettingsPage)},
     };
     if (env->Namespace_BindNativeFunctions(spc, methods.data(), methods.size()) != ANI_OK) {
         SETTING_LOG_ERROR("Cannot bind native methods to %{public}s ", spaceName);

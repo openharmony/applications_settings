@@ -26,6 +26,7 @@ const std::string SettingsPageUrl::DISPLAY_PAGE = "display_settings";
 const std::string SettingsPageUrl::SCREEN_REFRESH_RATE_PAGE = "screen_refresh_rate_entry";
 const std::string SettingsPageUrl::SOUND_PAGE = "volume_settings";
 const std::string SettingsPageUrl::ABOUT_DEVICE_PAGE = "about_device";
+const std::string SettingsPageUrl::APPLICATION_INFO_ENTRY = "application_info_entry";
 
 const std::string DeviceType::PHONE = "phone";
 const std::string DeviceType::TABLET = "tablet";
@@ -40,7 +41,8 @@ const static std::unordered_set<std::string> supportedPageForPhoneList = {
     SettingsPageUrl::DISPLAY_PAGE,
     SettingsPageUrl::SCREEN_REFRESH_RATE_PAGE,
     SettingsPageUrl::SOUND_PAGE,
-    SettingsPageUrl::ABOUT_DEVICE_PAGE
+    SettingsPageUrl::ABOUT_DEVICE_PAGE,
+    SettingsPageUrl::APPLICATION_INFO_ENTRY
 };
 
 const static std::unordered_set<std::string> supportedPageForTabletList = {
@@ -52,14 +54,16 @@ const static std::unordered_set<std::string> supportedPageForTabletList = {
     SettingsPageUrl::DISPLAY_PAGE,
     SettingsPageUrl::SCREEN_REFRESH_RATE_PAGE,
     SettingsPageUrl::SOUND_PAGE,
-    SettingsPageUrl::ABOUT_DEVICE_PAGE
+    SettingsPageUrl::ABOUT_DEVICE_PAGE,
+    SettingsPageUrl::APPLICATION_INFO_ENTRY
 };
 
 const static std::unordered_set<std::string> supportedPageForPCList = {
     SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE,
     SettingsPageUrl::DISPLAY_PAGE,
     SettingsPageUrl::SCREEN_REFRESH_RATE_PAGE,
-    SettingsPageUrl::ABOUT_DEVICE_PAGE
+    SettingsPageUrl::ABOUT_DEVICE_PAGE,
+    SettingsPageUrl::APPLICATION_INFO_ENTRY
 };
 
 const static std::map<std::string, std::unordered_set<std::string>> supportedPageForDeviceMap = {

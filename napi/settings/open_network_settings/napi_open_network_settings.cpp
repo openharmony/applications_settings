@@ -43,6 +43,8 @@ const std::string DEVICE_TYPE = OHOS::system::GetParameter("const.product.device
 
 const std::string SETTINGS_PUSH_PARAM = "pushParam";
 const std::string SETTINGS_PUSH_PARAM_JSON_TYPE = "isParamJsonObject";
+const std::string SETTINGS_PARAM_BUNDLE_NAME = "settingsParamBundleName";
+const std::string SETTINGS_PARAM_APP_INDEX = "appIndex";
 
 const std::string INPUT_DETAIL_WANT_EXTRA = "extra";
 const std::string INPUT_DETAIL_WANT_VALUE = "value";
@@ -67,6 +69,28 @@ static ErrCode JumpToSettingsPageByNavKey(const std::shared_ptr<BaseContext> &as
     }
 
     OHOS::AAFwk::Want want;
+    want.SetElementName(SETTINGS_PACKAGE_NAME, SETTINGS_MAIN_ABILITY_NAME);
+    want.SetUri(navKey);
+
+    if (asyncContext->abilityContext != nullptr) {
+        return asyncContext->abilityContext->StartAbility(want, DEFAULT_INVAL_VALUE);
+    } else if (asyncContext->uiExtensionContext != nullptr) {
+        return asyncContext->uiExtensionContext->StartAbility(want);
+    } else {
+        SETTING_LOG_ERROR("abilityContext and uiExtensionContext is nullptr");
+        return ERR_INVALID_VALUE;
+    }
+}
+
+static ErrCode JumpToSettingsPageByNavKeyWithWant(const std::shared_ptr<BaseContext> &asyncContext,
+    const std::string &navKey, OHOS::AAFwk::Want &want)
+{
+    SETTING_LOG_INFO("JumpToSettingsPageByNavKey with want start");
+    if (asyncContext == nullptr) {
+        SETTING_LOG_ERROR("asyncContext is nullptr");
+        return ERR_INVALID_VALUE;
+    }
+
     want.SetElementName(SETTINGS_PACKAGE_NAME, SETTINGS_MAIN_ABILITY_NAME);
     want.SetUri(navKey);
 
@@ -109,6 +133,32 @@ static bool OpenSettingsPage(napi_env env, napi_callback_info info, const std::s
     }
 
     auto ret = JumpToSettingsPageByNavKey(loadProductContext, navKey);
+    if (ret != ERR_OK) {
+        SETTING_LOG_ERROR("Failed to start the page, navKey: %{public}s, ret: %{public}d", navKey.c_str(), ret);
+        ThrowExistingError(env, SETTINGS_START_PAGE_FAILED_CODE, "Failed to start the page.");
+        return false;
+    }
+    SETTING_LOG_INFO("Start the page successfully, navKey: %{public}s.", navKey.c_str());
+    return true;
+}
+
+static bool OpenSettingsPageWithWant(napi_env env, const napi_value &context, const std::string &navKey,
+    OHOS::AAFwk::Want &want)
+{
+    if (!IsPageSupportJump(DEVICE_TYPE, navKey)) {
+        SETTING_LOG_ERROR("The device type is not supported.");
+        return false;
+    }
+
+    auto loadProductContext = std::make_shared<BaseContext>();
+    if (!ParseAbilityContext(env, context, loadProductContext->abilityContext,
+        loadProductContext->uiExtensionContext)) {
+        SETTING_LOG_ERROR("context parse error.");
+        ThrowExistingError(env, SETTINGS_PARAM_INVALID_CODE, "The context parameter is invalid.");
+        return false;
+    }
+
+    auto ret = JumpToSettingsPageByNavKeyWithWant(loadProductContext, navKey, want);
     if (ret != ERR_OK) {
         SETTING_LOG_ERROR("Failed to start the page, navKey: %{public}s, ret: %{public}d", navKey.c_str(), ret);
         ThrowExistingError(env, SETTINGS_START_PAGE_FAILED_CODE, "Failed to start the page.");
@@ -608,6 +658,49 @@ napi_value OpenDoubleClickSettingsPage(napi_env env, napi_callback_info info)
     napi_value result = nullptr;
     napi_get_undefined(env, &result);
     return result;
+}
+
+napi_value OpenAppDetailSettingsPage(napi_env env, napi_callback_info info)
+{
+    SETTING_LOG_INFO("OpenAppDetailSettingsPage start.");
+    const std::string targetPage = SettingsPageUrl::APPLICATION_INFO_ENTRY;
+    if (!IsPageSupportJump(DEVICE_TYPE, targetPage)) {
+        SETTING_LOG_ERROR("device is not support.");
+        ReportSysEvent(targetPage, false);
+        return wrap_void_to_js(env);
+    }
+    size_t argc = ARGS_THREE;
+    napi_value argv[ARGS_THREE] = {nullptr};
+    napi_status ret = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+    if (ret != napi_ok || argc < ARGS_TWO || argc > ARGS_THREE) {
+        SETTING_LOG_ERROR("param is invalid.");
+        ThrowParamErrorException(env, targetPage);
+        return wrap_void_to_js(env);
+    }
+    std::string bundleName = unwrap_string_from_js(env, argv[ARGS_ONE]);
+    if (bundleName.empty()) {
+        SETTING_LOG_ERROR("param bundleName is invalid.");
+        ThrowParamErrorException(env, targetPage);
+        return wrap_void_to_js(env);
+    }
+    int32_t appIndex = 0;
+    if (argc == ARGS_THREE) {
+        ret = napi_get_value_int32(env, argv[ARGS_TWO], &appIndex);
+        if (ret != napi_ok || appIndex < 0) {
+            SETTING_LOG_ERROR("param index is invalid.");
+            ThrowParamErrorException(env, targetPage);
+            return wrap_void_to_js(env);
+        }
+    }
+
+    // 创建want对象并设置参数
+    OHOS::AAFwk::Want want;
+    want.SetParam(SETTINGS_PARAM_BUNDLE_NAME, bundleName);
+    want.SetParam(SETTINGS_PARAM_APP_INDEX, appIndex);
+    bool result = OpenSettingsPageWithWant(env, argv[PARAM0], targetPage, want);
+    ReportSysEvent(targetPage, result);
+    SETTING_LOG_INFO("OpenAppDetailSettingsPage end.");
+    return wrap_void_to_js(env);
 }
 } // namespace Settings
 } // namespace OHOS
