@@ -1,0 +1,396 @@
+{
+    "string":[
+        {
+            "name":"screen_zoom_summary_small",
+            "value":"Nhỏ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_set_tips_disconnect",
+            "value":"Ngắt kết nối",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_on",
+            "value":"Bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_model",
+            "value":"Chế độ xem",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"advanced_setting",
+            "value":"Cài đặt nâng cao",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"after_five_minutes",
+            "value":"Sau %d phút",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_one_minute",
+            "value":"Sau %d phút",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_extremely_large",
+            "value":"Lớn nhất",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"start_time",
+            "value":"Bắt đầu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_all_day",
+            "value":"Cả ngày",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"nothing",
+            "value":"Không làm gì",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_two_minutes",
+            "value":"Sau %d phút",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"end_time",
+            "value":"Kết thúc",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"go_to_set",
+            "value":"Vào Cài đặt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm_close_high_contrast_content",
+            "value":"Thao tác này sẽ tắt văn bản tương phản cao.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_built_in",
+            "value":"Màn hình tích hợp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"eye_timed_on",
+            "value":"Theo lịch",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"two_minutes",
+            "value":"%d phút",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_set",
+            "value":"Bố cục màn hình",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_eye_protection_warmer",
+            "value":"Màu ấm",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_machine",
+            "value":"Thiết bị này",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_default",
+            "value":"Mặc định",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"thirty_minutes",
+            "value":"%d phút",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_adjustment_and_color_temperature_title",
+            "value":"Màu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_larger_fonts_message",
+            "value":"Có thể sử dụng kích cỡ phông chữ cực lớn ở Chế độ Người cao tuổi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_sample_text",
+            "value":"Văn bản mẫu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"font_apply_all",
+            "value":"Áp dụng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"five_minutes",
+            "value":"%d phút",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_larger_fonts",
+            "value":"Bạn cần phông chữ lớn hơn?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_set_description",
+            "value":"Kéo để sắp xếp lại màn hình. Con trỏ có thể di chuyển qua các màn hình ở gần.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"motion_off",
+            "value":"Tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ten_minutes",
+            "value":"%d phút",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_large",
+            "value":"Lớn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dark_mode_dialog_title",
+            "value":"Bật Chế độ Giao diện tối màu?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_azimuth_settings_finish",
+            "value":"Xong",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fifteen_seconds",
+            "value":"%d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"thirty_seconds",
+            "value":"%d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"never_sleep",
+            "value":"Không bao giờ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"one_minute",
+            "value":"%d phút",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_eye_protection_colder",
+            "value":"Màu lạnh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_very_large",
+            "value":"Lớn hơn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_adjustment",
+            "value":"Màu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_title",
+            "value":"Kích cỡ hiển thị",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"after_thirty_seconds",
+            "value":"Sau %d giây",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_temperature_title",
+            "value":"Nhiệt độ màu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_extended",
+            "value":"Màn hình ngoài",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sleep",
+            "value":"Ngủ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_ten_minutes",
+            "value":"Sau %d phút",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_edit",
+            "value":"Sửa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"only_screenOff",
+            "value":"Tắt màn hình",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fifteen_minutes",
+            "value":"%d phút",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_fifteen_seconds",
+            "value":"Sau %d giây",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dark_mode_title",
+            "value":"Khi được thiết lập là Đã lên lịch, chế độ Giao diện tối màu sẽ không có hiệu lực cho đến khi màn hình tắt.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"until_turn_off",
+            "value":"Sẽ luôn bật cho đến khi được tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"only_landscape_supported",
+            "value":"Chỉ có sẵn khi thiết bị được mở ra và ở chế độ ngang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"other_time",
+            "value":"Khác",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

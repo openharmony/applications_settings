@@ -1,0 +1,44 @@
+{
+    "string":[
+        {
+            "name":"password_input_warning_message_not_equal",
+            "value":"[TS_806010]_New passwords do not match."
+        },
+        {
+            "name":"location_switch_on_text",
+            "value":"[TS_864818]_On"
+        },
+        {
+            "name":"location_switch_off_text",
+            "value":"[TS_864847]_Off"
+        },
+        {
+            "name":"password_contain_illegal_character",
+            "value":"[TS_806061]_Password contains invalid characters"
+        },
+        {
+            "name":"password_too_short",
+            "value":"[TS_806116]_Password must be at least %d characters"
+        },
+        {
+            "name":"password_contain_illegal_character_and_too_long",
+            "value":"[TS_806043]_Password must be less than %d characters, and can't contain invalid characters"
+        },
+        {
+            "name":"password_too_long",
+            "value":"[TS_806069]_Password must be fewer than %d characters."
+        },
+        {
+            "name":"password_contain_illegal_character_and_too_short",
+            "value":"[TS_806022]_Password must be at least %d characters, and can't contain invalid characters"
+        },
+        {
+            "name":"edm_password_warning_message",
+            "value":"[TS_967365]_Password strength does not comply with your organization's security policy."
+        },
+        {
+            "name":"service_error",
+            "value":"[TS_995412]_System service error."
+        }
+    ]
+}

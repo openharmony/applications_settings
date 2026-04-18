@@ -1,0 +1,354 @@
+{
+    "string":[
+        {
+            "name":"sunlight_readability_title",
+            "value":"ئاپتاپتا ئوقۇشچانلىقنى ياخشىلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_tittle_cancel",
+            "value":"بىكار قىلىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_tittle_allow",
+            "value":"رۇخسەت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"revocation_usb_authorize",
+            "value":"ئىشەنچلىك ئۈسكۈنە تازىلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"usb_dialog_content",
+            "value":"ئۈسكۈنىنىڭ «USB تەڭشەم» ھالىتى ئەپ ئىشلىگۈچىلەر ئۈچۈن چىقىرىلغان. بۇ ھالەتتە كومپيۇتېر ۋە ئۈسكۈنە ئارا مەلۇمات كۆچۈرۈش، ئاممىۋىي مۇندەرىجىدىن مەلۇمات ھۆججىتى زىيارەت قىلىش، ئۇقتۇرۇش قىلماي تۇرۇپ ئۈسكۈنىگە ئەپ قاچىلاش ۋە خاتىرە مەلۇماتىنى ئوقۇشقا بولىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Confirm_the_cancellation",
+            "value":"تازىلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_usb_authorize_title",
+            "value":"بۇرۇن ئىشەنگەن ئۈسكۈنىلەرنى تازىلامسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"whether_usb_debug_title",
+            "value":"\u200fUSB تەڭشەمگە رۇخسەتمۇ؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"closed_wireless",
+            "value":"ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"opened_wireless",
+            "value":"ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"debug_settings_title",
+            "value":"تەڭشەم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"debug_networking_category",
+            "value":"تور",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_Open_Logs__summary",
+            "value":"بۇ ھالەتتە WLAN خاتىرىسى ئىنچىكىلىشىدۇ (WLAN تاللىغۇچتا بارلىق SSID نىڭ RSSI كۆرسەتكۈچى كۆرۈنىدۇ).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_Open_Logs",
+            "value":"تەپسىلىي WLAN خاتىرىسى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"public_key_name",
+            "value":"\u200fRSA ئاچقۇچ:\n%1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_refresh_frequency_title",
+            "value":"يېڭىلاش نىسبىتىنى كۆرسىتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_display_refresh_frequency_summary",
+            "value":"ئېكراننىڭ ئەڭ يۇقىرى يېڭىلاش نىسبىتىنى كۆرسىتىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_usb_authorize",
+            "value":"ئىشەنچلىك ئۈسكۈنە تازىلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wireless_commissioning",
+            "value":"سىمسىز تەڭشەم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"activating_usb_debug",
+            "value":"\u200fWLAN ئۇلانسا تەڭشەم ھالىتى ئېچىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"link_wireless",
+            "value":"سىمسىز تەڭشەم ئېچىلمىدى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"link_wlan",
+            "value":"نۆۋەتتىكى ئۈسكۈنە WLAN غا ئۇلانمىغان، ئۇلاپ قايتا سىناڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wlan_address_bssid",
+            "value":"\u200fWLAN ئادرېسى (BSSID)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_name_ssid",
+            "value":"تور نامى (SSID)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_wireless",
+            "value":"بۇ توردا سىمسىز تەڭشەمگە رۇخسەتمۇ؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_settings_title",
+            "value":"ئۈسكۈنە نامى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ip_address_and_port",
+            "value":"\u200fIP ئادرېسى ۋە ئېغىز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"machine_name",
+            "value":"ئۈسكۈنە نامى:\n\u200f%1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"trusted_device_title",
+            "value":"بۇ ئۈسكۈنىگە ئىشىنەمسىز؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"trusted_device_button_cancel",
+            "value":"ياق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"trusted_device_button_confirm",
+            "value":"ئىشىنىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"always_allow_debug",
+            "value":"ئىزچىل ئىشىنىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"debug_entering_category",
+            "value":"كىرىم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_touch_actions_title",
+            "value":"سەزمە مەشغۇلاتنى كۆرسىتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_show_touch_actions_summary",
+            "value":"ئېكراننى تۇتقاندا سەزمە ئۈنۈم كۆرۈنىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_touch_actions_trace",
+            "value":"كۆرسەتكۈچ ئورنىنى كۆرسىتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_show_touch_trace_summary",
+            "value":"كۆرسەتكۈچ تۇتقان ئورۇندا كۆرۈنىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_insightintent_debug_status_open",
+            "value":"ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_insightintent_debug_status_close",
+            "value":"ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unlock_device_offline",
+            "value":"تورسىز قۇلۇپ ئېچىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_options_open_failed",
+            "value":"ئىجادچى ھالىتى ئېچىلمىدى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_not_connected",
+            "value":"ئۈسكۈنە تورغا ئۇلانمىغان، تورغا ئۇلاڭ ياكى تورسىز قۇلۇپ ئېچىش ئۈچۈن AGC توربېكىتىدە ئىلتىماس سۇنۇڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_bit_rate_adaptive",
+            "value":"ماسلاشما بىتلىق (ABR)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_channel_mode_stereo",
+            "value":"ئىستېرېئو",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_channel_mode_mono",
+            "value":"بىر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_advanced_options",
+            "value":"سىستېما ئالىي تاللانمىلىرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_display",
+            "value":"كۆرسىتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_machine_debugging",
+            "value":"بۇ ئۈسكۈنە تەڭشەم ھالىتىدە",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_debugged_mode_prompt",
+            "value":"باشقا ئىجادچى تەڭشەم تاللانمىلىرىنى ئېچىش ئۈچۈن كومپيۇتېر ئۇلاپ، كۆرسەتمە بويىچە مەشغۇلات قىلىڭ. %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"learn_more",
+            "value":"تەپسىلات",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

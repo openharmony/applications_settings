@@ -1,0 +1,228 @@
+{
+    "string":[
+        {
+            "name":"installing_fonts",
+            "value":"Hiện đang cài đặt phông chữ. Hãy thử lại sau.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_duplicate_fonts",
+            "value":"Thay thế phông chữ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_all",
+            "value":"Chọn tất cả",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"loading_fonts",
+            "value":"Hiện đang tải phông chữ. Hãy thử lại sau.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"batch_installation_duplicate_fonts",
+            "value":"\"%s\" đã được cài đặt rồi. Bạn có muốn thay thế không?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall",
+            "value":"Gỡ cài đặt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_success",
+            "value":"Đã cài đặt thành công \"%s\".",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_fail",
+            "value":"Cài đặt không thành công. Hãy thử lại sau.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unloading_fonts",
+            "value":"Hiện đang gỡ cài đặt phông chữ. Hãy thử lại sau.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"is_delete_app",
+            "value":"Gỡ cài đặt %s?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_delete",
+            "value":"Mọi dữ liệu của ứng dụng này sẽ bị gỡ khỏi thiết bị của bạn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_installed_font",
+            "value":"Không có phông chữ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_excess_font",
+            "value":"Đã cài đặt số lượng phông chữ tối đa.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replace_install",
+            "value":"Thay thế",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"freed_memory_apps_number",
+            "value":"Đã giải phóng %s dung lượng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"installing",
+            "value":"Đang cài đặt…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"failed_to_replace",
+            "value":"Không thể thay thế \"%s\".",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"all_replaced_successfully",
+            "value":"Tất cả các mục đã được thay thế thành công.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"deleting",
+            "value":"Đang gỡ cài đặt…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replaced_successfully",
+            "value":"Đã thay thế thành công.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"duplicate_fonts_summary",
+            "value":"Phông chữ này đã được cài đặt rồi. Bạn có muốn thay thế không?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Uninstallation_failed",
+            "value":"Không thể gỡ cài đặt.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_font",
+            "value":"Gỡ cài đặt phông chữ này?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_ok",
+            "value":"Gỡ cài đặt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replace_all_duplicate_fonts",
+            "value":"Thay thế tất cả phông chữ trùng lặp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_font",
+            "value":"Chọn từ Tệp tin",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall_unused_apps",
+            "value":"Gỡ cài đặt ứng dụng không sử dụng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"Hủy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"drag_install",
+            "value":"Kéo để cài đặt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"install_fail_warning",
+            "value":"Chỉ hỗ trợ định dạng TTF, TTC và OTF.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_font_summary",
+            "value":"Phông chữ này sẽ không còn khả dụng trong các ứng dụng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"drag_font_summary",
+            "value":"Kéo tệp tin phông chữ vào đây để cài đặt",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

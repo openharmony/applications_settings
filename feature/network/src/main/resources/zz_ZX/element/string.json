@@ -1,0 +1,168 @@
+{
+    "string":[
+        {
+            "name":"network_proxy_title",
+            "value":"[TS_1088367]_Proxy"
+        },
+        {
+            "name":"vpn_describe",
+            "value":"[TS_1088376]_Add, connect to, and manage your VPNs."
+        },
+        {
+            "name":"network_settings_title",
+            "value":"[TS_1088369]_Network"
+        },
+        {
+            "name":"subnet_mask",
+            "value":"[TS_1088368]_Subnet mask"
+        },
+        {
+            "name":"airplane_mode_describe",
+            "value":"[TS_1088357]_Turn off all wireless communications."
+        },
+        {
+            "name":"network_proxy_head",
+            "value":"[TS_1088358]_Other services"
+        },
+        {
+            "name":"proxy_warn_tip_msg",
+            "value":"[TS_1088354]_Proxy settings can't be saved. Check your settings and try again."
+        },
+        {
+            "name":"dns_server_hint",
+            "value":"[TS_1088378]_Enter DNS server"
+        },
+        {
+            "name":"ip_address_hint",
+            "value":"[TS_1088383]_Enter IP address"
+        },
+        {
+            "name":"router_hint",
+            "value":"[TS_1088385]_Enter router IP address"
+        },
+        {
+            "name":"use_dhcp",
+            "value":"[TS_1088386]_DHCP"
+        },
+        {
+            "name":"router",
+            "value":"[TS_1088381]_Router"
+        },
+        {
+            "name":"manual",
+            "value":"[TS_1088380]_Manual"
+        },
+        {
+            "name":"ip_address",
+            "value":"[TS_906000]_IP address"
+        },
+        {
+            "name":"network_ethernet_describe",
+            "value":"[TS_1088387]_IP and DNS settings."
+        },
+        {
+            "name":"proxy_server_port",
+            "value":"[TS_1088364]_Proxy server port"
+        },
+        {
+            "name":"proxy_server_host_name_hint",
+            "value":"[TS_1088362]_Enter address"
+        },
+        {
+            "name":"subnet_mask_hint",
+            "value":"[TS_1088366]_Enter subnet mask"
+        },
+        {
+            "name":"proxy_setting_ignore_host",
+            "value":"[TS_1088361]_Bypass proxy settings for these hosts and domains (separate with commas):"
+        },
+        {
+            "name":"set_proxy_manual_title",
+            "value":"[TS_1088356]_Manual proxy setup"
+        },
+        {
+            "name":"alternate_dns_server_hint",
+            "value":"[TS_1088374]_Enter alternate DNS server"
+        },
+        {
+            "name":"dns_server",
+            "value":"[TS_1088375]_DNS server"
+        },
+        {
+            "name":"proxy_server_port_hint",
+            "value":"[TS_1088352]_Enter proxy server port"
+        },
+        {
+            "name":"airplane_mode",
+            "value":"[TS_846435]_Airplane mode"
+        },
+        {
+            "name":"use_proxy_server_title",
+            "value":"[TS_1088365]_Use a proxy server"
+        },
+        {
+            "name":"network_title",
+            "value":"[TS_1088373]_Ethernet"
+        },
+        {
+            "name":"use_proxy_server_yes",
+            "value":"[TS_1088372]_On"
+        },
+        {
+            "name":"configure_ipv4",
+            "value":"[TS_1088370]_Configure IPv4"
+        },
+        {
+            "name":"save",
+            "value":"[TS_1088355]_Save"
+        },
+        {
+            "name":"alternate_dns_server",
+            "value":"[TS_1088389]_Alternate DNS Server"
+        },
+        {
+            "name":"set_iface_error_message",
+            "value":"[TS_1088351]_Unable to save IP settings. Check your settings and try again."
+        },
+        {
+            "name":"network_proxy_describe",
+            "value":"[TS_1088388]_Proxy server for WLAN and Ethernet connections."
+        },
+        {
+            "name":"use_proxy_server_no",
+            "value":"[TS_1088384]_Off"
+        },
+        {
+            "name":"proxy_server_host_name",
+            "value":"[TS_1088363]_Proxy server"
+        },
+        {
+            "name":"advanced_setting",
+            "value":"[TS_978995]_Advanced settings"
+        },
+        {
+            "name":"projection_state_on",
+            "value":"[TS_895511]_On"
+        },
+        {
+            "name":"projection_state_off",
+            "value":"[TS_895510]_Off"
+        },
+        {
+            "name":"ethernet_status_connected",
+            "value":"[TS_1088382]_Wired network connected"
+        },
+        {
+            "name":"ethernet_status_disconnected",
+            "value":"[TS_1088360]_Wired network not connected"
+        },
+        {
+            "name":"wlan_ranking_of_this_month",
+            "value":"[TS_1088377]_Used over WLAN this month"
+        },
+        {
+            "name":"app_networking_title",
+            "value":"[TS_1088371]_Network access"
+        }
+    ]
+}

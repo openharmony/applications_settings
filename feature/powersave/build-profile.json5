@@ -1,0 +1,18 @@
+{
+  "apiType": "stageMode",
+  "buildOption": {
+    "arkOptions": {
+      "runtimeOnly": {
+        "sources": [
+          "./src/main/ets/model/concretemodel/BatteryIntensiveModel.ets",
+          "./src/main/ets/model/concretemodel/AutoScreenOnModel.ets",
+          "./src/main/ets/model/concretemodel/HotspotModel.ets",
+          "./src/main/ets/model/concretemodel/NotificationWhenSleepModel.ets",
+          "./src/main/ets/model/concretemodel/RefreshRateModel.ets",
+          "./src/main/ets/model/concretemodel/ScreenOffTimeoutModel.ets",
+          "./src/main/ets/model/concretemodel/SmartAodModel.ets"
+        ],
+      },
+    }
+  },
+}

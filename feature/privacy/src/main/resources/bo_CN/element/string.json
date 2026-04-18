@@ -1,0 +1,74 @@
+{
+    "string":[
+        {
+            "name":"location_switch_on_text",
+            "value":"ཁ་ཕྱེ་ཟིན།",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_switch_off_text",
+            "value":"ཁ་བརྒྱབ་ཟིན།",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"password_input_warning_message_not_equal",
+            "value":"གསང་གྲངས་གཅིག་པ་མ་རེད།",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_too_short",
+            "value":"གསང་ཨང་ངེས་པར་དུ་ཡིག་རྟགས་ %d ལས་མང་བ་དགོས།",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_contain_illegal_character_and_too_long",
+            "value":"གསང་ཨང་ངེས་པར་དུ་ཡིག་རྟགས་ %d ལས་ཉུང་བ་དགོས་པ་མ་ཟད་ཁྲིམས་འགལ་གྱི་ཡིག་རྟགས་ཚུད་མི་རུང་།",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_too_long",
+            "value":"གསང་ཡིག་དེ་ཡིག་འབྲུ་ %d ལས་ཉུང་བ་ཡིན་པ་ལྡན་དགོས་པ་ཡིན།",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_contain_illegal_character_and_too_short",
+            "value":"གསང་ཨང་ངེས་པར་དུ་ཡིག་རྟགས་ %d ལས་མང་བ་དགོས་པ་མ་ཟད་ཁྲིམས་འགལ་གྱི་ཡིག་རྟགས་ཚུད་མི་རུང་།",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_contain_illegal_character",
+            "value":"གསང་ཡིག་ལ་ཁྲིམས་མཐུན་མིན་པའི་ཡིག་འབྲུ་ལྡན་འདུག",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edm_password_warning_message",
+            "value":"གསང་ཨང་ཀྱི་དྲག་ཚད་ནི་ཁྱེད་ཀྱི་ལས་ཁུངས་ཀྱི་བདེ་འཇགས་ཚད་གཞིར་ལོན་མེད།",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"service_error",
+            "value":"རྒྱུད་ཁོངས་ཞབས་ཞུ་རྒྱུན་ལྡན་མིན།",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

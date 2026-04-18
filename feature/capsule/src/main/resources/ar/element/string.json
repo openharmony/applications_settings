@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"cloud_space",
+            "value":"السحابة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"find_device",
+            "value":"إيجاد الجهاز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"subscribe",
+            "value":"الاشتراكات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"تحظر إدارة المؤسسة هذه العملية",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

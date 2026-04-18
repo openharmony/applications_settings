@@ -1,0 +1,158 @@
+{
+    "string":[
+        {
+            "name":"turn_off_hotspot",
+            "value":"Выключить личную точку доступа",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_sleep_time_30_sub",
+            "value":"Экран будет выключаться через %d с бездействия.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_aod_display_mode_smart",
+            "value":"Выберите опцию Умный для заставки экрана постоянного отображения",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_hotspot_sub",
+            "value":"Личная точка доступа будет выключена.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps",
+            "value":"Закрыть энергоемкие приложения",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_wakeup_notification",
+            "value":"Выключить активацию экрана при поступлении уведомлений",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_notification_when_hibernation",
+            "value":"Выключить уведомления в спящем режиме",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_aod_display_mode_smart_sub",
+            "value":"Заставка будет включаться касанием или при взгляде на экран.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_screen_refresh_rate_to_smart_mode_sub",
+            "value":"Баланс энергопотребления и плавности анимаций экрана.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_notification_when_hibernation_sub",
+            "value":"Уведомления не будут поступать на устройство, когда оно в спящем режиме.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_screen_refresh_rate_to_smart_mode",
+            "value":"Настроить значение Динамическая для частоты обновления экрана",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_wakeup_notification_sub",
+            "value":"Экран не будет включаться при поступлении уведомления.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_2",
+            "value":"Закройте приложения %1$s и %2$s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_3",
+            "value":"Закройте приложения %1$s, %2$s и %3$s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_1",
+            "value":"Закройте приложение %1$s для продления времени работы батареи.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_2",
+            "value":"Закройте приложения %1$s и %2$s для продления времени работы батареи.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_other",
+            "value":"Будут закрыты приложения %1$s, %2$s, %3$s и другие.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_3",
+            "value":"Закройте приложения %1$s, %2$s и %3$s для продления времени работы батареи.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_other",
+            "value":"Закройте приложения %1$s, %2$s, %3$s и прочие для продления времени работы батареи.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_1",
+            "value":"Закрытие приложения %1$s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_hotspot_card_sub",
+            "value":"Выключите личную точку доступа для продления времени работы батареи.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_sleep_time_30",
+            "value":"Настроить значение времени выключения экрана на %d с",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

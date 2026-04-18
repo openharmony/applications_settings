@@ -30,16 +30,17 @@ namespace IntelligentScene {
 bool HasPermisson()
 {
     Security::AccessToken::AccessTokenID tokenId = IPCSkeleton::GetCallingTokenID();
-    int result = Security::AccessToken::AccessTokenKit::
-        VerifyAccessToken(tokenId, OHOS_GET_DONOTDISTURB_STATE_PERMISSION);
+    int result =
+        Security::AccessToken::AccessTokenKit::VerifyAccessToken(tokenId, OHOS_GET_DONOTDISTURB_STATE_PERMISSION);
     return result == PERMISSION_GRANTED;
 }
 
-void startDoNotDisturbEnabledWork(napi_env env, NotDisturbEnabledCallback* asynccallback)
+void startDoNotDisturbEnabledWork(napi_env env, NotDisturbEnabledCallback *asynccallback)
 {
     napi_value resourceName = nullptr;
     napi_create_string_latin1(env, "isDoNotDisturbEnabled", NAPI_AUTO_LENGTH, &resourceName);
-    napi_create_async_work(env,
+    napi_create_async_work(
+        env,
         nullptr,
         resourceName,
         [](napi_env env, void *data) {
@@ -55,11 +56,11 @@ void startDoNotDisturbEnabledWork(napi_env env, NotDisturbEnabledCallback* async
                     asynccallbackinfo->isDoNotDisturbEnabled = false;
                     asynccallbackinfo->info.errorCode = 0;
                 } else {
-                    asynccallbackinfo->info.errorCode =
-                        OHOS::Notification::NotificationHelper::
-                        IsDoNotDisturbEnabled(userId, asynccallbackinfo->isDoNotDisturbEnabled);
+                    asynccallbackinfo->info.errorCode = OHOS::Notification::NotificationHelper::IsDoNotDisturbEnabled(
+                        userId, asynccallbackinfo->isDoNotDisturbEnabled);
                     INTELLIGENT_SCENE_LOG_INFO("isDoNotDisturbEnabled code=%{public}d,isDoNotDisturbEnabled=%{public}d",
-                        asynccallbackinfo->info.errorCode, asynccallbackinfo->isDoNotDisturbEnabled);
+                        asynccallbackinfo->info.errorCode,
+                        asynccallbackinfo->isDoNotDisturbEnabled);
                 }
             }
         },
@@ -84,11 +85,12 @@ void startDoNotDisturbEnabledWork(napi_env env, NotDisturbEnabledCallback* async
         &asynccallback->asyncWork);
 }
 
-void startNotifyAllowedWork(napi_env env, NotifyAllowedCallback* asynccallback)
+void startNotifyAllowedWork(napi_env env, NotifyAllowedCallback *asynccallback)
 {
     napi_value resourceName = nullptr;
     napi_create_string_latin1(env, "isNotifyAllowedInDoNotDisturb", NAPI_AUTO_LENGTH, &resourceName);
-    napi_create_async_work(env,
+    napi_create_async_work(
+        env,
         nullptr,
         resourceName,
         [](napi_env env, void *data) {
@@ -105,10 +107,11 @@ void startNotifyAllowedWork(napi_env env, NotifyAllowedCallback* asynccallback)
                     asynccallbackinfo->info.errorCode = 0;
                 } else {
                     asynccallbackinfo->info.errorCode =
-                        OHOS::Notification::NotificationHelper::
-                        IsNotifyAllowedInDoNotDisturb(userId, asynccallbackinfo->isNotifyAllowedInDoNotDisturb);
+                        OHOS::Notification::NotificationHelper::IsNotifyAllowedInDoNotDisturb(
+                            userId, asynccallbackinfo->isNotifyAllowedInDoNotDisturb);
                     INTELLIGENT_SCENE_LOG_INFO("isNotifyAllowed code=%{public}d,isNotifyAllowed=%{public}d",
-                        asynccallbackinfo->info.errorCode, asynccallbackinfo->isNotifyAllowedInDoNotDisturb);
+                        asynccallbackinfo->info.errorCode,
+                        asynccallbackinfo->isNotifyAllowedInDoNotDisturb);
                 }
             }
         },
@@ -140,8 +143,7 @@ napi_value napi_is_do_not_disturb_enabled(napi_env env, napi_callback_info info)
     napi_ref callback = nullptr;
     Common::ParseParaOnlyCallback(env, info, callback);
     NotDisturbEnabledCallback *asyncCallBackInfo =
-        new (std::nothrow) NotDisturbEnabledCallback {
-        .env = env, .asyncWork = nullptr, .callback = callback};
+        new (std::nothrow) NotDisturbEnabledCallback{.env = env, .asyncWork = nullptr, .callback = callback};
     if (!asyncCallBackInfo) {
         Common::NapiThrow(env, ERROR_INTERNAL_ERROR);
         return Common::JSParaError(env, callback);
@@ -154,8 +156,14 @@ napi_value napi_is_do_not_disturb_enabled(napi_env env, napi_callback_info info)
         return error;
     }
     startDoNotDisturbEnabledWork(env, asyncCallBackInfo);
-    napi_queue_async_work_with_qos(env, asyncCallBackInfo->asyncWork, napi_qos_user_initiated);
-    
+    napi_status status = napi_queue_async_work_with_qos(env, asyncCallBackInfo->asyncWork, napi_qos_user_initiated);
+    if (status != napi_ok) {
+        napi_delete_async_work(env, asyncCallBackInfo->asyncWork);
+        delete asyncCallBackInfo;
+        Common::NapiThrow(env, ERROR_INTERNAL_ERROR);
+        return Common::JSParaError(env, callback);
+    }
+
     if (asyncCallBackInfo->info.isCallback) {
         INTELLIGENT_SCENE_LOG_INFO("has callback");
         return Common::NapiGetNull(env);
@@ -169,8 +177,7 @@ napi_value napi_is_notify_allowed(napi_env env, napi_callback_info info)
     napi_ref callback = nullptr;
     Common::ParseParaOnlyCallback(env, info, callback);
     NotifyAllowedCallback *asyncCallBackInfo =
-        new (std::nothrow) NotifyAllowedCallback {
-        .env = env, .asyncWork = nullptr, .callback = callback};
+        new (std::nothrow) NotifyAllowedCallback{.env = env, .asyncWork = nullptr, .callback = callback};
     if (!asyncCallBackInfo) {
         Common::NapiThrow(env, ERROR_INTERNAL_ERROR);
         return Common::JSParaError(env, callback);
@@ -183,13 +190,19 @@ napi_value napi_is_notify_allowed(napi_env env, napi_callback_info info)
         return error;
     }
     startNotifyAllowedWork(env, asyncCallBackInfo);
-    napi_queue_async_work_with_qos(env, asyncCallBackInfo->asyncWork, napi_qos_user_initiated);
-    
+    napi_status status = napi_queue_async_work_with_qos(env, asyncCallBackInfo->asyncWork, napi_qos_user_initiated);
+    if (status != napi_ok) {
+        napi_delete_async_work(env, asyncCallBackInfo->asyncWork);
+        delete asyncCallBackInfo;
+        Common::NapiThrow(env, ERROR_INTERNAL_ERROR);
+        return Common::JSParaError(env, callback);
+    }
+
     if (asyncCallBackInfo->info.isCallback) {
         INTELLIGENT_SCENE_LOG_INFO("has callback");
         return Common::NapiGetNull(env);
     }
     return promise;
 }
-}
-}
+}  // namespace IntelligentScene
+}  // namespace OHOS

@@ -1,0 +1,382 @@
+{
+    "string":[
+        {
+            "name":"app_info_storage_app_size",
+            "value":"التطبيق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_music",
+            "value":"الموسيقى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_big_file",
+            "value":"الملفات الكبيرة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_version",
+            "value":"الإصدار %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"clear_cache_not_clear_cache",
+            "value":"لا توجد بيانات يمكن مسحها.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_uninstall",
+            "value":"إزالة التثبيت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_uninstall_confirm",
+            "value":"هل تريد إزالة تثبيت %s؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"load_more_card",
+            "value":"المزيد",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_videos",
+            "value":"الفيديوهات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_app_clear_data",
+            "value":"انتقل إلى %s لتفريغ مساحة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"إلغاء",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"clear_cache_button_name",
+            "value":"تنظيف",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstalling_dialog_message",
+            "value":"إزالة تثبيت %s جارية…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_sizes",
+            "value":"الحجم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"clear_cache_cleaning_up",
+            "value":"جارٍ مسح ذاكرة التخزين المؤقت…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_sort_by",
+            "value":"فرز بحسب",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"load_more_data",
+            "value":"المزيد",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uninstall_unusual_apps",
+            "value":"إزالة التطبيقات غير المُستخدمة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"clear_cache_title",
+            "value":"مسح ذاكرة التخزين المؤقت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall_unusual_app_prompt",
+            "value":"يمكنك تفريغ ما يصل إلى %1$s من مساحة التخزين من خلال إزالة تثبيت التطبيقات التي تستخدمها نادرًا.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_storage_data_size",
+            "value":"البيانات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recommend_card_header",
+            "value":"الاقتراحات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_apps",
+            "value":"التطبيقات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"clear_cache_caculating",
+            "value":"جارٍ الحساب…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_remove",
+            "value":"إزالة تثبيت التطبيق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"clear_cache_summary",
+            "value":"امسح ذاكرة التخزين المؤقت لتفريغ %s من المساحة. لن يؤثر هذا على الاستخدام العادي للجهاز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_other",
+            "value":"أخرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_storage_total_size",
+            "value":"الإجمالي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_system",
+            "value":"النظام",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"clear_cache_cleaning_toast",
+            "value":"تم تفريغ %s من المساحة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_app_data_size",
+            "value":"بيانات التطبيق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"used_data",
+            "value":"المساحة المُستخدمة:‏ %1$s‏/‏%2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_calculating_size",
+            "value":"جارٍ الحساب…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_photo",
+            "value":"صور",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_last_used",
+            "value":"آخر استخدام",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_suggestion_desc",
+            "value":"يمكنك إدارة مساحة وحدة التخزين للجهاز لإفراغ المساحة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_suggestion_level_2",
+            "value":"وحدة التخزين ممتلئة تقريبًا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_suggestion_level_3",
+            "value":"تفريغ مساحة وحدة التخزين",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_suggestion_level_1",
+            "value":"وحدة التخزين ممتلئة تقريبًا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unused_app",
+            "value":"غير مُستخدم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_backup_data_dialog_message",
+            "value":"سيؤدي هذا الإجراء إلى استعادة بيانات التطبيق المفقودة التي نسخها النظام احتياطيًا. لكنه سيستبدل هذا أيضًا أي بيانات جديدة تم إنشاؤها منذ إجراء النسخ الاحتياطي. يجب إغلاق تطبيق %s أثناء استعادة البيانات.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_backup_data_dialog_confirm",
+            "value":"استعادة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_item_title",
+            "value":"حذف بيانات النسخ الاحتياطية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_dialog_title",
+            "value":"هل تريد حذف بيانات النسخ الاحتياطي؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_dialog_confirm",
+            "value":"حذف",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_bakcup_data_item_title",
+            "value":"استعادة بيانات النسخ الاحتياطي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_backup_data_success_tip",
+            "value":"تمت استعادة بيانات النسخ الاحتياطي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restoring_backup_data",
+            "value":"جارٍ استعادة بيانات النسخ الاحتياطي…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"deleting_backup_data",
+            "value":"جارٍ حذف بيانات النسخ الاحتياطي…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_success_tip",
+            "value":"تم حذف بيانات النسخ الاحتياطي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_bakcup_data_dialog_title",
+            "value":"هل تريد استعادة بيانات النسخ الاحتياطي؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_dialog_message",
+            "value":"سيؤدي هذا الإجراء إلى حذف بيانات تطبيق %s التي نسخها النظام احتياطيًا بشكل دائم، بما في ذلك سجلات الدردشة والملفات.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_fail_tip",
+            "value":"يتعذّر حذف بيانات النسخ الاحتياطي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_backup_data_fail_tip",
+            "value":"تتعذّر استعادة بيانات النسخ الاحتياطي",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

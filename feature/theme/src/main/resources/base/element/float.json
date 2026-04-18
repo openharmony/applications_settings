@@ -1,0 +1,40 @@
+{
+  "float": [
+    {
+      "name": "size_16",
+      "value": "16vp"
+    },
+    {
+      "name": "padding_24",
+      "value": "24vp"
+    },
+    {
+      "name": "length_21",
+      "value": "21vp"
+    },
+    {
+      "name": "loading_progress_width",
+      "value": "40"
+    },
+    {
+      "name": "loading_dialog_height",
+      "value": "96"
+    },
+    {
+      "name": "fold_dialog_width",
+      "value": "432"
+    },
+    {
+      "name": "loading_dialog_padding",
+      "value": "24"
+    },
+    {
+      "name": "loading_dialog_margin",
+      "value": "16"
+    },
+    {
+      "name": "loading_dialog_offset",
+      "value": "-20"
+    }
+  ]
+}

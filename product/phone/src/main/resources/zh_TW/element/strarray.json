@@ -1,0 +1,51 @@
+{
+    "strarray":[
+        {
+            "name":"transition_animation_scale_entries",
+            "value":[
+                {
+                    "value":"關閉動畫",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "value":"動畫比例 0.5x",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "value":"動畫比例 1x",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "value":"動畫比例 1.5x",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "value":"動畫比例 2x",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "value":"動畫比例 5x",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "value":"動畫比例 10x",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

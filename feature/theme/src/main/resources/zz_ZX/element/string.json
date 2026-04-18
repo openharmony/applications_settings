@@ -1,0 +1,208 @@
+{
+    "string":[
+        {
+            "name":"theme_settings_title",
+            "value":"[TS_869354]_Home screen & style"
+        },
+        {
+            "name":"aod_ways_display_awake_intelligent",
+            "value":"[TS_866912]_Smart"
+        },
+        {
+            "name":"aod_ways_display_awake_off",
+            "value":"[TS_866916]_Off"
+        },
+        {
+            "name":"aod_ways_display_awake_scheduled",
+            "value":"[TS_866914]_Scheduled"
+        },
+        {
+            "name":"aod_all_day_display",
+            "value":"[TS_866917]_All day"
+        },
+        {
+            "name":"my_wallpaper",
+            "value":"[TS_870992]_My wallpapers"
+        },
+        {
+            "name":"universe",
+            "value":"[TS_870970]_Universe"
+        },
+        {
+            "name":"random_display_of_photos",
+            "value":"[TS_870989]_Photo shuffle"
+        },
+        {
+            "name":"pinnacle",
+            "value":"[TS_870968]_Pinnacle"
+        },
+        {
+            "name":"wallpaper_title",
+            "value":"[TS_870969]_Wallpapers"
+        },
+        {
+            "name":"apply",
+            "value":"[TS_870978]_Apply"
+        },
+        {
+            "name":"homescreen",
+            "value":"[TS_870982]_Home screen"
+        },
+        {
+            "name":"lockscreen",
+            "value":"[TS_870985]_Lock screen"
+        },
+        {
+            "name":"select_from_gallery",
+            "value":"[TS_870986]_Select from Gallery"
+        },
+        {
+            "name":"more_online_themes",
+            "value":"[TS_870988]_More online themes"
+        },
+        {
+            "name":"more_online_wallpapers",
+            "value":"[TS_870994]_More wallpapers"
+        },
+        {
+            "name":"uncompleted",
+            "value":"[TS_870508]_Feature coming soon."
+        },
+        {
+            "name":"monday",
+            "value":"[TS_870980]_Monday"
+        },
+        {
+            "name":"wednesday",
+            "value":"[TS_870974]_Wednesday"
+        },
+        {
+            "name":"saturday",
+            "value":"[TS_870976]_Saturday"
+        },
+        {
+            "name":"friday",
+            "value":"[TS_870993]_Friday"
+        },
+        {
+            "name":"sunday",
+            "value":"[TS_870967]_Sunday"
+        },
+        {
+            "name":"tuesday",
+            "value":"[TS_870971]_Tuesday"
+        },
+        {
+            "name":"thursday",
+            "value":"[TS_870981]_Thursday"
+        },
+        {
+            "name":"icon_theme",
+            "value":"[TS_869346]_Icons"
+        },
+        {
+            "name":"more_theme",
+            "value":"[TS_869359]_Settings"
+        },
+        {
+            "name":"aod_theme",
+            "value":"[TS_869342]_Always On Display"
+        },
+        {
+            "name":"table_theme",
+            "value":"[TS_869343]_Home screen"
+        },
+        {
+            "name":"screen_off_theme",
+            "value":"[TS_869353]_Always On Display"
+        },
+        {
+            "name":"lock_screen_theme",
+            "value":"[TS_869352]_Lock screen"
+        },
+        {
+            "name":"my_theme_settings_title",
+            "value":"[TS_869347]_My themes"
+        },
+        {
+            "name":"wall_paper_theme",
+            "value":"[TS_869344]_Wallpapers"
+        },
+        {
+            "name":"digital_clock",
+            "value":"[TS_1127758]_Digital clock"
+        },
+        {
+            "name":"art_signature",
+            "value":"[TS_1127759]_Personalized signature"
+        },
+        {
+            "name":"lock_card",
+            "value":"[TS_1127757]_Widgets"
+        },
+        {
+            "name":"display_settings_title",
+            "value":"[TS_806034]_Display & brightness"
+        },
+        {
+            "name":"font_style_theme",
+            "value":"[TS_912257]_Fonts"
+        },
+        {
+            "name":"the_theme",
+            "value":"[TS_917594]_Themes"
+        },
+        {
+            "name":"screenlock_signature",
+            "value":"[TS_1043063]_Lock screen signature"
+        },
+        {
+            "name":"screenlock_sign_entry",
+            "value":"[TS_1043061]_How to set lock screen signature"
+        },
+        {
+            "name":"icon_style_theme",
+            "value":"[TS_932167]_Icon style"
+        },
+        {
+            "name":"covertheme_settings_title",
+            "value":"[TS_970400]_Home screen, cover screen & style"
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"[TS_806070]_Cancel"
+        },
+        {
+            "name":"switch_desktop_style_dialog_warning_message",
+            "value":"[TS_972405]_This will log you out of the current user account. Any unsaved app data will be lost."
+        },
+        {
+            "name":"switch_desktop_style",
+            "value":"[TS_972406]_Change home screen style?"
+        },
+        {
+            "name":"dialog_sure",
+            "value":"[TS_806074]_OK"
+        },
+        {
+            "name":"keywords_outer_theme",
+            "value":"[TS_1000055]_Cover screen themes"
+        },
+        {
+            "name":"keywords_outer_facard",
+            "value":"[TS_1004253]_Service widgets"
+        },
+        {
+            "name":"central_axis_personalization",
+            "value":"[TS_1132754]_Virtual bezel"
+        },
+        {
+            "name":"screenlock_settings",
+            "value":"[TS_1113017]_Lock screen"
+        },
+        {
+            "name":"screenlock_font_creation_service",
+            "value":"[TS_1113016]_Lock screen font creation service"
+        }
+    ]
+}

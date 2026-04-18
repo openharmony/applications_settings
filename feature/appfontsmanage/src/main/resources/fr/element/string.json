@@ -1,0 +1,228 @@
+{
+    "string":[
+        {
+            "name":"cancel",
+            "value":"Annuler",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"installing_fonts",
+            "value":"Installation des polices en cours. Veuillez réessayer ultérieurement.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_duplicate_fonts",
+            "value":"Remplacer la police ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_all",
+            "value":"Sélectionner tout",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"loading_fonts",
+            "value":"Chargement des polices en cours. Veuillez réessayer ultérieurement.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"batch_installation_duplicate_fonts",
+            "value":"La police \"%s\" est déjà installée. La remplacer ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall",
+            "value":"Désinstaller",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_success",
+            "value":"La police \"%s\" a été installée.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_fail",
+            "value":"L'installation a échoué. Veuillez réessayer ultérieurement.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unloading_fonts",
+            "value":"Désinstallation des polices en cours. Veuillez réessayer ultérieurement.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"is_delete_app",
+            "value":"Désinstaller %s ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_delete",
+            "value":"Toutes les données de cette application seront supprimées de votre appareil.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_installed_font",
+            "value":"Aucune police",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_excess_font",
+            "value":"Nombre maximum de polices installées.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replace_install",
+            "value":"Remplacer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"freed_memory_apps_number",
+            "value":"%s d'espace de stockage a été libéré.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"installing",
+            "value":"Installation en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"failed_to_replace",
+            "value":"\"%s\" n'a pas pu être remplacé.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"all_replaced_successfully",
+            "value":"Tous les éléments ont été remplacés.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"deleting",
+            "value":"Désinstallation en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replaced_successfully",
+            "value":"Remplacement effectué.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"duplicate_fonts_summary",
+            "value":"Cette police est déjà installée. La remplacer ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Uninstallation_failed",
+            "value":"La désinstallation a échoué.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_font",
+            "value":"Désinstaller cette police ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_ok",
+            "value":"Désinstaller",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replace_all_duplicate_fonts",
+            "value":"Remplacer toutes les polices en double",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_font",
+            "value":"Sélectionner depuis Fichiers",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall_unused_apps",
+            "value":"Désinstaller les applications inutilisées",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"drag_install",
+            "value":"Faire glisser pour installer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"install_fail_warning",
+            "value":"Seuls les formats TTF, TTC et OTF sont pris en charge.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_font_summary",
+            "value":"Cette police ne sera plus disponible dans les applications.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"drag_font_summary",
+            "value":"Pour installer une police, faire glisser le fichier de polices ici",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

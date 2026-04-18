@@ -17,45 +17,53 @@
 #include "os_account_manager.h"
 #include "ani_intelligent_scene_log.h"
 #include "notification_helper.h"
-#include "common/ani_common.h"
-#include "common/ani_throw_error.h"
 #include "tokenid_kit.h"
 #include "ipc_skeleton.h"
 #include "accesstoken_kit.h"
+#include "common/ani_common.h"
+#include "common/ani_throw_error.h"
 
 namespace OHOS {
 namespace IntelligentScene {
 
-bool HasPermisson()
+bool HasPermission()
 {
     Security::AccessToken::AccessTokenID tokenId = IPCSkeleton::GetCallingTokenID();
-    int result = Security::AccessToken::AccessTokenKit::
-        VerifyAccessToken(tokenId, OHOS_GET_DONOTDISTURB_STATE_PERMISSION);
+    int result =
+        Security::AccessToken::AccessTokenKit::VerifyAccessToken(tokenId, OHOS_GET_DONOTDISTURB_STATE_PERMISSION);
     return result == PERMISSION_GRANTED;
 }
 
-ani_boolean ani_is_do_not_disturb_enabled(ani_env *env)
+bool CanAccessInterface(ani_env *env)
 {
-    if (!HasPermisson()) {
+    if (!HasPermission()) {
         ThrowError(env, ERROR_PERMISSION_DENIED);
-        return ANI_FALSE;
+        return false;
     }
-    bool isDoNotDisturbEnabled = false;
-    INTELLIGENTSCENE_LOG_INFO("isDoNotDisturbEnabled enter");
     int userId = -1;
     int ret = OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(userId);
     if (ret != ERR_OK) {
         INTELLIGENTSCENE_LOG_ERROR("get account local info failed.");
         ThrowError(env, ERROR_INTERNAL_ERROR);
-        return ANI_FALSE;
+        return false;
     }
     if (userId != MAIN_USER_ID) {
         INTELLIGENTSCENE_LOG_WARN("current is not main user.");
+        return false;
+    }
+    return true;
+}
+
+ani_boolean ani_is_do_not_disturb_enabled(ani_env *env)
+{
+    if (!CanAccessInterface(env)) {
         return ANI_FALSE;
     }
-    int returncode = Notification::NotificationHelper::IsDoNotDisturbEnabled(userId, isDoNotDisturbEnabled);
-    if (returncode != ERR_OK) {
-        INTELLIGENTSCENE_LOG_ERROR("isDoNotDisturbEnabled error. returncode: %{public}d", returncode);
+    INTELLIGENTSCENE_LOG_INFO("isDoNotDisturbEnabled enter");
+    bool isDoNotDisturbEnabled = false;
+    int code = Notification::NotificationHelper::IsDoNotDisturbEnabled(MAIN_USER_ID, isDoNotDisturbEnabled);
+    if (code != ERR_OK) {
+        INTELLIGENTSCENE_LOG_ERROR("isDoNotDisturbEnabled error. returncode: %{public}d", code);
         ThrowError(env, ERROR_INTERNAL_ERROR);
         return ANI_FALSE;
     }
@@ -65,33 +73,20 @@ ani_boolean ani_is_do_not_disturb_enabled(ani_env *env)
 
 ani_boolean ani_is_notify_allowed(ani_env *env)
 {
-    if (!HasPermisson()) {
-        ThrowError(env, ERROR_PERMISSION_DENIED);
+    if (!CanAccessInterface(env)) {
         return ANI_FALSE;
     }
-    bool isNotifyAllowedInDoNotDisturb = false;
     INTELLIGENTSCENE_LOG_INFO("IsNotifyAllowedInDoNotDisturb enter");
-    int userId = -1;
-    int ret = OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(userId);
-    if (ret != ERR_OK) {
-        INTELLIGENTSCENE_LOG_ERROR("get account local info failed.");
-        ThrowError(env, ERROR_INTERNAL_ERROR);
-        return ANI_FALSE;
-    }
-    if (userId != MAIN_USER_ID) {
-        INTELLIGENTSCENE_LOG_WARN("current is not main user.");
-        return ANI_FALSE;
-    }
-    int returncode =
-        Notification::NotificationHelper::IsNotifyAllowedInDoNotDisturb(userId, isNotifyAllowedInDoNotDisturb);
-    if (returncode != ERR_OK) {
-        INTELLIGENTSCENE_LOG_ERROR("IsNotifyAllowedInDoNotDisturb error. returncode: %{public}d", returncode);
+    bool isNotifyAllowedInDoNotDisturb = false;
+    int code =
+        Notification::NotificationHelper::IsNotifyAllowedInDoNotDisturb(MAIN_USER_ID, isNotifyAllowedInDoNotDisturb);
+    if (code != ERR_OK) {
+        INTELLIGENTSCENE_LOG_ERROR("IsNotifyAllowedInDoNotDisturb error. returncode: %{public}d", code);
         ThrowError(env, ERROR_INTERNAL_ERROR);
         return ANI_FALSE;
     }
     INTELLIGENTSCENE_LOG_INFO("IsNotifyAllowedInDoNotDisturb end");
     return isNotifyAllowedInDoNotDisturb ? ANI_TRUE : ANI_FALSE;
-    return true;
 }
-}
-}
+}  // namespace IntelligentScene
+}  // namespace OHOS

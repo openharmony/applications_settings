@@ -1,0 +1,228 @@
+{
+    "string":[
+        {
+            "name":"installing_fonts",
+            "value":"يتم تثبيت الخطوط حاليًا، يُرجى إعادة المحاولة لاحقًا.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_duplicate_fonts",
+            "value":"هل تريد استبدال الخط؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_all",
+            "value":"تحديد الكل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"loading_fonts",
+            "value":"جارٍ حاليًا تحميل الخطوط. يُرجى إعادة المحاولة لاحقًا.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"batch_installation_duplicate_fonts",
+            "value":"\"%s\" مُثبّت بالفعل. هل تريد استبداله؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall",
+            "value":"إزالة التثبيت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_success",
+            "value":"ثم تثبيت \"%s\" بنجاح.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_fail",
+            "value":"تعذّر التثبيت، يُرجى إعادة المحاولة لاحقًا.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unloading_fonts",
+            "value":"تتم الآن إزالة تثبيت الخطوط. يُرجى إعادة المحاولة لاحقًا.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"is_delete_app",
+            "value":"هل تريد إزالة تثبيت %s؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_delete",
+            "value":"ستُزال جميع بيانات هذا التطبيق من على جهازك.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_installed_font",
+            "value":"لا توجد خطوط",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_excess_font",
+            "value":"تم تثبيت الحد الأقصى من عدد الخطوط.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replace_install",
+            "value":"استبدال",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"freed_memory_apps_number",
+            "value":"تم تفريغ %s من مساحة التخزين.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"installing",
+            "value":"جارٍ التثبيت…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"failed_to_replace",
+            "value":"تعذّر استبدال \"%s\".",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"all_replaced_successfully",
+            "value":"تم استبدال جميع العناصر بنجاح.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"deleting",
+            "value":"إزالة التثبيت جارية…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replaced_successfully",
+            "value":"تم الاستبدال بنجاح.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"duplicate_fonts_summary",
+            "value":"هذا الخط مُثبّت بالفعل. هل ترغب في استبداله؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Uninstallation_failed",
+            "value":"تتعذّر إزالة التثبيت.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_font",
+            "value":"هل تريد إزالة تثبيت هذا الخط؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_ok",
+            "value":"إزالة التثبيت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replace_all_duplicate_fonts",
+            "value":"استبدال جميع الخطوط المُكررة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_font",
+            "value":"التحديد من مدير الملفات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall_unused_apps",
+            "value":"إزالة تثبيت التطبيقات غير المُستخدمة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"إلغاء",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"drag_install",
+            "value":"اسحب للتثبيت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_fail_warning",
+            "value":"لا تُدعم سوى تنسيقات TTF، وTTC، وOTF.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_font_summary",
+            "value":"لن يكون هذا الخط متاحًا بعد الآن في التطبيقات.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"drag_font_summary",
+            "value":"اسحب ملف الخط إلى هنا لتثبيته",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

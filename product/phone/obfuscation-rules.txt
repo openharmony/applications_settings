@@ -1,0 +1,17 @@
+# 属性混淆
+# -enable-property-obfuscation
+# top level混淆
+-enable-toplevel-obfuscation
+# 导入导出名称混淆
+# -enable-export-obfuscation
+# 去掉不必要的空格符和所有换行符
+-compact
+# 删除一些场景的log
+- remove-log
+#-enable-filename-obfuscation
+# 保留属性名
+-keep-property-name
+macId
+transportType
+touchPadSupport
+serialId

@@ -1,0 +1,13 @@
+{
+  "name": "@ohos/settings.network",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@ohos/settings.common": "file:../../common",
+    "@ohos/settings.uikit": "file:../../feature/uikit",
+    "@ohos/settings.wifi": "file:../wifi"
+  }
+}

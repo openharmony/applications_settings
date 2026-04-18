@@ -1,0 +1,20 @@
+{
+    "string":[
+        {
+            "name":"cloud_space",
+            "value":"[TS_954354]_Cloud"
+        },
+        {
+            "name":"subscribe",
+            "value":"[TS_954353]_Subscriptions"
+        },
+        {
+            "name":"find_device",
+            "value":"[TS_1003324]_Find Device"
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"[TS_1047941]_This operation is prohibited by enterprise management."
+        }
+    ]
+}

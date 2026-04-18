@@ -1,0 +1,4948 @@
+{
+    "string":[
+        {
+            "name":"custom_color_tips",
+            "value":"[TS_978922]_Drag the spot to change the color temperature. Select Normal to reset."
+        },
+        {
+            "name":"custom_color_ebook_disable_tips",
+            "value":"[TS_986768]_Unavailable when eBook mode is on"
+        },
+        {
+            "name":"delete_condition",
+            "value":"[TS_1020440]_Delete this condition"
+        },
+        {
+            "name":"by_application",
+            "value":"[TS_1020438]_When using apps"
+        },
+        {
+            "name":"add_app_meta_service",
+            "value":"[TS_1020435]_Application"
+        },
+        {
+            "name":"battery_end_run",
+            "value":"[TS_959675]_Force stop"
+        },
+        {
+            "name":"wifi_network_unavailable_not_use",
+            "value":"[TS_960413]_No"
+        },
+        {
+            "name":"wifi_network_unavailable_use",
+            "value":"[TS_960411]_Yes"
+        },
+        {
+            "name":"wifi_network_unavailable_text",
+            "value":"[TS_960412]_Your current WLAN network has no Internet access. Continue using this network?"
+        },
+        {
+            "name":"app_info_delete_data_confirm_message",
+            "value":"[TS_806180]_This app's data will be permanently deleted. This includes files, settings, databases, and other app data."
+        },
+        {
+            "name":"wifi_wifi_frequency_5g",
+            "value":"[TS_806096]_5 GHz"
+        },
+        {
+            "name":"wifi_status_connecting",
+            "value":"[TS_806152]_Connecting\u2026"
+        },
+        {
+            "name":"wifi_password_input_hint",
+            "value":"[TS_806158]_Password"
+        },
+        {
+            "name":"button_tittle_yes",
+            "value":"[TS_806171]_OK"
+        },
+        {
+            "name":"bt_connect_failed_title",
+            "value":"[TS_806017]_Connection failed"
+        },
+        {
+            "name":"wifi_status_saved",
+            "value":"[TS_806030]_Saved"
+        },
+        {
+            "name":"bt_disconnect_title",
+            "value":"[TS_806157]_Disconnect?"
+        },
+        {
+            "name":"wifi_status_security_open",
+            "value":"[TS_806147]_Open"
+        },
+        {
+            "name":"wifi_signal_good",
+            "value":"[TS_806040]_Good"
+        },
+        {
+            "name":"wifi_signal_level",
+            "value":"[TS_806064]_Signal strength"
+        },
+        {
+            "name":"wifi_button_tittle_retry",
+            "value":"[TS_806042]_Retry"
+        },
+        {
+            "name":"wifi_security_wep",
+            "value":"[TS_806102]_WEP"
+        },
+        {
+            "name":"wifi_status_disconnected",
+            "value":"[TS_806162]_No connected"
+        },
+        {
+            "name":"bt_searching_title",
+            "value":"[TS_806141]_Searching\u2026"
+        },
+        {
+            "name":"wifi_connected_ap",
+            "value":"[TS_806196]_Connected"
+        },
+        {
+            "name":"button_title_ok",
+            "value":"[TS_806173]_OK"
+        },
+        {
+            "name":"volume_mode_sound",
+            "value":"[TS_806097]_Sound"
+        },
+        {
+            "name":"bluetooth_available_device_group",
+            "value":"[TS_806177]_Available devices"
+        },
+        {
+            "name":"volume_value",
+            "value":"[TS_806047]_Volume"
+        },
+        {
+            "name":"app_info_storage_app_size",
+            "value":"[TS_806148]_App"
+        },
+        {
+            "name":"wifi_status_disconnecting",
+            "value":"[TS_806084]_Disconnecting…"
+        },
+        {
+            "name":"wifi_settings_title",
+            "value":"[TS_806019]_WLAN"
+        },
+        {
+            "name":"shared_network_ap_group",
+            "value":"[TS_970627]_Shared"
+        },
+        {
+            "name":"shared_network_disconnect_message",
+            "value":"[TS_977526]_This will end your current network connection."
+        },
+        {
+            "name":"shared_network_disconnect_title",
+            "value":"[TS_977527]_Disconnect?"
+        },
+        {
+            "name":"shared_network_failed_message",
+            "value":"[TS_976739]_On your %s, disconnect from WLAN, re-enable WLAN and Bluetooth, then check that mobile data is enabled and try again."
+        },
+        {
+            "name":"wifi_available_ap_group",
+            "value":"[TS_806021]_Available"
+        },
+        {
+            "name":"wifi_security_psk",
+            "value":"[TS_806138]_WPA/WPA2"
+        },
+        {
+            "name":"wifi_signal_excellent",
+            "value":"[TS_806182]_Excellent"
+        },
+        {
+            "name":"date_time_settings_title",
+            "value":"[TS_806134]_Date & time"
+        },
+        {
+            "name":"app_info_force_stop_confirm",
+            "value":"[TS_806137]_This app may stop working properly if you force stop it."
+        },
+        {
+            "name":"device_name_empty_message",
+            "value":"[TS_806145]_Enter at least 1 character"
+        },
+        {
+            "name":"app_info_delete_data",
+            "value":"[TS_806051]_Clear data"
+        },
+        {
+            "name":"wifi_button_tittle_connect",
+            "value":"[TS_806115]_Connect"
+        },
+        {
+            "name":"wifi_status_unsuccessful",
+            "value":"[TS_806089]_Unsuccessful"
+        },
+        {
+            "name":"wifi_status_scanning",
+            "value":"[TS_806200]_Scanning\u2026"
+        },
+        {
+            "name":"bluetooth_pairing_accept",
+            "value":"[TS_806063]_Pair"
+        },
+        {
+            "name":"wifi_connect_status_failed",
+            "value":"[TS_806119]_Password incorrect. Connection failed."
+        },
+        {
+            "name":"bt_pair_required_title",
+            "value":"[TS_806174]_Bluetooth pairing request"
+        },
+        {
+            "name":"bluetooth_usually_message",
+            "value":"[TS_857249]_Usually 0000 or 1234"
+        },
+        {
+            "name":"bluetooth_PinConsist_message",
+            "value":"[TS_857252]_PIN contains letters or symbols"
+        },
+        {
+            "name":"bluetooth_pair_with_the_following_message",
+            "value":"[TS_857251]_To pair with:"
+        },
+        {
+            "name":"bluetooth_pin_required_code_title",
+            "value":"[TS_857248]_Pairing code:"
+        },
+        {
+            "name":"bluetooth_pinCode_required_message",
+            "value":"[TS_857247]_You may also need to enter this PIN on the other device."
+        },
+        {
+            "name":"bluetooth_pinCode_required_message_ZN",
+            "value":"[TS_857246]_You may also need to enter this passkey on the other device."
+        },
+        {
+            "name":"volume_mode",
+            "value":"[TS_806015]_Sound mode"
+        },
+        {
+            "name":"wifi_status_saved_encrypted",
+            "value":"[TS_806071]_Saved, encrypted"
+        },
+        {
+            "name":"wifi_signal_fair",
+            "value":"[TS_806131]_Fair"
+        },
+        {
+            "name":"wifi_security_type",
+            "value":"[TS_806197]_Encryption type"
+        },
+        {
+            "name":"app_info_clear_cache",
+            "value":"[TS_806072]_Clear cache"
+        },
+        {
+            "name":"app_info_uninstall_confirm",
+            "value":"[TS_806190]_Uninstall this app?"
+        },
+        {
+            "name":"app_info_force_stop",
+            "value":"[TS_806186]_Force stop"
+        },
+        {
+            "name":"wifi_frequency",
+            "value":"[TS_806100]_Frequency"
+        },
+        {
+            "name":"app_info_storage_total_size",
+            "value":"[TS_806014]_Total"
+        },
+        {
+            "name":"wifi_security_open",
+            "value":"[TS_806085]_Open"
+        },
+        {
+            "name":"app_info_delete_data_confirm_title",
+            "value":"[TS_806156]_Delete app data"
+        },
+        {
+            "name":"wifi_signal_poor",
+            "value":"[TS_806031]_Poor"
+        },
+        {
+            "name":"bluetooth_settings_title",
+            "value":"[TS_806095]_Bluetooth"
+        },
+        {
+            "name":"bluetooth_switch_summary",
+            "value":"[TS_806018]_Currently visible to nearby Bluetooth devices"
+        },
+        {
+            "name":"app_info_uninstall",
+            "value":"[TS_806103]_Uninstall"
+        },
+        {
+            "name":"display_settings_title",
+            "value":"[TS_806034]_Display & brightness"
+        },
+        {
+            "name":"wifi_status_obtaining_iP",
+            "value":"[TS_806176]_Obtaining IP address\u2026"
+        },
+        {
+            "name":"wifi_ip_address",
+            "value":"[TS_806122]_IP address"
+        },
+        {
+            "name":"application_settings_title",
+            "value":"[TS_806159]_Apps"
+        },
+        {
+            "name":"version",
+            "value":"[TS_806087]_Version"
+        },
+        {
+            "name":"bt_pair_failed_title",
+            "value":"[TS_806120]_Pairing failed"
+        },
+        {
+            "name":"wifi_status_authenticating",
+            "value":"[TS_806011]_Authenticating…"
+        },
+        {
+            "name":"app_info_storage_cache_size",
+            "value":"[TS_806049]_Cache"
+        },
+        {
+            "name":"wifi_wifi_frequency_2g",
+            "value":"[TS_806110]_2.4 GHz"
+        },
+        {
+            "name":"Scan_to_connect_to_this_WLAN_network_Pay_attention_to_privacy_and_security",
+            "value":"[TS_982697]_Scan to join this network."
+        },
+        {
+            "name":"wifi_button_tittle_delete",
+            "value":"[TS_806124]_Forget"
+        },
+        {
+            "name":"app_info_storage_data_size",
+            "value":"[TS_806098]_Data"
+        },
+        {
+            "name":"wifi_status_connected",
+            "value":"[TS_806050]_Connected"
+        },
+        {
+            "name":"bluetooth_bonded_devices",
+            "value":"[TS_806057]_Paired devices"
+        },
+        {
+            "name":"phone_volume_control_setting_title",
+            "value":"[TS_868175]_Sounds & vibration"
+        },
+        {
+            "name":"volume_control_setting_title",
+            "value":"[TS_806161]_Sounds"
+        },
+        {
+            "name":"wifi_status_encrypted",
+            "value":"[TS_806090]_Encrypted"
+        },
+        {
+            "name":"settings_title",
+            "value":"[TS_806093]_Settings"
+        },
+        {
+            "name":"application_info_settings_title",
+            "value":"[TS_806053]_App info"
+        },
+        {
+            "name":"device_name_settings_title",
+            "value":"[TS_806193]_Device name"
+        },
+        {
+            "name":"bt_a2dp_connect_summary",
+            "value":"[TS_806083]_Connected for media audio"
+        },
+        {
+            "name":"bt_pairing_summary",
+            "value":"[TS_806150]_Pairing\u2026"
+        },
+        {
+            "name":"dialog_next",
+            "value":"[TS_806114]_Next"
+        },
+        {
+            "name":"set_lock_screen_password_title",
+            "value":"[TS_806112]_Set screen lock"
+        },
+        {
+            "name":"brightness_settings_title",
+            "value":"[TS_806113]_Brightness"
+        },
+        {
+            "name":"system_and_updates_title",
+            "value":"[TS_806044]_System & updates"
+        },
+        {
+            "name":"about_device_title",
+            "value":"[TS_806146]_About"
+        },
+        {
+            "name":"dialog_sure",
+            "value":"[TS_806074]_OK"
+        },
+        {
+            "name":"change_lock_screen_password_title",
+            "value":"[TS_806118]_Change screen lock"
+        },
+        {
+            "name":"model",
+            "value":"[TS_806143]_Model"
+        },
+        {
+            "name":"close_lock_screen_password_dialog_warning_message",
+            "value":"[TS_806038]_If you disable your screen lock, your personal data can be viewed and used by anyone who has access to this device."
+        },
+        {
+            "name":"lock_screen_password_title",
+            "value":"[TS_806041]_Screen lock"
+        },
+        {
+            "name":"input_lock_screen_password_dialog_input_menu_hint",
+            "value":"[TS_806023]_Enter lock screen password"
+        },
+        {
+            "name":"update_lock_screen_password_dialog_title",
+            "value":"[TS_806086]_Set new password"
+        },
+        {
+            "name":"close_lock_screen_password_title",
+            "value":"[TS_806073]_Disable screen lock"
+        },
+        {
+            "name":"password_confirm_again_input_menu_hint",
+            "value":"[TS_806056]_Enter the password again"
+        },
+        {
+            "name":"region",
+            "value":"[TS_806094]_Region"
+        },
+        {
+            "name":"addLanguage",
+            "value":"[TS_806169]_Add language"
+        },
+        {
+            "name":"usb_debug_settings_title",
+            "value":"[TS_806155]_USB debugging"
+        },
+        {
+            "name":"confirm",
+            "value":"[TS_806037]_OK"
+        },
+        {
+            "name":"enable_usb_debug_summary",
+            "value":"[TS_806028]_Enable Debug mode when USB is connected."
+        },
+        {
+            "name":"editLanguage",
+            "value":"[TS_806109]_Edit languages"
+        },
+        {
+            "name":"edit",
+            "value":"[TS_806170]_Edit"
+        },
+        {
+            "name":"selectRegion",
+            "value":"[TS_806016]_Select region"
+        },
+        {
+            "name":"currentRegion",
+            "value":"[TS_806077]_Current region"
+        },
+        {
+            "name":"language_and_input",
+            "value":"[TS_806078]_Language & input"
+        },
+        {
+            "name":"languageTab",
+            "value":"[TS_806144]_Language"
+        },
+        {
+            "name":"allRegion",
+            "value":"[TS_806055]_All regions"
+        },
+        {
+            "name":"change",
+            "value":"[TS_806067]_Change"
+        },
+        {
+            "name":"password_input_warning_message_not_equal",
+            "value":"[TS_806010]_New passwords do not match."
+        },
+        {
+            "name":"keepCurrent",
+            "value":"[TS_806199]_Cancel"
+        },
+        {
+            "name":"password_contain_illegal_character",
+            "value":"[TS_806061]_Password contains invalid characters"
+        },
+        {
+            "name":"addedLanguage",
+            "value":"[TS_806163]_Added"
+        },
+        {
+            "name":"saveLanguage",
+            "value":"[TS_806140]_At least one language must be kept."
+        },
+        {
+            "name":"allLanguage",
+            "value":"[TS_806012]_All languages"
+        },
+        {
+            "name":"languageAndRegion",
+            "value":"[TS_806191]_Language & region"
+        },
+        {
+            "name":"time_settings_title",
+            "value":"[TS_806048]_Time"
+        },
+        {
+            "name":"date_settings_title",
+            "value":"[TS_806108]_Date"
+        },
+        {
+            "name":"volume_mode_silent",
+            "value":"[TS_806081]_Silent"
+        },
+        {
+            "name":"unpair",
+            "value":"[TS_806092]_Unpair"
+        },
+        {
+            "name":"app_info_storage_title",
+            "value":"[TS_806033]_Storage"
+        },
+        {
+            "name":"reset_account_group_title",
+            "value":"[TS_802840]_Accounts"
+        },
+        {
+            "name":"installed_service",
+            "value":"[TS_849185]_Installed services"
+        },
+        {
+            "name":"accessibility_enable",
+            "value":"[TS_849175]_Enable"
+        },
+        {
+            "name":"audio_balance_suggestion",
+            "value":"[TS_843258]_Adjust the volume balance between left and right channels."
+        },
+        {
+            "name":"accessibility_risk_detail",
+            "value":"[TS_849169]_This app will be able to:"
+        },
+        {
+            "name":"accessibility",
+            "value":"[TS_843260]_Accessibility features"
+        },
+        {
+            "name":"shortkey_close",
+            "value":"[TS_849198]_Off"
+        },
+        {
+            "name":"accessibility_disable",
+            "value":"[TS_849177]_Cancel"
+        },
+        {
+            "name":"no_service",
+            "value":"[TS_849173]_None"
+        },
+        {
+            "name":"accessibility_off",
+            "value":"[TS_849199]_Off"
+        },
+        {
+            "name":"audio_balance",
+            "value":"[TS_843264]_Balance"
+        },
+        {
+            "name":"right",
+            "value":"[TS_843259]_Right"
+        },
+        {
+            "name":"function_select",
+            "value":"[TS_849195]_Select feature"
+        },
+        {
+            "name":"left",
+            "value":"[TS_843257]_Left"
+        },
+        {
+            "name":"single_audio",
+            "value":"[TS_843265]_Mono audio"
+        },
+        {
+            "name":"accessibility_security_notification",
+            "value":"[TS_849190]_Security alert"
+        },
+        {
+            "name":"highContrast_text",
+            "value":"[TS_843262]_High contrast text"
+        },
+        {
+            "name":"continue_process",
+            "value":"[TS_855169]_Continue"
+        },
+        {
+            "name":"more_settings",
+            "value":"[TS_849170]_More settings"
+        },
+        {
+            "name":"help",
+            "value":"[TS_849197]_Help"
+        },
+        {
+            "name":"accessibility_on",
+            "value":"[TS_849179]_On"
+        },
+        {
+            "name":"no_description_provided",
+            "value":"[TS_849178]_No description."
+        },
+        {
+            "name":"accessibility_notify_content",
+            "value":"[TS_849189]_Accessibility is a highly sensitive permission. Granting this permission may put your private information and property at risk."
+        },
+        {
+            "name":"shortKey_accessibility",
+            "value":"[TS_849191]_Accessibility shortcut"
+        },
+        {
+            "name":"extension_service",
+            "value":"[TS_849196]_Other"
+        },
+        {
+            "name":"operation_accessibility",
+            "value":"[TS_855170]_Assistance"
+        },
+        {
+            "name":"shortKey_tips",
+            "value":"[TS_849180]_Press the Power button three times to activate a selected feature."
+        },
+        {
+            "name":"bluetooth_profile_a2dp",
+            "value":"[TS_856862]_Media audio"
+        },
+        {
+            "name":"bluetooth_profile_hid",
+            "value":"[TS_856860]_Input device"
+        },
+        {
+            "name":"bluetooth_profile_hfp",
+            "value":"[TS_856861]_Call audio"
+        },
+        {
+            "name":"open_bluetooth_switch_message",
+            "value":"[TS_857316]_%s would like to enable Bluetooth"
+        },
+        {
+            "name":"close_bluetooth_switch_message",
+            "value":"[TS_857393]_%s would like to disable Bluetooth"
+        },
+        {
+            "name":"bluetooth_pin_required_please_enter_message",
+            "value":"[TS_857250]_Enter the pairing code then press Return or Enter."
+        },
+        {
+            "name":"automatic_adjust",
+            "value":"[TS_806066]_Automatic"
+        },
+        {
+            "name":"password_contain_illegal_character_and_too_short",
+            "value":"[TS_806022]_Password must be at least %d characters, and can't contain invalid characters"
+        },
+        {
+            "name":"user_settings_title",
+            "value":"[TS_807752]_Users"
+        },
+        {
+            "name":"after_one_minute",
+            "value":"[TS_816168]_After %d minute"
+        },
+        {
+            "name":"wifi_ip_settings_dhcp",
+            "value":"[TS_808201]_Dynamic"
+        },
+        {
+            "name":"screen_refresh_rate_title",
+            "value":"[TS_855164]_Screen refresh rate"
+        },
+        {
+            "name":"done_label",
+            "value":"[TS_856054]_Done"
+        },
+        {
+            "name":"fp_tip_msg_finger_still_01",
+            "value":"[TS_856023]_Hold your finger still."
+        },
+        {
+            "name":"bt_pair_required_keyboard_pin_message",
+            "value":"[TS_817693]_Enter the pairing code then press Enter/Return."
+        },
+        {
+            "name":"slide_fp_place_your_finger_and_keep_moving_tip",
+            "value":"[TS_865330]_Place your finger on the fingerprint sensor and slide it as instructed."
+        },
+        {
+            "name":"screen_refresh_rate_mid_summary",
+            "value":"[TS_855172]_Refreshes at up to %d Hz."
+        },
+        {
+            "name":"two_minutes",
+            "value":"[TS_806136]_%d minutes"
+        },
+        {
+            "name":"title_fp_list_cat",
+            "value":"[TS_856025]_Fingerprint list"
+        },
+        {
+            "name":"storage_images",
+            "value":"[TS_855833]_Images"
+        },
+        {
+            "name":"secure_chip_pw_set_fail",
+            "value":"[TS_864850]_Unable to set password."
+        },
+        {
+            "name":"protanomaly_radio",
+            "value":"[TS_865345]_Protanomaly (red-green)"
+        },
+        {
+            "name":"media_volume_title",
+            "value":"[TS_806139]_Music, Videos, Games"
+        },
+        {
+            "name":"used_data",
+            "value":"[TS_808203]_Used %1$s/%2$s"
+        },
+        {
+            "name":"face_new_mixed_password_message",
+            "value":"[TS_864830]_Set a %1$s to %2$s-character password, including at least %3$s letter"
+        },
+        {
+            "name":"application_and_service_settings_title",
+            "value":"[TS_806075]_Apps & services"
+        },
+        {
+            "name":"dormancy",
+            "value":"[TS_806135]_Screen timeout"
+        },
+        {
+            "name":"wifi_available_ap_list",
+            "value":"[TS_831362]_Available networks"
+        },
+        {
+            "name":"user_admin",
+            "value":"[TS_807750]_Admin"
+        },
+        {
+            "name":"fp_screen_enroll_title_place",
+            "value":"[TS_856062]_Place your finger"
+        },
+        {
+            "name":"wifi_button_tittle_refuse",
+            "value":"[TS_858705]_Deny"
+        },
+        {
+            "name":"wifi_connect_speed_title",
+            "value":"[TS_808207]_Link speed"
+        },
+        {
+            "name":"enter_lock_screen_password_title",
+            "value":"[TS_816906]_Enter lock screen password"
+        },
+        {
+            "name":"fp_start_enroll_lock_dialog_ok",
+            "value":"[TS_857390]_Add"
+        },
+        {
+            "name":"nfc_how_to_use_description_text",
+            "value":"[TS_837465]_Tap the back of your phone against an NFC reader or tag to make a payment, send files, and more."
+        },
+        {
+            "name":"fp_mixed_password_unlock",
+            "value":"[TS_857388]_Alphanumeric password"
+        },
+        {
+            "name":"fingerprint_new_number_password_message",
+            "value":"[TS_856014]_Set a %1$s to %2$s-digit PIN"
+        },
+        {
+            "name":"reset_sim_card_number",
+            "value":"[TS_858445]_SIM"
+        },
+        {
+            "name":"biometrics_and_password_settings_title",
+            "value":"[TS_816907]_Biometrics & screen lock"
+        },
+        {
+            "name":"hotspot_about",
+            "value":"[TS_859385]_Note"
+        },
+        {
+            "name":"screenreader_description",
+            "value":"[TS_864841]_An aid for the visually impaired."
+        },
+        {
+            "name":"reset_factory_title",
+            "value":"[TS_806167]_Reset phone"
+        },
+        {
+            "name":"display_mode_mail_subject_title",
+            "value":"[TS_858712]_Subject: Back from trip"
+        },
+        {
+            "name":"user_create_guest_tips",
+            "value":"[TS_807764]_Creating…"
+        },
+        {
+            "name":"reset_net_result",
+            "value":"[TS_858442]_Network settings have been reset."
+        },
+        {
+            "name":"click_to_add",
+            "value":"[TS_807767]_Tap the icon to set a profile picture"
+        },
+        {
+            "name":"wifi_ap_connected_user_mac",
+            "value":"[TS_864840]_MAC: %s"
+        },
+        {
+            "name":"bt_disconnecting_summary",
+            "value":"[TS_819035]_Disconnecting…"
+        },
+        {
+            "name":"reason",
+            "value":"[TS_846756]_Get installed bundle list"
+        },
+        {
+            "name":"bt_connected_summary",
+            "value":"[TS_806149]_Connected"
+        },
+        {
+            "name":"confirm_reset_net_content",
+            "value":"[TS_858446]_This will reset all network settings. This action cannot be undone."
+        },
+        {
+            "name":"fp_rename_button_str",
+            "value":"[TS_856034]_Rename"
+        },
+        {
+            "name":"weak_password_dialog_content",
+            "value":"[TS_861319]_This password can be easily guessed. For your security, please set a different one."
+        },
+        {
+            "name":"user_delete_button",
+            "value":"[TS_807766]_Delete"
+        },
+        {
+            "name":"current_login_title",
+            "value":"[TS_807763]_Signed in as"
+        },
+        {
+            "name":"changeLanguage",
+            "value":"[TS_806160]_Change your system language to %s?"
+        },
+        {
+            "name":"wifi_button_tittle_allow",
+            "value":"[TS_858709]_Allow"
+        },
+        {
+            "name":"time_24_hour_title",
+            "value":"[TS_806166]_%d-hour time"
+        },
+        {
+            "name":"hotspot_ap_band",
+            "value":"[TS_859383]_AP band"
+        },
+        {
+            "name":"weak_password_dialog_negative_button",
+            "value":"[TS_861318]_Use anyway"
+        },
+        {
+            "name":"wifi_privacy_device",
+            "value":"[TS_808204]_Use device MAC"
+        },
+        {
+            "name":"user_add_loading",
+            "value":"[TS_858448]_Creating…"
+        },
+        {
+            "name":"hotspot_password",
+            "value":"[TS_859388]_Password"
+        },
+        {
+            "name":"hotspot_settings_title",
+            "value":"[TS_859391]_Personal hotspot"
+        },
+        {
+            "name":"slide_fp_move_at_center_improve_identification_accuracy",
+            "value":"[TS_865342]_Cover the center of the fingerprint sensor."
+        },
+        {
+            "name":"user_image_take_photo",
+            "value":"[TS_807753]_Take photo"
+        },
+        {
+            "name":"wifi_privacy_random",
+            "value":"[TS_808196]_Use randomized MAC"
+        },
+        {
+            "name":"one_minute",
+            "value":"[TS_806111]_%d minute"
+        },
+        {
+            "name":"bt_pair_required_message",
+            "value":"[TS_806079]_\"%1$s\" would like to pair with you. Confirm that this code is also shown on \"%2$s\" before pairing."
+        },
+        {
+            "name":"bt_disconnect_message",
+            "value":"[TS_806088]_This will end your connection with %s."
+        },
+        {
+            "name":"location_switch_off_text",
+            "value":"[TS_864847]_Off"
+        },
+        {
+            "name":"tap_to_unlock_unlock_protection",
+            "value":"[TS_864833]_Rest finger"
+        },
+        {
+            "name":"storage_apps",
+            "value":"[TS_855836]_Apps"
+        },
+        {
+            "name":"log_out",
+            "value":"[TS_864842]_Log out"
+        },
+        {
+            "name":"wifi_ap_connected_user_ip",
+            "value":"[TS_864834]_IP: %s"
+        },
+        {
+            "name":"wifi_privacy_settings",
+            "value":"[TS_808193]_Privacy"
+        },
+        {
+            "name":"bluetooth_no_paired_devices",
+            "value":"[TS_854361]_No paired devices"
+        },
+        {
+            "name":"invert_color",
+            "value":"[TS_864827]_Color inversion"
+        },
+        {
+            "name":"set_lock_screen_pin_title",
+            "value":"[TS_816908]_Set screen lock"
+        },
+        {
+            "name":"storage_videos",
+            "value":"[TS_855838]_Videos"
+        },
+        {
+            "name":"user_nickname",
+            "value":"[TS_807743]_Nickname"
+        },
+        {
+            "name":"mixed_password_too_long",
+            "value":"[TS_816892]_Password must be fewer than %d characters."
+        },
+        {
+            "name":"wifi_static_ip_dns2",
+            "value":"[TS_808209]_DNS 2"
+        },
+        {
+            "name":"screen",
+            "value":"[TS_806133]_Screen"
+        },
+        {
+            "name":"weak_password_dialog_positive_button",
+            "value":"[TS_861320]_Change"
+        },
+        {
+            "name":"wifi_static_ip_dns1",
+            "value":"[TS_808198]_DNS 1"
+        },
+        {
+            "name":"color_correction",
+            "value":"[TS_865332]_Color correction"
+        },
+        {
+            "name":"user_add_user_dialog_title",
+            "value":"[TS_807745]_Switch to new user?"
+        },
+        {
+            "name":"transition_animation_scale_title",
+            "value":"[TS_840492]_Transition animation scale"
+        },
+        {
+            "name":"slide_fp_enroll_more_directions_title",
+            "value":"[TS_865336]_Change finger position"
+        },
+        {
+            "name":"weak_password_dialog_title",
+            "value":"[TS_861317]_Security tip"
+        },
+        {
+            "name":"fp_pre_enroll_title",
+            "value":"[TS_857387]_Add fingerprint"
+        },
+        {
+            "name":"hotspot_band_2_4",
+            "value":"[TS_859394]_2.4 GHz"
+        },
+        {
+            "name":"face_new_number_password_message",
+            "value":"[TS_864848]_Set a %1$s to %2$s-digit PIN"
+        },
+        {
+            "name":"fp_screen_enroll_summary_edge",
+            "value":"[TS_856052]_Tilt your finger to capture the edges."
+        },
+        {
+            "name":"location_category_recent_location_requests",
+            "value":"[TS_837470]_Recent location requests"
+        },
+        {
+            "name":"fp_digital_password_unlock",
+            "value":"[TS_857391]_PIN"
+        },
+        {
+            "name":"fifteen_seconds",
+            "value":"[TS_806198]_%d seconds"
+        },
+        {
+            "name":"user_add_dialog_switch_btn_text",
+            "value":"[TS_807755]_Switch"
+        },
+        {
+            "name":"delete_user_message",
+            "value":"[TS_807765]_Delete this user and all related data?"
+        },
+        {
+            "name":"hotspot_band",
+            "value":"[TS_859389]_Band"
+        },
+        {
+            "name":"location_help_title",
+            "value":"[TS_837460]_Help"
+        },
+        {
+            "name":"uninstalling_dialog_message",
+            "value":"[TS_806039]_Uninstalling %s…"
+        },
+        {
+            "name":"slide_fp_enroll_more_directions_tip",
+            "value":"[TS_865337]_Tilt your finger as you slide to capture more angles."
+        },
+        {
+            "name":"user_list_title",
+            "value":"[TS_807744]_Users"
+        },
+        {
+            "name":"hotspot_band_5",
+            "value":"[TS_859392]_5 GHz"
+        },
+        {
+            "name":"airplane_mode",
+            "value":"[TS_846435]_Airplane mode"
+        },
+        {
+            "name":"fp_duplicated_name_toast",
+            "value":"[TS_807747]_Name already in use"
+        },
+        {
+            "name":"display_mode_mail_content_2",
+            "value":"[TS_858707]_I took this photo while traveling. Just look at that view!"
+        },
+        {
+            "name":"display_mode_mail_content_1",
+            "value":"[TS_858703]_It's been a while, how have you been?"
+        },
+        {
+            "name":"nfc_quick_toggle_title",
+            "value":"[TS_837463]_NFC"
+        },
+        {
+            "name":"reset_settings_title",
+            "value":"[TS_806168]_Reset"
+        },
+        {
+            "name":"volume_mode_vibrate",
+            "value":"[TS_864843]_Vibrate"
+        },
+        {
+            "name":"vibrate_only",
+            "value":"[TS_977307]_Vibrate only"
+        },
+        {
+            "name":"no_ringtone",
+            "value":"[TS_974960]_None"
+        },
+        {
+            "name":"inform_use_hw_cover_title",
+            "value":"[TS_856021]_Note"
+        },
+        {
+            "name":"wifi_ip_settings_static",
+            "value":"[TS_808208]_Static"
+        },
+        {
+            "name":"fp_enroll_timeout_content",
+            "value":"[TS_858447]_Fingerprint enrollment timed out. Please start again."
+        },
+        {
+            "name":"select_unlock_method",
+            "value":"[TS_816905]_Select screen lock type"
+        },
+        {
+            "name":"automatic_system_update",
+            "value":"[TS_831868]_Automatic system updates"
+        },
+        {
+            "name":"slide_fp_place_your_finger_and_keep_moving_title",
+            "value":"[TS_865334]_Place & slide finger"
+        },
+        {
+            "name":"recognise_fingerprint_title",
+            "value":"[TS_856029]_Identify fingerprint"
+        },
+        {
+            "name":"other_permission_manager_settings_title",
+            "value":"[TS_859396]_Other permission manager"
+        },
+        {
+            "name":"fp_timeout_content",
+            "value":"[TS_859380]_Timed out. Please authenticate again."
+        },
+        {
+            "name":"number_password_too_long",
+            "value":"[TS_816894]_PIN must be fewer than %d digits"
+        },
+        {
+            "name":"display_mode_mail_subject_date_title",
+            "value":"[TS_858710]_Sat %s"
+        },
+        {
+            "name":"screen_refresh_rate_high",
+            "value":"[TS_855176]_High"
+        },
+        {
+            "name":"mixed_password_message",
+            "value":"[TS_816900]_Set a %1$s to %2$s-character password, including at least %3$d letter"
+        },
+        {
+            "name":"slide_fp_move_your_fingers_in_circles",
+            "value":"[TS_865335]_Slide in circle"
+        },
+        {
+            "name":"password_contain_illegal_character_and_too_long",
+            "value":"[TS_806043]_Password must be less than %d characters, and can't contain invalid characters"
+        },
+        {
+            "name":"number_password_type",
+            "value":"[TS_816909]_Custom PIN"
+        },
+        {
+            "name":"reset_factory_button_text_pc",
+            "value":"[TS_865343]_Reset device"
+        },
+        {
+            "name":"reset_net_title",
+            "value":"[TS_858443]_Reset network settings"
+        },
+        {
+            "name":"face_new_pin_message",
+            "value":"[TS_864823]_Set a lock screen PIN first"
+        },
+        {
+            "name":"wifi_connecting",
+            "value":"[TS_806105]_Connecting to %1$s…"
+        },
+        {
+            "name":"fingerprint_new_info",
+            "value":"[TS_856045]_Note"
+        },
+        {
+            "name":"location_help_scheme_body_first_summary",
+            "value":"[TS_837468]_%1$d. Make sure the \"Access my location\" switch is toggled on.\n%2$d. Connect to a Wi-Fi hotspot or enable mobile data.\n%3$d. Check that the app you're using has the Location permission in Settings > Privacy and security > Permission manager > Location.\n%4$d. If you're connected to a public hotspot, try turning off Wi-Fi and enabling mobile data."
+        },
+        {
+            "name":"delete",
+            "value":"[TS_806185]_Delete"
+        },
+        {
+            "name":"hotspot_open_about_content",
+            "value":"[TS_865341]_%1$s. Enable WLAN on the device, then find the hotspot \"%2$s\".\n\n%3$s. Connect to it."
+        },
+        {
+            "name":"fp_start_enroll_lock_dialog_cancel",
+            "value":"[TS_857389]_Cancel"
+        },
+        {
+            "name":"resolution_dlg_no_prompt",
+            "value":"[TS_856061]_Don't remind me again"
+        },
+        {
+            "name":"system_name",
+            "value":"[TS_806026]_Operating System"
+        },
+        {
+            "name":"enter_pin_again_title",
+            "value":"[TS_816886]_Enter the PIN again"
+        },
+        {
+            "name":"screen_refresh_rate_standard",
+            "value":"[TS_855173]_Standard"
+        },
+        {
+            "name":"hotspot_pwd_hint",
+            "value":"[TS_860615]_Password must contain at least %d characters."
+        },
+        {
+            "name":"pin_repeat_error_title",
+            "value":"[TS_816897]_PINs do not match. Please try again."
+        },
+        {
+            "name":"user_add_new_guest_title",
+            "value":"[TS_807768]_Add guest user?"
+        },
+        {
+            "name":"user_delete_user_description",
+            "value":"[TS_807742]_Delete user"
+        },
+        {
+            "name":"after_two_minutes",
+            "value":"[TS_816169]_After %d minutes"
+        },
+        {
+            "name":"wifi_ip_settings_title",
+            "value":"[TS_808192]_IP settings"
+        },
+        {
+            "name":"hasAdded",
+            "value":"[TS_806106]_Added to preferred languages."
+        },
+        {
+            "name":"user_guest",
+            "value":"[TS_807758]_Guest"
+        },
+        {
+            "name":"password_title",
+            "value":"[TS_856038]_Passwords"
+        },
+        {
+            "name":"hotspot_open_about",
+            "value":"[TS_865344]_How to connect from another device"
+        },
+        {
+            "name":"user_add_user_type_title",
+            "value":"[TS_807746]_Add"
+        },
+        {
+            "name":"fingerprint_new_info1",
+            "value":"[TS_856028]_%d. Press firmly on the screen when enrolling or verifying your fingerprint."
+        },
+        {
+            "name":"fingerprint_new_info2",
+            "value":"[TS_856040]_%d. Third-party screen protectors or dirt on the sensor zone may cause issues while unlocking."
+        },
+        {
+            "name":"fingerprint_new_info3",
+            "value":"[TS_856015]_%d. Fingerprint recognition may fail if your finger is too dry."
+        },
+        {
+            "name":"fingerprint_new_info4",
+            "value":"[TS_856053]_%d. Pressing the fingerprint sensor when the screen is off simultaneously triggers face recognition for faster unlocking."
+        },
+        {
+            "name":"fingerprint_new_info5",
+            "value":"[TS_856059]_%d. Screen brightness and color settings will be briefly changed while your fingerprint is being verified."
+        },
+        {
+            "name":"location_access_title",
+            "value":"[TS_837461]_Access my location"
+        },
+        {
+            "name":"press_to_unlock_unlock_protection",
+            "value":"[TS_864829]_Press button"
+        },
+        {
+            "name":"fp_name_dialog_title_01",
+            "value":"[TS_856057]_Fingerprint name"
+        },
+        {
+            "name":"dfp_innerscreen_intro_summary_01",
+            "value":"[TS_856036]_Press firmly on the fingerprint sensor"
+        },
+        {
+            "name":"dfp_innerscreen_intro_summary_02",
+            "value":"[TS_968402]_Fingerprint recognition verifies your identity based on the unique features of your fingerprint. By adding a fingerprint, you agree to the %s."
+        },
+        {
+            "name":"reset_net_detail_title",
+            "value":"[TS_858444]_This will reset all network settings, including:"
+        },
+        {
+            "name":"fp_fingerprint_emui_ex",
+            "value":"[TS_856047]_Fingerprint %1$s"
+        },
+        {
+            "name":"unlock_device_title",
+            "value":"[TS_856026]_Unlock your device"
+        },
+        {
+            "name":"correction_mode",
+            "value":"[TS_865329]_Correction mode"
+        },
+        {
+            "name":"never",
+            "value":"[TS_816172]_Never"
+        },
+        {
+            "name":"color_filter_normal",
+            "value":"[TS_865333]_None"
+        },
+        {
+            "name":"fp_enroll_tip5",
+            "value":"[TS_856056]_Failed to construct fingerprint."
+        },
+        {
+            "name":"user_image_choose_photo",
+            "value":"[TS_807757]_Gallery"
+        },
+        {
+            "name":"storage_documents",
+            "value":"[TS_855839]_Documents"
+        },
+        {
+            "name":"password_too_long",
+            "value":"[TS_806069]_Password must be fewer than %d characters."
+        },
+        {
+            "name":"dlg_ok_gt",
+            "value":"[TS_807749]_OK"
+        },
+        {
+            "name":"debug_drawing_category",
+            "value":"[TS_840491]_Drawing"
+        },
+        {
+            "name":"screen_refresh_rate_dynamic",
+            "value":"[TS_855174]_Dynamic"
+        },
+        {
+            "name":"location_help_scheme_one",
+            "value":"[TS_837466]_Try the following if your device is unable to access your location or your location is inaccurate:"
+        },
+        {
+            "name":"screen_refresh_rate_invalid",
+            "value":"[TS_859382]_Not supported"
+        },
+        {
+            "name":"location_help_scheme_two",
+            "value":"[TS_837462]_Try the following if navigation services are inaccurate or do not work:"
+        },
+        {
+            "name":"mixed_password_too_short",
+            "value":"[TS_816890]_Password must be at least %d characters"
+        },
+        {
+            "name":"wifiap_connect_accounts",
+            "value":"[TS_864819]_%d"
+        },
+        {
+            "name":"fp_inscreen_enroll_tip_msg_04",
+            "value":"[TS_856044]_Press your finger against the center of the in-screen sensor zone."
+        },
+        {
+            "name":"fp_inscreen_enroll_tip_msg_05",
+            "value":"[TS_856011]_Press firmly on the in-screen sensor zone. When you feel a vibration, lift your finger."
+        },
+        {
+            "name":"fp_inscreen_enroll_tip_msg_02",
+            "value":"[TS_856024]_Move your finger around to capture different parts of it."
+        },
+        {
+            "name":"fp_inscreen_enroll_tip_msg_03",
+            "value":"[TS_856033]_Wipe your finger and the sensor zone then try again."
+        },
+        {
+            "name":"after_fifteen_seconds",
+            "value":"[TS_816167]_After %d seconds"
+        },
+        {
+            "name":"fp_inscreen_enroll_tip_msg_06",
+            "value":"[TS_856051]_This fingerprint has already been enrolled."
+        },
+        {
+            "name":"reset_net_detail_content",
+            "value":"[TS_858449]_• WLAN\n• Mobile data\n• Bluetooth"
+        },
+        {
+            "name":"more_device_settings_connection",
+            "value":"[TS_837467]_More connections"
+        },
+        {
+            "name":"pin_password_message",
+            "value":"[TS_816887]_Set a %d-digit PIN"
+        },
+        {
+            "name":"fingerprint_used_for_title",
+            "value":"[TS_856065]_Use your fingerprint to"
+        },
+        {
+            "name":"location_help_scheme_body_second_summary",
+            "value":"[TS_837469]_%1$d. If you're using a metallic protective case, try removing the case or switching to a non-metallic one instead.\n%2$d. Check that the app you're using has the Location permission in Settings > Privacy and security > Permission manager >  Location.\n%3$d. Move to an open, unobstructed area for best results when navigating. If you're in a car, place your device near the windscreen or on the dashboard."
+        },
+        {
+            "name":"after_five_minutes",
+            "value":"[TS_816170]_After %d minutes"
+        },
+        {
+            "name":"fp_enrolled_fail_title",
+            "value":"[TS_856042]_Enrollment failed"
+        },
+        {
+            "name":"permissions",
+            "value":"[TS_806132]_Permissions"
+        },
+        {
+            "name":"title_fp_unlock_protection_for_screen_lock",
+            "value":"[TS_864845]_Unlock when screen is off"
+        },
+        {
+            "name":"dialog_continue",
+            "value":"[TS_816902]_Continue"
+        },
+        {
+            "name":"time_zone_settings_title",
+            "value":"[TS_813909]_Time zone"
+        },
+        {
+            "name":"storage_others",
+            "value":"[TS_855834]_Other system data"
+        },
+        {
+            "name":"ringtone_volume_title",
+            "value":"[TS_806029]_Ringer, Messages, Notifications"
+        },
+        {
+            "name":"remember_password_warning_title",
+            "value":"[TS_816888]_There is no way to recover your PIN if you forget it."
+        },
+        {
+            "name":"location_no_recent_apps",
+            "value":"[TS_837471]_No apps have requested your location recently"
+        },
+        {
+            "name":"location_switch_on_text",
+            "value":"[TS_864818]_On"
+        },
+        {
+            "name":"wifi_security_sae",
+            "value":"[TS_806013]_WPA3"
+        },
+        {
+            "name":"user_delete_guest",
+            "value":"[TS_807756]_Delete guest"
+        },
+        {
+            "name":"fingerprint_settings_title",
+            "value":"[TS_856048]_Fingerprint recognition"
+        },
+        {
+            "name":"hotspot_about_content",
+            "value":"[TS_865340]_%1$d. Create a personal hotspot to share your device's WLAN or mobile data connection with nearby devices.\n\n\n%2$d. Mobile data connections can be shared with up to %3$d devices (data charges may apply).\n\n\n%4$d. WLAN connections can be shared with up to %5$d devices.\n\n\n%6$d. Creating a personal hotspot increases battery usage."
+        },
+        {
+            "name":"fp_screen_enroll_title_edge",
+            "value":"[TS_856060]_Enroll fingerprint edges"
+        },
+        {
+            "name":"wifi_more_settings",
+            "value":"[TS_831363]_Settings"
+        },
+        {
+            "name":"permission_manager_settings_title",
+            "value":"[TS_817692]_Permission manager"
+        },
+        {
+            "name":"hotspot_device_name",
+            "value":"[TS_859379]_Device name"
+        },
+        {
+            "name":"user_add_user_title",
+            "value":"[TS_807754]_Add new user"
+        },
+        {
+            "name":"call_volume_title",
+            "value":"[TS_806187]_Calls"
+        },
+        {
+            "name":"ringtone_volume_new_title",
+            "value":"[TS_1003858]_Ringtones (Ringer, Messages, Notifications)"
+        },
+        {
+            "name":"media_volume_new_title",
+            "value":"[TS_1003857]_Media (Music, Videos, Games)"
+        },
+        {
+            "name":"storage_audio",
+            "value":"[TS_855837]_Audio"
+        },
+        {
+            "name":"enter_current_lock_screen_password_title",
+            "value":"[TS_816903]_Enter lock screen password"
+        },
+        {
+            "name":"cancel",
+            "value":"[TS_807760]_Cancel"
+        },
+        {
+            "name":"fp_start_enroll_lock_dialog_content",
+            "value":"[TS_857392]_%s set for unlock. Add a fingerprint as well?"
+        },
+        {
+            "name":"slide_fp_touch_without_lifting_your_hand",
+            "value":"[TS_856016]_No need to lift your finger – simply place your finger on the fingerprint sensor and slide it in a circle."
+        },
+        {
+            "name":"number_password_too_short",
+            "value":"[TS_816893]_PIN must be at least %d digits"
+        },
+        {
+            "name":"mixed_password_contains_illegal_character",
+            "value":"[TS_816898]_Password contains invalid characters"
+        },
+        {
+            "name":"remember_pin_warning_title",
+            "value":"[TS_816904]_There is no way to recover your password if you forget it."
+        },
+        {
+            "name":"new_fingerprint_title",
+            "value":"[TS_856012]_New fingerprint"
+        },
+        {
+            "name":"accout_switch",
+            "value":"[TS_807761]_Switch user"
+        },
+        {
+            "name":"hotspot_connected_device",
+            "value":"[TS_859393]_Connected devices"
+        },
+        {
+            "name":"reset_factory_detail_title",
+            "value":"[TS_806101]_This will delete all data from your device, including:"
+        },
+        {
+            "name":"fp_delete_dialog_title",
+            "value":"[TS_856049]_Delete %s?"
+        },
+        {
+            "name":"fp_enroll_tip_04",
+            "value":"[TS_856010]_%s added"
+        },
+        {
+            "name":"wifi_static_ip_gateway",
+            "value":"[TS_808200]_Gateway"
+        },
+        {
+            "name":"change_unlock_method",
+            "value":"[TS_816891]_Change screen lock type"
+        },
+        {
+            "name":"reset_factory_title_pc",
+            "value":"[TS_865331]_Reset tablet"
+        },
+        {
+            "name":"display_mode_mail_receiver_title",
+            "value":"[TS_858708]_To: %s"
+        },
+        {
+            "name":"tritanomaly_radio",
+            "value":"[TS_865338]_Tritanomaly (blue-yellow)"
+        },
+        {
+            "name":"screen_refresh_rate_high_summary",
+            "value":"[TS_855163]_Refreshes at up to %d Hz. Uses more power."
+        },
+        {
+            "name":"confirm_reset_factory_content",
+            "value":"[TS_806189]_Resetting your device will permanently erase all system data, apps, app data, as well as personal files such as music and photos. This cannot be undone.\n\r\nTo prevent data loss, back up this device before resetting it.\n\r\nNote: Do not back up your data to the internal storage."
+        },
+        {
+            "name":"screen_refresh_rate_dynamic_summary",
+            "value":"[TS_855168]_Balances smooth display and battery life. Refreshes at up to %d Hz."
+        },
+        {
+            "name":"number_password_must_be_number",
+            "value":"[TS_816896]_PIN must be numbers only"
+        },
+        {
+            "name":"fp_innerscreen_button",
+            "value":"[TS_856013]_Add fingerprint"
+        },
+        {
+            "name":"fp_enrolled_title",
+            "value":"[TS_856017]_Enrollment successful"
+        },
+        {
+            "name":"debug_layout",
+            "value":"[TS_840489]_Show layout bounds"
+        },
+        {
+            "name":"face_checker",
+            "value":"[TS_856037]_Face recognition"
+        },
+        {
+            "name":"location_settings_title",
+            "value":"[TS_837459]_Location Services"
+        },
+        {
+            "name":"thirty_seconds",
+            "value":"[TS_806151]_%d seconds"
+        },
+        {
+            "name":"mobile_network_settings_title",
+            "value":"[TS_806052]_Mobile network"
+        },
+        {
+            "name":"reset_factory_button_text",
+            "value":"[TS_806179]_Reset phone"
+        },
+        {
+            "name":"biometric_settings",
+            "value":"[TS_856022]_Biometrics"
+        },
+        {
+            "name":"fingerprint_new_pin_message",
+            "value":"[TS_856046]_Set a lock screen PIN first"
+        },
+        {
+            "name":"deuteranomaly_radio",
+            "value":"[TS_865339]_Deuteranomaly (red-green)"
+        },
+        {
+            "name":"password_too_short",
+            "value":"[TS_806116]_Password must be at least %d characters"
+        },
+        {
+            "name":"bt_hfp_connect_summary",
+            "value":"[TS_806076]_Connected for calls"
+        },
+        {
+            "name":"reset_sim_card_title",
+            "value":"[TS_858451]_Select a SIM"
+        },
+        {
+            "name":"fp_inscreen_enroll_main_title_05_low_quality",
+            "value":"[TS_856019]_Press firmly"
+        },
+        {
+            "name":"wifi_static_ip_network_prefix",
+            "value":"[TS_808205]_Network prefix length"
+        },
+        {
+            "name":"mixed_password_include_letter",
+            "value":"[TS_816889]_Must include at least %d letter"
+        },
+        {
+            "name":"bt_connecting_summary",
+            "value":"[TS_806117]_Connecting\u2026"
+        },
+        {
+            "name":"screen_refresh_rate_mid",
+            "value":"[TS_855175]_Medium"
+        },
+        {
+            "name":"fp_inscreen_enroll_main_title_02",
+            "value":"[TS_856050]_Adjust finger position"
+        },
+        {
+            "name":"fp_inscreen_enroll_main_title_06",
+            "value":"[TS_856020]_Enroll another fingerprint"
+        },
+        {
+            "name":"reset_factory_detail_content",
+            "value":"[TS_806024]_• Accounts\n• App data and system settings\n• Installed apps\n• Music\n• Photos\n• Files\n• Security chip contents (will be erased the next time this device connects to the Internet)\n• System, app, and personal data linked to your account and stored on this device\n• Other user data\n"
+        },
+        {
+            "name":"fp_inscreen_enroll_main_title_05",
+            "value":"[TS_856066]_Hold your finger a little longer"
+        },
+        {
+            "name":"bt_hfp_a2dp_connect_summary",
+            "value":"[TS_806068]_Connected for calls and media audio"
+        },
+        {
+            "name":"fp_inscreen_enroll_main_title_03",
+            "value":"[TS_856027]_Make sure your finger is clean"
+        },
+        {
+            "name":"mixed_password_type",
+            "value":"[TS_816910]_Alphanumeric password"
+        },
+        {
+            "name":"user_you",
+            "value":"[TS_807759]_You (%s)"
+        },
+        {
+            "name":"fp_count_max_tip",
+            "value":"[TS_856018]_Max of %s fingerprints."
+        },
+        {
+            "name":"hotspot_more_share_settings",
+            "value":"[TS_859390]_More"
+        },
+        {
+            "name":"five_minutes",
+            "value":"[TS_806154]_%d minutes"
+        },
+        {
+            "name":"account_dashboard_title",
+            "value":"[TS_807762]_Users & accounts"
+        },
+        {
+            "name":"invert_color_summary",
+            "value":"[TS_864821]_May affect performance."
+        },
+        {
+            "name":"ten_minutes",
+            "value":"[TS_806123]_%d minutes"
+        },
+        {
+            "name":"accessibility_risk_content1",
+            "value":"[TS_855177]_Read everything on the screen and display content on top of other apps."
+        },
+        {
+            "name":"accessibility_risk_content2",
+            "value":"[TS_855171]_Track your behavior in each app and control apps on your behalf."
+        },
+        {
+            "name":"dfp_innerscreen_enroll_summary01",
+            "value":"[TS_856039]_Press firmly on the fingerprint icon below. When you feel a vibration, lift your finger then press again."
+        },
+        {
+            "name":"screenreader",
+            "value":"[TS_864844]_ScreenReader"
+        },
+        {
+            "name":"never_sleep",
+            "value":"[TS_806188]_Never"
+        },
+        {
+            "name":"pin_type",
+            "value":"[TS_816899]_%d-digit PIN"
+        },
+        {
+            "name":"number_password_message",
+            "value":"[TS_816901]_Set a %1$s to %2$s-digit PIN"
+        },
+        {
+            "name":"set_new_lock_screen_password_title",
+            "value":"[TS_816895]_Set new screen lock"
+        },
+        {
+            "name":"after_thirty_seconds",
+            "value":"[TS_816173]_After %d seconds"
+        },
+        {
+            "name":"debug_layout_summary",
+            "value":"[TS_840493]_Show clip bounds, margins, and others."
+        },
+        {
+            "name":"bt_connect_failed_message",
+            "value":"[TS_806195]_Unable to connect to %1$s. Possible reasons:\n%2$s. The device is out of range (%3$s m) or does not have Bluetooth enabled.\n%4$s. The device is connected to another device."
+        },
+        {
+            "name":"add_city_settings_title",
+            "value":"[TS_813908]_Add city"
+        },
+        {
+            "name":"after_ten_minutes",
+            "value":"[TS_816171]_After %d minutes"
+        },
+        {
+            "name":"fingerprint_new_mixed_password_message",
+            "value":"[TS_856032]_Set a %1$s to %2$s-character password, including at least %3$s letter"
+        },
+        {
+            "name":"screen_refresh_rate_standard_summary",
+            "value":"[TS_855165]_Limits the refresh rate to %d Hz. Saves power."
+        },
+        {
+            "name":"user_add_guest_menu_title",
+            "value":"[TS_807751]_Add guest"
+        },
+        {
+            "name":"screenreader_more_settings",
+            "value":"[TS_864820]_More settings"
+        },
+        {
+            "name":"aod_settings_title",
+            "value":"[TS_866913]_Always On Display"
+        },
+        {
+            "name":"device_name_settings_summary_new",
+            "value":"[TS_866915]_This name will be shown on other devices when you interact, share, or connect with them via Bluetooth, a personal hotspot, or USB."
+        },
+        {
+            "name":"app_info_inform",
+            "value":"[TS_869349]_Notifications"
+        },
+        {
+            "name":"wifi_status_wrong_pwd",
+            "value":"[TS_870513]_Password incorrect. Connection failed."
+        },
+        {
+            "name":"open_all_day",
+            "value":"[TS_869422]_All day"
+        },
+        {
+            "name":"intelligent_switch",
+            "value":"[TS_1026219]_Auto-enable"
+        },
+        {
+            "name":"power_usage_summary_title",
+            "value":"[TS_869410]_Battery"
+        },
+        {
+            "name":"other_apps_settings_title",
+            "value":"[TS_869848]_Other apps"
+        },
+        {
+            "name":"dark_mode",
+            "value":"[TS_869420]_Dark mode"
+        },
+        {
+            "name":"open_all_day_close",
+            "value":"[TS_869423]_Off"
+        },
+        {
+            "name":"bluetooth_name_and_numbers_only",
+            "value":"[TS_873315]_Name and number only"
+        },
+        {
+            "name":"status_information",
+            "value":"[TS_872819]_Status"
+        },
+        {
+            "name":"bluetooth_fulls_detals",
+            "value":"[TS_873324]_All information"
+        },
+        {
+            "name":"time_date_zone",
+            "value":"[TS_870983]_Date, Time, and Time zone"
+        },
+        {
+            "name":"wifi_status_failed_connection_full",
+            "value":"[TS_870506]_Network full. Connection failed."
+        },
+        {
+            "name":"meta_service_settings_title",
+            "value":"[TS_869849]_Services"
+        },
+        {
+            "name":"application_and_meta_service_settings_title",
+            "value":"[TS_868174]_Apps & services"
+        },
+        {
+            "name":"default_color",
+            "value":"[TS_875324]_Default"
+        },
+        {
+            "name":"nature_color",
+            "value":"[TS_977973]_Natural"
+        },
+        {
+            "name":"nature_color_text",
+            "value":"[TS_977972]_Color temperature will change based on ambient lighting conditions."
+        },
+        {
+            "name":"colour_title",
+            "value":"[TS_875327]_Color mode"
+        },
+        {
+            "name":"wlan_scan_title",
+            "value":"[TS_872811]_WLAN scanning"
+        },
+        {
+            "name":"search_history",
+            "value":"[TS_875345]_Search history"
+        },
+        {
+            "name":"vivid_color_title",
+            "value":"[TS_875347]_Vivid"
+        },
+        {
+            "name":"color_adjustment_and_color_temperature_title",
+            "value":"[TS_875317]_Color"
+        },
+        {
+            "name":"app_info_default_content",
+            "value":"[TS_870977]_Browser apps allow you to access the Internet and open links."
+        },
+        {
+            "name":"standard_color_title",
+            "value":"[TS_875335]_Standard"
+        },
+        {
+            "name":"cool_color",
+            "value":"[TS_875320]_Cool"
+        },
+        {
+            "name":"clear_history",
+            "value":"[TS_875332]_Clear"
+        },
+        {
+            "name":"access_permission",
+            "value":"[TS_873318]_Allow access to contacts and call logs"
+        },
+        {
+            "name":"wifi_precision_title",
+            "value":"[TS_872800]_Advanced settings"
+        },
+        {
+            "name":"warm_color",
+            "value":"[TS_875336]_Warm"
+        },
+        {
+            "name":"wlan_scan_content",
+            "value":"[TS_872825]_Improve positioning accuracy by allowing apps and services to scan for WLAN networks at any time, even when WLAN is disabled."
+        },
+        {
+            "name":"color_temperature_title",
+            "value":"[TS_875321]_Color temperature"
+        },
+        {
+            "name":"wifi_precision_text",
+            "value":"[TS_872804]_To improve positioning accuracy, apps and services can scan for WLAN networks even when WLAN is disabled. You can change this in %s."
+        },
+        {
+            "name":"close_lock_screen_password_dialog_warning_message2",
+            "value":"[TS_872822]_This will also disable face recognition and delete all facial data."
+        },
+        {
+            "name":"input_more",
+            "value":"[TS_876500]_More input settings"
+        },
+        {
+            "name":"ring_tone_settings_message",
+            "value":"[TS_872818]_Message tone"
+        },
+        {
+            "name":"ring_tone_settings_notification",
+            "value":"[TS_872809]_Notification tone"
+        },
+        {
+            "name":"ring_tone_settings_phone",
+            "value":"[TS_872798]_Phone ringtone"
+        },
+        {
+            "name":"eye_Comfort_mode",
+            "value":"[TS_875325]_Eye comfort"
+        },
+        {
+            "name":"open_all_day_switch",
+            "value":"[TS_878725]_Enable all day"
+        },
+        {
+            "name":"ip_address_and_port",
+            "value":"[TS_878194]_IP address & port"
+        },
+        {
+            "name":"system_ringtone_setting_no_ringtone",
+            "value":"[TS_873319]_Vibrate only"
+        },
+        {
+            "name":"permission_usb_config",
+            "value":"[TS_880025]_Used to manage USB configuration permissions"
+        },
+        {
+            "name":"single_audio_summary",
+            "value":"[TS_880029]_Combine channels when playing audio."
+        },
+        {
+            "name":"fingerprint_declaration",
+            "value":"[TS_878736]_Statement About Fingerprint Recognition"
+        },
+        {
+            "name":"short",
+            "value":"[TS_873711]_Short"
+        },
+        {
+            "name":"bt_map_auth_dialog_message",
+            "value":"[TS_873311]_A Bluetooth device \"%s\" would like to access your messages."
+        },
+        {
+            "name":"display_screen_resolution_low_summary",
+            "value":"[TS_876365]_Saves power (%1$s × %2$s)."
+        },
+        {
+            "name":"close_lock_screen_password_dialog_warning_message1",
+            "value":"[TS_872816]_This will also disable fingerprint recognition and delete all fingerprints."
+        },
+        {
+            "name":"current_user",
+            "value":"[TS_869403]_Owner"
+        },
+        {
+            "name":"close_lock_screen_password_dialog_warning_message3",
+            "value":"[TS_872802]_This will also disable fingerprint and face recognition. All enrolled biometric data will be deleted."
+        },
+        {
+            "name":"bt_pbap_pse_dialog_message2",
+            "value":"[TS_873320]_Make sure you trust this device before granting access."
+        },
+        {
+            "name":"bt_pbap_pse_dialog_message1",
+            "value":"[TS_873316]_The Bluetooth device, %s, would like to access your contacts and call history, including data about incoming and outgoing calls."
+        },
+        {
+            "name":"inputRadioContext",
+            "value":"[TS_875328]_This may give the developer of this input method access to any content you enter or have previously entered using this keyboard, such as passwords, credit card numbers, addresses, and other sensitive personal information."
+        },
+        {
+            "name":"face_fingerprint_settings_switch_summary",
+            "value":"[TS_873325]_Data is accessed from Password Vault."
+        },
+        {
+            "name":"input",
+            "value":"[TS_875349]_Input methods"
+        },
+        {
+            "name":"basic_input_mode",
+            "value":"[TS_875348]_Basic typing mode"
+        },
+        {
+            "name":"vivid_color_text",
+            "value":"[TS_875329]_Uses wide color gamut. Colors appear more vivid."
+        },
+        {
+            "name":"wrc_switch_name",
+            "value":"[TS_869408]_Wireless reverse charging"
+        },
+        {
+            "name":"common_title",
+            "value":"[TS_878718]_General"
+        },
+        {
+            "name":"super_launcher_quick_toggle_title",
+            "value":"[TS_872808]_Super Home Screen"
+        },
+        {
+            "name":"bluetooth_state_on_text",
+            "value":"[TS_869360]_On"
+        },
+        {
+            "name":"whether_usb_debug_title",
+            "value":"[TS_878190]_Allow USB debugging?"
+        },
+        {
+            "name":"longest",
+            "value":"[TS_873713]_Longest"
+        },
+        {
+            "name":"input_enable",
+            "value":"[TS_875322]_Enable"
+        },
+        {
+            "name":"battery_info_status_charging",
+            "value":"[TS_869409]_Charging"
+        },
+        {
+            "name":"nr_mode_sa_nsa",
+            "value":"[TS_869839]_SA + NSA"
+        },
+        {
+            "name":"nr_mode_configuration_title",
+            "value":"[TS_869843]_5G network mode"
+        },
+        {
+            "name":"font_theme",
+            "value":"[TS_869356]_Font"
+        },
+        {
+            "name":"input_not_enabled",
+            "value":"[TS_875313]_Not enabled"
+        },
+        {
+            "name":"nr_mode_nsa",
+            "value":"[TS_869842]_NSA"
+        },
+        {
+            "name":"wireless_commissioning",
+            "value":"[TS_878196]_Wireless debugging"
+        },
+        {
+            "name":"wifi_status_failed_default",
+            "value":"[TS_870511]_Network error. Connection failed."
+        },
+        {
+            "name":"screen_zoom_title",
+            "value":"[TS_863726]_Display size"
+        },
+        {
+            "name":"bluetooth_state_off_text",
+            "value":"[TS_869358]_Off"
+        },
+        {
+            "name":"ignore_repeated_touches",
+            "value":"[TS_873715]_Ignore repeated taps"
+        },
+        {
+            "name":"bluetooth_sharing_and_call_history",
+            "value":"[TS_873323]_Share contacts & call history"
+        },
+        {
+            "name":"input_setting",
+            "value":"[TS_875315]_input setting"
+        },
+        {
+            "name":"display_model",
+            "value":"[TS_869878]_View mode"
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_pad",
+            "value":"[TS_876368]_Sync volume with tablet"
+        },
+        {
+            "name":"fp_start_bind_lock_dialog_title",
+            "value":"[TS_879829]_Add fingerprint"
+        },
+        {
+            "name":"nfc_default_payment_text",
+            "value":"[TS_876503]_Default app"
+        },
+        {
+            "name":"wlan_mac",
+            "value":"[TS_872824]_WLAN MAC address"
+        },
+        {
+            "name":"sim_card_one",
+            "value":"[TS_872823]_SIM %s"
+        },
+        {
+            "name":"sim_card_two",
+            "value":"[TS_872813]_SIM %s"
+        },
+        {
+            "name":"input_autofill",
+            "value":"[TS_876496]_Autofill"
+        },
+        {
+            "name":"input_spelling_correction",
+            "value":"[TS_876498]_Spelling correction"
+        },
+        {
+            "name":"allow_wireless",
+            "value":"[TS_878724]_Allow wireless debugging on this network?"
+        },
+        {
+            "name":"inputRadioTitle",
+            "value":"[TS_875346]_Are you sure you want to enable Full mode?"
+        },
+        {
+            "name":"complete_input_Mode",
+            "value":"[TS_875351]_Full mode"
+        },
+        {
+            "name":"standard_color_text",
+            "value":"[TS_875339]_Automatically selects a color space (sRGB or P3) based on the content being displayed."
+        },
+        {
+            "name":"bt_map_auth_dialog_title",
+            "value":"[TS_873312]_Allow access to messages?"
+        },
+        {
+            "name":"user_exit_guest_dialog_delete",
+            "value":"[TS_878042]_Delete"
+        },
+        {
+            "name":"automatic_brightness_adjust",
+            "value":"[TS_875319]_Automatic brightness"
+        },
+        {
+            "name":"recall_usb_authorize",
+            "value":"[TS_878191]_Remove all trusted devices"
+        },
+        {
+            "name":"software_update_title",
+            "value":"[TS_870509]_Software update"
+        },
+        {
+            "name":"long",
+            "value":"[TS_873707]_Long"
+        },
+        {
+            "name":"automatic_setting",
+            "value":"[TS_870990]_Set automatically"
+        },
+        {
+            "name":"permission_reason_access_ouc",
+            "value":"[TS_872815]_this is used to access system rollback"
+        },
+        {
+            "name":"touch_duration",
+            "value":"[TS_873706]_Touch duration"
+        },
+        {
+            "name":"display_refresh_frequency_title",
+            "value":"[TS_878741]_Show refresh rate"
+        },
+        {
+            "name":"bluetooth_profile_map",
+            "value":"[TS_875323]_Allow access to SMS messages"
+        },
+        {
+            "name":"smart_hotspot_connect_setup_failed",
+            "value":"[TS_879579]_Peer service unresponsive. Connection failed."
+        },
+        {
+            "name":"hi_write_settings_title",
+            "value":"[TS_870973]_Stylus"
+        },
+        {
+            "name":"touchscreen_settings",
+            "value":"[TS_873710]_Touchscreen settings"
+        },
+        {
+            "name":"touchscreen_short",
+            "value":"[TS_873712]_Short (Default)"
+        },
+        {
+            "name":"prevent_change_checkbox_text",
+            "value":"[TS_869401]_Don't show again"
+        },
+        {
+            "name":"key_mouse_share_title",
+            "value":"[TS_875331]_Keyboard & mouse sharing"
+        },
+        {
+            "name":"input_manager",
+            "value":"[TS_875316]_Keyboards"
+        },
+        {
+            "name":"ignore_description",
+            "value":"[TS_873718]_Multiple taps within the selected interval are treated as a single tap."
+        },
+        {
+            "name":"fp_start_bind_lock_dialog_ok",
+            "value":"[TS_879828]_Add"
+        },
+        {
+            "name":"display_screen_resolution_standard_summary",
+            "value":"[TS_876358]_Balances screen clarity with battery life (%1$s × %2$s)."
+        },
+        {
+            "name":"fingerprint_recognize_annouce_message_10",
+            "value":"[TS_878719]_%d. There is an extremely small probability that your fingerprint may be partially similar to that of another person."
+        },
+        {
+            "name":"display_screen_resolution_high_title",
+            "value":"[TS_876357]_High"
+        },
+        {
+            "name":"activating_usb_debug",
+            "value":"[TS_878189]_Enable debugging when WLAN is connected."
+        },
+        {
+            "name":"fingerprint_recognize_annouce_message_06",
+            "value":"[TS_878732]_<body><span style='normal'>You can delete fingerprint data at any time in Settings > Biometrics & screen lock > Fingerprint recognition. Once deleted, </span><span style='bold'>fingerprint data</span><span style='normal'> cannot be restored.</span></body>"
+        },
+        {
+            "name":"fingerprint_recognize_annouce_message_07",
+            "value":"[TS_878717]_Please note the following when using fingerprint recognition:"
+        },
+        {
+            "name":"fingerprint_new_info6",
+            "value":"[TS_878739]_%1$d. Fingerprint recognition verifies your identity based on the unique features of your fingerprint. By adding a fingerprint, you agree to the %2$s."
+        },
+        {
+            "name":"fingerprint_recognize_annouce_message_08",
+            "value":"[TS_878734]_%d. Fingerprint recognition is less secure than a strong PIN or password."
+        },
+        {
+            "name":"fingerprint_recognize_annouce_message_09",
+            "value":"[TS_878731]_%d. To prevent fingerprint data from being altered or enrolled without your authorization, exercise caution before allowing other people to use this device."
+        },
+        {
+            "name":"fingerprint_recognize_annouce_message_02",
+            "value":"[TS_878729]_<body><span style='normal'>You can use your fingerprint to </span><span style='bold'>unlock your device</span><span style='normal'>, </span><span style='bold'>unlock apps</span><span style='normal'>, </span><span style='bold'>autofill personal information</span><span style='normal'>, </span><span style='bold'>access features like Password Vault</span><span style='normal'>, </span><span style='bold'>confirm payments</span><span style='normal'>, and </span><span style='bold'>verify your identity in apps</span><span style='normal'>.</span></body>"
+        },
+        {
+            "name":"fingerprint_recognize_annouce_message_04",
+            "value":"[TS_878720]_You decide how you want to use the fingerprint recognition feature. For example, if you don't want to use your fingerprint to access Password Vault, you can disable this option from Settings. This won't affect other features that use fingerprint recognition."
+        },
+        {
+            "name":"fingerprint_recognize_annouce_message_05",
+            "value":"[TS_878738]_<body><span style='bold'>Fingerprint data</span><span style='normal'> cannot be moved out of this device through any form of data copies. For example, cross-device or cross-product backup and use are not supported.</span></body>"
+        },
+        {
+            "name":"medium",
+            "value":"[TS_873719]_Medium"
+        },
+        {
+            "name":"fingerprint_recognize_annouce_message_01",
+            "value":"[TS_878742]_<body><span style='normal'>Fingerprint recognition </span><span style='bold'>collects fingerprint data via your phone's fingerprint sensor</span><span style='normal'>. It then </span><span style='bold'>compares this data with previously stored fingerprint data</span><span style='normal'> to </span><span style='bold'>verify your identity.</span></body>"
+        },
+        {
+            "name":"permission_bundle_resources",
+            "value":"[TS_880026]_Obtains permissions on bundled resources"
+        },
+        {
+            "name":"not_set",
+            "value":"[TS_878040]_Not set"
+        },
+        {
+            "name":"user_owner",
+            "value":"[TS_869419]_Owner"
+        },
+        {
+            "name":"force_resizable_app_interfaces",
+            "value":"[TS_878723]_Force app interfaces to be resizable"
+        },
+        {
+            "name":"display_screen_resolution_low_title",
+            "value":"[TS_876364]_Low"
+        },
+        {
+            "name":"system_touch_feedback",
+            "value":"[TS_869845]_System haptics"
+        },
+        {
+            "name":"access_permission_full_stop",
+            "value":"[TS_876501]_Allow access to contacts and call logs"
+        },
+        {
+            "name":"shortest",
+            "value":"[TS_873716]_Shortest"
+        },
+        {
+            "name":"wlan_address_bssid",
+            "value":"[TS_878204]_WLAN address (BSSID)"
+        },
+        {
+            "name":"permission_reason_access_account",
+            "value":"[TS_879582]_Used to access the account interface"
+        },
+        {
+            "name":"select_input_method",
+            "value":"[TS_875344]_Select keyboard"
+        },
+        {
+            "name":"bluetooth_not_allowed",
+            "value":"[TS_873313]_Deny"
+        },
+        {
+            "name":"dialog_disable",
+            "value":"[TS_870972]_Disable"
+        },
+        {
+            "name":"permission_developer_mode",
+            "value":"[TS_880027]_Used to set developer mode permissions"
+        },
+        {
+            "name":"smart_hotspot_settings_title",
+            "value":"[TS_878727]_Smart hotspot"
+        },
+        {
+            "name":"display_screen_resolution_standard_title",
+            "value":"[TS_876366]_Standard"
+        },
+        {
+            "name":"input_personal_dictionary",
+            "value":"[TS_876502]_Personal dictionary"
+        },
+        {
+            "name":"face_fingerprint_settings_switch_title",
+            "value":"[TS_873317]_Autofill usernames & passwords"
+        },
+        {
+            "name":"ringtone_theme_prompt_text",
+            "value":"[TS_876499]_This feature is coming soon."
+        },
+        {
+            "name":"network_name_ssid",
+            "value":"[TS_878199]_Network name (SSID)"
+        },
+        {
+            "name":"debug_applications_category",
+            "value":"[TS_878733]_Apps"
+        },
+        {
+            "name":"input_cancle",
+            "value":"[TS_875340]_Cancel"
+        },
+        {
+            "name":"input_method_settings",
+            "value":"[TS_875352]_Input Method Settings"
+        },
+        {
+            "name":"system_update",
+            "value":"[TS_878728]_System update"
+        },
+        {
+            "name":"input_default",
+            "value":"[TS_875338]_Current keyboard"
+        },
+        {
+            "name":"link_wlan",
+            "value":"[TS_878206]_No WLAN connection. Connect to WLAN and try again."
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_phone",
+            "value":"[TS_876360]_Sync volume with phone"
+        },
+        {
+            "name":"display_screen_resolution_high_summary",
+            "value":"[TS_876363]_Maximum clarity (%1$s × %2$s)."
+        },
+        {
+            "name":"link_wireless",
+            "value":"[TS_878202]_Can't enable wireless debugging"
+        },
+        {
+            "name":"power_battery_fast_charing",
+            "value":"[TS_869404]_Fast charging"
+        },
+        {
+            "name":"power_battery_super_charing",
+            "value":"[TS_869405]_Super charging"
+        },
+        {
+            "name":"smart_charge_battery_health",
+            "value":"[TS_869407]_Battery health"
+        },
+        {
+            "name":"time_interval",
+            "value":"[TS_873705]_Time interval"
+        },
+        {
+            "name":"input_pointer_speed",
+            "value":"[TS_876497]_Pointer speed"
+        },
+        {
+            "name":"system_rollback_title",
+            "value":"[TS_870510]_System Rollback"
+        },
+        {
+            "name":"bluetooth_not_share",
+            "value":"[TS_873314]_Do not share"
+        },
+        {
+            "name":"ring_tone_settings_no_ringtone",
+            "value":"[TS_872807]_No ringtone"
+        },
+        {
+            "name":"enable_display_refresh_frequency_summary",
+            "value":"[TS_878737]_Show the current maximum refresh rate of the display."
+        },
+        {
+            "name":"bluetooth_other_device_group",
+            "value":"[TS_878722]_Other devices"
+        },
+        {
+            "name":"theme_settings_title",
+            "value":"[TS_869354]_Home screen & style"
+        },
+        {
+            "name":"ringtone_volume_title1",
+            "value":"[TS_872817]_Notifications"
+        },
+        {
+            "name":"smart_hotspot_connect_system_failed",
+            "value":"[TS_879580]_System internal error. Connection failed."
+        },
+        {
+            "name":"eye_Comfort_tick",
+            "value":"[TS_875334]_Eye comfort mode filters out blue light to help reduce eye fatigue. When this is on, the screen will have a yellow tint."
+        },
+        {
+            "name":"permission_global_search",
+            "value":"[TS_880028]_For Global Search Permissions"
+        },
+        {
+            "name":"permission_reason_access_bluetooth",
+            "value":"[TS_872799]_this is used to access bluetooth function"
+        },
+        {
+            "name":"only_operate_event_offer_feedback",
+            "value":"[TS_869847]_Vibrate for key system events and interactions."
+        },
+        {
+            "name":"nr_mode_configuration_summary",
+            "value":"[TS_869840]_Service availability depends on your carrier. This is for testing purposes only."
+        },
+        {
+            "name":"fp_start_bind_lock_dialog_cancel",
+            "value":"[TS_879827]_Cancel"
+        },
+        {
+            "name":"bt_pbap_pse_dialog_title",
+            "value":"[TS_873321]_Allow access to contacts and call log?"
+        },
+        {
+            "name":"set_search_terms",
+            "value":"[TS_875343]_Search"
+        },
+        {
+            "name":"smart_hotspot_connect_operation_failed",
+            "value":"[TS_879581]_Communication error. Connection failed."
+        },
+        {
+            "name":"celia_input",
+            "value":"[TS_875326]_Celia Keyboard"
+        },
+        {
+            "name":"fp_notice_message_info",
+            "value":"[TS_873322]_Your fingerprint may be less secure than a strong PIN or password. Fingerprint data is encrypted and only stored on your device."
+        },
+        {
+            "name":"support_wireless_commissioning",
+            "value":"[TS_878193]_When wireless debugging is enabled, USB debugging is not available."
+        },
+        {
+            "name":"force_resizable_app_interfaces_summary",
+            "value":"[TS_878730]_Make all app interfaces resizable for multi-window, regardless of manifest values."
+        },
+        {
+            "name":"time_there_placeholder",
+            "value":"[TS_881617]_%1$s %2$s %3$s"
+        },
+        {
+            "name":"default_ringtone",
+            "value":"[TS_880957]_Default"
+        },
+        {
+            "name":"battery_usage_details",
+            "value":"[TS_880966]_Battery usage details"
+        },
+        {
+            "name":"time_less_than_one_second",
+            "value":"[TS_881621]_< 1 sec"
+        },
+        {
+            "name":"time_less_than_one_minute",
+            "value":"[TS_881634]_< 1 min"
+        },
+        {
+            "name":"foreground_time_power",
+            "value":"[TS_880963]_Foreground activity/battery usage"
+        },
+        {
+            "name":"ringtone_theme",
+            "value":"[TS_880960]_Ringtone theme"
+        },
+        {
+            "name":"time_two_placeholder",
+            "value":"[TS_881618]_%1$s %2$s"
+        },
+        {
+            "name":"screen_on_time_today",
+            "value":"[TS_880962]_Screen-on time today"
+        },
+        {
+            "name":"background_time_power",
+            "value":"[TS_880955]_Background activity/battery usage"
+        },
+        {
+            "name":"start_time_to_end_time",
+            "value":"[TS_882049]_%1$s – %2$s"
+        },
+        {
+            "name":"time_and_power_consumption",
+            "value":"[TS_882048]_%1$s/%2$s"
+        },
+        {
+            "name":"time_hour_minute_second",
+            "value":"[TS_882052]_%1$s %2$s %3$s"
+        },
+        {
+            "name":"time_minute_second",
+            "value":"[TS_882053]_%1$s %2$s"
+        },
+        {
+            "name":"less_than_one_mah",
+            "value":"[TS_882047]_< 1 mAh"
+        },
+        {
+            "name":"time_hour_minute",
+            "value":"[TS_882051]_%1$s %2$s"
+        },
+        {
+            "name":"power_consumption_mah",
+            "value":"[TS_882050]_%d mAh"
+        },
+        {
+            "name":"fp_start_bind_lock_dialog_content_mixed",
+            "value":"[TS_883810]_Password has been set. Use your fingerprint for unlocking as well?"
+        },
+        {
+            "name":"no_equipment",
+            "value":"[TS_884382]_No devices"
+        },
+        {
+            "name":"no_application",
+            "value":"[TS_884383]_No apps"
+        },
+        {
+            "name":"fp_start_enroll_lock_dialog_content_number",
+            "value":"[TS_883809]_PIN has been set. Add a fingerprint as well?"
+        },
+        {
+            "name":"fp_start_bind_lock_dialog_content_number",
+            "value":"[TS_883812]_PIN has been set. Use your fingerprint for unlocking as well?"
+        },
+        {
+            "name":"fp_start_enroll_lock_dialog_content_mixed",
+            "value":"[TS_883811]_Password has been set. Add a fingerprint as well?"
+        },
+        {
+            "name":"projection_toggle_title",
+            "value":"[TS_895508]_ScreenCast"
+        },
+        {
+            "name":"wifi_delete",
+            "value":"[TS_896026]_Delete this network"
+        },
+        {
+            "name":"alarm_volume_title",
+            "value":"[TS_895509]_Alarms"
+        },
+        {
+            "name":"systemui_notification_settings",
+            "value":"[TS_907150]_Notifications & status bar"
+        },
+        {
+            "name":"app_info_live_view",
+            "value":"[TS_903747]_Live view"
+        },
+        {
+            "name":"signal_strength",
+            "value":"[TS_906036]_Signal strength"
+        },
+        {
+            "name":"mcc_mnc",
+            "value":"[TS_906013]_MCC, MNC"
+        },
+        {
+            "name":"elder_care_search_item_text_size",
+            "value":"[TS_907147]_Text size"
+        },
+        {
+            "name":"elder_care_enlarge_display_summary",
+            "value":"[TS_907155]_Increase legibility by enlarging onscreen elements."
+        },
+        {
+            "name":"enterprise_application_management",
+            "value":"[TS_907156]_Manage apps"
+        },
+        {
+            "name":"elder_care_search_item_big_font",
+            "value":"[TS_907154]_Large text"
+        },
+        {
+            "name":"sms_center_number",
+            "value":"[TS_906035]_SMS center number"
+        },
+        {
+            "name":"elder_care_search_item_easy",
+            "value":"[TS_907170]_Simple"
+        },
+        {
+            "name":"elders_mode_elderly_desc",
+            "value":"[TS_1058232]_Seniors"
+        },
+        {
+            "name":"network_information",
+            "value":"[TS_906003]_Network"
+        },
+        {
+            "name":"elder_care_search_item_larger_font",
+            "value":"[TS_907173]_Larger text"
+        },
+        {
+            "name":"enterprise_device_and_application_management",
+            "value":"[TS_907148]_Enterprise devices & apps"
+        },
+        {
+            "name":"elder_care_pure_display_summary",
+            "value":"[TS_907145]_Only show time, WLAN, mobile signal, and battery in the status bar."
+        },
+        {
+            "name":"elder_care_pure_display_summary_no_sim",
+            "value":"[TS_971635]_Only show time, WLAN, and battery in the status bar."
+        },
+        {
+            "name":"cell_id",
+            "value":"[TS_906004]_Cell ID"
+        },
+        {
+            "name":"default_account_summary",
+            "value":"[TS_911335]_Access Cloud, AppGallery, and more"
+        },
+        {
+            "name":"enterprise_device_management",
+            "value":"[TS_907162]_Manage devices"
+        },
+        {
+            "name":"elder_care_enlarge_display",
+            "value":"[TS_907167]_Display magnification"
+        },
+        {
+            "name":"mobile_network_type",
+            "value":"[TS_906024]_Mobile network type"
+        },
+        {
+            "name":"elder_care_desktop_layout",
+            "value":"[TS_907161]_Home screen layout"
+        },
+        {
+            "name":"elder_care_search_item_elder",
+            "value":"[TS_907151]_Senior"
+        },
+        {
+            "name":"elder_care_pure_display",
+            "value":"[TS_907163]_Simple display"
+        },
+        {
+            "name":"elder_care_search_item_font_weight",
+            "value":"[TS_907152]_Text weight"
+        },
+        {
+            "name":"elder_care_search_item_simplify",
+            "value":"[TS_907149]_Simplified"
+        },
+        {
+            "name":"permission_reason_location",
+            "value":"[TS_918715]_This is used to obtain device Cell ID, MCC, and MNC."
+        },
+        {
+            "name":"permission_reason_approximately_location",
+            "value":"[TS_918716]_Used to obtain device fuzzy position information."
+        },
+        {
+            "name":"wake_screen_pick_up",
+            "value":"[TS_917603]_Raise to wake"
+        },
+        {
+            "name":"screen_zoom_and_text",
+            "value":"[TS_914962]_Text & display size"
+        },
+        {
+            "name":"display_mode_mail_content_3",
+            "value":"[TS_914938]_Wow, where's this? Looks amazing."
+        },
+        {
+            "name":"debug_redraw_cache_hit_detection_summary",
+            "value":"[TS_916872]_Identify UI elements that do not hit the RenderGroup cache."
+        },
+        {
+            "name":"debug_overdraw",
+            "value":"[TS_916866]_Overdraw detection"
+        },
+        {
+            "name":"debug_redraw_cache_hit_detection",
+            "value":"[TS_916868]_Cache hit detection"
+        },
+        {
+            "name":"debug_redraw_area",
+            "value":"[TS_916869]_Show redraw refresh area"
+        },
+        {
+            "name":"system_title",
+            "value":"[TS_918713]_System"
+        },
+        {
+            "name":"multi_device_collaboration",
+            "value":"[TS_918717]_More connectivity options"
+        },
+        {
+            "name":"debug_overdraw_summary",
+            "value":"[TS_916870]_Mark overdraw areas with different colors based on the number of overdraw events."
+        },
+        {
+            "name":"wake_screen_double_click",
+            "value":"[TS_917591]_Double-tap to wake"
+        },
+        {
+            "name":"debug_redraw_area_summary",
+            "value":"[TS_916873]_Flash the refreshed area during redrawing."
+        },
+        {
+            "name":"wake_screen",
+            "value":"[TS_917598]_Wake screen"
+        },
+        {
+            "name":"mouse_settings_title",
+            "value":"[TS_919765]_Mouse"
+        },
+        {
+            "name":"mouse_round_shape",
+            "value":"[TS_919761]_Dot"
+        },
+        {
+            "name":"mouse_arrow_shape",
+            "value":"[TS_919760]_Arrow"
+        },
+        {
+            "name":"mouse_intelligent_change",
+            "value":"[TS_917288]_Smart color"
+        },
+        {
+            "name":"mouse_pointer_color",
+            "value":"[TS_917289]_Pointer color"
+        },
+        {
+            "name":"mouse_pointer_size",
+            "value":"[TS_917290]_Pointer size"
+        },
+        {
+            "name":"mouse_pointer_style",
+            "value":"[TS_917287]_Pointer style"
+        },
+        {
+            "name":"cursor_tracking_speed",
+            "value":"[TS_917286]_Pointer speed"
+        },
+        {
+            "name":"mouse_intelligent_change_desc",
+            "value":"[TS_917285]_When this is on, the pointer's color and form will change seamlessly based on the context."
+        },
+        {
+            "name":"debug_freeze_detect",
+            "value":"[TS_919766]_Screen freezing information log"
+        },
+        {
+            "name":"motion_off",
+            "value":"[TS_914452]_Off"
+        },
+        {
+            "name":"system_color_change",
+            "value":"[TS_920696]_true"
+        },
+        {
+            "name":"motion_on",
+            "value":"[TS_914453]_On"
+        },
+        {
+            "name":"motion_swing_scan_code_title_change",
+            "value":"[TS_914454]_Smart scan"
+        },
+        {
+            "name":"debug_leak_detect_summary",
+            "value":"[TS_919763]_Generate logs when system resource leakage is detected."
+        },
+        {
+            "name":"elder_care_scam",
+            "value":"[TS_920698]_Block scam calls"
+        },
+        {
+            "name":"smart_multi_window",
+            "value":"[TS_924717]_Multi-window"
+        },
+        {
+            "name":"MultiWindow_title",
+            "value":"[TS_995726]_Multi-window"
+        },
+        {
+            "name":"MultiWindow_dock_switch_title",
+            "value":"[TS_995730]_Multi-window dock"
+        },
+        {
+            "name":"MultiWindow_dock_switch_contents",
+            "value":"[TS_995732]_Swipe in from the edge of the screen to open the dock."
+        },
+        {
+            "name":"MultiWindow_pip_switch_title",
+            "value":"[TS_995722]_Picture-in-picture"
+        },
+        {
+            "name":"MultiWindow_pip_switch_desc",
+            "value":"[TS_995716]_When this is on, video and MeeTime calls will continue in a mini window when you open another app or return to the home screen."
+        },
+        {
+            "name":"MultiWindow_change_views_title",
+            "value":"[TS_995724]_Quickly change views"
+        },
+        {
+            "name":"MultiWindow_change_views_contents",
+            "value":"[TS_995728]_Swipe to the top right for a floating window or the top left for split screen."
+        },
+        {
+            "name":"MultiWindow_floating_windows_title",
+            "value":"[TS_995731]_Floating windows"
+        },
+        {
+            "name":"MultiWindow_floating_windows_contents",
+            "value":"[TS_995720]_Open apps in floating windows and use gestures to minimize, maximize, or close them."
+        },
+        {
+            "name":"MultiWindow_dock_title",
+            "value":"[TS_995718]_Multi-window dock"
+        },
+        {
+            "name":"MultiWindow_dock_contents",
+            "value":"[TS_995729]_Swipe in from the edge to open the dock. Tap an app to open a floating window. Or drag an app into the screen to enter split-screen view."
+        },
+        {
+            "name":"MultiWindow_split_screen_title",
+            "value":"[TS_995723]_Split-screen view"
+        },
+        {
+            "name":"MultiWindow_split_screen_contents",
+            "value":"[TS_995727]_Drag the bar at the top of a window to turn it into a floating window or switch back to split-screen view. Resize by dragging the center bar."
+        },
+        {
+            "name":"MultiWindow_Mid_View_title",
+            "value":"[TS_995725]_Multitask view"
+        },
+        {
+            "name":"MultiWindow_Mid_View_contents",
+            "value":"[TS_995721]_Swipe up from the bottom or resize the windows to enter Multitask view."
+        },
+        {
+            "name":"system_services_title",
+            "value":"[TS_922167]_System Services Sensitive Behaviors Statement"
+        },
+        {
+            "name":"debug_leak_detect",
+            "value":"[TS_919762]_System resource leak log"
+        },
+        {
+            "name":"motion_swing_pay_title_change",
+            "value":"[TS_917486]_Smart pay"
+        },
+        {
+            "name":"debug_system_trace",
+            "value":"[TS_919764]_System tracing"
+        },
+        {
+            "name":"continue_title",
+            "value":"[TS_921174]_Handover"
+        },
+        {
+            "name":"keyboard_accessibility",
+            "value":"[TS_930546]_Keyboard assistance"
+        },
+        {
+            "name":"shortcut_helper_summary",
+            "value":"[TS_930549]_Display available shortcuts."
+        },
+        {
+            "name":"product_info",
+            "value":"[TS_930552]_Device information"
+        },
+        {
+            "name":"firmware_version",
+            "value":"[TS_930553]_Firmware version"
+        },
+        {
+            "name":"keyboard",
+            "value":"[TS_924302]_Keyboard"
+        },
+        {
+            "name":"firmware_upgrade",
+            "value":"[TS_930545]_Firmware update"
+        },
+        {
+            "name":"shortcut_helper",
+            "value":"[TS_930548]_Keyboard shortcuts"
+        },
+        {
+            "name":"fingerprint_quick_function",
+            "value":"[TS_928539]_Smart control"
+        },
+        {
+            "name":"double_touch_sliding_fingerprint_key",
+            "value":"[TS_928541]_Double-tap the fingerprint sensor."
+        },
+        {
+            "name":"bluetooth_paired_devices",
+            "value":"[TS_922987]_Paired devices"
+        },
+        {
+            "name":"wake_screen_double_click_descripe",
+            "value":"[TS_937039]_Tap the screen twice to wake it."
+        },
+        {
+            "name":"wake_screen_pick_up_pad",
+            "value":"[TS_937040]_Raise to wake"
+        },
+        {
+            "name":"wake_screen_pick_up_descripe",
+            "value":"[TS_937041]_Raise your device to wake the screen."
+        },
+        {
+            "name":"Learn_more",
+            "value":"[TS_930555]_Learn more"
+        },
+        {
+            "name":"display_battery_percentage",
+            "value":"[TS_930556]_Show battery percentage"
+        },
+        {
+            "name":"system_navigation",
+            "value":"[TS_927762]_System navigation"
+        },
+        {
+            "name":"wifi_install_certificates",
+            "value":"[TS_928568]_Install certificates"
+        },
+        {
+            "name":"vapp_pencil_reverse_charge",
+            "value":"[TS_933246]_Pencil Charging"
+        },
+        {
+            "name":"vapp_keyboard_reverse_charge",
+            "value":"[TS_933247]_Keyboard Charging"
+        },
+        {
+            "name":"vapp_flashlight",
+            "value":"[TS_941843]_Flashlight"
+        },
+        {
+            "name":"select_ringtone",
+            "value":"[TS_943670]_Select a ringtone"
+        },
+        {
+            "name":"current_ringtone",
+            "value":"[TS_943669]_Current ringtone"
+        },
+        {
+            "name":"local_music",
+            "value":"[TS_943668]_Music on device"
+        },
+        {
+            "name":"online_music",
+            "value":"[TS_943671]_Online ringtones"
+        },
+        {
+            "name":"vapp_screen_off_aod",
+            "value":"[TS_941845]_Always On Display"
+        },
+        {
+            "name":"vapp_wifi_ap",
+            "value":"[TS_941844]_Personal hotspot"
+        },
+        {
+            "name":"create_clone_app",
+            "value":"[TS_934570]_Create a duplicate"
+        },
+        {
+            "name":"del_clone_app_bad_warning",
+            "value":"[TS_934563]_This duplicate and its data will be permanently deleted."
+        },
+        {
+            "name":"creating_clone_app",
+            "value":"[TS_934564]_Creating duplicate app…"
+        },
+        {
+            "name":"advanced_level",
+            "value":"[TS_930557]_Advanced"
+        },
+        {
+            "name":"screenshot_prompt_tone",
+            "value":"[TS_930554]_Screenshot sound"
+        },
+        {
+            "name":"no_support_clone_app",
+            "value":"[TS_934566]_No supported apps"
+        },
+        {
+            "name":"cancel_del_clone_app",
+            "value":"[TS_934567]_Cancel"
+        },
+        {
+            "name":"confirm_del_clone_app",
+            "value":"[TS_934561]_Delete \"%s\"?"
+        },
+        {
+            "name":"clone_app_create_success",
+            "value":"[TS_934560]_%s added to home screen."
+        },
+        {
+            "name":"screen_lock_tone",
+            "value":"[TS_930550]_Screen locking sound"
+        },
+        {
+            "name":"no_sound",
+            "value":"[TS_981981]_None"
+        },
+        {
+            "name":"dial_Tone",
+            "value":"[TS_981982]_Keypad tones"
+        },
+        {
+            "name":"vibrate_when_ring",
+            "value":"[TS_981980]_Vibrate when ringing"
+        },
+        {
+            "name":"music_melodies",
+            "value":"[TS_981979]_Melody"
+        },
+        {
+            "name":"clipboard_title",
+            "value":"[TS_942409]_Cross-device clipboard"
+        },
+        {
+            "name":"same_with_main_space_password",
+            "value":"[TS_939345]_Can't be the same as your screen lock"
+        },
+        {
+            "name":"same_with_main_space_pin",
+            "value":"[TS_939344]_Can't be the same as your screen lock"
+        },
+        {
+            "name":"permission_uninstall_clone_app",
+            "value":"[TS_942817]_Used to delete a clone app"
+        },
+        {
+            "name":"same_with_private_space_password",
+            "value":"[TS_939342]_Can't be the same as the PrivateSpace password"
+        },
+        {
+            "name":"permission_install_clone_app",
+            "value":"[TS_942816]_Used to create a clone app"
+        },
+        {
+            "name":"same_with_private_space_pin",
+            "value":"[TS_939343]_Can't be the same as the PrivateSpace PIN"
+        },
+        {
+            "name":"access_permission_stop",
+            "value":"[TS_940994]_Allow this device to access contacts"
+        },
+        {
+            "name":"enable_dual_wlan_cell",
+            "value":"[TS_924673]_Simultaneous WLAN and mobile data"
+        },
+        {
+            "name":"enable_switch_card_detail",
+            "value":"[TS_924668]_Switch temporarily to SIM %1$d's data when the default connection is poor."
+        },
+        {
+            "name":"intelligence_network_statement_oobe",
+            "value":"[TS_924669]_Network acceleration intelligently selects WLAN or mobile data based on the quality of your current network connection. Using this service may incur additional fees. You can disable this in Settings > Mobile network > Network acceleration."
+        },
+        {
+            "name":"enable_wlan_to_cell",
+            "value":"[TS_924671]_Auto-switch to mobile data"
+        },
+        {
+            "name":"enable_switch_card",
+            "value":"[TS_924672]_Auto-switch between SIMs"
+        },
+        {
+            "name":"enable_smart_cloud_acc",
+            "value":"[TS_924670]_Allow smart cloud acceleration"
+        },
+        {
+            "name":"switch_acc",
+            "value":"[TS_924677]_Network switching"
+        },
+        {
+            "name":"concurrent_acc",
+            "value":"[TS_924676]_Simultaneous connections"
+        },
+        {
+            "name":"enable_wlan_to_cell_detail",
+            "value":"[TS_924678]_Switch temporarily to mobile data when the WLAN connection is poor."
+        },
+        {
+            "name":"touchpad",
+            "value":"[TS_924315]_Touchpad"
+        },
+        {
+            "name":"single_finger_light_dot",
+            "value":"[TS_944847]_Tap with one finger."
+        },
+        {
+            "name":"two_finger_press_or_lightly_tap",
+            "value":"[TS_944845]_Press or tap with two fingers."
+        },
+        {
+            "name":"touchpad_gesture_tap",
+            "value":"[TS_944848]_Tap to click"
+        },
+        {
+            "name":"touchpad_gesture_secondary_click",
+            "value":"[TS_944846]_Secondary click (Right-click)"
+        },
+        {
+            "name":"dialog_continue_to_update",
+            "value":"[TS_947855]_Change now"
+        },
+        {
+            "name":"drawing_pattern_password",
+            "value":"[TS_947856]_Draw unlock pattern"
+        },
+        {
+            "name":"pattern_password_error",
+            "value":"[TS_947854]_Incorrect pattern. Please redraw."
+        },
+        {
+            "name":"pattern_password_change_warn_message",
+            "value":"[TS_947853]_Pattern unlock is no longer supported. You can set a %1$d-digit PIN, a %2$d-digit PIN, a custom PIN, or an alphanumeric password instead."
+        },
+        {
+            "name":"shortKey_Enable_Setting",
+            "value":"[TS_949906]_You can change this at any time in Settings > Accessibility features > Accessibility shortcut."
+        },
+        {
+            "name":"bluetooth_has_opened",
+            "value":"[TS_949599]_Bluetooth is currently enabled."
+        },
+        {
+            "name":"bluetooth_has_closed",
+            "value":"[TS_949600]_Bluetooth is currently disabled."
+        },
+        {
+            "name":"shortKey_lock_screen",
+            "value":"[TS_949907]_Access when locked"
+        },
+        {
+            "name":"shortKey_Enable",
+            "value":"[TS_949905]_Enable accessibility shortcut?"
+        },
+        {
+            "name":"enter_lock_screen_pin_title",
+            "value":"[TS_953985]_Enter lock screen PIN"
+        },
+        {
+            "name":"secure_chip_pin_set_fail",
+            "value":"[TS_953977]_Unable to set PIN."
+        },
+        {
+            "name":"enter_current_lock_screen_pin_title",
+            "value":"[TS_953978]_Enter lock screen PIN"
+        },
+        {
+            "name":"wifi_Open_Logs__summary",
+            "value":"[TS_931872]_Increase WLAN logging level (show per SSID RSSI in WLAN picker)."
+        },
+        {
+            "name":"enter_password_again_title",
+            "value":"[TS_953986]_Enter the password again"
+        },
+        {
+            "name":"wifi_Open_Logs",
+            "value":"[TS_931874]_WLAN detailed log recording"
+        },
+        {
+            "name":"password_repeat_error_title",
+            "value":"[TS_953983]_Passwords do not match. Please try again."
+        },
+        {
+            "name":"intelligence_network_oobe_summary",
+            "value":"[TS_949115]_This feature switches your data connection between SIMs based on your network connection quality. If you are using dual SIMs, enabling this feature may increase data usage on both SIMs. You can disable this at any time in Settings > Mobile network > SIM management."
+        },
+        {
+            "name":"enable_cloud_acc_network",
+            "value":"[TS_949116]_Cloud acceleration"
+        },
+        {
+            "name":"enable_cell_acc_network",
+            "value":"[TS_949111]_Data boost"
+        },
+        {
+            "name":"intelligence_network_oobe",
+            "value":"[TS_949112]_Smart data switching"
+        },
+        {
+            "name":"enable_cell_acc_network_summary",
+            "value":"[TS_949113]_Automatically switch to mobile data or use both data and WLAN when the network connection is poor."
+        },
+        {
+            "name":"forced_landscape_description",
+            "value":"[TS_950928]_Force apps to display in landscape orientation, even if they aren't optimized for it."
+        },
+        {
+            "name":"forced_landscape_enable",
+            "value":"[TS_950929]_On"
+        },
+        {
+            "name":"forced_landscape_disenable",
+            "value":"[TS_950931]_Off"
+        },
+        {
+            "name":"forced_landscape",
+            "value":"[TS_950930]_App scaling options"
+        },
+        {
+            "name":"fingerprint_animation_waterwave",
+            "value":"[TS_952470]_Ripples"
+        },
+        {
+            "name":"fingerprint_animation_firework",
+            "value":"[TS_952465]_Fireworks"
+        },
+        {
+            "name":"out_screen_fingerprint_identified_description",
+            "value":"[TS_952468]_Place your finger on the sensor. The corresponding fingerprint will be highlighted."
+        },
+        {
+            "name":"fingerprint_animation_3d",
+            "value":"[TS_952464]_Planet"
+        },
+        {
+            "name":"fingerprint_animation",
+            "value":"[TS_952466]_Fingerprint animation"
+        },
+        {
+            "name":"fingerprint_identified_description",
+            "value":"[TS_952467]_Press any finger on the sensor zone. The recognized fingerprint will be highlighted."
+        },
+        {
+            "name":"fingerprint_animation_nebula",
+            "value":"[TS_952469]_Swirl"
+        },
+        {
+            "name":"zoom_gesture_help",
+            "value":"[TS_954783]_About"
+        },
+        {
+            "name":"certification_query",
+            "value":"[TS_958290]_Check network access credentials"
+        },
+        {
+            "name":"zoom_gesture",
+            "value":"[TS_954786]_Magnification"
+        },
+        {
+            "name":"zoom_gesture_help_summary",
+            "value":"[TS_954785]_Zoom in or out by tapping the screen %1$s times in a row.\n\nWhen zoomed in, you can:\n\n• Scroll: Swipe %2$s fingers across the screen.\n\n• Adjust zoom level: Pinch with %3$s fingers.\n\nNote: When this feature is on, the responsiveness of Phone, Calculator, and other apps may be affected."
+        },
+        {
+            "name":"certification_query_content",
+            "value":"[TS_958288]_This service will obtain your device's IMEI (or MEID), NAL number and identifier, and device model. These will be uploaded to the Ministry of Industry and Information Technology of the People's Republic of China for authentication. An Internet connection is required to use this service."
+        },
+        {
+            "name":"agree",
+            "value":"[TS_958289]_OK"
+        },
+        {
+            "name":"quickly_access_notepad",
+            "value":"[TS_948185]_Quick note"
+        },
+        {
+            "name":"dialog_enable",
+            "value":"[TS_951013]_Enable"
+        },
+        {
+            "name":"model_name",
+            "value":"[TS_959260]_Model name"
+        },
+        {
+            "name":"storage_photo",
+            "value":"[TS_942686]_Photos"
+        },
+        {
+            "name":"storage_music",
+            "value":"[TS_942682]_Music"
+        },
+        {
+            "name":"storage_system_data_other_users",
+            "value":"[TS_942679]_Other users"
+        },
+        {
+            "name":"storage_app_data_size",
+            "value":"[TS_942681]_App data"
+        },
+        {
+            "name":"storage_app_sizes",
+            "value":"[TS_942687]_Size"
+        },
+        {
+            "name":"storage_app_last_used",
+            "value":"[TS_942684]_Last used"
+        },
+        {
+            "name":"storage_app_sort_by",
+            "value":"[TS_942685]_Sort by"
+        },
+        {
+            "name":"storage_system_data_header",
+            "value":"[TS_942690]_System data"
+        },
+        {
+            "name":"storage_system_data_footer",
+            "value":"[TS_942683]_Other system resources include caches, logs, and resources required for system operation. This value changes depending on how you use your device."
+        },
+        {
+            "name":"storage_system_data_system",
+            "value":"[TS_942691]_System"
+        },
+        {
+            "name":"storage_system_data_other_system_resources",
+            "value":"[TS_942688]_Other system resources"
+        },
+        {
+            "name":"storage_other",
+            "value":"[TS_942678]_Other"
+        },
+        {
+            "name":"storage_app_clear_data",
+            "value":"[TS_942689]_Go to %s to free up space"
+        },
+        {
+            "name":"storage_system",
+            "value":"[TS_942680]_System"
+        },
+        {
+            "name":"storage_app_remove",
+            "value":"[TS_942692]_Uninstall app"
+        },
+        {
+            "name":"storage_calculating_size",
+            "value":"[TS_942677]_Calculating…"
+        },
+        {
+            "name":"load_more_data",
+            "value":"[TS_960749]_More"
+        },
+        {
+            "name":"app_uninstall_confirm",
+            "value":"[TS_954784]_Uninstall %s?"
+        },
+        {
+            "name":"sleep_notification_enable",
+            "value":"[TS_966614]_Notifications during sleep"
+        },
+        {
+            "name":"out_finger_dialog_message",
+            "value":"[TS_968871]_Fingerprint recognition verifies your identity based on the unique features of your fingerprint. By adding a fingerprint, you agree to the %s."
+        },
+        {
+            "name":"close_lock_screen_password_dialog_warning_message_highSecurity1",
+            "value":"[TS_966380]_This will also disable fingerprint recognition and delete your fingerprint data. To protect your money, bank cards you've added in Wallet will not be available."
+        },
+        {
+            "name":"close_lock_screen_password_dialog_warning_message_highSecurity",
+            "value":"[TS_966379]_If you disable your screen lock, your personal data can be viewed and used by anyone who has access to this device. To protect your money, bank cards you've added in Wallet will not be available."
+        },
+        {
+            "name":"font_manage_summary",
+            "value":"[TS_966368]_Install and manage fonts used in apps."
+        },
+        {
+            "name":"weak_password_dialog_content_with_wallet_card",
+            "value":"[TS_966374]_To protect your Wallet and digital assets, your PIN can't be made up of repeating or consecutive numbers."
+        },
+        {
+            "name":"font_manage",
+            "value":"[TS_966372]_Font manager"
+        },
+        {
+            "name":"close_lock_screen_password_dialog_warning_message_highSecurity2",
+            "value":"[TS_966373]_This will also disable facial recognition and delete your facial data. To protect your money, bank cards you've added in Wallet will not be available."
+        },
+        {
+            "name":"close_lock_screen_password_dialog_warning_message_highSecurity3",
+            "value":"[TS_966384]_This will also disable face and fingerprint recognition, and delete all biometric data. To protect your money, bank cards you've added in Wallet will not be available."
+        },
+        {
+            "name":"reset_net_detail_content_with_nearlink",
+            "value":"[TS_967714]_• WLAN\n• Mobile data\n• Bluetooth"
+        },
+        {
+            "name":"super_device_title",
+            "value":"[TS_973938]_Super Device"
+        },
+        {
+            "name":"collaborationfwk_name",
+            "value":"[TS_975921]_Device interconnectivity"
+        },
+        {
+            "name":"more_battery_setting_title",
+            "value":"[TS_943519]_More battery settings"
+        },
+        {
+            "name":"pad_smart_power_save_title",
+            "value":"[TS_943517]_Smart power conserve"
+        },
+        {
+            "name":"distributed_connect_title",
+            "value":"[TS_971567]_Communication sharing"
+        },
+        {
+            "name":"screen_low_frequency_flash",
+            "value":"[TS_968872]_Anti-flicker mode"
+        },
+        {
+            "name":"eye_timed_on",
+            "value":"[TS_968867]_Scheduled"
+        },
+        {
+            "name":"eye_timed_warn",
+            "value":"[TS_968870]_Start time can't be the same as the end time"
+        },
+        {
+            "name":"start_time",
+            "value":"[TS_968873]_Start"
+        },
+        {
+            "name":"end_time",
+            "value":"[TS_968862]_End"
+        },
+        {
+            "name":"elders_mode_harass_go_to_settings",
+            "value":"[TS_975475]_Go to Settings"
+        },
+        {
+            "name":"elders_mode_harass_tips",
+            "value":"[TS_975474]_Online number identification and blocking are disabled. %s."
+        },
+        {
+            "name":"cloud_print",
+            "value":"[TS_971209]_Cloud print"
+        },
+        {
+            "name":"printer_found_tip",
+            "value":"[TS_971195]_Printers need to be on the same WLAN network as this device, or have WLAN Direct enabled."
+        },
+        {
+            "name":"state_idle",
+            "value":"[TS_971207]_Idle"
+        },
+        {
+            "name":"connection_method",
+            "value":"[TS_971197]_Connection method"
+        },
+        {
+            "name":"delete_device",
+            "value":"[TS_971210]_Delete device"
+        },
+        {
+            "name":"default_printer",
+            "value":"[TS_971201]_Default printer"
+        },
+        {
+            "name":"device_name",
+            "value":"[TS_971205]_Device name"
+        },
+        {
+            "name":"driver_version",
+            "value":"[TS_971194]_Driver version"
+        },
+        {
+            "name":"last_used_printer",
+            "value":"[TS_971208]_Last used printer"
+        },
+        {
+            "name":"del_confirm_info",
+            "value":"[TS_971198]_Are you sure you want to delete this device?"
+        },
+        {
+            "name":"set_as_default_printer",
+            "value":"[TS_971212]_Set as default printer"
+        },
+        {
+            "name":"max_char_limit",
+            "value":"[TS_971199]_Length limit reached"
+        },
+        {
+            "name":"add_printer",
+            "value":"[TS_971200]_Add printer"
+        },
+        {
+            "name":"no_available_printer",
+            "value":"[TS_971206]_None available"
+        },
+        {
+            "name":"connect_failed_text",
+            "value":"[TS_971294]_Connection failed. Please check your printer settings."
+        },
+        {
+            "name":"state_busy",
+            "value":"[TS_971204]_Busy"
+        },
+        {
+            "name":"state_offline",
+            "value":"[TS_971203]_Offline"
+        },
+        {
+            "name":"printer",
+            "value":"[TS_971202]_Printers"
+        },
+        {
+            "name":"device_dialog_ok",
+            "value":"[TS_971211]_OK"
+        },
+        {
+            "name":"added_devices",
+            "value":"[TS_971196]_Added devices"
+        },
+        {
+            "name":"no_printer_found_tip",
+            "value":"[TS_971213]_Enable WLAN first to search for the printer."
+        },
+        {
+            "name":"shared_network_disconnect",
+            "value":"[TS_977528]_Disconnect"
+        },
+        {
+            "name":"storage_system_data_other_resources",
+            "value":"[TS_979097]_Other resources"
+        },
+        {
+            "name":"storage_system_data_footer_and_other_users",
+            "value":"[TS_979096]_Other resources include caches, logs, and resources used by other user accounts, as well as those required for system operation. This value changes depending on how you use your device."
+        },
+        {
+            "name":"Ai_bar_back",
+            "value":"[TS_979742]_Go back"
+        },
+        {
+            "name":"Ai_bar_gesture_back_detail",
+            "value":"[TS_979741]_Swipe in from the left or right edge to return to the previous screen."
+        },
+        {
+            "name":"Ai_bar_return_home",
+            "value":"[TS_979734]_Go home"
+        },
+        {
+            "name":"Ai_bar_return_home_detail",
+            "value":"[TS_979733]_Swipe up from the bottom to go to the home screen."
+        },
+        {
+            "name":"Ai_bar_recent",
+            "value":"[TS_979745]_View recent tasks"
+        },
+        {
+            "name":"Ai_bar_recent_detail",
+            "value":"[TS_979743]_Swipe up from the bottom and hold to view recent tasks."
+        },
+        {
+            "name":"Ai_bar_vassistant_dialogue",
+            "value":"[TS_979744]_Celia Chat"
+        },
+        {
+            "name":"Ai_bar_vassistant",
+            "value":"[TS_979739]_Touch & hold the navigation bar to talk to Celia."
+        },
+        {
+            "name":"drag_to_celia",
+            "value":"[TS_979735]_Drag to Celia"
+        },
+        {
+            "name":"drag_to_celia_detail",
+            "value":"[TS_979746]_Touch & hold an item until it starts floating, then drag it to the bottom."
+        },
+        {
+            "name":"Ai_bar_back_click_navigation",
+            "value":"[TS_979738]_Tap to go back"
+        },
+        {
+            "name":"Ai_bar_vassistant_dialogue_longpress",
+            "value":"[TS_979737]_Touch & hold for Celia"
+        },
+        {
+            "name":"Ai_bar",
+            "value":"[TS_979740]_Navigation bar"
+        },
+        {
+            "name":"Ai_bar_setting",
+            "value":"[TS_979736]_System navigation"
+        },
+        {
+            "name":"wake_screen_double_click_subtitle",
+            "value":"[TS_976647]_When this is off, Quick note is unavailable."
+        },
+        {
+            "name":"same_with_private_space_pin_tip",
+            "value":"[TS_975048]_You've used this PIN before"
+        },
+        {
+            "name":"same_with_private_space_password_tip",
+            "value":"[TS_975046]_You've used this password before"
+        },
+        {
+            "name":"update_password_type_switch_user_title",
+            "value":"[TS_975045]_Quick access unavailable"
+        },
+        {
+            "name":"update_password_type_switch_user_tip2",
+            "value":"[TS_975047]_Quick access from the lock screen is only available when the same screen lock type is used for both PrivateSpace and the system."
+        },
+        {
+            "name":"update_password_type_switch_user_tip1",
+            "value":"[TS_975044]_If you change your screen lock type, you won't be able to enter your PrivateSpace from the lock screen anymore. Continue anyway?\n"
+        },
+        {
+            "name":"ringer_mode_vibrate",
+            "value":"[TS_979578]_Vibrate mode selected"
+        },
+        {
+            "name":"always_allow_debug",
+            "value":"[TS_878188]_Always trust"
+        },
+        {
+            "name":"clear_history_search",
+            "value":"[TS_979585]_Clear search history"
+        },
+        {
+            "name":"font_adjustment_preview",
+            "value":"[TS_979801]_Font adjustment preview"
+        },
+        {
+            "name":"ringer_mode_normal",
+            "value":"[TS_979584]_Sound mode selected"
+        },
+        {
+            "name":"ringer_mode_slient",
+            "value":"[TS_979581]_Silent mode selected"
+        },
+        {
+            "name":"toggle_to_dark",
+            "value":"[TS_979573]_Reduce brightness"
+        },
+        {
+            "name":"machine_name",
+            "value":"[TS_878207]_Device name:\n%1$s"
+        },
+        {
+            "name":"toggle_to_bright",
+            "value":"[TS_979577]_Increase brightness"
+        },
+        {
+            "name":"all_font_list_title",
+            "value":"[TS_966383]_All fonts"
+        },
+        {
+            "name":"swing_to_share_title",
+            "value":"[TS_971486]_Grab & drop"
+        },
+        {
+            "name":"close_stereo_enhancement",
+            "value":"[TS_988720]_Disable stereo enhancement"
+        },
+        {
+            "name":"debug_media_category",
+            "value":"[TS_988721]_Media"
+        },
+        {
+            "name":"parameter_version_title",
+            "value":"[TS_813042]_Parameter version"
+        },
+        {
+            "name":"fingerprint_recognize_annouce_message_02_pad",
+            "value":"[TS_999116]_<body><span style='normal'>You can use your fingerprint to </span><span style='bold'>unlock your device</span><span style='normal'>, </span><span style='bold'>autofill personal information</span><span style='normal'>, </span><span style='bold'>access features like Password Vault</span><span style='normal'>, </span><span style='bold'>access hidden photos and videos</span><span style='normal'>, and </span><span style='bold'>verify your identity in apps</span><span style='normal'>.</span></body>"
+        },
+        {
+            "name":"fingerprint_recognize_annouce_message_05_pad",
+            "value":"[TS_999119]_<body><span style='bold'>Fingerprint data</span><span style='normal'> cannot be moved off this device in any way, such as via a backup.</span></body>"
+        },
+        {
+            "name":"fingerprint_recognize_annouce_message_06_pad",
+            "value":"[TS_999120]_<body><span style='normal'>You can delete fingerprint data at any time in Settings > Biometrics & screen lock > Fingerprint recognition. Once deleted, </span><span style='bold'>fingerprint data</span><span style='normal'> cannot be restored.</span></body>"
+        },
+        {
+            "name":"fingerprint_recognize_annouce_message_08_pad",
+            "value":"[TS_999121]_%d. Fingerprint recognition is less secure than a strong PIN or password."
+        },
+        {
+            "name":"fingerprint_recognize_annouce_message_01_pad",
+            "value":"[TS_999118]_<body><span style='normal'>Fingerprint recognition </span><span style='bold'>verifies your identity by comparing fingerprints scanned via the fingerprint sensor with previously stored fingerprint data.</span></body>"
+        },
+        {
+            "name":"storage_other_data_header",
+            "value":"[TS_995122]_Other data"
+        },
+        {
+            "name":"storage_local_backup_data",
+            "value":"[TS_995129]_Local backup data"
+        },
+        {
+            "name":"storage_upgrading_data",
+            "value":"[TS_995125]_Data pending restore"
+        },
+        {
+            "name":"storage_local_backup_data_guide",
+            "value":"[TS_995128]_To view data you've backed up to this device, go to Settings > System > Backup & Restore > Internal storage. %s"
+        },
+        {
+            "name":"storage_local_backup_data_tip",
+            "value":"[TS_995130]_This data will be permanently lost if you delete it from your device."
+        },
+        {
+            "name":"storage_upgrading_data_tip",
+            "value":"[TS_995123]_This is cached app data yet to be restored following the system update. You can clear this data as follows:"
+        },
+        {
+            "name":"storage_upgrading_data_tip_two",
+            "value":"[TS_995124]_%d. Apps that are still loading: You can view which apps are still being loaded in the Notification Panel. Cached data is automatically cleared once apps finish loading."
+        },
+        {
+            "name":"storage_local_backup_data_view",
+            "value":"[TS_995126]_View details"
+        },
+        {
+            "name":"storage_backup_time",
+            "value":"[TS_995131]_Backup time: %s"
+        },
+        {
+            "name":"storage_other_data_footer",
+            "value":"[TS_995127]_Includes caches, logs, user data, and resources required for system operation. This value changes depending on how you use your device."
+        },
+        {
+            "name":"title_apps_security_pref",
+            "value":"[TS_999486]_Access locked apps"
+        },
+        {
+            "name":"button_tittle_cancel",
+            "value":"[TS_806126]_Cancel"
+        },
+        {
+            "name":"Ambient_noise_filtered",
+            "value":"[TS_999622]_Filter out background noise during phone calls."
+        },
+        {
+            "name":"Intelligent_call_noise_reduction",
+            "value":"[TS_999623]_Call noise reduction"
+        },
+        {
+            "name":"internal_screen_enroll",
+            "value":"[TS_997966]_Add for interior screen"
+        },
+        {
+            "name":"external_screen_enroll",
+            "value":"[TS_997974]_Add for exterior screen"
+        },
+        {
+            "name":"enroll_finger_1",
+            "value":"[TS_997959]_Add fingerprint %s"
+        },
+        {
+            "name":"enroll_two_finger_tip",
+            "value":"[TS_997967]_For the best experience, add two fingerprints."
+        },
+        {
+            "name":"agreed_enroll_finger_1",
+            "value":"[TS_997961]_Fingerprint recognition verifies your identity based on the unique features of your fingerprint. By tapping \"%1$s\", you agree to the %2$s."
+        },
+        {
+            "name":"enroll_out_screen_tip",
+            "value":"[TS_997973]_For the best experience, add a fingerprint for the exterior screen as well."
+        },
+        {
+            "name":"enroll_tip_title",
+            "value":"[TS_997964]_Tip"
+        },
+        {
+            "name":"enroll_tip_message",
+            "value":"[TS_997963]_For the best experience, add a second fingerprint as well."
+        },
+        {
+            "name":"enroll_exit",
+            "value":"[TS_997971]_Exit"
+        },
+        {
+            "name":"continue_enroll",
+            "value":"[TS_997965]_Continue"
+        },
+        {
+            "name":"remember_security_questions",
+            "value":"[TS_1000333]_Please remember the answer to your security question. You can use it to reset your privacy PIN/Password if you forget it."
+        },
+        {
+            "name":"stop_protection",
+            "value":"[TS_1000334]_Disable protection"
+        },
+        {
+            "name":"change_privacy_password",
+            "value":"[TS_1000341]_Change privacy lock"
+        },
+        {
+            "name":"close_privacy_password",
+            "value":"[TS_1000340]_Disable privacy lock"
+        },
+        {
+            "name":"custom_security_questions",
+            "value":"[TS_1000338]_Custom question"
+        },
+        {
+            "name":"security_questions_street_name",
+            "value":"[TS_1000335]_What street did you grow up on?"
+        },
+        {
+            "name":"pin_protection",
+            "value":"[TS_1000345]_Protect with screen lock"
+        },
+        {
+            "name":"setting_security_questions",
+            "value":"[TS_1000346]_Set security question"
+        },
+        {
+            "name":"forgot_password",
+            "value":"[TS_1000339]_Forgot password?"
+        },
+        {
+            "name":"security_questions_father_name",
+            "value":"[TS_1000347]_What's your father's name?"
+        },
+        {
+            "name":"answer_wrong",
+            "value":"[TS_1000351]_Wrong answer"
+        },
+        {
+            "name":"change_security_question",
+            "value":"[TS_1000344]_Change security question"
+        },
+        {
+            "name":"security_questions_partner_name",
+            "value":"[TS_1000342]_What's your partner's name?"
+        },
+        {
+            "name":"verify_privacy_password",
+            "value":"[TS_1000350]_Enter privacy password"
+        },
+        {
+            "name":"close_privacy_password_description",
+            "value":"[TS_1000343]_If you disable your privacy lock, the following features will no longer be available. If you still want to use these features, you can protect your data with your screen lock instead."
+        },
+        {
+            "name":"application_lock_desc",
+            "value":"[TS_1000352]_Protect private data."
+        },
+        {
+            "name":"verify_security_questions",
+            "value":"[TS_1000349]_Verify security question"
+        },
+        {
+            "name":"attempts_n",
+            "value":"[TS_1000353]_%d more attempts"
+        },
+        {
+            "name":"security_questions_school_name",
+            "value":"[TS_1000336]_What was the name of your middle school?"
+        },
+        {
+            "name":"security_questions_band_name",
+            "value":"[TS_1000355]_Who's your favorite artist or band?"
+        },
+        {
+            "name":"set_privacy_password",
+            "value":"[TS_1000354]_Set privacy lock"
+        },
+        {
+            "name":"privacy_password",
+            "value":"[TS_1000348]_Privacy lock"
+        },
+        {
+            "name":"application_lock",
+            "value":"[TS_1000337]_App Lock"
+        },
+        {
+            "name":"intput_character_length_from_to",
+            "value":"[TS_1000817]_Enter %1$d–%2$d characters"
+        },
+        {
+            "name":"fold_phone_use_the_external_screen",
+            "value":"[TS_997960]_Fold the phone and continue on the exterior screen"
+        },
+        {
+            "name":"record_fingerprint_based_on_gesture_habits",
+            "value":"[TS_997970]_Choose which finger to use based on how you usually hold your phone."
+        },
+        {
+            "name":"enroll_external_tip_message",
+            "value":"[TS_997969]_For the best experience, add a fingerprint for the exterior screen as well."
+        },
+        {
+            "name":"follow_the_guide",
+            "value":"[TS_997962]_Continue"
+        },
+        {
+            "name":"enroll_in_folded_or_expanded",
+            "value":"[TS_998047]_Add fingerprints when the phone is folded or unfolded."
+        },
+        {
+            "name":"private_pin_textInput_maxLength",
+            "value":"[TS_1004672]_Length limit reached"
+        },
+        {
+            "name":"private_pin_other_password_type",
+            "value":"[TS_1004535]_Change privacy lock type"
+        },
+        {
+            "name":"password_same_with_main_space",
+            "value":"[TS_1001226]_Can't be the same as your lock screen password"
+        },
+        {
+            "name":"forgot_pin",
+            "value":"[TS_1001228]_Forgot PIN?"
+        },
+        {
+            "name":"verify_privacy_pin",
+            "value":"[TS_1001227]_Enter privacy PIN"
+        },
+        {
+            "name":"number_password_message_accessibility",
+            "value":"[TS_1010637]_Set a %1$s to %2$s-digit PIN"
+        },
+        {
+            "name":"close_lock_screen_password_dialog_item_wallet_card",
+            "value":"[TS_1006508]_Wallet cards will no longer be available"
+        },
+        {
+            "name":"close_lock_screen_password_dialog_warning_message_list",
+            "value":"[TS_1006505]_Your screen lock provides protection for private data on your device. If you disable your screen lock:"
+        },
+        {
+            "name":"universal_drag",
+            "value":"[TS_1006490]_FreeDrag"
+        },
+        {
+            "name":"stereo_enhancement",
+            "value":"[TS_1011091]_Stereo enhancement"
+        },
+        {
+            "name":"mixed_password_message_accessibility",
+            "value":"[TS_1010639]_Set a %1$s to %2$s-character password, including at least %3$d letter."
+        },
+        {
+            "name":"close_lock_screen_password_dialog_item_fingerprint_settings",
+            "value":"[TS_1006506]_Fingerprints will be deleted"
+        },
+        {
+            "name":"close_lock_screen_password_dialog_item_face_checker",
+            "value":"[TS_1006507]_Facial data will be deleted"
+        },
+        {
+            "name":"close_lock_screen_password_dialog_item_application_lock",
+            "value":"[TS_1006504]_App locks will be removed"
+        },
+        {
+            "name":"boot_sound",
+            "value":"[TS_1010638]_Startup sound"
+        },
+        {
+            "name":"expand_phone_use",
+            "value":"[TS_1011696]_Unfold the phone first."
+        },
+        {
+            "name":"wireless_projection_setting_hint",
+            "value":"[TS_1011247]_Cast your screen to a bigger display. %s"
+        },
+        {
+            "name":"wireless_projection_setting_hint_tablet",
+            "value":"[TS_1011335]_Cast your screen to a bigger display. %s"
+        },
+        {
+            "name":"expand_phone_to_continue_use",
+            "value":"[TS_1015498]_Unfold your phone to continue."
+        },
+        {
+            "name":"intelligent_scene_settings",
+            "value":"[TS_1016868]_Focus"
+        },
+        {
+            "name":"fp_do_not_support_mini_screen_new",
+            "value":"[TS_1020906]_One-Handed mode not available."
+        },
+        {
+            "name":"once_limit",
+            "value":"[TS_1023715]_Data limit per session"
+        },
+        {
+            "name":"custom_limit",
+            "value":"[TS_1023711]_Custom"
+        },
+        {
+            "name":"used_mobile_data",
+            "value":"[TS_1023712]_Data used: %s"
+        },
+        {
+            "name":"data_limit_notice",
+            "value":"[TS_1023714]_Your personal hotspot will be disabled automatically when your specified data usage limit is reached. If you re-enable the hotspot, the data usage count will start again from %d B."
+        },
+        {
+            "name":"data_reach_limit",
+            "value":"[TS_1038831]_Data limit reached"
+        },
+        {
+            "name":"no_limit",
+            "value":"[TS_1023713]_No limit"
+        },
+        {
+            "name":"motion_quick_call_summary",
+            "value":"[TS_1024748]_Raise the phone to your ear."
+        },
+        {
+            "name":"motion_muting_reduce_call_summary_pad",
+            "value":"[TS_1024743]_Flip to mute, or raise to reduce ringing volume."
+        },
+        {
+            "name":"motion_quick_call_title",
+            "value":"[TS_1024744]_Answer calls"
+        },
+        {
+            "name":"motion_muting_reduce_call_title",
+            "value":"[TS_1024739]_Mute ringtone/Reduce volume"
+        },
+        {
+            "name":"motion_muting_reduce_call_summary",
+            "value":"[TS_1024745]_Flip to mute, or raise to reduce ringing volume."
+        },
+        {
+            "name":"face_fingerprint_intelligence_fill",
+            "value":"[TS_1015699]_Autofill personal info"
+        },
+        {
+            "name":"light_color",
+            "value":"[TS_1015892]_Light"
+        },
+        {
+            "name":"dark_color",
+            "value":"[TS_1015893]_Dark"
+        },
+        {
+            "name":"hotspot_already",
+            "value":"[TS_1035812]_Sharing network"
+        },
+        {
+            "name":"hotspot_usb_connection",
+            "value":"[TS_1035811]_Share your phone's Internet connection with another device using a USB cable."
+        },
+        {
+            "name":"hotspot_usb",
+            "value":"[TS_1035810]_Share Internet via USB"
+        },
+        {
+            "name":"knuckle_screen_shot",
+            "value":"[TS_1035502]_Take full, partial, or scrolling screenshots."
+        },
+        {
+            "name":"screen_recorder_setting",
+            "value":"[TS_1035503]_Knuckle screen recording"
+        },
+        {
+            "name":"Enhances_sound_quality",
+            "value":"[TS_1034992]_Experience punchier bass, crisper voices, and enhanced haptic feedback. Uses more power."
+        },
+        {
+            "name":"knuckle_screen_recorder",
+            "value":"[TS_1035504]_Knock twice on the screen with two knuckles."
+        },
+        {
+            "name":"fingerprint_in_app_payment",
+            "value":"[TS_1036415]_Verify in-app purchases"
+        },
+        {
+            "name":"fingerprint_in_app_payment_notice",
+            "value":"[TS_1036414]_For purchasing digital goods in apps."
+        },
+        {
+            "name":"screen_shot_setting",
+            "value":"[TS_1035505]_Knuckle screenshot"
+        },
+        {
+            "name":"print_toggle_tips",
+            "value":"[TS_1035354]_When this is on, you can add and manage printers."
+        },
+        {
+            "name":"hotspot_usb_not_connection",
+            "value":"[TS_1044355]_USB not connected"
+        },
+        {
+            "name":"car_collaboration_toggle_title",
+            "value":"[TS_1041266]_Super Car Screen"
+        },
+        {
+            "name":"floating_three_button_navigation_detail",
+            "value":"[TS_1043062]_Drag the navigation keys to reposition them."
+        },
+        {
+            "name":"floating_three_button_navigation",
+            "value":"[TS_1041446]_Floating navigation controls"
+        },
+        {
+            "name":"enterprise_custom_information",
+            "value":"[TS_1045510]_Enterprise customization information"
+        },
+        {
+            "name":"MultiWindow_change_views_title_read",
+            "value":"[TS_1048074]_Quickly change views"
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"[TS_1047941]_This operation is prohibited by enterprise management."
+        },
+        {
+            "name":"enterprise_device",
+            "value":"[TS_1056210]_Enterprise Edition"
+        },
+        {
+            "name":"x_key_quick_function",
+            "value":"[TS_1056612]_X Button"
+        },
+        {
+            "name":"vpn_quick_toggle_title",
+            "value":"[TS_1058282]_VPN"
+        },
+        {
+            "name":"double_touch_camera_fingerprint_key",
+            "value":"[TS_1056275]_Quickly open apps or control the camera."
+        },
+        {
+            "name":"x_key_quick_function_tips",
+            "value":"[TS_1056613]_Double-press or hold down to access selected features."
+        },
+        {
+            "name":"pw_not_retrieve",
+            "value":"[TS_1056438]_Important"
+        },
+        {
+            "name":"pw_remember",
+            "value":"[TS_1056439]_If you forget the PIN or password you use to unlock your device, you'll need to reset the device and all data will be erased."
+        },
+        {
+            "name":"got_it",
+            "value":"[TS_1056440]_Got it"
+        },
+        {
+            "name":"not_set_temporarily",
+            "value":"[TS_1056437]_Don't set now"
+        },
+        {
+            "name":"locked_title",
+            "value":"[TS_1055421]_When locked"
+        },
+        {
+            "name":"allow_drop_down_control_center",
+            "value":"[TS_1055422]_Allow access to Control Panel"
+        },
+        {
+            "name":"create_user_failed",
+            "value":"[TS_924367]_Unable to create user."
+        },
+        {
+            "name":"capslock_on",
+            "value":"[TS_992494]_CAPS LOCK on"
+        },
+        {
+            "name":"password_format_illegal",
+            "value":"[TS_924349]_Invalid password format."
+        },
+        {
+            "name":"user_password_input_hint",
+            "value":"[TS_924322]_Set lock screen password"
+        },
+        {
+            "name":"user_name_input_hint",
+            "value":"[TS_924442]_Used to log in to the computer"
+        },
+        {
+            "name":"local_name_has_exist_warning",
+            "value":"[TS_924324]_This username is already taken."
+        },
+        {
+            "name":"unsupported_account_type_warning",
+            "value":"[TS_924365]_Account type not supported."
+        },
+        {
+            "name":"user_confirm_password_input_hint",
+            "value":"[TS_924310]_Confirm lock screen password"
+        },
+        {
+            "name":"user_account_name_input_desc",
+            "value":"[TS_992499]_Creating a user automatically creates a personal folder. This can be renamed."
+        },
+        {
+            "name":"zoom_function",
+            "value":"[TS_1062325]_Magnification"
+        },
+        {
+            "name":"zoom_function_shortcut",
+            "value":"[TS_1062329]_Activation shortcut"
+        },
+        {
+            "name":"triple_click_gesture",
+            "value":"[TS_1062323]_Triple-tap the screen"
+        },
+        {
+            "name":"default_gesture_summary",
+            "value":"[TS_1062326]_Hold down the volume buttons for %s seconds to zoom in or out."
+        },
+        {
+            "name":"triple_click_summary",
+            "value":"[TS_1062331]_Zoom in or out by tapping the screen %s times in a row. Note: When this is on, your device will respond more slowly to taps and certain other operations."
+        },
+        {
+            "name":"zoom_gesture_help_summary_simply",
+            "value":"[TS_1062328]_When zoomed in, you can:\n• Scroll: Swipe two fingers on the screen.\n• Adjust zoom level: Pinch with two fingers."
+        },
+        {
+            "name":"no_password_created_for_user",
+            "value":"[TS_924435]_If you continue without setting a password, anyone will be able to access this computer."
+        },
+        {
+            "name":"creating_user",
+            "value":"[TS_924309]_Create new user?"
+        },
+        {
+            "name":"fingerprint_area",
+            "value":"[TS_1062873]_Fingerprint sensor"
+        },
+        {
+            "name":"fingerprint_identify_as",
+            "value":"[TS_1062872]_Identified as %s"
+        },
+        {
+            "name":"fingerprint_not_entered",
+            "value":"[TS_1062874]_This fingerprint has not been added"
+        },
+        {
+            "name":"comfort_enjoy_mode_title",
+            "value":"[TS_1065351]_Balanced"
+        },
+        {
+            "name":"noble_enjoy_mode_desp",
+            "value":"[TS_1065352]_Surging bass and powerful vibrations."
+        },
+        {
+            "name":"comfort_enjoy_mode_desp",
+            "value":"[TS_1065353]_Well-rounded with clear voices."
+        },
+        {
+            "name":"noble_enjoy_mode_title",
+            "value":"[TS_1065348]_Intense"
+        },
+        {
+            "name":"quiet_enjoy_mode_title",
+            "value":"[TS_1065349]_Subtle"
+        },
+        {
+            "name":"quiet_enjoy_mode_desp",
+            "value":"[TS_1065347]_Clear and bright with less pronounced vibrations."
+        },
+        {
+            "name":"sound_quality_effect_desp",
+            "value":"[TS_1065350]_Applies to media playback and games."
+        },
+        {
+            "name":"sound_quality_effect",
+            "value":"[TS_1065354]_Equalizer mode"
+        },
+        {
+            "name":"print_scan_settings_title",
+            "value":"[TS_992531]_Printers & scanners"
+        },
+        {
+            "name":"enterprise_system_exception_warning",
+            "value":"[TS_924333]_System error. Contact your IT admin."
+        },
+        {
+            "name":"add_computer_account",
+            "value":"[TS_924392]_New user"
+        },
+        {
+            "name":"personal_system_exception_warning",
+            "value":"[TS_1063297]_System error. Try again later."
+        },
+        {
+            "name":"The_password_consists_of_6_32_characters",
+            "value":"[TS_924377]_Enter %1$d–%2$d characters"
+        },
+        {
+            "name":"personal_folder_name",
+            "value":"[TS_992466]_Personal folder name"
+        },
+        {
+            "name":"password_cannot_be_empty",
+            "value":"[TS_924323]_Cannot be blank"
+        },
+        {
+            "name":"account_osaccount_system_exception_warning",
+            "value":"[TS_924459]_System service error."
+        },
+        {
+            "name":"add_nick_name",
+            "value":"[TS_924358]_Username"
+        },
+        {
+            "name":"password_rule_input_menu_hint",
+            "value":"[TS_806194]_Set password (%1$s–%2$s characters)"
+        },
+        {
+            "name":"no_special_characters_allowed",
+            "value":"[TS_924407]_Can't include < > | : \" * ? / \\ or consist only of \".\" or \"..\""
+        },
+        {
+            "name":"outer_app_debug_tips",
+            "value":"[TS_1071107]_Enable this to use more apps on the external screen, for the purposes of development and debugging. Apps that are not adapted to the external screen may exhibit compatibility issues such as overheating, freezing, and abnormal display."
+        },
+        {
+            "name":"outer_app_debug",
+            "value":"[TS_1071106]_External screen app debugging"
+        },
+        {
+            "name":"ringtone_volume_message",
+            "value":"[TS_1063377]_Ringtones"
+        },
+        {
+            "name":"media_volume_message",
+            "value":"[TS_1063378]_Media"
+        },
+        {
+            "name":"volume_key_control_message",
+            "value":"[TS_1063379]_Default volume button control"
+        },
+        {
+            "name":"network_navigator_scene_condition_three",
+            "value":"[TS_1068008]_To simulate this scenario, insert two SIM cards and turn on mobile data."
+        },
+        {
+            "name":"network_navigator_scene_subway_des",
+            "value":"[TS_1066628]_Varying network conditions, with strong signal at stations and weak signal between stations."
+        },
+        {
+            "name":"network_navigator_scene_condition_two",
+            "value":"[TS_1066615]_To simulate this scenario, connect to WLAN or a mobile network first."
+        },
+        {
+            "name":"network_navigator_scene_low_signal_parking_des",
+            "value":"[TS_1066627]_Poor network quality, with weak signal, low bandwidth, and high latency."
+        },
+        {
+            "name":"scenario_crowded_cafeteria_introduction",
+            "value":"[TS_1068280]_Simulates a network with many devices connected to it, featuring poor network quality, high contention, low bandwidth, and high latency."
+        },
+        {
+            "name":"network_navigator_highway_driving",
+            "value":"[TS_1066629]_Highway driving"
+        },
+        {
+            "name":"network_navigator_scene_elevator",
+            "value":"[TS_1066620]_In & out of elevator"
+        },
+        {
+            "name":"scenario_high_speed_rail_introduction",
+            "value":"[TS_1068267]_Simulates a network with varying conditions, with frequent switching between cell towers, and intermittent loss of service."
+        },
+        {
+            "name":"network_navigator_high_speed_rail",
+            "value":"[TS_1066626]_Riding high-speed train"
+        },
+        {
+            "name":"network_navigator_scene_arrive_home_wlan_on_des",
+            "value":"[TS_1066623]_Mobile network connection abruptly switches to WLAN."
+        },
+        {
+            "name":"network_navigator_scene_crowded_canteen_des",
+            "value":"[TS_1066631]_Poor network quality, with high contention, low bandwidth, and high latency."
+        },
+        {
+            "name":"network_navigator_scene_low_signal_parking",
+            "value":"[TS_1066621]_Parking garage"
+        },
+        {
+            "name":"network_navigator_high_speed_rail_des",
+            "value":"[TS_1066609]_Varying network conditions, with frequent switching between cell towers and intermittent loss of service."
+        },
+        {
+            "name":"network_navigator_scene_subway",
+            "value":"[TS_1066617]_Riding the subway"
+        },
+        {
+            "name":"network_navigator_scene_arrive_home_wlan_on",
+            "value":"[TS_1066618]_Enter home WLAN range"
+        },
+        {
+            "name":"scenario_arrive_home_wlan_on_introduction",
+            "value":"[TS_1068269]_Simulates when a user moves from an outdoor area to an indoor one, disconnecting from a mobile network and connecting to WLAN."
+        },
+        {
+            "name":"network_simulation_total_introduction",
+            "value":"[TS_1070363]_%1$s %2$s %3$s %4$s"
+        },
+        {
+            "name":"scenario_subway_introduction",
+            "value":"[TS_1068278]_Simulates a network with varying conditions, with strong signal at stations, and weak signal between stations."
+        },
+        {
+            "name":"network_navigator_highway_driving_des",
+            "value":"[TS_1066632]_Varying network conditions, with weak signal in tunnels and low bandwidth."
+        },
+        {
+            "name":"network_navigator_scene_condition_one",
+            "value":"[TS_1066610]_To simulate this scenario, connect to WLAN and turn on mobile data first."
+        },
+        {
+            "name":"network_navigator_tips_link",
+            "value":"[TS_1066633]_View network coding best practices"
+        },
+        {
+            "name":"network_navigator_scene_elevator_des",
+            "value":"[TS_1066619]_Frequent handover between WLAN and mobile networks."
+        },
+        {
+            "name":"scenario_elevator_introduction",
+            "value":"[TS_1068275]_Simulates switchover between WLAN and a mobile network when a user enters or exits an elevator."
+        },
+        {
+            "name":"network_navigator_tips",
+            "value":"[TS_1066625]_Simulates a variety of network environments, both preset and custom, to help you develop your network code. %s"
+        },
+        {
+            "name":"scenario_highway_driving_introduction",
+            "value":"[TS_1068266]_Simulates a network with varying conditions, with strong signal in urban areas and weak signal in tunnels."
+        },
+        {
+            "name":"network_navigator_scene_crowded_canteen",
+            "value":"[TS_1066612]_Busy cafeteria"
+        },
+        {
+            "name":"detailed_network_parameters",
+            "value":"[TS_1068270]_View network parameters\n"
+        },
+        {
+            "name":"network_navigator_scene_leave_home_wlan_off_des",
+            "value":"[TS_1066624]_WLAN signal gradually weakens until switching to mobile network."
+        },
+        {
+            "name":"exit_network_simulation_scenario",
+            "value":"[TS_1068274]_Stop network simulation"
+        },
+        {
+            "name":"scenario_low_signal_parking_introduction",
+            "value":"[TS_1068271]_Simulates a poor-quality network with weak signal, low bandwidth, and high latency."
+        },
+        {
+            "name":"network_navigator_scene_init_fail",
+            "value":"[TS_1066613]_Unable to simulate scenario. Try again later."
+        },
+        {
+            "name":"scenario_leave_home_wlan_off_introduction",
+            "value":"[TS_1068277]_Simulates when a user leaves their home, disconnecting from WLAN and connecting to a mobile network."
+        },
+        {
+            "name":"network_navigator_scene_leave_home_wlan_off",
+            "value":"[TS_1066616]_Leave home WLAN range"
+        },
+        {
+            "name":"network_navigator_summary",
+            "value":"[TS_1066622]_Simulates a variety of network environments to help you develop your network code."
+        },
+        {
+            "name":"network_code_development_suggestions",
+            "value":"[TS_1068279]_Suggestions on network code development:\nMonitor for network changes and promptly re-establish connections to complete requests in a timely manner. Do not wait until the network times out (usually after %1$d seconds) before re-initiating a request. %2$s"
+        },
+        {
+            "name":"enter_network_simulation_scenario",
+            "value":"[TS_1068268]_Start network simulation"
+        },
+        {
+            "name":"sound_recognition_summary",
+            "value":"[TS_1067307]_Receive a notification when your device detects selected sounds."
+        },
+        {
+            "name":"nfc_read_not_disturb",
+            "value":"[TS_1067313]_Mute NFC tag discovery banners"
+        },
+        {
+            "name":"nfc_no_banner_text",
+            "value":"[TS_1067302]_When this is on, NFC tag discovery notifications will only be displayed in the Notification Panel and not as a banner notification."
+        },
+        {
+            "name":"sound_notify_summary",
+            "value":"[TS_1067312]_A sound has been recognized nearby."
+        },
+        {
+            "name":"sound_alarm_header",
+            "value":"[TS_1067304]_Emergency"
+        },
+        {
+            "name":"sound_notify_title",
+            "value":"[TS_1067310]_%1$s"
+        },
+        {
+            "name":"zoom_zone_text",
+            "value":"[TS_1074102]_Zoom region"
+        },
+        {
+            "name":"full_screen_zoom_text",
+            "value":"[TS_1074104]_Full screen"
+        },
+        {
+            "name":"partial_screen_zoom_text",
+            "value":"[TS_1074103]_Window"
+        },
+        {
+            "name":"switch_zoom_zone_text",
+            "value":"[TS_1074105]_Switch with gesture"
+        },
+        {
+            "name":"penglai_mode",
+            "value":"[TS_1071031]_Penglai mode"
+        },
+        {
+            "name":"flash_reminder_title",
+            "value":"[TS_1077821]_Flash alert"
+        },
+        {
+            "name":"reminder_function_header",
+            "value":"[TS_1077820]_Blink for"
+        },
+        {
+            "name":"flash_reminder_desp",
+            "value":"[TS_1077822]_Blink the camera flash for incoming calls and notifications."
+        },
+        {
+            "name":"exit_penglai_mode",
+            "value":"[TS_1072913]_Exit Penglai mode"
+        },
+        {
+            "name":"ignore_repeat_click_notification_content",
+            "value":"[TS_1085554]_Your device may seem less responsive. When this is on, multiple taps within a short space of time are treated as a single tap."
+        },
+        {
+            "name":"ignore_repeat_click_notification_title",
+            "value":"[TS_1085552]_Ignore repeated taps is on"
+        },
+        {
+            "name":"ignore_repeat_click_notification_button_cancel",
+            "value":"[TS_1085553]_Don't show again"
+        },
+        {
+            "name":"video_music",
+            "value":"[TS_1063376]_Video ringtones"
+        },
+        {
+            "name":"screen_and_sleep",
+            "value":"[TS_992469]_Screen & sleep"
+        },
+        {
+            "name":"more_power_settings",
+            "value":"[TS_992464]_More power settings"
+        },
+        {
+            "name":"screenoff_when_idle",
+            "value":"[TS_992530]_When plugged in, turn screen off after"
+        },
+        {
+            "name":"screenoff_when_idle_on_battery",
+            "value":"[TS_992527]_When on battery, turn screen off after"
+        },
+        {
+            "name":"powerKey_press",
+            "value":"[TS_992561]_When I press the Power button"
+        },
+        {
+            "name":"when_close_Switch",
+            "value":"[TS_992554]_When I close the lid and the computer is plugged in"
+        },
+        {
+            "name":"when_close_Switch_on_battery",
+            "value":"[TS_992493]_When I close the lid and the computer is on battery"
+        },
+        {
+            "name":"power_and_battery",
+            "value":"[TS_924455]_Power & battery"
+        },
+        {
+            "name":"enable_quick_boot",
+            "value":"[TS_992477]_Fast startup"
+        },
+        {
+            "name":"quick_boot_tip",
+            "value":"[TS_992519]_This helps the computer start up faster after powering off."
+        },
+        {
+            "name":"enable_wake_on_lid_open",
+            "value":"[TS_993615]_Power on when lid is opened"
+        },
+        {
+            "name":"wake_on_lid_open_tip",
+            "value":"[TS_993616]_Automatically power on the computer when the lid is opened."
+        },
+        {
+            "name":"expire_old_password_title",
+            "value":"[TS_1070822]_Expire previous password now"
+        },
+        {
+            "name":"disable_old_password_dialog_warning_message",
+            "value":"[TS_1070818]_If you expire your previous PIN/password now, it can no longer be used to access your device if you forget your new PIN/password."
+        },
+        {
+            "name":"expire_immediately_dialog_button",
+            "value":"[TS_1070827]_Expire now"
+        },
+        {
+            "name":"reset_to_pin_in_ninety_six_hours_tip",
+            "value":"[TS_1079628]_For the next %d hours, your previous PIN/password can be used to reset your new PIN if you forget it. This can be done from the lock screen."
+        },
+        {
+            "name":"reset_to_password_in_ninety_six_hours_tip",
+            "value":"[TS_1079627]_For the next %d hours, your previous PIN/password can be used to reset your new password if you forget it. This can be done from the lock screen."
+        },
+        {
+            "name":"nfc_payment_sim_summary",
+            "value":"[TS_1091961]_Insert a SIM that supports NFC into slot %d."
+        },
+        {
+            "name":"grip_posture_follow",
+            "value":"[TS_1091514]_Smart reachability"
+        },
+        {
+            "name":"switch_window_magnification",
+            "value":"[TS_1091031]_Switched to partial magnification"
+        },
+        {
+            "name":"magnification_disabled",
+            "value":"[TS_1091033]_Magnification disabled."
+        },
+        {
+            "name":"switch_full_screen_magnification",
+            "value":"[TS_1091032]_Switched to full-screen magnification"
+        },
+        {
+            "name":"double_touch_camera_and_slide_fingerprint_key",
+            "value":"[TS_1090939]_Quickly open apps or control the camera."
+        },
+        {
+            "name":"hearing_aid",
+            "value":"[TS_1093815]_Hearing aid"
+        },
+        {
+            "name":"cancel_select",
+            "value":"[TS_1093813]_Cancel"
+        },
+        {
+            "name":"change_device_name",
+            "value":"[TS_940670]_Edit device name"
+        },
+        {
+            "name":"Confirm",
+            "value":"[TS_1093819]_OK"
+        },
+        {
+            "name":"pad_mode",
+            "value":"[TS_1089123]_Tablet mode"
+        },
+        {
+            "name":"pc_mode",
+            "value":"[TS_1089122]_Desktop mode"
+        },
+        {
+            "name":"system_mode_change",
+            "value":"[TS_1089124]_System mode"
+        },
+        {
+            "name":"power_consumption_mwh",
+            "value":"[TS_1094410]_%d mWh"
+        },
+        {
+            "name":"less_than_one_mwh",
+            "value":"[TS_1094411]_< 1 mWh"
+        },
+        {
+            "name":"disabled_toast",
+            "value":"[TS_1094690]_This feature has been disabled by your organization."
+        },
+        {
+            "name":"ringtone_vibration_adaptive",
+            "value":"[TS_1098143]_Adaptive volume & vibration"
+        },
+        {
+            "name":"ringtone_vibration_adaptive_detail",
+            "value":"[TS_1098144]_In quiet environments, the volume of ringtones and intensity of vibrations will gradually increase when there is an incoming call. "
+        },
+        {
+            "name":"multi_window_force_switch",
+            "value":"[TS_1097982]_Compatibility mode"
+        },
+        {
+            "name":"floating_three_button_navigation_new",
+            "value":"[TS_1099176]_Three-key navigation"
+        },
+        {
+            "name":"floating_three_button_navigation_detail_new",
+            "value":"[TS_1099177]_Hold & drag the navigation keys to change their order."
+        },
+        {
+            "name":"floating_navigation_ball_name",
+            "value":"[TS_1099175]_Floating navigation"
+        },
+        {
+            "name":"expire_pre_password_or_pin_title",
+            "value":"[TS_1079629]_Expire previous PIN/password now"
+        },
+        {
+            "name":"reset_password_in_ninety_six_hours_detail_tip",
+            "value":"[TS_1100050]_For the next %s, your previous PIN/password can be used to reset your new PIN/password if you forget it. This can be done from the lock screen."
+        },
+        {
+            "name":"network_navigator_uplink_latency",
+            "value":"[TS_1098698]_Uplink latency"
+        },
+        {
+            "name":"network_navigator_droprate_example",
+            "value":"[TS_1098705]_%s"
+        },
+        {
+            "name":"network_navigator_uplink_droprate",
+            "value":"[TS_1098706]_Uplink packet loss rate"
+        },
+        {
+            "name":"network_navigator_downlink_droprate",
+            "value":"[TS_1098700]_Downlink packet loss rate"
+        },
+        {
+            "name":"network_navigator_downlink_latency",
+            "value":"[TS_1098699]_Downlink latency"
+        },
+        {
+            "name":"network_navigator_custom_full_tips",
+            "value":"[TS_1103587]_Maximum number of custom network scenarios reached. Delete some to add more."
+        },
+        {
+            "name":"network_navigator_latency_example",
+            "value":"[TS_1098702]_%d ms"
+        },
+        {
+            "name":"network_navigator_downlink_bandwidth_example",
+            "value":"[TS_1098703]_%d kbps"
+        },
+        {
+            "name":"network_navigator_uplink_bandwidth",
+            "value":"[TS_1098701]_Uplink bandwidth"
+        },
+        {
+            "name":"network_navigator_custom_scene_name",
+            "value":"[TS_1098707]_Network scenario name"
+        },
+        {
+            "name":"network_navigator_add_custom_fail",
+            "value":"[TS_1099734]_%1$s not in valid range. Enter a value between %2$d and %3$d."
+        },
+        {
+            "name":"network_navigator_add_custom_scene",
+            "value":"[TS_1099016]_Custom network scenario"
+        },
+        {
+            "name":"network_navigator_downlink_bandwidth",
+            "value":"[TS_1098708]_Downlink bandwidth"
+        },
+        {
+            "name":"esim_card",
+            "value":"[TS_1103921]_eSIM %s"
+        },
+        {
+            "name":"esim_id",
+            "value":"[TS_1103922]_EID"
+        },
+        {
+            "name":"reset_retain_esim_factory_button_text",
+            "value":"[TS_1105213]_Reset but keep eSIMs"
+        },
+        {
+            "name":"accessibility_text_right",
+            "value":"[TS_1109370]_Recent tasks, Home, Back"
+        },
+        {
+            "name":"accessibility_text_left",
+            "value":"[TS_1109371]_Back, Home, Recent tasks"
+        },
+        {
+            "name":"reset_all_factory_button_text",
+            "value":"[TS_1105214]_Reset phone"
+        },
+        {
+            "name":"confirm_reset_factory_with_esim_content",
+            "value":"[TS_1105211]_This will permanently delete system data, installed apps and their data, personal files (like music and images), as well as eSIMs.\n\nYou can choose to keep eSIMs on your device if you don't want to delete them. Deleting an eSIM removes all associated data from your device, but does not cancel your mobile plan.\n\nBefore resetting your device, make sure that you back up any important data. Please don't store backups on the device's internal storage, as this will be wiped when the device is reset."
+        },
+        {
+            "name":"screen_on_time",
+            "value":"[TS_1093108]_Screen on"
+        },
+        {
+            "name":"full_charge",
+            "value":"[TS_1095676]_Fully charged"
+        },
+        {
+            "name":"background_activities",
+            "value":"[TS_1095673]_Background activity"
+        },
+        {
+            "name":"screen_off_time",
+            "value":"[TS_1093103]_Screen off"
+        },
+        {
+            "name":"charging",
+            "value":"[TS_1093106]_Charging %s"
+        },
+        {
+            "name":"last_week",
+            "value":"[TS_1095681]_Last week"
+        },
+        {
+            "name":"now_time",
+            "value":"[TS_1095679]_Now"
+        },
+        {
+            "name":"battery_performance_mode",
+            "value":"[TS_1117995]_Performance mode"
+        },
+        {
+            "name":"double_click_lock_screen",
+            "value":"[TS_1118887]_Tap to lock screen"
+        },
+        {
+            "name":"double_click_lock_screen_desc",
+            "value":"[TS_1118886]_Double-tap on any blank area of the home screen to lock your device."
+        },
+        {
+            "name":"title_fp_list_new",
+            "value":"[TS_1128506]_Fingerprints (%1$s/%2$s)"
+        },
+        {
+          "name":"MultiWindow_split_switch_desc_declaration",
+          "value":"[TS_1129558]_Statement About Split-Screen Link and Privacy"
+        },
+        {
+          "name":"MultiWindow_split_switch_desc_last",
+          "value":"[TS_1129557]_Linking split-screen windows makes it easier to perform tasks across apps. This feature requires an Internet connection. For details, refer to the %s. By turning this on, you agree to these terms."
+        },
+        {
+          "name":"MultiWindow_split_switch_title",
+          "value":"[TS_1129560]_Split-screen link"
+        },
+        {
+            "name": "legal_information",
+            "value": "[TS_864836]_Legal"
+        },
+        {
+            "name": "open_source_show_title",
+            "value": "[TS_864839]_Open source declaration"
+        },
+      {
+        "name": "mobile_data_setting_title",
+        "value": "[TS_806059]_Mobile data"
+      },
+      {
+        "name": "privacy_settings_title",
+        "value": ""
+      },
+      {
+        "name": "data_usage_management_title",
+        "value": ""
+      }
+    ]
+}

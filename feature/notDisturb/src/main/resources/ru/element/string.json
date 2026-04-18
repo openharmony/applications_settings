@@ -1,0 +1,438 @@
+{
+    "string":[
+        {
+            "name":"not_disturb_turnedon",
+            "value":"Включено",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_six_format",
+            "value":"%1$s, %2$s, %3$s, %4$s, %5$s, %6$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tips_title",
+            "value":"Когда эта функция включена, входящие вызовы автоматически отклоняются, а звук уведомлений выключается. Будильники работают в обычном режиме. В разделе Исключения можно настроить разрешения и запреты.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_add",
+            "value":"Добавить расписание",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"repeat_call_will_ring_normally",
+            "value":"Звук второго вызова от одного номера в течение %d минут не будет выключен.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"done",
+            "value":"Готово",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tonight_time",
+            "value":"Будет активен до %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_edit",
+            "value":"Изменение расписания",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_start_time",
+            "value":"С",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_call",
+            "value":"Телефонные вызовы",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"go_to_set",
+            "value":"Настройки",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_regularly",
+            "value":"Расписание",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_maximum_scheduled",
+            "value":"Можно добавить максимум %d расписаний.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_cancel",
+            "value":"Отмена",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_reset",
+            "value":"Вы можете добавить это снова в любой момент.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_everyone",
+            "value":"Разрешить от всех",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"none_selected_app",
+            "value":"Не выбрано",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_only_specified_contacts",
+            "value":"Разрешить только от выбранных контактов",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_end_time",
+            "value":"До",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_only_favorite_contacts",
+            "value":"Разрешить только от избранных контактов",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_repeat",
+            "value":"Повтор",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tips_settings",
+            "value":"Когда эта функция включена, при поступлении входящих вызовов и уведомлений сигнал не будет срабатывать и экран не будет загораться. Будильники будут работать в обычном режиме.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_until_tonight",
+            "value":"До этого вечера",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"zen_mode_schedule_repeat_monday_to_friday",
+            "value":"Понедельник–пятница",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_notification",
+            "value":"Уведомления",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"zen_mode_ruletime_nextday",
+            "value":"%1$s–%2$s (следующий день)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_only_existing_contacts",
+            "value":"Разрешить только от контактов",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_reason_read_write_contacts",
+            "value":"Используется для чтения и записи контактов.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_contacts",
+            "value":"Выбор контактов",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_confirm",
+            "value":"OK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_app",
+            "value":"Выбор приложений",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_scheduled",
+            "value":"Добавить расписание",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_four_format",
+            "value":"%1$s, %2$s, %3$s, %4$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_nextday",
+            "value":"%s (следующий день)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_open",
+            "value":"Включить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_list_search_empty",
+            "value":"Нет результатов",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_turn_on_now",
+            "value":"Включить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"forbid_everyone",
+            "value":"Ни от кого",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_closed",
+            "value":"Выклю\u200bчено",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_disturb_two_hour",
+            "value":"2 часа",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tips_dialog",
+            "value":"Когда эта функция включена, при поступлении входящих вызовов и уведомлений сигнал не будет срабатывать и экран не будет загораться. Будильники будут работать в обычном режиме.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_repeat",
+            "value":"Никогда",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_between",
+            "value":"%1$s–%2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_five_format",
+            "value":"%1$s, %2$s, %3$s, %4$s, %5$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_contacts",
+            "value":"Предпочтения",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_everyday",
+            "value":"Каждый день",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_title",
+            "value":"Не беспокоить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_three_format",
+            "value":"%1$s, %2$s, %3$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_allow",
+            "value":"Исключения",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_loading",
+            "value":"Загрузка…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_delete_confirm",
+            "value":"Удалить это расписание?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_two_format",
+            "value":"%1$s, %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_dialog_title",
+            "value":"Приложению Настройки требуется право доступа к контактам",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_until_close",
+            "value":"Будет активен до выключения",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_one_hour",
+            "value":"1 час",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_delete",
+            "value":"Удалить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"all_app",
+            "value":"Все приложения",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"search_app",
+            "value":"Поиск приложений",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"repeat_call_ringing",
+            "value":"Разрешить повторные вызовы",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"none_selected",
+            "value":"Не выбрано",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_selected",
+            "value":"Не выбрано",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"has_selected",
+            "value":"Выбрано",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

@@ -1,0 +1,396 @@
+{
+    "string":[
+        {
+            "name":"screen_zoom_summary_small",
+            "value":"كىچىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_very_large",
+            "value":"چوڭراق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_default",
+            "value":"سۈكۈت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_title",
+            "value":"كۆرسىتىش چوڭلۇقى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_model",
+            "value":"كۆرسىتىش ھالىتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"after_thirty_seconds",
+            "value":"%d سېكۇنتتىن كېيىن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"after_five_minutes",
+            "value":"%d مىنۇتتىن كېيىن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"after_one_minute",
+            "value":"%d مىنۇتتىن كېيىن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_extremely_large",
+            "value":"ئەڭ چوڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"five_minutes",
+            "value":"%d مىنۇت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fifteen_seconds",
+            "value":"%d سېكۇنت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"after_two_minutes",
+            "value":"%d مىنۇتتىن كېيىن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"thirty_seconds",
+            "value":"%d سېكۇنت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"after_ten_minutes",
+            "value":"%d مىنۇتتىن كېيىن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"one_minute",
+            "value":"%d مىنۇت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"two_minutes",
+            "value":"%d مىنۇت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ten_minutes",
+            "value":"%d مىنۇت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fifteen_minutes",
+            "value":"%d مىنۇت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"thirty_minutes",
+            "value":"%d مىنۇت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_large",
+            "value":"چوڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"after_fifteen_seconds",
+            "value":"%d سېكۇنتتىن كېيىن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"never_sleep",
+            "value":"ياق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"only_screenOff",
+            "value":"ئېكران ئېتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sleep",
+            "value":"ئۇخلاش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"nothing",
+            "value":"يوق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_off",
+            "value":"ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"motion_on",
+            "value":"ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"start_time",
+            "value":"باشلىنىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_all_day",
+            "value":"پۈتۈن كۈن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"end_time",
+            "value":"ئاياغلىشىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"eye_timed_on",
+            "value":"قەرەللىك ئېچىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_sample_text",
+            "value":"ئۆرنەك تېكىست",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"font_apply_all",
+            "value":"قوللىنىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"advanced_setting",
+            "value":"ئالىي تەڭشەك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_built_in",
+            "value":"ئىچكى ئېكران",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_machine",
+            "value":"بۇ ئۈسكۈنە",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_extended",
+            "value":"چاتما ئېكران",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_larger_fonts_message",
+            "value":"چوڭ خەتلىك ھالەتتە ئىشلىتىش ئۈچۈن «ياشانغانلار ھالىتى» تەڭشىكىگە كىرىڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_larger_fonts",
+            "value":"چوڭ خەتلىك ھالەت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"go_to_set",
+            "value":"تەڭشەك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dark_mode_dialog_title",
+            "value":"قېنىق ھالەتنى ئاچامسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_close_high_contrast_content",
+            "value":"ئاچسىڭىز، «يۇقىرى سېلىشتۇرمىلىق تېكىست» ھالىتى ئېتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_azimuth_settings_finish",
+            "value":"پۈتتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_set",
+            "value":"ئېكران لايىھەسى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_edit",
+            "value":"تەھرىرلەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_eye_protection_warmer",
+            "value":"ئىسسىق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_eye_protection_colder",
+            "value":"سوغۇق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_set_description",
+            "value":"ئېكرانلارنى سۆرەپ تەرتىپىنى ئۆزگەرتسىڭىز بولىدۇ، يېقىن ئېكرانلارنىڭ قىرىدىن مائۇس ئۆتۈشىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_set_tips_disconnect",
+            "value":"ئۈزۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"color_adjustment",
+            "value":"رەڭ ھالىتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"color_temperature_title",
+            "value":"رەڭ تېمپېراتۇرىسى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"color_adjustment_and_color_temperature_title",
+            "value":"رەڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dark_mode_title",
+            "value":"قېنىق ھالەت قەرەللىك ئېچىشقا تەڭشىلىپ، سىز ئىشلىتىۋاتقاندا قەرەلى توشسا، ئۆزلۈكىدىن ئېچىلمايدۇ، ئېكراننى ئەتسىڭىز ئاندىن ئېچىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"until_turn_off",
+            "value":"قولدا ئەتكۈچە",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"only_landscape_supported",
+            "value":"تۈزبوي ئىشلەيدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"other_time",
+            "value":"باشقا",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

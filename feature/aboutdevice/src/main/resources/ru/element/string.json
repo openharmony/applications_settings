@@ -1,0 +1,361 @@
+{
+    "string":[
+        {
+            "name":"model_code",
+            "value":"Номер модели",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_total",
+            "value":"Емкость: %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_mac",
+            "value":"%1$s (устройство)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"software_version",
+            "value":"Версия ПО",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_resolution",
+            "value":"Разрешение",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_state_off",
+            "value":"Недоступно",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"openHarmony_version",
+            "value":"Версия OpenHarmony",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enterprise_disable_developer_options_toast",
+            "value":"Эта функция заблокирована вашей организацией. Обратитесь к администратору.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unknown",
+            "value":"Неизвестно",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"version",
+            "value":"Версия",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"power_on_duration",
+            "value":"Время работы",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_total_used",
+            "value":"Доступно: %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_settings_title",
+            "value":"Память",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"model_name",
+            "value":"Имя модели",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"external",
+            "value":"Внешний: %1$s × %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"serial_number",
+            "value":"Серийный номер",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_level",
+            "value":"Уровень заряда батареи",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"close_developer_mode",
+            "value":"Выключить раздел Для разработчиков?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_close",
+            "value":"Выключить и перезагрузить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"running_memory",
+            "value":"RAM",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"kernel_version",
+            "value":"Версия ядра",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_options_enabled_toast",
+            "value":"Раздел Для разработчиков уже доступен.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"baseband_version",
+            "value":"Прошивка модуля связи",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_on",
+            "value":"Включить и перезагрузить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_development_modal_dialog_content",
+            "value":"Это может сделать ваше устройство уязвимым для атак и привести к угрозам безопасности. Ваше устройство перезагрузится для применения изменений.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"system_service_version",
+            "value":"Версия системных служб",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"inner",
+            "value":"Внутренний: %1$s × %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel_development_modal_dialog_content",
+            "value":"Отладка приложений станет недоступна. Ваше устройство перезагрузится для применения изменений.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Отмена",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status_consuming_power",
+            "value":"Не заряжается",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hardware_version",
+            "value":"Версия АО",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status_filled",
+            "value":"Полностью заряжено",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ip_address",
+            "value":"IP-адрес",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_Additional_text",
+            "value":"%1$d. Службе Обновление ПО требуется доступ в Интернет и право чтения списка установленных приложений.\n",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"api_version",
+            "value":"Версия API",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_battery_choose_info",
+            "value":"%1$s–%2$s, уровень заряда батареи %3$s–%4$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_developer_mode",
+            "value":"Включить раздел Для разработчиков?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status",
+            "value":"Состояние батареи",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_address",
+            "value":"Адрес Bluetooth",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_options_settings_title",
+            "value":"Для разработчиков",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"imei_id",
+            "value":"IMEI",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_patch_label",
+            "value":"Защитный патч",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"random_mac",
+            "value":"%1$s (случайный)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status_charging",
+            "value":"Заряжается",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_type_professional",
+            "value":"Профессиональная",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_type",
+            "value":"Тип",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_type_enterprise",
+            "value":"Корпоративная",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_options_settings_summary",
+            "value":"Может использоваться только для разработки.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_mode_open_toast",
+            "value":"Раздел Для разработчиков теперь доступен.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cpu_title",
+            "value":"Процессор",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_name",
+            "value":"Имя версии",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

@@ -1,0 +1,160 @@
+{
+  "color": [
+    {
+      "name": "color_E3E3E3_grey",
+      "value": "#E3E3E3"
+    },
+    {
+      "name": "color_default_white",
+      "value": "#00000000"
+    },
+    {
+      "name": "color_1A000000_grey",
+      "value": "#1A000000"
+    },
+    {
+      "name": "color_0D000000_grey",
+      "value": "#0D000000"
+    },
+    {
+      "name": "color_FFF2F3F5_grey",
+      "value": "#FFF2F3F5"
+    },
+    {
+      "name": "color_0A59F7_blue",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "color_0C000000_black",
+      "value": "#0C000000"
+    },
+    {
+      "name": "font_color_error",
+      "value": "#D94838"
+    },
+    {
+      "name": "color_pressed_click",
+      "value": "#190A59F7"
+    },
+    {
+      "name": "color_pressed_click_dark",
+      "value": "#19317AF7"
+    },
+    {
+      "name": "transparent",
+      "value": "#00000000"
+    },
+    {
+      "name": "ohos_id_color_button_normal",
+      "value": "#0C000000"
+    },
+    {
+      "name": "color_press_text_button",
+      "value": "#19000000"
+    },
+    {
+      "name": "color_press_normal_button",
+      "value": "#26000000"
+    },
+    {
+      "name": "divider_text_input_color",
+      "value": "#000000"
+    },
+    {
+      "name": "color_fab_bg",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "dialog_background_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "color_warning_text",
+      "value": "#FA2A2D"
+    },
+    {
+      "name": "profile_back_color",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "default_switch_color",
+      "value": "#007dff"
+    },
+    {
+      "name": "profile_switch_color",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "color_summary_black",
+      "value": "#FF000000"
+    },
+    {
+      "name": "color_summary_abot",
+      "value": "#FF000000"
+    },
+    {
+      "name": "color_000000_black",
+      "value": "#000000"
+    },
+    {
+      "name": "color_bluetooth_dialog",
+      "value": "#00F100F5"
+    },
+    {
+      "name": "bg_color_input_box_sub_bg",
+      "value": "#0C000000"
+    },
+    {
+      "name": "row_bg_color",
+      "value": "#E6F1F3F5"
+    },
+    {
+      "name": "card_row_bg_color",
+      "value": "#FFF"
+    },
+    {
+      "name": "color_E5E6E8_grey",
+      "value": "#E5E6E8"
+    },
+    {
+      "name": "black",
+      "value": "#FF000000"
+    },
+    {
+      "name": "white",
+      "value": "#FFFFFFFF"
+    },
+    {
+      "name": "theme_gallery_loading_background",
+      "value": "#0C000000"
+    },
+    {
+      "name": "card_border_color",
+      "value": "#7FFFFFFF"
+    },
+    {
+      "name": "card_bg_color",
+      "value": "#4DFFFFFF"
+    },
+    {
+      "name": "card_shadow_color",
+      "value": "#19000000"
+    },
+    {
+      "name": "add_fingerprint_btn_bg",
+      "value": "#26FFFFFF"
+    },
+    {
+      "name": "panel_background_dark_color",
+      "value": "#19FFFFFF"
+    },
+    {
+      "name": "personalization_desc_color",
+      "value": "#80000000"
+    },
+    {
+      "name": "statusbar_wifi_dark_color",
+      "value": "#FF000000"
+    }
+  ]
+}

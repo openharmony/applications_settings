@@ -1,0 +1,874 @@
+{
+    "plural":[
+        {
+            "name":"accessibility_service_number",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_849203]_%d"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_849171]_%d"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_849184]_%d"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_849187]_%d"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_849201]_%d"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_849183]_%d"
+                }
+            ]
+        },
+        {
+            "name":"accessibility_count_down_timer",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_849176]_Grant access (%d)"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_849181]_Grant access (%d)"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_849174]_Grant access (%d)"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_849193]_Grant access (%d)"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_849172]_Grant access (%d)"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_849200]_Grant access (%d)"
+                }
+            ]
+        },
+        {
+            "name":"password_message_incorrect",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_806091]_Incorrect password. %d attempts remaining."
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_806058]_Incorrect password. %d attempt remaining."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_806035]_Incorrect password. %d attempts remaining."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_806104]_Incorrect password. %d attempts remaining."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_806201]_Incorrect password. %d attempts remaining."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_806062]_Incorrect password. %d attempts remaining."
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_seconds",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_806036]_Please try again after %ds"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_806054]_Please try again after %ds"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_806178]_Please try again after %ds"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_806172]_Please try again after %ds"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_806130]_Please try again after %ds"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_806065]_Please try again after %ds"
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_minutes",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_806128]_Please try again after %d min"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_806164]_Please try again after %d min"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_806175]_Please try again after %d min"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_806099]_Please try again after %d min"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_806025]_Please try again after %d min"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_806184]_Please try again after %d min"
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_hours",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_806020]_Please try again after %d h"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_806165]_Please try again after %d h"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_806192]_Please try again after %d h"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_806181]_Please try again after %d h"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_806142]_Please try again after %d h"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_806045]_Please try again after %d h"
+                }
+            ]
+        },
+        {
+            "name":"time_minute",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_881636]_%d min"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_881619]_%d min"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_881626]_%d min"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_881622]_%d min"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_881628]_%d min"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_881630]_%d min"
+                }
+            ]
+        },
+        {
+            "name":"time_second",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_881620]_%d sec"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_881616]_%d sec"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_881629]_%d sec"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_881632]_%d sec"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_881627]_%d sec"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_881623]_%d sec"
+                }
+            ]
+        },
+        {
+            "name":"time_hour",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_881637]_%d h"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_881615]_%d h"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_881625]_%d h"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_881631]_%d h"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_881633]_%d h"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_881624]_%d h"
+                }
+            ]
+        },
+        {
+            "name":"allow_max_clone_app",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_939028]_A maximum of %d duplicate can be created."
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_939031]_A maximum of %d duplicates can be created."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_939029]_A maximum of %d duplicates can be created."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_939039]_A maximum of %d duplicates can be created."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_939027]_A maximum of %d duplicates can be created."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_939037]_A maximum of %d duplicates can be created."
+                }
+            ]
+        },
+        {
+            "name":"has_clone_app",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_939033]_%d duplicates"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_939030]_%d duplicate"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_939036]_%d duplicates"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_939038]_%d duplicates"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_939032]_%d duplicates"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_939034]_%d duplicates"
+                }
+            ]
+        },
+        {
+            "name":"pin_message_incorrect",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_953976]_Incorrect PIN. %d attempt remaining."
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_953980]_Incorrect PIN. %d attempts remaining."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_953981]_Incorrect PIN. %d attempts remaining."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_953984]_Incorrect PIN. %d attempts remaining."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_953979]_Incorrect PIN. %d attempts remaining."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_953982]_Incorrect PIN. %d attempts remaining."
+                }
+            ]
+        },
+        {
+            "name":"battery_time_hour",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_959682]_%d hour"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_959678]_%d hours"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_959674]_%d hours"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_959684]_%d hours"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_959673]_%d hours"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_959679]_%d hours"
+                }
+            ]
+        },
+        {
+            "name":"battery_time_minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_959681]_%d minutes"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_959683]_%d minute"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_959677]_%d minutes"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_959685]_%d minutes"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_959676]_%d minutes"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_959680]_%d minutes"
+                }
+            ]
+        },
+        {
+            "name":"all_font_list_num_title",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_967268]_Total: %d"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_967264]_Total: %d"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_967266]_Total: %d"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_967271]_Total: %d"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_967274]_Total: %d"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_967273]_Total: %d"
+                }
+            ]
+        },
+        {
+            "name":"attempts_n",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_1000816]_%d attempts remaining"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_1000821]_%d attempt remaining"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1000820]_%d attempts remaining"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1000814]_%d attempts remaining"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1000818]_%d attempts remaining"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1000822]_%d attempts remaining"
+                }
+            ]
+        },
+        {
+            "name":"private_password_edit_read_begin",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_1011909]_You are setting a privacy PIN, %d digits in total"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_1011911]_You are setting a privacy PIN, %d digit in total"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1011906]_You are setting a privacy PIN, %d digits in total"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1011910]_You are setting a privacy PIN, %d digits in total"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1011907]_You are setting a privacy PIN, %d digits in total"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1011908]_You are setting a privacy PIN, %d digits in total"
+                }
+            ]
+        },
+        {
+            "name":"network_simulation_phase_num",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_1070365]_The simulation has %d phase."
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_1070355]_The simulation has %d phases."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1070360]_The simulation has %d phases."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1070359]_The simulation has %d phases."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1070362]_The simulation has %d phases."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1070361]_The simulation has %d phases."
+                }
+            ]
+        },
+        {
+            "name":"network_simulation_total_time",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_1070366]_It takes %d minutes to complete, after which it automatically repeats."
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_1070364]_It takes %d minute to complete, after which it automatically repeats."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1070354]_It takes %d minutes to complete, after which it automatically repeats."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1070358]_It takes %d minutes to complete, after which it automatically repeats."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1070357]_It takes %d minutes to complete, after which it automatically repeats."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1070356]_It takes %d minutes to complete, after which it automatically repeats."
+                }
+            ]
+        },
+        {
+            "name":"reset_password_minute_warning_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_1070816]_For the next %d minute, your previous password can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_1070814]_For the next %d minutes, your previous password can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1070817]_For the next %d minutes, your previous password can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1070823]_For the next %d minutes, your previous password can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1070824]_For the next %d minutes, your previous password can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1070828]_For the next %d minutes, your previous password can be used to reset your new PIN/password if you forget it."
+                }
+            ]
+        },
+        {
+            "name":"reset_password_hour_warning_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_1070815]_For the next %d hour, your previous password can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_1070819]_For the next %d hours, your previous password can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1070826]_For the next %d hours, your previous password can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1070825]_For the next %d hours, your previous password can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1070820]_For the next %d hours, your previous password can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1070829]_For the next %d hours, your previous password can be used to reset your new PIN/password if you forget it."
+                }
+            ]
+        },
+        {
+            "name":"reset_pin_minute_warning_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_1071032]_For the next %d minute, your previous PIN can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_1071029]_For the next %d minutes, your previous PIN can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1071030]_For the next %d minutes, your previous PIN can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1071042]_For the next %d minutes, your previous PIN can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1071027]_For the next %d minutes, your previous PIN can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1071035]_For the next %d minutes, your previous PIN can be used to reset your new PIN/password if you forget it."
+                }
+            ]
+        },
+        {
+            "name":"reset_pin_hour_warning_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_1071037]_For the next %d hour, your previous PIN can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_1071039]_For the next %d hours, your previous PIN can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1071036]_For the next %d hours, your previous PIN can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1071028]_For the next %d hours, your previous PIN can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1071033]_For the next %d hours, your previous PIN can be used to reset your new PIN/password if you forget it."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1071034]_For the next %d hours, your previous PIN can be used to reset your new PIN/password if you forget it."
+                }
+            ]
+        },
+        {
+            "name":"magnification_scale",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_1093207]_Magnify %s times"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_1093204]_Magnify %s times"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1093205]_Magnify %s times"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1093206]_Magnify %s times"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1093203]_Magnify %s times"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1093208]_Magnify %s times"
+                }
+            ]
+        },
+	{
+            "name":"ignore_repeated_experiment_summary",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_1095058]_You've set the time interval to %.1f seconds. This means that multiple taps within this time will be treated as a single tap. Try it out below."
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_1095047]_You've set the time interval to %.1f seconds. This means that multiple taps within this time will be treated as a single tap. Try it out below."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1095050]_You've set the time interval to %.1f seconds. This means that multiple taps within this time will be treated as a single tap. Try it out below."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1095054]_You've set the time interval to %.1f seconds. This means that multiple taps within this time will be treated as a single tap. Try it out below."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1095061]_You've set the time interval to %.1f seconds. This means that multiple taps within this time will be treated as a single tap. Try it out below."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1095051]_You've set the time interval to %.1f seconds. This means that multiple taps within this time will be treated as a single tap. Try it out below."
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeat_click_change_original_delay",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_1102097]_%.1f seconds"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_1102100]_%.1f second"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1102101]_%.1f seconds"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1102105]_%.1f seconds"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1102104]_%.1f seconds"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1102095]_%.1f seconds"
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeat_click_change_current_delay",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_1102091]_%.1f second"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_1102094]_%.1f seconds"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1102092]_%.1f seconds"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1102102]_%.1f seconds"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1102099]_%.1f seconds"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1102098]_%.1f seconds"
+                }
+            ]
+        },
+        {
+            "name":"minutes_before",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_1095680]_%d minutes ago"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_1095677]_%d minute ago"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1095672]_%d minutes ago"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1095685]_%d minutes ago"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1095674]_%d minutes ago"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1095671]_%d minutes ago"
+                }
+            ]
+        },
+        {
+            "name":"hours_before",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_1095682]_%d hours ago"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_1095678]_%d hour ago"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1095675]_%d hours ago"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1095687]_%d hours ago"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1095686]_%d hours ago"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1095670]_%d hours ago"
+                }
+            ]
+        },
+        {
+            "name":"days_before",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_1105335]_%d days ago"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_1105330]_%d day ago"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1105332]_%d days ago"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1105331]_%d days ago"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1105334]_%d days ago"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1105333]_%d days ago"
+                }
+            ]
+        }
+    ]
+}

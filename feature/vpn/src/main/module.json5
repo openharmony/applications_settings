@@ -1,0 +1,11 @@
+{
+  "module": {
+    "name": "settings.vpn",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "uiSyntax": "ets"
+  }
+}

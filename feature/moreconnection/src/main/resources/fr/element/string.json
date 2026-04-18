@@ -1,0 +1,123 @@
+{
+    "string":[
+        {
+            "name":"nfc_switch_off_text",
+            "value":"Désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"nfc_switch_on_text",
+            "value":"Activé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"projection_state_on",
+            "value":"Activé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_off_text",
+            "value":"Non connecté",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"multi_device_collaboration_service_switch",
+            "value":"Services de collaboration améliorée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bind_devices",
+            "value":"Gérer les appareils",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_switch",
+            "value":"Suggestions de collaboration",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_details",
+            "value":"Basé sur la détection automatique des appareils et du contexte.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"far_field_communication_service_privacy",
+            "value":"Déclaration concernant les Services de communication de Far-Field et la protection de la vie privée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_switch_msg",
+            "value":"Ce service suggère des façons de collaborer avec vos autres appareils lorsque ceux-ci sont à proximité. Pour cela, il a besoin d'une connexion Internet, doit utiliser le Bluetooth et le WLAN, et échangera des données avec d'autres appareils via la communication en champ lointain. Pour plus de détails sur la façon dont vos informations/données personnelles sont traitées, veuillez vous référer à %s. En activant cette option, vous acceptez ces conditions.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_notice",
+            "value":"Avis relatif aux autorisations",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_collaboration_settings_title",
+            "value":"Paramètres avancés",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_on_text",
+            "value":"Connecté",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"projection_state_off",
+            "value":"Désactivé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_projection_statement",
+            "value":"Ce service a besoin d'accéder à Connexion d'appareil. Il utilise le WLAN et le Bluetooth et enregistrera l'audio de l'appareil et le contenu à l'écran. En activant cette option, vous acceptez le contenu ci-dessus et l'%s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_entry_guide",
+            "value":"Comment activer ScreenCast",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_entry_guide_message",
+            "value":"Veuillez simplement toucher ScreenCast dans le Panneau de contrôle pour rechercher les appareils à proximité.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

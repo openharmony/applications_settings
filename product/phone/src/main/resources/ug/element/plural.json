@@ -1,0 +1,574 @@
+{
+    "plural":[
+        {
+            "name":"password_message_incorrect",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"مەخپىي نومۇر خاتا، يەنە %d پۇرسەت بار",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"مەخپىي نومۇر خاتا، يەنە %d پۇرسەت بار",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"time_minute",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d مىنۇت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d مىنۇت",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_service_number",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"time_second",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d سېكۇنت",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d سېكۇنت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_seconds",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%dسېكۇنتتىن كېيىن قايتا سىناڭ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%dسېكۇنتتىن كېيىن قايتا سىناڭ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_count_down_timer",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"ئېچىش (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"ئېچىش (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_minutes",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%dمىنۇتتىن كېيىن قايتا سىناڭ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%dمىنۇتتىن كېيىن قايتا سىناڭ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"time_hour",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d سائەت",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d سائەت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_hours",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"يەنە %d سائەتتىن كېيىن قايتا سىناڭ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"يەنە %d سائەتتىن كېيىن قايتا سىناڭ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"has_clone_app",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d قوشماق",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d قوشماق",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"allow_max_clone_app",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"كۆپىدە %d قوشماق قۇرۇلىدۇ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"كۆپىدە %d قوشماق قۇرۇلىدۇ.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"pin_message_incorrect",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"مەخپىي نومۇر خاتا، يەنە %d پۇرسەت بار",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"مەخپىي نومۇر خاتا، يەنە %d پۇرسەت بار",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"battery_time_hour",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d سائەت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d سائەت",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"battery_time_minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d مىنۇت",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d مىنۇت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"all_font_list_num_title",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"جەمئىي %d خەت نۇسخىسى",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"جەمئىي %d خەت نۇسخىسى",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"attempts_n",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"يەنە %d پۇرسەت قالدى.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"يەنە %d پۇرسەت قالدى.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"private_password_edit_read_begin",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"شەخسىي پارول رامكىسى، جەمئىي %d خانا",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"شەخسىي پارول رامكىسى، جەمئىي %d خانا",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"network_simulation_phase_num",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"بۇ كۆرۈنۈشتە جەمئىي %d باسقۇچ بار.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"بۇ كۆرۈنۈشتە جەمئىي %d باسقۇچ بار.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"network_simulation_total_time",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ئومۇمىي ۋاقىت %d مىنۇت، كۆرۈنۈش ئايلانما يۈرگۈزۈلىدۇ.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"ئومۇمىي ۋاقىت %d مىنۇت، كۆرۈنۈش ئايلانما يۈرگۈزۈلىدۇ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"reset_password_minute_warning_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"كەلگۈسى %d مىنۇت ئىچىدە، يېڭى پارولنى ئۇنتۇپ قالغاندا كونا پارول ئارقىلىق قايتا بېكىتسىڭىز بولىدۇ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"كەلگۈسى %d مىنۇت ئىچىدە، يېڭى پارولنى ئۇنتۇپ قالغاندا كونا پارول ئارقىلىق قايتا بېكىتسىڭىز بولىدۇ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"reset_password_hour_warning_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"كەلگۈسى %d سائەت ئىچىدە، يېڭى پارولنى ئۇنتۇپ قالغاندا كونا پارول ئارقىلىق قايتا بېكىتسىڭىز بولىدۇ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"كەلگۈسى %d سائەت ئىچىدە، يېڭى پارولنى ئۇنتۇپ قالغاندا كونا پارول ئارقىلىق قايتا بېكىتسىڭىز بولىدۇ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"reset_pin_minute_warning_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"كەلگۈسى %d مىنۇت ئىچىدە، يېڭى مەخپىي نومۇرنى ئۇنتۇپ قالغاندا كونا مەخپىي نومۇر ئارقىلىق قايتا بېكىتسىڭىز بولىدۇ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"كەلگۈسى %d مىنۇت ئىچىدە، يېڭى مەخپىي نومۇرنى ئۇنتۇپ قالغاندا كونا مەخپىي نومۇر ئارقىلىق قايتا بېكىتسىڭىز بولىدۇ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"reset_pin_hour_warning_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"كەلگۈسى %d سائەت ئىچىدە، يېڭى مەخپىي نومۇرنى ئۇنتۇپ قالغاندا كونا مەخپىي نومۇر ئارقىلىق قايتا بېكىتسىڭىز بولىدۇ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"كەلگۈسى %d سائەت ئىچىدە، يېڭى مەخپىي نومۇرنى ئۇنتۇپ قالغاندا كونا مەخپىي نومۇر ئارقىلىق قايتا بېكىتسىڭىز بولىدۇ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"magnification_scale",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%s ھەسسە چوڭايتىش",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%s ھەسسە چوڭايتىش",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_experiment_summary",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ۋاقىت ئارىلىقىنى %.1f سېكۇنت قىلىپ تاللىدىڭىز، مۇشۇ ۋاقىت ئىچىدە تەكرار چېكىش پەقەت بىر قېتىم دەپ تونۇلىدۇ. «قايتىلاشنى ئېتىبارسىزلاش» ئىقتىدارىنى ئاۋۋال سىناپ ئىشلىتىپ، ئىشلىتىش ئادىتىڭىزگە ئۇيغۇن كېلىدىغان ۋاقىت ئارىلىقى تاللاشنى تەۋسىيە قىلىمىز.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"ۋاقىت ئارىلىقىنى %.1f سېكۇنت قىلىپ تاللىدىڭىز، مۇشۇ ۋاقىت ئىچىدە تەكرار چېكىش پەقەت بىر قېتىم دەپ تونۇلىدۇ. «قايتىلاشنى ئېتىبارسىزلاش» ئىقتىدارىنى ئاۋۋال سىناپ ئىشلىتىپ، ئىشلىتىش ئادىتىڭىزگە ئۇيغۇن كېلىدىغان ۋاقىت ئارىلىقى تاللاشنى تەۋسىيە قىلىمىز.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeat_click_change_original_delay",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%.1f سېكۇنت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%.1f سېكۇنت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeat_click_change_current_delay",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%.1f سېكۇنت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%.1f سېكۇنت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"minutes_before",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d مىنۇت بۇرۇن",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d مىنۇت بۇرۇن",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"hours_before",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d سائەت بۇرۇن",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d سائەت بۇرۇن",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"days_before",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d كۈن بۇرۇن",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d كۈن بۇرۇن",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+{
+    "string":[
+        {
+            "name":"reset_factory_dialog_title",
+            "value":"Đặt lại điện thoại này?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_content",
+          "value": "Không thể khôi phục dữ liệu sao lưu sau khi đặt lại.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_title_pc",
+            "value":"Đặt lại thiết bị này?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"log_out",
+            "value":"Đăng xuất",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_retain_esim_content",
+            "value":"eSIM của bạn sẽ vẫn được lưu trữ trên thiết bị này. Vui lòng giữ an toàn. Nếu bạn không còn định sử dụng thiết bị này nữa, vui lòng chuyển eSIM sang thiết bị khác hoặc hủy kích hoạt. Để biết hướng dẫn, hãy liên hệ với nhà mạng của bạn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_continue_reset_button",
+            "value":"Đặt lại",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

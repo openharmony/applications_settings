@@ -1,0 +1,424 @@
+{
+    "string":[
+        {
+            "name":"vpn_edit_dnsaddresses",
+            "value":"Сервер DNS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_connect_save",
+            "value":"Сохранить данные пользователя",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_alias",
+            "value":"Имя",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_change_alert_title",
+            "value":"Изменить VPN?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_line_remove_alert_confirm",
+            "value":"Удалить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_user_cert_file",
+            "value":"Сертификат пользователя",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_change_alert_content",
+            "value":"Текущий сеанс VPN-соединения будет завершен.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_password",
+            "value":"Пароль",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_protocol",
+            "value":"Протокол OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_error_disconnect_first",
+            "value":"Сначала отключите VPN.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ipsecsecret",
+            "value":"Предварительно выданный ключ IPsec",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vpn_edit_cacert",
+            "value":"Сертификат ЦС IPsec",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_l2tpsecret",
+            "value":"L2TP secret",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_router",
+            "value":"Маршрут переадресации",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_line_disconnect_alert_confirm",
+            "value":"Откл.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_unuse",
+            "value":"Не используется",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_usercert",
+            "value":"Сертификат пользователя IPsec",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_auth_type",
+            "value":"Тип аутентификации OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_connec_success",
+            "value":"Подключено",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_dns_tips",
+            "value":"Пример: 8.8.8.8",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_port",
+            "value":"Порт прокси OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_advanced_collapse",
+            "value":"Скрыть",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_save",
+            "value":"Сохранить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_line_disconnect_operation_remove",
+            "value":"Удалить VPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"VPN",
+            "value":"VPN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vpn_edit_ipsecidentifier",
+            "value":"Идентификатор IPsec",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_username",
+            "value":"Имя пользователя прокси OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_proxy_advanced",
+            "value":"Отображать настройки прокси",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_username",
+            "value":"Имя пользователя",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_connect_password",
+            "value":"Пароль",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_line_disconnect_alert_title",
+            "value":"Эта VPN уже подключена.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_port",
+            "value":"Порт сервера OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_ca_cert_file",
+            "value":"Сертификат ЦС",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_change_alert_confirm",
+            "value":"OK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_disconnecting",
+            "value":"Отключение...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_servercert",
+            "value":"Сертификат сервера IPsec",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_configfile",
+            "value":"Файл конфигурации OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_disconnected",
+            "value":"Отключено",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_private_key_psd",
+            "value":"Пароль закрытого ключа",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_router_tips",
+            "value":"Пример: 10.0.0.0/8",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_connect_username",
+            "value":"Имя пользователя",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_password",
+            "value":"Пароль прокси OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_list_add",
+            "value":"Добавить VPN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vpn_connect_confirm",
+            "value":"Подключить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_advanced_expanded",
+            "value":"Дополнительные опции",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_cert_not_verify_server",
+            "value":"Без подтверждения сервера",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_connect_ing",
+            "value":"Подключение…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_advanced",
+            "value":"Дополнительные опции",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_serveraddress",
+            "value":"Адрес сервера OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_cert_from_server",
+            "value":"Предоставлено сервером",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_connec_failed",
+            "value":"Сбой подключения",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_type",
+            "value":"Тип",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_cert_not_specified",
+            "value":"Не указано",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_click_select",
+            "value":"Выбрать",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_host",
+            "value":"Хост прокси OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_list_empty",
+            "value":"Нет VPN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vpn_line_remove_alert_title",
+            "value":"Удалить VPN \"%s\"?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_searchdomains",
+            "value":"Домен поиска DNS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_connect_title",
+            "value":"Подключить к %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_serveraddress",
+            "value":"Адрес сервера",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

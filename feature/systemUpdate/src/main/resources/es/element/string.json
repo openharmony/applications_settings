@@ -1,0 +1,46 @@
+{
+    "string":[
+        {
+            "name":"update_status_downloading",
+            "value":"Descargando actualización",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"update_status_download_pause",
+            "value":"Descarga pausada",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_version_found_text",
+            "value":"Actualización disponible",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"update_status_wait_install",
+            "value":"Nueva versión disponible",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"patch_installing_title",
+            "value":"Se está instalando la actualización",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"check_version_status_to_be_reboot",
+            "value":"La actualización se aplicará después de reiniciar el dispositivo.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

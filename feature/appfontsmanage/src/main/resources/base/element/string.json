@@ -1,0 +1,228 @@
+{
+    "string":[
+        {
+            "name":"install_success",
+            "value":"\"%s\" successfully installed.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"failed_to_replace",
+            "value":"\"%s\" could not be replaced.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"loading_fonts",
+            "value":"Currently loading fonts. Try again later.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unloading_fonts",
+            "value":"Currently uninstalling fonts. Try again later.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"all_replaced_successfully",
+            "value":"All items successfully replaced.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replaced_successfully",
+            "value":"Successfully replaced.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"installing_fonts",
+            "value":"Currently installing fonts. Try again later.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Uninstallation_failed",
+            "value":"Unable to uninstall.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_fail_warning",
+            "value":"Only supports TTF, TTC, and OTF formats.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"install_excess_font",
+            "value":"Maximum number of fonts installed.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"install_duplicate_fonts",
+            "value":"Replace font?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"duplicate_fonts_summary",
+            "value":"This font is already installed. Would you like to replace it?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delete_font",
+            "value":"Uninstall this font?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"is_delete_app",
+            "value":"Uninstall %s?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"after_delete",
+            "value":"All data for this app will be removed from your device.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uninstall_unused_apps",
+            "value":"Uninstall unused apps",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"freed_memory_apps_number",
+            "value":"Freed up %s of storage space.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"select_all",
+            "value":"Select all",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delete_font_summary",
+            "value":"This font will no longer be available in apps.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"replace_install",
+            "value":"Replace",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"Cancel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"install_fail",
+            "value":"Installation failed. Try again later.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_ok",
+            "value":"Uninstall",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_font",
+            "value":"Select from Files",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uninstall",
+            "value":"Uninstall",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"deleting",
+            "value":"Uninstalling…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"installing",
+            "value":"Installing…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"batch_installation_duplicate_fonts",
+            "value":"\"%s\" is already installed. Do you want to replace it?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replace_all_duplicate_fonts",
+            "value":"Replace all duplicate fonts",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"drag_install",
+            "value":"Drag to install",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"drag_font_summary",
+            "value":"Drag a font file here to install it",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_installed_font",
+            "value":"No fonts",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

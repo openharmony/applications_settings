@@ -1,0 +1,72 @@
+{
+    "string":[
+        {
+            "name":"projection_state_on",
+            "value":"[TS_895511]_On"
+        },
+        {
+            "name":"projection_state_off",
+            "value":"[TS_895510]_Off"
+        },
+        {
+            "name":"nfc_switch_off_text",
+            "value":"[TS_864824]_Off"
+        },
+        {
+            "name":"nfc_switch_on_text",
+            "value":"[TS_864846]_On"
+        },
+        {
+            "name":"connect_off_text",
+            "value":"[TS_869421]_Not connected"
+        },
+        {
+            "name":"connect_on_text",
+            "value":"[TS_872801]_Connected"
+        },
+        {
+            "name":"more_collaboration_settings_title",
+            "value":"[TS_928542]_Advanced settings"
+        },
+        {
+            "name":"multi_device_collaboration_service_switch",
+            "value":"[TS_928540]_Enhanced collaboration services"
+        },
+        {
+            "name":"permission_notice",
+            "value":"[TS_1011245]_Permissions Notice"
+        },
+        {
+            "name":"wireless_projection_statement",
+            "value":"[TS_1011246]_This service requires the Device connection permission. It uses WLAN and Bluetooth and will record device audio and onscreen content. By turning this on, you agree to these terms and the %s."
+        },
+        {
+            "name":"bind_devices",
+            "value":"[TS_1033293]_Manage devices"
+        },
+        {
+            "name":"collaboration_recommend_service_switch",
+            "value":"[TS_1082093]_Collaboration suggestions"
+        },
+        {
+            "name":"collaboration_recommend_service_details",
+            "value":"[TS_1113895]_Based on automatic detection of devices and context."
+        },
+        {
+            "name":"far_field_communication_service_privacy",
+            "value":"[TS_1082162]_Statement About Far-Field Communication Services and Privacy"
+        },
+        {
+            "name":"collaboration_recommend_service_switch_msg",
+            "value":"[TS_1083994]_This service suggests ways to collaborate with your other devices when they are nearby. To do this, it requires an Internet connection, needs to use Bluetooth and WLAN, and will exchange data with other devices via far-field communication. For more details about how your personal information is processed, refer to the %s. By turning this on, you agree to these terms."
+        },
+        {
+            "name":"wireless_entry_guide",
+            "value":"[TS_1122332]_How to turn on ScreenCast"
+        },
+        {
+            "name":"wireless_entry_guide_message",
+            "value":"[TS_1122335]_Simply tap ScreenCast in the Control Panel to search for nearby devices."
+        }
+    ]
+}

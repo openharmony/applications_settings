@@ -1,0 +1,91 @@
+{
+    "plural":[
+        {
+            "name":"password_lockscreen_try_after_seconds",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_806036]_Please try again after %ds"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_806054]_Please try again after %ds"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_806178]_Please try again after %ds"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_806172]_Please try again after %ds"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_806130]_Please try again after %ds"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_806065]_Please try again after %ds"
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_minutes",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_806128]_Please try again after %d min"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_806164]_Please try again after %d min"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_806175]_Please try again after %d min"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_806099]_Please try again after %d min"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_806025]_Please try again after %d min"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_806184]_Please try again after %d min"
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_hours",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_806020]_Please try again after %d h"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_806165]_Please try again after %d h"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_806192]_Please try again after %d h"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_806181]_Please try again after %d h"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_806142]_Please try again after %d h"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_806045]_Please try again after %d h"
+                }
+            ]
+        }
+    ]
+}

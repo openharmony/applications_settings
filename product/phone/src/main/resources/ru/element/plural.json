@@ -1,0 +1,994 @@
+{
+    "plural":[
+        {
+            "name":"password_message_incorrect",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Неверный пароль. Осталось %d попытки.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Неверный пароль. Осталась %d попытка.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Неверный пароль. Осталось %d попытки.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Неверный пароль. Осталось %d попыток.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"attempts_n",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Осталось %d попытки",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Осталась %d попытка",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Осталось %d попытки",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Осталось %d попыток",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"time_minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d мин",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d мин",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d мин",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d мин",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_service_number",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"time_second",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d с",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d с",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d с",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d с",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"private_password_edit_read_begin",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Выполняется настройка защитного PIN-кода, всего %d цифры",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Выполняется настройка защитного PIN-кода, всего %d цифра",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Выполняется настройка защитного PIN-кода, всего %d цифры",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Выполняется настройка защитного PIN-кода, всего %d цифр",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_seconds",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Повторите попытку через %d с",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Повторите попытку через %d с",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Повторите попытку через %d с",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Повторите попытку через %d с",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"all_font_list_num_title",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Всего: %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Всего: %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Всего: %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Всего: %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"network_simulation_phase_num",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Симуляция состоит из %d этапа.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Симуляция состоит из %d этапов.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Симуляция состоит из %d этапов.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Симуляция состоит из %d этапов.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_count_down_timer",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Предоставить доступ (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Предоставить доступ (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Предоставить доступ (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Предоставить доступ (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"network_simulation_total_time",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Выполнение занимает %d минуты, после чего сценарий запускается заново автоматически.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Выполнение занимает %d минуту, после чего сценарий запускается заново автоматически.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Выполнение занимает %d минуты, после чего сценарий запускается заново автоматически.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Выполнение занимает %d минут, после чего сценарий запускается заново автоматически.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_minutes",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Повторите попытку через %d мин",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Повторите попытку через %d мин",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Повторите попытку через %d мин",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Повторите попытку через %d мин",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"battery_time_hour",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d ч",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d ч",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d ч",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d ч",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"pin_message_incorrect",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Неверный PIN-код. Осталось %d попытки.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Неверный PIN-код. Осталась %d попытка.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Неверный PIN-код. Осталось %d попытки.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Неверный PIN-код. Осталось %d попыток.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"battery_time_minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d мин",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d мин",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d мин",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d мин",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"allow_max_clone_app",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Можно создать максимум %d приложение-клон.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Можно создать максимум %d приложения-клона.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Можно создать максимум %d приложения-клона.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Можно создать максимум %d приложений-клонов.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"has_clone_app",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d приложения-клона",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d приложение-клон",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d приложения-клона",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d приложений-клонов",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"time_hour",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d ч",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d ч",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d ч",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d ч",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_hours",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Повторите попытку через %d ч",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Повторите попытку через %d ч",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Повторите попытку через %d ч",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Повторите попытку через %d ч",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"reset_password_minute_warning_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"В течение %d минуты вы можете использовать старый пароль для сброса нового PIN-кода или пароля, если забудете его.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"В течение следующих %d минут вы можете использовать старый пароль для сброса нового PIN-кода или пароля, если забудете его.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"В течение следующих %d минут вы можете использовать старый пароль для сброса нового PIN-кода или пароля, если забудете его.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"В течение следующих %d минут вы можете использовать старый пароль для сброса нового PIN-кода или пароля, если забудете его.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"reset_password_hour_warning_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"В течение %d часа вы можете использовать старый пароль для сброса нового PIN-кода или пароля, если забудете его.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"В течение следующих %d часов вы можете использовать старый пароль для сброса нового PIN-кода или пароля, если забудете его.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"В течение следующих %d часов вы можете использовать старый пароль для сброса нового PIN-кода или пароля, если забудете его.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"В течение следующих %d часов вы можете использовать старый пароль для сброса нового PIN-кода или пароля, если забудете его.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"reset_pin_minute_warning_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"В течение %d минуты вы можете использовать старый PIN-код для сброса нового PIN-кода или пароля, если забудете его.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"В течение следующих %d минут вы можете использовать старый PIN-код для сброса нового PIN-кода или пароля, если забудете его.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"В течение следующих %d минут вы можете использовать старый PIN-код для сброса нового PIN-кода или пароля, если забудете его.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"В течение следующих %d минут вы можете использовать старый PIN-код для сброса нового PIN-кода или пароля, если забудете его.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"reset_pin_hour_warning_title",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"В течение %d часа вы можете использовать старый PIN-код для сброса нового PIN-кода или пароля, если забудете его.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"В течение следующих %d часов вы можете использовать старый PIN-код для сброса нового PIN-кода или пароля, если забудете его.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"В течение следующих %d часов вы можете использовать старый PIN-код для сброса нового PIN-кода или пароля, если забудете его.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"В течение следующих %d часов вы можете использовать старый PIN-код для сброса нового PIN-кода или пароля, если забудете его.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+	    {
+            "name":"magnification_scale",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Увеличить в %s раза",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Увеличить в %s раз",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Увеличить в %s раза",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Увеличить в %s раз",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_experiment_summary",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Для интервала времени задано значение в %.1f секунды. Это означает, что повторные нажатия, выполненные в течение этого периода, будут считаться за одно нажатие. Попробуйте ниже.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Для интервала времени задано значение в %.1f секунду. Это означает, что повторные нажатия, выполненные в течение этого периода, будут считаться за одно нажатие. Попробуйте ниже.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Для интервала времени задано значение в %.1f секунды. Это означает, что повторные нажатия, выполненные в течение этого периода, будут считаться за одно нажатие. Попробуйте ниже.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Для интервала времени задано значение в %.1f секунд. Это означает, что повторные нажатия, выполненные в течение этого периода, будут считаться за одно нажатие. Попробуйте ниже.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeat_click_change_original_delay",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%.1f секунды",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%.1f секунда",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%.1f секунды",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%.1f секунд",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeat_click_change_current_delay",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%.1f секунда",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%.1f секунды",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%.1f секунды",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%.1f секунд",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"minutes_before",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d минуты назад",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d минуту назад",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d минуты назад",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d минут назад",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"hours_before",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d часа назад",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d час назад",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d часа назад",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d часов назад",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"days_before",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d дня назад",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d день назад",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d дня назад",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d дней назад",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

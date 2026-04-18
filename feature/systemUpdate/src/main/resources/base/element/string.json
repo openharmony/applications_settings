@@ -1,0 +1,46 @@
+{
+    "string":[
+        {
+            "name":"new_version_found_text",
+            "value":"Update available",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"update_status_downloading",
+            "value":"Downloading update",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"update_status_download_pause",
+            "value":"Download paused",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"update_status_wait_install",
+            "value":"New version available",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"patch_installing_title",
+            "value":"Installing update",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"check_version_status_to_be_reboot",
+            "value":"Update pending restart",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

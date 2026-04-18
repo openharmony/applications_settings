@@ -1,0 +1,64 @@
+{
+    "plural":[
+        {
+            "name":"batch_installation_not_support",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Không cài đặt được %d phông chữ. Chỉ hỗ trợ định dạng TTF, TTC và OTF.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_replace_failed",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Không thể thay thế %d phông chữ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"font_num",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d phông chữ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_success",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Cài đặt thành công %d phông chữ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_reached_the_upper_limit",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Không cài đặt được %d phông chữ. Đã đạt mức tối đa.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

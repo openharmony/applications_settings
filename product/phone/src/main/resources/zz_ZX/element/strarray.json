@@ -1,0 +1,30 @@
+{
+    "strarray":[
+        {
+            "name":"transition_animation_scale_entries",
+            "value":[
+                {
+                    "value":"[TS_840495]_Off"
+                },
+                {
+                    "value":"[TS_840494]_0.5x"
+                },
+                {
+                    "value":"[TS_840488]_1x"
+                },
+                {
+                    "value":"[TS_840487]_1.5x"
+                },
+                {
+                    "value":"[TS_840486]_2x"
+                },
+                {
+                    "value":"[TS_840485]_5x"
+                },
+                {
+                    "value":"[TS_840490]_10x"
+                }
+            ]
+        }
+    ]
+}

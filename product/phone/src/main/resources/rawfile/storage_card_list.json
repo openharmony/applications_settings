@@ -1,0 +1,47 @@
+[
+  {
+    "bundleName": "com.ohos.clouddrive",
+    "queryUri": "datashare:///com.ohos.clouddrive.provider.DataShare/galleryStorageCard",
+    "dataChangeUri": "datashare:///com.ohos.clouddrive.provider.DataShare/galleryStorageCard",
+    "priority": 4,
+    "controller": "../controller/CloudGalleryCardController",
+    "cardType": 0
+  },
+  {
+    "bundleName": "com.ohos.settings.uninstallApp",
+    "priority": 3,
+    "controller": "../controller/StorageAppUninstallController",
+    "cardType": 0
+  },
+  {
+    "bundleName": "com.ohos.filemanager",
+    "queryUri": "datashare:///com.ohos.filemanager.DataShare.bigFileClean?queryScene=insufficient_storage_space",
+    "abilityName": "BigFileCleanUIExtAbility",
+    "priority": 2,
+    "controller": "../controller/FileManagerCardController",
+    "cardType": 0
+  },
+  {
+    "bundleName": "com.ohos.filemanager",
+    "queryUri": "datashare:///com.ohos.filemanager.DataShare.bigFileClean?queryScene=low_storage_space",
+    "abilityName": "BigFileCleanUIExtAbility",
+    "priority": 2,
+    "controller": "../controller/FileManagerLowCardController",
+    "cardType": 0
+  },
+  {
+    "bundleName": "com.storage.clearcache",
+    "abilityName": "clearcache",
+    "priority": 0,
+    "controller": "../controller/StorageCleanController",
+    "cardType": 0
+  },
+  {
+    "bundleName": "com.ohos.photos",
+    "abilityName": "GalleryCleanupUIExtensionAbility",
+    "queryUri": "datashare:///com.ohos.photos.setting.card",
+    "priority": 1,
+    "controller": "../controller/GalleryCardController",
+    "cardType": 0
+  }
+]

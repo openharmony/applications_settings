@@ -1,0 +1,46 @@
+{
+    "string":[
+        {
+            "name":"reset_factory_dialog_title",
+            "value":"¿Restablecer este teléfono?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_content",
+            "value":"Los datos de copia de seguridad no se pueden restaurar después del restablecimiento.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_title_pc",
+            "value":"¿Restablecer este dispositivo?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"log_out",
+            "value":"Cerrar sesión",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_retain_esim_content",
+            "value":"Tu eSIM permanecerá almacenada en este dispositivo. Guárdalo bien. Si ya no planeas utilizar este dispositivo, transfiere tu eSIM a otro dispositivo o desactívala. Para obtener instrucciones, ponte en contacto con tu operador.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_continue_reset_button",
+            "value":"Restablecer",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

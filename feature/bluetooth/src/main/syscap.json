@@ -1,0 +1,13 @@
+{
+  "devices": {
+    "general": [
+      "tablet",
+      "default"
+    ]
+  },
+  "development": {
+    "addedSysCaps": [
+      "SystemCapability.Communication.Bluetooth.HearingAid"
+    ]
+  }
+}

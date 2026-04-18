@@ -1,0 +1,81 @@
+{
+    "string":[
+        {
+            "name":"go_to_login",
+            "value":"Войти",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_update_fail",
+            "value":"Невозможно изменить имя. Повторите попытку позже.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"network_tips",
+            "value":"Сначала подключитесь к сети.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_wait_tip",
+            "value":"Применение",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"note",
+            "value":"Внимание",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_settings_summary_with_near_link",
+            "value":"Это имя будет отображаться на других устройствах во время взаимодействия с ними, обмена с ними данными или подключения к ним по Bluetooth, NearLink, через личную точку доступа или USB.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"input_max_length_message",
+            "value":"Слишком длинное значение.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_check_fail",
+            "value":"Попробуйте другое имя.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_search",
+            "value":"Поиск",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_options",
+            "value":"Другие опции",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"navigation_back",
+            "value":"Назад",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

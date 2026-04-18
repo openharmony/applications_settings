@@ -1,0 +1,11 @@
+{
+    "string":[
+        {
+            "name":"turn_off_hotspot_card_sub",
+            "value":"Deshabilita tu zona WLAN personal para prolongar la autonomía de la batería.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

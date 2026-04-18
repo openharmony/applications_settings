@@ -1,0 +1,9 @@
+[
+  {
+    "serviceType": "basic",
+    "serviceName": "basic_statement_software_update_cn",
+    "moduleName": "ouc_hm_base",
+    "packageName": "com.ohos.ouc",
+    "validatorList": []
+  }
+]

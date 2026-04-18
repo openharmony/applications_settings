@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_public_ok</title>
+    <defs>
+        <path d="M15.3906115,7.50888348 C16.0597911,8.17806312 16.0737323,9.25435572 15.4324352,9.9404984 L15.3906115,9.98375721 L9.69086399,15.6835047 C9.39797077,15.9763979 8.92309704,15.9763979 8.63020382,15.6835047 C8.34777107,15.4010719 8.33768419,14.9494252 8.59994317,14.6549057 L8.63020382,14.6228445 L13.9763979,9.27665043 C14.2588306,8.99421768 14.2689175,8.54257091 14.0066585,8.24805145 L13.9763979,8.21599026 L3.63020382,-2.13020382 C3.3373106,-2.42309704 3.3373106,-2.89797077 3.63020382,-3.19086399 C3.91263657,-3.47329674 4.36428334,-3.48338362 4.6588028,-3.22112464 L4.69086399,-3.19086399 L15.3906115,7.50888348 Z" id="path-1"></path>
+    </defs>
+    <g id="ic_public_ok" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Public/ic_public_ok" transform="translate(3.093146, 5.500000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="形状结合" fill-opacity="0.9" fill="#FFFFFF" fill-rule="nonzero" transform="translate(9.656854, 6.246320) rotate(-270.000000) translate(-9.656854, -6.246320) " xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>
