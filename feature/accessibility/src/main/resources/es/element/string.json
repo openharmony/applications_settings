@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"dialog_enable",
+            "value":"Habilitar",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Cancelar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"audio_adjustment",
+            "value":"Adecuación del audio",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"single_audio_reminder",
+            "value":"Reproduce el mismo audio en ambos auriculares sin efecto estéreo.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

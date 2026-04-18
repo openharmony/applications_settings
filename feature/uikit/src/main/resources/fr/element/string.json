@@ -1,0 +1,928 @@
+{
+    "string":[
+        {
+            "name":"display_mode_font_weight_bold",
+            "value":"Épaisse",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_vibrate",
+            "value":"Aucun",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_normal",
+            "value":"Normale",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"icon_size_simplicity",
+            "value":"Une simplicité sans limites",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"only_supports_synchronized_vibration_with_system_ringtone",
+            "value":"Sonneries système uniquement.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_title_ok",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_light",
+            "value":"Fine",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fp_do_not_support_mini_screen_new",
+            "value":"L'interface de navigation à une main n'est pas disponible.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vibrate_synchronize_with_ringtone",
+            "value":"Synchronisé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_text_size",
+            "value":"Taille de la police",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_title_got_it",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_normal",
+            "value":"Normale",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"icon_style_stereoscopic",
+            "value":"Stéréoscopique",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_small",
+            "value":"Petite",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wall_paper_application",
+            "value":"Appliquer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_boldest",
+            "value":"La plus épaisse",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_text_weight",
+            "value":"Épaisseur de la police",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enableTheme",
+            "value":"Application du thème en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ok",
+            "value":"OK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge4",
+            "value":"Super grande (4)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_large",
+            "value":"Grande",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover",
+            "value":"Restaurer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge2",
+            "value":"Super grande (2)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge3",
+            "value":"Super grande (3)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_time_zone",
+            "value":"%s doit être activé pour que le fuseau horaire soit automatiquement défini.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge",
+            "value":"Super grande",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delete",
+            "value":"Supprimer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_common_security",
+            "value":"Les services de sécurité standard ont besoin d'accéder à Internet, de lire les informations de localisation, ainsi que de lire et de transférer la liste des applications installées, le(s) numéro(s) de téléphone de cet appareil et les informations de localisation approximative.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_size_extra_large",
+            "value":"Très grande",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"Annuler",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vassistant_settings",
+            "value":"Celia",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"input_max_length_message",
+            "value":"Vous avez saisi trop de caractères.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_lightest",
+            "value":"La plus fine",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dock_auto_hide_style",
+            "value":"Dock masqué lorsque les fenêtres sont maximisées ou partitionnées",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"page_load_failed_message",
+            "value":"Le chargement de l'écran a échoué. Veuillez essayer de l'ouvrir à nouveau.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"system_rollback",
+            "value":"Restauration à une version antérieure du système",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"charge_time_segment",
+            "value":"En charge",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_system_tips",
+            "value":"En mode sombre, la couleur du dock s'assombrit.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_edit_device_name",
+            "value":"Renommer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_hlink_description",
+            "value":"Connexion sans mot de passe : il vous suffit d'approcher votre appareil du routeur et d'appuyer sur le bouton \"%s\" lorsque le voyant clignote.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_this_theme",
+            "value":"Supprimer ce thème ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_dialog_title",
+            "value":"L'activation des options pour développeurs a échoué",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_settings_summary",
+            "value":"Ce nom sera affiché sur les autres appareils lorsque vous interagissez, partagez ou vous connectez avec eux via Bluetooth, WLAN Direct ou un point d'accès personnel.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_multiWeight",
+            "value":"Indisponible",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_bond_device_name",
+            "value":"Nom de l'appareil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_size_tip",
+            "value":"Cela ne s'applique pas au dock.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_precision_title",
+            "value":"Paramètres avancés",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"repeat_name_warning",
+            "value":"Le nom doit être différent de celui du réseau WLAN auquel vous êtes connecté. Veuillez saisir un autre nom.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wlan_scan_title",
+            "value":"Recherche WLAN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"font_apply_failed",
+            "value":"L'application de la police a échoué.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uncompleted",
+            "value":"Cette fonctionnalité sera disponible prochainement.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_name_max",
+            "value":"Le nom dépasse la limite de longueur",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_restored",
+            "value":"L'application a été restaurée.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_theme_info",
+            "value":"Ce thème, ainsi que son fond d'écran et son pack d'icônes, sont supprimés.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_bond_device_type",
+            "value":"Type d'appareil",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hotspot_blocklist_limit",
+            "value":"%d appareils maximum peuvent être ajoutés.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_apply_failed",
+            "value":"L'application du style des icônes a échoué.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_to_blocklist",
+            "value":"Bloquer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_device_name_title",
+            "value":"Votre appareil est visible par les appareils Bluetooth à proximité en tant que \"%1$s\". %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"desktop_style_tip",
+            "value":"Veuillez sélectionner un style de dock.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_dialog_message",
+            "value":"Activer les options pour développeurs peut rendre votre appareil vulnérable aux menaces de sécurité. Avant de continuer, vous devez désactiver Secure Shield sous Paramètres > Vie privée et sécurité.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_services",
+            "value":"Services de localisation",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_Theme_App_massage",
+            "value":"L'utilisation de cette fonctionnalité nécessite l'installation de Thèmes.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wall_paper_applied",
+            "value":"Appliqué",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fp_duplicated_name_toast",
+            "value":"Ce nom est déjà utilisé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_modify_tips",
+            "value":"Ce nom sera affiché sur les autres appareils lorsque vous interagissez, partagez ou vous connectez avec eux via Bluetooth, un point d'accès personnel ou USB.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_size_restore_default",
+            "value":"Réinitialiser",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove_from_blocklist",
+            "value":"Débloquer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_from_blocklist_disconnect",
+            "value":"\"%s\" pourra se connecter à nouveau au point d'accès de cet appareil.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_apply_successd",
+            "value":"Style des icônes appliqué.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"window_animation_title",
+            "value":"Réduction des fenêtres en utilisant",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"window_animation_attraction",
+            "value":"Animation génie",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_size",
+            "value":"Taille des icônes sur l'écran d'accueil",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dock_color_style",
+            "value":"La couleur du dock s'adapte à",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_system",
+            "value":"Mode d'affichage",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"applyIcon",
+            "value":"Application des icônes en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hot_spot_block_list",
+            "value":"Liste de blocage",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"block_list_tips",
+            "value":"Les appareils sur votre liste de blocage ne sont pas autorisés à se connecter à votre point d'accès personnel.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"window_animation_default",
+            "value":"Animation par défaut",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"eye_comfort_tick",
+            "value":"Le mode confort des yeux filtre les rayons bleus pour réduire la fatigue visuelle. Lorsqu'il est activé, l'écran adopte une teinte plus chaude.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scan_for_hotspots",
+            "value":"Veuillez scanner pour vous connecter",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove",
+            "value":"Retirer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_window_tips",
+            "value":"Le dock change de couleur en fonction de la couleur du fond d'écran ou du contenu d'une fenêtre agrandie.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wlan_scan_content",
+            "value":"Amélioration de la précision de la localisation en autorisant les applications et services à détecter les réseaux WLAN à tout moment, même lorsque le WLAN est désactivé.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_window",
+            "value":"Fond d'écran et fenêtres",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"modify",
+            "value":"Changer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"font_apply_successd",
+            "value":"Police appliquée.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm_change_name",
+            "value":"Modifier le nom de votre appareil désactivera votre point d'accès personnel. Le modifier malgré tout ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recover_Theme_App",
+            "value":"Restaurer l'application Thèmes ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_to_blocklist_disconnect",
+            "value":"\"%s\" va être ajouté à votre liste de blocage, et déconnecté de votre point d'accès.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"name_repeat_warning",
+            "value":"Ne peut pas être identique au réseau WLAN auquel vous êtes connecté",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_precision_text",
+            "value":"Pour améliorer la précision du positionnement, les applications et services peuvent rechercher les réseaux WLAN même lorsque le WLAN est désactivé. Ceci peut être modifié depuis les %s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"desktop_style_title",
+            "value":"Style de l'écran d'accueil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"change_device_name",
+            "value":"Modifier le nom de l'appareil",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"other_wlan",
+            "value":"Appareils connectés",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attention",
+            "value":"Remarque",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title",
+            "value":"Titre",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"insufficient_storage_toast",
+            "value":"Les services de thème ne sont pas disponibles en raison d'un stockage interne insuffisant. Veuillez supprimer des fichiers pour libérer de l'espace.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_softwareupdate",
+            "value":"Les services de mise à jour logicielle doivent se connecter à Internet et lire la liste des applications installées.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_fusion_search",
+            "value":"Le service Fusion Search doit se connecter à Internet et lire la liste des applications installées, les données multimédias (telles que les images, les vidéos et l'audio), les données de fichiers, les contacts, les messages SMS et les données d'évènement d'Agenda.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_system_storage",
+            "value":"Les services de stockage système doivent lire les données d'évènement d'Agenda, ainsi que lire et modifier les données des contacts et des journaux d'appels.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_basic_system_analysis",
+            "value":"Les services de base d'analyse du système doivent se connecter à Internet, lire l'appareil exécutant des informations, et transférer ces informations sous forme anonyme.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_device_communication",
+            "value":"Les services de communication de l'appareil doivent se connecter à Internet et lire le(s) numéro(s) de téléphone, l'IMEI, le contenu des SMS/MMS et les informations de localisation de cet appareil.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_authentication",
+            "value":"Le service d'authentification doit se connecter à Internet pour lire la liste des applications installées.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_atomicservice",
+            "value":"Le cadre de la fonctionnalité Ability doit se connecter à Internet pour lire et transférer la liste des applications installées.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_management",
+            "value":"Les services de gestion Centre sécurité et vie privée ont besoin de lire les informations de localisation, les images, les vidéos et la liste des applications installées, ainsi que de lire et modifier les contacts, les messages et les journaux d'appels.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_auto_discovery",
+            "value":"Les services de découverte automatique doivent se connecter à Internet, utiliser le Bluetooth et le NFC, lire et transférer les adresses MAC du Bluetooth et du WLAN, et permettre à l'appareil photo de scanner les codes.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_options",
+            "value":"Plus d'options",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_device_activation",
+            "value":"Le service d'activation de l'appareil doit se connecter à Internet pour lire et transférer les informations approximatives de localisation.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_picker_less",
+            "value":"Les services de sélection doivent lire les données multimédias (images, vidéos et audio), les contacts, les données des fichiers, et la liste des applications installées, ainsi qu'activer l'appareil photo et le microphone. Le service de sélection de cartes doit se connecter à Internet pour lire et transférer les informations de localisation.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_super_device",
+            "value":"Les services Appareil+ doivent se connecter à Internet, activer et utiliser le Bluetooth et le WLAN, ainsi que lire et transférer les adresses MAC Bluetooth et WLAN.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_carrier",
+            "value":"Les services de l'opérateur doivent se connecter à Internet, lire et transférer le(s) numéro(s) de téléphone, l'IMEI, les adresses MAC, Bluetooth et WLAN et les informations approximatives de localisation de cet appareil, ainsi qu'envoyer et recevoir des SMS.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"nearlink_and_bluetooth_device_name_title",
+            "value":"Votre appareil est visible par les appareils à proximité en tant que \"%1$s\". %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"nearlink_and_bluetooth",
+            "value":"NearLink et Bluetooth",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"check_the_detail",
+            "value":"Détails",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"be_chosen",
+            "value":"Sélectionné",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"touch_screen_reader_message",
+            "value":"Lorsque Lecteur d'écran est activé, les paramètres liés à l'écran tactile ne sont pas disponibles.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_smaller",
+            "value":"Réduire la taille",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"close_menu",
+            "value":"Fermer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_selected_click_tips",
+            "value":"Non sélectionné, toucher deux fois pour activer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_bigger",
+            "value":"Augmenter la taille",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_be_chosen",
+            "value":"Non sélectionné",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_fatter",
+            "value":"Augmenter l'épaisseur du trait de la police",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_thinner",
+            "value":"Diminuer l'épaisseur du trait de la police",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"disable_modify_wallpaper_tips",
+            "value":"Cette fonctionnalité a été désactivée par votre organisation.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"back_to_parent_menu",
+            "value":"Retour",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_selected_click_tips",
+            "value":"Toucher deux fois pour sélectionner",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"has_selected_click_tips",
+            "value":"Toucher deux fois pour désélectionner",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"only_bluetooth_on",
+            "value":"Bluetooth activé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_passkey",
+            "value":"Le service de clé d'accès a besoin d'une connexion Internet et doit pouvoir activer et utiliser le Bluetooth.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_link_speed",
+            "value":"%s Mbps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_begin_line",
+            "value":"%1$s. %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

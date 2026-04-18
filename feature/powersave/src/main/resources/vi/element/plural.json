@@ -1,0 +1,28 @@
+{
+    "plural":[
+        {
+            "name":"optimization_task_toast",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Đã áp dụng %d biện pháp tối ưu hóa.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"power_save_advise_sub",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Áp dụng %d biện pháp tối ưu hóa để kéo dài thời lượng pin.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

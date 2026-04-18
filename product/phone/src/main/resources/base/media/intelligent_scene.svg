@@ -1,0 +1,18 @@
+<!--
+  - Copyright (c) Huawei Technologies Co., Ltd. 2025-2025. All rights reserved.
+  -->
+
+<svg width="32.000000" height="32.000000" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs/>
+	<rect id="画板 156" width="32.000000" height="32.000000" fill="#FFFFFF" fill-opacity="0"/>
+	<circle id="Oval备份" cx="16.000000" cy="16.000000" r="16.000000" fill="#6F5EF6" fill-opacity="1.000000"/>
+	<path id="矢量 2" d="M21.64 22.54L23 23.9C21 25.67 18.5 26.56 16 26.56C13.49 26.56 10.99 25.67 8.99 23.9L10.36 22.54C11.97 23.94 13.98 24.64 16 24.64C18.01 24.63 20.02 23.94 21.64 22.54Z" fill="#FFFFFF" fill-opacity="0.600000" fill-rule="evenodd"/>
+	<path id="矢量 2" d="M23.9 8.99C25.67 10.99 26.56 13.49 26.56 16C26.56 18.5 25.67 21 23.9 23L22.54 21.63C23.94 20.02 24.64 18.01 24.64 16C24.64 13.98 23.94 11.97 22.54 10.36L23.9 8.99Z" fill="#FFFFFF" fill-opacity="0.600000" fill-rule="evenodd"/>
+	<path id="矢量 2" d="M8.09 8.99L9.45 10.35C8.05 11.97 7.35 13.98 7.35 16C7.35 18.01 8.05 20.02 9.45 21.64L8.09 23C6.32 21 5.43 18.5 5.43 16C5.43 13.49 6.32 10.99 8.09 8.99Z" fill="#FFFFFF" fill-opacity="0.600000" fill-rule="evenodd"/>
+	<path id="矢量 2" d="M16 5.43C18.5 5.43 21 6.32 23 8.09L21.64 9.45C20.02 8.05 18.01 7.36 16 7.35C13.98 7.35 11.97 8.05 10.36 9.45L8.99 8.09C10.99 6.32 13.49 5.43 16 5.43Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+	<path id="矢量 2" d="M13.35 13.48C13.35 12.04 14.52 10.87 15.96 10.87C17.39 10.87 18.56 12.04 18.56 13.48C18.56 14.91 17.39 16.07 15.96 16.07C14.52 16.07 13.35 14.91 13.35 13.48Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+	<path id="矢量 2" d="M21.5 20.64C20.17 22.2 18.2 23.2 16 23.2C13.79 23.2 11.82 22.2 10.49 20.64C11.61 18.77 13.66 17.52 16 17.52C18.33 17.52 20.38 18.77 21.5 20.64Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+</svg>

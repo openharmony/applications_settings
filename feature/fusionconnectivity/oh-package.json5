@@ -1,0 +1,13 @@
+{
+  "name": "@ohos/settings.fusionconnectivity",
+  "description": "bluetooth and nearlink feature",
+  "main": "index.ets",
+  "version": "1.0.0",
+  "dependencies": {
+    "@ohos/settings.common": "file:../../common",
+    "@ohos/settings.bluetooth": "file:../../feature/bluetooth",
+    "@ohos/settings.commonUikit": "file:../../feature/commonUikit",
+    "@ohos/settings.nearlink": "file:../../feature/nearlink"
+  }
+}
+

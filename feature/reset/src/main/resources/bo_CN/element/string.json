@@ -1,0 +1,46 @@
+{
+    "string":[
+        {
+            "name":"reset_factory_dialog_title",
+            "value":"༼ཁ་པར་བསྐྱར་སྒྲིག་༽བྱ་རྒྱུ་གཏན་འཁེལ་ཡིན་ནམ།",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_title_pc",
+            "value":"༼འཕྲུལ་ཆས་འདི་བསྐྱར་སྒྲིག་༽བྱ་རྒྱུ་གཏན་འཁེལ་ཡིན་ནམ།",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_content",
+          "value": "སྒྲིག་བཀོད་བསྐྱར་སྒྲིག་བྱས་རྗེས་གཅོང་སྲུང་གི་གནས་ཚུལ་སླར་གསོ་བྱ་ཐུབ་ཀྱི་མེད།",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"log_out",
+            "value":"ཐོ་ཨང་ལས་ཕྱིར་འཐེན།",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_retain_esim_content",
+            "value":"ཁྱེད་ཀྱི་ eSIM བྱང་བུ་འཕྲུལ་ཆས་འདིར་སྔར་བཞིན་ཉར་འཇོག་བྱས་ཡོད་པས། ལེགས་པར་ཉར་ཚགས་གནང་རོགས། འཕྲུལ་ཆས་འདི་མུ་མཐུད་ནས་བཀོལ་རྒྱུ་མིན་ན། གཉེར་སྐྱོང་ཚོང་པར་འབྲེལ་གཏུག་བྱས་ནས་སྒྱུར་བའམ་ eSIM ཐོ་སུབ་གནང་རོགས།",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_continue_reset_button",
+            "value":"མུ་མཐུད་བསྐྱར་སྒྲིག",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

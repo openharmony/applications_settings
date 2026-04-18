@@ -1,0 +1,11 @@
+{
+  "name": "@ohos/settings.cloneapps",
+  "description": "cloneapps feature",
+  "main": "index.ets",
+  "version": "1.0.0",
+  "dependencies": {
+    "@ohos/settings.common": "file:../../common",
+    "@ohos/settings.uikit": "file:../../feature/uikit",
+    "@ohos/settings.application": "file:../../feature/application",
+  }
+}

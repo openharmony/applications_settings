@@ -1,0 +1,382 @@
+{
+    "string":[
+        {
+            "name":"app_info_storage_app_size",
+            "value":"Application",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_music",
+            "value":"Musique",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_big_file",
+            "value":"Fichiers volumineux",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_version",
+            "value":"Version %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall",
+            "value":"Désinstaller",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_videos",
+            "value":"Vidéos",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Annuler",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"clear_cache_button_name",
+            "value":"Nettoyer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_sort_by",
+            "value":"Trier par",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"load_more_data",
+            "value":"Plus",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"clear_cache_title",
+            "value":"Vider le cache",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall_unusual_app_prompt",
+            "value":"Jusqu'à %1$s d'espace de stockage peut être libéré en désinstallant des applications rarement utilisées.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_storage_data_size",
+            "value":"Données",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_apps",
+            "value":"Applications",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_other",
+            "value":"Autre",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_storage_total_size",
+            "value":"Total",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_system",
+            "value":"Système",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_photo",
+            "value":"Photos",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"clear_cache_not_clear_cache",
+            "value":"Aucune donnée à effacer.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_uninstall_confirm",
+            "value":"Désinstaller %s ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"load_more_card",
+            "value":"Plus",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_clear_data",
+            "value":"Libérer de l'espace en accédant à %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uninstalling_dialog_message",
+            "value":"Désinstallation de l'application %s en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_sizes",
+            "value":"Taille",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"clear_cache_cleaning_up",
+            "value":"Vidage du cache en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall_unusual_apps",
+            "value":"Désinstaller les applications inutilisées",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recommend_card_header",
+            "value":"Suggestions",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"clear_cache_caculating",
+            "value":"Calcul en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_remove",
+            "value":"Désinstaller l'application",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"clear_cache_summary",
+            "value":"%s d'espace peut être libéré en vidant le cache. Cela n'affectera pas l'utilisation normale de l'appareil.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"clear_cache_cleaning_toast",
+            "value":"%s d'espace a été libéré.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_data_size",
+            "value":"Données d'applications",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"used_data",
+            "value":"%1$s utilisés sur %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_calculating_size",
+            "value":"Calcul en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_last_used",
+            "value":"Dernière utilisation",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_suggestion_desc",
+            "value":"Gérer le stockage de l'appareil pour libérer de l'espace.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_suggestion_level_2",
+            "value":"Stockage presque plein",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_suggestion_level_3",
+            "value":"Libérer de l'espace de stockage",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_suggestion_level_1",
+            "value":"Stockage presque plein",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unused_app",
+            "value":"Non utilisée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_backup_data_dialog_message",
+            "value":"Les données perdues de l'application sauvegardées par le système seront restaurées. Cependant, toutes les nouvelles données créées depuis la sauvegarde seront écrasées. %s doit être fermé pendant la restauration des données.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_backup_data_dialog_confirm",
+            "value":"Restaurer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_item_title",
+            "value":"Suppression des données de sauvegarde",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_dialog_title",
+            "value":"Supprimer les données de sauvegarde ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_dialog_confirm",
+            "value":"Supprimer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_bakcup_data_item_title",
+            "value":"Restaurer les données de sauvegarde",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_backup_data_success_tip",
+            "value":"Données de sauvegarde restaurées.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restoring_backup_data",
+            "value":"Restauration des données de sauvegarde en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"deleting_backup_data",
+            "value":"Suppression des données de sauvegarde en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_success_tip",
+            "value":"Données de sauvegarde supprimées.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_bakcup_data_dialog_title",
+            "value":"Restaurer les données de sauvegarde ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_dialog_message",
+            "value":"Les données de %s sauvegardées par le système seront définitivement supprimées, y compris les enregistrements de discussion et les fichiers.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_fail_tip",
+            "value":"Les données de sauvegarde ne peuvent pas être supprimées.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_backup_data_fail_tip",
+            "value":"Les données de sauvegarde n'ont pas pu être restaurées.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

@@ -1,0 +1,190 @@
+{
+    "string":[
+        {
+            "name":"bt_connecting_summary",
+            "value":"Connecting\u2026",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bt_connected_summary",
+            "value":"Connected",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"near_link_settings_summary",
+            "value":"Fast and stable device connections.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bt_pair_failed_title",
+            "value":"Pairing failed",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"near_link_state_open_hint",
+            "value":"Your device is visible to nearby NearLink devices as \"%1$s\". %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bt_pairing_summary",
+            "value":"Pairing\u2026",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"near_link_disconnecting_summary",
+            "value":"Disconnecting…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_disconnect_title",
+            "value":"Disconnect?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bt_connect_failed_title",
+            "value":"Connection failed",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"near_link_pair_failed_content",
+            "value":"Unable to pair with \"%s\". Try again later.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"near_link_connect_failed_content",
+            "value":"Unable to connect to \"%s\". Try again later.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"near_link_disconnect_request_content",
+            "value":"This will end your connection with:\n%s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_state_on_text",
+            "value":"On",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_state_off_text",
+            "value":"Off",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"near_link_edit_device_name",
+            "value":"Rename",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"near_link_ok",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_state_off",
+            "value":"Not available",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_other_device_group",
+            "value":"Other devices",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_reason_access_near_link",
+            "value":"this is used to access NearLink function"
+        },
+        {
+            "name":"change_device_name",
+            "value":"Edit device name",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"change_local_device_name_hint",
+            "value":"This name will be shown on other devices when you interact, share, or connect with them via NearLink, a personal hotspot, or USB.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_paired_devices",
+            "value":"Paired devices",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"near_link_pair_failed_title",
+            "value":"Pairing failed",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"near_link_usually_message",
+            "value":"Enter PIN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"near_link_pair_required_title",
+            "value":"NearLink pairing request",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"near_link_pair_required_message",
+            "value":"\"%1$s\" would like to pair with your device. Enter this code on \"%2$s\" to confirm.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"near_link_pair_require_input",
+            "value":"\"%1$s\" would like to pair with your device. Enter the code shown on \"%2$s\" to confirm.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

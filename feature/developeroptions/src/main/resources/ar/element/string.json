@@ -1,0 +1,354 @@
+{
+    "string":[
+        {
+            "name":"trusted_device_button_cancel",
+            "value":"عدم الوثوق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_usb_debug_title",
+            "value":"هل تسمح بتصحيح الأخطاء عبر USB؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"revocation_usb_authorize",
+            "value":"هل تريد إزالة جميع الأجهزة الموثوقة؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_touch_actions_trace",
+            "value":"عرض موضع المؤشر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wlan_address_bssid",
+            "value":"عنوان الشبكة اللاسلكية (معرّف مجموعة الخدمات الأساسي BSSID)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_display_refresh_frequency_summary",
+            "value":"إظهار أعلى معدل تحديث حالي للشاشة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"machine_name",
+            "value":"اسم الجهاز:\n%1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recall_usb_authorize",
+            "value":"إزالة كل الأجهزة الموثوقة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sunlight_readability_title",
+            "value":"تحسين قابلية القراءة تحت أشعة الشمس",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ip_address_and_port",
+            "value":"منفذ وعنوان IP",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"activating_usb_debug",
+            "value":"تشغيل تصحيح الأخطاء عندما تكون الشبكة اللاسلكية متصلة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"opened_wireless",
+            "value":"مشغّل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_Open_Logs",
+            "value":"تسجيل السجل التفصيلي للشبكة اللاسلكية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_refresh_frequency_title",
+            "value":"إظهار معدل التحديث",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_insightintent_debug_status_close",
+            "value":"مغلق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"debug_settings_title",
+            "value":"تصحيح الأخطاء",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"learn_more",
+            "value":"معرفة المزيد",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Confirm_the_cancellation",
+            "value":"إزالة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_name_ssid",
+            "value":"اسم شبكة الاتصال (SSID)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"public_key_name",
+            "value":"بصمة إصبع مفتاح RSA:\n%1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"debug_networking_category",
+            "value":"الشبكة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_Open_Logs__summary",
+            "value":"رفع مستوى تسجيل الشبكة اللاسلكية (إظهار لكل RSSI اسم شبكة الاتصال (SSID) في منتقي الشبكة اللاسلكية).",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"trusted_device_button_confirm",
+            "value":"وثوق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_wireless",
+            "value":"هل تسمح بتصحيح الأخطاء عبر الشبكة اللاسلكية على هذه الشبكة؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_settings_title",
+            "value":"اسم الجهاز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_show_touch_trace_summary",
+            "value":"إظهار بيانات اللمس الحالية على تراكب الشاشات.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_audio_bit_rate_adaptive",
+            "value":"البث بمعدل بت تكيفي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"link_wlan",
+            "value":"لا يوجد اتصال بالشبكة اللاسلكية. اتصل بشبكة لاسلكية وأعد المحاولة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_tittle_cancel",
+            "value":"إلغاء",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_debugged_mode_prompt",
+            "value":"صِل حاسوبك واتبع التعليمات لتشغيل المزيد من خيارات تصحيح الأخطاء المخصصة للمطورين. %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recall_usb_authorize_title",
+            "value":"لن تُصبح الأجهزة الموثوقة مُسبقًا موثوقة بعد الآن.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wireless_commissioning",
+            "value":"تصحيح الأخطاء عبر الشبكة اللاسلكية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_touch_actions_title",
+            "value":"عرض عدد النقرات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"link_wireless",
+            "value":"لا يمكن تشغيل تصحيح الأخطاء عبر الشبكة اللاسلكية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"closed_wireless",
+            "value":"مغلق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"usb_dialog_content",
+            "value":"تصحيح الأخطاء عبر USB مُخصّص لأغراض التطوير فقط. استخدمه لنسخ البيانات بين الحاسوب وجهاز آخر، والوصول إلى ملفات البيانات في دليل مشترك، وتثبيت التطبيقات دون تدخل المستخدم، وقراءة بيانات السجل.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_audio_channel_mode_mono",
+            "value":"أحادي الصوت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_insightintent_debug_status_open",
+            "value":"مشغّل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_show_touch_actions_summary",
+            "value":"عرض التعليقات المرئية للنقرات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"trusted_device_title",
+            "value":"هل تريد الوثوق في هذا الجهاز؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"debug_entering_category",
+            "value":"الإدخال",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_tittle_allow",
+            "value":"سماح",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"always_allow_debug",
+            "value":"الوثوق دائمًا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unlock_device_offline",
+            "value":"فتح القفل في وضع عدم الاتصال",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_options_open_failed",
+            "value":"يتعذّر تشغيل خيارات المطوّر",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_advanced_options",
+            "value":"خيارات النظام المتقدمة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"network_not_connected",
+            "value":"جهازك غير متصل بالإنترنت. اتصل بشبكة أو افتح قفل الجهاز في وضع عدم الاتصال عن طريق إرسال طلب على موقع AGC الإلكتروني.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_display",
+            "value":"العرض",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_machine_debugging",
+            "value":"في أثناء تصحيح أخطاء هذا الجهاز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_channel_mode_stereo",
+            "value":"استريو",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

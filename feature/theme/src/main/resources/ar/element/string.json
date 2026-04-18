@@ -1,0 +1,298 @@
+{
+    "string":[
+        {
+            "name":"table_theme",
+            "value":"الشاشة الرئيسية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_off_theme",
+            "value":"العرض الدائم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"the_theme",
+            "value":"السمات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_settings_title",
+            "value":"الشاشة والسطوع",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"theme_settings_title",
+            "value":"تخصيص الشاشة الرئيسية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"إلغاء",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"universe",
+            "value":"الكون",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pinnacle",
+            "value":"قمم الجبال",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_theme",
+            "value":"الإعدادات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_all_day_display",
+            "value":"طوال اليوم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_signature",
+            "value":"توقيع شاشة القفل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keywords_outer_theme",
+            "value":"سمات شاشة الغطاء",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_from_gallery",
+            "value":"اختيار من المعرض",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_theme",
+            "value":"الأيقونات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"font_style_theme",
+            "value":"الخطوط",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_sign_entry",
+            "value":"كيفية تعيين توقيع شاشة القفل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"apply",
+            "value":"استخدام",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_theme",
+            "value":"عرض المعلومات دومًا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keywords_outer_facard",
+            "value":"تطبيقات مصغرة للخدمات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"random_display_of_photos",
+            "value":"عرض الصور عشوائيًا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_style_theme",
+            "value":"نمط الأيقونة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"my_wallpaper",
+            "value":"الخلفيات الخاصة بي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switch_desktop_style_dialog_warning_message",
+            "value":"سيؤدي هذا إلى تسجيل خروجك من حساب المستخدم الحالي. ستُفقد أي بيانات غير محفوظة للتطبيق.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_ways_display_awake_scheduled",
+            "value":"التشغيل المجدول",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_ways_display_awake_off",
+            "value":"مغلق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wall_paper_theme",
+            "value":"الخلفيات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"digital_clock",
+            "value":"ساعة رقمية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"art_signature",
+            "value":"التوقيع الشخصي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"lock_card",
+            "value":"الأدوات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"homescreen",
+            "value":"العودة للشاشة الرئيسية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switch_desktop_style",
+            "value":"هل تريد تغيير نمط الشاشة الرئيسية؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_sure",
+            "value":"موافق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"aod_ways_display_awake_intelligent",
+            "value":"ذكي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_online_wallpapers",
+            "value":"المزيد من الخلفيات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"my_theme_settings_title",
+            "value":"سماتي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"lockscreen",
+            "value":"شاشة القفل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wallpaper_title",
+            "value":"الخلفيات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uncompleted",
+            "value":"ستتوفر الميزة قريبًا.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"covertheme_settings_title",
+            "value":"الشاشة الرئيسية وشاشة الغطاء والنمط",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"central_axis_personalization",
+            "value":"الحافة الافتراضية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_settings",
+            "value":"شاشة القفل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_font_creation_service",
+            "value":"خدمة إنشاء خطوط شاشة القفل",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

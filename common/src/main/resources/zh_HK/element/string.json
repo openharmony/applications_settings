@@ -1,0 +1,11 @@
+{
+    "string":[
+        {
+            "name":"app_list_loading",
+            "value":"載入中…",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

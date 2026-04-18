@@ -1,0 +1,158 @@
+{
+    "string":[
+        {
+            "name":"turn_off_hotspot",
+            "value":"تور نۇقتىسىنى ئېتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_sleep_time_30_sub",
+            "value":"مەشغۇلاتسىز تۇرغان ۋاقىت %d سېكۇنتقا يەتسە ئېكران ئېتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_aod_display_mode_smart",
+            "value":"ئاڭلىق ئىزچىل كۆرسىتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_hotspot_sub",
+            "value":"شەخسىي تور نۇقتىسى ئېتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps",
+            "value":"توك خوراتقان ئەپلەرنى ئېتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_wakeup_notification",
+            "value":"ئۇقتۇرۇش كەلسە ئېكران ئويغىتىشنى ئېتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_notification_when_hibernation",
+            "value":"ئۇخلىغاندا ئۇقتۇرۇش ئېتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_aod_display_mode_smart_sub",
+            "value":"ئىزچىل كۆرسىتىش ئارايۈزى ئېكراننى تۇتقان ياكى قارىغاندا ئېچىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_screen_refresh_rate_to_smart_mode_sub",
+            "value":"ئېكران يېڭىلاش نىسبىتى توك تېجەش بىلەن راۋانلىق تەڭپۇڭلاشتۇرۇلۇپ تەڭشىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_notification_when_hibernation_sub",
+            "value":"ئۇخلاش ھالىتىدە ئۇقتۇرۇش كەلمەيدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_screen_refresh_rate_to_smart_mode",
+            "value":"ئاڭلىق ئېكران يېڭىلاش نىسبىتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_wakeup_notification_sub",
+            "value":"ئۇقتۇرۇش كەلسە ئېكران يورۇمايدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_2",
+            "value":"\u200f«%1$s» ۋە «%2$s» ئېتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_3",
+            "value":"\u200f«%1$s»، «%2$s» ۋە «%3$s» ئېتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_1",
+            "value":"توك تېجەش ئۈچۈن «%1$s» نى ئېتىشنى تەۋسىيە قىلىمىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_2",
+            "value":"توك تېجەش ئۈچۈن «%1$s» ۋە «%2$s» نى ئېتىشنى تەۋسىيە قىلىمىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_other",
+            "value":"\u200f«%1$s»، «%2$s» ۋە «%3$s» قاتارلىق ئەپلەر ئېتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_3",
+            "value":"توك تېجەش ئۈچۈن «%1$s»، «%2$s» ۋە «%3$s» نى ئېتىشنى تەۋسىيە قىلىمىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_other",
+            "value":"توك تېجەش ئۈچۈن «%1$s»، «%2$s» ۋە «%3$s» قاتارلىق ئەپلەرنى ئېتىشنى تەۋسىيە قىلىمىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_1",
+            "value":"\u200f«%1$s» ئېتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_hotspot_card_sub",
+            "value":"شەخسىي تور نۇقتىسىنى ئېتىپ توك تېجەڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_sleep_time_30",
+            "value":"ئېكران ئۇخلىتىش ۋاقتىنى %d سېكۇنت قىلىپ بېكىتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

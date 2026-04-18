@@ -1,0 +1,1006 @@
+{
+  "pageInfos": [
+    {
+      "entryKey": "intelligent_scene_entry",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "wifi_entry",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "wifi_menu",
+      "parentKey": "wifi_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "add_other_wifi_entry",
+      "parentKey": "wifi_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "bluetooth_entry",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "audio_butler",
+      "parentKey": "bluetooth_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "mobile_network_entry",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "mobile_data_settings_entry",
+      "parentKey": "mobile_network_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "sim_card_management_entry",
+      "parentKey": "mobile_network_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "international_internet_entry",
+      "parentKey": "mobile_network_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "hotspot_data_settings",
+      "parentKey": "mobile_network_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "password_entry",
+      "parentKey": "hotspot_data_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "connected_device_entry",
+      "parentKey": "hotspot_data_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "block_list_entry",
+      "parentKey": "connected_device_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "more_share_entry",
+      "parentKey": "hotspot_data_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "mobile_data_manage_entry",
+      "parentKey": "mobile_network_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "more_connections_settings",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "distribute_connect_setting",
+      "parentKey": "more_connections_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "super_device_entry",
+      "parentKey": "more_connections_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "nfc_settings",
+      "parentKey": "more_connections_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "share_settings",
+      "parentKey": "more_connections_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "wireless_projection_settings",
+      "parentKey": "more_connections_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "wireless_trusted_settings",
+      "parentKey": "wireless_projection_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "hicar_setting",
+      "parentKey": "more_connections_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "super_launcher_setting",
+      "parentKey": "more_connections_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "pad_cockpit_setting",
+      "parentKey": "more_connections_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "more_collaboration_settings",
+      "parentKey": "more_connections_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "hi_write_settings",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "theme_settings",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "aod_settings_entry",
+      "parentKey": "theme_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "aod_style_entry",
+      "parentKey": "theme_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "desktop_settings",
+      "parentKey": "theme_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "theme_wallpaper",
+      "parentKey": "theme_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "theme_font",
+      "parentKey": "theme_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "theme_icon",
+      "parentKey": "theme_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "more_theme",
+      "parentKey": "theme_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "display_settings",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "dark_settings",
+      "parentKey": "display_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "eye_comfort_mode_time_on",
+      "parentKey": "eye_comfort_mode",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "ebook_mode",
+      "parentKey": "display_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "advanced_setting_entry",
+      "parentKey": "display_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "hdr_pic_switch_entry",
+      "parentKey": "advanced_setting_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "pic_bionic_vision_switch_entry",
+      "parentKey": "advanced_setting_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "hdr_video_switch_entry",
+      "parentKey": "advanced_setting_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "screen_zoom",
+      "parentKey": "display_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "screen_refresh_rate_entry",
+      "parentKey": "display_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "color_adjustment_and_color_temperature_entry",
+      "parentKey": "display_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "volume_settings",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "ring_tone_settings",
+      "parentKey": "volume_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "Messaging_tone_settings",
+      "parentKey": "volume_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "notification_tone_settings",
+      "parentKey": "volume_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "accessibility_touchscreen_entry",
+      "parentKey": "accessibility_feature",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "touch_duration_select",
+      "parentKey": "accessibility_touchscreen_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "ignore_repeated_touches_switch",
+      "parentKey": "accessibility_touchscreen_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "systemui_notification_settings",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "biometrics_and_password_settings",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "fingerprint_settings_entry",
+      "parentKey": "biometrics_and_password_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "under_screen_fingerprint_intro_entry",
+      "parentKey": "fingerprint_settings_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "face_settings_entry",
+      "parentKey": "biometrics_and_password_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "check_psd_entry",
+      "parentKey": "biometrics_and_password_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "lock_screen_password_title",
+      "parentKey": "biometrics_and_password_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "application_and_service_settings",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "application_settings",
+      "parentKey": "application_and_service_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "application_info_entry",
+      "parentKey": "application_and_service_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "application_restore_settings",
+      "parentKey": "application_and_service_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "storage_settings",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "battery",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "smart_charge_battery_health",
+      "parentKey": "battery",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "more_battery_settings",
+      "parentKey": "battery",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "privacy_settings",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "location_help_entry",
+      "parentKey": "location_manager_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "accessibility_feature",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "voicefix_setting",
+      "parentKey": "accessibility_feature",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "accessibility_audio_adjustment_entry",
+      "parentKey": "accessibility_feature",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "accessibility_sound_recognition_entry",
+      "parentKey": "accessibility_feature",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "accessibility_flash_reminder_entry",
+      "parentKey": "accessibility_feature",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "accessibility_hearing_aid_entry",
+      "parentKey": "accessibility_feature",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "accessibility_operation_entry",
+      "parentKey": "accessibility_feature",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "system_and_updates",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "com_hmos_ouc_software_update_settings",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "set_language",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "set_language_region",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "smart_cover_operation_entry",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "touch_disable_mode_entry",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "edit_language_entry",
+      "parentKey": "set_language_region",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "add_language_entry",
+      "parentKey": "set_language_region",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "select_region_entry",
+      "parentKey": "set_language_region",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "date_and_time",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "set_input",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "input_uiextension_list",
+      "parentKey": "set_input",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "time_zone_settings",
+      "parentKey": "date_and_time",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "time_24_hour_switch",
+      "parentKey": "date_and_time",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "reset_settings",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "font_manage",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "reset_net_settings",
+      "parentKey": "reset_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "reset_net_confirm_settings",
+      "parentKey": "reset_net_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "reset_factory_settings",
+      "parentKey": "reset_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "reset_confirm_settings",
+      "parentKey": "reset_factory_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "developer_options_settings",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "network_navigator_entry",
+      "parentKey": "developer_options_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "system_rollback_entry",
+      "parentKey": "developer_options_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "insight_intent_settings",
+      "parentKey": "developer_options_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "system_wireless_commissioning",
+      "parentKey": "developer_options_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "about_device",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "device_name",
+      "parentKey": "about_device",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "eid_detail_entry",
+      "parentKey": "about_device",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "com_hmos_ouc_param_version_settings",
+      "parentKey": "about_device",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "enterprise_custom_information_entry",
+      "parentKey": "about_device",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "status_information_settings",
+      "parentKey": "about_device",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "smart_multi_window",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "multi_window_force_switch",
+      "parentKey": "smart_multi_window",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "single_hand",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "grip_posture_follow_entry",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "forced_landscape",
+      "parentKey": "display_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "vassistant_setting",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "add_esim_profile_entry",
+      "parentKey": "sim_card_management_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "sos_emergency_help_entry",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "quick_pay",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "scan_code",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "hms_account_home_settings",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "accessibility_elder_care_entry",
+      "parentKey": "accessibility_feature",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "near_link_settings",
+      "parentKey": "more_connections_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "wake_screen_pick_up_switch",
+      "parentKey": "accessibility_wake_screen_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "wake_screen_double_click_switch",
+      "parentKey": "accessibility_wake_screen_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "gaze_screen_no_turning_off",
+      "parentKey": "display_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "phone_mouse_settings",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "ai_bar_settings",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "pad_keyboard_settings_entry",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "pad_keyboard_firmware_upgrade",
+      "parentKey": "pad_keyboard_settings_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "pad_keyboard_info_entry",
+      "parentKey": "pad_keyboard_settings_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "pad_touchpad_settings_entry",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "ai_bar_settings",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "cross_device_clipboard_entry",
+      "parentKey": "more_connections_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "clone_app_manager",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "clone_app_detail",
+      "parentKey": "clone_app_manager",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "transfer_station",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "enhance_netmanager",
+      "parentKey": "mobile_network_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "device_and_application",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "security_patch_label",
+      "parentKey": "about_device",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "hotspot_password",
+      "parentKey": "hotspot_data_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "storage_app_data_size",
+      "parentKey": "storage_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "storage_system_data_header",
+      "parentKey": "storage_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "enterprise_application_management_settings",
+      "parentKey": "device_and_application",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "share_settings",
+      "parentKey": "more_connections_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "cloud_space",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "iap_settings",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "account_recommendation",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "power_consumption_entry",
+      "parentKey": "battery",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "setting_storage_appItem",
+      "parentKey": "storage_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "network_information_settings",
+      "parentKey": "status_information_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "default_browser_settings",
+      "parentKey": "application_and_service_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "not_disturb_entry",
+      "parentKey": "volume_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "incoming_call",
+      "parentKey": "not_disturb_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "more_application_settings",
+      "parentKey": "application_and_service_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "default_mail_settings",
+      "parentKey": "application_and_service_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "ebook_mode",
+      "parentKey": "display_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "pad_print_settings_entry",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "accessibility_elder_care_call_filter_entry",
+      "parentKey": "accessibility_elder_care_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "privacy_password_settings_entry",
+      "parentKey": "biometrics_and_password_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "privacy_password_change_entry",
+      "parentKey": "biometrics_and_password_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "privacy_password_qs_entry",
+      "parentKey": "biometrics_and_password_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "privacy_password_close_entry",
+      "parentKey": "biometrics_and_password_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "allow_drop_down_control_center",
+      "parentKey": "biometrics_and_password_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "wifi_install_certificate",
+      "parentKey": "wifi_entry",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "vpn_settings",
+      "parentKey": "more_connections_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "network_settings",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "pc_network_proxy_settings",
+      "parentKey": "network_settings",
+      "isVisible": true,
+      "permission": ""
+    }
+  ]
+}

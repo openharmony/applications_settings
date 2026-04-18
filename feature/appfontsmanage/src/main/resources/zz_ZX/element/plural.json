@@ -1,0 +1,149 @@
+{
+    "plural":[
+        {
+            "name":"font_num",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_967275]_%d fonts"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_967267]_%d font"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_967272]_%d fonts"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_967276]_%d fonts"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_967265]_%d fonts"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_967270]_%d fonts"
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_not_support",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_982035]_Unable to install %d fonts. Only supports TTF, TTC, and OTF formats."
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_982034]_Unable to install %d font. Only supports TTF, TTC, and OTF formats."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_982042]_Unable to install %d fonts. Only supports TTF, TTC, and OTF formats."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_982043]_Unable to install %d fonts. Only supports TTF, TTC, and OTF formats."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_982045]_Unable to install %d fonts. Only supports TTF, TTC, and OTF formats."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_982036]_Unable to install %d fonts. Only supports TTF, TTC, and OTF formats."
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_reached_the_upper_limit",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_982044]_Unable to install %d fonts. Maximum reached."
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_982047]_Unable to install %d font. Maximum reached."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_982051]_Unable to install %d fonts. Maximum reached."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_982038]_Unable to install %d fonts. Maximum reached."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_982037]_Unable to install %d fonts. Maximum reached."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_982049]_Unable to install %d fonts. Maximum reached."
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_replace_failed",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_992713]_%d font could not be replaced."
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_992731]_%d fonts could not be replaced."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_992718]_%d fonts could not be replaced."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_992720]_%d fonts could not be replaced."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_992719]_%d fonts could not be replaced."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_992732]_%d fonts could not be replaced."
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_success",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_992736]_%d fonts successfully installed."
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_992710]_%d font successfully installed."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_992716]_%d fonts could not be replaced."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_992717]_%d fonts could not be replaced."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_992706]_%d fonts successfully installed."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_992724]_%d fonts successfully installed."
+                }
+            ]
+        }
+    ]
+}
