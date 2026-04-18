@@ -1,0 +1,12 @@
+{
+  "color": [
+    {
+      "name": "color_text_primary_activated",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "loading_color",
+      "value": "#656565"
+    }
+  ]
+}

@@ -1,0 +1,424 @@
+{
+    "string":[
+        {
+            "name":"vpn_edit_dnsaddresses",
+            "value":"Máy chủ DNS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_connect_save",
+            "value":"Lưu thông tin người dùng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_alias",
+            "value":"Tên",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_change_alert_title",
+            "value":"Thay đổi VPN?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_line_remove_alert_confirm",
+            "value":"Xóa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_user_cert_file",
+            "value":"Chứng chỉ người dùng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_change_alert_content",
+            "value":"Thao tác này sẽ kết thúc kết nối VPN hiện tại.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_password",
+            "value":"Mật khẩu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_protocol",
+            "value":"Giao thức OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_error_disconnect_first",
+            "value":"Trước tiên hãy ngắt kết nối VPN.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ipsecsecret",
+            "value":"Khóa chia sẻ trước IPsec",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_cacert",
+            "value":"Chứng chỉ IPsec CA",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_l2tpsecret",
+            "value":"Bảo mật L2TP",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_router",
+            "value":"Tuyến chuyển tiếp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_line_disconnect_alert_confirm",
+            "value":"Ngắt kết nối",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_unuse",
+            "value":"Không được sử dụng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_usercert",
+            "value":"Chứng chỉ người dùng IPsec",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_auth_type",
+            "value":"Loại xác thực OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_connec_success",
+            "value":"Đã kết nối",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_dns_tips",
+            "value":"Ví dụ: 8.8.8.8",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_port",
+            "value":"Cổng proxy OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_advanced_collapse",
+            "value":"Ẩn bớt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_save",
+            "value":"Lưu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_line_disconnect_operation_remove",
+            "value":"Xóa VPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"VPN",
+            "value":"VPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ipsecidentifier",
+            "value":"Mã định danh IPsec",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_username",
+            "value":"Tên người dùng proxy OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_proxy_advanced",
+            "value":"Hiển thị proxy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_username",
+            "value":"Tên người dùng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_connect_password",
+            "value":"Mật khẩu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_line_disconnect_alert_title",
+            "value":"VPN này đã được kết nối.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_port",
+            "value":"Cổng máy chủ OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_ca_cert_file",
+            "value":"Chứng chỉ CA",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_change_alert_confirm",
+            "value":"OK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_disconnecting",
+            "value":"Đang ngắt kết nối…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_servercert",
+            "value":"Chứng chỉ máy chủ IPsec",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_configfile",
+            "value":"Tệp tin cấu hình OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_disconnected",
+            "value":"Đã ngắt kết nối",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_private_key_psd",
+            "value":"Mật khẩu khóa riêng tư",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_router_tips",
+            "value":"Ví dụ: 10.0.0.0/8",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_connect_username",
+            "value":"Tên người dùng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_password",
+            "value":"Mật khẩu proxy OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_list_add",
+            "value":"Thêm VPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_connect_confirm",
+            "value":"Kết nối",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_advanced_expanded",
+            "value":"Tùy chọn nâng cao",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_cert_not_verify_server",
+            "value":"Không xác minh máy chủ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_connect_ing",
+            "value":"Đang kết nối…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_advanced",
+            "value":"Tùy chọn nâng cao",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_serveraddress",
+            "value":"Địa chỉ máy chủ OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_cert_from_server",
+            "value":"Từ máy chủ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_connec_failed",
+            "value":"Kết nối không thành công",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_type",
+            "value":"Loại",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_cert_not_specified",
+            "value":"Không xác định",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_click_select",
+            "value":"Chọn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_host",
+            "value":"Máy chủ proxy OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_list_empty",
+            "value":"Không có VPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_line_remove_alert_title",
+            "value":"Xóa VPN \"%s\"?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_searchdomains",
+            "value":"Tên miền tìm kiếm DNS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_connect_title",
+            "value":"Kết nối với %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_serveraddress",
+            "value":"Địa chỉ máy chủ",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

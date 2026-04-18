@@ -1,0 +1,123 @@
+{
+    "string":[
+        {
+            "name":"projection_state_on",
+            "value":"ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"projection_state_off",
+            "value":"ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"nfc_switch_off_text",
+            "value":"ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_off_text",
+            "value":"ئۇلانمىغان",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"nfc_switch_on_text",
+            "value":"ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_on_text",
+            "value":"ئۇلاق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_collaboration_settings_title",
+            "value":"ئالىي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"multi_device_collaboration_service_switch",
+            "value":"كۆپ ئۈسكۈنە ھەمكارلىق كۈچەيمە مۇلازىمىتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_notice",
+            "value":"ئىجازەت ئىشلىتىش كۆرسەتمىسى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wireless_projection_statement",
+            "value":"بۇ مۇلازىمەت ئۈسكۈنە بايقاش ۋە ئۇلاش ئىجازىتى ئالىدۇ؛ كۆكچىش ۋە WLAN ئىقتىدارىنى ئىشلىتىدۇ؛ ئۈسكۈنىدە ئۈن ئېلىپ ۋە ئېكران خاتىرىلەپ، ئېكران سۇنۇش مۇلازىمەتلىرىنى تەمىنلەيدۇ. بۇ مۇلازىمەتنى ئاچسىڭىز، يۇقىرىقى مەزمۇن ۋە «%s» گە قوشۇلغان بولىسىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bind_devices",
+            "value":"ئۈسكۈنە باشقۇرۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_switch",
+            "value":"تەڭ تەۋسىيە",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_details",
+            "value":"ئۈسكۈنە ۋە مۇھىت بويىچە ماس ھەمكارلىق ئىقتىدارى تەۋسىيە قىلىنىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"far_field_communication_service_privacy",
+            "value":"يىراق ئالاقە مۇلازىمىتى ۋە مەخپىيەتلىك ھەققىدە بايانات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_switch_msg",
+            "value":"بۇ مۇلازىمەت كۆكچىش ۋە WLAN ئىشلىتىدۇ؛ يىراق ئالاقە مۇلازىمىتى ئارقىلىق قارشى ئۈسكۈنە بىلەن مەلۇمات ئالماشتۇرىدۇ؛ يۇقىرىقىلار ئۈسكۈنىلەر ئارا تەڭ تەۋسىيە مۇلازىمەتلىرىنى تەمىنلەش ئۈچۈن ئىشلىتىلىدۇ. يىراق ئالاقە مۇلازىمىتى تور ئىشلىتىدۇ. شەخسىي ئۇچۇر بىر تەرەپ قىلىشقا ئالاقىدار تەپسىلاتلارنى «%s» ئارقىلىق كۆرۈڭ. بۇ مۇلازىمەتنى ئاچسىڭىز، يۇقىرىقىلارغا قوشۇلغان بولىسىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_entry_guide",
+            "value":"سىمسىز ئېكران سۇنۇش ئېغىزى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_entry_guide_message",
+            "value":"تىزگىنلەش مەركىزىدىكى سىمسىز سۇنۇش كۇنۇپكىسىنى بېسىپ، ئەتراپتىن ئۈسكۈنە بايقايسىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

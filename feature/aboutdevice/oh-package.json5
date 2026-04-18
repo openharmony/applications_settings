@@ -1,0 +1,16 @@
+{
+  "name": "@ohos/settings.aboutdevice",
+  "description": "aboutdevice feature",
+  "main": "index.ets",
+  "version": "1.0.0",
+  "dependencies": {
+    "@ohos/settings.common": "file:../../common",
+    "@ohos/settings.uikit": "file:../uikit",
+    "@ohos/settings.search": "file:../search",
+    "@ohos/settings.privacy": "file:../privacy",
+    "@ohos/settings.wifi": "file:../wifi",
+    "@ohos/settings.native": "file:../../native_api",
+    "@ohos/settings.nearlink": "file:../nearlink",
+    "@ohos/settings.systemUpdate": "file:../systemUpdate"
+  }
+}

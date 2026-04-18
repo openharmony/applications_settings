@@ -1,0 +1,23 @@
+{
+    "plural":[
+        {
+            "name":"bluetooth_audio_frame_length_mode",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d ms",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d ms",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

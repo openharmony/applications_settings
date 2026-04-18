@@ -1,0 +1,228 @@
+{
+    "string":[
+        {
+            "name":"screen_zoom_summary_small",
+            "value":"[TS_863708]_Small"
+        },
+        {
+            "name":"screen_zoom_summary_very_large",
+            "value":"[TS_863703]_Larger"
+        },
+        {
+            "name":"screen_zoom_summary_default",
+            "value":"[TS_863704]_Default"
+        },
+        {
+            "name":"screen_zoom_title",
+            "value":"[TS_863726]_Display size"
+        },
+        {
+            "name":"after_thirty_seconds",
+            "value":"[TS_816173]_After %d seconds"
+        },
+        {
+            "name":"after_five_minutes",
+            "value":"[TS_816170]_After %d minutes"
+        },
+        {
+            "name":"after_one_minute",
+            "value":"[TS_816168]_After %d minute"
+        },
+        {
+            "name":"screen_zoom_summary_extremely_large",
+            "value":"[TS_863724]_Largest"
+        },
+        {
+            "name":"five_minutes",
+            "value":"[TS_806154]_%d minutes"
+        },
+        {
+            "name":"fifteen_seconds",
+            "value":"[TS_806198]_%d seconds"
+        },
+        {
+            "name":"after_two_minutes",
+            "value":"[TS_816169]_After %d minutes"
+        },
+        {
+            "name":"thirty_seconds",
+            "value":"[TS_806151]_%d seconds"
+        },
+        {
+            "name":"after_ten_minutes",
+            "value":"[TS_816171]_After %d minutes"
+        },
+        {
+            "name":"never_sleep",
+            "value":"[TS_806188]_Never"
+        },
+        {
+            "name":"only_screenOff",
+            "value":"[TS_992511]_Turn off screen"
+        },
+        {
+            "name":"sleep",
+            "value":"[TS_992541]_Sleep"
+        },
+        {
+            "name":"nothing",
+            "value":"[TS_992526]_Do nothing"
+        },
+        {
+            "name":"one_minute",
+            "value":"[TS_806111]_%d minute"
+        },
+        {
+            "name":"two_minutes",
+            "value":"[TS_806136]_%d minutes"
+        },
+        {
+            "name":"ten_minutes",
+            "value":"[TS_806123]_%d minutes"
+        },
+        {
+            "name":"fifteen_minutes",
+            "value":"[TS_992566]_%d minutes"
+        },
+        {
+            "name":"thirty_minutes",
+            "value":"[TS_992475]_%d minutes"
+        },
+        {
+            "name":"screen_zoom_summary_large",
+            "value":"[TS_863721]_Large"
+        },
+        {
+            "name":"after_fifteen_seconds",
+            "value":"[TS_816167]_After %d seconds"
+        },
+        {
+            "name":"display_model",
+            "value":"[TS_869878]_View mode"
+        },
+        {
+            "name":"motion_off",
+            "value":"[TS_914452]_Off"
+        },
+        {
+            "name":"motion_on",
+            "value":"[TS_914453]_On"
+        },
+        {
+            "name":"start_time",
+            "value":"[TS_968873]_Start"
+        },
+        {
+            "name":"open_all_day",
+            "value":"[TS_869422]_All day"
+        },
+        {
+            "name":"end_time",
+            "value":"[TS_968862]_End"
+        },
+        {
+            "name":"eye_timed_on",
+            "value":"[TS_968867]_Scheduled"
+        },
+        {
+            "name":"screen_zoom_sample_text",
+            "value":"[TS_973642]_Sample text"
+        },
+        {
+            "name":"font_apply_all",
+            "value":"[TS_973643]_Apply"
+        },
+        {
+            "name":"advanced_setting",
+            "value":"[TS_978995]_Advanced settings"
+        },
+        {
+            "name":"display_built_in",
+            "value":"[TS_973437]_Built-in display"
+        },
+        {
+            "name":"display_machine",
+            "value":"[TS_973435]_This device"
+        },
+        {
+            "name":"display_extended",
+            "value":"[TS_973436]_External display"
+        },
+        {
+            "name":"go_to_set",
+            "value":"[TS_958956]_Go to Settings"
+        },
+        {
+            "name":"set_larger_fonts_message",
+            "value":"[TS_978460]_Extra-large font sizes are available in Senior mode."
+        },
+        {
+            "name":"set_larger_fonts",
+            "value":"[TS_978459]_Need a larger font?"
+        },
+        {
+            "name":"dark_mode_dialog_title",
+            "value":"[TS_951015]_Enable Dark mode?"
+        },
+        {
+            "name":"confirm_close_high_contrast_content",
+            "value":"[TS_951014]_This will disable high contrast text."
+        },
+        {
+            "name":"display_azimuth_settings_finish",
+            "value":"[TS_981442]_Done"
+        },
+        {
+            "name":"location_set",
+            "value":"[TS_986984]_Screen layout"
+        },
+        {
+            "name":"button_edit",
+            "value":"[TS_981443]_Edit"
+        },
+        {
+            "name":"display_eye_protection_warmer",
+            "value":"[TS_1000815]_Warmer"
+        },
+        {
+            "name":"display_eye_protection_colder",
+            "value":"[TS_1000819]_Cooler"
+        },
+        {
+            "name":"location_set_description",
+            "value":"[TS_1012147]_Drag the displays to rearrange them. The pointer can move across nearby screens."
+        },
+        {
+            "name":"location_set_tips_disconnect",
+            "value":"[TS_1065577]_Disconnect"
+        },
+        {
+            "name":"color_adjustment_and_color_temperature_title",
+            "value":"[TS_875317]_Color"
+        },
+        {
+            "name":"color_adjustment",
+            "value":"[TS_1074767]_Color"
+        },
+        {
+            "name":"color_temperature_title",
+            "value":"[TS_875321]_Color temperature"
+        },
+        {
+            "name":"dark_mode_title",
+            "value":"[TS_1083385]_When set to Scheduled, Dark mode won't take effect until the screen is turned off."
+        },
+        {
+            "name":"until_turn_off",
+            "value":"[TS_1095144]_Will stay on until turned off"
+        },
+        {
+            "name":"only_landscape_supported",
+            "value":"[TS_1103575]_Only available when the device is unfolded and in landscape mode."
+        },
+        {
+            "name":"other_time",
+            "value":"[TS_1118689]_Other"
+        }
+    ]
+}

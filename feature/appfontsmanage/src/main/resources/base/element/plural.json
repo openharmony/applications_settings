@@ -1,0 +1,99 @@
+{
+    "plural":[
+        {
+            "name":"batch_installation_replace_failed",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d font could not be replaced.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d fonts could not be replaced.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_success",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d font successfully installed.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d fonts successfully installed.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_reached_the_upper_limit",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Unable to install %d font. Maximum reached.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Unable to install %d fonts. Maximum reached.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_not_support",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Unable to install %d font. Only supports TTF, TTC, and OTF formats.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Unable to install %d fonts. Only supports TTF, TTC, and OTF formats.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"font_num",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d font",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d fonts",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

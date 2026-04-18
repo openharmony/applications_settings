@@ -1,0 +1,51 @@
+{
+    "strarray":[
+        {
+            "name":"transition_animation_scale_entries",
+            "value":[
+                {
+                    "value":"ھەرىكەت ئېتىك",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "value":"ھەرىكەت نىسبىتى 0.5x",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "value":"ھەرىكەت نىسبىتى 1x",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "value":"ھەرىكەت نىسبىتى 1.5x",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "value":"ھەرىكەت نىسبىتى 2x",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "value":"ھەرىكەت نىسبىتى 5x",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "value":"ھەرىكەت نىسبىتى 10x",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

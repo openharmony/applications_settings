@@ -1,0 +1,61 @@
+{
+    "plural":[
+        {
+            "name":"is_delete_apps_number",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Uninstall %d app?",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Uninstall %d apps?",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"delete_apps_selected",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Uninstall %d app",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Uninstall %d apps",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"not_enabled_for_many_days",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Not used for %d day",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Not used for %d days",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

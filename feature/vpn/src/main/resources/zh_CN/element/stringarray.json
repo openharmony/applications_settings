@@ -1,0 +1,44 @@
+{
+  "strarray": [
+    {
+      "name":"ovpen_auth_type",
+      "value":[
+        {
+          "value":"证书 (TLS)",
+          "attr":{
+            "priority":"translate"
+          }
+        },
+        {
+          "value":"密码",
+          "attr":{
+            "priority":"translate"
+          }
+        },
+        {
+          "value":"证书和密码 (TLS)",
+          "attr":{
+            "priority":"translate"
+          }
+        }
+      ]
+    },
+    {
+      "name":"ovpn_protocol",
+      "value":[
+        {
+          "value":"TCP",
+          "attr":{
+            "priority":"translate"
+          }
+        },
+        {
+          "value":"UDP",
+          "attr":{
+            "priority":"translate"
+          }
+        }
+      ]
+    }
+  ]
+}

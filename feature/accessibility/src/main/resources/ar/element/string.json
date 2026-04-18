@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"dialog_enable",
+            "value":"تشغيل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"إلغاء",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_adjustment",
+            "value":"ضبط الصوت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"single_audio_reminder",
+            "value":"تشغيل الصوت نفسه في كلتا سماعتي الأذن دون تأثير ستريو.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

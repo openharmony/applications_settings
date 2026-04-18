@@ -1,0 +1,11 @@
+{
+    "string":[
+        {
+            "name":"app_list_loading",
+            "value":"Đang tải…",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

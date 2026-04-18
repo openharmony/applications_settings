@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "settings.powersave",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

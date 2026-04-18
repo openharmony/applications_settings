@@ -1,0 +1,42 @@
+{
+    "plural":[
+        {
+            "name":"optimization_task_toast",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Se ha aplicado %d optimización.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Se han aplicado %d optimizaciones.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"power_save_advise_sub",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Aplica %d optimización para prolongar la autonomía de la batería.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Haz %d optimizaciones para prolongar la autonomía de la batería.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

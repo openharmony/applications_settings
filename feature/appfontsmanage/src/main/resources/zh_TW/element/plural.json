@@ -1,0 +1,64 @@
+{
+    "plural":[
+        {
+            "name":"batch_installation_success",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 個字體安裝成功",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_replace_failed",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 個字體取代失敗",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_not_support",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"僅支援 ttf、ttc、otf 格式，%d 個字體安裝失敗",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"font_num",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 種字體",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"batch_installation_reached_the_upper_limit",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"安裝數量已達上限，%d 個字體安裝失敗",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

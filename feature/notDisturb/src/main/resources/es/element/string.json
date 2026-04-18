@@ -1,0 +1,438 @@
+{
+    "string":[
+        {
+            "name":"not_disturb_regularly",
+            "value":"Programado",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"zen_mode_schedule_repeat_monday_to_friday",
+            "value":"Lunes a viernes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"zen_mode_ruletime_nextday",
+            "value":"%1$s-%2$s (día siguiente)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_nextday",
+            "value":"%s (día siguiente)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_everyday",
+            "value":"Todos los días",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_turnedon",
+            "value":"Activado",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_six_format",
+            "value":"%1$s, %2$s, %3$s, %4$s, %5$s, %6$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tips_title",
+            "value":"Cuando esta opción está activada, las llamadas entrantes se rechazan automáticamente y las notificaciones se silencian. Las alarmas se activan como siempre. En “Permitir interrupciones”, puedes elegir el contenido que quieres bloquear y permitir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_add",
+            "value":"Añadir programación",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"repeat_call_will_ring_normally",
+            "value":"Si el mismo número llama otra vez en menos de %d minutos, la llamada no se silenciará.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"done",
+            "value":"Listo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tonight_time",
+            "value":"Permanecerá activado hasta %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_edit",
+            "value":"Editar horario",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_start_time",
+            "value":"Desde",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_call",
+            "value":"Llamadas telefónicas",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"go_to_set",
+            "value":"Ir a Ajustes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_maximum_scheduled",
+            "value":"Se pueden añadir hasta %d programaciones.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_cancel",
+            "value":"Cancelar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_reset",
+            "value":"Puedes volver a añadir esto en cualquier momento.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_everyone",
+            "value":"Permitir todas",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"none_selected_app",
+            "value":"Sin seleccionar",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_only_specified_contacts",
+            "value":"Permitir de contactos seleccionados",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_end_time",
+            "value":"Hasta",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_only_favorite_contacts",
+            "value":"Permitir solo de favoritos",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_repeat",
+            "value":"Repetir",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tips_settings",
+            "value":"Cuando esta opción está activada, las llamadas entrantes y las notificaciones no emiten sonidos ni encienden la pantalla. Las alarmas suenan como siempre.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_until_tonight",
+            "value":"Hasta esta noche",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_notification",
+            "value":"Notificaciones",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_only_existing_contacts",
+            "value":"Permitir solo de contactos",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_reason_read_write_contacts",
+            "value":"Se utiliza para leer y escribir información sobre contactos.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_contacts",
+            "value":"Seleccionar contactos",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_confirm",
+            "value":"Aceptar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_app",
+            "value":"Seleccionar aplicaciones",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_scheduled",
+            "value":"Añadir programación",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_four_format",
+            "value":"%1$s, %2$s, %3$s, %4$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_open",
+            "value":"Encender",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_list_search_empty",
+            "value":"No se han encontrado resultados",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_turn_on_now",
+            "value":"Activar ahora",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"forbid_everyone",
+            "value":"Bloquear para todos",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_closed",
+            "value":"Desactivado",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_two_hour",
+            "value":"Durante 2 horas",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_tips_dialog",
+            "value":"Cuando esta opción está activada, las llamadas entrantes y las notificaciones no emiten sonidos ni encienden la pantalla. Las alarmas suenan como siempre.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_repeat",
+            "value":"Nunca",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_between",
+            "value":"%1$s-%2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_five_format",
+            "value":"%1$s, %2$s, %3$s, %4$s, %5$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_contacts",
+            "value":"Preferencias",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_title",
+            "value":"No molestar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_three_format",
+            "value":"%1$s, %2$s, %3$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_allow",
+            "value":"Permitir interrupciones",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_loading",
+            "value":"Cargando…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_delete_confirm",
+            "value":"¿Eliminar esta programación?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"week_description_two_format",
+            "value":"%1$s, %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_dialog_title",
+            "value":"Ajustes requiere el permiso de Contactos",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_until_close",
+            "value":"Permanecerá activado hasta que lo desactives",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_disturb_one_hour",
+            "value":"Durante 1 hora",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_delete",
+            "value":"Eliminar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"all_app",
+            "value":"Todas las aplicaciones",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"search_app",
+            "value":"Buscar aplicaciones",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"repeat_call_ringing",
+            "value":"Permitir llamadas repetidas de un mismo número",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"none_selected",
+            "value":"Sin seleccionar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_selected",
+            "value":"Sin seleccionar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"has_selected",
+            "value":"Seleccionado",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

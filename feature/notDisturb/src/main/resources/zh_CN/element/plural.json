@@ -1,0 +1,52 @@
+{
+    "plural":[
+        {
+            "name":"selected_app",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"已选 (%d)"
+                },
+                {
+                    "quantity":"other",
+                    "value":"已选 (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"user_select_app",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d个应用"
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d 个应用",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"user_select_contact",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d个联系人"
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d 个联系人",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

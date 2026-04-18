@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"dialog_enable",
+            "value":"Включить",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Отмена",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_adjustment",
+            "value":"Настройка аудио",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"single_audio_reminder",
+            "value":"Воспроизведение одного аудио в обоих наушниках без эффекта стерео.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

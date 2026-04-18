@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "settings.appfontsmanage",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}
