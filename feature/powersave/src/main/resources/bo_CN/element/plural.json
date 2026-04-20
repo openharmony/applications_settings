@@ -1,0 +1,28 @@
+{
+    "plural":[
+        {
+            "name":"optimization_task_toast",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"རྩོལ་ནུས་ %d ལེགས་སྒྱུར་བྱས་ཟིན།",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"power_save_advise_sub",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"མིག་སྔར་བྱེད་ནུས་ཁག %d ལེགས་སྒྱུར་བྱ་རྒྱུ་ཡོད་ལ། བཀོལ་སྤྱོད་བརྒྱུད་རིམ་ཁྲོད་ཀྱི་གློག་གི་ཟད་ཚད་ཇེ་དམའ་རུ་གཏོང་ཐུབ།",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

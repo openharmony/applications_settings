@@ -1,0 +1,56 @@
+{
+  "description": "Configuration for settings Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "180000",
+    "bundle-name": "com.ohos.settings",
+    "module-name": "entry_test",
+    "shell-timeout": "3600000",
+    "testcase-timeout": "180000",
+    "compile-mode": "esmodule",
+    "coverage": true,
+    "package-tool-path": "D:\\Local\\coverage\\node_modules\\@ohos\\coverage"
+  },
+  "kits": [
+    {
+      "run-command": [
+        "mount -o rw,remount /",
+        "rm -rf /system/app/Settings/*.*"
+      ],
+      "teardown-command": [
+        "mount -o rw,remount /",
+        "power-shell setmode 600"
+      ],
+      "type": "ShellKit"
+    },
+    {
+      "pre-push":"mount -o rw,remount /",
+      "push": "settings.hap->/system/app/Settings/Settings.hap",
+      "type": "PushKit",
+      "post-push": [
+        "bm install -p /system/app/Settings/Settings.hap",
+        "reboot",
+        "wait 5",
+        "power-shell wakeup",
+        "uinput -T -m 300 2700 280 200",
+        "wait 5",
+        "uinput -T -m 300 2700 280 200",
+        "power-shell setmode 602"
+      ]
+    },
+    {
+      "test-file-name": [
+        "settings.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },
+    {
+      "test-file-name": [
+        "settingsTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    }
+  ]
+}

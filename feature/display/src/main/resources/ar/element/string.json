@@ -1,0 +1,396 @@
+{
+    "string":[
+        {
+            "name":"screen_zoom_summary_small",
+            "value":"صغير",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_set_tips_disconnect",
+            "value":"قطع الاتصال",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_on",
+            "value":"مشغّل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_model",
+            "value":"وضع العرض",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"advanced_setting",
+            "value":"إعدادات متقدمة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"after_five_minutes",
+            "value":"بعد %d دقائق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_one_minute",
+            "value":"بعد دقيقة واحدة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_extremely_large",
+            "value":"الأكبر",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"start_time",
+            "value":"وقت البدء",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_all_day",
+            "value":"طوال اليوم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"nothing",
+            "value":"لا تفعل شيء",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_two_minutes",
+            "value":"بعد دقيقتين",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"end_time",
+            "value":"وقت الانتهاء",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"go_to_set",
+            "value":"الانتقال إلى الإعدادات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm_close_high_contrast_content",
+            "value":"سيعمل هذا على تعطيل إظهار النصوص بدرجة تباين عالية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_built_in",
+            "value":"شاشة مُدمجة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"eye_timed_on",
+            "value":"التشغيل المجدول",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"two_minutes",
+            "value":"دقيقتان",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_set",
+            "value":"تخطيط الشاشة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_eye_protection_warmer",
+            "value":"أكثر دفئًا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_machine",
+            "value":"هذا الجهاز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_default",
+            "value":"افتراضي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"thirty_minutes",
+            "value":"%d دقيقة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_adjustment_and_color_temperature_title",
+            "value":"اللون",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_larger_fonts_message",
+            "value":"تتوفر أحجام الخطوط الكبيرة جدًا في وضع كبار السن.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_sample_text",
+            "value":"عينة من النص",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"font_apply_all",
+            "value":"تطبيق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"five_minutes",
+            "value":"%d دقائق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_larger_fonts",
+            "value":"هل تحتاج إلى خط أكبر؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_set_description",
+            "value":"انقر على الشاشات أو اسحبها لإعادة ترتيبها. يمكنك أيضًا تحريك المؤشر بين الشاشات القريبة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"motion_off",
+            "value":"مغلق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ten_minutes",
+            "value":"%d دقائق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_large",
+            "value":"كبير",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dark_mode_dialog_title",
+            "value":"هل تريد تشغيل الوضع الليلي؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_azimuth_settings_finish",
+            "value":"تم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fifteen_seconds",
+            "value":"%d ثانية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"thirty_seconds",
+            "value":"%d ثانية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"never_sleep",
+            "value":"أبدًا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"one_minute",
+            "value":"دقيقة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_eye_protection_colder",
+            "value":"أكثر برودة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_summary_very_large",
+            "value":"أكبر",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_adjustment",
+            "value":"اللون",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_title",
+            "value":"حجم العرض",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"after_thirty_seconds",
+            "value":"بعد %d ثانية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_temperature_title",
+            "value":"حرارة الألوان",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_extended",
+            "value":"الشاشة الخارجية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sleep",
+            "value":"انطفاء الشاشة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_ten_minutes",
+            "value":"بعد %d دقائق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_edit",
+            "value":"تعديل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"only_screenOff",
+            "value":"إيقاف تشغيل الشاشة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fifteen_minutes",
+            "value":"%d دقيقة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"after_fifteen_seconds",
+            "value":"بعد %d ثانية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dark_mode_title",
+            "value":"عند تعيين الإعداد على التشغيل المجدول، لن يتم تشغيل الوضع الليلي إلّا بعد أن تنطفئ الشاشة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"until_turn_off",
+            "value":"سيستمر تشغيله حتى يتم إيقافه",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"only_landscape_supported",
+            "value":"لا يُتاح إلا عند فرد الجهاز وفي الوضع الأفقي.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"other_time",
+            "value":"أخرى",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

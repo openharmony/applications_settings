@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>WLAN_icon备份 14</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="手写笔设置页---after" transform="translate(-36.000000, -783.000000)">
+            <g id="编组-5" transform="translate(24.000000, 36.000000)">
+                <g id="编组-47备份" transform="translate(0.000000, 687.000000)">
+                    <g id="编组-31" transform="translate(12.000000, 52.000000)">
+                        <g id="编组" transform="translate(0.000000, 8.000000)">
+                            <circle id="椭圆形" fill="#46B1E3" cx="16" cy="16" r="16"></circle>
+                            <g id="输入键盘_enter-the-keyboard" transform="translate(8.000000, 9.600000)" stroke-linejoin="round" stroke-width="1.6">
+                                <path d="M15.2,0 L0.8,0 C0.358172,0 0,0.358172 0,0.8 L0,12 C0,12.44184 0.358172,12.8 0.8,12.8 L15.2,12.8 C15.64184,12.8 16,12.44184 16,12 L16,0.8 C16,0.358172 15.64184,0 15.2,0 Z" id="路径" stroke="#FFFFFF" fill="#FFFFFF" fill-rule="nonzero"></path>
+                                <line x1="3.2" y1="4.8" x2="4" y2="4.8" id="路径" stroke="#46B1E3" stroke-linecap="round"></line>
+                                <line x1="6.8" y1="4.8" x2="7.6" y2="4.8" id="路径" stroke="#46B1E3" stroke-linecap="round"></line>
+                                <line x1="10" y1="4.8" x2="12.8" y2="4.8" id="路径" stroke="#46B1E3" stroke-linecap="round"></line>
+                                <line x1="3.2" y1="8.4" x2="12.8" y2="8.4" id="路径" stroke="#46B1E3" stroke-linecap="round"></line>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

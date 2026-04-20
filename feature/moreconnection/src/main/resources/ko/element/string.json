@@ -1,0 +1,123 @@
+{
+    "string":[
+        {
+            "name":"nfc_switch_off_text",
+            "value":"꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_on_text",
+            "value":"연결됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"nfc_switch_on_text",
+            "value":"켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_notice",
+            "value":"권한 공지",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"projection_state_on",
+            "value":"켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_off_text",
+            "value":"연결되지 않음",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_collaboration_settings_title",
+            "value":"고급 설정",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"multi_device_collaboration_service_switch",
+            "value":"향상된 콜라보 서비스",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"projection_state_off",
+            "value":"사용 안 함",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bind_devices",
+            "value":"장치 관리",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wireless_projection_statement",
+            "value":"이 서비스를 사용하려면 장치 연결 권한이 필요합니다. WLAN 및 블루투스를 사용하며 장치 오디오 및 화면 콘텐츠를 기록합니다. 켜는 경우 해당 약관과 %s에 동의함을 의미합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_switch",
+            "value":"콜라보 제안",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_details",
+            "value":"장치와 상황의 자동 감지를 기반으로 합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"far_field_communication_service_privacy",
+            "value":"원거리 통신 서비스 및 개인 정보 보호에 대한 방침",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_switch_msg",
+            "value":"이 서비스는 다른 장치가 주변에 있을 때 콜라보 방법을 제안합니다. 이를 위해 인터넷 연결이 필요하고, 블루투스 및 WLAN을 사용해야 하며, 원거리 통신을 통해 다른 장치와 데이터를 교환해야 합니다. 개인정보 처리 방법에 대한 추가 상세정보는 %s의 내용을 참조하십시오. 켜는 경우, 해당 약관에 동의함을 의미합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_entry_guide",
+            "value":"ScreenCast 켜는 방법",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_entry_guide_message",
+            "value":"제어판에서 ScreenCast를 탭하기만 하면 주변 장치를 검색할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

@@ -1,0 +1,176 @@
+{
+    "string":[
+        {
+            "name":"app_networking_wlan_and_cellular",
+            "value":"[TS_933033]_WLAN & mobile data"
+        },
+        {
+            "name":"app_info_networking",
+            "value":"[TS_933039]_Network access"
+        },
+        {
+            "name":"app_networking_wlan_only",
+            "value":"[TS_933042]_WLAN"
+        },
+        {
+            "name":"app_networking_cellular_only",
+            "value":"[TS_933043]_Mobile data"
+        },
+        {
+            "name":"remove_atomic_service_text",
+            "value":"[TS_933032]_Remove this service"
+        },
+        {
+            "name":"is_delete_form",
+            "value":"[TS_933030]_Remove %s?"
+        },
+        {
+            "name":"more_application_text",
+            "value":"[TS_933040]_More apps"
+        },
+        {
+            "name":"whether_to_disable_text",
+            "value":"[TS_933041]_Disable this app?"
+        },
+        {
+            "name":"whether_to_disable_descriptions",
+            "value":"[TS_933035]_Disabling a pre-installed app may cause other apps to function incorrectly."
+        },
+        {
+            "name":"whether_to_forcibly_stop_text",
+            "value":"[TS_933037]_Force stop this app?"
+        },
+        {
+            "name":"whether_to_forcibly_stop_descriptions",
+            "value":"[TS_933038]_If you force stop an app, it may stop working properly."
+        },
+        {
+            "name":"service_remove_text",
+            "value":"[TS_933045]_Remove"
+        },
+        {
+            "name":"service_enable_text",
+            "value":"[TS_937236]_Enable"
+        },
+        {
+            "name":"service_disable_text",
+            "value":"[TS_933034]_Disable"
+        },
+        {
+            "name":"app_info_uninstall_confirm",
+            "value":"[TS_806190]_Uninstall this app?"
+        },
+        {
+            "name":"app_info_uninstall",
+            "value":"[TS_806103]_Uninstall"
+        },
+        {
+            "name":"app_info_force_stop",
+            "value":"[TS_806186]_Force stop"
+        },
+        {
+            "name":"app_list_loading_message",
+            "value":"[TS_806129]_Loading…"
+        },
+        {
+            "name":"permission_reason_get_sensitive_permissions",
+            "value":"[TS_958315]_Used to get sensitive permissions"
+        },
+        {
+            "name":"permission_reason_change_ability_enabled_state",
+            "value":"[TS_958313]_Used to change ability enabled state "
+        },
+        {
+            "name":"empty_service",
+            "value":"[TS_961323]_No services"
+        },
+        {
+            "name":"default_mail",
+            "value":"[TS_974376]_Default email app"
+        },
+        {
+            "name":"restore_apps_text",
+            "value":"[TS_914951]_Restore apps"
+        },
+        {
+            "name":"restore_meta_service_text",
+            "value":"[TS_914950]_Restore services"
+        },
+        {
+            "name":"app_info_live_view",
+            "value":"[TS_903747]_Live view"
+        },
+        {
+            "name":"app_info_version",
+            "value":"[TS_806121]_Version %s"
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"[TS_806070]_Cancel"
+        },
+        {
+            "name":"system_default",
+            "value":"[TS_872805]_Default"
+        },
+        {
+            "name":"button_tittle_cancel",
+            "value":"[TS_806126]_Cancel"
+        },
+        {
+            "name":"app_info_replace",
+            "value":"[TS_870984]_Change"
+        },
+        {
+            "name":"app_info_allow_access",
+            "value":"[TS_869345]_Allow %s to access"
+        },
+        {
+            "name":"confirm_replacement_content",
+            "value":"[TS_869417]_Changing the default browser may increase power consumption and data usage, and could also put your privacy at risk. Keeping the default browser is recommended."
+        },
+        {
+            "name":"default_browser",
+            "value":"[TS_869411]_Default browser"
+        },
+        {
+            "name":"confirm_replacement",
+            "value":"[TS_869414]_Are you sure you want to change this?"
+        },
+        {
+            "name":"uninstall_unused_app",
+            "value":"[TS_1033423]_Uninstall unused apps"
+        },
+        {
+            "name":"uninstall_app_prompt",
+            "value":"[TS_1033424]_Save %1$s of storage space by uninstalling apps you never use."
+        },
+        {
+            "name":"view_details",
+            "value":"[TS_1033425]_View details"
+        },
+        {
+            "name":"app_info_uninstall_update_title",
+            "value":"[TS_1042276]_Uninstall updates for %s?"
+        },
+        {
+            "name":"app_info_uninstall_update",
+            "value":"[TS_1042278]_Uninstall updates"
+        },
+        {
+            "name":"app_info_uninstall_update_confirm",
+            "value":"[TS_1042277]_This will replace the current version of the app with the factory version."
+        },
+        {
+            "name":"compatible_application_text",
+            "value":"[TS_1045091]_Compatible apps"
+        },
+        {
+            "name":"permission_reason_start_capturer_stream_enabled_state",
+            "value":"[TS_1054072]_Used to start capturer stream by self"
+        },
+        {
+            "name":"no_matching_results",
+            "value":"[TS_875318]_No results"
+        }
+    ]
+}

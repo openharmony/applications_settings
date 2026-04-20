@@ -27,7 +27,7 @@ constexpr int8_t ERROR = -1;
 constexpr uint8_t PARAMS0 = 0;
 constexpr uint8_t PARAMS1 = 1;
 constexpr uint8_t MAIN_USER_ID = 100;
-constexpr unsigned int PERMISSION_GRANTED = 0;
+constexpr uint8_t PERMISSION_GRANTED = 0;
 
 struct CallbackPromiseInfo {
     napi_ref callback = nullptr;

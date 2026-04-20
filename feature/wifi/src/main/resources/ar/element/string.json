@@ -1,0 +1,1299 @@
+{
+    "string":[
+        {
+            "name":"proxy_pac_web_address_label",
+            "value":"رابط الإعداد التلقائي للخادم الوكيل (PAC)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_wifi_frequency_5g",
+            "value":"5 غيغاهرتز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_connecting",
+            "value":"جارٍ الاتصال...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"please_select_phase2",
+            "value":"مرحلة المصادقة الثانية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"proxy_exclusionlist_label",
+            "value":"تجاوز الخادم الوكيل مع",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"phase2_aka_prime",
+            "value":"'AKA",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_domain",
+            "value":"النطاق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_ip_settings_dhcp",
+            "value":"متغير",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsecure_wifi_status_connected",
+            "value":"متصل (تم اكتشاف خطر أمني)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsecure_wifi_status_saved_encrypted",
+            "value":"محفوظة، مشفّرة (تم اكتشاف خطر أمني)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsecure_wifi_status_saved",
+            "value":"محفوظة (تم اكتشاف خطر أمني)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wlan_security_title",
+            "value":"فحص أمان الشبكة اللاسلكية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsecure_is_close_auto_reconnect",
+            "value":"تم إيقاف ميزة إعادة الاتصال تلقائيًا (تم اكتشاف خطر أمني)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"is_close_auto_reconnect",
+            "value":"إعادة الاتصال التلقائي مغلق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_saved",
+            "value":"تم الحفظ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hotspot_repeated_connection",
+            "value":"متصلة بالفعل بنقطة الاتصال.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_security_open",
+            "value":"مفتوحة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_signal_good",
+            "value":"جيدة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_ip_settings_title",
+            "value":"إعدادات IP",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_static_ip_dns2",
+            "value":"DNS 2",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_security",
+            "value":"الحماية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_wapi_psk",
+            "value":"WAPI PSK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_static_ip_dns1",
+            "value":"DNS 1",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_security_owe",
+            "value":"OWE",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_add_wifi",
+            "value":"إضافة شبكة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_security_wep",
+            "value":"WEP",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_wapi_psk",
+            "value":"WAPI PSK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_static_ip_gateway",
+            "value":"البوابة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_wifi_frequency_2g_5g",
+            "value":"2.4 غيغاهرتز و5 غيغاهرتز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"phase2_gtc",
+            "value":"GTC",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_disconnected",
+            "value":"غير متصل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_wapi_cert",
+            "value":"WAPI CERT",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"join_unsave_net_tips",
+            "value":"قد تشكل هذه الشبكة تهديدًا أمنيًا.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_aka",
+            "value":"AKA",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_cipher_key_manage",
+            "value":"إدارة المفاتيح",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_eap",
+            "value":"802.1x EAP",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_other_wlan",
+            "value":"أخرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_ssid_error",
+            "value":"لم يتم العثور على \"%s\". يتعذّر الاتصال.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_privacy_settings_title",
+            "value":"الخصوصية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_do_not_provide_eap_user_cert",
+            "value":"عدم التوفير",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"تحظر إدارة المؤسسة هذه العملية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_disconnecting",
+            "value":"جارٍ قطع الاتصال…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_settings_title",
+            "value":"الشبكة اللاسلكية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_security_psk",
+            "value":"WPA2/WPA",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_signal_excellent",
+            "value":"ممتازة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_eap_input_anonymous_identity_hint",
+            "value":"إدخال هوية مجهولة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_cipher_key_none",
+            "value":"لا يوجد",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_eap_suite_b",
+            "value":"WPA3-Enterprise %d-بت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_anti_theft_tip",
+            "value":"العملية غير متوفرة على جهاز العرض.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_sim",
+            "value":"بطاقة SIM",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_wapi_psk_hex",
+            "value":"WAPI PSK سداسي عشري",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_failed_disabled",
+            "value":"لا تسمح لك مؤسستك الاتصال بهذه الشبكة اللاسلكية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_failed_connection_full",
+            "value":"الشبكة ممتلئة. تعذّر الاتصال.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method",
+            "value":"طريقة EAP",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_unsuccessful",
+            "value":"غير ناجح",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unassigned",
+            "value":"غير مُحددة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_scanning",
+            "value":"جارٍ البحث\u2026",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_identity",
+            "value":"الهوية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_proxy_settings_none",
+            "value":"لا يوجد",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_wrong_pwd",
+            "value":"تعذر الاتصال لأن كلمة المرور غير صحيحة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_connect_status_failed",
+            "value":"تعذر الاتصال لأن كلمة المرور غير صحيحة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_saved_encrypted",
+            "value":"محفوظة، مُشفرة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_signal_fair",
+            "value":"مقبولة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_aka_prime",
+            "value":"'AKA",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_network_setting",
+            "value":"إعدادات الشبكة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_do_not_validate_eap_server_warning",
+            "value":"لم يتم تحديد شهادة. لن يكون اتصالك خاصًا.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_add_other_wifi",
+            "value":"إضافة شبكة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"as_certification",
+            "value":"شهادة AS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"connect_the_internet_title",
+            "value":"الاتصال بشبكة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_open",
+            "value":"مفتوح",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_cipher_key_ft",
+            "value":"FT",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_know",
+            "value":"حسنًا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_signal_poor",
+            "value":"ضعيفة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_peap",
+            "value":"PEAP",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_ip_settings_static",
+            "value":"ثابت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"join_unsave_net",
+            "value":"الشبكة غير آمنة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_static_ip_network_prefix",
+            "value":"طول بادئة الشبكة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"continue_join",
+            "value":"الاتصال على أي حال",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"phase2_aka",
+            "value":"AKA",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_obtaining_iP",
+            "value":"جارٍ الحصول على عنوان IP…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_name",
+            "value":"اسم الشبكة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_connected_successful",
+            "value":"نجح الاتصال.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sim_card_slot",
+            "value":"فتحة بطاقة SIM",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_ip_address",
+            "value":"عنوان IP",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_connected_unauthorized",
+            "value":"متصلة (مطلوب تسجيل الدخول/المصادقة)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"proxy_warning_limited_support",
+            "value":"ربما يتم استخدام وكيل HTTP بواسطة المتصفح ولكن التطبيقات الأخرى قد لا تستخدمه",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_advanced_title",
+            "value":"خيارات متقدمة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_mac_address_title",
+            "value":"عنوان MAC",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_security_wapi_cert",
+            "value":"WAPI CERT",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_user_certificate",
+            "value":"شهادة المستخدم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_wifi_frequency_2g",
+            "value":"2.4 غيغاهرتز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"proxy_hostname_label",
+            "value":"اسم المضيف",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_auto_reconnect_settings",
+            "value":"إعادة الاتصال تلقائيًا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"type_not_support",
+            "value":"تتعذّر مشاركة هذا النوع من الشبكات.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_privacy_device",
+            "value":"استخدام عنوان MAC الخاص بالجهاز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_connected",
+            "value":"متصل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"phase2_pap",
+            "value":"بروتوكول مصادقة كلمات المرور",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_sae",
+            "value":"WPA3",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_tls",
+            "value":"TLS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_wapi_psk_ascii",
+            "value":"WAPI PSK ASCII",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_encrypted",
+            "value":"مشفرة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_eap_anonymous",
+            "value":"الهوية المجهولة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_wapi_psk_password_type",
+            "value":"نوع كلمة المرور",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_failed_rejected",
+            "value":"تم رفض الاتصال بالشبكة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_proxy_settings_auto",
+            "value":"تلقائي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ca_certificate",
+            "value":"شهادة CA",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"phase2_mschapv2",
+            "value":"MSCHAPV2",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_do_not_validate_eap_server",
+            "value":"عدم القبول",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_connecting",
+            "value":"جارٍ الاتصال بالشبكة «\u202a%1$s\u202c»…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hotspot_settings_title",
+            "value":"نقطة الاتصال الشخصية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"إلغاء",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_use_system_certs",
+            "value":"استخدام شهادات النظام",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"skip_process",
+            "value":"تخطي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_enter_ssid_hint",
+            "value":"اسم الشبكة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_input_identity_hint",
+            "value":"إدخال الهوية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_privacy_random",
+            "value":"استخدام عنوان MAC عشوائي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"proxy_port_label",
+            "value":"منفذ الخادم الوكيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_proxy_settings_title",
+            "value":"الخادم الوكيل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_proxy_settings_manual",
+            "value":"يدوي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"please_enter",
+            "value":"يُرجى الإدخال",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_ttls",
+            "value":"TTLS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_failed_default",
+            "value":"مشكلة في الشبكة. تعذّر الاتصال.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_connected_failed",
+            "value":"تعذّر الاتصال.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"please_select",
+            "value":"يُرجى التحديد",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_lock_signal_4",
+            "value":"نقطة الاتصال مشفرة، أشرطة الإشارة كاملة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"phase2_sim",
+            "value":"بطاقة SIM",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"phase2_mschap",
+            "value":"MSCHAP",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_privacy_settings",
+            "value":"الخصوصية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_connect_status_title",
+            "value":"الحالة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_setup_config_save_button",
+            "value":"حفظ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_pwd",
+            "value":"PWD",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sim_not_set",
+            "value":"غير مُحددة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_connected_ap",
+            "value":"المتصلة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_settings",
+            "value":"الإعدادات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_available_ap_group",
+            "value":"الشبكات المُتاحة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hotspot_no_connected_devices",
+            "value":"لا توجد أجهزة متصلة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hotspot_turned_off",
+            "value":"نقطة الاتصال الشخصية في وضع إيقاف التشغيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_signal_1",
+            "value":"نقطة اتصال الشبكة اللاسلكية، شرطة إشارة واحدة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_signal_0",
+            "value":"نقطة اتصال الشبكة اللاسلكية، %d شُرط إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_lock_signal_2",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d المشفرة، شرطتا إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_signal_4",
+            "value":"نقطة اتصال الشبكة اللاسلكية، شُرط الإشارة كاملة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_lock_signal_3",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d المشفرة، %2$d شُرط إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_signal_3",
+            "value":"نقطة اتصال الشبكة اللاسلكية، %d شُرط إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_lock_signal_4",
+            "value":"نقطة اتصال الشبكة اللاسلكية %d المشفرة، شُرط الإشارة كاملة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_signal_2",
+            "value":"نقطة اتصال الشبكة اللاسلكية، شرطتا إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_lock_signal_0",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d المشفرة، %2$d شُرط إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_lock_signal_1",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d المشفرة، شرطة إشارة واحدة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wlan_error",
+            "value":"نقطة اتصال الشبكة اللاسلكية، لا يوجد اتصال بالإنترنت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_0",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d بلس المشفرة، %2$d شُرط إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_1",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d بلس المشفرة، شرطة إشارة واحدة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_2",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d بلس المشفرة، شرطتا إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_3",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d بلس المشفرة، %2$d شُرط إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_4",
+            "value":"نقطة اتصال الشبكة اللاسلكية %d بلس المشفرة، شُرط الإشارة كاملة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"esim_card",
+            "value":"بطاقة eSIM %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_signal_1",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d، شرطة إشارة واحدة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_lock_signal_0",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d المشفرة، %2$d شرطات إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_signal_2",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d، شرطتا إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_signal_3",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d، %2$d شُرط إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_signal_4",
+            "value":"نقطة اتصال الشبكة اللاسلكية %d، شُرط الإشارة كاملة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_lock_signal_4",
+            "value":"نقطة اتصال الشبكة اللاسلكية %d المشفرة، شُرط الإشارة كاملة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_lock_signal_3",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d المشفرة، %2$d شُرط إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_lock_signal_2",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d المشفرة، شرطتا إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_lock_signal_1",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d المشفرة، شرطة إشارة واحدة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_signal_4",
+            "value":"نقطة اتصال الشبكة اللاسلكية %d، شُرط الإشارة كاملة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_signal_2",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d، شرطتا إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_signal_3",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d، %2$d شُرط إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_signal_0",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d، %2$d شُرط إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_signal_1",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d، شرطة إشارة واحدة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_signal_4",
+            "value":"نقطة اتصال الشبكة اللاسلكية %d بلس، شُرط الإشارة كاملة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_signal_2",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d بلس، شرطتا إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_signal_3",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d بلس، %2$d شُرط إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_signal_0",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d بلس، %2$d شُرط إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_signal_1",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d بلس، شرطة إشارة واحدة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_signal_0",
+            "value":"نقطة اتصال الشبكة اللاسلكية %1$d، %2$d شُرط إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_lock_signal_0",
+            "value":"نقطة الاتصال المشفرة، %d شُرط إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_lock_signal_1",
+            "value":"نقطة الاتصال المشفرة، شرطة إشارة واحدة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_lock_signal_2",
+            "value":"نقطة الاتصال المشفرة، شرطتا إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_lock_signal_3",
+            "value":"نقطة الاتصال المشفرة، %d شُرط إشارة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shared_network_ap_group",
+            "value":"مشاركة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shared_network_failed_message",
+            "value":"على %s، اقطع اتصالك بالشبكة اللاسلكية، وأعد تشغيل الشبكة اللاسلكية والبلوتوث، ثم تأكّد من تشغيل بيانات الجوال وحاول مرة أخرى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_wpa_wpa2_wpa3_ft_psk",
+            "value":"‏WPA/WPA2/WPA3/FT PSK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ensure_mobile_data_enabled",
+            "value":"على الهاتف، تأكد من تشغيل بيانات الجوال، ثم أعد تشغيل الشبكة اللاسلكية والبلوتوث وأعد المحاولة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mobile_data_not_enabled",
+            "value":"بيانات الجوال متوقفة عن التشغيل على الهاتف. شغّلها وأعد المحاولة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mobile_network_unavailable",
+            "value":"شبكة الجوال غير متوفرة على الهاتف. أوقف تشغيل نقطة الاتصال الشخصية وأعد المحاولة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"network_sharing_sub_switch_not_enabled",
+            "value":"مفتاح \"الإنترنت\" ضمن \"مشاركة الاتصالات\" متوقف عن التشغيل على الهاتف. شغّله وأعد المحاولة.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

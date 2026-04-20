@@ -1,0 +1,244 @@
+{
+    "string":[
+        {
+            "name":"wireless_anti_theft_tip",
+            "value":"[TS_976258]_Operation unavailable on demo device."
+        },
+        {
+            "name":"bt_disconnecting_summary",
+            "value":"[TS_819035]_Disconnecting…"
+        },
+        {
+            "name":"bt_a2dp_connect_summary",
+            "value":"[TS_806083]_Connected for media audio"
+        },
+        {
+            "name":"bt_connecting_summary",
+            "value":"[TS_806117]_Connecting\u2026"
+        },
+        {
+            "name":"bt_connected_summary",
+            "value":"[TS_806149]_Connected"
+        },
+        {
+            "name":"bt_hfp_connect_summary",
+            "value":"[TS_806076]_Connected for calls"
+        },
+        {
+            "name":"bt_connection_strategy_summary",
+            "value":"[TS_863707]_Connecting\u2026"
+        },
+        {
+            "name":"bt_hfp_a2dp_connect_summary",
+            "value":"[TS_806068]_Connected for calls and media audio"
+        },
+        {
+            "name":"device_type_speaker",
+            "value":"[TS_907250]_Speaker"
+        },
+        {
+            "name":"device_type_car",
+            "value":"[TS_907251]_Car"
+        },
+        {
+            "name":"device_type_glasses",
+            "value":"[TS_907248]_Glasses"
+        },
+        {
+            "name":"device_type_headset",
+            "value":"[TS_907254]_Headphone"
+        },
+        {
+            "name":"device_type_hearing",
+            "value":"[TS_907252]_Hearing aid"
+        },
+        {
+            "name":"device_type_watch",
+            "value":"[TS_907253]_Watch"
+        },
+        {
+            "name":"auto_play_music_tips",
+            "value":"[TS_914953]_You can change this on the device's details screen."
+        },
+        {
+            "name":"auto_play_music_desc",
+            "value":"[TS_914930]_Allow this device to automatically play music upon connection."
+        },
+        {
+            "name":"keep_auto_play",
+            "value":"[TS_914946]_Keep auto-play enabled"
+        },
+        {
+            "name":"forbidding",
+            "value":"[TS_914928]_Disable"
+        },
+        {
+            "name":"auto_play_music",
+            "value":"[TS_914939]_Auto-play music"
+        },
+        {
+            "name":"bluetooth_connect_auto_play",
+            "value":"[TS_914915]_Music will automatically start playing when \"%s\" connects."
+        },
+        {
+            "name":"bt_pair_failed_message",
+            "value":"[TS_806125]_The pairing code was incorrect, or there was a configuration error with the device you are pairing with. Please try again."
+        },
+        {
+            "name":"blue_tooth_connect_failed1",
+            "value":"[TS_914936]_Press a key on the keyboard to re-initiate the connection."
+        },
+        {
+            "name":"blue_tooth_pair_failed2",
+            "value":"[TS_914952]_Incorrect PIN or pairing key. Unable to pair with \"%s\"."
+        },
+        {
+            "name":"blue_tooth_pair_failed3",
+            "value":"[TS_914961]_Pairing was rejected by \"%s\"."
+        },
+        {
+            "name":"blue_tooth_pair_failed1",
+            "value":"[TS_914918]_Could not communicate with \"%1$s\".\n\nThis may be because it's:\n\n%2$s. Powered off or not in pairing mode. For help, view the device's user guide.\n%3$s. Too far away. Make sure it's within %4$s meters of this device and try again.\n%5$s. Connected to another device. If so, disconnect and try again."
+        },
+        {
+            "name":"blue_tooth_connect_failed3",
+            "value":"[TS_914941]_Try reconnecting from the car."
+        },
+        {
+            "name":"blue_tooth_connect_failed2",
+            "value":"[TS_914931]_Try reconnecting from the mouse."
+        },
+        {
+            "name":"blue_tooth_connect_failed4",
+            "value":"[TS_914923]_Maximum number of device connections reached. Disconnect some devices and try again."
+        },
+        {
+            "name":"bluetooth_profile_map",
+            "value":"[TS_875323]_Allow access to SMS messages"
+        },
+        {
+            "name":"bluetooth_sharing_and_call_history",
+            "value":"[TS_873323]_Share contacts & call history"
+        },
+        {
+            "name":"bluetooth_name_and_numbers_only",
+            "value":"[TS_873315]_Name and number only"
+        },
+        {
+            "name":"device_name_settings_title",
+            "value":"[TS_806193]_Device name"
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_pad",
+            "value":"[TS_876368]_Sync volume with tablet"
+        },
+        {
+            "name":"bluetooth_fulls_detals",
+            "value":"[TS_873324]_All information"
+        },
+        {
+            "name":"bluetooth_profile_hid",
+            "value":"[TS_856860]_Input device"
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_phone",
+            "value":"[TS_876360]_Sync volume with phone"
+        },
+        {
+            "name":"unpair",
+            "value":"[TS_806092]_Unpair"
+        },
+        {
+            "name":"bluetooth_not_share",
+            "value":"[TS_873314]_Do not share"
+        },
+        {
+            "name":"bluetooth_profile_a2dp",
+            "value":"[TS_856862]_Media audio"
+        },
+        {
+            "name":"bt_connect_failed_message",
+            "value":"[TS_806195]_Unable to connect to %1$s. Possible reasons:\n%2$s. The device is out of range (%3$s m) or does not have Bluetooth enabled.\n%4$s. The device is connected to another device."
+        },
+        {
+            "name":"bluetooth_profile_hfp",
+            "value":"[TS_856861]_Call audio"
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_pc",
+            "value":"[TS_924369]_Sync volume with computer"
+        },
+        {
+            "name":"bluetooth_read_info_auth",
+            "value":"[TS_967914]_Allow access to SMS messages"
+        },
+        {
+            "name":"keyboard",
+            "value":"[TS_924302]_Keyboard"
+        },
+        {
+            "name":"phone",
+            "value":"[TS_979804]_Phone"
+        },
+        {
+            "name":"matebook",
+            "value":"[TS_979803]_Laptop"
+        },
+        {
+            "name":"soundx",
+            "value":"[TS_979806]_Audio device"
+        },
+        {
+            "name":"bluetooth",
+            "value":"[TS_979807]_Bluetooth"
+        },
+        {
+            "name":"pencil",
+            "value":"[TS_979802]_Stylus"
+        },
+        {
+            "name":"mouse",
+            "value":"[TS_924434]_Mouse"
+        },
+        {
+            "name":"pad",
+            "value":"[TS_979805]_Tablet"
+        },
+        {
+            "name":"bluetooth_help_popup_content",
+            "value":"[TS_990611]_Can't find your device?"
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"[TS_1047941]_This operation is prohibited by enterprise management."
+        },
+        {
+            "name":"help",
+            "value":"[TS_849197]_Help"
+        },
+        {
+            "name":"bluetooth_settings_title",
+            "value":"[TS_806095]_Bluetooth"
+        },
+        {
+            "name":"bluetooth_bonded_devices",
+            "value":"[TS_806057]_Paired devices"
+        },
+        {
+            "name":"bluetooth_settings",
+            "value":"[TS_992474]_Settings"
+        },
+        {
+            "name":"bluetooth_no_paired_devices",
+            "value":"[TS_854361]_No paired devices"
+        },
+        {
+            "name":"device_type_printer",
+            "value":"[TS_1118793]_Printer"
+        },
+        {
+            "name":"device_type_car_key",
+            "value":"[TS_1129975]_Car key"
+        }
+    ]
+}

@@ -1,0 +1,298 @@
+{
+    "string":[
+        {
+            "name":"the_theme",
+            "value":"Thèmes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_settings_title",
+            "value":"Affichage et luminosité",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"theme_settings_title",
+            "value":"Style et écran d'accueil",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Annuler",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_theme",
+            "value":"Paramètres",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_from_gallery",
+            "value":"Sélectionner depuis Galerie",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_theme",
+            "value":"Icônes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"apply",
+            "value":"Appliquer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_theme",
+            "value":"Thème d'écran éteint",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keywords_outer_facard",
+            "value":"Widgets de service",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"my_wallpaper",
+            "value":"Mes fonds d'écran",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"homescreen",
+            "value":"Écran d'accueil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_sure",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"aod_ways_display_awake_intelligent",
+            "value":"Affichage intelligent",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wallpaper_title",
+            "value":"Fonds d'écran",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"table_theme",
+            "value":"Écran d'accueil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_off_theme",
+            "value":"Thème d'écran éteint",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"covertheme_settings_title",
+            "value":"Écran d'accueil, écran de couverture et style",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"universe",
+            "value":"Univers",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pinnacle",
+            "value":"Sommets",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_all_day_display",
+            "value":"Toute la journée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_signature",
+            "value":"Signature d'écran verrouillé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keywords_outer_theme",
+            "value":"Thèmes d'écran de couverture",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"font_style_theme",
+            "value":"Polices de caractère",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_sign_entry",
+            "value":"Comment définir la signature d'écran verrouillé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"random_display_of_photos",
+            "value":"Affichage de photos en mode aléatoire",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_style_theme",
+            "value":"Style des icônes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switch_desktop_style_dialog_warning_message",
+            "value":"Ceci vous déconnectera du compte d'utilisateur actuel. Toutes les données d'applications non enregistrées seront perdues.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_ways_display_awake_scheduled",
+            "value":"Programmé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_ways_display_awake_off",
+            "value":"Désactivé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wall_paper_theme",
+            "value":"Fonds d'écran",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"digital_clock",
+            "value":"Horloge numérique",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"art_signature",
+            "value":"Signature personnalisée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"lock_card",
+            "value":"Widgets",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"switch_desktop_style",
+            "value":"Modifier le style d'écran d'accueil ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_online_wallpapers",
+            "value":"Plus de fonds d'écran",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"my_theme_settings_title",
+            "value":"Mes thèmes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"lockscreen",
+            "value":"Écran verrouillé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uncompleted",
+            "value":"Cette fonctionnalité sera disponible prochainement.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"central_axis_personalization",
+            "value":"Bord virtuel",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_settings",
+            "value":"Écran verrouillé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_font_creation_service",
+            "value":"Service de création de polices d'écran verrouillé",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

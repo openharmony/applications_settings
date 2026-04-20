@@ -1,0 +1,928 @@
+{
+    "string":[
+        {
+            "name":"display_mode_font_weight_bold",
+            "value":"굵게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"page_load_failed_message",
+            "value":"이 화면을 로드하지 못했습니다. 다시 열어보십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"not_vibrate",
+            "value":"없음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_normal",
+            "value":"보통",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"system_rollback",
+            "value":"시스템 롤백",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"charge_time_segment",
+            "value":"충전",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_system_tips",
+            "value":"다크 모드에서는 도크의 색상이 더 어두워집니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_size_simplicity",
+            "value":"무한한 단순함",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"only_supports_synchronized_vibration_with_system_ringtone",
+            "value":"시스템 벨소리만 해당됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_edit_device_name",
+            "value":"이름 변경",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_hlink_description",
+            "value":"암호 없이 연결합니다. 장치를 공유기 근처에 가져오고 표시등이 깜박이면 \"%s\" 버튼을 누르기만 하면 됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_this_theme",
+            "value":"이 테마를 제거하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_dialog_title",
+            "value":"개발자 옵션을 실행할 수 없습니다",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_settings_summary",
+            "value":"이 이름은 블루투스, WLAN Direct 또는 개인용 핫스팟을 통해 다른 장치와 상호 작용, 공유 또는 연결할 때 다른 장치에 표시됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_multiWeight",
+            "value":"표시할 수 없음",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_bond_device_name",
+            "value":"장치 이름",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_size_tip",
+            "value":"도크에 적용되지 않습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_precision_title",
+            "value":"고급 설정",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"repeat_name_warning",
+            "value":"현재 연결된 WLAN과 같은 이름을 사용할 수 없습니다. 다시 입력해주십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_title_ok",
+            "value":"확인",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wlan_scan_title",
+            "value":"WLAN 스캐닝",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"font_apply_failed",
+            "value":"글꼴을 적용할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_light",
+            "value":"가볍게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uncompleted",
+            "value":"출시 예정 기능입니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_name_max",
+            "value":"이름이 길이 제한을 초과했습니다",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fp_do_not_support_mini_screen_new",
+            "value":"한 손 모드를 사용할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vibrate_synchronize_with_ringtone",
+            "value":"동기화됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_restored",
+            "value":"앱이 복원되었습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_theme_info",
+            "value":"이 테마는 배경화면 및 아이콘 팩과 함께 제거됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_bond_device_type",
+            "value":"장치 유형",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hotspot_blocklist_limit",
+            "value":"최대 %d개의 장치를 추가할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_apply_failed",
+            "value":"아이콘 스타일을 적용할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_to_blocklist",
+            "value":"차단",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_device_name_title",
+            "value":"내 장치는 주변 블루투스 장치에 \"%1$s\"(으)로 표시됩니다. %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"desktop_style_tip",
+            "value":"도크 스타일을 선택하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_text_size",
+            "value":"텍스트 크기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_dialog_message",
+            "value":"개발자 옵션을 실행하면 장치가 보안 위협에 취약해질 수 있습니다. 계속하기 전에 설정 > 개인 정보 보호 및 보안에서 보안 실드를 종료해야 합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_services",
+            "value":"위치 서비스",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_Theme_App_massage",
+            "value":"이 기능을 사용하려면 테마를 설치해야 합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_title_got_it",
+            "value":"확인",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_normal",
+            "value":"보통",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"icon_style_stereoscopic",
+            "value":"입체",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wall_paper_applied",
+            "value":"적용됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fp_duplicated_name_toast",
+            "value":"이미 사용 중인 이름",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_modify_tips",
+            "value":"이 이름은 블루투스, 개인용 핫스팟 또는 USB를 통해 다른 장치와 상호작용, 공유 또는 연결할 때 다른 장치에 표시됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_size_restore_default",
+            "value":"재설정",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_small",
+            "value":"작게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove_from_blocklist",
+            "value":"차단 해제",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wall_paper_application",
+            "value":"적용",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_from_blocklist_disconnect",
+            "value":"\"%s\"은(는) 장치의 핫스팟에 다시 연결할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_boldest",
+            "value":"가장 굵게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_text_weight",
+            "value":"텍스트 무게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"icon_apply_successd",
+            "value":"아이콘 스타일이 적용되었습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"window_animation_title",
+            "value":"창 최소화 방법",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"window_animation_attraction",
+            "value":"지니 애니메이션",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_size",
+            "value":"홈 화면 아이콘 크기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enableTheme",
+            "value":"테마 적용 중…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dock_color_style",
+            "value":"도크 색상 적응 대상",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_system",
+            "value":"디스플레이 모드",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ok",
+            "value":"확인",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge4",
+            "value":"아주 크게(4)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_large",
+            "value":"크게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"applyIcon",
+            "value":"아이콘 적용 중…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recover",
+            "value":"복원",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hot_spot_block_list",
+            "value":"차단 목록",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge2",
+            "value":"아주 크게(2)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge3",
+            "value":"아주 크게(3)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"block_list_tips",
+            "value":"차단 목록에 있는 장치는 개인용 핫스팟에 연결할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"window_animation_default",
+            "value":"기본 애니메이션",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_time_zone",
+            "value":"표준시간대를 자동으로 설정하려면 %s 실행이 필요합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"eye_comfort_tick",
+            "value":"시력 보호 모드는 블루라이트를 필터링하여 눈의 피로를 줄이는 데 도움을 줍니다. 이 기능을 켜면 화면이 더 따뜻한 색조로 표시됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scan_for_hotspots",
+            "value":"스캔하여 연결",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge",
+            "value":"아주 크게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove",
+            "value":"제거",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete",
+            "value":"삭제",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_window_tips",
+            "value":"도크는 배경화면 색상이나 최대화된 창의 내용에 따라 색이 변경됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_common_security",
+            "value":"일반 보안 서비스는 인터넷 연결, 위치 정보 읽기, 설치된 앱 목록, 이 장치 전화번호, 대략적인 위치 정보의 읽기 및 업로드/전송 작업을 수행해야 합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wlan_scan_content",
+            "value":"WLAN이 종료되어도 앱과 서비스의 WLAN 네트워크 스캔을 항상 허용하면 포지셔닝 정확도를 개선할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_window",
+            "value":"배경화면 및 창",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_size_extra_large",
+            "value":"매우 크게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"modify",
+            "value":"변경",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"font_apply_successd",
+            "value":"글꼴이 적용되었습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm_change_name",
+            "value":"장치 이름을 변경하면 개인용 핫스팟이 종료됩니다. 그래도 변경하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recover_Theme_App",
+            "value":"테마 앱을 복원하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_to_blocklist_disconnect",
+            "value":"\"%s\"이(가) 차단 목록에 추가되거나 핫스팟에서 연결 해제됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"name_repeat_warning",
+            "value":"연결된 WLAN 네트워크와 같을 수 없습니다",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_precision_text",
+            "value":"포지셔닝 정확도를 높이기 위해 앱과 서비스는 WLAN이 종료된 경우에도 WLAN 네트워크를 스캔할 수 있습니다. 이것은 %s에서 변경할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"desktop_style_title",
+            "value":"홈 화면 스타일",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"취소",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vassistant_settings",
+            "value":"Celia",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"input_max_length_message",
+            "value":"너무 많은 문자를 입력했습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"change_device_name",
+            "value":"장치 이름 수정",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_lightest",
+            "value":"가장 밝게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"other_wlan",
+            "value":"연결된 장치",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attention",
+            "value":"참고",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dock_auto_hide_style",
+            "value":"창이 최대화되거나 분할되면 도크 숨기기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title",
+            "value":"제목",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"insufficient_storage_toast",
+            "value":"내부 저장소 공간이 부족하여 테마 서비스를 제공할 수 없습니다. 파일을 삭제하여 여유 공간을 확보하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_softwareupdate",
+            "value":"소프트웨어 업데이트 서비스는 인터넷에 연결하고 설치된 앱 목록을 읽어야 합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_fusion_search",
+            "value":"융합 검색 서비스는 인터넷에 연결하고 설치된 앱 목록, 미디어 데이터(예: 이미지, 비디오, 오디오), 파일 데이터, 주소록, SMS 메시지, 캘린더 이벤트 데이터를 읽어야 합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_system_storage",
+            "value":"시스템 저장 공간 서비스는 캘린더 이벤트 데이터를 읽고 주소록 및 통화 로그 데이터를 읽고 수정해야 합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_basic_system_analysis",
+            "value":"기본 시스템 분석 서비스는 인터넷에 연결하고, 장치 실행 정보를 읽고, 이러한 정보를 익명화된 양식으로 업로드/전송해야 합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_device_communication",
+            "value":"장치 통신 서비스는 인터넷에 연결하고 이 장치의 전화번호, IMEI, SMS/MMS 메시지 콘텐츠, 위치 정보를 읽어야 합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_authentication",
+            "value":"인증 서비스는 인터넷에 연결하고 설치된 앱 목록을 읽어야 합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_atomicservice",
+            "value":"기능 단위 프레임워크는 인터넷에 연결하고 설치된 앱 목록을 읽고 업로드/전송해야 합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_management",
+            "value":"보안 및 개인 정보 보호 센터의 관리 서비스는 위치 정보, 이미지, 비디오, 설치된 앱 목록을 읽고 주소록, 메시지, 통화 기록을 읽고 수정해야 합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_auto_discovery",
+            "value":"자동 감지 서비스는 인터넷에 연결하고, 블루투스와 NFC를 사용하고, 블루투스와 WLAN MAC 주소를 읽고 업로드/전송하고, 카메라를 실행하여 코드를 스캔해야 합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_options",
+            "value":"옵션 더 보기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_device_activation",
+            "value":"장치 활성화 서비스는 대략적인 위치 정보를 읽고 업로드/전송하기 위해 인터넷에 연결해야 합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_picker_less",
+            "value":"선택기 서비스는 미디어 데이터(이미지, 비디오, 오디오), 주소록, 파일 데이터, 설치된 앱 목록을 읽고 카메라와 마이크를 실행해야 합니다. 지도 선택기 서비스는 위치 정보를 읽고 업로드/전송하기 위해 인터넷에 연결해야 합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_super_device",
+            "value":"슈퍼 디바이스 서비스는 인터넷에 연결하고, 블루투스와 WLAN을 사용하고, 블루투스와 WLAN을 켜고, 블루투스와 WLAN MAC 주소를 읽고 업로드/전송해야 합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_carrier",
+            "value":"이동통신사 서비스는 인터넷에 연결하고, 이 장치의 전화번호, IMEI, 블루투스 및 WLAN MAC 주소, 대략적인 위치 정보를 읽고 업로드/전송하고, SMS 메시지를 전송 및 수신해야 합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"nearlink_and_bluetooth_device_name_title",
+            "value":"내 장치는 주변 장치에 \"%1$s\"(으)로 표시됩니다. %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"nearlink_and_bluetooth",
+            "value":"NearLink 및 블루투스",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"check_the_detail",
+            "value":"상세정보",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"be_chosen",
+            "value":"선택됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"touch_screen_reader_message",
+            "value":"스크린리더가 실행되어 있으면 터치스크린 관련 설정을 사용할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_smaller",
+            "value":"크기 줄이기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"close_menu",
+            "value":"닫기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_selected_click_tips",
+            "value":"선택되지 않음, 두 번 탭하여 활성화",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_bigger",
+            "value":"크기 늘리기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_be_chosen",
+            "value":"선택되지 않음",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_fatter",
+            "value":"텍스트 굵기 늘리기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_thinner",
+            "value":"텍스트 굵기 줄이기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"disable_modify_wallpaper_tips",
+            "value":"이 기능은 해당 조직에서 종료되었습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"back_to_parent_menu",
+            "value":"뒤로 돌아가기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_selected_click_tips",
+            "value":"두 번 탭하여 선택",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"has_selected_click_tips",
+            "value":"두 번 탭하여 선택 해제",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"only_bluetooth_on",
+            "value":"블루투스 켜짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_passkey",
+            "value":"패스키 서비스는 인터넷 연결이 필요하고 블루투스를 켜고 사용해야 합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_link_speed",
+            "value":"%sMbps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_begin_line",
+            "value":"%1$s. %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

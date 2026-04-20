@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"dialog_cancel",
+            "value":"取消",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_enable",
+            "value":"啟用",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_adjustment",
+            "value":"音訊調整",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"single_audio_reminder",
+            "value":"播放音訊時，將合併聲道，無立體聲音效差異",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

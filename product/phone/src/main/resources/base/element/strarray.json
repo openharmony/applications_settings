@@ -1,29 +1,51 @@
 {
-  "strarray": [
-    {
-      "name": "ovpn_auth_type",
-      "value": [
+    "strarray":[
         {
-          "value": "证书(TLS)"
-        },
-        {
-          "value": "密码"
-        },
-        {
-          "value": "证书和密码(TLS)"
+            "name":"transition_animation_scale_entries",
+            "value":[
+                {
+                    "value":"Off",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "value":"0.5x",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "value":"1x",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "value":"1.5x",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "value":"2x",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "value":"5x",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "value":"10x",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
         }
-      ]
-    },
-    {
-      "name": "ovpn_protocol",
-      "value": [
-        {
-          "value": "TCP"
-        },
-        {
-          "value": "UDP"
-        }
-      ]
-    }
-  ]
+    ]
 }
