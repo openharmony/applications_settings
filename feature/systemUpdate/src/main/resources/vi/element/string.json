@@ -1,0 +1,46 @@
+{
+    "string":[
+        {
+            "name":"update_status_download_pause",
+            "value":"Đã tạm dừng tải xuống",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_version_found_text",
+            "value":"Đã có bản cập nhật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"update_status_downloading",
+            "value":"Đang tải xuống bản cập nhật",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"update_status_wait_install",
+            "value":"Đã có phiên bản mới",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"patch_installing_title",
+            "value":"Đang cài đặt bản cập nhật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"check_version_status_to_be_reboot",
+            "value":"Bản cập nhật sẽ có hiệu lực sau khi bạn khởi động lại thiết bị.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

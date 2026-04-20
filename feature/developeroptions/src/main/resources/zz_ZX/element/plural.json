@@ -1,0 +1,33 @@
+{
+    "plural":[
+        {
+            "name":"bluetooth_audio_frame_length_mode",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_1061053]_%d ms"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_1061052]_%d ms"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1061049]_%d ms"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1061054]_%d ms"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1061050]_%d ms"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1061051]_%d ms"
+                }
+            ]
+        }
+    ]
+}

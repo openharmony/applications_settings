@@ -1,0 +1,11 @@
+{
+    "string":[
+        {
+            "name":"settings_title",
+            "value":"Ajustes",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

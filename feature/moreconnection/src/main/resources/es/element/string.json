@@ -1,0 +1,123 @@
+{
+    "string":[
+        {
+            "name":"nfc_switch_off_text",
+            "value":"No",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"nfc_switch_on_text",
+            "value":"Activado",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"projection_state_on",
+            "value":"Sí",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_off_text",
+            "value":"No conectado",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"multi_device_collaboration_service_switch",
+            "value":"Servicios de colaboración con mejoras",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bind_devices",
+            "value":"Gestionar dispositivos",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_switch",
+            "value":"Sugerencias de colaboración",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_details",
+            "value":"Basado en la detección automática de dispositivos y contexto.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"far_field_communication_service_privacy",
+            "value":"Declaración acerca de los servicios de comunicación de campo lejano y la privacidad",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_switch_msg",
+            "value":"Este servicio sugiere formas de colaborar con tus otros dispositivos cuando están cerca. Para ello, requiere una conexión a Internet, necesita utilizar Bluetooth y WLAN. De esta forma, intercambiará datos con otros dispositivos mediante comunicación de campo lejano. Para obtener más detalles sobre cómo se procesa tu información personal, consulta la %s. Al activar esta opción, aceptas estos términos.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_notice",
+            "value":"Aviso de permisos",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_collaboration_settings_title",
+            "value":"Ajustes avanzados",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_on_text",
+            "value":"Conectado",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"projection_state_off",
+            "value":"Desactivado",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_projection_statement",
+            "value":"Este servicio requiere el permiso de Conexión del dispositivo. Utiliza la WLAN y el Bluetooth y grabará el audio del dispositivo y el contenido que aparece en la pantalla. Si activas esta opción, significa que aceptas estos términos y el %s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_entry_guide",
+            "value":"Cómo activar ScreenCast",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_entry_guide_message",
+            "value":"Abre el Panel de control y pulsa ScreenCast para buscar dispositivos cercanos.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

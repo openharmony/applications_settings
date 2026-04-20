@@ -1,0 +1,46 @@
+{
+    "string":[
+        {
+            "name":"update_status_download_pause",
+            "value":"다운로드가 일시 정지됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_version_found_text",
+            "value":"업데이트 사용 가능",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"update_status_downloading",
+            "value":"업데이트 다운로드 중",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"update_status_wait_install",
+            "value":"새 버전 사용 가능",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"patch_installing_title",
+            "value":"업데이트 설치되는 중",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"check_version_status_to_be_reboot",
+            "value":"업데이트는 장치를 다시 시작한 후에 적용됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

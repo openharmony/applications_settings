@@ -1,0 +1,158 @@
+{
+    "string":[
+        {
+            "name":"turn_off_hotspot",
+            "value":"Tắt điểm phát sóng cá nhân",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_sleep_time_30_sub",
+            "value":"Màn hình sẽ tắt sau %d giây không hoạt động.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_aod_display_mode_smart",
+            "value":"Đặt chế độ Luôn hiển thị thông minh thành \"Thông minh\"",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_hotspot_sub",
+            "value":"Điểm phát sóng cá nhân sẽ bị tắt.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps",
+            "value":"Đóng ứng dụng tiêu tốn pin",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_wakeup_notification",
+            "value":"Không đánh thức màn hình khi nhận thông báo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_notification_when_hibernation",
+            "value":"Tắt thông báo trong khi ngủ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_aod_display_mode_smart_sub",
+            "value":"Bật tính năng Luôn hiển thị bằng cách chạm hoặc nhìn thoáng qua.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_screen_refresh_rate_to_smart_mode_sub",
+            "value":"Cân bằng giữa khả năng tiết kiệm pin và độ mượt của màn hình.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_notification_when_hibernation_sub",
+            "value":"Thiết bị sẽ không đẩy thông báo khi đang ở chế độ ngủ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_screen_refresh_rate_to_smart_mode",
+            "value":"Đặt tốc độ làm mới màn hình thành \"Động\"",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"disable_wakeup_notification_sub",
+            "value":"Màn hình sẽ không bật khi nhận được thông báo.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_2",
+            "value":"Đóng %1$s và %2$s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_3",
+            "value":"Đóng %1$s, %2$s và %3$s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_1",
+            "value":"Đóng %1$s để kéo dài thời lượng pin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_2",
+            "value":"Đóng %1$s và %2$s để kéo dài thời lượng pin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_other",
+            "value":"Đóng %1$s, %2$s, %3$s và các ứng dụng khác.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_3",
+            "value":"Đóng %1$s, %2$s và %3$s để kéo dài thời lượng pin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_card_sub_other",
+            "value":"Đóng %1$s, %2$s, %3$s và các ứng dụng khác để kéo dài thời lượng pin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_off_battery_intensive_apps_sub_1",
+            "value":"Đóng %1$s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_off_hotspot_card_sub",
+            "value":"Tắt điểm phát sóng cá nhân để kéo dài thời lượng pin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_sleep_time_30",
+            "value":"Đặt thời gian chờ màn hình thành %d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

@@ -1,0 +1,354 @@
+{
+    "string":[
+        {
+            "name":"trusted_device_button_cancel",
+            "value":"Не доверять",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_usb_debug_title",
+            "value":"Разрешить отладку по USB?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"revocation_usb_authorize",
+            "value":"Удалить все доверенные устройства?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_touch_actions_trace",
+            "value":"Отображение местоположения курсора",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wlan_address_bssid",
+            "value":"Адрес WLAN (BSSID)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_display_refresh_frequency_summary",
+            "value":"Отображение текущей максимальной частоты обновления экрана.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"machine_name",
+            "value":"Имя устройства:\n%1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_usb_authorize",
+            "value":"Удалить все доверенные устройства",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sunlight_readability_title",
+            "value":"Повышение четкости под прямыми солнечными лучами",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ip_address_and_port",
+            "value":"IP-адрес и порт",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"activating_usb_debug",
+            "value":"Включение режима отладки при подключении к сети WLAN.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"opened_wireless",
+            "value":"Включено",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_Open_Logs",
+            "value":"Запись подробного журнала WLAN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_refresh_frequency_title",
+            "value":"Отображение частоты обновления экрана",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_insightintent_debug_status_close",
+            "value":"Выклю\u200bчено",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"debug_settings_title",
+            "value":"Отладка",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"learn_more",
+            "value":"Подробнее",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Confirm_the_cancellation",
+            "value":"Удалить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_name_ssid",
+            "value":"Имя сети (SSID)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"public_key_name",
+            "value":"Отпечаток ключа RSA:\n%1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"debug_networking_category",
+            "value":"Сеть",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_Open_Logs__summary",
+            "value":"Повышение уровня журналов WLAN (отображение по SSID RSSI в WLAN picker).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"trusted_device_button_confirm",
+            "value":"Доверять",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_wireless",
+            "value":"Разрешить беспроводную отладку этой сети?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_settings_title",
+            "value":"Имя устройства",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_show_touch_trace_summary",
+            "value":"Отображение данных нажатий на экране.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_bit_rate_adaptive",
+            "value":"Потоковое воспроизведение с адаптивным битрейтом",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"link_wlan",
+            "value":"Нет WLAN-соединения. Подключитесь к сети WLAN и повторите попытку.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_tittle_cancel",
+            "value":"Отмена",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_debugged_mode_prompt",
+            "value":"Для доступа к другим опциям отладки для разработчика подключите устройство к компьютеру и следуйте инструкциям на экране. %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recall_usb_authorize_title",
+            "value":"Устройства, ранее отмеченные как доверенные, больше не будут считаться таковыми.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wireless_commissioning",
+            "value":"Беспроводная отладка",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_touch_actions_title",
+            "value":"Отображение нажатий",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"link_wireless",
+            "value":"Невозможно включить беспроводную отладку",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"closed_wireless",
+            "value":"Выклю\u200bчено",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"usb_dialog_content",
+            "value":"Отладка по USB предназначена только для разработки. Используйте ее для копирования данных между компьютером и другим устройством, доступа к файлам данных в общей директории, тихой установки приложений и чтения данных журналов.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_channel_mode_mono",
+            "value":"Моно",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_insightintent_debug_status_open",
+            "value":"Вкл.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_show_touch_actions_summary",
+            "value":"Отображение визуального отклика при нажатиях.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"trusted_device_title",
+            "value":"Доверять этому устройству?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"debug_entering_category",
+            "value":"Ввод текста",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_tittle_allow",
+            "value":"Разрешить",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"always_allow_debug",
+            "value":"Всегда доверять",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unlock_device_offline",
+            "value":"Разблокировать офлайн",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_options_open_failed",
+            "value":"Невозможно включить раздел Для разработчиков",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_advanced_options",
+            "value":"Дополнительные системные опции",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_not_connected",
+            "value":"Устройство не подключено к Интернету. Подключитесь к сети или разблокируйте устройство офлайн, отправив запрос на веб-сайт AGC.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_display",
+            "value":"Отображение",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_machine_debugging",
+            "value":"Во время отладки устройства",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_channel_mode_stereo",
+            "value":"Стерео",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

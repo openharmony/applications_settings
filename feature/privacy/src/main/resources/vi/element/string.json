@@ -1,0 +1,74 @@
+{
+    "string":[
+        {
+            "name":"password_input_warning_message_not_equal",
+            "value":"Các mật khẩu mới không trùng khớp.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_switch_on_text",
+            "value":"Bật",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_too_short",
+            "value":"Mật khẩu phải có ít nhất %d ký tự",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_contain_illegal_character_and_too_long",
+            "value":"Mật khẩu phải ít hơn %d ký tự và không được chứa các ký tự không hợp lệ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_too_long",
+            "value":"Mật khẩu phải ít hơn %d ký tự.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_switch_off_text",
+            "value":"Tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_contain_illegal_character_and_too_short",
+            "value":"Mật khẩu phải có ít nhất %d ký tự và không được chứa các ký tự không hợp lệ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edm_password_warning_message",
+            "value":"Độ mạnh của mật khẩu không tuân thủ chính sách bảo mật do tổ chức của bạn đưa ra.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"password_contain_illegal_character",
+            "value":"Mật khẩu chứa ký tự không hợp lệ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"service_error",
+            "value":"Lỗi dịch vụ hệ thống.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

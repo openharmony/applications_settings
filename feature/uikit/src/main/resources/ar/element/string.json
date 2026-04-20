@@ -1,0 +1,928 @@
+{
+    "string":[
+        {
+            "name":"display_mode_font_weight_bold",
+            "value":"سميك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"page_load_failed_message",
+            "value":"تعذّر تحميل هذه الشاشة. يُرجى محاولة فتحها مرة أخرى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_vibrate",
+            "value":"عدم الاهتزاز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_normal",
+            "value":"طبيعي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"system_rollback",
+            "value":"إرجاع النظام إلى الإصدار السابق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"charge_time_segment",
+            "value":"قيد الشحن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_system_tips",
+            "value":"سيصبح لون شريط الإرساء داكنًا في الوضع الليلي.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_size_simplicity",
+            "value":"بساطة بلا حدود",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"only_supports_synchronized_vibration_with_system_ringtone",
+            "value":"هذا الخيار مدعوم فقط مع نغمات الرنين الافتراضية للنظام",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_edit_device_name",
+            "value":"هنا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_hlink_description",
+            "value":"اتصل دون كلمة مرور – ما عليك سوى تقريب جهازك من الموجّه والضغط على زر \"%s\" عندما يومض الضوء.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_this_theme",
+            "value":"هل تريد إزالة هذا المظهر؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_dialog_title",
+            "value":"يتعذّر تشغيل خيارات المطور",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_settings_summary",
+            "value":"سيظهر هذا الاسم على الأجهزة الأخرى عند التفاعل معها، أو المشاركة معها، أو الاتصال بها عبر البلوتوث، أو اتصال الشبكة اللاسلكية المباشر، أو نقطة اتصال شخصية.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_multiWeight",
+            "value":"غير متاح",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_bond_device_name",
+            "value":"اسم الجهاز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_size_tip",
+            "value":"لن يُطبّق هذا على شريط التطبيقات.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_precision_title",
+            "value":"إعدادات متقدمة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"repeat_name_warning",
+            "value":"لا يمكنك استخدام الاسم نفسه للشبكة اللاسلكية المتصلة حاليًا، فيُرجى إدخال اسم مختلف.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_title_ok",
+            "value":"موافق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wlan_scan_title",
+            "value":"البحث عن الشبكة اللاسلكية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"font_apply_failed",
+            "value":"يتعذّر تطبيق الخط.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_light",
+            "value":"رفيع",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uncompleted",
+            "value":"ستتوفر الميزة قريبًا.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_name_max",
+            "value":"تجاوز الاسم حد الطول",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fp_do_not_support_mini_screen_new",
+            "value":"وضع الاستخدام بيد واحدة غير مُتاح",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vibrate_synchronize_with_ringtone",
+            "value":"متزامن مع النغمة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_restored",
+            "value":"تمت استعادة التطبيق.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_theme_info",
+            "value":"ستتم إزالة هذا المظهر، وخلفيته، وحزمة أيقوناته.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_bond_device_type",
+            "value":"نوع الجهاز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hotspot_blocklist_limit",
+            "value":"يمكن إضافة %d أجهزة كحدٍ أقصى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_apply_failed",
+            "value":"يتعذّر تطبيق نمط الأيقونة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_to_blocklist",
+            "value":"حظر",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_device_name_title",
+            "value":"جهازك ظاهر لأجهزة البلوتوث القريبة مثل \"%1$s\". %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"desktop_style_tip",
+            "value":"تحديد نمط شريط الإرساء.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_zoom_text_size",
+            "value":"حجم الخط",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_dialog_message",
+            "value":"تشغيل خيارات المطوّر قد يجعل جهازك عرضة للتهديدات الأمنية. تأكد قبل المتابعة من إيقاف درع الحماية من \"الإعدادات > الحماية والخصوصية\".",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_services",
+            "value":"خدمات الموقع",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recover_Theme_App_massage",
+            "value":"يجب تثبيت تطبيق السمات لاستخدام هذه الميزة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_title_got_it",
+            "value":"حسنًا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_normal",
+            "value":"عادي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"icon_style_stereoscopic",
+            "value":"مجسم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wall_paper_applied",
+            "value":"مُستخدمة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fp_duplicated_name_toast",
+            "value":"الاسم مُستخدم بالفعل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_modify_tips",
+            "value":"سيظهر هذا الاسم على الأجهزة الأخرى عند التفاعل معها، أو المشاركة معها، أو الاتصال بها عبر البلوتوث، أو نقطة اتصال شخصية، أو USB.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_size_restore_default",
+            "value":"إعادة الضبط",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_size_small",
+            "value":"صغير",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove_from_blocklist",
+            "value":"إلغاء الحظر",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wall_paper_application",
+            "value":"استخدام",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_from_blocklist_disconnect",
+            "value":"سيتمكن \"%s\" من الاتصال بنقطة اتصال هذا الجهاز مرة أخرى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_boldest",
+            "value":"الأكثر سماكة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_zoom_text_weight",
+            "value":"سماكة الخط",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"icon_apply_successd",
+            "value":"تم تطبيق نمط الأيقونة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"window_animation_title",
+            "value":"مؤثرات تصغير النافذة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"window_animation_attraction",
+            "value":"تأثير الشهب المتساقطة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_size",
+            "value":"حجم أيقونة الشاشة الرئيسية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enableTheme",
+            "value":"جاري استخدام السمة…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dock_color_style",
+            "value":"تكيّف لون شريط الإرساء مع",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_system",
+            "value":"وضع العرض",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ok",
+            "value":"موافق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge4",
+            "value":"ضخم (ج)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_large",
+            "value":"كبير",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"applyIcon",
+            "value":"جارٍ تطبيق الأيقونات…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recover",
+            "value":"استعادة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hot_spot_block_list",
+            "value":"قائمة الحظر",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge2",
+            "value":"ضخم (أ)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge3",
+            "value":"ضخم (ب)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"block_list_tips",
+            "value":"غير مسموح للأجهزة في قائمة الحظر الاتصال بنقطة الاتصال الشخصية.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"window_animation_default",
+            "value":"رسوم متحركة افتراضية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_time_zone",
+            "value":"مطلوب تشغيل %s لتعيين المنطقة الزمنية تلقائيًا.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"eye_comfort_tick",
+            "value":"يعزل وضع حماية البصر الضوء الأزرق للمساعدة في تقليل إرهاق العينين. عند تشغيل هذا الخيار، ستظهر الشاشة بدرجة لون أدفأ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scan_for_hotspots",
+            "value":"قم بالمسح للاتصال",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_size_huge",
+            "value":"ضخم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove",
+            "value":"إزالة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete",
+            "value":"حذف",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_window_tips",
+            "value":"سيتغير لون شريط الإرساء استجابةً للون خلفية الشاشة أو محتوى نافذة مُكبّرة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_common_security",
+            "value":"تحتاج خدمات الحماية العامة إلى الاتصال بالإنترنت وقراءة معلومات الموقع، بالإضافة إلى قراءة ورفع/نقل قائمة التطبيقات المثبتة ورقم (أرقام) هذا الجهاز ومعلومات الموقع التقريبي.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wlan_scan_content",
+            "value":"يمكن تحسين دقة تحديد الموقع بالسماح للتطبيقات والخدمات بالبحث عن الشبكات اللاسلكية في أي وقت، حتى عند إيقاف تشغيل الشبكة اللاسلكية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dock_color_style_follow_window",
+            "value":"الخلفية والنوافذ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_mode_font_size_extra_large",
+            "value":"كبير جدًا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"modify",
+            "value":"تغيير",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"font_apply_successd",
+            "value":"تم تطبيق الخط.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm_change_name",
+            "value":"سيؤدي تغيير اسم الجهاز إلى إيقاف نقطة الاتصال الشخصية. هل تريد التغيير على أي حال؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recover_Theme_App",
+            "value":"هل تريد استعادة تطبيق السمات؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_to_blocklist_disconnect",
+            "value":"سيُضاف \"%s\" إلى قائمة الحظر وسينقطع اتصاله بنقطة الاتصال.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"name_repeat_warning",
+            "value":"لا يمكن أن يتطابق الاسم مع اسم الشبكة اللاسلكية المتصل بها",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_precision_text",
+            "value":"لتحسين دقة تحديد الموقع، يمكن للتطبيقات والخدمات البحث عن الشبكات اللاسلكية حتى عند إيقاف تشغيل الشبكة اللاسلكية. ويمكنك تغيير هذا في %s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"desktop_style_title",
+            "value":"نمط الشاشة الرئيسية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"إلغاء",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vassistant_settings",
+            "value":"Celia",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"input_max_length_message",
+            "value":"لقد أدخلت حروفًا كثيرة للغاية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"change_device_name",
+            "value":"تعديل اسم الجهاز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_mode_font_weight_lightest",
+            "value":"الأقل سماكة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"other_wlan",
+            "value":"الأجهزة المتصلة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"attention",
+            "value":"تنويه",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dock_auto_hide_style",
+            "value":"إخفاء شريط الإرساء عند تكبير النوافذ أو تقسيمها",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title",
+            "value":"عنوان",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"insufficient_storage_toast",
+            "value":"يتعذّر توفير خدمات المظهر بسبب عدم كفاية مساحة التخزين الداخلية، يُرجى حذف بعض الملفات لتفريغ مساحة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_softwareupdate",
+            "value":"تحتاج خدمات تحديث النظام إلى الاتصال بالإنترنت وقراءة قائمة التطبيقات المُثبّتة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_fusion_search",
+            "value":"تحتاج خدمة بحث Fusion إلى الاتصال بالإنترنت وقراءة قائمة التطبيقات المثبّتة وبيانات الوسائط (مثل الصور والفيديوهات والصوت) وبيانات الملفات وجهات الاتصال والرسائل النصية القصيرة وبيانات أحداث التقويم.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_system_storage",
+            "value":"تحتاج خدمات التخزين في النظام إلى قراءة بيانات أحداث التقويم وقراءة بيانات جهات الاتصال وسجلات المكالمات وتعديلها.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_basic_system_analysis",
+            "value":"تحتاج خدمات تحليل النظام الأساسية إلى الاتصال بالإنترنت، وقراءة معلومات تشغيل الجهاز، ورفع/نقل هذه المعلومات بشكل مجهول الهوية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_device_communication",
+            "value":"تحتاج خدمات الاتصالات بين الأجهزة إلى الاتصال بالإنترنت وقراءة رقم (أرقام) الهاتف لهذا الجهاز، ورقم IMEI، ومحتوى الرسائل النصية/رسائل الوسائط المتعددة، ومعلومات الموقع.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_authentication",
+            "value":"تحتاج خدمة المصادقة إلى الاتصال بالإنترنت لقراءة قائمة التطبيقات المثبّتة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_atomicservice",
+            "value":"يحتاج إطار قدرة الميزة إلى الاتصال بالإنترنت وقراءة ورفع/نقل قائمة التطبيقات المثبتة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_management",
+            "value":"تحتاج خدمات الإدارة في مركز الأمان والخصوصية إلى قراءة معلومات الموقع والصور والفيديوهات وقائمة التطبيقات المثبتّة، وقراءة جهات الاتصال والرسائل وسجلات المكالمات وتعديلها.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_auto_discovery",
+            "value":"تحتاج خدمات الاكتشاف التلقائي إلى الاتصال بالإنترنت، واستخدام البلوتوث وNFC، وقراءة عناوين MAC للشبكة اللاسلكية والبلوتوث ورفعها/نقلها، وتشغيل الكاميرا لمسح الرموز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_options",
+            "value":"المزيد من الخيارات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_device_activation",
+            "value":"تحتاج خدمة تنشيط الجهاز إلى الاتصال بالإنترنت لقراءة ورفع/نقل معلومات الموقع التقريبي.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_picker_less",
+            "value":"تحتاج خدمات أداة الاختيار إلى قراءة بيانات الوسائط (الصور والفيديوهات والصوت) وجهات الاتصال وبيانات الملفات وقائمة التطبيقات المثبّتة وتشغيل الكاميرا والميكروفون. تحتاج خدمة أداة اختيار الخريطة إلى الاتصال بالإنترنت لقراءة ورفع/نقل معلومات الموقع.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_super_device",
+            "value":"تحتاج خدمات الجهاز الخارق إلى الاتصال بالإنترنت، واستخدام البلوتوث والشبكة اللاسلكية، وتشغيل البلوتوث والشبكة اللاسلكية، وقراءة عناوين MAC للشبكة اللاسلكية والبلوتوث ورفعها/نقلها.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_carrier",
+            "value":"تحتاج خدمات شركة الاتصالات إلى الاتصال بالإنترنت وقراءة ورفع/نقل رقم (أرقام) الهاتف لهذا الجهاز، ورقم IMEI وعناوين MAC للبلوتوث والشبكة اللاسلكية ومعلومات الموقع التقريبي، وإرسال وتلقي الرسائل النصية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"nearlink_and_bluetooth_device_name_title",
+            "value":"جهازك ظاهر للأجهزة القريبة، مثل \"%1$s\". %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"nearlink_and_bluetooth",
+            "value":"البلوتوث وNearLink",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"check_the_detail",
+            "value":"التفاصيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"be_chosen",
+            "value":"محدد",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"touch_screen_reader_message",
+            "value":"لا تتوفر الإعدادات المتعلقة بالشاشة اللمسية عند تشغيل قارئ الشاشة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_smaller",
+            "value":"تصغير الحجم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"close_menu",
+            "value":"إغلاق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_selected_click_tips",
+            "value":"غير محدد، انقر مرتين للتفعيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_bigger",
+            "value":"تكبير الحجم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_be_chosen",
+            "value":"غير محدد",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_fatter",
+            "value":"زيادة سُمك الخط",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toggle_to_thinner",
+            "value":"تقليل سُمك الخط",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"disable_modify_wallpaper_tips",
+            "value":"أوقفت مؤسستك هذه الميزة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"back_to_parent_menu",
+            "value":"رجوع",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_selected_click_tips",
+            "value":"انقر نقرًا مزدوجًا لتحديد الخيار",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"has_selected_click_tips",
+            "value":"انقر نقرًا مزدوجًا لإلغاء التحديد",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"only_bluetooth_on",
+            "value":"البلوتوث قيد التشغيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_passkey",
+            "value":"تتطلب خدمة مفتاح المرور الاتصال بالإنترنت وتشغيل البلوتوث واستخدامه.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_link_speed",
+            "value":"%s م.بت/ث",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_begin_line",
+            "value":"‏%1$s. %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

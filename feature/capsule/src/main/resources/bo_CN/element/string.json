@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"cloud_space",
+            "value":"སྤྲིན་བར་སྟོང་།",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"subscribe",
+            "value":"རྒྱུན་མངག",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"find_device",
+            "value":"སྒྲིག་ཆས་འཚོལ་བ།",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"ཁེ་ལས་དོ་དམ་ཐབས་ཇུས་ཀྱི་བླང་བྱ་གཞིར་བཟུང་སྒྲིག་བཀོལ་འདིར་བཀག་སྡོམ་ཐེབས།",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

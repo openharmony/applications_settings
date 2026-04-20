@@ -1,0 +1,46 @@
+{
+    "string":[
+        {
+            "name":"reset_factory_dialog_title",
+            "value":"이 휴대폰을 재설정하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_content",
+            "value": "재설정 후 백업 데이터를 복원할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_title_pc",
+            "value":"이 장치를 재설정하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"log_out",
+            "value":"로그아웃",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_retain_esim_content",
+            "value":"eSIM은 이 장치에 계속 저장됩니다. 안전하게 유지하십시오. 더 이상 이 장치를 사용할 계획이 없는 경우 eSIM을 다른 장치로 전송하거나 비활성화하십시오. 지침은 이동통신사에 문의하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_dialog_continue_reset_button",
+            "value":"재설정",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

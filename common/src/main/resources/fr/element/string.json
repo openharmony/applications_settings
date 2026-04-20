@@ -1,0 +1,11 @@
+{
+    "string":[
+        {
+            "name":"app_list_loading",
+            "value":"Chargement en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

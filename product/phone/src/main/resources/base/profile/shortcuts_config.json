@@ -1,0 +1,30 @@
+{
+  "shortcuts": [
+    {
+      "shortcutId": "settings_bluetooth_shortcuts",
+      "label": "$string:bluetooth_settings_title",
+      "icon": "$media:ic_shortcut_bluetooth",
+      "wants": [
+        {
+          "bundleName": "com.ohos.settings",
+          "moduleName": "phone",
+          "abilityName": "com.ohos.settings.MainAbility",
+          "parameters": {"shortcutUri": "bluetooth_entry"}
+        }
+      ]
+    },
+    {
+      "shortcutId": "settings_wifi_shortcuts",
+      "label": "$string:wifi_settings_title",
+      "icon": "$media:ic_shortcut_wifi",
+      "wants": [
+        {
+          "bundleName": "com.ohos.settings",
+          "moduleName": "phone",
+          "abilityName": "com.ohos.settings.MainAbility",
+          "parameters": {"shortcutUri": "wifi_entry"}
+        }
+      ]
+    }
+  ]
+}

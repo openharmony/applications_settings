@@ -1,0 +1,61 @@
+{
+    "plural":[
+        {
+            "name":"password_lockscreen_try_after_seconds",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%dسېكۇنتتىن كېيىن قايتا سىناڭ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%dسېكۇنتتىن كېيىن قايتا سىناڭ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_minutes",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%dمىنۇتتىن كېيىن قايتا سىناڭ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%dمىنۇتتىن كېيىن قايتا سىناڭ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_hours",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"يەنە %d سائەتتىن كېيىن قايتا سىناڭ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"يەنە %d سائەتتىن كېيىن قايتا سىناڭ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

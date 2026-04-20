@@ -1,0 +1,424 @@
+{
+    "string":[
+        {
+            "name":"vpn_edit_dnsaddresses",
+            "value":"خادم DNS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_connect_save",
+            "value":"حفظ معلومات المستخدم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_alias",
+            "value":"الاسم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_change_alert_title",
+            "value":"هل تريد تغيير شبكة VPN؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_line_remove_alert_confirm",
+            "value":"حذف",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_user_cert_file",
+            "value":"شهادة المستخدم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_change_alert_content",
+            "value":"سينهي هذا اتصال شبكة VPN الحالي.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_password",
+            "value":"كلمة المرور",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_protocol",
+            "value":"بروتوكول OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_error_disconnect_first",
+            "value":"يُرجى قطع اتصال شبكة VPN أولاً.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ipsecsecret",
+            "value":"مفتاح IPSec المُشارك مسبقًا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vpn_edit_cacert",
+            "value":"شهادة CA لبروتوكول IPSec",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_l2tpsecret",
+            "value":"مفتاح L2TP السري",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vpn_edit_router",
+            "value":"مسار إعادة التوجيه",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_line_disconnect_alert_confirm",
+            "value":"قطع الاتصال",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_unuse",
+            "value":"غير مُستخدم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_usercert",
+            "value":"شهادة مستخدم IPSec",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_auth_type",
+            "value":"نوع مصادقة OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_connec_success",
+            "value":"متصل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_dns_tips",
+            "value":"مثال: 8.8.8.8",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_port",
+            "value":"منفذ خادم وكيل OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_advanced_collapse",
+            "value":"إظهار محتوى أقل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_save",
+            "value":"حفظ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_line_disconnect_operation_remove",
+            "value":"حذف شبكة VPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"VPN",
+            "value":"شبكة VPN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vpn_edit_ipsecidentifier",
+            "value":"معرّف IPSec",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_username",
+            "value":"اسم مستخدم خادم وكيل OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_proxy_advanced",
+            "value":"إظهار الخادم الوكيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_username",
+            "value":"اسم المستخدم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_connect_password",
+            "value":"كلمة المرور",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_line_disconnect_alert_title",
+            "value":"شبكة VPN متصلة بالفعل.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_port",
+            "value":"منفذ خادم OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_ca_cert_file",
+            "value":"شهادة CA",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_change_alert_confirm",
+            "value":"موافق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_disconnecting",
+            "value":"جارٍ قطع الاتصال…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vpn_edit_servercert",
+            "value":"شهادة خادم IPSec",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_configfile",
+            "value":"ملف إعداد OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_disconnected",
+            "value":"غير متصل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_private_key_psd",
+            "value":"كلمة مرور المفتاح الخاص",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_router_tips",
+            "value":"مثال: 10.0.0.0/8",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_connect_username",
+            "value":"اسم المستخدم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_password",
+            "value":"كلمة مرور خادم وكيل OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_list_add",
+            "value":"إضافة شبكة VPN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vpn_connect_confirm",
+            "value":"اتصال",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_advanced_expanded",
+            "value":"الخيارات المتقدمة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_cert_not_verify_server",
+            "value":"عدم التحقق من الخادم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vpn_state_connect_ing",
+            "value":"جارٍ الاتصال…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_advanced",
+            "value":"الخيارات المتقدمة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_serveraddress",
+            "value":"عنوان خادم OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_cert_from_server",
+            "value":"من الخادم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_connec_failed",
+            "value":"تعذّر الاتصال",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_type",
+            "value":"النوع",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_cert_not_specified",
+            "value":"غير مُحددة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_click_select",
+            "value":"تحديد",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_host",
+            "value":"مضيف خادم وكيل OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_list_empty",
+            "value":"لا توجد شبكات VPN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vpn_line_remove_alert_title",
+            "value":"هل تريد حذف شبكة VPN التالية (\u202a%s\u202c)؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vpn_edit_searchdomains",
+            "value":"نطاق بحث DNS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_connect_title",
+            "value":"الاتصال بشبكة \"\u202a%s\u202c\"",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vpn_edit_serveraddress",
+            "value":"عنوان الخادم",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

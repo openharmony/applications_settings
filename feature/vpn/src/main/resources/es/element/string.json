@@ -1,0 +1,424 @@
+{
+    "string":[
+        {
+            "name":"vpn_line_remove_alert_confirm",
+            "value":"Eliminar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_password",
+            "value":"Contraseña",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_line_disconnect_alert_confirm",
+            "value":"Desconectar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_save",
+            "value":"Guardar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_username",
+            "value":"Nombre de usuario",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_connect_password",
+            "value":"Contraseña",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_disconnecting",
+            "value":"Desconectando...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_connect_username",
+            "value":"Nombre de usuario",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_connect_title",
+            "value":"Conectar con %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_dnsaddresses",
+            "value":"Servidor DNS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_connect_save",
+            "value":"Guardar información del usuario",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_alias",
+            "value":"Nombre",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_change_alert_title",
+            "value":"¿Cambiar VPN?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_user_cert_file",
+            "value":"Certificado de usuario",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_change_alert_content",
+            "value":"Esto finalizará la conexión de VPN actual.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_protocol",
+            "value":"Protocolo de OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_error_disconnect_first",
+            "value":"Primero, desconecta la VPN.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ipsecsecret",
+            "value":"Clave precompartida de IPsec",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_cacert",
+            "value":"Certificado de CA de IPsec",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_l2tpsecret",
+            "value":"L2TP secreto",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_router",
+            "value":"Ruta de reenvío",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_unuse",
+            "value":"Sin usar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_usercert",
+            "value":"Certificado de usuario de IPsec",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_auth_type",
+            "value":"Tipo de autenticación de OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_connec_success",
+            "value":"Conectada",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_dns_tips",
+            "value":"Ejemplo: 8.8.8.8",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_port",
+            "value":"Puerto del proxy de OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_advanced_collapse",
+            "value":"Mostrar menos",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_line_disconnect_operation_remove",
+            "value":"Eliminar VPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"VPN",
+            "value":"VPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ipsecidentifier",
+            "value":"Identificador de IPsec",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_username",
+            "value":"Nombre de usuario del proxy de OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_proxy_advanced",
+            "value":"Mostrar proxy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_line_disconnect_alert_title",
+            "value":"Esta VPN ya está conectada.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_port",
+            "value":"Puerto del servidor de OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_ca_cert_file",
+            "value":"Certificado de CA",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_change_alert_confirm",
+            "value":"Aceptar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_servercert",
+            "value":"Certificado del servidor IPsec",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_configfile",
+            "value":"Archivo de configuración de OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_disconnected",
+            "value":"Sin conexión",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_private_key_psd",
+            "value":"Contraseña con clave privada",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_router_tips",
+            "value":"Ejemplo: 10.0.0.0/8",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_password",
+            "value":"Contraseña del proxy de OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_list_add",
+            "value":"Añadir VPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_connect_confirm",
+            "value":"Conectar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_advanced_expanded",
+            "value":"Opciones avanzadas",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_cert_not_verify_server",
+            "value":"No verificar servidor",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_connect_ing",
+            "value":"Conectando…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_advanced",
+            "value":"Opciones avanzadas",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_serveraddress",
+            "value":"Dirección del servidor de OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_cert_from_server",
+            "value":"Del servidor",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_state_connec_failed",
+            "value":"Ha fallado la conexión",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_type",
+            "value":"Tipo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_cert_not_specified",
+            "value":"Sin especificar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_click_select",
+            "value":"Seleccionar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_ovpn_proxy_host",
+            "value":"Host del proxy de OpenVPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_list_empty",
+            "value":"No hay VPN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_line_remove_alert_title",
+            "value":"¿Eliminar la VPN “%s”?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_searchdomains",
+            "value":"Dominios de búsqueda DNS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vpn_edit_serveraddress",
+            "value":"Dirección del servidor",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

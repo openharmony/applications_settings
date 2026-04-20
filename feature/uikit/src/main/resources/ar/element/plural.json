@@ -1,0 +1,145 @@
+{
+    "plural":[
+        {
+            "name":"password_edit_read_end",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"تم إدخال %d رمز",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"تم إدخال رمز واحد",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"تم إدخال %d رموز",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"تم إدخال %d رموز",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"تم إدخال %d رمزًا",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"تم إدخال رمزين",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_edit_read_begin",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"إدخال رقم دخول أو كلمة مرور، بإجمالي رمز واحد",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"إدخال رقم دخول أو كلمة مرور، بإجمالي %d رمز",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"إدخال رقم دخول أو كلمة مرور، بإجمالي %d رموز",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"إدخال رقم دخول أو كلمة مرور، بإجمالي %d رموز",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"إدخال رقم دخول أو كلمة مرور، بإجمالي %d رمزًا",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"إدخال رقم دخول أو كلمة مرور، بإجمالي رمزين",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"dialog_ok_countdown",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"موافق (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"موافق (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"موافق (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"موافق (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"موافق (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"موافق (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

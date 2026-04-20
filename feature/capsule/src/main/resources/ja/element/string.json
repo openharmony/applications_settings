@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"cloud_space",
+            "value":"クラウド",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"find_device",
+            "value":"デバイス探索",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"この操作はエンタープライズ管理によって禁止されています。",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"subscribe",
+            "value":"サブスクリプション",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

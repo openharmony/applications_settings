@@ -1,0 +1,103 @@
+{
+    "plural":[
+        {
+            "name":"password_lockscreen_try_after_seconds",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Повторите попытку через %d с",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Повторите попытку через %d с",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Повторите попытку через %d с",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Повторите попытку через %d с",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_minutes",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Повторите попытку через %d мин",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Повторите попытку через %d мин",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Повторите попытку через %d мин",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Повторите попытку через %d мин",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_hours",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Повторите попытку через %d ч",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Повторите попытку через %d ч",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Повторите попытку через %d ч",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Повторите попытку через %d ч",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

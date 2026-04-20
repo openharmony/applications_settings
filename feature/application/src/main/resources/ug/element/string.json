@@ -1,0 +1,284 @@
+{
+    "string":[
+        {
+            "name":"is_delete_form",
+            "value":"\u200f«%s» نى چىقىرىۋېتەمسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove_atomic_service_text",
+            "value":"تۈپ مۇلازىمەت چىقىرىۋېتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_networking_wlan_and_cellular",
+            "value":"كۆچمە ئېقىم ۋە WLAN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_networking",
+            "value":"ئەپ تورى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_networking_wlan_only",
+            "value":"\u200fWLAN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_networking_cellular_only",
+            "value":"كۆچمە ئېقىم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_application_text",
+            "value":"باشقا ئەپلەر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"whether_to_disable_text",
+            "value":"ئېتەمسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"whether_to_disable_descriptions",
+            "value":"ئىچكى ئەپنى ئەتسىڭىز، باشقا ئەپلەردە خاتالىق كۆرۈلۈشى مۇمكىن.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"whether_to_forcibly_stop_text",
+            "value":"مەجبۇرىي توختىتامسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"whether_to_forcibly_stop_descriptions",
+            "value":"بۇ مۇلازىمەتنى مەجبۇرىي توختاتسىڭىز، خاتالىق كۆرۈلۈشى مۇمكىن.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"service_remove_text",
+            "value":"چىقىرىۋېتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"service_enable_text",
+            "value":"قوزغىتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"service_disable_text",
+            "value":"ئېتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_confirm",
+            "value":"بۇ ئەپنى ئۆچۈرەمسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall",
+            "value":"ئۆچۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_force_stop",
+            "value":"مەجبۇرى توختىتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_list_loading_message",
+            "value":"يۈكلەۋاتىدۇ…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"empty_service",
+            "value":"ئىشلەيدىغان تۈپ مۇلازىمەت يوق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"default_mail",
+            "value":"سۈكۈت تورخەت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_apps_text",
+            "value":"ئەپ ئەسلىگە كەلتۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_meta_service_text",
+            "value":"تۈپ مۇلازىمەت ئەسلىگە كەلتۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_live_view",
+            "value":"ھالەت كۆزنىكى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_allow_access",
+            "value":"\u200f«%s» ئۈچۈن تۆۋەندىكى ئىجازەت كېرەك:",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"system_default",
+            "value":"سۈكۈت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_replacement",
+            "value":"ئالماشتۇرامسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_replacement_content",
+            "value":"سۈكۈت تور كۆرگۈچنى ئالماشتۇرسىڭىز، توك ۋە ئېقىم سەرپىياتى ئېشىش، مەخپىيەتلىك ئاشكارىلىنىش دېگەندەك خەۋپلەر كېلىپ چىقىشى مۇمكىن، سۈكۈت تور كۆرگۈچنى ئۆزگەرتمەسلىكنى تەۋسىيە قىلىمىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_tittle_cancel",
+            "value":"بىكار قىلىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_replace",
+            "value":"ئالماشتۇرۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"default_browser",
+            "value":"سۈكۈت تور كۆرگۈچ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_version",
+            "value":"نەشرى %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"بىكار قىلىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uninstall_unused_app",
+            "value":"ئىشلەتمىگەن ئەپلەرنى ئۆچۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uninstall_app_prompt",
+            "value":"ئىشلەتمىگەن ئەپلەرنى ئۆچۈرسىڭىز، %1$s بوشىتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"view_details",
+            "value":"تەپسىلات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update_title",
+            "value":"\u200f‏«%s» نىڭ يېڭىلانمىسىنى ئۆچۈرەمسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update",
+            "value":"يېڭىلانما ئۆچۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_uninstall_update_confirm",
+            "value":"يېڭىلانما ئۆچۈرۈلسە، بۇ ئەپ زاۋۇت ھالىتىگە قايتىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"compatible_application_text",
+            "value":"ماسلىشىدىغان ئەپ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_matching_results",
+            "value":"ماس نەتىجە يوق",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

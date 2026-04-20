@@ -1,0 +1,776 @@
+{
+    "string":[
+        {
+            "name":"join_unsave_net_tips",
+            "value":"[TS_989086]_This network may pose a security threat."
+        },
+        {
+            "name":"join_unsave_net",
+            "value":"[TS_989085]_Network unsafe"
+        },
+        {
+            "name":"continue_join",
+            "value":"[TS_989087]_Connect anyway"
+        },
+        {
+            "name":"wireless_anti_theft_tip",
+            "value":"[TS_976258]_Operation unavailable on demo device."
+        },
+        {
+            "name":"wifi_wifi_frequency_5g",
+            "value":"[TS_806096]_5 GHz"
+        },
+        {
+            "name":"wifi_wifi_frequency_2g_5g",
+            "value":"[TS_1045509]_2.4 GHz & 5 GHz"
+        },
+        {
+            "name":"wifi_network_setting",
+            "value":"[TS_1008168]_Network settings"
+        },
+        {
+            "name":"wifi_status_connecting",
+            "value":"[TS_806152]_Connecting\u2026"
+        },
+        {
+            "name":"skip_process",
+            "value":"[TS_855167]_Skip"
+        },
+        {
+            "name":"wifi_eap_method_peap",
+            "value":"[TS_863723]_PEAP"
+        },
+        {
+            "name":"connect_the_internet_title",
+            "value":"[TS_855166]_Connect to a network"
+        },
+        {
+            "name":"please_select_phase2",
+            "value":"[TS_863718]_Phase 2 authentication"
+        },
+        {
+            "name":"wifi_ip_settings_static",
+            "value":"[TS_808208]_Static"
+        },
+        {
+            "name":"dialog_know",
+            "value":"[TS_856030]_OK"
+        },
+        {
+            "name":"proxy_exclusionlist_label",
+            "value":"[TS_863697]_Bypass proxy for"
+        },
+        {
+            "name":"wifi_static_ip_network_prefix",
+            "value":"[TS_808205]_Network prefix length"
+        },
+        {
+            "name":"wifi_status_obtaining_iP",
+            "value":"[TS_806176]_Obtaining IP address\u2026"
+        },
+        {
+            "name":"wifi_ip_settings_dhcp",
+            "value":"[TS_808201]_Dynamic"
+        },
+        {
+            "name":"wifi_status_saved",
+            "value":"[TS_806030]_Saved"
+        },
+        {
+            "name":"wifi_status_security_open",
+            "value":"[TS_806147]_Open"
+        },
+        {
+            "name":"wifi_ip_address",
+            "value":"[TS_806122]_IP address"
+        },
+        {
+            "name":"unsecure_wifi_status_connected",
+            "value":"[TS_1072251]_Connected (Security risk detected)"
+        },
+        {
+            "name":"unsecure_wifi_status_saved_encrypted",
+            "value":"[TS_1072254]_Saved, encrypted (Security risk detected)"
+        },
+        {
+            "name":"unsecure_wifi_status_saved",
+            "value":"[TS_1072255]_Saved (Security risk detected)"
+        },
+        {
+            "name":"wlan_security_title",
+            "value":"[TS_1072250]_WLAN security check"
+        },
+        {
+            "name":"unsecure_is_close_auto_reconnect",
+            "value":"[TS_1072252]_Automatic reconnection disabled (Security risk detected)"
+        },
+        {
+            "name":"wifi_signal_good",
+            "value":"[TS_806040]_Good"
+        },
+        {
+            "name":"wifi_static_ip_dns2",
+            "value":"[TS_808209]_DNS 2"
+        },
+        {
+            "name":"wifi_static_ip_dns1",
+            "value":"[TS_808198]_DNS 1"
+        },
+        {
+            "name":"proxy_warning_limited_support",
+            "value":"[TS_863727]_The HTTP proxy is used by the browser but may not be used by other apps."
+        },
+        {
+            "name":"wifi_status_authenticating",
+            "value":"[TS_806011]_Authenticating…"
+        },
+        {
+            "name":"wifi_advanced_title",
+            "value":"[TS_863715]_Advanced options"
+        },
+        {
+            "name":"wifi_security_wep",
+            "value":"[TS_806102]_WEP"
+        },
+        {
+            "name":"wifi_static_ip_gateway",
+            "value":"[TS_808200]_Gateway"
+        },
+        {
+            "name":"wifi_wifi_frequency_2g",
+            "value":"[TS_806110]_2.4 GHz"
+        },
+        {
+            "name":"proxy_hostname_label",
+            "value":"[TS_863694]_Hostname"
+        },
+        {
+            "name":"wifi_status_disconnected",
+            "value":"[TS_806162]_No connected"
+        },
+        {
+            "name":"wifi_status_connected",
+            "value":"[TS_806050]_Connected"
+        },
+        {
+            "name":"wifi_security_sae",
+            "value":"[TS_806013]_WPA3"
+        },
+        {
+            "name":"wifi_status_encrypted",
+            "value":"[TS_806090]_Encrypted"
+        },
+        {
+            "name":"wifi_eap_anonymous",
+            "value":"[TS_863711]_Anonymous identity"
+        },
+        {
+            "name":"wifi_status_disconnecting",
+            "value":"[TS_806084]_Disconnecting…"
+        },
+        {
+            "name":"wifi_proxy_settings_auto",
+            "value":"[TS_863712]_Auto"
+        },
+        {
+            "name":"wifi_ip_settings_title",
+            "value":"[TS_808192]_IP settings"
+        },
+        {
+            "name":"ca_certificate",
+            "value":"[TS_863702]_CA certificate"
+        },
+        {
+            "name":"phase2_mschapv2",
+            "value":"[TS_863698]_MSCHAPV2"
+        },
+        {
+            "name":"wifi_security_psk",
+            "value":"[TS_806138]_WPA/WPA2"
+        },
+        {
+            "name":"wifi_signal_excellent",
+            "value":"[TS_806182]_Excellent"
+        },
+        {
+            "name":"wifi_eap_input_anonymous_identity_hint",
+            "value":"[TS_863693]_Enter anonymous identity"
+        },
+        {
+            "name":"wifi_connecting",
+            "value":"[TS_806105]_Connecting to %1$s…"
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"[TS_806070]_Cancel"
+        },
+        {
+            "name":"wifi_eap_method",
+            "value":"[TS_863720]_EAP method"
+        },
+        {
+            "name":"wifi_eap_input_identity_hint",
+            "value":"[TS_863729]_Enter identity"
+        },
+        {
+            "name":"proxy_port_label",
+            "value":"[TS_863713]_Port"
+        },
+        {
+            "name":"wifi_status_unsuccessful",
+            "value":"[TS_806089]_Unsuccessful"
+        },
+        {
+            "name":"wifi_status_scanning",
+            "value":"[TS_806200]_Scanning\u2026"
+        },
+        {
+            "name":"wifi_eap_identity",
+            "value":"[TS_863701]_Identity"
+        },
+        {
+            "name":"wifi_proxy_settings_none",
+            "value":"[TS_863706]_None"
+        },
+        {
+            "name":"wifi_proxy_settings_title",
+            "value":"[TS_863709]_Proxy"
+        },
+        {
+            "name":"wifi_connect_status_failed",
+            "value":"[TS_806119]_Password incorrect. Connection failed."
+        },
+        {
+            "name":"wifi_proxy_settings_manual",
+            "value":"[TS_863719]_Manual"
+        },
+        {
+            "name":"wifi_status_saved_encrypted",
+            "value":"[TS_806071]_Saved, encrypted"
+        },
+        {
+            "name":"wifi_signal_fair",
+            "value":"[TS_806131]_Fair"
+        },
+        {
+            "name":"wifi_security_open",
+            "value":"[TS_806085]_Open"
+        },
+        {
+            "name":"wifi_signal_poor",
+            "value":"[TS_806031]_Poor"
+        },
+        {
+            "name":"wifi_name",
+            "value":"[TS_869418]_Network name"
+        },
+        {
+            "name":"wifi_add_wifi",
+            "value":"[TS_869425]_Add network"
+        },
+        {
+            "name":"wifi_add_other_wifi",
+            "value":"[TS_869426]_Add network"
+        },
+        {
+            "name":"wifi_security",
+            "value":"[TS_869416]_Security"
+        },
+        {
+            "name":"wifi_privacy_settings_title",
+            "value":"[TS_870512]_Privacy"
+        },
+        {
+            "name":"proxy_pac_web_address_label",
+            "value":"[TS_878192]_PAC URL"
+        },
+        {
+            "name":"wifi_static_ip_gateway_hint",
+            "value":"[TS_874045]_192.168.1.1"
+        },
+        {
+            "name":"wifi_privacy_device",
+            "value":"[TS_808204]_Use device MAC"
+        },
+        {
+            "name":"wifi_security_eap",
+            "value":"[TS_869351]_802.1x EAP"
+        },
+        {
+            "name":"wifi_proxy_port_hint",
+            "value":"[TS_874041]_8080"
+        },
+        {
+            "name":"wifi_static_ip_dns_servers_1_hint",
+            "value":"[TS_874040]_8.8.8.8"
+        },
+        {
+            "name":"wifi_static_ip_network_prefix_hint",
+            "value":"[TS_874039]_128"
+        },
+        {
+            "name":"wifi_proxy_exclusionlist_hint",
+            "value":"[TS_874044]_example.com,mycomp.test.com,localhost"
+        },
+        {
+            "name":"wifi_status_failed_connection_full",
+            "value":"[TS_870506]_Network full. Connection failed."
+        },
+        {
+            "name":"wifi_enter_ssid_hint",
+            "value":"[TS_870507]_Network name"
+        },
+        {
+            "name":"wifi_privacy_random",
+            "value":"[TS_808196]_Use randomized MAC"
+        },
+        {
+            "name":"wifi_status_wrong_pwd",
+            "value":"[TS_870513]_Password incorrect. Connection failed."
+        },
+        {
+            "name":"wifi_status_failed_default",
+            "value":"[TS_870511]_Network error. Connection failed."
+        },
+        {
+            "name":"wifi_ip_address_hint",
+            "value":"[TS_874047]_192.168.1.128"
+        },
+        {
+            "name":"wifi_static_ip_dns_servers_2_hint",
+            "value":"[TS_874043]_8.8.4.4"
+        },
+        {
+            "name":"wifi_privacy_settings",
+            "value":"[TS_808193]_Privacy"
+        },
+        {
+            "name":"wifi_setup_config_save_button",
+            "value":"[TS_878195]_Save"
+        },
+        {
+            "name":"wifi_eap_method_pwd",
+            "value":"[TS_882464]_PWD"
+        },
+        {
+            "name":"wifi_status_failed_rejected",
+            "value":"[TS_906575]_Denied access to network"
+        },
+        {
+            "name":"wifi_status_connected_unauthorized",
+            "value":"[TS_917597]_Connected (requires login/authorization)"
+        },
+        {
+            "name":"phase2_aka_prime",
+            "value":"[TS_928551]_AKA'"
+        },
+        {
+            "name":"wifi_eap_domain",
+            "value":"[TS_863717]_Domain"
+        },
+        {
+            "name":"wifi_wapi_psk",
+            "value":"[TS_931113]_WAPI PSK"
+        },
+        {
+            "name":"wifi_security_owe",
+            "value":"[TS_928561]_OWE"
+        },
+        {
+            "name":"wifi_security_wapi_psk",
+            "value":"[TS_928560]_WAPI PSK"
+        },
+        {
+            "name":"phase2_gtc",
+            "value":"[TS_928543]_GTC"
+        },
+        {
+            "name":"wifi_wapi_cert",
+            "value":"[TS_931118]_WAPI CERT"
+        },
+        {
+            "name":"wifi_eap_method_aka",
+            "value":"[TS_928547]_AKA"
+        },
+        {
+            "name":"wifi_cipher_key_manage",
+            "value":"[TS_928549]_Key management"
+        },
+        {
+            "name":"wifi_do_not_provide_eap_user_cert",
+            "value":"[TS_863722]_Do not provide"
+        },
+        {
+            "name":"wifi_cipher_key_none",
+            "value":"[TS_928566]_None"
+        },
+        {
+            "name":"wifi_security_eap_suite_b",
+            "value":"[TS_928571]_WPA3-Enterprise %d-bit"
+        },
+        {
+            "name":"wifi_eap_method_sim",
+            "value":"[TS_928552]_SIM"
+        },
+        {
+            "name":"wifi_wapi_psk_hex",
+            "value":"[TS_931117]_WAPI PSK hexadecimal"
+        },
+        {
+            "name":"unassigned",
+            "value":"[TS_931116]_Unspecified"
+        },
+        {
+            "name":"wifi_eap_method_aka_prime",
+            "value":"[TS_928544]_AKA'"
+        },
+        {
+            "name":"wifi_do_not_validate_eap_server_warning",
+            "value":"[TS_863731]_No certificate specified. Your connection will not be private."
+        },
+        {
+            "name":"as_certification",
+            "value":"[TS_931119]_AS certification"
+        },
+        {
+            "name":"wifi_cipher_key_ft",
+            "value":"[TS_928563]_FT"
+        },
+        {
+            "name":"phase2_aka",
+            "value":"[TS_928554]_AKA"
+        },
+        {
+            "name":"wifi_security_wapi_cert",
+            "value":"[TS_928545]_WAPI CERT"
+        },
+        {
+            "name":"wifi_user_certificate",
+            "value":"[TS_928558]_User certificate"
+        },
+        {
+            "name":"phase2_pap",
+            "value":"[TS_928570]_PAP"
+        },
+        {
+            "name":"wifi_eap_method_tls",
+            "value":"[TS_863728]_TLS"
+        },
+        {
+            "name":"wifi_wapi_psk_ascii",
+            "value":"[TS_931114]_WAPI PSK ASCII"
+        },
+        {
+            "name":"wifi_wapi_psk_password_type",
+            "value":"[TS_931115]_Password type"
+        },
+        {
+            "name":"wifi_do_not_validate_eap_server",
+            "value":"[TS_863730]_Do not validate"
+        },
+        {
+            "name":"wifi_use_system_certs",
+            "value":"[TS_863696]_Use system certificates"
+        },
+        {
+            "name":"please_enter",
+            "value":"[TS_928562]_Please enter"
+        },
+        {
+            "name":"wifi_eap_method_ttls",
+            "value":"[TS_928550]_TTLS"
+        },
+        {
+            "name":"please_select",
+            "value":"[TS_928564]_Please select"
+        },
+        {
+            "name":"phase2_sim",
+            "value":"[TS_928559]_SIM"
+        },
+        {
+            "name":"wifi_mac_address_title",
+            "value":"[TS_808206]_MAC address"
+        },
+        {
+            "name":"wifi_connect_status_title",
+            "value":"[TS_808202]_Status"
+        },
+        {
+            "name":"phase2_mschap",
+            "value":"[TS_928553]_MSCHAP"
+        },
+        {
+            "name":"wifi_other_wlan",
+            "value":"[TS_934914]_Other"
+        },
+        {
+            "name":"wifi_settings_title",
+            "value":"[TS_806019]_WLAN"
+        },
+        {
+            "name":"hotspot_settings_title",
+            "value":"[TS_859391]_Personal hotspot"
+        },
+        {
+            "name":"hotspot_repeated_connection",
+            "value":"[TS_977304]_Already connected to this hotspot."
+        },
+        {
+            "name":"wifi_connected_successful",
+            "value":"[TS_977306]_Connection successful."
+        },
+        {
+            "name":"type_not_support",
+            "value":"[TS_976075]_Unable to share this type of network."
+        },
+        {
+            "name":"wifi_connected_failed",
+            "value":"[TS_977305]_Connection failed."
+        },
+        {
+            "name":"ic_wifi_signal_1",
+            "value":"[TS_980778]_WLAN hotspot, %d signal bar"
+        },
+        {
+            "name":"ic_wifi_signal_0",
+            "value":"[TS_980789]_WLAN hotspot, %d signal bars"
+        },
+        {
+            "name":"ic_wifi6_lock_signal_2",
+            "value":"[TS_980768]_WLAN %1$d encrypted hotspot, %2$d signal bars"
+        },
+        {
+            "name":"ic_wifi_signal_4",
+            "value":"[TS_980770]_WLAN hotspot, signal bars full"
+        },
+        {
+            "name":"ic_wifi6_lock_signal_3",
+            "value":"[TS_980787]_WLAN %1$d encrypted hotspot, %2$d signal bars"
+        },
+        {
+            "name":"ic_wifi_signal_3",
+            "value":"[TS_980800]_WLAN hotspot, %d signal bars"
+        },
+        {
+            "name":"ic_wifi6_lock_signal_4",
+            "value":"[TS_980797]_WLAN %d encrypted hotspot, signal bars full"
+        },
+        {
+            "name":"ic_wifi_signal_2",
+            "value":"[TS_980805]_WLAN hotspot, %d signal bars"
+        },
+        {
+            "name":"ic_wifi6_lock_signal_0",
+            "value":"[TS_980801]_WLAN %1$d encrypted hotspot, %2$d signal bars"
+        },
+        {
+            "name":"ic_wifi6_lock_signal_1",
+            "value":"[TS_980808]_WLAN %1$d encrypted hotspot, %2$d signal bar"
+        },
+        {
+            "name":"ic_wlan_error",
+            "value":"[TS_980791]_WLAN hotspot, no Internet"
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_0",
+            "value":"[TS_980771]_WLAN %1$d Plus encrypted hotspot, %2$d signal bars"
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_1",
+            "value":"[TS_980799]_WLAN %1$d Plus encrypted hotspot, %2$d signal bar"
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_2",
+            "value":"[TS_980807]_WLAN %1$d Plus encrypted hotspot, %2$d signal bars"
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_3",
+            "value":"[TS_980776]_WLAN %1$d Plus encrypted hotspot, %2$d signal bars"
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_4",
+            "value":"[TS_980780]_WLAN %d Plus encrypted hotspot, signal bars full"
+        },
+        {
+            "name":"ic_wifi7_signal_1",
+            "value":"[TS_980777]_WLAN %1$d hotspot, %2$d signal bar"
+        },
+        {
+            "name":"ic_wifi7_lock_signal_0",
+            "value":"[TS_980783]_WLAN %1$d encrypted hotspot, %2$d signal bars"
+        },
+        {
+            "name":"ic_wifi7_signal_2",
+            "value":"[TS_980792]_WLAN %1$d hotspot, %2$d signal bars"
+        },
+        {
+            "name":"ic_wifi7_signal_3",
+            "value":"[TS_980779]_WLAN %1$d hotspot, %2$d signal bars"
+        },
+        {
+            "name":"ic_wifi7_signal_4",
+            "value":"[TS_980785]_WLAN %d hotspot, signal bars full"
+        },
+        {
+            "name":"ic_wifi7_lock_signal_4",
+            "value":"[TS_980790]_WLAN %d encrypted hotspot, signal bars full"
+        },
+        {
+            "name":"ic_wifi7_lock_signal_3",
+            "value":"[TS_980781]_WLAN %1$d encrypted hotspot, %2$d signal bars"
+        },
+        {
+            "name":"ic_wifi7_lock_signal_2",
+            "value":"[TS_980773]_WLAN %1$d encrypted hotspot, %2$d signal bars"
+        },
+        {
+            "name":"ic_wifi7_lock_signal_1",
+            "value":"[TS_980806]_WLAN %1$d encrypted hotspot, %2$d signal bar"
+        },
+        {
+            "name":"ic_wifi6_signal_4",
+            "value":"[TS_980803]_WLAN %d hotspot, signal bars full"
+        },
+        {
+            "name":"ic_wifi6_signal_2",
+            "value":"[TS_980774]_WLAN %1$d hotspot, %2$d signal bars"
+        },
+        {
+            "name":"ic_wifi6_signal_3",
+            "value":"[TS_980794]_WLAN %1$d hotspot, %2$d signal bars"
+        },
+        {
+            "name":"ic_wifi6_signal_0",
+            "value":"[TS_980795]_WLAN %1$d hotspot, %2$d signal bars"
+        },
+        {
+            "name":"ic_wifi6_signal_1",
+            "value":"[TS_980784]_WLAN %1$d hotspot, %2$d signal bar"
+        },
+        {
+            "name":"ic_wifi6plus_signal_4",
+            "value":"[TS_980772]_WLAN %d Plus hotspot, signal bars full"
+        },
+        {
+            "name":"ic_wifi6plus_signal_2",
+            "value":"[TS_980793]_WLAN %1$d Plus hotspot, %2$d signal bars"
+        },
+        {
+            "name":"ic_wifi6plus_signal_3",
+            "value":"[TS_980802]_WLAN %1$d Plus hotspot, %2$d signal bars"
+        },
+        {
+            "name":"ic_wifi6plus_signal_0",
+            "value":"[TS_980775]_WLAN %1$d Plus hotspot, %2$d signal bars"
+        },
+        {
+            "name":"ic_wifi6plus_signal_1",
+            "value":"[TS_980786]_WLAN %1$d Plus hotspot, %2$d signal bar"
+        },
+        {
+            "name":"ic_wifi7_signal_0",
+            "value":"[TS_980788]_WLAN %1$d hotspot, %2$d signal bars"
+        },
+        {
+            "name":"ic_wifi_lock_signal_4",
+            "value":"[TS_980798]_Encrypted hotspot, signal bars full"
+        },
+        {
+            "name":"ic_wifi_lock_signal_0",
+            "value":"[TS_980796]_Encrypted hotspot, %d signal bars"
+        },
+        {
+            "name":"ic_wifi_lock_signal_1",
+            "value":"[TS_980804]_Encrypted hotspot, %d signal bar"
+        },
+        {
+            "name":"ic_wifi_lock_signal_2",
+            "value":"[TS_980769]_Encrypted hotspot, %d signal bars"
+        },
+        {
+            "name":"ic_wifi_lock_signal_3",
+            "value":"[TS_980782]_Encrypted hotspot, %d signal bars"
+        },
+        {
+            "name":"is_close_auto_reconnect",
+            "value":"[TS_1020904]_Automatic reconnection disabled"
+        },
+        {
+            "name":"wifi_ssid_error",
+            "value":"[TS_1021952]_\"%s\" not found. Unable to connect."
+        },
+        {
+            "name":"sim_card_slot",
+            "value":"[TS_1020903]_SIM slot"
+        },
+        {
+            "name":"wifi_auto_reconnect_settings",
+            "value":"[TS_1020905]_Automatically reconnect"
+        },
+        {
+            "name":"sim_not_set",
+            "value":"[TS_1020907]_Unspecified"
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"[TS_1047941]_This operation is prohibited by enterprise management."
+        },
+        {
+            "name":"wifi_status_failed_disabled",
+            "value":"[TS_1047942]_Your organization does not allow you to connect to this WLAN network."
+        },
+        {
+            "name":"hotspot_no_connected_devices",
+            "value":"[TS_1098375]_No connected devices"
+        },
+        {
+            "name":"wifi_connected_ap",
+            "value":"[TS_806196]_Connected"
+        },
+        {
+            "name":"wifi_settings",
+            "value":"[TS_924398]_Settings"
+        },
+        {
+            "name":"wifi_available_ap_group",
+            "value":"[TS_806021]_Available"
+        },
+        {
+            "name":"hotspot_turned_off",
+            "value":"[TS_1098376]_Personal hotspot is off"
+        },
+        {
+            "name":"esim_card",
+            "value":"[TS_1103921]_eSIM %s"
+        },
+        {
+            "name":"shared_network_ap_group",
+            "value":"[TS_970627]_Shared"
+        },
+        {
+            "name":"shared_network_failed_message",
+            "value":"[TS_976739]_On your %s, disconnect from WLAN, re-enable WLAN and Bluetooth, then check that mobile data is enabled and try again."
+        },
+        {
+            "name":"ensure_mobile_data_enabled",
+            "value":"[TS_1115066]_On the phone, make sure mobile data is enabled, then re-enable WLAN and Bluetooth and try again."
+        },
+        {
+            "name":"mobile_data_not_enabled",
+            "value":"[TS_1114056]_Mobile data is disabled on the phone. Turn it on and try again."
+        },
+        {
+            "name":"mobile_network_unavailable",
+            "value":"[TS_1114054]_Mobile network is unavailable on the phone. Disable the personal hotspot and try again."
+        },
+        {
+            "name":"network_sharing_sub_switch_not_enabled",
+            "value":"[TS_1114055]_The \"Internet\" switch under \"Communication sharing\" is disabled on the phone. Turn it on and try again."
+        },
+        {
+            "name":"wifi_security_wpa_wpa2_wpa3_ft_psk",
+            "value":"[TS_1024213]_WPA/WPA2/WPA3/FT PSK"
+        }
+    ]
+}

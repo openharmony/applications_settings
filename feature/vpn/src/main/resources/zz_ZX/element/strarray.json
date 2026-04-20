@@ -1,0 +1,29 @@
+{
+    "strarray":[
+        {
+            "name":"ovpen_auth_type",
+            "value":[
+                {
+                    "value":"[TS_975369]_Certificate (TLS)"
+                },
+                {
+                    "value":"[TS_975365]_Password"
+                },
+                {
+                    "value":"[TS_975364]_Certificate & password (TLS)"
+                }
+            ]
+        },
+        {
+            "name":"ovpn_protocol",
+            "value":[
+                {
+                    "value":"[TS_975376]_TCP"
+                },
+                {
+                    "value":"[TS_975378]_UDP"
+                }
+            ]
+        }
+    ]
+}

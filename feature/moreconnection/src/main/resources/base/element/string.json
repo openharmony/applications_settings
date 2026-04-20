@@ -1,0 +1,123 @@
+{
+    "string":[
+        {
+            "name":"projection_state_on",
+            "value":"On",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"projection_state_off",
+            "value":"Off",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"nfc_switch_on_text",
+            "value":"On",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"nfc_switch_off_text",
+            "value":"Off",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_off_text",
+            "value":"Not connected",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_on_text",
+            "value":"Connected",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_collaboration_settings_title",
+            "value":"Advanced settings",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"multi_device_collaboration_service_switch",
+            "value":"Enhanced collaboration services",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wireless_projection_statement",
+            "value":"This service requires the Device connection permission. It uses WLAN and Bluetooth and will record device audio and onscreen content. By turning this on, you agree to these terms and the %s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_notice",
+            "value":"Permissions Notice",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bind_devices",
+            "value":"Manage devices",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_switch",
+            "value":"Collaboration suggestions",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_details",
+            "value":"Based on automatic detection of devices and context.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"far_field_communication_service_privacy",
+            "value":"Statement About Far-Field Communication Services and Privacy",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_switch_msg",
+            "value":"This service suggests ways to collaborate with your other devices when they are nearby. To do this, it requires an Internet connection, needs to use Bluetooth and WLAN, and will exchange data with other devices via far-field communication. For more details about how your personal information is processed, refer to the %s. By turning this on, you agree to these terms.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_entry_guide",
+            "value":"How to turn on ScreenCast",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_entry_guide_message",
+            "value":"Simply tap ScreenCast in the Control Panel to search for nearby devices.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

@@ -1,0 +1,61 @@
+{
+    "plural":[
+        {
+            "name":"user_select_app",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d ئەپ",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d ئەپ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"selected_app",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"تاللاندى (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"تاللاندى (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"user_select_contact",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d ئالاقىداش",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d ئالاقىداش",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

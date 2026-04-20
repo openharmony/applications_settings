@@ -1,0 +1,40 @@
+{
+    "plural":[
+        {
+            "name":"password_lockscreen_try_after_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"སྐར་མ་ %d རྗེས་ཡང་བསྐྱར་ཚོད་ལྟ་གནང་རོགས།",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_minutes",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"སྐར་མ་ %d རྗེས་ཡང་བསྐྱར་ཚོད་ལྟ་གནང་རོགས།",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_hours",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ཆུ་ཚོད་ %d རྗེས་ཡང་བསྐྱར་འབད་རྩོལ་བྱ།",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

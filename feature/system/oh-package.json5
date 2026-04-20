@@ -1,0 +1,12 @@
+{
+  "name": "@ohos/settings.system",
+  "version": "1.0.0",
+  "description": "system feature",
+  "main": "index.ets",
+  "dependencies": {
+    "@ohos/settings.common": "file:../../common",
+    "@ohos/settings.display": "file:../display",
+    "@ohos/settings.notDisturb": "file:../notDisturb",
+    "@ohos/settings.search": "file:../search"
+  }
+}

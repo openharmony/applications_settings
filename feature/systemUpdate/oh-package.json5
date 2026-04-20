@@ -1,0 +1,10 @@
+{
+  "name": "@ohos/settings.systemUpdate",
+  "description": "systemUpdate feature",
+  "main": "index.ets",
+  "version": "1.0.0",
+  "dependencies": {
+    "@ohos/settings.common": "file:../../common",
+    "@ohos/settings.uikit": "file:../../feature/uikit"
+  }
+}

@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2021-2022 Huawei Device Co., Ltd.
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2024-2025. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,100 +13,259 @@
  * limitations under the License.
  */
 
-import router from '@system.router';
-import LogUtil from '../../../../../../../../../common/utils/src/main/ets/default/baseUtil/LogUtil';
-import { SubHeader } from '../../../../../../../../../common/component/src/main/ets/default/textComponent';
-import ConfigData from '../../../../../../../../../common/utils/src/main/ets/default/baseUtil/ConfigData';
-import LanguageAndRegionModel from '../../../../model/systemImpl/languageSettings/LanguageAndRegionModel';
-import HeadComponent from '../../../../../../../../../common/component/src/main/ets/default/headComponent';
+import { DynamicLoader } from '@ohos/settings.common/src/main/ets/utils/DynamicLoader';
+import { DeviceUtil } from '@ohos/settings.common/src/main/ets/utils/BaseUtils';
+import { HiSysEventUtil } from '@ohos/settings.common/src/main/ets/systemEvent/HiSysEventUtil';
+import { LogUtil } from '@ohos/settings.common/src/main/ets/utils/LogUtil';
+import { ResourceUtil } from '@ohos/settings.common/src/main/ets/utils/ResourceUtil';
+import { UiRefresher } from '@ohos/settings.common/src/main/ets/core/controller/Controller';
+import { Params } from '@ohos/settings.common/src/main/ets/core/controller/Controller';
+import { languageAndRegionModel } from '@ohos/settings.language/src/main/ets/model/LanguageAndRegionModel';
+import { BasicDataSource } from '@ohos/settings.language/src/main/ets/model/BasicDataSource';
+import { CountryAndRegion } from '@ohos/settings.language/src/main/ets/model/CountryAndRegion';
+import { FontScaleUtils } from '@ohos/settings.common/src/main/ets/utils/FontScaleUtils';
+import { FOCUS_BOX_PADDING_METRICS, PADDING_8 } from '@ohos/settings.common/src/main/ets/constant/StyleConstant';
+import { AccessibilityUtils } from '@ohos/settings.common/src/main/ets/utils/AccessibilityUtils';
+import { SubHeaderComponent } from '../SubHeader';
+/* instrument ignore file */
+const CHOOSE_REGION_ENTRY: string = 'choose_region_entry';
+const ENTER_REGION_ENTRY: string = 'enter_region_entry';
+const ROUTER_NAME = 'select_region_entry';
+const COMMON_GRID_COL_OPTIONS: GridColOptions = {
+  span: {
+    xs: 12,
+    sm: 12,
+    md: 12,
+    lg: 12,
+  },
+  offset: {
+    xs: 0,
+    md: 0,
+    sm: 0,
+    lg: 0,
+  },
+};
 
 /**
  * Home Page of  Select Region
  */
-@Entry
+@Builder
+export function SelectRegionLoader($$: Params): void {
+  SelectRegion();
+}
+
 @Component
-struct SelectRegion {
+export struct SelectRegion {
   @State touchedItemName: string = '';
-  private regionList: RegionDataSource = new RegionDataSource(LanguageAndRegionModel.getSystemCountries());
-  private TAG = `${ConfigData.TAG} SelectRegion `;
+  private regionList: RegionDataSource = new RegionDataSource(languageAndRegionModel.getSystemRegions());
+  private TAG: string = `Settings SelectRegion`;
+  @State uiRefresher: UiRefresher = new UiRefresher();
+  @State clickable: boolean = true;
+  @Consume('pathInfos') pathInfos: NavPathStack;
+  @StorageProp('navigationMode') navigationMode: NavigationMode | undefined = NavigationMode.Stack;
+  isScrolling: boolean = false;
+  timeoutId: number | undefined = undefined;
 
-  build() {
-    Column() {
-      GridContainer({ gutter: ConfigData.GRID_CONTAINER_GUTTER_24, margin: ConfigData.GRID_CONTAINER_MARGIN_24 }) {
+  @Builder
+  regionAllList(): void {
+    GridRow() {
+      GridCol(COMMON_GRID_COL_OPTIONS) {
         Column() {
-          HeadComponent({ headName: $r('app.string.selectRegion'), isActive: true })
-
-          List() {
-            ListItem() {
-              SubHeader({ titleContent: $r('app.string.currentRegion') })
-            }
-
-            ListItem() {
-              CurrentRegion();
-            }
-
-            ListItem() {
-              SubHeader({ titleContent: $r('app.string.allRegion') })
-            }
-
-            ListItem() {
-              List() {
-                LazyForEach(this.regionList, (item: string) => {
-                  ListItem() {
-                    Text(LanguageAndRegionModel.getDisplayRegion(item))
-                      .fontSize($r("app.float.font_16"))
-                      .lineHeight($r("app.float.wh_value_22"))
-                      .fontWeight(FontWeight.Medium)
-                      .height($r('app.float.wh_value_48'))
-                      .width(ConfigData.WH_100_100)
-                      .fontColor(LanguageAndRegionModel.isSystemRegion(item) ? $r("app.color.font_color_007DFF") : $r("app.color.font_color_182431"))
-                      .textAlign(TextAlign.Start);
-                  }
-                  .padding({ left: $r("app.float.distance_8"), right: $r("app.float.distance_8") })
-                  .borderRadius($r("app.float.radius_20"))
-                  .width(ConfigData.WH_100_100)
-                  .onClick(() => {
-                    LanguageAndRegionModel.setSystemRegion(item);
-                    router.back();
-                  })
-                }, (item: string) => {
-                  return item;
-                });
+          Blank().height($r('app.float.navigation_56'))
+          Scroll() {
+            List() {
+              ListItem() {
+                SubHeaderComponent({ titleContent: $r('app.string.currentRegion') })
               }
-              .padding($r('app.float.distance_4'))
-              .width(ConfigData.WH_100_100)
-              .borderRadius($r('app.float.radius_24'))
-              .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"))
-              .divider({
-                strokeWidth: $r('app.float.divider_wh'),
-                color: $r('sys.color.ohos_id_color_list_separator'),
-                startMargin: $r("app.float.distance_8"),
-                endMargin: $r("app.float.distance_8") });
+
+              ListItem() {
+                CurrentRegion();
+              }
+
+              ListItem() {
+                SubHeaderComponent({ titleContent: $r('app.string.allRegion') })
+              }
+
+              ListItem() {
+                this.allRegionList()
+              }
             }
+            .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
           }
-          .flexShrink(1)
-          .width(ConfigData.WH_100_100)
-          .layoutWeight(ConfigData.LAYOUT_WEIGHT_1)
+          .margin({bottom: $r('app.float.navigation_56')})
+          .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
+          .padding({
+            left: $r('app.float.distance_16'),
+            right: $r('app.float.distance_16'),
+            bottom: $r('app.float.distance_16')
+          })
+          .scrollBar(BarState.Auto)
+          .align(Alignment.TopStart)
+          .edgeEffect(EdgeEffect.Spring)
+          .width('100%')
+          .height('100%')
+          .onScroll((xOffset: number, yOffset: number) => {
+            this.isScrolling = true;
+          })
+          .onScrollStop(() => {
+            this.isScrolling = false;
+          })
         }
-        .useSizeType({
-          sm: { span: 4, offset: 0 },
-          md: { span: 6, offset: 1 },
-          lg: { span: 8, offset: 2 }
-        })
+        .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
+        .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
+        .width('100%')
+        .height('100%');
       }
-      .width(ConfigData.WH_100_100)
-      .height(ConfigData.WH_100_100)
+      .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
     }
-    .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-    .width(ConfigData.WH_100_100)
-    .height(ConfigData.WH_100_100)
+    .zIndex(1)
+    .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
   }
 
-  aboutToAppear() {
+  build() {
+    NavDestination() {
+      Stack() {
+        this.regionAllList()
+
+        Column() {
+        }.width('100%')
+        .height('100%')
+        .zIndex(this.clickable ? 0 : 2)
+      }
+      .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
+    }
+    .title($r('app.string.selectRegion'))
+    // .titleBar({content: {title: {mainTitle: ResourceUtil.getStringSync($r('app.string.selectRegion'))}}})
+    .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
+    .hideTitleBar(false)
+    .hideBackButton(this.navigationMode === NavigationMode.Split && this.pathInfos.size() === 1)
+    .onShown(() => {
+      LogUtil.info(`${this.TAG} onPageShow`);
+      DynamicLoader.getInstance().pageTransitionSuccess(this.TAG);
+    })
+    .onHidden(() => {
+      LogUtil.info(`${this.TAG} onPageHide`);
+    })
+  }
+
+  @Builder
+  allRegionList(): void {
+    List() {
+      LazyForEach(this.regionList, (item: CountryAndRegion, index: number) => {
+        RegionItem({
+          item: item, clickable: this.clickable, onClickedRegion: () => {
+            HiSysEventUtil.reportEntryEvent(CHOOSE_REGION_ENTRY, item?.getCountry());
+            setTimeout(() => {
+              languageAndRegionModel.setSystemRegion(item?.getCountry());
+              this.setClickable();
+            }, 0);
+          }
+        })
+      }, (item: string) => item);
+    }
+    .id('allRegions')
+    .scrollBar(BarState.Off)
+    .padding($r('app.float.distance_4'))
+    .width('100%')
+    .borderRadius($r('sys.float.corner_radius_level10'))
+    .backgroundColor($r('sys.color.comp_background_list_card'))
+    .divider({
+      strokeWidth: '1px',
+      startMargin: $r('app.float.distance_8'),
+      endMargin: $r('app.float.distance_8'),
+      color: $r('sys.color.comp_divider'),
+    });
+  }
+
+  private setClickable() {
+    this.clickable = false;
+    this.timeoutId = setTimeout(() => {
+      this.clickable = true;
+      const pathNames: string[] = this.pathInfos?.getAllPathName() ?? [];
+      if (pathNames.length === 0) {
+        return;
+      }
+      const topName: string = pathNames[pathNames.length - 1];
+      if (ROUTER_NAME !== topName) {
+        return;
+      }
+      this.pathInfos?.pop();
+      AccessibilityUtils.requestFocusAccessibility('languageAndRegionPage.selectRegion.column');
+    }, 1500);
+  }
+
+  aboutToAppear(): void {
     LogUtil.info(`${this.TAG} aboutToAppear in`);
-    // let regions: Array<string> = LanguageAndRegionModel.getSystemCountries();
-    // this.regionList.refreshData(regions);
-    LogUtil.info(`${this.TAG} aboutToAppear out`);
+    HiSysEventUtil.reportEntryEvent(ENTER_REGION_ENTRY, '');
+  }
+
+  aboutToDisappear(): void {
+    LogUtil.info(`${this.TAG} aboutToDisappear`);
+    clearTimeout(this.timeoutId);
+  }
+}
+
+@Component
+struct RegionItem {
+  @Prop item: CountryAndRegion;
+  @State isHover: boolean = false;
+  @State isTouched: boolean = false;
+  @State clickable: boolean = true;
+  onClickedRegion: () => void = () => {
+  };
+
+  build() {
+    Row() {
+      Text(this.item?.getRegion())
+        .fontSize($r('app.float.font_16'))
+        .fontWeight(FontWeight.Medium)
+        .constraintSize({ minHeight: $r('app.float.wh_value_48') })
+        .width('100%')
+        .margin({ start: PADDING_8,
+          top: FontScaleUtils.getCurrentContentPadding(),
+          bottom: FontScaleUtils.getCurrentContentPadding() })
+        .fontColor(languageAndRegionModel.isSystemRegion(this.item?.getCountry()) ?
+        $r('sys.color.ohos_fa_text_activated') : $r('sys.color.ohos_fa_text_primary'))
+        .textAlign(TextAlign.Start);
+    }
+    .backgroundColor(this.isTouched ? $r('sys.color.ohos_id_color_click_effect') : Color.Transparent)
+    .focusBox({ margin: FOCUS_BOX_PADDING_METRICS })
+    .borderRadius($r('sys.float.corner_radius_level8'))
+    .width('100%')
+    .onTouch((event: TouchEvent) => {
+      this.onTouchEvent(event)
+    })
+    .onHover((isHovered: boolean) => {
+      this.isHover = isHovered;
+    })
+    .onClick(()=>{
+      this.onClickedRegion();
+    })
+    .stateStyles({
+      normal: this.normalStateIconStyles,
+      pressed: this.pressedStateIconStyles,
+    })
+  }
+
+  @Styles
+  normalStateIconStyles() {
+    .backgroundColor(this.isHover ? $r('sys.color.ohos_id_color_hover') : Color.Transparent)
+    .borderRadius($r('sys.float.corner_radius_level8'))
+  }
+
+  @Styles
+  pressedStateIconStyles() {
+    .backgroundColor($r('sys.color.ohos_id_color_click_effect'))
+    .borderRadius($r('sys.float.corner_radius_level8'))
+  }
+
+  private onTouchEvent(event: TouchEvent) {
+    if (event?.type === TouchType.Down) {
+      this.isTouched = true;
+    }
+    if (event?.type === TouchType.Up) {
+      this.isTouched = false;
+    }
   }
 }
 
@@ -115,163 +274,53 @@ struct SelectRegion {
  */
 @Component
 struct CurrentRegion {
-  @StorageProp('currentRegion') currentRegion: string = LanguageAndRegionModel.getSysDisplayRegion();
-  @State isTouched: boolean = false;
+  @StorageProp('currentRegion') currentRegion: string = languageAndRegionModel.getSysDisplayRegion();
 
   build() {
     Column() {
-      Text(this.currentRegion)
-        .fontSize($r('app.float.font_16'))
-        .lineHeight($r('app.float.wh_value_22'))
-        .fontWeight(FontWeight.Medium)
-        .fontColor($r("app.color.font_color_007DFF"))
-        .margin({ left: $r('app.float.distance_8') })
-        .textAlign(TextAlign.Start)
-        .height(ConfigData.WH_100_100)
-        .width(ConfigData.WH_100_100)
-        .borderRadius($r('app.float.radius_20'))
-        .linearGradient(this.isTouched ? {
-          angle: 90,
-          direction: GradientDirection.Right,
-          colors: [[$r("app.color.DCEAF9"), 0.0], [$r("app.color.FAFAFA"), 1.0]]
-        } : {
-          angle: 90,
-          direction: GradientDirection.Right,
-          colors: [[$r("sys.color.ohos_id_color_foreground_contrary"), 1], [$r("sys.color.ohos_id_color_foreground_contrary"), 1]]
-        })
-        .onTouch((event?: TouchEvent | undefined) => {
-          if (event?.type === TouchType.Down) {
-            this.isTouched = true;
-          }
-          if (event?.type === TouchType.Up) {
-            this.isTouched = false;
-          }
-        });
+      Row() {
+        Text(this.currentRegion)
+          .fontSize($r('app.float.font_16'))
+          .constraintSize({ minHeight: $r('app.float.wh_value_48') })
+          .fontWeight(FontWeight.Medium)
+          .fontColor($r('sys.color.ohos_fa_text_activated'))
+          .width('100%')
+          .padding({
+            start: PADDING_8,
+            top: FontScaleUtils.getCurrentContentPadding(),
+            bottom: FontScaleUtils.getCurrentContentPadding(),
+            end: PADDING_8
+          })
+          .textAlign(TextAlign.Start);
+      }
+      .height('auto')
+      .width('100%')
+      .borderRadius($r('sys.float.corner_radius_level8'))
     }
+    .justifyContent(FlexAlign.Center)
     .padding($r('app.float.distance_4'))
-    .height($r('app.float.wh_value_56'))
-    .borderRadius($r('app.float.radius_24'))
-    .backgroundColor($r("sys.color.ohos_id_color_foreground_contrary"));
+    .constraintSize({ minHeight: $r('app.float.wh_value_56') })
+    .borderRadius($r('sys.float.corner_radius_level10'))
+    .backgroundColor($r('sys.color.ohos_id_color_list_card_bg'));
   }
 }
 
 /**
  * RegionDataSource For Lazy Loading
  */
-// class RegionDataSource extends BasicDataSource {
-//   private regionArray: string[] = [];
-//
-//   constructor(regionArray: string[]) {
-//     super();
-//     this.regionArray = regionArray;
-//   }
-//
-//   public totalCount(): number {
-//     return this.regionArray.length;
-//   }
-//
-//   public getData(index: number): string {
-//     return this.regionArray[index];
-//   }
-//
-//   public refreshData(dataList: string[]) {
-//     this.regionArray = dataList;
-//     this.notifyDataReload();
-//   }
-//
-//   public pushData(data: string): void {
-//     this.regionArray.push(data);
-//     this.notifyDataAdd(this.regionArray.length - 1);
-//   }
-// }
+class RegionDataSource extends BasicDataSource {
+  private regionArray: CountryAndRegion[] = [];
 
-export class RegionDataSource implements IDataSource {
-  private regionArray: string[] = [];
-  // 数据改变监听器
-  private listeners: DataChangeListener[] = [];
-
-  constructor(regionArray: string[]) {
+  constructor(regionArray: CountryAndRegion[]) {
+    super();
     this.regionArray = regionArray;
   }
 
-  /**
-   * 获取数据源列表长度
-   */
   public totalCount(): number {
     return this.regionArray.length;
   }
 
-  /**
-   * 从数据源获取指定索引值的数据项
-   *
-   * @param index 数据源索引值
-   * @return 对应索引值的数据项
-   */
-  public getData(index: number): string {
+  public getData(index: number): CountryAndRegion {
     return this.regionArray[index];
-  }
-
-  public refreshData(dataList: string[]) {
-    this.regionArray = dataList;
-    this.notifyDataReload();
-  }
-
-  public pushData(data: string): void {
-    this.regionArray.push(data);
-    this.notifyDataAdd(this.regionArray.length - 1);
-  }
-
-  /**
-   * 注册数据改变的监听器
-   * @param listener
-   */
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener);
-    }
-  }
-
-  /**
-   * 注销数据改变的监听器
-   * @param listener
-   */
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  /**
-   * 通知组件重新加载所有数据
-   */
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    })
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
   }
 }

@@ -1,0 +1,81 @@
+{
+    "string":[
+        {
+            "name":"go_to_login",
+            "value":"Iniciar sesión",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_wait_tip",
+            "value":"Aplicando",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"note",
+            "value":"Nota",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"input_max_length_message",
+            "value":"Has introducido demasiados caracteres.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_search",
+            "value":"Buscar",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_update_fail",
+            "value":"No se puede cambiar el nombre. Vuelve a intentarlo más tarde.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"network_tips",
+            "value":"Conéctate a una red primero.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_settings_summary_with_near_link",
+            "value":"Este nombre aparecerá en otros dispositivos cuando interactúes, compartas o te conectes con ellos a través de Bluetooth, NearLink, zona Wi-Fi personal o USB.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_check_fail",
+            "value":"Prueba con otro nombre.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_options",
+            "value":"Más opciones",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"navigation_back",
+            "value":"Volver",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

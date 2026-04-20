@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"dialog_enable",
+            "value":"有効化",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"キャンセル",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"audio_adjustment",
+            "value":"オーディオ調整",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"single_audio_reminder",
+            "value":"ステレオ効果なしで、両方のイヤホンで同じ音声を再生します。",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

@@ -1,0 +1,32 @@
+{
+    "string":[
+        {
+            "name":"dialog_cancel",
+            "value":"بىكار قىلىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_enable",
+            "value":"ئېچىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_adjustment",
+            "value":"ئاۋاز تەڭشەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"single_audio_reminder",
+            "value":"ئاۋاز يولى بىرىكتۈرۈلىدۇ، ئىستېرېئو ئۈنۈم چىقمايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

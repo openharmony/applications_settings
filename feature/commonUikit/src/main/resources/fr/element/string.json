@@ -1,0 +1,81 @@
+{
+    "string":[
+        {
+            "name":"go_to_login",
+            "value":"Se connecter",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_wait_tip",
+            "value":"Application en cours",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"note",
+            "value":"Remarque",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"input_max_length_message",
+            "value":"Vous avez saisi trop de caractères.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_search",
+            "value":"Rechercher",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_update_fail",
+            "value":"Le nom ne peut pas être modifié. Veuillez réessayer ultérieurement.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"network_tips",
+            "value":"Veuillez d'abord vous connecter à un réseau.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_settings_summary_with_near_link",
+            "value":"Ce nom sera affiché sur les autres appareils lorsque vous interagissez, partagez ou vous connectez avec eux via Bluetooth, NearLink, un point d'accès personnel ou USB.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_check_fail",
+            "value":"Veuillez essayer un autre nom.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_options",
+            "value":"Plus d'options",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"navigation_back",
+            "value":"Retour",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

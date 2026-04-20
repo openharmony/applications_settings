@@ -1,0 +1,220 @@
+{
+    "string":[
+        {
+            "name":"developer_options_settings_title",
+            "value":"[TS_806027]_Developer options"
+        },
+        {
+            "name":"confirm_development_modal_dialog_content",
+            "value":"[TS_878205]_This may make your device vulnerable to security threats. Your device will restart to apply this change."
+        },
+        {
+            "name":"close_developer_mode",
+            "value":"[TS_878198]_Disable developer options?"
+        },
+        {
+            "name":"open_developer_mode",
+            "value":"[TS_878200]_Enable developer options?"
+        },
+        {
+            "name":"confirm_close",
+            "value":"[TS_878187]_Disable & restart"
+        },
+        {
+            "name":"cancel_development_modal_dialog_content",
+            "value":"[TS_878201]_App debugging will no longer be available. Your device will restart to apply this change."
+        },
+        {
+            "name":"permission_developer_mode",
+            "value":"[TS_880027]_Used to set developer mode permissions"
+        },
+        {
+            "name":"confirm_on",
+            "value":"[TS_878197]_Enable & restart"
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"[TS_806070]_Cancel"
+        },
+        {
+            "name":"developer_options_enabled_toast",
+            "value":"[TS_928548]_Developer options are already available."
+        },
+        {
+            "name":"sensitive_behavior_statement_Additional_text",
+            "value":"[TS_931873]_%1$d. The Software update service needs to connect to the Internet and read the list of installed apps.\n"
+        },
+        {
+            "name":"api_version",
+            "value":"[TS_974364]_API version"
+        },
+        {
+            "name":"model_name",
+            "value":"[TS_959260]_Model name"
+        },
+        {
+            "name":"model_code",
+            "value":"[TS_906002]_Model number"
+        },
+        {
+            "name":"imei_id",
+            "value":"[TS_806127]_IMEI"
+        },
+        {
+            "name":"parameter_version_title",
+            "value":"[TS_813042]_Parameter version"
+        },
+        {
+            "name":"software_version",
+            "value":"[TS_906037]_Software version"
+        },
+        {
+            "name":"serial_number",
+            "value":"[TS_906001]_Serial number"
+        },
+        {
+            "name":"running_memory",
+            "value":"[TS_906009]_RAM"
+        },
+        {
+            "name":"storage_settings_title",
+            "value":"[TS_808197]_Storage"
+        },
+        {
+            "name":"screen_resolution",
+            "value":"[TS_905990]_Resolution"
+        },
+        {
+            "name":"baseband_version",
+            "value":"[TS_906016]_Baseband version"
+        },
+        {
+            "name":"kernel_version",
+            "value":"[TS_906019]_Kernel version"
+        },
+        {
+            "name":"openHarmony_version",
+            "value":"[TS_905993]_OpenHarmony version"
+        },
+        {
+            "name":"security_patch_label",
+            "value":"[TS_937407]_Security patch"
+        },
+        {
+            "name":"storage_total_used",
+            "value":"[TS_906026]_Available: %1$s"
+        },
+        {
+            "name":"storage_total",
+            "value":"[TS_906032]_Capacity: %1$s"
+        },
+        {
+            "name":"device_mac",
+            "value":"[TS_872820]_%1$s (Device)"
+        },
+        {
+            "name":"random_mac",
+            "value":"[TS_872814]_%1$s (Random)"
+        },
+        {
+            "name":"battery_status_charging",
+            "value":"[TS_906022]_Charging"
+        },
+        {
+            "name":"battery_status_filled",
+            "value":"[TS_906008]_Fully charged"
+        },
+        {
+            "name":"battery_status_consuming_power",
+            "value":"[TS_906039]_Not charging"
+        },
+        {
+            "name":"battery_status",
+            "value":"[TS_906005]_Battery status"
+        },
+        {
+            "name":"battery_level",
+            "value":"[TS_906012]_Battery level"
+        },
+        {
+            "name":"bluetooth_address",
+            "value":"[TS_872806]_Bluetooth address"
+        },
+        {
+            "name":"power_on_duration",
+            "value":"[TS_906023]_Running time"
+        },
+        {
+            "name":"hardware_version",
+            "value":"[TS_905994]_Hardware version"
+        },
+        {
+            "name":"ip_address",
+            "value":"[TS_906000]_IP address"
+        },
+        {
+            "name":"enterprise_disable_developer_options_toast",
+            "value":"[TS_993022]_This feature has been blocked by your organization. Contact your administrator for assistance."
+        },
+        {
+            "name":"version",
+            "value":"[TS_806087]_Version"
+        },
+        {
+            "name":"unknown",
+            "value":"[TS_906010]_Unknown"
+        },
+        {
+            "name":"permission_reason_bluetooth_local_mac",
+            "value":"[TS_918720]_Used to obtain Bluetooth local MAC address."
+        },
+        {
+            "name":"wifi_state_off",
+            "value":"[TS_872797]_Not available"
+        },
+        {
+            "name":"external",
+            "value":"[TS_979237]_Exterior: %1$s × %2$s"
+        },
+        {
+            "name":"inner",
+            "value":"[TS_979238]_Interior: %1$s × %2$s"
+        },
+        {
+            "name":"system_service_version",
+            "value":"[TS_1033511]_System service version"
+        },
+        {
+            "name":"power_battery_choose_info",
+            "value":"[TS_1035957]_%1$s–%2$s, Battery level %3$s–%4$s"
+        },
+        {
+            "name":"developer_mode_open_toast",
+            "value":"[TS_1056570]_Developer options now available."
+        },
+        {
+            "name":"developer_options_settings_summary",
+            "value":"[TS_1080473]_For development use only."
+        },
+        {
+            "name":"version_type_professional",
+            "value":"[TS_1080469]_Professional"
+        },
+        {
+            "name":"version_type",
+            "value":"[TS_1080472]_Edition"
+        },
+        {
+            "name":"version_type_enterprise",
+            "value":"[TS_1080470]_Enterprise"
+        },
+        {
+            "name":"cpu_title",
+            "value":"[TS_1113018]_Processor"
+        },
+        {
+            "name":"version_name",
+            "value":"[TS_1113287]_Version name"
+        }
+    ]
+}

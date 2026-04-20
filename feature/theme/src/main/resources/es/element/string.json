@@ -1,0 +1,298 @@
+{
+    "string":[
+        {
+            "name":"the_theme",
+            "value":"Temas",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"display_settings_title",
+            "value":"Pantalla y brillo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"theme_settings_title",
+            "value":"Pantalla principal y estilo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Cancelar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_theme",
+            "value":"Ajustes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"select_from_gallery",
+            "value":"Seleccionar de la Galería",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_theme",
+            "value":"Iconos",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"apply",
+            "value":"Aplicar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_theme",
+            "value":"Mostrar siempre en pantalla",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keywords_outer_facard",
+            "value":"Widgets de servicio",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"my_wallpaper",
+            "value":"Mis fondos de pantalla",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"homescreen",
+            "value":"Pantalla principal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_sure",
+            "value":"Aceptar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_ways_display_awake_intelligent",
+            "value":"Inteligente",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wallpaper_title",
+            "value":"Fondos de pantalla",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"table_theme",
+            "value":"Pantalla principal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_off_theme",
+            "value":"Mostrar siempre en pantalla",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"covertheme_settings_title",
+            "value":"Pantalla principal, pantalla de cubierta y estilo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"universe",
+            "value":"Universo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pinnacle",
+            "value":"Pináculo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_all_day_display",
+            "value":"Todo el día",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_signature",
+            "value":"Firma de pantalla de bloqueo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keywords_outer_theme",
+            "value":"Temas de la pantalla de cubierta",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"font_style_theme",
+            "value":"Fuentes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_sign_entry",
+            "value":"Cómo configuro una firma de pantalla de bloqueo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"random_display_of_photos",
+            "value":"Fotos aleatorias",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"icon_style_theme",
+            "value":"Estilo de icono",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"switch_desktop_style_dialog_warning_message",
+            "value":"Esto cerrará la sesión de la cuenta de usuario actual. Se eliminarán todos los datos que no se hayan guardado.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_ways_display_awake_scheduled",
+            "value":"Programado",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aod_ways_display_awake_off",
+            "value":"Desactivado",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wall_paper_theme",
+            "value":"Fondos de pantalla",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"digital_clock",
+            "value":"Reloj digital",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"art_signature",
+            "value":"Firma personalizada",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"lock_card",
+            "value":"Widgets",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"switch_desktop_style",
+            "value":"¿Cambiar el estilo de la pantalla principal?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_online_wallpapers",
+            "value":"Más fondos de pantalla",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"my_theme_settings_title",
+            "value":"Mis temas",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"lockscreen",
+            "value":"Pantalla de bloqueo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uncompleted",
+            "value":"La función estará disponible pronto.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"central_axis_personalization",
+            "value":"Marco virtual",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_settings",
+            "value":"Bloquear pantalla",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screenlock_font_creation_service",
+            "value":"Servicio de creación de fuentes de la pantalla de bloqueo",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

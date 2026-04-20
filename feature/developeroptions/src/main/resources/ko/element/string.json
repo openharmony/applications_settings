@@ -1,0 +1,354 @@
+{
+    "string":[
+        {
+            "name":"trusted_device_button_cancel",
+            "value":"신뢰하지 않음",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"whether_usb_debug_title",
+            "value":"USB 디버깅을 허용하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"revocation_usb_authorize",
+            "value":"신뢰할 수 있는 장치를 모두 제거하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_touch_actions_trace",
+            "value":"포인터 위치 표시",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wlan_address_bssid",
+            "value":"WLAN 주소(BSSID)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_display_refresh_frequency_summary",
+            "value":"디스플레이의 현재 최대 새로 고침 속도를 표시합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"machine_name",
+            "value":"장치 이름:\n%1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recall_usb_authorize",
+            "value":"신뢰할 수 있는 장치 모두 제거",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sunlight_readability_title",
+            "value":"햇빛 아래 가독성 향상",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ip_address_and_port",
+            "value":"IP 주소 및 포트",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"activating_usb_debug",
+            "value":"WLAN이 연결되면 디버깅을 실행합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"opened_wireless",
+            "value":"켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_Open_Logs",
+            "value":"WLAN 상세 로그 기록",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"display_refresh_frequency_title",
+            "value":"새로 고침 속도 표시",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_insightintent_debug_status_close",
+            "value":"꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"debug_settings_title",
+            "value":"디버깅",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"learn_more",
+            "value":"자세히 알아보기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Confirm_the_cancellation",
+            "value":"제거",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_name_ssid",
+            "value":"네트워크 이름(SSID)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"public_key_name",
+            "value":"RSA 키 지문:\n%1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"debug_networking_category",
+            "value":"네트워크",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_Open_Logs__summary",
+            "value":"WLAN 로깅 수준을 높입니다(WLAN 선택기의 SSID RSSI별로 표시).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"trusted_device_button_confirm",
+            "value":"신뢰",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_wireless",
+            "value":"이 네트워크에서 무선 디버깅을 허용하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_settings_title",
+            "value":"장치 이름",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enable_show_touch_trace_summary",
+            "value":"화면 오버레이에 현재 터치 데이터를 표시합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_bit_rate_adaptive",
+            "value":"적응형 비트레이트 스트리밍",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"link_wlan",
+            "value":"WLAN 연결이 없습니다. WLAN에 연결하고 다시 시도하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"button_tittle_cancel",
+            "value":"취소",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_debugged_mode_prompt",
+            "value":"더 많은 개발자 디버깅 옵션을 실행하려면 컴퓨터를 연결하고 지침에 따라 실행하십시오. %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recall_usb_authorize_title",
+            "value":"이전에 신뢰했던 장치는 더 이상 신뢰되지 않습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wireless_commissioning",
+            "value":"무선 디버깅",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"show_touch_actions_title",
+            "value":"터치한 항목 표시",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"link_wireless",
+            "value":"무선 디버깅을 실행할 수 없습니다",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"closed_wireless",
+            "value":"꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"usb_dialog_content",
+            "value":"USB 디버깅은 개발 목적으로만 사용됩니다. 이를 사용하여 컴퓨터와 다른 장치 간에 데이터를 복사하고, 공통 디렉터리의 데이터 파일에 액세스하고, 앱을 자동으로 설치하고, 로그 데이터를 읽습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_channel_mode_mono",
+            "value":"모노",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_insightintent_debug_status_open",
+            "value":"사용",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"enable_show_touch_actions_summary",
+            "value":"터치한 항목을 시각적으로 표시합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"trusted_device_title",
+            "value":"이 장치를 신뢰할까요?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"debug_entering_category",
+            "value":"입력",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"button_tittle_allow",
+            "value":"허용",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"always_allow_debug",
+            "value":"항상 신뢰",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unlock_device_offline",
+            "value":"오프라인 잠금 해제",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_options_open_failed",
+            "value":"개발자 옵션을 실행할 수 없습니다",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_advanced_options",
+            "value":"고급 시스템 옵션",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_not_connected",
+            "value":"장치가 인터넷에 연결되어 있지 않습니다. 네트워크에 연결하거나 AGC 웹사이트에 요청을 제출하여 오프라인에서 잠금 해제하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_display",
+            "value":"디스플레이",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_machine_debugging",
+            "value":"이 장치가 디버깅되는 중일 때",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_audio_channel_mode_stereo",
+            "value":"스테레오",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

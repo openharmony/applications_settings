@@ -7,8 +7,7 @@
 -   [Repositories Involved](#section1371113476307)
 
 ## Introduction<a name="section11660541593"></a>
-The Settings is a system application prebuilt in OpenHarmony. It provides a human-machine interactions entry for users to set system configs like settings system time, lightness of screen and etc.
-
+The Settings application is a preinstalled system app in OpenHarmony, providing users with essential configuration features including homepage search, WLAN, Bluetooth, and mobile network settings, multi-device collaboration, home screen and personalization, notification and status bar controls, display and brightness adjustment, sound and vibration management, application settings, biometric recognition and password setup, battery and storage management, system configurations, about device information, and developer options.
 ### Architecture<a name="section48896451454"></a>
 
 ![](figures/en-us_image_0000001153225717.png)
@@ -17,30 +16,27 @@ The Settings is a system application prebuilt in OpenHarmony. It provides a huma
 
 ```
 /applications/standard/settings
-├── entry             # main entry module
-│   └── src
-│       ├── main
-│           ├── ets               # ets module
-│               ├── default
-│                   ├── common    # common code and utils
-│                   ├── model     # data management and logic control
-│                   ├── pages     # code of view components
-│                   ├── res       # some image resources
-│                   ├── resources # other resources
-│                   ├── app.ets   # main process
-│           ├── resources         # resources configs
-│               ├── base          # default language, image resources, font size and colors
-│               ├── en_AS.element # English resources
-│               ├── rawfile       # local configs
-│               ├── zh_CN.element # Chinese resources
-│           └── config.json       # global configs
-├── signature              # Certificate files
-├── LICENSE                # Copyright license file
+├─ product
+│  └─ phone
+│     └─ src
+│        └─ main
+│           ├─ ets
+│              ├─ Application  # ETS logic and application lifecycle management
+│              ├─ MainAbility  # Directory for Ability and ExtentionAbility
+│              ├─ pages        # Directory for page components
+│              ├─ Setting      # Directory for setting items
+│              ├─ stub         # Directory for settings service stubs
+│              ├─ utils        # Directory for public utilities
+│           ├─ resources       # Directory for resource files
+├─ native                      # Directory for kernel-native related code
+├─ feature                     # Directory for feature module business logic
+├─ common                      # Directory for common utilities
+├─ LICENSE                     # License file
+├─ signature                   # Directory for certificate files                  
 ```
 
 ## Repositories Involved<a name="section1371113476307"></a>
 
-System apps
-
-**applications\_settings**
+[**Setings**](https://gitcode.com/openharmony/applications_settings)
+[**SetingsData**](https://gitcode.com/openharmony/applications_settings_data)
 

@@ -8,7 +8,7 @@
 
 ## 简介<a name="section11660541593"></a>
 
-设置应用是 OpenHarmony 系统中预置的系统应用，为用户提供设置系统属性的交互界面，例如设置系统时间，屏幕亮度等系统属性。
+设置应用是OpenHarmony标准系统中预置的系统应用，为用户提供基础的设置功能，包括：支持首页搜索功能、支持WLAN设置功能、支持蓝牙设置功能、支持移动网络设置功能、支持多设备协同设置功能、支持桌面和个性化设置功能、支持通知和状态栏设置功能、支持显示和亮度设置功能、支持声音和振动设置功能、支持应用设置功能、支持生物识别和密码设置功能、支持电池设置功能、支持存储设置功能、支持系统设置功能、支持关于本机设置功能、支持开发者选项设置功能。
 
 ### 架构图<a name="section48896451454"></a>
 
@@ -16,32 +16,33 @@
 
 ## 目录<a name="section161941989596"></a>
 
-```
-/applications/standard/settings
-├── entry             # 主entry模块目录
-│   └── src
-│       ├── main
-│           ├── ets               # ets模块目录
-│               ├── default
-│                   ├── common    # 公共工具存放目录
-│                   ├── model     # 数据管理和决策逻辑存放目录
-│                   ├── pages     # 组件页面存放目录
-│                   ├── res       # 部分图片资源
-│                   ├── resources # 其它共用资源
-│                   ├── app.ets   # 全局ets逻辑和应用生命周期管理文件
-│           ├── resources         # 资源配置文件存放目录
-│               ├── base          # 默认语言场景，图片资源，字体大小，颜色资源内容存放目录
-│               ├── en_AS.element # 英文语言场景资源内容存放目录
-│               ├── rawfile       # 本地配置文件存放目录
-│               ├── zh_CN.element # 中文语言场景资源内容存放目录
-│           └── config.json       # 全局配置文件
-├── signature              # 证书文件目录
-├── LICENSE                # 许可文件
-```
+````
+settings
+├─ product
+│  └─ phone
+│     └─ src
+│        └─ main
+│           ├─ ets
+│              ├─ Application  # 全局ets逻辑和应用生命周期管理文件
+│              ├─ MainAbility  # Ability与ExtentionAbility存放目录
+│              ├─ pages        # 页面组件存放目录
+│              ├─ Setting      # 设置项存放目录
+│              ├─ stub         # 设置服务stub存放目录
+│              ├─ utils        # 公共工具存放目录
+│           ├─ resources       # 资源文件存放目录
+├─ native                      # 内核native相关代码存放目录
+├─ feature                     # 相关模块业务逻辑存放目录
+├─ common                      # 通用逻辑存放目录
+├─ LICENSE                     # 许可文件
+├─ signature                   # 证书文件目录
 
-## 相关仓<a name="section1371113476307"></a>
+````
 
-系统应用
 
-**applications\_settings**
+
+## 相关仓
+
+[**Setings**](https://gitcode.com/openharmony/applications_settings)
+[**SetingsData**](https://gitcode.com/openharmony/applications_settings_data)
+
 

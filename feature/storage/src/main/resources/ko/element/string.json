@@ -1,0 +1,382 @@
+{
+    "string":[
+        {
+            "name":"app_info_storage_app_size",
+            "value":"앱",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_music",
+            "value":"음악",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_big_file",
+            "value":"대용량 파일",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_version",
+            "value":"%s 버전",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"clear_cache_not_clear_cache",
+            "value":"지울 데이터가 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_info_uninstall",
+            "value":"제거",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_uninstall_confirm",
+            "value":"%s을(를) 제거하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"load_more_card",
+            "value":"더 보기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_videos",
+            "value":"비디오",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_app_clear_data",
+            "value":"%s에서 공간 비우기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"취소",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"clear_cache_button_name",
+            "value":"정리",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstalling_dialog_message",
+            "value":"%s 제거 중…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_sizes",
+            "value":"크기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"clear_cache_cleaning_up",
+            "value":"캐시 지우는 중…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_sort_by",
+            "value":"정렬 기준",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"load_more_data",
+            "value":"더 보기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"uninstall_unusual_apps",
+            "value":"사용하지 않는 앱 설치 제거",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"clear_cache_title",
+            "value":"캐시 삭제",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uninstall_unusual_app_prompt",
+            "value":"거의 사용하지 않는 앱을 제거하여 최대 %1$s의 저장 공간을 확보할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_storage_data_size",
+            "value":"데이터",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recommend_card_header",
+            "value":"제안",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_apps",
+            "value":"앱",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"clear_cache_caculating",
+            "value":"계산 중…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_remove",
+            "value":"앱 제거",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"clear_cache_summary",
+            "value":"캐시를 삭제하면 %s의 공간을 확보할 수 있습니다. 장치의 정상적인 사용에는 영향을 미치지 않습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_other",
+            "value":"기타",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_info_storage_total_size",
+            "value":"전체",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_system",
+            "value":"시스템",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"clear_cache_cleaning_toast",
+            "value":"%s 공간을 비웠습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_data_size",
+            "value":"앱 데이터",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"used_data",
+            "value":"%1$s/%2$s 사용됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_calculating_size",
+            "value":"계산 중…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_photo",
+            "value":"사진",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_app_last_used",
+            "value":"마지막 사용",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_suggestion_desc",
+            "value":"장치 저장 공간을 관리하여 공간을 확보하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_suggestion_level_2",
+            "value":"저장 공간이 거의 가득 찼습니다",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_suggestion_level_3",
+            "value":"저장 공간 확보",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_suggestion_level_1",
+            "value":"저장 공간이 거의 가득 찼습니다",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unused_app",
+            "value":"미사용",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_backup_data_dialog_message",
+            "value":"시스템에서 백업한 손실된 앱 데이터가 복원됩니다. 하지만 해당 백업 생성 후에 생성된 모든 새 데이터도 덮여 쓰입니다. 데이터 복원 중에는 %s 앱을 닫아야 합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_backup_data_dialog_confirm",
+            "value":"복원",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_item_title",
+            "value":"백업 데이터 삭제",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_dialog_title",
+            "value":"백업 데이터를 삭제하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_dialog_confirm",
+            "value":"삭제",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_bakcup_data_item_title",
+            "value":"백업 데이터 복원",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_backup_data_success_tip",
+            "value":"백업 데이터가 복원되었습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restoring_backup_data",
+            "value":"백업 데이터 복원 중…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"deleting_backup_data",
+            "value":"백업 데이터 삭제 중…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_success_tip",
+            "value":"백업 데이터가 삭제되었습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_bakcup_data_dialog_title",
+            "value":"백업 데이터를 복원하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_dialog_message",
+            "value":"채팅 기록 및 파일 등 시스템에서 백업한 %s 데이터가 영구적으로 삭제됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"delete_backup_data_fail_tip",
+            "value":"백업 데이터를 삭제할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_backup_data_fail_tip",
+            "value":"백업 데이터를 복원할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

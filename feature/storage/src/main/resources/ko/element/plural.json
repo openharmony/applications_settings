@@ -1,0 +1,40 @@
+{
+    "plural":[
+        {
+            "name":"not_enabled_for_many_days",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d일 동안 미사용",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"delete_apps_selected",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d개 앱 제거",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"is_delete_apps_number",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d개 앱을 제거하시겠습니까?",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

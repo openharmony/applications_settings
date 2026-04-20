@@ -1,0 +1,81 @@
+{
+    "string":[
+        {
+            "name":"go_to_login",
+            "value":"로그인",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_update_fail",
+            "value":"이름을 변경할 수 없습니다. 나중에 다시 시도하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"network_tips",
+            "value":"먼저 네트워크에 연결하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_wait_tip",
+            "value":"적용 중",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"note",
+            "value":"참고",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_settings_summary_with_near_link",
+            "value":"이 이름은 블루투스, NearLink, 개인용 핫스팟 또는 USB를 통해 다른 장치와 상호작용, 공유 또는 연결할 때 다른 장치에 표시됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"input_max_length_message",
+            "value":"너무 많은 문자를 입력했습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name_check_fail",
+            "value":"다른 이름으로 시도해 보십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_search",
+            "value":"검색",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_options",
+            "value":"옵션 더 보기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"navigation_back",
+            "value":"뒤로 돌아가기",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

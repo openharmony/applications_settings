@@ -1,0 +1,88 @@
+{
+  "float": [
+    {
+      "name": "value_1",
+      "value": "1vp"
+    },
+    {
+      "name": "value_2",
+      "value": "2vp"
+    },
+    {
+      "name": "value_4",
+      "value": "4vp"
+    },
+    {
+      "name": "value_7",
+      "value": "7vp"
+    },
+    {
+      "name": "value_8",
+      "value": "8vp"
+    },
+    {
+      "name": "value_10",
+      "value": "10vp"
+    },
+    {
+      "name": "value_12",
+      "value": "12vp"
+    },
+    {
+      "name": "value_15",
+      "value": "15vp"
+    },
+    {
+      "name": "value_16",
+      "value": "16vp"
+    },
+    {
+      "name": "value_21",
+      "value": "21vp"
+    },
+    {
+      "name": "value_24",
+      "value": "24vp"
+    },
+    {
+      "name": "value_32",
+      "value": "32vp"
+    },
+    {
+      "name": "value_38",
+      "value": "38vp"
+    },
+    {
+      "name": "value_40",
+      "value": "40vp"
+    },
+    {
+      "name": "value_48",
+      "value": "48vp"
+    },
+    {
+      "name": "value_56",
+      "value": "56vp"
+    },
+    {
+      "name": "value_64",
+      "value": "64vp"
+    },
+    {
+      "name": "value_72",
+      "value": "72vp"
+    },
+    {
+      "name": "value_140",
+      "value": "140vp"
+    },
+    {
+      "name": "value_160",
+      "value": "160vp"
+    },
+    {
+      "name": "value_300",
+      "value": "300vp"
+    }
+  ]
+}

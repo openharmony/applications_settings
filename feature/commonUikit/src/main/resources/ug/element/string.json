@@ -1,0 +1,81 @@
+{
+    "string":[
+        {
+            "name":"input_max_length_message",
+            "value":"كىرگۈزۈش يۇقىرى چەككە يەتتى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_search",
+            "value":"ئىزدەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_settings_summary_with_near_link",
+            "value":"كۆكچىش، «ئۇچقۇن»، تور نۇقتىسى ياكى USB ئارقىلىق ئۇلانغاندا باشقا ئۈسكۈنىلەر بۇ نامنى كۆرىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"note",
+            "value":"ئەسكەرتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"go_to_login",
+            "value":"تىزىملاپ كىرىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_update_fail",
+            "value":"نام ئۆزگەرمىدى. كېيىنرەك قايتا سىناڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_tips",
+            "value":"ئاۋۋال تورغا ئۇلاڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_wait_tip",
+            "value":"ئۆزگەرتىلىۋاتىدۇ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_check_fail",
+            "value":"نام ئۆزگەرتىپ قايتا سىناڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"navigation_back",
+            "value":"قايتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_options",
+            "value":"باشقا تاللانمىلار",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

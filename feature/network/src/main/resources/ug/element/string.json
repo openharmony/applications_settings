@@ -1,0 +1,291 @@
+{
+    "string":[
+        {
+            "name":"network_proxy_title",
+            "value":"ۋاكالەتچى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vpn_describe",
+            "value":"قوشۇش، ئۇلاش، باشقۇرۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_settings_title",
+            "value":"تور",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"subnet_mask",
+            "value":"تارماق تور نىقابى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"airplane_mode_describe",
+            "value":"سىمسىز ئالاقە ئېتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_proxy_head",
+            "value":"باشقا مۇلازىمەت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"proxy_warn_tip_msg",
+            "value":"ۋاكالەت تەڭشىكى ساقلانمىدى. تەڭشەكلەرنى تەكشۈرۈپ قايتا سىناڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dns_server_hint",
+            "value":"\u200fDNS مۇلازىمىتېرىنى كىرگۈزۈڭ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ip_address_hint",
+            "value":"\u200fIP ئادرېسى كىرگۈزۈڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"router_hint",
+            "value":"روتېر ئادرېسىنى كىرگۈزۈڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"use_dhcp",
+            "value":"\u200fDHCP",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"router",
+            "value":"روتېر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"manual",
+            "value":"قولدا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ip_address",
+            "value":"\u200fIP ئادرېسى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_ethernet_describe",
+            "value":"\u200fIP ۋە DNS تەڭشەكلىرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"proxy_server_port",
+            "value":"ئېغىز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"proxy_server_host_name_hint",
+            "value":"كىرگۈزۈڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"subnet_mask_hint",
+            "value":"تارماق تور نىقابىنى كىرگۈزۈڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"proxy_setting_ignore_host",
+            "value":"تۆۋەندىكى غول ئۈسكۈنە ۋە دائىرىنىڭ ۋاكالەت تەڭشىكى نەزەرگە ئېلىنمايدۇ، كۆپ بولسا ئىنگلىزچە پەش (,) ئارقىلىق ئايرىڭ:",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_proxy_manual_title",
+            "value":"قولدا ۋاكالەتچى سەپلەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"alternate_dns_server_hint",
+            "value":"زاپاس DNS مۇلازىمىتېرىنى كىرگۈزۈڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dns_server",
+            "value":"\u200fDNS مۇلازىمىتېرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"proxy_server_port_hint",
+            "value":"ئېغىزنى كىرگۈزۈڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"airplane_mode",
+            "value":"ئۇچۇش ھالىتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"use_proxy_server_title",
+            "value":"ۋاكالەتچى مۇلازىمىتېر ئىشلىتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_title",
+            "value":"ئېفېر تورى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"use_proxy_server_yes",
+            "value":"ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"configure_ipv4",
+            "value":"\u200fIPv4 سەپلەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"save",
+            "value":"ساقلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"alternate_dns_server",
+            "value":"زاپاس DNS مۇلازىمىتېرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"set_iface_error_message",
+            "value":"\u200fIP تەڭشەكلىرى ساقلانمىدى، تەكشۈرۈپ قايتا سىناڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"network_proxy_describe",
+            "value":"ئېفېر تورى (Ethernet) ۋە WLAN ۋاكالەت مۇلازىمىتېرى ئۈچۈن ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"use_proxy_server_no",
+            "value":"ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"proxy_server_host_name",
+            "value":"مۇلازىمىتېر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"advanced_setting",
+            "value":"ئالىي تەڭشەك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"projection_state_on",
+            "value":"ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"projection_state_off",
+            "value":"ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ethernet_status_connected",
+            "value":"سىملىق تور ئۇلاق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ethernet_status_disconnected",
+            "value":"سىملىق تور ئۈزۈك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wlan_ranking_of_this_month",
+            "value":"بۇ ئايلىق WLAN ئىشلىتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_networking_title",
+            "value":"تور ئىشلىتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

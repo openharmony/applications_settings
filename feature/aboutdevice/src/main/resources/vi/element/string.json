@@ -1,0 +1,361 @@
+{
+    "string":[
+        {
+            "name":"model_code",
+            "value":"Số model",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_total",
+            "value":"Dung lượng: %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_mac",
+            "value":"%1$s (Thiết bị)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"software_version",
+            "value":"Phiên bản phần mềm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_resolution",
+            "value":"Độ phân giải",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_state_off",
+            "value":"Không khả dụng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"openHarmony_version",
+            "value":"Phiên bản OpenHarmony",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enterprise_disable_developer_options_toast",
+            "value":"Tính năng này đã bị chặn bởi tổ chức của bạn. Liên hệ quản trị viên để được hỗ trợ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unknown",
+            "value":"Không xác định",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"version",
+            "value":"Phiên bản",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"power_on_duration",
+            "value":"Thời gian chạy",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_total_used",
+            "value":"Còn trống: %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_settings_title",
+            "value":"Bộ nhớ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"model_name",
+            "value":"Tên model",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"external",
+            "value":"Bên ngoài: %1$s x %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"serial_number",
+            "value":"Số sê-ri",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_level",
+            "value":"Mức pin",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"close_developer_mode",
+            "value":"Tắt tùy chọn nhà phát triển?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_close",
+            "value":"Tắt và khởi động lại",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"running_memory",
+            "value":"RAM",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"kernel_version",
+            "value":"Phiên bản Kernel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_options_enabled_toast",
+            "value":"Tùy chọn nhà phát triển đã được bật sẵn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"baseband_version",
+            "value":"Phiên bản dải tần cơ sở",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_on",
+            "value":"Bật và khởi động lại",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_development_modal_dialog_content",
+            "value":"Thao tác này có thể khiến thiết bị của bạn dễ bị tấn công bảo mật. Thiết bị của bạn sẽ khởi động lại để áp dụng thay đổi này.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"system_service_version",
+            "value":"Phiên bản dịch vụ hệ thống",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"inner",
+            "value":"Bên trong: %1$s x %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel_development_modal_dialog_content",
+            "value":"Tính năng gỡ lỗi ứng dụng sẽ không còn hoạt động. Thiết bị của bạn sẽ khởi động lại để áp dụng thay đổi này.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Hủy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"battery_status_consuming_power",
+            "value":"Hiện không sạc",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hardware_version",
+            "value":"Phiên bản phần cứng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status_filled",
+            "value":"Đã sạc đầy",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ip_address",
+            "value":"Địa chỉ IP",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sensitive_behavior_statement_Additional_text",
+            "value":"%1$d. Dịch vụ Cập nhật phần mềm cần kết nối Internet và đọc danh sách các ứng dụng đã cài đặt.\n",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"api_version",
+            "value":"Phiên bản API",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_battery_choose_info",
+            "value":"%1$s–%2$s, Mức pin %3$s–%4$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_developer_mode",
+            "value":"Bật tùy chọn nhà phát triển?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status",
+            "value":"Trạng thái pin",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_address",
+            "value":"Địa chỉ Bluetooth",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_options_settings_title",
+            "value":"Tùy chọn nhà phát triển",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"imei_id",
+            "value":"IMEI",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_patch_label",
+            "value":"Bản vá bảo mật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"random_mac",
+            "value":"%1$s (Ngẫu nhiên)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status_charging",
+            "value":"Đang sạc",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_type_professional",
+            "value":"Chuyên nghiệp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_type",
+            "value":"Phiên bản",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_type_enterprise",
+            "value":"Doanh nghiệp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_options_settings_summary",
+            "value":"Chỉ dành cho lập trình viên.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_mode_open_toast",
+            "value":"Đã bật tùy chọn nhà phát triển.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cpu_title",
+            "value":"Bộ xử lý",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_name",
+            "value":"Tên phiên bản",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

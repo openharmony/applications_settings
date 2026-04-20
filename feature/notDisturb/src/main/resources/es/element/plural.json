@@ -1,0 +1,61 @@
+{
+    "plural":[
+        {
+            "name":"user_select_app",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d aplicaciones",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d app",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"selected_app",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Seleccionadas: %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Seleccionadas: %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"user_select_contact",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d contactos",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d contacto",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

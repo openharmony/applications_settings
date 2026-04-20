@@ -1,0 +1,424 @@
+{
+    "string":[
+        {
+            "name":"wireless_anti_theft_tip",
+            "value":"ئۈلگە ئۈسكۈنە قوغداش ھالىتىدە، بۇ مەشغۇلات يۈرمەيدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bt_disconnecting_summary",
+            "value":"ئۈزۈلۈۋاتىدۇ...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_connecting_summary",
+            "value":"ئۇلىنىۋاتىدۇ…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bt_connection_strategy_summary",
+            "value":"ئۇلىنىۋاتىدۇ…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_hfp_a2dp_connect_summary",
+            "value":"چاقىرىق ۋە مېدىيا ئۈچۈن ئۇلاق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bt_a2dp_connect_summary",
+            "value":"مېدىيا ئاۋازى ئۈچۈن ئۇلاق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bt_hfp_connect_summary",
+            "value":"چاقىرىق ئاۋازى ئۈچۈن ئۇلاق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_type_speaker",
+            "value":"ياڭراتقۇ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_type_glasses",
+            "value":"كۆزەينەك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bt_connected_summary",
+            "value":"ئۇلاق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_type_headset",
+            "value":"تىڭشىغۇچ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_type_car",
+            "value":"ماشىنا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_type_hearing",
+            "value":"ئاڭلىغۇچ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_type_watch",
+            "value":"سائەت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bt_pair_failed_message",
+            "value":"جۈپلەش كودى خاتا ياكى جۈپلەيدىغان ئۈسكۈنىنىڭ سەپلىمىسى خاتا.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_play_music_tips",
+            "value":"ئۈسكۈنە تەپسىلاتى بېتىدىن بۇ تەڭشەكنى ئۆزگەرتىشكە بولىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed1",
+            "value":"ئۇلانمىدى، كۇنۇپكا تاختىسىدا كۇنۇپكا چېكىپ قايتا ئۇلاڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"keep_auto_play",
+            "value":"ئۆزلۈكىدىن قويۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"forbidding",
+            "value":"ئېتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auto_play_music",
+            "value":"ئۆزلۈكىدىن مۇزىكا قويۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_connect_auto_play",
+            "value":"كۆكچىشلىق ئۈسكۈنە «%s» ئۇلانسا، ئۆزلۈكىدىن مۇزىكا قويۇلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auto_play_music_desc",
+            "value":"كۆكچىشلىق ئۈسكۈنە ئۇلانسا، ئۆزلۈكىدىن مۇزىكا قويۇلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_pair_failed2",
+            "value":"جۈپلەش ئاچقۇچى ياكى PIN خاتا، %s بىلەن جۈپلەنمەيدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_pair_failed3",
+            "value":"\u200f%s جۈپلەشنى رەت قىلدى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_pair_failed1",
+            "value":"\u200f%1$s بىلەن ئالاقە قۇرۇلمىدى، ئېھتىمال سەۋەب:\n%2$s. ئۈسكۈنە ئېتىك ياكى جۈپلەش ھالىتىدە ئەمەس. ئېچىش ياكى جۈپلەش ھەققىدە ياردەم كېرەك بولسا، مەشغۇلات قوللانمىسىنى كۆرۈڭ.\n%3$s. ئۈسكۈنە بەك يىراق؛ ئىككى ئۈسكۈنە %4$s مېتىر دائىرە ئىچىدە بولۇشى كېرەك.\n%5$s. ئۈسكۈنە باشقا ئۈسكۈنە بىلەن ئۇلاق؛ شۇنداق بولسا ئاۋۋال ئۈزۈڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed3",
+            "value":"ئۇلانمىدى، ماشىنا مېدىياسى ئارقىلىق قايتا ئۇلاڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed2",
+            "value":"ئۇلانمىدى، مائۇس ئارقىلىق قايتا ئۇلاڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blue_tooth_connect_failed4",
+            "value":"ئۇلىغان ئۈسكۈنە سانى چەككە يەتكەن. يەنە ئۇلاش ئۈچۈن ئۇلاق ئۈسكۈنىدىن بىرنى ئۈزۈڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_profile_map",
+            "value":"ئۇچۇر ئىجازىتى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_sharing_and_call_history",
+            "value":"ئالاقىداش ۋە چاقىرىق خاتىرىسى ئورتاقلىشىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_name_and_numbers_only",
+            "value":"ئىسىم ۋە نومۇر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name_settings_title",
+            "value":"ئۈسكۈنە نامى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_pad",
+            "value":"تاختا كومپيۇتېر بىلەن ئۈن ماسقەدەملەش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_fulls_detals",
+            "value":"بارلىق تەپسىلات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_profile_hid",
+            "value":"كىرگۈزۈش ئۈسكۈنىسى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_phone",
+            "value":"كۆكچىش ئۈنى يانفون بىلەن ماسقەدەملىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unpair",
+            "value":"ئۈزۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_not_share",
+            "value":"ياق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_profile_a2dp",
+            "value":"مېدىيا ئاۋازى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bt_connect_failed_message",
+            "value":"\u200f«%1$s» بىلەن ئۇلانمىدى، سەۋەبى بەلكىم:\n\u200f%2$s. بۇ ئۈسكۈنىدە كۆكچىش ئېتىك ياكى (%3$s مېتىرلىق) ئالاقە دائىرىسىدە ئەمەس؛\n\u200f%4$s. بۇ ئۈسكۈنە باشقا ئۈسكۈنە بىلەن ئۇلانغان، ئۈزۈۋېتىپ قايتا سىناڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_profile_hfp",
+            "value":"چاقىرىق ئاۋازى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_device_sync_volume_with_pc",
+            "value":"كومپيۇتېر بىلەن ئۈن ماسقەدەملەش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_read_info_auth",
+            "value":"ئۇچۇر ئوقۇش ئىجازىتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"keyboard",
+            "value":"كۇنۇپكا تاختىسى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"phone",
+            "value":"يانفون",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"matebook",
+            "value":"خاتىرە كومپيۇتېر",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"soundx",
+            "value":"ياڭراتقۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth",
+            "value":"كۆكچىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pencil",
+            "value":"قەلەم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mouse",
+            "value":"مائۇس",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pad",
+            "value":"تاختا كومپيۇتېر",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"help",
+            "value":"ياردەم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"كارخانا تۈزۈمى بۇ مەشغۇلاتنى چەكلەيدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_help_popup_content",
+            "value":"نىشان ئۈسكۈنە تېپىلمىدىمۇ؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_settings",
+            "value":"كۆكچىش تەڭشەكلىرى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"bluetooth_settings_title",
+            "value":"كۆكچىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_bonded_devices",
+            "value":"جۈپلەنگەن ئۈسكۈنە",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_no_paired_devices",
+            "value":"جۈپلەنگەن ئۈسكۈنە يوق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_type_printer",
+            "value":"پىرىنتېر",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_type_car_key",
+            "value":"ماشىنا ئاچقۇچ",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+  "upgradeInfos": [
+    {
+      "version": 1,
+      "description": "add column alias path childItems bundleName",
+      "sqlList": [
+        "ALTER TABLE ITEMINFO_TABLE ADD COLUMN alias TEXT",
+        "ALTER TABLE ITEMINFO_TABLE ADD COLUMN path TEXT",
+        "ALTER TABLE ITEMINFO_TABLE ADD COLUMN childItems TEXT",
+        "ALTER TABLE ITEMINFO_TABLE ADD COLUMN bundleName TEXT",
+        "ALTER TABLE ITEMINFO_TABLE ADD COLUMN checkType TEXT",
+        "ALTER TABLE ITEMINFO_TABLE ADD COLUMN checkKey TEXT",
+        "ALTER TABLE ITEMINFO_TABLE ADD COLUMN checkValue TEXT"
+      ]
+    }
+  ]
+}
