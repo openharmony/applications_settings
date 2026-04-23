@@ -28,6 +28,7 @@ ohos_shared_library("cj_settings_ffi") {
     "ability_runtime:ability_manager",
     "ability_runtime:abilitykit_native",
     "ability_runtime:data_ability_helper",
+    "c_utils:utils",
     "data_share:datashare_common",
     "data_share:datashare_consumer",
     "hilog:libhilog",
