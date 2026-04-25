@@ -27,10 +27,13 @@ const std::string SettingsPageUrl::SCREEN_REFRESH_RATE_PAGE = "screen_refresh_ra
 const std::string SettingsPageUrl::SOUND_PAGE = "volume_settings";
 const std::string SettingsPageUrl::ABOUT_DEVICE_PAGE = "about_device";
 const std::string SettingsPageUrl::APPLICATION_INFO_ENTRY = "application_info_entry";
+const std::string SettingsPageUrl::EXTERNAL_DOUBLE_CLICK = "external_double_click_ability";
+const std::string SettingsPageUrl::IS_DOUBLE_CLICK_SELF = "is_double_click_app_forself";
 
 const std::string DeviceType::PHONE = "phone";
 const std::string DeviceType::TABLET = "tablet";
 const std::string DeviceType::PC = "2in1";
+const std::string DeviceType::WEARABLE = "wearable";
 
 const static std::unordered_set<std::string> supportedPageForPhoneList = {
     SettingsPageUrl::INPUT_PAGE,
@@ -66,10 +69,16 @@ const static std::unordered_set<std::string> supportedPageForPCList = {
     SettingsPageUrl::APPLICATION_INFO_ENTRY
 };
 
+const static std::unordered_set<std::string> supportedPageForWearList = {
+    SettingsPageUrl::EXTERNAL_DOUBLE_CLICK,
+    SettingsPageUrl::IS_DOUBLE_CLICK_SELF
+};
+
 const static std::map<std::string, std::unordered_set<std::string>> supportedPageForDeviceMap = {
     {DeviceType::PHONE, supportedPageForPhoneList},
     {DeviceType::TABLET, supportedPageForTabletList},
-    {DeviceType::PC, supportedPageForPCList}
+    {DeviceType::PC, supportedPageForPCList},
+    {DeviceType::WEARABLE, supportedPageForWearList}
 };
 
 bool IsPageSupportJump(const std::string &deviceType, const std::string &pageUri)

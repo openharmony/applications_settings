@@ -35,6 +35,8 @@ public:
     static const std::string SOUND_PAGE;
     static const std::string ABOUT_DEVICE_PAGE;
     static const std::string APPLICATION_INFO_ENTRY;
+    static const std::string EXTERNAL_DOUBLE_CLICK;
+    static const std::string IS_DOUBLE_CLICK_SELF;
 };
 
 class DeviceType {
@@ -42,6 +44,7 @@ public:
     static const std::string PHONE;
     static const std::string TABLET;
     static const std::string PC;
+    static const std::string WEARABLE;
 };
 
 bool IsPageSupportJump(const std::string &deviceType, const std::string &pageUri);

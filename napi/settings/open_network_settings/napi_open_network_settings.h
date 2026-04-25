@@ -83,6 +83,7 @@ napi_value OpenScreenRefreshRateSettingsPage(napi_env env, napi_callback_info in
 napi_value OpenSoundSettingsPage(napi_env env, napi_callback_info info);
 napi_value IsDoubleClickAppForSelf(napi_env env, napi_callback_info info);
 napi_value OpenDoubleClickSettingsPage(napi_env env, napi_callback_info info);
+void ScanAppValid(std:string &value);
 }
 }
 
