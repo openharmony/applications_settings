@@ -681,11 +681,11 @@ void ScanAppValid(std::string &value)
         SETTING_LOG_ERROR("IsDoubleClickAppForSelf settingHelper is null.");
         return;
     }
-    std::vector<std::string> colunms;
+    std::vector<std::string> columns;
     DataShare::DataSharePredicates predicates;
     Uri uriTemp(URI_TRAGET_WEARABLE);
     predicates.EqualTo(KEY_CONTENT_WEARABLE, PAY_KEY_WEARABLE);
-    auto result = settingHelper->Query(uriTemp, predicates, colunms, nullptr);
+    auto result = settingHelper->Query(uriTemp, predicates, columns, nullptr);
     if (result == nullptr) {
         SETTING_LOG_ERROR("IsDoubleClickAppForSelf SettingUtils: query error, result is null.");
         settingHelper->Release();
