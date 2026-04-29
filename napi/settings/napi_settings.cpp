@@ -2097,7 +2097,7 @@ napi_value IsDoubleClickAppForSelf(napi_env env, napi_callback_info info)
     const std::string wearableDevice = "wearable";
     napi_value resource = nullptr;
     napi_value promise = nullptr;
-    if (deviceType != wearableDevice){
+    if (deviceType != wearableDevice) {
         SETTING_LOG_ERROR("The device type is not supported.");
         return promise;
     }
