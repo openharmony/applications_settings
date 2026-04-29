@@ -29,7 +29,6 @@
 #include "parameters.h"
 #include "napi_sys_event_util.h"
 
-
 using namespace OHOS::AppExecFwk;
 using namespace OHOS::DataShare;
 using namespace OHOS::AccountSA;
@@ -55,7 +54,7 @@ const std::string FAILED_WEARABLE = "0";
 const std::string PAY_KEY_WEARABLE = "hw_start_pay_key";
 const std::string URI_TRAGET_WEARABLE = "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true";
 const std::string DATA_ABILITY_WEARABLE = "datashare:///com.ohos.settingsdata.DataAbility";
-const int32_t INDEX_WEARABLE = 1;
+const int8_t INDEX_WEARABLE = 1;
 const std::string IS_DOUBLE_CLICK_SELF = "is_double_click_app_forself";
 
 void ThrowExistingError(napi_env env, int errorCode, std::string errorMessage)
@@ -2115,7 +2114,7 @@ napi_value IsDoubleClickAppForSelf(napi_env env, napi_callback_info info)
         .status = false
     };
     if (asyncCallbackInfo == nullptr) {
-        SETTING_LOG_ERROR("IsDoubleClickAppForSelf asyncCallbackInfo is null");
+        SETTING_LOG_ERROR("IsDoubleClickAppForSelf asyncCallbackInfo is null.");
         return promise;
     }
     napi_deferred deferred;
@@ -2135,7 +2134,7 @@ napi_value IsDoubleClickAppForSelf(napi_env env, napi_callback_info info)
             SETTING_LOG_INFO("IsDoubleClickAppForSelf CurrentBundleName: %{public}s", currentBundleName.c_str());
             if (currentBundleName.size() >= appName.size()) {
                 asyncCallbackInfo->value = FAILED_WEARABLE;
-                ReportSysEvent(SettingsPageUrl::IS_DOUBLE_CLICK_SELF, false);
+                ReportSysEvent(IS_DOUBLE_CLICK_SELF, false);
                 return;
             }
             std::string finalResult = SUCCESS_WEARABLE;
@@ -2146,9 +2145,9 @@ napi_value IsDoubleClickAppForSelf(napi_env env, napi_callback_info info)
                 }
             }
             if (finalResult == FAILED_WEARABLE) {
-                ReportSysEvent(SettingsPageUrl::IS_DOUBLE_CLICK_SELF, false);
+                ReportSysEvent(IS_DOUBLE_CLICK_SELF, false);
             } else {
-                ReportSysEvent(SettingsPageUrl::IS_DOUBLE_CLICK_SELF, true);
+                ReportSysEvent(IS_DOUBLE_CLICK_SELF, true);
             }
             asyncCallbackInfo->value = finalResult;
         },
