@@ -36,7 +36,6 @@ public:
     static const std::string ABOUT_DEVICE_PAGE;
     static const std::string APPLICATION_INFO_ENTRY;
     static const std::string EXTERNAL_DOUBLE_CLICK;
-    static const std::string IS_DOUBLE_CLICK_SELF;
 };
 
 class DeviceType {
