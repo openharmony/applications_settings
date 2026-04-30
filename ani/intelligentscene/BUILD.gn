@@ -30,8 +30,10 @@ ohos_shared_library("intelligentscene_ani") {
   external_deps = [
     "ability_base:configuration",
     "ability_base:zuri",
+    "c_utils:utils",
     "runtime_core:ani",
     "runtime_core:libarkruntime",
+    "ipc:ipc_single",
     "os_account:os_account_innerkits",
     "distributed_notification_service:ans_innerkits",
     "access_token:libaccesstoken_sdk",
