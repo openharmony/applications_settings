@@ -69,9 +69,13 @@ static ErrCode JumpToSettingsPageByNavKey(const std::shared_ptr<BaseContext> &as
     }
 
     OHOS::AAFwk::Want want;
-    want.SetElementName(SETTINGS_PACKAGE_NAME, SETTINGS_MAIN_ABILITY_NAME);
-    want.SetUri(navKey);
-
+    if (DEVICE_TYPE == OHOS::Settings::DeviceType::WEARABLE) {
+        want.SetElementName(SETTINGS_PACKAGE_NAME, navKey);
+    } else {
+        want.SetElementName(SETTINGS_PACKAGE_NAME, SETTINGS_MAIN_ABILITY_NAME);
+        want.SetUri(navKey);
+    }
+    
     if (asyncContext->abilityContext != nullptr) {
         return asyncContext->abilityContext->StartAbility(want, DEFAULT_INVAL_VALUE);
     } else if (asyncContext->uiExtensionContext != nullptr) {
@@ -644,20 +648,9 @@ napi_value OpenAboutDeviceSettingsPage(napi_env env, napi_callback_info info)
     return result;
 }
 
-napi_value IsDoubleClickAppForSelf(napi_env env, napi_callback_info info)
-{
-    SETTING_LOG_INFO("This app is not supported.");
-    napi_value result = nullptr;
-    napi_get_undefined(env, &result);
-    return result;
-}
-
 napi_value OpenDoubleClickSettingsPage(napi_env env, napi_callback_info info)
 {
-    SETTING_LOG_INFO("This app is not supported.");
-    napi_value result = nullptr;
-    napi_get_undefined(env, &result);
-    return result;
+    return OpenSettingsPageCommon(env, info, SettingsPageUrl::EXTERNAL_DOUBLE_CLICK);
 }
 
 napi_value OpenAppDetailSettingsPage(napi_env env, napi_callback_info info)

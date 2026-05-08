@@ -27,6 +27,7 @@
 #include "data_ability_predicates.h"
 #include "datashare_helper.h"
 #include "datashare_predicates.h"
+#include "napi_bundle_util.h"
 
 #define ARGS_ONE 1
 #define ARGS_TWO 2
@@ -200,6 +201,7 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
 napi_value napi_register_key_observer(napi_env env, napi_callback_info info);
 napi_value napi_unregister_key_observer(napi_env env, napi_callback_info info);
 void ThrowExistingError(napi_env env, int errorCode, std::string errorMessage);
+napi_value IsDoubleClickAppForSelf(napi_env env, napi_callback_info info);
 }  // namespace Settings
 }  // namespace OHOS
 #endif  //  NAPI_SETTINGS_H
