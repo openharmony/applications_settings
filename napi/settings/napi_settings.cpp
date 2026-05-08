@@ -2109,7 +2109,7 @@ AsyncCallbackInfo* GetNewAsyncCallbackInfo(napi_env env)
 
 void Finished(AsyncCallbackInfo* asyncCallbackInfo)
 {
-    if(!asyncCallbackInfo) {
+    if (!asyncCallbackInfo) {
         SETTING_LOG_ERROR("asyncCallbackInfo is null.");
         return;
     }
