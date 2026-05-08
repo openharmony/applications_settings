@@ -81,7 +81,7 @@ void startDoNotDisturbEnabledWork(napi_env env, NotDisturbEnabledCallback *async
             }
             INTELLIGENT_SCENE_LOG_INFO("NapiIsDoNotDisturbEnabled work end.");
         },
-        (void *)asynccallback,
+        reinterpret_cast<void *>(asynccallback),
         &asynccallback->asyncWork);
 }
 
@@ -133,7 +133,7 @@ void startNotifyAllowedWork(napi_env env, NotifyAllowedCallback *asynccallback)
             }
             INTELLIGENT_SCENE_LOG_INFO("NapiIsNotifyAllowedInDoNotDisturb work end.");
         },
-        (void *)asynccallback,
+        reinterpret_cast<void *>(asynccallback),
         &asynccallback->asyncWork);
 }
 
