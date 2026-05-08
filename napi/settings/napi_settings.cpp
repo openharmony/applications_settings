@@ -2091,17 +2091,8 @@ void ScanAppValid(std::string &value)
     settingHelper->Release();
 }
 
-napi_value IsDoubleClickAppForSelf(napi_env env, napi_callback_info info)
+AsyncCallbackInfo* GetNewAsyncCallbackInfo(napi_env env)
 {
-    const std::string deviceType = OHOS::system::GetParameter("const.product.devicetype", "");
-    const std::string wearableDevice = "wearable";
-    napi_value resource = nullptr;
-    napi_value promise = nullptr;
-    if (deviceType != wearableDevice) {
-        SETTING_LOG_ERROR("The device type is not supported.");
-        return promise;
-    }
-    NAPI_CALL(env, napi_create_string_utf8(env, "isDoubleClickAppForSelf", NAPI_AUTO_LENGTH, &resource));
     AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
         .env = env,
         .asyncWork = nullptr,
@@ -2113,6 +2104,52 @@ napi_value IsDoubleClickAppForSelf(napi_env env, napi_callback_info info)
         .uri = "",
         .status = false
     };
+    return asyncCallbackInfo;
+}
+
+void Finished(AsyncCallbackInfo* asyncCallbackInfo)
+{
+    if(!asyncCallbackInfo) {
+        SETTING_LOG_ERROR("asyncCallbackInfo is null.");
+        return;
+    }
+    std::string appName;
+    ScanAppValid(appName);
+    SETTING_LOG_INFO("IsDoubleClickAppForSelf Current Application: %{public}s", appName.c_str());
+    std::string currentBundleName = Settings::BundleUtil::GetCurrentBundleName();
+    SETTING_LOG_INFO("IsDoubleClickAppForSelf CurrentBundleName: %{public}s", currentBundleName.c_str());
+    if (currentBundleName.size() >= appName.size()) {
+        asyncCallbackInfo->value = FAILED_WEARABLE;
+        ReportSysEvent(IS_DOUBLE_CLICK_SELF, false);
+        return;
+    }
+    std::string finalResult = SUCCESS_WEARABLE;
+    for (size_t i = 0; i < currentBundleName.size(); ++i) {
+        if (appName[i] != currentBundleName[i]) {
+            finalResult = FAILED_WEARABLE;
+            break;
+        }
+    }
+    if (finalResult == FAILED_WEARABLE) {
+        ReportSysEvent(IS_DOUBLE_CLICK_SELF, false);
+    } else {
+        ReportSysEvent(IS_DOUBLE_CLICK_SELF, true);
+    }
+    asyncCallbackInfo->value = finalResult;
+}
+
+napi_value IsDoubleClickAppForSelf(napi_env env, napi_callback_info info)
+{
+    const std::string deviceType = OHOS::system::GetParameter("const.product.devicetype", "");
+    const std::string wearableDevice = "wearable";
+    napi_value resource = nullptr;
+    napi_value promise = nullptr;
+    if (deviceType != wearableDevice) {
+        SETTING_LOG_ERROR("The device type is not supported.");
+        return promise;
+    }
+    NAPI_CALL(env, napi_create_string_utf8(env, "isDoubleClickAppForSelf", NAPI_AUTO_LENGTH, &resource));
+    AsyncCallbackInfo* asyncCallbackInfo = GetNewAsyncCallbackInfo(env);
     if (asyncCallbackInfo == nullptr) {
         SETTING_LOG_ERROR("IsDoubleClickAppForSelf asyncCallbackInfo is null.");
         return promise;
@@ -2127,29 +2164,7 @@ napi_value IsDoubleClickAppForSelf(napi_env env, napi_callback_info info)
         // async executed task
         [](napi_env env, void* data) {
             AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-            std::string appName;
-            ScanAppValid(appName);
-            SETTING_LOG_INFO("IsDoubleClickAppForSelf Current Application: %{public}s", appName.c_str());
-            std::string currentBundleName = Settings::BundleUtil::GetCurrentBundleName();
-            SETTING_LOG_INFO("IsDoubleClickAppForSelf CurrentBundleName: %{public}s", currentBundleName.c_str());
-            if (currentBundleName.size() >= appName.size()) {
-                asyncCallbackInfo->value = FAILED_WEARABLE;
-                ReportSysEvent(IS_DOUBLE_CLICK_SELF, false);
-                return;
-            }
-            std::string finalResult = SUCCESS_WEARABLE;
-            for (size_t i = 0; i < currentBundleName.size(); ++i) {
-                if (appName[i] != currentBundleName[i]) {
-                    finalResult = FAILED_WEARABLE;
-                    break;
-                }
-            }
-            if (finalResult == FAILED_WEARABLE) {
-                ReportSysEvent(IS_DOUBLE_CLICK_SELF, false);
-            } else {
-                ReportSysEvent(IS_DOUBLE_CLICK_SELF, true);
-            }
-            asyncCallbackInfo->value = finalResult;
+            Finished(asyncCallbackInfo);
         },
         // async end called callback
         [](napi_env env, napi_status status, void* data) {
