@@ -407,13 +407,14 @@ napi_value SetAsyncCallback(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
                 SETTING_LOG_ERROR("manager data is null");
                 return;
             }
-            AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-            napi_value result = wrap_bool_to_js(env, (asyncCallbackInfo->status == SETTINGS_SUCCESS));
-            SettingsCompletePromise(env, asyncCallbackInfo, result);
-            napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
-            delete asyncCallbackInfo;
+            AsyncCallbackInfo* info = static_cast<AsyncCallbackInfo *>(data);
+            napi_value result = wrap_bool_to_js(env, (info->status == SETTINGS_SUCCESS));
+            SettingsCompletePromise(env, info, result);
+            napi_delete_async_work(env, info->asyncWork);
+            delete info;
+            info = nullptr;
             SETTING_LOG_INFO("manager change complete");
-        }, (void*)asyncCallbackInfo, &asyncCallbackInfo->asyncWork);
+        }, static_cast<void *>(asyncCallbackInfo), &asyncCallbackInfo->asyncWork);
     if (ret != napi_ok) {
         SETTING_LOG_ERROR("create async work failed");
         napi_delete_reference(env, asyncCallbackInfo->callbackRef);

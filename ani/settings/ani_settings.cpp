@@ -147,7 +147,7 @@ void GetValueExecuteExt(ani_env *env, void *data)
     }
 
     SETTING_LOG_INFO("G_V_E_E start");
-    AsyncCallbackInfo *asyncCallbackInfo = (AsyncCallbackInfo *)data;
+    AsyncCallbackInfo *asyncCallbackInfo = static_cast<AsyncCallbackInfo *>(data);
 
     if (asyncCallbackInfo->dataShareHelper == nullptr) {
         SETTING_LOG_ERROR("dataShareHelper is empty");
@@ -212,7 +212,7 @@ ani_string ani_get_value_ext(ani_env *env, ani_object context, ani_string name, 
         asyncCallbackInfo = nullptr;
         return nullptr;
     }
-    GetValueExecuteExt(env, (void *)asyncCallbackInfo);
+    GetValueExecuteExt(env, static_cast<void *>(asyncCallbackInfo));
     ani_string retVal = nullptr;
     if (asyncCallbackInfo->value.size() <= 0) {
         ThrowError(env, asyncCallbackInfo->status);
@@ -257,7 +257,7 @@ ani_boolean ani_set_value_ext(
         asyncCallbackInfo = nullptr;
         return false;
     }
-    SetValueExecuteExt(env, (void *)asyncCallbackInfo, asyncCallbackInfo->uri);
+    SetValueExecuteExt(env, static_cast<void *>(asyncCallbackInfo), asyncCallbackInfo->uri);
     ani_boolean retVal = true;
     if (asyncCallbackInfo->status <= 0) {
         ThrowError(env, asyncCallbackInfo->status);
@@ -341,7 +341,7 @@ ani_string ani_get_value_sync_ext(
     asyncCallbackInfo->tableName = unwrap_string_from_js(env, domainName);
     asyncCallbackInfo->key = unwrap_string_from_js(env, key);
     asyncCallbackInfo->dataShareHelper = getDataShareHelper(env, context, asyncCallbackInfo->tableName);
-    GetValueExecuteExt(env, (void *)asyncCallbackInfo);
+    GetValueExecuteExt(env, static_cast<void *>(asyncCallbackInfo));
     SETTING_LOG_INFO("n_g_v return %{public}s", asyncCallbackInfo->value.c_str());
     ani_string retVal = nullptr;
     if (asyncCallbackInfo->value.size() <= 0) {
@@ -484,7 +484,7 @@ ani_boolean ani_set_value_sync_ext(
     asyncCallbackInfo->tableName = unwrap_string_from_js(env, domainName);
     asyncCallbackInfo->dataShareHelper =
         getDataShareHelper(env, context, asyncCallbackInfo->tableName, asyncCallbackInfo);
-    SetValueExecuteExt(env, (void *)asyncCallbackInfo, unwrap_string_from_js(env, value));
+    SetValueExecuteExt(env, static_cast<void *>(asyncCallbackInfo), unwrap_string_from_js(env, value));
     bool result = ThrowError(env, asyncCallbackInfo->status);
     DeleteCallbackInfo(asyncCallbackInfo);
     return static_cast<ani_boolean>(result);
@@ -497,7 +497,7 @@ void SetValueExecuteExt(ani_env *env, void *data, const std::string setValue)
         return;
     }
     SETTING_LOG_INFO("execute start");
-    AsyncCallbackInfo *asyncCallbackInfo = (AsyncCallbackInfo *)data;
+    AsyncCallbackInfo *asyncCallbackInfo = static_cast<AsyncCallbackInfo *>(data);
 
     if (asyncCallbackInfo->dataShareHelper == nullptr) {
         SETTING_LOG_INFO("helper is null");
