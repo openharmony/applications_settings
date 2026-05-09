@@ -2154,11 +2154,11 @@ napi_value IsDoubleClickAppForSelf(napi_env env, napi_callback_info info)
         return promise;
     }
     napi_deferred deferred;
-    if (napi_create_promise(env, &deferred, &promise != napi_ok) {
+    if (napi_create_promise(env, &deferred, &promise) != napi_ok) {
         delete asyncCallbackInfo;
         asyncCallbackInfo = nullptr;
         return promise;
-    };
+    }
     asyncCallbackInfo->deferred = deferred;
     napi_create_async_work(
         env,
