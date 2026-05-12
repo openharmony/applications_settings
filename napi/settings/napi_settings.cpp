@@ -347,20 +347,20 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
                     return;
                 }
                 SETTING_LOG_INFO("uri c_b asy end");
-                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+                AsyncCallbackInfo* info = static_cast<AsyncCallbackInfo *>(data);
                 napi_value undefine;
                 napi_get_undefined(env, &undefine);
                 napi_value callback = nullptr;
-                napi_value result = wrap_string_to_js(env, asyncCallbackInfo->uri);
-                napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
+                napi_value result = wrap_string_to_js(env, info->uri);
+                napi_get_reference_value(env, info->callbackRef, &callback);
                 napi_call_function(env, nullptr, callback, 1, &result, &undefine);
-                napi_delete_reference(env, asyncCallbackInfo->callbackRef);
-                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
-                delete asyncCallbackInfo;
-                asyncCallbackInfo = nullptr;
+                napi_delete_reference(env, info->callbackRef);
+                napi_delete_async_work(env, info->asyncWork);
+                delete info;
+                info = nullptr;
                 SETTING_LOG_INFO("uri c_b change complete");
             },
-            (void*)asyncCallbackInfo,
+            static_cast<void *>(asyncCallbackInfo),
             &asyncCallbackInfo->asyncWork
         );
 
@@ -397,16 +397,16 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
             // async end called callback+
             [](napi_env env, napi_status status, void* data) {
                 SETTING_LOG_INFO("uri p_m asy end");
-                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+                AsyncCallbackInfo* info = static_cast<AsyncCallbackInfo *>(data);
                 SETTING_LOG_INFO("uri p_m end get c_b value is %{public}s",
-                    asyncCallbackInfo->uri.c_str());
-                napi_value result = wrap_string_to_js(env, asyncCallbackInfo->uri);
-                napi_resolve_deferred(asyncCallbackInfo->env, asyncCallbackInfo->deferred, result);
-                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
-                delete asyncCallbackInfo;
-                asyncCallbackInfo = nullptr;
+                    info->uri.c_str());
+                napi_value result = wrap_string_to_js(env, info->uri);
+                napi_resolve_deferred(info->env, info->deferred, result);
+                napi_delete_async_work(env, info->asyncWork);
+                delete info;
+                info = nullptr;
             },
-            (void*)asyncCallbackInfo,
+            static_cast<void *>(asyncCallbackInfo),
             &asyncCallbackInfo->asyncWork);
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
             SETTING_LOG_ERROR("napi_queue_async_work error");
@@ -536,7 +536,7 @@ void GetValueExecuteExt(napi_env env, void *data)
         SETTING_LOG_INFO("execute data is null");
         return;
     }
-    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+    AsyncCallbackInfo* asyncCallbackInfo = static_cast<AsyncCallbackInfo *>(data);
     int currentUserId = -1;
     OHOS::AccountSA::OsAccountManager::GetOsAccountLocalIdFromProcess(currentUserId);
     int tmpId = 100;
@@ -571,7 +571,7 @@ void CompleteCall(napi_env env, napi_status status, void *data, const napi_value
 {
     napi_value message = nullptr;
     napi_value code = nullptr;
-    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+    AsyncCallbackInfo* asyncCallbackInfo = static_cast<AsyncCallbackInfo *>(data);
     napi_value result[PARAM2] = {0};
     result[PARAM1] = retValue;
     if (asyncCallbackInfo->status > 0 && status == napi_ok) {
@@ -599,7 +599,7 @@ void CompletePromise(napi_env env, napi_status status, void *data, const napi_va
     SETTING_LOG_INFO("c_p");
     napi_value message = nullptr;
     napi_value code = nullptr;
-    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+    AsyncCallbackInfo* asyncCallbackInfo = static_cast<AsyncCallbackInfo *>(data);
     napi_value result = nullptr;
     if (asyncCallbackInfo->status > 0 && status == napi_ok) {
         napi_resolve_deferred(env, asyncCallbackInfo->deferred, retValue);
@@ -638,7 +638,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
         SETTING_LOG_INFO("s_v_e_ex data is null");
         return;
     }
-    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+    AsyncCallbackInfo* asyncCallbackInfo = static_cast<AsyncCallbackInfo *>(data);
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper = nullptr;
     dataShareHelper = getDataShareHelper(env, asyncCallbackInfo->token, asyncCallbackInfo->tableName,
                                          asyncCallbackInfo);
@@ -884,8 +884,8 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
                     return;
                 }
                 SETTING_LOG_INFO("c_b async execute c_b");
-                AsyncCallbackInfo *asyncCallbackInfo = (AsyncCallbackInfo *)data;
-                get_val_CB_exe_CB(env, asyncCallbackInfo);
+                AsyncCallbackInfo *info = static_cast<AsyncCallbackInfo *>(data);
+                get_val_CB_exe_CB(env, info);
             },
             // async end called callback
             [](napi_env env, napi_status status, void *data) {
@@ -893,21 +893,21 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
                     SETTING_LOG_INFO("c_b end data is null");
                     return;
                 }
-                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+                AsyncCallbackInfo* info = static_cast<AsyncCallbackInfo *>(data);
                 napi_value undefine;
                 napi_get_undefined(env, &undefine);
                 napi_value callback = nullptr;
-                napi_value result = wrap_string_to_js(env, asyncCallbackInfo->value);
-                napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
+                napi_value result = wrap_string_to_js(env, info->value);
+                napi_get_reference_value(env, info->callbackRef, &callback);
                 napi_call_function(env, nullptr, callback, 1, &result, &undefine);
-                napi_delete_reference(env, asyncCallbackInfo->callbackRef);
-                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
-                asyncCallbackInfo->dataAbilityHelper = nullptr;
-                delete asyncCallbackInfo;
-                asyncCallbackInfo = nullptr;
+                napi_delete_reference(env, info->callbackRef);
+                napi_delete_async_work(env, info->asyncWork);
+                info->dataAbilityHelper = nullptr;
+                delete info;
+                info = nullptr;
                 SETTING_LOG_INFO("c_b change complete");
             },
-            (void *)asyncCallbackInfo,
+            static_cast<void *>(asyncCallbackInfo),
             &asyncCallbackInfo->asyncWork);
 
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
@@ -935,19 +935,19 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
         resource,
         // aysnc executed task
         [](napi_env env, void* data) {
-            AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+            AsyncCallbackInfo* info = static_cast<AsyncCallbackInfo *>(data);
             SETTING_LOG_INFO("p_m get c_b key is %{public}s, value is: %{public}s",
-                asyncCallbackInfo->key.c_str(), asyncCallbackInfo->value.c_str());
+                info->key.c_str(), info->value.c_str());
 
             std::vector<std::string> columns;
             columns.push_back(SETTINGS_DATA_FIELD_VALUE);
             OHOS::NativeRdb::DataAbilityPredicates predicates;
-            predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, asyncCallbackInfo->key);
+            predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, info->key);
 
             std::shared_ptr<Uri> uri = std::make_shared<Uri>(SETTINGS_DATA_BASE_URI);
             std::shared_ptr<OHOS::NativeRdb::AbsSharedResultSet> resultSet = nullptr;
-            if (asyncCallbackInfo->dataAbilityHelper != nullptr) {
-                resultSet = asyncCallbackInfo->dataAbilityHelper->Query(*uri, columns, predicates);
+            if (info->dataAbilityHelper != nullptr) {
+                resultSet = info->dataAbilityHelper->Query(*uri, columns, predicates);
             }
             SETTING_LOG_INFO("p_m n_g_v aft d_A_H->Query");
 
@@ -964,7 +964,7 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
                 int32_t columnIndex = 0;
                 resultSet->GoToFirstRow();
                 resultSet->GetString(columnIndex, val);
-                asyncCallbackInfo->value = val;
+                info->value = val;
             }
             if (resultSet != nullptr) {
                 resultSet->Close();
@@ -972,17 +972,17 @@ napi_value napi_get_value(napi_env env, napi_callback_info info)
         },
         // async end called callback
         [](napi_env env, napi_status status, void* data) {
-            AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+            AsyncCallbackInfo* info = static_cast<AsyncCallbackInfo *>(data);
             SETTING_LOG_INFO("p_m end get c_b value is %{public}s",
-                asyncCallbackInfo->value.c_str());
-            napi_value result = wrap_string_to_js(env, asyncCallbackInfo->value);
-            napi_resolve_deferred(asyncCallbackInfo->env, asyncCallbackInfo->deferred, result);
-            napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
-            asyncCallbackInfo->dataAbilityHelper = nullptr; 
-            delete asyncCallbackInfo;
-            asyncCallbackInfo = nullptr;
+                info->value.c_str());
+            napi_value result = wrap_string_to_js(env, info->value);
+            napi_resolve_deferred(info->env, info->deferred, result);
+            napi_delete_async_work(env, info->asyncWork);
+            info->dataAbilityHelper = nullptr;
+            delete info;
+            info = nullptr;
         },
-        (void*)asyncCallbackInfo,
+        static_cast<void *>(asyncCallbackInfo),
         &asyncCallbackInfo->asyncWork);
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
             SETTING_LOG_ERROR("napi_queue_async_work error");
@@ -1068,11 +1068,11 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
             resource,
             GetValueExecuteExt,
             [](napi_env env, napi_status status, void* data) {
-                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-                napi_value result = wrap_string_to_js(env, asyncCallbackInfo->value);
+                AsyncCallbackInfo* info = static_cast<AsyncCallbackInfo *>(data);
+                napi_value result = wrap_string_to_js(env, info->value);
                 CompleteCall(env, status, data, result);
             },
-            (void*)asyncCallbackInfo,
+            static_cast<void *>(asyncCallbackInfo),
             &asyncCallbackInfo->asyncWork
         );
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
@@ -1095,12 +1095,12 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
             resource,
             GetValueExecuteExt,
             [](napi_env env, napi_status status, void* data) {
-                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+                AsyncCallbackInfo* info = static_cast<AsyncCallbackInfo *>(data);
                 napi_value result = nullptr;
-                result = wrap_string_to_js(env, asyncCallbackInfo->value);
+                result = wrap_string_to_js(env, info->value);
                 CompletePromise(env, status, data, result);
             },
-            (void*)asyncCallbackInfo,
+            static_cast<void *>(asyncCallbackInfo),
             &asyncCallbackInfo->asyncWork
         );
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
@@ -1218,7 +1218,7 @@ void SetValueExecuteCB(napi_env env, void *data)
         SETTING_LOG_INFO("execute data is null");
         return;
     }
-    AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+    AsyncCallbackInfo* asyncCallbackInfo = static_cast<AsyncCallbackInfo *>(data);
     
     if (asyncCallbackInfo->dataAbilityHelper == nullptr) {
         SETTING_LOG_ERROR("helper is null");
@@ -1278,21 +1278,21 @@ napi_value SetValueAsync(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
                 SETTING_LOG_INFO("c_b set asy end data is null");
                 return;
             }
-            AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+            AsyncCallbackInfo* info = static_cast<AsyncCallbackInfo *>(data);
             napi_value undefine;
             napi_get_undefined(env, &undefine);
             napi_value callback = nullptr;
-            napi_value result = wrap_bool_to_js(env, ThrowError(env, asyncCallbackInfo->status));
-            napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
+            napi_value result = wrap_bool_to_js(env, ThrowError(env, info->status));
+            napi_get_reference_value(env, info->callbackRef, &callback);
             napi_call_function(env, nullptr, callback, 1, &result, &undefine);
-            napi_delete_reference(env, asyncCallbackInfo->callbackRef);
-            napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
-            asyncCallbackInfo->dataAbilityHelper = nullptr;
-            delete asyncCallbackInfo;
-            asyncCallbackInfo = nullptr;
+            napi_delete_reference(env, info->callbackRef);
+            napi_delete_async_work(env, info->asyncWork);
+            info->dataAbilityHelper = nullptr;
+            delete info;
+            info = nullptr;
             SETTING_LOG_INFO("c_b set change complete");
         },
-        (void*)asyncCallbackInfo,
+        static_cast<void *>(asyncCallbackInfo),
         &asyncCallbackInfo->asyncWork
     );
     if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
@@ -1334,17 +1334,17 @@ napi_value SetValuePromise(napi_env env, AsyncCallbackInfo* asyncCallbackInfo)
     napi_create_async_work(
         env, nullptr, resource, SetValueExecuteCB,
         [](napi_env env, napi_status status, void* data) {
-            AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+            AsyncCallbackInfo* info = static_cast<AsyncCallbackInfo *>(data);
             SETTING_LOG_INFO("p_m set end get c_b value is %{public}d",
-                asyncCallbackInfo->status);
-            napi_value result = wrap_bool_to_js(env, ThrowError(env, asyncCallbackInfo->status));
-            napi_resolve_deferred(asyncCallbackInfo->env, asyncCallbackInfo->deferred, result);
-            napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
-            asyncCallbackInfo->dataAbilityHelper = nullptr;
-            delete asyncCallbackInfo;
-            asyncCallbackInfo = nullptr;
+                info->status);
+            napi_value result = wrap_bool_to_js(env, ThrowError(env, info->status));
+            napi_resolve_deferred(info->env, info->deferred, result);
+            napi_delete_async_work(env, info->asyncWork);
+            info->dataAbilityHelper = nullptr;
+            delete info;
+            info = nullptr;
         },
-        (void*)asyncCallbackInfo,
+        static_cast<void *>(asyncCallbackInfo),
         &asyncCallbackInfo->asyncWork);
     if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
         SETTING_LOG_ERROR("napi_queue_async_work error");
@@ -1514,15 +1514,15 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
             nullptr,
             resource,
             [](napi_env env, void* data) {
-                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-                SetValueExecuteExt(env, (void*)asyncCallbackInfo, asyncCallbackInfo->uri);
+                AsyncCallbackInfo* info = static_cast<AsyncCallbackInfo *>(data);
+                SetValueExecuteExt(env, static_cast<void *>(info), info->uri);
             },
             [](napi_env env, napi_status status, void* data) {
-                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-                napi_value result = wrap_bool_to_js(env, asyncCallbackInfo->status > 0);
+                AsyncCallbackInfo* info = static_cast<AsyncCallbackInfo *>(data);
+                napi_value result = wrap_bool_to_js(env, info->status > 0);
                 CompleteCall(env, status, data, result);
             },
-            (void*)asyncCallbackInfo,
+            static_cast<void *>(asyncCallbackInfo),
             &asyncCallbackInfo->asyncWork
         );
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
@@ -1544,16 +1544,16 @@ napi_value napi_set_value_ext(napi_env env, napi_callback_info info, const bool 
             nullptr,
             resource,
             [](napi_env env, void* data) {
-                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+                AsyncCallbackInfo* info = static_cast<AsyncCallbackInfo *>(data);
                 SETTING_LOG_INFO("in async work");
-                SetValueExecuteExt(env, (void*)asyncCallbackInfo, asyncCallbackInfo->uri);
+                SetValueExecuteExt(env, static_cast<void *>(info), info->uri);
             },
             [](napi_env env, napi_status status, void* data) {
-                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
-                napi_value result = wrap_bool_to_js(env, asyncCallbackInfo->status > 0);
+                AsyncCallbackInfo* info = static_cast<AsyncCallbackInfo *>(data);
+                napi_value result = wrap_bool_to_js(env, info->status > 0);
                 CompletePromise(env, status, data, result);
             },
-            (void*)asyncCallbackInfo,
+            static_cast<void *>(asyncCallbackInfo),
             &asyncCallbackInfo->asyncWork
         );
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
@@ -1628,7 +1628,7 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
                     SETTING_LOG_INFO("c_b asy end data is null");
                     return;
                 }
-                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+                AsyncCallbackInfo* info = static_cast<AsyncCallbackInfo *>(data);
 
                 napi_value callback = nullptr;
                 napi_value undefined;
@@ -1646,17 +1646,17 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
                 result[0] = error;
                 napi_get_undefined(env, &result[1]);
 
-                napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
+                napi_get_reference_value(env, info->callbackRef, &callback);
                 napi_value callResult;
                 napi_call_function(env, undefined, callback, PARAM2, result, &callResult);
 
-                napi_delete_reference(env, asyncCallbackInfo->callbackRef);
-                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
-                delete asyncCallbackInfo;
-                asyncCallbackInfo = nullptr;
+                napi_delete_reference(env, info->callbackRef);
+                napi_delete_async_work(env, info->asyncWork);
+                delete info;
+                info = nullptr;
                 SETTING_LOG_INFO("c_b change c_b complete");
             },
-            (void*)asyncCallbackInfo,
+            static_cast<void *>(asyncCallbackInfo),
             &asyncCallbackInfo->asyncWork
         );
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
@@ -1690,7 +1690,7 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
             [](napi_env env, void *data) {},
             [](napi_env env, napi_status status, void *data) {
                 SETTING_LOG_INFO("%{public}s, promise complete", __func__);
-                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+                AsyncCallbackInfo* info = static_cast<AsyncCallbackInfo *>(data);
 
                 napi_value result;
                 napi_value error = nullptr;
@@ -1701,12 +1701,12 @@ napi_value napi_enable_airplane_mode(napi_env env, napi_callback_info info)
                 napi_set_named_property(env, error, "code", errCode);
                 result = error;
 
-                napi_reject_deferred(env, asyncCallbackInfo->deferred, result);
-                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
-                delete asyncCallbackInfo;
-                asyncCallbackInfo = nullptr;
+                napi_reject_deferred(env, info->deferred, result);
+                napi_delete_async_work(env, info->asyncWork);
+                delete info;
+                info = nullptr;
             },
-            (void *)asyncCallbackInfo,
+            static_cast<void *>(asyncCallbackInfo),
             &asyncCallbackInfo->asyncWork);
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
             SETTING_LOG_ERROR("napi_queue_async_work error");
@@ -1779,7 +1779,7 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
                     SETTING_LOG_INFO("c_b asy end data is null");
                     return;
                 }
-                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+                AsyncCallbackInfo* info = static_cast<AsyncCallbackInfo *>(data);
 
                 napi_value callback = nullptr;
                 napi_value undefined;
@@ -1797,17 +1797,17 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
                 result[0] = error;
                 result[1] = wrap_bool_to_js(env, false);
 
-                napi_get_reference_value(env, asyncCallbackInfo->callbackRef, &callback);
+                napi_get_reference_value(env, info->callbackRef, &callback);
                 napi_value callResult;
                 napi_call_function(env, undefined, callback, PARAM2, result, &callResult);
 
-                napi_delete_reference(env, asyncCallbackInfo->callbackRef);
-                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
-                delete asyncCallbackInfo;
-                asyncCallbackInfo = nullptr;
+                napi_delete_reference(env, info->callbackRef);
+                napi_delete_async_work(env, info->asyncWork);
+                delete info;
+                info = nullptr;
                 SETTING_LOG_INFO("c_b change complete");
             },
-            (void*)asyncCallbackInfo,
+            static_cast<void *>(asyncCallbackInfo),
             &asyncCallbackInfo->asyncWork
         );
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
@@ -1841,7 +1841,7 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
             [](napi_env env, void *data) {},
             [](napi_env env, napi_status status, void *data) {
                 SETTING_LOG_INFO("%{public}s, promise complete", __func__);
-                AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+                AsyncCallbackInfo* info = static_cast<AsyncCallbackInfo *>(data);
 
                 napi_value result;
                 napi_value error = nullptr;
@@ -1852,12 +1852,12 @@ napi_value napi_can_show_floating(napi_env env, napi_callback_info info)
                 napi_set_named_property(env, error, "code", errCode);
                 result = error;
 
-                napi_reject_deferred(env, asyncCallbackInfo->deferred, result);
-                napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
-                delete asyncCallbackInfo;
-                asyncCallbackInfo = nullptr;
+                napi_reject_deferred(env, info->deferred, result);
+                napi_delete_async_work(env, info->asyncWork);
+                delete info;
+                info = nullptr;
             },
-            (void *)asyncCallbackInfo,
+            static_cast<void *>(asyncCallbackInfo),
             &asyncCallbackInfo->asyncWork);
         if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
             SETTING_LOG_ERROR("napi_queue_async_work error");
@@ -1976,7 +1976,7 @@ napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
     } else {
         asyncCallbackInfo->token = contextS->GetToken();
-        GetValueExecuteExt(env, (void *)asyncCallbackInfo);
+        GetValueExecuteExt(env, static_cast<void *>(asyncCallbackInfo));
     }
     napi_value retVal = nullptr;
     if (asyncCallbackInfo->value.size() <= 0) {
@@ -2033,7 +2033,7 @@ napi_value napi_set_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
     } else {
         asyncCallbackInfo->token = contextS->GetToken();
-        SetValueExecuteExt(env, (void *)asyncCallbackInfo, unwrap_string_from_js(env, args[PARAM2],
+        SetValueExecuteExt(env, static_cast<void *>(asyncCallbackInfo), unwrap_string_from_js(env, args[PARAM2],
             true, true));
     }
     napi_value result = wrap_bool_to_js(env, ThrowError(env, asyncCallbackInfo->status));
