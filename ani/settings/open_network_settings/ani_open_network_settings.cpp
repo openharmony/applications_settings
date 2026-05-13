@@ -69,12 +69,12 @@ static ErrCode JumpToSettingsPageByNavKey(const std::shared_ptr<BaseContext> &as
     }
     
     OHOS::AAFwk::Want want;
-     if (DEVICE_TYPE == OHOS::Settings::DeviceType::WEARABLE) {
- 	    want.SetElementName(SETTINGS_PACKAGE_NAME, navKey);
- 	} else {
- 	    want.SetElementName(SETTINGS_PACKAGE_NAME, SETTINGS_MAIN_ABILITY_NAME);
- 	    want.SetUri(navKey);
- 	}
+    if (DEVICE_TYPE == OHOS::Settings::DeviceType::WEARABLE) {
+        want.SetElementName(SETTINGS_PACKAGE_NAME, navKey);
+     } else {
+        want.SetElementName(SETTINGS_PACKAGE_NAME, SETTINGS_MAIN_ABILITY_NAME);
+        want.SetUri(navKey);
+    }
     
     if (asyncContext->abilityContext != nullptr) {
         return asyncContext->abilityContext->StartAbility(want, DEFAULT_INVAL_VALUE);

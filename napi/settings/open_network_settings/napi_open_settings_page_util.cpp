@@ -70,7 +70,7 @@ const static std::unordered_set<std::string> supportedPageForPCList = {
 
 const static std::unordered_set<std::string> supportedPageForWearList = {
     SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE,
- 	SettingsPageUrl::NFC_PAGE,
+    SettingsPageUrl::NFC_PAGE,
     SettingsPageUrl::EXTERNAL_DOUBLE_CLICK
 };
 

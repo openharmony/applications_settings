@@ -68,15 +68,15 @@ const static std::unordered_set<std::string> supportedPageForPCList = {
 };
 
 const static std::unordered_set<std::string> supportedPageForWearList = {
- 	SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE,
- 	SettingsPageUrl::NFC_PAGE
+    SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE,
+    SettingsPageUrl::NFC_PAGE
 };
 
 const static std::map<std::string, std::unordered_set<std::string>> supportedPageForDeviceMap = {
     {DeviceType::PHONE, supportedPageForPhoneList},
     {DeviceType::TABLET, supportedPageForTabletList},
     {DeviceType::PC, supportedPageForPCList},
- 	{DeviceType::WEARABLE, supportedPageForWearList}
+    {DeviceType::WEARABLE, supportedPageForWearList}
 };
 
 bool IsPageSupportJump(const std::string &deviceType, const std::string &pageUri)
