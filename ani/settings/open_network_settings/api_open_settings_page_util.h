@@ -42,6 +42,7 @@ public:
     static const std::string PHONE;
     static const std::string TABLET;
     static const std::string PC;
+    static const std::string WEARABLE;
 };
 
 bool IsPageSupportJump(const std::string &deviceType, const std::string &pageUri);
