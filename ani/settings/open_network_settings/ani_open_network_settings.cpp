@@ -524,5 +524,10 @@ void OpenAppDetailSettingsPage(ani_env *env, ani_object context, ani_string bund
     ReportSysEvent(targetPage, true);
     SETTING_LOG_INFO("OpenAppDetailSettingsPage end.");
 }
+
+void OpenDoubleClickSettingsPage(ani_env *env, ani_object context)
+{
+    OpenSettingsPageCommon(env, context, SettingsPageUrl::EXTERNAL_DOUBLE_CLICK);
+}
 }
 }

@@ -25,6 +25,8 @@
 #include "values_bucket.h"
 #include "datashare_business_error.h"
 #include "os_account_manager.h"
+#include "parameters.h"
+#include "napi_sys_event_util.h"
 
 using namespace OHOS::AppExecFwk;
 using namespace OHOS::DataShare;
@@ -42,6 +44,15 @@ const int STATUS_ERROR_CODE = -1;
 const int PERMISSION_DENIED_CODE = -2;
 const int USERID_HELPER_NUMBER = 100;
 const int UNSUPPORT_CODE = 801;
+const std::string SUCCESS_WEARABLE = "1";
+const std::string FAILED_WEARABLE = "0";
+const std::string PAY_KEY_WEARABLE = "hw_start_pay_key";
+const std::string URI_TRAGET_WEARABLE = "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true";
+const std::string DATA_ABILITY_WEARABLE = "datashare:///com.ohos.settingsdata.DataAbility";
+const int8_t INDEX_WEARABLE = 1;
+const std::string IS_DOUBLE_CLICK_SELF = "is_double_click_app_forself";
+const std::string DEVICE_TYPE = OHOS::system::GetParameter("const.product.devicetype", "");
+const std::string WEARABLE_DEVICE = "wearable";
 
 void ThrowExistingError(ani_env *env, int errorCode, std::string errorMessage)
 {
@@ -565,6 +576,145 @@ ani_boolean ani_register_key_observer(
     return ani_settings_register_observer(env, context, name, domainName, observer);
 }
 
+void ScanAppValid(std::string &value)
+{
+    sptr<ISystemAbilityManager> saManager = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
+    if (saManager == nullptr) {
+        SETTING_LOG_ERROR("IsDoubleClickAppForSelf SettingUtils: GetSystemAbilityManager Failed.");
+        return;
+    }
+    sptr<IRemoteObject> remoteObj = saManager->GetSystemAbility(SUBSYS_WEARABLE_SYS_ABILITY_ID_BEGIN + INDEX_WEARABLE);
+    if (remoteObj == nullptr) {
+        SETTING_LOG_ERROR("IsDoubleClickAppForSelf SettingUtils: GetSystemAbility Service Failed.");
+        return;
+    }
+    std::shared_ptr<DataShare::DataShareHelper> settingHelper = DataShare::DataShareHelper::Creator(remoteObj,
+    URI_TRAGET_WEARABLE, DATA_ABILITY_WEARABLE);
+    if (settingHelper == nullptr) {
+        SETTING_LOG_ERROR("IsDoubleClickAppForSelf settingHelper is null.");
+        return;
+    }
+    std::vector<std::string> columns;
+    DataShare::DataSharePredicates predicates;
+    Uri uriTemp(URI_TRAGET_WEARABLE);
+    predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, PAY_KEY_WEARABLE);
+    auto result = settingHelper->Query(uriTemp, predicates, columns, nullptr);
+    if (result == nullptr) {
+        SETTING_LOG_ERROR("IsDoubleClickAppForSelf SettingUtils: query error, result is null.");
+        settingHelper->Release();
+        return;
+    }
+    if (result->GoToFirstRow() != 0) {
+        SETTING_LOG_INFO("IsDoubleClickAppForSelf SettingUtils: No application is set or Query error.");
+        result->Close();
+        settingHelper->Release();
+        return;
+    }
+    int columnIndex = 0;
+    result->GetColumnIndex(SETTINGS_DATA_FIELD_VALUE, columnIndex);
+    result->GetString(columnIndex, value);
+    result->Close();
+    settingHelper->Release();
+}
+
+AsyncCallbackInfo* GetNewAsyncCallbackInfo(ani_env *env)
+{
+    AsyncCallbackInfo* asyncCallbackInfo = new AsyncCallbackInfo {
+        .env = env,
+        .asyncWork = nullptr,
+        .deferred = nullptr,
+        .callbackRef = nullptr,
+        .dataAbilityHelper = nullptr,
+        .key = "",
+        .value = "",
+        .uri = "",
+        .status = false
+    };
+    return asyncCallbackInfo;
+}
+
+void Finished(AsyncCallbackInfo* asyncCallbackInfo)
+{
+    if (!asyncCallbackInfo) {
+        SETTING_LOG_ERROR("asyncCallbackInfo is null.");
+        return;
+    }
+    std::string appName;
+    ScanAppValid(appName);
+    SETTING_LOG_INFO("IsDoubleClickAppForSelf Current Application: %{public}s", appName.c_str());
+    std::string currentBundleName = Settings::BundleUtil::GetCurrentBundleName();
+    SETTING_LOG_INFO("IsDoubleClickAppForSelf CurrentBundleName: %{public}s", currentBundleName.c_str());
+    if (currentBundleName.size() >= appName.size()) {
+        asyncCallbackInfo->value = FAILED_WEARABLE;
+        ReportSysEvent(IS_DOUBLE_CLICK_SELF, false);
+        return;
+    }
+    std::string finalResult = SUCCESS_WEARABLE;
+    for (size_t i = 0; i < currentBundleName.size(); ++i) {
+        if (appName[i] != currentBundleName[i]) {
+            finalResult = FAILED_WEARABLE;
+            break;
+        }
+    }
+    if (finalResult == FAILED_WEARABLE) {
+        ReportSysEvent(IS_DOUBLE_CLICK_SELF, false);
+    } else {
+        ReportSysEvent(IS_DOUBLE_CLICK_SELF, true);
+    }
+    asyncCallbackInfo->value = finalResult;
+}
+
+ani_boolean IsDoubleClickAppForSelf(ani_env *env)
+{
+    ani_boolean resource = nullptr;
+    ani_boolean promise = nullptr;
+    if (DEVICE_TYPE != WEARABLE_DEVICE) {
+        SETTING_LOG_ERROR("The device type is not supported.");
+        return promise;
+    }
+    NAPI_CALL(env, napi_create_string_utf8(env, "isDoubleClickAppForSelf", NAPI_AUTO_LENGTH, &resource));
+    AsyncCallbackInfo* asyncCallbackInfo = GetNewAsyncCallbackInfo(env);
+    if (asyncCallbackInfo == nullptr) {
+        return promise;
+    }
+    napi_deferred deferred;
+    if (napi_create_promise(env, &deferred, &promise) != napi_ok) {
+        delete asyncCallbackInfo;
+        asyncCallbackInfo = nullptr;
+        return promise;
+    }
+    asyncCallbackInfo->deferred = deferred;
+    napi_create_async_work(
+        env,
+        nullptr,
+        resource,
+        [](ani_env env, void* data) {
+            AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+            Finished(asyncCallbackInfo);
+        },
+        [](ani_env env, napi_status status, void* data) {
+            AsyncCallbackInfo* asyncCallbackInfo = (AsyncCallbackInfo*)data;
+            ani_boolean result = wrap_bool_to_js(env, asyncCallbackInfo->value == SUCCESS_WEARABLE);
+            napi_resolve_deferred(asyncCallbackInfo->env, asyncCallbackInfo->deferred, result);
+            napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
+            asyncCallbackInfo->dataAbilityHelper = nullptr;
+            delete asyncCallbackInfo;
+            asyncCallbackInfo = nullptr;
+        },
+        static_cast<void*>(asyncCallbackInfo),
+        &asyncCallbackInfo->asyncWork);
+    if (napi_queue_async_work(env, asyncCallbackInfo->asyncWork) != napi_ok) {
+        SETTING_LOG_ERROR("IsDoubleClickAppForSelf napi_queue_async_work error");
+        if (asyncCallbackInfo != nullptr) {
+            napi_delete_async_work(env, asyncCallbackInfo->asyncWork);
+            asyncCallbackInfo->dataAbilityHelper = nullptr;
+            delete asyncCallbackInfo;
+            asyncCallbackInfo = nullptr;
+        }
+    }
+    return promise;
+}
+
 }  // namespace Settings
 }  // namespace OHOS
 
@@ -610,6 +760,9 @@ static ani_boolean BindMethods(ani_env *env)
             "openAboutDeviceSettingsPage_inner", nullptr, reinterpret_cast<void *>(OpenAboutDeviceSettingsPage)},
         ani_native_function{
             "openAppDetailSettingsPage_inner", nullptr, reinterpret_cast<void *>(OpenAppDetailSettingsPage)},
+        ani_native_function{
+            "openDoubleClickSettingsPage_inner", nullptr, reinterpret_cast<void *>(OpenDoubleClickSettingsPage)},
+        ani_native_function{"isDoubleClickAppForSelf_inner", nullptr, reinterpret_cast<void *>(IsDoubleClickAppForSelf)},    
     };
     if (env->Namespace_BindNativeFunctions(spc, methods.data(), methods.size()) != ANI_OK) {
         SETTING_LOG_ERROR("Cannot bind native methods to %{public}s ", spaceName);

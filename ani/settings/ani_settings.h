@@ -23,6 +23,7 @@
 #include "data_ability_predicates.h"
 #include "datashare_helper.h"
 #include "datashare_predicates.h"
+#include "napi_bundle_util.h"
 
 #define ARGS_ONE 1
 #define ARGS_TWO 2
@@ -95,6 +96,7 @@ ani_string ani_get_uri_sync(ani_env *env, ani_string key);
 ani_boolean ani_register_key_observer(
     ani_env *env, ani_object context, ani_string name, ani_string domainName, ani_object observer);
 ani_boolean ani_unregister_key_observer(ani_env *env, ani_object context, ani_string name, ani_string domainName);
+ani_boolean IsDoubleClickAppForSelf(ani_env *env);
 }  // namespace Settings
 }  // namespace OHOS
 #endif  //  ANI_SETTINGS_H
