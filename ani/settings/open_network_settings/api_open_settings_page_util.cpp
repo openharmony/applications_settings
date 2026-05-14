@@ -31,6 +31,7 @@ const std::string SettingsPageUrl::APPLICATION_INFO_ENTRY = "application_info_en
 const std::string DeviceType::PHONE = "phone";
 const std::string DeviceType::TABLET = "tablet";
 const std::string DeviceType::PC = "2in1";
+const std::string DeviceType::WEARABLE = "wearable";
 
 const static std::unordered_set<std::string> supportedPageForPhoneList = {
     SettingsPageUrl::INPUT_PAGE,
@@ -66,10 +67,16 @@ const static std::unordered_set<std::string> supportedPageForPCList = {
     SettingsPageUrl::APPLICATION_INFO_ENTRY
 };
 
+const static std::unordered_set<std::string> supportedPageForWearList = {
+    SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE,
+    SettingsPageUrl::NFC_PAGE
+};
+
 const static std::map<std::string, std::unordered_set<std::string>> supportedPageForDeviceMap = {
     {DeviceType::PHONE, supportedPageForPhoneList},
     {DeviceType::TABLET, supportedPageForTabletList},
-    {DeviceType::PC, supportedPageForPCList}
+    {DeviceType::PC, supportedPageForPCList},
+    {DeviceType::WEARABLE, supportedPageForWearList}
 };
 
 bool IsPageSupportJump(const std::string &deviceType, const std::string &pageUri)
