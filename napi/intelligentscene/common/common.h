@@ -52,7 +52,7 @@ public:
 
     static napi_value NapiGetUndefined(napi_env env);
 
-    static napi_value JSParaError(const napi_env &env, const napi_ref &callback);
+    static napi_value JSParaError(const napi_env &env);
 
     static napi_value NapiThrowError(const napi_env &env, int32_t errorCode, CallbackPromiseInfo &info,
         const napi_value &promise);

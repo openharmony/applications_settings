@@ -146,7 +146,12 @@ napi_value napi_is_do_not_disturb_enabled(napi_env env, napi_callback_info info)
         new (std::nothrow) NotDisturbEnabledCallback{.env = env, .asyncWork = nullptr, .callback = callback};
     if (!asyncCallBackInfo) {
         Common::NapiThrow(env, ERROR_INTERNAL_ERROR);
-        return Common::JSParaError(env, callback);
+        if (callback != nullptr) {
+            napi_delete_reference(env, callback);
+            callback = nullptr;
+            return Common::NapiGetNull(env);
+        }
+        return Common::JSParaError(env);
     }
     napi_value promise = nullptr;
     Common::PaddingCallbackPromiseInfo(env, callback, asyncCallBackInfo->info, promise);
@@ -161,7 +166,7 @@ napi_value napi_is_do_not_disturb_enabled(napi_env env, napi_callback_info info)
         napi_delete_async_work(env, asyncCallBackInfo->asyncWork);
         delete asyncCallBackInfo;
         Common::NapiThrow(env, ERROR_INTERNAL_ERROR);
-        return Common::JSParaError(env, callback);
+        return Common::JSParaError(env);
     }
 
     if (asyncCallBackInfo->info.isCallback) {
@@ -180,7 +185,12 @@ napi_value napi_is_notify_allowed(napi_env env, napi_callback_info info)
         new (std::nothrow) NotifyAllowedCallback{.env = env, .asyncWork = nullptr, .callback = callback};
     if (!asyncCallBackInfo) {
         Common::NapiThrow(env, ERROR_INTERNAL_ERROR);
-        return Common::JSParaError(env, callback);
+        if (callback != nullptr) {
+            napi_delete_reference(env, callback);
+            callback = nullptr;
+            return Common::NapiGetNull(env);
+        }
+        return Common::JSParaError(env);
     }
     napi_value promise = nullptr;
     Common::PaddingCallbackPromiseInfo(env, callback, asyncCallBackInfo->info, promise);
@@ -195,7 +205,7 @@ napi_value napi_is_notify_allowed(napi_env env, napi_callback_info info)
         napi_delete_async_work(env, asyncCallBackInfo->asyncWork);
         delete asyncCallBackInfo;
         Common::NapiThrow(env, ERROR_INTERNAL_ERROR);
-        return Common::JSParaError(env, callback);
+        return Common::JSParaError(env);
     }
 
     if (asyncCallBackInfo->info.isCallback) {
