@@ -197,11 +197,8 @@ napi_value Common::CreateErrorValue(napi_env env, int32_t errCode, std::string &
     return error;
 }
 
-napi_value Common::JSParaError(const napi_env &env, const napi_ref &callback)
+napi_value Common::JSParaError(const napi_env &env)
 {
-    if (callback) {
-        return Common::NapiGetNull(env);
-    }
     napi_value promise = nullptr;
     napi_deferred deferred = nullptr;
     napi_create_promise(env, &deferred, &promise);
