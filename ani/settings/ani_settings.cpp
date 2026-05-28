@@ -45,7 +45,7 @@ const int PERMISSION_DENIED_CODE = -2;
 const int USERID_HELPER_NUMBER = 100;
 const int UNSUPPORT_CODE = 801;
 const std::string PAY_KEY_WEARABLE = "hw_start_pay_key";
-const std::string URI_TRAGET_WEARABLE = "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true";
+const std::string URI_TARGET_WEARABLE = "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true";
 const std::string DATA_ABILITY_WEARABLE = "datashare:///com.ohos.settingsdata.DataAbility";
 const int8_t INDEX_WEARABLE = 1;
 const std::string IS_DOUBLE_CLICK_SELF = "is_double_click_app_forself";
@@ -587,14 +587,14 @@ void ScanAppValid(std::string &value)
         return;
     }
     std::shared_ptr<DataShare::DataShareHelper> settingHelper = DataShare::DataShareHelper::Creator(remoteObj,
-    URI_TRAGET_WEARABLE, DATA_ABILITY_WEARABLE);
+    URI_TARGET_WEARABLE, DATA_ABILITY_WEARABLE);
     if (settingHelper == nullptr) {
         SETTING_LOG_ERROR("IsDoubleClickAppForSelf settingHelper is null.");
         return;
     }
     std::vector<std::string> columns;
     DataShare::DataSharePredicates predicates;
-    Uri uriTemp(URI_TRAGET_WEARABLE);
+    Uri uriTemp(URI_TARGET_WEARABLE);
     predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, PAY_KEY_WEARABLE);
     auto result = settingHelper->Query(uriTemp, predicates, columns, nullptr);
     if (result == nullptr) {
@@ -622,7 +622,7 @@ ani_boolean IsDoubleClickAppForSelf(ani_env *env)
         SETTING_LOG_ERROR("The device type is not supported.");
         return result;
     }
-    str:string appName;
+    std::string appName;
     ScanAppValid(appName);
 
     SETTING_LOG_INFO("IsDoubleClickAppForSelf Current Application: %{public}s", appName.c_str());
