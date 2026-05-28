@@ -692,7 +692,7 @@ static ani_boolean BindMethods(ani_env *env)
         ani_native_function{
             "openDoubleClickSettingsPage_inner", nullptr, reinterpret_cast<void *>(OpenDoubleClickSettingsPage)},
         ani_native_function{
-            "isDoubleClickAppForSelf_inner", nullptr, reinterpret_cast<void *>(IsDoubleClickAppForSelf)},    
+            "isDoubleClickAppForSelf_inner", nullptr, reinterpret_cast<void *>(IsDoubleClickAppForSelf)},
     };
     if (env->Namespace_BindNativeFunctions(spc, methods.data(), methods.size()) != ANI_OK) {
         SETTING_LOG_ERROR("Cannot bind native methods to %{public}s ", spaceName);
