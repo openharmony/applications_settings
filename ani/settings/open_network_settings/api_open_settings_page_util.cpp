@@ -27,6 +27,7 @@ const std::string SettingsPageUrl::SCREEN_REFRESH_RATE_PAGE = "screen_refresh_ra
 const std::string SettingsPageUrl::SOUND_PAGE = "volume_settings";
 const std::string SettingsPageUrl::ABOUT_DEVICE_PAGE = "about_device";
 const std::string SettingsPageUrl::APPLICATION_INFO_ENTRY = "application_info_entry";
+const std::string SettingsPageUrl::EXTERNAL_DOUBLE_CLICK = "external_double_click_ability";
 
 const std::string DeviceType::PHONE = "phone";
 const std::string DeviceType::TABLET = "tablet";
@@ -69,7 +70,8 @@ const static std::unordered_set<std::string> supportedPageForPCList = {
 
 const static std::unordered_set<std::string> supportedPageForWearList = {
     SettingsPageUrl::BIOMETRICS_PASSWORD_PAGE,
-    SettingsPageUrl::NFC_PAGE
+    SettingsPageUrl::NFC_PAGE,
+    SettingsPageUrl::EXTERNAL_DOUBLE_CLICK
 };
 
 const static std::map<std::string, std::unordered_set<std::string>> supportedPageForDeviceMap = {

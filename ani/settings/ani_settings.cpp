@@ -25,6 +25,8 @@
 #include "values_bucket.h"
 #include "datashare_business_error.h"
 #include "os_account_manager.h"
+#include "parameters.h"
+#include "napi_sys_event_util.h"
 
 using namespace OHOS::AppExecFwk;
 using namespace OHOS::DataShare;
@@ -42,6 +44,13 @@ const int STATUS_ERROR_CODE = -1;
 const int PERMISSION_DENIED_CODE = -2;
 const int USERID_HELPER_NUMBER = 100;
 const int UNSUPPORT_CODE = 801;
+const std::string PAY_KEY_WEARABLE = "hw_start_pay_key";
+const std::string URI_TARGET_WEARABLE = "datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true";
+const std::string DATA_ABILITY_WEARABLE = "datashare:///com.ohos.settingsdata.DataAbility";
+const int8_t INDEX_WEARABLE = 1;
+const std::string IS_DOUBLE_CLICK_SELF = "is_double_click_app_forself";
+const std::string DEVICE_TYPE = OHOS::system::GetParameter("const.product.devicetype", "");
+const std::string WEARABLE_DEVICE = "wearable";
 
 void ThrowExistingError(ani_env *env, int errorCode, std::string errorMessage)
 {
@@ -565,6 +574,76 @@ ani_boolean ani_register_key_observer(
     return ani_settings_register_observer(env, context, name, domainName, observer);
 }
 
+void ScanAppValid(std::string &value)
+{
+    sptr<ISystemAbilityManager> saManager = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
+    if (saManager == nullptr) {
+        SETTING_LOG_ERROR("IsDoubleClickAppForSelf SettingUtils: GetSystemAbilityManager Failed.");
+        return;
+    }
+    sptr<IRemoteObject> remoteObj = saManager->GetSystemAbility(SUBSYS_WEARABLE_SYS_ABILITY_ID_BEGIN + INDEX_WEARABLE);
+    if (remoteObj == nullptr) {
+        SETTING_LOG_ERROR("IsDoubleClickAppForSelf SettingUtils: GetSystemAbility Service Failed.");
+        return;
+    }
+    std::shared_ptr<DataShare::DataShareHelper> settingHelper = DataShare::DataShareHelper::Creator(remoteObj,
+    URI_TARGET_WEARABLE, DATA_ABILITY_WEARABLE);
+    if (settingHelper == nullptr) {
+        SETTING_LOG_ERROR("IsDoubleClickAppForSelf settingHelper is null.");
+        return;
+    }
+    std::vector<std::string> columns;
+    DataShare::DataSharePredicates predicates;
+    Uri uriTemp(URI_TARGET_WEARABLE);
+    predicates.EqualTo(SETTINGS_DATA_FIELD_KEYWORD, PAY_KEY_WEARABLE);
+    auto result = settingHelper->Query(uriTemp, predicates, columns, nullptr);
+    if (result == nullptr) {
+        SETTING_LOG_ERROR("IsDoubleClickAppForSelf SettingUtils: query error, result is null.");
+        settingHelper->Release();
+        return;
+    }
+    if (result->GoToFirstRow() != 0) {
+        SETTING_LOG_INFO("IsDoubleClickAppForSelf SettingUtils: No application is set or Query error.");
+        result->Close();
+        settingHelper->Release();
+        return;
+    }
+    int columnIndex = 0;
+    result->GetColumnIndex(SETTINGS_DATA_FIELD_VALUE, columnIndex);
+    result->GetString(columnIndex, value);
+    result->Close();
+    settingHelper->Release();
+}
+
+ani_boolean IsDoubleClickAppForSelf(ani_env *env)
+{
+    ani_boolean result = false;
+    if (DEVICE_TYPE != WEARABLE_DEVICE) {
+        SETTING_LOG_ERROR("The device type is not supported.");
+        return result;
+    }
+    std::string appName;
+    ScanAppValid(appName);
+
+    SETTING_LOG_INFO("IsDoubleClickAppForSelf Current Application: %{public}s", appName.c_str());
+    std::string currentBundleName = Settings::BundleUtil::GetCurrentBundleName();
+    SETTING_LOG_INFO("IsDoubleClickAppForSelf CurrentBundleName: %{public}s", currentBundleName.c_str());
+    if (currentBundleName.size() >= appName.size()) {
+        ReportSysEvent(IS_DOUBLE_CLICK_SELF, false);
+        return result;
+    }
+    bool flag = true;
+    for (size_t i = 0; i < currentBundleName.size(); ++i) {
+        if (appName[i] != currentBundleName[i]) {
+            flag = false;
+            break;
+        }
+    }
+    result = flag;
+    ReportSysEvent(IS_DOUBLE_CLICK_SELF, result);
+    return result;
+}
+
 }  // namespace Settings
 }  // namespace OHOS
 
@@ -610,6 +689,10 @@ static ani_boolean BindMethods(ani_env *env)
             "openAboutDeviceSettingsPage_inner", nullptr, reinterpret_cast<void *>(OpenAboutDeviceSettingsPage)},
         ani_native_function{
             "openAppDetailSettingsPage_inner", nullptr, reinterpret_cast<void *>(OpenAppDetailSettingsPage)},
+        ani_native_function{
+            "openDoubleClickSettingsPage_inner", nullptr, reinterpret_cast<void *>(OpenDoubleClickSettingsPage)},
+        ani_native_function{
+            "isDoubleClickAppForSelf_inner", nullptr, reinterpret_cast<void *>(IsDoubleClickAppForSelf)},
     };
     if (env->Namespace_BindNativeFunctions(spc, methods.data(), methods.size()) != ANI_OK) {
         SETTING_LOG_ERROR("Cannot bind native methods to %{public}s ", spaceName);

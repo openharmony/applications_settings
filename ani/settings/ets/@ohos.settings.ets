@@ -166,6 +166,10 @@ export namespace settings {
 
   native function openAppDetailSettingsPage_inner(context: Context, bundleName: string, appIndex: int): void;
 
+  native function openDoubleClickSettingsPage_inner(context: Context): void;
+
+  native function isDoubleClickAppForSelf_inner(): boolean;
+
   export function getValue(context: Context, name: string, callback: AsyncCallback<string>): void {
     taskpool.execute((): string => {
       return getValue_inner(context, name, "global");
@@ -366,6 +370,24 @@ export namespace settings {
 
   export function openAboutDeviceSettingsPage(context: Context): void {
     openAboutDeviceSettingsPage_inner(context);
+  }
+
+  export function openDoubleClickSettingsPage(context: Context): void {
+    openDoubleClickSettingsPage_inner(context);
+  }
+
+  export function isDoubleClickAppForSelf(): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject): void => {
+      taskpool.execute((): boolean => {
+        return isDoubleClickAppForSelf_inner();
+      })
+        .then((ret: Any): void => {
+          resolve(ret as boolean);
+        })
+        .catch((ret: Any): void => {
+          reject(ret as BusinessError);
+        });
+    });
   }
 
   export function openAppDetailSettingsPage(context: Context, bundleName: string, appIndex?: int): void {

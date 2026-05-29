@@ -35,6 +35,7 @@ public:
     static const std::string DISPLAY_PAGE;
     static const std::string SCREEN_REFRESH_RATE_PAGE;
     static const std::string SOUND_PAGE;
+    static const std::string EXTERNAL_DOUBLE_CLICK;
 };
 
 class DeviceType {
