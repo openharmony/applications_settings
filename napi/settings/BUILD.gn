@@ -53,6 +53,7 @@ ohos_shared_library("settings") {
     "relational_store:native_rdb",
     "hisysevent:libhisysevent",
     "samgr:samgr_proxy",
+    "jsoncpp:jsoncpp",
   ]
 
   relative_install_dir = "module"

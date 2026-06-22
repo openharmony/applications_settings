@@ -57,6 +57,7 @@ ohos_shared_library("settings_ani") {
     "runtime_core:libarkruntime",
     "hisysevent:libhisysevent",
     "samgr:samgr_proxy",
+    "jsoncpp:jsoncpp"
   ]
 
   relative_install_dir = "module"
