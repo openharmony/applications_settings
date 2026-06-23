@@ -16,7 +16,9 @@
 #ifndef OHOS_CJ_SETTINGS_OBSERVER_H
 #define OHOS_CJ_SETTINGS_OBSERVER_H
 
+#include <atomic>
 #include <functional>
+#include <mutex>
 #include "cj_settings_utils.h"
 #include "data_ability_observer_interface.h"
 #include "data_ability_observer_stub.h"
@@ -31,7 +33,8 @@ public:
     ~SettingsObserver() {}
     void OnChange();
     SettingsInfo cjInfo;
-    bool toBeDelete = false;
+    std::mutex callbackMutex;
+    std::atomic<bool> toBeDelete{false};
     std::function<void(void)> cjCallback;
 };
 

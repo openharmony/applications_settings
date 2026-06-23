@@ -43,10 +43,12 @@ char* TransformFromString(std::string str, int32_t* ret)
         *ret = MEMORY_CODE;
         return nullptr;
     }
-    *ret = memcpy_s(retValue, len, str.c_str(), len);
-    if (*ret != 0) {
+    if (memcpy_s(retValue, len, str.c_str(), len) != 0) {
         *ret = MEMORY_CODE;
+        free(retValue);
+        return nullptr;
     }
+    *ret = 0;
     return retValue;
 }
 
