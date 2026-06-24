@@ -30,7 +30,8 @@ std::mutex g_observerMapMutex;
 
 void SettingsObserver::OnChange()
 {
-    if (this->cjCallback == nullptr || this->toBeDelete) {
+    std::lock_guard<std::mutex> lk(this->callbackMutex);
+    if (this->cjCallback == nullptr || this->toBeDelete.load(std::memory_order_acquire)) {
         return;
     }
     this->cjCallback();
@@ -94,9 +95,14 @@ bool UnregisterKeyObserver(
     }
     std::string strUri = GetStageUriStr(tableName, GetUserIdStr(), key);
     OHOS::Uri uri(strUri);
-    dataShareHelper->UnregisterObserver(uri, g_observerMap[key]);
+    auto observer = g_observerMap[key];
+    {
+        std::lock_guard<std::mutex> lk(observer->callbackMutex);
+        observer->toBeDelete.store(true, std::memory_order_release);
+        observer->cjCallback = nullptr;
+    }
+    dataShareHelper->UnregisterObserver(uri, observer);
     dataShareHelper->Release();
-    g_observerMap[key]->toBeDelete = true;
     g_observerMap[key] = nullptr;
     g_observerMap.erase(key);
     return true;
