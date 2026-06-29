@@ -1,0 +1,369 @@
+{
+    "string":[
+        {
+            "name":"developer_options_settings_title",
+            "value":"Developer options",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_options_settings_summary",
+            "value":"For development use only.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_developer_mode",
+            "value":"Enable developer options?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"developer_options_enabled_toast",
+            "value":"Developer options are already available.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_development_modal_dialog_content",
+            "value":"This may make your device vulnerable to security threats. Your device will restart to apply this change.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Cancel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_on",
+            "value":"Enable & restart",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel_development_modal_dialog_content",
+            "value":"App debugging will no longer be available. Your device will restart to apply this change.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"close_developer_mode",
+            "value":"Disable developer options?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_close",
+            "value":"Disable & restart",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_developer_mode",
+            "value":"Used to set developer mode permissions"
+        },
+        {
+            "name":"sensitive_behavior_statement_Additional_text",
+            "value":"%1$d. The Software update service needs to connect to the Internet and read the list of installed apps.\n",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"api_version",
+            "value":"API version",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"enterprise_disable_developer_options_toast",
+            "value":"This feature has been blocked by your organization. Contact your administrator for assistance.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"model_name",
+            "value":"Model name",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"model_code",
+            "value":"Model number",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"imei_id",
+            "value":"IMEI",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"version",
+            "value":"Version",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"version_name",
+            "value":"Version name",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_type",
+            "value":"Edition",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_type_professional",
+            "value":"Professional",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"version_type_enterprise",
+            "value":"Enterprise",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"software_version",
+            "value":"Software version",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"serial_number",
+            "value":"Serial number",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"running_memory",
+            "value":"RAM",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cpu_title",
+            "value":"Processor",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"storage_settings_title",
+            "value":"Storage",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_resolution",
+            "value":"Resolution",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"baseband_version",
+            "value":"Baseband version",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"kernel_version",
+            "value":"Kernel version",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"openHarmony_version",
+            "value":"OpenHarmony version",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"system_service_version",
+            "value":"System service version",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_patch_label",
+            "value":"Security patch",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_total_used",
+            "value":"Available: %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"storage_total",
+            "value":"Capacity: %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_mac",
+            "value":"%1$s (Device)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"random_mac",
+            "value":"%1$s (Random)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status_charging",
+            "value":"Charging",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status_filled",
+            "value":"Fully charged",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status_consuming_power",
+            "value":"Not charging",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_status",
+            "value":"Battery status",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_level",
+            "value":"Battery level",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bluetooth_address",
+            "value":"Bluetooth address",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_on_duration",
+            "value":"Running time",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hardware_version",
+            "value":"Hardware version",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ip_address",
+            "value":"IP address",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unknown",
+            "value":"Unknown",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_reason_bluetooth_local_mac",
+            "value":"Used to obtain Bluetooth local MAC address."
+        },
+        {
+            "name":"wifi_state_off",
+            "value":"Not available",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"external",
+            "value":"Exterior: %1$s × %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"inner",
+            "value":"Interior: %1$s × %2$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_battery_choose_info",
+            "value":"%1$s–%2$s, Battery level %3$s–%4$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"developer_mode_open_toast",
+            "value":"Developer options now available.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

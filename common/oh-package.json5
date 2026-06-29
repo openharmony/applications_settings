@@ -1,0 +1,10 @@
+{
+  "name": "@ohos/settings.common",
+  "description": "settings common",
+  "main": "index.ets",
+  "version": "1.0.0",
+  "dependencies": {
+//    "@hw-hmos/memorytool": "1.0.10",
+    "@ohos/settings.native": "file:../native_api"
+  }
+}

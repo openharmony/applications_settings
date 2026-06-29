@@ -1,0 +1,123 @@
+{
+    "string":[
+        {
+            "name":"nfc_switch_off_text",
+            "value":"Выклю\u200bчено",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_on_text",
+            "value":"Подключено",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"nfc_switch_on_text",
+            "value":"Включено",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_notice",
+            "value":"Уведомление о правах",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"projection_state_on",
+            "value":"Включено",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_off_text",
+            "value":"Не подключено",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_collaboration_settings_title",
+            "value":"Дополнительные настройки",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"multi_device_collaboration_service_switch",
+            "value":"Оптимизированные службы взаимодействия",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"projection_state_off",
+            "value":"Выклю\u200bчено",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"bind_devices",
+            "value":"Управление устройствами",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wireless_projection_statement",
+            "value":"Этой службе требуется право подключения устройств. Она использует сеть WLAN и Bluetooth, а также записывает аудио устройства и контент на экране. Включая ее, вы принимаете вышеизложенные положения и положения документа %s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_switch",
+            "value":"Рекомендации о взаимодействии",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_details",
+            "value":"На базе автоматического обнаружения устройств и определения контекста.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"far_field_communication_service_privacy",
+            "value":"Уведомление о Службах связи дальнего радиуса действия и конфиденциальности",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaboration_recommend_service_switch_msg",
+            "value":"Эта служба рекомендует способы взаимодействия этого устройства с вашими другими устройствами, когда они находятся поблизости. Для этого службе требуется использовать Bluetooth и WLAN, а также доступ в Интернет, чтобы обмениваться данными с другими устройствами с помощью технологии связи дальнего радиуса действия. Подробную информацию об обработке ваших персональных данных см. в документе %s. Включая эту опцию, вы принимаете эти положения.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_entry_guide",
+            "value":"Как включить функцию Трансляция экрана",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_entry_guide_message",
+            "value":"Нажмите на значок функции Трансляция экрана на панели управления, чтобы выполнить поиск устройств поблизости.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

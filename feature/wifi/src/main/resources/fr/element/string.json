@@ -1,0 +1,1299 @@
+{
+    "string":[
+        {
+            "name":"wifi_wifi_frequency_5g",
+            "value":"5 GHz",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_connecting",
+            "value":"Connexion en cours…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"please_select_phase2",
+            "value":"Authentification phase 2",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_ip_settings_dhcp",
+            "value":"Dynamique",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsecure_wifi_status_connected",
+            "value":"Connecté (risque de sécurité détecté)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsecure_wifi_status_saved_encrypted",
+            "value":"Enregistré, chiffré (risque de sécurité détecté)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsecure_wifi_status_saved",
+            "value":"Enregistré (risque de sécurité détecté)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wlan_security_title",
+            "value":"Vérification de la sécurité du WLAN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"unsecure_is_close_auto_reconnect",
+            "value":"Reconnexion automatique désactivée (risque de sécurité détecté)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_saved",
+            "value":"Enregistré",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_security_open",
+            "value":"Ouvrir",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_signal_good",
+            "value":"Bonne",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_ip_settings_title",
+            "value":"Paramètres IP",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_static_ip_dns2",
+            "value":"DNS 2",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security",
+            "value":"Type de sécurité",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_static_ip_dns1",
+            "value":"DNS 1",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_add_wifi",
+            "value":"Ajouter un réseau",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_static_ip_gateway",
+            "value":"Passerelle",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_privacy_settings_title",
+            "value":"Vie privée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"reset_factory_disabled_toast",
+            "value":"Cette opération est interdite par la direction de l'entreprise.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_settings_title",
+            "value":"WLAN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_signal_excellent",
+            "value":"Excellente",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_eap_method",
+            "value":"Méthode d'authentification EAP",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_unsuccessful",
+            "value":"Échec",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_scanning",
+            "value":"Recherche…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_identity",
+            "value":"Identité",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_proxy_settings_none",
+            "value":"Aucun",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_wrong_pwd",
+            "value":"Mot de passe incorrect. La connexion a échoué.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_connect_status_failed",
+            "value":"Mot de passe incorrect. La connexion a échoué.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_signal_fair",
+            "value":"Satisfaisante",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_add_other_wifi",
+            "value":"Ajouter un réseau",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_security_open",
+            "value":"Ouvrir",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_know",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_signal_poor",
+            "value":"Faible",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_peap",
+            "value":"PEAP",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_ip_settings_static",
+            "value":"Statique",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_static_ip_network_prefix",
+            "value":"Longueur du préfixe réseau",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_obtaining_iP",
+            "value":"Récupération de l'adresse IP…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_name",
+            "value":"Nom du réseau",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_ip_address",
+            "value":"Adresse IP",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"proxy_warning_limited_support",
+            "value":"Le proxy HTTP est utilisé par le navigateur, mais pas par d'autres applications.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_advanced_title",
+            "value":"Options avancées",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_mac_address_title",
+            "value":"Adresse MAC",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_wifi_frequency_2g",
+            "value":"2,4 GHz",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"proxy_hostname_label",
+            "value":"Nom d'Hôte du Proxy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_privacy_device",
+            "value":"Utiliser l'adresse MAC de l'appareil",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_connected",
+            "value":"Connecté",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_encrypted",
+            "value":"Sécurisé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_eap_anonymous",
+            "value":"Anonyme",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_failed_rejected",
+            "value":"Accès au réseau refusé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_proxy_settings_auto",
+            "value":"Automatique",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ca_certificate",
+            "value":"Certificats CA",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"phase2_mschapv2",
+            "value":"MSCHAPV2",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_connecting",
+            "value":"Connexion à %1$s en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hotspot_settings_title",
+            "value":"Point d'accès personnel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Annuler",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"skip_process",
+            "value":"Ignorer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_enter_ssid_hint",
+            "value":"Nom du réseau",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_privacy_random",
+            "value":"Utiliser une adresse MAC aléatoire",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"proxy_port_label",
+            "value":"Port du proxy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_proxy_settings_title",
+            "value":"Proxy",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_proxy_settings_manual",
+            "value":"Manuel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_privacy_settings",
+            "value":"Vie privée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_connect_status_title",
+            "value":"Statut",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_setup_config_save_button",
+            "value":"Enregistrer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"proxy_pac_web_address_label",
+            "value":"PAC URL",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"proxy_exclusionlist_label",
+            "value":"Ignorer le proxy pour",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"phase2_aka_prime",
+            "value":"AKA'",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_domain",
+            "value":"Domaine",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"is_close_auto_reconnect",
+            "value":"Reconnexion automatique désactivée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hotspot_repeated_connection",
+            "value":"Déjà connecté à ce point d'accès.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_wapi_psk",
+            "value":"WAPI PSK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_owe",
+            "value":"OWE",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_wep",
+            "value":"WEP",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_wapi_psk",
+            "value":"WAPI PSK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_wifi_frequency_2g_5g",
+            "value":"2,4 GHz et 5 GHz",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"phase2_gtc",
+            "value":"GTC",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_disconnected",
+            "value":"Non connecté",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_wapi_cert",
+            "value":"WAPI CERT",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"join_unsave_net_tips",
+            "value":"Ce réseau pourrait représenter une menace pour la sécurité.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_aka",
+            "value":"AKA",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_cipher_key_manage",
+            "value":"Gestion des clés",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_eap",
+            "value":"802.1x EAP",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_other_wlan",
+            "value":"Autre",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_ssid_error",
+            "value":"\"%s\" introuvable. La connexion a échoué.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_do_not_provide_eap_user_cert",
+            "value":"Ne pas fournir",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_disconnecting",
+            "value":"Déconnexion en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_psk",
+            "value":"WPA/WPA2",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_eap_input_anonymous_identity_hint",
+            "value":"Saisir une identité anonyme",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_cipher_key_none",
+            "value":"Aucun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_eap_suite_b",
+            "value":"WPA3-Enterprise %d bits",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wireless_anti_theft_tip",
+            "value":"Opération indisponible sur l'appareil de démonstration.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_sim",
+            "value":"SIM",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_wapi_psk_hex",
+            "value":"WAPI PSK hexadécimal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_failed_disabled",
+            "value":"Votre organisation ne vous autorise pas à vous connecter à ce réseau WLAN.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_status_failed_connection_full",
+            "value":"Réseau saturé. La connexion a échoué.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"unassigned",
+            "value":"Non spécifié",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_saved_encrypted",
+            "value":"Enregistré, crypté",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_aka_prime",
+            "value":"AKA'",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_network_setting",
+            "value":"Paramètres réseau",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_do_not_validate_eap_server_warning",
+            "value":"Aucun certificat spécifié. Votre connexion ne sera pas privée.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"as_certification",
+            "value":"Certification AS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"connect_the_internet_title",
+            "value":"Se connecter à un réseau",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_cipher_key_ft",
+            "value":"FT",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"join_unsave_net",
+            "value":"Réseau non sécurisé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"continue_join",
+            "value":"Se connecter malgré tout",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"phase2_aka",
+            "value":"AKA",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_connected_successful",
+            "value":"La connexion est établie.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sim_card_slot",
+            "value":"Emplacement de carte SIM",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_connected_unauthorized",
+            "value":"Connecté (connexion/autorisation requise)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_wapi_cert",
+            "value":"WAPI CERT",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_user_certificate",
+            "value":"Certificat utilisateur",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_auto_reconnect_settings",
+            "value":"Reconnexion automatique",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"type_not_support",
+            "value":"Le partager de ce type de réseau ne peut pas se faire.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"phase2_pap",
+            "value":"PAP",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_security_sae",
+            "value":"WPA3",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_tls",
+            "value":"TLS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_wapi_psk_ascii",
+            "value":"WAPI PSK ASCII",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_wapi_psk_password_type",
+            "value":"Type de mot de passe",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_do_not_validate_eap_server",
+            "value":"Ne pas valider",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_use_system_certs",
+            "value":"Utiliser les certificats système",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_input_identity_hint",
+            "value":"Saisir une identité",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"please_enter",
+            "value":"Saisir",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_ttls",
+            "value":"TTLS",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_status_failed_default",
+            "value":"Erreur réseau. La connexion a échoué.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_connected_failed",
+            "value":"La connexion a échoué.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"please_select",
+            "value":"Sélectionner",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"phase2_sim",
+            "value":"SIM",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"phase2_mschap",
+            "value":"MSCHAP",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_eap_method_pwd",
+            "value":"PWD",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sim_not_set",
+            "value":"Non spécifié",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_connected_ap",
+            "value":"Réseau connecté",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_settings",
+            "value":"Paramètres",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_available_ap_group",
+            "value":"Réseaux disponibles",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hotspot_no_connected_devices",
+            "value":"Aucun appareil connecté",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hotspot_turned_off",
+            "value":"Point d'accès personnel désactivé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_signal_1",
+            "value":"Point d'accès WLAN, %d barre de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_signal_0",
+            "value":"Point d'accès WLAN, %d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_lock_signal_2",
+            "value":"Point d'accès WLAN crypté %1$d, %2$d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_signal_4",
+            "value":"Point d'accès WLAN, barres de signal au maximum",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_lock_signal_3",
+            "value":"Point d'accès WLAN crypté %1$d, %2$d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_signal_3",
+            "value":"Point d'accès WLAN, %d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_lock_signal_4",
+            "value":"Point d'accès WLAN crypté %d, barres de signal au maximum",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_signal_2",
+            "value":"Point d'accès WLAN, %d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_lock_signal_0",
+            "value":"Point d'accès WLAN crypté %1$d, %2$d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_lock_signal_1",
+            "value":"Point d'accès WLAN crypté %1$d, %2$d barre de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wlan_error",
+            "value":"Point d'accès WLAN, pas d'Internet",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_0",
+            "value":"Point d'accès WLAN crypté %1$d Plus, %2$d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_1",
+            "value":"Point d'accès WLAN crypté %1$d Plus, %2$d barre de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_2",
+            "value":"Point d'accès WLAN crypté %1$d Plus, %2$d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_3",
+            "value":"Point d'accès WLAN crypté %1$d Plus, %2$d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_lock_signal_4",
+            "value":"Point d'accès WLAN crypté %d Plus, barres de signal au maximum",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"esim_card",
+            "value":"eSIM %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_signal_1",
+            "value":"Point d'accès WLAN %1$d, %2$d barre de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_lock_signal_0",
+            "value":"Point d'accès WLAN crypté %1$d, %2$d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_signal_2",
+            "value":"Point d'accès WLAN %1$d, %2$d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_signal_3",
+            "value":"Point d'accès WLAN %1$d, %2$d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_signal_4",
+            "value":"Point d'accès WLAN %d, barres de signal au maximum",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_lock_signal_4",
+            "value":"Point d'accès WLAN crypté %d, barres de signal au maximum",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_lock_signal_3",
+            "value":"Point d'accès WLAN crypté %1$d, %2$d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_lock_signal_2",
+            "value":"Point d'accès WLAN crypté %1$d, %2$d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_lock_signal_1",
+            "value":"Point d'accès WLAN crypté %1$d, %2$d barre de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_signal_4",
+            "value":"Point d'accès WLAN %d, barres de signal au maximum",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_signal_2",
+            "value":"Point d'accès WLAN %1$d, %2$d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_signal_3",
+            "value":"Point d'accès WLAN %1$d, %2$d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_signal_0",
+            "value":"Point d'accès WLAN %1$d, %2$d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6_signal_1",
+            "value":"Point d'accès WLAN %1$d, %2$d barre de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_signal_4",
+            "value":"Point d'accès WLAN %d Plus, barres de signal au maximum",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_signal_2",
+            "value":"Point d'accès WLAN %1$d Plus, %2$d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_signal_3",
+            "value":"Point d'accès WLAN %1$d Plus, %2$d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_signal_0",
+            "value":"Point d'accès WLAN %1$d Plus, %2$d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi6plus_signal_1",
+            "value":"Point d'accès WLAN %1$d Plus, %2$d barre de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi7_signal_0",
+            "value":"Point d'accès WLAN %1$d, %2$d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_lock_signal_4",
+            "value":"Point d'accès crypté, barres de signal au maximum",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_lock_signal_0",
+            "value":"Point d'accès crypté, %d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_lock_signal_1",
+            "value":"Point d'accès crypté, %d barre de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_lock_signal_2",
+            "value":"Point d'accès crypté, %d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ic_wifi_lock_signal_3",
+            "value":"Point d'accès crypté, %d barres de signal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shared_network_ap_group",
+            "value":"Partagé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"shared_network_failed_message",
+            "value":"Sur votre %s, veuillez vous déconnecter du WLAN, réactivez le WLAN et le Bluetooth, puis vérifiez que les données mobiles soient activées et réessayez.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifi_security_wpa_wpa2_wpa3_ft_psk",
+            "value":"WPA/WPA2/WPA3/FT PSK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ensure_mobile_data_enabled",
+            "value":"Sur le téléphone, veuillez vous assurez que les données mobiles soient activées, puis réactivez le WLAN et le Bluetooth et réessayez.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mobile_data_not_enabled",
+            "value":"Les données mobiles sont désactivées sur le téléphone. Veuillez activer et réessayez.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mobile_network_unavailable",
+            "value":"Le réseau mobile est indisponible sur le téléphone. Veuillez désactiver le point d'accès personnel et réessayez.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"network_sharing_sub_switch_not_enabled",
+            "value":"Le bouton \"Internet\" sous \"Partage de communication\" est désactivé sur le téléphone. Veuillez activer et réessayez.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

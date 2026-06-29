@@ -1,0 +1,552 @@
+{
+    "string":[
+        {
+            "name":"cancel",
+            "value":"[TS_807760]_Cancel"
+        },
+        {
+            "name":"hotspot_blocklist_limit",
+            "value":"[TS_954360]_A maximum of %d devices can be added."
+        },
+        {
+            "name":"delete",
+            "value":"[TS_806185]_Delete"
+        },
+        {
+            "name":"applyIcon",
+            "value":"[TS_977579]_Applying icons…"
+        },
+        {
+            "name":"input_max_length_message",
+            "value":"[TS_806107]_You have entered too many characters."
+        },
+        {
+            "name":"ok",
+            "value":"[TS_863705]_OK"
+        },
+        {
+            "name":"system_rollback",
+            "value":"[TS_866918]_System rollback"
+        },
+        {
+            "name":"location_time_zone",
+            "value":"[TS_870975]_%s needs to be enabled to automatically set the time zone."
+        },
+        {
+            "name":"wlan_scan_content",
+            "value":"[TS_872825]_Improve positioning accuracy by allowing apps and services to scan for WLAN networks at any time, even when WLAN is disabled."
+        },
+        {
+            "name":"wifi_precision_text",
+            "value":"[TS_872804]_To improve positioning accuracy, apps and services can scan for WLAN networks even when WLAN is disabled. You can change this in %s."
+        },
+        {
+            "name":"wifi_precision_title",
+            "value":"[TS_872800]_Advanced settings"
+        },
+        {
+            "name":"wlan_scan_title",
+            "value":"[TS_872811]_WLAN scanning"
+        },
+        {
+            "name":"homescreen",
+            "value":"[TS_870982]_Home screen"
+        },
+        {
+            "name":"lockscreen",
+            "value":"[TS_870985]_Lock screen"
+        },
+        {
+            "name":"wall_paper_adding_a_theme",
+            "value":"[TS_869355]_Add theme"
+        },
+        {
+            "name":"bluetooth_device_name_title",
+            "value":"[TS_878721]_Your device is visible to nearby Bluetooth devices as \"%1$s\". %2$s"
+        },
+        {
+            "name":"location_services",
+            "value":"[TS_870979]_Location Services"
+        },
+        {
+            "name":"bluetooth_edit_device_name",
+            "value":"[TS_878740]_Rename"
+        },
+        {
+            "name":"wall_paper_applied",
+            "value":"[TS_869357]_Applied"
+        },
+        {
+            "name":"fp_duplicated_name_toast",
+            "value":"[TS_807747]_Name already in use"
+        },
+        {
+            "name":"wall_paper_application",
+            "value":"[TS_869350]_Apply"
+        },
+        {
+            "name":"uncompleted",
+            "value":"[TS_870508]_Feature coming soon."
+        },
+        {
+            "name":"wifi_name_max",
+            "value":"[TS_880958]_Name exceeds length limit"
+        },
+        {
+            "name":"device_name_settings_summary",
+            "value":"[TS_907247]_This name will be shown on other devices when you interact, share, or connect with them via Bluetooth, WLAN Direct, or a personal hotspot."
+        },
+        {
+            "name":"bt_bond_device_name",
+            "value":"[TS_907249]_Device name"
+        },
+        {
+            "name":"bt_bond_device_type",
+            "value":"[TS_907255]_Device type"
+        },
+        {
+            "name":"scan_for_hotspots",
+            "value":"[TS_914954]_Scan to connect"
+        },
+        {
+            "name":"add_to_blocklist",
+            "value":"[TS_914916]_Block"
+        },
+        {
+            "name":"modify",
+            "value":"[TS_914956]_Change"
+        },
+        {
+            "name":"confirm_change_name",
+            "value":"[TS_914925]_Changing your device name will disable your personal hotspot. Change anyway?"
+        },
+        {
+            "name":"add_to_blocklist_disconnect",
+            "value":"[TS_914937]_\"%s\" will be added to your blocklist and disconnected from your hotspot."
+        },
+        {
+            "name":"name_repeat_warning",
+            "value":"[TS_914964]_Can't be the same as the WLAN network you're connected to"
+        },
+        {
+            "name":"repeat_name_warning",
+            "value":"[TS_914942]_Cannot use the same name as currently connected WLAN, please enter again."
+        },
+        {
+            "name":"device_name_modify_tips",
+            "value":"[TS_914959]_This name will be shown on other devices when you interact, share, or connect with them via Bluetooth, a personal hotspot, or USB."
+        },
+        {
+            "name":"remove_from_blocklist",
+            "value":"[TS_914929]_Unblock"
+        },
+        {
+            "name":"hot_spot_block_list",
+            "value":"[TS_914935]_Blocklist"
+        },
+        {
+            "name":"block_list_tips",
+            "value":"[TS_914957]_Devices on your blocklist are not allowed to connect to your personal hotspot."
+        },
+        {
+            "name":"other_wlan",
+            "value":"[TS_914947]_Connected devices"
+        },
+        {
+            "name":"attention",
+            "value":"[TS_914943]_Note"
+        },
+        {
+            "name":"remove_from_blocklist_disconnect",
+            "value":"[TS_914949]_\"%s\" will be able to connect to this device's hotspot again."
+        },
+        {
+            "name":"screen_zoom_text_weight",
+            "value":"[TS_914934]_Text weight"
+        },
+        {
+            "name":"display_mode_font_weight_bold",
+            "value":"[TS_914921]_Bold"
+        },
+        {
+            "name":"display_mode_font_size_normal",
+            "value":"[TS_914945]_Normal"
+        },
+        {
+            "name":"wifi_hlink_description",
+            "value":"[TS_921375]_Connect without a password – simply bring your device near the router and press the \"%s\" button when the light flashes."
+        },
+        {
+            "name":"security_dialog_title",
+            "value":"[TS_914958]_Unable to enable developer options"
+        },
+        {
+            "name":"display_mode_font_size_huge4",
+            "value":"[TS_914922]_Huge (4)"
+        },
+        {
+            "name":"display_mode_font_size_large",
+            "value":"[TS_914963]_Large"
+        },
+        {
+            "name":"button_title_ok",
+            "value":"[TS_806173]_OK"
+        },
+        {
+            "name":"display_mode_font_size_huge2",
+            "value":"[TS_914940]_Huge (2)"
+        },
+        {
+            "name":"display_mode_font_size_huge3",
+            "value":"[TS_914933]_Huge (3)"
+        },
+        {
+            "name":"display_mode_font_weight_light",
+            "value":"[TS_914924]_Light"
+        },
+        {
+            "name":"display_mode_font_size_huge",
+            "value":"[TS_914914]_Huge"
+        },
+        {
+            "name":"display_mode_font_size_extra_large",
+            "value":"[TS_914948]_Extra large"
+        },
+        {
+            "name":"screen_zoom_text_size",
+            "value":"[TS_914926]_Text size"
+        },
+        {
+            "name":"security_dialog_message",
+            "value":"[TS_914955]_Enabling developer options may make your device vulnerable to security threats. Before continuing, you need to disable Secure Shield in Settings > Privacy & security."
+        },
+        {
+            "name":"display_mode_font_weight_normal",
+            "value":"[TS_914927]_Normal"
+        },
+        {
+            "name":"display_mode_font_size_small",
+            "value":"[TS_914919]_Small"
+        },
+        {
+            "name":"display_mode_font_weight_lightest",
+            "value":"[TS_914917]_Lightest"
+        },
+        {
+            "name":"display_mode_font_weight_boldest",
+            "value":"[TS_914944]_Boldest"
+        },
+        {
+            "name":"enableTheme",
+            "value":"[TS_918718]_Applying theme…"
+        },
+        {
+            "name":"remove_this_theme",
+            "value":"[TS_918714]_Remove this theme?"
+        },
+        {
+            "name":"remove",
+            "value":"[TS_918711]_Remove"
+        },
+        {
+            "name":"recover",
+            "value":"[TS_925518]_Restore"
+        },
+        {
+            "name":"app_restored",
+            "value":"[TS_925522]_App has been restored."
+        },
+        {
+            "name":"recover_Theme_App_massage",
+            "value":"[TS_925519]_Themes needs to be installed to use this feature."
+        },
+        {
+            "name":"recover_Theme_App",
+            "value":"[TS_925520]_Restore Themes app?"
+        },
+        {
+            "name":"touch_screen_reader_message",
+            "value":"[TS_931871]_When ScreenReader is enabled, touchscreen-related settings are unavailable."
+        },
+        {
+            "name":"icon_apply_successd",
+            "value":"[TS_934915]_Icon style applied."
+        },
+        {
+            "name":"font_apply_failed",
+            "value":"[TS_934913]_Unable to apply font."
+        },
+        {
+            "name":"icon_apply_failed",
+            "value":"[TS_934916]_Unable to apply icon style."
+        },
+        {
+            "name":"font_apply_successd",
+            "value":"[TS_934912]_Font applied."
+        },
+        {
+            "name":"charge_time_segment",
+            "value":"[TS_943115]_Charging"
+        },
+        {
+            "name":"change_device_name",
+            "value":"[TS_940670]_Edit device name"
+        },
+        {
+            "name":"icon_size",
+            "value":"[TS_953343]_Home screen icon size"
+        },
+        {
+            "name":"icon_size_tip",
+            "value":"[TS_953341]_Does not apply to the dock."
+        },
+        {
+            "name":"window_animation_title",
+            "value":"[TS_954358]_Minimize windows using"
+        },
+        {
+            "name":"window_animation_attraction",
+            "value":"[TS_954359]_Genie animation"
+        },
+        {
+            "name":"window_animation_default",
+            "value":"[TS_954357]_Default animation"
+        },
+        {
+            "name":"page_load_failed_message",
+            "value":"[TS_958287]_This screen could not be loaded. Please try reopening it."
+        },
+        {
+            "name":"button_title_got_it",
+            "value":"[TS_959014]_OK"
+        },
+        {
+            "name":"remove_theme_info",
+            "value":"[TS_955357]_This theme, along with its wallpaper and icon pack, will be removed."
+        },
+        {
+            "name":"desktop_style_title",
+            "value":"[TS_970108]_Home screen style"
+        },
+        {
+            "name":"vassistant_settings",
+            "value":"[TS_907164]_Celia"
+        },
+        {
+            "name":"not_vibrate",
+            "value":"[TS_978058]_None"
+        },
+        {
+            "name":"only_supports_synchronized_vibration_with_system_ringtone",
+            "value":"[TS_978057]_System ringtones only."
+        },
+        {
+            "name":"vibrate_synchronize_with_ringtone",
+            "value":"[TS_978059]_Synchronized"
+        },
+        {
+            "name":"check_the_detail",
+            "value":"[TS_979586]_Details"
+        },
+        {
+            "name":"be_chosen",
+            "value":"[TS_979575]_Selected"
+        },
+        {
+            "name":"toggle_to_smaller",
+            "value":"[TS_979583]_Decrease size"
+        },
+        {
+            "name":"not_selected_click_tips",
+            "value":"[TS_979799]_Not selected, double-tap to activate"
+        },
+        {
+            "name":"toggle_to_bigger",
+            "value":"[TS_979574]_Increase size"
+        },
+        {
+            "name":"more_options",
+            "value":"[TS_979800]_More options"
+        },
+        {
+            "name":"not_be_chosen",
+            "value":"[TS_979576]_Not selected"
+        },
+        {
+            "name":"toggle_to_fatter",
+            "value":"[TS_979582]_Increase text weight"
+        },
+        {
+            "name":"toggle_to_thinner",
+            "value":"[TS_979579]_Reduce text weight"
+        },
+        {
+            "name":"back_to_parent_menu",
+            "value":"[TS_979580]_Go back"
+        },
+        {
+            "name":"desktop_style_tip",
+            "value":"[TS_1015220]_Select a dock style."
+        },
+        {
+            "name":"icon_size_restore_default",
+            "value":"[TS_1015350]_Reset"
+        },
+        {
+            "name":"icon_size_simplicity",
+            "value":"[TS_1063395]_Boundless Simplicity"
+        },
+        {
+            "name":"icon_style_stereoscopic",
+            "value":"[TS_1063396]_Stereoscopic"
+        },
+        {
+            "name":"display_mode_font_weight_multiWeight",
+            "value":"[TS_1020908]_Not available"
+        },
+        {
+            "name":"fp_do_not_support_mini_screen_new",
+            "value":"[TS_1020906]_One-Handed mode not available."
+        },
+        {
+            "name":"close_menu",
+            "value":"[TS_1034625]_Close"
+        },
+        {
+            "name":"eye_comfort_tick",
+            "value":"[TS_1040010]_Eye comfort mode filters out blue light to help reduce eye fatigue. When this is on, the screen will have a warmer tone."
+        },
+        {
+            "name":"dock_color_style_follow_system_tips",
+            "value":"[TS_1046563]_In Dark mode, the color of the dock will become darker."
+        },
+        {
+            "name":"dock_color_style",
+            "value":"[TS_1046560]_Dock color adapts to"
+        },
+        {
+            "name":"dock_color_style_follow_system",
+            "value":"[TS_1046562]_Display mode"
+        },
+        {
+            "name":"dock_color_style_follow_window_tips",
+            "value":"[TS_1046564]_The dock will change color in response to the color of the wallpaper or the content of a maximized window."
+        },
+        {
+            "name":"dock_color_style_follow_window",
+            "value":"[TS_1046561]_Wallpaper & windows"
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_softwareupdate",
+            "value":"[TS_1054785]_Software update services need to connect to the Internet and read the list of installed apps."
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_fusion_search",
+            "value":"[TS_1054776]_Fusion Search Service needs to connect to the Internet and read the list of installed apps, media data (such as images, videos, and audio), file data, contacts, SMS messages, and Calendar event data."
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_system_storage",
+            "value":"[TS_1054780]_System storage services need to read Calendar event data and read and modify contacts and call logs data."
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_basic_system_analysis",
+            "value":"[TS_1054783]_Basic system analysis services need to connect to the Internet, read device running information, and upload/transfer such information in anonymized form."
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_device_communication",
+            "value":"[TS_1054786]_Device communication services need to connect to the Internet and read this device's phone number(s), IMEI, SMS/MMS message content, and location information."
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_authentication",
+            "value":"[TS_1054782]_The authentication service needs to connect to the Internet to read the list of installed apps."
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_atomicservice",
+            "value":"[TS_1054777]_Feature Ability framework needs to connect to the Internet and read and upload/transfer the list of installed apps."
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_management",
+            "value":"[TS_1054787]_Management services in Security & Privacy Center need to read location information, images, videos, and the list of installed apps, and read and modify contacts, messages, and call logs."
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_auto_discovery",
+            "value":"[TS_1054778]_Auto-discovery services need to connect to the Internet, use Bluetooth and NFC, read and upload/transfer Bluetooth and WLAN MAC addresses, and enable the camera to scan codes."
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_common_security",
+            "value":"[TS_1054789]_Common security services need to connect to the Internet, read location information, as well as read and upload/transfer the list of installed apps, this device's phone number(s), and approximate location information."
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_device_activation",
+            "value":"[TS_1054781]_The device activation service needs to connect to the Internet to read and upload/transfer approximate location information."
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_picker_less",
+            "value":"[TS_1055431]_Picker services need to read media data (images, videos, and audio), contacts, file data, and the list of installed apps, and enable the camera and microphone. The map picker service needs to connect to the Internet to read and upload/transfer location information."
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_super_device",
+            "value":"[TS_1054790]_Super Device services need to connect to the Internet, use Bluetooth and WLAN, turn on Bluetooth and WLAN, and read and upload/transfer Bluetooth and WLAN MAC addresses."
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_carrier",
+            "value":"[TS_1054784]_Carrier services need to connect to the Internet, read and upload/transfer this device's phone number(s), IMEI, Bluetooth and WLAN MAC addresses, and approximate location information, and send and receive SMS messages."
+        },
+        {
+            "name":"dock_auto_hide_style",
+            "value":"[TS_1081150]_Hide the dock when windows are maximized or split"
+        },
+        {
+            "name":"title",
+            "value":"[TS_1086349]_Title"
+        },
+        {
+            "name":"already_registered_with_real_name",
+            "value":"[TS_1111114]_Verified"
+        },
+        {
+            "name":"disable_modify_wallpaper_tips",
+            "value":"[TS_1091924]_This feature has been disabled by your organization."
+        },
+        {
+            "name":"insufficient_storage_toast",
+            "value":"[TS_1084888]_Unable to provide theme services due to insufficient internal storage. Delete files to free up space."
+        },
+        {
+            "name":"nearlink_and_bluetooth_device_name_title",
+            "value":"[TS_1094781]_Your device is visible to nearby devices as \"%1$s\". %2$s"
+        },
+        {
+            "name":"nearlink_with_bluetooth",
+            "value":"[TS_1094778]_NearLink & Bluetooth"
+        },
+        {
+            "name":"nearlink_and_bluetooth",
+            "value":"[TS_1094780]_NearLink & Bluetooth"
+        },
+        {
+            "name":"no_selected_click_tips",
+            "value":"[TS_1110379]_Double-tap to select"
+        },
+        {
+            "name":"has_selected_click_tips",
+            "value":"[TS_1110380]_Double-tap to deselect"
+        },
+        {
+            "name":"only_bluetooth_on",
+            "value":"[TS_1113813]_Bluetooth on"
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_passkey",
+            "value":"[TS_1120276]_The passkey service requires an Internet connection and needs to turn on and use Bluetooth."
+        },
+        {
+            "name":"sensitive_behavior_statement_of_system_services_detail_begin_line",
+            "value":"[TS_1128507]_%1$s. %2$s"
+        },
+        {
+            "name":"wifi_link_speed",
+            "value":"[TS_1127852]_%s Mbps"
+        }
+    ]
+}

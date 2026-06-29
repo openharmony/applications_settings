@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "item_capsule_background_color",
+      "value": "#1DFFFFFF"
+    },
+    {
+      "name": "color_capsule_pressed_click",
+      "value": "#19317AF7"
+    },
+    {
+      "name": "capsule_border_color",
+      "value": "#313131"
+    }
+  ]
+}

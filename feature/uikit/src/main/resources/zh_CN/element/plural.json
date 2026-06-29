@@ -1,0 +1,107 @@
+{
+    "plural":[
+        {
+            "name":"password_lockscreen_try_after_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"请 %d 秒后重试"
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_minutes",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"请 %d 分钟后重试"
+                }
+            ]
+        },
+        {
+            "name":"password_lockscreen_try_after_hours",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"请 %d 小时后重试"
+                }
+            ]
+        },
+        {
+            "name":"password_message_incorrect",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"密码错误，还可尝试 %d 次"
+                }
+            ]
+        },
+        {
+            "name":"enterprise_password_message_incorrect",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"帐号或密码错误，还可尝试 %d 次"
+                }
+            ]
+        },
+        {
+            "name":"password_incorrect_frozen_count_tip_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 秒"
+                }
+            ]
+        },
+        {
+            "name":"password_incorrect_frozen_count_tip_minutes",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 分钟"
+                }
+            ]
+        },
+        {
+            "name":"password_edit_read_begin",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"正在编辑密码，共 %d 位",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"password_edit_read_end",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"已编辑 %d 位",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "dialog_ok_countdown",
+            "value": [
+                {
+                    "quantity": "one",
+                    "value": "确定（%d秒）"
+                },
+                {
+                    "quantity": "other",
+                    "value": "确定 (%d 秒)",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

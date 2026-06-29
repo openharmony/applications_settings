@@ -1,11 +1,16 @@
 {
   "app": {
     "bundleName": "com.ohos.settings",
-    "vendor": "example",
-    "versionCode": 1000000,
-    "versionName": "1.0.0",
+    "vendor": "ohos",
+    "versionCode": 601001600,
+    "versionName": "6.1.1.600",
     "icon": "$media:app_icon",
-    "label": "$string:app_name",
-    "distributedNotificationEnabled": true
+    "label": "$string:settings_title",
+    "removable": false,
+    "distributedNotificationEnabled": true,
+    "minAPIVersion": 11,
+    "targetAPIVersion": 12,
+    "debug": false,
+    "configuration": "$profile:configuration"
   }
 }

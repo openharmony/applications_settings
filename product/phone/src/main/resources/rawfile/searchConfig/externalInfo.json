@@ -1,0 +1,124 @@
+{
+  "externalInfos": [
+    {
+      "bundleName": "com.ohos.emergencycommunication",
+      "moduleName": "entry",
+      "entryKey": [
+        "emergency_alerts_entry",
+        "sos_emergency_help_entry",
+        "emergency_rescue_reminder_entry"
+      ]
+    },
+    {
+      "bundleName": "com.ohos.security.privacycenter",
+      "moduleName": "entry",
+      "entryKey": [
+        "privacy_settings"
+      ]
+    },
+    {
+      "bundleName": "com.ohos.sceneboard",
+      "moduleName": "default_notificationmanagement",
+      "entryKey": ["systemui_notification_settings", "aod_settings_entry", "aod_style_entry"]
+    },
+    {
+      "bundleName": "com.ohos.quickpay",
+      "moduleName": "entry",
+      "entryKey": ["scan_code", "quick_pay"]
+    },
+    {
+      "bundleName": "com.ohos.sceneboard",
+      "moduleName": "phone_sceneboard",
+      "entryKey": ["desktop_settings", "ai_bar_settings", "smart_multi_window", "forced_landscape", "multi_window_force_switch"]
+    },
+    {
+      "bundleName": "com.ohos.sceneboard",
+      "moduleName": "pad_sceneboard",
+      "entryKey": ["desktop_settings", "ai_bar_settings", "smart_multi_window", "forced_landscape"]
+    },
+    {
+      "bundleName": "com.ohos.vassistant",
+      "moduleName": "entry",
+      "entryKey": ["vassistant_setting"]
+    },
+    {
+      "bundleName": "com.ohos.ouc",
+      "moduleName": "ouc_hm_base",
+      "entryKey": ["com_hmos_ouc_software_update_settings", "com_hmos_ouc_param_version_settings"]
+    },
+    {
+      "bundleName": "com.ohos.callsetting",
+      "moduleName": "default",
+      "entryKey": ["distribute_connect_setting", "gesture_mute_call", "gesture_quick_call"]
+    },
+    {
+      "bundleName": "com.ohos.communicationsetting",
+      "moduleName": "entry",
+      "entryKey": ["mobile_data_manage_entry"]
+    },
+    {
+      "bundleName": "com.ohos.superdevice",
+      "moduleName": "ServiceCollaboration",
+      "entryKey": ["super_device_entry", "device_interconnectivity_entry"]
+    },
+    {
+      "bundleName": "com.ohos.pasteboarddialog",
+      "moduleName": "entry",
+      "entryKey": ["cross_device_clipboard_entry"]
+    },
+    {
+      "bundleName": "com.ohos.superhub",
+      "moduleName": "phone",
+      "entryKey": ["transfer_station"]
+    },
+    {
+      "bundleName": "com.ohos.simcardmanagement",
+      "moduleName": "entry",
+      "entryKey": ["sim_card_management_entry"]
+    },
+    {
+      "bundleName": "com.ohos.hiwrite",
+      "moduleName": "hiWrite_tablet",
+      "entryKey": ["hi_write_settings"]
+    },
+    {
+      "bundleName": "com.ohos.instantshare",
+      "moduleName": "entry",
+      "entryKey": [
+        "share_settings"
+      ]
+    },
+    {
+      "bundleName": "com.ohos.hicar",
+      "moduleName": "systemsetting",
+      "entryKey": ["hicar_setting"]
+    },
+    {
+      "bundleName": "com.ohos.cardistributedassist",
+      "moduleName": "systemsetting",
+      "entryKey": ["pad_cockpit_setting"]
+    },
+    {
+      "bundleName":"com.ohos.clouddrive",
+      "moduleName": "phone",
+      "entryKey": ["cloud_space"]
+    },
+    {
+      "bundleName": "com.ohos.intelligentscene",
+      "moduleName": "phone",
+      "entryKey": [
+        "intelligent_scene_entry"
+      ]
+    },
+    {
+      "bundleName": "com.ohos.certmanager",
+      "moduleName": "phone",
+      "entryKey": ["wifi_install_certificate"]
+    },
+    {
+      "bundleName": "com.ohos.restores",
+      "moduleName": "phone_restores",
+      "entryKey": ["application_restore_settings"]
+    }
+  ]
+}
