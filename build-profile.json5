@@ -6,7 +6,7 @@
         "signingConfig": "release",
         "targetSdkVersion": 20,
         "compatibleSdkVersion": 20,
-        "compileSdkVersion": 26,
+        "compileSdkVersion": "26.0.0",
         "runtimeOS": "OpenHarmony"
       },
     ],
