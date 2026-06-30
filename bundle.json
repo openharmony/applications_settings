@@ -38,7 +38,8 @@
                 "hisysevent",
                 "samgr",
                 "distributed_notification_service",
-                "access_token"
+                "access_token",
+                "jsoncpp"
             ],
             "third_party": []
         },
