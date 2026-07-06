@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { curves, LengthUnit } from '@kit.ArkUI';
+import { curves, LengthUnit, LengthMetrics } from '@kit.ArkUI';
 import { emitter } from '@kit.BasicServicesKit';
 import CommonEventManager from '@ohos.commonEventManager';
 import {
@@ -317,8 +317,8 @@ export struct SearchSettingsComponent {
       .height(32)
       // image与页面的边距为栅格边距，按压态的时候，超出的部分与边距重叠)
       .margin({
-        end: { value: -4, unit: LengthUnit.VP },
-        bottom: { value: 4, unit: LengthUnit.VP }
+        end: new LengthMetrics(-4, LengthUnit.VP),
+        bottom: new LengthMetrics(4, LengthUnit.VP)
       })
       .borderRadius($r('sys.float.ohos_id_corner_radius_default_s'))
       .accessibilityLevel('yes')
