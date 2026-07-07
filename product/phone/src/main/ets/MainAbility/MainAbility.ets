@@ -34,7 +34,8 @@ import {
   EVENT_ID_DARK_MODE_CACHE,
   EVENT_ID_MAINABILITY_ON_FOREGROUND,
   EVENT_ID_MAINABILITY_ON_BACKGROUND,
-  EVENT_ID_CLOSE_THEME_FULL_SCREEN_PAGE
+  EVENT_ID_CLOSE_THEME_FULL_SCREEN_PAGE,
+  EVENT_ID_DISMISS_SETTING_BIND_SHEETS
 } from '@ohos/settings.common/src/main/ets/event/types';
 import { LogUtil } from '@ohos/settings.common/src/main/ets/utils/LogUtil';
 import { AbilityContextManager } from '@ohos/settings.common/src/main/ets/ability/AbilityContextManager';
@@ -144,7 +145,6 @@ export default class MainAbility extends Ability {
     this.handleShortcutsUri(want);
     AppStorage.setOrCreate<Want>('wantParams', want);
     AppStorage.setOrCreate<string>(PackagesConstant.SETTINGS_NAVIGATION_URL, '');
-    this.setDefaultRing()
     PageStartModeManager.getInstance().setStartReason(PageStartReason.DEFAULT);
     LogUtil.showInfo(TAG, 'on create want: bundleName:%{public}s abilityName:%{public}s ' +
       'moduleName:%{public}s uri:%{public}s shortcuts:%{public}s', want?.bundleName, want?.abilityName,
@@ -164,22 +164,6 @@ export default class MainAbility extends Ability {
     this.tryStartStatusReportWorker();
     this.tryReportDataSize();
     Trace.end('MainAbility onCreate');
-  }
-  // TODO 临时方案，将预制铃声设为默认来电铃声
-  private async setDefaultRing(){
-    let defaultRing= PreferencesUtil.getSync('defaultRing',false)
-    if (!defaultRing) {
-      let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
-      let ringToneType: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
-      let ringList:systemSoundManager.ToneAttrsArray|undefined
-      try {
-        ringList=await systemSoundManagerInstance.getRingtoneAttrList(this.context,ringToneType)
-        await systemSoundManagerInstance.setRingtoneUri(this.context,ringList[0].getUri(),ringToneType)
-        PreferencesUtil.putSync('defaultRing', true);
-      }catch (err) {
-        LogUtil.error(`${TAG}Failed to get tone. Code: ${err.code}, message: ${err.message}`);
-      }
-    }
   }
 
   private initJumpUri(want: Want): boolean {
@@ -404,6 +388,10 @@ export default class MainAbility extends Ability {
     if (uri) {
       emitter.emit({
         eventId: EVENT_ID_CLOSE_THEME_FULL_SCREEN_PAGE,
+        priority: emitter.EventPriority.IMMEDIATE,
+      });
+      emitter.emit({
+        eventId: EVENT_ID_DISMISS_SETTING_BIND_SHEETS,
         priority: emitter.EventPriority.IMMEDIATE,
       });
       emitter.emit({
