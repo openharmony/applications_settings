@@ -15,11 +15,6 @@ import("//build/ohos.gni")
 
 ohos_shared_library("intelligentscene") {
   branch_protector_ret = "pac_ret"
-  sanitize = {
-    cfi = true
-    debug = false
-  }
-
   include_dirs = [
     "./common",
   ]
