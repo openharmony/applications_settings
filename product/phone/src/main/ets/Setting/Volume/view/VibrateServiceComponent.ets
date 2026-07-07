@@ -42,11 +42,13 @@ import { HiSysEventUtil } from '@ohos/settings.common/src/main/ets/systemEvent/H
 import { HiSysVibrationGroup } from '@ohos/settings.common/src/main/ets/systemEvent/BehaviorEventConsts';
 import { MyToneHapticsSettings, VibrateParam } from '../model/VibrateParam';
 import { RadioName } from '../constant/VibrateConstant';
+import { VibratorUtil } from '@ohos/settings.common/src/main/ets/utils/VibratorUtil';
 import { VibrateUtil } from '../utils/VibrateUtil';
 import { VolumeAdapter } from '../controller/VolumeAdapter';
 import { ToneType } from '../model/RingtoneParam';
 
 const TAG: string = 'VibrateServiceComponent : ';
+const NORMAL_VIBRATE_DURATION_MS: number = 50;
 
 @Builder
 export function VibrateServiceLoader($$: Params): void {
@@ -513,6 +515,10 @@ export struct VibrateServiceComponent {
    * @returns
    */
   private async onClickRadio(toneHapticsAttrs: systemSoundManager.ToneHapticsAttrs): Promise<void> {
+    //todo 临时增加普通振动，后续支持在删除
+    if (VibratorUtil.isSupportVibrate()) {
+      VibratorUtil.startVibration();
+    }
     this.checkedRadioName = toneHapticsAttrs.getFileName();
     let toneHapticsSettings: MyToneHapticsSettings = new MyToneHapticsSettings(
       systemSoundManager.ToneHapticsMode.NON_SYNC, toneHapticsAttrs.getUri());

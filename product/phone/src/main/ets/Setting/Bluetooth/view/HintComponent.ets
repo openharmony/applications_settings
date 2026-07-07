@@ -109,7 +109,13 @@ export struct HintComponent {
             .fontWeight(FontWeight.Regular)
             .fontColor(this.isGrayed ? $r('sys.color.font_secondary') : $r('sys.color.font_emphasize'))
             .onClick(() => {
-              this.isShow = true;
+              this.isCanUpdate().then((result) => {
+                if (!result) {
+                  return;
+                }
+                this.isShow = true;
+                LogUtil.info(`onclick show sheet, isShow: ${this.isShow}`);
+              });
             })
         }
         .enabled(!this.isGrayed)
@@ -131,9 +137,6 @@ export struct HintComponent {
             LogUtil.info(`${this.tag} onWillDisappear`);
             this.isShow = false;
           },
-        })
-        .onClick(() => {
-          this.isShow = true;
         })
       }
       .scrollBar(BarState.Off)
@@ -285,4 +288,14 @@ export struct HintComponent {
     }
   }
 
+  private async isCanUpdate(): Promise<boolean> {
+    if (!NetworkUtils.isNetworkAvailable()) {
+      promptAction.showToast({
+        message: $r('app.string.network_tips'),
+        duration: ToastUtil.SHORT_DURATION
+      });
+      return false;
+    }
+    return true;
+  }
 }

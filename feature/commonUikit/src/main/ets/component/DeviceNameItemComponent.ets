@@ -153,11 +153,11 @@ export struct DeviceNameItemComponent {
       }
       this.controller?.checkUpdateCondition().then((result) => {
         /* instrument ignore if*/
-        // if (result !== CHECK_SUCCESS) {
-        //   LogUtil.info(`update device name pre check fail, result: ${result}`);
-        //   this.handlePreCheckFail(result);
-        //   return;
-        // }
+        if (result !== CHECK_SUCCESS) {
+          LogUtil.info(`update device name pre check fail, result: ${result}`);
+          this.handlePreCheckFail(result);
+          return;
+        }
         this.isShow = true;
         LogUtil.info(`onclick show sheet, isShow: ${this.isShow}`);
       });
@@ -334,6 +334,18 @@ export struct DeviceNameItemComponent {
     LogUtil.info(`${this.tag} aboutToDisappear`);
     EventBus.getInstance().off(SHOW_DEVICE_NAME_SHEET);
     this.compStateEvent?.detach();
+  }
+  private handlePreCheckFail(reason: number): void {
+    switch (reason) {
+      case CHECK_FAIL_REASON_NETWORK:
+        ToastUtil.showToast(ResourceUtil.getStringSync($r('app.string.network_tips')));
+        break;
+      case CHECK_FAIL_REASON_LOG_IN:
+        // this.openLogInDialog();
+        break;
+      default:
+        break;
+    }
   }
 
 }

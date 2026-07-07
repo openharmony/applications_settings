@@ -171,25 +171,6 @@ export class DisplaySettingController implements ComponentControl {
           this.dormancyItem(),
         ]
       },
-      {
-        id: 'forced_landscape_group',
-        type: GroupType.GROUP_TYPE_STANDARD,
-        items: [
-          {
-            id: 'forced_landscape',
-            type: ItemType.ITEM_TYPE_STANDARD,
-            title: { content: $r('app.string.forced_landscape') },
-            detail: {
-              type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
-              icon: $r('sys.symbol.chevron_right'),
-              isSymbolIcon: true,
-              destination: NavEntryKey.LANDSCAPE_STARTUP_ENTRY,
-            },
-            compControl: new ForcedLandscapeController(),
-            needHide: () => !DisplayUtils.isDeviceSupportForcedLandscape(),
-          }
-        ]
-      },
     ];
     this.dataSource.pushAndFilterItems(...groups);
   }

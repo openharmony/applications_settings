@@ -187,7 +187,7 @@ export class StorageControl implements ComponentControl, AppEntryChangedListener
       LogUtil.warn(`${TAG} taskGroup execute error, code ${err?.code} msg ${err?.msg}`);
       return;
     }
-    if (CheckEmptyUtils.isEmptyArr(res) || res.length < 6) {
+    if (CheckEmptyUtils.isEmptyArr(res) || res.length < 5) {
       LogUtil.warn(`${TAG} getStorageData res invalid!`);
       return;
     }

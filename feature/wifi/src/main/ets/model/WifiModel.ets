@@ -1040,4 +1040,8 @@ export const CONNECT_RESULT_EVENT: string = 'CONNECT_RESULT_EVENT';
 
 export const CONNECTED_DATA_CHANGE_EVENT: string = 'CONNECTED_DATA_CHANGE_EVENT';
 
+export const WIFI_CONNECT_STATE_DISCONNECTING: number = -1;
+
+export const WIFI_CONNECT_STATE_CONNECTING: number = 1;
+
 export const WIFI_WINDOW_SETTINGS_MODE_KEY: string = 'wifiWindowSettingsMode';

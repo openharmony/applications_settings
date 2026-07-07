@@ -13,9 +13,11 @@
  * limitations under the License.
  */
 
+import { BusinessError } from '@ohos.base';
 import { relationalStore } from "@kit.ArkData";
 import { ContextUtils, LogUtil } from "@ohos/settings.common";
 import { ResultItemInfo } from "../model/type";
+import { SearchSecurityUtil } from "../util/SearchSecurityUtil";
 import { i18n } from "@kit.LocalizationKit";
 import { fileIo, ReadOptions } from '@kit.CoreFileKit';
 import { resourceManager } from '@kit.LocalizationKit';
@@ -33,25 +35,43 @@ export class SearchRDBController {
       securityLevel: relationalStore.SecurityLevel.S1
     };
     try {
-      SearchRDBController.rdbStore = await relationalStore.getRdbStore(getContext(), config);
+      const context = ContextUtils.getContext();
+      if (!context) {
+        LogUtil.error(TAG + 'initialize context is null');
+        return;
+      }
+      SearchRDBController.rdbStore = await relationalStore.getRdbStore(context, config);
       LogUtil.info(TAG + 'initialize')
-    } catch (error) {
-      LogUtil.error(TAG + 'initialize' + 'ErrorCode:' + error?.code + ' ErrorMessage:' + error?.message)
+    } catch (err) {
+      const bizErr = err as BusinessError;
+      LogUtil.error(TAG + 'initialize' + 'ErrorCode:' + bizErr?.code + ' ErrorMessage:' + bizErr?.message);
     }
   }
 
   static async queryAllItems(searchKey: string): Promise<ResultItemInfo[] | null> {
     if (!SearchRDBController.rdbStore) {
       LogUtil.error(TAG + ' rdbStore no init');
-      return null
-      // return [];
+      return null;
+    }
+    const sanitizedKey = SearchSecurityUtil.sanitizeSearchInput(searchKey);
+    if (!sanitizedKey) {
+      return null;
     }
     LogUtil.info(TAG + 'queryAllItems Start')
     try {
       let curLocale: string = i18n.System.getSystemLocale();
       const predicates = new relationalStore.RdbPredicates('ITEMINFO_TABLE');
-      predicates.equalTo('locale', curLocale);
-      predicates.contains('itemTitle', searchKey)
+      predicates.equalTo('locale', curLocale).and();
+      // 纯英文关键词只匹配 itemTitle，不匹配 alias，避免 "sound" 匹配到 "声音" 等
+      if (SearchRDBController.isPureLatin(sanitizedKey)) {
+        predicates.contains('itemTitle', sanitizedKey);
+      } else {
+        predicates.beginWrap()
+          .contains('itemTitle', sanitizedKey)
+          .or()
+          .contains('alias', sanitizedKey)
+          .endWrap();
+      }
       const columns = [
         'itemTitle',
         'locale',
@@ -97,10 +117,19 @@ export class SearchRDBController {
         } while (resultSet.goToNextRow());
       }
       return data ?? null;
-    } catch (error) {
-      console.error(`查询失败: ${(error as BusinessError).message}`);
+    } catch (err) {
+      const bizErr = err as BusinessError;
+      LogUtil.error(TAG + `查询失败: ${bizErr?.message}`);
       return null;
     }
+  }
+
+  /** 判断是否为纯拉丁字符（仅 a-z、A-Z、数字、空格），纯英文关键词不参与 alias 匹配 */
+  private static isPureLatin(key: string): boolean {
+    if (!key || key.length === 0) {
+      return false;
+    }
+    return /^[a-zA-Z0-9\s]+$/.test(key);
   }
 
   static async saveFileToCache(file: resourceManager.RawFileDescriptor, dbName: string) {
@@ -140,27 +169,5 @@ export class SearchRDBController {
     fileIo.close(cacheFile);
   }
 
-  static async initData() {
-    let context: common.Context = ContextUtils.getContext();
-    SearchRDBController.RDBDirectory = context.getApplicationContext().databaseDir
-    const resource = context.resourceManager;
-
-    //数据库名称
-    let dbName: string = 'Settings.db';
-
-    //读取rawfile目录下db文件
-    try {
-      resource.getRawFd('searchConfig/phone' + dbName, (error, value) => {
-        if (error != null) {
-          LogUtil.info(TAG + `callback getRawFd failed error code: ${error.code}, message: ${error.message}.`);
-        } else {
-          LogUtil.info(TAG + value.length.toString());
-          SearchRDBController.saveFileToCache(value, dbName);
-        }
-      });
-    } catch (error) {
-      LogUtil.error(TAG + `callback getRawFd failed, error code: ${error.code}, message: ${error.message}.`);
-    }
-  }
 
 }

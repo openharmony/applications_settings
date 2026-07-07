@@ -176,7 +176,7 @@ export class MoreAppListLoader {
     }
 
     try {
-      moreAppList = await AppListLoaderManager.getSpecAppList(allBundleShowList) as Array<AppEntry>;
+      moreAppList = await AppListLoaderManager.getSpecAppListWithoutHds(allBundleShowList) as Array<AppEntry>;
     } catch (error) {
       LogUtil.error(`${TAG} get appList fail, errmsg: ${error?.message}`);
     }

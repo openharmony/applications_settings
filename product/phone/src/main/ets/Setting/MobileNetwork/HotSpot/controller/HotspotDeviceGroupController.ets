@@ -38,22 +38,6 @@ export class HotspotDeviceGroupController implements ComponentControl {
     LogUtil.info(`${TAG} init, compId: ${compParam.compId}`);
     const dataSource = (compParam.dataSource) as OrderedDataSource;
     const hotspotUsbController = new HotspotUsbController();
-    dataSource.push({
-      id: 'hotspot_device_usb',
-      type: ItemType.ITEM_TYPE_STANDARD,
-      title: { content: $r('app.string.hotspot_usb'), style: { opacity: MASK_OPACITY } },
-      desc: {
-        content: hotspotUsbController.getDespContent(false, false), style: { opacity: MASK_OPACITY }
-      },
-      result: {
-        type: ItemResultType.RESULT_TYPE_TOGGLE,
-        result: {
-          state: false,
-          enabled: false,
-        }
-      },
-      compControl: hotspotUsbController,
-    });
   }
 
   destroy(): void {

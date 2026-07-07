@@ -59,7 +59,9 @@ import {
   OTHER_WLAN_CONNECT_EVENT,
   OTHER_WLAN_SHEET_SHOW_EVENT,
   AVAILABLE_WLAN_DETAIL_CHANGE_EVENT,
-  ApMenuConfigData
+  ApMenuConfigData,
+  WIFI_CONNECT_STATE_CONNECTING,
+  WIFI_CONNECT_STATE_DISCONNECTING
 } from '../../model/WifiModel';
 import { WifiMenuManager } from '../../WifiMenuManager';
 import { AdvSecurityModeManager, ConnectScene, IConnectData } from '../../AdvSecurityModeManager';
@@ -69,7 +71,6 @@ import { ResourceUtil } from '@ohos/settings.common/src/main/ets/utils/ResourceU
 /* instrument ignore file */
 const TAG: string = 'WifiConnectedApController : ';
 const CLICK_WLAN_NAME: string = 'click_wlan_name';
-const CONNECTING: number = 1;
 
 @Builder
 export function wlanItemResultBuilder(param: object): void {
@@ -156,8 +157,9 @@ export default class AvailableWlanController extends AvailableWlanBaseController
       // 添加其他WLAN点击连接
       config = AddOtherWlanConfigManager.getInstance().getConfig();
       if (config) {
-        apConnectManager.startConnect(AddOtherWlanConfigManager.getInstance().clearAndGetFormattedConfig(config),
-          true, this);
+        await apConnectManager.startConnectAsync(
+          AddOtherWlanConfigManager.getInstance().clearAndGetFormattedConfig(config), true, this);
+        wifiTracker.loadCacheMenus();
       }
     }
   };
@@ -386,8 +388,9 @@ export default class AvailableWlanController extends AvailableWlanBaseController
   }
 
   protected isModelLoading(key: String): boolean {
-    if (apConnectManager.wifiConnectState === CONNECTING && apConnectManager.connectApKey &&
-      apConnectManager.connectApKey === key) {
+    if (apConnectManager.connectApKey && apConnectManager.connectApKey === key &&
+      (apConnectManager.wifiConnectState === WIFI_CONNECT_STATE_CONNECTING ||
+      apConnectManager.wifiConnectState === WIFI_CONNECT_STATE_DISCONNECTING)) {
       return true;
     }
     return false;

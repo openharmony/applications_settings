@@ -43,7 +43,7 @@ const MAX_LCD_DENSITY: number = 640;
 /**
  * OpenHarmony支持的最小dpi数值
  */
-const MIN_LCD_DENSITY: number = 80;
+const MIN_LCD_DENSITY: number = 321;
 /**
  * 最小允许的屏幕维度
  */
@@ -420,12 +420,17 @@ class DpiManager {
     let interval: number = 0;
     let i: number = 0;
     let density: number = 0;
+    // 对于小于默认的档位，density 不应被强制提升到一个高于默认值的全局常量，
+    // 否则在某些设备（如部分 PC）上，“最小”档位可能反而比“默认”更大。
+    // 这里使用 defaultDensity 与 MIN_LCD_DENSITY 中的较小值作为下限，保证最小档位不会大于默认档位。
+    const minDensityLimit: number = Math.min(defaultDensity, MIN_LCD_DENSITY);
+
     if (this.numSmaller > 0) {
       interval = (1 - minScale) / this.numSmaller;
       for (i = this.numSmaller - 1; i >= 0; i--) {
         density = Math.floor(defaultDensity * (1 - (i + 1) * interval)) & ~1;
-        if (density < MIN_LCD_DENSITY) {
-          density = MIN_LCD_DENSITY;
+        if (density < minDensityLimit) {
+          density = minDensityLimit;
         }
         if (density < this.minDensityDpi) {
           this.minDensityDpi = density;

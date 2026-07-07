@@ -42,7 +42,7 @@ export class Constants {
   // 设置搜索版本号每次+5，预留patch使用的版本号
   public static readonly ITEMINFO_TABLE_VERSION = '1.0.265';
 
-  public static readonly PAGEINFO_TABLE_VERSION = '1.0.260';
+  public static readonly PAGEINFO_TABLE_VERSION = '1.0.265';
 
   public static readonly INVALID_VALUE = -1;
 
