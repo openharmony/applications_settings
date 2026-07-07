@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { SymbolGlyphModifier } from '@kit.ArkUI';
+import { promptAction, SymbolGlyphModifier } from '@kit.ArkUI';
 import prompt from '@ohos.prompt';
 import wifiManager from '@ohos.wifiManager';
 import { LogUtil } from '@ohos/settings.common/src/main/ets/utils/LogUtil';
@@ -22,6 +22,7 @@ import { StringUtil } from '@ohos/settings.common/src/main/ets/utils/StringUtil'
 import { ToastUtil } from '@ohos/settings.common/src/main/ets/utils/ToastUtil';
 import { EventBus } from '@ohos/settings.common/src/main/ets/framework/common/EventBus';
 import { FontScaleUtils } from '@ohos/settings.common/src/main/ets/utils/FontScaleUtils';
+import { NetworkUtils } from '@ohos/settings.common/src/main/ets/utils/NetworkUtils';
 
 /* instrument ignore file */
 const TAG: string = 'NameUpdateSheetComponent: ';
@@ -168,8 +169,13 @@ export struct NameUpdateSheetComponent {
       .opacity(this.inputValue?.toString()?.trim()?.length > 0 ? OPACITY_PERCENT_FULL : OPACITY_PERCENT_FULL)
       .enabled(!this.isWarning && this.inputValue?.toString()?.trim()?.length > 0 && !this.isUpdating ? true : false)
       .backgroundColor($r('sys.color.comp_background_tertiary'))
-      .onClick(() => {
+      .onClick(async () => {
         LogUtil.info(`${TAG} onclick confirm, update remote device name`);
+        let canUpdate:boolean = await this.isCanUpdate()
+        if (!canUpdate) {
+          this.isUpdating=false
+          return
+        }
         if (this.needReConfirm) {
           this.reConfirm?.();
           return;
@@ -309,5 +315,16 @@ export struct NameUpdateSheetComponent {
     }, UPDATE_DEVICE_NAME_TIMEOUT);
     this.confirm?.();
     this.isUpdating = true;
+  }
+  private async isCanUpdate(): Promise<boolean> {
+    if (!NetworkUtils.isNetworkAvailable()) {
+      this.isUpdating=true;
+      promptAction.showToast({
+        message: $r('app.string.device_name_update_fail'),
+        duration: ToastUtil.SHORT_DURATION
+      });
+      return false;
+    }
+    return true;
   }
 }

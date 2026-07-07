@@ -20,7 +20,7 @@ import { SimUtils } from '@ohos/settings.common/src/main/ets/utils/SimUtils';
 import { BluetoothAdapter } from '@ohos/settings.bluetooth/src/main/ets/BluetoothAdapter';
 import { PinType } from '@ohos/settings.bluetooth/src/main/ets/model/BluetoothModel';
 import { PairDialogController } from '../controller/PairDialogController';
-
+import { connection } from '@kit.ConnectivityKit';
 const TAG: string = 'PairDialogComponent: ';
 
 @CustomDialog
@@ -54,18 +54,18 @@ export struct PairDialogComponent {
     Column() {
       this.titleBuilder()
       Scroll() {
-        if (this.pinType === PinType.PAIRING_VARIANT_PASSKEY_CONFIRMATION) {
+        if (this.pinType === connection.PinType.PIN_TYPE_CONFIRM_PASSKEY) {
           this.contentForPinType2Builder()
-        } else if (this.pinType === PinType.PAIRING_VARIANT_CONSENT ||
-          this.pinType === PinType.PAIRING_VARIANT_OOB_CONSENT) {
+        } else if (this.pinType === connection.PinType.PIN_TYPE_NO_PASSKEY_CONSENT ||
+          this.pinType === connection.PinType.PIN_TYPE_OOB_CONSENT) {
           this.contentForPinType36Builder();
-        } else if (this.pinType === PinType.PAIRING_VARIANT_DISPLAY_PASSKEY ||
-          this.pinType === PinType.PAIRING_VARIANT_DISPLAY_PIN) {
+        } else if (this.pinType === connection.PinType.PIN_TYPE_NOTIFY_PASSKEY ||
+          this.pinType === connection.PinType.PIN_TYPE_DISPLAY_PIN_CODE) {
           this.contentForPinType45Builder();
-        } else if (this.pinType === PinType.PAIRING_VARIANT_PIN ||
-          this.pinType === PinType.PAIRING_VARIANT_PIN_16_DIGITS) {
+        } else if (this.pinType === connection.PinType.PIN_TYPE_ENTER_PIN_CODE ||
+          this.pinType === connection.PinType.PIN_TYPE_PIN_16_DIGITS) {
           this.contentForPinType07Builder();
-        } else if (this.pinType === PinType.PAIRING_VARIANT_PASSKEY) {
+        } else if (this.pinType === connection.PinType.PIN_TYPE_ENTER_PASSKEY) {
           this.contentForPinType1Builder();
         }
       }
@@ -363,8 +363,8 @@ export struct PairDialogComponent {
         this.pairDialogController?.onCancelClick(this.deviceId, this.input);
       })
 
-      if (this.pinType !== PinType.PAIRING_VARIANT_DISPLAY_PASSKEY &&
-        this.pinType !== PinType.PAIRING_VARIANT_DISPLAY_PIN) {
+      if (this.pinType !== connection.PinType.PIN_TYPE_NOTIFY_PASSKEY &&
+        this.pinType !== connection.PinType.PIN_TYPE_DISPLAY_PIN_CODE) {
         Divider()
           .vertical(true)
           .height(24)
@@ -452,7 +452,7 @@ export struct PairDialogComponent {
     this.pairDialogController?.init(this.deviceId);
     this.content = this.pairDialogController?.content;
     this.deviceName = this.pairDialogController?.deviceName;
-    if (this.pinType === PinType.PAIRING_VARIANT_DISPLAY_PIN) {
+    if (this.pinType === connection.PinType.PIN_TYPE_DISPLAY_PIN_CODE) {
       BluetoothAdapter.getInstance().setPinCodeDevicePairingConfirmation(this.deviceId, true, this.pinCode);
     }
   }

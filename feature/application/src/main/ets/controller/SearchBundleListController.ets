@@ -176,8 +176,8 @@ export class SearchBundleListController implements ComponentControl {
         icon: appEntry.icon as ResourceStr,
         iconType: SettingIconType.ICON_TYPE_APPICON,
         style: {
-          border: { width: '0px', color: '#00000000', radius: 0 },
-          borderRadius: 0,
+          border: { width: '0px', color: '#00000000', radius: $r('sys.float.corner_radius_level6') },
+          borderRadius: $r('sys.float.corner_radius_level6'),
           width: 48,
           height: 48,
           mirrored: false,

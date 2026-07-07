@@ -135,6 +135,15 @@ export class DarkModeOpenAllDayController extends BaseDarkModeController {
     HiSysEventUtil
       .reportDefaultBehaviorEventByUE(HiSysDisplayEventGroup.DARK_MODE_ALL_DAY_SWITCH, isModeDark ? 'on' : 'off');
     LogUtil.info(`${this.tag} changeColorMode ${isModeDark}, ${isNeedDealSettingData}`);
+    // 与 DarkModeCardComponent 一致：同步调用 uiAppearance.setDarkMode
+    try {
+      uiAppearance.setDarkMode(isModeDark ? uiAppearance.DarkMode.ALWAYS_DARK : uiAppearance.DarkMode.ALWAYS_LIGHT);
+      if (isModeDark) {
+        this.closeHighContrastTextMode();
+      }
+    } catch (error) {
+      LogUtil.error(`${this.tag} uiAppearance.setDarkMode failed: ${(error as BusinessError).message}`);
+    }
     this.updateEnableState(this.compId, isModeDark, false);
     this.stopTask();
     this.updateTimedOnItemStatus(false); // 全天开启按钮处理过程中，需将定时开启开关置为不可点击状态

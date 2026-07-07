@@ -86,7 +86,7 @@
         },
         {
             "name":"wlan_scan_content",
-            "value":"即使 WLAN 已停用，也允許應用程式和服務隨時掃描 WLAN 網路。這可用於改進基於位置的功能和服務。",
+            "value":"即使 WLAN 已停用，也允許應用程式隨時掃描 WLAN 網路。這可用於改進基於位置的功能和服務。",
             "attr":{
                 "priority":"LT"
             }

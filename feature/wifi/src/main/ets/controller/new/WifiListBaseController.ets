@@ -38,7 +38,7 @@ import { NavEntryKey } from '@ohos/settings.common/src/main/ets/utils/Consts';
 import { DisplayUtils, SheetDialogStyle } from '@ohos/settings.common/src/main/ets/utils/DisplayUtils';
 import { apConnectManager, wifiTracker, WifiTrackerListener } from '../../WifiTracker';
 import { WlanItemModel } from '../../model/WlanItemModel';
-import { ApMenu, ApMenuData, WifiState } from '../../model/WifiModel';
+import { ApMenu, ApMenuData, WifiState, WIFI_CONNECT_STATE_CONNECTING, WIFI_CONNECT_STATE_DISCONNECTING } from '../../model/WifiModel';
 import { WifiUtils } from '../../WifiUtils';
 import { WifiPasswordConfigManager } from '../../WifiPasswordConfigManager';
 
@@ -48,7 +48,6 @@ const WLAN_SWITCH_ID: string = 'Setting.Wlan.WlanConfig.WlanSwitch.toggle';
 const UX_DESIGN_SHEET_HEIGHT_PAD: number = 320;
 const NORMAL_WLAN_HEIGHT_RATE: number = 0.76;
 const SHEET_DELAY: number = 500;
-const CONNECTING: number = 1;
 
 export interface WifiEntryParams {
   config: wifiManager.WifiDeviceConfig;
@@ -357,8 +356,9 @@ export abstract class WifiListBaseController implements WifiTrackerListener, Com
   }
 
   private isModelLoading(key: String): boolean {
-    if (apConnectManager.wifiConnectState === CONNECTING && apConnectManager.connectApKey &&
-      apConnectManager.connectApKey === key) {
+    if (apConnectManager.connectApKey && apConnectManager.connectApKey === key &&
+      (apConnectManager.wifiConnectState === WIFI_CONNECT_STATE_CONNECTING ||
+      apConnectManager.wifiConnectState === WIFI_CONNECT_STATE_DISCONNECTING)) {
       return true;
     }
     return false;

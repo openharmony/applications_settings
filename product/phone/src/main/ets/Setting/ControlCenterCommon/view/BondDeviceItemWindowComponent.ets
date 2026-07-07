@@ -83,7 +83,18 @@ export struct BondDeviceItemWindowComponent {
               })
               .draggable(false)
           }
+        } else {
+          Column() {
+            Image($r('app.media.ic_bluetooth_device_public'))
+              .fillColor($r('app.color.window_settings_font_secondary'))
+              .size({
+                width: $r('app.float.wh_value_18'),
+                height: $r('app.float.wh_value_18'),
+              })
+              .draggable(false)
+          }
         }
+
       }
       .width('100%')
       .padding({

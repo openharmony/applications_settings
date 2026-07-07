@@ -17,6 +17,7 @@ import { dataShare } from '@kit.ArkData';
 import { JSON } from '@kit.ArkTS';
 import preferences from '@ohos.data.preferences';
 import emitter from '@ohos.events.emitter';
+import { BusinessError } from '@ohos.base';
 import { AbilityContextManager } from '@ohos/settings.common/src/main/ets/ability/AbilityContextManager';
 import { PackagesConstant } from '@ohos/settings.common/src/main/ets/constant/PackagesConstant';
 import { PushParam } from '@ohos/settings.common/src/main/ets/core/controller/Controller';
@@ -64,6 +65,7 @@ import { ResourceUtil } from '@ohos/settings.common/src/main/ets/utils/ResourceU
 import { SettingsDataUtils } from '@ohos/settings.common/src/main/ets/utils/SettingsDataUtils';
 import {
   BluetoothAdapter,
+  BluetoothProfile,
   BluetoothBondChangeListener,
   BluetoothBondedDeviceChangeListener,
   BluetoothDeviceChangeListener,
@@ -644,6 +646,33 @@ BluetoothBondedDeviceChangeListener {
   }
 
   onPairResult(deviceId: string, result: number, isSuccess: boolean): void {
+    LogUtil.info(`${this.tag} onPairResult, deviceId: ${BluetoothUtils.getLogMAC(deviceId)}, result: ${result}, isSuccess: ${isSuccess}`);
+    if (!isSuccess) {
+      return;
+    }
+
+    // 优先使用缓存中的已配对设备，没有则创建一个新实例，类型上保证不为 undefined
+    const device: BluetoothDevice =
+      BluetoothAdapter.getInstance().getBondedDevice(deviceId) || BluetoothDevice.createDevice(deviceId);
+
+    // 更新一次 profile / 策略状态，确保拿到最新可连接 profile
+    device.updateProfilesAndConnectionStatus().then(() => {
+      const profiles: Map<ProfileId, BluetoothProfile> = device.getConnectableProfiles();
+      LogUtil.info(`${this.tag} onPairResult, connectable profiles size: ${profiles.size}`);
+
+      // 配对成功后，优先为音频设备自动建立 A2DP / HFP 连接
+      let adapter = BluetoothAdapter.getInstance();
+      if (profiles.has(ProfileId.PROFILE_A2DP_SOURCE)) {
+        LogUtil.info(`${this.tag} onPairResult, auto connect A2DP for ${BluetoothUtils.getLogMAC(deviceId)}`);
+        adapter.connectProfile(deviceId, ProfileId.PROFILE_A2DP_SOURCE);
+      }
+      if (profiles.has(ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY)) {
+        LogUtil.info(`${this.tag} onPairResult, auto connect HFP for ${BluetoothUtils.getLogMAC(deviceId)}`);
+        adapter.connectProfile(deviceId, ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+      }
+    }).catch((error: BusinessError) => {
+      LogUtil.error(`${this.tag} onPairResult updateProfilesAndConnectionStatus fail: ${error?.message}`);
+    });
   }
 
   updateBondedDevices(): void {

@@ -415,6 +415,7 @@ struct AllLanguagesList {
     }
     .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
     .padding($r('app.float.distance_4'))
+    .margin({bottom:$r('app.float.distance_16')})
     .backgroundColor($r('sys.color.comp_background_list_card'))
     .borderRadius($r('sys.float.corner_radius_level10'))
     .divider({

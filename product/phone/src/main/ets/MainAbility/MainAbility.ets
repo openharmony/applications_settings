@@ -34,7 +34,8 @@ import {
   EVENT_ID_DARK_MODE_CACHE,
   EVENT_ID_MAINABILITY_ON_FOREGROUND,
   EVENT_ID_MAINABILITY_ON_BACKGROUND,
-  EVENT_ID_CLOSE_THEME_FULL_SCREEN_PAGE
+  EVENT_ID_CLOSE_THEME_FULL_SCREEN_PAGE,
+  EVENT_ID_DISMISS_SETTING_BIND_SHEETS
 } from '@ohos/settings.common/src/main/ets/event/types';
 import { LogUtil } from '@ohos/settings.common/src/main/ets/utils/LogUtil';
 import { AbilityContextManager } from '@ohos/settings.common/src/main/ets/ability/AbilityContextManager';
@@ -79,6 +80,8 @@ import { HiSysLoadExternalMenuResException } from '@ohos/settings.common/src/mai
 import { DeeplinkUtil } from '@ohos/settings.common/src/main/ets/utils/DeeplinkUtil';
 import { DataSizeReportHelper } from '@ohos/settings.common/src/main/ets/systemEvent/DataSizeReportHelper';
 import { IntelligentSceneWindowManager } from '../Setting/IntelligentScene/manager/IntelligentSceneWindowManager';
+import { systemSoundManager } from '@kit.AudioKit';
+import { PreferencesUtil } from '@ohos/settings.common';
 
 /* instrument ignore file */
 const TAG: string = 'MainAbility : ';
@@ -385,6 +388,10 @@ export default class MainAbility extends Ability {
     if (uri) {
       emitter.emit({
         eventId: EVENT_ID_CLOSE_THEME_FULL_SCREEN_PAGE,
+        priority: emitter.EventPriority.IMMEDIATE,
+      });
+      emitter.emit({
+        eventId: EVENT_ID_DISMISS_SETTING_BIND_SHEETS,
         priority: emitter.EventPriority.IMMEDIATE,
       });
       emitter.emit({

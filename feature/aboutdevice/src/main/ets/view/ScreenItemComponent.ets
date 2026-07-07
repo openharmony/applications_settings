@@ -25,7 +25,7 @@ export struct ScreenItemComponent {
         .fontWeight(FontWeight.Medium)
         .fontSize($r('sys.float.Body_L'))
         .fontColor(Color.White)
-        .offset({y:'75%',x:'50%'})
+        .offset({y:'85%',x:'50%'})
         .markAnchor({x:'50%',y:'50%'})
     }
     .borderRadius($r('sys.float.corner_radius_level8'))
