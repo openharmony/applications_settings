@@ -100,4 +100,28 @@ export class VibratorUtil {
       }
     });
   }
+  /**
+   * 普通振动，临时方法
+   */
+  public static startVibration(): void {
+    import('@ohos.vibrator').then(vibrator => {
+      try {
+        vibrator.default.startVibration({
+          type: 'time',
+          duration:1000
+        }, {
+          id: 0,
+          usage: 'alarm'
+        }, (error: BusinessError) => {
+          if (error) {
+            LogUtil.error(`${TAG} Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+            return;
+          }
+          LogUtil.info(`${TAG} Succeed in starting vibration`);
+        });
+      } catch (err) {
+        LogUtil.error(`${TAG} An unexpected error occurred. Code: ${err?.code}, message: ${err?.message}`);
+      }
+    });
+  }
 }

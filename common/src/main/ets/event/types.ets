@@ -494,3 +494,8 @@ export const EVENT_ID_SEARCH_NO_EDIT: string = 'EVENT_ID_SEARCH_NO_EDIT';
  * 界面节点组变化事件
  */
 export const EVENT_ID_PAGE_RENDER_GROUP_CHANGE: string = 'EVENT_ID_PAGE_RENDER_GROUP_CHANGE';
+
+/**
+ * 外部跳转或主导航切换前关闭 bindSheet 半模态（避免新页面被压在 WLAN 密码等 Sheet 下层）
+ */
+export const EVENT_ID_DISMISS_SETTING_BIND_SHEETS: number = 200179;

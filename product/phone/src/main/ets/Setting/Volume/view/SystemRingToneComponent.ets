@@ -1313,95 +1313,186 @@ export struct SystemRingTonePage {
   /**
    * 拉起文件管理选择MP3文件
    */
-  private pickMP3File(): void {
+  private async pickMP3File() {
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     LogUtil.showInfo(this.tag, 'audioSelectOptions');
     const toneAttrs = systemSoundManager.createCustomizedToneAttrs();
-    const categoryValue = systemSoundManager.TONE_CATEGORY_RINGTONE;
+    let categoryValue = systemSoundManager.TONE_CATEGORY_RINGTONE;
+    let ringURI:string='';
+    let file:fs.File
+    let ringList:systemSoundManager.ToneAttrsArray|undefined
+    let ringToneType: systemSoundManager.RingtoneType = this.currentIndex === 1 ?
+      systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_1 :
+      systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
+    let systemToneType: systemSoundManager.SystemToneType = this.currentIndex === 1 ?
+      systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_1 :
+      systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
     const documentSelectOptions = new picker.DocumentSelectOptions()
     documentSelectOptions.fileSuffixFilters=['音频|.m4a,.aac,.mp3,.ogg,.wav,.flac,.amr,.ape']
     documentSelectOptions.maxSelectNumber=1
     const documentPicker = new picker.DocumentViewPicker(context)
-    documentPicker.select(documentSelectOptions).then((audioSelectResult: Array<string>) => {
-      //文件选择成功后，返回被选中音频的URI结果集。
+    // 铃声类别参数
+    if (this.navKey === NavEntryKey.RING_TONE_ENTRY) {
+      categoryValue = systemSoundManager.TONE_CATEGORY_RINGTONE;
+    } else if (this.navKey === NavEntryKey.MESSAGING_TONE_ENTRY) {
+      categoryValue = systemSoundManager.TONE_CATEGORY_TEXT_MESSAGE;
+    } else if (this.navKey === NavEntryKey.NOTIFICATION_TONE_ENTRY) {
+      categoryValue = systemSoundManager.TONE_CATEGORY_NOTIFICATION;
+    }
+    documentPicker.select(documentSelectOptions).then(async (audioSelectResult: Array<string>) => {
+      //文件选择成功后，返回被选中音频的URI
       if (audioSelectResult.length > 0) {
         let uri = audioSelectResult[0]
         try {
-          let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
+          file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
+          // 清空相应铃音库
+          if (this.navKey === NavEntryKey.RING_TONE_ENTRY) {
+            let SIMOneRingUri:string|undefined = ''
+            let SIMTwoRingUri:string|undefined = ''
+            // 获取当前正在设置的铃声，使其不被删除
+            try {
+              ringList =await this.systemSoundManagerInstance?.getRingtoneAttrList(this.context,ringToneType)
+              SIMOneRingUri = await this.systemSoundManagerInstance?.getRingtoneUri(this.context,0)
+              SIMTwoRingUri = await this.systemSoundManagerInstance?.getRingtoneUri(this.context,1)
+            }catch (err) {
+              LogUtil.showError(this.tag, `Failed to get tone. Code: ${err.code}, message: ${err.message}`);
+            }
+            ringList?.forEach(async (item:systemSoundManager.ToneAttrs)=>{
+              if (file.name === item.getTitle()) {
+                try {
+                  await this.systemSoundManagerInstance?.setRingtoneUri(this.context,item.getUri(),ringToneType)
+                  this.isShowCurrentRingtone=true
+                  this.selectedRingtone = file.name;
+                  this.getUIContext().getPromptAction().showToast({ message: `已设置为卡${this.currentIndex as number+1}来电铃声` });
+                  LogUtil.showInfo(this.tag, `Succeeded in setting Ringtone.`);
+                }catch (err) {
+                  LogUtil.showError(this.tag, `Failed to set tone. Code: ${err.code}, message: ${err.message}`);
+                }
+              }else if (item.getUri() !== SIMOneRingUri && item.getUri() !== SIMTwoRingUri){
+                try {
+                  await this.systemSoundManagerInstance?.removeCustomizedTone(this.context,item.getUri())
+                }catch (err) {
+                  LogUtil.showError(this.tag, `Failed to remove tone. Code: ${err.code}, message: ${err.message}`);
+                }
+              }
+            })
+          } else if (this.navKey === NavEntryKey.MESSAGING_TONE_ENTRY) {
+            try {
+              ringList =await this.systemSoundManagerInstance?.getSystemToneAttrList(this.context,systemToneType)
+              let SIMOneMessageUri = await this.systemSoundManagerInstance?.getSystemToneUri(this.context,0)
+              let SIMTwoMessageUri = await this.systemSoundManagerInstance?.getSystemToneUri(this.context,1)
+              let notificationUri = await this.systemSoundManagerInstance?.getSystemToneUri(this.context,32)
+              ringList?.forEach(async (item:systemSoundManager.ToneAttrs)=>{
+                if (file.name === item.getTitle()) {
+                  try {
+                    await this.systemSoundManagerInstance?.setSystemToneUri(this.context,item.getUri(),systemToneType)
+                    this.isShowCurrentRingtone=true
+                    this.selectedRingtone = file.name;
+                    this.getUIContext().getPromptAction().showToast({ message: `已设置为卡${this.currentIndex as number+1}短信铃声` });
+                    LogUtil.showInfo(this.tag, `Succeeded in setting Messagetone.`);
+                  }catch (err) {
+                    LogUtil.showError(this.tag, `Failed to set tone. Code: ${err.code}, message: ${err.message}`);
+                  }
+                }else if (item.getUri() !== SIMOneMessageUri && item.getUri() !== SIMTwoMessageUri && item.getUri() !== notificationUri) {
+                  try {
+                    await this.systemSoundManagerInstance?.removeCustomizedTone(this.context,item.getUri())
+                  }catch (err) {
+                    LogUtil.showError(this.tag, `Failed to remove tone. Code: ${err.code}, message: ${err.message}`);
+                  }
+                }
+              })
+            }catch (err) {
+              LogUtil.showError(this.tag, `Failed to getSystemToneAttrList. Code: ${err.code}, message: ${err.message}`);
+            }
+          } else if (this.navKey === NavEntryKey.NOTIFICATION_TONE_ENTRY) {
+            try {
+              ringList =await this.systemSoundManagerInstance?.getSystemToneAttrList(this.context,
+                systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_NOTIFICATION)
+              let SIMOneMessageUri = await this.systemSoundManagerInstance?.getSystemToneUri(this.context,0)
+              let SIMTwoMessageUri = await this.systemSoundManagerInstance?.getSystemToneUri(this.context,1)
+              let notificationUri = await this.systemSoundManagerInstance?.getSystemToneUri(this.context,32)
+              ringList?.forEach(async (item:systemSoundManager.ToneAttrs)=>{
+                if (file.name === item.getTitle()) {
+                  try {
+                    await this.systemSoundManagerInstance?.setSystemToneUri(this.context,item.getUri(),
+                      systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_NOTIFICATION)
+                    this.isShowCurrentRingtone=true
+                    this.selectedRingtone = file.name;
+                    this.getUIContext().getPromptAction().showToast({ message: `已设置为通知铃声` });
+                    LogUtil.showInfo(this.tag, `Succeeded in setting Notificationtone.`);
+                  }catch (err) {
+                    LogUtil.showError(this.tag, `Failed to set tone. Code: ${err.code}, message: ${err.message}`);
+                  }
+                }else if (item.getUri() !== SIMOneMessageUri && item.getUri() !== SIMTwoMessageUri && item.getUri() !== notificationUri) {
+                  try {
+                    await this.systemSoundManagerInstance?.removeCustomizedTone(this.context,item.getUri())
+                  }catch (err) {
+                    LogUtil.showError(this.tag, `Failed to remove tone. Code: ${err.code}, message: ${err.message}`);
+                  }
+                }
+              })
+            }catch (err) {
+              LogUtil.showError(this.tag, `Failed to getSystemToneAttrList. Code: ${err.code}, message: ${err.message}`);
+            }
+          }
           // 选择铃声和当前铃声是否一致
           if (this.findName === file.name) {
             return
           }
+          // 配置铃音属性
           toneAttrs.setTitle(file.name)
           toneAttrs.setFileName(file.name)
           toneAttrs.setCategory(categoryValue);
           toneAttrs.setMediaType(systemSoundManager.MediaType.AUDIO)
-          this.systemSoundManagerInstance?.addCustomizedTone(this.context, toneAttrs, file.fd, 0).then(async (value: string) => {
-            LogUtil.showInfo(this.tag, `addCustomizedTone  value:${value}`);
-            let ctx: Context = getContext(this);
-            let oldUri: string = '';
+          // 添加到铃音库
+          let value=await this.systemSoundManagerInstance?.addCustomizedTone(this.context, toneAttrs, file.fd, 0)
+          LogUtil.showInfo(this.tag, `addCustomizedTone  value:${value}`);
+          try {
+            LogUtil.showInfo(this.tag, 'Succeeded in setting tone.'+ringURI);
             if (this.navKey === NavEntryKey.RING_TONE_ENTRY) {
-              oldUri = (await this.getRingToneValue(ctx)) ?? '';
+              await this.systemSoundManagerInstance?.setRingtoneUri(this.context, value, ringToneType);
+              this.getUIContext().getPromptAction().showToast({ message: `已设置为卡${this.currentIndex as number+1}来电铃声` });
             } else if (this.navKey === NavEntryKey.MESSAGING_TONE_ENTRY) {
-              oldUri = (await this.getSystemToneValue(ctx)) ?? '';
+              await this.systemSoundManagerInstance?.setSystemToneUri(this.context, value, systemToneType);
+              this.getUIContext().getPromptAction().showToast({ message: `已设置为卡${this.currentIndex as number+1}短信铃声` });
             } else if (this.navKey === NavEntryKey.NOTIFICATION_TONE_ENTRY) {
-              oldUri = (await this.getNotificationToneValue(ctx)) ?? '';
+              await this.systemSoundManagerInstance?.setSystemToneUri(this.context, value,
+                systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_NOTIFICATION);
+              this.getUIContext().getPromptAction().showToast({ message: `已设置为通知铃声` });
             }
-            try {
-              if (this.navKey === NavEntryKey.RING_TONE_ENTRY) {
-                let ringToneType: systemSoundManager.RingtoneType = this.currentIndex === 1 ?
-                  systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_1 :
-                  systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
-                await this.systemSoundManagerInstance?.setRingtoneUri(this.context, value, ringToneType);
-              } else if (this.navKey === NavEntryKey.MESSAGING_TONE_ENTRY) {
-                let systemToneType: systemSoundManager.SystemToneType = this.currentIndex === 1 ?
-                  systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_1 :
-                  systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
-                await this.systemSoundManagerInstance?.setSystemToneUri(this.context, value, systemToneType);
-              } else if (this.navKey === NavEntryKey.NOTIFICATION_TONE_ENTRY) {
-                await this.systemSoundManagerInstance?.setSystemToneUri(this.context, value,
-                  systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_NOTIFICATION);
-              }
-              LogUtil.showInfo(this.tag, 'Succeeded in setting tone.');
-              this.selectedRingtone = file.name;
-              this.getUIContext().getPromptAction().showToast({ message: '设置成功' });
-              if (oldUri !== '') {
-                this.systemSoundManagerInstance?.removeCustomizedTone(this.context, oldUri);
-              }
-              this.currentURI = value;
-              // 持久化当前选择并同步摘要
-              let isCardOne: boolean = this.currentIndex !== 1;
-              let toneType: ToneType = RingtonesUtils.navKey2Type(this.navKey) as ToneType;
-              let key: string = RingtonesUtils.getRingtoneKey(isCardOne, toneType);
-              let musicData: Record<string, Object> = {};
-              musicData['ringtoneName'] = file.name;
-              musicData['ringtonePath'] = value;
-              musicData['uri'] = value;
-              PreferencesUtil.putSync(key + '_music', musicData);
-              PreferencesUtil.putSync(key + '_type', RINGTONE_TYPE_CUSTOM);
-              let volumeData: VolumeDataType = {} as VolumeDataType;
-              volumeData.currentIndex = this.currentIndex ?? 0;
-              volumeData.value = file.name;
-              EventBus.getInstance().emit(RingtonesUtils.getEmitId(this.navKey), volumeData);
-            } catch (err) {
-              let errObj = err as BusinessError;
-              LogUtil.showError(this.tag, `Failed to set tone. Code: ${errObj?.code}, message: ${errObj?.message}`);
-              this.systemSoundManagerInstance?.removeCustomizedTone(this.context, value);
-            }
-          }).catch(async (err: BusinessError) => {
-            LogUtil.showError(this.tag, `addCustomizedTone error, error code: ${err.code}, error msg: ${err.message}`);
-          }).finally(() => {
-            fs.closeSync(file.fd);
-          });
+            this.isShowCurrentRingtone=true
+            LogUtil.showInfo(this.tag, 'Succeeded in setting tone.');
+            this.selectedRingtone = file.name;
+            this.currentURI = ringURI;
+            // 持久化当前选择并同步摘要
+            let isCardOne: boolean = this.currentIndex !== 1;
+            let toneType: ToneType = RingtonesUtils.navKey2Type(this.navKey) as ToneType;
+            let key: string = RingtonesUtils.getRingtoneKey(isCardOne, toneType);
+            let musicData: Record<string, Object> = {};
+            musicData['ringtoneName'] = file.name;
+            musicData['ringtonePath'] = ringURI;
+            musicData['uri'] = ringURI;
+            PreferencesUtil.putSync(key + '_music', musicData);
+            PreferencesUtil.putSync(key + '_type', RINGTONE_TYPE_CUSTOM);
+            let volumeData: VolumeDataType = {} as VolumeDataType;
+            volumeData.currentIndex = this.currentIndex ?? 0;
+            volumeData.value = file.name;
+            EventBus.getInstance().emit(RingtonesUtils.getEmitId(this.navKey), volumeData);
+          } catch (err) {
+            let errObj = err as BusinessError;
+            LogUtil.showError(this.tag, `Failed to set tone. Code: ${errObj?.code}, message: ${errObj?.message}`);
+          }
         } catch (err) {
           LogUtil.showError(this.tag, ` Code: ${(err as BusinessError)?.code}, message: ${(err as BusinessError)?.message}`);
+        } finally{
+          fs.closeSync(file.fd);
         }
+
       }
     }).catch((err: BusinessError) => {
       LogUtil.showError(this.tag, `Invoke audioViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
     });
   }
-
 
   private vibrateEntryClick(): void {
     let toneType: ToneType = RingtonesUtils.navKey2Type(this.navKey) as ToneType;

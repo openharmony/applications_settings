@@ -394,7 +394,7 @@
         },
         {
             "name":"application_and_service_settings_title",
-            "value":"應用程式和服務",
+            "value":"應用程式",
             "attr":{
                 "priority":"translate"
             }
@@ -2788,7 +2788,7 @@
         },
         {
             "name":"application_and_meta_service_settings_title",
-            "value":"應用程式和元服務",
+            "value":"應用程式",
             "attr":{
                 "priority":"LT"
             }
@@ -3727,6 +3727,13 @@
         {
             "name":"languageAndRegion",
             "value":"語言和地區",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sos_emergency_help",
+            "value":"SOS 緊急求助",
             "attr":{
                 "priority":"LT"
             }
@@ -8399,7 +8406,7 @@
       },
       {
         "name": "privacy_settings_title",
-        "value": ""
+        "value": "隱私和安全"
       },
       {
         "name": "data_usage_management_title",

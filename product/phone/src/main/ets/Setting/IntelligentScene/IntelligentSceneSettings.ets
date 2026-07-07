@@ -138,7 +138,6 @@ export struct IntelligentSceneSettings {
           }
         })
         .size({ width: '100%', height: '100%' })
-        .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM, SafeAreaEdge.TOP])
     }
     .hideTitleBar(true)
     .backgroundColor($r('sys.color.ohos_id_color_sub_background'))

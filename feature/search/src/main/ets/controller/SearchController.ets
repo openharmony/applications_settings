@@ -57,7 +57,14 @@ import lazy { SearchResourceManager } from './SearchResourceManager';
 import lazy { HideSearchItemsConfig } from '../model/HideSearchItemsConfig';
 import { initExternalSearchData } from '../util/SearchTaskPoolManager';
 import { ResourceManagerUtil } from '@ohos/settings.common/src/main/ets/utils/ResourceManagerUtil';
+import {
+  HighlightIndex,
+  HIGHLIGHT_DEFAULT_INDEX,
+  highLightKeyWord,
+  isMatchKeyWord
+} from '@ohos/settings.common/src/main/ets/utils/ApplicationUtil';
 import { SearchRDBController } from './SearchRDBController';
+import { SearchSecurityUtil } from '../util/SearchSecurityUtil';
 
 const TAG: string = 'SearchController';
 const phoneSearchConfigPath: string = 'searchConfig/phone/searchPage.json';
@@ -141,6 +148,7 @@ export class SearchDataController {
 
   /**
    * 清空搜索数据
+   * 版本号更新时会执行：清空表并清除初始化标记，使 initSearchData 能重新写入完整数据
    * @returns
    */
   static async deleteSearchData(): Promise<void> {
@@ -150,6 +158,9 @@ export class SearchDataController {
       return;
     }
     await SearchItemInfoManager.clearSearchData();
+    // 清空表后必须清除 ItemInfo 的初始化标记，否则 initSearchData 会误判为已完成而跳过重新写入
+    let curLocale: string = i18n.System.getSystemLocale();
+    await PreferencesUtil.delete(`ItemInfo${curLocale}${Constants.ITEMINFO_TABLE_VERSION}`);
     await PreferencesUtil.put(`ClearItemInfoTable${Constants.ITEMINFO_TABLE_VERSION}`, 'done');
   }
 
@@ -265,6 +276,7 @@ export class SearchDataController {
     resourceManager: SearchResourceManager, bundleName?: string, context?: common.Context): Promise<Array<ItemInfo>> {
     let searchItemList: SearchItem[] = searchPage.searchItems;
     LogUtil.info(`${TAG} searchItemList: ${searchItemList?.length} ${searchPage.supportDevices}`);
+    LogUtil.info(`${TAG} hylhly-----searchItemList: ${CheckEmptyUtils.isEmpty(searchItemList)} ${SearchDataController.checkIsDeviceSupport(searchPage.supportDevices)}`);
     let itemInfoList: ItemInfo[] = [];
     /* instrument ignore if*/
     if (CheckEmptyUtils.isEmpty(searchItemList) ||
@@ -279,13 +291,14 @@ export class SearchDataController {
         LogUtil.warn(`${TAG} searchItem is not supported`);
         continue;
       }
+      const resolvedItemTitle: string = searchItem.itemTitle === '$string:time_24_hour_title' ?
+        resourceManager.getNumberFormatStringSync($r('app.string.time_24_hour_title'), '24') :
+        bundleName ? resourceManager.getExternalStringByName(bundleName, searchItem.itemTitle) :
+          resourceManager.getStringByName(searchItem.itemTitle);
       let itemInfo: ItemInfo = {
         locale: curLocale,
         itemName: searchItem.itemName,
-        itemTitle: searchItem.itemTitle === '$string:time_24_hour_title' ?
-          resourceManager.getNumberFormatStringSync($r('app.string.time_24_hour_title'), '24') :
-          bundleName ? resourceManager.getExternalStringByName(bundleName, searchItem.itemTitle) : resourceManager
-            .getStringByName(searchItem.itemTitle),
+        itemTitle: resolvedItemTitle,
         itemDescription: searchItem.itemDescription,
         entryKey: searchPage.entryKey,
         pageTitle: bundleName ? resourceManager.getExternalStringByName(bundleName, searchPage.pageTitle) :
@@ -294,7 +307,7 @@ export class SearchDataController {
         enable: await (context ? CheckItemUtil.checkItemEnable(searchItem, context) :
           CheckItemUtil.checkItemEnable(searchItem)),
         icon: searchItem.icon,
-        alias: searchItem.alias,
+        alias: searchItem.alias ?? '',
         path: resourceManager.getPathByName(bundleName as string, searchPage.path, bundleName !== undefined),
         childItems: searchItem.childItems,
         bundleName: bundleName ?? PackagesConstant.SETTINGS_BUNDLE_NAME,
@@ -372,15 +385,16 @@ export class SearchDataController {
   async getSearchResult(value: string,
     queryMetaService?: (value: string) => RenderItemInfo[]): Promise<RenderItemInfo[]> {
     try {
-
       const result = await SearchRDBController.queryAllItems(value)
       // 3. 处理查询结果
       LogUtil.info(TAG + 'getSearchResult' + JSON.stringify(result))
 
+      // 高亮使用与 DB 查询相同的过滤后关键词，否则带标点等输入（如 "，蓝牙"）无法正确高亮
+      const sanitizedValue = SearchSecurityUtil.sanitizeSearchInput(value);
       let retResult: RenderItemInfo[] = [];
       if (result?.length) {
         let resList = result.filter((item) => item.locale === i18n.System.getSystemLocale());
-        retResult = await SearchDataController.getInstance().getSearchItemInfo(resList, value);
+        retResult = await SearchDataController.getInstance().getSearchItemInfo(resList, sanitizedValue);
       }
       await SearchDataController.getInstance().initApplicationResult(value, retResult, queryMetaService);
       // instrument ignore next
@@ -635,13 +649,16 @@ export class SearchDataController {
       if (CheckEmptyUtils.checkStrIsEmpty(item.title)) {
         continue;
       }
+      if (!item.appStatus) {
+        continue;
+      }
       let newItem: RenderItemChildrenInfo;
       let topLevelEntry = '';
       let isFromOuter: boolean = (item?.callbackType === 1 && item.wantCallback !== undefined);
       LogUtil.showInfo(TAG, `isFromOuter ${isFromOuter}`);
       if (isFromOuter) {
         let outerNewItem: RenderItemChildrenInfo | undefined = SearchDataController.getInstance()
-          .getSearchChildrenItemInfoForOuter(item);
+          .getSearchChildrenItemInfoForOuter(item, searchValue);
         if (!outerNewItem) {
           continue;
         }
@@ -649,7 +666,7 @@ export class SearchDataController {
         topLevelEntry = outerNewItem.entryKey;
       } else {
         newItem = SearchDataController.getInstance()
-          .getSearchChildrenItemInfo(item);
+          .getSearchChildrenItemInfo(item, searchValue);
         if (item.entryKey === NavEntryKey.OUC_SOFTWARE_UPDATE_SETTINGS) {
           topLevelEntry = NavEntryKey.ABOUT_DEVICE_ENTRY;
         } else {
@@ -727,9 +744,10 @@ export class SearchDataController {
     }
   }
 
-  private getSearchChildrenItemInfo(item: ResultItemInfo): RenderItemChildrenInfo {
+  private getSearchChildrenItemInfo(item: ResultItemInfo, searchValue: string): RenderItemChildrenInfo {
+    const titleWithHighlight = this.buildTitleWithHighlight(item.title, searchValue);
     return {
-      title: item.title.split(new RegExp(`<|>`, 'gi')),
+      title: titleWithHighlight,
       entryKey: item.entryKey,
       path: CheckEmptyUtils.checkStrIsEmpty(item.path) ? item.title.split(new RegExp(`<em>|</em>`, 'gi'))
         .join('') : item.path,
@@ -740,7 +758,25 @@ export class SearchDataController {
     };
   }
 
-  private getSearchChildrenItemInfoForOuter(item: ResultItemInfo): RenderItemChildrenInfo | undefined {
+  /**
+   * 构建带高亮标记的标题数组，用于搜索结果高亮显示
+   * 支持：中文/英文直接匹配
+   */
+  private buildTitleWithHighlight(title: string, searchValue: string): string[] {
+    if (CheckEmptyUtils.checkStrIsEmpty(searchValue)) {
+      return title.split(new RegExp(`<|>`, 'gi'));
+    }
+    const highlightIndex: HighlightIndex = { startIndex: HIGHLIGHT_DEFAULT_INDEX, endIndex: HIGHLIGHT_DEFAULT_INDEX };
+    if (isMatchKeyWord(title, searchValue, highlightIndex)) {
+      const highlighted = highLightKeyWord(title, searchValue, highlightIndex);
+      if (highlighted.length > 0) {
+        return highlighted;
+      }
+    }
+    return title.split(new RegExp(`<|>`, 'gi'));
+  }
+
+  private getSearchChildrenItemInfoForOuter(item: ResultItemInfo, searchValue: string): RenderItemChildrenInfo | undefined {
     if (item.wantCallback) {
       let wantCallBack = JSON.parse(item.wantCallback) as Want;
       if (CheckEmptyUtils.checkStrIsEmpty(item.appName) &&
@@ -749,8 +785,9 @@ export class SearchDataController {
           bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_WITH_LABEL)?.label as string;
         item.appName = label ?? '';
       }
+      const titleWithHighlight = this.buildTitleWithHighlight(item.title, searchValue);
       let renderItemInfo: RenderItemChildrenInfo = {
-        title: item.title.split(new RegExp(`<|>`, 'gi')),
+        title: titleWithHighlight,
         entryKey: wantCallBack.bundleName ?? '',
         path: CheckEmptyUtils.checkStrIsEmpty(item.path) ? item.title.split(new RegExp(`<em>|</em>`, 'gi'))
           .join('') : item.path,
@@ -797,6 +834,10 @@ export class SearchDataController {
       return true;
     }
     let deviceType = deviceInfo.deviceType;
+    // TODO 临时方案，由于当前设备deviceInfo.deviceType为default，先手动改成phone
+    if (deviceType === 'default') {
+      deviceType = 'phone'
+    }
     for (let supportDevice of supportDevices) {
       if (supportDevice === deviceType) {
         return true;

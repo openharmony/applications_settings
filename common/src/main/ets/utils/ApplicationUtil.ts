@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import { i18n } from '@kit.LocalizationKit';
 import { bundleManager, common, Context, dialogRequest, Want } from '@kit.AbilityKit';
 import { CheckEmptyUtils } from './CheckEmptyUtils';
 import { LogUtil } from './LogUtil';
@@ -24,15 +23,15 @@ const TAG: string = 'ApplicationUtil :';
 export const HIGHLIGHT_DEFAULT_INDEX: number = -1;
 
 /**
- * 首页通过拼音搜索元服务时记录拼音对应的索引位置
+ * 记录匹配到的关键词在原文中的索引位置，用于高亮
  */
 export interface HighlightIndex {
-  startIndex: number,
-  endIndex: number
+  startIndex: number;
+  endIndex: number;
 }
 
 /**
- * 匹配搜索词方法
+ * 匹配搜索词方法（仅原文子串匹配，不支持拼音/英文转写匹配）
  *
  * @param name 待匹配的字符串
  * @param keyWord 搜索关键词
@@ -44,65 +43,13 @@ export function isMatchKeyWord(name: string, keyWord: string, highlightIndex?: H
     LogUtil.showWarn(TAG, `name: ${name} or keyWord: ${keyWord} is empty`);
     return false;
   }
-  let pinyin = i18n.Transliterator.getInstance('Any-Latn; Latin-ASCII')
-    .transform(name);
-  // 去除关键词的所有空格
   keyWord = keyWord.replace(/\s+/g, '');
-  return name.toLowerCase().includes(keyWord.toLowerCase()) || matchPinyin(pinyin, keyWord, highlightIndex);
-}
-
-/**
- * 当输入的关键词是拼音时，匹配对应的中文
- *
- * @param name 待匹配的名称
- * @param keyWord 关键词
- * @param highlightIndex 记录匹配到的关键词索引位置
- * @returns boolean, 能匹配成功返回 true
- */
-function matchPinyin(name: string, keyWord: string, highlightIndex?: HighlightIndex): boolean {
-  if (CheckEmptyUtils.checkStrIsEmpty(name) || CheckEmptyUtils.checkStrIsEmpty(keyWord)) {
-    LogUtil.showWarn(TAG, `matchPinyin name: ${name} or keyWord: ${keyWord} is empty`);
-    return false;
+  const idx = name.toLowerCase().indexOf(keyWord.toLowerCase());
+  if (idx >= 0 && highlightIndex) {
+    highlightIndex.startIndex = idx;
+    highlightIndex.endIndex = idx + keyWord.length - 1;
   }
-  // 拆分 name 为拼音数组并过滤空字符串
-  const nameArr: string[] = name.split(' ').filter(s => s.length > 0);
-  const nLength: number = nameArr.length;
-  // 预处理每个拼音的长度
-  const lengths: number[] = nameArr.map(s => s.length);
-  // 判断总长度是否不足，提前返回 false
-  const totalLength = lengths.reduce((acc, len) => acc + len, 0);
-  if (totalLength < keyWord.length) {
-    LogUtil.showWarn(TAG, `totalLength: ${totalLength}, keyLength: ${keyWord.length}`);
-    return false;
-  }
-  // 滑动窗口寻找目标长度的拼接
-  let left: number = 0;
-  let currentLength: number = 0;
-  for (let right: number = 0; right < nLength; right++) {
-    currentLength += lengths[right];
-    // 如果当前窗口和超过目标长度，则收缩左侧
-    while (currentLength > keyWord.length && left < nLength) {
-      currentLength -= lengths[left];
-      left++;
-    }
-    if (currentLength !== keyWord.length) {
-      continue;
-    }
-    // 如果窗口长度正好等于目标，拼接判断字符串
-    let concatenated: string = '';
-    for (let i: number = left; i <= right; i++) {
-      concatenated += nameArr[i];
-    }
-    if (concatenated.toLowerCase() === keyWord.toLowerCase()) {
-      if (highlightIndex) {
-        highlightIndex.startIndex = left;
-        highlightIndex.endIndex = right;
-      }
-      return true;
-    }
-  }
-  // 未匹配到
-  return false;
+  return idx >= 0;
 }
 
 /**
@@ -119,7 +66,6 @@ export function highLightKeyWord(name: string, key: string, highlightIndex: High
     return [];
   }
   LogUtil.showInfo(TAG, `name: ${name}, key: ${key}, index: ${highlightIndex.startIndex}-${highlightIndex.endIndex}`);
-  // 通过拼音搜索成功的,高亮时需要将拼音转换成中文进行高亮展示
   if (highlightIndex.startIndex > HIGHLIGHT_DEFAULT_INDEX && highlightIndex.endIndex < name.length) {
     key = name.substring(highlightIndex.startIndex, highlightIndex.endIndex + 1);
   }

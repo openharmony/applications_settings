@@ -1996,118 +1996,6 @@
       ]
     },
     {
-      "pageTitle": "$string:accessibility",
-      "pageDescription": "Accessibility features",
-      "entryKey": "accessibility_feature",
-      "params": "",
-      "path": [
-        "$string:accessibility"
-      ],
-      "searchItems": [
-        {
-          "itemName": "accessibility_features",
-          "itemTitle": "$string:accessibility",
-          "itemDescription": "",
-          "icon": "$media:ic_accessibility",
-          "enable": "true",
-          "childItems": "",
-          "alias": "Accessibility features|fuzhugongneng|无障碍|wuzhangai"
-        },
-        {
-          "itemName": "hearing_aid",
-          "itemTitle": "$string:hearing_aid",
-          "itemDescription": "",
-          "icon": "",
-          "enable": "true",
-          "childItems": "",
-          "alias": "",
-          "checkItem": {
-            "type": "function",
-            "checkKey": "isHearingAidSupport",
-            "value": "true"
-          }
-        }
-      ]
-    },
-    {
-      "pageTitle": "$string:touchscreen_settings",
-      "pageDescription": "Touchscreen settings",
-      "entryKey": "accessibility_touchscreen_entry",
-      "params": "",
-      "path": [
-        "$string:accessibility",
-        "$string:touchscreen_settings"
-      ],
-      "searchItems": [
-        {
-          "itemName": "touchscreen_settings",
-          "itemTitle": "$string:touchscreen_settings",
-          "itemDescription": "",
-          "icon": "",
-          "enable": "true",
-          "childItems": "",
-          "alias": ""
-        },
-        {
-          "itemName": "touch_duration",
-          "itemTitle": "$string:touch_duration",
-          "itemDescription": "",
-          "icon": "",
-          "enable": "true",
-          "childItems": "",
-          "alias": ""
-        },
-        {
-          "itemName": "ignore_repeated_touches",
-          "itemTitle": "$string:ignore_repeated_touches",
-          "itemDescription": "",
-          "icon": "",
-          "enable": "true",
-          "childItems": "",
-          "alias": ""
-        }
-      ]
-    },
-    {
-      "pageTitle": "$string:shortKey_accessibility",
-      "pageDescription": "Accessibility shortcut",
-      "entryKey": "accessibility_operation_entry",
-      "params": "",
-      "path": [
-        "$string:accessibility",
-        "$string:shortKey_accessibility"
-      ],
-      "searchItems": [
-        {
-          "itemName": "accessibility_shortcut",
-          "itemTitle": "$string:shortKey_accessibility",
-          "itemDescription": "",
-          "icon": "",
-          "enable": "true",
-          "childItems": "",
-          "alias": ""
-        },
-        {
-          "itemName": "shortKey_lock_screen",
-          "itemTitle": "$string:shortKey_lock_screen",
-          "itemDescription": "",
-          "icon": "",
-          "enable": "true",
-          "childItems": "",
-          "alias": ""
-        },
-        {
-          "itemName": "function_select",
-          "itemTitle": "$string:function_select",
-          "itemDescription": "",
-          "icon": "",
-          "enable": "true",
-          "childItems": "",
-          "alias": ""
-        }
-      ]
-    },
-    {
       "pageTitle": "$string:application_and_meta_service_settings_title",
       "pageDescription": "App & meta-services",
       "entryKey": "application_and_service_settings",
@@ -3591,7 +3479,7 @@
           "enable": "true",
           "childItems": "",
           "alias": ""
-        },
+        }
       ]
     },
     {

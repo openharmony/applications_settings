@@ -65,13 +65,13 @@ export class PairDialogController {
     BluetoothAdapter.getInstance().updateCacheDevices(deviceId, replaceDeviceName);
     this.deviceName = replaceDeviceName;
     this.deviceId = deviceId;
-    if (this.pinType === PinType.PAIRING_VARIANT_PASSKEY_CONFIRMATION) {
+    if (this.pinType === connection.PinType.PIN_TYPE_CONFIRM_PASSKEY) {
       this.content = ResourceUtil.getAnyStrFormatStringSync($r('app.string.bt_pair_required_message'),
         replaceDeviceName, replaceDeviceName);
-    } else if (this.pinType === PinType.PAIRING_VARIANT_CONSENT ||
-      this.pinType === PinType.PAIRING_VARIANT_OOB_CONSENT ||
-      this.pinType === PinType.PAIRING_VARIANT_DISPLAY_PASSKEY ||
-      this.pinType === PinType.PAIRING_VARIANT_DISPLAY_PIN) {
+    } else if (this.pinType === connection.PinType.PIN_TYPE_NO_PASSKEY_CONSENT ||
+      this.pinType === connection.PinType.PIN_TYPE_OOB_CONSENT ||
+      this.pinType === connection.PinType.PIN_TYPE_NOTIFY_PASSKEY ||
+      this.pinType === connection.PinType.PIN_TYPE_DISPLAY_PIN_CODE) {
       this.content = $r('app.string.bluetooth_pair_with_the_following_message');
     }
     try {
@@ -92,14 +92,14 @@ export class PairDialogController {
   onPairClick(deviceId: string, checkBoxState: boolean, input?: string): void {
     LogUtil.info(`${TAG} onPairClick, deviceId: ${BluetoothUtils.getLogMAC(deviceId)}, checkBoxState: ${checkBoxState}, pinType: ${this.pinType}`);
     let pinType: number = this.pinType;
-    if (pinType === PinType.PAIRING_VARIANT_PASSKEY_CONFIRMATION || pinType === PinType.PAIRING_VARIANT_CONSENT) {
+    if (pinType === connection.PinType.PIN_TYPE_CONFIRM_PASSKEY || pinType === connection.PinType.PIN_TYPE_NO_PASSKEY_CONSENT) {
       this.onPairClickForPinType236(deviceId, checkBoxState);
-    } else if (pinType === PinType.PAIRING_VARIANT_OOB_CONSENT) {
+    } else if (pinType === connection.PinType.PIN_TYPE_OOB_CONSENT) {
       this.onPairClickForPinType36ForOther(deviceId, checkBoxState);
-    } else if (pinType === PinType.PAIRING_VARIANT_DISPLAY_PASSKEY || pinType === PinType.PAIRING_VARIANT_DISPLAY_PIN) {
+    } else if (pinType === connection.PinType.PIN_TYPE_NOTIFY_PASSKEY || pinType === connection.PinType.PIN_TYPE_DISPLAY_PIN_CODE) {
       this.onPairClickForPinType36ForOther(deviceId, checkBoxState);
-    } else if (pinType === PinType.PAIRING_VARIANT_PIN || pinType === PinType.PAIRING_VARIANT_PIN_16_DIGITS ||
-      pinType === PinType.PAIRING_VARIANT_PASSKEY) {
+    } else if (pinType === connection.PinType.PIN_TYPE_ENTER_PIN_CODE || pinType === connection.PinType.PIN_TYPE_PIN_16_DIGITS ||
+      pinType === connection.PinType.PIN_TYPE_ENTER_PASSKEY) {
       this.onPairClickForPinType07(deviceId, checkBoxState, input);
     }
     this.closeDialog();
@@ -109,14 +109,14 @@ export class PairDialogController {
     LogUtil.info(`${TAG} onCancelClick, deviceId: ${BluetoothUtils.getLogMAC(deviceId)}, pinType: ${this.pinType}`);
     BluetoothAdapter.getInstance().connectTimestampManager.resetDeviceBondedFromLocal(deviceId);
     let pinType: number = this.pinType;
-    if (pinType === PinType.PAIRING_VARIANT_PASSKEY_CONFIRMATION || pinType === PinType.PAIRING_VARIANT_CONSENT) {
+    if (pinType === connection.PinType.PIN_TYPE_CONFIRM_PASSKEY || pinType === connection.PinType.PIN_TYPE_NO_PASSKEY_CONSENT) {
       this.onCancelClickForPinType2(deviceId);
-    } else if (pinType === PinType.PAIRING_VARIANT_OOB_CONSENT) {
+    } else if (pinType === connection.PinType.PIN_TYPE_OOB_CONSENT) {
       this.onCancelClickForPinType36ForOther(deviceId);
-    } else if (pinType === PinType.PAIRING_VARIANT_DISPLAY_PASSKEY || pinType === PinType.PAIRING_VARIANT_DISPLAY_PIN) {
+    } else if (pinType === connection.PinType.PIN_TYPE_NOTIFY_PASSKEY || pinType === connection.PinType.PIN_TYPE_DISPLAY_PIN_CODE) {
       this.onCancelClickForPinType36ForOther(deviceId);
-    } else if (pinType === PinType.PAIRING_VARIANT_PIN || pinType === PinType.PAIRING_VARIANT_PIN_16_DIGITS ||
-      pinType === PinType.PAIRING_VARIANT_PASSKEY) {
+    } else if (pinType === connection.PinType.PIN_TYPE_ENTER_PIN_CODE || pinType === connection.PinType.PIN_TYPE_PIN_16_DIGITS ||
+      pinType === connection.PinType.PIN_TYPE_ENTER_PASSKEY) {
       this.onCancelClickForPinType07(deviceId, input);
     }
     this.closeDialog();

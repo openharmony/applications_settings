@@ -14,7 +14,6 @@
  */
 
 import { LogUtil } from '@ohos/settings.common/src/main/ets/utils/LogUtil';
-import { DeviceUtil } from '@ohos/settings.common/src/main/ets/utils/BaseUtils';
 import { PageStartModeManager } from '@ohos/settings.common/src/main/ets/window/PageStartModeManager';
 import { ObservedData, UiExtensionViewModel } from '@ohos/settings.common/src/main/ets/viewmodel/UiExtensionViewModel';
 import { ExitAbnormallyComponent } from '@ohos/settings.common/src/main/ets/viewmodel/ExitAbnormallyComponent';
@@ -95,9 +94,8 @@ export struct DataUsageManagement {
           'ability.want.params.uiExtensionType': 'sys/commonUI',
           'ability.want.params.IsNotifyOccupiedAreaChange': true,
           'navigationMode': this.firstNavigationMode,
-          'pushParams': (this.params?.config || this.params?.subUri) as string,
           'startReason': this.params?.startReason ?? PageStartModeManager.getInstance().getStartReason(),
-          'reconnect': this.observedData.reconnect,
+          'reconnect': this.observedData.reconnect
         },
       })
         .defaultFocus(true)
@@ -119,7 +117,6 @@ export struct DataUsageManagement {
           this.pathInfos.pop();
         })
         .size({ width: '100%', height: '100%' })
-        .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM, SafeAreaEdge.TOP])
     }
     .hideTitleBar(true)
     .backgroundColor($r('sys.color.ohos_id_color_sub_background'))

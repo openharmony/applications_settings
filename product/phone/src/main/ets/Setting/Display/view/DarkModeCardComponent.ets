@@ -27,6 +27,9 @@ import { LogUtil } from '@ohos/settings.common/src/main/ets/utils/LogUtil';
 import {
   COLOR_MODE_DARK,
   COLOR_MODE_LIGHT,
+  DARK_MODE_OPEN_ALL_DAY,
+  DEFAULT_DARK_MODE_STATE,
+  SETTINGS_UI_APPEARANCE_DARK_MODE,
   SWITCH_DELAY
 } from '@ohos/settings.display/src/main/ets/constant/DarkModeConstant';
 import { EventBus } from '@ohos/settings.common/src/main/ets/framework/common/EventBus';
@@ -36,8 +39,8 @@ import { notifyCompStateChange,
   SettingResultState,
   SettingStateType} from '@ohos/settings.common/src/main/ets/framework/model/SettingStateModel';
 import { ItemResultType } from '@ohos/settings.common/src/main/ets/framework/model/SettingItemModel';
-import { SearchDataController } from '@ohos/settings.search';
-
+import { SettingsDataUtils } from '@ohos/settings.common';
+import settings from '@ohos.settings';
 /* instrument ignore file */
 const TAG: string = 'DarkModeCardComponent : ';
 
@@ -75,10 +78,15 @@ export struct DarkModeCardComponent {
       uiAppearance.setDarkMode(isOn ? uiAppearance.DarkMode.ALWAYS_DARK : uiAppearance.DarkMode.ALWAYS_LIGHT);
       if (isOn) {
         DisplayUtils.closeHighContrastTextMode();
+        SettingsDataUtils.setSettingsData(SETTINGS_UI_APPEARANCE_DARK_MODE, DARK_MODE_OPEN_ALL_DAY,
+          settings.domainName.USER_PROPERTY);
+      } else {
+        SettingsDataUtils.setSettingsData(SETTINGS_UI_APPEARANCE_DARK_MODE, DEFAULT_DARK_MODE_STATE,
+          settings.domainName.USER_PROPERTY);
       }
       this.currentMode = isOn ? COLOR_MODE_DARK : COLOR_MODE_LIGHT;
       LogUtil.info(`${TAG} switchColorMode ${isOn}`);
-      let result = isOn ? darkMode?$r('app.string.open_all_day'):$r('app.string.eye_timed_on') : $r('app.string.open_all_day_close');
+      let result = isOn ? $r('app.string.open_all_day') : $r('app.string.open_all_day_close');
       notifyCompStateChange('Setting.Display.display_setting.dark_mode',
         new Map<SettingStateType, SettingResultState>([[SettingStateType.STATE_TYPE_ITEM_RESULT,
           { type: ItemResultType.RESULT_TYPE_TEXT, result: { content: result } } as SettingResultState]]));

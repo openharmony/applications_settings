@@ -219,6 +219,42 @@ export async function getSpecAppListFromTaskPool(bundleInfos: bundleManager.Bund
   return availableAppList;
 }
 
+/**
+ * 加载更多应用列表
+ */
+@Concurrent
+export async function getSpecAppListFromTaskPoolWithoutHds(bundleInfos: bundleManager.BundleInfo[]): Promise<AppEntry[]> {
+  const tag: string = 'AppListLoaderManagerTaskPool: ';
+  let availableAppList: AppEntry[] = [];
+  let defaultIcon: ResourceStr | PixelMap = AppEntry.getDefaultIcon();
+  for (let info of bundleInfos) {
+    let entry: AppEntry = new AppEntry(info);
+    let bundleFlags: number = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_WITH_LABEL |
+      bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_WITH_DRAWABLE_DESCRIPTOR;
+    let bundleResourceInfo: bundleResourceManager.BundleResourceInfo | undefined =
+      entry.getBundleResourceInfo(entry.name, bundleFlags, entry.appIndex);
+    if (bundleResourceInfo) {
+      entry.label = bundleResourceInfo.label;
+      entry.appIndex = bundleResourceInfo.appIndex;
+      try {
+        if (bundleResourceInfo.drawableDescriptor != null && bundleResourceInfo.drawableDescriptor != undefined) {
+          entry.icon = bundleResourceInfo.drawableDescriptor.getPixelMap();
+        } else {
+          LogUtil.showWarn(tag, `bundleResourceInfo.drawableDescriptor is null, name: ${entry.name}`);
+          entry.icon = defaultIcon;
+        }
+      } catch (error) {
+        LogUtil.error(`${tag} getPixelMap failed, name: ${entry.name}, err: ${(error as Error)?.message}`);
+        entry.icon = defaultIcon;
+      }
+      availableAppList.push(entry);
+    } else {
+      LogUtil.showError(tag, `bundleResourceInfo is null, name: ${entry.name}`);
+    }
+  }
+  return availableAppList;
+}
+
 @Concurrent
 export async function processAppOneByOne(appInfoModelList: AppInfoModel[]): Promise<AppEntry[]> {
   let resultList:AppEntry[] = [];
@@ -333,6 +369,21 @@ export class AppListLoaderManager {
       AppListLoaderManager.getSpecAppListIsDone = task.isDone();
     }
     AppListLoaderManager.getSpecAppListIsDone = task.isDone();
+    return appList;
+  }
+
+
+  static async getSpecAppListWithoutHds(bundleInfos: bundleManager.BundleInfo[]): Promise<AppEntry[]> {
+    if (bundleInfos.length === 0) {
+      return [];
+    }
+    let appList: AppEntry[] = [];
+    let task: taskpool.Task = new taskpool.Task(getSpecAppListFromTaskPoolWithoutHds, bundleInfos);
+    try {
+      appList = await taskpool.execute(task, taskpool.Priority.MEDIUM) as AppEntry[];
+    } catch (error) {
+      LogUtil.error(`${TAG} catch exception when getSpecAppListFromTaskPoolWithoutHds, errcode: ${(error as Error)?.message}`);
+    }
     return appList;
   }
 }

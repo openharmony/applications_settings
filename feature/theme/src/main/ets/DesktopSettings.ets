@@ -18,7 +18,6 @@ import { LogUtil } from '@ohos/settings.common/src/main/ets/utils/LogUtil';
 import { PageStartModeManager } from '@ohos/settings.common/src/main/ets/window/PageStartModeManager';
 import { PushParam, Params } from '@ohos/settings.common/src/main/ets/core/controller/Controller';
 import { EVENT_ID_ICON_SETTING_PAGE_BACKGROUND } from '@ohos/settings.common/src/main/ets/event/types';
-import { CheckEmptyUtils } from '@ohos/settings.common/src/main/ets/utils/CheckEmptyUtils';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { enterIconSettingPage } from './IconSettingPage';
@@ -26,7 +25,8 @@ import { emitter } from '@kit.BasicServicesKit';
 
 const TAG: string = 'DesktopSettings : ';
 const UI_EXTENSION_SOURCE: string = 'settingSearch';
-const UI_EXTENSION_NAV: string = 'desktopSettingPage';
+/** scene_board_ext：product/phone module.json5 中注册的桌面设置 UIExtension，入口加载 desktopsetting/pages/DesktopSetting（SettingPage） */
+const DESKTOP_SETTING_UI_EXT_ABILITY: string = 'DesktopSettingUIExtAbility';
 
 @Builder
 export function DesktopSettingsLoader($$: Params): void {
@@ -47,10 +47,9 @@ export struct DesktopSettings {
   isFromExternal: boolean = false;
   want: Want = {
     bundleName: 'com.ohos.sceneboard',
-    abilityName: 'HomeThemeComponentExtAbility',
+    abilityName: DESKTOP_SETTING_UI_EXT_ABILITY,
     parameters: {
       'ability.want.params.uiExtensionType': 'sys/commonUI',
-      'nav': UI_EXTENSION_NAV,
       'isFull': true,
       'source': UI_EXTENSION_SOURCE,
     }
@@ -85,7 +84,8 @@ export struct DesktopSettings {
           }
         })
         .size({ width: '100%', height: '100%' })
-        .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
+        // 仅扩展底部安全区；扩展 TOP 会使扩展进程画布顶到状态栏下沿，SceneBoard SettingPage 标题易与状态栏重叠（对齐 PadCockpitSetting 等嵌入页）
+        .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
     }
     .hideTitleBar(true)
     .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
@@ -111,49 +111,23 @@ export struct DesktopSettings {
   }
 
   aboutToAppear(): void {
-    let nav = this.getTargetSubRouter(this.params);
+    // DesktopSettingUIExtAbility 侧直接加载 SettingPage，不按 nav 子路由
     if (this.params?.config || this.params?.subUri) {
       this.want.parameters = {
         'ability.want.params.uiExtensionType': 'sys/commonUI',
         'pushParams': (this.params.config || this.params.subUri) as string,
         'startReason': this.params?.startReason ?? PageStartModeManager.getInstance().getStartReason(),
-        'nav': nav,
         'isFull': true,
         'source': UI_EXTENSION_SOURCE,
       }
     }
-    LogUtil.info(`${TAG} aboutToAppear nav: ${nav}`);
+    LogUtil.info(`${TAG} aboutToAppear ability: ${this.want.abilityName}`);
     emitter.on({
       eventId: EVENT_ID_ICON_SETTING_PAGE_BACKGROUND
     }, () => {
       this.pathInfos?.pop();
     })
     this.firstNavigationMode = this.navigationMode;
-  }
-
-  /**
-   * 获取跳转地址
-   *
-   * @param pushParams 参数
-   * @returns 跳转地址
-   */
-  private getTargetSubRouter(pushParams: PushParam | null | undefined): string {
-    if (pushParams === null || pushParams === undefined) {
-      return UI_EXTENSION_NAV;
-    }
-    let config: string | undefined = undefined;
-    if (!CheckEmptyUtils.isEmpty(pushParams?.config) && typeof pushParams?.config === 'string') {
-      // 设置搜索会在config后面拼接,isShowBack:false
-      LogUtil.info(`${TAG} config`);
-      config = pushParams.config.toString();
-    }
-    let targetSubRouter: string = config ?? (pushParams.subUri ?? '');
-    LogUtil.info(`${TAG} targetSubRouter:${targetSubRouter}`);
-    targetSubRouter = targetSubRouter?.split(',')[0];
-    if (!targetSubRouter) {
-      return UI_EXTENSION_NAV;
-    }
-    return targetSubRouter;
   }
 
   aboutToDisappear(): void {

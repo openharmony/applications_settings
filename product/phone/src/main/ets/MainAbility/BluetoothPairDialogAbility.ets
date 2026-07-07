@@ -21,7 +21,7 @@ import { LogUtil } from '@ohos/settings.common/src/main/ets/utils/LogUtil';
 import { BluetoothUtils } from '@ohos/settings.common/src/main/ets/utils/BluetoothUtils';
 import { AbilityContextManager } from '@ohos/settings.common/src/main/ets/ability/AbilityContextManager';
 import { CheckEmptyUtils } from '@ohos/settings.common/src/main/ets/utils/CheckEmptyUtils';
-
+import { connection } from '@kit.ConnectivityKit';
 /* instrument ignore file */
 const TAG: string = 'BluetoothPairDialogAbility';
 
@@ -66,14 +66,14 @@ export default class BluetoothPairDialogAbility extends UIExtensionAbility {
 
     let type: string = want.parameters?.pinType;
     switch (Number.parseInt(type)) {
-      case PinType.PAIRING_VARIANT_PIN:
-      case PinType.PAIRING_VARIANT_PASSKEY:
-      case PinType.PAIRING_VARIANT_PASSKEY_CONFIRMATION:
-      case PinType.PAIRING_VARIANT_CONSENT:
-      case PinType.PAIRING_VARIANT_DISPLAY_PASSKEY:
-      case PinType.PAIRING_VARIANT_DISPLAY_PIN:
-      case PinType.PAIRING_VARIANT_OOB_CONSENT:
-      case PinType.PAIRING_VARIANT_PIN_16_DIGITS:
+      case connection.PinType.PIN_TYPE_ENTER_PIN_CODE:
+      case connection.PinType.PIN_TYPE_ENTER_PASSKEY:
+      case connection.PinType.PIN_TYPE_CONFIRM_PASSKEY:
+      case connection.PinType.PIN_TYPE_NO_PASSKEY_CONSENT:
+      case connection.PinType.PIN_TYPE_NOTIFY_PASSKEY:
+      case connection.PinType.PIN_TYPE_DISPLAY_PIN_CODE:
+      case connection.PinType.PIN_TYPE_OOB_CONSENT:
+      case connection.PinType.PIN_TYPE_PIN_16_DIGITS:
         break
       default:
         LogUtil.error(`${TAG} pin type invalid: ${type}`);

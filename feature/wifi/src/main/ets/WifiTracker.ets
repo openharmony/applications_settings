@@ -46,6 +46,21 @@ enum ConnectResult {
   CONNECT_SUCCESS,
 }
 
+function getConnectResultName(reason: number): string {
+  switch (reason) {
+    case ConnectResult.CONNECT_TIME_OUT:
+      return 'CONNECT_TIME_OUT';
+    case ConnectResult.CONNECT_ERROR:
+      return 'CONNECT_ERROR';
+    case ConnectResult.CONNECT_FAILED:
+      return 'CONNECT_FAILED';
+    case ConnectResult.CONNECT_SUCCESS:
+      return 'CONNECT_SUCCESS';
+    default:
+      return `UNKNOWN(${reason})`;
+  }
+}
+
 @Concurrent
 async function getScanInfo(): Promise<Array<wifiManager.WifiScanInfo>> {
   let res: wifiManager.WifiScanInfo[] = WifiUtils.getScanInfoList();
@@ -360,7 +375,7 @@ export class WifiTracker {
     if (!WifiUtils.isValidNetworkId(networkId)) {
       LogUtil.error(`${TAG} connectToWifiDevice, network is inValid.`);
       try {
-        wifiManager.connectToDevice(wifiConfig);
+        wifiManager.connectToDevice(config);
         return true;
       } catch (error) {
         LogUtil.error(`${TAG} connectToDevice occurs error: ${error?.message}`);
@@ -690,16 +705,21 @@ class ApConnectManager {
   public isConfigUpdate: boolean = false;
 
   public onWifiConnectionChange = (state: number): void => {
-    LogUtil.info(`${TAG_MANAGER} onWifiConnectionChange : ${state}`);
+    LogUtil.info(`${TAG_MANAGER} onWifiConnectionChange state=${state} (1=connected else=disconnected/failed), wifiConnectState=${this.wifiConnectState}`);
 
     if (state === 1) { // 连接上
+      LogUtil.info(`${TAG_MANAGER} wifi connected, notify CONNECT_SUCCESS`);
       this.onConnectResult(1, ConnectResult.CONNECT_SUCCESS);
     } else { // 连接断开、失败
       if (this.wifiConnectState === ApConnectManager.DISCONNECTING) {
-        LogUtil.info(`${TAG_MANAGER} Disconnected, start connect`);
-        this.connectToWifiDevice(this.isConfigUpdate);
+        LogUtil.info(`${TAG_MANAGER} Disconnected after disconnect request, start connect to target network`);
+        this.connectToWifiDevice(this.isConfigUpdate).catch((err: Error) => {
+          LogUtil.error(`${TAG_MANAGER} connectToWifiDevice failed (CONNECT_ERROR): ${err?.message}`);
+          this.onConnectResult(0, ConnectResult.CONNECT_ERROR);
+        });
         return;
       }
+      LogUtil.info(`${TAG_MANAGER} wifi disconnected/failed without disconnecting first, notify CONNECT_FAILED`);
       this.onConnectResult(0, ConnectResult.CONNECT_FAILED);
     }
   };
@@ -715,7 +735,7 @@ class ApConnectManager {
     this.listener = listener;
     this.register();
     this.timerId = setTimeout(() => {
-      LogUtil.info(`${TAG_MANAGER} connect timeout`);
+      LogUtil.info(`${TAG_MANAGER} connect timeout (${ApConnectManager.CONNECT_TIMEOUT}ms) ssid=${WifiUtils.getLogSsidString(this.connectConfig?.ssid ?? '')}, reason=CONNECT_TIME_OUT`);
       this.timerId = null;
       this.onConnectResult(0, ConnectResult.CONNECT_TIME_OUT);
     }, ApConnectManager.CONNECT_TIMEOUT);
@@ -725,12 +745,14 @@ class ApConnectManager {
    * 发起一次连接
    *
    * @param config 需要连接的Ap信息
-   * @param isConfigUpdate 是否需要更新已保存的Ap配置
+   * @param isConfigUpdate 是否需要更新已保存的Ap配置（如重连、修改密码后需重新保存时传 true）
    * @param listener 连接结果回调
+   * @param isRetry 是否重试
    * @return 是否启动连接
    */
   public startConnect(config: wifiManager.WifiDeviceConfig, isConfigUpdate: boolean, listener:
     WifiConnectListener, isRetry: boolean = false): boolean {
+    LogUtil.info(`${TAG_MANAGER} startConnect ssid=${WifiUtils.getLogSsidString(config?.ssid ?? '')} isConfigUpdate=${isConfigUpdate} isRetry=${isRetry} netId=${config?.netId}`);
     if (!isRetry && this.isRepeatConnect(config)) {
       LogUtil.warn(`${TAG_MANAGER} repeat operation: the same network(${config?.netId}) is connecting, try later please.`);
       return false;
@@ -738,30 +760,41 @@ class ApConnectManager {
     this.resetState(config, isConfigUpdate, listener, isRetry);
     try {
       if (wifiManager.isConnected()) {
-        LogUtil.info(`${TAG_MANAGER} wifi is Connected`);
+        LogUtil.info(`${TAG_MANAGER} wifi is Connected, disconnect first then connect`);
         if (WifiUtils.disconnect()) {
-          LogUtil.info(`${TAG_MANAGER} disconnect success`);
+          LogUtil.info(`${TAG_MANAGER} disconnect success, wait onWifiConnectionChange then connect`);
           this.wifiConnectState = ApConnectManager.DISCONNECTING;
           return true;
+        } else {
+          LogUtil.error(`${TAG_MANAGER} disconnect failed, cannot switch network (CONNECT_ERROR).`);
+          this.onConnectResult(0, ConnectResult.CONNECT_ERROR);
+          return false;
         }
       }
     } catch (error) {
-      LogUtil.error(`${TAG} get wifi connect state failed: ${error?.message}`);
+      LogUtil.error(`${TAG_MANAGER} get wifi connect state failed: ${(error as Error)?.message}`);
     }
-    this.connectToWifiDevice(this.isConfigUpdate);
+    LogUtil.info(`${TAG_MANAGER} startConnect direct connect (wifi not connected), wifiConnectState=CONNECTING`);
+    this.wifiConnectState = ApConnectManager.CONNECTING;
+    this.connectToWifiDevice(this.isConfigUpdate).catch((err: Error) => {
+      LogUtil.error(`${TAG_MANAGER} connectToWifiDevice failed (CONNECT_ERROR): ${err?.message}`);
+      this.onConnectResult(0, ConnectResult.CONNECT_ERROR);
+    });
     return true;
   }
 
   /**
-   * 发起一次连接
+   * 发起一次连接（异步）
    *
    * @param config 需要连接的Ap信息
-   * @param isConfigUpdate 是否需要更新已保存的Ap配置
+   * @param isConfigUpdate 是否需要更新已保存的Ap配置（如重连、修改密码后需重新保存时传 true）
    * @param listener 连接结果回调
+   * @param isRetry 是否重试
    * @return 是否启动连接
    */
   public async startConnectAsync(config: wifiManager.WifiDeviceConfig, isConfigUpdate: boolean,
     listener: WifiConnectListener, isRetry: boolean = false): Promise<boolean> {
+    LogUtil.info(`${TAG_MANAGER} startConnectAsync ssid=${WifiUtils.getLogSsidString(config?.ssid ?? '')} isConfigUpdate=${isConfigUpdate} isRetry=${isRetry} netId=${config?.netId}`);
     if (!isRetry && this.isRepeatConnect(config)) {
       LogUtil.warn(`${TAG_MANAGER} repeat operation: the same network(${config?.netId}) is connecting, try later please.`);
       return false;
@@ -769,16 +802,22 @@ class ApConnectManager {
     this.resetState(config, isConfigUpdate, listener, isRetry);
     try {
       if (wifiManager.isConnected()) {
-        LogUtil.info(`${TAG_MANAGER} wifi is Connected`);
+        LogUtil.info(`${TAG_MANAGER} wifi is Connected, disconnect first then connect`);
         if (WifiUtils.disconnect()) {
-          LogUtil.info(`${TAG_MANAGER} disconnect success`);
+          LogUtil.info(`${TAG_MANAGER} disconnect success, wait onWifiConnectionChange then connect`);
           this.wifiConnectState = ApConnectManager.DISCONNECTING;
           return true;
+        } else {
+          LogUtil.error(`${TAG_MANAGER} disconnect failed, cannot switch network (CONNECT_ERROR).`);
+          this.onConnectResult(0, ConnectResult.CONNECT_ERROR);
+          return false;
         }
       }
     } catch (error) {
-      LogUtil.error(`${TAG} get wifi connect state failed: ${error?.message}`);
+      LogUtil.error(`${TAG_MANAGER} get wifi connect state failed: ${(error as Error)?.message}`);
     }
+    LogUtil.info(`${TAG_MANAGER} startConnectAsync direct connect (wifi not connected), wifiConnectState=CONNECTING`);
+    this.wifiConnectState = ApConnectManager.CONNECTING;
     await this.connectToWifiDevice(this.isConfigUpdate);
     return true;
   }
@@ -794,7 +833,7 @@ class ApConnectManager {
     this.isRetry = isRetry;
     this.register();
     this.timerId = setTimeout(() => {
-      LogUtil.info(`${TAG_MANAGER} connect timeout`);
+      LogUtil.info(`${TAG_MANAGER} connect timeout (${ApConnectManager.CONNECT_TIMEOUT}ms) ssid=${WifiUtils.getLogSsidString(this.connectConfig?.ssid ?? '')}, reason=CONNECT_TIME_OUT`);
       this.timerId = null;
       this.onConnectResult(0, ConnectResult.CONNECT_TIME_OUT);
     }, ApConnectManager.CONNECT_TIMEOUT);
@@ -827,7 +866,7 @@ class ApConnectManager {
   }
 
   private onConnectResult(result: number, reason: number): void {
-    LogUtil.info(`${TAG_MANAGER} onConnectResult: ${result}, reason: ${reason}`);
+    LogUtil.info(`${TAG_MANAGER} onConnectResult result=${result} (1=success 0=fail), reason=${getConnectResultName(reason)}`);
     this.listener?.onConnectResult(result);
     if (result === 1 || !WifiUtils.willReconnect(this.connectConfig) || this.isRetry ||
       reason === ConnectResult.CONNECT_ERROR || reason === ConnectResult.CONNECT_TIME_OUT) {
@@ -837,7 +876,7 @@ class ApConnectManager {
   }
 
   private finishConnect(): void {
-    LogUtil.info(`${TAG_MANAGER} finishConnect.`);
+    LogUtil.info(`${TAG_MANAGER} finishConnect: clear timeout timer and reset state.`);
     if (this.timerId !== null) {
       clearTimeout(this.timerId);
       this.timerId = null;
@@ -867,10 +906,11 @@ class ApConnectManager {
   }
 
   private async connectToWifiDevice(isConfigUpdate: boolean): Promise<void> {
-    LogUtil.info(`${TAG_MANAGER} connectToWifiDevice start`);
+    let ssidLog = WifiUtils.getLogSsidString(this.connectConfig?.ssid ?? '');
+    LogUtil.info(`${TAG_MANAGER} connectToWifiDevice start ssid=${ssidLog} isConfigUpdate=${isConfigUpdate}`);
     let result = await wifiTracker.connectToWifiDevice(this.connectConfig as wifiManager.WifiDeviceConfig,
       isConfigUpdate);
-    LogUtil.info(`${TAG_MANAGER} connectToWifiDevice end , result: ${result}`);
+    LogUtil.info(`${TAG_MANAGER} connectToWifiDevice end ssid=${ssidLog} result=${result} (true=api ok, false=api error)`);
     AppStorage.setOrCreate<Boolean>('isConnectCancel', false);
     if (result) {
       this.wifiConnectState = ApConnectManager.CONNECTING;

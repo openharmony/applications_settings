@@ -14,6 +14,8 @@
  */
 
 import { HashMap } from '@kit.ArkTS';
+import emitter from '@ohos.events.emitter';
+import { EVENT_ID_DISMISS_SETTING_BIND_SHEETS } from '../../event/types';
 import { HiSysEventUtil } from '../../systemEvent/HiSysEventUtil';
 import { CommonUtils } from '../../utils/CommonUtils';
 import { NavEntryKey } from '../../utils/Consts';
@@ -170,6 +172,10 @@ export class PageRouter {
       }
 
       if (isReplace) {
+        emitter.emit({
+          eventId: EVENT_ID_DISMISS_SETTING_BIND_SHEETS,
+          priority: emitter.EventPriority.IMMEDIATE,
+        });
         LogHelper.info(TAG, `nav replace to ${page.url}`);
         router.path.replacePathByName(page.url, {
           router: page.router, pageUrl: page.url, pageCtx: pageCtx, param: page.param } as PageParams,
@@ -177,6 +183,10 @@ export class PageRouter {
         LogHelper.info(TAG, `nav replace finish`);
         return;
       }
+      emitter.emit({
+        eventId: EVENT_ID_DISMISS_SETTING_BIND_SHEETS,
+        priority: emitter.EventPriority.IMMEDIATE,
+      });
       EventBus.getInstance().emit(`EVENT_ID_SELECT_PAGE_URL`, page.url);
       LogHelper.info(TAG, `nav push to ${page.url}`);
       router.path.pushPath(new NavPathInfo(page.url, {

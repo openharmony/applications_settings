@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import { ToastUtil } from '@ohos/settings.common/src/main/ets/utils/ToastUtil';
 import wifiManager from '@ohos.wifiManager';
 import { BusinessError } from '@ohos.base';
 import { connection } from '@kit.NetworkKit';
@@ -53,6 +52,7 @@ import {
   WifiTrackerListener,
   WIFI7_EMLSR
 } from '../../WifiTracker';
+import { WIFI_CONNECT_STATE_DISCONNECTING } from '../../model/WifiModel';
 import {
   ApMenu,
   ApMenuData,
@@ -66,11 +66,29 @@ import {
 import { WlanItemModel } from '../../model/WlanItemModel';
 import { WifiPasswordConfigManager } from '../../WifiPasswordConfigManager';
 import { AddOtherWlanConfigManager } from '../../AddOtherWlanConfigManager';
-import { WifiBaseConfigManager } from '../../WifiBaseConfigManager';
 import { WifiMenuManager } from '../../WifiMenuManager';
 
 /* instrument ignore file */
 const TAG: string = 'AvailableWlanBaseController:';
+
+function getWlanDisconnectedReasonName(reason: number): string {
+  switch (reason) {
+    case WlanDisconnectedReason.FAILED_DEFAULT:
+      return 'FAILED_DEFAULT';
+    case WlanDisconnectedReason.WRONG_PWD:
+      return 'WRONG_PWD';
+    case WlanDisconnectedReason.FAILED_CONNECTION_FULL:
+      return 'FAILED_CONNECTION_FULL';
+    case WlanDisconnectedReason.DISC_REASON_CONNECTION_REJECTED:
+      return 'DISC_REASON_CONNECTION_REJECTED';
+    case WlanDisconnectedReason.DISC_REASON_IGNORE:
+      return 'DISC_REASON_IGNORE';
+    case WlanDisconnectedReason.DISC_REASON_DISABLED:
+      return 'DISC_REASON_DISABLED';
+    default:
+      return `UNKNOWN(${reason})`;
+  }
+}
 
 @Builder
 function connectFailedBuilder(param: object): void {
@@ -171,29 +189,28 @@ WifiTrackerListener, WifiConnectListener {
     HiSysEventUtil.reportBehaviorEventByUE(HiSysWlanEvenGroup.CONNECT_WLAN, reportParams);
     // 连接失败
     if (!result) {
-      // wlan开关关闭情况下，无需弹出失败提示框
+      let failReason: number = WifiUtils.getDisconnectedReason();
       const isShowConnectFailed =
         this.isVisible && WifiUtils.needShowConnectFailedDialog(apConnectManager.connectConfig);
-      if (isShowConnectFailed && this.addOtherWlanConfigManager.getAddOtherWlanPageFlag()) {
-        let failReason: number = WifiUtils.getDisconnectedReason();
+      const reasonHint = failReason === WlanDisconnectedReason.FAILED_DEFAULT ? ' (often timeout)' : '';
+      LogUtil.info(`${TAG} connectFailed result=${result} failReason=${failReason}(${getWlanDisconnectedReasonName(failReason)}${reasonHint}) ` +
+        `isShowConnectFailedDialog=${isShowConnectFailed} isFirstConnect=${this.isFirstConnect} isVisible=${this.isVisible}`);
+      // wlan开关关闭情况下，无需弹出失败提示框
+      if (isShowConnectFailed) {
         WifiUtils.reportWlanConnectFailureEvent(failReason);
-        let failedReasonString = WifiBaseConfigManager.getDisconnectedMessage(failReason);
-        WifiUtils.showToast(failedReasonString, ToastUtil.SHORT_DURATION);
-      } else if (isShowConnectFailed) {
         this.showConnectFailedDialog();
         if (WifiMenuManager.isInOObeStage()) {
           this.isFirstConnect = true;
         }
       }
-      let failReason: number = WifiUtils.getDisconnectedReason();
-      LogUtil.info(`${TAG} connectFailed: ${result}, failReason is ${failReason} isFirstConnect:${this.isFirstConnect}, is current visiable:${this.isVisible}`);
-      if (failReason === WlanDisconnectedReason.WRONG_PWD && apConnectManager.connectConfig && this.isFirstConnect) {
+      if (failReason === WlanDisconnectedReason.WRONG_PWD && apConnectManager.connectConfig) {
         LogUtil.info(`${TAG} connect with wrong pwd , remove wifi device.`);
         wifiTracker.removeWifiDevice(apConnectManager.connectConfig);
       }
       return;
     }
     // 连接成功
+    LogUtil.info(`${TAG} connectSuccess result=${result}`);
     EventBus.getInstance().emit(CONNECT_RESULT_EVENT, true);
   }
 
@@ -560,17 +577,25 @@ WifiTrackerListener, WifiConnectListener {
   }
 
   private onWifiDisConnected(): void {
+    EventBus.getInstance().emit(CONNECTED_DATA_CHANGE_EVENT, undefined);
     if (!this.dataSource || this.dataSource.length <= 0) {
+      if (this.isPageShow) {
+        wifiTracker.scanAp();
+        if (apConnectManager.wifiConnectState === WIFI_CONNECT_STATE_DISCONNECTING) {
+          wifiTracker.updateAll();
+        }
+      }
       return;
     }
-    EventBus.getInstance().emit(CONNECTED_DATA_CHANGE_EVENT, undefined);
     let index = this.dataSource.findIndex(item => (item as WlanItemModel).accessPoint);
     if (index !== -1) {
       LogUtil.info(`${TAG} update dataSource: onWifiDisConnected, isPageShow: ${this.isPageShow}`);
       this.dataSource.removeDataByIndex(index);
-      // 启动一次扫描 用来快速把旧的已连接刷到可用列表
-      if (this.isPageShow) {
-        wifiTracker.scanAp();
+    }
+    if (this.isPageShow) {
+      wifiTracker.scanAp();
+      if (apConnectManager.wifiConnectState === WIFI_CONNECT_STATE_DISCONNECTING) {
+        wifiTracker.updateAll();
       }
     }
     this.showOrHideHeader(this.dataSource.length > 0);

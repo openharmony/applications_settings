@@ -59,6 +59,7 @@ import { ThemeSettingsController } from '../controller/ThemeSettingsController';
 import { StringUtil } from '@ohos/settings.common/src/main/ets/utils/StringUtil';
 import { ThemeEditorUtil } from '@ohos/settings.uikit/src/main/ets/utils/ThemeEditorUtil';
 import { enterIconSettingPage } from '@ohos/settings.theme/src/main/ets/IconSettingPage';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 const TAG: string = 'ThemeEditorMenuView';
 const BUNDLE_NAME: string = 'com.ohos.sceneboard';
@@ -778,6 +779,9 @@ export struct ThemeEditorMenuView {
       LogUtil.showInfo(TAG, 'SCB UIExtension onReceive: IconEditPageWant');
       enterIconSettingPage(data['iconEditPageWant']);
     }
+    if (data && data['selectImageFromGallery'] !== undefined) {
+      this.selectImageFromGallery()
+    }
   };
 
   private resetStatusBar(): void {
@@ -818,6 +822,28 @@ export struct ThemeEditorMenuView {
     DynamicLoader.getInstance().fire(key).then(() => {
       this.pathInfos?.pushPathByName(key, params);
     });
+  }
+
+  private async selectImageFromGallery() {
+    const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+    photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
+    photoSelectOptions.maxSelectNumber = 1;
+    photoSelectOptions.isPhotoTakingSupported = false
+    photoSelectOptions.singleSelectionMode = photoAccessHelper.SingleSelectionMode.SELECT_MODE
+    photoSelectOptions.isPreviewForSingleSelectionSupported = false;
+    const photoViewPicker = new photoAccessHelper.PhotoViewPicker();
+    try {
+      const result = await photoViewPicker.select(photoSelectOptions)
+      if (result.photoUris.length > 0) {
+        let selectedImageUri = result.photoUris[0];
+        this.themeGalleryProxy?.send({
+          'type': 'imageSelected',
+          'uri': selectedImageUri,
+          'requestId': 'selectImageFromGallery'
+        })
+      }
+    } catch (err) {
+    }
   }
 
   async aboutToAppear(): Promise<void> {
