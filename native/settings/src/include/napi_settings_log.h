@@ -26,14 +26,14 @@ namespace OHOS::Settings {
 const OHOS::HiviewDFX::HiLogLabel SETTINGS_LABEL = { LOG_CORE, 0xD000501, "Settings" };
 
 #define SETTING_LOG_DEBUG(fmt, ...) \
-    HiLogDebug(SETTINGS_LABEL, fmt, ##__VA_ARGS__)
+    HILOG_IMPL(SETTINGS_LABEL.type, LOG_DEBUG, SETTINGS_LABEL.domain, SETTINGS_LABEL.tag, fmt, ##__VA_ARGS__)
 #define SETTING_LOG_INFO(fmt, ...) \
-    HiLogInfo(SETTINGS_LABEL, fmt, ##__VA_ARGS__)
+    HILOG_IMPL(SETTINGS_LABEL.type, LOG_INFO, SETTINGS_LABEL.domain, SETTINGS_LABEL.tag, fmt, ##__VA_ARGS__)
 #define SETTING_LOG_WARN(fmt, ...) \
-    HiLogWarn(SETTINGS_LABEL, fmt, ##__VA_ARGS__)
+    HILOG_IMPL(SETTINGS_LABEL.type, LOG_WARN, SETTINGS_LABEL.domain, SETTINGS_LABEL.tag, fmt, ##__VA_ARGS__)
 #define SETTING_LOG_ERROR(fmt, ...) \
-    HiLogError(SETTINGS_LABEL, fmt, ##__VA_ARGS__)
+    HILOG_IMPL(SETTINGS_LABEL.type, LOG_ERROR, SETTINGS_LABEL.domain, SETTINGS_LABEL.tag, fmt, ##__VA_ARGS__)
 #define SETTING_LOG_FATAL(fmt, ...) \
-    HiLogFatal(SETTINGS_LABEL, fmt, ##__VA_ARGS__)
+    HILOG_IMPL(SETTINGS_LABEL.type, LOG_FATAL, SETTINGS_LABEL.domain, SETTINGS_LABEL.tag, fmt, ##__VA_ARGS__)
 } // namespace OHOS::Settings
 #endif

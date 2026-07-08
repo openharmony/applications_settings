@@ -26,14 +26,14 @@ namespace OHOS::IntelligentScene {
 const OHOS::HiviewDFX::HiLogLabel LABEL = { LOG_CORE, 0xD000501, "IntelligentScene" };
 
 #define INTELLIGENT_SCENE_LOG_DEBUG(fmt, ...) \
-    HiLogDebug(LABEL, fmt, ##__VA_ARGS__)
+    HILOG_IMPL(LABEL.type, LOG_DEBUG, LABEL.domain, LABEL.tag, fmt, ##__VA_ARGS__)
 #define INTELLIGENT_SCENE_LOG_INFO(fmt, ...) \
-    HiLogInfo(LABEL, fmt,  ##__VA_ARGS__)
+    HILOG_IMPL(LABEL.type, LOG_INFO, LABEL.domain, LABEL.tag, fmt, ##__VA_ARGS__)
 #define INTELLIGENT_SCENE_LOG_WARN(fmt, ...) \
-    HiLogWarn(LABEL, fmt,  ##__VA_ARGS__)
+    HILOG_IMPL(LABEL.type, LOG_WARN, LABEL.domain, LABEL.tag, fmt, ##__VA_ARGS__)
 #define INTELLIGENT_SCENE_LOG_ERROR(fmt, ...) \
-    HiLogError(LABEL, fmt, ##__VA_ARGS__)
+    HILOG_IMPL(LABEL.type, LOG_ERROR, LABEL.domain, LABEL.tag, fmt, ##__VA_ARGS__)
 #define INTELLIGENT_SCENE_LOG_FATAL(fmt, ...) \
-    HiLogFatal(LABEL, fmt, ##__VA_ARGS__)
+    HILOG_IMPL(LABEL.type, LOG_FATAL, LABEL.domain, LABEL.tag, fmt, ##__VA_ARGS__)
 } // namespace OHOS::IntelligentScene
 #endif

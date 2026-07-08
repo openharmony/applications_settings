@@ -28,19 +28,19 @@ const OHOS::HiviewDFX::HiLogLabel INTELLIGENTSCENE_LABEL = { LOG_CORE, 0xD000501
 #define FILENAME (__builtin_strrchr(__FILE__, '/') ? __builtin_strrchr(__FILE__, '/') + 1 : __FILE__)
 
 #define INTELLIGENTSCENE_LOG_DEBUG(fmt, ...) \
-    HiLogDebug(INTELLIGENTSCENE_LABEL, \
+    HILOG_IMPL(INTELLIGENTSCENE_LABEL.type, LOG_DEBUG, INTELLIGENTSCENE_LABEL.domain, INTELLIGENTSCENE_LABEL.tag, \
     "[%{public}s(%{public}s:%{public}d)]" fmt, FILENAME, __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define INTELLIGENTSCENE_LOG_INFO(fmt, ...) \
-    HiLogInfo(INTELLIGENTSCENE_LABEL, \
+    HILOG_IMPL(INTELLIGENTSCENE_LABEL.type, LOG_INFO, INTELLIGENTSCENE_LABEL.domain, INTELLIGENTSCENE_LABEL.tag, \
     "[%{public}s(%{public}s:%{public}d)]" fmt, FILENAME, __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define INTELLIGENTSCENE_LOG_WARN(fmt, ...) \
-    HiLogWarn(INTELLIGENTSCENE_LABEL, \
+    HILOG_IMPL(INTELLIGENTSCENE_LABEL.type, LOG_WARN, INTELLIGENTSCENE_LABEL.domain, INTELLIGENTSCENE_LABEL.tag, \
     "[%{public}s(%{public}s:%{public}d)]" fmt, FILENAME, __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define INTELLIGENTSCENE_LOG_ERROR(fmt, ...) \
-    HiLogError(INTELLIGENTSCENE_LABEL, \
+    HILOG_IMPL(INTELLIGENTSCENE_LABEL.type, LOG_ERROR, INTELLIGENTSCENE_LABEL.domain, INTELLIGENTSCENE_LABEL.tag, \
     "[%{public}s(%{public}s:%{public}d)]" fmt, FILENAME, __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define INTELLIGENTSCENE_LOG_FATAL(fmt, ...) \
-    HiLogFatal(INTELLIGENTSCENE_LABEL, \
+    HILOG_IMPL(INTELLIGENTSCENE_LABEL.type, LOG_FATAL, INTELLIGENTSCENE_LABEL.domain, INTELLIGENTSCENE_LABEL.tag, \
     "[%{public}s(%{public}s:%{public}d)]" fmt, FILENAME, __FUNCTION__, __LINE__, ##__VA_ARGS__)
 } // namespace OHOS::IntelligentScene
 #endif
