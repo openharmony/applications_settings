@@ -110,28 +110,6 @@ export class MoreConnectController implements ComponentControl {
   }
 
   initBundleInfo(): void {
-    //todo 暂时只展示入口，不实现具体功能
-    // const castBundleName = 'com.ohos.cast';
-    // try {
-    //   bundleManager.getBundleInfoSync(castBundleName,
-    //     bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT, DEFAULT_USER_ID);
-    // } catch (err) {
-    //   this.hasCast = false;
-    //   LogUtil.error(`${this.tag} get key mouse share bundleInfo failed: ${err.message}`);
-    // }
-    // if (DeviceUtil.isDevicePad()) {
-    //   const padCockpitBundleName = 'com.ohos.cardistributedassist';
-    //   try {
-    //     bundleManager.getBundleInfoSync(padCockpitBundleName,
-    //       bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT, DEFAULT_USER_ID);
-    //     if (this.getPadCockpitEnable()) {
-    //       this.hasPadCockpit = true;
-    //     }
-    //   } catch (err) {
-    //     LogUtil.error(`${this.tag} get pad cockpit bundleInfo failed: ${err?.message}`);
-    //   }
-    // }
-    // LogUtil.info(`${this.tag} get pad cockpit enable: hasPadCockpit = ${this.hasPadCockpit}}`);
   }
 
   getPadCockpitEnable(): boolean {

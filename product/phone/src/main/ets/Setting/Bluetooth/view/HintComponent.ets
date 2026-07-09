@@ -109,13 +109,7 @@ export struct HintComponent {
             .fontWeight(FontWeight.Regular)
             .fontColor(this.isGrayed ? $r('sys.color.font_secondary') : $r('sys.color.font_emphasize'))
             .onClick(() => {
-              this.isCanUpdate().then((result) => {
-                if (!result) {
-                  return;
-                }
-                this.isShow = true;
-                LogUtil.info(`onclick show sheet, isShow: ${this.isShow}`);
-              });
+              this.isShow = true;
             })
         }
         .enabled(!this.isGrayed)
@@ -138,9 +132,9 @@ export struct HintComponent {
             this.isShow = false;
           },
         })
-        // .onClick(() => {
-        //   this.isShow = true;
-        // })
+        .onClick(() => {
+          this.isShow = true;
+        })
       }
       .scrollBar(BarState.Off)
       .constraintSize({ maxHeight: '25%' })
@@ -299,29 +293,6 @@ export struct HintComponent {
       });
       return false;
     }
-    // if (!await AccountUtil.isAccountLogged()) {
-    //   this.openLargerFontDialog();
-    //   return false;
-    // }
     return true;
   }
-
-  // private openLargerFontDialog(): void {
-  //   let message: string = ResourceUtil.getStringSync($r('app.string.login_message'));
-  //   this.largerFontDialogController = new CustomDialogController({
-  //     builder: AlertDialog({
-  //       primaryTitle: $r('app.string.note'),
-  //       content: message,
-  //       primaryButton: {
-  //         value: $r('app.string.dialog_cancel'),
-  //         action: () => {
-  //           this.largerFontDialogController?.close();
-  //         },
-  //       }
-  //     }),
-  //     autoCancel: false,
-  //     alignment: DialogAlignment.Center,
-  //   });
-  //   this.largerFontDialogController.open();
-  // }
 }

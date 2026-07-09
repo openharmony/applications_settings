@@ -40,6 +40,7 @@ import {
 import { ToneType } from '../model/RingtoneParam';
 import { MyToneHapticsSettings, VibrateParam } from '../model/VibrateParam';
 import { RINGTONE_TYPE_SYSTEM, SimRingtoneKey } from '../constant/VolumeConstant';
+import { VibratorUtil } from '@ohos/settings.common';
 
 const TAG: string = 'VibrateUtil : ';
 
@@ -389,21 +390,14 @@ export class VibrateUtil {
    */
   static async doPreviewHaptics(usage: vibrator.Usage, toneHapticsFd: number): Promise<void> {
     LogUtil.showInfo(TAG, `previewHaptics, before startVibration, usage: ${usage}, fd: ${toneHapticsFd}`);
-    let effect: vibrator.VibrateEffect = {
-      type: 'file',
-      hapticFd: {
-        fd: toneHapticsFd
-      }
-    }
-    let attribute: vibrator.VibrateAttribute = {
-      usage: usage
-    }
+    //TODO 临时方案，由于当前不支持预置振动，先由普通振动实现
     try {
-      await vibrator.startVibration(effect, attribute);
-      LogUtil.showInfo(TAG, `previewHaptics, startVibration success`);
+      await vibrator.stopVibration();
+      LogUtil.showInfo(TAG, `onClickVibrateSynchronizeWithRingtoneRadio, stopVibration success`);
     } catch (err) {
-      LogUtil.showError(TAG, `previewHaptics, startVibration failed, error: ${err}`);
+      LogUtil.showError(TAG, `onClickVibrateSynchronizeWithRingtoneRadio, stopVibration failed, error: ${err}`);
     }
+    VibratorUtil.startVibration()
   }
 
   /**

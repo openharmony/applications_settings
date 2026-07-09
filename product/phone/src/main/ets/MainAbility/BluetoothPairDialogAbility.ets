@@ -66,21 +66,13 @@ export default class BluetoothPairDialogAbility extends UIExtensionAbility {
 
     let type: string = want.parameters?.pinType;
     switch (Number.parseInt(type)) {
-      //case PinType.PAIRING_VARIANT_PIN:
       case connection.PinType.PIN_TYPE_ENTER_PIN_CODE:
-      // case PinType.PAIRING_VARIANT_PASSKEY:
       case connection.PinType.PIN_TYPE_ENTER_PASSKEY:
-      // case PinType.PAIRING_VARIANT_PASSKEY_CONFIRMATION:
       case connection.PinType.PIN_TYPE_CONFIRM_PASSKEY:
-      // case PinType.PAIRING_VARIANT_CONSENT:
       case connection.PinType.PIN_TYPE_NO_PASSKEY_CONSENT:
-      // case PinType.PAIRING_VARIANT_DISPLAY_PASSKEY:
       case connection.PinType.PIN_TYPE_NOTIFY_PASSKEY:
-      // case PinType.PAIRING_VARIANT_DISPLAY_PIN:
       case connection.PinType.PIN_TYPE_DISPLAY_PIN_CODE:
-      // case PinType.PAIRING_VARIANT_OOB_CONSENT:
       case connection.PinType.PIN_TYPE_OOB_CONSENT:
-      // case PinType.PAIRING_VARIANT_PIN_16_DIGITS:
       case connection.PinType.PIN_TYPE_PIN_16_DIGITS:
         break
       default:
