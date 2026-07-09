@@ -109,13 +109,7 @@ export struct HintComponent {
             .fontWeight(FontWeight.Regular)
             .fontColor(this.isGrayed ? $r('sys.color.font_secondary') : $r('sys.color.font_emphasize'))
             .onClick(() => {
-              this.isCanUpdate().then((result) => {
-                if (!result) {
-                  return;
-                }
-                this.isShow = true;
-                LogUtil.info(`onclick show sheet, isShow: ${this.isShow}`);
-              });
+              this.isShow = true;
             })
         }
         .enabled(!this.isGrayed)
@@ -137,6 +131,9 @@ export struct HintComponent {
             LogUtil.info(`${this.tag} onWillDisappear`);
             this.isShow = false;
           },
+        })
+        .onClick(() => {
+          this.isShow = true;
         })
       }
       .scrollBar(BarState.Off)

@@ -657,11 +657,15 @@ BluetoothBondedDeviceChangeListener {
 
     // 更新一次 profile / 策略状态，确保拿到最新可连接 profile
     device.updateProfilesAndConnectionStatus().then(() => {
+      const adapter = BluetoothAdapter.getInstance();
+      if (adapter.isPairOnlyDevice(deviceId)) {
+        LogUtil.info(`${this.tag} onPairResult, pair only device skip auto profile connect`);
+        return;
+      }
       const profiles: Map<ProfileId, BluetoothProfile> = device.getConnectableProfiles();
       LogUtil.info(`${this.tag} onPairResult, connectable profiles size: ${profiles.size}`);
 
       // 配对成功后，优先为音频设备自动建立 A2DP / HFP 连接
-      let adapter = BluetoothAdapter.getInstance();
       if (profiles.has(ProfileId.PROFILE_A2DP_SOURCE)) {
         LogUtil.info(`${this.tag} onPairResult, auto connect A2DP for ${BluetoothUtils.getLogMAC(deviceId)}`);
         adapter.connectProfile(deviceId, ProfileId.PROFILE_A2DP_SOURCE);
@@ -1058,6 +1062,10 @@ BluetoothBondedDeviceChangeListener {
     if (isConnected) {
       this.openDisconnectRequestDialog(controller?.compId as string);
     } else {
+      if (BluetoothAdapter.getInstance().isPairOnlyDevice(deviceId)) {
+        LogUtil.info(`${this.tag} pair only device, skip startConnectIfSupport on click`);
+        return;
+      }
       let subDeviceId = bluetoothItemModel.device?.getSubDevice()?.deviceId;
       BluetoothAdapter.getInstance().startConnectIfSupport(deviceId, subDeviceId);
     }

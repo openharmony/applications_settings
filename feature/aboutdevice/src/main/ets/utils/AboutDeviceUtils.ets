@@ -525,26 +525,15 @@ export class AboutDeviceUtils {
       `getApiVersion, distributionOSApiName: ${distributionOSApiName}, sdkApiVersion: ${sdkApiVersion},
       distributionOSReleaseType: ${distributionOSReleaseType}`);
     // todo  distributionOSApiName为空导致API版本没展示 先注释 sdkMinorApiVersion sdkPatchApiVersion 在deviceInfo不存在
-    // if (distributionOSApiName && sdkApiVersion) {
     let sdkMinorApiVersion: number | undefined = 0 //deviceInfo.sdkMinorApiVersion;
     let sdkPatchApiVersion: number | undefined = 0 //deviceInfo.sdkPatchApiVersion;
     let sdkInfo = deviceInfo.distributionOSVersion
     LogUtil.showInfo(TAG,
       `getApiVersion, sdkMinorApiVersion: ${sdkMinorApiVersion}, sdkPatchApiVersion: ${sdkPatchApiVersion}sdkInfo:${sdkInfo}`);
-    // if (AboutDeviceUtils.isSdkVersionInvalid(sdkMinorApiVersion)
-    //   || AboutDeviceUtils.isSdkVersionInvalid(sdkPatchApiVersion)
-    //   || (sdkMinorApiVersion === 0 && sdkPatchApiVersion === 0)) {
-    //   version = (`${distributionOSApiName}(${sdkApiVersion}) ${distributionOSReleaseType}`);
-    // } else if (sdkPatchApiVersion === 0) {
-    //   version = (`${distributionOSApiName}(${sdkApiVersion}.${sdkMinorApiVersion}) ${distributionOSReleaseType}`);
-    // } else {
-    //   version =
-    //     (`${distributionOSApiName}(${sdkApiVersion}.${sdkMinorApiVersion}.${sdkPatchApiVersion}) ${distributionOSReleaseType}`);
-    // }
-    // }
 
     if (sdkInfo && sdkApiVersion) {
-      const versionRegex = /-(\d+(\.\d+)*)\(/;
+      // 匹配「-数字版本」后接「(」或串尾，兼容 OpenHarmony-版本 与 OpenHarmony-版本(Canary1)
+      const versionRegex = /-(\d+(?:\.\d+)*)(?:\(|$)/;
       sdkInfo = sdkInfo.match(versionRegex)?.[1] || '';
       version = (`${sdkInfo}(${sdkApiVersion})`)
     }

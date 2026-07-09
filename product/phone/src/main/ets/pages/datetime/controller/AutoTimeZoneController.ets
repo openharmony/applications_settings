@@ -30,6 +30,7 @@ import { HiSysSystemAndUpdatesEventGroup } from '@ohos/settings.common/src/main/
 import { ToastUtil } from '@ohos/settings.common/src/main/ets/utils/ToastUtil';
 import { ResourceUtil } from '@ohos/settings.common/src/main/ets/utils/ResourceUtil';
 import { DISABLE_OPACITY } from '@ohos/settings.common/src/main/ets/constant/ViewConstant';
+import systemDateTime from '@ohos.systemDateTime';
 /* instrument ignore file */
 const KEY_AUTO_TIMEZONE: string = 'auto_timezone';
 const KEY_AUTO_TIME: string = 'auto_time';
@@ -91,17 +92,15 @@ export default class AutoTimeZoneController extends SwitchMenuController {
     SettingsDataUtils.setSettingsData(KEY_AUTO_TIMEZONE, isChecked ? SWITCH_ON : SWITCH_OFF);
     SettingsDataUtils.setSettingsData(KEY_AUTO_TIME, isChecked ? SWITCH_ON : SWITCH_OFF);
     //报错：需要配置DAC和MAC权限
-    systemParameter.set('persist.time.auto_time', isChecked ? 'ON' : 'OFF', (err: BusinessError, data: void) => {
-      if (err === undefined) {
-        SearchDataController.getInstance().updateSearchItemStatus('date_settings_title', !isChecked);
-        SearchDataController.getInstance().updateSearchItemStatus('time_settings_title', !isChecked);
-        LogUtil.showInfo(TAG, 'set test.parameter.key value success');
-        this.publishDataChange(isChecked);
-        this.updateStatus();
-      } else {
-        LogUtil.showError(TAG, `set test.parameter.key value err: ${err?.code}`);
-      }
-    });
+    try {
+      systemDateTime.setAutoTimeStatus(isChecked);
+      SearchDataController.getInstance().updateSearchItemStatus('date_settings_title', !isChecked);
+      SearchDataController.getInstance().updateSearchItemStatus('time_settings_title', !isChecked);
+      this.publishDataChange(isChecked);
+      this.updateStatus();
+    } catch (err) {
+      LogUtil.showError(TAG, `setAutoTimeStatus err: ${JSON.stringify(err)}`);
+    }
     return true;
   }
 
@@ -109,7 +108,7 @@ export default class AutoTimeZoneController extends SwitchMenuController {
    * 更新开关的实时状态
    */
   protected updateCheckedState(): boolean {
-    return systemParameter.getSync('persist.time.auto_time', 'ON') === 'ON';
+    return systemDateTime.getAutoTimeStatus();
   }
 
   updateStatus(): void {
