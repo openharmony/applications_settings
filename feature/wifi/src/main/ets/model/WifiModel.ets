@@ -789,6 +789,15 @@ export class AccessPoint {
 
   updateLastLinkedInfo(linkedInfo: wifiManager.WifiLinkedInfo): void {
     if (linkedInfo && this.isLinkedInfoForMe(linkedInfo)) {
+      // 网络已被删除（不再保存）但系统仍上报"正在断开/已断开"时，不再将其视为本网络的连接信息，
+      // 避免删除已连接网络后 UI 持续显示"正在断开连接"。
+      if (!this.isSaved() &&
+        (linkedInfo.connState === wifiManager.ConnState.DISCONNECTING ||
+        linkedInfo.connState === wifiManager.ConnState.DISCONNECTED)) {
+        LogUtil.info(`${TAG} updateLastLinkedInfo, network removed but linkedInfo still disconnecting, clear it.`);
+        this.lastLinkedInfo = null;
+        return;
+      }
       this.lastLinkedInfo = linkedInfo;
     } else {
       this.lastLinkedInfo = null;

@@ -403,24 +403,6 @@ struct SettingsHome {
       .mode(this.defaultNavigationMode)
       .navBarWidth(this.navBarWidth)
       .hideTitleBar(this.isSearching, true)
-      .title($r('app.string.settings_title'))
-      // .titleBar({
-      //   style: {
-      //     scrollEffectOpts: {
-      //       enableScrollEffect: true
-      //     },
-      //     scrollEffectStyle: {
-      //       backgroundStyle: {
-      //         backgroundBrightnessLevel: BackgroundBrightnessLevel.ENHANCED
-      //       }
-      //     }
-      //   },
-      //   content: {
-      //     title: {
-      //       mainTitle: $r('app.string.settings_title')
-      //     }
-      //   }
-      // })
       .backgroundColor(Color.Transparent)
       .navDestination(this.myRouter)
       .titleMode(NavigationTitleMode.Free)

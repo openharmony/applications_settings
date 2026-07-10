@@ -58,6 +58,7 @@ export type ModeChangeEventCb = (mode: number) => void;
 export class VolumeModeController implements VolumeListener {
   public audioRingMode: AudioRingMode = AudioRingMode.RINGER_MODE_NORMAL;
   private callbacks: ModeChangeEventCb[] = [];
+  private vibrateTimerId: number = -1;
   private onPageShowCallback =  () => {
     this.audioRingMode = this.getAudioRingerMode();
     this.dispatchModeChangeEvent(this.audioRingMode);
@@ -98,6 +99,10 @@ export class VolumeModeController implements VolumeListener {
   }
 
   destroy(): void {
+    if (this.vibrateTimerId !== -1) {
+      clearTimeout(this.vibrateTimerId);
+      this.vibrateTimerId = -1;
+    }
     this.callbacks = [];
     VolumeAdapter.getInstance().removeListener(this);
     EventBus.getInstance().detach(CommonEventConstant.EVENT_VOLUME_PAGE_SHOW, this.onPageShowCallback);
@@ -112,14 +117,16 @@ export class VolumeModeController implements VolumeListener {
     // 临时效果：从振动切换到铃声时额外触发一次短振动反馈
     if (IS_SUPPORT_VIBRATE && beforeUpdateAudioRingMode === RINGER_MODE_VIBRATE && ringMode === RINGER_MODE_NORMAL) {
       VibratorUtil.startVibration()
-      // VibratorUtil.vibrateOnVibrateMode(VIBRATE_DURATION, 'touch');
     }
     // 临时方案：切换到振动时触发一次短振动反馈
     if (IS_SUPPORT_VIBRATE && ringMode === RINGER_MODE_VIBRATE) {
-      setTimeout(()=>{
-        VibratorUtil.startVibration()
-      },300)
-
+      if (this.vibrateTimerId !== -1) {
+        clearTimeout(this.vibrateTimerId);
+      }
+      this.vibrateTimerId = setTimeout(()=>{
+        VibratorUtil.startVibration();
+        this.vibrateTimerId = -1;
+      }, 300);
     }
     HiSysEventUtil.reportDefaultBehaviorEventByUE(HiSysVolumeGroup.VOLUME_MODE_CHANGE, String(ringMode));
   }
@@ -178,7 +185,7 @@ export class VolumeModeController implements VolumeListener {
     LogUtil.showInfo(TAG, `set audio ring mode: ${this.audioRingMode}`);
     if (ringMode === RINGER_MODE_VIBRATE) {
       //todo 设备暂不支持自定义振动，临时改为普通振动
-      // VibratorUtil.vibrateOnVibrateMode(VIBRATE_DURATION, 'touch');
+      VibratorUtil.startVibration()
     }
 
     if (this.audioRingMode === RINGER_MODE_NORMAL) {

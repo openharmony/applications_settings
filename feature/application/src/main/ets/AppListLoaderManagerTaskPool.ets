@@ -382,7 +382,7 @@ export class AppListLoaderManager {
     try {
       appList = await taskpool.execute(task, taskpool.Priority.MEDIUM) as AppEntry[];
     } catch (error) {
-      LogUtil.error(`${TAG} catch exception when getSpecAppListFromTaskPoolWithoutHds, errcode: ${(error as Error)?.message}`);
+      LogUtil.error(`${TAG} catch exception when getSpecAppListFromTaskPoolWithoutHds, errcode: ${error?.code}, errmsg: ${error?.message}`);
     }
     return appList;
   }

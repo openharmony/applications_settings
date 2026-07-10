@@ -171,7 +171,6 @@ export class DeviceUtil {
    * @return true: Phone  false: Not a phone
    */
   static isDevicePhone(): boolean {
-    // return DeviceUtil.deviceType === DEVICE_TYPE_PHONE;
     // 开发板 DeviceUtil.deviceType 返回的是default
     return [DEVICE_TYPE_PHONE, DEVICE_TYPE_DEFAULT].includes(DeviceUtil.deviceType);
   }

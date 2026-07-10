@@ -171,11 +171,6 @@ export struct NameUpdateSheetComponent {
       .backgroundColor($r('sys.color.comp_background_tertiary'))
       .onClick(async () => {
         LogUtil.info(`${TAG} onclick confirm, update remote device name`);
-        let canUpdate:boolean = await this.isCanUpdate()
-        if (!canUpdate) {
-          this.isUpdating=false
-          return
-        }
         if (this.needReConfirm) {
           this.reConfirm?.();
           return;
@@ -315,20 +310,5 @@ export struct NameUpdateSheetComponent {
     }, UPDATE_DEVICE_NAME_TIMEOUT);
     this.confirm?.();
     this.isUpdating = true;
-  }
-  private async isCanUpdate(): Promise<boolean> {
-    if (!NetworkUtils.isNetworkAvailable()) {
-      this.isUpdating=true;
-      promptAction.showToast({
-        message: $r('app.string.device_name_update_fail'),
-        duration: ToastUtil.SHORT_DURATION
-      });
-      return false;
-    }
-    // if (!await AccountUtil.isAccountLogged()) {
-    //   this.openLargerFontDialog();
-    //   return false;
-    // }
-    return true;
   }
 }

@@ -493,11 +493,6 @@ export struct SettingPage {
   @Builder pageHomeContent(): void {
     Column() {
       List({ scroller: this.scroller }) {
-        // if (DeviceUtil.isDevicePhone() || DeviceUtil.isDevicePad()) {
-        //   ListItem() {
-        //     Row().height(120)
-        //   }
-        // }
         LazyForEach(this.dataSource, (item: SettingListItem) => {
           ListItem() {
             this.contentAreaBuilder(item)

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { curves, LengthUnit, LengthMetrics } from '@kit.ArkUI';
+import { curves, LengthUnit, LengthMetrics} from '@kit.ArkUI';
 import { emitter } from '@kit.BasicServicesKit';
 import CommonEventManager from '@ohos.commonEventManager';
 import {

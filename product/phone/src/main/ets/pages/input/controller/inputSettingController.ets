@@ -138,8 +138,8 @@ export class InputSettingController extends PageLifecycleMenuGroupController {
   }
 
   /**
-   * 进入页面时检测并禁用新安装的输入法（首次出现的非系统输入法若已启用则禁用�?
-   * 通过持久化「已见过」的输入法列表判断是否为新安�?
+   * 进入页面时检测并禁用新安装的输入法（首次出现的非系统输入法若已启用则禁用）
+   * 通过持久化「已见过」的输入法列表判断是否为新安装
    */
   private async checkAndDisableNewImesOnPageEnter(): Promise<boolean> {
     try {
@@ -260,7 +260,7 @@ export class InputSettingController extends PageLifecycleMenuGroupController {
     menu.controller = {
       createControllerConstructorInter: InputEntryController.createInputEntryController,
     };
-    // 小艺输入�?不需�?state 也不可取消使�?
+    // 小艺输入法 不需要 state 也不可取消使能
     if (entry.name === DEFAULT_INPUT_LABELID) {
       menu.state = undefined;
       menu.enable = false;
@@ -339,7 +339,7 @@ export class InputEntryController extends NavCheckboxMenuController {
         // 刷新一下同步选项数据
         this.sendEmit();
         this.menu.state = value ? $r('app.string.input_enable') : $r('app.string.input_not_enabled');
-        // 小艺输入�?不需�?state
+        // 小艺输入法 不需要 state
         if (this.menuKey?.includes(DEFAULT_INPUT_LABELID)) {
           this.menu.state = undefined;
         }
@@ -388,7 +388,7 @@ class CancelButtonMenuStyle extends TransparentButtonMenuStyle {
 }
 
 /**
- * 默认输入法选择控制�?
+ * 默认输入法选择控制器
  *
  * @since 2023-11-29
  */
@@ -472,7 +472,7 @@ export class DefaultInputController extends SingleChoiceListController implement
     LogUtil.info(`${this.tag} aboutToAppear`);
     super.aboutToAppear();
     EventBus.getInstance().on(EVENT_ID_DEFAULT_INPUT_METHOD_CHANGE, this.inputMenuEventCallBack);
-    // 监听输入法切�?
+    // 监听输入法切换
     try {
       inputMethod.getSetting().on('imeChange', () => {
         LogUtil.info(`${this.tag} imeChange start`);

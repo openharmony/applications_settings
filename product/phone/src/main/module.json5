@@ -481,6 +481,16 @@
         ]
       },
       {
+        "name": "bluetooth",
+        "srcEntry": "./ets/MainAbility/BluetoothSwitchAbility.ets",
+        "description": "BluetoothSwitchDialog",
+        "exported": true,
+        "type": "sysDialog/common",
+        "permissions": [
+          "ohos.permission.ACCESS_SYSTEM_SETTINGS"
+        ]
+      },
+      {
         "name": "OOBEPasswordSettingExtensionAbility",
         "srcEntry": "./ets/MainAbility/OobePasswordSettingExtensionAbility.ets",
         "description": "OobePasswordSettingExtensionAbility",
