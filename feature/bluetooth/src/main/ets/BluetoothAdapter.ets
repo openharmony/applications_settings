@@ -56,6 +56,7 @@ import {
   StateChangeParam,
   VolumeSyncParam
 } from './model/BluetoothModel';
+import { isPairOnlyDevice as checkPairOnlyDevice } from './utils/BluetoothPairOnlyUtil';
 import { Utils } from './utils/Utils';
 
 const TAG: string = 'BluetoothAdapter : ';
@@ -869,6 +870,10 @@ export class BluetoothProfileManager implements BluetoothProfileStateChangeListe
       LogUtil.error(`${this.tag} startConnect empty param`);
       return false;
     }
+    if (checkPairOnlyDevice(deviceId) || (subDeviceId && checkPairOnlyDevice(subDeviceId))) {
+      LogUtil.info(`${this.tag} pair only device, skip profileManager.startConnect`);
+      return true;
+    }
     this.finishConnect();
     this.connectDeviceId.add(deviceId);
     if (subDeviceId) {
@@ -1076,6 +1081,10 @@ export class BluetoothProfileManager implements BluetoothProfileStateChangeListe
   }
 
   connectProfile(deviceId: string, profileId: number): void {
+    if (checkPairOnlyDevice(deviceId)) {
+      LogUtil.info(`${this.tag} pair only device, skip connectProfile profileId:${profileId}`);
+      return;
+    }
     const profile = this.profiles.get(profileId)
     if (profile) {
       let profileConnectionState = profile.getDeviceState(deviceId!);
@@ -1405,6 +1414,10 @@ BluetoothConnectListener {
         this.dispatchDeviceAttributesChanged(device);
         if (!this.isStartConnect(device)) {
           LogUtil.warn(`${TAG} discoveryRemoteDeviceUUIDInfoEvent connect task timeout, ${this.cachedBondedDevices.has(device?.deviceId)}`);
+          return;
+        }
+        if (this.isPairOnlyDevice(device.deviceId)) {
+          LogUtil.info(`${TAG} pair only device, skip connect after remote uuid discovery`);
           return;
         }
         this.connectToDeviceAfterPair(device.deviceId);
@@ -2529,6 +2542,10 @@ BluetoothConnectListener {
    * @param deviceId 待连接的设备ID
    */
   startConnect(deviceId: string): boolean {
+    if (this.isPairOnlyDevice(deviceId)) {
+      LogUtil.info(`${TAG} pair only device, skip startConnect`);
+      return true;
+    }
     if (!this.checkConnectConditionsValid(deviceId)) {
       LogUtil.warn(`${TAG} startConnect. can not connect device, this.isConnecting:${!this.connectingIds.has(deviceId)}`);
       return false;
@@ -2548,6 +2565,10 @@ BluetoothConnectListener {
    */
   startConnectIfSupport(deviceId: string, subDeviceId?: string): boolean {
     LogUtil.info(`${TAG} startConnectIfSupport. deviceId : ${BluetoothUtils.getLogMAC(deviceId)} , subDeviceId : ${BluetoothUtils.getLogMAC(subDeviceId)}`);
+    if (this.isPairOnlyDevice(deviceId) || (subDeviceId && this.isPairOnlyDevice(subDeviceId))) {
+      LogUtil.info(`${TAG} pair only device, skip startConnectIfSupport`);
+      return true;
+    }
     let deviceIdValid: boolean = this.checkConnectConditionsValid(deviceId);
     let subDeviceIdValid: boolean = false;
     if (subDeviceId) {
@@ -2586,6 +2607,11 @@ BluetoothConnectListener {
    */
   connectToDeviceAfterPair(deviceId: string): boolean {
     LogUtil.info(`${TAG} connectToDeviceAfterPair deviceId: ${BluetoothUtils.getLogMAC(deviceId)}`);
+    if (this.isPairOnlyDevice(deviceId)) {
+      LogUtil.info(`${TAG} pair only device, skip connectToDeviceAfterPair`);
+      this.connectTimestampManager.resetDeviceBondedFromLocal(deviceId);
+      return true;
+    }
     if (!this.checkConnectConditionsValid(deviceId)) {
       LogUtil.warn(`${TAG} can not connect device, this.isConnecting: ${this.connectingIds.has(deviceId)}`);
       return false;
@@ -2606,6 +2632,10 @@ BluetoothConnectListener {
 
     this.connectingIds.add(deviceId);
     return this.profileManager.startConnect(deviceId, this);
+  }
+
+  isPairOnlyDevice(deviceId: string): boolean {
+    return checkPairOnlyDevice(deviceId);
   }
 
   private checkConnectConditionsValid(deviceId: string): boolean {
