@@ -24,7 +24,7 @@
 
 #include "napi_base_context.h"
 #include "os_account_manager.h"
-
+#include "napi_bundle_util.h"
 
 using namespace OHOS::AppExecFwk;
 using namespace OHOS::DataShare;
@@ -34,6 +34,8 @@ using namespace OHOS::AccountSA;
 namespace OHOS {
 namespace Settings {
     const int USERID_HELPER_NUMBER = 100;
+    const std::string SHOW_SPLIT_SETTINGS = "settings.split_view.status";
+    const std::string SHOW_SPLIT_SETTINGS_KEY_PREFIX = "_conf_";
     std::map<std::string, sptr<SettingsObserver>> g_observerMap;
     std::recursive_mutex g_observerMapMutex;
 
@@ -152,6 +154,15 @@ namespace Settings {
         }
     }
 
+    std::string GetObserverMapKey(const std::string& key)
+    {
+        if (key == SHOW_SPLIT_SETTINGS) {
+            std::string bundleName = OHOS::Settings::BundleUtil::GetCurrentBundleName();
+            return SHOW_SPLIT_SETTINGS + SHOW_SPLIT_SETTINGS_KEY_PREFIX + bundleName;
+        }
+        return key;
+    }
+
     int GetObserverIdStr()
     {
         int currentUserId = -1;
@@ -186,11 +197,12 @@ namespace Settings {
             return;
         }
         AsyncCallbackInfo* callbackInfo = reinterpret_cast<AsyncCallbackInfo*>(data);
+        std::string observerMapKey = GetObserverMapKey(callbackInfo->key);
         std::lock_guard<std::recursive_mutex> lockGuard(g_observerMapMutex);
-        if (g_observerMap.find(callbackInfo->key) != g_observerMap.end() &&
-            g_observerMap[callbackInfo->key] != nullptr) {
-            SETTING_LOG_WARN("CleanUp key is %{public}s", callbackInfo->key.c_str());
-            CleanObserverMap(callbackInfo->key);
+        if (g_observerMap.find(observerMapKey) != g_observerMap.end() &&
+            g_observerMap[observerMapKey] != nullptr) {
+            SETTING_LOG_WARN("CleanUp key is %{public}s", observerMapKey.c_str());
+            CleanObserverMap(observerMapKey);
             napi_delete_reference(callbackInfo->env, callbackInfo->callbackRef);
             callbackInfo->env = nullptr;
             callbackInfo->callbackRef = nullptr;
@@ -236,8 +248,9 @@ namespace Settings {
         callbackInfo->tableName = unwrap_string_from_js(env, args[PARAM2]);
         napi_create_reference(env, args[PARAM3], 1, &(callbackInfo->callbackRef));
 
-        if (g_observerMap.find(callbackInfo->key) != g_observerMap.end() &&
-        g_observerMap[callbackInfo->key] != nullptr) {
+        std::string observerMapKey = GetObserverMapKey(callbackInfo->key);
+        if (g_observerMap.find(observerMapKey) != g_observerMap.end() &&
+            g_observerMap[observerMapKey] != nullptr) {
             SETTING_LOG_INFO("%{public}s, already registered.", __func__);
             napi_delete_reference(env, callbackInfo->callbackRef);
             delete callbackInfo;
@@ -257,11 +270,11 @@ namespace Settings {
             return wrap_bool_to_js(env, false);
         }
 
-        std::string strUri = GetStageUriStr(callbackInfo->tableName, GetObserverIdStr(), callbackInfo->key);
+        std::string strUri = GetStageUriStr(callbackInfo->tableName, GetObserverIdStr(), observerMapKey);
         OHOS::Uri uri(strUri);
         sptr<SettingsObserver> settingsObserver = sptr<SettingsObserver>
         (new (std::nothrow)SettingsObserver(callbackInfo));
-        g_observerMap[callbackInfo->key] = settingsObserver;
+        g_observerMap[observerMapKey] = settingsObserver;
         napi_add_env_cleanup_hook(env, CleanUp, callbackInfo);
         dataShareHelper->RegisterObserver(uri, settingsObserver);
         dataShareHelper->Release();
@@ -299,13 +312,14 @@ namespace Settings {
         std::string tableName = unwrap_string_from_js(env, args[PARAM2]);
         
         std::lock_guard<std::recursive_mutex> lockGuard(g_observerMapMutex);
-        if (g_observerMap.find(key) == g_observerMap.end()) {
+        std::string observerMapKey = GetObserverMapKey(key);
+        if (g_observerMap.find(observerMapKey) == g_observerMap.end()) {
             SETTING_LOG_ERROR("%{public}s, null.", __func__);
             return wrap_bool_to_js(env, false);
         }
         
-        if (g_observerMap[key] == nullptr) {
-            g_observerMap.erase(key);
+        if (g_observerMap[observerMapKey] == nullptr) {
+            g_observerMap.erase(observerMapKey);
             return wrap_bool_to_js(env, false);
         }
         auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, args[PARAM0]);
@@ -318,12 +332,13 @@ namespace Settings {
             SETTING_LOG_ERROR("%{public}s, data share is null.", __func__);
             return wrap_bool_to_js(env, false);
         }
-        std::string strUri = GetStageUriStr(tableName, GetObserverIdStr(), key);
-        napi_remove_env_cleanup_hook(env, CleanUp, g_observerMap[key]->cbInfo);
-        napi_delete_reference(g_observerMap[key]->cbInfo->env, g_observerMap[key]->cbInfo->callbackRef);
-        dataShareHelper->UnregisterObserver(OHOS::Uri(strUri), g_observerMap[key]);
+        std::string strUri = GetStageUriStr(tableName, GetObserverIdStr(), observerMapKey);
+        napi_remove_env_cleanup_hook(env, CleanUp, g_observerMap[observerMapKey]->cbInfo);
+        napi_delete_reference(g_observerMap[observerMapKey]->cbInfo->env,
+            g_observerMap[observerMapKey]->cbInfo->callbackRef);
+        dataShareHelper->UnregisterObserver(OHOS::Uri(strUri), g_observerMap[observerMapKey]);
         dataShareHelper->Release();
-        CleanObserverMap(key);
+        CleanObserverMap(observerMapKey);
 		
         return wrap_bool_to_js(env, true);
     }

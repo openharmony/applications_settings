@@ -58,6 +58,20 @@ const int8_t INDEX_WEARABLE = 1;
 const std::string IS_DOUBLE_CLICK_SELF = "is_double_click_app_forself";
 const std::string DEVICE_TYPE = OHOS::system::GetParameter("const.product.devicetype", "");
 const std::string WEARABLE_DEVICE = "wearable";
+const std::string SHOW_SPLIT_SETTINGS = "settings.split_view.status";
+const std::string SHOW_SPLIT_SETTINGS_KEY_PREFIX = "_conf_";
+
+void PrepareShowSplitSettingsKey(AsyncCallbackInfo* asyncCallbackInfo)
+{
+    if (asyncCallbackInfo == nullptr) {
+        SETTING_LOG_ERROR("asyncCallbackInfo is null");
+        return;
+    }
+    if (asyncCallbackInfo->key == SHOW_SPLIT_SETTINGS) {
+        std::string bundleName = OHOS::Settings::BundleUtil::GetCurrentBundleName();
+        asyncCallbackInfo->key = SHOW_SPLIT_SETTINGS + SHOW_SPLIT_SETTINGS_KEY_PREFIX + bundleName;
+    }
+}
 
 void ThrowExistingError(napi_env env, int errorCode, std::string errorMessage)
 {
@@ -1023,6 +1037,8 @@ napi_value napi_get_value_ext(napi_env env, napi_callback_info info, const bool 
     }
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1], false);
 
+    PrepareShowSplitSettingsKey(asyncCallbackInfo);
+
     // set call type and table name, and check whether the parameter is valid
     napi_valuetype valueType;
     if (argc == ARGS_TWO) {
@@ -1970,6 +1986,7 @@ napi_value napi_get_value_sync_ext(bool stageMode, size_t argc, napi_env env, na
     }
 
     asyncCallbackInfo->key = unwrap_string_from_js(env, args[PARAM1], false);
+    PrepareShowSplitSettingsKey(asyncCallbackInfo);
     auto contextS = OHOS::AbilityRuntime::GetStageModeContext(env, args[PARAM0]);
     if (contextS == nullptr) {
         SETTING_LOG_ERROR("get context is error.");
