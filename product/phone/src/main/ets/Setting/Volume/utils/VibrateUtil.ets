@@ -155,7 +155,7 @@ export class VibrateUtil {
         return systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_NOTIFICATION;
       default:
         LogUtil.showError(TAG, `toneHapticsTypeToToneType invalid toneHapticsType: ${toneHapticsType}`);
-        return toneHapticsType;
+        return systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_NOTIFICATION;
     }
   }
 
