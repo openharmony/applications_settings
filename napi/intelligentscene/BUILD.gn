@@ -34,6 +34,8 @@ ohos_shared_library("intelligentscene") {
     "ipc:ipc_single",
     "os_account:os_account_innerkits",
     "distributed_notification_service:ans_innerkits",
+    "image_framework:image_native",
+    "ability_runtime:wantagent_innerkits",
     "access_token:libaccesstoken_sdk",
     "access_token:libtokenid_sdk",
   ]

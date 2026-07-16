@@ -38,6 +38,7 @@
                 "hisysevent",
                 "samgr",
                 "distributed_notification_service",
+                "image_framework",
                 "access_token",
                 "jsoncpp"
             ],
