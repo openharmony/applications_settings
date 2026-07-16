@@ -40,7 +40,7 @@ ohos_shared_library("intelligentscene_ani") {
     "image_framework:image_native",
     "ability_runtime:wantagent_innerkits",
     "access_token:libaccesstoken_sdk",
-    "access_token:libtokenid_sdk"
+    "access_token:libtokenid_sdk",
   ]
 
   relative_install_dir = "module"
