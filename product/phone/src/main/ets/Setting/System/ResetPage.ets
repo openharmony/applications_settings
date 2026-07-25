@@ -13,13 +13,11 @@
  * limitations under the License.
  */
 
-import { DeviceUtil } from '@ohos/settings.common/src/main/ets/utils/BaseUtils';
 import { GroupType } from '@ohos/settings.common/src/main/ets/framework/model/SettingGroupModel';
 import { ItemDetailType, ItemType } from '@ohos/settings.common/src/main/ets/framework/model/SettingItemModel';
 import { NavEntryKey } from '@ohos/settings.common/src/main/ets/utils/Consts';
 import { PageLoader } from '@ohos/settings.common/src/main/ets/framework/common/PageLoader';
 import { PageType, SettingPageModel } from '@ohos/settings.common/src/main/ets/framework/model/SettingPageModel';
-import { ResetFactoryGroupController } from './Reset/ResetFactoryGroupController';
 
 /* instrument ignore file */
 function customPage(): SettingPageModel {
@@ -46,28 +44,6 @@ function customPage(): SettingPageModel {
           }
         ]
       },
-      {
-        id: 'factory_reset_group',
-        type: GroupType.GROUP_TYPE_STANDARD,
-        items: [
-          {
-            id: 'reset_factory_settings',
-            type: ItemType.ITEM_TYPE_STANDARD,
-            title: {
-              content: DeviceUtil.isDevicePad() ? $r('app.string.reset_factory_title_pc') :
-              $r('app.string.reset_factory_title'),
-            },
-            detail: {
-              type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
-              icon: $r('sys.symbol.chevron_right'),
-              isSymbolIcon: true,
-              destination: NavEntryKey.RESET_FACTORY,
-            },
-          }
-        ],
-        visible: false,
-        compControl: new ResetFactoryGroupController()
-      }
     ]
   }
 }
