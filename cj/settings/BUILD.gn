@@ -39,6 +39,7 @@ ohos_shared_library("cj_settings_ffi") {
     "os_account:os_account_innerkits",
   ]
 
+  branch_protector_ret = "pac_ret"
   innerapi_tags = [ "platformsdk" ]
   part_name = "settings"
   subsystem_name = "applications"
