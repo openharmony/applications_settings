@@ -37,6 +37,7 @@ ohos_shared_library("cj_settings_ffi") {
     "napi:cj_bind_ffi",
     "napi:cj_bind_native",
     "os_account:os_account_innerkits",
+    "bounds_checking_function:libsec_shared",
   ]
 
   branch_protector_ret = "pac_ret"
