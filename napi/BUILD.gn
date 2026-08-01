@@ -12,5 +12,8 @@
 # limitations under the License.
 
 group("apps_napi") {
-  deps = [ "//applications/standard/settings/napi/settings:settings", "//applications/standard/settings/napi/intelligentscene:intelligentscene" ]
+  deps = ["//applications/standard/settings/napi/settings:settings"]
+  if (settings_feature_intelligentscene_config) {
+    deps += [ "//applications/standard/settings/napi/intelligentscene:intelligentscene" ]
+  }
 }
