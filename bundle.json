@@ -16,7 +16,9 @@
             "SystemCapability.Applications.Settings.Core",
             "SystemCapability.Applications.IntelligentScene"
         ],
-        "features": [],
+        "features": [
+            "settings_feature_intelligentscene_config"
+        ],
         "adapted_system_type": [
             "standard"
         ],
