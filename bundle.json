@@ -43,7 +43,8 @@
                 "distributed_notification_service",
                 "image_framework",
                 "access_token",
-                "jsoncpp"
+                "jsoncpp",
+                "node"
             ],
             "third_party": []
         },
