@@ -55,6 +55,7 @@ ohos_shared_library("settings") {
     "hisysevent:libhisysevent",
     "samgr:samgr_proxy",
     "jsoncpp:jsoncpp",
+    "node:node_header_notice"
   ]
 
   relative_install_dir = "module"
