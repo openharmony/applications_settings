@@ -19,9 +19,6 @@ import { SwitchMenuController } from '@ohos/settings.common/src/main/ets/core/co
 import { HiSysEventUtil } from '@ohos/settings.common/src/main/ets/systemEvent/HiSysEventUtil';
 import { SettingsDataUtils } from '@ohos/settings.common/src/main/ets/utils/SettingsDataUtils';
 import { SettingsBaseMenu } from '@ohos/settings.common/src/main/ets/core/model/menu/SettingsMenu';
-import { BusinessError } from '@ohos.base';
-import systemParameter from '@ohos.systemparameter';
-import { DeviceStateUtils } from '@ohos/settings.common/src/main/ets/utils/BaseUtils';
 import emitter from '@ohos.events.emitter';
 import { AUTO_SET_UPDATE_EVENTS } from '@ohos/settings.common/src/main/ets/event/types';
 import { EventId } from '@ohos/settings.common/src/main/ets/utils/Consts';
@@ -97,7 +94,8 @@ export default class AutoTimeZoneController extends SwitchMenuController {
       SearchDataController.getInstance().updateSearchItemStatus('date_settings_title', !isChecked);
       SearchDataController.getInstance().updateSearchItemStatus('time_settings_title', !isChecked);
       this.publishDataChange(isChecked);
-      this.updateStatus();
+      // setAutoTimeStatus 异步生效，拨动时以用户操作值为准，避免回读旧值
+      this.notifyAutoTimeState(isChecked);
     } catch (err) {
       LogUtil.showError(TAG, `setAutoTimeStatus err: ${JSON.stringify(err)}`);
     }
@@ -112,7 +110,10 @@ export default class AutoTimeZoneController extends SwitchMenuController {
   }
 
   updateStatus(): void {
-    let isChecked = this.updateCheckedState();
+    this.notifyAutoTimeState(this.updateCheckedState());
+  }
+
+  private notifyAutoTimeState(isChecked: boolean): void {
     this.setChecked(isChecked);
     emitter.emit({
       eventId: EventId.UpdateAutoTimeZoneStateNum
