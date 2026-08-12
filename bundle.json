@@ -44,7 +44,8 @@
                 "image_framework",
                 "access_token",
                 "jsoncpp",
-                "node"
+                "node",
+                "libuv"
             ],
             "third_party": []
         },
