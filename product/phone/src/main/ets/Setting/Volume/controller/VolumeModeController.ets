@@ -112,7 +112,6 @@ export class VolumeModeController implements VolumeListener {
     // 临时效果：从振动切换到铃声时额外触发一次短振动反馈
     if (IS_SUPPORT_VIBRATE && beforeUpdateAudioRingMode === RINGER_MODE_VIBRATE && ringMode === RINGER_MODE_NORMAL) {
       VibratorUtil.startVibration()
-      // VibratorUtil.vibrateOnVibrateMode(VIBRATE_DURATION, 'touch');
     }
     // 临时方案：切换到振动时触发一次短振动反馈
     if (IS_SUPPORT_VIBRATE && ringMode === RINGER_MODE_VIBRATE) {
