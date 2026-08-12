@@ -1393,7 +1393,8 @@ export struct SystemRingTonePage {
                   }catch (err) {
                     LogUtil.showError(this.tag, `Failed to set tone. Code: ${err.code}, message: ${err.message}`);
                   }
-                }else if (item.getUri() !== SIMOneMessageUri && item.getUri() !== SIMTwoMessageUri && item.getUri() !== notificationUri) {
+                }else if (item.getUri() !== SIMOneMessageUri && item.getUri() !== SIMTwoMessageUri &&
+                    item.getUri() !== notificationUri) {
                   try {
                     await this.systemSoundManagerInstance?.removeCustomizedTone(this.context,item.getUri())
                   }catch (err) {
@@ -1423,7 +1424,8 @@ export struct SystemRingTonePage {
                   }catch (err) {
                     LogUtil.showError(this.tag, `Failed to set tone. Code: ${err.code}, message: ${err.message}`);
                   }
-                }else if (item.getUri() !== SIMOneMessageUri && item.getUri() !== SIMTwoMessageUri && item.getUri() !== notificationUri) {
+                }else if (item.getUri() !== SIMOneMessageUri && item.getUri() !== SIMTwoMessageUri &&
+                    item.getUri() !== notificationUri) {
                   try {
                     await this.systemSoundManagerInstance?.removeCustomizedTone(this.context,item.getUri())
                   }catch (err) {
