@@ -31,7 +31,7 @@ import {
   SingleChoiceListController
 } from '@ohos/settings.common/src/main/ets/core/controller/MenuController';
 import { extraType, SettingsBaseMenu } from '@ohos/settings.common/src/main/ets/core/model/menu/SettingsMenu';
-import { LogUtil } from '@ohos/settings.common/src/main/ets/utils/LogUtil';
+import OsAccount from '@ohos.account.osAccount';
 import { Controller, PushParam } from '@ohos/settings.common/src/main/ets/core/controller/Controller';
 import { HiSysEventUtil, } from '@ohos/settings.common/src/main/ets/systemEvent/HiSysEventUtil';
 import { NavEntryKey } from '@ohos/settings.common/src/main/ets/utils/Consts';
@@ -55,9 +55,12 @@ import {
 import { AbilityContextManager } from '@ohos/settings.common/src/main/ets/ability/AbilityContextManager';
 import { BaseEntryMenu } from '@ohos/settings.common/src/main/ets/core/model/menu/BaseMenu';
 import { HiSysSystemAndUpdatesEventGroup } from '@ohos/settings.common/src/main/ets/systemEvent/BehaviorEventConsts';
+import { LogUtil, PreferencesUtil } from '@ohos/settings.common';
+
 /* instrument ignore file */
 const DEFAULT_INPUT_LABELID: string = 'com.ohos.inputmethod';
 const WAITING_TIME: number = 100;
+const KEY_KNOWN_IME_BUNDLES: string = 'settings.inputmethod.known_ime_bundles';
 
 export class InputSettingController extends PageLifecycleMenuGroupController {
   public tag: string = 'inputSettingController : ';
@@ -114,6 +117,11 @@ export class InputSettingController extends PageLifecycleMenuGroupController {
     this.defaultInputSettingList();
   }
 
+  onPageShow(): void {
+    LogUtil.info(`${this.tag} onPageShow`);
+    this.defaultInputSettingList();
+  }
+
   aboutToDisappear(): void {
     BundleStatusChangeManager.getInstance().unRegisterBundleChangedListener(this.bundleStatusCallback);
     LogUtil.info(`${this.tag} aboutToDisappear`);
@@ -129,10 +137,68 @@ export class InputSettingController extends PageLifecycleMenuGroupController {
     return arr;
   }
 
+  /**
+   * 进入页面时检测并禁用新安装的输入法（首次出现的非系统输入法若已启用则禁用）
+   * 通过持久化「已见过」的输入法列表判断是否为新安装
+   */
+  private async checkAndDisableNewImesOnPageEnter(): Promise<boolean> {
+    try {
+      const curAccountInfo = await OsAccount.getAccountManager().getCurrentOsAccount();
+      const userId = curAccountInfo.localId.toString();
+      const storageKey = `${KEY_KNOWN_IME_BUNDLES}_${userId}`;
+      const knownBundlesStr = PreferencesUtil.getSync(storageKey, '[]') as string;
+      let knownBundles: string[] = [];
+      try {
+        knownBundles = JSON.parse(knownBundlesStr) as string[];
+      } catch {
+        knownBundles = [];
+      }
+      const allInputMethods = this.getAllInputMethodsSync();
+      const currentNames = allInputMethods.map(item => item.name);
+      let didDisable = false;
+      for (const ime of allInputMethods) {
+        if (ime.name === DEFAULT_INPUT_LABELID) {
+          continue;
+        }
+        if (!knownBundles.includes(ime.name) && ime.enabledState !== inputMethod.EnabledState.DISABLED) {
+          inputMethod.getSetting()
+            .enableInputMethod(ime.name, ime.id, inputMethod.EnabledState.DISABLED)
+            .then(() => {
+              LogUtil.info(`${this.tag} checkAndDisableNewImesOnPageEnter disabled: ${ime.name}`);
+              const newKnown = Array.from(new Set(knownBundles.concat(ime.name)));
+              PreferencesUtil.putSync(storageKey, JSON.stringify(newKnown));
+              this.sendEmit();
+              this.defaultInputSettingList();
+            })
+            .catch((err: BusinessError) => {
+              LogUtil.error(`${this.tag} disable new IME failed: ${ime.name}, code: ${err?.code}`);
+              const newKnown = Array.from(new Set(knownBundles.concat(ime.name)));
+              PreferencesUtil.putSync(storageKey, JSON.stringify(newKnown));
+              this.defaultInputSettingList();
+            });
+          didDisable = true;
+          break;
+        }
+      }
+      if (!didDisable) {
+        const combined = knownBundles.concat(currentNames);
+        const newKnown = Array.from(new Set(combined));
+        PreferencesUtil.putSync(storageKey, JSON.stringify(newKnown));
+      }
+      return didDisable;
+    } catch (err) {
+      LogUtil.error(`${this.tag} checkAndDisableNewImesOnPageEnter error: ${err}`);
+      return false;
+    }
+  }
+
   private async defaultInputSettingList(): Promise<void> {
+    const needRefresh = await this.checkAndDisableNewImesOnPageEnter();
+    if (needRefresh) {
+      return;
+    }
     this.allInputMethod = this.getAllInputMethodsSync();
     LogUtil.info(`${this.tag} allInputMethod: ${JSON.stringify(this.allInputMethod)}`);
-    // 将小艺输入法排到第一个
     const item = this.allInputMethod.find((item) => item.name === DEFAULT_INPUT_LABELID);
     if (item) {
       this.allInputMethod = [

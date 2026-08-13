@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import emitter from '@ohos.events.emitter';
 import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
 import { LengthMetrics } from '@ohos.arkui.node';
 import {
@@ -34,6 +35,7 @@ import { DeviceUtil } from '../../utils/BaseUtils';
 import { DisplayUtils } from '../../utils/DisplayUtils';
 import { FontScaleUtils } from '../../utils/FontScaleUtils';
 import { ResourceUtil } from '../../utils/ResourceUtil';
+import { EVENT_ID_DISMISS_SETTING_BIND_SHEETS } from '../../event/types';
 import { DataVerify } from '../common/DataVerify';
 import { EventBus } from '../common/EventBus';
 import { LogHelper } from '../common/LogHelper';
@@ -218,6 +220,17 @@ export struct SettingItemStandard {
   @State isSheetCenter: boolean = false;
   @State isMenuShow: boolean = false;
   private oldToggleState:boolean = false;
+
+  /** 主导航/外部跳转时关闭半模态，避免遮挡后续页面（如 WLAN 密码 Sheet） */
+  private dismissBindSheetOnExternalNav = (): void => {
+    if (!this.hasBindSheet(this.itemInfo.detail)) {
+      return;
+    }
+    if (this.isModalShow) {
+      LogHelper.info(TAG, `dismiss bind sheet on external nav, compId: ${this.compId}`);
+      this.isModalShow = false;
+    }
+  };
 
   private eventCb = (data: object) => {
     if (!(data instanceof Map)) {
@@ -1596,6 +1609,10 @@ export struct SettingItemStandard {
 
     // 注册事件
     EventBus.getInstance().on(this.compId, this.eventCb);
+    emitter.on({
+      eventId: EVENT_ID_DISMISS_SETTING_BIND_SHEETS,
+      priority: emitter.EventPriority.IMMEDIATE,
+    }, this.dismissBindSheetOnExternalNav);
     item.onItemEvent = (datas: Map<SettingStateType, SettingBaseState>) => {
       this.procEvent(datas);
     };
@@ -1609,6 +1626,7 @@ export struct SettingItemStandard {
     LogHelper.info(TAG, `setting item ${this.compId} disappear.`);
     let item = this.itemInfo;
     EventBus.getInstance().detach(this.compId, this.eventCb);
+    emitter.off(EVENT_ID_DISMISS_SETTING_BIND_SHEETS, this.dismissBindSheetOnExternalNav);
     item.onItemEvent = undefined;
     if (this.itemInfo.compControl) {
       this.itemInfo.compControl.destroy();

@@ -62,6 +62,9 @@ const NEXT_DAY_TIME: number = 0;
 const TONIGHT_TIME_STRING: string = '19:00';
 const TAG: string = 'NotDisturbWindowViewModel: ';
 
+/** 为 true 时控制中心免打扰面板仅展示「立即开启」，不展示 1 小时 / 2 小时 / 直到今晚 / 用户定时 */
+const NOT_DISTURB_WINDOW_ONLY_IMMEDIATE_OPEN: boolean = true;
+
 /**
  * 控制中心免打扰二级面板ViewModel
  */
@@ -98,6 +101,14 @@ export class NotDisturbWindowViewModel {
       subTitle: $r('app.string.not_disturb_until_close'),
       isSelected: isDisturbOn
     }));
+
+    if (NOT_DISTURB_WINDOW_ONLY_IMMEDIATE_OPEN) {
+      let isDisableOnly: boolean = isDisturbOn &&
+        NotDisturbTimerManager.getInstance().getTimerId(getContext()) === NOT_DISTURB_NUMBER_MINUS;
+      LogUtil.showInfo(TAG, `isDisable: ${isDisableOnly}`);
+      this.disableTimer(isDisableOnly);
+      return;
+    }
 
     // 添加1小时
     this.notDisturbMenusArray.push(new NotDisturbMenuEntry({
@@ -145,6 +156,9 @@ export class NotDisturbWindowViewModel {
   }
 
   private refreshTimeUi(timers: NotDisturbTimerPararm[]): void {
+    if (this.notDisturbMenusArray.length < 3) {
+      return;
+    }
     const currentDateNumber: number = Date.now();
     const currentDate: Date = new Date(currentDateNumber);
     let isOpen: boolean = timers && timers[INDEX_PRESET_ONCE] &&
@@ -179,6 +193,9 @@ export class NotDisturbWindowViewModel {
   }
 
   private setCurrentDateSummary(currentDateNumber: number, currentDate: Date): void {
+    if (this.notDisturbMenusArray.length < 3) {
+      return;
+    }
     const oneHourLaterDate: Date = new Date(currentDateNumber + ONE_HOUR_MILLISECONDS);
     const twoHourLaterDate: Date = new Date(currentDateNumber + TWO_HOUR_MILLISECONDS);
     this.notDisturbMenusArray[INDEX_ONE_HOUR_OPEN].subTitle =
@@ -297,6 +314,9 @@ export class NotDisturbWindowViewModel {
 
   private refreshOnceTypeSummary(type: PresetOnceType): void {
     LogUtil.info(`${TAG} refreshOnceTypeSummary type: ${type}`);
+    if (this.notDisturbMenusArray.length < 3) {
+      return;
+    }
     if (type === PresetOnceType.ONE_HOUR || type === PresetOnceType.TWO_HOUR) {
       const currentDateNumber: number = Date.now();
       const currentDate: Date = new Date(currentDateNumber);
@@ -362,6 +382,9 @@ export class NotDisturbWindowViewModel {
   }
 
   private refreshTonight(currentDate: Date): void {
+    if (this.notDisturbMenusArray.length < 3) {
+      return;
+    }
     const hour: number = currentDate.getHours();
     const shouldShow: boolean = hour < TONIGHT_TIME && hour >= NEXT_DAY_TIME;
     if (shouldShow === this.hasTonightItem) {
@@ -387,6 +410,9 @@ export class NotDisturbWindowViewModel {
   }
 
   private refreshOnceTimer(endType: PresetOnceType): void {
+    if (this.notDisturbMenusArray.length < 3) {
+      return;
+    }
     this.notDisturbMenusArray[INDEX_ONE_HOUR_OPEN].isSelected = endType === PresetOnceType.ONE_HOUR ? true : false;
     this.notDisturbMenusArray[INDEX_TWO_HOUR_OPEN].isSelected = endType === PresetOnceType.TWO_HOUR ? true : false;
     if (this.hasTonightItem) {

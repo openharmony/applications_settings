@@ -57,7 +57,15 @@ export class BrightnessController {
     LogUtil.info(`${TAG} MAX_BRIGHTNESS ${this.MAX_BRIGHTNESS} min ${this.MIN_BRIGHTNESS}`);
     let sliderValue = this.countUIValue(this.getBrightness());
     this.setSliderValue(sliderValue);
-    this.isStateOn = SettingsDataUtils.getSettingsData(settings.display.AUTO_SCREEN_BRIGHTNESS, '1') == '1';
+    let autoBrightnessVal = SettingsDataUtils.getSettingsData(settings.display.AUTO_SCREEN_BRIGHTNESS, AUTO_SCREEN_BRIGHTNESS_ON);
+    // 首次打开设置时若该 key 未写入过（值为空），则默认开启自动调节亮度并写入
+    LogUtil.info(`${TAG} autoBrightnessVal： ${autoBrightnessVal}`);
+    if (!autoBrightnessVal || autoBrightnessVal.length === 0 || autoBrightnessVal === '-1') {
+      SettingsDataUtils.setSettingsData(settings.display.AUTO_SCREEN_BRIGHTNESS, AUTO_SCREEN_BRIGHTNESS_ON);
+      this.isStateOn = true;
+    } else {
+      this.isStateOn = autoBrightnessVal === AUTO_SCREEN_BRIGHTNESS_ON;
+    }
   }
 
   public getSliderMin(): number {
@@ -150,7 +158,13 @@ export class BrightnessController {
     this.registerDataChange();
     let sliderValue = this.countUIValue(this.getBrightness());
     this.setSliderValue(sliderValue);
-    this.isStateOn = SettingsDataUtils.getSettingsData(settings.display.AUTO_SCREEN_BRIGHTNESS, '1') == '1';
+    let autoBrightnessVal = SettingsDataUtils.getSettingsData(settings.display.AUTO_SCREEN_BRIGHTNESS, AUTO_SCREEN_BRIGHTNESS_ON);
+    if (!autoBrightnessVal || autoBrightnessVal.length === 0) {
+      SettingsDataUtils.setSettingsData(settings.display.AUTO_SCREEN_BRIGHTNESS, AUTO_SCREEN_BRIGHTNESS_ON);
+      this.isStateOn = true;
+    } else {
+      this.isStateOn = autoBrightnessVal === AUTO_SCREEN_BRIGHTNESS_ON;
+    }
     EventBus.getInstance().emit('auto_brightness_state', this.isStateOn);
   }
 

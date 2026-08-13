@@ -335,9 +335,8 @@ struct SettingsHome {
   }
 
   build() {
-    Navigation(this.pathInfos) {
-    // HdsNavigation(this.pathInfos) {
-      if (this.isSearching) {
+    if (this.isSearching){
+      Navigation(this.pathInfos) {
         Column() {
           SearchSettingsComponent({ onBackButtonClicked: () => {
             this.onChildButtonClicked();
@@ -345,63 +344,77 @@ struct SettingsHome {
           })
         }
         .id('SearchSettingsComponent')
-      } else {
+      }
+      .onNavigationModeChange((mode) => {
+        LogUtil.info(`${TAG} onNavigationModeChange ${mode}`);
+        AppStorage.setOrCreate<NavigationMode>('navigationMode', mode);
+        PageConfig.getInstance().setPageConfigGlobal({
+          defaultPageConfig: DefaultPageConfig.getInstance(),
+          defaultPageBuilder: wrapBuilder(settingPageBuilder),
+          screenType: ScreenType.SCREEN_TYPE_SMALL,
+          navMode: mode
+        });
+        this.setBarWidthByWindowSize();
+        this.LoadDefaultPage(mode);
+        this.refreshSelectHomeItem(mode);
+        emitter.emit({ eventId: EVENT_ID_CAPSULE_NAVIGATION_CHANGE });
+      })
+      .enableModeChangeAnimation(false)
+      .mode(this.defaultNavigationMode)
+      .navBarWidth(this.navBarWidth)
+      .hideTitleBar(this.isSearching, true)
+      .backgroundColor(Color.Transparent)
+      .navDestination(this.myRouter)
+      .titleMode(NavigationTitleMode.Free)
+      .hideBackButton(true)
+      .expandSafeArea([SafeAreaType.KEYBOARD, SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM, SafeAreaEdge.TOP])
+      .keyboardShortcut('F', [ModifierKey.CTRL], () => {
+        focusControl.requestFocus('homPageSearchInput');
+        AppStorage.setOrCreate('isSearching', true);
+      })
+    }else {
+      Navigation(this.pathInfos) {
+      // HdsNavigation(this.pathInfos) {
         // @State传递到@Builder里的参数，根据参数获取map中对应值通过方法封装后，无法触发界面刷新
         // 此处先通过if-else相同逻辑处理，后续优化
-       if (this.homePageUrl === NavEntryKey.PENG_LAI_HOME_PAGE) {
+        if (this.homePageUrl === NavEntryKey.PENG_LAI_HOME_PAGE) {
           this.homePageBuilder()
         } else {
           this.homePageBuilder()
         }
       }
+      .title($r('app.string.settings_title'))
+      // .bindToScrollable([this.listScroller])
+      .onNavigationModeChange((mode) => {
+        LogUtil.info(`${TAG} onNavigationModeChange ${mode}`);
+        AppStorage.setOrCreate<NavigationMode>('navigationMode', mode);
+        PageConfig.getInstance().setPageConfigGlobal({
+          defaultPageConfig: DefaultPageConfig.getInstance(),
+          defaultPageBuilder: wrapBuilder(settingPageBuilder),
+          screenType: ScreenType.SCREEN_TYPE_SMALL,
+          navMode: mode
+        });
+        this.setBarWidthByWindowSize();
+        this.LoadDefaultPage(mode);
+        this.refreshSelectHomeItem(mode);
+        emitter.emit({ eventId: EVENT_ID_CAPSULE_NAVIGATION_CHANGE });
+      })
+      .enableModeChangeAnimation(false)
+      .mode(this.defaultNavigationMode)
+      .navBarWidth(this.navBarWidth)
+      .hideTitleBar(this.isSearching, true)
+      .title($r('app.string.settings_title'))
+      .backgroundColor(Color.Transparent)
+      .navDestination(this.myRouter)
+      .titleMode(NavigationTitleMode.Free)
+      .hideBackButton(true)
+      .expandSafeArea([SafeAreaType.KEYBOARD, SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM, SafeAreaEdge.TOP])
+      .keyboardShortcut('F', [ModifierKey.CTRL], () => {
+        focusControl.requestFocus('homPageSearchInput');
+        AppStorage.setOrCreate('isSearching', true);
+      })
     }
-    .title($r('app.string.settings_title'))
-    // .bindToScrollable([this.listScroller])
-    .onNavigationModeChange((mode) => {
-      LogUtil.info(`${TAG} onNavigationModeChange ${mode}`);
-      AppStorage.setOrCreate<NavigationMode>('navigationMode', mode);
-      PageConfig.getInstance().setPageConfigGlobal({
-        defaultPageConfig: DefaultPageConfig.getInstance(),
-        defaultPageBuilder: wrapBuilder(settingPageBuilder),
-        screenType: ScreenType.SCREEN_TYPE_SMALL,
-        navMode: mode
-      });
-      this.setBarWidthByWindowSize();
-      this.LoadDefaultPage(mode);
-      this.refreshSelectHomeItem(mode);
-      emitter.emit({ eventId: EVENT_ID_CAPSULE_NAVIGATION_CHANGE });
-    })
-    .enableModeChangeAnimation(false)
-    .mode(this.defaultNavigationMode)
-    .navBarWidth(this.navBarWidth)
-    .hideTitleBar(this.isSearching, true)
-    .title($r('app.string.settings_title'))
-    // .titleBar({
-    //   style: {
-    //     scrollEffectOpts: {
-    //       enableScrollEffect: true
-    //     },
-    //     scrollEffectStyle: {
-    //       backgroundStyle: {
-    //         backgroundBrightnessLevel: BackgroundBrightnessLevel.ENHANCED
-    //       }
-    //     }
-    //   },
-    //   content: {
-    //     title: {
-    //       mainTitle: $r('app.string.settings_title')
-    //     }
-    //   }
-    // })
-    .backgroundColor(Color.Transparent)
-    .navDestination(this.myRouter)
-    .titleMode(NavigationTitleMode.Free)
-    .hideBackButton(true)
-    .expandSafeArea([SafeAreaType.KEYBOARD, SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM, SafeAreaEdge.TOP])
-    .keyboardShortcut('F', [ModifierKey.CTRL], () => {
-      focusControl.requestFocus('homPageSearchInput');
-      AppStorage.setOrCreate('isSearching', true);
-    })
+
   }
 
   @Builder

@@ -50,7 +50,7 @@ import { A2dpStrategySwitchMenuController } from './BondedDevice/A2dpStrategySwi
 import { HidStrategySwitchMenuController } from './BondedDevice/HidStrategySwitchMenuController';
 import { BluetoothStrategySwitchMenuController } from './BondedDevice/BluetoothStrategySwitchMenuController';
 import { BluetoothAdapter, BluetoothProfile, BluetoothProfileStateChangeListener } from '../BluetoothAdapter';
-import { BluetoothDevice, ProfileId, StateChangeParam } from '../model/BluetoothModel';
+import { BluetoothDevice, DeviceType, ProfileId, StateChangeParam } from '../model/BluetoothModel';
 import lazy {
   deviceNameItemBuilder,
   profileItemBuilder,
@@ -403,7 +403,13 @@ export class BluetoothBondedDevicePageController implements ComponentControl, Bl
 
   private setProfileCustomItemModels(profileGroupModel: SettingGroupModel): void {
     let itemModels: SettingItemModel[] = [];
-    if (this.profileMap?.has(ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY)) {
+    const isAudioDevice: boolean = this.device?.deviceType === DeviceType.HEADPHONE ||
+      this.device?.deviceType === DeviceType.SPEAKER || this.device?.deviceType === DeviceType.HEARING_AID;
+
+    const hasHfpProfile: boolean = this.profileMap?.has(ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) || isAudioDevice;
+    const hasA2dpProfile: boolean = this.profileMap?.has(ProfileId.PROFILE_A2DP_SOURCE) || isAudioDevice;
+
+    if (hasHfpProfile) {
       let callAudioItemModel: SettingItemModel = {
         id: 'hfp_device_key',
         type: ItemType.ITEM_TYPE_CUSTOM,
@@ -414,7 +420,7 @@ export class BluetoothBondedDevicePageController implements ComponentControl, Bl
       itemModels.push(callAudioItemModel);
     }
 
-    if (this.profileMap?.has(ProfileId.PROFILE_A2DP_SOURCE)) {
+    if (hasA2dpProfile) {
       let a2dpItemModel: SettingItemModel = {
         id: 'a2dp_device_key',
         type: ItemType.ITEM_TYPE_CUSTOM,
