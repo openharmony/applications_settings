@@ -66,34 +66,56 @@ import { SearchSettingsController } from '../controller/SearchSettingsController
 /* instrument ignore file */
 const TAG: string = 'SearchSettingsResultCard : ';
 
-const ENTRY_ICON_LIST: Map<string, Resource> = new Map<string, Resource>([
-  [NavEntryKey.WIFI_ENTRY, $r('app.media.ic_settings_wlan')],
+interface SearchEntryIcon {
+  icon: Resource;
+  isSymbolIcon?: boolean;
+  fillColor?: ResourceColor;
+}
+
+function homeSymbolIcon(icon: Resource): SearchEntryIcon {
+  return {
+    icon: icon,
+    isSymbolIcon: true,
+    fillColor: $r('sys.color.ohos_id_color_emphasize_contrary'),
+  };
+}
+
+function homeMediaIcon(icon: Resource): SearchEntryIcon {
+  return {
+    icon: icon,
+    fillColor: $r('sys.color.ohos_id_color_emphasize_contrary'),
+  };
+}
+
+const ENTRY_ICON_LIST: Map<string, SearchEntryIcon> = new Map<string, SearchEntryIcon>([
+  [NavEntryKey.WIFI_ENTRY, homeSymbolIcon($r('sys.symbol.wifi'))],
   [NavEntryKey.BLUETOOTH_ENTRY,
     CapabilitySupportUtils.isSupportFusion() && CapabilitySupportUtils.isSupportNearLink() ?
-    $r('app.media.ic_fusion_ble_nearlink') : $r('app.media.ic_settings_bluetooth')],
-  [NavEntryKey.MOBILE_ENTRY, $r('app.media.ic_settings_mobile_network')],
-  [NavEntryKey.MORE_CONNECTION_ENTRY, $r('app.media.ic_settings_multi_device_collaboration_svg')],
-  [NavEntryKey.THEME_ENTRY, $r('app.media.ic_public_themes')],
-  [NavEntryKey.DISPLAY_ENTRY, $r('app.media.ic_settings_display')],
-  [NavEntryKey.VOLUME_ENTRY, $r('app.media.ic_settings_volume')],
-  [NavEntryKey.APPLICATION_SERVICE_ENTRY, $r('app.media.ic_settings_application_and_service')],
-  [NavEntryKey.STORAGE_ENTRY, $r('app.media.ic_settings_storage')],
-  [NavEntryKey.BATTERY_ENTRY, $r('app.media.ic_settings_battery')],
-  [NavEntryKey.BIOMETRICS_PASSWORD_ENTRY, $r('app.media.ic_settings_biometrics_password')],
-  [NavEntryKey.USERS_ACCOUNT_ENTRY, $r('app.media.ic_users_accounts')],
-  [NavEntryKey.SYSTEM_UPDATE_ENTRY, $r('app.media.ic_settings_system')],
-  [NavEntryKey.ABOUT_DEVICE_ENTRY, AboutDeviceUtils.getAboutDeviceMenuIcon()],
-  [NavEntryKey.PHONE_NOTIFICATION_SETTINGS_ENTRY, $r('app.media.notification_icon')],
-  [NavEntryKey.PHONE_MOUSE_SETTINGS, $r('app.media.ic_settings_mouse')],
-  [NavEntryKey.PAD_KEYBOARD_SETTINGS_ENTRY, $r('app.media.ic_settings_keyboard')],
-  [NavEntryKey.PAD_TOUCHPAD_SETTINGS_ENTRY, $r('app.media.ic_settings_touchpad')],
-  [NavEntryKey.PAD_PRINTER_SETTINGS_ENTRY, $r('app.media.Settings_printer')],
-  [NavEntryKey.HI_WRITE_SETTINGS_ENTRY, $r('app.media.ic_settings_pen')],
-  [NavEntryKey.CLOUD_SPACE_ENTRY, $r('app.media.cloud_space')],
-  [NavEntryKey.SUBSCRIBE_PAGE_ENTRY, $r('app.media.iap_ic_app_icon')],
-  [NavEntryKey.INTELLIGENT_SCENE_SETTINGS_ENTRY, $r('app.media.intelligent_scene')],
-  [NavEntryKey.NETWORK_SETTINGS, $r('app.media.ic_network_icon')],
-  [FIXED_ICON_CALL_SETTINGS, $r('app.media.call_settings')]
+    homeMediaIcon($r('app.media.ic_fusion_ble_nearlink')) : homeSymbolIcon($r('sys.symbol.bluetooth'))],
+  [NavEntryKey.MOBILE_ENTRY, homeSymbolIcon($r('sys.symbol.mobiledata'))],
+  [NavEntryKey.MORE_CONNECTION_ENTRY, homeSymbolIcon($r('sys.symbol.superdevice'))],
+  [NavEntryKey.THEME_ENTRY, homeSymbolIcon($r('sys.symbol.picture'))],
+  [NavEntryKey.DISPLAY_ENTRY, homeSymbolIcon($r('sys.symbol.eye'))],
+  [NavEntryKey.VOLUME_ENTRY, homeSymbolIcon($r('sys.symbol.speaker_wave_3'))],
+  [NavEntryKey.APPLICATION_SERVICE_ENTRY, homeSymbolIcon($r('sys.symbol.square_grid_2x2'))],
+  [NavEntryKey.STORAGE_ENTRY, homeSymbolIcon($r('sys.symbol.externaldrive_3'))],
+  [NavEntryKey.BATTERY_ENTRY, homeSymbolIcon($r('sys.symbol.battery'))],
+  [NavEntryKey.BIOMETRICS_PASSWORD_ENTRY, homeSymbolIcon($r('sys.symbol.key'))],
+  [NavEntryKey.PRIVACY_ENTRY, homeSymbolIcon($r('sys.symbol.person_shield'))],
+  [NavEntryKey.USERS_ACCOUNT_ENTRY, { icon: $r('app.media.ic_users_accounts') }],
+  [NavEntryKey.SYSTEM_UPDATE_ENTRY, homeSymbolIcon($r('sys.symbol.gearshape'))],
+  [NavEntryKey.ABOUT_DEVICE_ENTRY, { icon: AboutDeviceUtils.getAboutDeviceMenuIcon() }],
+  [NavEntryKey.PHONE_NOTIFICATION_SETTINGS_ENTRY, homeSymbolIcon($r('sys.symbol.bell'))],
+  [NavEntryKey.PHONE_MOUSE_SETTINGS, { icon: $r('app.media.ic_settings_mouse') }],
+  [NavEntryKey.PAD_KEYBOARD_SETTINGS_ENTRY, { icon: $r('app.media.ic_settings_keyboard') }],
+  [NavEntryKey.PAD_TOUCHPAD_SETTINGS_ENTRY, { icon: $r('app.media.ic_settings_touchpad') }],
+  [NavEntryKey.PAD_PRINTER_SETTINGS_ENTRY, { icon: $r('app.media.Settings_printer') }],
+  [NavEntryKey.HI_WRITE_SETTINGS_ENTRY, { icon: $r('app.media.ic_settings_pen') }],
+  [NavEntryKey.CLOUD_SPACE_ENTRY, { icon: $r('app.media.cloud_space') }],
+  [NavEntryKey.SUBSCRIBE_PAGE_ENTRY, { icon: $r('app.media.iap_ic_app_icon') }],
+  [NavEntryKey.INTELLIGENT_SCENE_SETTINGS_ENTRY, homeSymbolIcon($r('sys.symbol.person_crop_circle_dashed'))],
+  [NavEntryKey.NETWORK_SETTINGS, homeMediaIcon($r('app.media.ic_network_icon'))],
+  [FIXED_ICON_CALL_SETTINGS, { icon: $r('app.media.call_settings') }]
 ]);
 
 const CARD_RADIUS: number = 20;
@@ -134,14 +156,14 @@ export struct SearchSettingsResultCard {
   private scaleSize: number = 1;
   private badgeStyle: DefaultAncoBadgeStyle = new DefaultAncoBadgeStyle();
 
-  private getIcon(entryKey: string): ResourceStr | PixelMap {
+  private getEntryIcon(entryKey: string): SearchEntryIcon | undefined {
     if (entryKey === NavEntryKey.OUC_SOFTWARE_UPDATE_SETTINGS) {
-      return ENTRY_ICON_LIST.get(NavEntryKey.ABOUT_DEVICE_ENTRY) as Resource;
+      return ENTRY_ICON_LIST.get(NavEntryKey.ABOUT_DEVICE_ENTRY);
     }
     if (SearchCheckUtil.isSupportNewNetworkPage() && entryKey === NavEntryKey.MOBILE_ENTRY) {
-      return ENTRY_ICON_LIST.get(NavEntryKey.NETWORK_SETTINGS) as Resource;
+      return ENTRY_ICON_LIST.get(NavEntryKey.NETWORK_SETTINGS);
     }
-    return ENTRY_ICON_LIST.get(entryKey) as Resource;
+    return ENTRY_ICON_LIST.get(entryKey);
   }
 
   private initAppIcon(): void {
@@ -500,7 +522,30 @@ export struct SearchSettingsResultCard {
     .padding({ start: PADDING_8, end: PADDING_8 })
   }
 
-@Builder
+  @Builder
+  entryIconBuilder(entryIcon?: SearchEntryIcon): void {
+    if (entryIcon?.isSymbolIcon) {
+      SymbolGlyph(entryIcon.icon)
+        .fontSize('32vp')
+        .fontColor([entryIcon.fillColor ?? $r('sys.color.ohos_id_color_emphasize_contrary')])
+        .draggable(false)
+    } else if (entryIcon?.fillColor !== undefined) {
+      Image(entryIcon.icon)
+        .width('32vp')
+        .height('32vp')
+        .borderRadius('16vp')
+        .fillColor(entryIcon.fillColor)
+        .draggable(false)
+    } else {
+      Image(entryIcon?.icon)
+        .width('32vp')
+        .height('32vp')
+        .borderRadius('16vp')
+        .draggable(false)
+    }
+  }
+
+  @Builder
   resultIcon(renderItem: RenderItemInfo, childItem: RenderItemChildrenInfo, childIndex: number) {
     RelativeContainer() {
       if (childIndex === 0) {
@@ -512,11 +557,7 @@ export struct SearchSettingsResultCard {
             .margin({ left: '-1vp' })
             .id('baseIcon')
         } else {
-          Image(this.getIcon(renderItem.entryKey))
-            .width('32vp')
-            .height('32vp')
-            .borderRadius('16vp')
-            .draggable(false)
+          this.entryIconBuilder(this.getEntryIcon(renderItem.entryKey))
         }
       }
     }

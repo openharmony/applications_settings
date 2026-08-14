@@ -54,7 +54,7 @@ export class HomePageModelUtil {
       icon: {
         icon: $r('sys.symbol.person_crop_circle_dashed'),
         isSymbolIcon: true,
-        style: { fillColor: $r('sys.color.ohos_id_color_palette1') },
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
       },
       title: {content: $r('app.string.intelligent_scene_settings')},
       detail: {
@@ -134,7 +134,7 @@ export class HomePageModelUtil {
       icon: {
         icon: $r('sys.symbol.mobiledata'),
         isSymbolIcon: true,
-        style: { fillColor: $r('sys.color.ohos_id_color_palette4') },
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
       },
       title: { content: $r('app.string.mobile_network_settings_title') },
       detail: {
@@ -154,7 +154,7 @@ export class HomePageModelUtil {
       icon: {
         icon: $r('sys.symbol.eye'),
         isSymbolIcon: true,
-        style: { fillColor: $r('sys.color.ohos_id_color_palette4') },
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
       },
       title: { content: $r('app.string.display_settings_title') },
       detail: {
@@ -176,7 +176,7 @@ export class HomePageModelUtil {
       icon: {
         icon: $r('sys.symbol.speaker_wave_3'),
         isSymbolIcon: true,
-        style: { fillColor: $r('sys.color.ohos_id_color_palette1') },
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
       },
       title: { content: $r('app.string.phone_volume_control_setting_title') },
       detail: {
@@ -316,7 +316,7 @@ export class HomePageModelUtil {
       icon: {
         icon: $r('sys.symbol.key'),
         isSymbolIcon: true,
-        style: { fillColor: $r('sys.color.ohos_id_color_palette2') },
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
       },
       title: { content: $r('app.string.biometrics_and_password_settings_title') },
       detail: {
@@ -335,7 +335,7 @@ export class HomePageModelUtil {
       icon: {
         icon: $r('sys.symbol.battery'),
         isSymbolIcon: true,
-        style: { fillColor: $r('sys.color.ohos_id_color_palette4') },
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
       },
       title: { content: $r('app.string.power_usage_summary_title') },
       detail: {
@@ -357,7 +357,7 @@ export class HomePageModelUtil {
       icon: {
         icon: $r('sys.symbol.externaldrive_3'),
         isSymbolIcon: true,
-        style: { mirrored: false, fillColor: $r('sys.color.ohos_id_color_palette4') },
+        style: { mirrored: false, fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
       },
       title: { content: $r('app.string.storage_settings_title') },
       detail: {
@@ -376,7 +376,7 @@ export class HomePageModelUtil {
       icon: {
         icon: $r('sys.symbol.square_grid_2x2'),
         isSymbolIcon: true,
-        style: { fillColor: $r('sys.color.ohos_id_color_palette10') },
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
       },
       title: { content: $r('app.string.application_and_meta_service_settings_title') },
       detail: {
@@ -395,7 +395,7 @@ export class HomePageModelUtil {
       icon: {
         icon: $r('sys.symbol.bell'),
         isSymbolIcon: true,
-        style: { fillColor: $r('sys.color.ohos_id_color_palette1') },
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
       },
       title: { content: $r('app.string.systemui_notification_settings') },
       detail: {
@@ -414,7 +414,7 @@ export class HomePageModelUtil {
       icon: {
         icon: $r('sys.symbol.picture'),
         isSymbolIcon: true,
-        style: { fillColor: $r('sys.color.ohos_id_color_palette4') },
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
       },
       title: {
         content: DeviceUtil.isSmallFoldProduct()
