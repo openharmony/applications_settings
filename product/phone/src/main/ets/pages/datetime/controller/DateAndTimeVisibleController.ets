@@ -15,11 +15,9 @@
 
 import { dateTimeManager } from '@kit.MDMKit';
 import { BusinessError } from '@ohos.base';
-import systemParameter from '@ohos.systemparameter';
 import { SettingsBaseMenu } from '@ohos/settings.common/src/main/ets/core/model/menu/SettingsMenu';
 import { LogUtil } from '@ohos/settings.common/src/main/ets/utils/LogUtil';
 import { Controller } from '@ohos/settings.common/src/main/ets/core/controller/Controller';
-import { SettingsDataUtils } from '@ohos/settings.common/src/main/ets/utils/SettingsDataUtils';
 import { ContainerStyle, TextStyle } from '@ohos/settings.common/src/main/ets/core/model/menu/ComponetStyle';
 import {
   PageLifecycleMenuGroupController
@@ -32,8 +30,6 @@ import intl from '@ohos.intl';
 import emitter from '@ohos.events.emitter';
 import { EventId } from '@ohos/settings.common/src/main/ets/utils/Consts';
 import { DefaultEntryMenuStyle, EntryMenu, NavigationEntry, StateMenu, StateTextStyle } from '@ohos/settings.uikit';
-import { DeviceUtil } from '@ohos/settings.common/src/main/ets/utils/BaseUtils';
-import { DeviceStateUtils } from '@ohos/settings.common/src/main/ets/utils/BaseUtils';
 import DateController from './DateController';
 import TimeController from './TimeController';
 import TimeZoneController from './TimeZoneController';
@@ -76,16 +72,20 @@ export class DateAndTimeVisibleController extends PageLifecycleMenuGroupControll
   }
 
   private isDisabledAutoTimeZoneSwitch: boolean = false;
+  private timeZoneTimer: number = -1;
 
-  private changeValue(): void {
-    let checkedState: boolean = this.updateCheckedState();
+  private changeValue(autoTimeState?: boolean): void {
+    let checkedState: boolean = autoTimeState ?? this.updateCheckedState();
     LogUtil.info(`${TAG}  changeValue, autoTimeState: ${checkedState}`);
+    if (this.timeZoneTimer !== -1) {
+      clearTimeout(this.timeZoneTimer);
+      this.timeZoneTimer = -1;
+    }
     if (checkedState) {
-      let stateStr: string = '';
-      let timeZoneTimer = setTimeout(() => {
+      this.timeZoneTimer = setTimeout(() => {
+        this.timeZoneTimer = -1;
         this.deleteChildren();
         this.getPhoneTimeZoneMenu();
-        clearTimeout(timeZoneTimer);
       }, 50)
     } else {
       this.deleteChildren();
@@ -162,10 +162,10 @@ export class DateAndTimeVisibleController extends PageLifecycleMenuGroupControll
   }
 
   /**
-   * 返回开关的实时状态
+   * 无参刷新时回读系统态；拨动场景优先使用事件携带的 isChecked
    */
   protected updateCheckedState(): boolean {
-    return systemParameter.getSync('persist.time.auto_time', 'ON') === 'ON';
+    return systemDateTime.getAutoTimeStatus();
   }
 
   protected deleteChildren(): void {
@@ -181,7 +181,7 @@ export class DateAndTimeVisibleController extends PageLifecycleMenuGroupControll
     emitter.on({
       eventId: EventId.UpdateAutoTimeZoneStateNum,
     }, (eventData: emitter.EventData) => {
-      this.changeValue();
+      this.changeValue(eventData?.data?.isChecked as boolean | undefined);
     });
   }
 

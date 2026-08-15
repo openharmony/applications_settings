@@ -21,7 +21,8 @@ export const NATURAL_LIGHT_SWITCHES_ON: string = '1';
 export const NATURAL_LIGHT_SWITCHES_OFF: string = '0';
 export const NATURAL_LIGHT_SWITCHES_DEFAULT: string = NATURAL_LIGHT_SWITCHES_ON;
 //系统共享库
-export const SHARED_LIBRARY_BUNDLE_NAME = 'com.ohos.appgallery';
+// export const SHARED_LIBRARY_BUNDLE_NAME = 'com.ohos.appgallery';
+export const SHARED_LIBRARY_BUNDLE_NAME = 'com.hmsapp.appgallery';
 export const SHARED_LIBRARY_ABILITY_NAME = 'UpdateShareLibAbility';
 export const SHARED_LIBRARY_METADATA_NAME = 'appgallery_support_function';
 export const SHARED_LIBRARY_METADATA_MODULE_NAME = 'entry';

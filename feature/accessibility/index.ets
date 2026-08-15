@@ -13,8 +13,21 @@
  * limitations under the License.
  */
 
+export { AccessibilityAudioBalanceController } from './src/main/ets/controller/AccessibilityAudioBalanceController';
+export { AccessibilityInvertColorController } from './src/main/ets/controller/AccessibilityInvertColorController';
+export { AccessibilityAudioMonoController } from './src/main/ets/controller/AccessibilityAudioMonoController';
+export { AccessibilityHighContrastController } from './src/main/ets/controller/AccessibilityHighContrastController';
 export { ExtensionServiceListLoader,
   ServiceEntryChangedListener } from './src/main/ets/model/ExtensionServiceListLoader';
+export { AccessibilityShortKeyController } from './src/main/ets/controller/AccessibilityShortKeyController';
 export { ServiceEntry, ServiceMenu } from './src/main/ets/model/ServiceModel';
+export { AccessibilitySettingModel } from './src/main/ets/model/AccessibilitySettingModel';
+export { AccessibilityColorFilterController } from './src/main/ets/controller/AccessibilityColorFilterController';
+export { AccessibilityColorFilterTargetController,
+  SelectColorFilterValue } from './src/main/ets/controller/AccessibilityColorFilterTargetController';
+export { AccessibilityTouchDurationTargetController,
+  SelectTouchDurationValue } from './src/main/ets/controller/AccessibilityTouchDurationTargetController';
+export { AccessibilityIgnoreRepeatTouchesController } from './src/main/ets/controller/AccessibilityIgnoreRepeatTouchesController';
+export { AccessibilityZoomGestureController } from './src/main/ets/controller/AccessibilityZoomGestureController';
 export { ExtensionServiceInstallModel } from './src/main/ets/model/ExtensionServiceInstallModel';
 export { ElderCareUtils } from './src/main/ets/ElderCareUtils';

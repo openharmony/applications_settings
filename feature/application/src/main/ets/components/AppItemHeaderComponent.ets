@@ -122,7 +122,8 @@ export struct AppItemHeaderComponent {
       const URL: string = ResourceUtil.getStringSync($r('app.string.app_gallery_link'));
       let targetUrl = `${URL}${this.appId}`;
       AbilityUtils.startAbilityForResult({
-        bundleName: 'com.ohos.appgallery',
+        // bundleName: 'com.ohos.appgallery',
+        bundleName: 'com.hmsapp.appgallery',
         abilityName: 'MainAbility',
         uri: targetUrl
       }, () => {

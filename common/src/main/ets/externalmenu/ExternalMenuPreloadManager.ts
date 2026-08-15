@@ -25,6 +25,7 @@ export class PreloadPageInfo {
   moduleName: string;
   abilityName: string;
   entryKey: string[];
+  uiExtensionType?: string;
 }
 
 /**
@@ -57,6 +58,13 @@ export class ExternalMenuPreloadManager {
       'moduleName': 'entry',
       'abilityName': 'SettingsPermissionAbility',
       'entryKey': ['SettingsPermissionAbility']
+    },
+    {
+      'bundleName': 'com.ohos.intelligentscene',
+      'moduleName': 'phone',
+      'abilityName': 'IntelligentSceneUIExtSettingAbility',
+      'entryKey': ['intelligent_scene_entry'],
+      'uiExtensionType': 'sys/commonUI'
     },
     {
       'bundleName': 'com.ohos.sceneboard',
@@ -99,13 +107,22 @@ export class ExternalMenuPreloadManager {
         bundleName: pageInfo.bundleName,
         abilityName: pageInfo.abilityName,
       };
-      context.getApplicationContext().preloadUIExtensionAbility(want)
-        .then(() => {
-          LogUtil.info(`${TAG} preloadUIExtensionAbility ${key} success`);
-        })
-        .catch((err: BusinessError) => {
-          LogUtil.info(`${TAG} preloadUIExtensionAbility ${key} fail, errCode is ${err.code}, errMsg ${err.message}`);
-        });
+      if (pageInfo.moduleName) {
+        want.moduleName = pageInfo.moduleName;
+      }
+      if (pageInfo.uiExtensionType) {
+        want.parameters = {
+          'ability.want.params.uiExtensionType': pageInfo.uiExtensionType
+        };
+      }
+      try {
+        await context.getApplicationContext().preloadUIExtensionAbility(want);
+        LogUtil.info(`${TAG} preloadUIExtensionAbility ${key} success`);
+      } catch (err) {
+        const businessError = err as BusinessError;
+        LogUtil.info(`${TAG} preloadUIExtensionAbility ${key} fail, errCode is ${businessError.code}, ` +
+          `errMsg ${businessError.message}`);
+      }
     } else {
       LogUtil.info(`${TAG} preloadUIExtensionAbility can not find menu, uri is ${key}`);
     }

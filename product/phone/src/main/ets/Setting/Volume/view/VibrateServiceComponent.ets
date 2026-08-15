@@ -490,17 +490,19 @@ export struct VibrateServiceComponent {
    * @returns
    */
   private async onClickVibrateSynchronizeWithRingtoneRadio(checkedRadioName: string): Promise<void> {
-    this.checkedRadioName = checkedRadioName;
-    let toneHapticsSettings: MyToneHapticsSettings = new MyToneHapticsSettings(systemSoundManager.ToneHapticsMode.SYNC
-      , this.syncDefaultToneHapticsAttrs?.getUri());
-    await this.setVibrateSettings(toneHapticsSettings);
-    await this.updateVibrateData(checkedRadioName, toneHapticsSettings);
+    //TODO 临时方案，由于当前不支持预置振动，先由普通振动实现
     try {
       await vibrator.stopVibration();
       LogUtil.showInfo(TAG, `onClickVibrateSynchronizeWithRingtoneRadio, stopVibration success`);
     } catch (err) {
       LogUtil.showError(TAG, `onClickVibrateSynchronizeWithRingtoneRadio, stopVibration failed, error: ${err}`);
     }
+    VibratorUtil.startVibration();
+    this.checkedRadioName = checkedRadioName;
+    let toneHapticsSettings: MyToneHapticsSettings = new MyToneHapticsSettings(systemSoundManager.ToneHapticsMode.SYNC
+      , this.syncDefaultToneHapticsAttrs?.getUri());
+    await this.setVibrateSettings(toneHapticsSettings);
+    await this.updateVibrateData(checkedRadioName, toneHapticsSettings);
     let context: common.BaseContext = getContext(this);
     if (this.systemSoundManagerInstance && this.params && this.syncDefaultToneHapticsAttrs) {
       await VibrateUtil.previewHaptics(this.systemSoundManagerInstance, context

@@ -379,6 +379,13 @@
             }
         },
         {
+            "name":"accessibility_original",
+            "value":"Khả năng truy cập",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
             "name":"wifi_status_unsuccessful",
             "value":"Không thành công",
             "attr":{
@@ -6196,13 +6203,6 @@
             }
         },
         {
-            "name":"elder_care_desktop_layout",
-            "value":"Bố cục màn hình chính",
-            "attr":{
-                "priority":"LT"
-            }
-        },
-        {
             "name":"power_usage_summary_title",
             "value":"Pin",
             "attr":{
@@ -8389,6 +8389,10 @@
       {
         "name": "mobile_data_setting_title",
         "value": ""
+      },
+      {
+        "name": "sim_card_management_title",
+        "value": "Quan ly SIM"
       },
         {
             "name": "privacy_settings_title",

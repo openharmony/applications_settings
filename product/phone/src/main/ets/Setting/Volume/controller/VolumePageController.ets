@@ -15,6 +15,7 @@
 
 /* instrument ignore file */
 import i18n from '@ohos.i18n';
+import { VibratorUtil } from '@ohos/settings.common';
 import { CommonEventConstant } from '@ohos/settings.common/src/main/ets/constant/CommonEventConstant';
 import { EventBus } from '@ohos/settings.common/src/main/ets/framework/common/EventBus';
 import {
@@ -83,6 +84,7 @@ export class VolumePageController implements ComponentControl {
 
   onPageHide(component: SettingBaseModel): void {
     LogUtil.info(`${TAG} onPageHide`);
+    VibratorUtil.stopVibration();
     AvplayerController.releaseAvplayer();
     this.touchFeedBackController.onPageHide(component);
     this.ringtoneController.onPageHide(component);

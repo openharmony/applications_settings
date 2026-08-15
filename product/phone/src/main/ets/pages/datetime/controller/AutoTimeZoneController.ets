@@ -19,9 +19,6 @@ import { SwitchMenuController } from '@ohos/settings.common/src/main/ets/core/co
 import { HiSysEventUtil } from '@ohos/settings.common/src/main/ets/systemEvent/HiSysEventUtil';
 import { SettingsDataUtils } from '@ohos/settings.common/src/main/ets/utils/SettingsDataUtils';
 import { SettingsBaseMenu } from '@ohos/settings.common/src/main/ets/core/model/menu/SettingsMenu';
-import { BusinessError } from '@ohos.base';
-import systemParameter from '@ohos.systemparameter';
-import { DeviceStateUtils } from '@ohos/settings.common/src/main/ets/utils/BaseUtils';
 import emitter from '@ohos.events.emitter';
 import { AUTO_SET_UPDATE_EVENTS } from '@ohos/settings.common/src/main/ets/event/types';
 import { EventId } from '@ohos/settings.common/src/main/ets/utils/Consts';
@@ -31,7 +28,6 @@ import { ToastUtil } from '@ohos/settings.common/src/main/ets/utils/ToastUtil';
 import { ResourceUtil } from '@ohos/settings.common/src/main/ets/utils/ResourceUtil';
 import { DISABLE_OPACITY } from '@ohos/settings.common/src/main/ets/constant/ViewConstant';
 import systemDateTime from '@ohos.systemDateTime';
-
 /* instrument ignore file */
 const KEY_AUTO_TIMEZONE: string = 'auto_timezone';
 const KEY_AUTO_TIME: string = 'auto_time';
@@ -92,12 +88,14 @@ export default class AutoTimeZoneController extends SwitchMenuController {
       'on' : 'off');
     SettingsDataUtils.setSettingsData(KEY_AUTO_TIMEZONE, isChecked ? SWITCH_ON : SWITCH_OFF);
     SettingsDataUtils.setSettingsData(KEY_AUTO_TIME, isChecked ? SWITCH_ON : SWITCH_OFF);
+    //报错：需要配置DAC和MAC权限
     try {
       systemDateTime.setAutoTimeStatus(isChecked);
       SearchDataController.getInstance().updateSearchItemStatus('date_settings_title', !isChecked);
       SearchDataController.getInstance().updateSearchItemStatus('time_settings_title', !isChecked);
       this.publishDataChange(isChecked);
-      this.updateStatus();
+      // setAutoTimeStatus 异步生效，拨动时以用户操作值为准，避免回读旧值
+      this.notifyAutoTimeState(isChecked);
     } catch (err) {
       LogUtil.showError(TAG, `setAutoTimeStatus err: ${JSON.stringify(err)}`);
     }
@@ -112,7 +110,10 @@ export default class AutoTimeZoneController extends SwitchMenuController {
   }
 
   updateStatus(): void {
-    let isChecked = this.updateCheckedState();
+    this.notifyAutoTimeState(this.updateCheckedState());
+  }
+
+  private notifyAutoTimeState(isChecked: boolean): void {
     this.setChecked(isChecked);
     emitter.emit({
       eventId: EventId.UpdateAutoTimeZoneStateNum

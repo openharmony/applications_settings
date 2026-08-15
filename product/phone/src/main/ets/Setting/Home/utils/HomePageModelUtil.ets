@@ -51,7 +51,11 @@ export class HomePageModelUtil {
     return {
       id: NavEntryKey.INTELLIGENT_SCENE_SETTINGS_ENTRY,
       type: ItemType.ITEM_TYPE_STANDARD,
-      icon: { icon: $r('app.media.intelligent_scene')},
+      icon: {
+        icon: $r('sys.symbol.person_crop_circle_dashed'),
+        isSymbolIcon: true,
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
+      },
       title: {content: $r('app.string.intelligent_scene_settings')},
       detail: {
         type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
@@ -74,7 +78,11 @@ export class HomePageModelUtil {
     return {
       id: NavEntryKey.WIFI_ENTRY,
       type: ItemType.ITEM_TYPE_STANDARD,
-      icon: { icon: $r('app.media.ic_settings_wlan') },
+      icon: {
+        icon: $r('sys.symbol.wifi'),
+        isSymbolIcon: true,
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
+      },
       title: { content: $r('app.string.wifi_settings_title') },
       result: { type: ItemResultType.RESULT_TYPE_TEXT, result: { content: '' } },
       detail: {
@@ -94,11 +102,13 @@ export class HomePageModelUtil {
     return {
       id: NavEntryKey.BLUETOOTH_ENTRY,
       type: ItemType.ITEM_TYPE_STANDARD,
-      icon: {
-        icon: CapabilitySupportUtils.isSupportFusion() && CapabilitySupportUtils.isSupportNearLink() ?
-        $r('app.media.ic_fusion_ble_nearlink') :
-        $r('app.media.ic_settings_bluetooth'),
-        style: { mirrored: false }
+      icon: CapabilitySupportUtils.isSupportFusion() && CapabilitySupportUtils.isSupportNearLink() ? {
+        icon: $r('app.media.ic_fusion_ble_nearlink'),
+        style: { mirrored: false, fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') }
+      } : {
+        icon: $r('sys.symbol.bluetooth'),
+        isSymbolIcon: true,
+        style: { mirrored: false, fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') }
       },
       title: {
         content: CapabilitySupportUtils.isSupportFusion() && CapabilitySupportUtils.isSupportNearLink() ?
@@ -121,7 +131,11 @@ export class HomePageModelUtil {
     return {
       id: NavEntryKey.MOBILE_ENTRY,
       type: ItemType.ITEM_TYPE_STANDARD,
-      icon: { icon: $r('app.media.ic_settings_mobile_network') },
+      icon: {
+        icon: $r('sys.symbol.mobiledata'),
+        isSymbolIcon: true,
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
+      },
       title: { content: $r('app.string.mobile_network_settings_title') },
       detail: {
         type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
@@ -137,7 +151,11 @@ export class HomePageModelUtil {
     return {
       id: NavEntryKey.DISPLAY_ENTRY,
       type: ItemType.ITEM_TYPE_STANDARD,
-      icon: { icon: $r('app.media.ic_settings_display') },
+      icon: {
+        icon: $r('sys.symbol.eye'),
+        isSymbolIcon: true,
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
+      },
       title: { content: $r('app.string.display_settings_title') },
       detail: {
         type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
@@ -155,7 +173,11 @@ export class HomePageModelUtil {
     return {
       id: NavEntryKey.VOLUME_ENTRY,
       type: ItemType.ITEM_TYPE_STANDARD,
-      icon: { icon: $r('app.media.ic_settings_volume') },
+      icon: {
+        icon: $r('sys.symbol.speaker_wave_3'),
+        isSymbolIcon: true,
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
+      },
       title: { content: $r('app.string.phone_volume_control_setting_title') },
       detail: {
         type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
@@ -172,7 +194,11 @@ export class HomePageModelUtil {
     return {
       id: NavEntryKey.SYSTEM_UPDATE_ENTRY,
       type: ItemType.ITEM_TYPE_STANDARD,
-      icon: { icon: $r('app.media.ic_settings_system') },
+      icon: {
+        icon: $r('sys.symbol.gearshape'),
+        isSymbolIcon: true,
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
+      },
       title: { content: $r('app.string.system_title') },
       detail: {
         type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
@@ -267,7 +293,11 @@ export class HomePageModelUtil {
     return {
       id: NavEntryKey.PRIVACY_ENTRY,
       type: ItemType.ITEM_TYPE_STANDARD,
-      icon: { icon: $r('app.media.ic_settings_privacy') },
+      icon: {
+        icon: $r('sys.symbol.person_shield'),
+        isSymbolIcon: true,
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
+      },
       title: { content: $r('app.string.privacy_settings_title') },
       detail: {
         type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
@@ -283,7 +313,11 @@ export class HomePageModelUtil {
     return {
       id: NavEntryKey.BIOMETRICS_PASSWORD_ENTRY,
       type: ItemType.ITEM_TYPE_STANDARD,
-      icon: { icon: $r('app.media.ic_settings_biometrics_password') },
+      icon: {
+        icon: $r('sys.symbol.key'),
+        isSymbolIcon: true,
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
+      },
       title: { content: $r('app.string.biometrics_and_password_settings_title') },
       detail: {
         type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
@@ -298,7 +332,11 @@ export class HomePageModelUtil {
     return {
       id: NavEntryKey.BATTERY_ENTRY,
       type: ItemType.ITEM_TYPE_STANDARD,
-      icon: { icon: $r('app.media.ic_settings_battery') },
+      icon: {
+        icon: $r('sys.symbol.battery'),
+        isSymbolIcon: true,
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
+      },
       title: { content: $r('app.string.power_usage_summary_title') },
       detail: {
         type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
@@ -316,7 +354,11 @@ export class HomePageModelUtil {
     return {
       id: NavEntryKey.STORAGE_ENTRY,
       type: ItemType.ITEM_TYPE_STANDARD,
-      icon: { icon: $r('app.media.ic_settings_storage'), style: { mirrored: false } },
+      icon: {
+        icon: $r('sys.symbol.externaldrive_3'),
+        isSymbolIcon: true,
+        style: { mirrored: false, fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
+      },
       title: { content: $r('app.string.storage_settings_title') },
       detail: {
         type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
@@ -327,11 +369,35 @@ export class HomePageModelUtil {
     };
   }
 
+  public static getAccessibilityItem(): SettingItemModel {
+    return {
+      id: NavEntryKey.ACCESSIBILITY_FEATURE_ENTRY,
+      type: ItemType.ITEM_TYPE_STANDARD,
+      icon: {
+        icon: $r('sys.symbol.hand_tap'),
+        isSymbolIcon: true,
+        style: { mirrored: false, fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
+      },
+      title: { content: DeviceUtil.is2In1DevicePcType() ? $r('app.string.accessibility') :
+        $r('app.string.accessibility_original') },
+      detail: {
+        type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
+        icon: $r('sys.symbol.chevron_right'),
+        isSymbolIcon: true,
+        destination: NavEntryKey.ACCESSIBILITY_FEATURE_ENTRY,
+      },
+    };
+  }
+
   public static getApplicationItem(): SettingItemModel {
     return {
       id: NavEntryKey.APPLICATION_SERVICE_ENTRY,
       type: ItemType.ITEM_TYPE_STANDARD,
-      icon: { icon: $r('app.media.ic_settings_application_and_service') },
+      icon: {
+        icon: $r('sys.symbol.square_grid_2x2'),
+        isSymbolIcon: true,
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
+      },
       title: { content: $r('app.string.application_and_meta_service_settings_title') },
       detail: {
         type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
@@ -346,7 +412,11 @@ export class HomePageModelUtil {
     return {
       id: NavEntryKey.PHONE_NOTIFICATION_SETTINGS_ENTRY,
       type: ItemType.ITEM_TYPE_STANDARD,
-      icon: { icon: $r('app.media.notification_icon') },
+      icon: {
+        icon: $r('sys.symbol.bell'),
+        isSymbolIcon: true,
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
+      },
       title: { content: $r('app.string.systemui_notification_settings') },
       detail: {
         type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
@@ -361,7 +431,11 @@ export class HomePageModelUtil {
     return {
       id: NavEntryKey.THEME_ENTRY,
       type: ItemType.ITEM_TYPE_STANDARD,
-      icon: { icon: $r('app.media.ic_public_themes') },
+      icon: {
+        icon: $r('sys.symbol.picture'),
+        isSymbolIcon: true,
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
+      },
       title: {
         content: DeviceUtil.isSmallFoldProduct()
           ? $r('app.string.covertheme_settings_title') : $r('app.string.theme_settings_title')
@@ -379,7 +453,11 @@ export class HomePageModelUtil {
     return {
       id: NavEntryKey.MORE_CONNECTION_ENTRY,
       type: ItemType.ITEM_TYPE_STANDARD,
-      icon: { icon: $r('app.media.ic_settings_multi_device_collaboration_svg') },
+      icon: {
+        icon: $r('sys.symbol.superdevice'),
+        isSymbolIcon: true,
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
+      },
       title: { content: $r('app.string.multi_device_collaboration') },
       detail: {
         type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
@@ -388,6 +466,29 @@ export class HomePageModelUtil {
         destination: NavEntryKey.MORE_CONNECTION_ENTRY,
       },
       needHide: HomePageMenuManager.getInstance().isEntryNotSupported,
+    };
+  }
+
+  public static getUsersAccountItem(): SettingItemModel {
+    return {
+      id: NavEntryKey.USERS_ACCOUNT_ENTRY,
+      type: ItemType.ITEM_TYPE_STANDARD,
+      icon: {
+        icon: $r('sys.symbol.person'),
+        isSymbolIcon: true,
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
+      },
+      title: { content: $r('app.string.users_accounts_title') },
+      detail: {
+        type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
+        icon: $r('sys.symbol.chevron_right'),
+        isSymbolIcon: true,
+        destination: NavEntryKey.USERS_ACCOUNT_ENTRY,
+      },
+      needHide: HomePageMenuManager.getInstance().isEntryNotSupported,
+      onTouchEvent: async (touchType: TouchType) => {
+        await importPage(NavEntryKey.USERS_ACCOUNT_ENTRY, touchType);
+      }
     };
   }
 

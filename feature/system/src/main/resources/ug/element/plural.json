@@ -1,0 +1,23 @@
+{
+    "plural":[
+        {
+            "name":"power_off_message",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"ئۈسكۈنە %d سېكۇنتتىن كېيىن ئېتىلىدۇ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"ئۈسكۈنە %d سېكۇنتتىن كېيىن ئېتىلىدۇ.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

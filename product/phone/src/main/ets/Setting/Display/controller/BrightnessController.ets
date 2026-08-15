@@ -55,17 +55,22 @@ export class BrightnessController {
 
   public init(): void {
     LogUtil.info(`${TAG} MAX_BRIGHTNESS ${this.MAX_BRIGHTNESS} min ${this.MIN_BRIGHTNESS}`);
+    this.refreshBrightnessState(true);
+  }
+
+  private refreshBrightnessState(isFirstOpen?: boolean): void {
     let sliderValue = this.countUIValue(this.getBrightness());
     this.setSliderValue(sliderValue);
     let autoBrightnessVal = SettingsDataUtils.getSettingsData(settings.display.AUTO_SCREEN_BRIGHTNESS, AUTO_SCREEN_BRIGHTNESS_ON);
     // 首次打开设置时若该 key 未写入过（值为空），则默认开启自动调节亮度并写入
     LogUtil.info(`${TAG} autoBrightnessVal： ${autoBrightnessVal}`);
-    if (!autoBrightnessVal || autoBrightnessVal.length === 0 || autoBrightnessVal === '-1') {
+    if (!autoBrightnessVal || autoBrightnessVal.length === 0 || (isFirstOpen && autoBrightnessVal === '-1')) {
       SettingsDataUtils.setSettingsData(settings.display.AUTO_SCREEN_BRIGHTNESS, AUTO_SCREEN_BRIGHTNESS_ON);
       this.isStateOn = true;
     } else {
       this.isStateOn = autoBrightnessVal === AUTO_SCREEN_BRIGHTNESS_ON;
     }
+    EventBus.getInstance().emit('auto_brightness_state', this.isStateOn);
   }
 
   public getSliderMin(): number {
@@ -156,16 +161,7 @@ export class BrightnessController {
   public onPageShow(): void {
     LogUtil.info(`${TAG} onPageShow`);
     this.registerDataChange();
-    let sliderValue = this.countUIValue(this.getBrightness());
-    this.setSliderValue(sliderValue);
-    let autoBrightnessVal = SettingsDataUtils.getSettingsData(settings.display.AUTO_SCREEN_BRIGHTNESS, AUTO_SCREEN_BRIGHTNESS_ON);
-    if (!autoBrightnessVal || autoBrightnessVal.length === 0) {
-      SettingsDataUtils.setSettingsData(settings.display.AUTO_SCREEN_BRIGHTNESS, AUTO_SCREEN_BRIGHTNESS_ON);
-      this.isStateOn = true;
-    } else {
-      this.isStateOn = autoBrightnessVal === AUTO_SCREEN_BRIGHTNESS_ON;
-    }
-    EventBus.getInstance().emit('auto_brightness_state', this.isStateOn);
+    this.refreshBrightnessState();
   }
 
   public onPageHide(): void {

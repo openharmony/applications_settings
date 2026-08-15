@@ -386,6 +386,13 @@
             }
         },
         {
+            "name":"accessibility_original",
+            "value":"Специальные возможности",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
             "name":"wifi_status_unsuccessful",
             "value":"Сбой",
             "attr":{
@@ -6168,13 +6175,6 @@
             }
         },
         {
-            "name":"elder_care_desktop_layout",
-            "value":"Формат рабочего экрана",
-            "attr":{
-                "priority":"LT"
-            }
-        },
-        {
             "name":"power_usage_summary_title",
             "value":"Батарея",
             "attr":{
@@ -8389,6 +8389,10 @@
       {
         "name": "mobile_data_setting_title",
         "value": ""
+      },
+      {
+        "name": "sim_card_management_title",
+        "value": "Управление SIM-картой"
       },
       {
         "name": "privacy_settings_title",

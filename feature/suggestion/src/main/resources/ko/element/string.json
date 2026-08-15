@@ -1,0 +1,11 @@
+{
+    "string":[
+        {
+            "name":"homepage_suggestion_more_page",
+            "value":"시스템 제안",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

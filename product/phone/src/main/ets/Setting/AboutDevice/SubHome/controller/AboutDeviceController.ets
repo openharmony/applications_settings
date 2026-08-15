@@ -187,6 +187,7 @@ export class AboutDeviceController {
    */
   onSoftwareUpdateBadgeChange(): void {
     this.setMenuBadgeValue('onMenuBadgeChange');
+    this.setMenuSystemUpdateStatusValue('onMenuBadgeChange');
   }
 
   /**

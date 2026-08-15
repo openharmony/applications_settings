@@ -569,6 +569,82 @@
                     }
                 }
             ]
+        },
+        {
+            "name":"dialog_countdown_time",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d seconde",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d secondes",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"dialog_ok_countdown",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"OK (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"OK (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_timed_end_tips",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Le temps est écoulé. %d touchers non pris en compte",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Le temps est écoulé. %d toucher non pris en compte",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_failed_result",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Les touchers ne sont pas ignorés. Plus de %.1f s se sont écoulées depuis le premier toucher.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Les touchers ne sont pas ignorés. Plus d'%.1f s s'est écoulée depuis le premier toucher.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
         }
     ]
 }

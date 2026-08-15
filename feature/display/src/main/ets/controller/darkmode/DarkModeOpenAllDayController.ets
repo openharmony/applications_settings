@@ -142,7 +142,7 @@ export class DarkModeOpenAllDayController extends BaseDarkModeController {
         this.closeHighContrastTextMode();
       }
     } catch (error) {
-      LogUtil.error(`${this.tag} uiAppearance.setDarkMode failed: ${(error as BusinessError).message}`);
+      LogUtil.error(`${this.tag} uiAppearance.setDarkMode failed, errcode: ${error?.code}, errmsg: ${error?.message}`);
     }
     this.updateEnableState(this.compId, isModeDark, false);
     this.stopTask();

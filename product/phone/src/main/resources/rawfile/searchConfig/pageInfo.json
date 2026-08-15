@@ -421,6 +421,18 @@
       "permission": ""
     },
     {
+      "entryKey": "users_accounts",
+      "parentKey": "",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "users_settings",
+      "parentKey": "users_accounts",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
       "entryKey": "location_help_entry",
       "parentKey": "location_manager_settings",
       "isVisible": true,
@@ -433,8 +445,38 @@
       "permission": ""
     },
     {
-      "entryKey": "voicefix_setting",
+      "entryKey": "accessibility_color_filter_entry",
       "parentKey": "accessibility_feature",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "accessibility_zoom_gesture_entry",
+      "parentKey": "accessibility_feature",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "accessibility_high_contrast_text_entry",
+      "parentKey": "accessibility_feature",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "accessibility_invert_color_entry",
+      "parentKey": "accessibility_feature",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "accessibility_advanced_visual_entry",
+      "parentKey": "accessibility_feature",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "accessibility_transition_animations_entry",
+      "parentKey": "accessibility_advanced_visual_entry",
       "isVisible": true,
       "permission": ""
     },
@@ -445,19 +487,7 @@
       "permission": ""
     },
     {
-      "entryKey": "accessibility_sound_recognition_entry",
-      "parentKey": "accessibility_feature",
-      "isVisible": true,
-      "permission": ""
-    },
-    {
       "entryKey": "accessibility_flash_reminder_entry",
-      "parentKey": "accessibility_feature",
-      "isVisible": true,
-      "permission": ""
-    },
-    {
-      "entryKey": "accessibility_hearing_aid_entry",
       "parentKey": "accessibility_feature",
       "isVisible": true,
       "permission": ""
@@ -979,6 +1009,12 @@
       "permission": ""
     },
     {
+      "entryKey": "scheduled_power_settings",
+      "parentKey": "system_and_updates",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
       "entryKey": "wifi_install_certificate",
       "parentKey": "wifi_entry",
       "isVisible": true,
@@ -999,6 +1035,18 @@
     {
       "entryKey": "pc_network_proxy_settings",
       "parentKey": "network_settings",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "accessibility_screen_reader_entry",
+      "parentKey": "accessibility_feature",
+      "isVisible": true,
+      "permission": ""
+    },
+    {
+      "entryKey": "screen_reader_more_settings_entry",
+      "parentKey": "accessibility_screen_reader_entry",
       "isVisible": true,
       "permission": ""
     }

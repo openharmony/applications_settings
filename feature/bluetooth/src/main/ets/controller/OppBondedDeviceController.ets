@@ -932,6 +932,10 @@ export class OppBondedDeviceController implements ComponentControl, BluetoothSta
     if (isConnected) {
       this.openDisconnectRequestDialog(controller?.compId as string);
     } else {
+      if (BluetoothAdapter.getInstance().isPairOnlyDevice(deviceId)) {
+        LogUtil.info(`${this.tag} pair only device, skip startConnectIfSupport on click`);
+        return;
+      }
       BluetoothAdapter.getInstance().startConnectIfSupport(deviceId);
     }
   }

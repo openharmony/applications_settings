@@ -561,6 +561,10 @@ BluetoothBondedDeviceChangeListener {
     if (menuEntry.isConnect) {
       this.disconnectDevice(deviceId);
     } else {
+      if (BluetoothAdapter.getInstance().isPairOnlyDevice(deviceId)) {
+        LogUtil.info(`${this.tag} pair only device, skip startConnectIfSupport on click`);
+        return;
+      }
       let subDeviceId = BluetoothAdapter.getInstance().cachedBondedDevices.get(deviceId)?.getSubDevice()?.deviceId;
       BluetoothAdapter.getInstance().startConnectIfSupport(deviceId, subDeviceId);
     }

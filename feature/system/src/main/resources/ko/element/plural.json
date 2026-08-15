@@ -1,0 +1,16 @@
+{
+    "plural":[
+        {
+            "name":"power_off_message",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"예정대로 %d초 후에 장치의 전원이 꺼집니다.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

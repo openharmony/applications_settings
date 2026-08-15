@@ -47,6 +47,7 @@ import { FontScaleUtils } from '@ohos/settings.common/src/main/ets/utils/FontSca
 import { EVENT_ID_CONFIGURATION_UPDATE } from '@ohos/settings.common/src/main/ets/event/types';
 import { PageRouter } from '@ohos/settings.common/src/main/ets/framework/common/PageRouter';
 import { EventBus } from '@ohos/settings.common/src/main/ets/framework/common/EventBus';
+import { ElderCareUtils } from '@ohos/settings.accessibility/src/main/ets/ElderCareUtils';
 import { ScreenZoomPage } from './model/ScreenZoomPage';
 import { ACCESSIBILITY_ELDER_CARE_SWITCH_ENABLED } from '../../Setting/Accessibility/constant/Constants';
 import { HiSysDisplayEventGroup } from '@ohos/settings.common/src/main/ets/systemEvent/BehaviorEventConsts';
@@ -73,7 +74,8 @@ export struct ScreenZoomSettings {
   @StorageLink('initial_settings_dpi') initialSettingsDpi: number = -1;
   @StorageLink('display_size_value') inSetValue: number = 0;
   @StorageLink('display_size_dpi_name') dpiName: Resource = SUMMARY_DEFAULT;
-  @State isRefresh: boolean = false;
+  @State displaySizeMax: number = 0;
+  @State zoomSliderKey: number = 0;
   @State fontSizeScale: number = Number(SettingsDataUtils
     .getSettingsDataDomain(Settings.display.FONT_SCALE, DisplayConstant.DEFAULT_FONT_SIZE_SCALE,
       Settings.domainName.USER_PROPERTY));
@@ -117,6 +119,7 @@ export struct ScreenZoomSettings {
     this.inSetValue = DpiManager.getIndexByDpi(Number(dpi));
     this.dpiName = DpiManager.getDpiName(this.inSetValue);
     LogUtil.info(`${this.TAG} onDpiDataChange : ${dpi} - ${this.inSetValue} - ${this.dpiName}`);
+    this.syncDisplaySizeSliderState();
     this.displayChange.emitDisplayChange();
   }
 
@@ -133,6 +136,7 @@ export struct ScreenZoomSettings {
       LogUtil.info(`${this.TAG} font size changed, need update, ${curFontSizeScale}`);
       this.fontSizeScale = curFontSizeScale;
       this.fontSizeStepVal = this.getFontSizeStep();
+      this.syncElderCareFontLevel();
     }
     if (this.fontWeightVal !== curFontWeightScale) {
       LogUtil.info(`${this.TAG} font weight changed, need update, ${curFontWeightScale}`);
@@ -289,8 +293,7 @@ export struct ScreenZoomSettings {
     LogUtil.info(`${this.TAG} fontSizeChange ${this.fontSizeStepVal}, ${this.isShownLargerFontTip}`);
     if (this.isNeedShowLargerFontTip()) {
       this.isShownLargerFontTip = true;
-      //暂时屏蔽关怀模式的弹窗
-      // this.openLargerFontDialog();
+      this.openLargerFontDialog();
     }
   }
 
@@ -374,6 +377,7 @@ export struct ScreenZoomSettings {
         return DisplayConstant.TEXT_FONT_SIZE_HUGE2_STEP;
       case DisplayConstant.TEXT_FONT_SIZE_HUGE3:
         return DisplayConstant.TEXT_FONT_SIZE_HUGE3_STEP;
+      case DisplayConstant.TEXT_FONT_SIZE_HUGE4_LEGACY:
       case DisplayConstant.TEXT_FONT_SIZE_HUGE4:
         return DisplayConstant.TEXT_FONT_SIZE_HUGE4_STEP;
       default:
@@ -431,8 +435,16 @@ export struct ScreenZoomSettings {
     this.oriFontWeightScale = this.fontWeightVal;
     SettingsDataUtils.setSettingsDataDomain(Settings.display.FONT_SCALE,
       this.fontSizeScale.toString(), Settings.domainName.USER_PROPERTY);
+    this.syncElderCareFontLevel();
     SettingsDataUtils.setSettingsDataDomain(DisplayConstant.SETTINGS_DATA_FONT_WEIGHT_SCALE,
       this.fontWeightVal.toString(), Settings.domainName.USER_PROPERTY);
+  }
+
+  private syncElderCareFontLevel(): void {
+    if (!ElderCareUtils.isElderCareOn()) {
+      return;
+    }
+    ElderCareUtils.syncElderCareDisplayLevelByFontSize(this.fontSizeScale);
   }
 
   @Builder
@@ -470,16 +482,17 @@ export struct ScreenZoomSettings {
         style: SliderStyle.InSet,
         value: this.inSetValue,
         step: STEP_NUM,
-        max: DpiManager.numSmaller + DpiManager.numLarger,
+        max: this.displaySizeMax,
         min: 0
-      }).responseRegion({ x: 0, y: -6, width: '100%', height: 32 })
+      }).key(`display_zoom_slider_${this.zoomSliderKey}`)
+        .responseRegion({ x: 0, y: -6, width: '100%', height: 32 })
         .blockColor('#ffffff')
         .height($r('app.float.length_20'))
         .showSteps(true)
         .margin({ left: $r('app.float.length_5'), right: $r('app.float.length_5') })
         .sliderInteractionMode(SliderInteraction.SLIDE_AND_CLICK_UP)
         .onChange((value: number, mode: SliderChangeMode) => {
-          if (mode === SliderChangeMode.End) {
+          if (mode === SliderChangeMode.End || mode === SliderChangeMode.Click) {
             LogUtil.info(`${this.TAG} slider dpi value change end`);
             this.zoomSliderChange(value);
           }
@@ -521,15 +534,29 @@ export struct ScreenZoomSettings {
 
   aboutToAppear(): void {
     LogUtil.info(`${this.TAG} aboutToAppear`);
-    DpiManager.getClassInstance();
-    DpiManager.setDefaultDpi(displayDataManager.getDefaultDPI());
-    this.inSetValue = DpiManager.setNumberAndScale(SUMMARIES_LARGER, SUMMARIES_SMALLER, SUMMARY_DEFAULT);
-    this.dpiName = DpiManager.getDpiName(this.inSetValue);
+    this.initDisplaySize();
     this.registerDataChange();
     this.registerFontDataChange();
     LogUtil.info(`${this.TAG} this.initialSettingsDpi: ${this.initialSettingsDpi}`);
     this.pageRoot.aboutToAppear(new ScreenZoomPage());
     HiSysEventUtil.reportDefaultBehaviorEventByUE(HiSysDisplayEventGroup.DISPLAY_SIZE_ENTRY);
+  }
+
+  private async initDisplaySize(): Promise<void> {
+    await DpiManager.getClassInstance();
+    DpiManager.setDefaultDpi(displayDataManager.getDefaultDPI());
+    this.inSetValue = DpiManager.setNumberAndScale(SUMMARIES_LARGER, SUMMARIES_SMALLER, SUMMARY_DEFAULT);
+    this.dpiName = DpiManager.getDpiName(this.inSetValue);
+    this.syncDisplaySizeSliderState();
+  }
+
+  private syncDisplaySizeSliderState(): void {
+    const maxValue: number = DpiManager.numSmaller + DpiManager.numLarger;
+    if (this.displaySizeMax !== maxValue) {
+      this.displaySizeMax = maxValue;
+    }
+    this.zoomSliderKey++;
+    LogUtil.info(`${this.TAG} syncDisplaySizeSliderState max:${this.displaySizeMax}, value:${this.inSetValue}`);
   }
 
   aboutToDisappear(): void {
@@ -542,12 +569,32 @@ export struct ScreenZoomSettings {
 
   onPageShow(): void {
     LogUtil.info(`${this.TAG} onPageShow`);
+    this.refreshDisplaySizeOnShow();
+    this.refreshFontSizeOnShow();
+    this.pageRoot.onPageShow();
+  }
+
+  private refreshFontSizeOnShow(): void {
+    let curFontSizeScale: number = Number(SettingsDataUtils
+      .getSettingsDataDomain(Settings.display.FONT_SCALE, DisplayConstant.DEFAULT_FONT_SIZE_SCALE,
+        Settings.domainName.USER_PROPERTY));
+    if (this.fontSizeScale !== curFontSizeScale) {
+      this.fontSizeScale = curFontSizeScale;
+      this.fontSizeStepVal = this.getFontSizeStep();
+    }
+    this.syncElderCareFontLevel();
+  }
+
+  private async refreshDisplaySizeOnShow(): Promise<void> {
+    await DpiManager.getClassInstance();
+    DpiManager.setDefaultDpi(displayDataManager.getDefaultDPI());
+    DpiManager.setNumberAndScale(SUMMARIES_LARGER, SUMMARIES_SMALLER, SUMMARY_DEFAULT);
     let dpi = SettingsDataUtils.getSettingsData(DisplayConstant.SETTINGS_DATA_USER_SET_DPI_VALUE,
       DpiManager.defaultDensityDpi.toString());
     this.inSetValue = DpiManager.getIndexByDpi(Number(dpi));
     this.dpiName = DpiManager.getDpiName(this.inSetValue);
+    this.syncDisplaySizeSliderState();
     LogUtil.info(`${this.TAG} onPageShow :${DpiManager.defaultDensityDpi}-${dpi}-${this.inSetValue}`);
-    this.pageRoot.onPageShow();
   }
 
   onPageHide(): void {

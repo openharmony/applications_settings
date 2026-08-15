@@ -549,6 +549,10 @@
             "value":"[TS_843260]_Accessibility features"
         },
         {
+            "name":"accessibility_original",
+            "value":"[TS_843260]_Accessibility"
+        },
+        {
             "name":"shortkey_close",
             "value":"[TS_849198]_Off"
         },
@@ -2707,10 +2711,6 @@
         {
             "name":"mobile_network_type",
             "value":"[TS_906024]_Mobile network type"
-        },
-        {
-            "name":"elder_care_desktop_layout",
-            "value":"[TS_907161]_Home screen layout"
         },
         {
             "name":"elder_care_search_item_elder",
@@ -4935,6 +4935,10 @@
       {
         "name": "mobile_data_setting_title",
         "value": "[TS_806059]_Mobile data"
+      },
+      {
+        "name": "sim_card_management_title",
+        "value": "[TS_806059]_SIM management"
       },
       {
         "name": "privacy_settings_title",

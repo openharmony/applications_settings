@@ -759,7 +759,7 @@
                 }
             ]
         },
-	    {
+        {
             "name":"magnification_scale",
             "value":[
                 {
@@ -984,6 +984,138 @@
                 {
                     "quantity":"many",
                     "value":"%d дней назад",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"dialog_countdown_time",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d секунда",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d секунды",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d секунды",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d секунд",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"dialog_ok_countdown",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"OK (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"OK (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"OK (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"OK (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_timed_end_tips",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Время вышло. Проигнорировано %d нажатия",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Время вышло. Проигнорировано %d нажатие",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Время вышло. Проигнорировано %d нажатия",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Время вышло. Проигнорировано %d нажатий",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_failed_result",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Сбой игнорирования нажатий. Пропущено более %.1fs нажатий с первого нажатия",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Сбой игнорирования нажатий. Прошло более %.1f c после первого нажатия",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Сбой игнорирования нажатий. Пропущено более %.1f с нажатий с первого нажатия",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Сбой игнорирования нажатий. Пропущено более %.1fs нажатий с первого нажатия",
                     "attr":{
                         "priority":"translate"
                     }

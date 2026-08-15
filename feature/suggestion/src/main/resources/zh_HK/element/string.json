@@ -1,0 +1,11 @@
+{
+    "string":[
+        {
+            "name":"homepage_suggestion_more_page",
+            "value":"系統建議",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

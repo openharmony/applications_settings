@@ -481,6 +481,16 @@
         ]
       },
       {
+        "name": "bluetooth",
+        "srcEntry": "./ets/MainAbility/BluetoothSwitchAbility.ets",
+        "description": "BluetoothSwitchDialog",
+        "exported": true,
+        "type": "sysDialog/common",
+        "permissions": [
+          "ohos.permission.ACCESS_SYSTEM_SETTINGS"
+        ]
+      },
+      {
         "name": "OOBEPasswordSettingExtensionAbility",
         "srcEntry": "./ets/MainAbility/OobePasswordSettingExtensionAbility.ets",
         "description": "OobePasswordSettingExtensionAbility",
@@ -512,6 +522,36 @@
         ]
       },
       {
+        "name": "AccessibilityShortKeyDialog",
+        "srcEntry": "./ets/MainAbility/AccessibilityShortKeyDialogAbility.ets",
+        "description": "AccessibilityShortKeyDialog",
+        "exported": true,
+        "type": "sysDialog/common",
+        "permissions": [
+          "ohos.permission.ACCESS_SYSTEM_SETTINGS"
+        ]
+      },
+      {
+        "name": "AccessibilityReConfirmDialog",
+        "srcEntry": "./ets/MainAbility/AccessibilityReConfirmDialogAbility.ets",
+        "description": "AccessibilityReConfirmDialog",
+        "exported": true,
+        "type": "sysDialog/common",
+        "permissions": [
+          "ohos.permission.ACCESS_SYSTEM_SETTINGS"
+        ]
+      },
+      {
+        "name": "AccessibilityIgnoreConfirmDialog",
+        "srcEntry": "./ets/MainAbility/AccessibilityIgnoreConfirmDialogAbility.ets",
+        "description": "AccessibilityIgnoreConfirmDialog",
+        "exported": true,
+        "type": "sysDialog/common",
+        "permissions": [
+          "ohos.permission.ACCESS_SYSTEM_SETTINGS"
+        ]
+      },
+      {
         "name": "USBDebugDialog",
         "srcEntry": "./ets/MainAbility/UsbDebugDialogAbility.ets",
         "description": "UsbDebugDialog",
@@ -527,6 +567,16 @@
         "description": "SettingsExtService",
         "srcEntry": "./ets/MainAbility/SettingsExtServiceAbility.ets",
         "icon": "$media:icon",
+        "exported": true,
+        "type": "service",
+        "permissions": [
+          "ohos.permission.ACCESS_SYSTEM_SETTINGS"
+        ]
+      },
+      {
+        "name" : "IgnoreRepeatClickExtService",
+        "description": "IgnoreRepeatClickExtService",
+        "srcEntry": "./ets/Setting/Accessibility/service/IgnoreRepeatClickService.ets",
         "exported": true,
         "type": "service",
         "permissions": [
@@ -558,6 +608,52 @@
         "type": "service",
         "permissions": [
           "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+        ]
+      },
+      {
+        "name": "com.ohos.settings.ScheduledPowerOffService",
+        "exported": false,
+        "srcEntry": "./ets/Setting/System/ScheduledPowerOff/ScheduledPowerOffService.ets",
+        "type": "service",
+        "permissions": [
+          "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+        ]
+      },
+      {
+        "name": "com.ohos.settings.ScheduledPowerOffNowService",
+        "exported": false,
+        "srcEntry": "./ets/Setting/System/ScheduledPowerOff/ScheduledPowerOffNowService.ets",
+        "type": "service",
+        "permissions": [
+          "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+        ]
+      },
+      {
+        "name": "com.ohos.settings.ScheduledPowerOnService",
+        "exported": false,
+        "srcEntry": "./ets/Setting/System/ScheduledPowerOff/ScheduledPowerOnService.ets",
+        "type": "service",
+        "permissions": [
+          "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+        ]
+      },
+      {
+        "name": "com.ohos.settings.ScheduledPowerCheckService",
+        "exported": true,
+        "srcEntry": "./ets/Setting/System/ScheduledPowerOff/ScheduledPowerCheckService.ets",
+        "type": "service",
+        "permissions": [
+          "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+        ]
+      },
+      {
+        "name": "ScheduledPowerOffDialogAbility",
+        "srcEntry": "./ets/MainAbility/ScheduledPowerOffDialogAbility.ets",
+        "description": "scheduledPowerOffDialog",
+        "exported": true,
+        "type": "sysDialog/common",
+        "permissions": [
+          "ohos.permission.ACCESS_SYSTEM_SETTINGS"
         ]
       },
       {

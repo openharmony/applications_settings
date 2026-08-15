@@ -1,0 +1,16 @@
+{
+    "plural":[
+        {
+            "name":"power_off_message",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"སྒྲིག་ཆས་སྐར་ཆ་ %d ནས་རང་འགུལ་གྱིས་གློག་སྒོ་རྒྱག",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -466,6 +466,10 @@ export class OppAvailableDeviceController implements ComponentControl, Bluetooth
     }
     this.closePairDialog();
     if (isSuccess) {
+      if (BluetoothAdapter.getInstance().isPairOnlyDevice(deviceId)) {
+        LogUtil.info(`${this.tag} onPairResult success, pair only device skip connect`);
+        return;
+      }
       BluetoothAdapter.getInstance().connectToDeviceAfterPair(deviceId);
     } else {
       this.openPairFailedDialog(deviceId, result);

@@ -95,6 +95,16 @@ const DPI_VALUE_NULL: string = '';
  */
 const FOLD_WIDTH_VALUE: number = 1080;
 
+/**
+ * Pad 显示大小固定五档：1 较小 + 1 默认 + 3 较大
+ */
+const PAD_NUM_SMALLER: number = 1;
+const PAD_NUM_LARGER: number = 3;
+/**
+ * 默认 DPI 较低时（如 Pad 320），允许「较小」档位略低于 MIN_LCD_DENSITY
+ */
+const ABSOLUTE_MIN_DENSITY: number = 80;
+
 const SETTINGS_DISPLAY_SCREEN_WIDTH: string = 'settings.display.screen.width';
 const DOMAIN_NAME: string = Settings.domainName.USER_PROPERTY;
 
@@ -294,12 +304,21 @@ class DpiManager {
    * @returns 档位
    */
   getIndexByDpi(dpi: number): number {
+    let matchedIndex: number = -1;
     for (let i = 0; i < this.densityList.length; i++) {
       if (this.densityList[i].density === dpi) {
-        return i;
+        if (i === this.numSmaller) {
+          return i;
+        }
+        if (matchedIndex < 0) {
+          matchedIndex = i;
+        }
       }
     }
-    return 1;
+    if (matchedIndex >= 0) {
+      return matchedIndex;
+    }
+    return this.numSmaller;
   }
 
   /**
@@ -308,17 +327,13 @@ class DpiManager {
    * @since 2023-08-30
    */
   setDefaultDpi(dpiValue: string): void {
-    let  defaultDpi = PreferencesUtil.getSync(DEFAULT_XML_DPI_VALUE,'') as string
-    if (!defaultDpi) {
-      LogUtil.showInfo(TAG, `getDefaultDpi: ${defaultDpi}, displayClass dpi: ${this.displayClass?.densityDPI}`);
-      defaultDpi =  this.displayClass?.densityDPI.toString()??""
-      PreferencesUtil.putSync(DEFAULT_XML_DPI_VALUE, this.displayClass?.densityDPI.toString()??'')
-    }
-    LogUtil.info(`${TAG} setdpiValue: ${dpiValue} setDefaultDpi`+defaultDpi);
+    LogUtil.info(`${TAG} setDefaultDpi: ${dpiValue}`);
     /* instrument ignore if*/
     if (dpiValue === DPI_VALUE_NULL) {
       if (this.isNativeDisplay()) {
-        LogUtil.showInfo(TAG, `defaultDpi1: ${defaultDpi}, displayClass dpi: ${this.displayClass?.densityDPI}`);
+        let defaultDpi: string = SettingsDataUtils.getSettingsData(DEFAULT_XML_DPI_VALUE,
+          this.displayClass?.densityDPI.toString());
+        LogUtil.showInfo(TAG, `defaultDpi: ${defaultDpi}, displayClass dpi: ${this.displayClass?.densityDPI}`);
         SettingsDataUtils.setSettingsData(DEFAULT_DPI_VALUE, defaultDpi);
         displayDataManager.updateDefaultDPI();
         this.defaultDensityDpi = Number(defaultDpi);
@@ -332,9 +347,11 @@ class DpiManager {
     }
 
     if (this.isNativeDisplay()) {
-      // 默认dpi统一从DEFAULT_XML_DPI_VALUE获取
+      // 默认dpi统一从 default_display_dpi（Settings 数据库）获取，避免 Preferences 缓存当前缩放值导致“默认”档位偏移
+      let defaultDpi: string = SettingsDataUtils.getSettingsData(DEFAULT_XML_DPI_VALUE,
+        this.displayClass?.densityDPI.toString());
       if (defaultDpi !== dpiValue) {
-        LogUtil.showWarn(TAG, `defaultDpi2: ${defaultDpi}, dpiValue: ${dpiValue}`);
+        LogUtil.showWarn(TAG, `defaultDpi: ${defaultDpi}, dpiValue: ${dpiValue}`);
         this.defaultDensityDpi = Number(defaultDpi);
         displayDataManager.updateDefaultDPI();
         SettingsDataUtils.setSettingsData(DEFAULT_DPI_VALUE, defaultDpi);
@@ -378,15 +395,14 @@ class DpiManager {
     Array<Resource>, summariesDefault: Resource): number {
     let defaultDensity: number = this.defaultDensityDpi;
     let currentDensity: number = this.displayClass?.densityDPI as number;
-    if (DeviceUtil.isDevicePc()) {
+    if (DeviceUtil.isDevicePc() || DeviceUtil.isDevicePad()) {
       currentDensity = Number(SettingsDataUtils.getSettingsData(DisplayConstant.SETTINGS_DATA_USER_SET_DPI_VALUE,
         `${this.displayClass?.densityDPI}`));
     }
     LogUtil.info(`${TAG} setNumberAndScale: defaultDensity: ${defaultDensity}, currentDensity: ${currentDensity}`);
-    let currentWidth: string = String(PreferencesUtil.getSync(SETTINGS_DISPLAY_SCREEN_WIDTH,
-      Math.min(this.displayClass?.height as number, this.displayClass?.width as number)));
-    let minDimensionPx: number = Display.isFoldable() ? FOLD_WIDTH_VALUE : Number(currentWidth);
-    LogUtil.info(`${TAG} setNumberAndScale: currentWidth: ${currentWidth}, minDimensionPx: ${minDimensionPx}`);
+    let minDimensionPx: number = Display.isFoldable() ? FOLD_WIDTH_VALUE :
+      Math.min(this.displayClass?.width ?? MIN_DIMENSION_DP, this.displayClass?.height ?? MIN_DIMENSION_DP);
+    LogUtil.info(`${TAG} setNumberAndScale: minDimensionPx: ${minDimensionPx}`);
     let maxDensity: number = this.densityMedium * minDimensionPx / MIN_DIMENSION_DP;
     let maxScale: number = Math.min(MAX_SCALE, maxDensity / defaultDensity);
     let minScale: number = MIN_SCALE;
@@ -394,6 +410,10 @@ class DpiManager {
     LogUtil.info(`${TAG} setNumberAndScale: ${maxDensity}, ${maxScale}, ${minScale}, ${minInterval}`);
     this.numLarger = this.constrain(Math.floor((maxScale - 1) / minInterval), 0, summariesLarger.length);
     this.numSmaller = this.constrain(Math.floor((1 - minScale) / MIN_SCALE_INTERVAL), 0, summariesSmaller.length);
+    if (DeviceUtil.isDevicePad()) {
+      this.numSmaller = Math.min(PAD_NUM_SMALLER, summariesSmaller.length);
+      this.numLarger = Math.min(PAD_NUM_LARGER, summariesLarger.length);
+    }
     this.densityList = [];
     LogUtil.info(`${TAG} setNumberAndScale: numLarger:${this.numLarger}, numSmaller:${this.numSmaller}`);
     let inSetValue: number = 0;
@@ -406,11 +426,33 @@ class DpiManager {
     if (currentDensityIndex >= 0) {
       inSetValue = currentDensityIndex;
     } else {
-      inSetValue = 1;
+      inSetValue = this.numSmaller;
     }
     LogUtil.info(`${TAG} this.inSetValue: ${inSetValue}`);
     LogUtil.info(`${TAG} this.numLarger: ${this.numLarger}`);
     return inSetValue;
+  }
+
+  private getMinSmallerDensity(defaultDensity: number): number {
+    if (defaultDensity <= MIN_LCD_DENSITY) {
+      return Math.max(ABSOLUTE_MIN_DENSITY, (defaultDensity - 2) & ~1);
+    }
+    return MIN_LCD_DENSITY;
+  }
+
+  /**
+   * 约束「较小」档位 DPI：严格小于默认档位，且不与默认档位重复
+   */
+  private clampSmallerDensity(density: number, defaultDensity: number): number {
+    let floor: number = this.getMinSmallerDensity(defaultDensity);
+    if (density < floor) {
+      density = floor;
+    }
+    let maxSmaller: number = (defaultDensity - 2) & ~1;
+    if (density >= defaultDensity && maxSmaller >= floor) {
+      density = maxSmaller;
+    }
+    return density;
   }
 
   private pushDensity(minScale: number, maxScale: number, defaultDensity: number, currentDensity: number,
@@ -420,18 +462,12 @@ class DpiManager {
     let interval: number = 0;
     let i: number = 0;
     let density: number = 0;
-    // 对于小于默认的档位，density 不应被强制提升到一个高于默认值的全局常量，
-    // 否则在某些设备（如部分 PC）上，“最小”档位可能反而比“默认”更大。
-    // 这里使用 defaultDensity 与 MIN_LCD_DENSITY 中的较小值作为下限，保证最小档位不会大于默认档位。
-    const minDensityLimit: number = Math.min(defaultDensity, MIN_LCD_DENSITY);
 
     if (this.numSmaller > 0) {
       interval = (1 - minScale) / this.numSmaller;
       for (i = this.numSmaller - 1; i >= 0; i--) {
         density = Math.floor(defaultDensity * (1 - (i + 1) * interval)) & ~1;
-        if (density < minDensityLimit) {
-          density = minDensityLimit;
-        }
+        density = this.clampSmallerDensity(density, defaultDensity);
         if (density < this.minDensityDpi) {
           this.minDensityDpi = density;
         }
