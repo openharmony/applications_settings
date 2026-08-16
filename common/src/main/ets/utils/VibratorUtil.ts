@@ -124,4 +124,24 @@ export class VibratorUtil {
       }
     });
   }
+
+  /**
+   * 停止振动，释放振动器资源
+   */
+  public static stopVibration(): void {
+    import('@ohos.vibrator').then(vibrator => {
+      try {
+        vibrator.default.stopVibration((error: BusinessError) => {
+          if (error) {
+            LogUtil.error(`${TAG} Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+            return;
+          }
+          LogUtil.info(`${TAG} Succeed in stopping vibration`);
+        });
+      } catch (err) {
+        LogUtil.error(`${TAG} An unexpected error occurred. Code: ${err?.code}, message: ${err?.message}`);
+      }
+    });
+  }
+
 }

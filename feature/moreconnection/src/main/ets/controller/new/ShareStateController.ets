@@ -28,7 +28,8 @@ import { ItemResultType } from '@ohos/settings.common/src/main/ets/framework/mod
 import { ResourceUtil } from '@ohos/settings.common/src/main/ets/utils/ResourceUtil';
 import { SettingsDataUtils } from '@ohos/settings.common/src/main/ets/utils/SettingsDataUtils';
 
-const SETTING_DETECTABLE_STATE: string = 'instantshare_detect_state';
+// const SETTING_DETECTABLE_STATE: string = 'instantshare_detect_state';
+const SETTING_DETECTABLE_STATE: string = 'ohos_instantshare_detect_state';
 const TAG: string = 'ShareStateController:';
 
 export class ShareStateController implements ComponentControl {

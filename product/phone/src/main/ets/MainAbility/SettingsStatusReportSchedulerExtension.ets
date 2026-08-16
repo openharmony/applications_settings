@@ -77,6 +77,7 @@ import {
   HiSysAPBANDStaticEventGroup,
   HiSysMoreConnectionGroup,
   HiSysDeveloperOptionsGroup,
+  HiSysScheduledPowerOnOffGroup,
 } from '@ohos/settings.common/src/main/ets/systemEvent/StaticEventConsts';
 import { WifiUtils } from '@ohos/settings.wifi/src/main/ets/WifiUtils';
 import {
@@ -101,12 +102,16 @@ import {
   CLICK_SWITCH_ON,
   SCREEN_MAGNIFICATION,
   SHORTCUT_ENABLED_ON_LOCK_SCREEN,
-  ACCESSIBILITY_SOUND_RECOGNITION_SWITCH,
   ACCESSIBILITY_FLASH_REMINDER_SWITCH
 } from '../Setting/Accessibility/constant/Constants';
 import { HotSpotUtils } from '../Setting/MobileNetwork/HotSpot/utils/HotspotUtils';
 // import { SettingsUtil } from '@hw-hmos/settings-face-auth/src/main/ets/faceauth/Utils/SettingsUtil';
 import { TransitionAnimationValue } from '@ohos/settings.developeroptions';
+import {
+  SCHEDULED_POWER_ON_OFF_REPEAT,
+  SCHEDULED_POWER_ON_OFF_REPEAT_WEEK,
+  SCHEDULED_POWER_ON_OFF_SWITCH
+} from '@ohos/settings.system/src/main/ets/constants/ScheduledPowerOnOffConstant';
 import settings from '@ohos.settings';
 import { SETTINGS_DISPLAY_BIONIC_VISION_SWITCH } from '@ohos/settings.display/src/main/ets/constant/DisplayConstant';
 import IamHiSysPinEventUtils from '../pages/password/iambigdata/IamHiSysEventUtils';
@@ -185,8 +190,21 @@ export default class SettingsStatusReportSchedulerExtensionAbility extends WorkS
     CloneAppUtil.reportCloneAppStatisticEvent();
     // 上报人脸用户配置数据
     // SettingsUtil.reportUserConfigStatus();
+    // 上报定时开关机重复周期
+    this.reportScheduledPowerRepeat();
     // 上报用户pin码类型数据
     IamHiSysPinEventUtils.reportPasswordTypeStatus();
+  }
+
+  private reportScheduledPowerRepeat(): void {
+    let repeat =
+      SettingsDataUtils.getSettingsData(SCHEDULED_POWER_ON_OFF_REPEAT, '0', settings.domainName.USER_PROPERTY);
+    let params: Record<string, Object> = {};
+    params.REPEAT = repeat;
+    params.WEEK =
+      (repeat !== WEEK_REPEAT) ? '-1' : SettingsDataUtils.getSettingsData(SCHEDULED_POWER_ON_OFF_REPEAT_WEEK, '-1',
+        settings.domainName.USER_PROPERTY);
+    HiSysEventUtil.reportStatisticEventByUE(HiSysScheduledPowerOnOffGroup.SCHEDULED_REPEAT_STATUS, params);
   }
 
   // 延迟任务结束回调
@@ -432,10 +450,6 @@ let statusValueMap = new Map<string, () => string>([
     return SettingsDataUtils.getSettingsData(ACCESSIBILITY_IGNORE_REPEAT_CLICK_ENABLED, CLICK_SWITCH_OFF) ===
       CLICK_SWITCH_ON ? EventResultConsts.SWITCH_ON : EventResultConsts.SWITCH_OFF;
   }],
-  [HiSysAccessibilityStaticEventGroup.SOUND_RECOG_MAIN_SWITCH_STATUS, (): string => {
-    return SettingsDataUtils.getSecureValue(ACCESSIBILITY_SOUND_RECOGNITION_SWITCH, CLICK_SWITCH_OFF) ===
-      CLICK_SWITCH_ON ? EventResultConsts.SWITCH_ON : EventResultConsts.SWITCH_OFF;
-  }],
   [HiSysAccessibilityStaticEventGroup.FLASH_REMIND_MAIN_SWITCH_STATUS, (): string => {
     return SettingsDataUtils.getSecureValue(ACCESSIBILITY_FLASH_REMINDER_SWITCH, CLICK_SWITCH_OFF) ===
       CLICK_SWITCH_ON ? EventResultConsts.SWITCH_ON : EventResultConsts.SWITCH_OFF;
@@ -585,6 +599,10 @@ let statusValueMap = new Map<string, () => string>([
   [HiSysDeveloperOptionsGroup.SERVICE_EXEMPTION_CONTROL_STATUS, (): string => {
     return SettingsDataUtils.getSettingsData(SETTINGS_DEVELOPER_CHARGE_ATOMICSERVICE_DEBUG_ENABLE, 'false') === '1' ?
     EventResultConsts.SWITCH_ON : EventResultConsts.SWITCH_OFF;
+  }],
+  [HiSysScheduledPowerOnOffGroup.SCHEDULED_POWER_ON_OFF_STATUS, (): string => {
+    return SettingsDataUtils.getSettingsData(SCHEDULED_POWER_ON_OFF_SWITCH, '1') === '1' ? EventResultConsts.SWITCH_ON :
+    EventResultConsts.SWITCH_OFF;
   }],
   // 仿生视觉
   [HiSysDisplayBrightnessStaticEventGroup.BIONIC_VISION_STATUS, (): string => {

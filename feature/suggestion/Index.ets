@@ -13,4 +13,6 @@
  * limitations under the License.
  */
 
+export { SuggestionItemGroupView } from './src/main/ets/view/SuggestionItemGroupView';
+export { HomePageSuggestionController } from './src/main/ets/controller/HomePageSuggestionController';
 

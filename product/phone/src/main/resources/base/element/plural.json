@@ -494,7 +494,7 @@
                 }
             ]
         },
-	    {
+        {
             "name":"magnification_scale",
             "value":[
                 {
@@ -566,6 +566,82 @@
                     "value":"%.1f seconds",
                     "attr":{
                         "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"dialog_countdown_time",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d second",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d seconds",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"dialog_ok_countdown",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"OK (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"OK (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_timed_end_tips",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Time's up. %d tap ignored.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Time's up. %d taps ignored.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_failed_result",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Taps not ignored. More than %.1fs elapsed since first tap.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Taps not ignored. More than %.1fs elapsed since first tap.",
+                    "attr":{
+                        "priority":"LT"
                     }
                 }
             ]

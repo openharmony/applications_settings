@@ -39,6 +39,7 @@ import { DeviceAndApplicationController } from './controller/DeviceAndApplicatio
 import { SystemPageControl } from './controller/SystemPageControl';
 import { DeveloperGroupController } from './controller/DeveloperGroupController';
 import { COVER_MODE, SIMPLE_COVER, SMART_COVER } from '../Display/Constant/Constant';
+import { ScheduledPowerController } from './ScheduledPowerOff/ScheduledPowerController';
 
 function systemPage(): SettingPageModel {
   let systemPageController = new SystemPageControl();
@@ -82,6 +83,7 @@ export function getSecondFrameGroups(): SettingGroupModel[] {
     getDeviceAndApplicationGroup(),
     getEmergencyGroup(),
     getResetGroup(),
+    getScheduleGroup(),
     getDeveloperGroup()
   ];
 }
@@ -155,7 +157,7 @@ function getTimeAndLanguageGroupItems(isPengLaiModeOpen?: boolean): SettingItemM
     getLanguageItem(),
     getDateAndTimeItem(),
     getInputItem(),
-    ...getFontManageEntry()
+    // ...getFontManageEntry() // pad 关闭「字体安装和管理」入口
   ];
 }
 
@@ -324,6 +326,31 @@ function getSosEmergencyItem(): SettingItemModel {
 }
 
 /**
+ * 获取定时开机组
+ * @returns 定时开机组
+ */
+function getScheduleGroup(): SettingGroupModel {
+  return {
+    id: 'scheduled_power_group',
+    type: GroupType.GROUP_TYPE_STANDARD,
+    items: [
+      {
+        id: 'scheduled_power_settings',
+        type: ItemType.ITEM_TYPE_STANDARD,
+        title: { content: $r('app.string.scheduled_power_on_off_title') },
+        detail: {
+          type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
+          icon: $r('sys.symbol.chevron_right'),
+          isSymbolIcon: true,
+          destination: NavEntryKey.SCHEDULED_POWER_ON_OFF,
+        }
+      }
+    ],
+    compControl: new ScheduledPowerController()
+  };
+}
+
+/**
  * 获取开发者选项组
  * @returns 开发者选项组
  */
@@ -335,24 +362,25 @@ function getDeveloperGroup(): SettingGroupModel {
   };
 }
 
-function getFontManageEntry(): SettingItemModel[] {
-  let result: SettingItemModel[] = [];
-  if (DeviceUtil.isDevicePad()) {
-    result.push({
-      id: 'font_manage',
-      type: ItemType.ITEM_TYPE_STANDARD,
-      title: { content: $r('app.string.font_manage') },
-      detail: {
-        type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
-        icon: $r('sys.symbol.chevron_right'),
-        isSymbolIcon: true,
-        destination: NavEntryKey.FONT_MANAGE,
-      },
-      desc: { content: $r('app.string.font_manage_summary') }
-    })
-  }
-  return result;
-}
+// pad 关闭「字体安装和管理」入口
+// function getFontManageEntry(): SettingItemModel[] {
+//   let result: SettingItemModel[] = [];
+//   if (DeviceUtil.isDevicePad()) {
+//     result.push({
+//       id: 'font_manage',
+//       type: ItemType.ITEM_TYPE_STANDARD,
+//       title: { content: $r('app.string.font_manage') },
+//       detail: {
+//         type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
+//         icon: $r('sys.symbol.chevron_right'),
+//         isSymbolIcon: true,
+//         destination: NavEntryKey.FONT_MANAGE,
+//       },
+//       desc: { content: $r('app.string.font_manage_summary') }
+//     })
+//   }
+//   return result;
+// }
 
 // 页面配置导入
 PageLoader.load(NavEntryKey.SYSTEM_UPDATE_ENTRY, {

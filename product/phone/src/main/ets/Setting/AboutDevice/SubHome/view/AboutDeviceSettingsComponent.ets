@@ -89,6 +89,7 @@ export struct AboutDeviceSettingsComponent {
         AboutDevicePageComponent({
           pageModel: this.pageModel,
           controller: this.controller,
+          pageArea: this.nevDesArea,
           pushParams: this.params,
         })
       }

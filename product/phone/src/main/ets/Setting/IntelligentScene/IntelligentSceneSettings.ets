@@ -33,6 +33,9 @@ import { IntelligentSceneWindowManager } from './manager/IntelligentSceneWindowM
 import { EventBus } from '@ohos/settings.common/src/main/ets/framework/common/EventBus';
 import { AppGroupType } from '@ohos/settings.common/src/main/ets/utils/Consts';
 import { EVENT_APP_LIST_LOAD_COMPLETE } from './event/types';
+import { ComponentContent } from '@ohos.arkui.node';
+import { ExternalMenuPreloadManager } from
+  '@ohos/settings.common/src/main/ets/externalmenu/ExternalMenuPreloadManager';
 
 /* instrument ignore file */
 const TAG: string = 'IntelligentSceneSettings : ';
@@ -41,6 +44,17 @@ const ABILITY_NAME: string = 'IntelligentSceneUIExtSettingAbility';
 const SUB_PAGE_ENTRY_KEY: string = 'sub_page_entry_key';
 const INTELLIGENT_SCENE_HOME_ENTRY: string = 'intelligent_scene_home_entry';
 const MIN_PATH_LENGTH: number = 1;
+
+class PlaceholderParams {
+}
+
+@Builder
+function intelligentScenePlaceholderBuilder(params: PlaceholderParams): void {
+  Column()
+  .width('100%')
+  .height('100%')
+  .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
+}
 
 @Component
 export struct IntelligentSceneSettings {
@@ -54,6 +68,8 @@ export struct IntelligentSceneSettings {
   @State firstNavigationMode: NavigationMode = NavigationMode.Stack;
   private viewModel: UiExtensionViewModel = new UiExtensionViewModel(this.observedData);
   private startTime: number = 0;
+  private loadingPlaceholder: ComponentContent<PlaceholderParams> =
+    new ComponentContent(this.getUIContext(), wrapBuilder(intelligentScenePlaceholderBuilder), new PlaceholderParams());
   recoverController: CustomDialogController = new CustomDialogController({
     builder: ExitAbnormallyComponent(),
   });
@@ -67,89 +83,103 @@ export struct IntelligentSceneSettings {
 
   build() {
     NavDestination() {
-      UIExtensionComponent({
-        bundleName: BUNDLE_NAME,
-        abilityName: ABILITY_NAME,
-        parameters: {
-          'ability.want.params.uiExtensionType': 'sys/commonUI',
-          'action': 'jumpBySettings',
-          'navigationMode': this.firstNavigationMode,
-          'pushParams': (this.params?.config || this.params?.subUri) as string,
-          'searchItemName': (this.params?.itemName ?? '') as string,
-          'startReason': this.params?.startReason ?? PageStartModeManager.getInstance().getStartReason(),
-          'reconnect': this.observedData.reconnect,
-          'specifiedModeId': this.wantParam?.parameters?.specifiedModeId,
-        }
-      })
-        .defaultFocus(true)
-        .onRemoteReady((proxy) => {
-          this.uiExtensionProxy = proxy;
-          LogUtil.info(`${TAG} onRemoteReady start`);
-          this.uiExtensionProxy.send({ 'navigationMode': this.navigationMode });
-          LogUtil.info(`${TAG} onRemoteReady navigationMode: ${this.navigationMode}`);
-          UIExtensionSessionUtils.sendTitleAnimationDuration(this.uiExtensionProxy, this.startTime);
-          this.uiExtensionProxy?.on('asyncReceiverRegister', () => {
+      Stack() {
+        UIExtensionComponent({
+          bundleName: BUNDLE_NAME,
+          abilityName: ABILITY_NAME,
+          parameters: {
+            'ability.want.params.uiExtensionType': 'sys/commonUI',
+            'action': 'jumpBySettings',
+            'navigationMode': this.firstNavigationMode,
+            'pushParams': (this.params?.config || this.params?.subUri) as string,
+            'searchItemName': (this.params?.itemName ?? '') as string,
+            'startReason': this.params?.startReason ?? PageStartModeManager.getInstance().getStartReason(),
+            'reconnect': this.observedData.reconnect,
+            'specifiedModeId': this.wantParam?.parameters?.specifiedModeId,
+          }
+        }, {
+          placeholder: this.loadingPlaceholder,
+          dpiFollowStrategy: DpiFollowStrategy.FOLLOW_HOST_DPI
+        })
+          .defaultFocus(true)
+          .onRemoteReady((proxy) => {
+            this.uiExtensionProxy = proxy;
+            LogUtil.info(`${TAG} onRemoteReady start`);
+            this.uiExtensionProxy.send({ 'navigationMode': this.navigationMode });
+            LogUtil.info(`${TAG} onRemoteReady navigationMode: ${this.navigationMode}`);
             UIExtensionSessionUtils.sendTitleAnimationDuration(this.uiExtensionProxy, this.startTime);
-          });
-        })
-        .onError((error) => {
-          LogUtil.info(`${TAG} UIExtensionComponent onError code: ${error?.code} message: ${error?.message}`);
-          this.viewModel.refreshing(error, this.recoverController, BUNDLE_NAME, ABILITY_NAME);
-        })
-        .onTerminated(() => {
-        })
-        .onReceive((data) => {
-          LogUtil.info(`${TAG} UIExtensionComponent onReceive: ${data['action']}`);
-          if (data && data[SUB_PAGE_ENTRY_KEY]) {
-            LogUtil.info(`${TAG} sub_page_entry_key is ${data[SUB_PAGE_ENTRY_KEY]}`);
-            IntelligentSceneWindowManager.setInMainPage(data[SUB_PAGE_ENTRY_KEY] === INTELLIGENT_SCENE_HOME_ENTRY);
-          }
-
-          if (data && data['action'] === 'pop') {
-            LogUtil.info(`${TAG} pop`);
-            if (this.pathInfos.size() === MIN_PATH_LENGTH && this.startReason !== PageStartReason.FROM_SEARCH &&
-              this.navigationMode === NavigationMode.Split) {
-              Router.back();
-            } else {
-              this.doPopAction();
+            this.uiExtensionProxy?.on('asyncReceiverRegister', () => {
+              UIExtensionSessionUtils.sendTitleAnimationDuration(this.uiExtensionProxy, this.startTime);
+            });
+          })
+          .onError((error) => {
+            LogUtil.info(`${TAG} UIExtensionComponent onError code: ${error?.code} message: ${error?.message}`);
+            this.viewModel.refreshing(error, this.recoverController, BUNDLE_NAME, ABILITY_NAME);
+          })
+          .onTerminated(() => {
+          })
+          .onReceive((data) => {
+            LogUtil.info(`${TAG} UIExtensionComponent onReceive: ${data['action']}`);
+            if (data && data[SUB_PAGE_ENTRY_KEY]) {
+              LogUtil.info(`${TAG} sub_page_entry_key is ${data[SUB_PAGE_ENTRY_KEY]}`);
+              IntelligentSceneWindowManager.setInMainPage(data[SUB_PAGE_ENTRY_KEY] === INTELLIGENT_SCENE_HOME_ENTRY);
             }
-          }
 
-          if (data && data['action'] === 'getNavigationMode') {
-            this.uiExtensionProxy?.send({ 'navigationMode': this.navigationMode });
-            LogUtil.info(`${TAG} send getNavigationMode ${this.navigationMode}`);
-            return;
-          }
+            if (data && data['action'] === 'pop') {
+              LogUtil.info(`${TAG} pop`);
+              if (this.pathInfos.size() === MIN_PATH_LENGTH && this.startReason !== PageStartReason.FROM_SEARCH &&
+                this.navigationMode === NavigationMode.Split) {
+                Router.back();
+              } else {
+                this.doPopAction();
+              }
+            }
 
-          if (data && data['action'] === 'jump' && StringUtil.isNotEmpty(String(data['uri']))) {
-            LogUtil.info(`${TAG} jump uri:${data['uri']}`);
-            let param = new PushParam(data['pushParams']);
-            param.startReason = PageStartReason.DEFAULT;
-            PageRouter.push(String(data['uri']), param, false, undefined, true);
-            return;
-          }
-          if (data && data['action'] === 'restore' && data['restoreApps']) {
-            const restoreBundleNames: string[] = data['restoreApps'] as string[];
-            this.openRestoreAppModal(restoreBundleNames);
-          }
-          if (data && data['action'] === 'loadAppList') {
-            LogUtil.info(`${TAG} receive load app list`);
-            AppListLoader.getInstance().loadAppList();
-          }
-        })
-        .size({ width: '100%', height: '100%' })
+            if (data && data['action'] === 'getNavigationMode') {
+              this.uiExtensionProxy?.send({ 'navigationMode': this.navigationMode });
+              LogUtil.info(`${TAG} send getNavigationMode ${this.navigationMode}`);
+              return;
+            }
+
+            if (data && data['action'] === 'jump' && StringUtil.isNotEmpty(String(data['uri']))) {
+              LogUtil.info(`${TAG} jump uri:${data['uri']}`);
+              let param = new PushParam(data['pushParams']);
+              param.startReason = PageStartReason.DEFAULT;
+              PageRouter.push(String(data['uri']), param, false, undefined, true);
+              return;
+            }
+            if (data && data['action'] === 'restore' && data['restoreApps']) {
+              const restoreBundleNames: string[] = data['restoreApps'] as string[];
+              this.openRestoreAppModal(restoreBundleNames);
+            }
+            if (data && data['action'] === 'loadAppList') {
+              LogUtil.info(`${TAG} receive load app list`);
+              AppListLoader.getInstance().loadAppList();
+            }
+          })
+          .size({ width: '100%', height: '100%' })
+          .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM, SafeAreaEdge.TOP])
+      }
+      .width('100%')
+      .height('100%')
+      .backgroundColor(Color.Transparent)
+      .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM, SafeAreaEdge.TOP])
     }
     .hideTitleBar(true)
-    .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
+    .backgroundColor(Color.Transparent)
+    .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM, SafeAreaEdge.TOP])
     .onShown(() => {
       LogUtil.info(`${TAG} NavDestination onShown`);
-      // delay start page transition animation
+      // 与“通知和状态栏”页面保持一致，延迟启动宿主转场以等待 UIExtension 就绪。
       if (this.navigationMode === NavigationMode.Stack) {
         this.viewModel.delayTransition();
       }
     })
     .onHidden(() => {
       LogUtil.info(`${TAG} NavDestination onHidden`);
+      // 当前实例即将退出时补充下一份预加载记录，避免再次进入重新冷启动。
+      ExternalMenuPreloadManager.getInstance()
+        .preloadUIExtensionAbility(NavEntryKey.INTELLIGENT_SCENE_SETTINGS_ENTRY, getContext());
     })
   }
 

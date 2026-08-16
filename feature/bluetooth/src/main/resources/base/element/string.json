@@ -414,6 +414,13 @@
             }
         },
         {
+            "name":"bluetooth_peer_device_paired_only",
+            "value":"Paired, device connection not supported",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
             "name":"device_type_car_key",
             "value":"Car key",
             "attr":{

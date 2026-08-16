@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+import { SettingContentTextStyle } from '@ohos/settings.common/src/main/ets/framework/model/SettingGroupModel';
+
 export const UX_DESIGN_SHEET_HEIGHT_PAD: number = 560;
 
 export const DIALOG_WIDTH_FOLD_EXPAND: number = 400;
@@ -24,6 +26,16 @@ export const SCREEN_HEIGHT_RATE: number = 0.9;
 export const DEFAULT_PADDING_START: Length = $r('sys.float.ohos_id_default_padding_start');
 
 export const DEFAULT_PADDING_END: Length = $r('sys.float.ohos_id_default_padding_end');
+
+export const COLOR_INVERT_SWITCH_STATE: string = 'accessibility_display_inversion_enabled';
+
+export const DISPLAY_DALTONIZER_ENABLED: string = 'accessibility_display_daltonizer_enabled';
+
+export const MASTER_MONO: string = 'master_mono';
+
+export const SHORTCUT_ENABLED: string = 'accessibility_shortcut_enabled';
+
+export const ANIMATION_OFF_KEY: string = 'animation_off';
 
 export const ACCESSIBILITY_FUNCTION_SELECT_TARGETS: string = 'accessibility_function_select_targets';
 
@@ -39,6 +51,8 @@ export const SCREEN_READER_SWITCH: string = 'screen_reader_switch';
 
 export const SECURITY_NOTIFICATION_MODEL_SHOW_EVENT: string = 'SECURITY_NOTIFICATION_MODEL_SHOW';
 
+export const SECURITY_NOTIFICATION_TIMER_EVENT: string = 'SECURITY_NOTIFICATION_TIMER_COUNT';
+
 export const FUNCTION_SELECT_LIST_PAGE_SHOW_EVENT = 'FUNCTION_SELECT_LIST_PAGE_SHOW_EVENT';
 
 export const SHORTCUT_ENABLED_ON_LOCK_SCREEN = 'accessibility_shortcut_enabled_on_lock_screen';
@@ -46,6 +60,14 @@ export const SHORTCUT_ENABLED_ON_LOCK_SCREEN = 'accessibility_shortcut_enabled_o
 export const SCREEN_MAGNIFICATION: string = 'accessibility_display_magnification_enabled';
 
 export const SCREEN_MAGNIFICATION_TYPE_KEY: string = 'accessibility_magnification_capability';
+
+// 放大手势触发方式：0-单指三击，1-三指双击
+export const SCREEN_MAGNIFICATION_TRIGGER_METHOD: string =
+  'accessibility_display_magnification_trigger_method';
+
+export const SCREEN_MAGNIFICATION_TRIGGER_SINGLE_FINGER_TRIPLE_TAP: string = '0';
+
+export const SCREEN_MAGNIFICATION_TRIGGER_THREE_FINGER_DOUBLE_TAP: string = '1';
 
 export const INGORE_REPEAT_CLICK_RECONFIRM: string = 'accessibility_ignore_repeat_click_reconfirm';
 
@@ -63,17 +85,32 @@ export const SCREEN_READER_ON_KEY = 'accessibility_screenreader_enabled';
 
 export const ACCESSIBILITY_ELDER_CARE_SWITCH_ENABLED: string = 'accessibility_elder_care_switch_enabled';
 
-export const ACCESSIBILITY_SOUND_RECOGNITION_SWITCH_EVENT: string = 'accessibility_sound_recognition_switch_event';
-
-export const ACCESSIBILITY_SOUND_RECOGNITION_SWITCH: string = 'accessibility_sound_recognition_switch';
-
-export const ACCESSIBILITY_SOUND_RECOGNITION_ENABLED: string = 'accessibility_sound_recognition_enabled';
-
 export const ACCESSIBILITY_FLASH_REMINDER_SWITCH_EVENT: string = 'accessibility_flash_reminder_switch_event';
 
 export const ACCESSIBILITY_FLASH_REMINDER_SWITCH: string = 'accessibility_flash_reminder_switch';
 
 export const ACCESSIBILITY_REMINDER_FUNCTION_ENABLED: string = 'accessibility_reminder_function_enabled';
+
+export const IGNORE_REPEATED_EXPERIMENT_MODEL_SHOW_EVENT: string = 'IGNORE_REPEATED_EXPERIMENT_MODEL_SHOW';
+
+export const IGNORE_REPEATED_CLOSE_REFRESH_EVENT: string = 'IGNORE_REPEATED_CLOSE_REFRESH_EVENT';
+
+export const RESTORE_DEFAULT_GROUP_EVENT: string = 'RESTORE_DEFAULT_GROUP_EVENT';
+
+export const IGNORE_REPEATED_TIME_SELECT_MODEL_SHOW_EVENT: string = 'IGNORE_REPEATED_TIME_SELECT_MODEL_SHOW_EVENT';
+
+export const IGNORE_REPEATED_SHOW_DIALOG: string = 'IGNORE_REPEATED_SHOW_DIALOG';
+
+export const IGNORE_REPEATED_TIMER_DOWN_EVENT: string = 'IGNORE_REPEATED_TIMER_DOWN_EVENT';
+
+// 标记忽略重复点击试用页面的状态-用于异常重启恢复
+export const IGNORE_REPEATED_CLICK_CACHE_FLAG: string = 'accessibility_ignore_repeat_click_cache_flag';
+
+// 标记忽略重复点击试用页面的状态-用于互斥关闭试用流程
+export const IGNORE_REPEATED_CLICK_EXCLUDE_FLAG: string = 'accessibility_ignore_repeat_click_exclude_flag';
+
+// 用于系统弹框和忽略重复点击试用页面的状态交互
+export const IGNORE_REPEATED_EXPERIMENT_MODEL_SHOW_FLAG: string = 'IGNORE_REPEATED_EXPERIMENT_MODEL_SHOW_FLAG';
 
 export const OOBE_ZOOM_GESTURE_REQUEST_FOCUS_EVENT: string = 'OOBE_ZOOM_GESTURE_REQUEST_FOCUS_EVENT';
 
@@ -103,6 +140,12 @@ export enum TouchScreenType {
   TOUCH_SCREEN_SHORT = 0,
   TOUCH_SCREEN_MEDIUM = 1,
   TOUCH_SCREEN_LONG = 2
+}
+
+export class ElderCareZoomDisplayConstants {
+  public static readonly ZOOM_DISPLAY_LEVEL_MIN = 0;
+  public static readonly ZOOM_DISPLAY_LEVEL_MAX = 6;
+  public static readonly ZOOM_DISPLAY_STEP = 1;
 }
 
 export enum SelectTouchDurationValue {
@@ -155,14 +198,12 @@ export const FUNCTION_SELECT_SERVICES_ARRAY: ResourceStr[] = [
   $r('app.string.highContrast_text'),
   $r('app.string.single_audio'),
   $r('app.string.invert_color'),
-  $r('app.string.screenreader'),
 ];
 
 export enum FunctionSelectTargetNameValue {
   HIGH_CONTRAST_TEXT = 'HIGH_CONTRAST_TEXT',
   SINGLE_AUDIO = 'AUDIO_MONO',
-  INVERT_COLOR = 'INVERT_COLOR',
-  SCREEN_READER = 'SCREEN_READER'
+  INVERT_COLOR = 'INVERT_COLOR'
 }
 
 export enum FunctionSelectOriginNameValue {
@@ -176,7 +217,6 @@ export const FUNCTION_SELECT_TARGET_NAME_ARRAY: string[] = [
   'HIGH_CONTRAST_TEXT',
   'AUDIO_MONO',
   'INVERT_COLOR',
-  'SCREEN_READER'
 ]
 
 export interface ExtensionInfo {
@@ -185,20 +225,8 @@ export interface ExtensionInfo {
   state: boolean;
 }
 
-export enum VoiceRecognitionModeValue {
-  DEFAULT = 'DEFAULT',
-  ENV_BABYCRY = 'BABYCRY',
-  ENV_MEOW = 'MEOW',
-  ENV_BARK = 'BARK',
-  ENV_DOORBELL = 'DOORBELL',
-  ENV_KNOCK = 'KNOCK',
-  ENV_ALARM = 'ALARM'
-}
-
 export enum ReminderFunctionModeValue {
   ALARM_CLOCK = 'ALARM_CLOCK',
-  INCOMING_CALL = 'INCOMING_CALL',
-  NOTIFY = 'NOTIFY',
   DEFAULT = 'DEFAULT',
 }
 
@@ -208,6 +236,22 @@ export const IGNORE_REPEATED_TIME_NAME_ARRAY: string[] = [
   '0.7 S',
   '1.0 S',
   '1.3 S'
+]
+
+export const IGNORE_REPEATED_TIME_RESOURCE_MAP: Map<string, Resource> = new Map([
+  ['0.1', $r('app.string.ignore_repeated_time_shortest')],
+  ['0.4', $r('app.string.ignore_repeated_time_short')],
+  ['0.7', $r('app.string.ignore_repeated_time_medium')],
+  ['1.0', $r('app.string.ignore_repeated_time_long')],
+  ['1.3', $r('app.string.ignore_repeated_time_longest')],
+]);
+
+export const IGNORE_REPEATED_TIME_NUM_ARRAY: number[] = [
+  0.1,
+  0.4,
+  0.7,
+  1.0,
+  1.3
 ]
 
 export const IGNORE_REPEATED_TIME_NAME_MAP: Map<string, string> = new Map([
@@ -257,3 +301,10 @@ export class TextSizeStepConstants {
 export const SWITCH_ON: string = '1';
 
 export const SWITCH_OFF: string = '0';
+
+export const ELDER_CARE_SWITCH_TOGGLE_ID: string = 'Setting.ElderCare.elder_care_switch_group.elder_care_switch';
+
+export const DEFAULT_TEXT_STYLE: SettingContentTextStyle = {
+  textOverflow: TextOverflow.None,
+  wordBreak: WordBreak.HYPHENATION
+}

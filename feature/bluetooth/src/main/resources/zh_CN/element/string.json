@@ -407,6 +407,13 @@
             }
         },
         {
+            "name":"bluetooth_peer_device_paired_only",
+            "value":"已配对，不支持设备连接",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
             "name":"bluetooth_no_paired_devices",
             "value":"没有已配对的设备",
             "attr":{

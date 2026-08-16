@@ -65,8 +65,10 @@ import {
 } from '@ohos/settings.common/src/main/ets/utils/ApplicationUtil';
 import { SearchRDBController } from './SearchRDBController';
 import { SearchSecurityUtil } from '../util/SearchSecurityUtil';
+import { SearchCheckUtil } from '../util/SearchCheckUtil';
 
 const TAG: string = 'SearchController';
+const PAD_EXTERNAL_SEARCH_BLOCK_LIST: string[] = ['forced_landscape'];
 const phoneSearchConfigPath: string = 'searchConfig/phone/searchPage.json';
 const padSearchConfigPath: string = 'searchConfig/pad/searchPage.json';
 const pcSearchConfigPath: string = 'searchConfig/phone/searchPage.json';
@@ -284,6 +286,7 @@ export class SearchDataController {
       LogUtil.warn(`${TAG} searchItemList is not supported or empty`);
       return itemInfoList;
     }
+    SearchCheckUtil.initCacheKey();
     for (let searchItem of searchItemList) {
       LogUtil.info(`${TAG} searchItem.itemTitle: ${searchItem.itemTitle} ${searchItem.supportDevices}`);
       /* instrument ignore if*/
@@ -318,6 +321,7 @@ export class SearchDataController {
       LogUtil.debug(`${TAG} itemInfo`);
       itemInfoList.push(itemInfo);
     }
+    SearchCheckUtil.clearCache();
     return itemInfoList;
   }
 
@@ -366,6 +370,10 @@ export class SearchDataController {
           LogUtil.info(`${TAG} externalSearchPage ${externalSearchPage.entryKey} need hide`);
           continue;
         }
+        if (DeviceUtil.isDevicePad() && PAD_EXTERNAL_SEARCH_BLOCK_LIST.includes(externalSearchPage.entryKey)) {
+          LogUtil.info(`${TAG} externalSearchPage ${externalSearchPage.entryKey} blocked on pad`);
+          continue;
+        }
         let externalItemInfoList = await SearchDataController.getItemInfoList(externalSearchPage, curLocale,
           resourceManager, externalBundle.bundleName, context);
         LogUtil.info(`${TAG} externalItemInfoList: ${externalItemInfoList?.length}`);
@@ -394,6 +402,9 @@ export class SearchDataController {
       let retResult: RenderItemInfo[] = [];
       if (result?.length) {
         let resList = result.filter((item) => item.locale === i18n.System.getSystemLocale());
+        if (DeviceUtil.isDevicePad()) {
+          resList = resList.filter((item) => item.entryKey !== 'forced_landscape');
+        }
         retResult = await SearchDataController.getInstance().getSearchItemInfo(resList, sanitizedValue);
       }
       await SearchDataController.getInstance().initApplicationResult(value, retResult, queryMetaService);

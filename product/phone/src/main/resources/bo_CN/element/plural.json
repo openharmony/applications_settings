@@ -276,7 +276,7 @@
                 }
             ]
         },
-	    {
+        {
             "name":"magnification_scale",
             "value":[
                 {
@@ -356,6 +356,54 @@
                     "value":"ཉིན་ %d གོང་།",
                     "attr":{
                         "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"dialog_countdown_time",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"སྐར་ཆ་ %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"dialog_ok_countdown",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"གཏན་འཁེལ། (སྐར་ཆ་ %d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_timed_end_tips",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"དུས་ཚོད་ཟིན། རྡེབ་ཐེངས་ %d སྣང་མེད་བཏང་ཟིན།",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_failed_result",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"སྣང་མེད་གཏོང་མ་ཐུབ། རྡེབ་ཐེངས་དང་པོ་དང་་རྡེབ་ཐེངས་འདིའི་བར་ %.1fs ལས་བརྒལ།",
+                    "attr":{
+                        "priority":"LT"
                     }
                 }
             ]

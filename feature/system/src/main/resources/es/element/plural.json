@@ -1,0 +1,23 @@
+{
+    "plural":[
+        {
+            "name":"power_off_message",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Según lo programado, el dispositivo se apagará en %d segundo.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Según lo programado, el dispositivo se apagará en %d segundos.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

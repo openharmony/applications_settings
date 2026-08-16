@@ -1,0 +1,51 @@
+{
+    "plural":[
+        {
+            "name":"power_off_message",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"حسب التشغيل المجدول، سيتم إيقاف تشغيل جهازك خلال ثانية واحدة.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"حسب التشغيل المجدول، سيتم إيقاف تشغيل جهازك خلال %d ثانية.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"zero",
+                    "value":"حسب التشغيل المجدول، سيتم إيقاف تشغيل جهازك خلال %d ثوانٍ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"حسب التشغيل المجدول، سيتم إيقاف تشغيل جهازك خلال %d ثوانٍ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"حسب التشغيل المجدول، سيتم إيقاف تشغيل جهازك خلال %d ثانية.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"two",
+                    "value":"حسب التشغيل المجدول، سيتم إيقاف تشغيل جهازك خلال ثانيتين.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

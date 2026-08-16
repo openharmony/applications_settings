@@ -26,14 +26,31 @@ export class PageUrl {
   public static readonly ABOUT_DEVICE_PAGE_URL: string = 'pages/aboutdevice/AboutDeviceSettings';
   public static readonly ACCESSIBILITY_PAGE_URL: string = 'pages/accessibility/AccessibilitySettings';
   public static readonly ACCESSIBILITY_OPERATION_PAGE_URL: string = 'pages/accessibility/AccessibilityOperationSetting';
+  public static readonly ACCESSIBILITY_COLOR_FILTER_PAGE_URL: string = 'pages/accessibility/AccessibilityColorFilterSetting';
+  public static readonly ACCESSIBILITY_ZOOM_GESTURE_PAGE_URL: string = 'pages/accessibility/AccessibilityZoomGestureSetting';
   public static readonly ACCESSIBILITY_SCREENREADER_URL: string = 'pages/accessibility/screenreader/AccessibilityScreenReaderSettings';
   public static readonly ACCESSIBILITY_TOUCHSCREEN_PAGE_URL: string = 'pages/accessibility/AccessibilityTouchscreenSettings';
+  public static readonly ACCESSIBILITY_ELDER_CARE_PAGE_URL: string = 'pages/accessibility/AccessibilityElderCareSettings';
+  public static readonly ACCESSIBILITY_ELDER_CARE_SOS_PAGE_URL: string = 'pages/accessibility/AccessibilityElderCareSosSettings';
+  public static readonly ACCESSIBILITY_ELDER_CARE_CALL_FILTER_PAGE_URL: string = 'pages/accessibility/AccessibilityElderCareCallFilterSettings';
+  public static readonly ACCESSIBILITY_ELDER_CARE_TIPS_PAGE_URL: string = 'pages/accessibility/AccessibilityElderCareTipsSettings';
+  public static readonly SCREENREADER_MORE_SETTINGS_URL: string = 'pages/accessibility/screenreader/ScreenReaderMoreSettings';
+  public static readonly ACCESSIBILITY_SOUND_REPAIR_PAGE_URL: string = 'pages/accessibility/AccessibilitySoundRepairSettings';
   public static readonly ACCESSIBILITY_SCREENREADER_HAP_URL: string = 'pages/accessibility/screenreader/AccessibilityScreenReaderHapIndex';
   public static readonly ACCESSIBILITY_SERVICE_PAGE_URL: string = 'pages/accessibility/AccessibilityServiceSettings';
   public static readonly ACCESSIBILITY_SERVICE_INFO_PAGE_URL: string = 'pages/accessibility/AccessibilityServiceInfoSettings';
   public static readonly ACCESSIBILITY_MORE_SETTINGS_PAGE_URL: string = 'pages/accessibility/AccessibilityMoreSettings';
   public static readonly ACCESSIBILITY_HEARINGAID_PAGE_URL: string = 'pages/accessibility/AccessibilityHearingAidSettings';
   public static readonly ACCESSIBILITY_HEARINGAID_PAGE_NAME_URL: string = 'pages/accessibility/AccessibilityHearingAidNameSettings';
+  public static readonly ACCESSIBILITY_ADVANCE_VISUAL_PAGE_URL: string = 'pages/accessibility/AccessibilityAdvancedVisualSettings';
+  public static readonly ACCESSIBILITY_TRANSITION_ANIMATION_PAGE_URL: string = 'pages/accessibility/AccessibilityTransitionAnimationSettings';
+  public static readonly ACCESSIBILITY_HIGH_CONTRAST_TEXT_PAGE_URL: string = 'pages/accessibility/AccessibilityHighContrastTextSettings';
+  public static readonly ACCESSIBILITY_INVERT_COLOR_PAGE_URL: string = 'pages/accessibility/AccessibilityInvertColorSettings';
+  public static readonly ACCESSIBILITY_AUDIO_ADJUSTMENT_PAGE_URL: string = 'pages/accessibility/AccessibilityAudioAdjustmentSettings';
+  public static readonly ACCESSIBILITY_SOUND_RECOGNITION_PAGE_URL: string =
+    'Settings/accessibility/AccessibilitySoundRecognitionPage';
+  public static readonly ACCESSIBILITY_FLASH_REMINDER_PAGE_URL: string =
+    'Settings/accessibility/AccessibilityFlashReminderPage';
   public static readonly APPLICATION_PAGE_URL: string = 'pages/application/ApplicationSettings';
   public static readonly APPLICATION_INFO_PAGE_URL: string = 'pages/application/ApplicationInfoSettings';
   public static readonly APPLICATION_RESTORE_PAGE_URL: string = 'pages/application/ApplicationRestoreSettings';
@@ -82,6 +99,7 @@ export class PageUrl {
   public static readonly APP_OPEN_SOURCE_STATEMENT_LICENSE_URL: string = 'pages/aboutdevice/legalInfo/AppOpenSourceStatement';
   public static readonly APPLICATION_AND_SERVICE_PAGE_URL: string = 'pages/applicationandservice/ApplicationAndServiceSettings';
   public static readonly MOBILE_NETWORK_PAGE_URL: string = 'pages/mobilenetwork/MobileNetworkSettings';
+  public static readonly MOBILE_DATA_SETTINGS_URL: string = 'pages/mobilenetwork/MobileDataSettings';
   public static readonly SYSTEM_ROLLBACK_URL: string = 'pages/developeroptions/SystemRollback';
   public static readonly HOTSPOT_PAGE_URL: string = 'pages/mobilenetwork/HotspotSettings';
   public static readonly HOTSPOT_BLOCK_LIST_URL: string = 'pages/mobilenetwork/BlockListSettings';

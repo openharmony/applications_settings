@@ -40,6 +40,12 @@ import {
 import { SimUtils } from '@ohos/settings.common/src/main/ets/utils/SimUtils';
 import { DeviceNameItemComponent } from '@ohos/settings.commonUikit/src/main/ets/component/DeviceNameItemComponent';
 import {
+  AllSceneMenuItemController
+} from '@ohos/settings.systemUpdate/src/main/ets/controller/AllSceneMenuItemController';
+import { OUC_CARD_IMG_MARGIN } from '@ohos/settings.aboutdevice/src/main/ets/model/OucAboutDeviceViewModel';
+import { OucCardModel } from '@ohos/settings.aboutdevice/src/main/ets/model/OucCardModel';
+import { IOucEmulatorCardModel } from '@ohos/settings.aboutdevice/src/main/ets/model/IOucEmulatorCardModel';
+import {
   KernelVersionController,
   OpenHarmonyVersionController,
   ApiVersionController
@@ -98,11 +104,25 @@ export class LogoImageMenuContainerStyle extends ContainerStyle {
   public size: SizeOptions = {
     height: '50%',
   };
+  public margin: Padding = OUC_CARD_IMG_MARGIN;
   public clip = true;
   public borderRadius = $r('app.float.length_16');
   public backgroundColor = $r('sys.color.background_secondary');
 }
 
+/**
+ * 关于本机页面ouc模拟器卡片显示模型
+ *
+ * @since 2024-06-29
+ */
+@Observed
+export class OucAboutDeviceEmulatorCardModel extends IOucEmulatorCardModel {
+  public icon: Resource = $r('app.media.picture_check');
+  // public stateIcon: Resource = $r('app.media.ohos_logo');
+  public iconImageStyle: ImageStyle = new ImageMenuImageStyle();
+  public stateIconStyle: ImageStyle = new LogoImageStyle();
+  public rootContainerStyle: ContainerStyle = new LogoImageMenuContainerStyle();
+}
 
 @Builder export function deviceNameItemBuilder(param: object) {
   DeviceNameItemComponent({
@@ -138,6 +158,17 @@ export class AboutDevicePageModel {
     type: PageType.PAGE_TYPE_CUSTOM,
     title: '',
     groups: [
+      {
+        id: 'all_scene_ota_group',
+        type: GroupType.GROUP_TYPE_DYNAMIC,
+        compControl: AllSceneMenuItemController.getInstance(),
+        layout: {
+          margin: {
+            top: PADDING_0,
+            bottom: PADDING_12,
+          }
+        }
+      },
       {
         id: 'screen_name_group',
         type: GroupType.GROUP_TYPE_STANDARD,
@@ -434,6 +465,10 @@ export class AboutDevicePageModel {
   public OPACITY_PERCENT_FULL: number = 1;
   public ALPHA_DISABLED: Resource = $r('sys.float.alpha_tertiary');
 
+  // 关于界面ouc卡片位置大小显示控制
+  public oucOffsetYPixel: number = 0;
+  public oucAboutDeviceCardModel: OucCardModel = new OucCardModel(this);
+  public oucAboutDeviceEmulatorCardModel: OucAboutDeviceEmulatorCardModel = new OucAboutDeviceEmulatorCardModel();
 
   // 关于界面ouc卡片下面菜单项显示控制
   public menuListShow: boolean = true;

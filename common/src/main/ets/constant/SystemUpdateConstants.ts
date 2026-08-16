@@ -20,7 +20,7 @@ export class SystemUpdateConstants {
   /**
    * OUC包名
    */
-  public static OUC_BUNDLE_NAME: string = 'com.ohos.ouc';
+  public static OUC_BUNDLE_NAME: string = 'com.ohos.updateapp';
 
   /**
    * OUC后台服务Ability名
@@ -37,6 +37,10 @@ export class SystemUpdateConstants {
    */
   public static ALL_SCENE_MENU_ITEM_INFO: string = 'all_scene_settings_menu_item_info';
 
+  /**
+   * OUC协同更新页面URI
+   */
+  public static OUC_ALL_SCENE_PAGE_URI: string = 'com_ohos_ouc_all_scene_settings';
   /**
    * 软件更新角标数据库标志位
    */

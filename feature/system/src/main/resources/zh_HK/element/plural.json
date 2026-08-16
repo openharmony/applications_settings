@@ -1,0 +1,16 @@
+{
+    "plural":[
+        {
+            "name":"power_off_message",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"裝置將在 %d 秒後自動關機。",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

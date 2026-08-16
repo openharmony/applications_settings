@@ -49,7 +49,7 @@ export struct AlphabetIndexerComponent {
         .popupColor($r('sys.color.font_emphasize'))
         .selectedBackgroundColor($r('sys.color.comp_emphasize_tertiary'))
         .popupBackground($r('sys.color.comp_emphasize_tertiary'))
-        .usingPopup(this.isPop)
+        // .usingPopup(this.isPop)
         .selectedFont({ size: '10vp', weight: FontWeight.Medium })
         .popupFont({ size: $r('sys.float.Title_M') })
         .popupPosition({ x: '60vp' })

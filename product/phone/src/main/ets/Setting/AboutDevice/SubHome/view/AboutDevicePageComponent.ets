@@ -23,6 +23,14 @@ import { SettingGroupModel } from '@ohos/settings.common/src/main/ets/framework/
 import { AccessibilityLevelType } from '@ohos/settings.common/src/main/ets/utils/AccessibilityUtils';
 import { DeviceUtil } from '@ohos/settings.common/src/main/ets/utils/BaseUtils';
 import { LogUtil } from '@ohos/settings.common/src/main/ets/utils/LogUtil';
+import { OucAboutDeviceCard } from '@ohos/settings.aboutdevice/src/main/ets/component/OucAboutDeviceCard';
+import {
+  OucAboutDeviceEmulatorCard
+} from '@ohos/settings.aboutdevice/src/main/ets/component/OucAboutDeviceEmulatorCard';
+import {
+  ABOUT_DEVICE_TITLE_BAR_HEIGHT,
+  OucAboutDeviceViewModel
+} from '@ohos/settings.aboutdevice/src/main/ets/model/OucAboutDeviceViewModel';
 import { PushParam } from '@ohos/settings.common/src/main/ets/core/controller/Controller';
 import { SettingBaseModel } from '@ohos/settings.common/src/main/ets/framework/model/SettingBaseModel';
 import { AvoidAreaParams, WindowManager } from '@ohos/settings.common/src/main/ets/window/WindowManager';
@@ -38,11 +46,15 @@ const DELAY_SHOW_GROUP_INDEX: number = 2;
 export struct AboutDevicePageComponent {
   @State pageModel?: AboutDevicePageModel = undefined;
   private compId: string = '';
+  @Prop @Watch('onPageAreaChange') pageArea: Area;
   @StorageProp('navigationMode') navigationMode: NavigationMode = NavigationMode.Stack;
   @State displaySyncCount: number = 0;
   private scroller: Scroller = new Scroller();
   private controller?: AboutDevicePageController;
   private avoidAreaChangeCallBack: (data: AvoidAreaParams) => void = (data: AvoidAreaParams) => {
+    if (OucAboutDeviceViewModel.onAvoidAreaChange(data)) {
+      this.controller?.adjustListPosition();
+    }
   };
   private pushParams: PushParam | null = null;
   private isPhone: boolean = DeviceUtil.isDevicePhone();
@@ -58,6 +70,7 @@ export struct AboutDevicePageComponent {
 
   aboutToAppear(): void {
     LogUtil.info(`${TAG} aboutToAppear`);
+    OucAboutDeviceViewModel.aboutToAppearPageProcess();
     this.compId = this.pageModel?.settingModel.id as string;
     this.controller?.init({
       compId: this.pageModel?.settingModel.id as string,
@@ -157,11 +170,12 @@ export struct AboutDevicePageComponent {
     Column() {
       Scroll(this.scroller) {
         Column() {
-          Column()
-            .width('100%')
-            .height(this.pageModel?.listColumnMarginTop)
-            .hitTestBehavior(HitTestMode.None)
-            .accessibilityLevel(AccessibilityLevelType.NO)
+          // 更新卡片占位区域，oucCard 未启用时无需预留空白
+          // Column()
+          //   .width('100%')
+          //   .height(this.pageModel?.listColumnMarginTop)
+          //   .hitTestBehavior(HitTestMode.None)
+          //   .accessibilityLevel(AccessibilityLevelType.NO)
 
           this.settingGroups();
         }
@@ -185,7 +199,12 @@ export struct AboutDevicePageComponent {
       })
       .onDidScroll((xOffset: number, yOffset: number) => {
         if (this.pageModel !== undefined) {
-          this.pageModel.aboutDeviceTitleBackgroundColor = Color.Transparent;
+          this.pageModel.oucOffsetYPixel -= vp2px(yOffset);
+          if (Math.round(this.pageModel.oucOffsetYPixel) === 0) {
+            this.pageModel.aboutDeviceTitleBackgroundColor = Color.Transparent;
+          } else {
+            this.pageModel.aboutDeviceTitleBackgroundColor = $r('sys.color.comp_background_gray');
+          }
         }
       })
     }
@@ -196,10 +215,37 @@ export struct AboutDevicePageComponent {
     .accessibilityLevel(AccessibilityLevelType.NO)
   }
 
+  @Builder
+  oucCard() {
+    Column() {
+      // OUC组件
+      if (this.pageModel?.isEmulator) {
+        OucAboutDeviceEmulatorCard({ pageModel: this.pageModel?.oucAboutDeviceEmulatorCardModel });
+      } else {
+        OucAboutDeviceCard({
+          controller: this.controller,
+          pageModel: this.pageModel?.oucAboutDeviceCardModel,
+          pushParams: this.pushParams,
+        })
+          .enabled(!this.pageModel?.isGrayed && this.pageModel &&
+            this.pageModel.oucOffsetYPixel < OUC_CARD_ENABLE_OFFSET)
+          .opacity(this.pageModel?.isGrayed ? this.pageModel?.ALPHA_DISABLED : this.pageModel?.OPACITY_PERCENT_FULL)
+      }
+    }
+    .width('100%')
+    .height(this.pageModel?.oucAboutDeviceCardModel?.size?.height ?? '100%')
+    .expandSafeArea(this.pageModel?.safeAreaParam.types, this.pageModel?.safeAreaParam.edges)
+    .offset({ x: 0, y: this.pageModel?.oucOffsetYPixel + 'px' })
+    .visibility(Visibility.Visible)
+    .zIndex(0)
+  }
 
   @Builder
   aboutDevice() {
     Column() {
+      // Column()
+      //   .height(ABOUT_DEVICE_TITLE_BAR_HEIGHT)
+
       if (this.pageModel?.menuListShow) {
         this.aboutDeviceContent();
       }
@@ -214,6 +260,8 @@ export struct AboutDevicePageComponent {
 
   build() {
     Stack() {
+      // this.oucCard();
+
       this.aboutDevice();
     }
     .align(Alignment.TopStart)
@@ -221,6 +269,16 @@ export struct AboutDevicePageComponent {
     .height('100%')
   }
 
+  private onPageAreaChange(): void {
+    if (this.pageArea.width === 0 || this.pageArea.height === 0 || this.pageModel === undefined) {
+      LogUtil.info(`${TAG} invalid width or height`);
+      return;
+    }
+    let isChange: boolean = OucAboutDeviceViewModel.onPageAreaChange(this.pageArea);
+    if (isChange) {
+      this.controller?.adjustListPosition();
+    }
+  }
 
   private onAvoidAreaChange(): void {
     WindowManager.onAvoidAreaChange(AppStorage.get<window.WindowStage>('windowStage') as window.WindowStage,

@@ -1,0 +1,23 @@
+{
+    "plural":[
+        {
+            "name":"power_off_message",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Comme programmé, votre appareil s'éteindra dans %d seconde.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Comme programmé, votre appareil s'éteindra dans %d secondes.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

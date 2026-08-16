@@ -431,6 +431,9 @@ export class WifiTracker {
       return;
     }
     LogUtil.info(`${TAG} removeWifiDevice id: ${removeNetId}`);
+    // 若删除的正是当前"正在连接/切换中"的网络，先复位连接状态机，
+    // 否则其会卡在 DISCONNECTING 状态，导致 UI 一直显示"正在断开连接"。
+    apConnectManager.cancelConnectIfRemoved(wifiConfig.ssid, wifiConfig.securityType, removeNetId as number);
     if (isRefresh === undefined) {
       // 默认需要刷新
       isRefresh = true;
@@ -468,6 +471,8 @@ export class WifiTracker {
       LogUtil.error(`${TAG} removeWifiDeviceById, network is ${network}.`);
       return;
     }
+    // 若删除的正是当前"正在连接/切换中"的网络，先复位连接状态机，避免卡在 DISCONNECTING。
+    apConnectManager.cancelConnectIfRemoved(undefined, undefined, network);
     if (wifiManager.isConnected()) {
       LogUtil.info(`${TAG} removeWifiDeviceById, wifi is Connected`);
       let result = WifiUtils.disconnect();
@@ -863,6 +868,37 @@ class ApConnectManager {
       this.connectConfig.securityType);
     let newKey = WifiUtils.getApKey(newConfig.ssid, newConfig.bssid ?? '', newConfig.securityType);
     return oldKey !== newKey;
+  }
+
+  /**
+   * 取消当前正在进行的连接/切换（仅当目标网络为被删除的网络时）。
+   * 用于删除"正在连接/切换中"的网络场景：复位状态机、注销监听，
+   * 避免 DISCONNECTING 状态卡死导致 UI 一直显示"正在断开连接"，并避免断开后重连已删除的网络。
+   *
+   * @param ssid 被删除网络的ssid
+   * @param securityType 被删除网络的安全类型
+   * @param netId 被删除网络的netId（可选）
+   * @returns 是否命中并复位
+   */
+  public cancelConnectIfRemoved(ssid?: string, securityType?: number, netId?: number): boolean {
+    if (this.wifiConnectState === ApConnectManager.IDLE || !this.connectConfig) {
+      return false;
+    }
+    let isMatch: boolean = false;
+    if (ssid && this.connectConfig.ssid === ssid &&
+      (securityType === undefined || this.connectConfig.securityType === securityType)) {
+      isMatch = true;
+    }
+    if (!isMatch && WifiUtils.isValidNetworkId(netId as number) && this.connectConfig.netId === netId) {
+      isMatch = true;
+    }
+    if (!isMatch) {
+      return false;
+    }
+    LogUtil.info(`${TAG_MANAGER} cancelConnectIfRemoved: target network removed during connecting, reset state to IDLE.`);
+    EventBus.getInstance().emit(CONNECT_RESULT_EVENT, false);
+    this.finishConnect();
+    return true;
   }
 
   private onConnectResult(result: number, reason: number): void {

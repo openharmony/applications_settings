@@ -498,6 +498,13 @@
             }
         },
         {
+            "name":"accessibility_original",
+            "value":"ཐུགས་ཁུར་དང་འགལ་རྐྱེན་མེད་པ།",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
             "name":"wifi_status_unsuccessful",
             "value":"མ་གྲུབ།",
             "attr":{
@@ -4642,13 +4649,6 @@
             }
         },
         {
-            "name":"elder_care_desktop_layout",
-            "value":"ཅོག་ངོས་འགྲེམ་ཚུལ།",
-            "attr":{
-                "priority":"LT"
-            }
-        },
-        {
             "name":"elder_care_search_item_elder",
             "value":"རྒན་རབས།",
             "attr":{
@@ -8400,6 +8400,10 @@
               "priority":"translate"
           }
       },
+      {
+        "name": "sim_card_management_title",
+        "value": "SIM ཁཱ་དོ་དམ།"
+      },
         {
             "name": "privacy_settings_title",
             "value": "སྒེར་གསང་དང་བདེ་འཇགས།"
@@ -8414,6 +8418,685 @@
       {
         "name": "data_usage_management_title",
         "value": "ཁུར་འགྲོ་དོ་དམ།"
-      }
+      },
+      {
+        "name": "users_accounts_title",
+        "value": "སྤྱོད་མི་དང་རྩིས་ཐོ།"
+      },
+      {
+        "name": "accessibility_visual_aids_tips",
+        "value": "མཐོང་རྟོགས་མངོན་སྟོན་དང་འབྲེལ་འདྲིས་ཐབས་ལམ་རང་སྒྲིག་བྱས་ནས། མཐོང་ནུས་ཞན་པ་དང་མིག་ལོང་བ། ཡང་ན་ཁ་དོག་ལ་ཚོར་སྣང་ཆེ་བའི་སྤྱོད་མི་རྣམས་ལ་སྒྲིག་ཆས་སྤྱོད་པར་རོགས་རམ་བྱེད།"
+      },
+      {
+        "name": "accessibility_hearing_aids_tips",
+        "value": "ཉན་ནུས་སམ་སྐད་ཆའི་བར་ཆད་ཡོད་པའི་སྤྱོད་མི་རྣམས་ལ་སྒྲིག་ཆས་སྤྱོད་པ་དང་ལེགས་པར་འབྲེལ་གཏུག་བྱེད་པར་རོགས་རམ་བྱེད།"
+      },
+      {
+        "name": "accessibility_interactive_control_tips",
+        "value": "རེག་སྟངས་ལན་འདེབས་རང་སྒྲིག་བྱས་ནས། མཛུབ་མོའི་སྟངས་འཛིན་ནུས་པ་ཚད་ཡོད་པའི་སྤྱོད་མི་རྣམས་ལ་སྟབས་བདེ་པོ་ཡོང་བར་བྱེད།"
+      },
+      {
+        "name": "accessibility_shortKey_tips",
+        "value": "སྒྲ་གདངས་ཆེ་ཆུང་མཐེབ་གཞོང་མནན་ནས་བཀོལ་སྤྱོད་ཆེ་བའི་བར་ཆད་མེད་པའི་ནུས་པ་མྱུར་དུ་ཁ་ཕྱེ་ཁ་རྒྱག་བྱེད་ཆོག"
+      },
+      {
+        "name": "restore_defaults_dialog_title",
+        "value": "སྔོན་སྒྲིག་གི་ཐོབ་ཐང་སླར་གསོ་བྱེད་དམ།"
+      },
+      {
+        "name": "restore_defaults_visual_dialog_content",
+        "value": "སྔོན་སྒྲིག་སླར་གསོ་བྱས་ན་ཁྱེད་ཀྱིས་མཐོང་རྟོགས་རོགས་རམ་ནང་སྒྲིག་པའི་སྒེར་གྱི་དགའ་མོས་ཡོངས་སླར་གསོ་བྱེད།"
+      },
+      {
+        "name": "restore_defaults_hearing_dialog_content",
+        "value": "སྔོན་སྒྲིག་སླར་གསོ་བྱས་ན་ཁྱེད་ཀྱིས་ཉན་རྟོགས་རོགས་རམ་ནང་སྒྲིག་པའི་སྒེར་གྱི་དགའ་མོས་ཡོངས་སླར་གསོ་བྱེད།"
+      },
+      {
+        "name": "restore_defaults_control_dialog_content",
+        "value": "སྔོན་སྒྲིག་སླར་གསོ་བྱས་ན་ཁྱེད་ཀྱིས་འབྲེལ་འདྲིས་སྟངས་འཛིན་ནང་སྒྲིག་པའི་སྒེར་གྱི་དགའ་མོས་ཡོངས་སླར་གསོ་བྱེད།"
+      },
+      {
+        "name": "restore_defaults_dialog_confirm",
+        "value": "སླར་གསོ་གཏན་འཁེལ།"
+      },
+      {
+        "name": "screenreader_is_sure_open",
+        "value": "བརྙན་ཤེལ་ཀློག་འདོན་ཁ་ཕྱེ་འམ།"
+      },
+      {
+        "name": "ignore_repeat_click_screen_reader_open",
+        "value": "བརྙན་ཤེལ་ཀློག་འདོན་ཁ་ཕྱེ་ན་ད་ལྟའི་བརྒྱུད་རིམ་ནས་ཕྱིར་འཐེན་ཏེ་«ཡང་ཡང་མནན་པ་སྣང་མེད་དུ་འཇོག་པ»་ཁ་རྒྱག ཁ་ཕྱེ་འམ།"
+      },
+      {
+        "name": "ignore_repeat_click_screen_reader_confirm",
+        "value": "བརྙན་ཤེལ་ཀློག་འདོན་ཁ་ཕྱེ་ན་«ཡང་ཡང་མནན་པ་སྣང་མེད་དུ་འཇོག་པ»་ཁ་རྒྱག ཁ་ཕྱེ་འམ།"
+      },
+      {
+        "name": "ignore_repeated_time_shortest",
+        "value": "%1$s སྐར་ཆ།"
+      },
+      {
+        "name": "ignore_repeated_time_short",
+        "value": "%1$s སྐར་ཆ།"
+      },
+      {
+        "name": "ignore_repeated_time_medium",
+        "value": "%1$s སྐར་ཆ།"
+      },
+      {
+        "name": "ignore_repeated_time_long",
+        "value": "%1$s སྐར་ཆ།"
+      },
+      {
+        "name": "ignore_repeated_time_longest",
+        "value": "%1$s སྐར་ཆ།"
+      },
+      {
+        "name": "accessibility_shortKey",
+        "value": "བར་ཆད་མེད་པའི་མྱུར་མཐེབ།"
+      },
+      {
+        "name": "accessibility_features",
+        "value": "རིམ་མཐོའི་མཐོང་རྟོགས་རོགས་རམ།"
+      },
+      {
+        "name": "accessibility_hearing_aids",
+        "value": "ཉན་རྟོགས་རོགས་རམ།"
+      },
+      {
+        "name": "accessibility_interactive_control",
+        "value": "འབྲེལ་འདྲིས་སྟངས་འཛིན།"
+      },
+      {
+        "name": "accessibility_visual_aids",
+        "value": "མཐོང་རྟོགས་རོགས་རམ།"
+      },
+      {
+        "name": "audio_accessibility",
+        "value": "ཉན་རྟོགས།"
+      },
+      {
+        "name": "elder_care_display_level",
+        "value": "ཆེ་བ %d"
+      },
+      {
+        "name": "elder_care_guide_page_title",
+        "value": "ལག་ཐོག་སྤྱོད་པར་སྟབས་བདེ་ཞིང་བཀོལ་སྤྱོད་མྱུར་པོ།"
+      },
+      {
+        "name": "elder_care_introduction_text",
+        "value": "ཆེ་རུ་གཏོང་བ་སོགས་སེམས་ཁྲལ་ཅན་གྱི་ནུས་པ་ཚུད་ཡོད་ཅིང་། རྒན་པའི་སྤྱོད་མི་རྣམས་ལ་ཁ་པར་སྟབས་བདེ་ཞིང་ལས་སླ་པོར་སྤྱོད་པར་རོགས་རམ་བྱེད།"
+      },
+      {
+        "name": "elder_care_make_larger",
+        "value": "ཆེ་རུ་གཏོང་།"
+      },
+      {
+        "name": "elder_care_make_smaller",
+        "value": "ཆུང་དུ་གཏོང་།"
+      },
+      {
+        "name": "elder_care_preview_text1_new",
+        "value": "ཁྱེད་ཀྱིས་འོག་གི་འགུལ་ཤུད་འདྲུད་ན། ཡིག་གཟུགས་ཆེ་ཆུང་དང་སྦོམ་ཕྲ་སྒྲིག་ཐུབ་པ་མ་ཟད། པར་རིས་ཀྱི་མངོན་འབྲས་ཀྱང་མཉམ་དུ་ཆེ་ཆུང་གཏོང་ཐུབ་པ་ཤེས་སམ།"
+      },
+      {
+        "name": "elder_care_switch_summary_no_sim",
+        "value": "ཁ་ཕྱེས་རྗེས། ཡིག་ཆེན་དང་པར་རིས་ཆེན་པོ་སོགས་ཀྱི་ནུས་པ་སྟབས་བདེ་ཞིང་མྱུར་པོར་སྒྲིག་ཐུབ།"
+      },
+      {
+        "name": "elder_care_title",
+        "value": "བརྩེ་སྐྱོང་དཔེ་དབྱིབས།"
+      },
+      {
+        "name": "elders_mode_block_rules_summary",
+        "value": "དེ་དང་མཉམ་དུ་གཤམ་གསལ་ཟིང་འཁྲུག་འགོག་ཐབས་མཉམ་སྦྲེལ་གྱིས་ཁ་འབྱེད།\n• ཟིང་འཁྲུག་ཁ་པར་འགོག་པ།\n• ཉེན་ཁ་ཆེ་བའི་ཁ་པར་འགོག་པ།\n• ཁྱབ་བསྒྲགས་ཚོང་འགྱེད་ཁ་པར་འགོག་པ།\n• ཁང་ཁྱིམ་བར་འཛིན་ཁ་པར་འགོག་པ།\n• ལན་གཅིག་སྒྲ་སྒྲོག་པའི་ཁ་པར་འགོག་པ།\n• གནོད་འཚེ་ཅན་གྱི་དྲ་ཐོ་ངོས་འཛིན (དྲ་སྦྲེལ་དགོས)"
+      },
+      {
+        "name": "flash_reminder_desc",
+        "value": "བརྙན་ཤེལ་སྒོ་བརྒྱབ་པའི་སྐབས་ཁ་པར་ཡོང་བའམ། བརྡ་ཐོ་འབྱོར་བ། ཡང་ན་ཆུ་ཚོད་ཀྱི་སྒྲ་སྒྲོག་སྐབས། འོད་འཕྲོ་མདའ་འགུལ་སྐྱེན་གྱིས་དྲན་སྐུལ་བྱེད།"
+      },
+      {
+        "name": "flash_reminder_header",
+        "value": "གཤམ་གསལ་གནས་ཚུལ་ལ་རྒྱབ་སྐྱོར་བྱེད།"
+      },
+      {
+        "name": "ignore_repeat_click_change_reconfirm_summary",
+        "value": "ཡང་ཡང་མནན་པ་སྣང་མེད་དུ་འཇོག་པའི་དུས་ཡུན་ %1$s ནས་ %2$s ལ་བསྒྱུར་བ་གཏན་འཁེལ་ལམ།"
+      },
+      {
+        "name": "ignore_repeat_click_change_reconfirm_title",
+        "value": "ཡང་ཡང་མནན་པ་སྣང་མེད་དུ་འཇོག་པའི་དུས་ཡུན་བསྒྱུར་རམ།"
+      },
+      {
+        "name": "ignore_repeat_click_notification_button_disable",
+        "value": "ནུས་པ་ཁ་རྒྱག"
+      },
+      {
+        "name": "ignore_repeat_click_reconfirm_declaration",
+        "value": "འགྲེལ་བཤད།"
+      },
+      {
+        "name": "ignore_repeat_click_reconfirm_summary",
+        "value": "ཁ་ཕྱེས་རྗེས། སྒྲིག་པའི་དུས་བར་ནང་ཐེངས་མང་མནན་པ་ཐེངས་གཅིག་མནན་པར་རྩིས། དཔེར་ན། མཐེབ་གཞོང་སྟེང་མུ་མཐུད་ནང་འཇུག་ཐེངས་གཅིག་མནན་པར་ངོས་འཛིན་བྱས་ན། ནང་འཇུག་འགག་འཚང་གི་ཚོར་སྣང་ཡོང་སྲིད། ཁ་ཕྱེ་བ་གཏན་འཁེལ་ལམ།"
+      },
+      {
+        "name": "ignore_repeated_left_click",
+        "value": "གཡོན་ཕྱོགས་ཀྱི་ཡིག་འབྲུ་མཐེབ་གཞོང་མནན་རོགས།"
+      },
+      {
+        "name": "ignore_repeated_left_click_result",
+        "value": "མནན་པ་ལེགས་འགྲུབ། གཡོན་མཐེབ་ཐེངས་དང་པོ་མནན་ཟིན།"
+      },
+      {
+        "name": "ignore_repeated_previous_step",
+        "value": "གོང་གི་རིམ་པ།"
+      },
+      {
+        "name": "ignore_repeated_recommended_close",
+        "value": "ཁྱེད་ཀྱིས་«ཡང་ཡང་མནན་པ་སྣང་མེད་དུ་འཇོག་པ»་ནུས་པ་ཁ་རྒྱག་པ་འོས།"
+      },
+      {
+        "name": "ignore_repeated_recommended_delay",
+        "value": "ཁྱེད་ཀྱིས་དུས་ཡུན་ཅུང་ཙམ་རིང་དུ་གཏོང་བ་འོས།"
+      },
+      {
+        "name": "ignore_repeated_recommended_shorten",
+        "value": "ཁྱེད་ཀྱིས་དུས་ཡུན་ཅུང་ཙམ་ཐུང་དུ་གཏོང་བ་འོས།"
+      },
+      {
+        "name": "ignore_repeated_right_click",
+        "value": "གཡས་ཕྱོགས་ཀྱི་ཡིག་འབྲུ་མཐེབ་གཞོང་མནན་རོགས།"
+      },
+      {
+        "name": "ignore_repeated_right_click_result",
+        "value": "མནན་པ་ལེགས་འགྲུབ། གཡས་མཐེབ་ཐེངས་དང་པོ་མནན་ཟིན།"
+      },
+      {
+        "name": "ignore_repeated_time_select_summary",
+        "value": "མནན་པའི་བྱ་འགུལ་སློང་བའི་མཐུན་རྐྱེན་ཚད་འཛིན་བྱས་ནས། དུས་ཡུན་ཐུང་ངུའི་ནང་མི་དགོས་པའི་ཡང་ཡང་མནན་པ་སྣང་མེད་དུ་འཇོག་པར་རོགས་རམ་བྱེད།"
+      },
+      {
+        "name": "ignore_repeated_time_select_tips",
+        "value": "«ཡང་ཡང་མནན་པ་སྣང་མེད་དུ་འཇོག་པ»་ཡི་དུས་ཡུན་འོས་འཚམ་ཞིག་འདེམས་རོགས། བདམས་རྗེས། དུས་བར་དེའི་ནང་ཐེངས་མང་མནན་པ་ཐེངས་གཅིག་ལ་རྩིས།"
+      },
+      {
+        "name": "ignore_repeated_timed_end",
+        "value": "དུས་ལ་སླེབས་སོང་།"
+      },
+      {
+        "name": "ignore_repeated_trial_again",
+        "value": "ཡང་བསྐྱར་ཚོད་ལྟ།"
+      },
+      {
+        "name": "ignore_repeated_trial_end",
+        "value": "ཚོད་ལྟ་མཇུག་བསྒྲིལ།"
+      },
+      {
+        "name": "ignore_touch_close",
+        "value": "ཁ་རྒྱག (སྔོན་སྒྲིག)"
+      },
+      {
+        "name": "multi_targets",
+        "value": "%s སོགས།"
+      },
+      {
+        "name": "on_transition_animations_dialog_summary",
+        "value": "ཁ་བརྒྱབ་རྗེས་ངོས་འཕོ་འགྱུར་དང་མཉེན་ཆས་འགོ་འཛུགས་ཕྱིར་འཐེན་སོགས་ཀྱི་གནས་ཚུལ་གྱི་འཇམ་འདྲིལ་ལ་ཤུགས་རྐྱེན་ཐེབས།"
+      },
+      {
+        "name": "on_transition_animations_dialog_title",
+        "value": "འཕོ་འགྱུར་འགུལ་རིས་ཁ་རྒྱག་གམ།"
+      },
+      {
+        "name": "off_transition_animations_notification_confirm",
+        "value": "ནུས་པ་ཁ་ཕྱེ།"
+      },
+      {
+        "name": "off_transition_animations_notification_summary",
+        "value": "ནུས་པ་འདིས་ངོས་འཕོ་འགྱུར་དང་མཉེན་ཆས་འགོ་འཛུགས་ཕྱིར་འཐེན་སོགས་ཀྱི་འཇམ་འདྲིལ་མཐོ་རུ་གཏོང་བར་ཕན། ཁ་ཕྱེ་བ་འོས།"
+      },
+      {
+        "name": "off_transition_animations_notification_title",
+        "value": "ཁྱེད་ཀྱིས་འཕོ་འགྱུར་འགུལ་རིས་ཁ་བརྒྱབ་པ་མ་ལག་གིས་ཚོར།"
+      },
+      {
+        "name": "on_zoom_gesture_dialog_summary",
+        "value": "བརྙན་ཤེལ་ཆེ་རུ་གཏང་བའི་གནས་སྐབས། བརྙན་ཤེལ་ལ་ཐེངས་ %s མནན་ནས་ཆེ་རུ་གཏོང་བ་མཚམས་འཇོག་ཐུབ།"
+      },
+      {
+        "name": "on_zoom_gesture_dialog_title",
+        "value": "ཆེ་རུ་གཏོང་བའི་ལག་བརྡ་ཁ་ཕྱེ་འམ།"
+      },
+      {
+        "name": "restore_defaults",
+        "value": "སྔོན་སྒྲིག་སླར་གསོ།"
+      },
+      {
+        "name": "shortKey_Enable_Aware",
+        "value": "ཁ་ཕྱེས་རྗེས། སྒྲ་གདངས་ཆེ་ཆུང་མཐེབ་གཉིས་མཉམ་དུ་སྐར་ཆ་ %1$s མནན་ན། གཤམ་གྱི་ནུས་པ་མྱུར་དུ་སློང་ཐུབ། %2$s"
+      },
+      {
+        "name": "shortKey_prompt",
+        "value": "ཁ་ཕྱེས་རྗེས། སྒྲ་གདངས་ཆེ་ཆུང་མཐེབ་གཉིས་མཉམ་དུ་སྐར་ཆ་ %s མནན་ན། བར་ཆད་མེད་པའི་ནུས་པ་མྱུར་དུ་སློང་ཐུབ།"
+      },
+      {
+        "name": "transition_animation_text",
+        "value": "འཕོ་འགྱུར་འགུལ་རིས།"
+      },
+      {
+        "name": "transition_animations_reminder_detail",
+        "value": "ཁ་བརྒྱབ་རྗེས། མཚམས་ངོས་ཁ་ཅིག་གི་འགུལ་རྣམ་གྱི་འགྱུར་འགྲོས་ཀྱི་ཁྱད་ནུས་ཞན་དུ་གཏོང་བའམ་སྤོ་འབུད་བྱ། དེས་མགོ་ཡུ་མི་འཁོར་བར་བྱེད་ཐུབ།"
+      },
+      {
+        "name": "visual_accessibility",
+        "value": "མཐོང་རྟོགས།"
+      },
+      {
+        "name": "zoom_gesture_risk_warning",
+        "value": "ཉེན་ཁའི་བརྡ་སྟོན།"
+      },
+      {
+        "name": "zoom_gesture_risk_warning_summary",
+        "value": "ནུས་པ་འདི་ཁ་ཕྱེས་རྗེས། ཁྱེད་ཀྱིས་མུ་མཐུད་ཐེངས་མང་བརྙན་ཤེལ་ལ་རེག་སྐབས། བརྙན་ཤེལ་ཆེ་རུ་གཏོང་སྲིད། དཔེར་ན། རྩིས་འཁོར་ནང་«%s»་ནང་འཇུག་པ་ལྟ་བུ།\nནུས་པ་འདི་ཁ་ཕྱེས་ན་སྒྲིག་ཆས་ཀྱི་ལན་འདེབས་མྱུར་ཚད་དལ་དུ་འགྲོ་སྲིད།"
+      },
+      {
+        "name": "audio_balance_left_mute_toast",
+        "value": "གཡོན་སྒྲ་ལམ་གྱི་སྒྲ་གདངས་སྒྲ་མེད་དུ་བསྒྱུར་ཟིན།"
+      },
+      {
+        "name": "audio_balance_right_mute_toast",
+        "value": "གཡས་སྒྲ་ལམ་གྱི་སྒྲ་གདངས་སྒྲ་མེད་དུ་བསྒྱུར་ཟིན།"
+      },
+      {
+        "name": "high_contrast_dialog_title",
+        "value": "མཐོ་རིམ་ལྡོག་ཟླའི་ཡིག་གཟུགས་ཁ་ཕྱེ་འམ།"
+      },
+      {
+        "name": "audio_balance_reminder",
+        "value": "སྒྲ་གདངས་སྙོམས་སྒྲིག་བྱས་རྗེས། རྣ་ཆས་སྤྱོད་སྐབས་གཡས་གཡོན་རྣ་ཆས་ཀྱི་སྒྲ་གདངས་ཁྱད་པར་ཆེ་བར་འགྱུར་སྲིད།"
+      },
+      {
+        "name": "confirm_close_dark_mode_content",
+        "value": "ཁ་ཕྱེས་རྗེས་«མདོག་ནག་དཔེ་དབྱིབས»་ཁ་རྒྱག"
+      },
+      {
+        "name": "elder_care_preview_text2",
+        "value": "ཤེས་སོང་། འགུལ་ཤུད་འདྲུད་ན་མངོན་འབྲས་ཆེས་འོས་འཚམ་ཞིག་ཐོབ་ཐུབ།"
+      },
+      {
+        "name": "elders_mode_title",
+        "value": "རྒན་རྒོན་བརྩེ་སྐྱོང་།"
+      },
+                   {
+                       "name":  "accessibility_user_approval",
+                       "value":  "ངས་གོང་གི་ཉེན་ཁ་རྣམས་ཤེས་སོང་། འབྱུང་སྲིད་པའི་མཇུག་འབྲས་རང་མོས་ཀྱིས་འཁུར་རྒྱུ་ཡིན།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "assisted_reading_not_enable",
+                       "value":  "ཁ་ཕྱེ་མེད།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "assisted_reading_page_title",
+                       "value":  "དཔེ་ཀློག་རམ་འདེགས།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "assisted_reading_prompt_text",
+                       "value":  "ཁྱེད་ཀྱིས་ཡིག་གཟུགས་ཆེ་ཆུང་ལེགས་སྒྲིག་བྱེད་པའམ་ཆེར་གཏོང་ལག་བརྡའི་ཁ་ཕྱེ་སྟེ། སྔར་ལས་ལེགས་པའི་མཐོང་ཚོར་ཉམས་ལེན་ཐོབ་པར་བྱ་ཆོག",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "audio_adjustment",
+                       "value":  "སྒྲ་ཟློས་སྙོམ་སྒྲིག",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "back_to_parent_menu",
+                       "value":  "ཕྱིར་ལོག",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "be_chosen",
+                       "value":  "བདམས་ཟིན།",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "dialog_cancel",
+                       "value":  "འདོར་བ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "dialog_confirm_to_open",
+                       "value":  "ཁ་འབྱེད་རྒྱུ་གཏན་འཁེལ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "dialog_stay_closed",
+                       "value":  "ཁ་བརྒྱབ་ནས་འཇོག",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "display_mode_font_size_extra_large",
+                       "value":  "ཆེས་ཆེན་པོ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "display_mode_font_size_huge",
+                       "value":  "ཤིན་ཏུ་ཆེན་པོ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "display_mode_font_size_large",
+                       "value":  "ཆེ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "display_mode_font_size_normal",
+                       "value":  "ཚད་ལྡན།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "done",
+                       "value":  "གཏན་འཁེལ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "elder_care_search_item_font_size",
+                       "value":  "ཡིག་གཟུགས་ཆེ་ཆུང་།",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "hearing_aid_left_era_device",
+                       "value":  "རྣ་ཅོག་གཡོན་པའི་སྒྲིག་ཆས།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "hearing_aid_right_era_device",
+                       "value":  "རྣ་ཅོག་གཡས་པའི་སྒྲིག་ཆས།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "highContrast_text_reminder",
+                       "value":  "ཁ་ཕྱེ་རྗེས། ཡི་གེ་དང་རྒྱབ་ལྗོངས་དབར་གྱི་ཁ་དོག་གི་བསྡུར་བ་ཤུགས་ཆེར་གཏོང་ཐུབ། ཡི་གེ་དེ་བས་མངོན་གསལ་དོད། བརྙན་ཡོལ་ཐོག་གི་ཡི་གེ་ཀློག་བདེ་པོ་འོང་ཐུབ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "input_max_length_message",
+                       "value":  "ནང་བཅུག་ཚད་ལས་བརྒལ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "invert_color_reminder",
+                       "value":  "ཁ་ཕྱེ་རྗེས། བརྙན་ཡོལ་ཐོག་གི་ཁ་དོག་ཚང་མ་ལྡོག་འཁོར་བྱ་སྟེ། བསྡུར་ཚད་དམའ་བའི་ནང་དོན་ངོས་འཛིན་ནུས་པ་ཞན་པའི་སྤྱོད་མཁན་ལ། ནང་དོན་དབྱེ་འབྱེད་གསལ་པོ་བྱེད་རོགས་ཐུབ། རྩོལ་ནུས་འདི་ཁ་ཕྱེ་རྗེས། གཤིས་ནུས་ལ་ཤུགས་རྐྱེན་ཐེབས་སྲིད།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "load_more_card",
+                       "value":  "དེ་ལས་མང་བ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "move_zoom_gesture_summary",
+                       "value":  "ཆེ་རུ་བཏང་བའི་གནས་སྐབས་སུ། ཆེ་རུ་བཏང་བའི་ཁུལ་ཁོངས་མཛུབ་མོས་དྲུད་ནས་སྤོས་ཆོག",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "move_zoom_gesture_title",
+                       "value":  "ཆེ་རུ་བཏང་བའི་ཁུལ་ཁོངས་སྤོ་བ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "not_be_chosen",
+                       "value":  "བདམས་མེད།",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "note",
+                       "value":  "དྲན་སྐུལ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "on_zoom_gesture_summary",
+                       "value":  "བརྙན་ཡོལ་ལ་བསྟུད་མར་ཐེངས་ %1$s བརྡབས་ནས་བརྙན་ཡོལ་གྱི་ནང་དོན་ཆེ་རུ་བཏང་ཆོག ཆེ་རུ་བཏང་ནས་གནས་ཡོད་སྐབས། བརྙན་ཡོལ་ལ་ཡང་བསྐྱར་ཐེངས་ %2$s བརྡབས་ནས་ཆེ་རུ་བཏང་བ་ལས་ཕྱིར་འཐེན་བྱ་ཆོག",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "on_zoom_gesture_title",
+                       "value":  "ཆེར་གཏོང་ལག་བརྡ་སྤྱོད་འགོ་འཛུགས་པའམ་ཕྱིར་འཐེན་བྱེད་པ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "repeat_name_warning",
+                       "value":  "མིག་སྔར་སྦྲེལ་བའི་དྲ་རྒྱ་དང་མིང་གཅིག་པ་ཡིན་མི་རུང་བས། བསྐྱར་དུ་ནང་འཇུག་བྱེད་རོགས།",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "resize_zoom_gesture_summary",
+                       "value":  "ཆེ་རུ་བཏང་བའི་གནས་སྐབས་སུ། མཛུབ་མོ་གཉིས་འབྱེད་ཟུམ་བྱས་ཏེ་ཆེ་རུ་གཏོང་བའི་བསྡུར་ཚད་མྱུར་དུ་སྙོམ་སྒྲིག་བྱ་ཆོག",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "resize_zoom_gesture_title",
+                       "value":  "ཆེ་རུ་གཏོང་བའི་བསྡུར་ཚད་སྙོམ་སྒྲིག",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screen_zoom_text_size",
+                       "value":  "ཡིག་གཟུགས་ཆེ་ཆུང་།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help",
+                       "value":  "རོགས་རམ།",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_eight",
+                       "value":  "བསད་སྤར་གནོན་རྡེབ་བྱས་ན། ཕྱི་སྒྲོམ་ལྗང་ཁུ་ཞིག་མཐོང་ཐུབ་ཅིང་། བསད་སྤར་ཐེངས་གཉིས་གནོན་རྡེབ་བྱོས།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_five",
+                       "value":  "གནོན་རྡེབ་ཐེངས་གཉིས་བྱས་ཏེ་རྩོལ་ནུས་གང་རུང་ཞིག་སྐུལ་སློང་བྱེད།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_four",
+                       "value":  "གཡས་གཡོན་ལ་འདེད་འགུལ་ནས་ནང་དོན་མི་འདྲ་བའི་དབར་སྤོ་འགུལ་བྱེད་པ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_seven",
+                       "value":  "བརྙན་ཡོལ་ཀློག་འདོན་ཁ་རྒྱག་དགོས་ན། གཤམ་གྱི་སྒྲིག་བཀོལ་ལག་བསྟར་བྱ་དགོས་ཏེ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_six",
+                       "value":  "མཛུབ་མོ་གཉིས་ཀྱིས་དྲུད་ནས་སྒྲིག་འགུལ་བྱེད་པ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_three",
+                       "value":  "བརྙན་ཡོལ་ཀློག་འདོན་གྱིས་ཕྱོགས་སྟོན་བྱ་དགོས་ན། གཤམ་གྱི་སྒྲིག་བཀོལ་ལག་བསྟར་བྱ་དགོས་ཏེ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_two",
+                       "value":  "བརྙན་ཡོལ་ཀློག་འདོན་ཁ་ཕྱེ་རྗེས། དེས་ཁྱེད་ལ་སྐད་གདངས་ལྡོག་འདྲེན་མཁོ་འདོན་བྱེད། འདི་ལྟར་ཁྱེད་ཀྱིས་སྒྲིག་ཆས་བཀོལ་སྐབས་བརྙན་ཡོལ་བལྟ་མི་དགོས། མིག་གི་དབང་པོར་སྐྱོན་ཡོད་པའི་སྤྱོད་མཁན་ལ་མཚོན་ན། རྩོལ་ནུས་འདིས་ཕན་ཆེན་པོ་ཐོགས་ངེས།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_is_sure_add",
+                       "value":  "བརྙན་ཡོལ་ཀློག་འདོན་སྣོན་དགོས་སམ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_is_sure_add_summary",
+                       "value":  "རྩོལ་ནུས་དེ་བསྣན་པའི་རྗེས་སུ། ཁྱེད་ཀྱིས་དུས་མཚུངས་སུ་སྒྲ་ཚད་ཀྱི་མཐེབ་གོང་འོག་སྐར་ཆ་ %1$s ཙམ་མནན་ཏེ། བརྙན་ཡོལ་ཀློག་འདོན་ཁ་འབྱེད་པའམ་ཁ་རྒྱག་ཆོག བརྙན་ཡོལ་ཀློག་འདོན་ཁ་ཕྱེ་ཚེ། སྒྲིག་ཆས་ཚོད་འཛིན་གྱི་ལག་བརྡར་འགྱུར་བ་གཏོང་ཐུབ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_risk_content_one",
+                       "value":  "ཁ་ཕྱེ་རྗེས་ཁྱེད་ཀྱི་སྒྲིག་ཆས་བཀོལ་བའི་གོམས་གཤིས་ལ་འགྱུར་བ་འགྲོ་སྲིད། བརྙན་ཡོལ་ཐོག་གི་ནང་དོན་སྐད་གདངས་ལམ་ནས་ལྡོག་འདྲེན་བྱ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_risk_content_three",
+                       "value":  "གལ་ཏེ་རྩོལ་ནུས་དེ་ཁ་རྒྱག་དགོས་ན། བརྙན་ཡོལ་ཀློག་འདོན་གྱི་བསད་སྤར་ལ་རྡེབ་རོགས། བསད་སྤར་གྱི་སར་ཕྱི་སྒྲོམ་ལྗང་ཁུ་ཞིག་འཆར་ཞིང་། བསད་སྤར་ལ་མྱུར་དུ་ཐེངས་གཉིས་བརྡབས་མ་ཐག་ཁ་རྒྱག་ཐུབ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_risk_content_two",
+                       "value":  "ཁ་མ་ཕྱེ་གོང་གཤམ་གྱི་ནང་དོན་ཞིབ་ཏུ་ཀློག་རོགས།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "setting_font_size_content1",
+                       "value":  "ཀ་ཡེ། ཁྱེད་ཀྱིས་ཡིག་གཟུགས་ཆེ་ཆུང་ཇི་ལྟར་ལེགས་སྒྲིག་བྱ་དགོས་པ་ཤེས་སམ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "setting_font_size_content2",
+                       "value":  "ཤེས། ཚོད་འཛིན་ཐིག་འགུལ་འདྲུད་བྱས་ན་ཡིག་གཟུགས་ཆེ་ཆུང་ལེགས་སྒྲིག་བྱེད་ཐུབ།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "single_audio_reminder",
+                       "value":  "སྒྲ་ཟློས་གཏོང་སྐབས་སྒྲ་ལམ་ཟླ་སྒྲིལ་གཏོང་། དངོས་སྣང་སྒྲའི་སྒྲ་ནུས་ལ་ཁྱད་པར་མེད།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "title",
+                       "value":  "ཁ་བྱང་།",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "toggle_to_bigger",
+                       "value":  "ཆེ་རུ་གཏོང་བ།",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "toggle_to_smaller",
+                       "value":  "ཆུང་དུ་གཏོང་བ།",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "uncompleted",
+                       "value":  "རྩོལ་ནུས་གསར་སྤེལ་བྱེད་བཞིན་ཡོད། རེ་སྒུག་གནང་རོགས།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "zoom_gesture_risk_warning_dialog_summary",
+                       "value":  "རྩོལ་ནུས་འདིའི་ཁ་ཕྱེ་རྗེས། ཁྱེད་ཀྱིས་རྒྱུན་མཐུད་ནས་ཐེངས་མང་པོར་བརྙན་ཡོལ་ལ་ཐུག་དུས། བརྙན་ཡོལ་ཆེར་གཏོང་སློང་སྲིད། དཔེར་ན་རྩིས་ཆས་ཀྱིས༼%s༽ནང་འཇུག་བྱེད་པ་ལྟ་བུ། རྩོལ་ནུས་དེའི་ཁ་ཕྱེ་ཚེ། སྒྲིག་ཆས་ཀྱི་ཚུར་སྣང་མྱུར་ཚད་ཇེ་དལ་དུ་གཏོང་སྲིད།",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   }
     ]
 }

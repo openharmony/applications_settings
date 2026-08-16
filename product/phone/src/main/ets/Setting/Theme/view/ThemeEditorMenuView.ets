@@ -843,6 +843,7 @@ export struct ThemeEditorMenuView {
         })
       }
     } catch (err) {
+      LogUtil.showError(TAG, `selectImageFromGallery failed: ${err?.code} msg ${err?.message}`);
     }
   }
 

@@ -1,0 +1,23 @@
+{
+    "plural":[
+        {
+            "name":"power_off_message",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"As scheduled, your device will power off in %d second.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"As scheduled, your device will power off in %d seconds.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        }
+    ]
+}

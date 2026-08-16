@@ -67,6 +67,9 @@ export struct AboutDeviceItemView {
 
   // todo 修改设备名称后首页未同步，暂时先监听这个重新赋值
   private changeDeviceInfo (){
+    if (this.navigationMode === NavigationMode.Split) {
+      return;
+    }
     // LogUtil.info(`this.pathInfos:${JSON.stringify(this.pathInfos)}`)
     this.aboutDeviceInfo = new AboutDeviceInfo();
   }
