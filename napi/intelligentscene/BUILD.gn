@@ -32,6 +32,7 @@ ohos_shared_library("intelligentscene") {
     "c_utils:utils",
     "napi:ace_napi",
     "ipc:ipc_single",
+    "init:libbegetutil",
     "os_account:os_account_innerkits",
     "distributed_notification_service:ans_innerkits",
     "image_framework:image_native",

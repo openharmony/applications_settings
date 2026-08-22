@@ -144,7 +144,7 @@ void Common::CreateReturnValue(const napi_env &env, const CallbackPromiseInfo &i
 {
     INTELLIGENT_SCENE_LOG_INFO("start, errorCode=%{public}d", info.errorCode);
     int32_t errorCode = info.errorCode;
-    if (errorCode != ERROR_PERMISSION_DENIED && errorCode != ERR_OK) {
+    if (errorCode != ERROR_PERMISSION_DENIED && errorCode != ERR_OK && errorCode != ERROR_SYSTEM_CAP_ERROR) {
         errorCode = ERROR_INTERNAL_ERROR;
     }
     if (info.isCallback) {
