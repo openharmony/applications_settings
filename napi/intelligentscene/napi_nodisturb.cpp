@@ -23,9 +23,17 @@
 #include "tokenid_kit.h"
 #include "ipc_skeleton.h"
 #include "accesstoken_kit.h"
+#include "syspara/parameters.h"
 
 namespace OHOS {
 namespace IntelligentScene {
+
+static constexpr const char* INTELLIGENT_SCENE_SYSCAP = "const.SystemCapability.Applications.IntelligentScene";
+
+bool IsSysCapSupported()
+{
+    return OHOS::system::GetBoolParameter(INTELLIGENT_SCENE_SYSCAP, false);
+}
 
 bool HasPermisson()
 {
@@ -155,6 +163,12 @@ napi_value napi_is_do_not_disturb_enabled(napi_env env, napi_callback_info info)
     }
     napi_value promise = nullptr;
     Common::PaddingCallbackPromiseInfo(env, callback, asyncCallBackInfo->info, promise);
+    if (!IsSysCapSupported()) {
+        INTELLIGENT_SCENE_LOG_ERROR("Capability not supported. wh");
+        napi_value error = Common::NapiThrowError(env, ERROR_SYSTEM_CAP_ERROR, asyncCallBackInfo->info, promise);
+        delete asyncCallBackInfo;
+        return error;
+    }
     if (!HasPermisson()) {
         napi_value error = Common::NapiThrowError(env, ERROR_PERMISSION_DENIED, asyncCallBackInfo->info, promise);
         delete asyncCallBackInfo;
@@ -194,6 +208,12 @@ napi_value napi_is_notify_allowed(napi_env env, napi_callback_info info)
     }
     napi_value promise = nullptr;
     Common::PaddingCallbackPromiseInfo(env, callback, asyncCallBackInfo->info, promise);
+    if (!IsSysCapSupported()) {
+        INTELLIGENT_SCENE_LOG_ERROR("Capability not supported.");
+        napi_value error = Common::NapiThrowError(env, ERROR_SYSTEM_CAP_ERROR, asyncCallBackInfo->info, promise);
+        delete asyncCallBackInfo;
+        return error;
+    }
     if (!HasPermisson()) {
         napi_value error = Common::NapiThrowError(env, ERROR_PERMISSION_DENIED, asyncCallBackInfo->info, promise);
         delete asyncCallBackInfo;

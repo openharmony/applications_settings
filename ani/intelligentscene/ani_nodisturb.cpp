@@ -22,9 +22,17 @@
 #include "accesstoken_kit.h"
 #include "common/ani_common.h"
 #include "common/ani_throw_error.h"
+#include "syspara/parameters.h"
 
 namespace OHOS {
 namespace IntelligentScene {
+
+static constexpr const char* INTELLIGENT_SCENE_SYSCAP = "const.SystemCapability.Applications.IntelligentScene";
+
+bool IsSysCapSupported()
+{
+    return OHOS::system::GetBoolParameter(INTELLIGENT_SCENE_SYSCAP, false);
+}
 
 bool HasPermission()
 {
@@ -36,6 +44,11 @@ bool HasPermission()
 
 bool CanAccessInterface(ani_env *env)
 {
+    if (!IsSysCapSupported()) {
+        INTELLIGENTSCENE_LOG_ERROR("Capability not supported.");
+        ThrowError(env, ERROR_SYSTEM_CAP_ERROR);
+        return false;
+    }
     if (!HasPermission()) {
         ThrowError(env, ERROR_PERMISSION_DENIED);
         return false;

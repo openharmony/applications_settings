@@ -35,6 +35,7 @@ ohos_shared_library("intelligentscene_ani") {
     "runtime_core:ani",
     "runtime_core:libarkruntime",
     "ipc:ipc_single",
+    "init:libbegetutil",
     "os_account:os_account_innerkits",
     "distributed_notification_service:ans_innerkits",
     "image_framework:image_native",

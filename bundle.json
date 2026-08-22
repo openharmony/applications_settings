@@ -32,6 +32,7 @@
                 "c_utils",
                 "data_share",
                 "hilog",
+                "init",
                 "relational_store",
                 "os_account",
                 "napi",
