@@ -21,6 +21,9 @@ import { AccountUtil } from '@ohos/settings.common/src/main/ets/utils/AccountUti
 import { LogUtil } from '@ohos/settings.common/src/main/ets/utils/LogUtil';
 import { SystemParamUtil } from '@ohos/settings.common/src/main/ets/utils/SystemParamUtil';
 import { DeviceUtil } from '@ohos/settings.common/src/main/ets/utils/BaseUtils';
+import {
+  SCHEDULED_POWER_ON_OFF_SUPPORT
+} from '@ohos/settings.system/src/main/ets/constants/ScheduledPowerOnOffConstant';
 import { PenglaiUtil } from '@ohos/settings.common/src/main/ets/utils/BaseUtils';
 
 const TAG: string = 'SystemPageMenuManager:';
@@ -99,6 +102,17 @@ export class SystemPageMenuManager {
       return false;
     }
     return true;
+  }
+
+  public async isScheduledPowerSupport(): Promise<boolean> {
+    let isSupport: string = SystemParamUtil.getParam(SCHEDULED_POWER_ON_OFF_SUPPORT, 'true');
+    LogUtil.info(`${TAG} isScheduledPowerSupport: ${isSupport}`);
+    if (isSupport === 'false') {
+      return false;
+    }
+    let isCurrentMain: boolean = await AccountUtil.isCurrentAdmin();
+    LogUtil.info(`${TAG} isCurrentMain: ${isCurrentMain}`);
+    return isCurrentMain;
   }
 
   public isPengLaiLightWeightModeNotSupported(): boolean {

@@ -1,0 +1,102 @@
+{
+    "string":[
+        {
+            "name":"scheduled_power_on_off_title",
+            "value":"Scheduled power off",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_on_time_title",
+            "value":"Power on",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_off_time_title",
+            "value":"Power off",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"time_repeat",
+            "value":"Repeat",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"single_time_item",
+            "value":"Never",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"every_day_item",
+            "value":"Every day",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"every_week_item",
+            "value":"Selected days",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"statutory_workday_item",
+            "value":"Workdays",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_timed_warn",
+            "value":"There must be at least %d min between power on/off.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Cancel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_sure",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_power_off",
+            "value":"Power off now",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_off_title",
+            "value":"Power off",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"time_not_set",
+            "value":"Not set",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

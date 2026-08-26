@@ -359,6 +359,54 @@
                     }
                 }
             ]
+        },
+        {
+            "name":"dialog_countdown_time",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d giây",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"dialog_ok_countdown",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"OK (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_timed_end_tips",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Hết thời gian. Đã bỏ qua %d lần chạm",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_failed_result",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Thao tác chạm không bị bỏ qua. Đã hơn %.1f giây trôi qua kể từ lần chạm đầu tiên",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
         }
     ]
 }

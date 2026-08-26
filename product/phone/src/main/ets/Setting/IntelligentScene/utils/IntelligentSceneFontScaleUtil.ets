@@ -32,7 +32,7 @@ export class IntelligentSceneFontScaleUtil {
    */
   public static getToolbarMaxFontSize(context: Context, selectCount: number): number {
     if (LanguageUtils.getLanguage() === BO_LANGUAGE_ID &&
-      FontScaleUtils.getCurrentScale(context) >= FontScaleUtils.EXTRA_LARGE_FONT_3) {
+      FontScaleUtils.getCurrentScale(context) >= FontScaleUtils.EXTRA_LARGE_FONT_2_25) {
       return selectCount >= ONE_HUNDRED ? DisplayConstant.TEXT_FONT_SIZE_LARGE : DisplayConstant
         .TEXT_FONT_SIZE_EXTRA_LARGE;
     }
@@ -50,6 +50,6 @@ export class IntelligentSceneFontScaleUtil {
       LogUtil.warn(`${TAG} context is empty.`);
       return false;
     }
-    return FontScaleUtils.getCurrentScale(context) >= DisplayConstant.TEXT_FONT_SIZE_HUGE4;
+    return FontScaleUtils.getCurrentScale(context) >= FontScaleUtils.EXTRA_LARGE_FONT_2_25;
   }
 }

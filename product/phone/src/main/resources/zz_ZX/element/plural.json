@@ -696,7 +696,7 @@
                 }
             ]
         },
-	{
+        {
             "name":"ignore_repeated_experiment_summary",
             "value":[
                 {
@@ -867,6 +867,122 @@
                 {
                     "quantity":"two",
                     "value":"[TS_1105333]_%d days ago"
+                }
+            ]
+        },
+        {
+            "name":"dialog_countdown_time",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_1136972]_%d second"
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_1136971]_%d seconds"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1136968]_%d seconds"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1136965]_%d seconds"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1136969]_%d seconds"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1136963]_%d seconds"
+                }
+            ]
+        },
+        {
+            "name":"dialog_ok_countdown",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_1049385]_OK (%d)"
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_1049382]_OK (%d)"
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1049383]_OK (%d)"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1049384]_OK (%d)"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1049380]_OK (%d)"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1049381]_OK (%d)"
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_timed_end_tips",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_1095062]_Time's up. %d taps ignored."
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_1095048]_Time's up. %d tap ignored."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1095063]_Time's up. %d taps ignored"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1095055]_Time's up. %d taps ignored"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1095056]_Time's up. %d taps ignored"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1095052]_Time's up. %d taps ignored"
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_failed_result",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"[TS_1095057]_Taps not ignored. More than %.1fs elapsed since first tap."
+                },
+                {
+                    "quantity":"one",
+                    "value":"[TS_1095064]_Taps not ignored. More than %.1fs elapsed since first tap."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1095059]_Taps not ignored. More than %.1fs elapsed since first tap"
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1095049]_Taps not ignored. More than %.1fs elapsed since first tap"
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1095053]_Taps not ignored. More than %.1fs elapsed since first tap"
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1095060]_Taps not ignored. More than %.1fs elapsed since first tap"
                 }
             ]
         }

@@ -58,6 +58,11 @@ export class DisplayConstant {
   public static readonly TEXT_FONT_SIZE_HUGE4: number = 3.2;
 
   /**
+   * 字体大小级别 特大三档历史兼容值
+   */
+  public static readonly TEXT_FONT_SIZE_HUGE4_LEGACY: number = 2.25;
+
+  /**
    * 字体粗细级别 最细
    */
   public static readonly TEXT_FONT_WEIGHT_LIGHTEST: number = 0.75;

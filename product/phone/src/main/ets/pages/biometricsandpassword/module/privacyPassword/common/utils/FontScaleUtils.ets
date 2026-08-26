@@ -29,6 +29,7 @@ enum FontScale {
   NEED_CHANGE_FONT_SCALE = 1.45,
   FONT_SCALE_ONE = 1.75,
   FONT_SCALE_TWO = 2,
+  FONT_SCALE_TWO_POINT_TWO_FIVE = 2.25,
   FONT_SCALE_THREE = 3.2
 }
 
@@ -133,7 +134,8 @@ export default class FontScaleUtils {
       ret = SaveDistance.EXTRA_LARGE_SAVE_DISTANCE_ONE;
     } else if (currentScale === FontScale.FONT_SCALE_TWO) {
       ret = SaveDistance.EXTRA_LARGE_SAVE_DISTANCE_TWO;
-    } else if (currentScale === FontScale.FONT_SCALE_THREE) {
+    } else if (currentScale === FontScale.FONT_SCALE_TWO_POINT_TWO_FIVE ||
+      currentScale === FontScale.FONT_SCALE_THREE) {
       ret = SaveDistance.EXTRA_LARGE_SAVE_DISTANCE_THREE;
     } else {
       ret = SaveDistance.SAVE_DISTANCE;

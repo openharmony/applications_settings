@@ -369,6 +369,26 @@ export class HomePageModelUtil {
     };
   }
 
+  public static getAccessibilityItem(): SettingItemModel {
+    return {
+      id: NavEntryKey.ACCESSIBILITY_FEATURE_ENTRY,
+      type: ItemType.ITEM_TYPE_STANDARD,
+      icon: {
+        icon: $r('sys.symbol.hand_tap'),
+        isSymbolIcon: true,
+        style: { mirrored: false, fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
+      },
+      title: { content: DeviceUtil.is2In1DevicePcType() ? $r('app.string.accessibility') :
+        $r('app.string.accessibility_original') },
+      detail: {
+        type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
+        icon: $r('sys.symbol.chevron_right'),
+        isSymbolIcon: true,
+        destination: NavEntryKey.ACCESSIBILITY_FEATURE_ENTRY,
+      },
+    };
+  }
+
   public static getApplicationItem(): SettingItemModel {
     return {
       id: NavEntryKey.APPLICATION_SERVICE_ENTRY,
@@ -446,6 +466,29 @@ export class HomePageModelUtil {
         destination: NavEntryKey.MORE_CONNECTION_ENTRY,
       },
       needHide: HomePageMenuManager.getInstance().isEntryNotSupported,
+    };
+  }
+
+  public static getUsersAccountItem(): SettingItemModel {
+    return {
+      id: NavEntryKey.USERS_ACCOUNT_ENTRY,
+      type: ItemType.ITEM_TYPE_STANDARD,
+      icon: {
+        icon: $r('sys.symbol.person'),
+        isSymbolIcon: true,
+        style: { fillColor: $r('sys.color.ohos_id_color_emphasize_contrary') },
+      },
+      title: { content: $r('app.string.users_accounts_title') },
+      detail: {
+        type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
+        icon: $r('sys.symbol.chevron_right'),
+        isSymbolIcon: true,
+        destination: NavEntryKey.USERS_ACCOUNT_ENTRY,
+      },
+      needHide: HomePageMenuManager.getInstance().isEntryNotSupported,
+      onTouchEvent: async (touchType: TouchType) => {
+        await importPage(NavEntryKey.USERS_ACCOUNT_ENTRY, touchType);
+      }
     };
   }
 

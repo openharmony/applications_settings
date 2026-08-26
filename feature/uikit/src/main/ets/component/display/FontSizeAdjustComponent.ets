@@ -241,6 +241,7 @@ export struct FontSizeAdjustComponent {
         return $r('app.string.display_mode_font_size_huge2');
       case DisplayConstant.TEXT_FONT_SIZE_HUGE3:
         return $r('app.string.display_mode_font_size_huge3');
+      case DisplayConstant.TEXT_FONT_SIZE_HUGE4_LEGACY:
       case DisplayConstant.TEXT_FONT_SIZE_HUGE4:
         return $r('app.string.display_mode_font_size_huge4');
       default:

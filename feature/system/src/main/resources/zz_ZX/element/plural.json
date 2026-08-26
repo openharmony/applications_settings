@@ -1,0 +1,33 @@
+{
+    "plural":[
+        {
+            "name":"power_off_message",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"[TS_1012108]_As scheduled, your device will power off in %d second."
+                },
+                {
+                    "quantity":"other",
+                    "value":"[TS_1012110]_As scheduled, your device will power off in %d seconds."
+                },
+                {
+                    "quantity":"zero",
+                    "value":"[TS_1012111]_As scheduled, your device will power off in %d seconds."
+                },
+                {
+                    "quantity":"few",
+                    "value":"[TS_1012107]_As scheduled, your device will power off in %d seconds."
+                },
+                {
+                    "quantity":"many",
+                    "value":"[TS_1012106]_As scheduled, your device will power off in %d seconds."
+                },
+                {
+                    "quantity":"two",
+                    "value":"[TS_1012109]_As scheduled, your device will power off in %d seconds."
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,102 @@
+{
+    "string":[
+        {
+            "name":"power_off_title",
+            "value":"Éteindre",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scheduled_power_on_off_title",
+            "value":"Allumage/extinction programmés",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"every_week_item",
+            "value":"Jours sélectionnés",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_sure",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Annuler",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"every_day_item",
+            "value":"Tous les jours",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_on_time_title",
+            "value":"Allumage",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_timed_warn",
+            "value":"Veuillez laisser au moins %d min entre l'allumage/l'extinction.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_power_off",
+            "value":"Éteindre maintenant",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"single_time_item",
+            "value":"Jamais",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"time_not_set",
+            "value":"Non défini",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"statutory_workday_item",
+            "value":"Jours ouvrés",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"time_repeat",
+            "value":"Répétition",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_off_time_title",
+            "value":"Extinction",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

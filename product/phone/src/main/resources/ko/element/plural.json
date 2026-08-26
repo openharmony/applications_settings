@@ -276,7 +276,7 @@
                 }
             ]
         },
-	    {
+        {
             "name":"magnification_scale",
             "value":[
                 {
@@ -356,6 +356,54 @@
                     "value":"%d일 전",
                     "attr":{
                         "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"dialog_countdown_time",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d초",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"dialog_ok_countdown",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"확인(%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_timed_end_tips",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"시간이 다 되었습니다. %d번의 탭이 무시되었습니다",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_failed_result",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"탭이 무시되지 않습니다. 첫 번째 탭 이후 %.1f초 이상 경과",
+                    "attr":{
+                        "priority":"LT"
                     }
                 }
             ]

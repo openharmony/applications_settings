@@ -1102,17 +1102,6 @@
     "parentKey": "accessibility_elder_care_entry"
   },
   {
-    "itemName": "simple_desktop_layout",
-    "itemDesc": "桌面布局",
-    "itemType": "Select",
-    "itemValues": [
-      "Normal",
-      "Simple"
-    ],
-    "itemResourceId": "elder_care_desktop_layout",
-    "parentKey": "accessibility_elder_care_entry"
-  },
-  {
     "itemName": "time_24_hour",
     "itemDesc": "24小时制",
     "itemType": "Switch",
@@ -1158,14 +1147,6 @@
     "itemType": "Switch",
     "itemValues": [],
     "itemResourceId": "screenshot_prompt_tone",
-    "parentKey": "volume_settings"
-  },
-  {
-    "itemName": "system_touch_feedback",
-    "itemDesc": "系统触感反馈",
-    "itemType": "Switch",
-    "itemValues": [],
-    "itemResourceId": "system_touch_feedback",
     "parentKey": "volume_settings"
   },
   {

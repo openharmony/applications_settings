@@ -36,6 +36,8 @@ enum CheckType {
  * 查询开关状态方法映射
  */
 const ITEM_STATUS_FUN_RECORD: Record<string, Function> = {
+  // 与首页入口 CapabilitySupportUtils.isSupportIntelligentScene 对齐（CCM 缺省为 true）
+  'isSupportIntelligentScene': (): boolean => CapabilitySupportUtils.isSupportIntelligentScene(),
   'darkTimeSupport': SearchCheckUtil.isDarkTimeSupport,
   'hdrImageSupport': SearchCheckUtil.isHdrImageSupport,
   'ebookSupport': SearchCheckUtil.isEbookSupport,
@@ -84,7 +86,6 @@ const ITEM_STATUS_FUN_RECORD: Record<string, Function> = {
   'isSupportVibrate': SearchCheckUtil.isSupportVibrateAsync,
   'isRepeatedCallRinging': SearchCheckUtil.isRepeatedCallRinging,
   'isSupportAiVoice': SearchCheckUtil.isSupportAiVoice,
-  'isSupportCallFilter': SearchCheckUtil.isSupportCallFilter,
   'isTextAutoFillSyncEnabled': SearchCheckUtil.isTextAutoFillSyncEnabled,
   'isOnlySmallFoldProduct': DeviceUtil.isOnlySmallFoldProduct,
   'hasPrivacyPassword': SearchCheckUtil.hasPrivacyPassword,
@@ -98,6 +99,8 @@ const ITEM_STATUS_FUN_RECORD: Record<string, Function> = {
   // 开发者选项-显示刷新频率
   'refreshShow': SearchCheckUtil.refreshShow,
   'isQuickGestureProductSupport': SearchCheckUtil.isQuickGestureProductSupport,
+  'isScheduledPowerSupport': SearchCheckUtil.isScheduledPowerSupport,
+  'isScheduledPowerEnable': SearchCheckUtil.isScheduledPowerEnable,
   // 快捷手势-亮屏
   'isWakeScreenProductSupport': SearchCheckUtil.isWakeScreenProductSupport,
   // 支持国测版本名称展示
@@ -129,6 +132,9 @@ const ITEM_STATUS_FUN_RECORD: Record<string, Function> = {
   'isApiVersionSupport': SearchCheckUtil.isApiVersionSupport,
   'isOpenHarmonySupport': SearchCheckUtil.isOpenHarmonySupport,
   'isFlashReminderSupport': SearchCheckUtil.isFlashReminderSupport,
+  'isFlashReminderOpen': SearchCheckUtil.isFlashReminderOpen,
+  'isZoomGestureOpen': SearchCheckUtil.isZoomGestureOpen,
+  'isElderCareEnable': SearchCheckUtil.isElderCareEnable,
   'isSoundRecognitionSupport': SearchCheckUtil.isSoundRecognitionSupport,
   'isEnableCircleCursor': SearchCheckUtil.isEnableCircleCursor, // 使能圆形光标
   'isSupportNewNetworkPage': SearchCheckUtil.isSupportNewNetworkPage,
@@ -196,7 +202,12 @@ export class CheckItemUtil {
   private static getSystemParam(checkItem: CheckItem): boolean {
     try {
       let values: string[] = checkItem.value.split('|');
-      let checkVaule: string = systemParameterEnhance.getSync(checkItem.checkKey);
+      // 带默认值，避免 CCM 未配置时 getSync 抛错导致整项 enable=false
+      let checkVaule: string = systemParameterEnhance.getSync(checkItem.checkKey, '');
+      // 与 CapabilitySupportUtils.isSupportIntelligentScene 保持一致：缺省视为 true
+      if (checkVaule === '' && checkItem.checkKey === 'const.intelligentscene.enable') {
+        checkVaule = 'true';
+      }
       for (let value of values) {
         if (checkVaule === value) {
           LogUtil.showInfo(TAG, `checkKey: ${checkItem.checkKey}`);
@@ -206,6 +217,10 @@ export class CheckItemUtil {
       return false;
     } catch (err) {
       LogUtil.showError(TAG, `getSystemParam error: ${err?.message}`);
+      // CCM 异常时，情景模式与首页入口默认策略一致
+      if (checkItem.checkKey === 'const.intelligentscene.enable') {
+        return checkItem.value.split('|').includes('true');
+      }
       return false;
     }
   }

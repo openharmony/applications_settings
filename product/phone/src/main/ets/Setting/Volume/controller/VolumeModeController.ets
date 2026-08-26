@@ -114,6 +114,8 @@ export class VolumeModeController implements VolumeListener {
     let beforeUpdateAudioRingMode: AudioRingMode = this.audioRingMode;
     this.setAudioRingMode(ringMode);
     this.updateToneHapticsSettings(beforeUpdateAudioRingMode, ringMode);
+    // 开启振动前先停止振动，避免振动资源未释放
+    VibratorUtil.stopVibration()
     // 临时效果：从振动切换到铃声时额外触发一次短振动反馈
     if (IS_SUPPORT_VIBRATE && beforeUpdateAudioRingMode === RINGER_MODE_VIBRATE && ringMode === RINGER_MODE_NORMAL) {
       VibratorUtil.startVibration()
@@ -186,7 +188,7 @@ export class VolumeModeController implements VolumeListener {
     LogUtil.showInfo(TAG, `set audio ring mode: ${this.audioRingMode}`);
     if (ringMode === RINGER_MODE_VIBRATE) {
       //todo 设备暂不支持自定义振动，临时改为普通振动
-      VibratorUtil.startVibration()
+      // VibratorUtil.vibrateOnVibrateMode(VIBRATE_DURATION, 'touch');
     }
 
     if (this.audioRingMode === RINGER_MODE_NORMAL) {

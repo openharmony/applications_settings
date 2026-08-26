@@ -73,6 +73,9 @@
           "./src/main/ets/Setting/MobileNetwork/HotSpot/MoreShareSettingsPage.ets",
           "./src/main/ets/Setting/MobileNetwork/HotSpot/HotSpotConnectedPage.ets",
           "./src/main/ets/Setting/MobileNetwork/HotSpot/HotspotSettingsPage.ets",
+          "./src/main/ets/Setting/MobileNetwork/SIMCardManagementPage.ets",
+          "./src/main/ets/Setting/UserSettings/UsersAccountsPage.ets",
+          "./src/main/ets/Setting/UserSettings/UserSettingsPage.ets",
           "./src/main/ets/Setting/MobileNetwork/AddEsimProfile/AddEsimProfilePage.ets",
           // 网络
           "./src/main/ets/Setting/Network/NetworkPage.ets",
@@ -95,6 +98,7 @@
           "./src/main/ets/Setting/System/SmartMultiWindow/MultiWindowForceSwitchPage.ets",
           "./src/main/ets/Setting/System/SmartMultiWindow/MultiWindowLinkageScenePrivacyPage.ets",
           "./src/main/ets/Setting/System/ResetPage.ets",
+          "./src/main/ets/Setting/System/ScheduledPowerOnOffPage.ets",
           "./src/main/ets/Setting/System/DevelopOptionPage.ets",
           "./src/main/ets/Setting/System/SOSEmergencyHelpPage.ets",
           "./src/main/ets/Setting/System/DeviceAndApplicationPage.ets",
@@ -102,6 +106,8 @@
           "./src/main/ets/Setting/Application/ApplicationPermissionSettings.ets",
           "./src/main/ets/Setting/Application/AppNetworkPage.ets",
           "./src/main/ets/Setting/AboutDevice/SubHome/AboutDeviceSettingPage.ets",
+          "./src/main/ets/Setting/AboutDevice/OUC/OucParamVersionPage.ets",
+          "./src/main/ets/Setting/AboutDevice/OUC/OucAllSceneUpdatePage.ets",
           "./src/main/ets/Setting/AboutDevice/LegalInfo/LegalInfoSettingPage.ets",
           "./src/main/ets/Setting/AboutDevice/LegalInfo/AppOpenSourceShowPage.ets",
           "./src/main/ets/Setting/AboutDevice/LegalInfo/AppOpenSourceStatementPage.ets",
@@ -121,9 +127,22 @@
           "./src/main/ets/Setting/Storage/UninstallAppPage.ets",
           "./src/main/ets/Setting/Storage/MoreCardPage.ets",
           "./src/main/ets/Setting/Bluetooth/OppBluetoothPage.ets",
+          "./src/main/ets/Setting/Suggestion/SuggestionMorePage.ets",
           "./src/main/ets/Setting/MoreConnection/FarFieldCommunicationPage.ets",
           "./src/main/ets/Setting/IntelligentScene/IntelligentScenePage.ets",
-          "./src/main/ets/Setting/IntelligentScene/IntelligentSceneSettings.ets"
+          "./src/main/ets/Setting/IntelligentScene/IntelligentSceneSettings.ets",
+          // 关怀和无障碍
+          "./src/main/ets/Setting/Accessibility/eldercare/ElderCarePage.ets",
+          "./src/main/ets/Setting/Accessibility/AccessibilityZoomGesturePage.ets",
+          "./src/main/ets/Setting/Accessibility/AccessibilityHighContrastTextPage.ets",
+          "./src/main/ets/Setting/Accessibility/AccessibilityInvertColorPage.ets",
+          "./src/main/ets/Setting/Accessibility/AccessibilityAdvancedVisualPage.ets",
+          "./src/main/ets/Setting/Accessibility/AccessibilityTransitionAnimationsPage.ets",
+          "./src/main/ets/Setting/Accessibility/AccessibilityAudioAdjustmentPage.ets",
+          "./src/main/ets/Setting/Accessibility/AccessibilityColorFilterPage.ets",
+          "./src/main/ets/Setting/Accessibility/AccessibilityTouchscreenPage.ets",
+          "./src/main/ets/Setting/Accessibility/AccessibilityShortKeyPage.ets",
+          "./src/main/ets/Setting/Accessibility/AccessibilityFlashReminderPage.ets"
         ],
       }
     }

@@ -77,6 +77,7 @@ import { HomePageMenuManager } from '../Setting/Home/controller/HomePageMenuMana
 import { HiSysDisplayEventGroup, HiSysSettingHomeEventGroup } from '@ohos/settings.common/src/main/ets/systemEvent/BehaviorEventConsts';
 import { CommonUtils } from '@ohos/settings.common/src/main/ets/utils/CommonUtils';
 import { HiSysLoadExternalMenuResException } from '@ohos/settings.common/src/main/ets/systemEvent/ExceptionEventConsts';
+import { SuggestionCardManager } from '@ohos/settings.suggestion/src/main/ets/manager/SuggestionCardManager';
 import { DeeplinkUtil } from '@ohos/settings.common/src/main/ets/utils/DeeplinkUtil';
 import { DataSizeReportHelper } from '@ohos/settings.common/src/main/ets/systemEvent/DataSizeReportHelper';
 import { IntelligentSceneWindowManager } from '../Setting/IntelligentScene/manager/IntelligentSceneWindowManager';
@@ -255,6 +256,7 @@ export default class MainAbility extends Ability {
     MoreAppListLoader.getInstance().clearAppListCache();
     RdbStoreHelper.getInstance().setRdbStore(undefined);
     SearchDataController.getInstance().unRegisterStatusChange();
+    SuggestionCardManager.getInstance().destroyControllers();
     this.clearDataBeforeDestroy();
   }
 
@@ -296,6 +298,7 @@ export default class MainAbility extends Ability {
       // 获取UIObserver实例。
       this.uiObserver = uiContext.getUIObserver();
       // 注册DevNavigation的状态监听.
+      this.uiObserver?.on('navDestinationUpdate', SuggestionCardManager.getInstance().getNavDestinationDataCallback());
     }).catch((err: BusinessError) => {
       LogUtil.error(`${TAG} GetMainWindow Failed: ${err?.message}`);
     });
@@ -435,6 +438,7 @@ export default class MainAbility extends Ability {
             emitter.emit({ eventId: EVENT_ID_LANGUAGE_UPDATE });
             SearchDataController.initSearchData();
             SettingPageDescController.initPageInfoData();
+            SuggestionCardManager.getInstance().refreshData(getContext());
           }
 
           let curFontSizeScale: number = envConfig?.fontSizeScale as number;

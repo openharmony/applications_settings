@@ -48,7 +48,8 @@ const PRODUCT_CPU_ABI_LIST_X86: string = 'x86_64';
 const DEVICE_PROVISIONED_PARAM: string = 'device_provisioned';
 const DEVICE_PROVISIONED: string = '1';
 const DEVICE_UNPROVISIONED: string = '0';
-const CAR_SATELLITE_ENABLE_KEY = 'car_satellite_enable';
+const CAR_SATELLITE_ENABLE_KEY = 'ohos_car_satellite_enable';
+// const CAR_SATELLITE_ENABLE_KEY = 'car_satellite_enable';
 const CCM_PENG_LAI_LIGHT_WEIGHT_MODE: string = 'const.penglai.feature_enable';
 const DISPLAY_ID_MAX = 999;
 const DISPLAY_ID_MIN = 0;
@@ -97,6 +98,11 @@ export enum FoldPhoneTypeValue {
    * 三折叠 GRL
    */
   THREE_FOLD_EXPANDING = 6,
+
+  /**
+   * 扩展新形态
+   */
+  NEXT_SUPER_FOLD_EXPANDING = 7
 }
 
 enum FoldStatus {
@@ -359,6 +365,15 @@ export class DeviceUtil {
    */
   static isNexFormsProduct(): boolean {
     return FoldPhoneTypeValue.EXPANDING_NEX_FORMS === DeviceUtil.getFoldProductType();
+  }
+
+  /**
+   * 是否是新形态 hope
+   *
+   * @returns boolean 如果为新形态 hope 产品返回true
+   */
+  static isNextSuperFoldProduct(): boolean {
+    return FoldPhoneTypeValue.NEXT_SUPER_FOLD_EXPANDING === DeviceUtil.getFoldProductType();
   }
 
   /**

@@ -795,10 +795,11 @@ export class DisplayUtils {
         return DisplayConstant.TEXT_FONT_SIZE_HUGE2_STEP;
       case DisplayConstant.TEXT_FONT_SIZE_HUGE3:
         return DisplayConstant.TEXT_FONT_SIZE_HUGE3_STEP;
+      case DisplayConstant.TEXT_FONT_SIZE_HUGE4_LEGACY:
       case DisplayConstant.TEXT_FONT_SIZE_HUGE4:
         return DisplayConstant.TEXT_FONT_SIZE_HUGE4_STEP;
       default:
-        return DisplayConstant.TEXT_FONT_SIZE_EXTRA_LARGE;
+        return DisplayConstant.TEXT_FONT_SIZE_NORMAL_STEP;
     }
   }
 

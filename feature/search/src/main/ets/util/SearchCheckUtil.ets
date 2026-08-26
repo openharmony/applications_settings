@@ -30,6 +30,7 @@ import systemParameter from '@ohos.systemparameter';
 import { sensor } from '@kit.SensorServiceKit';
 import { camera } from '@kit.CameraKit';
 // import accountService from '@hms.core.account.extendservice';
+import type common from '@ohos.app.ability.common';
 import { VibratorUtil } from '@ohos/settings.common/src/main/ets/utils/VibratorUtil';
 import { AbilityContextManager } from '@ohos/settings.common/src/main/ets/ability/AbilityContextManager';
 import { LogUtil } from '@ohos/settings.common/src/main/ets/utils/LogUtil';
@@ -101,6 +102,10 @@ enum TouchpadSupportFeature { // 二进制格式存储触控板支持的特性
   KNUCKLE_GESTURE = 2, // 指关节截图/录屏手势
   BRIGHTNESS_VOLUME = 4 // 音量/亮度调节手势
 }
+const SCREEN_MAGNIFICATION: string = 'accessibility_display_magnification_enabled';
+const ACCESSIBILITY_FLASH_REMINDER_SWITCH: string = 'accessibility_flash_reminder_switch';
+const CLICK_SWITCH_OFF: string = '0';
+const CLICK_SWITCH_ON: string = '1';
 
 interface sensorInfoObj {
   type: string
@@ -109,6 +114,22 @@ interface sensorInfoObj {
 export class SearchCheckUtil {
   private static userIdentityManager: osAccount.UserIdentityManager = new osAccount.UserIdentityManager();
   private static userAuth = new osAccount.UserAuth();
+  private static cacheSearchKekMap: Map<string, string | undefined> = new Map<string, string | undefined>();
+
+  /**
+   * 初始化需要缓存的key
+   */
+  public static initCacheKey(): void {
+    SearchCheckUtil.cacheSearchKekMap.set('accessibility_elder_care_switch_enabled', undefined);
+    SearchCheckUtil.cacheSearchKekMap.set('hw.pencil.connection.state', undefined);
+  }
+
+  /**
+   * 清除缓存数据
+   */
+  public static clearCache(): void {
+    SearchCheckUtil.cacheSearchKekMap.clear();
+  }
 
   static async hasPrivacyPassword(): Promise<boolean> {
     try {
@@ -367,6 +388,15 @@ export class SearchCheckUtil {
   }
 
   /*
+   * 设置搜索判断当前设备闪烁提醒开关是否打开
+   */
+  static async isFlashReminderOpen(): Promise<boolean> {
+    let isSupport: boolean = SettingsDataUtils.getSecureValue(ACCESSIBILITY_FLASH_REMINDER_SWITCH,
+      CLICK_SWITCH_OFF) === CLICK_SWITCH_ON;
+    return isSupport;
+  }
+
+  /*
    * 设置搜索判断当前设备是否支持环境音识别
    */
   static async isSoundRecognitionSupport(): Promise<boolean> {
@@ -417,6 +447,15 @@ export class SearchCheckUtil {
     //   }
     // }
     return false;
+  }
+
+  /*
+   * 设置搜索判断当前设备放大手势开关是否打开
+   */
+  static async isZoomGestureOpen(): Promise<boolean> {
+    let isSupport: boolean = SettingsDataUtils.getSecureValue(SCREEN_MAGNIFICATION,
+      CLICK_SWITCH_OFF) === CLICK_SWITCH_ON;
+    return isSupport;
   }
 
   static async isScreenRatesSupport(): Promise<boolean> {
@@ -861,19 +900,6 @@ export class SearchCheckUtil {
     }
   }
 
-
-  /**
-   * 搜索跳转校验设备是否支持关怀-骚扰拦截
-   */
-  static async isSupportCallFilter(): Promise<boolean> {
-    let elderCareState: boolean = SettingsDataUtils.getSecureValue('accessibility_elder_care_switch_enabled', '0') === '1';
-    let isCurrentPrivateUser: boolean = await AccountUtil.isCurrentPrivate();
-    let hasSim: boolean = await SearchCheckUtil.hasSim();
-    let isSupportCallFilter: boolean = elderCareState && !isCurrentPrivateUser && hasSim;
-    LogUtil.info(`${TAG} isSupportCallFilter: ${isSupportCallFilter}`)
-    return isSupportCallFilter;
-  }
-
   static isTextAutoFillSyncEnabled(): boolean {
     let isInstalled: boolean = false;
     try {
@@ -882,6 +908,50 @@ export class SearchCheckUtil {
       LogUtil.error(`${TAG} isCloudSpaceInstalled error ${err?.code}`);
     }
     return isInstalled;
+  }
+
+  /**
+   * 搜索跳转校验设备是否开启关怀模式开关
+   */
+  static isElderCareEnable(): boolean {
+    let elderCareState: boolean =
+      SearchCheckUtil.getCacheKeyWithDefault('accessibility_elder_care_switch_enabled', '0',
+        Settings.domainName.USER_SECURITY) === '1';
+    return elderCareState;
+  }
+
+  /**
+   * 从缓存中读取特定特定key数据
+   *
+   * @param key 查询的key
+   * @param defaultValue 默认值
+   * @param table 查询的表名
+   * @returns 查询结果
+   */
+  public static getCacheKeyWithDefault(key: string, defaultValue?: string, table?: string): string {
+    return SearchCheckUtil.doGetCacheKey(undefined, key, defaultValue, table);
+  }
+
+  private static doGetCacheKey(context: common.Context | undefined, key: string, defaultValue?: string,
+    table?: string): string {
+    if (CheckEmptyUtils.checkStrIsEmpty(key)) {
+      LogUtil.showError(TAG, `current key is empty: ${key}`);
+      return '';
+    }
+    let value: string | undefined = SearchCheckUtil.cacheSearchKekMap.get(key);
+    if (value !== undefined) {
+      LogUtil.showInfo(TAG, `use cache: ${key}, value: ${value}`);
+      return value;
+    }
+    if (CheckEmptyUtils.isEmpty(context)) {
+      value = SettingsDataUtils.getSettingsData(key, defaultValue ?? '', table);
+    } else {
+      value = SettingsDataUtils.getSettingsDataWithContext(context, key, defaultValue ?? '', table);
+    }
+    if (SearchCheckUtil.cacheSearchKekMap.has(key)) {
+      SearchCheckUtil.cacheSearchKekMap.set(key, value);
+    }
+    return value;
   }
 
    /**
@@ -970,6 +1040,33 @@ export class SearchCheckUtil {
    */
   static async isQuickGestureProductSupport(): Promise<boolean> {
     return !DeviceUtil.isDeviceEmulator();
+  }
+
+  /**
+   *  是否支持定时开关机显示
+   */
+  static async isScheduledPowerSupport(): Promise<boolean> {
+    let isSupport: string = SystemParamUtil.getParam('const.settings.support_scheduled_power_on_off', 'true');
+    LogUtil.info(`${TAG} isScheduledPowerSupport: ${isSupport}`);
+    if (isSupport === 'false') {
+      return false;
+    }
+    let isCurrentMain: boolean = await AccountUtil.isCurrentAdmin();
+    LogUtil.info(`${TAG} isCurrentMain: ${isCurrentMain}`);
+    return isCurrentMain;
+  }
+
+  /**
+   *  是否打开定时开关机
+   */
+  static async isScheduledPowerEnable(): Promise<boolean> {
+    let isSupport = await SearchCheckUtil.isScheduledPowerSupport();
+    if (!isSupport) {
+      return false;
+    }
+    return SettingsDataUtils
+      .getSettingsDataWithContext(getContext(), 'settings.system.scheduled_power_on_off_switch', '0',
+        Settings.domainName.DEVICE_SHARED) == '1';
   }
 
   /**

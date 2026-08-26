@@ -35,6 +35,7 @@ import { AbilityUtils } from '@ohos/settings.common/src/main/ets/utils/AbilityUt
 import { DeviceUtil } from '@ohos/settings.common/src/main/ets/utils/BaseUtils';
 import { NavEntryKey } from '@ohos/settings.common/src/main/ets/utils/Consts';
 import { LogUtil } from '@ohos/settings.common/src/main/ets/utils/LogUtil';
+import { SimUtils } from '@ohos/settings.common/src/main/ets/utils/SimUtils';
 import { AirPlaneModeSwitchController } from './AirPlaneModeSwitchController';
 /* instrument ignore file */
 export class MobileNetworkController implements ComponentControl {
@@ -120,37 +121,52 @@ export class MobileNetworkController implements ComponentControl {
   getMobileDataItems(): SettingItemModel[] {
     let mobileDataItems: SettingItemModel[] = [];
     if (this.isMobileDateAvailable) {
-      mobileDataItems.push(
-        {
-          id: 'mobile_data_setting_entry',
-          type: ItemType.ITEM_TYPE_STANDARD,
-          title: {
-            content: $r('app.string.mobile_data_setting_title')
-          },
-          detail: {
-            type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
-            icon: $r('sys.symbol.chevron_right'),
-            isSymbolIcon: true,
-            destination: NavEntryKey.MOBILE_DATA_SETTING_ENTRY,
-          }
+      mobileDataItems.push({
+        id: 'mobile_data_setting_entry',
+        type: ItemType.ITEM_TYPE_STANDARD,
+        title: {
+          content: $r('app.string.mobile_data_setting_title')
         },
-        {
-          id: 'hotspot_data_settings',
-          type: ItemType.ITEM_TYPE_STANDARD,
-          title: {
-            content: $r('app.string.hotspot_settings_title')
-          },
-          detail: {
-            type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
-            icon: $r('sys.symbol.chevron_right'),
-            isSymbolIcon: true,
-            destination: NavEntryKey.HOTSPOT_ENTRY,
-          },
-          needHide: () => {
-            return !AccountUtil.isMainUser();
-          }
+        detail: {
+          type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
+          icon: $r('sys.symbol.chevron_right'),
+          isSymbolIcon: true,
+          destination: NavEntryKey.MOBILE_DATA_SETTING_ENTRY,
         }
-      )
+      });
+    }
+    if (SimUtils.isSupportSim()) {
+      mobileDataItems.push({
+        id: 'sim_card_management_entry',
+        type: ItemType.ITEM_TYPE_STANDARD,
+        title: {
+          content: $r('app.string.sim_card_management_title')
+        },
+        detail: {
+          type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
+          icon: $r('sys.symbol.chevron_right'),
+          isSymbolIcon: true,
+          destination: NavEntryKey.SIM_CARD_MANAGEMENT_ENTRY,
+        },
+      });
+    }
+    if (this.isMobileDateAvailable) {
+      mobileDataItems.push({
+        id: 'hotspot_data_settings',
+        type: ItemType.ITEM_TYPE_STANDARD,
+        title: {
+          content: $r('app.string.hotspot_settings_title')
+        },
+        detail: {
+          type: ItemDetailType.DETAIL_TYPE_NAVIGATE,
+          icon: $r('sys.symbol.chevron_right'),
+          isSymbolIcon: true,
+          destination: NavEntryKey.HOTSPOT_ENTRY,
+        },
+        needHide: () => {
+          return !AccountUtil.isMainUser();
+        }
+      });
     }
     return mobileDataItems;
   }

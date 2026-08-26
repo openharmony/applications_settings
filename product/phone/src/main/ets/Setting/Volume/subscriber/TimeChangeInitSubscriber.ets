@@ -22,6 +22,8 @@ import { GlobalContext } from '@ohos/settings.common/src/main/ets/utils/GlobalCo
 import { SettingsDataUtils } from '@ohos/settings.common/src/main/ets/utils/SettingsDataUtils';
 import { NotDisturbTimerManager } from '@ohos/settings.notDisturb/src/main/ets/NotDisturbTimerManager';
 import { FOCUS_MODE_MANUAL_ENABLE } from '@ohos/settings.notDisturb/src/main/ets/utils/NotDisturbUtils';
+import { ScheduledPowerOnOffTimerManager } from '@ohos/settings.system/src/main/ets/ScheduledPowerOnOffTimerManager';
+import { ScheduledPowerOnOffDataUtil } from '@ohos/settings.system/src/main/ets/utils/ScheduledPowerOnOffDataUtil';
 /* instrument ignore file */
 const TAG = 'TimeChangeInitSubscriber';
 const EVENT_TIME_CHANGED = 'usual.event.TIME_CHANGED';
@@ -36,6 +38,11 @@ type CommonEventData = commonEventManager.CommonEventData;
 export default class TimeChangeInitSubscriber extends StaticSubscriberExtensionAbility {
   async onReceiveEvent(event: CommonEventData): Promise<void> {
     LogUtil.info(`${TAG} receive event: ${event?.event}`);
+    if (ScheduledPowerOnOffDataUtil.getSwitchModeType(TAG, this.context) !== '0') {
+      // 开机定时器暂不支持
+      // ScheduledPowerOnOffTimerManager.getInstance().calculateTimer(true, true, this.context);
+      ScheduledPowerOnOffTimerManager.getInstance().calculateTimer(false, true, this.context);
+    }
     let isSupportIntelligentScene = CapabilitySupportUtils.isSupportIntelligentScene();
     if (isSupportIntelligentScene) {
       LogUtil.warn(`${TAG} It supports intelligent scene`);

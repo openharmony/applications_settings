@@ -59,6 +59,7 @@ import {
 } from '@ohos/settings.common/src/main/ets/framework/model/SettingStateModel';
 // import { FaceAuthDynamicLoader } from '@hw-hmos/settings-face-auth/src/main/ets/faceauth/Utils/Dynamic';
 import { Trace } from '@ohos/settings.common/src/main/ets/utils/Trace';
+import { OucNavigationUtils } from '@ohos/settings.aboutdevice/src/main/ets/utils/OucNavigationUtils';
 import { AbilityContextManager } from '@ohos/settings.common/src/main/ets/ability/AbilityContextManager';
 import { CommonEventConstant } from '@ohos/settings.common/src/main/ets/constant/CommonEventConstant';
 import { DefaultPageConfig } from '@ohos/settings.common/src/main/ets/framework/common/DefaultPageConfig';
@@ -68,6 +69,7 @@ import { WalletManageUtils } from '@ohos/settings.common/src/main/ets/utils/Wall
 import { SystemParamUtil } from '@ohos/settings.common/src/main/ets/utils/SystemParamUtil';
 // import lazy { FaceAuthNavigationInterceptions } from '@hw-hmos/settings-face-auth/src/main/ets/faceauth/Manager/FaceAuthNavigationInterceptions';
 import { HiSysSettingHomeEventGroup } from '@ohos/settings.common/src/main/ets/systemEvent/BehaviorEventConsts';
+import { SuggestionCardManager } from '@ohos/settings.suggestion/src/main/ets/manager/SuggestionCardManager';
 import { PenglaiUtil } from '@ohos/settings.common/src/main/ets/utils/BaseUtils';
 import lazy { initBluetoothState } from '../../Setting/Home/controller/HomePageMenuManager';
 import lazy { PageRouteController } from './controller/PageRouteController';
@@ -166,6 +168,9 @@ struct SettingsHome {
     [NavEntryKey.WIFI_SETUP_IP_ENTRY, this.loadWifiSetupIpPage],
     [NavEntryKey.PHONE_NOTIFICATION_SETTINGS_ENTRY, this.loadNotificationSettings],
     [NavEntryKey.SYSTEM_ROLLBACK_ENTRY, this.loadSystemRollback],
+    [NavEntryKey.SIM_CARD_MANAGEMENT_ENTRY, this.loadSimCardManagement],
+    [NavEntryKey.USERS_ACCOUNT_ENTRY, this.loadUsersAccounts],
+    [NavEntryKey.USER_SETTING_ENTRY, this.loadUserSettings],
     [NavEntryKey.SYSTM_WIRELESS_COMMISSIONING, this.loadWirelessCommissioningSetting],
     [NavEntryKey.FACE_AUTH_PREFERENCE_ENTRY, this.loadFaceAuth],
     [NavEntryKey.FACE_AUTH_FEATURE_GUIDE_ENTRY, this.loadFaceAuth],
@@ -599,6 +604,14 @@ struct SettingsHome {
       AppStorage.setOrCreate('isMainPageReport', false);
       LogUtil.info(`${TAG} report compeleted`);
     }
+    SuggestionCardManager.getInstance().refreshData(getContext());
+    // 页面显示后应用已处于前台，此时预加载 UIExtension 才能生成可复用实例。
+    try {
+      ExternalMenuPreloadManager.getInstance()
+        .preloadUIExtensionAbility(NavEntryKey.INTELLIGENT_SCENE_SETTINGS_ENTRY, getContext());
+    } catch (err) {
+      LogUtil.warn(`${TAG} preload intelligent scene failed. err: ${err}`);
+    }
     Trace.end('SettingsHome onPageShow');
   };
 
@@ -715,6 +728,8 @@ struct SettingsHome {
     let targetUri = (parameters?.subUri ?? uri) as string;
     LogUtil.info(`${TAG} handleOUCNavigationUrlChange uri: ${uri}, subUri: ${parameters?.subUri}`);
     if (uri === NavEntryKey.OUC_SOFTWARE_UPDATE_SETTINGS) {
+      // 桌面搜索、小艺、外部拉起(通知跳转、Deeplink)都会走这里
+      OucNavigationUtils.setOUCNavigationPushParams(targetUri);
       if (this.popToName(NavEntryKey.ABOUT_DEVICE_ENTRY)) {
         LogUtil.info(`${TAG} OUC_KEY_GROUP exist`);
         return true;
@@ -1068,6 +1083,18 @@ struct SettingsHome {
     let systemRollbackLoader = await import('../developeroptions/SystemRollback');
     DynamicLoader.getInstance().loaderMap.set(NavEntryKey.SYSTEM_ROLLBACK_ENTRY,
       systemRollbackLoader.SystemRollbackLoader);
+  }
+
+  private async loadSimCardManagement(): Promise<void> {
+    await import('../../Setting/MobileNetwork/SIMCardManagementPage');
+  }
+
+  private async loadUsersAccounts(): Promise<void> {
+    await import('../../Setting/UserSettings/UsersAccountsPage');
+  }
+
+  private async loadUserSettings(): Promise<void> {
+    await import('../../Setting/UserSettings/UserSettingsPage');
   }
 
   private async loadWirelessCommissioningSetting(): Promise<void> {

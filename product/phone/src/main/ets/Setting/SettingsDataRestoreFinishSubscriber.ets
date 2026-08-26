@@ -20,9 +20,12 @@ import { CapabilitySupportUtils } from '@ohos/settings.common/src/main/ets/utils
 import { AbilityContextManager } from '@ohos/settings.common/src/main/ets/ability/AbilityContextManager';
 import { LogUtil } from '@ohos/settings.common/src/main/ets/utils/LogUtil';
 import { NotDisturbUtils } from '@ohos/settings.notDisturb/src/main/ets/utils/NotDisturbUtils';
+import { ScheduledPowerOnOffTimerManager } from '@ohos/settings.system/src/main/ets/ScheduledPowerOnOffTimerManager';
+import { ScheduledPowerOnOffDataUtil } from '@ohos/settings.system/src/main/ets/utils/ScheduledPowerOnOffDataUtil';
 
 const TAG = 'SettingsDataRestoreFinishSubscriber : ';
 const EVENT_SETTINGS_DATA_FINISH: string = 'custom.event.SETTINGS_DATA_RESTORE_FINISH';
+const SCHEDULED_POWER_ON_OFF_CLOSE: string = '0';
 
 type CommonEventData = commonEventManager.CommonEventData;
 
@@ -40,6 +43,17 @@ export default class SettingsDataRestoreFinishSubscriber extends StaticSubscribe
     if (!CapabilitySupportUtils.isSupportIntelligentScene()) {
       await NotDisturbUtils.handleNotDisturbRestore(event.data);
     }
+    await this.handleScheduledPowerOnOff();
     AbilityContextManager.setExtContext(undefined);
+  }
+
+  async handleScheduledPowerOnOff(): Promise<void> {
+    if (ScheduledPowerOnOffDataUtil.getSwitchModeType(TAG, this.context) === SCHEDULED_POWER_ON_OFF_CLOSE) {
+      await ScheduledPowerOnOffTimerManager.getInstance().destroyAlarm();
+      return;
+    }
+    // 开机定时器暂不支持
+    // await ScheduledPowerOnOffTimerManager.getInstance().calculateTimer(true, true, this.context);
+    await ScheduledPowerOnOffTimerManager.getInstance().calculateTimer(false, true, this.context);
   }
 }

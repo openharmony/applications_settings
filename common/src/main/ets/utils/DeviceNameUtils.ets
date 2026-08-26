@@ -262,6 +262,10 @@ export class DefaultName {
     try {
       // 当前版本不出海，要出海时要隔离
       let defaultName: string = deviceInfo.marketName;
+      const XX: string = 'XX';
+      if (defaultName && defaultName?.trim().startsWith(XX)) {
+        defaultName = defaultName.slice(XX.length).trim();
+      }
       return defaultName;
     } catch (error) {
       LogUtil.error(`${TAG} get getDisplayDeviceName failed ：${error?.code}`);

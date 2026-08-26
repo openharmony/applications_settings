@@ -223,7 +223,8 @@ export async function getSpecAppListFromTaskPool(bundleInfos: bundleManager.Bund
  * 加载更多应用列表
  */
 @Concurrent
-export async function getSpecAppListFromTaskPoolWithoutHds(bundleInfos: bundleManager.BundleInfo[]): Promise<AppEntry[]> {
+export async function getSpecAppListFromTaskPoolWithoutHds(bundleInfos: bundleManager.BundleInfo[]):
+    Promise<AppEntry[]> {
   const tag: string = 'AppListLoaderManagerTaskPool: ';
   let availableAppList: AppEntry[] = [];
   let defaultIcon: ResourceStr | PixelMap = AppEntry.getDefaultIcon();
