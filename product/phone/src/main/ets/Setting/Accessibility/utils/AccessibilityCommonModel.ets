@@ -576,7 +576,7 @@ export class AccessibilityHearingAidModel {
   }
 
   static setVolume(deviceId: string, volume: number): void {
-    LogUtil.info(`${TAG} setVolume deviceId: ${deviceId}, volume: ${volume}`);
+    LogUtil.info(`${TAG} volume: ${volume}`);
   }
 
   static volumeToDb(value: number): number {
