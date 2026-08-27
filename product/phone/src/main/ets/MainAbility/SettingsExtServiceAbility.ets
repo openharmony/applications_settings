@@ -22,10 +22,13 @@ import SearchItemInfoManager from '@ohos/settings.common/src/main/ets/data/Searc
 import SettingPageDescManager from '@ohos/settings.common/src/main/ets/data/SettingPageDescManager';
 import { RdbStoreHelper } from '@ohos/settings.common/src/main/ets/rdb/RdbStoreHelper';
 import { NotDisturbUtils } from '@ohos/settings.notDisturb/src/main/ets/utils/NotDisturbUtils';
+import { ScheduledPowerOnOffTimerManager } from '@ohos/settings.system/src/main/ets/ScheduledPowerOnOffTimerManager';
+import { ScheduledPowerOnOffDataUtil } from '@ohos/settings.system/src/main/ets/utils/ScheduledPowerOnOffDataUtil';
 import { SettingsExtServiceStub } from '../stub/SettingExtServiceStub';
 
 /* instrument ignore file */
 const TAG: string = 'SettingsExtServiceAbility';
+const SCHEDULED_POWER_ON_OFF_CLOSE: string = '0';
 
 export default class SettingsExtServiceAbility extends ServiceExtensionAbility {
   private readonly settingsExtServiceStub = new SettingsExtServiceStub(TAG);
@@ -37,6 +40,7 @@ export default class SettingsExtServiceAbility extends ServiceExtensionAbility {
     // 双升单场景，数据已经在settings data迁移完成，但是settings data发送广播时，设置还未安装，设置无法感知到免打扰数据已经迁移
     // 所以为了设置感知到免打扰数据，启动免打扰功能定时器，因此需要在此处触发免打扰启动定时器相关逻辑
     await NotDisturbUtils.handleHmosToNextNotDisturbRestore();
+    await this.handleScheduledPowerOnOff();
   }
 
   onRequest(want: Want, startId: number) {
@@ -67,5 +71,15 @@ export default class SettingsExtServiceAbility extends ServiceExtensionAbility {
     } catch (e) {
       LogUtil.error(`SettingsAbilityStage setSupportedProcessCache fail, code: ${e?.code}, msg: ${e?.message}`);
     }
+  }
+
+  private async handleScheduledPowerOnOff(): Promise<void> {
+    if (ScheduledPowerOnOffDataUtil.getSwitchModeType(TAG, this.context) === SCHEDULED_POWER_ON_OFF_CLOSE) {
+      await ScheduledPowerOnOffTimerManager.getInstance().destroyAlarm();
+      return;
+    }
+    // 开机定时器暂不支持
+    // await ScheduledPowerOnOffTimerManager.getInstance().calculateTimer(true, true, this.context);
+    await ScheduledPowerOnOffTimerManager.getInstance().calculateTimer(false, true, this.context);
   }
 }

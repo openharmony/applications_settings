@@ -379,6 +379,13 @@
             }
         },
         {
+            "name":"accessibility_original",
+            "value":"접근성",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
             "name":"wifi_status_unsuccessful",
             "value":"실패",
             "attr":{
@@ -6196,13 +6203,6 @@
             }
         },
         {
-            "name":"elder_care_desktop_layout",
-            "value":"홈 화면 레이아웃",
-            "attr":{
-                "priority":"LT"
-            }
-        },
-        {
             "name":"power_usage_summary_title",
             "value":"배터리",
             "attr":{
@@ -8382,6 +8382,10 @@
       {
         "name": "mobile_data_setting_title",
         "value": ""
+      },
+      {
+        "name": "sim_card_management_title",
+        "value": "SIM 관리"
       },
         {
             "name": "privacy_settings_title",

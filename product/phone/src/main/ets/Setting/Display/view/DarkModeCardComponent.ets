@@ -48,6 +48,8 @@ const TAG: string = 'DarkModeCardComponent : ';
 export struct DarkModeCardComponent {
   @State private clickEnable: boolean = true;
   @State private currentMode: number = this.getDarkMode();
+  // FlushReload 后同值赋值不触发刷新，用 key 强制指示器重建
+  @State private indicatorKey: number = 0;
   @State private needShowPad: boolean = false;
 
   private getDarkMode(): number {
@@ -59,8 +61,23 @@ export struct DarkModeCardComponent {
     return COLOR_MODE_DARK;
   }
 
+  private isOptionSelected(isDarkOption: boolean): boolean {
+    return isDarkOption ? this.currentMode === COLOR_MODE_DARK : this.currentMode !== COLOR_MODE_DARK;
+  }
+
+  private syncCurrentMode(isDarkMode?: boolean): void {
+    let nextMode: number = isDarkMode === undefined ? this.getDarkMode() :
+      (isDarkMode ? COLOR_MODE_DARK : COLOR_MODE_LIGHT);
+    if (this.currentMode !== nextMode) {
+      this.currentMode = nextMode;
+    }
+    this.indicatorKey++;
+    LogUtil.info(`${TAG} syncCurrentMode nextMode=${nextMode}, indicatorKey=${this.indicatorKey}`);
+  }
+
   private eventDarkModeChange = (isDarkMode: boolean) => {
-    this.currentMode = isDarkMode ? COLOR_MODE_DARK : COLOR_MODE_LIGHT;
+    LogUtil.info(`${TAG} eventDarkModeChange isDarkMode=${isDarkMode}`);
+    this.syncCurrentMode(isDarkMode);
   };
 
   private switchColorMode(isOn: boolean): void {
@@ -84,7 +101,7 @@ export struct DarkModeCardComponent {
         SettingsDataUtils.setSettingsData(SETTINGS_UI_APPEARANCE_DARK_MODE, DEFAULT_DARK_MODE_STATE,
           settings.domainName.USER_PROPERTY);
       }
-      this.currentMode = isOn ? COLOR_MODE_DARK : COLOR_MODE_LIGHT;
+      this.syncCurrentMode(isOn);
       LogUtil.info(`${TAG} switchColorMode ${isOn}`);
       let result = isOn ? $r('app.string.open_all_day') : $r('app.string.open_all_day_close');
       notifyCompStateChange('Setting.Display.display_setting.dark_mode',
@@ -121,24 +138,14 @@ export struct DarkModeCardComponent {
           .fontSize($r('sys.float.Body_M'))
           .fontWeight(FontWeight.Bold)
           .margin({ top: $r('app.float.wh_value_10'), bottom: $r('app.float.wh_value_6') })
-        Radio({ value: 'dark_once', group: 'DarkCardPadGroup' })
-          .enabled(this.clickEnable)
-          .checked(this.currentMode !== COLOR_MODE_DARK)
-          .onClick(() => {
-            this.switchColorMode(false)
-          })
-          .radioStyle({
-            checkedBackgroundColor: $r('sys.color.comp_background_emphasize')
-          })
-          .height($r('app.float.wh_value_21'))
-          .width($r('app.float.wh_value_21'))
-          .margin({ bottom: $r('app.float.wh_value_10') })
+        // 使用静态指示器替代 Radio，避免深浅色 FlushReload 时 Radio 入场动画整数溢出崩溃
+        this.modeSelectIndicator(false)
       }
       .width('50%')
       .accessibilityGroup(true)
       .accessibilityText($r('app.string.light_color'))
-      .accessibilitySelected(uiAppearance.getDarkMode() !== COLOR_MODE_DARK)
-      .accessibilityDescription(uiAppearance.getDarkMode() !== COLOR_MODE_DARK ? ' ' : '')
+      .accessibilitySelected(this.currentMode !== COLOR_MODE_DARK)
+      .accessibilityDescription(this.currentMode !== COLOR_MODE_DARK ? ' ' : '')
       .onClick(() => {
         this.accessibilityOnClick(false);
       })
@@ -158,28 +165,45 @@ export struct DarkModeCardComponent {
           .fontSize($r('sys.float.Body_M'))
           .margin({ top: $r('app.float.wh_value_10'), bottom: $r('app.float.wh_value_6') })
           .fontWeight(FontWeight.Bold)
-        Radio({ value: 'dark_once', group: 'DarkCardPadGroup' })
-          .enabled(this.clickEnable)
-          .checked(this.currentMode === COLOR_MODE_DARK)
-          .onClick(() => {
-            this.switchColorMode(true)
-          })
-          .radioStyle({
-            checkedBackgroundColor: $r('sys.color.comp_background_emphasize')
-          })
-          .height($r('app.float.wh_value_21'))
-          .width($r('app.float.wh_value_21'))
-          .margin({ bottom: $r('app.float.wh_value_10') })
+        this.modeSelectIndicator(true)
       }
       .width('50%')
       .accessibilityGroup(true)
       .accessibilityText($r('app.string.dark_color'))
-      .accessibilitySelected(uiAppearance.getDarkMode() === COLOR_MODE_DARK)
-      .accessibilityDescription(uiAppearance.getDarkMode() === COLOR_MODE_DARK ? ' ' : '')
+      .accessibilitySelected(this.currentMode === COLOR_MODE_DARK)
+      .accessibilityDescription(this.currentMode === COLOR_MODE_DARK ? ' ' : '')
       .onClick(() => {
         this.accessibilityOnClick(true);
       })
     }
+  }
+
+  @Builder
+  modeSelectIndicator(isDarkOption: boolean): void {
+    // 直接读 @State currentMode，避免布尔传值在 FlushReload 后不刷新
+    Stack() {
+      Circle()
+        .width($r('app.float.wh_value_21'))
+        .height($r('app.float.wh_value_21'))
+        .fill(Color.Transparent)
+        .stroke(this.isOptionSelected(isDarkOption) ? $r('sys.color.comp_background_emphasize') :
+          $r('sys.color.ohos_id_color_fourth'))
+        .strokeWidth(2)
+      if (this.isOptionSelected(isDarkOption)) {
+        Circle()
+          .width($r('app.float.wh_value_12'))
+          .height($r('app.float.wh_value_12'))
+          .fill($r('sys.color.comp_background_emphasize'))
+      }
+    }
+    .width($r('app.float.wh_value_21'))
+    .height($r('app.float.wh_value_21'))
+    .margin({ bottom: $r('app.float.wh_value_10') })
+    .key(`dark_mode_indicator_${isDarkOption}_${this.currentMode}_${this.indicatorKey}`)
+    .enabled(this.clickEnable)
+    .onClick(() => {
+      this.switchColorMode(isDarkOption);
+    })
   }
 
   @Builder
@@ -202,24 +226,13 @@ export struct DarkModeCardComponent {
           .fontSize($r('sys.float.Body_M'))
           .fontWeight(FontWeight.Bold)
           .margin({ bottom: '6vp' })
-        Radio({ value: 'tab_unlock', group: 'DarkCardGroup' })
-          .enabled(this.clickEnable)
-          .checked(this.currentMode !== COLOR_MODE_DARK)
-          .onClick(() => {
-            this.switchColorMode(false)
-          })
-          .radioStyle({
-            checkedBackgroundColor: $r('sys.color.comp_background_emphasize')
-          })
-          .height($r('app.float.wh_value_21'))
-          .width($r('app.float.wh_value_21'))
-          .margin({ bottom: '12vp' })
+        this.modeSelectIndicator(false)
       }
       .width('50%')
       .accessibilityGroup(true)
       .accessibilityText($r('app.string.light_color'))
-      .accessibilitySelected(uiAppearance.getDarkMode() !== COLOR_MODE_DARK)
-      .accessibilityDescription(uiAppearance.getDarkMode() !== COLOR_MODE_DARK ? ' ' : '')
+      .accessibilitySelected(this.currentMode !== COLOR_MODE_DARK)
+      .accessibilityDescription(this.currentMode !== COLOR_MODE_DARK ? ' ' : '')
       .onClick(() => {
         this.accessibilityOnClick(false);
       })
@@ -241,24 +254,13 @@ export struct DarkModeCardComponent {
           .fontSize($r('sys.float.Body_M'))
           .margin({ bottom: '6vp' })
           .fontWeight(FontWeight.Bold)
-        Radio({ value: 'tab_unlock', group: 'DarkCardGroup' })
-          .enabled(this.clickEnable)
-          .checked(this.currentMode === COLOR_MODE_DARK)
-          .onClick(() => {
-            this.switchColorMode(true)
-          })
-          .radioStyle({
-            checkedBackgroundColor: $r('sys.color.comp_background_emphasize')
-          })
-          .height($r('app.float.wh_value_21'))
-          .width($r('app.float.wh_value_21'))
-          .margin({ bottom: '12vp' })
+        this.modeSelectIndicator(true)
       }
       .width('50%')
       .accessibilityGroup(true)
       .accessibilityText($r('app.string.dark_color'))
-      .accessibilitySelected(uiAppearance.getDarkMode() === COLOR_MODE_DARK)
-      .accessibilityDescription(uiAppearance.getDarkMode() === COLOR_MODE_DARK ? ' ' : '')
+      .accessibilitySelected(this.currentMode === COLOR_MODE_DARK)
+      .accessibilityDescription(this.currentMode === COLOR_MODE_DARK ? ' ' : '')
       .onClick(() => {
         this.accessibilityOnClick(true);
       })
@@ -304,6 +306,7 @@ export struct DarkModeCardComponent {
 
   aboutToAppear(): void {
     LogUtil.info(`${TAG} aboutToAppear`);
+    this.syncCurrentMode();
     EventBus.getInstance().on(EVENT_ID_DARK_MODE_CACHE, this.eventDarkModeChange);
     this.needShowPad = DeviceUtil.isDevicePad() ||
       (DeviceUtil.isThreeFoldable() && DeviceUtil.isThreeFoldableGmodel());
@@ -317,10 +320,14 @@ export struct DarkModeCardComponent {
   }
 
   build() {
-    if (this.needShowPad) {
-      this.padCardComponent()
-    } else {
-      this.phoneCardComponent()
+    Column() {
+      if (this.needShowPad) {
+        this.padCardComponent()
+      } else {
+        this.phoneCardComponent()
+      }
     }
+    .width('100%')
+    .key(`dark_mode_card_${this.currentMode}_${this.indicatorKey}`)
   }
 }

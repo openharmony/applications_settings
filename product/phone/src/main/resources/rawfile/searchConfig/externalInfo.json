@@ -47,6 +47,11 @@
       "entryKey": ["com_hmos_ouc_software_update_settings", "com_hmos_ouc_param_version_settings"]
     },
     {
+      "bundleName": "com.ohos.updateapp",
+      "moduleName": "updateapp",
+      "entryKey": ["com_ohos_updateapp_software_update_settings"]
+    },
+    {
       "bundleName": "com.ohos.callsetting",
       "moduleName": "default",
       "entryKey": ["distribute_connect_setting", "gesture_mute_call", "gesture_quick_call"]

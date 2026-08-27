@@ -21,6 +21,12 @@ import { CompCtrlParam, ComponentControl,
   SettingBaseModel } from '@ohos/settings.common/src/main/ets/framework/model/SettingBaseModel';
 import { PushParam } from '@ohos/settings.common/src/main/ets/core/controller/Controller';
 import { IAboutDevicePageCtrl } from '@ohos/settings.aboutdevice/src/main/ets/controller/IAboutDevicePageCtrl';
+import {
+  AboutDeviceCardAction,
+  AboutDeviceOucPublishData,
+  AnimateType,
+  OucAboutDeviceViewModel
+} from '@ohos/settings.aboutdevice/src/main/ets/model/OucAboutDeviceViewModel';
 import { SettingPageModel } from '@ohos/settings.common/src/main/ets/framework/model/SettingPageModel';
 import { SettingGroupModel } from '@ohos/settings.common/src/main/ets/framework/model/SettingGroupModel';
 import { SettingItemModel } from '@ohos/settings.common/src/main/ets/framework/model/SettingItemModel';
@@ -52,6 +58,15 @@ export class AboutDevicePageController implements ComponentControl, IAboutDevice
       return;
     }
     this.pageModel?.init();
+    this.initOucOffsetY();
+    this.adjustListPosition();
+    if (OucAboutDeviceViewModel.isToOUCLikePhone(compParam.param as PushParam) &&
+      !this.pageModel?.isEmulator) {
+      LogUtil.info(`${this.tag} jump ouc directly`);
+      this.pageModel.oucAboutDeviceCardModel.isOucPreloadImgShow = false;
+      this.cardAreaExpand();
+    }
+
     let pageInfo: SettingPageModel = this.pageModel.aboutDevicePage;
     if (!pageInfo.groups) {
       LogUtil.showInfo(this.tag, 'Init failed, page group is empty');
@@ -89,6 +104,278 @@ export class AboutDevicePageController implements ComponentControl, IAboutDevice
     this.pageModel = pageModel;
   }
 
+  public adjustListPosition(): void {
+    LogUtil.info(`${this.tag} adjustListPosition`);
+    if (!this.pageModel) {
+      return;
+    }
+    this.pageModel.listColumnMarginTop = OucAboutDeviceViewModel.getListColumnMarginTop();
+    if (this.pageModel?.isEmulator) {
+      this.changeEmulatorImgHeight();
+      return;
+    }
+    if (this.pageModel?.oucAboutDeviceCardModel?.isOucPreloadImgShow) {
+      this.changeOucPreloadImgHeight();
+      this.changeOucUIExtensionCompHeightPercent();
+      return;
+    }
+    this.changeOucUIExtensionCompHeightPercent();
+  }
+
+  /**
+   * 改变模拟器图片高度
+   */
+  public changeEmulatorImgHeight(): void {
+    let cardModel = this.pageModel?.oucAboutDeviceEmulatorCardModel;
+    if (cardModel && cardModel.rootContainerStyle) {
+      let rootContainerStyle: ContainerStyle = new LogoImageMenuContainerStyle();
+      rootContainerStyle.size = {
+        height: OucAboutDeviceViewModel.getReallyFoldCardHeight(),
+      };
+      cardModel.rootContainerStyle = rootContainerStyle;
+    }
+  }
+
+  /**
+   * 改变ouc预加载图片高度
+   */
+  public changeOucPreloadImgHeight(): void {
+    if (!this.pageModel) {
+      return;
+    }
+    this.pageModel.oucAboutDeviceCardModel.oucPreloadImgSize = {
+      height: OucAboutDeviceViewModel.getReallyFoldCardHeight(),
+      width: 'undefined',
+    };
+  }
+
+  /**
+   * 改变ouc UIExtension组件的高度
+   *
+   * @returns 是否更改
+   */
+  public changeOucUIExtensionCompHeightPercent(): void {
+    if (!this.pageModel) {
+      return;
+    }
+    this.pageModel.oucAboutDeviceCardModel.size = {
+      height: this.isInAboutDevicePage ? OucAboutDeviceViewModel.getOucColumnPercent() : '100%'
+    };
+  }
+
+  private animateToOuc(animateType?: AnimateType): void {
+    LogUtil.info(`${this.tag} animateToOuc animateType: ${animateType}`);
+    // 展开无动效
+    if (!animateType) {
+      this.doExpand();
+      return;
+    }
+    // 设置动效
+    switch (animateType) {
+      case AnimateType.CHECKING:
+        animateTo({ curve: Curve.Friction, duration: TIME_MS_383 }, () => {
+          this.doExpand();
+        })
+        break;
+      case AnimateType.NO_VERSION:
+        animateTo({ duration: TIME_MS_1000, curve: SPRING_CURVE }, () => {
+          this.doExpand();
+        });
+        break;
+      case AnimateType.HAS_VERSION:
+        animateTo({ duration: TIME_MS_1000, curve: SPRING_CURVE }, () => {
+          this.doExpand();
+        });
+        break;
+      default:
+        break;
+    }
+  }
+
+  private doExpand(): void {
+    this.setTitleVisible(false);
+    this.setMenuListVisible(false);
+    this.setPageScrollEdgeEffect(EdgeEffect.None);
+    this.initOucOffsetY();
+    this.changeOucUIExtensionCompHeightPercent();
+  }
+
+  private initOucOffsetY() {
+    if (!this.pageModel) {
+      return;
+    }
+    this.pageModel.oucOffsetYPixel = 0;
+  }
+
+  private getOucOffsetY(): number {
+    return px2vp(this.pageModel?.oucOffsetYPixel ?? 0);
+  }
+
+  private animateOucBack(animateType?: AnimateType): void {
+    LogUtil.info(`${this.tag} animateOucBack animateType: ${animateType}`);
+    // 折叠无动效
+    if (!animateType) {
+      this.setBarStateOff(false);
+      this.doFold();
+      return;
+    }
+    // 设置动效
+    switch (animateType) {
+      case AnimateType.CHECKING:
+        animateTo({ curve: Curve.Friction, duration: TIME_MS_383, onFinish: () => {
+          if (this.isInAboutDevicePage) {
+            this.setBarStateOff(false);
+          }
+        }}, () => {
+          this.doFold();
+        });
+        break;
+      case AnimateType.NO_VERSION:
+        animateTo({ duration: TIME_MS_1000, curve: SPRING_CURVE, onFinish: () => {
+          if (this.isInAboutDevicePage) {
+            this.setBarStateOff(false);
+          }
+        }}, () => {
+          this.doFold();
+        });
+        break;
+      case AnimateType.HAS_VERSION:
+        animateTo({ duration: TIME_MS_1000, curve: SPRING_CURVE, onFinish: () => {
+          if (this.isInAboutDevicePage) {
+            this.setBarStateOff(false);
+          }
+        }}, () => {
+          this.doFold();
+        });
+        break;
+      default:
+        break;
+    }
+  }
+
+  private doFold(): void {
+    this.setTitleVisible(true);
+    this.setMenuListVisible(true);
+    this.setPageScrollEdgeEffect(EdgeEffect.Spring);
+    this.changeOucUIExtensionCompHeightPercent();
+  }
+
+  private checkAnimateType(animateType: AnimateType): boolean {
+    return animateType === AnimateType.CHECKING ||
+      animateType === AnimateType.NO_VERSION ||
+      animateType === AnimateType.HAS_VERSION;
+  }
+
+  private cardAreaExpand(animateType?: AnimateType, extraInfo?: object): void {
+    let oucSmallCardAspect = extraInfo?.['oucSmallCardAspect'] as Object;
+    if (animateType && !this.checkAnimateType(animateType)) {
+      LogUtil.error(`${this.tag} cardAreaExpand animateType error.`);
+      return;
+    }
+    this.scrollEnable(false);
+    this.setBarStateOff(true);
+    this.isInAboutDevicePage = false;
+    AppStorage.setOrCreate<boolean>('isInAboutDevicePage', false);
+    this.setTransitionToMenuList(animateType, oucSmallCardAspect);
+    this.animateToOuc(animateType);
+  }
+
+  private cardAreaFold(animateType?: AnimateType, extraInfo?: object): void {
+    let oucSmallCardAspect = extraInfo?.['oucSmallCardAspect'] as Object;
+    if (animateType && !this.checkAnimateType(animateType)) {
+      LogUtil.error(`${this.tag} cardAreaFold animateType error.`);
+      return;
+    }
+    this.isInAboutDevicePage = true;
+    AppStorage.setOrCreate<boolean>('isInAboutDevicePage', true);
+    this.scrollEnable(true);
+    this.setTransitionToMenuList(animateType, oucSmallCardAspect);
+    this.animateOucBack(animateType);
+  }
+
+  private cardAreaInitAgain(extraInfo?: object): void {
+    if (!this.pageModel) {
+      return;
+    }
+    let uriTargetSubRouter = extraInfo?.['uriTargetSubRouter'] as Object;
+    let isToOUC = OucAboutDeviceViewModel.isUriToOUCLikePhone(uriTargetSubRouter?.toString());
+    if (isToOUC && this.isInAboutDevicePage) {
+      LogUtil.info(`${this.tag} cardAreaInitAgain expand`);
+      this.pageModel.oucAboutDeviceCardModel.isOucPreloadImgShow = false;
+      this.cardAreaExpand();
+    }
+    if (!isToOUC && !this.isInAboutDevicePage) {
+      LogUtil.info(`${this.tag} cardAreaInitAgain fold`);
+      this.pageModel.oucAboutDeviceCardModel.isOucPreloadImgShow = true;
+      this.cardAreaFold();
+    }
+  }
+
+  private scrollEnable(isEnable: boolean) {
+    if (!this.pageModel) {
+      return;
+    }
+    this.pageModel.isScrollEnable = isEnable;
+  }
+
+  private setBarStateOff(isAboutDeviceBarStateOff: boolean) {
+    if (!this.pageModel) {
+      return;
+    }
+    this.pageModel.isAboutDeviceBarStateOff = isAboutDeviceBarStateOff;
+  }
+
+  private setTitleVisible(show: boolean): void {
+    if (!this.pageModel) {
+      return;
+    }
+    this.pageModel.isAboutDeviceTitleShow = show;
+  }
+
+  private setTransitionToMenuList(animateType?: AnimateType, oucSmallCardAspect?: Object): void {
+    if (!this.pageModel) {
+      return;
+    }
+    if (animateType === AnimateType.CHECKING) {
+      let moveY = OucAboutDeviceViewModel.getListMoveBottomLength() - this.getOucOffsetY();
+      this.pageModel.menuListTransitionEffect = TransitionEffect.translate({y: moveY});
+    }
+
+    if (animateType === AnimateType.NO_VERSION) {
+      let moveY = OucAboutDeviceViewModel.getListMoveBottomLength() - this.getOucOffsetY();
+      this.pageModel.menuListTransitionEffect = TransitionEffect.translate({y: moveY}).animation({
+        duration: TIME_MS_1000,
+        curve: SPRING_CURVE,
+      });
+    }
+
+    if (animateType === AnimateType.HAS_VERSION) {
+      let moveY = OucAboutDeviceViewModel.getListToOucNewVersionMoveLength(
+        Number.parseFloat(oucSmallCardAspect?.toString() ?? '')) - this.getOucOffsetY();
+      this.pageModel.menuListTransitionEffect = TransitionEffect.translate({y: moveY}).animation({
+        duration: TIME_MS_1000,
+        curve: SPRING_CURVE,
+      }).combine(TransitionEffect.OPACITY.animation({
+        duration: TIME_MS_100,
+        curve: Curve.Friction
+      }));
+    }
+  }
+
+  private setMenuListVisible(show: boolean): void {
+    if (!this.pageModel) {
+      return;
+    }
+    this.pageModel.menuListShow = show;
+  }
+
+  private setPageScrollEdgeEffect(edgeEffect: EdgeEffect): void {
+    if (!this.pageModel) {
+      return;
+    }
+    this.pageModel.scrollEdgeEffect = edgeEffect;
+  }
+
   /**
    * 当前页其他Controller的数据变化回调
    *
@@ -102,6 +389,31 @@ export class AboutDevicePageController implements ComponentControl, IAboutDevice
     if (fromKey !== 'about_device_ouc_card') {
       LogUtil.error(`${this.tag} illegal fromKey:${fromKey}`);
       return;
+    }
+    let aboutDeviceOucPublishData = data as AboutDeviceOucPublishData;
+    let oucCardAction = aboutDeviceOucPublishData.aboutDeviceCardAction;
+    let animateType = aboutDeviceOucPublishData.animateType;
+    let extraInfo = aboutDeviceOucPublishData.extraInfo;
+    LogUtil.info(`${this.tag} oucCardAction:${oucCardAction}, animateType:${animateType},
+      extraInfo:${JSON.stringify(extraInfo)}`);
+    if (oucCardAction === AboutDeviceCardAction.EXPAND) {
+      this.cardAreaExpand(animateType as AnimateType, extraInfo);
+    }
+
+    if (oucCardAction === AboutDeviceCardAction.FOLD) {
+      this.cardAreaFold(animateType as AnimateType, extraInfo);
+    }
+
+    if (oucCardAction === AboutDeviceCardAction.POP) {
+      this.pageModel?.onBackPressed?.();
+    }
+
+    if (oucCardAction === AboutDeviceCardAction.PRELOAD_IMG_HIDE) {
+      this.pageModel.oucAboutDeviceCardModel.isOucPreloadImgShow = false;
+    }
+
+    if (oucCardAction === AboutDeviceCardAction.INIT_AGAIN) {
+      this.cardAreaInitAgain(extraInfo);
     }
   }
 }

@@ -107,7 +107,7 @@ export class HiSysAccessibilityStaticEventGroup {
   public static readonly WAKE_DOUBLE_CLICK_SWITCH_UE = 'WAKE_DOUBLE_CLICK_SWITCH_UE';
   public static readonly WAKE_PICK_UP_SWITCH_UE = 'WAKE_PICK_UP_SWITCH_UE';
   public static readonly PASSWORD_TYPE_STATUS = 'USER_PIN_CONFIG_STATUS';
-  public static readonly HEARING_AID_STATUS = 'HEARING_AID_STATUS';
+  public static readonly TRANSITION_ANIMATIONS_STATUS = 'TRANSITION_ANIMATIONS_STATUS';
 }
 
 export class HiSysModeConnectStaticEventGroup {
@@ -170,4 +170,9 @@ export class HiSysDeveloperOptionsGroup {
   public static readonly DEBUG_OUTER_APP_SWITCH_STATUS = 'DEBUG_OUTER_APP_SWITCH_STATUS';
   public static readonly NETWORK_NAVIGATOR_SWITCH_STATUS = 'NETWORK_NAVIGATOR_SWITCH_STATUS';
   public static readonly NETWORK_NAVIGATOR_SCENE_STATUS = 'NETWORK_NAVIGATOR_SCENE_STATUS';
+}
+
+export class HiSysScheduledPowerOnOffGroup {
+  public static readonly SCHEDULED_POWER_ON_OFF_STATUS = 'SCHEDULED_POWER_ON_OFF_STATUS';
+  public static readonly SCHEDULED_REPEAT_STATUS = 'SCHEDULED_REPEAT_STATUS';
 }

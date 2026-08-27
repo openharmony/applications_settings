@@ -1,0 +1,102 @@
+{
+    "string":[
+        {
+            "name":"power_off_title",
+            "value":"Tắt nguồn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_on_time_title",
+            "value":"Bật nguồn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"power_timed_warn",
+            "value":"Cần phải có ít nhất %d phút giữa mỗi lần bật/tắt nguồn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scheduled_power_on_off_title",
+            "value":"Hẹn giờ bật/tắt nguồn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_power_off",
+            "value":"Tắt nguồn ngay",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"every_week_item",
+            "value":"Ngày đã chọn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_sure",
+            "value":"OK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"single_time_item",
+            "value":"Không bao giờ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Hủy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_not_set",
+            "value":"Chưa đặt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"every_day_item",
+            "value":"Hằng ngày",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"statutory_workday_item",
+            "value":"Ngày làm việc",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"time_repeat",
+            "value":"Lặp lại",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_off_time_title",
+            "value":"Tắt nguồn",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

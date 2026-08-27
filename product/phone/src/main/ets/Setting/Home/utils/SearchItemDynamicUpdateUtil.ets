@@ -15,6 +15,7 @@
 
 import { sensor } from '@kit.SensorServiceKit';
 import { DeviceUtil } from '@ohos/settings.common/src/main/ets/utils/BaseUtils';
+import { CapabilitySupportUtils } from '@ohos/settings.common/src/main/ets/utils/CapabilitySupportUtils';
 import { SearchDataController } from '@ohos/settings.search/src/main/ets/controller/SearchController';
 import { SearchCheckUtil } from '@ohos/settings.search/src/main/ets/util/SearchCheckUtil';
 import { LogUtil } from '@ohos/settings.common/src/main/ets/utils/LogUtil';
@@ -27,6 +28,14 @@ const TAG: string = 'SearchItemDynamicUpdateUtil';
 export class SearchItemDynamicUpdateUtil {
   private static instance: SearchItemDynamicUpdateUtil | undefined = undefined;
   private searchDataController: SearchDataController = SearchDataController.getInstance();
+  /**
+   * 情景模式外部搜索项（与 com.ohos.intelligentscene searchPage.json 的 itemName 对齐）
+   * 不含 enable=false 的护眼模式
+   */
+  private intelligentSceneSearchItems: string[] = [
+    'intelligent_scene', 'add_condition', 'application', 'incoming_call', 'dark_color_mode',
+    'intelligent_important_message', 'sleep_mode', 'dnd_mode', 'learning_mode', 'working_mode'
+  ];
   private accessibilityItemsNeedBlockInPcMode: string[] = [
     'high_contrast_text', 'touch_duration', 'ignore_repeated_touches', 'accessibility_shortcut', 'shortKey_lock_screen',
     'function_select', 'zoom_gesture', 'zoom_zone_text', 'touchscreen_settings', 'allow_drop_down_control_center',
@@ -67,6 +76,19 @@ export class SearchItemDynamicUpdateUtil {
     this.updateSearchItemsOfFloatNavigationOptionIn2In1();
     // 屏幕朗读
     this.updateSearchItemsOfScreenReaderOptionIn2In1();
+    // 情景模式：与首页入口 CCM 对齐，避免入库 enable 与入口开关不一致导致搜不到
+    this.updateSearchItemsOfIntelligentScene();
+  }
+
+  /**
+   * 按 CCM 刷新情景模式相关搜索项使能状态
+   */
+  private updateSearchItemsOfIntelligentScene(): void {
+    const isSupport: boolean = CapabilitySupportUtils.isSupportIntelligentScene();
+    LogUtil.info(`${TAG} updateSearchItemsOfIntelligentScene isSupport=${isSupport}`);
+    this.intelligentSceneSearchItems.forEach((itemName: string) => {
+      this.updateSearchItem(itemName, isSupport);
+    });
   }
 
   /**

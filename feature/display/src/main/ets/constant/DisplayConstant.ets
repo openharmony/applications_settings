@@ -99,10 +99,13 @@ export class DisplayEventConstant {
   public static readonly EVENT_DISPLAY_COLOR_TEMPERATURE_DISC_DRAG: string = 'settings.event.display.color.temperature.disc.drag';
 }
 
-export const APP_NAME: string = 'com.ohos.associateassistant';
+// export const APP_NAME: string = 'com.ohos.associateassistant';
+export const APP_NAME: string = 'com.associateassistant';
 export const KEY_MOUSE_SERVICE: string = 'KeyMouseService';
-export const KEY_MOUSE_SERVICE_DESCRIPTOR: string = 'com.ohos.associateassistant.KeyMouseManager';
-export const KEY_MOUSE_SERVICE_SETTINGS_DESCRIPTOR = 'com.ohos.associateassistant.SettingsStub';
+// export const KEY_MOUSE_SERVICE_DESCRIPTOR: string = 'com.ohos.associateassistant.KeyMouseManager';
+// export const KEY_MOUSE_SERVICE_SETTINGS_DESCRIPTOR = 'com.ohos.associateassistant.SettingsStub';
+export const KEY_MOUSE_SERVICE_DESCRIPTOR: string = 'com.associateassistant.KeyMouseManager';
+export const KEY_MOUSE_SERVICE_SETTINGS_DESCRIPTOR = 'com.associateassistant.SettingsStub';
 /** 默认卡片宽度 */
 export const DEFAULT_CARD_WIDTH = 200;
 

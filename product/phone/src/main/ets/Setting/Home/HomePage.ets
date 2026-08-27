@@ -21,6 +21,9 @@ import { ItemType } from '@ohos/settings.common/src/main/ets/framework/model/Set
 import { PageType, SettingPageModel } from '@ohos/settings.common/src/main/ets/framework/model/SettingPageModel';
 import { DeviceUtil } from '@ohos/settings.common/src/main/ets/utils/BaseUtils';
 import { NavEntryKey } from '@ohos/settings.common/src/main/ets/utils/Consts';
+import {
+  suggestionItemGroupViewBuilder
+} from '@ohos/settings.suggestion/src/main/ets/view/SuggestionItemGroupView';
 
 import { AboutDeviceItemView } from './view/AboutDeviceItemView';
 import { SearchComponent } from '../Search/SearchComponent';
@@ -57,6 +60,15 @@ function homePage(): SettingPageModel {
         id: 'search_group',
         type: GroupType.GROUP_TYPE_CUSTOM,
         builder: wrapBuilder(searchIconBuilder),
+      },
+      {
+        id: 'suggestion_group',
+        type: GroupType.GROUP_TYPE_CUSTOM,
+        builder: wrapBuilder(suggestionItemGroupViewBuilder),
+        visible: false,
+        layout: {
+          margin: { top: PADDING_0, bottom: PADDING_0 },
+        }
       },
       {
         id: 'about_device_group',
@@ -97,10 +109,12 @@ function homePage(): SettingPageModel {
         items: [
           HomePageModelUtil.getUpdateItem(),
           HomePageModelUtil.getApplicationItem(),
+          HomePageModelUtil.getAccessibilityItem(),
           HomePageModelUtil.getStorageItem(),
           HomePageModelUtil.getBatteryItem(),
           HomePageModelUtil.getBiometricsItem(),
           HomePageModelUtil.getPrivacyItem(),
+          HomePageModelUtil.getUsersAccountItem(),
         ]
       },
       {

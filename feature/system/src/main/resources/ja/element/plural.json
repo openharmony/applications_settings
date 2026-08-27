@@ -1,0 +1,16 @@
+{
+    "plural":[
+        {
+            "name":"power_off_message",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"スケジュールどおり、デバイスは%d秒後に電源がオフになります。",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

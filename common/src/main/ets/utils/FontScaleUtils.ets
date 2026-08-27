@@ -23,6 +23,7 @@ export class FontScaleUtils {
   public static readonly EXTRA_LARGE_FONT = 1.45;
   public static readonly EXTRA_LARGE_FONT_1 = 1.75;
   public static readonly EXTRA_LARGE_FONT_2 = 2;
+  public static readonly EXTRA_LARGE_FONT_2_25 = 2.25;
   public static readonly EXTRA_LARGE_FONT_3 = 3.2;
   private static CONTENTS_PADDING: number = 0;
   private static FONT_SCALE_SIZE: number = 1;
@@ -82,7 +83,8 @@ export class FontScaleUtils {
       FontScaleUtils.SAFETY_PADDING = 16;
     } else if (FontScaleUtils.FONT_SCALE_SIZE === FontScaleUtils.EXTRA_LARGE_FONT_2) {
       FontScaleUtils.SAFETY_PADDING = 20;
-    } else if (FontScaleUtils.FONT_SCALE_SIZE === FontScaleUtils.EXTRA_LARGE_FONT_3) {
+    } else if (FontScaleUtils.FONT_SCALE_SIZE === FontScaleUtils.EXTRA_LARGE_FONT_2_25 ||
+      FontScaleUtils.FONT_SCALE_SIZE === FontScaleUtils.EXTRA_LARGE_FONT_3) {
       FontScaleUtils.SAFETY_PADDING = 24;
     } else {
       FontScaleUtils.SAFETY_PADDING = 8;
@@ -98,7 +100,8 @@ export class FontScaleUtils {
       FontScaleUtils.CONTENTS_PADDING = 6;
     } else if (FontScaleUtils.FONT_SCALE_SIZE === FontScaleUtils.EXTRA_LARGE_FONT_2) {
       FontScaleUtils.CONTENTS_PADDING = 12;
-    } else if (FontScaleUtils.FONT_SCALE_SIZE === FontScaleUtils.EXTRA_LARGE_FONT_3) {
+    } else if (FontScaleUtils.FONT_SCALE_SIZE === FontScaleUtils.EXTRA_LARGE_FONT_2_25 ||
+      FontScaleUtils.FONT_SCALE_SIZE === FontScaleUtils.EXTRA_LARGE_FONT_3) {
       FontScaleUtils.CONTENTS_PADDING = 24;
     } else {
       FontScaleUtils.CONTENTS_PADDING = 0;
@@ -149,6 +152,7 @@ export class FontScaleUtils {
    */
   public static setButtonTopPadding(): void {
     if (FontScaleUtils.FONT_SCALE_SIZE === FontScaleUtils.EXTRA_LARGE_FONT_2 ||
+      FontScaleUtils.FONT_SCALE_SIZE === FontScaleUtils.EXTRA_LARGE_FONT_2_25 ||
       FontScaleUtils.FONT_SCALE_SIZE === FontScaleUtils.EXTRA_LARGE_FONT_3) {
       FontScaleUtils.BUTTON_PADDING = 8;
     } else {
@@ -174,7 +178,8 @@ export class FontScaleUtils {
   public static setTabBarHeight(): void {
     if (FontScaleUtils.FONT_SCALE_SIZE === FontScaleUtils.EXTRA_LARGE_FONT_2) {
       FontScaleUtils.TAB_BAR_HEIGHT = 62;
-    } else if (FontScaleUtils.FONT_SCALE_SIZE === FontScaleUtils.EXTRA_LARGE_FONT_3) {
+    } else if (FontScaleUtils.FONT_SCALE_SIZE === FontScaleUtils.EXTRA_LARGE_FONT_2_25 ||
+      FontScaleUtils.FONT_SCALE_SIZE === FontScaleUtils.EXTRA_LARGE_FONT_3) {
       FontScaleUtils.TAB_BAR_HEIGHT = 80;
     } else {
       FontScaleUtils.TAB_BAR_HEIGHT = 56;

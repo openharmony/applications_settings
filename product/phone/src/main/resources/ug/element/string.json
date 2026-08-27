@@ -491,6 +491,13 @@
             }
         },
         {
+            "name":"accessibility_original",
+            "value":"قولايسىزلىق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
             "name":"wifi_status_unsuccessful",
             "value":"بولمىدى",
             "attr":{
@@ -4649,13 +4656,6 @@
             }
         },
         {
-            "name":"elder_care_desktop_layout",
-            "value":"ئۈستەليۈزى لايىھەسى",
-            "attr":{
-                "priority":"LT"
-            }
-        },
-        {
             "name":"elder_care_search_item_elder",
             "value":"ياشانغانلار",
             "attr":{
@@ -8379,13 +8379,20 @@
               "priority":"translate"
           }
       },
+      {
+        "name": "sim_card_management_title",
+        "value": "\u200fSIM كارتىسىنى باشقۇرۇش",
+        "attr": {
+          "priority": "translate"
+        }
+      },
         {
             "name": "privacy_settings_title",
             "value": "مەخپىيەتلىك ۋە بىخەتەرلىك"
         },
         {
             "name": "sos_emergency_help",
-            "value": "SOS جىددىي قۇتقۇزۇش",
+            "value": "\u200FSOS جىددىي قۇتقۇزۇش",
             "attr": {
                 "priority": "translate"
             }
@@ -8393,6 +8400,685 @@
       {
         "name": "data_usage_management_title",
         "value": "ترافىك باشقۇرۇش"
-      }
+      },
+      {
+        "name": "users_accounts_title",
+        "value": "ئىشلەتكۈچى ۋە ھېسابات"
+      },
+      {
+        "name": "accessibility_visual_aids_tips",
+        "value": "كۆرۈش ئىپادىسى ۋە ئۆزئارا تەسىر ئۇسۇلىنى ئىختىيارىي بەلگىلەپ، كۆرۈش ئىقتىدارى ئاجىز، قارىغۇ ياكى رەڭگە سەزگۈر ئىشلەتكۈچىلەرنىڭ ئۈسكۈنىنى ئىشلىتىشىگە ياردەم بېرىدۇ."
+      },
+      {
+        "name": "accessibility_hearing_aids_tips",
+        "value": "ئاڭلاش ياكى تىل توسالغۇسى بار ئىشلەتكۈچىلەرنىڭ ئۈسكۈنىنى ئىشلىتىشى ۋە ئالاقىلىشىشىغا ياردەم بېرىدۇ."
+      },
+      {
+        "name": "accessibility_interactive_control_tips",
+        "value": "چېكىش ئىنكاسىنى ئىختىيارىي بەلگىلەپ، بارماق ھەرىكەتچانلىقى چەكلەنگەن ئىشلەتكۈچىلەرنىڭ مەشغۇلاتىغا قۇلايلىق يارىتىدۇ."
+      },
+      {
+        "name": "accessibility_shortKey_tips",
+        "value": "ئاۋاز كۆتۈرۈش-پەسەيتىش كۇنۇپكىسىنى ئۇزۇن بېسىپ، دائىم ئىشلىتىدىغان توسالغۇسىز ئىقتىدارلارنى تېز ئېچىپ-يېپىشقا بولىدۇ."
+      },
+      {
+        "name": "restore_defaults_dialog_title",
+        "value": "كۆڭۈلدىكى قىممەتنى ئەسلىگە كەلتۈرەمسىز؟"
+      },
+      {
+        "name": "restore_defaults_visual_dialog_content",
+        "value": "ئەسلىگە كەلتۈرسىڭىز، كۆرۈش ياردىمىدە تەڭشىگەن بارلىق شەخسىيلەشتۈرۈلگەن مايىللىقىڭىز ئەسلىگە كەلتۈرۈلىدۇ."
+      },
+      {
+        "name": "restore_defaults_hearing_dialog_content",
+        "value": "ئەسلىگە كەلتۈرسىڭىز، ئاڭلاش ياردىمىدە تەڭشىگەن بارلىق شەخسىيلەشتۈرۈلگەن مايىللىقىڭىز ئەسلىگە كەلتۈرۈلىدۇ."
+      },
+      {
+        "name": "restore_defaults_control_dialog_content",
+        "value": "ئەسلىگە كەلتۈرسىڭىز، ئۆزئارا تەسىر كونترولىدا تەڭشىگەن بارلىق شەخسىيلەشتۈرۈلگەن مايىللىقىڭىز ئەسلىگە كەلتۈرۈلىدۇ."
+      },
+      {
+        "name": "restore_defaults_dialog_confirm",
+        "value": "ئەسلىگە كەلتۈرۈشنى جەزملەش"
+      },
+      {
+        "name": "screenreader_is_sure_open",
+        "value": "ئېكران ئوقۇغۇچنى ئاچامسىز؟"
+      },
+      {
+        "name": "ignore_repeat_click_screen_reader_open",
+        "value": "ئېكران ئوقۇغۇچنى ئاچسىڭىز نۆۋەتتىكى جەرياندىن چېكىنىپ «قايتىلانغان چېكىشكە پەرۋا قىلماسلىق» يېپىلىدۇ. ئاچامسىز؟"
+      },
+      {
+        "name": "ignore_repeat_click_screen_reader_confirm",
+        "value": "ئېكران ئوقۇغۇچنى ئاچسىڭىز «قايتىلانغان چېكىشكە پەرۋا قىلماسلىق» يېپىلىدۇ. ئاچامسىز؟"
+      },
+      {
+        "name": "ignore_repeated_time_shortest",
+        "value": "%1$s سېكۇنت"
+      },
+      {
+        "name": "ignore_repeated_time_short",
+        "value": "%1$s سېكۇنت"
+      },
+      {
+        "name": "ignore_repeated_time_medium",
+        "value": "%1$s سېكۇنت"
+      },
+      {
+        "name": "ignore_repeated_time_long",
+        "value": "%1$s سېكۇنت"
+      },
+      {
+        "name": "ignore_repeated_time_longest",
+        "value": "%1$s سېكۇنت"
+      },
+      {
+        "name": "accessibility_shortKey",
+        "value": "توسالغۇسىز تېزلەتمە كۇنۇپكا"
+      },
+      {
+        "name": "accessibility_features",
+        "value": "ئالىي كۆرۈش ياردىمى"
+      },
+      {
+        "name": "accessibility_hearing_aids",
+        "value": "ئاڭلاش ياردىمى"
+      },
+      {
+        "name": "accessibility_interactive_control",
+        "value": "ئۆزئارا تەسىر كونتروللىقى"
+      },
+      {
+        "name": "accessibility_visual_aids",
+        "value": "كۆرۈش ياردىمى"
+      },
+      {
+        "name": "audio_accessibility",
+        "value": "ئاڭلاش"
+      },
+      {
+        "name": "elder_care_display_level",
+        "value": "چوڭ %d - دەرىجە"
+      },
+      {
+        "name": "elder_care_guide_page_title",
+        "value": "ئىشلىتىش تېخىمۇ قۇلاي، مەشغۇلات تېخىمۇ ئاسان"
+      },
+      {
+        "name": "elder_care_introduction_text",
+        "value": "چوڭايتىپ كۆرسىتىش قاتارلىق كۆڭۈلچان ئىقتىدارلارنى ئۆز ئىچىگە ئېلىپ، ياشانغان ئىشلەتكۈچىلەرنىڭ تېلېفوننى تېخىمۇ ئاددىي، قۇلاي ئىشلىتىشىگە ياردەم بېرىدۇ."
+      },
+      {
+        "name": "elder_care_make_larger",
+        "value": "چوڭايتىش"
+      },
+      {
+        "name": "elder_care_make_smaller",
+        "value": "كىچىكلىتىش"
+      },
+      {
+        "name": "elder_care_preview_text1_new",
+        "value": "تۆۋەندىكى سۈرگۈچنى سۆرەپ، خەت چوڭلۇقى ۋە توملۇقىنى تەڭشەش بىلەنلا قالماي، سىنبەلگە كۆرسىتىش ئۈنۈمىنىمۇ بىرلا ۋاقىتتا چوڭايتىپ-كىچىكلىتىشكە بولىدىغانلىقىنى بىلەمسىز؟"
+      },
+      {
+        "name": "elder_care_switch_summary_no_sim",
+        "value": "ئاچقاندىن كېيىن، چوڭ خەت، چوڭ سىنبەلگە قاتارلىق ئىقتىدارلارنى تېخىمۇ قۇلاي، تېز تەڭشىگىلى بولىدۇ."
+      },
+      {
+        "name": "elder_care_title",
+        "value": "كۆيۈمچانلىق ھالىتى"
+      },
+      {
+        "name": "elders_mode_block_rules_summary",
+        "value": "شۇنىڭ بىلەن بىر ۋاقىتتا تۆۋەندىكى ئاۋارىچىلىق توسۇش تۈرلىرى بىرلىكتە ئېچىلىدۇ:\n• ئاۋارىچىلىق تېلېفونىنى توسۇش\n• يۇقىرى خەتەرلىك تېلېفوننى توسۇش\n• ئېلان-سېتىش تېلېفونىنى توسۇش\n• ئۆي-مۈلۈك ۋاسىتىچىسى تېلېفونىنى توسۇش\n• بىر قېتىم جىرىڭلاپ ئۈزۈلگەن تېلېفوننى توسۇش\n• زەھەرلىك تور ئادرېسىنى تونۇش (تورغا ئۇلىنىش كېرەك)"
+      },
+      {
+        "name": "flash_reminder_desc",
+        "value": "ئېكران قۇلۇپلانغان ھالەتتە تېلېفون كەلسە، ئۇقتۇرۇش ياكى سائەت جىرىڭلىسا، چاقماق چىرىغى لىپىلداپ ئەسكەرتىدۇ."
+      },
+      {
+        "name": "flash_reminder_header",
+        "value": "تۆۋەندىكى ئەھۋاللارنى قوللايدۇ"
+      },
+      {
+        "name": "ignore_repeat_click_change_reconfirm_summary",
+        "value": "قايتىلانغان چېكىشكە پەرۋا قىلماسلىق ۋاقتى %1$s دىن %2$s غا تەڭشىلىدۇ. ئۆزگەرتەمسىز؟"
+      },
+      {
+        "name": "ignore_repeat_click_change_reconfirm_title",
+        "value": "قايتىلانغان چېكىشكە پەرۋا قىلماسلىق ۋاقتىنى ئۆزگەرتەمسىز؟"
+      },
+      {
+        "name": "ignore_repeat_click_notification_button_disable",
+        "value": "ئىقتىدارنى يېپىش"
+      },
+      {
+        "name": "ignore_repeat_click_reconfirm_declaration",
+        "value": "چۈشەندۈرۈش"
+      },
+      {
+        "name": "ignore_repeat_click_reconfirm_summary",
+        "value": "ئاچقاندىن كېيىن، بەلگىلەنگەن ۋاقىت ئارىلىقىدىكى كۆپ قېتىملىق چېكىش بىر قېتىملىق چېكىش دەپ قارىلىدۇ. مەسىلەن، كۇنۇپكا تاختىسىدا ئۇدا كىرگۈزۈش چېكىشى بىر قېتىملىق چېكىش دەپ تونۇلۇپ، كىرگۈزۈشتە كېچىكىش ھېس قىلىنىشى مۇمكىن. ئاچامسىز؟"
+      },
+      {
+        "name": "ignore_repeated_left_click",
+        "value": "سول تەرەپتىكى ھەرپ كۇنۇپكىسىنى چېكىڭ"
+      },
+      {
+        "name": "ignore_repeated_left_click_result",
+        "value": "چېكىش مۇۋەپپەقىيەتلىك: سول كۇنۇپكىنىڭ تۇنجى چېكىلىشى تاماملاندى"
+      },
+      {
+        "name": "ignore_repeated_previous_step",
+        "value": "ئالدىنقى قەدەم"
+      },
+      {
+        "name": "ignore_repeated_recommended_close",
+        "value": "«قايتىلانغان چېكىشكە پەرۋا قىلماسلىق» ئىقتىدارىنى يېپىشىڭىزنى تەۋسىيە قىلىمىز"
+      },
+      {
+        "name": "ignore_repeated_recommended_delay",
+        "value": "ۋاقىتنى مۇۋاپىق ئۇزارتىشىڭىزنى تەۋسىيە قىلىمىز"
+      },
+      {
+        "name": "ignore_repeated_recommended_shorten",
+        "value": "ۋاقىتنى مۇۋاپىق قىسقارتىشىڭىزنى تەۋسىيە قىلىمىز"
+      },
+      {
+        "name": "ignore_repeated_right_click",
+        "value": "ئوڭ تەرەپتىكى ھەرپ كۇنۇپكىسىنى چېكىڭ"
+      },
+      {
+        "name": "ignore_repeated_right_click_result",
+        "value": "چېكىش مۇۋەپپەقىيەتلىك: ئوڭ كۇنۇپكىنىڭ تۇنجى چېكىلىشى تاماملاندى"
+      },
+      {
+        "name": "ignore_repeated_time_select_summary",
+        "value": "چېكىش ھادىسىسىنىڭ قوزغىلىش چاستوتىسىنى چەكلەش ئارقىلىق، قىسقا ۋاقىت ئىچىدىكى زۆرۈر بولمىغان كۆپ قېتىملىق چېكىشكە پەرۋا قىلماسلىقىڭىزغا ياردەم بېرىدۇ."
+      },
+      {
+        "name": "ignore_repeated_time_select_tips",
+        "value": "مۇۋاپىق «قايتىلانغان چېكىشكە پەرۋا قىلماسلىق» ۋاقتىنى تاللاڭ. تاللانغاندىن كېيىن، شۇ ۋاقىت ئارىلىقىدىكى كۆپ قېتىملىق چېكىش بىر قېتىم دەپ قارىلىدۇ."
+      },
+      {
+        "name": "ignore_repeated_timed_end",
+        "value": "ۋاقىت توشتى"
+      },
+      {
+        "name": "ignore_repeated_trial_again",
+        "value": "قايتا سىناش"
+      },
+      {
+        "name": "ignore_repeated_trial_end",
+        "value": "سىناش ئاياغلاشتى"
+      },
+      {
+        "name": "ignore_touch_close",
+        "value": "تاقاش (كۆڭۈلدىكى)"
+      },
+      {
+        "name": "multi_targets",
+        "value": "%s قاتارلىق"
+      },
+      {
+        "name": "on_transition_animations_dialog_summary",
+        "value": "ياپقاندىن كېيىن بەت ئالماشتۇرۇش ھەمدە ئەپ قوزغىتىش-چېكىنىش قاتارلىق ئەھۋاللارنىڭ راۋانلىقىغا تەسىر يېتىدۇ."
+      },
+      {
+        "name": "on_transition_animations_dialog_title",
+        "value": "ئۆتكۈنچى ھەرىكەتچان سۈرەتنى ياپامسىز؟"
+      },
+      {
+        "name": "off_transition_animations_notification_confirm",
+        "value": "ئىقتىدارنى ئېچىش"
+      },
+      {
+        "name": "off_transition_animations_notification_summary",
+        "value": "بۇ ئىقتىدار بەت ئالماشتۇرۇش ھەمدە ئەپ قوزغىتىش-چېكىنىش قاتارلىق ئەھۋاللارنىڭ راۋانلىقىنى ئاشۇرۇشقا پايدىلىق، ئېچىشنى تەۋسىيە قىلىمىز."
+      },
+      {
+        "name": "off_transition_animations_notification_title",
+        "value": "سىستېما ئۆتكۈنچى ھەرىكەتچان سۈرەتنى ياپقانلىقىڭىزنى بايقىدى"
+      },
+      {
+        "name": "on_zoom_gesture_dialog_summary",
+        "value": "ئېكران چوڭايتىلغان ھالەتتە، ئېكراننى %s قېتىم چېكىپ چوڭايتىشتىن چېكىنگىلى بولىدۇ."
+      },
+      {
+        "name": "on_zoom_gesture_dialog_title",
+        "value": "چوڭايتىش ئىشارىتىنى ئاچامسىز؟"
+      },
+      {
+        "name": "restore_defaults",
+        "value": "كۆڭۈلدىكىنى ئەسلىگە كەلتۈرۈش"
+      },
+      {
+        "name": "shortKey_Enable_Aware",
+        "value": "ئاچقاندىن كېيىن، ئاۋاز كۆتۈرۈش-پەسەيتىش كۇنۇپكىسىنى %1$s سېكۇنت تەڭ بېسىپ تۇرسىڭىز، تۆۋەندىكى ئىقتىدارنى تېز قوزغىتىدۇ: %2$s."
+      },
+      {
+        "name": "shortKey_prompt",
+        "value": "ئاچقاندىن كېيىن، ئاۋاز كۆتۈرۈش-پەسەيتىش كۇنۇپكىسىنى %s سېكۇنت تەڭ باسسىڭىز، توسالغۇسىز ئىقتىدارنى تېز قوزغىتىدۇ."
+      },
+      {
+        "name": "transition_animation_text",
+        "value": "ئۆتكۈنچى ھەرىكەتچان سۈرەت"
+      },
+      {
+        "name": "transition_animations_reminder_detail",
+        "value": "ئەتسىڭىز، بەزى بەتلەرنىڭ ئۆتۈشمە ھەرىكەت ئۈنۈمى ئاجىزلايدۇ ياكى يوقايدۇ، ئېكرانغا قاراپ بېشىڭىز قايسا ئېتىپ قويسىڭىز بولىدۇ."
+      },
+      {
+        "name": "visual_accessibility",
+        "value": "كۆرۈش"
+      },
+      {
+        "name": "zoom_gesture_risk_warning",
+        "value": "خەتەر ئەسكەرتىشى"
+      },
+      {
+        "name": "zoom_gesture_risk_warning_summary",
+        "value": "بۇ ئىقتىدار ئېچىلغاندىن كېيىن، ئېكراننى ئۇدا كۆپ قېتىم چەكسىڭىز ئېكران چوڭىيىشى مۇمكىن، مەسىلەن ھېسابلىغۇچتا «%s» كىرگۈزگەندە.\nبۇ ئىقتىدارنى ئاچسىڭىز ئۈسكۈنىنىڭ ئىنكاس سۈرئىتى ئاستىلىشى مۇمكىن."
+      },
+      {
+        "name": "audio_balance_left_mute_toast",
+        "value": "سول ئاۋاز قانىلىنىڭ ئاۋازى ئۈنسىزگە تەڭشەلدى"
+      },
+      {
+        "name": "audio_balance_right_mute_toast",
+        "value": "ئوڭ ئاۋاز قانىلىنىڭ ئاۋازى ئۈنسىزگە تەڭشەلدى"
+      },
+      {
+        "name": "high_contrast_dialog_title",
+        "value": "يۇقىرى سېلىشتۇرما خەتنى ئاچامسىز؟"
+      },
+      {
+        "name": "audio_balance_reminder",
+        "value": "ئاۋاز تەڭپۇڭلۇقىنى تەڭشىگەندىن كېيىن، قۇلاقچىن ئىشلەتكەندە ئوڭ-سول قۇلاقچىن ئاۋازىنىڭ پەرقى چوڭ بولۇپ قېلىشى مۇمكىن."
+      },
+      {
+        "name": "confirm_close_dark_mode_content",
+        "value": "ئاچقاندىن كېيىن «قارا ھالەت» يېپىلىدۇ."
+      },
+      {
+        "name": "elder_care_preview_text2",
+        "value": "چۈشەندىم، سۈرگۈچنى سۆرىسەم ئەڭ مۇۋاپىق كۆرسىتىش ئۈنۈمىگە ئېرىشكىلى بولىدىكەن."
+      },
+      {
+        "name": "elders_mode_title",
+        "value": "ياشانغانلارغا كۆيۈنۈش"
+      },
+                   {
+                       "name":  "accessibility_user_approval",
+                       "value":  "خەۋپنى چۈشەندىم ۋە ئاقىۋىتىگە ئۆزۈم ئىگە",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "assisted_reading_not_enable",
+                       "value":  "ئېتىك",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "assisted_reading_page_title",
+                       "value":  "ئوقۇش ياردەمچىسى",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "assisted_reading_prompt_text",
+                       "value":  "خەت چوڭ-كىچىكلىتىپ ياكى چوڭايتىش ئىشارىسى ئېچىپ، كۆرۈش ئۈنۈمىنى ياخشىلاشقا بولىدۇ.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "audio_adjustment",
+                       "value":  "ئاۋاز تەڭشەش",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "back_to_parent_menu",
+                       "value":  "قايتىش",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "be_chosen",
+                       "value":  "تاللاندى",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "dialog_cancel",
+                       "value":  "بىكار قىلىش",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "dialog_confirm_to_open",
+                       "value":  "ئېچىش",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "dialog_stay_closed",
+                       "value":  "ياق",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "display_mode_font_size_extra_large",
+                       "value":  "چوڭراق",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "display_mode_font_size_huge",
+                       "value":  "بەك چوڭ",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "display_mode_font_size_large",
+                       "value":  "چوڭ",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "display_mode_font_size_normal",
+                       "value":  "ئۆلچەملىك",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "done",
+                       "value":  "پۈتتى",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "elder_care_search_item_font_size",
+                       "value":  "چوڭ خەت",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "hearing_aid_left_era_device",
+                       "value":  "سول قۇلاق",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "hearing_aid_right_era_device",
+                       "value":  "ئوڭ قۇلاق",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "highContrast_text_reminder",
+                       "value":  "تېكىست ۋە تەگلىك سېلىشتۇرمىسى گەۋدىلىنىپ، ئېكراندىكى خەتلەرنى ئوقۇش قولايلىشىدۇ.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "input_max_length_message",
+                       "value":  "ئۇزۇنلۇقى چەككە يەتتى.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "invert_color_reminder",
+                       "value":  "بۇ تاللانمىنى ئاچسىڭىز، ئېكراندىكى بارلىق رەڭ ئەكسلىنىپ، سېلىشتۇرما كۈچەيتىلىدۇ. سېلىشتۇرما سەزگۈرلۈكى بار كىشىلەر تېخىمۇ ئوچۇق كۆرەلەيدۇ، ئەمما سىستېما يۈرۈشىگە تەسىر يېتىشى مۇمكىن.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "load_more_card",
+                       "value":  "كۆپرەك",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "move_zoom_gesture_summary",
+                       "value":  "چوڭايتقان رايوننى ئىككى بارماقتا تارتىپ يۆتكەشكە بولىدۇ.",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "move_zoom_gesture_title",
+                       "value":  "چوڭايتقان رايوننى يۆتكەش",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "not_be_chosen",
+                       "value":  "تاللانمىدى",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "note",
+                       "value":  "ئەسكەرتىش",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "on_zoom_gesture_summary",
+                       "value":  "ئېكراننى ئۇدا %1$s چەكسىڭىز ئېكراندىكى مەزمۇن چوڭىيىدۇ؛ چوڭايتقان ھالەتتە يەنە %2$s چېكىپ چوڭايتىشتىن چېكىنىسىز.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "on_zoom_gesture_title",
+                       "value":  "چوڭايتىش ۋە چوڭايتىشتىن چېكىنىش",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "repeat_name_warning",
+                       "value":  "ھازىرقى ئۇلانغان تور نامىغا ئوخشاش بولسا بولمايدۇ، قايتا كىرگۈزۈڭ.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "resize_zoom_gesture_summary",
+                       "value":  "چوڭايتقان ھالەتتە ئىككى بارماقنى يېيىپ ۋە يىغىپ چوڭايتىش نىسبىتىنى تەڭشەشكە بولىدۇ.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "resize_zoom_gesture_title",
+                       "value":  "چوڭايتىش نىسبىتى",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screen_zoom_text_size",
+                       "value":  "خەت چوڭلۇقى",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help",
+                       "value":  "ياردەم",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_eight",
+                       "value":  "ئۈزچاتنى چەكسىڭىز يېشىل رامكا چىقىدۇ، ئاندىن ئۈزچاتنى قوش چېكىڭ.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_five",
+                       "value":  "قوش چەكسىڭىز مەزمۇن قوزغىلىدۇ.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_four",
+                       "value":  "ئوڭ-سولغا سىيرىپ مەزمۇنلار ئارا يۆتكىلىسىز.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_seven",
+                       "value":  "ئېكران ئوقۇغۇچنى ئېتىش ئۇسۇلى:",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_six",
+                       "value":  "ئىككى بارماقنى سۆرەپ سىيرىش مەشغۇلاتى قىلىسىز.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_three",
+                       "value":  "ئېكران ئوقۇغۇچ ئارقىلىق مەشغۇلات قىلىش ئۇسۇلى:",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_two",
+                       "value":  "ئېكران ئوقۇغۇچ ئېكران مەشغۇلاتلىرى ھەققىدە ئاۋازلىق ئىنكاس قايتۇرىدۇ، بۇ ئارقىلىق ئېكرانغا قارىماي تۇرۇپ ئىشلىتەلەيسىز. بۇ ئىقتىدار كۆزى ئاجىز ئىشلەتكۈچىلەرگە ياردەم بېرىدۇ.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_is_sure_add",
+                       "value":  "ئېكران ئوقۇغۇچ قوشامسىز؟",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_is_sure_add_summary",
+                       "value":  "بۇ ئىقتىدارنى قوشقاندىن كېيىن، ئۈستى-ئاستى ئۈن كۇنۇپكىلىرىنى تەڭ %1$s سېكۇنت بېسىپ تۇرۇپ، ئېكران ئوقۇغۇچنى ئېچىش ياكى ئېتىشكە بولىدۇ. ئېكران ئوقۇغۇچ ئوچۇق ھالەتتە ئۈسكۈنە تىزگىنلەش ئىشارىلىرى ئۆزگىرىدۇ.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_risk_content_one",
+                       "value":  "ئۈسكۈنە ئىشلىتىش ئۇسۇلى ئۆزگىرىدۇ، ئېكراندىكى مەشغۇلات ۋە مەزمۇن ئاۋازلىق ئۇقتۇرۇلىدۇ.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_risk_content_three",
+                       "value":  "بۇ ئىقتىدار ئوچۇق ھالەتتە ئېكران ئوقۇغۇچ تاللانمىسىنى بېسىپ، يېشىل رامكا چىققاندا يەنە ئىككى چەكسىڭىز ئېتىلىدۇ.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_risk_content_two",
+                       "value":  "ئېچىشتىن بۇرۇن تۆۋەندىكىلەرنى تەپسىلىي ئوقۇڭ:",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "setting_font_size_content1",
+                       "value":  "خەت چوڭلۇقى قانداق تەڭشىلىدۇ؟",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "setting_font_size_content2",
+                       "value":  "بالداقنى سۆرەپ تەڭشەيسىز.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "single_audio_reminder",
+                       "value":  "ئاۋاز يولى بىرىكتۈرۈلىدۇ، ئىستېرېئو ئۈنۈم چىقمايدۇ.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "title",
+                       "value":  "تېما",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "toggle_to_bigger",
+                       "value":  "چوڭايتىش",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "toggle_to_smaller",
+                       "value":  "كىچىكلىتىش",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "uncompleted",
+                       "value":  "بۇ ئىقتىدار ئىشلىنىۋاتىدۇ.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "zoom_gesture_risk_warning_dialog_summary",
+                       "value":  "بۇ ئىقتىدار ئوچۇق ھالەتتە ئېكراننى ئۇدا چېكىش مەشغۇلاتى چوڭايتىش ئىشارىسى دەپ تونۇلۇپ كېتىشى مۇمكىن. مەسىلەن، ھېسابلىغۇچتا «%s» نى كىرگۈزۈش مەشغۇلاتى قاتارلىقلار. بۇ ئىقتىدار ئۈسكۈنە ئىنكاسىنى ئاستىلىتىشى مۇمكىن.",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   }
     ]
 }

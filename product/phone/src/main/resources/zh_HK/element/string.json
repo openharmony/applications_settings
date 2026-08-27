@@ -512,6 +512,13 @@
             }
         },
         {
+            "name":"accessibility_original",
+            "value":"關懷和無障礙",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
             "name":"wifi_status_unsuccessful",
             "value":"失敗",
             "attr":{
@@ -4684,13 +4691,6 @@
             }
         },
         {
-            "name":"elder_care_desktop_layout",
-            "value":"主屏幕佈局",
-            "attr":{
-                "priority":"LT"
-            }
-        },
-        {
             "name":"elder_care_search_item_elder",
             "value":"長輩",
             "attr":{
@@ -7233,7 +7233,7 @@
         },
         {
             "name":"user_name_input_hint",
-            "value":"用以登入電腦",
+            "value":"用以登入設備",
             "attr":{
                 "priority":"LT"
             }
@@ -8402,7 +8402,11 @@
         },
       {
         "name": "mobile_data_setting_title",
-        "value": ""
+        "value": "流動數據"
+      },
+      {
+        "name": "sim_card_management_title",
+        "value": "SIM 卡管理"
       },
       {
         "name": "privacy_settings_title",
@@ -8411,6 +8415,689 @@
       {
         "name": "data_usage_management_title",
         "value": "流量管理"
-      }
+      },
+      {
+        "name": "users_accounts_title",
+        "value": "使用者與帳戶"
+      },
+      {
+        "name": "accessibility_visual_aids_tips",
+        "value": "自訂視覺呈現與互動方式，協助低視力、失明或對顏色敏感的使用者操作裝置。"
+      },
+      {
+        "name": "accessibility_hearing_aids_tips",
+        "value": "協助聽力或語言障礙的使用者操作裝置，更順暢地溝通交流。"
+      },
+      {
+        "name": "accessibility_interactive_control_tips",
+        "value": "自訂觸控回應，方便手指靈活度受限的使用者操作。"
+      },
+      {
+        "name": "accessibility_shortKey_tips",
+        "value": "長按音量增減鍵，即可快速開啟或關閉常用的無障礙功能。"
+      },
+      {
+        "name": "restore_defaults_dialog_title",
+        "value": "是否還原預設值？"
+      },
+      {
+        "name": "restore_defaults_visual_dialog_content",
+        "value": "還原預設值將會重設您在視覺輔助中設定的所有個人化偏好。"
+      },
+      {
+        "name": "restore_defaults_hearing_dialog_content",
+        "value": "還原預設值將會重設您在聽覺輔助中設定的所有個人化偏好。"
+      },
+      {
+        "name": "restore_defaults_control_dialog_content",
+        "value": "還原預設值將會重設您在互動控制中設定的所有個人化偏好。"
+      },
+      {
+        "name": "restore_defaults_dialog_confirm",
+        "value": "確認還原"
+      },
+      {
+        "name": "screenreader_is_sure_open",
+        "value": "是否開啟螢幕朗讀？"
+      },
+      {
+        "name": "ignore_repeat_click_screen_reader_open",
+        "value": "開啟螢幕朗讀將結束目前流程並關閉「忽略重複點按」，是否開啟？"
+      },
+      {
+        "name": "ignore_repeat_click_screen_reader_confirm",
+        "value": "開啟螢幕朗讀將會關閉「忽略重複點按」，是否開啟？"
+      },
+      {
+        "name": "ignore_repeated_time_shortest",
+        "value": "%1$s 秒"
+      },
+      {
+        "name": "ignore_repeated_time_short",
+        "value": "%1$s 秒"
+      },
+      {
+        "name": "ignore_repeated_time_medium",
+        "value": "%1$s 秒"
+      },
+      {
+        "name": "ignore_repeated_time_long",
+        "value": "%1$s 秒"
+      },
+      {
+        "name": "ignore_repeated_time_longest",
+        "value": "%1$s 秒"
+      },
+      {
+        "name": "accessibility_shortKey",
+        "value": "無障礙快速鍵"
+      },
+      {
+        "name": "accessibility_features",
+        "value": "進階視覺輔助"
+      },
+      {
+        "name": "accessibility_hearing_aids",
+        "value": "聽覺輔助"
+      },
+      {
+        "name": "accessibility_interactive_control",
+        "value": "互動控制"
+      },
+      {
+        "name": "accessibility_visual_aids",
+        "value": "視覺輔助"
+      },
+      {
+        "name": "audio_accessibility",
+        "value": "聽覺"
+      },
+      {
+        "name": "elder_care_display_level",
+        "value": "大 %d 級"
+      },
+      {
+        "name": "elder_care_guide_page_title",
+        "value": "用機更方便，操作更輕鬆"
+      },
+      {
+        "name": "elder_care_introduction_text",
+        "value": "包含放大顯示等貼心功能，協助年長使用者更簡單、更方便地使用手機。"
+      },
+      {
+        "name": "elder_care_make_larger",
+        "value": "放大"
+      },
+      {
+        "name": "elder_care_make_smaller",
+        "value": "縮小"
+      },
+      {
+        "name": "elder_care_preview_text1_new",
+        "value": "您知道拖曳下方的滑桿，不僅可以調整字型大小與粗細，還能同步縮放圖示顯示效果嗎？"
+      },
+      {
+        "name": "elder_care_switch_summary_no_sim",
+        "value": "開啟後，可更方便快速地完成大字型、大圖示等功能設定。"
+      },
+      {
+        "name": "elder_care_title",
+        "value": "關懷模式"
+      },
+      {
+        "name": "elders_mode_block_rules_summary",
+        "value": "同時會連動開啟下列騷擾攔截項目：\n• 攔截騷擾電話\n• 攔截高風險電話\n• 攔截廣告推銷電話\n• 攔截地產代理電話\n• 攔截響鈴一聲的來電\n• 惡意網址辨識 (需連網)"
+      },
+      {
+        "name": "flash_reminder_desc",
+        "value": "鎖定螢幕狀態下收到來電、通知或鬧鐘響起時，閃光燈會閃爍以示提醒。"
+      },
+      {
+        "name": "flash_reminder_header",
+        "value": "支援下列情境"
+      },
+      {
+        "name": "ignore_repeat_click_change_reconfirm_summary",
+        "value": "忽略重複點按時長將由 %1$s 調整為 %2$s，確定變更？"
+      },
+      {
+        "name": "ignore_repeat_click_change_reconfirm_title",
+        "value": "是否變更忽略重複點按時長？"
+      },
+      {
+        "name": "ignore_repeat_click_notification_button_disable",
+        "value": "關閉功能"
+      },
+      {
+        "name": "ignore_repeat_click_reconfirm_declaration",
+        "value": "說明"
+      },
+      {
+        "name": "ignore_repeat_click_reconfirm_summary",
+        "value": "開啟後，在設定的時間間隔內多次點按將視為單次點按，例如將鍵盤上的連續輸入點按辨識為單次點按，可能會有輸入卡頓的感受。確定開啟？"
+      },
+      {
+        "name": "ignore_repeated_left_click",
+        "value": "請點按左側字母按鍵"
+      },
+      {
+        "name": "ignore_repeated_left_click_result",
+        "value": "點按成功：已完成左鍵的首次點按"
+      },
+      {
+        "name": "ignore_repeated_previous_step",
+        "value": "上一步"
+      },
+      {
+        "name": "ignore_repeated_recommended_close",
+        "value": "建議您關閉「忽略重複點按」功能"
+      },
+      {
+        "name": "ignore_repeated_recommended_delay",
+        "value": "建議您適當延長時長"
+      },
+      {
+        "name": "ignore_repeated_recommended_shorten",
+        "value": "建議您適當縮短時長"
+      },
+      {
+        "name": "ignore_repeated_right_click",
+        "value": "請點按右側字母按鍵"
+      },
+      {
+        "name": "ignore_repeated_right_click_result",
+        "value": "點按成功：已完成右鍵的首次點按"
+      },
+      {
+        "name": "ignore_repeated_time_select_summary",
+        "value": "透過限制點按事件的觸發頻率，協助您忽略短時間內不必要的多次點按。"
+      },
+      {
+        "name": "ignore_repeated_time_select_tips",
+        "value": "請選擇合適的「忽略重複點按」時長。選定後，在該時間間隔內的多次點按操作會視為單次。"
+      },
+      {
+        "name": "ignore_repeated_timed_end",
+        "value": "時間到了"
+      },
+      {
+        "name": "ignore_repeated_trial_again",
+        "value": "重新試用"
+      },
+      {
+        "name": "ignore_repeated_trial_end",
+        "value": "試用結束"
+      },
+      {
+        "name": "ignore_touch_close",
+        "value": "關閉 (預設)"
+      },
+      {
+        "name": "multi_targets",
+        "value": "%s 等"
+      },
+      {
+        "name": "on_transition_animations_dialog_summary",
+        "value": "關閉後將影響頁面切換以及應用程式啟動與結束等情境的流暢度。"
+      },
+      {
+        "name": "on_transition_animations_dialog_title",
+        "value": "是否關閉過渡動畫？"
+      },
+      {
+        "name": "off_transition_animations_notification_confirm",
+        "value": "開啟功能"
+      },
+      {
+        "name": "off_transition_animations_notification_summary",
+        "value": "此功能有助於提升頁面切換以及應用程式啟動與結束等情境的流暢度，建議開啟。"
+      },
+      {
+        "name": "off_transition_animations_notification_title",
+        "value": "系統偵測到您已關閉過渡動畫"
+      },
+      {
+        "name": "on_zoom_gesture_dialog_summary",
+        "value": "當螢幕處於放大狀態時，可點按螢幕 %s 次結束放大。"
+      },
+      {
+        "name": "on_zoom_gesture_dialog_title",
+        "value": "是否開啟放大手勢？"
+      },
+      {
+        "name": "restore_defaults",
+        "value": "還原預設值"
+      },
+      {
+        "name": "shortKey_Enable_Aware",
+        "value": "開啟後，同時按住音量增減鍵 %1$s 秒，即可快速啟動下列功能：%2$s。"
+      },
+      {
+        "name": "shortKey_prompt",
+        "value": "開啟後，同時按下音量增減鍵 %s 秒，即可快速啟動無障礙功能。"
+      },
+      {
+        "name": "transition_animation_text",
+        "value": "過渡動畫"
+      },
+      {
+        "name": "transition_animations_reminder_detail",
+        "value": "關閉後會減弱或移除部分介面的動態過渡效果，可能有助緩解暈動症狀。"
+      },
+      {
+        "name": "visual_accessibility",
+        "value": "視覺"
+      },
+      {
+        "name": "zoom_gesture_risk_warning",
+        "value": "風險提示"
+      },
+      {
+        "name": "zoom_gesture_risk_warning_summary",
+        "value": "此功能開啟後，當您連續多次觸碰螢幕時，可能會觸發螢幕放大，例如在計算機輸入「%s」。\n開啟此功能可能會減慢裝置的回應速度。"
+      },
+      {
+        "name": "audio_balance_left_mute_toast",
+        "value": "左聲道音量已調至靜音"
+      },
+      {
+        "name": "audio_balance_right_mute_toast",
+        "value": "右聲道音量已調至靜音"
+      },
+      {
+        "name": "high_contrast_dialog_title",
+        "value": "是否開啟高對比度文字？"
+      },
+      {
+        "name": "audio_balance_reminder",
+        "value": "調整音量平衡後，使用耳機裝置時可能會導致左右耳機音量差異較大。"
+      },
+      {
+        "name": "confirm_close_dark_mode_content",
+        "value": "開啟後將關閉「深色模式」。"
+      },
+      {
+        "name": "elder_care_preview_text2",
+        "value": "瞭解，拖曳滑桿即可達到最合適的顯示效果。"
+      },
+      {
+        "name": "elder_care_search_item_easy",
+        "value": "簡易"
+      },
+      {
+        "name": "elders_mode_elderly_desc",
+        "value": "長者"
+      },
+                   {
+                       "name":  "accessibility_user_approval",
+                       "value":  "我已知曉上述風險，並自願承擔可能導致的後果。",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "assisted_reading_not_enable",
+                       "value":  "未啟用",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "assisted_reading_page_title",
+                       "value":  "輔助閱讀",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "assisted_reading_prompt_text",
+                       "value":  "您可調節字體大小或啟用放大手勢，獲得更佳的視覺體驗。",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "audio_adjustment",
+                       "value":  "音訊調節",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "back_to_parent_menu",
+                       "value":  "返回",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "be_chosen",
+                       "value":  "已選擇",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "dialog_cancel",
+                       "value":  "取消",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "dialog_confirm_to_open",
+                       "value":  "確認開啟",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "dialog_stay_closed",
+                       "value":  "保持關閉",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "display_mode_font_size_extra_large",
+                       "value":  "超大",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "display_mode_font_size_huge",
+                       "value":  "特大",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "display_mode_font_size_large",
+                       "value":  "大",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "display_mode_font_size_normal",
+                       "value":  "標準",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "done",
+                       "value":  "完成",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "elder_care_search_item_font_size",
+                       "value":  "字體大小",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "hearing_aid_left_era_device",
+                       "value":  "左耳裝置",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "hearing_aid_right_era_device",
+                       "value":  "右耳裝置",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "highContrast_text_reminder",
+                       "value":  "開啟後可增強文字和背景間的顏色對比，使文字顯示明顯，便於閱讀屏幕上的文字。",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "input_max_length_message",
+                       "value":  "輸入已達上限",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "invert_color_reminder",
+                       "value":  "開啟後將會反轉屏幕上的所有顏色，幫助低對比度內容識別力差的用戶辨別清楚內容。此功能啟用後可能會影響性能。",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "load_more_card",
+                       "value":  "更多",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "move_zoom_gesture_summary",
+                       "value":  "放大狀態下，可透過雙指拖曳來移動放大區域。",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "move_zoom_gesture_title",
+                       "value":  "移動放大區域",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "not_be_chosen",
+                       "value":  "未選擇",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "note",
+                       "value":  "注意",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "on_zoom_gesture_summary",
+                       "value":  "可透過連續輕觸屏幕 %1$s 次放大屏幕內容；放大狀態下，可再次輕觸屏幕 %2$s 次退出放大。",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "on_zoom_gesture_title",
+                       "value":  "啟用和退出放大手勢",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "repeat_name_warning",
+                       "value":  "不可和目前連線網絡同名，請重新輸入。",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "resize_zoom_gesture_summary",
+                       "value":  "放大狀態下，可透過雙指開合快速調整放大比例。",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "resize_zoom_gesture_title",
+                       "value":  "調整放大比例",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screen_zoom_text_size",
+                       "value":  "文字大小",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help",
+                       "value":  "說明",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_eight",
+                       "value":  "輕按開關。您會看到一個綠色外框，輕按兩下開關。",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_five",
+                       "value":  "輕按兩下以啟用某項內容",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_four",
+                       "value":  "左右滑動以在各項內容之間進行移動",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_seven",
+                       "value":  "如需關閉屏幕朗讀，請執行以下操作：",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_six",
+                       "value":  "拖動兩隻手指以進行滾動",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_three",
+                       "value":  "如需使用屏幕朗讀進行導航，請執行以下操作：",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_help_summary_two",
+                       "value":  "開啟屏幕朗讀後，它會為您提供語音反饋，以便您在使用裝置時不用看著屏幕。對於視障用戶而言，這項功能非常實用。",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_is_sure_add",
+                       "value":  "新增屏幕朗讀？",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_is_sure_add_summary",
+                       "value":  "新增此功能後，您可同時按住音量提升和降低鍵並持續 %1$s 秒，以啟用或停用屏幕朗讀。啟用屏幕朗讀將會改變操控裝置的手勢。",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_risk_content_one",
+                       "value":  "啟用後，您使用裝置的習慣將會被改變，屏幕上的內容將會透過語音進行反饋。",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_risk_content_three",
+                       "value":  "如果要停用此功能，請輕觸屏幕朗讀開關，在開關處會出現綠色外框，再快速輕觸兩次開關即可停用。",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "screenreader_risk_content_two",
+                       "value":  "啟用前，請仔細閱讀以下內容：",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "setting_font_size_content1",
+                       "value":  "Hi~您知道如何調節字體大小？",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "setting_font_size_content2",
+                       "value":  "知道，拖動控制條就可以調節字體大小啦！",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "single_audio_reminder",
+                       "value":  "播放音訊時合併聲道，無立體聲音效差異",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "title",
+                       "value":  "標題",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "toggle_to_bigger",
+                       "value":  "放大",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "toggle_to_smaller",
+                       "value":  "縮小",
+                       "attr":  {
+                                    "priority":  "translate"
+                                }
+                   },
+                   {
+                       "name":  "uncompleted",
+                       "value":  "功能開發中，敬請期待",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   },
+                   {
+                       "name":  "zoom_gesture_risk_warning_dialog_summary",
+                       "value":  "此功能啟用後，當您連續多次觸碰屏幕時，可能會觸發放大屏幕，如在計算機輸入「%s」。啟用此功能，可能會減慢裝置的回應速度。",
+                       "attr":  {
+                                    "priority":  "LT"
+                                }
+                   }
     ]
 }

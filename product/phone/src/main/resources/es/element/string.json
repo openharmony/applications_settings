@@ -239,6 +239,13 @@
             }
         },
         {
+            "name":"accessibility_original",
+            "value":"Accesibilidad",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
             "name":"wifi_status_unsuccessful",
             "value":"Con error",
             "attr":{
@@ -7148,13 +7155,6 @@
             }
         },
         {
-            "name":"elder_care_desktop_layout",
-            "value":"Diseño de la pantalla principal",
-            "attr":{
-                "priority":"LT"
-            }
-        },
-        {
             "name":"forced_landscape_enable",
             "value":"Activado",
             "attr":{
@@ -8382,6 +8382,10 @@
       {
         "name": "mobile_data_setting_title",
         "value": ""
+      },
+      {
+        "name": "sim_card_management_title",
+        "value": "Gestión de SIM"
       },
         {
             "name": "privacy_settings_title",

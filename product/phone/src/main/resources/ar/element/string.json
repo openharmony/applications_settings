@@ -6182,13 +6182,6 @@
             }
         },
         {
-            "name":"elder_care_desktop_layout",
-            "value":"تخطيط الشاشة الرئيسية",
-            "attr":{
-                "priority":"translate"
-            }
-        },
-        {
             "name":"power_usage_summary_title",
             "value":"البطارية",
             "attr":{
@@ -8382,6 +8375,10 @@
       {
         "name": "mobile_data_setting_title",
         "value": ""
+      },
+      {
+        "name": "sim_card_management_title",
+        "value": "إدارة شريحة SIM"
       },
         {
             "name": "privacy_settings_title",

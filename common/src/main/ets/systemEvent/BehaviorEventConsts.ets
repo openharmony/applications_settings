@@ -319,8 +319,10 @@ export class HiSysAccessibilityEventGroup {
   public static readonly CHANGE_INVERT_COLOR_TEXT_SWITCH = 'CHANGE_INVERT_COLOR_TEXT_SWITCH';
   public static readonly DALTONIZATION_SWITCH = 'DALTONIZATION_SWITCH';
   public static readonly CHOOSE_COLOR_FILTER_RADIO = 'CHOOSE_COLOR_FILTER_RADIO';
+  public static readonly ACCESSIBILITY_SHORTCUT_SWITCH = 'ACCESSIBILITY_SHORTCUT_SWITCH';
   public static readonly ACCESSIBILITY_FUNCTION_RADIO = 'ACCESSIBILITY_FUNCTION_RADIO';
   public static readonly CHOOSE_TOUCH_DURATION_RADIO = 'CHOOSE_TOUCH_DURATION_RADIO';
+  public static readonly IGNORE_REPEAT_TOUCHES_SWITCH = 'IGNORE_REPEAT_TOUCHES_SWITCH';
   public static readonly SMART_COVER_SWITCH = 'SMART_COVER_SWITCH';
   public static readonly TOUCH_DISABLE_MODE_SWITCH = 'TOUCH_DISABLE_MODE_SWITCH';
   public static readonly SMART_COVER_WITH_WINDOW_SWITCH = 'SMART_COVER_WITH_WINDOW_SWITCH';
@@ -358,6 +360,7 @@ export class HiSysAccessibilityEventGroup {
   public static readonly ENTER_CONFIRM_DEVICES_NAME = 'ENTER_CONFIRM_DEVICES_NAME';
   public static readonly ENTER_CANCEL_DEVICES_NAME = 'ENTER_CANCEL_DEVICES_NAME';
   public static readonly ENTER_UPPAIR_HEARING_AID = 'ENTER_UPPAIR_HEARING_AID';
+  public static readonly ACCESSIBILITY_RESTORE_DEFAULTS = 'ACCESSIBILITY_RESTORE_DEFAULTS';
 }
 
 export class HiSysSystemEventGroup {
@@ -372,10 +375,12 @@ export class HiSysSystemEventGroup {
   public static readonly CLICK_RESET_FACTORY = 'CLICK_RESET_FACTORY';
   public static readonly USB_DEBUG_SWITCH_CHANGE = 'USB_DEBUG_SWITCH_CHANGE';
   public static readonly ENTER_TRANSITION_ANIMATION_ENTRY = 'ENTER_TRANSITION_ANIMATION_ENTRY';
+  public static readonly SCHEDULED_POWER_ON_OFF_SWITCH = 'SCHEDULED_POWER_ON_OFF_SWITCH';
   public static readonly POWER_ON_TIME_SELECT = 'POWER_ON_TIME_SELECT';
   public static readonly POWER_OFF_TIME_SELECT = 'POWER_OFF_TIME_SELECT';
   public static readonly SCHEDULED_REPEAT_SELECT = 'SCHEDULED_REPEAT_SELECT';
   public static readonly SCHEDULED_POWER_OFF = 'SCHEDULED_POWER_OFF';
+  public static readonly SCHEDULED_POWER_ON_OFF_ENTRY = 'SCHEDULED_POWER_ON_OFF_ENTRY';
   public static readonly NETWORK_NAVIGATOR_SWITCH = 'NETWORK_NAVIGATOR_SWITCH';
   public static readonly NETWORK_NAVIGATOR_SCENE_SELECT = 'NETWORK_NAVIGATOR_SCENE_SELECT';
   public static readonly NETWORK_NAVIGATOR_ENTRY = 'NETWORK_NAVIGATOR_ENTRY';
@@ -473,6 +478,11 @@ export class HiSysAuxiliaryEventGroup {
   public static readonly ENTER_ZOOM_GESTURE_FUNCTIONS = 'ENTER_ZOOM_GESTURE_FUNCTIONS';
   public static readonly ENTER_SOUND_RECOG_PAGE = 'ENTER_SOUND_RECOG_PAGE';
   public static readonly ENTER_FLASH_REMIND_PAGE = 'ENTER_FLASH_REMIND_PAGE';
+  public static readonly ENTER_TRANSITION_ANIMATION_PAGE = 'ENTER_TRANSITION_ANIMATION_PAGE';
+  public static readonly ENTER_HIGH_CONTRAST_TEXT_PAGE = 'ENTER_HIGH_CONTRAST_TEXT_PAGE';
+  public static readonly ENTER_INVERT_COLOR_PAGE = 'ENTER_INVERT_COLOR_PAGE';
+  public static readonly ENTER_AUDIO_ADJUSTMENT_PAGE = 'ENTER_AUDIO_ADJUSTMENT_PAGE';
+  public static readonly ENTER_SCREEN_READER_PAGE = 'ENTER_SCREEN_READER_PAGE';
 }
 
 export class HiSysSystemAndUpdatesEventGroup {
@@ -505,7 +515,23 @@ export class HiSysSystemAndUpdatesEventGroup {
 }
 
 export class HiSysElderCareEventGroup {
+  public static readonly ELDER_CARE_SWITCH_CLICK = 'ELDER_CARE_SWITCH_CLICK';
+  public static readonly ELDER_CARE_DPI_LEVEL_CLICK = 'ELDER_CARE_DPI_LEVEL_CLICK';
+  public static readonly ELDER_CARE_SCB_LAYOUT_CLICK = 'ELDER_CARE_SCB_LAYOUT_CLICK';
   public static readonly ELDER_CARE_TOUCH_FEEDBACK_CLICK = 'ELDER_CARE_TOUCH_FEEDBACK_CLICK';
+  public static readonly ELDER_CARE_MORE_TIPS_CLICK = 'ELDER_CARE_MORE_TIPS_CLICK';
+  public static readonly ELDER_CARE_TIPS_CLICK = 'ELDER_CARE_TIPS_CLICK';
+  public static readonly ELDER_CARE_HARASS_CLICK = 'ELDER_CARE_HARASS_CLICK';
+  public static readonly ELDER_CARE_SCAM_CLICK = 'ELDER_CARE_SCAM_CLICK';
+  public static readonly ELDER_CARE_ADVERT_CLICK = 'ELDER_CARE_ADVERT_CLICK';
+  public static readonly ELDER_CARE_ESTATE_CLICK = 'ELDER_CARE_ESTATE_CLICK';
+  public static readonly ELDER_CARE_RING_ONCE_CLICK = 'ELDER_CARE_RING_ONCE_CLICK';
+  public static readonly ELDER_CARE_MSG_FILTER_CLICK = 'ELDER_CARE_MSG_FILTER_CLICK';
+  public static readonly ELDER_CARE_ENTER = 'ELDER_CARE_ENTER';
+  public static readonly ELDER_CARE_CALL_FILTER_ENTER = 'ELDER_CARE_CALL_FILTER_ENTER';
+  public static readonly ELDER_CARE_SOS_INFO_ENTER = 'ELDER_CARE_SOS_INFO_ENTER';
+  public static readonly ELDER_CARE_CLICK_BACK_BAR = 'ELDER_CARE_CLICK_BACK_BAR';
+  public static readonly ELDER_CARE_UPDATE_ENLARGE_LEVEL = 'ELDER_CARE_UPDATE_ENLARGE_LEVEL';
   public static readonly GET_FONT_SCALE_FAILED = 'GET_FONT_SCALE_FAILED';
   public static readonly GET_FONT_WEIGHT_FAILED = 'GET_FONT_WEIGHT_FAILED';
   public static readonly SET_FONT_SCALE_FAILED = 'SET_FONT_SCALE_FAILED';
@@ -647,6 +673,10 @@ export class HiSysOtherGroup {
   public static readonly CELIA_ENTRY = 'CELIA_ENTRY';
   // 畅连通信
   public static readonly CONNECTION_COMMUNICATION_ENTRY = 'CONNECTION_COMMUNICATION_ENTRY';
+}
+
+export class HiSysSuggestionEventGroup {
+  public static readonly HOMEPAGE_SUGGESTION_EVENT = 'HOMEPAGE_SUGGESTION_EVENT';
 }
 
 export class HiSysKeyboardGroup {

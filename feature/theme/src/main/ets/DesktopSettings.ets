@@ -25,7 +25,10 @@ import { emitter } from '@kit.BasicServicesKit';
 
 const TAG: string = 'DesktopSettings : ';
 const UI_EXTENSION_SOURCE: string = 'settingSearch';
-/** scene_board_ext：product/phone module.json5 中注册的桌面设置 UIExtension，入口加载 desktopsetting/pages/DesktopSetting（SettingPage） */
+/**
+ * scene_board_ext：product/phone module.json5 中注册的桌面设置 UIExtension，
+ * 入口加载 desktopsetting/pages/DesktopSetting（SettingPage）
+ */
 const DESKTOP_SETTING_UI_EXT_ABILITY: string = 'DesktopSettingUIExtAbility';
 
 @Builder

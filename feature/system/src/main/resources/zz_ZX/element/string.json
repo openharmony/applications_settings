@@ -1,0 +1,60 @@
+{
+    "string":[
+        {
+            "name":"power_off_title",
+            "value":"[TS_1011456]_Power off"
+        },
+        {
+            "name":"power_on_time_title",
+            "value":"[TS_1011452]_Power on"
+        },
+        {
+            "name":"power_timed_warn",
+            "value":"[TS_1011457]_There must be at least %d min between power on/off."
+        },
+        {
+            "name":"scheduled_power_on_off_title",
+            "value":"[TS_1011449]_Scheduled power on/off"
+        },
+        {
+            "name":"dialog_power_off",
+            "value":"[TS_1011454]_Power off now"
+        },
+        {
+            "name":"every_week_item",
+            "value":"[TS_1011458]_Selected days"
+        },
+        {
+            "name":"dialog_sure",
+            "value":"[TS_806074]_OK"
+        },
+        {
+            "name":"single_time_item",
+            "value":"[TS_1011453]_Never"
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"[TS_806070]_Cancel"
+        },
+        {
+            "name":"time_not_set",
+            "value":"[TS_1011459]_Not set"
+        },
+        {
+            "name":"every_day_item",
+            "value":"[TS_1011450]_Every day"
+        },
+        {
+            "name":"statutory_workday_item",
+            "value":"[TS_1011461]_Workdays"
+        },
+        {
+            "name":"time_repeat",
+            "value":"[TS_1011451]_Repeat"
+        },
+        {
+            "name":"power_off_time_title",
+            "value":"[TS_1011460]_Power off"
+        }
+    ]
+}

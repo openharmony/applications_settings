@@ -1,0 +1,102 @@
+{
+    "string":[
+        {
+            "name":"power_off_title",
+            "value":"إيقاف التشغيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"power_on_time_title",
+            "value":"وقت التشغيل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_timed_warn",
+            "value":"يجب أن يفصل بين التشغيل/إيقاف التشغيل %d دقائق على الأقل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scheduled_power_on_off_title",
+            "value":"التشغيل وإيقاف التشغيل المجدول",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_power_off",
+            "value":"إيقاف التشغيل الآن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"every_week_item",
+            "value":"الأيام المحددة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_sure",
+            "value":"موافق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"single_time_item",
+            "value":"مطلقًا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"إلغاء",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"time_not_set",
+            "value":"غير مُعيّن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"every_day_item",
+            "value":"كل يوم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"statutory_workday_item",
+            "value":"أيام العمل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_repeat",
+            "value":"التكرار",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"power_off_time_title",
+            "value":"إيقاف التشغيل",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

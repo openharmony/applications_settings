@@ -569,6 +569,82 @@
                     }
                 }
             ]
+        },
+        {
+            "name":"dialog_countdown_time",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d سېكۇنت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d سېكۇنت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"dialog_ok_countdown",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"جەزملەش (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"جەزملەش (%d)",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_timed_end_tips",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ۋاقىت توشتى، %d قېتىملىق چېكىش مەشغۇلاتى ئېتىبارسىزلاندى.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"ۋاقىت توشتى، %d قېتىملىق چېكىش مەشغۇلاتى ئېتىبارسىزلاندى.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"ignore_repeated_failed_result",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ئېتىبارسىزلانمىدى، چېكىپ بولۇپ %.1f سېكۇنتتىن ئاشقاندا قايتا چەكسىڭىز تەكرار چېكىش دەپ تونۇلمايدۇ.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"ئېتىبارسىزلانمىدى، چېكىپ بولۇپ %.1f سېكۇنتتىن ئاشقاندا قايتا چەكسىڭىز تەكرار چېكىش دەپ تونۇلمايدۇ.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
         }
     ]
 }

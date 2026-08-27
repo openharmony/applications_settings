@@ -1,0 +1,31 @@
+domain: SETTINGS_APP_UE
+
+TRANSITION_ANIMATIONS_STATE:
+  __BASE: {type: BEHAVIOR, level: CRITICAL, desc: transition animations state}
+  PNAMEID: {type: STRING, desc: package name}
+  PVERSIONID: {type: STRING, desc: application version}
+  VALUE: {type: STRING, desc: transition animations value}
+
+ZOOM_GESTURE_SWITCH:
+  __BASE: {type: BEHAVIOR, level: CRITICAL, desc: zoom gesture switch}
+  PNAMEID: {type: STRING, desc: package name}
+  PVERSIONID: {type: STRING, desc: application version}
+  VALUE: {type: STRING, desc: zoom gesture switch value}
+
+ZOOM_GESTUIRE_TYPE:
+  __BASE: {type: BEHAVIOR, level: CRITICAL, desc: zoom gesture type}
+  PNAMEID: {type: STRING, desc: package name}
+  PVERSIONID: {type: STRING, desc: application version}
+  VALUE: {type: STRING, desc: zoom gesture type value}
+
+IGNORE_REPEAT_TOUCHES_SWITCH:
+  __BASE: {type: BEHAVIOR, level: CRITICAL, desc: ignore repeat touches switch}
+  PNAMEID: {type: STRING, desc: package name}
+  PVERSIONID: {type: STRING, desc: application version}
+  VALUE: {type: STRING, desc: ignore repeat touches switch value}
+
+TIME_INTERVAL_CHANGE:
+  __BASE: {type: BEHAVIOR, level: CRITICAL, desc: ignore repeat touches time interval change}
+  PNAMEID: {type: STRING, desc: package name}
+  PVERSIONID: {type: STRING, desc: application version}
+  VALUE: {type: STRING, desc: ignore repeat touches time interval value}
