@@ -227,8 +227,11 @@ export class DisplayManager {
       let currentDpi: string = this.display?.densityDPI.toString() ?? '';
       SettingsDataUtils.setSettingsData( DEFAULT_DPI_VALUE, currentDpi);
       this.defaultDensityDpi = this.display?.densityDPI as number;
+    } else if (/^\d+$/.test(dpiValue)) {
+      this.defaultDensityDpi = Number.parseInt(dpiValue, 10);
     } else {
-      this.defaultDensityDpi = Number.parseInt(dpiValue);
+      LogUtil.error(`${TAG} invalid dpiValue: ${dpiValue}`);
+      this.defaultDensityDpi = this.display?.densityDPI as number;
     }
     LogUtil.info(`${TAG} this.defaultDensityDpi: ${this.defaultDensityDpi}`);
   }
