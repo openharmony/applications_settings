@@ -342,8 +342,11 @@ class DpiManager {
         displayDataManager.updateExtendDPI();
         this.defaultDensityDpi = this.displayClass?.densityDPI as number;
       }
+    } else if (/^\d+$/.test(dpiValue)) {
+      this.defaultDensityDpi = Number.parseInt(dpiValue, 10);
     } else {
-      this.defaultDensityDpi = Number.parseInt(dpiValue);
+      LogUtil.error(`${TAG} invalid dpiValue: ${dpiValue}`);
+      this.defaultDensityDpi = this.displayClass?.densityDPI as number;
     }
 
     if (this.isNativeDisplay()) {
