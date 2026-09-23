@@ -269,7 +269,6 @@ const std::string POWER_CLASS_NAME = "power";
 
 napi_value ClassConstructor(napi_env env, napi_callback_info info)
 {
-    SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
     size_t argc = 0;
     napi_value argv = nullptr;
     napi_value thisArg = nullptr;
@@ -278,7 +277,6 @@ napi_value ClassConstructor(napi_env env, napi_callback_info info)
 
     napi_value global = 0;
     napi_get_global(env, &global);
-    SETTING_LOG_INFO("%{public}s is end", __FUNCTION__);
     return thisArg;
 }
 
@@ -537,8 +535,6 @@ void InitInputMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 
 void InitNetworkMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-    SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
-
     napi_value dataRoamingStatus = nullptr;
     napi_create_string_utf8(env,
             Network::DATA_ROAMING_STATUS.c_str(), NAPI_AUTO_LENGTH, &dataRoamingStatus);
@@ -553,20 +549,14 @@ void InitNetworkMap(napi_env env, std::map<const char*, napi_value>& paramMap)
     napi_create_string_utf8(env,
             Network::NETWORK_PREFERENCE_USAGE.c_str(), NAPI_AUTO_LENGTH, &networkPrefUsage);
     paramMap["NETWORK_PREFERENCE_USAGE"] = networkPrefUsage;
-
-    SETTING_LOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 void InitPhoneMap(napi_env env, std::map<const char*, napi_value>& paramMap)
 {
-    SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
-
     napi_value rttCallingStatus = nullptr;
     napi_create_string_utf8(env,
         Phone::RTT_CALLING_STATUS.c_str(), NAPI_AUTO_LENGTH, &rttCallingStatus);
     paramMap["RTT_CALLING_STATUS"] = rttCallingStatus;
-
-    SETTING_LOG_INFO("%{public}s is end", __FUNCTION__);
 }
 
 void InitSoundMap(napi_env env, std::map<const char*, napi_value>& paramMap)
@@ -771,7 +761,6 @@ void InitConstClassByName(napi_env env, napi_value exports, std::string name)
 
 napi_value InitNapiClass(napi_env env, napi_value exports)
 {
-    SETTING_LOG_INFO("%{public}s is called", __FUNCTION__);
     InitConstClassByName(env, exports, TableName_CLASS_NAME);
     InitConstClassByName(env, exports, DomainName_CLASS_NAME);
     InitConstClassByName(env, exports, DATE_CLASS_NAME);
@@ -784,7 +773,6 @@ napi_value InitNapiClass(napi_env env, napi_value exports)
     InitConstClassByName(env, exports, TTS_CLASS_NAME);
     InitConstClassByName(env, exports, WIRELESS_CLASS_NAME);
     InitConstClassByName(env, exports, POWER_CLASS_NAME);
-    SETTING_LOG_INFO("%{public}s is end", __FUNCTION__);
     return exports;
 }
 

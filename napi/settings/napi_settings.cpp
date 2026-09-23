@@ -231,13 +231,12 @@ napi_value napi_get_uri_sync(napi_env env, napi_callback_info info)
         int tmpId = 100;
         if (currentUserId > 0) {
             tmpId = currentUserId;
-            SETTING_LOG_INFO("userId is %{public}d", tmpId);
         } else if (currentUserId == 0) {
             OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
             tmpId = currentUserId;
-            SETTING_LOG_INFO("user0 userId is %{public}d", tmpId);
-        } else {
-            SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
+        }
+        if (tmpId != USERID_HELPER_NUMBER) {
+            SETTING_LOG_INFO("uid=%{public}d", tmpId);
         }
         std::string tableName = unwrap_string_from_js(env, args[PARAM1]);
         std::string retStr = GetStageUriStr(tableName, tmpId, keyStr);
@@ -316,13 +315,12 @@ napi_value napi_get_uri(napi_env env, napi_callback_info info)
     int tmpId = 100;
     if (currentUserId > 0) {
         tmpId = currentUserId;
-        SETTING_LOG_INFO("userId is %{public}d", tmpId);
     } else if (currentUserId == 0) {
         OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
         tmpId = currentUserId;
-        SETTING_LOG_INFO("user0 userId is %{public}d", tmpId);
-    } else {
-        SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
+    }
+    if (tmpId != USERID_HELPER_NUMBER) {
+        SETTING_LOG_INFO("uid=%{public}d", tmpId);
     }
     std::string tableName = "";
     if (callType == STAGE_CALLBACK_SPECIFIC) {
@@ -502,7 +500,7 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
     // 如果是datashare服务端死亡并且不是使用非静默则需要重试
     if (CheckQueryErrorCode(businessError.GetCode()) && !(asyncCallbackInfo->useNonSilent)) {
         dataShareHelper = getNoSilentDataShareHelper(env, asyncCallbackInfo);
-        SETTING_LOG_ERROR("query failed, key=%{public}s, retryNonSilent=%{public}d",
+        SETTING_LOG_ERROR("qf, k=%{public}s, rns=%{public}d",
             asyncCallbackInfo->key.c_str(), (dataShareHelper == nullptr));
         if (dataShareHelper == nullptr) {
             asyncCallbackInfo->status = STATUS_ERROR_CODE;
@@ -512,27 +510,24 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
     }
     int numRows = 0;
     if (resultSet == nullptr) {
-        SETTING_LOG_ERROR("resultSet is empty, key=%{public}s", asyncCallbackInfo->key.c_str());
+        SETTING_LOG_ERROR("re, k=%{public}s", asyncCallbackInfo->key.c_str());
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
         return;
     }
     resultSet->GetRowCount(numRows);
     int datashareErrorCode = businessError.GetCode();
     if ((datashareErrorCode != 0 && datashareErrorCode != PERMISSION_DENIED_CODE) || numRows <= 0) {
-        SETTING_LOG_ERROR("QueryValue failed, key=%{public}s, table=%{public}s, rows=%{public}d, Errcode=%{public}d",
-            asyncCallbackInfo->key.c_str(), asyncCallbackInfo->tableName.c_str(), numRows, datashareErrorCode);
+        SETTING_LOG_ERROR("qf, k=%{public}s, E=%{public}d", asyncCallbackInfo->key.c_str(), datashareErrorCode);
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
     } else if (datashareErrorCode == PERMISSION_DENIED_CODE) {
-        SETTING_LOG_ERROR("QueryValue failed, no permission, key=%{public}s, table=%{public}s, rows=%{public}d",
-            asyncCallbackInfo->key.c_str(), asyncCallbackInfo->tableName.c_str(), numRows);
+        SETTING_LOG_ERROR("qf, np, k=%{public}s", asyncCallbackInfo->key.c_str());
         asyncCallbackInfo->status = PERMISSION_DENIED_CODE;
     } else {
         std::string val;
         int32_t columnIndex = 0;
         resultSet->GoToFirstRow();
         resultSet->GetString(columnIndex, val);
-        SETTING_LOG_INFO("QueryValue successful, key=%{public}s, table=%{public}s, rows=%{public}d, val=%{public}s",
-            asyncCallbackInfo->key.c_str(), asyncCallbackInfo->tableName.c_str(), numRows, anonymous_log(val).c_str());
+        SETTING_LOG_INFO("qs, k=%{public}s, v=%{public}s", asyncCallbackInfo->key.c_str(), anonymous_log(val).c_str());
         asyncCallbackInfo->value = val;
         asyncCallbackInfo->status = QUERY_SUCCESS_CODE;
     }
@@ -557,8 +552,9 @@ void GetValueExecuteExt(napi_env env, void *data)
     } else if (currentUserId == 0) {
         OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
         tmpId = currentUserId;
-    } else {
-        SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
+    }
+    if (tmpId != USERID_HELPER_NUMBER) {
+        SETTING_LOG_INFO("uid=%{public}d", tmpId);
     }
     std::string strUri = GetStageUriStr(asyncCallbackInfo->tableName, tmpId,
         asyncCallbackInfo->key);
@@ -671,14 +667,14 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     // update first.
     int retInt = dataShareHelper->Update(uri, predicates, val);
     if (retInt == PERMISSION_DENIED_CODE) {
-        SETTING_LOG_ERROR("SetValueExecuteExt no permission, key=%{public}s", asyncCallbackInfo->key.c_str());
+        SETTING_LOG_ERROR("SVE np, k=%{public}s", asyncCallbackInfo->key.c_str());
         asyncCallbackInfo->status = PERMISSION_DENIED_CODE;
         return;
     }
     if (retInt < 0 && !(asyncCallbackInfo->useNonSilent)) {
         dataShareHelper = getNoSilentDataShareHelper(env, asyncCallbackInfo);
         if (dataShareHelper == nullptr) {
-            SETTING_LOG_ERROR("SetValueExecuteExt key=%{public}s, nonSilent helper is null",
+            SETTING_LOG_ERROR("SVE k=%{public}s, nonSilent helper is null",
                 asyncCallbackInfo->key.c_str());
             asyncCallbackInfo->status = STATUS_ERROR_CODE;
             return;
@@ -689,15 +685,14 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
         // retry to insert.
         retInt = dataShareHelper->Insert(uri, val);
         if (retInt <= 0) {
-            SETTING_LOG_ERROR("SetValueExecuteExt insert failed, key=%{public}s, ret=%{public}d",
-                asyncCallbackInfo->key.c_str(), retInt);
+            SETTING_LOG_ERROR("SVE i f, k=%{public}s, r=%{public}d", asyncCallbackInfo->key.c_str(), retInt);
         }
     }
     if (retInt > 0 && asyncCallbackInfo->useNonSilent) {
         dataShareHelper->NotifyChange(uri);
     }
-    SETTING_LOG_INFO("SetValueExecuteExt key=%{public}s, table=%{public}s, val=%{public}s ret=%{public}d",
-        asyncCallbackInfo->key.c_str(), asyncCallbackInfo->tableName.c_str(), anonymous_log(setValue).c_str(), retInt);
+    SETTING_LOG_INFO("SVE k=%{public}s, v=%{public}s r=%{public}d",
+        asyncCallbackInfo->key.c_str(), anonymous_log(setValue).c_str(), retInt);
     asyncCallbackInfo->status = retInt;
 }
 

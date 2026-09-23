@@ -66,16 +66,12 @@ namespace Settings {
         int tmpId = 100;
         if (currentUserId > 0) {
             tmpId = currentUserId;
-            SETTING_LOG_INFO("userId is %{public}d", tmpId);
         } else if (currentUserId == 0) {
             OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
             tmpId = currentUserId;
-            SETTING_LOG_INFO("user0 userId is %{public}d", tmpId);
-        } else {
-            SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
         }
-        if (currentUserId > USERID_HELPER_NUMBER) {
-            SETTING_LOG_INFO("user0 userId is %{public}d", tmpId);
+        if (tmpId != USERID_HELPER_NUMBER) {
+            SETTING_LOG_INFO("uid=%{public}d", tmpId);
         }
         std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
         std::string strProxyUri = GetProxyUriStr(tableName, tmpId);
@@ -170,13 +166,12 @@ namespace Settings {
         int tmpId = 100;
         if (currentUserId > 0) {
             tmpId = currentUserId;
-            SETTING_LOG_INFO("userId is %{public}d", tmpId);
         } else if (currentUserId == 0) {
             OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
             tmpId = currentUserId;
-            SETTING_LOG_INFO("user0 userId is %{public}d", tmpId);
-        } else {
-            SETTING_LOG_INFO("%{public}s, user id 100.", __func__);
+        }
+        if (tmpId != USERID_HELPER_NUMBER) {
+            SETTING_LOG_INFO("uid=%{public}d", tmpId);
         }
         return tmpId;
     }
@@ -191,7 +186,6 @@ namespace Settings {
 
     void CleanUp(void* data)
     {
-        SETTING_LOG_INFO("CleanUp");
         if (data == nullptr) {
             SETTING_LOG_WARN("CleanUp, data nullptr");
             return;
