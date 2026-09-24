@@ -435,7 +435,7 @@ std::shared_ptr<DataShareHelper> getNoSilentDataShareHelper(napi_env env, AsyncC
         asyncCallbackInfo->useNonSilent = true;
     }
     if (dataShareHelper == nullptr) {
-        SETTING_LOG_WARN("no silent helper is null");
+        SETTING_LOG_WARN("nsp null");
     }
     return dataShareHelper;
 }
@@ -455,10 +455,9 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, sptr<IRemoteOb
     OHOS::Uri proxyUri(strProxyUri);
     dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(token, strProxyUri, "");
     if (!dataShareHelper) {
-        SETTING_LOG_ERROR("dataShareHelper from proxy is null");
+        SETTING_LOG_ERROR("dfp is null");
         dataShareHelper = getNoSilentDataShareHelper(env, asyncCallbackInfo);
     } else {
-        SETTING_LOG_INFO("create global helper");
         globalDataShareHelper = dataShareHelper;
         std::string strUri = "datashare:///com.ohos.settingsdata.DataAbility";
         dataShareHelper->SetDataShareHelperExtUri(strUri);
@@ -472,7 +471,7 @@ std::shared_ptr<DataShareHelper> getDataShareHelper(napi_env env, sptr<IRemoteOb
 bool CheckQueryErrorCode(int dataShareErrorCode)
 {
     if (dataShareErrorCode == DATA_SHARE_DIED1 || dataShareErrorCode == DATA_SHARE_DIED2) {
-        SETTING_LOG_ERROR("data share error code:  %{public}d", dataShareErrorCode);
+        SETTING_LOG_ERROR("e code:  %{public}d", dataShareErrorCode);
         return true;
     }
     return false;
@@ -483,7 +482,7 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
     std::shared_ptr<OHOS::DataShare::DataShareHelper> dataShareHelper =
     getDataShareHelper(env, asyncCallbackInfo->token, asyncCallbackInfo->tableName, asyncCallbackInfo);
     if (dataShareHelper == nullptr) {
-        SETTING_LOG_ERROR("helper is null, key=%{public}s", asyncCallbackInfo->key.c_str());
+        SETTING_LOG_ERROR("h null, k=%{public}s", asyncCallbackInfo->key.c_str());
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
         return;
     }
@@ -540,7 +539,7 @@ void QueryValue(napi_env env, AsyncCallbackInfo* asyncCallbackInfo, OHOS::Uri ur
 void GetValueExecuteExt(napi_env env, void *data)
 {
     if (data == nullptr) {
-        SETTING_LOG_ERROR("GetValueExecuteExt data is null");
+        SETTING_LOG_ERROR("GVE data is null");
         return;
     }
     AsyncCallbackInfo* asyncCallbackInfo = static_cast<AsyncCallbackInfo *>(data);
@@ -631,8 +630,9 @@ int GetUserId()
     } else if (currentUserId == 0) {
         OHOS::AccountSA::OsAccountManager::GetForegroundOsAccountLocalId(currentUserId);
         tmpId = currentUserId;
-    } else {
-        SETTING_LOG_ERROR("userid is invalid, use id 100 instead");
+    }
+    if (tmpId != USERID_HELPER_NUMBER) {
+        SETTING_LOG_INFO("uid=%{public}d", tmpId);
     }
     return tmpId;
 }
@@ -640,7 +640,7 @@ int GetUserId()
 void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
 {
     if (data == nullptr) {
-        SETTING_LOG_ERROR("SetValueExecuteExt data is null");
+        SETTING_LOG_ERROR("SVE data null");
         return;
     }
     AsyncCallbackInfo* asyncCallbackInfo = static_cast<AsyncCallbackInfo *>(data);
@@ -649,7 +649,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
                                          asyncCallbackInfo);
     if (dataShareHelper == nullptr) {
         asyncCallbackInfo->status = STATUS_ERROR_CODE;
-        SETTING_LOG_ERROR("SetValueExecuteExt getDataShareHelper failed");
+        SETTING_LOG_ERROR("SVE getHelper f");
         return;
     }
 
@@ -674,7 +674,7 @@ void SetValueExecuteExt(napi_env env, void *data, const std::string setValue)
     if (retInt < 0 && !(asyncCallbackInfo->useNonSilent)) {
         dataShareHelper = getNoSilentDataShareHelper(env, asyncCallbackInfo);
         if (dataShareHelper == nullptr) {
-            SETTING_LOG_ERROR("SVE k=%{public}s, nonSilent helper is null",
+            SETTING_LOG_ERROR("SVE k=%{public}s, nsh null",
                 asyncCallbackInfo->key.c_str());
             asyncCallbackInfo->status = STATUS_ERROR_CODE;
             return;

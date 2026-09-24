@@ -78,7 +78,7 @@ namespace Settings {
         OHOS::Uri proxyUri(strProxyUri);
         dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(token, strProxyUri, "");
         if (!dataShareHelper) {
-            SETTING_LOG_ERROR("dataShareHelper from proxy is null");
+            SETTING_LOG_ERROR("h proxy null");
             dataShareHelper = OHOS::DataShare::DataShareHelper::Creator(token, strUri, "");
         } else {
             dataShareHelper->SetDataShareHelperExtUri(strUri);
@@ -116,7 +116,7 @@ namespace Settings {
         napi_call_function(settingsObserver->cbInfo->env, undefined, callback, PARAM2, result,
             &callResult);
         napi_close_handle_scope(settingsObserver->cbInfo->env, scope);
-        SETTING_LOG_INFO("%{public}s, uv_work success.", __func__);
+        SETTING_LOG_INFO("%{public}s, uv_s", __func__);
     }
 
     void SettingsObserver::OnChange()
@@ -195,7 +195,7 @@ namespace Settings {
         std::lock_guard<std::recursive_mutex> lockGuard(g_observerMapMutex);
         if (g_observerMap.find(observerMapKey) != g_observerMap.end() &&
             g_observerMap[observerMapKey] != nullptr) {
-            SETTING_LOG_WARN("CleanUp key is %{public}s", observerMapKey.c_str());
+            SETTING_LOG_WARN("CU k=%{public}s", observerMapKey.c_str());
             CleanObserverMap(observerMapKey);
             napi_delete_reference(callbackInfo->env, callbackInfo->callbackRef);
             callbackInfo->env = nullptr;
