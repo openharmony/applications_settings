@@ -90,32 +90,31 @@ namespace Settings {
     {
         SETTING_LOG_INFO("n_s_o_c_a_l");
         std::lock_guard<std::recursive_mutex> lockGuard(g_observerMapMutex);
-        if (!IsExistObserver(settingsObserver) || settingsObserver == nullptr || settingsObserver->cbInfo == nullptr ||
-            settingsObserver->toBeDelete) {
+        if (settingsObserver == nullptr || !IsExistObserver(settingsObserver) ||
+           settingsObserver->cbInfo == nullptr || settingsObserver->toBeDelete) {
             SETTING_LOG_ERROR("uv_work: cbInfo invalid.");
             return;
         }
-
+        napi_env env = settingsObserver->cbInfo->env;
+        napi_ref callbackRef = settingsObserver->cbInfo->callbackRef;
         napi_handle_scope scope = nullptr;
-        napi_open_handle_scope(settingsObserver->cbInfo->env, &scope);
+        napi_open_handle_scope(env, &scope);
         napi_value callback = nullptr;
         napi_value undefined;
-        napi_get_undefined(settingsObserver->cbInfo->env, &undefined);
+        napi_get_undefined(env, &undefined);
         napi_value error = nullptr;
-        napi_create_object(settingsObserver->cbInfo->env, &error);
+        napi_create_object(env, &error);
         int unSupportCode = 802;
         napi_value errCode = nullptr;
-        napi_create_int32(settingsObserver->cbInfo->env, unSupportCode, &errCode);
-        napi_set_named_property(settingsObserver->cbInfo->env, error, "code", errCode);
+        napi_create_int32(env, unSupportCode, &errCode);
+        napi_set_named_property(env, error, "code", errCode);
         napi_value result[PARAM2] = {0};
         result[0] = error;
-        result[1] = wrap_bool_to_js(settingsObserver->cbInfo->env, false);
-        napi_get_reference_value(settingsObserver->cbInfo->env, settingsObserver->cbInfo->callbackRef,
-            &callback);
+        result[1] = wrap_bool_to_js(env, false);
+        napi_get_reference_value(env, callbackRef, &callback);
         napi_value callResult;
-        napi_call_function(settingsObserver->cbInfo->env, undefined, callback, PARAM2, result,
-            &callResult);
-        napi_close_handle_scope(settingsObserver->cbInfo->env, scope);
+        napi_call_function(env, undefined, callback, PARAM2, result, &callResult);
+        napi_close_handle_scope(env, scope);
         SETTING_LOG_INFO("%{public}s, uv_s", __func__);
     }
 
@@ -138,9 +137,10 @@ namespace Settings {
             SETTING_LOG_ERROR("%{public}s, fail to get uv work.", __func__);
             return;
         }
-        work->data = reinterpret_cast<void*>(this);
-        SettingsObserver* settingsObserver = reinterpret_cast<SettingsObserver*>(work->data);
-        int ret = napi_send_event(cbInfo->env, std::bind(DoEventWork, settingsObserver), napi_eprio_high);
+        sptr<SettingsObserver> keepAlive(this);
+        int ret = napi_send_event(cbInfo->env, [keepAlive] {
+            SettingsObserver::DoEventWork(keepAlive.GetRefPtr());
+        }, napi_eprio_high);
         if (ret != 0) {
             SETTING_LOG_ERROR("%{public}s, uv_queue_work failed.", __func__);
         }
@@ -196,6 +196,8 @@ namespace Settings {
         if (g_observerMap.find(observerMapKey) != g_observerMap.end() &&
             g_observerMap[observerMapKey] != nullptr) {
             SETTING_LOG_WARN("CU k=%{public}s", observerMapKey.c_str());
+            // Prevent ~SettingsObserver from deleting cbInfo --CleanUp owns it now.
+            g_observerMap[observerMapKey]->cbInfo = nullptr;
             CleanObserverMap(observerMapKey);
             napi_delete_reference(callbackInfo->env, callbackInfo->callbackRef);
             callbackInfo->env = nullptr;
